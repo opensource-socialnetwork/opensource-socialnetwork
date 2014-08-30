@@ -48,7 +48,6 @@ Prerequisite
 * PHP GD Library
 * JSON Support
 * XML
-* 
 
 Installation
 ============
