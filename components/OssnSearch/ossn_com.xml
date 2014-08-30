@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component xmlns="http:/opensource-socialnetwork.com/v/1.0">
+    <com_name>OssnSearch</com_name>
+	<com_author>Core Team</com_author>
+	<com_description>Create a profile page for users.</com_description>
+	<com_license>GPL V2</com_license>
+	<com_licence_url>http://informatikon.com</com_licence_url>
+	<com_author_url>http://informatikon.com</com_author_url>
+	<com_version>1.0</com_version>
+</component>
