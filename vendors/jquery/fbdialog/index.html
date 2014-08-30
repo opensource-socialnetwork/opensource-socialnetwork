@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="utf-8" />
+<head>
+<title>jQuery FBDialog Plugin Demo</title>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script type="text/javascript" src="fbdialog.min.js"></script>
+<link rel="stylesheet" href="fbdialog.css" />
+</head>
+<script type="text/javascript">
+    $(function() {
+        $(".show-dialog").click(function() {
+            $(".test").fbdialog({
+            title: "jQueryScript.Net",
+            cancel: "Cancel",
+            okay: "Okay",
+            okaybutton: true,
+            cancelbutton: true,
+            buttons: true,
+            opacity: 0.0, 
+            dialogtop: ""},
+            function(callback){
+             if(callback == 1){
+                alert("Okay button clicked.");
+            }
+			if(callback == 2){
+                alert("Cancel button clicked.");
+            }
+            }); 
+        });
+       
+        $(document).on("click", "#fbclose", function() {     
+            $(".test").fbdialog({close: true});
+        });
+    });
+</script>
+<style type="text/css">
+body {
+background: #fff;
+}
+.show-dialog {
+padding: 0 8px;
+background: #f9f9f9;
+border: #666 1px solid;
+-webkit-border-radius: 2px;
+border-radius: 2px;
+-moz-border-radius: 2px;
+line-height: 22px;
+cursor: pointer;
+}
+.test {
+display: none;
+}
+</style>
+<body>
+<div class="jquery-script-ads"><script type="text/javascript"><!--
+google_ad_client = "ca-pub-2783044520727903";
+/* jQuery_demo */
+google_ad_slot = "2780937993";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></div>
+<h1>jQuery FBDialog Plugin Demo</h1>
+
+<button class="show-dialog"> Show Dialog </button>
+<div class="test"> Your Content Goes Here <br/>
+<a href="#" id="fbclose">Close this dialog</a> </div>
+</body>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-36251023-1']);
+  _gaq.push(['_setDomainName', 'jqueryscript.net']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</html>

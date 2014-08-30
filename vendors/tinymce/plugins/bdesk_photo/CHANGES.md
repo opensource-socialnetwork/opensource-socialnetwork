@@ -1,0 +1,1 @@
+BuddyexpressDesk image embed plugin for tinymce

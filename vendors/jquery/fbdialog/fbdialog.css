@@ -1,0 +1,16 @@
+/*Created by RRPowered.com*/
+a[role=button]{outline:none}
+#facebook_dialog{font-family:'Helvetica Neue', Helvetica, Arial, 'lucida grande', tahoma, verdana, arial, sans-serif;opacity:0;-webkit-box-shadow:0 2px 26px rgba(0,0,0,.3), 0 0 0 1px rgba(0,0,0,.1);box-shadow:0 2px 26px rgba(0,0,0,.3), 0 0 0 1px rgba(0,0,0,.1);-moz-box-shadow:0 2px 26px rgba(0,0,0,.3), 0 0 0 1px rgba(0,0,0,.1);background-color:#fff;-webkit-border-radius:3px;border-radius:3px;-moz-border-radius:3px;position:relative;z-index:900;margin:78px auto 40px}
+.fb_fade{display:none}
+.fb_inner_gray{background-color:#f5f6f7;border-bottom:1px solid #e5e5e5;-webkit-border-radius:3px 3px 0 0;border-radius:3px 3px 0 0;-moz-border-radius:3px 3px 0 0;color:#4e5665;font-weight:700;line-height:19px;text-shadow:0 1px 0 #fff;padding:10px 12px}
+.fb_inner_gray_text{float:left}
+.fb_inner_gray_close_button{float:right}
+.fb_inner_body_content{background-color:#fff;font-size:14px;padding:12px}
+.fb_inner_buttons{background:transparent;border-top:1px solid #e9eaed;text-align:right;margin:0 12px;padding:12px 0}
+.fb_okay_button{background-color:#4e69a2;color:#fff;text-shadow:0 -1px 0 rgba(0,0,0,.2);-webkit-background-clip:padding-box;background-clip:padding-box;border:1px solid;-webkit-border-radius:2px;border-radius:2px;-moz-border-radius:2px;-webkit-box-shadow:0 1px 1px rgba(0,0,0,.05);box-shadow:0 1px 1px rgba(0,0,0,.05);-moz-box-shadow:0 1px 1px rgba(0,0,0,.05);-webkit-box-sizing:content-box;box-sizing:content-box;-moz-box-sizing:content-box;-webkit-font-smoothing:antialiased;line-height:20px;font-weight:700;font-size:12px;position:relative;text-align:center;vertical-align:middle;cursor:pointer;white-space:nowrap;border-color:#435a8b #3c5488 #334c83!important;padding:0 8px}
+.fb_cancel_button{margin-left:4px;color:#4e5665;text-shadow:0 1px 0 #fff;background:#f6f7f8;background-image:linear-gradient(tobottom,#ffffff,#f6f7f8);-webkit-background-clip:padding-box;background-clip:padding-box;border:1px solid;-webkit-border-radius:2px;border-radius:2px;-moz-border-radius:2px;-webkit-box-shadow:0 1px 1px rgba(0,0,0,.05);box-shadow:0 1px 1px rgba(0,0,0,.05);-moz-box-shadow:0 1px 1px rgba(0,0,0,.05);-webkit-box-sizing:content-box;box-sizing:content-box;-moz-box-sizing:content-box;-webkit-font-smoothing:antialiased;line-height:22px;font-weight:700;font-size:12px;position:relative;text-align:center;vertical-align:middle;cursor:pointer;display:inline-block;text-decoration:none;white-space:nowrap;border-color:#cdced0 #c5c6c8 #b6b7b9!important;padding:0 8px}
+.fb_close{width:12px;height:12px;background-color:transparent;border:0 none;cursor:pointer;font-size:0!important;overflow:hidden;vertical-align:middle;background-image:url(fbclose.png);background-repeat:no-repeat;background-size:auto;background-position:0 0;white-space:nowrap;display:inline-block;text-decoration:none;padding:0}
+.fb_close:hover{background-position:-13px 0}
+.fb_clearfix{zoom:1}
+.fb_clearfix:after{clear:both;content:".";display:block;font-size:0;height:0;line-height:0;visibility:hidden}
+.fb_overlay{height:auto;left:0;min-height:100%;position:fixed;right:0;top:0;z-index:400;background-color:rgba(0,0,0,.4);display:none}
