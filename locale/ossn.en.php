@@ -23,7 +23,7 @@ $en = array(
 
 	'copyright' => '&copy; COPYRIGHT',
 
-        'name' => 'Name',
+                'name' => 'Name',
 		'birthdate' => 'Birthdate',
 		'first:name' => 'First Name',
 		'last:name' => 'Last Name',
@@ -39,7 +39,7 @@ $en = array(
 		'account:create:notice' => 'By clicking Create an account, you agree to our',
 		'gender' => 'Gender',
   
-        'acount:settings' => 'Account Settings',
+            'acount:settings' => 'Account Settings',
 	    'page:error' => 'Page Not Found',
 	    'page:error:text' => 'Opps! The Page you requested was not found!',
 	    'page:error:heading' => '404',
@@ -57,7 +57,7 @@ $en = array(
 		'admin:logout' => 'Logout',
 		'logout' => 'Logout',
 
-        'ossn:like:this' => '%s like this',
+                'ossn:like:this' => '%s like this',
 		'ossn:like:you:and:this' => 'You and %s like this',
 		'ossn:like:people' => '%s People',
 		'ossn:like:person' => '%s Person',
@@ -101,7 +101,7 @@ $en = array(
 		'owner:email' => 'Owner Email',
 		'default:lang' => 'Default Language',
 						 
-	    'timeline' => 'Timeline',
+	        'timeline' => 'Timeline',
 		'photos' => 'Photos',
 		'friends' => 'Friends',
 		'links' => 'Links',
@@ -149,20 +149,20 @@ If you can't click on the link, copy and paste it to your browser manually.
 		'logged:out' => 'You are now logged out',
 		'account:created:email' => "Your account has been registered. We have sent you account activation email. If you didn't recieved email please check your spam/junk folder",
 
-        'administration' => 'Administration',
+                 'administration' => 'Administration',
 		
 		'privacy' => 'Privacy',
 		'close' => 'Close',
 		'open' => 'Open',
 		'public' => 'Public',
 		'friends' => 'Friends',
-		'privacy:public:note' => 'Any one is on site can see this',
-		'privacy:friends:note' => 'Your friends can only see this',
+	     'privacy:public:note' => 'Any one is on site can see this',
+	     'privacy:friends:note' => 'Your friends can only see this',
 		
-		'add:friend' => 'Add friend',
-	     'remove:friend' => 'Unfriend',
-	     'no:friends' => 'No Friends',
-	     'settings' => 'Settings',
+	    'add:friend' => 'Add friend',
+	    'remove:friend' => 'Unfriend',
+	    'no:friends' => 'No Friends',
+	    'settings' => 'Settings',
 		
 	    "aa" => "Afar",
 	    "ab" => "Abkhazian",
