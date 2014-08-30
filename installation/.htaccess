@@ -1,0 +1,22 @@
+# Bframework htaccess
+# Copyright BUDDYEXPRESS 2009-2014
+# Website http://wwww.buddyexpress.net/bframework/
+
+<Files .htaccess>
+ order allow,deny
+ deny from all
+</Files>
+
+DirectoryIndex application/start.php?bframework=check
+Options -Indexes
+Options +FollowSymLinks
+
+<IfModule mod_rewrite.c>
+RewriteEngine on
+
+RewriteRule ^([A-Za-z0-9\_\-]+)$ application/start.php?bframework=$1&%{QUERY_STRING}
+
+RewriteRule ^action\/([A-Za-z0-9\_\-]+)$ application/start.php?action=$1&%{QUERY_STRING}
+
+RewriteRule    ^js.js$ application/js/js.php
+</IfModule>
