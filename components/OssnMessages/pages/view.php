@@ -32,7 +32,7 @@
    ?>
     <div class="user-item <?php echo $new;?>" >
      
-     <div class="image"><img src="http://production.buddyexpress.net/ossn/avatar/<?php echo $user->username;?>/small" /></div>
+     <div class="image"><img src="<?php echo ossn_site_url();?>avatar/<?php echo $user->username;?>/small" /></div>
      <div class="data">
       <div class="name"><?php echo sttl($user->fullname, 17);?></div><br />
       <div class="reply"><?php echo $replied;?></div>
@@ -62,7 +62,7 @@
 	     $user = ossn_user_by_guid($message->message_from);
 	   ?>
     <div class="message-item">
-      <img src="http://production.buddyexpress.net/ossn/avatar/<?php echo  $user->username;?>/smaller" />
+      <img src="<?php echo ossn_site_url();?>avatar/<?php echo  $user->username;?>/smaller" />
        <div class="data">
          <div class="name"><a href=""><?php echo $user->fullname;?></a></div>
          <div class="text"> <?php echo $message->message;?> </div>

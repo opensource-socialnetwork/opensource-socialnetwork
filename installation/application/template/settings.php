@@ -12,7 +12,7 @@
 echo '<div><div class="layout-installation">';
 echo '<h2>'.bframework_print('site:settings').'</h2>';
 ?>
-<form action="http://production.buddyexpress.net/ossn/installation/action/install" method="post">
+<form action="<?php echo bframework_get_url();?>action/install" method="post">
 
 <div>
 <input type="text" name="dbuser" placeholder="Database User"/>

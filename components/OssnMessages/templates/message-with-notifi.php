@@ -28,7 +28,7 @@
    ?>
     <div class="user-item <?php echo $new;?>" onclick="Ossn.redirect('messages/message/<?php echo $user->username;?>');">
       <div class="user-item-inner">
-     <div class="image"><img src="http://production.buddyexpress.net/ossn/avatar/<?php echo $user->username;?>/small" /></div>
+     <div class="image"><img src="<?php echo ossn_site_url();?>avatar/<?php echo $user->username;?>/small" /></div>
      <div class="data">
       <div class="name"><?php echo sttl($user->fullname, 17);?></div><br />
       <div class="reply"><?php echo $replied;?></div>

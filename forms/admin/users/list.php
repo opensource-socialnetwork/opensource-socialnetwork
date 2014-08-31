@@ -39,7 +39,7 @@ if(!empty($search)){
   <tr>
     <td><input type="checkbox" /></td>
     <td>
-    <div class="image"><img src="http://production.buddyexpress.net/ossn/avatar/<?php echo $user->username;?>/smaller" /></div>
+    <div class="image"><img src="<?php echo ossn_site_url();?>avatar/<?php echo $user->username;?>/smaller" /></div>
 	<div class="name" style="margin-left:39px;margin-top: -39px;"><?php echo sttl($user->fullname, 20);?></div></td>
     <td><?php echo $user->username;?></td>
     <td><?php echo $user->email;?></td>

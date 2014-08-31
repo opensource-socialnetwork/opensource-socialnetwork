@@ -15,7 +15,7 @@ $likes_total = $OssnLikes->CountLikes($comment->id);
 ?>
      <div class="comments-item" id="comments-item-<?php echo $comment->id;?>">    
              <div class="poster-image">
-               <img src="http://production.buddyexpress.net/ossn/avatar/<?php echo $user->username;?>/smaller" />
+               <img src="<?php echo ossn_site_url();?>avatar/<?php echo $user->username;?>/smaller" />
             </div>  
              <div class="comment-text">
                   <p><a class="owner-link" href="#"><?php echo $user->fullname;?></a> 
