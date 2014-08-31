@@ -8,7 +8,15 @@
  * @license   General Public Licence http://opensource-socialnetwork.com/licence 
  * @link      http://www.opensource-socialnetwork.com/licence
  */
- 
+
+/**
+ * Initialize library
+ *
+ * @return bool
+ */ 
+function ossn_users(){
+    ossn_register_page('uservalidate', 'ossn_uservalidate_pagehandler');
+}
 /**
  * Check if the user is logged in or not
  *
@@ -204,3 +212,34 @@ function ossn_user_friendly_time($tm, $rcs = 0) {
 
   return $x.' ago';
 }
+/**
+* Register a uservalidation page
+* @pages: 
+*       uservalidate, 
+*
+* @return bool
+*/
+function ossn_uservalidate_pagehandler($pages){
+	$page = $pages[0];
+    if(empty($page)){
+		echo ossn_error_page();
+	}
+	switch($page){
+	 case 'acitvate':
+	   if(!empty($pages[1]) && !empty($pages[2])){
+		 $user = new OssnUser;
+		 $user->guid = $pages[1];
+		 if($user->ValidateRegistration($pages[2])){
+			 ossn_trigger_message(ossn_print('user:account:validated'), 'success');   
+	         redirect();
+		 } else {
+			 ossn_trigger_message(ossn_print('user:account:validate:fail'), 'success');   
+	         redirect();			 
+		 }
+	   }
+	 break;	
+		
+	}
+	
+}
+ossn_register_callback('ossn', 'init', 'ossn_users');

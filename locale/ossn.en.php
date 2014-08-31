@@ -107,6 +107,8 @@ If you can't click on the link, copy and paste it to your browser manually.
 
 %s",
         'user:friends' => 'Friends',
+	'user:account:validated' => 'Account has been successfully validated',
+    'user:account:validate:fail' => 'Cannot validate account please try again later',
 		
 	'cache:enabled' => 'Cache successfully enabled',
 	'cache:disabled' => 'Cache successfully disabled',

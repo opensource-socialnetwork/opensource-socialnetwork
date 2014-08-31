@@ -27,18 +27,17 @@ $contents = '';
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title><?php echo $title; ?></title>
 
-<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
- <script>
-
-        </script>
 <?php echo ossn_fetch_extend_views('ossn/site/head'); ?>
 
 <script>
+
 <?php echo ossn_fetch_extend_views('ossn/js/head'); ?>
 
 </script>
- <script src="<?php echo ossn_site_url(); ?>vendors/jquery/jquery.tokeninput.js"></script>
+
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
+<script src="<?php echo ossn_site_url(); ?>vendors/jquery/jquery.tokeninput.js"></script>
 
 </head>
 

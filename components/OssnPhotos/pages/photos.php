@@ -28,7 +28,7 @@ if(ossn_access_validate($photo->access, $photo->owner_guid)){
 	$view_url = ossn_site_url().'album/view/'.$photo->guid;
    if(ossn_access_validate($photo->access, $photo->owner_guid)){
 	echo "<li>
-	<a href='{$view_url}'><img src='{$image}' />
+	<a href='{$view_url}'><img src='{$image}' class='pthumb' />
 	 <div class='ossn-album-name'>{$photo->title}</div></a>
 	</li>";	
 	}

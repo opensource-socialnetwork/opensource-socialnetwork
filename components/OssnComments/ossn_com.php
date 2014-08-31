@@ -1,4 +1,13 @@
 <?php
+/**
+ * OpenSocialWebsite
+ *
+ * @package   OpenSocialWebsite
+ * @author    Open Social Website Core Team <info@opensocialwebsite.com>
+ * @copyright 2014 iNFORMATIKON TECHNOLOGIES
+ * @license   General Public Licence http://www.opensocialwebsite.com/licence 
+ * @link      http://www.opensocialwebsite.com/licence
+ */
 define('__OSSN_COMMENTS__', ossn_route()->com.'OssnComments/');
 require_once(__OSSN_COMMENTS__.'classes/OssnComments.php');
 ossn_extend_view('js/opensource.socialnetwork', 'components/OssnLikes/js/ossn_likes');

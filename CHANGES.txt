@@ -1,0 +1,15 @@
+OSSN - OPEN SOURCE SOCIAL NETWORK 1.1
+
+Bugfixes:
+
+* Add groups click event not working #9
+* User validation is missing #10
+* remove photo viewer if there is not profile photo #3
+* Show transparent photo if there is no profile cover #4
+* component(ossnphotos): photos is not displaying correctly in albums photos #6
+* Installation Issues fixed
+
+
+Enhancement
+* Installation should check all requirments.
+* Litespeed server is supported now,

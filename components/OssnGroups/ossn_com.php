@@ -65,7 +65,6 @@ function ossn_groups(){
  ossn_register_sections_menu('newsfeed', array(
 								   'text' => 'Add Group', 
 								   'url' => 'javascript::;',
-								   'id' => 'ossn-group-add',
 								   'params' => array('id' => 'ossn-group-add'),
 								   'section' => 'groups',
 								   'icon' => ossn_site_url('components/OssnGroups/images/add.png')

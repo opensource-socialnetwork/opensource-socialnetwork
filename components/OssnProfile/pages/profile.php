@@ -36,14 +36,12 @@ $cover_left = $coverp[1];
           </form> 
           <?php } 
 		      $cover = ossn_site_url()."cover/{$user->username}";
-			  if(!empty($cover)){
 		    ?>
               <img id="draggable" class="profile-cover-img" src="<?php echo $cover;?>" 
               style='position:relative;top:<?php echo $cover_top;?>px;left:<?php echo $cover_left;?>px;'
               />
-              <?php } ?>
         </div>
-        <div class="profile-photo" onclick="Ossn.Viewer('photos/viewer?user=<?php echo $user->username;?>');">
+        <div class="profile-photo">
       <?php if(ossn_loggedin_user()->guid == $user->guid){ ?>  
           <div class="upload-photo" style="display:none;cursor:pointer;"> 
            <span onclick="Ossn.Clk('.pfile');"><?php echo ossn_print('change:photo'); ?></span>
@@ -52,8 +50,11 @@ $cover_left = $coverp[1];
            <input type="submit" class="upload"/>
           </form>
           </div>
-          <?php } ?>
-          <img src="<?php echo ossn_site_url();?>avatar/<?php echo $user->username;?>/larger" height="170" width="170"/>
+          <?php }
+		  if(get_profile_photo_guid($user->guid)){
+			 $viewer =  'onclick="Ossn.Viewer(\'photos/viewer?user='.$user->username.'\');"';  
+		  }?>
+          <img src="<?php echo ossn_site_url();?>avatar/<?php echo $user->username;?>/larger" height="170" width="170" <?php echo $viewer;?> />
         </div>
         <div class="profile-name"><?php echo $user->fullname;?></div>
        <div id='profile-hr-menu' class="profile-hr-menu">

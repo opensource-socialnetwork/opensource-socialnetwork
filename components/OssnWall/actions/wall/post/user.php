@@ -26,7 +26,8 @@ $friends = input('friends');
 $location = input('location');
 
 if($OssnWall->Post($post, $friends, $location, OSSN_FRIENDS)){
-    ossn_trigger_message(ossn_print('post:created'), 'success');	
+   //no need to show message on success
+   // ossn_trigger_message(ossn_print('post:created'), 'success');		
 	redirect(REF);
 } else {
 	ossn_trigger_message(ossn_print('post:create:error'), 'error');	

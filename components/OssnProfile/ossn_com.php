@@ -195,8 +195,9 @@ function get_cover_photo($guid){
 	 if(isset($photos->{0}->value)){
 		  $datadir = ossn_get_userdata("user/{$guid}/{$photos->{0}->value}"); 
 		 return file_get_contents($datadir);
-	 }
-return false;	 
+	 } else {
+		redirect('components/OssnProfile/images/transparent.png'); 
+	 }	 
 }
 function cover_page_handler($avatar){
 	if(isset($avatar[0])){

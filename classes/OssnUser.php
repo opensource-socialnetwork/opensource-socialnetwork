@@ -369,4 +369,24 @@ class OssnUser extends OssnEntities{
 		$data = $userentity;
 		return $data;
 	}
+   /**
+	* Validate User Registration
+	*
+	* @return bool;
+	*/		 
+   public function ValidateRegistration($code){
+	self::initAttributes();
+	$user_activation = $this->getUser();
+	$guid = $user_activation->guid;
+	if($user_activation->activation == $code){
+ 	   $params['table'] = 'ossn_users';
+	   $params['names'] = array('activation');
+	   $params['values'] = array(NULL);
+	   $params['wheres'] = array("guid='{$guid}'");
+	   if($this->OssnDatabase->update($params)){
+	       return true;	
+ 	   }
+	}
+		   return false;
+   }	
 }//CLASS

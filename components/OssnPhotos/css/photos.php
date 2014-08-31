@@ -51,3 +51,7 @@
 .ossn-viewer-comments .comments-likes input[type='text'] {
   width:245px;	
 }
+.ossn-photos .pthumb{
+    width:200px;
+    height:200px;
+}
