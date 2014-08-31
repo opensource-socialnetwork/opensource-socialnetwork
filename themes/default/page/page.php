@@ -63,7 +63,7 @@ $contents = '';
         <div class="logo-second"></div>
          <div class="ossn-search">
              <form action="<?php echo ossn_site_url("search");?>" method="get">
-              <input type="text" name="q" placeholder="Search Group, Page or Friend"  onblur="if (this.value=='') { this.value='Search' }" onFocus="if (this.value=='Search') { this.value='' };"/>
+              <input type="text" name="q" placeholder="Search group, friends and more"  onblur="if (this.value=='') { this.value='Search' }" onFocus="if (this.value=='Search') { this.value='' };"/>
              </form>
          </div>
          <div class="ossn-topbar-menu">
