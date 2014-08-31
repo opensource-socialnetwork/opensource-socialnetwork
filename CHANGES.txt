@@ -13,4 +13,4 @@ Bugfixes:
 
 Enhancement
 * Installation should check all requirments.
-* Litespeed server is supported now,
+* Litespeed server is supported now.
