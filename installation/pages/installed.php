@@ -12,6 +12,5 @@
 echo '<div><div class="layout-installation">';
 
 echo '<div class="ossn-installation-message ossn-installation-success">'.ossn_installation_print('ossn:installed:message').'</div><br />';
-echo '<form action="'.ossn_installation_paths()->url.'?action=finish">';
-echo '<input style="float:right;" type="submit" value="Finish" class="button-blue primary">';
-echo '</form></div>';
+echo '<a href="'.ossn_installation_paths()->url.'?action=finish" class="button-blue primary">Finish</a>';
+echo '</div>';

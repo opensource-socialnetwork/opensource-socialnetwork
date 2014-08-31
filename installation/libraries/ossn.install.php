@@ -22,7 +22,7 @@ function ossn_installation_url(){
 	 }
   }
   $url = "$protocol://{$_SERVER['SERVER_NAME']}$port{$uri}";
-  return $url;	
+  return preg_replace('/\\?.*/', '', $url);	
 }
 function ossn_url(){
    return str_replace('installation/', '', ossn_installation_url());	
