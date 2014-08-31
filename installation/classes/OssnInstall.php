@@ -228,7 +228,7 @@ if ($script = file_get_contents(ossn_installation_paths()->root.'sql/opensource-
 * 
 */ 
 public  static function url(){
-   return str_replace('installation/','', ossn_installation_paths()->url);	
+   return str_replace('installation/','', preg_replace('/\\?.*/', '', ossn_installation_paths()->url));
 }
 
 /**
