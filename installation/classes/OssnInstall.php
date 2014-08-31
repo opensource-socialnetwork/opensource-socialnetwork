@@ -242,33 +242,69 @@ public static function DefaultDataDir(){
  $return = str_replace("\\", "/", dirname(dirname($return)));
  return "{$return}/ossn_data/";
 }
+/**
+* Get Installation dir path;
+* @last edit: $arsalanshah
+* @Reason: Initial;
+* 
+*/ 
 public static function ossnInstallationDir(){
    return str_replace("\\", "/", dirname(dirname(dirname(__FILE__)))).'/';	
 }
-
+/**
+* Check if mod_rewrite exist or not;
+* @last edit: $arsalanshah
+* @Reason: Initial;
+* 
+*/ 
 public static function is_mod_rewrite(){
   if (in_array('mod_rewrite' , apache_get_modules())) {
 	  return true; 
   }
  return false; 
 }
+/**
+* Check if php curl library installed or not
+* @last edit: $arsalanshah
+* @Reason: Initial;
+* 
+*/ 
 public static function isCurl(){
      return function_exists('curl_version');	
 }
+/**
+* Check if php GD library is installed or not
+* @last edit: $arsalanshah
+* @Reason: Initial;
+* 
+*/ 
 public static function isPhpGd(){
   if (extension_loaded('gd') && function_exists('gd_info')) {
     return true; 
   }
  return false; 
 }
+/**
+* Check if php is > than 5.3
+* @last edit: $arsalanshah
+* @Reason: Initial;
+* 
+*/ 
 public static function isPhp(){
     if(substr(PHP_VERSION, 0, 6) >= 5.3){
 	     return true;	
 	}
 	return false;
 }
+/**
+* Check if server is running apache or litespeed
+* @last edit: $arsalanshah
+* @Reason: Initial;
+* 
+*/ 
 public static function isApache(){
-  if(preg_match('/apache/i', $_SERVER["SERVER_SOFTWARE"])){
+  if(preg_match('/apache/i', $_SERVER["SERVER_SOFTWARE"]) 
+  || preg_match('/LiteSpeed/i', $_SERVER["SERVER_SOFTWARE"])){
 	 return true;  
   }
   return false;

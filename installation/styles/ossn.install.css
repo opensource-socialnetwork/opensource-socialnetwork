@@ -32,7 +32,7 @@ form div{
   margin: 0;
   padding: 10px 0 0 0;
   list-style: none;  
-  background:#2F4959 url('./../../.../../../themes/default/images/header-background.png') repeat-x;
+  background:#2F4959 url('./../../themes/default/images/header-background.png') repeat-x;
 
   -moz-box-shadow: 0 2px 1px #9c9c9c;
   -webkit-box-shadow: 0 2px 1px #9c9c9c;
@@ -251,11 +251,11 @@ input[type=text]:focus, textarea:focus {
 
 
 .ossn-header {
-  background:#2F4959 url('./../../.../../../themes/default/images/header-background.png') repeat-x;
+  background:#2F4959 url('./../../themes/default/images/header-background.png') repeat-x;
   height:70px;
 }
 .logo-installation {
-  background:url('./../../.../../../themes/default/images/logo_admin.png') no-repeat;
+  background:url('./../../themes/default/images/logo_admin.png') no-repeat;
   height:57px;
   width:187px;
 }

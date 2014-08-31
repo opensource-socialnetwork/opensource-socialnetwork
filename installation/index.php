@@ -16,8 +16,8 @@ session_start();
 if(is_file('INSTALLED')){
     exit('It seems the Opensource-Socialnetwork is already installed');
 }
-require_once('/libraries/ossn.install.php');
-require_once('/classes/OssnInstall.php');
+require_once(dirname(__FILE__).'/libraries/ossn.install.php');
+require_once(dirname(__FILE__).'/classes/OssnInstall.php');
 if(!isset($_REQUEST['action'])){ 
    ossn_installation_page();
 }
