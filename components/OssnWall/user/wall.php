@@ -31,6 +31,11 @@ foreach($posts as $post){
    if(isset($data->location)){
    $location = '- '.$data->location;
    }
+   if(isset($post->{'file:wallphoto'})){
+     $image = str_replace('ossnwall/images/', '', $post->{'file:wallphoto'});
+   } else {
+	 unset($image);    
+   } 
    $user = ossn_user_by_guid($post->poster_guid); 
    if($post->access == OSSN_FRIENDS){
 	    if(ossn_user_is_friend(ossn_loggedin_user()->guid, $post->owner_guid) || ossn_loggedin_user()->guid == $post->owner_guid){ 
@@ -40,7 +45,7 @@ foreach($posts as $post){
 																	'text' => $text,
 																	'location' => $location,
 																	'user' => $user,
-																		 
+																	'image' => $image,	 
 																		 ));
      }
    }
@@ -51,7 +56,7 @@ foreach($posts as $post){
 																	'text' => $text,
 																	'location' => $location,
 																	'user' => $user,
-																		 
+																	'image' => $image,	 
 																		 ));  
   }
   
