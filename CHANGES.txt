@@ -8,6 +8,7 @@ Bugfixes:
 * Show transparent photo if there is no profile cover #4
 * component(ossnphotos): photos is not displaying correctly in albums photos #6
 * Installation Issues fixed
+* Post image is mission on profile page
 
 
 Enhancement
