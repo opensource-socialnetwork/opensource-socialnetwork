@@ -1,10 +1,19 @@
+/**
+ * 	OpenSource-SocialNetwork
+ *
+ * @package   (Informatikon.com).ossn
+ * @author    OSSN Core Team <info@opensource-socialnetwork.com>
+ * @copyright 2014 iNFORMATIKON TECHNOLOGIES
+ * @license   General Public Licence http://opensource-socialnetwork.com/licence 
+ * @link      http://www.opensource-socialnetwork.com/licence
+ */
 body, fieldset, table, textarea, input {
  margin: 0;
  padding: 0;
  border: 0;
  outline: 0;
  font-weight: inherit;
- font-style: inherit;
+ font-style: inherit;#ossn-home-signup
 }
 body {
 font-size: 11px;
@@ -201,10 +210,11 @@ margin-top: -20px;
 .ossn-button-green,
 #ossn-login input[type='submit'],
 #ossn-home-signup input[type='submit']{
-    background: linear-gradient(#67AE55, #578843) repeat scroll 0% 0% #69A74E;
-    box-shadow: 0px 1px 1px #A4E388 inset;
-    border-color: #3B6E22 #3B6E22 #2C5115;
-    color:#fff;
+ box-shadow: 0px 1px 1px #517185 inset;
+ border-color: #517185;
+ background: linear-gradient(#517185, #2F4959) repeat scroll 0% 0% #2F4959;
+ color: #fff;
+ cursor: pointer;
 }
 .home-footer {
  width: 985px;
