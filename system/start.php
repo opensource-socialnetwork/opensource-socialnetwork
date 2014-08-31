@@ -32,7 +32,7 @@ foreach($Ossn->classes as $class){
 	 }
 }
 foreach($Ossn->libraries as $lib){
-     if(!include_once(ossn_route()->libs."Ossn.lib.{$lib}.php")){
+     if(!include_once(ossn_route()->libs."ossn.lib.{$lib}.php")){
 		 throw new exception('Cannot include all libraries'); 
 	 }
 }
