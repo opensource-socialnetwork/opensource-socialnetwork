@@ -51,8 +51,11 @@ Prerequisite
 
 Installation
 ============
-
 http://docs.opensource-socialnetwork.org/index.php/How_To_Install_Open_Source_Social_Network
+
+DEMO
+====
+http://www.opensource-socialnetwork.org/demo/
 
 Having problem? Contact us www.informatikon.com/contact/support
 Copyright 2014 Informatikon Technologies (informatikon.com)
