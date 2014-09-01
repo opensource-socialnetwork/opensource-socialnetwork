@@ -15,12 +15,11 @@ class OssnGroup extends OssnObject {
 	}	
 	public function createGroup($params){
 	    self::initAttributes();
+		$this->title = trim($params['name']);
+		$this->description = trim($params['description']);
 		if(empty($this->title)){
 			return false;
 		}
-		$this->title = trim($params['name']);
-		$this->description = trim($params['description']);
-		
 		$this->owner_guid = $params['owner_guid']; 
 		$this->type = 'user';
 		$this->subtype = 'ossngroup';
