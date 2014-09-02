@@ -54,7 +54,7 @@ if(isset($Ossn->page)
 				   return $contents;
 } 
 else {      
-           return '404';
+           return ossn_error_page();
 }
 
 }
