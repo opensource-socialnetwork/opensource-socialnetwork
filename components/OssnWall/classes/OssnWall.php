@@ -78,8 +78,11 @@ class OssnWall extends OssnObject {
 	  return $this->getObjectById();
    }
    public function deletePost($post){
-		$this->deleteObject($post);
-		ossn_trigger_callback('post', 'delete', $post);   
+		if($this->deleteObject($post)){
+	     	ossn_trigger_callback('post', 'delete', $post);
+			return true;  
+		}
+		return false;
    }
    public function deleteAllPosts(){
 	    foreach($this->GetPosts() as $post){
