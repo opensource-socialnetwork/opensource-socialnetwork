@@ -13,8 +13,7 @@ echo '<ul>';
 	foreach($params['menu'] as $key => $links){
 	    if(count($links) > 1){
 			 $menu_parent = '<a href="#"><li>'.ossn_print($key).'</a><ul>';
-			 $key = key($links);
-             unset($links[$key]);
+             unset($links['Configure']);
 		   foreach($links as $text => $link){
 			 $menu_parent.= '<a href="'.$link.'"><li>'.ossn_print($text).'</li></a>';
 		    }
