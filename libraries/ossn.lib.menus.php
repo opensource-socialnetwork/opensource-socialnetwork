@@ -17,9 +17,9 @@
 * @last edit: $arsalanshah
 * @return void 
 */ 
-function ossn_register_menu_link($name , $text, $link ,$for = 'site'){
+function ossn_register_menu_link($name , $text, $link , $menutype = 'site'){
 	global $Ossn;	
-    $Ossn->menu[$for][$name][$text] = $link;
+    $Ossn->menu[$menutype][$name][$text] = $link;
 }
 
 /**
@@ -30,9 +30,9 @@ function ossn_register_menu_link($name , $text, $link ,$for = 'site'){
 * @return void;
 * 
 */
-function unregister_menu($menu, $for = 'site'){
+function ossn_unregister_menu($menu, $menutype = 'site'){
 	global $Ossn;
-	unset($Ossn->menu[$for][$menu]);
+	unset($Ossn->menu[$menutype][$menu]);
 }
 /**
 * View a menu;
@@ -43,12 +43,17 @@ function unregister_menu($menu, $for = 'site'){
 * @return: mixed data;
 * 
 */
-function ossn_view_menu($menu){
+function ossn_view_menu($menu, $custom = false){
 	global $Ossn;
-	$active_theme = ossn_site_settings('theme'); 
 	$params['menu'] = $Ossn->menu[$menu];
-	$params['menuname'] = $menu;
- 	return ossn_view("themes/{$active_theme}/menus/{$menu}", $params);
+	if($custom == false){
+	    $active_theme = ossn_site_settings('theme'); 
+	    $params['menuname'] = $menu;
+ 	    return ossn_view("themes/{$active_theme}/menus/{$menu}", $params);
+	} elseif($custom !== false){
+		$params['menuname'] = $menu;
+ 	    return ossn_view($custom, $params);
+	}
 }
 /**
 * Register a section base menu;
