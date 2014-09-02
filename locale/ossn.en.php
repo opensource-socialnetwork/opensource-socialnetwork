@@ -10,10 +10,12 @@
  */
 
 $en = array(
+    'home' => 'Home',
 	'site:index' =>  'Welcome to website',
 	'news:feed' => 'News Feed',
 	'new:feed' => 'News Feed',
 	'photos:ossn' => 'Photos',
+	'admin:view:site' => 'View Site',
 	
 	'home:top:heading' => "%s helps you connect and share with the people in your life.",
 	'create:account' => 'Create an account',
@@ -114,6 +116,14 @@ If you can't click on the link, copy and paste it to your browser manually.
 	'cache:disabled' => 'Cache successfully disabled',
 	'cache:enable' => 'Enable Cache',
 	'cache:disable' => 'Disable Cache',
+	
+	'cache:1' => 'Enabled',
+	'cache:0' => 'Disabled',
+	'cache:notice' => 'Cache will store CSS and JS in cache file and helps your site to load faster',
+	
+	'theme:install:notice' => 'Upload a valid .zip theme package',
+	'com:install:notice' => 'Upload valid .zip component package',
+	
 	'login:error' => 'Invalid username or passsword',
 	'login:error:sub' => "We couldn't log you in. Please check your username or password and try again",
 	'login:success' => 'You are now loggedin',
@@ -152,6 +162,7 @@ If you can't click on the link, copy and paste it to your browser manually.
 	'privacy:friends:note' => 'Your friends can only see this',
 		
 	'add:friend' => 'Add friend',
+	'cancel:request' => 'Cancel Request',
 	'remove:friend' => 'Unfriend',
 	'no:friends' => 'No Friends',
 	'settings' => 'Settings',
