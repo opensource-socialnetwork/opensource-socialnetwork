@@ -39,14 +39,14 @@ foreach($posts as $post){
    $user = ossn_user_by_guid($post->poster_guid); 
    if($post->access == OSSN_FRIENDS){
 	    if(ossn_user_is_friend(ossn_loggedin_user()->guid, $post->owner_guid) || ossn_loggedin_user()->guid == $post->owner_guid){ 
-		 echo ossn_view('components/wall/templates/activity-item', array(
+		echo ossn_view('components/OssnWall/templates/activity-item', array(
 																	'post' => $post,
 																	'friends' =>  explode(',' ,$data->friend),
 																	'text' => $text,
 																	'location' => $location,
 																	'user' => $user,
 																	'image' => $image,	 
-																		 ));
+																		 )); 
      }
    }
   if($post->access == OSSN_PUBLIC){
