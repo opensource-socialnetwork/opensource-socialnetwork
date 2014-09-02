@@ -17,5 +17,8 @@ $en = array(
 			'wall:post:container' => "What's on your mind?",
 			'post' => 'Post',
 			'post:view' => 'Post View',
+			'ossn:post:delete' => 'Delete',
+			'post:delete:fail' => 'Cannot delete post',
+			'post:delete:success' => 'Post successfully deleted',
 	  );
 ossn_register_languages('en', $en); 
