@@ -36,7 +36,7 @@ if(count($friends) > 0 && !empty($friends)){
                        <span>
                         <?php if($count_messages > 0){ ?>
                        <div class="ossn-icon ossn-icons-topbar-messages-new ossn-icons-topbar"></div>
-                       <span class="ossn-notification-container"><?php echo $coun_messages; ?></span>
+                       <span class="ossn-notification-container"><?php echo $count_messages; ?></span>
                        <?php } else {  ?>
                        <div class="ossn-icon ossn-icons-topbar-messages ossn-icons-topbar"></div>
                        <?php } ?>
