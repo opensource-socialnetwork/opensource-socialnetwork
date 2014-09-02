@@ -19,6 +19,6 @@ $en = array(
 			'ad:photo' => 'Photo',
 			'ad:browse' => 'Browse',
 			'ad:clicks' => 'Clicks',
-			'sponsored' => 'Sponsored',
+			'sponsored' => 'SPONSORED',
 	  );
 ossn_register_languages('en', $en); 
