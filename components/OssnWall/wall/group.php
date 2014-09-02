@@ -31,6 +31,11 @@ foreach($posts as $post){
    if(isset($data->location)){
    $location = '- '.$data->location;
    }
+   if(isset($post->{'file:wallphoto'})){
+     $image = str_replace('ossnwall/images/', '', $post->{'file:wallphoto'});
+   } else {
+	 unset($image);    
+   }  
    $user = ossn_user_by_guid($post->poster_guid); 
    echo ossn_view('components/OssnWall/templates/group-activity-item', array(
 																	'post' => $post,
@@ -38,6 +43,7 @@ foreach($posts as $post){
 																	'text' => $text,
 																	'location' => $location,
 																	'user' => $user,
+																	'image' => $image,
 															 ));  
 
    } 
