@@ -15,11 +15,11 @@
    <?php foreach($params['recent'] as $message){
 	     if($message->message_from == ossn_loggedin_user()->guid){
    	       $user = ossn_user_by_guid($message->message_to);
-		   $text =  sttl($message->message, 55);
+		   $text =  strl($message->message, 55);
 		   $replied = "<div class='ossn-arrow-back'></div><div class='reply-text'>{$text}</div>";
 	      } else {
    	       $user = ossn_user_by_guid($message->message_from);
-		   $text =  sttl($message->message, 60);
+		   $text =  strl($message->message, 60);
 		   $replied = "<div class='reply-text-from'>{$text}</div>";
 		  }
 		 if($message->viewed == 0 && $message->message_from !== ossn_loggedin_user()->guid){
@@ -30,7 +30,7 @@
       <div class="user-item-inner">
      <div class="image"><img src="<?php echo ossn_site_url();?>avatar/<?php echo $user->username;?>/small" /></div>
      <div class="data">
-      <div class="name"><?php echo sttl($user->fullname, 17);?></div><br />
+      <div class="name"><?php echo strl($user->fullname, 17);?></div><br />
       <div class="reply"><?php echo $replied;?></div>
        <div class="time"><?php echo ossn_user_friendly_time($message->time); ?> </div>
        </div>
@@ -41,5 +41,5 @@
  </div>
  </div>
      <div class="bottom-all">
-     <a href="#">See All</a>
+     <a href="<?php echo  ossn_site_url("messages/all");?>"><?php echo ossn_print('see:all');?></a>
     </div>
