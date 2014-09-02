@@ -8,7 +8,7 @@
  * @license   General Public Licence http://opensource-socialnetwork.com/licence 
  * @link      http://www.opensource-socialnetwork.com/licence
  */
-class OssProfile extends OssnDatabase{
+class OssnProfile extends OssnDatabase{
     public function repositionCOVER($guid, $top, $left){
           $user = ossn_user_by_guid($guid); 
           if(!isset($user->cover_position) && empty($user->cover_position)){
@@ -45,7 +45,28 @@ class OssProfile extends OssnDatabase{
 		  }
            return false;
 	}
- 
+    public function ResetCoverPostition($guid){
+	       $this->statement("SELECT * FROM ossn_entities WHERE(
+				             owner_guid='{$guid}' AND 
+				             type='user' AND 
+				             subtype='cover_position');");
+           $this->execute();
+           $entity = $this->fetch();
+		   print_r($entity);
+           $position = array('', '');
+		   
+           $fields = new OssnEntities;
+           $fields->owner_id = $guid;
+           $fields->guid = $entity->guid;
+           $fields->type = 'user';
+		  
+           $fields->subtype = 'cover_position';
+           $fields->value = json_encode($position);
+           if($fields->updateEntity()){
+	          return true;  
+            } 
+		return false;	
+	}
     public function coverParameters($guid){
          $parameters = ossn_user_by_guid($guid)->cover_position;
          return json_decode($parameters);
