@@ -20,11 +20,10 @@ if($OssnWall->owner_guid == 0 || $OssnWall->poster_guid == 0){
 $post = input('post');
 $friends = input('friends');
 $location = input('location');
-$image = input('image');
 if($OssnWall->Post($post, $friends, $location)){
    //no need to show message on success
-   // ossn_trigger_message(ossn_print('post:created'), 'success');	
-   	redirect(REF);
+   //ossn_trigger_message(ossn_print('post:created'), 'success');	
+    redirect(REF);
 } else {
 	ossn_trigger_message(ossn_print('post:create:error'), 'error');	
 	redirect(REF);
