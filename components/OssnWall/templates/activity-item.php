@@ -16,6 +16,14 @@
       <div class="owner">
        <img src="<?php echo ossn_site_url();?>avatar/<?php echo $params['user']->username;?>/small" width="40" height="40" />
       </div>
+      <div class="post-controls">
+         <?php 
+		     if(ossn_is_hook('wall', 'post:menu')){
+			   $menu['post'] = $params['post'];	 
+	           echo ossn_call_hook('wall', 'post:menu', $menu); 
+            }
+		?>	
+     </div>  
       <div class="subject">
             <?php if($params['user']->guid == $params['post']->owner_guid){ ?>
              <a class="owner-link" href="<?php echo ossn_site_url("u/{$params['user']->username}");?>"> <?php echo $params['user']->fullname;?> </a> 
