@@ -8,6 +8,7 @@
  * @license   General Public Licence http://opensource-socialnetwork.com/licence 
  * @link      http://www.opensource-socialnetwork.com/licence
  */
+
 /**
  * Check whether component is active or not.
  *
@@ -53,6 +54,18 @@ include_once($themes->getActivePath());
 $coms = new OssnComponents;
 $coms->loadComs();
 
-foreach(ossn_registered_com_panel() as $configure){
- ossn_register_menu_link('configure', $configure, ossn_site_url("administrator/component/{$configure}"), 'topbar_admin');	
+/**
+ * Initialize components
+ *
+ * @return bool
+ */ 
+ 
+function ossn_components(){
+  foreach(ossn_registered_com_panel() as $configure){
+     ossn_register_menu_link('configure', 
+							 $configure, 
+							  ossn_site_url("administrator/component/{$configure}"), 
+							 'topbar_admin');	
+  }	
 }
+ossn_register_callback('ossn', 'init', 'ossn_components');
