@@ -28,5 +28,5 @@ function ossn_post_comments_entity($h, $t, $r, $p){
 ossn_register_callback('post', 'delete', 'ossn_post_comments_delete');
 function ossn_post_comments_delete($event, $type, $params){
 	$delete = new OssnComments;
-	$delete->commentsDelete($params);
+	$delete->commentsDeleteAll($params);
 }
