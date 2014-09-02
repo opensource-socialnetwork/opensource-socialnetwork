@@ -16,7 +16,12 @@ define('OSSN_FRIENDS', 3);
 define('OSSN_PUBLIC', 2);
 define('OSSN_PRIVATE', 1);
 
-
+/*
+ * Load site settings , so the setting should not load agian and again
+ */  
+global $Ossn;
+$settings = new OssnSite;
+$Ossn->siteSettings =  $settings->getAllSettings();
 /**
  * Get site url
  *
@@ -228,8 +233,8 @@ function ossn_register_callback($event, $type, $callback, $priority = 200){
  * @return string or null
  */
 function ossn_site_settings($setting){
-	$settings = new OssnSite;
-    return $settings->getSettings($setting);
+	global $Ossn;
+    return $Ossn->siteSettings->$setting;
 }
 /**
  * Redirect a user to specific url
@@ -306,7 +311,7 @@ function arraySerialize($array =  NULL){
 * @last edit: $arsalanshah
 * @return bool
 */
-function sttl($str, $limit = NULL, $dots = true){
+function strl($str, $limit = NULL, $dots = true){
 if(isset($str) 
 		 && isset($limit)){
    if(strlen($str) > $limit){
@@ -464,3 +469,4 @@ function ossn_error_page(){
       echo $data;
 	  exit;
 }
+ossn_register_callback('ossn', 'init', 'ossn_system');
