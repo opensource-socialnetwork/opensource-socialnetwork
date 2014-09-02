@@ -25,6 +25,25 @@ Ossn.RegisterStartupFunction(function(){
            $('#ossn-wall-photo').show();
 
          }); 
+         $('.ossn-wall-post-delete').click(function(e){
+              $url = $(this);
+              e.preventDefault(); 
+              Ossn.PostRequest({
+			        url: $url.attr('href'),			 
+			        beforeSend: function(request){
+				          $('#activity-item-'+$url.attr('data-guid')).attr('style', 'opacity:0.5;');
+			        },
+			        callback: function(callback){
+				    	 if(callback == 1){
+                            $('#activity-item-'+$url.attr('data-guid')).fadeOut();
+                            $('#activity-item-'+$url.attr('data-guid')).remove();
+                         } else {
+                          $('#activity-item-'+$url.attr('data-guid')).attr('style', 'opacity:1;');
+                         }
+			        }
+			  });
+
+         });  
 	});
 });
 Ossn.RegisterStartupFunction(function(){
@@ -39,3 +58,11 @@ Ossn.RegisterStartupFunction(function(){
                    			   
 	  });
 });
+Ossn.PostMenu = function($id){
+ $element = $($id).find('.menu-links');
+  if($element.is(":not(:visible)") ){
+     $element.show();
+    } else {
+     $element.hide();
+   }     	
+};
