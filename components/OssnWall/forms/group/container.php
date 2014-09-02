@@ -19,11 +19,17 @@
  <textarea placeholder="<?php echo ossn_print('wall:post:container');?>" name="post"></textarea>
  <div id="ossn-wall-location" style="display:none;">
  <input type="text" placeholder="<?php echo ossn_print('enter:location');?>" name="location" id="ossn-wall-location-input"/>
-</div>
+ </div>
+ <div id="ossn-wall-photo" style="display:none;">
+  <input type="file" name="ossn_photo"/>
+ </div>
 </div>
  <div class="controls">
    <li>
     <div class="ossn-wall-location"></div>
+  </li>
+    <li>
+    <div class="ossn-wall-photo"></div>  
   </li> 
   <div style="float:right;">
    <input type="hidden" value="<?php echo $params['group']->guid;?>" name="wallowner" />
