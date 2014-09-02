@@ -19,14 +19,21 @@
  <textarea placeholder="What's on your mind?" name="post"></textarea>
  <div id="ossn-wall-location" style="display:none;">
  <input type="text" placeholder="<?php echo ossn_print('enter:location');?>" name="location" id="ossn-wall-location-input"/>
-</div>
+ </div>
+  <div id="ossn-wall-photo" style="display:none;">
+  <input type="file" name="ossn_photo"/>
+ </div> 
 </div>
  <div class="controls">
    <li>
     <div class="ossn-wall-location"></div>
   </li> 
+   <li>
+    <div class="ossn-wall-photo"></div>  
+  </li> 
   <div style="float:right;">
    <input type="hidden" value="<?php echo $params['user']->guid;?>" name="wallowner" />
       <input class="ossn-button-submit-b ossn-wall-post" type="submit" value="<?php echo ossn_print('post');?>" />
   </div>
+
  </div>
