@@ -29,6 +29,7 @@ $englsih = array(
 	 'owner_email' => 'Site Owner Email',
 	 'notification_email' => 'Notification Email',
 	 'create:admin:account' => 'Create Admin Account',
+	 'ossn:setting:account' => 'Account settings',
 
 );
 
