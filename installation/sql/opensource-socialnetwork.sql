@@ -1,23 +1,3 @@
--- phpMyAdmin SQL Dump
--- version 4.0.4.1
--- http://www.phpmyadmin.net
---
--- Host: 127.0.0.1
--- Generation Time: Aug 24, 2014 at 01:19 PM
--- Server version: 5.5.32
--- PHP Version: 5.4.19
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-
--- --------------------------------------------------------
-
 --
 -- Table structure for table `ossn_annotations`
 --
@@ -26,8 +6,8 @@ CREATE TABLE IF NOT EXISTS `ossn_annotations` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `owner_guid` bigint(20) NOT NULL,
   `subject_guid` bigint(20) NOT NULL,
-  `type` text NOT NULL,
-  `time_created` text NOT NULL,
+  `type` varchar(20) NOT NULL,
+  `time_created` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
@@ -39,8 +19,8 @@ CREATE TABLE IF NOT EXISTS `ossn_annotations` (
 
 CREATE TABLE IF NOT EXISTS `ossn_components` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `com_id` text NOT NULL,
-  `active` text NOT NULL,
+  `com_id` varchar(20) NOT NULL,
+  `active` int(1) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
 
@@ -49,17 +29,17 @@ CREATE TABLE IF NOT EXISTS `ossn_components` (
 --
 
 INSERT INTO `ossn_components` (`id`, `com_id`, `active`) VALUES
-(1, 'OssnProfile', '1'),
-(2, 'OssnWall', '1'),
-(3, 'OssnComments', '1'),
-(4, 'OssnLikes', '1'),
-(5, 'OssnPhotos', '1'),
-(6, 'OssnNotifications', '1'),
-(7, 'OssnSearch', '1'),
-(8, 'OssnMessages', '1'),
-(10, 'OssnAds', '1'),
-(12, 'OssnGroups', '1'),
-(13, 'OssnSitePages', '1');
+(1, 'OssnProfile', 1),
+(2, 'OssnWall', 1),
+(3, 'OssnComments', 1),
+(4, 'OssnLikes', 1),
+(5, 'OssnPhotos', 1),
+(6, 'OssnNotifications', 1),
+(7, 'OssnSearch', 1),
+(8, 'OssnMessages', 1),
+(10, 'OssnAds', 1),
+(12, 'OssnGroups', 1),
+(13, 'OssnSitePages', 1);
 
 -- --------------------------------------------------------
 
@@ -102,7 +82,7 @@ CREATE TABLE IF NOT EXISTS `ossn_likes` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `subject_id` bigint(20) NOT NULL,
   `guid` bigint(20) NOT NULL,
-  `type` text NOT NULL,
+  `type` varchar(20) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
@@ -117,8 +97,8 @@ CREATE TABLE IF NOT EXISTS `ossn_messages` (
   `message_from` bigint(20) NOT NULL,
   `message_to` bigint(20) NOT NULL,
   `message` text NOT NULL,
-  `viewed` text,
-  `time` text NOT NULL,
+  `viewed` varchar(1) DEFAULT NULL,
+  `time` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
@@ -134,8 +114,8 @@ CREATE TABLE IF NOT EXISTS `ossn_notifications` (
   `poster_guid` bigint(20) NOT NULL,
   `owner_guid` bigint(20) NOT NULL,
   `subject_guid` bigint(20) NOT NULL,
-  `viewed` text,
-  `time_created` text NOT NULL,
+  `viewed` varchar(1) DEFAULT NULL,
+  `time_created` int(1) NOT NULL,
   `item_guid` bigint(20) NOT NULL,
   PRIMARY KEY (`guid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
@@ -150,7 +130,7 @@ CREATE TABLE IF NOT EXISTS `ossn_object` (
   `guid` bigint(20) NOT NULL AUTO_INCREMENT,
   `owner_guid` bigint(20) NOT NULL,
   `type` varchar(20) NOT NULL,
-  `time_created` text NOT NULL,
+  `time_created` int(11) NOT NULL,
   `title` longtext NOT NULL,
   `description` text NOT NULL,
   `subtype` text NOT NULL,
@@ -167,8 +147,8 @@ CREATE TABLE IF NOT EXISTS `ossn_relationships` (
   `relation_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `relation_from` bigint(20) NOT NULL,
   `relation_to` bigint(20) NOT NULL,
-  `type` text NOT NULL,
-  `time` text NOT NULL,
+  `type` int(11) NOT NULL,
+  `time` int(11) NOT NULL,
   PRIMARY KEY (`relation_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
@@ -212,13 +192,8 @@ CREATE TABLE IF NOT EXISTS `ossn_users` (
   `salt` varchar(8) NOT NULL,
   `first_name` text NOT NULL,
   `last_name` text NOT NULL,
-  `last_login` text NOT NULL,
-  `last_activity` text NOT NULL,
+  `last_login` int(11) NOT NULL,
+  `last_activity` int(11) NOT NULL,
   `activation` text,
   PRIMARY KEY (`guid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
