@@ -12,7 +12,7 @@ Options +FollowSymLinks
 DirectoryIndex index.php
 
 <IfModule mod_rewrite.c>
-
+SetEnv HTTP_MOD_REWRITE 1
 RewriteEngine on
 RewriteRule ^action\/([A-Za-z0-9\_\-\/]+)$ system/handlers/actions.php?action=$1&%{QUERY_STRING} [L]
 
