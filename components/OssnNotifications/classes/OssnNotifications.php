@@ -50,7 +50,15 @@ class OssnNotifications extends OssnDatabase {
 			 $object =  $object->getObjectById();
 			 $guid_two = $object->owner_guid; 
 			 }
+			
 			}
+			if($type == 'comments:post:group:wall'){
+		       $object = new OssnObject;
+			   $object->object_guid = $subject_guid;
+			   $object =  $object->getObjectById();
+			   $guid_two = $object->poster_guid; 		
+			}
+			
 			if(!empty($notification_owner)){
 			  $guid_two = $notification_owner;	
 			}
