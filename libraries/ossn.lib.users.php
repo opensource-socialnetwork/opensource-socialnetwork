@@ -10,6 +10,15 @@
  */
 
 /**
+ * Initialize user class
+ *
+ * @return bool;
+ */ 
+function ossn_user(){
+  $user = new OssnUser;
+  return $user;	
+}
+/**
  * Initialize library
  *
  * @return bool
