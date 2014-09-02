@@ -12,7 +12,7 @@
 <h2><?php echo ossn_print('notifications');?></h2>
 <?php
 $get = new  OssnNotifications;
-echo '<div class="ossn-notifications-all">';
+echo '<div class="ossn-notifications-all ossn-notification-page">';
 foreach($get->get(ossn_loggedin_user()->guid) as $not){
   echo "{$not}";	
 }
