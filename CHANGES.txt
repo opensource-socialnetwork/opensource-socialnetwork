@@ -1,3 +1,28 @@
+OSSN - OPEN SOURCE SOCIAL NETWORK 1.2
+
+Bugfixes:
+
+* Apache mod_rewrite test fails. 
+* User can delete wall post.
+* Comments profile links are not working #14
+* Groups buttons text missing.
+* Messages count on topbar.
+* User photos are hidden on notifications #26
+* Images are broken on messages page.
+* Notification for comments/likes for groups posts missing.
+* Invalid link from group member requests page.
+* Fixed translation on member request page.
+* Add friend button not working #21
+* Message button is not working in profile page #18
+* Fixed the missing translation from admin panel.
+* Shows cache status on cache settings page
+
+Enhancement
+
+* Allow users to post image on user wall.
+* Allow members to post image on group wall.
+* Otimization
+
 OSSN - OPEN SOURCE SOCIAL NETWORK 1.1
 
 Bugfixes:
