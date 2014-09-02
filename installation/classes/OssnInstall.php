@@ -258,8 +258,11 @@ public static function ossnInstallationDir(){
 * 
 */ 
 public static function is_mod_rewrite(){
-  if (in_array('mod_rewrite' , apache_get_modules())) {
+  if(function_exists('apache_get_modules') 
+     && in_array('mod_rewrite' , apache_get_modules())) {
 	  return true; 
+  } elseif(getenv('HTTP_MOD_REWRITE')== 1){
+    return true;
   }
  return false; 
 }
