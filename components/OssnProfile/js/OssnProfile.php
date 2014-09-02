@@ -97,7 +97,7 @@ $("#upload-photo").submit(function (event) {
 				$('.profile-cover').find('img').removeClass('user-cover-uploading');
 				$imageurl = $('.profile-cover').find('img').attr('src');
 				$('.profile-cover').find('img').attr('src', $imageurl);
-                $('.profile-cover').find('img').attr('style', 'position:absolute;');
+                $('.profile-cover').find('img').attr('style', '');
             },
             error: function(){
                 alert("Cannot change cover please try again later");
