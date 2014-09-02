@@ -62,12 +62,12 @@
          <?php echo ossn_print('available:updates');?>   
       </div>
       <div class="dsahboard-block-contents">
-         1.0-dev
+         1.2
       </div>
   </div>
 </div>
 
-<div class="ossn-message-developers">
+<!-- <div class="ossn-message-developers">
   <h2> News from Developers</h2>
   Hi this is mesage from our site
-</div>
+</div> -->
