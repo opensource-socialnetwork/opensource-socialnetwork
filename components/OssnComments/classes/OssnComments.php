@@ -89,5 +89,18 @@ class OssnComments extends OssnAnnotation {
 	public function getCommentId(){
 	  return $this->getAnnotationId();	
 	}
+	
+	/** 
+	* Get a comment type from object
+	*
+	* @return string;
+	*/
+	public static function getType($object){
+	   $type = array(
+	          "comments:post" => 'post',
+			  "comments:entity" => 'entity'
+			  );
+	   return $type[$object];
+	}
 
 }//class
