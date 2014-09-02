@@ -83,6 +83,6 @@ padding: 6px;
 	.ossn-notifications-friends-inner form{
     display:inline-table;
 	}
-    .ossn-notifications-all li img {
- display:none;	
-}
+    .ossn-notification-page li img {
+     display:none;	
+    }
