@@ -18,7 +18,7 @@ $likes_total = $OssnLikes->CountLikes($comment->id);
                <img src="<?php echo ossn_site_url();?>avatar/<?php echo $user->username;?>/smaller" />
             </div>  
              <div class="comment-text">
-                  <p><a class="owner-link" href="#"><?php echo $user->fullname;?></a> 
+                  <p><a class="owner-link" href="<?php echo ossn_site_url("u/{$user->username}");?>"><?php echo $user->fullname;?></a> 
                   <?php echo $comment->value;?></p>
                   <div class="comment-metadata"> <?php echo ossn_user_friendly_time($comment->time_created);?> 
                     <?php if(!$OssnLikes->isLiked($comment->id, ossn_loggedin_user()->guid)){ ?>
