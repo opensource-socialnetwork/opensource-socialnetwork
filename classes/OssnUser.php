@@ -252,13 +252,34 @@ class OssnUser extends OssnEntities{
 	* @return bool;
 	*/		
     public function sendRequest($from, $to){
-	    $this->time = time();
-	    $this->statement("INSERT INTO ossn_relationships (`relation_from`, `relation_to`, `time`, `type`)
-					      VALUES('{$from}', '{$to}', '{$this->time}', 'friend:request');");
-	     if($this->execute()){
+	     if($this->requestExists($from , $to)){
+		    return false;	
+	     }
+	     if(ossn_add_relation($from, $to, 'friend:request')){
 		     return true;  
 	     }
 		 return false;
+	}
+	/**
+	* Check if the request already sent or not.
+	*
+	* @return bool;
+	*/			
+	public function requestExists($from, $user){
+		 if(isset($this->guid)){
+			$user = $this->guid; 
+		 }
+		 $this->statement("SELECT * FROM ossn_relationships WHERE(
+					     relation_to='{$user}' AND 
+						 relation_from='{$from}' AND
+					     type='friend:request'
+					     );");
+	    $this->execute();
+		$request = $this->fetch();
+		if(!empty($request->relation_id)){
+		   return true;	
+		}
+		return false;
 	}
 	/**
 	* Delete friend from list
