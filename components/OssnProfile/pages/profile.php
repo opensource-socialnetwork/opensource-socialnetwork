@@ -10,7 +10,7 @@
  */
 
 $user = $params['user'];
-$cover = new OssProfile;
+$cover = new OssnProfile;
 
 $coverp = $cover->coverParameters($user->guid);
 
@@ -66,16 +66,23 @@ $cover_left = $coverp[1];
              <a href="<?php echo ossn_site_url("u/{$user->username}/edit");?>" class='button-grey'><?php echo ossn_print('update:info'); ?></a>
             <?php } ?>
             <?php if(ossn_loggedin_user()->guid !== $user->guid){ 
-			         if(!ossn_user_is_friend(ossn_loggedin_user()->guid ,$user->guid)){ ?>   
+			         if(!ossn_user_is_friend(ossn_loggedin_user()->guid ,$user->guid)){   
+                   if(ossn_user()->requestExists(ossn_loggedin_user()->guid, $user->guid)){ ?>
+                   <a href="<?php echo ossn_site_url();?>action/friend/remove?cancel=true&user=<?php echo $user->guid;?>" class='button-grey'>
+                       <?php echo ossn_print('cancel:request');?>
+                    </a>   
+                        <?php } else { ?>
                    <a href="<?php echo ossn_site_url();?>action/friend/add?user=<?php echo $user->guid;?>" class='button-grey'>
                    <?php echo ossn_print('add:friend');?>
-                   </a>
-                      <?php } else { ?>
-                    <a href="<?php echo ossn_site_url();?>action/friend/remove?user=<?php echo $user->guid;?>" class='button-grey'>
+                   </a> 
+                      <?php
+						}
+					   } else { ?>
+                  <a href="<?php echo ossn_site_url();?>action/friend/remove?user=<?php echo $user->guid;?>" class='button-grey'>
                        <?php echo ossn_print('remove:friend');?>
                     </a>   
-                        <?php } ?>
-             <a href="javascript::;" id="profile-message" data-guid='<?php echo $user->guid;?>' class='button-grey'>
+                       <?php } ?>
+              <a href="<?php echo ossn_site_url("messages/message/{$user->username}");?>" id="profile-message" data-guid='<?php echo $user->guid;?>' class='button-grey'>
               <?php echo ossn_print('message');?></a>
             <?php } ?>   
           </div>
