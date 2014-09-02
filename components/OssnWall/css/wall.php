@@ -297,3 +297,54 @@ div.token-input-dropdown ul li.token-input-selected-dropdown-item {
     color: #2B5470;
     font-weight:bold;
 }
+.post-controls {
+  float:right;	
+  cursor:pointer;
+  margin-top: 5px;
+}
+.ossn-wall-post-controls {
+background: #fff;
+
+position: absolute;
+}
+.drop-down-arrow { 
+border-top: 5px solid #B9B9B9;
+border-right: 5px solid transparent;
+border-left: 5px solid transparent;
+width:2px;
+}
+.ossn-wall-post-controls .post-menu {
+	
+}
+.ossn-wall-post-controls .post-menu .menu-links{
+border: 1px solid #ccc;
+border-top: 1px solid #fff;
+width: 200px;
+margin-left: -183px;
+margin-top: 5px;
+background: #fff;
+box-shadow: 0px 1px 5px #888888;
+
+display:none;
+}
+.ossn-wall-post-controls .menu-links li{
+ display: block;
+ 
+ padding: 8px;
+}
+.ossn-wall-post-controls .menu-links li:hover{
+  border-top-color: #668EA8;
+  border-bottom-color: #668EA8;
+  background: #668EA8;
+  color:#fff;
+}
+.ossn-wall-post-controls .menu-links li:hover a{
+  color:#fff;
+}
+.ossn-wall-post-controls .menu-links a{
+	padding:10px;
+	color:#000;
+}
+.ossn-wall-post-controls .menu-links a:hover{
+  color:#fff;
+}
