@@ -10,7 +10,7 @@
  */
 $ads = new OssnAds;
 ?>
-<div class="ossn-ads">              
+<div class="ossn-ads ossn-ads-small">              
 <div class="sponsered"><?php echo ossn_print('sponsored'); ?></div>
 <?php foreach($ads->getAds() as $ads){ ?>
                 <div class="ossn-ad-tiem-small">
