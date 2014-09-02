@@ -17,6 +17,7 @@ $en = array(
 	'ossn:notifications:comments:entity:file:ossn:aphoto' => '%s commented on your photo',
 	'ossn:notifications:wall:friends:tag' => '%s tag you in a post',
 	'ossn:notification:are:friends' => 'You are now friends',
+	'ossn:notifications:comments:post:group:wall' => "%s commeted on the group post",
 		
 	'ossn:notification:are:friends' => 'You are now friends',
 	'ossn:notification:delete:friend' => 'Friend request deleted',
