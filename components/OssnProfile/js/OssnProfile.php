@@ -97,9 +97,10 @@ $("#upload-photo").submit(function (event) {
 				$('.profile-cover').find('img').removeClass('user-cover-uploading');
 				$imageurl = $('.profile-cover').find('img').attr('src');
 				$('.profile-cover').find('img').attr('src', $imageurl);
+                $('.profile-cover').find('img').attr('style', 'position:absolute;');
             },
             error: function(){
-                alert("error in ajax form submission");
+                alert("Cannot change cover please try again later");
             }
         });
 
@@ -118,11 +119,11 @@ Ossn.repositionCOVER = function(){
 		success: function(callback){
 				$('#profile-menu').show();
             	$('#cover-menu').hide();
-				       $("#draggable").draggable({
-												 drag: function(){
-													 return false; 
-												 }
-												 }); 
+				$("#draggable").draggable({
+									 drag: function(){
+											 return false; 
+											}
+				}); 
 			  },
 	});	
 };
