@@ -15,7 +15,9 @@ $file->subtype = 'profile:cover';
 $file->setFile('coverphoto');
 $file->setPath('profile/cover/');
 if($file->addFile()){
-   echo 1;
+  $ossnprofile = new OssnProfile;
+  $ossnprofile->ResetCoverPostition($file->owner_guid);
+  echo 1;
 } else {
-	 echo 0;
+   echo 0;
 } 
