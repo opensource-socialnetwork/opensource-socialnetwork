@@ -12,7 +12,6 @@
 define('__OSSN_LIKES__', ossn_route()->com.'OssnLikes/');
 require_once(__OSSN_LIKES__.'classes/OssnLikes.php');
 function ossn_likes(){
-  ossn_extend_view('js/opensource.socialnetwork', 'components/OssnLikes/js/ossn_likes');
 
   ossn_register_action('post/like', __OSSN_LIKES__.'actions/post/like.php');
   ossn_register_action('post/unlike', __OSSN_LIKES__.'actions/post/unlike.php'); 
