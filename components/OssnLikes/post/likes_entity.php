@@ -12,11 +12,11 @@
 $OssnLikes = new OssnLikes;
 $OssnComments = new OssnComments;
 $object= $params['entity_guid'];
-$count = $OssnLikes->CountLikes($object);
+$count = $OssnLikes->CountLikes($object, 'entity');
 ?>
     <div class="like_share">
     <div id="ossn-like-<?php echo $object;?>" class="button-container">
-    <?php if(!$OssnLikes->isLiked($object, ossn_loggedin_user()->guid)){
+    <?php if(!$OssnLikes->isLiked($object, ossn_loggedin_user()->guid, 'entity')){
 		 $link['onclick'] = "Ossn.EntityLike({$object});";
 		 $link['href'] = 'javascript::;';
 		 $link['text'] = ossn_print('ossn:like');
@@ -32,11 +32,11 @@ $count = $OssnLikes->CountLikes($object);
         } ?>  
     </div>   
      <span class="dot-comments">.</span> <a href="#comment-box-<?php echo $object;?>">Comment</a>
-     <?php if($OssnComments->countComments($object) > 5 ){ ?>
+     <?php if($OssnComments->countComments($object, 'entity') > 5 ){ ?>
      <span class="dot-comments">.</span> <a href="#">View all comments</a>
      <?php } ?>
      </div>
-   <?php if($OssnLikes->CountLikes($object)){ ?> 
+   <?php if($OssnLikes->CountLikes($object, 'entity')){ ?> 
     <div class="like_share">
      <?php if($user_liked == true && $count == 1){ ?>
              <?php echo ossn_print("ossn:liked:you"); ?>
