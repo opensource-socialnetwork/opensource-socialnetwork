@@ -9,6 +9,7 @@
  */
 .ossn-profile {
  width:850px;
+ margin-top: -10px;
 }
 .ossn-profile .top-container{
  background:#fff;
@@ -60,11 +61,11 @@
 .ossn-profile-modules {
  display:inline-block;
  margin-top: 19px;
+ vertical-align:top;
 }
 .ossn-profile-wall {
  display: inline-block;
- float: right;
- width: 528px;
+ width: 430px;
  margin-top: 19px;
  height: 200px;
 }
@@ -206,6 +207,18 @@ margin-bottom: -11px;
 }
 .ossn-profile-modlue-friends img {
   padding: 1.5px;	
+}
+.ossn-profile-modlue-friends  .user-image {
+  width:100px;
+  height:100px;
+  display:inline-block;
+}
+.ossn-profile-modlue-friends .user-name {
+ position: absolute;
+ margin-top: -27px; 
+ margin-left: 8px;
+ font-size: 12px;
+ color: #fff;
 }
 .ossn-profile-modlue-friends h3 {
  padding:4px;
