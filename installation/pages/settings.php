@@ -17,7 +17,7 @@ echo '<h2>'.ossn_installation_print('site:settings').'</h2>';
 <div>
 <input type="text" name="dbuser" placeholder="Database User"/>
 
-<input type="text" name="dbpwd" placeholder="Database Password"/>
+<input type="password" name="dbpwd" placeholder="Database Password"/>
 <input type="text" name="dbname" placeholder="Database Name"/>
 <input type="text" name="dbhost" placeholder="Database Host"/>
 </div>
