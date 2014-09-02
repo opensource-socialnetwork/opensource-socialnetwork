@@ -45,6 +45,7 @@ function ossn_notification_page($pages){
 		case 'notification':
         $get = new  OssnNotifications;
 		 $notifications['notifications'] = $get->get(ossn_loggedin_user()->guid, true);
+		 $notifications['seeall'] = ossn_site_url("notitications/all");
 		 if(!empty($notifications['notifications'])){
 		 $data = ossn_view('components/OssnNotifications/pages/notification/notification', $notifications);
 		 echo json_encode(array(
@@ -77,7 +78,7 @@ function ossn_notification_page($pages){
 		
 		case 'messages':
 		 $OssnMessages = new OssnMessages;
-     	         $params['recent'] = $OssnMessages->recentChat(ossn_loggedin_user()->guid);
+     	 $params['recent'] = $OssnMessages->recentChat(ossn_loggedin_user()->guid);
 		 $data = ossn_view('components/OssnMessages/templates/message-with-notifi', $params);
 		 if(!empty($params['recent'])){	 
 		 echo json_encode(array(
