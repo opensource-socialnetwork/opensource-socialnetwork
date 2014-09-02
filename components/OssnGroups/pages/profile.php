@@ -32,14 +32,15 @@
        <div class="groups-buttons">
          <?php  if($params['group']->owner_guid !== ossn_loggedin_user()->guid){ 
 		           if($params['group']->isMember(NULL, ossn_loggedin_user()->guid)){
+				      $ismember = 1;
 		 ?> 
                     <a href="<?php echo ossn_site_url("action/group/leave?group={$params['group']->guid}");?>" class='button-grey'>
-                    <?php ossn_print('leave:group');?></a>
+                    <?php echo ossn_print('leave:group');?></a>
                 <?php }
 				else if(!$params['group']->requestExists(ossn_loggedin_user()->guid, false)){
 				?>
-                    <a href="<?php echo ossn_site_url("action/group/join?group={$params['group']->guid}");?>" class='button-grey'>
-                    <?php ossn_print('join:group');?></a>
+                 <a href="<?php echo ossn_site_url("action/group/join?group={$params['group']->guid}");?>" class='button-grey'>
+                    <?php echo ossn_print('join:group');?></a>
                 <?php	
 				  } 
                   
@@ -49,7 +50,9 @@
 				<?php  }?>
           
           <?php } ?>
-        <?php  if($params['group']->owner_guid == ossn_loggedin_user()->guid){ ?>
+        <?php  if($params['group']->owner_guid == ossn_loggedin_user()->guid){ 
+				 $ismember = 1;
+		?>
           <a href="<?php echo ossn_group_url($params['group']->guid);?>edit" class='button-grey'><?php echo ossn_print('settings');?></a>
          <?php } ?>
        </div>       
@@ -66,7 +69,9 @@
 ?>
    <div class="group-wall">
        <?php
-         echo ossn_view('components/OssnWall/wall/group', array('group' => $params['group']));
+         if($ismember == 1){
+		    echo ossn_view('components/OssnWall/wall/group', array('group' => $params));
+		 }
 		 ?>
    </div>
 
@@ -79,7 +84,7 @@
    <?php  if($params['group']->owner_guid == ossn_loggedin_user()->guid){ ?>
      <div class="group-about" style="margin-top: 10px;">
         <div class='heading'> <?php echo ossn_print('member:requests', array($params['group']->countRequests()));?></div>
-        <div class="members-count"> <a href="<?php echo ossn_group_url($params['group']->guid);?>members">
+        <div class="members-count"> <a href="<?php echo ossn_group_url($params['group']->guid);?>requests">
 		<?php echo ossn_print('view:all');?></a></div>
      </div>
      <?php } ?>
