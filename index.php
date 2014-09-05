@@ -9,8 +9,13 @@
  * @link      http://www.opensource-socialnetwork.com/licence
  */
 require_once('system/start.php');
-$h = input('h');
-if(empty($h)){
-	$h = 'index';
+//page handler
+$handler = input('h');
+//page name
+$page = input('p');
+
+//check if there is no handler then load index page handler
+if(empty($handler)){
+	$handler = 'index';
 }
-echo ossn_load_page($h, input('p'));
+echo ossn_load_page($handler, $page);
