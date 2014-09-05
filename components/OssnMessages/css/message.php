@@ -189,22 +189,7 @@ width: 340px;
  font-weight: bold;
  padding: 3px;
 }
-.ossn-arrow-back {
-	background:url(<?php echo ossn_site_url();?>components/OssnMessages/images/backward-arrow.png");
-	width:9px;
-	height:9px;
-	
-	margin-top: -6px;
-margin-left: 4px;
-}
-.reply-text {
-margin-top: -12px;
-margin-left: 17px;	
-}
-.reply-text-from {
-margin-top: -12px;
-margin-left: 4px;		
-}
+
 .ossn-notification-messages .user-item-inner .time {
  color: #999;	
  float:right;
