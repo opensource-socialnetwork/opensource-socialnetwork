@@ -503,7 +503,7 @@ height: 16px;
 }
 .ossn-admin-sidemenu .links .inner-li .text,
 .ossn-admin-sidemenu .links li .inner-li .icon{
- display:inline-table;
+ display:inline-block;
 }
 
 .ossn-admin-sidemenu .links a{
