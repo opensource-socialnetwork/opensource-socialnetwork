@@ -20,10 +20,12 @@ function ossn_profile(){
   ossn_extend_view('css/ossn.default', 'components/OssnProfile/css/profile');
   ossn_extend_view('js/opensource.socialnetwork', 'components/OssnProfile/js/OssnProfile'); 
   //actions
+  if(ossn_isLoggedin()){
   ossn_register_action('profile/photo/upload', __OSSN_PROFILE__.'actions/photo/upload.php');
   ossn_register_action('profile/cover/upload', __OSSN_PROFILE__.'actions/cover/upload.php');
   ossn_register_action('profile/cover/reposition', __OSSN_PROFILE__.'actions/cover/reposition.php');
   ossn_register_action('profile/edit', __OSSN_PROFILE__.'actions/edit.php');
+  }
   //callback
   ossn_register_callback('page', 'load:search', 'ossn_search_users_link');
 }
