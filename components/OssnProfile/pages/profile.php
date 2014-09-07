@@ -37,7 +37,7 @@ $cover_left = $coverp[1];
           <?php } 
 		      $cover = ossn_site_url()."cover/{$user->username}";
 		    ?>
-              <img class="profile-cover-img" src="<?php echo $cover;?>" 
+              <img id="draggable" class="profile-cover-img" src="<?php echo $cover;?>" 
               style='position:relative;top:<?php echo $cover_top;?>px;left:<?php echo $cover_left;?>px;'
               />
         </div>
