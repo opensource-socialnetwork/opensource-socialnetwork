@@ -26,4 +26,5 @@ $Ossn->libraries = array(
 						'image',
 						'admin',
 						'components',
+					    'upgrade',
 						);
