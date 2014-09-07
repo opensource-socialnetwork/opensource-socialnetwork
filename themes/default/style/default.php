@@ -1312,7 +1312,7 @@ font-size: 17px;
 }
 .ossn-layout-media .sidebar {
  display:inline-table;
- width:240px;
+ width:235px;
  margin-left:11px;
 }
 /** Layout module **/
