@@ -176,7 +176,7 @@ class OssnDatabase {
 		     $query = "DELETE FROM `{$params['from']}` {$wheres};";
 		     $this->statement($query);
 		     if($this->execute()){
-		        return $this->fetch($multi);	
+		        return true;
 		     }
 			}
 	        return false;
