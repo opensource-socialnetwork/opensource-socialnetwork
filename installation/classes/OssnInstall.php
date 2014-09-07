@@ -178,11 +178,11 @@ return true;
 */ 
 public function INSTALL(){	
 if(stripos($this->datadir, $this->ossnInstallationDir()) === 0){
-  $this->error_mesg = 'Data dir must outside';	
+  $this->error_mesg = 'Data directory must outside';	
   return false;	
 }
 if(!is_dir($this->datadir)){
-  $this->error_mesg = 'Invalid Data Directoy';	
+  $this->error_mesg = 'Invalid data directoy';	
   return false;		
 }
 if(!$this->dbconnect()){
@@ -192,6 +192,7 @@ if(!$this->dbconnect()){
 if ($script = file_get_contents(ossn_installation_paths()->root.'sql/opensource-socialnetwork.sql')) {
 	    $script = str_replace('<<owner_email>>', $this->startup_settings['owner_email'], $script);
 	    $script = str_replace('<<notification_email>>', $this->startup_settings['notification_email'], $script);
+	    $script = str_replace('<<sitename>>', $this->startup_settings['sitename'], $script);
 		
 		$errors = array();
         $script = preg_replace('/\-\-.*\n/', '', $script);
