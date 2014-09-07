@@ -28,7 +28,11 @@
       </div>
       <div class="coloum-right">
            <div style="padding:12px;min-height:300px;"> 
-              <?php echo ossn_view('components/OssnAds/page/view');?>
+              <?php
+			  if(com_is_active('OssnAds')){
+			   echo ossn_view('components/OssnAds/page/view');
+			  }
+			   ?>
            </div>
       </div>
 </div>
