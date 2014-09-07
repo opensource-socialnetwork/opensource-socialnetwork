@@ -13,11 +13,12 @@ require_once(__OSSN_WALL__.'classes/OssnWall.php');
 
 function ossn_wall(){
   //actions 
+  if(ossn_isLoggedin()){ 
   ossn_register_action('wall/post/a', __OSSN_WALL__.'actions/wall/post/home.php');
   ossn_register_action('wall/post/u', __OSSN_WALL__.'actions/wall/post/user.php');
   ossn_register_action('wall/post/g', __OSSN_WALL__.'actions/wall/post/group.php');
   ossn_register_action('wall/post/delete', __OSSN_WALL__.'actions/wall/post/delete.php');
-  
+  }
   //css and js
   ossn_extend_view('css/ossn.default', 'components/OssnWall/css/wall');
   ossn_extend_view('js/opensource.socialnetwork', 'components/OssnWall/js/ossn_wall');  
@@ -35,7 +36,10 @@ function ossn_wall(){
 
 }
 function ossn_friend_picker(){
-header('Content-Type: application/json'); 
+header('Content-Type: application/json');
+if(!ossn_isLoggedin()){
+  exit;	
+}
 $user = new OssnUser;
 foreach($user->getFriends(ossn_loggedin_user()->guid) as $users){
   $p['first_name'] = $users->first_name;
