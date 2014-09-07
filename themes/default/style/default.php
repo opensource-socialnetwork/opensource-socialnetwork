@@ -1203,7 +1203,8 @@ font-size: 13px;
 .ossn-profile-module-item .module-title{
  color: #6A7480;
  background: #F6F7F8;
- padding: 17px;
+ padding: 11px;
+ border-radius: 4px;
  font-weight: bold;
  font-size: 12px;
  border-bottom: 1px solid #E6E7E7;
@@ -1271,7 +1272,7 @@ text-shadow: 4px 4px 2px #eee;
 .ossn-error-page .error-text {
 font-size: 17px;
 }
-/** Ossn Layout NewsFeed **/
+/** Ossn Layout NewsFeed and Media**/
 .ossn-layout-newsfeed {
   width: 970px;
   margin: 0 auto;
@@ -1300,4 +1301,45 @@ font-size: 17px;
 }
 .ossn-layout-newsfeed .ossn-inner {
   width: 970px;
+}
+.ossn-layout-media {
+  width: 990px;
+  margin: 0 auto;
+}
+.ossn-layout-media .content{
+   display:inline-table;
+   width:736px;
+}
+.ossn-layout-media .sidebar {
+ display:inline-table;
+ width:240px;
+ margin-left:11px;
+}
+/** Layout module **/
+
+.ossn-layout-module {
+ border: 1px solid #D3D6DB;
+ background:#fff;
+ min-height:300px;
+ margin-top:20px;
+ border-radius:3px;
+}
+.ossn-layout-module .module-title {
+	background:#F6F7F8;
+	padding: 18px;	
+    border-bottom: 1px solid #D3D6DB;
+}
+.ossn-layout-module .module-title .controls{
+	float:right;
+}
+.ossn-layout-module .module-contents {
+ padding:10px;	
+}
+.ossn-layout-module .module-title .title{
+ font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+ font-size: 20px;
+ font-weight: bold;
+ height: 24px;
+ line-height: 1;
+ margin: 0 12px 5px;
 }
