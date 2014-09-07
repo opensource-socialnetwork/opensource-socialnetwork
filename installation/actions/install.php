@@ -18,7 +18,8 @@ $Settings->weburl($_POST['url']);
 $Settings->datadir($_POST['datadir']);
 $Settings->setStartupSettings(array(
  'owner_email' => $_POST['owner_email'],
- 'notification_email' => $_POST['notification_email']
+ 'notification_email' => $_POST['notification_email'],
+ 'sitename' => $_POST['sitename']
 ));
 if($Settings->INSTALL()){
   $installed = ossn_installation_paths()->url.'?page=account';
