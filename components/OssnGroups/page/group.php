@@ -23,7 +23,6 @@
       </div>  
       <div class="coloum-middle">
              <?php echo $params['content']; ?>
-  
       </div>
      
      </div>
