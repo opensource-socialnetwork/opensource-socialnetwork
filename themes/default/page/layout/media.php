@@ -1,26 +1,26 @@
+<?php
+/**
+ * 	OpenSource-SocialNetwork
+ *
+ * @package   (Informatikon.com).ossn
+ * @author    OSSN Core Team <info@opensource-socialnetwork.com>
+ * @copyright 2014 iNFORMATIKON TECHNOLOGIES
+ * @license   General Public Licence http://opensource-socialnetwork.com/licence 
+ * @link      http://www.opensource-socialnetwork.com/licence
+ */
+?>
 <style>
 body { background:#fff;}
-.ossn-layout-media {
-  width: 990px;
-  margin: 0 auto;
-}
-.ossn-layout-media .content{
-   display:inline-table;
-   width:736px;
-}
-.ossn-layout-media .sidebar {
- display:inline-table;
- width:240px;
- margin-left:11px;
-}
-
-
 </style>
 <div class="ossn-layout-media"><br />
  <div class="content">  
    <?php echo $params['content']; ?>
   </div>
   <div class="sidebar">
-               <?php echo ossn_view('components/OssnAds/page/view');?>
+        <?php 
+	 if(com_is_active('OssnAds')){	
+		echo ossn_view('components/OssnAds/page/view');
+	 }
+		?>
   </div> 
 </div>
