@@ -65,6 +65,7 @@ function ossn_route(){
 		'com'		=>	"$root/components/",
 		'admin'		=>	"$root/admin/",
 		'forms'		=>	"$root/forms/",
+		'upgrade' => "$root/upgrade/",
 		'cache' => "{$root}/cache/",
 		'js' => "$root/javascripts/",
 );
