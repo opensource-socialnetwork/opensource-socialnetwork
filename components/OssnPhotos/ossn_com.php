@@ -24,10 +24,17 @@ function ossn_photos(){
   ossn_add_hook('notification:view', 'comments:entity:file:ossn:aphoto', 'ossn_notification_like_photo');
  
   //actions
+  if(ossn_isLoggedin()){
   ossn_register_action('ossn/album/add', __OSSN_PHOTOS__.'actions/album/add.php');
   ossn_register_action('ossn/photos/add', __OSSN_PHOTOS__.'actions/photos/add.php'); 
+  }
   //callbacks
-  ossn_register_callback('page', 'load:profile', 'ossn_profile_menu_photos')  ;  
+  ossn_register_callback('page', 'load:profile', 'ossn_profile_menu_photos');
+  
+  ossn_profile_subpage('photos');
+ 
+  ossn_register_page('album', 'ossn_album_page_handler');
+  ossn_register_page('photos', 'ossn_photos_page_handler');  
 
 }
 function ossn_notification_like_photo($hook, $type, $return, $params){
@@ -78,10 +85,6 @@ if(ossn_isLoggedin()){
 
 }
 
-ossn_profile_subpage('photos');
-
-ossn_register_page('album', 'ossn_album_page_handler');
-ossn_register_page('photos', 'ossn_photos_page_handler');
 
 function ossn_photos_sizes(){
 	return array(
@@ -94,7 +97,7 @@ function ossn_photos_sizes(){
 function profile_modules_albums($h, $t, $module, $params){
 	$user['user'] = $params['user'];
 	$content = ossn_view("components/OssnPhotos/modules/profile/albums", $user);
-	$module[] = ossn_view_widget('profile/widget', 'Albums', $content);
+	$module[] = ossn_view_widget('profile/widget', 'ALBUMS', $content);
 	return $module;
 }
 function ossn_photos_page_handler($album){
