@@ -15,9 +15,10 @@ function ossn_messages(){
   ossn_extend_view('css/ossn.default', 'components/OssnMessages/css/message');
   ossn_register_page('messages', 'ossn_messages_page');
   ossn_extend_view('js/opensource.socialnetwork', 'components/OssnMessages/js/OssnMessages');
-  ossn_register_action('message/send', __OSSN_MESSAGES__.'actions/message/send.php');
 
   if(ossn_isLoggedin()){
+    ossn_register_action('message/send', __OSSN_MESSAGES__.'actions/message/send.php');	  
+	  
     $user_loggedin = ossn_loggedin_user();
     $icon = ossn_site_url('components/OssnMessages/images/messages.png');
     ossn_register_sections_menu('newsfeed', array(
@@ -31,6 +32,9 @@ function ossn_messages(){
 }
 
 function ossn_messages_page($pages){
+	if(!ossn_isLoggedin()){
+		ossn_error_page();
+	}
     $OssnMessages = new OssnMessages;
 	$page = $pages[0];
     if(empty($page)){
@@ -99,7 +103,7 @@ function ossn_messages_page($pages){
 		 echo ossn_view('components/OssnMessages/templates/message-with', $params);
 	   break;
 	   default:
-	      ossn_error_page();
+	     ossn_error_page();
 	   break;
 		
 	}
