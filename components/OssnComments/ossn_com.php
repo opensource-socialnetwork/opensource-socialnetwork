@@ -11,10 +11,12 @@
 define('__OSSN_COMMENTS__', ossn_route()->com.'OssnComments/');
 require_once(__OSSN_COMMENTS__.'classes/OssnComments.php');
 function ossn_comments(){
-
+if(ossn_isLoggedin()){
+		
 ossn_register_action('post/comment', __OSSN_COMMENTS__.'actions/post/comment.php');
 ossn_register_action('post/entity/comment', __OSSN_COMMENTS__.'actions/post/entity/comment.php');
 
+}
 ossn_add_hook('post', 'comments', 'ossn_post_comments');
 ossn_add_hook('post', 'comments:entity', 'ossn_post_comments_entity');
 
