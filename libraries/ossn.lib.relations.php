@@ -19,12 +19,14 @@
  * @return bool
  */ 
 function ossn_add_relation($from , $to, $type){
- $add = new OssnDatabase;
- $params['into'] = 'ossn_relationships';
- $params['names'] = array('relation_from', 'relation_to', 'type', 'time');
- $params['values'] = array($from, $to , $type, time());
- if($add->insert($params)){
-	return true; 
+ if($from > 0 && $to > 0 && !empty($type) && $type !== 0){
+     $add = new OssnDatabase;
+     $params['into'] = 'ossn_relationships';
+     $params['names'] = array('relation_from', 'relation_to', 'type', 'time');
+     $params['values'] = array($from, $to , $type, time());
+     if($add->insert($params)){
+	     return true; 
+     }
  }
  return false;
 }
