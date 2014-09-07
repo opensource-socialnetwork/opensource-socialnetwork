@@ -67,6 +67,6 @@ tinymce.init({
     <?php echo 'POWERED <a href="http://opensource-socialnetwork.org">OPEN SOURCE SOCIAL NETWORK</a>'; ?>  
   </div>
 </div>
-
+<?php echo ossn_fetch_extend_views('ossn/administrator/footer'); ?>          
 </body>
 </html>
