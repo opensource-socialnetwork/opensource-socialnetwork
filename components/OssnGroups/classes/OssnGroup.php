@@ -28,7 +28,7 @@ class OssnGroup extends OssnObject {
 		}
 		if($this->addObject()){
 		ossn_add_relation($params['owner_guid'], $this->getGuid(), 'group:join');
-		ossn_add_relation($this->getGuid(),$params['owner_guid'], 'group:join');
+		ossn_add_relation($this->getGuid(), $params['owner_guid'], 'group:join:approve');
 		return true;	
 		}
 		return false;
@@ -76,7 +76,7 @@ class OssnGroup extends OssnObject {
       	$this->statement("SELECT * FROM ossn_relationships WHERE(
 					     relation_from='{$group}' AND 
 					     relation_to='{$user}' AND
-					     type='group:join'
+					     type='group:join:approve'
 					     );");
 	    $this->execute();
 	    $from = $this->fetch();
@@ -106,11 +106,11 @@ class OssnGroup extends OssnObject {
 	    }
 	    foreach($from  as $fr){
             if(!$this->isMember($group,  $fr->relation_from)){
-                $uss[] =  ossn_user_by_guid($fr->relation_from);
+                $users[] =  ossn_user_by_guid($fr->relation_from);
             }
 		}
-	   if(isset($uss)){
-		   return $uss; 
+	   if(isset($users)){
+		   return $users; 
 	   }
 	   return false;
 	}
@@ -169,7 +169,7 @@ class OssnGroup extends OssnObject {
 	}
     public function approveRequest($from, $group){
 	if($this->requestExists($from, $group)){	
-	    if(ossn_add_relation($group, $from, 'group:join')){
+	    if(ossn_add_relation($group, $from, 'group:join:approve')){
 	      return true;
 	    }
 	}
@@ -180,8 +180,8 @@ class OssnGroup extends OssnObject {
 	     return false;
 	   }
 	    $this->statement("DELETE FROM ossn_relationships WHERE(
-						 relation_from='{$from}' AND relation_to='{$group}' OR 
-						 relation_from='{$group}' AND relation_to='{$from}' AND type='group:join')");
+						 relation_from='{$from}' AND relation_to='{$group}'  AND type='group:join') OR 
+						 relation_from='{$group}' AND relation_to='{$from}' AND type='group:join:approve')");
 	     if($this->execute()){
 	         return true;  
 	     }
