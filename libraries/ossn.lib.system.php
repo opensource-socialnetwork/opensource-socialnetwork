@@ -234,7 +234,10 @@ function ossn_register_callback($event, $type, $callback, $priority = 200){
  */
 function ossn_site_settings($setting){
 	global $Ossn;
-    return $Ossn->siteSettings->$setting;
+	if(isset($Ossn->siteSettings->$setting)){
+       return $Ossn->siteSettings->$setting;
+	}
+  return false;	
 }
 /**
  * Redirect a user to specific url
@@ -454,6 +457,25 @@ if(isset($_SESSION['ossn_messages'][$for])){
 function ossn_site_total_themes(){
 	$themes = new OssnThemes;
 	return count($themes->total());
+}
+/**
+* Validate filepath , add backslash to end of path
+*
+* @return string;
+*/
+function ossn_validate_filepath($path, $append_slash = TRUE) {
+	$path = str_replace('\\', '/', $path);
+	$path = str_replace('../', '/', $path);
+
+	$path = preg_replace("/([^:])\/\//", "$1/", $path);
+	$path = trim($path);
+	$path = rtrim($path, " \n\t\0\x0B/");
+
+	if ($append_slash) {
+		$path = $path . '/';
+	}
+
+	return $path;
 }
 /**
 * Output Ossn Error page
