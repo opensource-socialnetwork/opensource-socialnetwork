@@ -166,10 +166,10 @@ function ossn_call_hook($hook, $type, $params = null, $returnvalue = null) {
  * @return bool
  */
 function ossn_trigger_callback($event, $type, $params = null) {
-	global $OpenSocialWebsite;
+	global $Ossn;
 	$events = array();
-	if (isset($OpenSocialWebsite->events[$event][$type])) {
-			$events[] = $OpenSocialWebsite->events[$event][$type];
+	if (isset($Ossn->events[$event][$type])) {
+			$events[] = $Ossn->events[$event][$type];
 	}
 	foreach ($events as $callback_list) {
 		if (is_array($callback_list)) {
@@ -195,20 +195,20 @@ function ossn_trigger_callback($event, $type, $params = null) {
  * @return bool
  */
 function ossn_register_callback($event, $type, $callback, $priority = 200){
-	global $OpenSocialWebsite;
+	global $Ossn;
 	
 	if (empty($event) || empty($type)) {
 		return false;
 	}
 
-	if (!isset($OpenSocialWebsite->events)) {
-		$OpenSocialWebsite->events = array();
+	if (!isset($Ossn->events)) {
+		$Ossn->events = array();
 	}
-	if (!isset($OpenSocialWebsite->events[$event])) {
-		$OpenSocialWebsite->events[$event] = array();
+	if (!isset($Ossn->events[$event])) {
+		$Ossn->events[$event] = array();
 	}
-	if (!isset($OpenSocialWebsite->events[$event][$type])) {
-		$OpenSocialWebsite->events[$event][$type] = array();
+	if (!isset($Ossn->events[$event][$type])) {
+		$Ossn->events[$event][$type] = array();
 	}
 
 	if (!is_callable($callback, true)) {
@@ -217,11 +217,11 @@ function ossn_register_callback($event, $type, $callback, $priority = 200){
 
 	$priority = max((int) $priority, 0);
 
-	while (isset($OpenSocialWebsite->events[$event][$type][$priority])) {
+	while (isset($Ossn->events[$event][$type][$priority])) {
 		$priority++;
 	}
-	$OpenSocialWebsite->events[$event][$type][$priority] = $callback;
-	ksort($OpenSocialWebsite->events[$event][$type]);
+	$Ossn->events[$event][$type][$priority] = $callback;
+	ksort($Ossn->events[$event][$type]);
 	return true;
 
 }
