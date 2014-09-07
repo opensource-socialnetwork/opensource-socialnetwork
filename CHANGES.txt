@@ -6,7 +6,7 @@ Bugfixes:
 * Escaping is adding / to posts #32.
 * Search layout contain static ads #28
 * Component(ossngroups): group view page layout is broken #30
-* Edit New issue Component(ossnnotifications): see all link is broken #27
+* Component(ossnnotifications): see all link is broken #27
 * Relation type is int instead for text
 * add website name in installation form #36
 * component(ossngroups): group display owner two times in header #41
