@@ -166,6 +166,13 @@ If you can't click on the link, copy and paste it to your browser manually.
 	'remove:friend' => 'Unfriend',
 	'no:friends' => 'No Friends',
 	'settings' => 'Settings',
+	'ossn:add:friend:error' => 'Cannot add friend',
+	
+	/* Upgrades */
+	'upgrade:file:load:error' => 'Cannot load upgrade file',
+	'upgrade:success' => 'Your website has been upgraded successfully',
+	'upgrade:failed' => 'Cannot upgrade try again',
+	'upgrade:not:available' => 'Nothing to upgrade',
 	
 	/*
 	* List of ISO 639-1 language codes
