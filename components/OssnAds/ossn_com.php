@@ -13,7 +13,9 @@ require_once(__OSSN_ADS__.'classes/OssnAds.php');
 
 function ossn_ads(){  
   ossn_register_com_panel('OssnAds', 'settings');
+  if(ossn_isLoggedin()){
   ossn_register_action('ossnads/add', __OSSN_ADS__.'actions/add.php');
+  }
   ossn_register_page('ossnads', 'ossn_ads_handler');
   ossn_extend_view('css/ossn.default', 'components/OssnAds/css/ads');	
 }
