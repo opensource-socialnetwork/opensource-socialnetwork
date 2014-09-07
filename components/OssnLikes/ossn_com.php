@@ -13,13 +13,15 @@ define('__OSSN_LIKES__', ossn_route()->com.'OssnLikes/');
 require_once(__OSSN_LIKES__.'classes/OssnLikes.php');
 function ossn_likes(){
 
+  if(ossn_isLoggedin()){
   ossn_register_action('post/like', __OSSN_LIKES__.'actions/post/like.php');
   ossn_register_action('post/unlike', __OSSN_LIKES__.'actions/post/unlike.php'); 
 
-  ossn_extend_view('js/opensource.socialnetwork', 'components/OssnLikes/js/OssnLikes');
-
   ossn_register_action('annotation/like', __OSSN_LIKES__.'actions/annotation/like.php');
   ossn_register_action('annotation/unlike', __OSSN_LIKES__.'actions/annotation/unlike.php'); 
+
+  }
+  ossn_extend_view('js/opensource.socialnetwork', 'components/OssnLikes/js/OssnLikes');
 
   ossn_register_callback('post', 'delete', 'ossn_post_like_delete');
   ossn_register_page('likes', 'ossn_likesview_page_handler'); 
