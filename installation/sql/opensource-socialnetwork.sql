@@ -147,7 +147,7 @@ CREATE TABLE IF NOT EXISTS `ossn_relationships` (
   `relation_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `relation_from` bigint(20) NOT NULL,
   `relation_to` bigint(20) NOT NULL,
-  `type` int(11) NOT NULL,
+  `type` varchar(20)  NOT NULL,
   `time` int(11) NOT NULL,
   PRIMARY KEY (`relation_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
@@ -163,7 +163,7 @@ CREATE TABLE IF NOT EXISTS `ossn_site_settings` (
   `name` text NOT NULL,
   `value` text NOT NULL,
   PRIMARY KEY (`setting_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf16 AUTO_INCREMENT=7 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `ossn_site_settings`
@@ -171,11 +171,13 @@ CREATE TABLE IF NOT EXISTS `ossn_site_settings` (
 
 INSERT INTO `ossn_site_settings` (`setting_id`, `name`, `value`) VALUES
 (1, 'theme', 'default'),
-(2, 'site_name', 'OSSN'),
+(2, 'site_name', '<<sitename>>'),
 (3, 'language', 'en'),
 (4, 'cache', '0'),
 (5, 'owner_email', '<<owner_email>>'),
 (6, 'notification_email', '<<notification_email>>');
+(7, 'upgrades', '["1410031188.php"]');
+
 
 -- --------------------------------------------------------
 
