@@ -87,8 +87,11 @@
         <div class="members-count"> <a href="<?php echo ossn_group_url($params['group']->guid);?>requests">
 		<?php echo ossn_print('view:all');?></a></div>
      </div>
-     <?php } ?>
-                 <?php echo ossn_view('components/OssnAds/page/view');?>
+     <?php }
+	    if(com_is_active('OssnAds')){	
+		    echo ossn_view('components/OssnAds/page/view');
+	     }
+		?>
    </div>
      <?php } ?>
 </div>
