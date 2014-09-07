@@ -37,7 +37,7 @@ $cover_left = $coverp[1];
           <?php } 
 		      $cover = ossn_site_url()."cover/{$user->username}";
 		    ?>
-              <img id="draggable" class="profile-cover-img" src="<?php echo $cover;?>" 
+              <img class="profile-cover-img" src="<?php echo $cover;?>" 
               style='position:relative;top:<?php echo $cover_top;?>px;left:<?php echo $cover_left;?>px;'
               />
         </div>
@@ -94,7 +94,10 @@ $cover_left = $coverp[1];
 </div>
 
 <div class="ossn-profile-sidebar">
-                 <?php echo ossn_view('components/OssnAds/page/view_small');?>
+    <?php 
+	 if(com_is_active('OssnAds')){	
+		echo ossn_view('components/OssnAds/page/view_small');
+	 } ?>
 </div>
 <div class="ossn-profile-bottom">
 <?php
