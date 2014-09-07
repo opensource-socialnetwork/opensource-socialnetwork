@@ -24,11 +24,13 @@ if(ossn_add_friend(ossn_loggedin_user()->guid, input('user'))){
 	   }
 } else {
 	if(!ossn_is_xhr()){
+        ossn_trigger_message(ossn_print('ossn:add:friend:error'), 'error', 'admin');
         redirect(REF);	
 	}
 	if(ossn_is_xhr()){
 			 echo json_encode(array(
 								'type' => 1,
+							    'text' => ossn_print('ossn:add:friend:error'),
 								));   	
 	}
 }
