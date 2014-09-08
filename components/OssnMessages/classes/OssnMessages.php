@@ -9,6 +9,15 @@
  * @link      http://www.opensource-socialnetwork.com/licence
  */
 class OssnMessages extends OssnDatabase {
+   /**
+	* Send message
+	*
+	* @params $from: User 1 guid
+	*         $to User 2 guid
+	*         $message Message
+	*
+	* @return bool;
+	*/			
 	public function send($from, $to, $message){
 		$message = htmlentities($message, ENT_QUOTES, "UTF-8");
 		$params['into'] = 'ossn_messages';
@@ -19,6 +28,14 @@ class OssnMessages extends OssnDatabase {
 		}
 		return false;
 	}
+   /**
+	* Get messages between two users
+	*
+	* @params $from: User 1 guid
+	*         $to User 2 guid
+	*
+	* @return object
+	*/		
 	public function get($from, $to){
 		$params['from'] = 'ossn_messages';
 		$params['wheres'] = array("message_from='{$from}' AND 
@@ -28,6 +45,14 @@ class OssnMessages extends OssnDatabase {
 		$params['order_by'] = "id ASC";
 		return $this->select($params, true);
 	}
+   /**
+	* Mark message as viewed
+	*
+	* @params $from: User 1 guid
+	*         $to User 2 guid
+	*
+	* @return bool
+	*/		
 	public function markViewed($from, $to){
 		$params['table'] = 'ossn_messages';
 		$params['names'] = array('viewed');
@@ -39,12 +64,27 @@ class OssnMessages extends OssnDatabase {
 		}
 	return false;	
 	}
+   /**
+	* Get new messages
+	*
+	* @params $from: User 1 guid
+	*         $to User 2 guid
+	*
+	* @return bool
+	*/			
 	public function getNew($from , $to, $viewed = 0){
 		$params['from'] = 'ossn_messages';
 		$params['wheres'] = array("message_from='{$from}' AND 
 								   message_to='{$to}' AND viewed='{$viewed}'");
 		return $this->select($params, true);
 	}
+   /**
+	* Get recently chat list
+	*
+	* @params  $to User 2 guid
+	*
+	* @return object
+	*/			
 	public function recentChat($to){
 		$params['from'] = 'ossn_messages';
 		$params['wheres'] = array("message_to='{$to}' OR message_from='{$to}'");
@@ -66,6 +106,13 @@ class OssnMessages extends OssnDatabase {
         }
         return $u;
 	}
+   /**
+	* Get recent sent messages
+	*
+	* @params  $from User 1 guid
+	*
+	* @return object
+	*/				
 	public function recentSent($from){
 		$params['from'] = 'ossn_messages';
 		$params['wheres'] = array("message_from='{$from}'");
