@@ -7,8 +7,11 @@
  * @license   General Public Licence http://www.opensocialwebsite.com/licence 
  * @link      http://www.opensocialwebsite.com/licence
  */
-Ossn.ViewLikes = function($post){
-                      Ossn.MessageBox('likes/view?post='+$post);
+Ossn.ViewLikes = function($post, $type){
+                      if(!$type){
+                        $type = 'post';
+                      }
+                      Ossn.MessageBox('likes/view?guid='+$post+'&type='+$type);
 };
 
 Ossn.PostUnlike = function(post){
