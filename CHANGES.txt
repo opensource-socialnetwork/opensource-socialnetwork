@@ -11,6 +11,17 @@ Bugfixes:
 * add website name in installation form #36
 * component(ossngroups): group display owner two times in header #41
 * Profile modules title height fixed
+* Fix Ads on layout media.
+* Notification database time_created time to int(11)
+* (ossnmessages)clear form when sending message #38
+* Fixed Ossn Modal box title height
+
+ Enhancements:
+
+* Merged profile photos with ossnphotos.
+* View notification if someone comment on user photo
+* View notification if some like user photo
+* Upgrade feature added.
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 1.2
 
