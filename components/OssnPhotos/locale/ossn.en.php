@@ -22,6 +22,7 @@ $en = array(
 			'photo:albums' => 'Photo Albums',
 			'edit:profile' => 'Edit Profile',
 			'reposition:cover' => 'Reposition',
+			'profile:photos' => 'Profile Photos',
 
 	  );
 ossn_register_languages('en', $en); 
