@@ -115,7 +115,7 @@ CREATE TABLE IF NOT EXISTS `ossn_notifications` (
   `owner_guid` bigint(20) NOT NULL,
   `subject_guid` bigint(20) NOT NULL,
   `viewed` varchar(1) DEFAULT NULL,
-  `time_created` int(1) NOT NULL,
+  `time_created` int(11) NOT NULL,
   `item_guid` bigint(20) NOT NULL,
   PRIMARY KEY (`guid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
