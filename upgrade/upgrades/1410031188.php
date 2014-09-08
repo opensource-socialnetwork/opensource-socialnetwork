@@ -52,6 +52,14 @@ $database->statement("ALTER TABLE  `ossn_site_settings`
 $database->execute();
 
 /**
+ * Fix lenght of time_created
+ *
+ * @access private
+ */ 
+$database->statement("ALTER TABLE  `ossn_notifications` 
+                      CHANGE  `time_created`  `time_created` INT( 11 ) NOT NULL ;");
+$database->execute();
+/**
  * Delete wrong relationships
  *
  * @access private
