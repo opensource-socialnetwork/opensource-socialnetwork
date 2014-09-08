@@ -11,9 +11,15 @@
  
 define('__OSSN_GROUPS__', ossn_route()->com.'OssnGroups/');
 
+/* Include group class and library */
 require_once(__OSSN_GROUPS__.'classes/OssnGroup.php');
 require_once(__OSSN_GROUPS__.'libraries/groups.php');
-
+/**
+* Initialize Groups Component
+*
+* @return void;
+* @access private
+*/
 function ossn_groups(){
   //group css
   ossn_extend_view('css/ossn.default', 'components/OssnGroups/css/groups');
@@ -79,7 +85,12 @@ function ossn_groups(){
 								   ));*/	
 
 }
-
+/**
+* Group search page handler
+*
+* @return mixdata;
+* @access private
+*/
 function groups_search_handler($hook, $type, $return, $params){
 	$Pagination = new OssnPagination;
 	$groups = new OssnGroup;
@@ -93,16 +104,36 @@ function groups_search_handler($hook, $type, $return, $params){
 	}
 	return  $search;
 }
-
+/**
+* Call event on group load
+*
+* @return void;
+* @access private
+*/
 function ossn_group_load_event($event, $type, $params){
 	$owner = ossn_get_page_owner_guid();
 	$url = ossn_site_url();
 	ossn_register_menu_link('members', 'members', ossn_group_url($owner).'members', 'groupheader');
 }
+/**
+* Add search group link on search page
+*
+* @return void;
+* @access private
+*/
 function ossn_group_search_link($event, $type, $params){
 	$url = OssnPagination::constructUrlArgs();
 	ossn_register_menu_link('search:users', 'search:groups', "search?type=groups{$url}", 'search');	
 }
+/**
+* Groups page handler
+*
+* Pages:
+*      groups/
+*      groups/add ( ajax )
+* @return mixdata;
+* @access private
+*/
 function ossn_groups_page($pages){
 	$page = $pages[0];
     if(empty($page)){
@@ -127,6 +158,18 @@ function ossn_groups_page($pages){
     break;		
 	}
 }
+/**
+* Group page handler
+* This page also contain subpages like group/<guid>/members
+*
+* Pages:
+*      group/<guid>
+*      group/<guid>/<subpage>
+* Subpage need to be register seperatly.
+* 
+* @return mixdata;
+* @access private
+*/
 function ossn_group_page($pages){
 	if(empty($pages[0])){
 	    ossn_error_page();	
@@ -156,6 +199,15 @@ function ossn_group_page($pages){
       echo ossn_view_page($title, $content);    
 	}
 }
+/**
+* Group member page
+*
+* Page:
+*      group/<guid>/member
+*
+* @return mixdata;
+* @access private
+*/
 function group_members_page($hook, $type, $return, $params){
   $page = $params['subpage'];
   if($page == 'members'){
@@ -168,7 +220,15 @@ function group_members_page($hook, $type, $return, $params){
   }
 }
 
-
+/**
+* Group edit page
+*
+* Page:
+*      group/<guid>/edit
+*
+* @return mixdata;
+* @access private
+*/
 function group_edit_page($hook, $type, $return, $params){
   $page = $params['subpage'];
   $group = ossn_get_group_by_guid(ossn_get_page_owner_guid());
@@ -189,6 +249,15 @@ function group_edit_page($hook, $type, $return, $params){
 											));
   }
 }
+/**
+* Group member requests page
+*
+* Page:
+*      group/<guid>/requests
+*
+* @return mixdata;
+* @access private
+*/
 function group_requests_page($hook, $type, $return, $params){ 
   $page = $params['subpage'];
   $group = ossn_get_group_by_guid(ossn_get_page_owner_guid());
