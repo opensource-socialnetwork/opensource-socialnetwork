@@ -11,8 +11,12 @@
 echo '<div class="ossn-photos">';
 $albums = new OssnAlbums;
 $photos = $albums->GetAlbums($params['user']->guid);
-
-if(is_object($photos)){
+$profiel_photo = ossn_site_url("avatar/{$params['user']->username}/larger");
+$pphotos_album = ossn_site_url("album/profile/{$params['user']->guid}");
+echo "<li>
+	<a href='{$pphotos_album}'><img src='{$profiel_photo}' class='pthumb' />
+	 <div class='ossn-album-name'>Profile Photos</div></a>
+	</li>";
 foreach($photos as $photo){
 if(ossn_access_validate($photo->access, $photo->owner_guid)){
 	$images = new OssnPhotos;
@@ -34,8 +38,5 @@ if(ossn_access_validate($photo->access, $photo->owner_guid)){
 	}
 }
 } 
-} else {
-  echo '<h3>'.ossn_print('no:photos').'</h3>';	
-}
 ?>
 </div>
