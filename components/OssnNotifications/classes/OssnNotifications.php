@@ -67,8 +67,10 @@ class OssnNotifications extends OssnDatabase {
 			  if($type !== 'like:post'){
 				 foreach($paricipates as $partcipate){
 					$params['into'] = 'ossn_notifications';
-		            $params['names'] = array('type','poster_guid', 'owner_guid', 'subject_guid', 'item_guid');
-	 	            $params['values'] = array($type, $guid_two, $partcipate , $subject_guid, $item_guid); 
+		            $params['names'] = array('type','poster_guid', 'owner_guid', 'subject_guid', 
+					                         'item_guid', 'time_created');
+	 	            $params['values'] = array($type, $guid_two, $partcipate , $subject_guid, 
+					                          $item_guid, time()); 
 					if($partcipate !== $poster_guid){
 					  $this->insert($params);
 					}
@@ -78,15 +80,19 @@ class OssnNotifications extends OssnDatabase {
 			}
 			
 			$params['into'] = 'ossn_notifications';
-		    $params['names'] = array('type','poster_guid', 'owner_guid', 'subject_guid', 'item_guid');
-	 	    $params['values'] = array($type, $poster_guid, $guid_two , $subject_guid, $item_guid);
+		    $params['names'] = array('type','poster_guid', 'owner_guid', 'subject_guid', 
+			                         'item_guid', 'time_created');
+	 	    $params['values'] = array($type, $poster_guid, $guid_two , $subject_guid, 
+			                          $item_guid, time());
 		    if($this->insert($params)){
 			   $paricipates = $this->get_comments_participates($subject_guid);
 			   if($type !== 'like:post'){
 				 foreach($paricipates as $partcipate){
 					$params['into'] = 'ossn_notifications';
-		            $params['names'] = array('type','poster_guid', 'owner_guid', 'subject_guid');
-	 	            $params['values'] = array($type, $poster_guid, $partcipate , $subject_guid); 
+		            $params['names'] = array('type','poster_guid', 'owner_guid', 'subject_guid',
+					                         'item_guid', 'time_created');
+	 	            $params['values'] = array($type, $poster_guid, $partcipate , $subject_guid,
+					                          $item_guid, time()); 
 					if($partcipate !== $poster_guid){
 					  $this->insert($params);
 					}
