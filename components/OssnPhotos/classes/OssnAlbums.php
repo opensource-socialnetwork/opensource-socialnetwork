@@ -54,6 +54,13 @@ class OssnAlbums extends OssnObject {
 		   }
 		}
 	}
-	
+	public function GetUserProfilePhotos($user){
+		$photos = new OssnFile;
+		$photos->owner_guid = $user;
+		$photos->type = 'user';
+		$photos->subtype = 'profile:photo';
+		$photos->order_by = 'guid DESC';
+		return $photos->getFiles();
+	}
 	
 }
