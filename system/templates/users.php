@@ -16,15 +16,25 @@ foreach($users as $user){ ?>
  <div class="uinfo">
     <a class="userlink" href="<?php echo ossn_site_url();?>u/<?php echo $user->username;?>"><?php echo $user->fullname;?></a>
  </div>
-     	      <?php   
-			  if( ossn_loggedin_user()->guid !== $user->guid){
-			  if(!ossn_user_is_friend(ossn_loggedin_user()->guid ,$user->guid)){ ?>   
-                              <a href="<?php echo ossn_site_url();?>action/friend/add?user=<?php echo $user->guid;?>" class='friendlink button-grey-light'>Add Friend</a>
-                      <?php } else { ?>
-                               <a href="<?php echo ossn_site_url();?>action/friend/remove?user=<?php echo $user->guid;?>" class='friendlink button-grey-light'>Unfriend</a>   
-                        <?php } 
-						
-			  }?>
+    <?php if(ossn_loggedin_user()->guid !== $user->guid){ 
+			         if(!ossn_user_is_friend(ossn_loggedin_user()->guid ,$user->guid)){   
+                   if(ossn_user()->requestExists(ossn_loggedin_user()->guid, $user->guid)){ ?>
+                   <a href="<?php echo ossn_site_url();?>action/friend/remove?cancel=true&user=<?php echo $user->guid;?>" class='button-grey friendlink'>
+                       <?php echo ossn_print('cancel:request');?>
+                    </a>   
+                        <?php } else { ?>
+                   <a href="<?php echo ossn_site_url();?>action/friend/add?user=<?php echo $user->guid;?>" class='button-grey friendlink'>
+                   <?php echo ossn_print('add:friend');?>
+                   </a> 
+                      <?php
+						}
+					   } else { ?>
+                  <a href="<?php echo ossn_site_url();?>action/friend/remove?user=<?php echo $user->guid;?>" class='button-grey friendlink'>
+                       <?php echo ossn_print('remove:friend');?>
+                    </a>   
+                       <?php }
+					   
+	}?>
 </div>
 
 
