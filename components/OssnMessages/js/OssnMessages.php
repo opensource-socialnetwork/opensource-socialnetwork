@@ -15,8 +15,10 @@ Ossn.SendMessage = function($user){
    	              
 			      },
 			      callback: function(callback){
-				     $('#message-append-'+$user).append(callback);
-					  Ossn.message_scrollMove($user);
+				      $('#message-append-'+$user).append(callback);
+					  $('#message-send-'+$user).find('textarea').val('');
+                      Ossn.message_scrollMove($user);
+                      
 				  }
 			     });
 			 
