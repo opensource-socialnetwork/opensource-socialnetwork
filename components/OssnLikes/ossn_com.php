@@ -11,8 +11,13 @@
  
 define('__OSSN_LIKES__', ossn_route()->com.'OssnLikes/');
 require_once(__OSSN_LIKES__.'classes/OssnLikes.php');
+/**
+* Initialize Likes Component
+*
+* @return void;
+* @access private
+*/
 function ossn_likes(){
-
   if(ossn_isLoggedin()){
   ossn_register_action('post/like', __OSSN_LIKES__.'actions/post/like.php');
   ossn_register_action('post/unlike', __OSSN_LIKES__.'actions/post/unlike.php'); 
@@ -27,11 +32,25 @@ function ossn_likes(){
   ossn_register_page('likes', 'ossn_likesview_page_handler'); 
  
   ossn_add_hook('notification:view', 'like:annotation', 'ossn_like_annotation');
+  ossn_add_hook('post', 'likes', 'ossn_post_likes');
+  ossn_add_hook('post', 'likes:entity', 'ossn_post_likes_entity');
 }
+/**
+* Delete post likes
+*
+* @return voud;
+* @access private
+*/
 function ossn_post_like_delete($event, $type, $params){
 	$delete = new OssnLikes;
 	$delete->deleteLikes($params);
 }
+/**
+* Notification View for liking annotation
+*
+* @return voud;
+* @access private
+*/
 function ossn_like_annotation($hook, $type, $return, $params){
   	$notif = $params;
     $baseurl = ossn_site_url();
@@ -64,15 +83,30 @@ function ossn_like_annotation($hook, $type, $return, $params){
 		   <div class='data'>".ossn_print("ossn:notifications:{$notif->type}", array($user->fullname)).'</div>
 		   </div></li>';
 }
-
-ossn_add_hook('post', 'likes', 'ossn_post_likes');
-ossn_add_hook('post', 'likes:entity', 'ossn_post_likes_entity');
-function ossn_post_likes($h, $t, $r, $p){
- return ossn_view('components/OssnLikes/post/likes', $p);	
+/**
+* View like bar for posts
+*
+* @return mix data;
+* @access private
+*/
+function ossn_post_likes($hook, $type, $return, $params){
+ return ossn_view('components/OssnLikes/post/likes', $params);	
 }
+/**
+* View like bar for entities
+*
+* @return mix data;
+* @access private
+*/
 function ossn_post_likes_entity($h, $t, $r, $p){
  return ossn_view('components/OssnLikes/post/likes_entity', $p);	
 }
+/**
+* View post likes modal box
+*
+* @return mix data;
+* @access public;
+*/
 function ossn_likesview_page_handler(){
 	  echo ossn_view('system/templates/ossnbox', array(
 												 'title' => ossn_print('people:like:this'),
