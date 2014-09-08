@@ -25,6 +25,7 @@ function ossn_notifications(){
   ossn_register_callback('like', 'created', 'ossn_notification_like');
   ossn_register_callback('wall', 'post:created', 'ossn_notification_walltag');
   ossn_register_callback('annotations', 'created', 'ossn_notification_annotation');
+
 }
 function ossn_notification_annotation($type, $event_type, $params){
 	$notification = new OssnNotifications;
