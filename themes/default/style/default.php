@@ -452,7 +452,7 @@ Icons
   width:24px; 
 }
 .ossn-box-loading {
- margin-left: 136px;
+ margin-left: 216px;
  margin-top: 37px;
 }
 .ossn-wall-friend {
@@ -951,12 +951,13 @@ margin-top: 1px;
  cursor:pointer;
 }
 .ossn-message-box .title { 
- background:#F5F6F7;
- padding:20px;
- border-bottom: 1px solid #E5E5E5;
- color: #5E5656; 
- font-size: 14px;
- font-weight:bold;
+  background: #F5F6F7;
+  padding: 11px;
+  border-radius: 3px;
+  border-bottom: 1px solid #E5E5E5;
+  color: #5E5656;
+  font-size: 14px;
+  font-weight: bold;
  }
 .ossn-message-box .contents{
  padding:10px;
