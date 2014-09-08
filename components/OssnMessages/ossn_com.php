@@ -45,6 +45,9 @@ function ossn_messages_page($pages){
 		$username = $pages[1];
         if(!empty($username)){
 		   $user = ossn_user_by_username($username);
+		   if(empty($user->guid)){
+			 ossn_error_page();  
+		   }
 		   $OssnMessages->markViewed($user->guid, ossn_loggedin_user()->guid);
 		   $params['data'] = $OssnMessages->get(ossn_loggedin_user()->guid, $user->guid);
 		   $params['user'] = $user;
