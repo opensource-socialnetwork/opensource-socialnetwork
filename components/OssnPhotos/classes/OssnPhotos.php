@@ -58,5 +58,4 @@ class OssnPhotos extends OssnFile {
 		$this->type = 'object';
 		return $this->fetchFile();
 	}
-	
 }
