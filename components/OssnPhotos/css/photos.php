@@ -1,5 +1,7 @@
 .ossn-profile-modlue-albums img {
   padding: 1.5px;	
+  width:100px;
+  height:100px;
 }
 .ossn-profile-modlue-albums h3 {
  padding:4px;
@@ -29,7 +31,7 @@
    	
 }
 .ossn-photos li img{
- border:1px solid #ccc;
+ /* border:1px solid #ccc; */
 }
 .ossn-photos h2 {
  text-align:center;	
