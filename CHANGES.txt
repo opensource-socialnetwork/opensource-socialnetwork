@@ -15,6 +15,7 @@ Bugfixes:
 * Notification database time_created time to int(11)
 * (ossnmessages)clear form when sending message #38
 * Fixed Ossn Modal box title height
+* Don't show messages page if there is invalid user
 
  Enhancements:
 
