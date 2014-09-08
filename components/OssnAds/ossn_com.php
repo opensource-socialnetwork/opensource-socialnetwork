@@ -10,7 +10,12 @@
  */
 define('__OSSN_ADS__', ossn_route()->com.'OssnAds/');
 require_once(__OSSN_ADS__.'classes/OssnAds.php');
-
+/**
+* Initialize Ads Component
+*
+* @return void;
+* @access private
+*/
 function ossn_ads(){  
   ossn_register_com_panel('OssnAds', 'settings');
   if(ossn_isLoggedin()){
@@ -19,6 +24,12 @@ function ossn_ads(){
   ossn_register_page('ossnads', 'ossn_ads_handler');
   ossn_extend_view('css/ossn.default', 'components/OssnAds/css/ads');	
 }
+/**
+* Get ad image
+*
+* @return image;
+* @access public
+*/
 function ossn_ad_image($guid){
 	 $photo = new OssnFile;
      $photo->owner_guid = $guid;
@@ -30,6 +41,14 @@ function ossn_ad_image($guid){
 		return file_get_contents($datadir);
 	 }
 }
+/**
+* Ad image page handler
+* 
+* Pages: photo
+*
+* @return image;
+* @access public
+*/
 function ossn_ads_handler($pages){
   	$page = $pages[0];
     if(empty($page)){
@@ -49,8 +68,17 @@ function ossn_ads_handler($pages){
     break;		
 	}
 }
+/**
+* Get ad image url
+* 
+* @params $guid ad guid
+*
+* @return url;
+* @access public
+*/
 function ossn_ads_image_url($guid){
   $image = md5($guid);
   return ossn_site_url("ossnads/photo/{$guid}/{$image}.jpg");	
 }
+
 ossn_register_callback('ossn', 'init', 'ossn_ads');
