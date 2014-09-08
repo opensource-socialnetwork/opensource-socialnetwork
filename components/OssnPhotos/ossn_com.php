@@ -112,7 +112,7 @@ function ossn_photos_page_handler($album){
 	  $title = 'Photos';
 	  $photo['photo'] = $album[1];
 	  $view = new OssnPhotos;
-      $image = $view->GetPhoto($photo['photo']);
+	  $image = $view->GetPhoto($photo['photo']);
 	  $photo['entity'] = $image;
 	  if(empty($image)){
 		 redirect();
@@ -133,8 +133,34 @@ function ossn_photos_page_handler($album){
       echo ossn_view_page($title, $content);   
 	}
 	break;	
-		
-    case 'add':
+    case 'user':
+	if(isset($album[1]) && isset($album[2]) && $album[1] == 'view'){
+	  $title = 'Photo';
+	  $photo['photo'] = $album[2];
+	  $type = input('type');
+	  $view = new OssnPhotos;
+	  $image = $view->GetPhoto($photo['photo']);
+	  $photo['entity'] = $image;
+	  if(empty($image->value)){
+		 //redirect();
+	    }
+	  $addphotos = array(
+					  'text' => 'Back',
+					  'href' => 'javascript::;',
+					  'class' => 'button-grey',
+					  );
+	  $control = ossn_view('system/templates/link', $addphotos);
+	  $contents = array(
+						'title' => 'Photos',
+						'content' =>  ossn_view('components/OssnPhotos/pages/profile/photos/view', $photo),
+						'controls' =>  $control ,
+						);
+      $module['content'] = ossn_set_page_layout('media', $contents);
+	  $content = ossn_set_page_layout('contents', $module);
+      echo ossn_view_page($title, $content);   
+	}
+	break;
+	case 'add':
      echo ossn_view('system/templates/ossnbox', array(
 												 'title' => 'Add Photos',
 												 'contents' => ossn_view('components/OssnPhotos/pages/photos/add'),
@@ -165,16 +191,29 @@ function ossn_album_page_handler($album){
 	}
 	switch($page){
 	case 'getphoto':
-	  header('Content-Type: image/jpeg');
 	  $guid = $album[1];
 	  $picture = $album[2];
 	  $size = input('size');
 	  if(empty($size)){
-	   $datadir = ossn_get_userdata("object/{$guid}/album/photos/{$picture}"); 
+	    $datadir = ossn_get_userdata("object/{$guid}/album/photos/{$picture}"); 
 	  } else {
 		$datadir = ossn_get_userdata("object/{$guid}/album/photos/{$size}_{$picture}");  
 	  }
-	  echo file_get_contents($datadir);
+	  $type = input('type');
+	  if($type == '1'){ 
+	      if(empty($size)){
+	  	    $datadir = ossn_get_userdata("user/{$guid}/profile/photo/{$picture}"); 
+		  } else {
+	  	    $datadir = ossn_get_userdata("user/{$guid}/profile/photo/{$size}_{$picture}"); 			  
+		  }
+	  }
+	  $image = file_get_contents($datadir);
+	  if(is_file($datadir)){
+		 header('Content-Type: image/jpeg');
+		 echo $image;  
+	  } else {
+		   ossn_error_page();
+	  }
 	break;
 	case 'view': 
 	if(isset($album[1])){
@@ -206,6 +245,24 @@ function ossn_album_page_handler($album){
       echo ossn_view_page($title, $content);   
 	}
 	break;
+	case 'profile': 
+	if(isset($album[1])){
+	  $title = 'Profile Photos';
+	  $user['user'] =  ossn_user_by_guid($album[1]);
+	  if(empty($user['user']->guid)){
+		   ossn_error_page();
+	  }
+	  $contents = array(
+						'title' => 'Photos',
+						'content' =>  ossn_view('components/OssnPhotos/pages/profile/photos/all', $user),
+						'controls' =>  false ,
+						'module_width' => '850px',
+						);
+      $module['content'] = ossn_set_page_layout('module', $contents);
+	  $content = ossn_set_page_layout('contents', $module);
+      echo ossn_view_page($title, $content);   
+	}
+	break;	
     case 'add':
      echo ossn_view('system/templates/ossnbox', array(
 												 'title' => 'Add Album',
