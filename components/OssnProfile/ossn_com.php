@@ -28,6 +28,19 @@ function ossn_profile(){
   }
   //callback
   ossn_register_callback('page', 'load:search', 'ossn_search_users_link');
+  ossn_register_callback('page', 'load:profile', 'ossn_profile_load_event');
+  
+  //hooks
+  ossn_add_hook('newsfeed', "left", 'profile_photo_newsefeed', 1);
+  ossn_add_hook('profile', 'subpage', 'profile_user_friends');
+  ossn_add_hook('search', 'type:users', 'profile_search_handler');
+  ossn_add_hook('profile', 'subpage', 'profile_edit_page');
+  ossn_add_hook('profile', 'modules', 'profile_modules');
+  
+  //notifications
+  ossn_add_hook('notification:view', 'like:entity:file:profile:photo', 'ossn_notification_like_profile_photo');
+  ossn_add_hook('notification:view', 'comments:entity:file:profile:photo', 'ossn_notification_like_profile_photo');
+
 }
 function ossn_search_users_link($event, $type, $params){
 	$url = OssnPagination::constructUrlArgs();
@@ -44,14 +57,6 @@ if(ossn_isLoggedin()){
 								   ));	
 
 }
-
-ossn_add_hook('newsfeed', "left", 'profile_photo_newsefeed', 1);
-ossn_add_hook('profile', 'subpage', 'profile_user_friends');
-ossn_add_hook('search', 'type:users', 'profile_search_handler');
-ossn_add_hook('profile', 'subpage', 'profile_edit_page');
-
-ossn_add_hook('profile', 'modules', 'profile_modules');
-ossn_register_callback('page', 'load:profile', 'ossn_profile_load_event');
 
 function ossn_profile_load_event($event, $type, $params){
 	$owner = ossn_user_by_guid(ossn_get_page_owner_guid());
@@ -224,4 +229,32 @@ function avatar_page_handler($avatar){
 		}
 	}
 }
+function ossn_notification_like_profile_photo($hook, $type, $return, $params){
+  	$notif = $params;
+    $baseurl = ossn_site_url();
+	$user = ossn_user_by_guid($notif->poster_guid);
+	$user->fullname = "<strong>{$user->fullname}</strong>"; 
+	
+	$img = "<div class='notification-image'><img src='{$baseurl}/avatar/{$user->username}/small' /></div>";
+	if(preg_match('/like/i', $notif->type)){
+	 $type = 'like';	
+	}
+    if(preg_match('/comments/i', $notif->type)){
+	  $type = 'comment';
+	}
+	$type = "<div class='ossn-notification-icon-{$type}'></div>";
+	if($notif->viewed !== NULL){
+	   $viewed = '';
+    }  elseif($notif->viewed == NULL){
+	   $viewed = 'class="ossn-notification-unviewed"';
+	}
+	$url = ossn_site_url("photos/user/view/{$notif->subject_guid}");
+	$notification_read = "{$baseurl}notification/read/{$notif->guid}?notification=".urlencode($url);
+	return "<a href='{$notification_read}'>
+	       <li {$viewed}> {$img} 
+		   <div class='notfi-meta'> {$type}
+		   <div class='data'>".ossn_print("ossn:notifications:{$notif->type}", array($user->fullname)).'</div>
+		   </div></li>';
+}
+
 ossn_register_callback('ossn', 'init', 'ossn_profile');
