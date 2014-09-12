@@ -10,10 +10,13 @@
  */
 Ossn.RegisterStartupFunction(function(){
 $(document).ready(function () {
+/**
+* Reposition cover
+*/
 $('#reposition-cover').click(function(){
 	$('#profile-menu').hide();
 	$('#cover-menu').show();
-   $(function() {
+    $(function() {
         $.globalVars = {
             originalTop: 0,
             originalLeft: 0,
@@ -128,3 +131,17 @@ Ossn.repositionCOVER = function(){
 			  },
 	});	
 };
+Ossn.RegisterStartupFunction(function(){
+$(document).ready(function () {
+    /**
+     * Profile extra menu
+     */
+             $('#profile-extra-menu').click(function(){
+                     if($('.ossn-profile-extra-menu').find('div').is(":not(:visible)") ){
+                        $('.ossn-profile-extra-menu').find('div').show();
+                       }else{
+                        $('.ossn-profile-extra-menu').find('div').hide();
+                       }    
+              });
+    });
+});
