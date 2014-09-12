@@ -232,3 +232,24 @@ float: left;
 font-size: 12px;
 font-weight: bold;	
 }
+.group-closed-container {
+
+background: #FFF;
+border: 1px solid;
+border-color: #E5E6E9 #DFE0E4 #D0D1D5;
+-webkit-border-radius: 3px;
+padding: 10px;
+margin-bottom:10px;
+font-size:12px;
+width:530px;
+}
+.group-closed-container .title-h3 {
+background: #eee;
+padding: 3px 6px;
+border-top: 1px solid #e5e5e5;
+font-weight: bold;
+margin-bottom: 7px;
+}
+.group-closed-container p {
+  padding: 3px 6px;
+}
