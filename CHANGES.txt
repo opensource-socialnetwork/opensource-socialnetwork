@@ -1,4 +1,4 @@
-OSSN - OPEN SOURCE SOCIAL NETWORK 1.3-development
+OSSN - OPEN SOURCE SOCIAL NETWORK 1.3
 
 Bugfixes:
 
@@ -16,6 +16,9 @@ Bugfixes:
 * (ossnmessages)clear form when sending message #38
 * Fixed Ossn Modal box title height
 * Don't show messages page if there is invalid user
+* Cannot search user by full name.
+* Cannot cancel group membership request.
+* Group  description added on landing page if group is private
 
  Enhancements:
 
@@ -23,6 +26,8 @@ Bugfixes:
 * View notification if someone comment on user photo
 * View notification if some like user photo
 * Upgrade feature added.
+* OssnBlock component added.
+* OssnPoke component added
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 1.2
 
