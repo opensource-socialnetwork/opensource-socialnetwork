@@ -63,6 +63,9 @@ function newfeed_menu_handler($hook, $type, $return){
 function ossn_user_pagehandler($home, $handler){
 	switch($handler){		
     case 'home':
+	if(!ossn_isLoggedin()){
+		ossn_error_page();
+	}
       $title = ossn_print('news:feed');
 	  if(com_is_active('OssnWall')){
 	   $contents['content'] = ossn_view('components/OssnWall/pages/wall');
@@ -86,7 +89,7 @@ function ossn_user_pagehandler($home, $handler){
     break;
 	
 	default:
-         echo ossn_error_page();
+        ossn_error_page();
     break;
 
 	}	
@@ -112,7 +115,7 @@ function ossn_index_pagehandler($index){
     break;
 	
 	default:
-         echo ossn_error_page();
+         ossn_error_page();
     break;
 
 	}	
