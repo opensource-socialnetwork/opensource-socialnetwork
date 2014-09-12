@@ -176,7 +176,7 @@ INSERT INTO `ossn_site_settings` (`setting_id`, `name`, `value`) VALUES
 (4, 'cache', '0'),
 (5, 'owner_email', '<<owner_email>>'),
 (6, 'notification_email', '<<notification_email>>');
-(7, 'upgrades', '["1410031188.php"]');
+(7, 'upgrades', '["1410545706.php"]');
 
 
 -- --------------------------------------------------------
