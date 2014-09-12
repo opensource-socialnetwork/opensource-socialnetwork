@@ -311,8 +311,8 @@ class OssnUser extends OssnEntities{
 	* @return object;
 	*/		 
     public function SearchSiteUsers($q){
-	$this->statement("SELECT * FROM ossn_users WHERE(first_name LIKE '%$q%' OR 
-					 username LIKE '%$q%' OR email LIKE '%$q%' OR last_name LIKE '%$q%')");
+	$this->statement("SELECT * FROM ossn_users WHERE(CONCAT(first_name, ' ', last_name) LIKE '%$q%' OR 
+					 username LIKE '%$q%' OR email LIKE '%$q%')");
 	$this->execute();
 	return $this->fetch(true);
    }
