@@ -84,6 +84,12 @@ $cover_left = $coverp[1];
                        <?php } ?>
               <a href="<?php echo ossn_site_url("messages/message/{$user->username}");?>" id="profile-message" data-guid='<?php echo $user->guid;?>' class='button-grey'>
               <?php echo ossn_print('message');?></a>
+              <a href="javascript::;" class='button-grey' id="profile-extra-menu">
+              <span>...</span>
+              </a>
+                <div class="ossn-profile-extra-menu">
+                  <?php echo ossn_view_menu('profile_extramenu', 'components/OssnProfile/menus/extra'); ?>
+               </div>
             <?php } ?>   
           </div>
            <div id="cover-menu" class="profile-menu">
