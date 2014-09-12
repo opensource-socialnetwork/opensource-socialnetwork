@@ -72,6 +72,39 @@
          if($ismember == 1){
 		    echo ossn_view('components/OssnWall/wall/group', array('group' => $params));
 		 }
+		 if($params['group']->membership == OSSN_PRIVATE){
+			 ?>
+
+			<div class="group-closed-container">
+               <div class="title-h3"><?php echo ossn_print('closed:group');?></div>
+                 <p><?php echo ossn_print('close:group:notice');?></p>
+                <div class="title-h3"> <?php echo ossn_print('group:members', array(count($members))); ?></div>
+                <div class="group-members-small">
+                
+                   <?php
+				  $members = $params['group']->getMembers();
+                  $limit  = 30;
+				  foreach($members as $member){
+					  if($limit <= 30){
+					  ?>
+                    <img src="<?php echo ossn_site_url("avatar/{$member->username}/small");?>" title="<?php echo $member->fullname;?>"/>
+                       <?php 
+					  }
+				  $limit++;
+				  } ?>
+                 
+                </div>
+                 <div class="title-h3"> <?php echo ossn_print('group:admin');?> </div>
+                 <div class="group-members-small">
+                  <?php
+				  $group_admin = ossn_user_by_guid($params['group']->owner_guid); ?>
+				 
+                    <img src="<?php echo ossn_site_url("avatar/{$group_admin->username}/small");?>" title="<?php echo $group_admin ->fullname;?>"/>
+
+                 </div>
+            </div>
+		 <?php 
+		 }
 		 ?>
    </div>
 
