@@ -44,11 +44,12 @@ function ossn_action($action){
       if(isset($Ossn->action) 
 			   && array_key_exists($action, $Ossn->action)){
                  if(is_file($Ossn->action[$action])){
-	                   include_once($Ossn->action[$action]);
+	                   ossn_trigger_callback('action', "load:{$action}");
+					   include_once($Ossn->action[$action]);
 	             }
       } 
        else { 
-        echo  '404-action';
+        ossn_error_page();
         exit();
       }
 }
