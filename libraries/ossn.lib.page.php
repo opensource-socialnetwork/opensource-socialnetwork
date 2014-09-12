@@ -51,7 +51,9 @@ if(isset($Ossn->page)
                    ob_start();
 				   call_user_func($Ossn->page[$handler], $page, $handler);
 				   $contents = ob_get_clean();
-				   return $contents;
+				   $params['page'] = $page;
+				   $params['handler'] = $handler;
+				   return ossn_call_hook('page', 'load', $params, $contents);
 } 
 else {      
            return ossn_error_page();
