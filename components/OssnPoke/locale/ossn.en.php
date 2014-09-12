@@ -12,5 +12,6 @@ $en = array(
 			'ossn:notifications:ossnpoke:poke' => "%s has poked you",
 			'user:poked' => 'You have poked user',
 			'user:poke:error' => 'Cannot poke please try again later',
+			'poke' => 'Poke',
 	  );
 ossn_register_languages('en', $en); 
