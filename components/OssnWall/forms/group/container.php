@@ -32,7 +32,7 @@
     <div class="ossn-wall-photo"></div>  
   </li> 
   <div style="float:right;">
-   <input type="hidden" value="<?php echo $params['group']->guid;?>" name="wallowner" />
+   <input type="hidden" value="<?php echo $params['group']['group']->guid;?>" name="wallowner" />
       <input class="ossn-button-submit-b ossn-wall-post" type="submit" value="<?php echo ossn_print('post');?>" />
   </div>
  </div>
