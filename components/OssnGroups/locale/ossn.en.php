@@ -40,6 +40,7 @@ $en = array(
 			'leave:group' => 'Leave Group',
 			'join:group' => 'Join Group',
 			'total:members' => 'Total Members',
+			'group:members' => "Members (%s)",
 			'view:all' => 'View all',
 			'member:requests' => 'REQUESTS (%s)',
 			'about:group' => 'Group About',
@@ -49,6 +50,10 @@ $en = array(
 			'approve' => 'Approve',
 			'decline' => 'Decline',
 			'search:groups' => 'Search Groups',
+			
+			'close:group:notice' => 'Join this group to see the post, photos and comment.',
+			'closed:group' => 'Closed group',
+			'group:admin' => 'Admin',
 			
 
 	  );
