@@ -20,7 +20,9 @@ class OssnWall extends OssnObject {
 		 if(empty($access)){
 			$access = OSSN_PUBLIC; 
 		 }
-		 $this->owner_guid = $this->owner_guid;
+		 if($this->owner_guid < 1 || $this->poster_guid < 1){
+			 return false; 
+		 }
 		 $this->data->poster_guid = $this->poster_guid;
 		 $this->data->access = $access;
 		 $this->subtype = 'wall';
@@ -59,8 +61,9 @@ class OssnWall extends OssnObject {
 	  $this->order_by = 'guid DESC';
 	  return $this->getObjectsByTypes();
    }
-   public function GetPostByOwner($owner){
+   public function GetPostByOwner($owner, $type = 'user'){
 	  self::initAttributes(); 
+	  $this->type = $type;
 	  $this->subtype = 'wall';
 	  $this->owner_guid = $owner;
 	  $this->order_by = 'guid DESC';
