@@ -133,7 +133,7 @@ If you can't click on the link, copy and paste it to your browser manually.
 	'com:deleted' => 'Component has been deleted',
 	'com:delete:error' => 'Cannot delete component please try again',
 	'com:disabled' => 'Successfully disabled',
-	'com:enabled' => 'Component disabled',
+	'com:enabled' => 'Component Enabled',
 		
 	'theme:delete:active' => 'Cannot delete active theme',
 	'theme:deleted' => 'Theme has been deleted',
