@@ -99,8 +99,11 @@
 .profile-menu {
  float: right;
  position: relative;
- margin-top: 47px;
+ /*margin-top: 47px;*/
  margin-right: 20px;
+}
+.profile-menu a {
+ display:inline-block;
 }
 .change-cover {
  float: right;
@@ -253,3 +256,30 @@ margin-bottom: -11px;
 .newseed-uinfo .name a:hover{
 text-decoration:underline;
 }
+.ossn-profile-extra-menu div{
+  border: 1px solid #ccc;
+  border-top: 1px solid #fff;
+  width: 100px;
+  position:absolute;
+  margin-left: 75px;
+  margin-top: 5px;
+  background: #fff;
+  box-shadow: 0px 1px 5px #888888;
+  display:none;
+}
+.ossn-profile-extra-menu li{
+  display:block;
+  color: #000;
+}
+.ossn-profile-extra-menu li:hover {
+ border-top-color: #668EA8;
+ border-bottom-color: #668EA8;
+ background: #668EA8;
+ color: #fff;
+}
+.ossn-profile-extra-menu li a{
+ padding: 10px;
+}
+.ossn-profile-extra-menu li:hover a{ 
+  color:#fff;
+ }
