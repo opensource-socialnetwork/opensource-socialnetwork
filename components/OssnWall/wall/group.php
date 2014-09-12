@@ -18,8 +18,7 @@ echo '</div>';
 echo '<div class="user-activity">';
 
 $posts = new OssnWall;
-$posts->type = 'group';
-$posts = $posts->GetPostByOwner($params['group']->guid);
+$posts = $posts->GetPostByOwner($params['group']['group']->guid, 'group');
 
 $Pagination = new OssnPagination;
 $Pagination->setItem($posts);
