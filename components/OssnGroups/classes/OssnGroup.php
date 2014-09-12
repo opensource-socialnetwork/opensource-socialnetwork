@@ -294,7 +294,7 @@ class OssnGroup extends OssnObject {
 	     return false;
 	   }
 	    $this->statement("DELETE FROM ossn_relationships WHERE(
-						 relation_from='{$from}' AND relation_to='{$group}'  AND type='group:join') OR 
+						 relation_from='{$from}' AND relation_to='{$group}'  AND type='group:join' OR 
 						 relation_from='{$group}' AND relation_to='{$from}' AND type='group:join:approve')");
 	     if($this->execute()){
 	         return true;  
