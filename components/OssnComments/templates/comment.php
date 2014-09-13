@@ -11,7 +11,10 @@
 $OssnLikes = new OssnLikes;
 $comment = arrayObject($params['comment'], 'OssnWall');
 $user = ossn_user_by_guid($comment->owner_guid);
-$likes_total = $OssnLikes->CountLikes($comment->id);
+if($comment->type == 'comments:post' || $comment->type == 'comments:entity'){
+   $type = 'annotation';
+}
+$likes_total = $OssnLikes->CountLikes($comment->id, $type);
 ?>
      <div class="comments-item" id="comments-item-<?php echo $comment->id;?>">    
              <div class="poster-image">
@@ -21,7 +24,7 @@ $likes_total = $OssnLikes->CountLikes($comment->id);
                   <p><a class="owner-link" href="<?php echo ossn_site_url("u/{$user->username}");?>"><?php echo $user->fullname;?></a> 
                   <?php echo $comment->value;?></p>
                   <div class="comment-metadata"> <?php echo ossn_user_friendly_time($comment->time_created);?> 
-                    <?php if(!$OssnLikes->isLiked($comment->id, ossn_loggedin_user()->guid)){ ?>
+                    <?php if(!$OssnLikes->isLiked($comment->id, ossn_loggedin_user()->guid, $type)){ ?>
                      <a  href="<?php echo ossn_site_url();?>action/annotation/like?annotation=<?php echo $comment->id;?>">
 					 <?php echo ossn_print('like');?></a> 
                     <?php } else { ?>
