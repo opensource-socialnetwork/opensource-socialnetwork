@@ -13,3 +13,6 @@ $anotation = input('annotation');
 if($OssnLikes->Like($anotation, ossn_loggedin_user()->guid, 'annotation')){
   redirect(REF);	
 }
+else {
+  redirect(REF);
+}
