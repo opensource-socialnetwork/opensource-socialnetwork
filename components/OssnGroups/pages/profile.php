@@ -72,7 +72,7 @@
          if($ismember == 1){
 		    echo ossn_view('components/OssnWall/wall/group', array('group' => $params));
 		 }
-		 if($params['group']->membership == OSSN_PRIVATE){
+		 if($params['group']->membership == OSSN_PRIVATE && $ismember !== 1){
 			 ?>
 
 			<div class="group-closed-container">
