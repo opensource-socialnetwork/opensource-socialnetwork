@@ -20,7 +20,7 @@ class OssnWall extends OssnObject {
 		 if(empty($access)){
 			$access = OSSN_PUBLIC; 
 		 }
-		 if($this->owner_guid < 1 || $this->poster_guid < 1){
+		 if($this->owner_guid < 1 || $this->poster_guid < 1 || empty($post)){
 			 return false; 
 		 }
 		 $this->data->poster_guid = $this->poster_guid;
