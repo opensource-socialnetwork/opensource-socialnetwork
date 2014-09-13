@@ -57,5 +57,9 @@ DEMO
 ====
 http://www.opensource-socialnetwork.org/demo/
 
+UPGRADE
+========
+http://docs.opensource-socialnetwork.org/index.php/How_To_Upgrade_Ossn
+
 Having problem? Contact us www.informatikon.com/contact/support
 Copyright 2014 Informatikon Technologies (informatikon.com)
