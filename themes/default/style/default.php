@@ -485,6 +485,11 @@ Icons
    width:12px;
    height:13px; 
 }
+.ossn-icon-access-private {
+   background:url('<?php echo ossn_site_url();?>themes/default/images/icons/access/private.png') no-repeat;
+   width:10px;
+   height:12px; 
+}
 .ossn-inline-table {
  display:inline-table;
 }
