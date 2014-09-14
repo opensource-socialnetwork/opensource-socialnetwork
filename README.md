@@ -19,6 +19,8 @@ Front-End Features
 * Ads
 * Groups
 * Tag friends in posts
+* User block system
+* User poke system
 
 Future Release Features
 ========================
