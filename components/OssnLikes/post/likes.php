@@ -14,8 +14,8 @@ $OssnComments = new OssnComments;
 $object= $params->guid;
 $count = $OssnLikes->CountLikes($object);
 ?>
-    <div class="like_share">
-    <div id="ossn-like-<?php echo $object;?>" class="button-container">
+    <div class="like_share comments-like-comment-links">
+    <div id="ossn-like-<?php echo $object;?>" class="button-container"> 
     <?php if(!$OssnLikes->isLiked($object, ossn_loggedin_user()->guid)){
 		 $link['onclick'] = "Ossn.PostLike({$object});";
 		 $link['href'] = 'javascript::;';
@@ -33,11 +33,12 @@ $count = $OssnLikes->CountLikes($object);
     </div>   
      <span class="dot-comments">.</span> <a href="#comment-box-<?php echo $object;?>">Comment</a>
      <?php if($OssnComments->countComments($object) > 5 ){ ?>
-     <span class="dot-comments">.</span> <a href="#">View all comments</a>
+     <span class="dot-comments">.</span> <a href="<?php echo ossn_site_url("post/view/{$object}");?>">View all comments</a>
      <?php } ?>
      </div>
    <?php if($OssnLikes->CountLikes($object)){ ?> 
     <div class="like_share">
+           <div class="ossn-like-icon"></div>
      <?php if($user_liked == true && $count == 1){ ?>
              <?php echo ossn_print("ossn:liked:you"); ?>
       <?php } elseif($user_liked == true && $count > 1){
