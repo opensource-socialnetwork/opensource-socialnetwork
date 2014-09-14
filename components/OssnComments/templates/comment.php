@@ -15,6 +15,10 @@ if($comment->type == 'comments:post' || $comment->type == 'comments:entity'){
    $type = 'annotation';
 }
 $likes_total = $OssnLikes->CountLikes($comment->id, $type);
+if($likes_total > 0){
+	$datalikes = $likes_total;
+    $likes_total = '<span class="dot-likes">.</span><div class="ossn-like-icon"></div>'.$likes_total;
+}
 ?>
      <div class="comments-item" id="comments-item-<?php echo $comment->id;?>">    
              <div class="poster-image">
@@ -25,13 +29,13 @@ $likes_total = $OssnLikes->CountLikes($comment->id, $type);
                   <?php echo $comment->value;?></p>
                   <div class="comment-metadata"> <?php echo ossn_user_friendly_time($comment->time_created);?> 
                     <?php if(!$OssnLikes->isLiked($comment->id, ossn_loggedin_user()->guid, $type)){ ?>
-                     <a  href="<?php echo ossn_site_url();?>action/annotation/like?annotation=<?php echo $comment->id;?>">
+                     <a class="ossn-like-comment" href="<?php echo ossn_site_url();?>action/annotation/like?annotation=<?php echo $comment->id;?>">
 					 <?php echo ossn_print('like');?></a> 
                     <?php } else { ?>
-                     <a  href="<?php echo ossn_site_url();?>action/annotation/unlike?annotation=<?php echo $comment->id;?>">
+                     <a class="ossn-like-comment" href="<?php echo ossn_site_url();?>action/annotation/unlike?annotation=<?php echo $comment->id;?>">
                      <?php echo ossn_print('unlike');?></a>    
                      <?php } ?>
-                   <a href="#"><?php echo $likes_total;?></a>                        
+                   <a href="javascript::;" class="ossn-total-likes-<?php echo $comment->id;?>" data-likes='<?php echo $datalikes;?>'><?php echo $likes_total;?></a>                        
                   </div>
              </div>
           </div> 
