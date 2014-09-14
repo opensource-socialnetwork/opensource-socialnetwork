@@ -27,6 +27,7 @@ function ossn_likes(){
 
   }
   ossn_extend_view('js/opensource.socialnetwork', 'components/OssnLikes/js/OssnLikes');
+  ossn_extend_view('css/ossn.default', 'components/OssnLikes/css/likes');
 
   ossn_register_callback('post', 'delete', 'ossn_post_like_delete');
   ossn_register_page('likes', 'ossn_likesview_page_handler'); 
