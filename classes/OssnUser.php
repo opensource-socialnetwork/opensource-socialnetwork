@@ -409,5 +409,18 @@ class OssnUser extends OssnEntities{
  	   }
 	}
 		   return false;
-   }	
+   }
+    /**
+	* View user icon url
+	*
+	* @return url;
+	*/ 
+   public function iconURL(){
+	 foreach(ossn_user_image_sizes() as $size => $dimensions){
+		$seo = md5($this->username.$size);
+		$url = ossn_site_url("avatar/{$this->username}/{$size}/{$seo}.jpeg"); 
+		$this->iconURLS->$size = $url; 
+	 }
+	 return ossn_call_hook('user', 'icon:urls', $this, $this->iconURLS);
+   }
 }//CLASS
