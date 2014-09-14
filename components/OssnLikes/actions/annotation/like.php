@@ -11,8 +11,16 @@
 $OssnLikes = new OssnLikes;
 $anotation = input('annotation');
 if($OssnLikes->Like($anotation, ossn_loggedin_user()->guid, 'annotation')){
-  redirect(REF);	
+  if(!ossn_is_xhr()){
+	  redirect(REF);	
+  } else {
+	 echo 1;  
+  }
 }
 else {
-  redirect(REF);
+  if(!ossn_is_xhr()){
+     redirect(REF);
+  } else {
+	 echo 0;  
+  }
 }
