@@ -309,6 +309,22 @@ Ossn.Clk = function($elem){
 	$($elem).click();
 };
 /**
+ * Get url paramter
+ *
+ * @param name Parameter name;
+ *        url complete url
+ *
+ * @return string
+ */ 
+Ossn.UrlParams= function(name, url) {
+    var results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(url);
+    if (!results) { 
+        return 0; 
+    }
+    return results[1] || 0;
+};
+
+/**
  * Initialize ossn startup functions
  *
  * @return void
