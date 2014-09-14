@@ -34,7 +34,7 @@
              <a class="owner-link" href="<?php echo ossn_site_url("u/{$params['user']->username}");?>"> <?php echo $params['user']->fullname;?></a> <div class="ossn-wall-on ossn-posted-on"></div> <a class="owner-link" href="<?php echo ossn_site_url("u/{$owner->username}");?>"> <?php echo $owner->fullname;?></a>              
              <?php } ?>
              <br />
-             <div class="time"> <?php echo ossn_user_friendly_time($params['post']->time_created);?>   <?php echo $params['location'];?> - <div class="ossn-inline-table ossn-icon-access-<?php echo $params['post']->access; ?>"></div></div>
+             <div class="time"> <?php echo ossn_user_friendly_time($params['post']->time_created);?>   <?php echo $params['location'];?> - <div class="ossn-inline-table ossn-icon-access-<?php echo ossn_access_id_str($params['post']->access); ?>" title="<?php echo ossn_print("title:access:{$params['post']->access}");?>"></div></div>
       </div>
       <div class="description">
          <div class="post-text"><?php echo stripslashes($params['text']); ?> 
