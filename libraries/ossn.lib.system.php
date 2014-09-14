@@ -491,4 +491,17 @@ function ossn_error_page(){
       echo $data;
 	  exit;
 }
+/**
+* Acces id to string
+*
+* @return string
+*/
+function ossn_access_id_str($id){
+   $access = array(
+				'3' => 'friends',
+				'2' => 'public',
+				'1' => 'private',
+				);
+   return $access[$id]; 
+}
 ossn_register_callback('ossn', 'init', 'ossn_system');
