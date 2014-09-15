@@ -1,13 +1,15 @@
 <?php
 /**
- * OpenSocialWebsite
+ * Open Source Social Network
  *
- * @package   OpenSocialWebsite
- * @author    Open Social Website Core Team <info@opensocialwebsite.com>
+ * @package   Open Source Social Network
+ * @author    Open Social Website Core Team <info@informatikon.com>
  * @copyright 2014 iNFORMATIKON TECHNOLOGIES
- * @license   General Public Licence http://www.opensocialwebsite.com/licence 
- * @link      http://www.opensocialwebsite.com/licence
+ * @license   General Public Licence http://www.opensource-socialnetwork.org/licence 
+ * @link      http://www.opensource-socialnetwork.org/licence
  */
+ossn_trigger_callback('comment', 'load', $params['comment']);  
+
 $OssnLikes = new OssnLikes;
 $comment = arrayObject($params['comment'], 'OssnWall');
 $user = ossn_user_by_guid($comment->owner_guid);
@@ -21,6 +23,11 @@ if($likes_total > 0){
 }
 ?>
      <div class="comments-item" id="comments-item-<?php echo $comment->id;?>">    
+              <div class="ossn-comment-menu" onclick="Ossn.CommentMenu(this);">
+                      <?php 
+						echo  ossn_view_menu('comments', 'components/OssnComments/menu/comments');
+					  ?>
+              </div>   
              <div class="poster-image">
                <img src="<?php echo ossn_site_url();?>avatar/<?php echo $user->username;?>/smaller" />
             </div>  
