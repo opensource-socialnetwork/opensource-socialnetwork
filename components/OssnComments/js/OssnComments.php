@@ -14,13 +14,13 @@ Ossn.PostComment = function($container){
 			      beforeSend: function(request){
    	                 $('#comment-box-'+$container).attr('readonly', 'readonly');
 			      },
-			      callback: function(callback){
-				    if(callback == 1){  
+			      callback: function(callback){                  
+				    if(callback['process'] == 1){  
                       $('#comment-box-'+$container).removeAttr('readonly');
                       $('#comment-box-'+$container).val('');
-                      $('.ossn-comments-list-'+$container).append(callback);
+                      $('.ossn-comments-list-'+$container).append(callback['comment']);
                     }
-                    if(callback == 0){
+                    if(callback['process'] == 0){
                         $('#comment-box-'+$container).removeAttr('readonly');
                         Ossn.MessageBox('syserror/unknown'); 
                     }
