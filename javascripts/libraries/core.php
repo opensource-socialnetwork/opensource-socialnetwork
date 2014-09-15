@@ -316,7 +316,7 @@ Ossn.Clk = function($elem){
  *
  * @return string
  */ 
-Ossn.UrlParams= function(name, url) {
+Ossn.UrlParams = function(name, url) {
     var results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(url);
     if (!results) { 
         return 0; 

@@ -39,6 +39,7 @@ ossn_register_page('index', 'ossn_index_pagehandler');
 ossn_register_page('home', 'ossn_user_pagehandler');
 ossn_register_page('login', 'ossn_user_pagehandler');
 ossn_register_page('registered', 'ossn_user_pagehandler');
+ossn_register_page('syserror', 'ossn_system_error_pagehandler');
 
 ossn_add_hook('newsfeed', "left", 'newfeed_menu_handler');	
 }
@@ -50,6 +51,30 @@ ossn_add_hook('newsfeed', "left", 'newfeed_menu_handler');
 function newfeed_menu_handler($hook, $type, $return){
 	$return[] = ossn_view_sections_menu('newsfeed');
 	return $return;
+}
+/**
+* System Errors 
+* @pages: 
+*       unknown, 
+*
+* @return bool
+*/
+function ossn_system_error_pagehandler($pages){
+	$page = $pages[0];
+	if(empty($page)){
+	  $page = 'unknown';	
+	}
+	switch($page){
+	  case 'unknown':
+	     $error = "<div class='ossn-ajax-error'>".ossn_print('system:error:text')."</div>";
+	     $params = array(
+				'title' => ossn_print('system:error:title'),
+				'contents' =>  $error,
+				'callback' => false,
+		 );
+	     echo ossn_view('system/templates/ossnbox', $params);
+	  break;
+	}
 }
 /**
 * Register basic pages
