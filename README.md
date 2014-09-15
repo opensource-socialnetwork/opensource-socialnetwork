@@ -21,6 +21,8 @@ Front-End Features
 * Tag friends in posts
 * User block system
 * User poke system
+* Comments
+* Likes
 
 Future Release Features
 ========================
