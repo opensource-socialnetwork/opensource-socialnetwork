@@ -1349,3 +1349,7 @@ font-size: 17px;
  line-height: 1;
  margin: 0 12px 5px;
 }
+.ossn-ajax-error {
+ font-size: 15px;
+ text-align: center;
+}
