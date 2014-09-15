@@ -1,12 +1,12 @@
 <?php
 /**
- * OpenSocialWebsite
+ * Open Source Social Network
  *
- * @package   OpenSocialWebsite
- * @author    Open Social Website Core Team <info@opensocialwebsite.com>
+ * @package   Open Source Social Network
+ * @author    Open Social Website Core Team <info@informatikon.com>
  * @copyright 2014 iNFORMATIKON TECHNOLOGIES
- * @license   General Public Licence http://www.opensocialwebsite.com/licence 
- * @link      http://www.opensocialwebsite.com/licence
+ * @license   General Public Licence http://www.opensource-socialnetwork.org/licence 
+ * @link      http://www.opensource-socialnetwork.org/licence
  */
  
 define('__OSSN_LIKES__', ossn_route()->com.'OssnLikes/');
@@ -30,6 +30,9 @@ function ossn_likes(){
   ossn_extend_view('css/ossn.default', 'components/OssnLikes/css/likes');
 
   ossn_register_callback('post', 'delete', 'ossn_post_like_delete');
+  ossn_register_callback('comment', 'delete', 'ossn_comment_like_delete');
+  ossn_register_callback('annotation', 'delete', 'ossn_comment_like_delete');
+ 
   ossn_register_page('likes', 'ossn_likesview_page_handler'); 
  
   ossn_add_hook('notification:view', 'like:annotation', 'ossn_like_annotation');
@@ -42,9 +45,22 @@ function ossn_likes(){
 * @return voud;
 * @access private
 */
-function ossn_post_like_delete($event, $type, $params){
+function ossn_post_like_delete($name, $type, $params){
 	$delete = new OssnLikes;
 	$delete->deleteLikes($params);
+}
+/**
+* Comment likes delete
+*
+* @return voud;
+* @access private
+*/
+function ossn_comment_like_delete($name, $type, $params){
+	$delete = new OssnLikes;
+	$delete->deleteLikes($params['comment'], 'annotation');
+	if(isset($params['annotation'])){
+	   $delete->deleteLikes($params['annotation'], 'annotation');					 
+	}
 }
 /**
 * Notification View for liking annotation

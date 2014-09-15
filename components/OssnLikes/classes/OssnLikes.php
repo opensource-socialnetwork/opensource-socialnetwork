@@ -1,12 +1,12 @@
 <?php
 /**
- * OpenSocialWebsite
+ * Open Source Social Network
  *
- * @package   OpenSocialWebsite
- * @author    Open Social Website Core Team <info@opensocialwebsite.com>
+ * @package   Open Source Social Network
+ * @author    Open Social Website Core Team <info@informatikon.com>
  * @copyright 2014 iNFORMATIKON TECHNOLOGIES
- * @license   General Public Licence http://www.opensocialwebsite.com/licence 
- * @link      http://www.opensocialwebsite.com/licence
+ * @license   General Public Licence http://www.opensource-socialnetwork.org/licence 
+ * @link      http://www.opensource-socialnetwork.org/licence
  */
 class OssnLikes extends OssnDatabase{
    /**
@@ -50,7 +50,7 @@ class OssnLikes extends OssnDatabase{
 	*         $guid: Guid of user
 	*         $type: Post or Entity
 	*
-	* @return bool;
+	* @return bool
 	*/	
     public function Like($subject_id, $guid, $type = 'post'){
         if(empty($subject_id) || 
@@ -58,7 +58,12 @@ class OssnLikes extends OssnDatabase{
 		       empty($type)){
                     return false;	
          }
-		  
+		 $annotation = new OssnAnnotation;
+		 $annotation->annotation_id = $subject_id;
+		 $annotation = $annotation->getAnnotationById();
+		 if(empty($annotation->id)){
+			 return false; 
+		 }
          if(!$this->isLiked($subject_id, $guid, $type)){
 	         $this->statement("INSERT INTO ossn_likes (`subject_id`, `guid`, `type`)
 					           VALUES('{$subject_id}', '{$guid}', '{$type}');");
