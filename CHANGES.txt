@@ -6,7 +6,9 @@ Bugfixes:
  Enhancements:
 * ossncomments add ajax likes #52
 * Added icon with likes
-* Moved post links (like, comment) outside of like_share bar
+* Moved post links (like, comment) outside of like_share bar.
+* Allow users to delete comments.
+* Ajax error box added.
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 1.3.1
 
