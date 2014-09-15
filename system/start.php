@@ -5,7 +5,7 @@
  * @package   OpenSource-SocialNetwork
  * @author    Informatikon Core Team <info@informatikon.com>
  * @copyright 2014 iNFORMATIKON TECHNOLOGIES
- * @license   General Public Licence http://www.opensocialwebsite.com/licence 
+ * @license   General Public Licence http://www.opensource-socialnetwork.org/licence 
  * @link      http://www.informatikon.com/
  */
 session_start();
