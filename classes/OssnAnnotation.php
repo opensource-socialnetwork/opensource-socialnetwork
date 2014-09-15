@@ -122,9 +122,12 @@ class OssnAnnotation extends OssnEntities{
 	public function deleteAnnotation($annotation){
 	   self::initAttributes();
 	   if($this->deleteByOwnerGuid($annotation, 'annotation')){
-		$this->statement("DELETE FROM ossn_annotations WHERE(guid='{$annotation}')");
-		$this->execute();
-		return true;
+		$this->statement("DELETE FROM ossn_annotations WHERE(id='{$annotation}')");
+		if($this->execute()){
+			$params['annotation'] = $annotation;
+		    ossn_trigger_callback('annotation', 'delete', $params); 
+			return true;
+		}
 	   }
 	   return false;
    }
@@ -141,11 +144,9 @@ class OssnAnnotation extends OssnEntities{
 	   $this->subject_guid = $subject;
 	   $this->type = $type;
 	   $annotations = $this->getAnnotationBySubject();
-	   foreach($annotations as $annon){
-	     $this->deleteByOwnerGuid($annon->id, 'annotation');
-	   	 $this->statement("DELETE FROM ossn_annotations WHERE(id='{$annon->id}')");
-		 $this->execute();
-	     }
+	   foreach($annotations as $annontation){
+	        $this->deleteAnnotation($annontation->id);
+	   }
 	  return true;
    }
   	/**
