@@ -26,7 +26,9 @@ if(!isset($params['button'])){
   <?php if($params['control'] !== false){ ?>
         <div class="control">
     <div class="controls">
+     <?php if($params['callback'] !== false){ ?>
       <a href="javascript::;" onclick="Ossn.Clk('<?php echo $params['callback'];?>');" class='button-blue-light'><?php echo $params['button'];?></a> 
+     <?php } ?> 
       <a href="javascript::;" onclick="Ossn.MessageBoxClose();" class='button-grey-light'>Cancel</a> 
     </div> 
   </div>
