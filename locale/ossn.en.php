@@ -174,6 +174,9 @@ If you can't click on the link, copy and paste it to your browser manually.
 	'upgrade:failed' => 'Cannot upgrade try again',
 	'upgrade:not:available' => 'Nothing to upgrade',
 	
+	/* Page errors */
+	'system:error:title' => 'Something went wrong',
+	'system:error:text' => 'Something went wrong please try again by reloading page',
 	/*
 	* List of ISO 639-1 language codes
 	* http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
