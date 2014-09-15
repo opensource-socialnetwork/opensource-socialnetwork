@@ -82,6 +82,21 @@ class OssnComments extends OssnAnnotation {
 	 return false;  
 	}
    /**
+	* Delete Comment
+	*
+	* @params $comment: Comment id
+	*
+	* @return bool
+	*/			
+	public function deleteComment($comment){
+	   if($this->deleteAnnotation($comment)){
+		  $params['comment'] = $comment;
+		  ossn_trigger_callback('comment', 'delete', $params);
+		  return true;   
+	   }
+	   return false;
+	}
+   /**
 	* Get newly created comment id
 	*
 	* @return int
