@@ -14,7 +14,7 @@ class OssnWall extends OssnObject {
 			  $this->type = 'user';	
 			}
 			$this->OssnFile = new OssnFile;
-		    if(!is_object($this->data)){
+		    if(!isset($this->data)){
 			   $this->data = new stdClass; 
 		    }	
 	}		
