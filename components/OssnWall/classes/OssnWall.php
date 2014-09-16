@@ -14,6 +14,9 @@ class OssnWall extends OssnObject {
 			  $this->type = 'user';	
 			}
 			$this->OssnFile = new OssnFile;
+		    if(!is_object($this->data)){
+			   $this->data = new stdClass; 
+		    }	
 	}		
 	public function Post($post, $friends = '', $location = '', $access = ''){
 	     self::initAttributes();
