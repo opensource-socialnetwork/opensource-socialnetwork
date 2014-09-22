@@ -23,6 +23,11 @@ $en = array(
 			'edit:profile' => 'Edit Profile',
 			'reposition:cover' => 'Reposition',
 			'profile:photos' => 'Profile Photos',
+			'photo:deleted:success' => 'Profile photo successfully deleted',
+			'photo:delete:error' => 'Cannot delete profile photo',
+			'photos' => 'Photos',
+			'back' => 'Back',
+			'add:photos' => 'Add photos',
 
 	  );
 ossn_register_languages('en', $en); 
