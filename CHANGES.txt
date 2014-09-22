@@ -15,7 +15,8 @@ Bugfixes:
 * Black Theme added
 * OssnWall Privacy system is added ( allow users to select privacy) #42
 * Allow users to delete photos 
-* Erros on/off settings has been added
+* Errors on/off settings has been added.
+* Allows group admins to change their group cover
 
 Core changes:
 
