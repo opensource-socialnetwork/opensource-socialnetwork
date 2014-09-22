@@ -52,7 +52,6 @@ class OssnProfile extends OssnDatabase{
 				             subtype='cover_position');");
            $this->execute();
            $entity = $this->fetch();
-		   print_r($entity);
            $position = array('', '');
 		   
            $fields = new OssnEntities;
