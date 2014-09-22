@@ -26,11 +26,11 @@ $img = str_replace('profile/photo/', '', $image->value);
 </div>
 <br />
 <br />
-<div class="comments-likes" style="width:525px;">
+<div class="comments-likes ossn-photos-comments" style="width:525px;">
     <?php
 	 if(ossn_is_hook('post', 'likes:entity')){
 	  $entity['entity_guid'] = $params['photo'];
-	 echo ossn_call_hook('post', 'likes:entity', $entity); 
+	  echo ossn_call_hook('post', 'likes:entity', $entity); 
      }
 	?>   
      <?php 
@@ -39,4 +39,11 @@ $img = str_replace('profile/photo/', '', $image->value);
 	 echo ossn_call_hook('post', 'comments:entity', $entity); 
      }
 	?>
+</div>
+<div class="ossn-photo-view-controls">
+<?php
+	 if(ossn_is_hook('photo:view', 'profile:controls')){
+	  echo ossn_call_hook('photo:view', 'profile:controls', $image); 
+     }
+?>
 </div>
