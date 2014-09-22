@@ -348,3 +348,23 @@ display:none;
 .ossn-wall-post-controls .menu-links a:hover{
   color:#fff;
 }
+ .ossn-wall-privacy-lock {
+	 background:url("<?php echo ossn_site_url("components/OssnWall/images/privacy.png");?>") no-repeat; 
+	 width:14px;
+	 height:18px;
+ }
+ .ossn-wall-privacy {
+	 margin-left: 240px;
+	 position:absolute;
+	 width: 60px;
+ }
+ .ossn-wall-privacy span {
+	margin-left: 18px;
+    margin-top: 3px;
+    position: absolute;
+    font-weight: bold; 
+	color:#999;
+ }
+.ossn-user-wall-privacy {
+  margin-left:285px !important;
+}
