@@ -21,8 +21,10 @@ Front-End Features
 * Tag friends in posts
 * User block system
 * User poke system
-* Comments
-* Likes
+* Ajax Comments
+* Ajax Likes
+* Ajax Photos in comments
+
 
 Future Release Features
 ========================
