@@ -44,3 +44,41 @@
 .ossn-comment-menu .menu-links a:hover{
   color:#fff;
 }
+.ossn-comment-attachment {
+ background: #fff;
+ width: 467px;
+ margin-bottom: 10px;
+ margin-left: 45px;
+ margin-top: -12px;
+ 
+ display:none;
+}
+.ossn-comment-attachment  .image-data  {
+  padding: 5px;
+}
+.ossn-comment-attachment  .image-data img {
+  width:100px;
+  border: 1px solid #ccc; 
+}
+.ossn-comment-attach-photo {
+  background:url('<?php echo ossn_site_url();?>components/OssnComments/images/camera.png') no-repeat;
+  width:16px;
+  height:12px;
+  
+  margin-top: -22px;
+  margin-left: 438px;
+  position: absolute;
+  cursor:pointer;
+}
+
+.comments-likes .comment-text p img{
+   display:block;
+   margin-top:5px;
+   margin-bottom:15px;
+   border: 1px solid #ccc;
+}
+.ossn-photo-view-controls {
+  display: inline-table;
+  margin-top: 20px;  
+  margin-left: 30px;
+}
