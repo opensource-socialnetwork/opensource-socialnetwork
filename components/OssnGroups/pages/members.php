@@ -14,7 +14,7 @@ foreach($params['group']->getMembers() as $user){ ?>
 <div class="ossn-group-members">
   <img src="<?php echo ossn_site_url("avatar/{$user->username}/large");?>" width='100' height="100"/>
  <div class="uinfo">
-    <a class="userlink" href="<?php echo ossn_site_url();?>u/<?php echo $user->username;?>"><?php echo $user->fullname;?></a>
+    <a class="userlink" href="<?php echo $user->profileURL();?>"><?php echo $user->fullname;?></a>
  </div>
       <?php   
 		if(ossn_loggedin_user()->guid !== $params['group']->owner_guid){

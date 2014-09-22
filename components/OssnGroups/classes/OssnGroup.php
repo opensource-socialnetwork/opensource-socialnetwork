@@ -319,5 +319,154 @@ class OssnGroup extends OssnObject {
 		}
 		$data = $groupentity;
 		return $data;
-	}	
+	}
+   /**
+	* Upload group cover
+    *
+	* @return bool
+	* @access public;
+	*/	
+   public function UploadCover(){
+	   self::initAttributes();  
+	   if(empty($this->guid) || $this->guid < 1){
+		   return false;   
+	   }
+       $this->OssnFile->owner_guid = $this->guid;
+       $this->OssnFile->type = 'object';
+       $this->OssnFile->subtype = 'cover';
+       $this->OssnFile->setFile('coverphoto');
+       $this->OssnFile->setPath('cover/');
+       if($this->OssnFile->addFile()){
+          $this->ResetCoverPostition($this->OssnFile->owner_guid);
+          return true;
+       } 
+   }
+   /**
+	* Get group covers
+    *
+	* @return object;
+	* @access public;
+	*/	   
+   public function groupCovers(){
+	   self::initAttributes();  
+	   if(empty($this->guid) || $this->guid < 1){
+		   return false;   
+	   }
+       $this->OssnFile->owner_guid = $this->guid;
+       $this->OssnFile->type = 'object';
+       $this->OssnFile->subtype = 'cover';
+	   return $this->OssnFile->getFiles();
+   } 
+   /**
+	* Check if group have cover or not
+    *
+	* @return bool;
+	* @access private;
+	*/	   
+   public function haveCover(){
+	   $covers = $this->groupCovers();
+	   if(isset($covers->{0})){
+		  return true;   
+	   }
+	   return false;
+   }  
+   /**
+	* Get group latest cover url
+    *
+	* @return url;
+	* @access public;
+	*/	      
+   public function coverURL(){
+	   $this->latestcover = $this->groupCovers()->getParam(0);
+	   $file = str_replace('cover/', '', $this->latestcover->value);
+	   $this->coverurl = ossn_site_url("groups/cover/{$this->latestcover->guid}/{$file}");
+	   return ossn_call_hook('group', 'cover:url', $this, $this->coverurl);
+   }
+   /**
+	* Reposition group cover
+    *
+	* @param $guid Group guid
+	*        $top  Position from top
+	*        $left Position from left
+	*
+	* @return bool;
+	* @access public;
+	*/	    
+    public function repositionCOVER($guid, $top, $left){
+          $user = ossn_get_group_by_guid($guid); 
+          if(!isset($user->cover) && empty($user->cover)){
+                 $position = array($top, $left);
+                 $fields = new OssnEntities;
+                 $fields->owner_guid = $guid;
+                 $fields->type = 'object';
+                 $fields->subtype = 'cover';
+                 $fields->value = json_encode($position);
+                 if($fields->add()){
+	                 return true;  
+                 }
+          }  
+          else {
+           $this->statement("SELECT * FROM ossn_entities WHERE(
+				             owner_guid='{$guid}' AND 
+				             type='object' AND 
+				             subtype='cover');");
+           $this->execute();
+           $entity = $this->fetch();
+           $entity_id = $entity->guid; 
+
+           $position = array($top, $left);
+           $fields = new OssnEntities;
+           $fields->owner_id = $guid;
+           $fields->guid = $entity_id;
+           $fields->type = 'object';
+		  
+           $fields->subtype = 'cover';
+           $fields->value = json_encode($position);
+           if($fields->updateEntity()){
+	          return true;  
+            } 
+		  }
+           return false;
+  } 
+   /**
+	* Reset cover position
+    *
+	* @param $guid Group guid
+	*
+	* @return bool;
+	* @access private;
+	*/	      
+  public function ResetCoverPostition($guid){
+	       $this->statement("SELECT * FROM ossn_entities WHERE(
+				             owner_guid='{$guid}' AND 
+				             type='object' AND 
+				             subtype='cover');");
+           $this->execute();
+           $entity = $this->fetch();
+           $position = array('', '');
+		   
+           $fields = new OssnEntities;
+           $fields->owner_id = $guid;
+           $fields->guid = $entity->guid;
+           $fields->type = 'user';
+		  
+           $fields->subtype = 'cover';
+           $fields->value = json_encode($position);
+           if($fields->updateEntity()){
+	          return true;  
+            } 
+		return false;	
+	}
+   /**
+	* Get cover position params
+    *
+	* @param $guid Group guid
+	*
+	* @return array;
+	* @access public;
+	*/	    	
+    public function coverParameters($guid){
+         $parameters = ossn_get_group_by_guid($guid)->cover;
+         return json_decode($parameters);
+    }  
 }//class
