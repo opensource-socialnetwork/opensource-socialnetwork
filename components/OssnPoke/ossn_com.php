@@ -67,7 +67,7 @@ function ossn_poke_notification($name , $type, $return, $params){
     }  elseif($notif->viewed == NULL){
 	   $viewed = 'class="ossn-notification-unviewed"';
 	}
-	$url = ossn_site_url("u/{$user->username}");
+	$url = $user->profileURL();
 	$notification_read = "{$baseurl}notification/read/{$notif->guid}?notification=".urlencode($url);
 	return "<a href='{$notification_read}'>
 	       <li {$viewed}> {$img} 
