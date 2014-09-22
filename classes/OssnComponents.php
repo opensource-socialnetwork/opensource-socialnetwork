@@ -287,7 +287,7 @@ class OssnComponents extends OssnDatabase {
 				 'OssnWall',
 				 ); 
  }
-  /**
+/**
  * Required Components
  *
  * Admin can't disable required components;
@@ -297,5 +297,6 @@ class OssnComponents extends OssnDatabase {
  public function bundledComponents(){
 	return array_merge(array('OssnGroups', 'OssnSitePages'), $this->requiredComponents()); 
  }
+ 
  	
 }//class
