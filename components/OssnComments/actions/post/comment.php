@@ -9,15 +9,22 @@
  * @link      http://www.opensource-socialnetwork.org/licence
  */
 $OssnComment = new OssnComments;
-if($OssnComment->PostComment(input('post'),  ossn_loggedin_user()->guid, input('comment'))){
-  $data['comment']['id'] = $OssnComment->getCommentId();
-  $data['comment']['owner_guid'] = ossn_loggedin_user()->guid;
-  $data['comment']['value'] = input('comment');
-  $data['comment']['time_created'] = time();
-  $data = ossn_view('components/OssnComments/templates/comment', $data);
-  if(!ossn_is_xhr()){
-    redirect(REF);	
-  }  else {
+$image = input('comment-attachment');
+//comment image check if is attached or not
+if(!empty($image)){
+   $OssnComment->comment_image = $image;
+}
+//post on which comment is going to be posted
+$post = input('post');
+
+//comment text
+$comment = input('comment');
+if($OssnComment->PostComment($post,  ossn_loggedin_user()->guid,  $comment)){
+  $data['comment'] = ossn_get_comment($OssnComment->getCommentId());
+  $data = ossn_view('components/OssnComments/templates/comment', $data);;
+   if(!ossn_is_xhr()){
+      redirect(REF);	
+   } else {
 	header('Content-Type: application/json'); 
     echo json_encode(array(
 						   'comment' => $data,
