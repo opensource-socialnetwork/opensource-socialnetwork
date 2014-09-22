@@ -20,11 +20,36 @@ class OssnComments extends OssnAnnotation {
 	* @return bool;
 	*/	
 	public function PostComment($subject_id, $guid, $comment, $type = 'post'){
+		if( $subject_id < 1 || $guid < 1 || empty($comment)){
+		  return false;	
+		}
         $this->subject_guid = $subject_id;
         $this->owner_guid = $guid;
         $this->type = "comments:{$type}";
         $this->value = $comment;
         if($this->addAnnotation()){
+			if(isset($this->comment_image)){
+				 $image = base64_decode($this->comment_image);
+				 $file = ossn_string_decrypt(base64_decode($image));
+		         $file_path = rtrim(ossn_validate_filepath($file), '/');
+				 $_FILES['attachment'] = array(
+											'name' => 'comment-file'-time(),
+											'tmp_name' => $file_path,
+											'type' => 'image/jpeg',
+											'size' => filesize($file_path)
+											   );
+			     $file = new OssnFile;
+				 $file->type = 'annotation';
+				 $file->subtype = 'comment:photo';
+				 $file->setFile('attachment');
+                 $file->setPath('comment/photo/');
+				 $file->owner_guid = $this->getAnnotationId();
+				 if($file->owner_guid !== 0){
+					 $file->addFile();
+					 unlink($file_path);
+					 unset($_FILES['attachment']);
+				 } 
+			}
             return true;
 		}
         return false; 
@@ -75,9 +100,9 @@ class OssnComments extends OssnAnnotation {
 	*
 	* @return bool
 	*/			
-	public function commentsDeleteAll($subject){
-	   if($this->annon_delete_by_subject($subject, 'comments:post')){
-		 return true;   
+	public function commentsDeleteAll($subject, $type = 'comments:post'){
+	   if($this->annon_delete_by_subject($subject, $type)){
+		    return true;   
 	   }
 	 return false;  
 	}
