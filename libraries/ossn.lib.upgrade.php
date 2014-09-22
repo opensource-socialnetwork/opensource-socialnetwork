@@ -86,5 +86,5 @@ function ossn_trigger_upgrades(){
  * @return str;
  */  
  function ossn_generate_site_screat(){
-  return substr(uniqid(), 8);	
+  return substr(md5(time()), 8);	
  }
