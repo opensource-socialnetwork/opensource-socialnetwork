@@ -146,7 +146,11 @@ class OssnDatabase {
 		    if(!empty($params['order_by'])){
 		       $order_by = "ORDER by {$params['order_by']}";
 		    }
-		    $where = implode(' ', $params['wheres']);
+			$where = '';
+			if(isset($params['wheres']) && is_array($params['wheres'])){
+		        $where = implode(' ', $params['wheres']);
+			}
+			$wheres = '';
 		    if(!empty($params['wheres'])){
 		       $wheres = "WHERE({$where})"; 	
 		    }
