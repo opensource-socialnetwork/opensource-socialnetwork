@@ -9,7 +9,6 @@
  * @link      http://www.opensource-socialnetwork.org/licence
  */
 ossn_trigger_callback('comment', 'load', $params['comment']);  
-
 $OssnLikes = new OssnLikes;
 $comment = arrayObject($params['comment'], 'OssnWall');
 $user = ossn_user_by_guid($comment->owner_guid);
@@ -29,11 +28,25 @@ if($likes_total > 0){
 					  ?>
               </div>   
              <div class="poster-image">
-               <img src="<?php echo ossn_site_url();?>avatar/<?php echo $user->username;?>/smaller" />
+               <img src="<?php echo $user->iconURL()->smaller;?>" />
             </div>  
              <div class="comment-text">
-                  <p><a class="owner-link" href="<?php echo ossn_site_url("u/{$user->username}");?>"><?php echo $user->fullname;?></a> 
-                  <?php echo $comment->value;?></p>
+                  <p>
+                  <a class="owner-link" href="<?php echo $user->profileURL();?>"><?php echo $user->fullname;?></a> 
+                 <?php
+				   if($comment->type == 'comments:entity'){
+				      echo $comment->getParam('comments:entity');
+                   } elseif($comment->type == 'comments:post'){
+ 					  echo $comment->getParam('comments:post');  
+				   }
+				   $image = $comment->getParam('file:comment:photo');
+				   if(!empty($image)){
+					    $image = str_replace('comment/photo/', '', $image);
+					    $image = ossn_site_url("comment/image/{$comment->id}/{$image}");
+					    echo "<img src='{$image }' />";
+				   }
+				  ?>
+                  </p>
                   <div class="comment-metadata"> <?php echo ossn_user_friendly_time($comment->time_created);?> 
                     <?php if(!$OssnLikes->isLiked($comment->id, ossn_loggedin_user()->guid, $type)){ ?>
                      <a class="ossn-like-comment" href="<?php echo ossn_site_url();?>action/annotation/like?annotation=<?php echo $comment->id;?>">
