@@ -66,6 +66,11 @@ $("#upload-photo").submit(function (event) {
 			beforeSend: function(){
 				$('.upload-photo').attr('class', 'user-photo-uploading');
 			},
+            error: function(xhr, status, error) {
+              if(error == 'Internal Server Error' || error !== ''){
+                 Ossn.MessageBox('syserror/unknown');
+              } 
+            },
             cache: false,
             contentType: false,
             processData: false,
@@ -73,9 +78,6 @@ $("#upload-photo").submit(function (event) {
 				$('.user-photo-uploading').attr('class', 'upload-photo').hide();
 				$imageurl = $('.profile-photo').find('img').attr('src');
 				$('.profile-photo').find('img').attr('src', $imageurl);
-            },
-            error: function(){
-                alert("error in ajax form submission");
             }
         });
 
@@ -104,7 +106,7 @@ $("#upload-photo").submit(function (event) {
                 $('.profile-cover').find('img').attr('style', '');
             },
             error: function(){
-                alert("Cannot change cover please try again later");
+               Ossn.MessageBox('syserror/unknown');
             }
         });
 
