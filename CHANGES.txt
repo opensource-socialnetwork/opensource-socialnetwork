@@ -1,14 +1,36 @@
-OSSN - OPEN SOURCE SOCIAL NETWORK 1.4-development
+OSSN - OPEN SOURCE SOCIAL NETWORK 1.4
 
 Bugfixes:
+
 * OssnWall access icon class fixes;
 
  Enhancements:
+
 * ossncomments add ajax likes #52
 * Added icon with likes
 * Moved post links (like, comment) outside of like_share bar.
 * Allow users to delete comments.
 * Ajax error box added.
+* User can now add image to comments. #53
+* Black Theme added
+* OssnWall Privacy system is added ( allow users to select privacy) #42
+* Allow users to delete photos 
+* Erros on/off settings has been added
+
+Core changes:
+
+* Get user icon by OssnUser->iconURL()->size
+* Get user profile url by OssnUser->profileUSER();
+* Get param from object using object->getParam(param);
+
+CONTRIBUTORS TO THIS RELEASE:
+
+* Syed Arsalan Hussain Shah of Informatikon Techologies (informatikon.com)
+* Sathish Kumar of Webbehinds.com
+* Johnson John
+* Shaf Brady Hussain of hostingandvps.com
+* Anthony E. Sikora Informatikon Technologies
+* Mike Wagner Informatikon Technologies
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 1.3.1
 
