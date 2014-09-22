@@ -44,7 +44,7 @@ if(OssnInstallation::isPhpGd()){
 if(OssnInstallation::isCon_WRITEABLE()){
 	     echo '<div class="ossn-installation-message ossn-installation-success">CONFIGURATION DIRECTORY WRITEABLE</div>';		
 } else {
-   	     echo '<div class="ossn-installation-message ossn-installation-success">CONFIGURATION DIRECTORY IS NOT WRITEABLE</div>';			
+   	     echo '<div class="ossn-installation-message ossn-installation-fail">CONFIGURATION DIRECTORY IS NOT WRITEABLE</div>';			
 		 $error[] = 'permission:configuration';		 			
 }
 echo '<br />';
