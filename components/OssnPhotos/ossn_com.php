@@ -47,8 +47,8 @@ function ossn_photos_initialize(){
   }
   //callbacks
   ossn_register_callback('page', 'load:profile', 'ossn_profile_menu_photos');
-  ossn_register_callback('delete', 'profile:photo', 'ossn_photos_like_delete');
-  ossn_register_callback('delete', 'album:photo', 'ossn_photos_like_delete');
+  ossn_register_callback('delete', 'profile:photo', 'ossn_photos_likes_comments_delete');
+  ossn_register_callback('delete', 'album:photo', 'ossn_photos_likes_comments_delete');
   
   ossn_profile_subpage('photos');
  
@@ -437,10 +437,13 @@ function ossn_album_photo_menu($hook, $type, $return, $params){
 * @return voud;
 * @access private
 */
-function ossn_photos_like_delete($name, $type, $params){
+function ossn_photos_likes_comments_delete($name, $type, $params){
 	if(class_exists('OssnLikes')){
-	    $delete = new OssnLikes;
-	    $delete->deleteLikes($params['photo']['guid'], 'entity');	
+	    $likes = new OssnLikes;
+	    $likes->deleteLikes($params['photo']['guid'], 'entity');	
+		
+		$comments = new OssnComments;
+		$comments->commentsDeleteAll($params['photo']['guid'], 'comments:entity');
 	}
 }
 ossn_register_callback('ossn', 'init', 'ossn_photos_initialize');
