@@ -51,7 +51,7 @@ if(ossn_isLoggedin()){
  $icon = ossn_site_url('components/OssnProfile/images/friends.png');
  ossn_register_sections_menu('newsfeed', array(
 								   'text' => ossn_print('user:friends'), 
-								   'url' => "{$url}u/{$user_loggedin->username}/friends", 
+								   'url' => $user_loggedin->profileURL('/friends'), 
 								   'section' => 'links',
 								   'icon' => $icon
 								   ));	
@@ -61,8 +61,8 @@ if(ossn_isLoggedin()){
 function ossn_profile_load_event($event, $type, $params){
 	$owner = ossn_user_by_guid(ossn_get_page_owner_guid());
 	$url = ossn_site_url();
-	ossn_register_menu_link('timeline', 'timeline', "{$url}u/{$owner->username}", 'user_timeline');
-	ossn_register_menu_link('friends', 'friends', "{$url}u/{$owner->username}/friends", 'user_timeline');
+	ossn_register_menu_link('timeline', 'timeline', $owner->profileURL(), 'user_timeline');
+	ossn_register_menu_link('friends', 'friends', $owner->profileURL('/friends'), 'user_timeline');
 }
 function ossn_profile_subpage($page){
    global $VIEW;
