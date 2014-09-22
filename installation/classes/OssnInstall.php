@@ -193,7 +193,7 @@ if ($script = file_get_contents(ossn_installation_paths()->root.'sql/opensource-
 	    $script = str_replace('<<owner_email>>', $this->startup_settings['owner_email'], $script);
 	    $script = str_replace('<<notification_email>>', $this->startup_settings['notification_email'], $script);
 	    $script = str_replace('<<sitename>>', $this->startup_settings['sitename'], $script);
-		
+		$script = str_replace("<<screat>>", substr(md5('ossn'.rand()),3, 8), $script);
 		$errors = array();
         $script = preg_replace('/\-\-.*\n/', '', $script);
         $sql_statements = preg_split('/;[\n\r]+/', $script);
