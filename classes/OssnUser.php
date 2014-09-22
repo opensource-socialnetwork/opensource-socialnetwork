@@ -423,4 +423,78 @@ class OssnUser extends OssnEntities{
 	 }
 	 return ossn_call_hook('user', 'icon:urls', $this, $this->iconURLS);
    }
+   /**
+	* View user profile url
+	*
+	* @return url;
+	*/ 
+   public function profileURL($extends){
+	 $this->profileurl = ossn_site_url("u/{$this->username}").$extends;
+	 return ossn_call_hook('user', 'profile:url', $this, $this->profileurl);
+   }
+   /**
+	* Send user reset password link
+	*
+	* @return bool;
+	*/ 
+   public function SendResetLogin(){
+	 self::initAttributes();
+	 $this->old_code = $this->getParam('login:reset:code');
+	 $this->type = 'user';
+	 $this->subtype = 'login:reset:code';
+	 $this->owner_guid = $this->guid;	 
+	 if(!isset($this->{'login:reset:code'}) && empty($this->old_code)){
+	   $this->value = md5(time().$this->guid);
+	   $this->add();
+	 } else {
+	   $this->value = md5(time().$this->guid);
+       $this->data->{'login:reset:code'} = $this->value;
+	   $this->save(); 
+	 }
+	   $emailreset_url = ossn_site_url("resetlogin?user={$this->username}&c={$this->value}");
+	   $emailreset_url = ossn_call_hook('user', 'icon:urls', $this, $emailreset_url);
+	   $sitename = ossn_site_settings('site_name');
+	   
+	   $emailmessage = ossn_print('ossn:reset:password:body', array($this->first_name, $emailreset_url, $sitename));
+	   $emailsubject = ossn_print('ossn:reset:password:subject');
+	   if(!empty($this->value) && $this->notify->NotifiyUser($this->email, $emailsubject, $emailmessage)){
+		        return true;
+		}
+	  return false;
+   }
+  /**
+   * Reset user password
+   *
+   * @return bool;
+   */    
+   public function resetPassword($password){
+	   self::initAttributes(); 
+	   if(!empty($password)){
+		    $this->salt = $this->generateSalt();
+            $password = $this->generate_password($password, $this->salt); 
+			$reset['table'] = 'ossn_users';
+			$reset['names'] = array('password', 'salt');
+			$reset['values'] = array($password, $this->salt);
+			$reset['wheres'] = array("guid='{$this->guid}'");
+			if($this->OssnDatabase->update($reset)){
+			   return true;	
+			}
+	   }
+	   return false;
+   }
+  /**
+   * Remove user reset code
+   *
+   * @return bool;
+   */      
+   public function deleteResetCode(){
+	 $this->type = 'user';
+	 $this->subtype = 'login:reset:code';
+	 $this->owner_guid = $this->guid;
+	 $code = $this->get_entities();
+	 if($this->deleteEntity($code[0]->guid)){
+		  return true; 
+	 }
+	 return false;
+   }
 }//CLASS
