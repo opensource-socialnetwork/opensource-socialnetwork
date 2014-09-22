@@ -40,3 +40,11 @@ echo ossn_view_form('post/comment_add', array(
 							   'autocomplete' => 'off',
 							   'params' => array('object' => $object)
 							    ), false);
+echo '<div class="ossn-comment-attachment" id="comment-attachment-container-'.$object.'">';
+echo '<script>Ossn.CommentImage('.$object.');</script>';
+echo ossn_view_form('comment_image', array(
+							   'id' => "ossn-comment-attachment-{$object}",
+							   'component' => 'OssnComments',
+							   'params' => array('object' => $object)
+							    ), false);
+echo '</div>';
