@@ -165,7 +165,7 @@ font-size: 14px;
 text-align: center;
 }
 .ossn-group-profile {
-	margin-top: -9px;
+	margin-top: -12px;
 }
 .ossn-group-profile .profile-header {
   border: 1px solid #C4CDE0;
@@ -200,7 +200,7 @@ float: left;
 }
 .groups-buttons {
  float:right;
- padding: 15px;
+ padding: 9px;
 }
 .ossn-group-profile  
 .group-body .group-wall{
@@ -252,4 +252,33 @@ margin-bottom: 7px;
 }
 .group-closed-container p {
   padding: 3px 6px;
+}
+
+.ossn-group-cover-header {
+  height:290px !important;
+  width:798px !important;
+}
+.ossn-group-cover {
+  width: 798px;
+  overflow: hidden;
+  height: 245px;
+}
+.ossn-group-cover:hover > .ossn-group-cover-button {
+  display:block;
+}
+.ossn-group-cover-button {
+  position: absolute;
+  margin-top: 200px;
+  margin-left: 605px;
+  display:none;
+  z-index: 1;
+}
+.ossn-group-cover-button a {
+  display:inline-block;
+}
+.group-c-position {
+  display:none !important;
+}
+.groups-buttons a {
+  display:inline-block;
 }
