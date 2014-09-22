@@ -49,7 +49,10 @@ function ossn_groups(){
   ossn_register_action('group/member/approve', __OSSN_GROUPS__.'actions/group/member/request/approve.php');
   ossn_register_action('group/member/cancel', __OSSN_GROUPS__.'actions/group/member/request/cancel.php');
   ossn_register_action('group/member/decline', __OSSN_GROUPS__.'actions/group/member/request/decline.php');
-  }
+  
+  ossn_register_action('group/cover/upload', __OSSN_GROUPS__.'actions/group/cover/upload.php');
+  ossn_register_action('group/cover/reposition', __OSSN_GROUPS__.'actions/group/cover/reposition.php');
+ }
 
 
   //callbacks
@@ -153,6 +156,20 @@ function ossn_groups_page($pages){
 												 'callback' => '#ossn-group-submit',
 									));
 	break;	
+	case 'cover':
+	if(isset($pages[1]) && !empty($pages[1])){
+	   $File = new OssnFile;
+	   $File->file_id = $pages[1];
+	   $File = $File->fetchFile();
+	   if(isset($File->guid)){
+	      $Cover = ossn_get_userdata("object/{$File->owner_guid}/{$File->value}");
+		  header('Content-Type: image/jpeg'); 
+		  echo file_get_contents($Cover);
+	   } else {
+		 ossn_error_page();   
+	   }
+	}
+	break;
 	default:
         echo ossn_error_page();
     break;		

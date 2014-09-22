@@ -9,7 +9,7 @@
  */
 Ossn.RegisterStartupFunction(function(){
    $(document).ready(function(){
-	    $('.ossn-wall-container').find('.ossn-wall-friend').click(function(){
+	     $('.ossn-wall-container').find('.ossn-wall-friend').click(function(){
            $('#ossn-wall-location').hide();
            $('#ossn-wall-photo').hide();
            $('#ossn-wall-friend').show();
@@ -66,3 +66,30 @@ Ossn.PostMenu = function($id){
      $element.hide();
    }     	
 };
+Ossn.WallRefreshActivity = function(){
+   Ossn.PostRequest({
+                    url: Ossn.site_url+'post/refresh_home',
+			        callback: function(activity){
+				    	//$('.user-activity').html(activity);
+			        }
+			  });
+};
+Ossn.RegisterStartupFunction(function(){
+$(document).ready(function(){
+         setInterval(function(){Ossn.WallRefreshActivity()}, 5000);     
+}); 
+}); 
+
+Ossn.RegisterStartupFunction(function(){
+$(document).ready(function(){
+      $('.ossn-wall-privacy').on('click', function(e){
+             Ossn.MessageBox('post/privacy'); 
+      });   
+      $('#ossn-wall-privacy').on('click', function(e){
+             var wallprivacy = $('#ossn-wall-privacy-container').find('input[name="privacy"]:checked').val();
+             $('#ossn-wall-privacy').val(wallprivacy);
+             Ossn.MessageBoxClose();
+      });       
+      
+}); 
+}); 

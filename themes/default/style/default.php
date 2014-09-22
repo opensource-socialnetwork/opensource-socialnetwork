@@ -1353,3 +1353,14 @@ font-size: 17px;
  font-size: 15px;
  text-align: center;
 }
+.ossn-reset-login {
+  padding: 50px;
+  width: 400px;
+  margin: 0 auto;
+}  
+.ossn-reset-login .reset-notice {
+   font-size: 14px;
+}
+.ossn-reset-login input[type='text'] {
+  width: 290px;
+}

@@ -148,48 +148,58 @@ function ossn_image_resize_parameters($width, $height, $options) {
 function ossn_resize_image($input_name, $maxwidth, $maxheight, $square = FALSE,
 $x1 = 0, $y1 = 0, $x2 = 0, $y2 = 0, $upscale = FALSE) {
 
+	// Get the size information from the image
 	$imgsizearray = getimagesize($input_name);
-	if ($imgsizearray == FALSE) {
-		return FALSE;
+	if ($imgsizearray == false) {
+		return false;
 	}
 
 	$width = $imgsizearray[0];
 	$height = $imgsizearray[1];
-    
-	$accepted_formats['image/jpeg'] = 'jpeg';
- 	$accepted_formats['image/pjpeg'] = 'jpeg';
- 	$accepted_formats['image/png'] = 'png';
- 	$accepted_formats['image/x-png'] = 'png';
- 	$accepted_formats['image/gif'] = 'gif';
 
+	$accepted_formats = array(
+		'image/jpeg' => 'jpeg',
+		'image/pjpeg' => 'jpeg',
+		'image/png' => 'png',
+		'image/x-png' => 'png',
+		'image/gif' => 'gif'
+	);
+
+	// make sure the function is available
 	$load_function = "imagecreatefrom" . $accepted_formats[$imgsizearray['mime']];
 	if (!is_callable($load_function)) {
-		return FALSE;
+		return false;
 	}
 
-    $options['maxwidth'] = $maxwidth;
-    $options['maxheight'] = $maxheight;
-    $options['square'] = $square;
-    $options['upscale'] = $upscale;
-    $options['x1'] = $x1;
-    $options['y1'] = $y1;
-    $options['x2'] = $x2;
-    $options['y2'] = $y2;
-
+	// get the parameters for resizing the image
+	$options = array(
+		'maxwidth' => $maxwidth,
+		'maxheight' => $maxheight,
+		'square' => $square,
+		'upscale' => $upscale,
+		'x1' => $x1,
+		'y1' => $y1,
+		'x2' => $x2,
+		'y2' => $y2,
+	);
 	$params = ossn_image_resize_parameters($width, $height, $options);
-	if ($params == FALSE) {
-		return FALSE;
+	if ($params == false) {
+		return false;
 	}
 
-	$original_image = $load_function($input_name);
+	// load original image
+	$original_image = call_user_func($load_function, $input_name);
 	if (!$original_image) {
-		return FALSE;
+		return false;
 	}
+
+	// allocate the new image
 	$new_image = imagecreatetruecolor($params['newwidth'], $params['newheight']);
 	if (!$new_image) {
-		return FALSE;
+		return false;
 	}
 
+	// color transparencies white (default is black)
 	imagefilledrectangle(
 		$new_image, 0, 0, $params['newwidth'], $params['newheight'],
 		imagecolorallocate($new_image, 255, 255, 255)
@@ -206,11 +216,12 @@ $x1 = 0, $y1 = 0, $x2 = 0, $y2 = 0, $upscale = FALSE) {
 									$params['selectionwidth'],
 									$params['selectionheight']);
 	if (!$rtn_code) {
-		return FALSE;
+		return false;
 	}
 
+	// grab a compressed jpeg version of the image
 	ob_start();
-	imagejpeg($new_image, NULL, 90);
+	imagejpeg($new_image, null, 90);
 	$jpeg = ob_get_clean();
 
 	imagedestroy($new_image);

@@ -34,12 +34,17 @@ ossn_register_action('user/logout', ossn_route()->actions.'user/logout.php');
 
 ossn_register_action('friend/add', ossn_route()->actions.'friend/add.php');
 ossn_register_action('friend/remove', ossn_route()->actions.'friend/remove.php');
+ossn_register_action('resetpassword', ossn_route()->actions.'user/resetpassword.php');
+ossn_register_action('resetlogin', ossn_route()->actions.'user/resetlogin.php');
+
 
 ossn_register_page('index', 'ossn_index_pagehandler');
 ossn_register_page('home', 'ossn_user_pagehandler');
 ossn_register_page('login', 'ossn_user_pagehandler');
 ossn_register_page('registered', 'ossn_user_pagehandler');
 ossn_register_page('syserror', 'ossn_system_error_pagehandler');
+
+ossn_register_page('resetlogin', 'ossn_user_pagehandler');
 
 ossn_add_hook('newsfeed', "left", 'newfeed_menu_handler');	
 }
@@ -83,7 +88,7 @@ function ossn_system_error_pagehandler($pages){
 *   	login, 
 *       registered
 *
-* @return bool
+* @return mixed contents
 */
 function ossn_user_pagehandler($home, $handler){
 	switch($handler){		
@@ -98,7 +103,18 @@ function ossn_user_pagehandler($home, $handler){
       $content = ossn_set_page_layout('newsfeed', $contents);
       echo ossn_view_page($title, $content);
     break;
-	
+	case 'resetlogin':
+	  $user = input('user');
+	  $code = input('c');
+	  $contents['content'] = ossn_view('pages/contents/user/resetlogin');	  
+	  
+	  if(!empty($user) && !empty($code)){
+		$contents['content'] = ossn_view('pages/contents/user/resetcode');
+	  }
+   	  $title = ossn_print('reset:login');
+      $content = ossn_set_page_layout('startup', $contents);
+      echo ossn_view_page($title, $content);    
+	break;
     case 'login':
 	  $title = ossn_print('site:login');
 	  $contents['content'] = ossn_view('pages/contents/user/login');

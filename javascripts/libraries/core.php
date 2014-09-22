@@ -61,7 +61,11 @@ Ossn.ajaxRequest = function($data){
 	 }
 	
 	 if(!error){
-	    error = function(){};
+	    error = function(xhr, status, error) {
+              if(error == 'Internal Server Error' || error !== ''){
+                 Ossn.MessageBox('syserror/unknown');
+              } 
+            };
 	 }		  
 	             var $form = $(this);
         $.ajax({
@@ -214,11 +218,13 @@ Ossn.RegisterStartupFunction(function(){
 Ossn.RegisterStartupFunction(function(){
 	 $(document).ready(function(){
             var autocomplete;
+            if(typeof google === 'object'){
               autocomplete = new google.maps.places.Autocomplete(
                   /** @type {HTMLInputElement} */(document.getElementById('ossn-wall-location-input')),
                   { types: ['geocode'] });
               google.maps.event.addListener(autocomplete, 'place_changed', function() {
               });
+              }
      });
 });
 /**

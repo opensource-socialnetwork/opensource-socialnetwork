@@ -57,3 +57,9 @@
     width:200px;
     height:200px;
 }
+.ossn-photo-menu li {
+  display:block;	
+}
+.ossn-photo-menu li a{
+  font-size: 12px;
+}

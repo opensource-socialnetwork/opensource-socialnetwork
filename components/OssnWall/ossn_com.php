@@ -141,9 +141,22 @@ function ossn_post_page($pages){
 		 }
 		 
 		 break;
-		default:
+		 case 'privacy':
+		 if(ossn_is_xhr()){
+	     $params = array(
+				'title' => ossn_print('privacy'),
+				'contents' =>  ossn_view('components/OssnWall/wall/privacy'),
+				'callback' => '#ossn-wall-privacy',
+		 );
+	     echo ossn_view('system/templates/ossnbox', $params);  
+		 }
+		 break;
+		 case 'refresh_home':
+		   echo ossn_view('components/OssnWall/wall/siteactivity');
+		 break;
+		 default:
 		 ossn_error_page();
-		break;
+		 break;
 		
 	}
 }

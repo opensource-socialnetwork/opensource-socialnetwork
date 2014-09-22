@@ -19,3 +19,4 @@
 <div>
 <input type="submit" value="Login" class="ossn-button ossn-button-submit" />
 </div>
+<a href="<?php echo ossn_site_url('resetlogin');?>"> Reset password </a>

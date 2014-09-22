@@ -504,4 +504,89 @@ function ossn_access_id_str($id){
 				);
    return $access[$id]; 
 }
+/**
+* Check if loggedin is friend with item owner or if owner is loggedin user;
+*
+* @return bool;
+*/
+function ossn_validate_access_friends($owner){
+	if(ossn_user_is_friend(ossn_loggedin_user()->guid, $owner) 
+											  || ossn_loggedin_user()->guid == $owner
+											  || ossn_isAdminLoggedin()){ 
+	return true;
+	}
+return false;	
+}
+
+/**
+* Ossn encrypt string
+*
+* @params $string a string you want to encrypt
+*
+* @return encrypted string
+*/
+function ossn_string_encrypt($string) {
+	$key  = ossn_site_settings('site_key');
+    return mcrypt_encrypt(
+						  MCRYPT_BLOWFISH, 
+						  $key, 
+						  utf8_encode($string), 
+						  MCRYPT_MODE_ECB, 
+						  mcrypt_create_iv(mcrypt_get_iv_size(MCRYPT_BLOWFISH, MCRYPT_MODE_ECB), MCRYPT_RAND)
+						  );
+}
+/**
+* Ossn decrypt string
+*
+* @params $string a string you want to decrypt
+*
+* @return decrypted string
+*/
+function ossn_string_decrypt($string) {
+	$key  = ossn_site_settings('site_key');
+    return mcrypt_decrypt(
+						 MCRYPT_BLOWFISH, 
+						 $key, 
+						 $string, 
+						 MCRYPT_MODE_ECB, 
+						 mcrypt_create_iv(mcrypt_get_iv_size(MCRYPT_BLOWFISH, MCRYPT_MODE_ECB), MCRYPT_RAND)
+						 );
+}
+/**
+* Ossn php display erros settings
+*
+* @return (void);
+* @access pritvate;
+*/
+function ossn_errros(){
+    $settings = ossn_site_settings('display_errors');
+	if($settings == 'on'){
+	   error_reporting(E_NOTICE ^ ~E_WARNING);
+	} elseif($settings == 'off'){
+	   ini_set('display_errors', 'off');	
+	}
+}
+/**
+* Check ossn update version
+*
+* @return (bool);
+* @access public;
+*/
+function ossn_check_update(){
+	$url = 'https://api.github.com/repos/opensource-socialnetwork/opensource-socialnetwork/contents/opensource-socialnetwork.xml';
+    $args['method'] = 'GET';
+    $args['header'] = "Accept-language: en\r\n" .
+              "Cookie: opensourcesocialnetwork=system\r\n" .
+              "User-Agent: Mozilla/5.0\r\n" ;
+    $options['http'] = $args;
+    $context = stream_context_create($options);
+    $file = file_get_contents($url, false, $context);
+    $data = json_decode($file);
+    $file = simplexml_load_string(base64_decode($data->content));
+	if(!empty($file->version)){
+	   return ossn_print('ossn:version:avaialbe', $file->version);	
+	}
+	return false;
+}
+ossn_errros();
 ossn_register_callback('ossn', 'init', 'ossn_system');

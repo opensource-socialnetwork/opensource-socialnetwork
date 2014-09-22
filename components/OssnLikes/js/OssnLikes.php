@@ -104,7 +104,7 @@ Ossn.RegisterStartupFunction(function(){
 					    $item.html('<img src="'+Ossn.site_url+'components/OssnComments/images/loading.gif" />');
 					 },
 					 callback:function(callback){
-                     if(callback == 1){
+                     if(callback['done'] == 1){
                            $total_guid = Ossn.UrlParams('annotation', $url);
                            $total = $('.ossn-total-likes-'+$total_guid).attr('data-likes');           
                         if($type == 'Like'){
@@ -133,7 +133,7 @@ Ossn.RegisterStartupFunction(function(){
                             }
                         }
                       }
-                        if(callback == 0){
+                        if(callback['done'] == 0){
                               if($type == 'Like'){
                                    $item.html('Like');
                                    Ossn.MessageBox('syserror/unknown'); 

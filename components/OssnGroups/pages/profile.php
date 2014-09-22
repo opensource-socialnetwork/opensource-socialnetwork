@@ -8,16 +8,49 @@
  * @license   General Public Licence http://www.opensource-socialnetwork.org/licence 
  * @link      http://www.opensource-socialnetwork.org/licence
  */
+$cover = $params['group']->haveCover();
+if($cover){ 
+  $iscover = 'ossn-group-cover-header';
+  $coverp = $params['group']->coverParameters($params['group']->guid);
+  $cover_top = $coverp[0];
+  $cover_left = $coverp[1];
+} else {
+  $cover_top = '';
+  $cover_left = '';	
+  $iscover = '';
+}
 ?>
 <div class="ossn-group-profile">
-  <div class="profile-header">
-    <div class="header-users">
-    <?php 
-	$members = $params['group']->getMembers();
-	foreach($members as $member){ ?>
-     <img src="<?php echo ossn_site_url("avatar/{$member->username}/large");?>"/>
-    <?php } ?>
+  <div class="profile-header <?php echo $iscover;?>">
+    <?php  if($params['group']->owner_guid == ossn_loggedin_user()->guid){  ?>
+	
+     <form id="group-upload-cover" style="display:none;" method="post" enctype="multipart/form-data">
+           <input type="file" name="coverphoto" class="coverfile"  onchange="Ossn.Clk('#group-upload-cover .upload');"/>
+           <input type="hidden" value="<?php echo $params['group']->guid;?>" name="group"/>
+           <input type="submit" class="upload"/>
+     </form> 
+	
+	<?php } if($cover){ ?>
+    <div class="ossn-group-cover" id="container">
+        <?php  if($params['group']->owner_guid == ossn_loggedin_user()->guid){  ?> 
+        <div class="ossn-group-cover-button">
+          <a href="javascript::;" id="reposition-cover" class='button-grey'><?php echo ossn_print('reposition:cover');?></a>
+          <a href="javascript::;" id="add-cover-group" class='button-grey'><?php echo ossn_print('change:cover');?></a>
+          </div>
+      <?php } ?>      
+        <img id="draggable" src="<?php echo $params['group']->coverURL(); ?>"  
+        style='position:relative;top:<?php echo $cover_top;?>px;left:<?php echo $cover_left;?>px;'/> 
     </div>
+    <?php  } else { ?>
+    <div class="header-users">	
+	<?php
+    $members = $params['group']->getMembers();
+	foreach($members as $member){ ?>
+     <img src="<?php echo $member->iconURL()->large;?>"/>
+    <?php 
+	  }   ?>
+ 	</div>
+    <?php 	} ?> 
   
     <div class="header-bottom">
       <div class="group-name">
@@ -27,8 +60,7 @@
          <ul>
             <?php echo ossn_view_menu('groupheader');?>
         </ul>
-      </div>
-      
+      </div> 
        <div class="groups-buttons">
          <?php  if($params['group']->owner_guid !== ossn_loggedin_user()->guid){ 
 		           if($params['group']->isMember(NULL, ossn_loggedin_user()->guid)){
@@ -52,8 +84,12 @@
           <?php } ?>
         <?php  if($params['group']->owner_guid == ossn_loggedin_user()->guid){ 
 				 $ismember = 1;
-		?>
+		?> 
           <a href="<?php echo ossn_group_url($params['group']->guid);?>edit" class='button-grey'><?php echo ossn_print('settings');?></a>
+          <a href="javascript::;" onclick="Ossn.repositionGroupCOVER(<?php echo $params['group']->guid;?>);" class='button-grey group-c-position'><?php echo ossn_print('save:postion');?></a>
+          <?php if(!$cover){ ?>
+          <a href="javascript::;" id="add-cover-group" class='button-grey'><?php echo ossn_print('change:cover');?></a>
+          <?php } ?>
          <?php } ?>
        </div>       
        

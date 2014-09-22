@@ -54,7 +54,7 @@ $cover_left = $coverp[1];
 		  if(get_profile_photo_guid($user->guid)){
 			 $viewer =  'onclick="Ossn.Viewer(\'photos/viewer?user='.$user->username.'\');"';  
 		  }?>
-          <img src="<?php echo ossn_site_url();?>avatar/<?php echo $user->username;?>/larger" height="170" width="170" <?php echo $viewer;?> />
+          <img src="<?php echo $user->iconURL()->larger;?>" height="170" width="170" <?php echo $viewer;?> />
         </div>
         <div class="profile-name"><?php echo $user->fullname;?></div>
        <div id='profile-hr-menu' class="profile-hr-menu">
@@ -63,7 +63,7 @@ $cover_left = $coverp[1];
 
           <div id="profile-menu" class="profile-menu">
           <?php if(ossn_loggedin_user()->guid == $user->guid){ ?>    
-             <a href="<?php echo ossn_site_url("u/{$user->username}/edit");?>" class='button-grey'><?php echo ossn_print('update:info'); ?></a>
+             <a href="<?php echo $user->profileURL('/edit');?>" class='button-grey'><?php echo ossn_print('update:info'); ?></a>
             <?php } ?>
             <?php if(ossn_loggedin_user()->guid !== $user->guid){ 
 			         if(!ossn_user_is_friend(ossn_loggedin_user()->guid ,$user->guid)){   

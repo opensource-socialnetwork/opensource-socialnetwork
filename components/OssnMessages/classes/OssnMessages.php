@@ -123,6 +123,13 @@ class OssnMessages extends OssnDatabase {
         }
 		return $r;
 	}
+   /**
+	* Count unread messages
+	*
+	* @params  $to Users guid
+	*
+	* @return object
+	*/		
 	public function countUNREAD($to){
 		$params['from'] = 'ossn_messages';
 		$params['wheres'] = array("message_to='{$to}'AND viewed='0'");

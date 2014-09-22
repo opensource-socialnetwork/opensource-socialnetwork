@@ -80,3 +80,11 @@ function ossn_trigger_upgrades(){
 	    }
      }	
  }
+/**
+ * Generate site screat key
+ *
+ * @return str;
+ */  
+ function ossn_generate_site_screat(){
+  return substr(uniqid(), 8);	
+ }

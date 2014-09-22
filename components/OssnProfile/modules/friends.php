@@ -12,8 +12,8 @@ $friends = $params['user']->getFriends();
 echo '<div class="ossn-profile-modlue-friends">';
 if(is_array($friends)){
 foreach($params['user']->getFriends() as $friend){
-  $url = ossn_site_url("avatar/{$friend->username}/large");
-  $profile = ossn_site_url("u/{$friend->username}");
+  $url = $friend->iconURL()->large;
+  $profile = $friend->profileURL();
   $user_name = strl($friend->fullname, 11);
   echo "<a href='{$profile}'>
           <div class='user-image'>

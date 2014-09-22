@@ -41,6 +41,12 @@ if(OssnInstallation::isPhpGd()){
 	     echo '<div class="ossn-installation-message ossn-installation-fail">PHP GD LIBRARY</div>';		
 		 $error[] = 'php:gd';		 			
 }
+if(OssnInstallation::isCon_WRITEABLE()){
+	     echo '<div class="ossn-installation-message ossn-installation-success">CONFIGURATION DIRECTORY WRITEABLE</div>';		
+} else {
+   	     echo '<div class="ossn-installation-message ossn-installation-success">CONFIGURATION DIRECTORY IS NOT WRITEABLE</div>';			
+		 $error[] = 'permission:configuration';		 			
+}
 echo '<br />';
 if(!isset($error)){ 
         echo '<a href="'.ossn_installation_paths()->url.'?page=settings" class="button-blue primary">Next</a>';

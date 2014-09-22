@@ -11,7 +11,7 @@
  ?>
       <div class="home-left-contents"> 
        <h1><?php echo ossn_print('home:top:heading',array(ossn_site_settings('site_name'))); ?> </h1>
-       <img src="<?php echo ossn_site_url();?>themes/default/images/home-people.png"  />
+       <img src="<?php echo ossn_site_url();?>themes/<?php echo ossn_site_settings('theme');?>/images/home-people.png"  />
       </div>
     <div class="home-right-contents">
       <h1> <?php echo ossn_print('create:account');?> </h1>

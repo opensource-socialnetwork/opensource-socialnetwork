@@ -17,7 +17,7 @@ $en = array(
 	'photos:ossn' => 'Photos',
 	'admin:view:site' => 'View Site',
 	
-	'home:top:heading' => "%s helps you connect and share with the people in your life.",
+	'home:top:heading' => "Welcome to %s, join now to make new friends, create groups , add photos and much more",
 	'create:account' => 'Create an account',
 	'its:free' => 'Its free and always will be.',
 	   
@@ -174,9 +174,38 @@ If you can't click on the link, copy and paste it to your browser manually.
 	'upgrade:failed' => 'Cannot upgrade try again',
 	'upgrade:not:available' => 'Nothing to upgrade',
 	
+	'site:login' => 'Login',
 	/* Page errors */
 	'system:error:title' => 'Something went wrong',
 	'system:error:text' => 'Something went wrong please try again by reloading page',
+	
+	/* Password Reset */
+	'reset:login' => 'Reset Password',
+	'reset:password' => 'Reset your password',
+	'enter:new:password' => 'Enter your new password below and click reset',
+	'reset' => 'Reset',
+	'enter:emai:reset:pwd' => 'Enter the email address of your account in order to reset password',
+	'ossn:reset:password:subject' => 'Reset your password',
+	'ossn:reset:password:body' => "Hello %s, 
+	
+Please click the link below to reset password or copy the link and paste in your browser address bar:
+
+%s
+
+%s",
+    'passord:reset:success' => 'Password successfully changed',
+	'passord:reset:fail' => 'Cannot reset password please try again later',
+	'password:reset:email:required' => 'Email cannot be empty',
+	'passord:reset:email:success' => 'Password reset instruction has been sent to your email address',
+	'reset:password' => 'Reset Password',
+	
+	'erros:reporting' => 'Error Reporting',
+	'erros:off' => 'Off',
+	'erros:on' => 'On',
+	'basic:settings' => 'Basic Settings',
+	
+	'ossn:new:version:error' => 'Unknown',
+	'ossn:version:avaialbe' => "%s",
 	/*
 	* List of ISO 639-1 language codes
 	* http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes

@@ -62,7 +62,7 @@
          <?php echo ossn_print('available:updates');?>   
       </div>
       <div class="dsahboard-block-contents">
-         1.2
+         <?php echo ossn_check_update();?>
       </div>
   </div>
 </div>

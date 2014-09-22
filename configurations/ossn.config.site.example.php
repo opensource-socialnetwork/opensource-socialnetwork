@@ -11,5 +11,4 @@
  
 $Ossn->url = '<<siteurl>>';
 $Ossn->userdata = '<<datadir>>';
-error_reporting(E_NOTICE ^ ~E_WARNING);
 

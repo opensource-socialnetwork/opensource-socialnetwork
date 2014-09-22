@@ -37,9 +37,13 @@
   <li>
     <div class="ossn-wall-photo"></div>  
   </li>
+  <li class="ossn-wall-privacy">
+   <div class="ossn-wall-privacy-lock"</div> <span><?php echo ossn_print('privacy');?></span>
+  </li>
   <div style="float:right;">
       <input class="ossn-button-submit-b ossn-wall-post" type="submit" value="<?php echo ossn_print('post');?>" />
   </div>
  </div>
        <input type="hidden" value="<?php echo $params['user']->guid;?>" name="wallowner" />
-      <input type="hidden" name="wall" value="<?php echo rand();?>"/>   
+       <input type="hidden" name="privacy" id="ossn-wall-privacy" /> 
+      

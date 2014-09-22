@@ -180,9 +180,9 @@ public function INSTALL(){
 if(stripos($this->datadir, $this->ossnInstallationDir()) === 0){
   $this->error_mesg = 'Data directory must outside';	
   return false;	
-}
-if(!is_dir($this->datadir)){
-  $this->error_mesg = 'Invalid data directoy';	
+} 
+if(!is_dir($this->datadir) && !is_writable($this->datadir)){
+  $this->error_mesg = 'Invalid data directoy or directory is not writeable';	
   return false;		
 }
 if(!$this->dbconnect()){
@@ -312,5 +312,20 @@ public static function isApache(){
 	 return true;  
   }
   return false;
+}
+/**
+* Check if configuration directory is writeable or not
+*
+* @last edit: $arsalanshah
+* @Reason: Initial;
+* @return bool;
+*/ 
+public static function isCon_WRITEABLE(){
+	$path = str_replace('installation/', '' , ossn_installation_paths()->root);
+	$path = $path.'configurations';
+	if(is_dir($path) && is_writable($path)){
+	    return true;	
+	}
+	return false;
 }
 }//class

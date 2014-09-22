@@ -15,7 +15,6 @@ echo '<div class="ossn-wall-container">';
 echo ossn_view_form('user/container', array(
 							   'action' => ossn_site_url().'action/wall/post/u',
 							   'component' => 'OssnWall',
-							   'enctype' => 'multipart/form-data',
 							   'params' => array('user' => $params['user']),
 							    ), false);
 echo '</div>';

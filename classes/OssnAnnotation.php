@@ -82,7 +82,7 @@ class OssnAnnotation extends OssnEntities{
 		        $this->type = 'annotation';
 		        $this->entities = $this->get_entities();
 				foreach($this->entities as $entity){
-		          $entities['value'] = $entity->value;
+		          $entities[$entity->subtype] = $entity->value;
 		         }
 			$data[] = array_merge(get_object_vars($annotation), $entities);	 
 		}
@@ -107,7 +107,7 @@ class OssnAnnotation extends OssnEntities{
 		$this->type = 'annotation';
 		$this->entities = $this->get_entities();
 		foreach($this->entities as $entity){
-		      $entities['value'] = $entity->value;
+		      $entities[$entity->subtype] = $entity->value;
 		 }
 	    $data = array_merge(get_object_vars($annotation), $entities);	 
 		return arrayObject($data, get_class($this));
@@ -124,6 +124,11 @@ class OssnAnnotation extends OssnEntities{
 	   if($this->deleteByOwnerGuid($annotation, 'annotation')){
 		$this->statement("DELETE FROM ossn_annotations WHERE(id='{$annotation}')");
 		if($this->execute()){
+			$data = ossn_get_userdata("annotation/{$annotation}/");
+		    if(is_dir($data)){
+		       OssnFile::DeleteDir($data); 
+		       rmdir($data);
+		    }
 			$params['annotation'] = $annotation;
 		    ossn_trigger_callback('annotation', 'delete', $params); 
 			return true;

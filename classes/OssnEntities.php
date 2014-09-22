@@ -236,6 +236,8 @@ class OssnEntities extends OssnDatabase {
    if($this->execute()){
      $this->statement("DELETE FROM ossn_entities_metadata WHERE(guid='{$guid}');");
 	 $this->execute();
+	 $params['entity'] = $guid;
+     ossn_trigger_callback('delete', 'entity', $params);				
 	 return true;
    }
    return false;
@@ -250,13 +252,27 @@ class OssnEntities extends OssnDatabase {
  * @return (bool);
  */   
  public function deleteByOwnerGuid($guid, $type){
-   $this->statement("SELECT * FROM ossn_entities WHERE(owner_guid='{$guid}' AND type='{$type}');");
+   $this->statement("SELECT * FROM ossn_entities 
+					 WHERE(owner_guid='{$guid}' AND type='{$type}');");
    $this->execute();
    $ids = $this->fetch(true);
    foreach($ids as $entity){
 	   $this->deleteEntity($entity->guid);
    }
    return true;
+ }
+ /**
+ * Get a parameter from object
+ *
+ * @params = parameter
+ *
+ * @return string;
+ */    
+ public function getParam($param){
+	 if(isset($this->$param)){
+		return $this->$param; 
+	 }
+	 return false;
  }
  /**
  * Deconstruct Class

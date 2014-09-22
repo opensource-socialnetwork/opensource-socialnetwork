@@ -8,12 +8,13 @@
  * @license   General Public Licence http://opensource-socialnetwork.com/licence 
  * @link      http://www.opensource-socialnetwork.com/licence
  */
-	   $image = $params['image']; 
+$image = $params['image']; 
 ?>
 <div class="activity-item" id="activity-item-<?php echo $params['post']->guid;?>">
+
    <div class="activity-item-container">
       <div class="owner">
-       <img src="<?php echo ossn_site_url();?>avatar/<?php echo $params['user']->username;?>/small" width="40" height="40" />
+       <img src="<?php echo $params['user']->iconURL()->small;?>" width="40" height="40" />
       </div>
       <div class="post-controls">
          <?php 
@@ -23,12 +24,12 @@
             }
 		?>	
      </div>   
+     
       <div class="subject">
-			 
 			 <?php
               $owner = ossn_user_by_guid($params['post']->owner_guid);
 			 ?>
-             <a class="owner-link" href="<?php echo ossn_site_url("u/{$params['user']->username}");?>"> <?php echo $params['user']->fullname;?></a>  
+             <a class="owner-link" href="<?php echo $params['user']->profileURL();?>"> <?php echo $params['user']->fullname;?> </a> 
              <?php if($params['show_group'] == true){
 				  $group = ossn_get_group_by_guid($params['post']->owner_guid);
 				  ?>
@@ -37,9 +38,13 @@
 			<?php }?>
              <br />
              <div class="time"> 
-			 <?php echo ossn_user_friendly_time($params['post']->time_created);?> <?php echo $params['location'];?> - <div class="ossn-inline-table ossn-icon-access-<?php echo ossn_access_id_str($params['post']->access); ?>" title="<?php echo ossn_print('title:access:private:group');?>"></div>
+			      <?php echo ossn_user_friendly_time($params['post']->time_created);?>
+                  <?php echo $params['location'];?> - 
+                  <div class="ossn-inline-table ossn-icon-access-<?php echo ossn_access_id_str($params['post']->access); ?>" title="<?php echo ossn_print('title:access:private:group');?>"></div>
+             
              </div>
       </div>
+      
       <div class="description">
               <div class="post-text"><?php echo stripslashes($params['text']); ?>  </div>
            <?php 

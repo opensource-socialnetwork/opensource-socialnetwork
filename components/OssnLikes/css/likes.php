@@ -5,7 +5,10 @@ Wall
  background:#F6F7F8;
  min-height:50px;
  width:100%;
- /*border-top: 1px solid #E1E2E3;*/
+}
+.ossn-photos-comments {
+ display:inline-table;
+ float: left;
 }
 .comments-like-comment-links {
   background:#fff;

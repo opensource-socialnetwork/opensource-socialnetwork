@@ -87,6 +87,18 @@ function ossn_user_by_guid($guid){
 	  return $user->getUser();
 }
 /**
+ * Get a user by email id
+ *
+ * @param $guid 'guid' of user
+ *
+ * @return object
+ */ 
+function ossn_user_by_email($email){
+ 	  $user = new OssnUser;
+	  $user->email = $email;
+	  return $user->getUser();
+}
+/**
  * Get a user friends
  *
  * @param $guid 'guid' of user

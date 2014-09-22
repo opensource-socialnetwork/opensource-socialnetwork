@@ -58,11 +58,21 @@ class OssnLikes extends OssnDatabase{
 		       empty($type)){
                     return false;	
          }
-		 $annotation = new OssnAnnotation;
-		 $annotation->annotation_id = $subject_id;
-		 $annotation = $annotation->getAnnotationById();
-		 if(empty($annotation->id)){
-			 return false; 
+		 if($type == 'annotation'){
+		    $annotation = new OssnAnnotation;
+		    $annotation->annotation_id = $subject_id;
+		    $annotation = $annotation->getAnnotationById();
+		    if(empty($annotation->id)){
+			   return false; 
+		    }
+		 }
+		 if($type == 'post'){
+			$post = new OssnObject;
+		    $post->object_guid = $subject_id;
+		    $post = $post->getObjectById();
+		    if(empty($post->time_created)){
+			   return false; 
+		    }	 
 		 }
          if(!$this->isLiked($subject_id, $guid, $type)){
 	         $this->statement("INSERT INTO ossn_likes (`subject_id`, `guid`, `type`)
