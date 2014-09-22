@@ -9,21 +9,35 @@
  * @link      http://www.opensource-socialnetwork.org/licence
  */
 $OssnComment = new OssnComments;
-if($OssnComment->PostComment(input('entity'),  ossn_loggedin_user()->guid, input('comment'), 'entity')){
-  $data['comment']['id'] = $OssnComment->getCommentId();
-  $data['comment']['owner_guid'] = ossn_loggedin_user()->guid;
-  $data['comment']['value'] = input('comment');
-  $data['comment']['time_created'] = time();
-  echo ossn_view('components/OssnComments/templates/comment', $data);
+$image = input('comment-attachment');
+//comment image check if is attached or not
+if(!empty($image)){
+   $OssnComment->comment_image = $image;
+}
+//entity on which comment is going to be posted
+$entity = input('entity');
+
+//comment text
+$comment = input('comment');
+if($OssnComment->PostComment($entity,  ossn_loggedin_user()->guid,  $comment, 'entity')){
+  $data['comment'] = ossn_get_comment($OssnComment->getCommentId());
+  $data = ossn_view('components/OssnComments/templates/comment', $data);;
   if(!ossn_is_xhr()){
-    redirect(REF);	
-  } else {
-	echo 1;  
+   redirect(REF);	
+  }  else {
+	header('Content-Type: application/json'); 
+    echo json_encode(array(
+						   'comment' => $data,
+						   'process' => 1,
+						   ));
   }
 } else {
    if(!ossn_is_xhr()){
-    redirect(REF);	
-   } else {
-	echo 0;  
+     redirect(REF);	
+    } else {
+     header('Content-Type: application/json'); 
+     echo json_encode(array(
+						   'process' => 0,
+						   ));  
    }	
 }
