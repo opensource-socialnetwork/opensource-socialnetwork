@@ -28,9 +28,9 @@ if($lang == $setting->language){ $select = 'selected'; }
 <label><?php echo ossn_print('erros:reporting');?></label>
 <select name="errors">
 <?php 
-if($cache == 'off'){ 
+if($setting->display_errors == 'off'){ 
   $off = 'selected'; 
-}elseif($cache == 'on'){
+}elseif($setting->display_errors== 'on'){
   $on = 'selected';	
 }
 ?>
