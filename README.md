@@ -24,6 +24,10 @@ Front-End Features
 * Ajax Comments
 * Ajax Likes
 * Ajax Photos in comments
+* Group cover photos
+* Repostion Profile/Group cover
+* Notifications
+* Friend Requests
 
 
 Future Release Features
