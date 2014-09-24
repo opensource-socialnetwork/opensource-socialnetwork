@@ -112,6 +112,16 @@ $("#upload-photo").submit(function (event) {
 
         return false;
     });	
+    
+/* Profile extra menu */    
+    $('#profile-extra-menu').on('click', function(){
+       $div =  $('.ossn-profile-extra-menu').find('div');
+       if($div.is(":not(:visible)")){
+         $div.show();
+       } else {
+         $div.hide();
+       }
+    });
 });
 
 });
