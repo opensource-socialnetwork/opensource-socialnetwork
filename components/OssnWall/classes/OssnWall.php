@@ -31,15 +31,14 @@ class OssnWall extends OssnObject {
 		 $this->subtype = 'wall';
 		 $this->title = '';
 		 
-		 $wallpost['post'] = $post;
+		 $wallpost['post'] =  htmlspecialchars($post, ENT_QUOTES, 'UTF-8');
 		 if(!empty($friends)){ 
 		     $wallpost['friend'] = $friends; 
 		 }
          if(!empty($location)){ 
 		   $wallpost['location'] = $location; 
 		 } 
-		 
-		 $this->description = htmlspecialchars(json_encode($wallpost), ENT_QUOTES);
+		 $this->description = json_encode($wallpost, JSON_UNESCAPED_UNICODE);
 		 if($this->addObject()){
 			$this->wallguid = $this->getObjectId(); 
 			if(isset($_FILES['ossn_photo'])){
