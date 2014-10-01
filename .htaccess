@@ -10,9 +10,11 @@ Options -Indexes
 Options +FollowSymLinks
 DirectoryIndex index.php
 
+
 <IfModule mod_rewrite.c>
 SetEnv HTTP_MOD_REWRITE 1
 RewriteEngine on
+
 RewriteRule ^action\/([A-Za-z0-9\_\-\/]+)$ system/handlers/actions.php?action=$1&%{QUERY_STRING} [L]
 
 RewriteCond %{REQUEST_FILENAME} !-d
@@ -29,5 +31,6 @@ RewriteRule ^([A-Za-z0-9\_\-]+)\/(.*)$ index.php?h=$1&p=$2 [QSA,L]
 	php_value register_globals 0
 	php_value post_max_size 8388608
 	php_value upload_max_filesize 5242880
+	php_value default_charset "UTF-8"
 </IfModule>
 
