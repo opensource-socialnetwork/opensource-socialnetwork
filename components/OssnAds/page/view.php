@@ -11,7 +11,7 @@
 $ads = new OssnAds;
 ?>
 <div class="ossn-ads">
-                 <h4><?php echo ossn_print('sponsored'); ?></h4>
+                   <h4><?php echo ossn_print('sponsored'); ?></h4>
 <?php foreach($ads->getAds() as $ads){ ?>                 
                   <div class="ossn-ads-item">
                    <a  class="a-heading" href="<?php echo $ads->site_url;?>"><?php echo $ads->title; ?></a>
@@ -24,4 +24,5 @@ $ads = new OssnAds;
                  </div>
                  
  <?php } ?>                
+</div>       
        
