@@ -9,6 +9,11 @@
  * @link      http://www.opensource-socialnetwork.com/licence
  */
 class OssnWall extends OssnObject {
+   /**
+	* Initialize the objects.
+	*
+	* @return void;
+	*/	   
    public function initAttributes(){
 			if(empty($this->type)){
 			  $this->type = 'user';	
@@ -17,7 +22,17 @@ class OssnWall extends OssnObject {
 		    if(!isset($this->data)){
 			   $this->data = new stdClass; 
 		    }	
-	}		
+	}	
+   /**
+	* Post on wall
+	*
+	* @params $post: Post text
+	*         $friends: Friend guids
+	*         $location: Post location
+	*         $access: (OSSN_PUBLIC, OSSN_PRIVATE, OSSN_FRIENDS)
+	*
+	* @return bool;
+	*/			
 	public function Post($post, $friends = '', $location = '', $access = ''){
 	     self::initAttributes();
 		 if(empty($access)){
@@ -57,12 +72,25 @@ class OssnWall extends OssnObject {
 		 }
 		return true; 
 	}
+   /**
+	* Get all site wall posts
+	*
+	* @return object;
+	*/			
    public function GetPosts(){	
   	  self::initAttributes(); 
 	  $this->subtype = 'wall';
 	  $this->order_by = 'guid DESC';
 	  return $this->getObjectsByTypes();
    }
+   /**
+	* Get posts by owner
+	*
+	* @params $owner: Owner guid
+	*         $type Owner type
+	*
+	* @return object;
+	*/		   
    public function GetPostByOwner($owner, $type = 'user'){
 	  self::initAttributes(); 
 	  $this->type = $type;
@@ -71,6 +99,13 @@ class OssnWall extends OssnObject {
 	  $this->order_by = 'guid DESC';
 	  return $this->getObjectByOwner();
    }
+    /**
+	* Get user posts
+	*
+	* @params $user: User guid
+	*
+	* @return object;
+	*/	  
    public function GetUserPosts($user){	
       $this->type = "user";
 	  $this->subtype = 'wall';
@@ -78,10 +113,24 @@ class OssnWall extends OssnObject {
 	  $this->order_by = 'guid DESC';
 	  return $this->getObjectByOwner();
    }
+    /**
+	* Get post by guid
+	*
+	* @params $guid: Post guid
+	*
+	* @return object;
+	*/	     
    public function GetPost($guid){	
       $this->object_guid = $guid;
 	  return $this->getObjectById();
    }
+    /**
+	* Delete post
+	*
+	* @params $post: Post guid
+	*
+	* @return bool;
+	*/	     
    public function deletePost($post){
 		if($this->deleteObject($post)){
 	     	ossn_trigger_callback('post', 'delete', $post);
@@ -89,6 +138,11 @@ class OssnWall extends OssnObject {
 		}
 		return false;
    }
+    /**
+	* Delete All Posts
+	*
+	* @return void;
+	*/	   
    public function deleteAllPosts(){
 	    foreach($this->GetPosts() as $post){
 			$this->deleteObject($post->guid);
