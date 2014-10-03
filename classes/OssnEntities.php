@@ -31,8 +31,13 @@ class OssnEntities extends OssnDatabase {
 						  'annotation' => 'OssnAnnotation',
 						  'entity' => 'OssnEntities',
 						  'site' => 'OssnSite',
+						  'component' => 'OssnComponents',
 						  );
-	$this->entity_types = array('object', 'user', 'annotation'); 
+	
+	//generate entity types from $this->types
+	foreach($this->types as $type => $class){
+	    $this->entity_types[] = $type; 
+	}
 	
 	if(empty($this->order_by)){
 	 $this->order_by = '';	
@@ -174,7 +179,7 @@ class OssnEntities extends OssnDatabase {
  public function save(){
 	if(!empty($this->owner_guid)){
 		$this->datavars =  $this->get_data_vars();
-	  // i don't we need to add new data on save $arsalanshah;
+	  // i don't think we need to add new data on save $arsalanshah;
 	  /*  foreach($this->datavars as $vars => $value){
 		    if(!in_array($vars, $this->get_data_dbvars())){
 	            $this->subtype = $vars;
