@@ -62,4 +62,4 @@ foreach($posts as $post){
 
    } 
 echo $Pagination->pagination();
-echo '<div>';
+echo '</div>';
