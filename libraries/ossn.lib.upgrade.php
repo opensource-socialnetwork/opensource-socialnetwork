@@ -78,7 +78,13 @@ function ossn_trigger_upgrades(){
 	    if(!include_once($file)){
 	       throw new exception(ossn_print('upgrade:file:load:error'));	
 	    }
-     }	
+     }
+	//need to reset cache files
+	if(ossn_site_settings('cache') !== 0){
+	  	ossn_trigger_css_cache();
+	    ossn_trigger_js_cache();	
+	}
+	return true; 
  }
 /**
  * Generate site screat key
