@@ -17,10 +17,16 @@ if(OssnInstallation::isPhp()){
 	  echo '<div class="ossn-installation-message ossn-installation-fail">You have old PHP '.PHP_VERSION.'. You need PHP 5.3 or Higher </div>';
       $error[] = 'php';
 }
+if(OssnInstallation::is_mysqli_enabled()){
+        echo '<div class="ossn-installation-message ossn-installation-success"> MYSQLI ENABLED </div>';
+} else {
+	  echo '<div class="ossn-installation-message ossn-installation-fail">MYSQLI PHP EXTENSION REQUIRED</div>';
+      $error[] = 'mysqli';
+}
 if(OssnInstallation::isApache()){
      echo '<div class="ossn-installation-message ossn-installation-success">APACHE</div>';
 } else {
-	  echo '<div class="ossn-installation-message ossn-installation-fail">Ossn can only be run on apache.</div>';
+	  echo '<div class="ossn-installation-message ossn-installation-fail">APACHE IS REQUIRED.</div>';
 	 $error[] = 'apache';
 } 
 if(OssnInstallation::is_mod_rewrite()){
