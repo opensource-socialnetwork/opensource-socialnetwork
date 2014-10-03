@@ -1,4 +1,12 @@
-//<script>
+/**
+ * 	OpenSource-SocialNetwork
+ *
+ * @package   (Informatikon.com).ossn
+ * @author    OSSN Core Team <info@opensource-socialnetwork.com>
+ * @copyright 2014 iNFORMATIKON TECHNOLOGIES
+ * @license   General Public Licence http://opensource-socialnetwork.com/licence 
+ * @link      http://www.opensource-socialnetwork.com/licence
+ */
 Ossn.NotificationBox = function($title, $meta, $type, height){
 	 if(height == ''){
 		 height = '540px';
@@ -35,7 +43,9 @@ Ossn.NotificationShow = function($div){
 				  
 			      },
 			      callback: function(callback){
-					  if(callback['type'] == 1){
+					var data = '';
+					var height = ''; 
+					 if(callback['type'] == 1){
 						 data = callback['data'];
 						 height = '540px';	 
 					  } if(callback['type'] == 0){
@@ -65,6 +75,8 @@ Ossn.NotificationFriendsShow = function($div){
 				  
 			      },
 			      callback: function(callback){
+					 var data = '';
+					 var height = '';
 					  if(callback['type'] == 1){
 						 data = callback['data'];
 					  } if(callback['type'] == 0){
@@ -139,6 +151,8 @@ Ossn.NotificationMessagesShow = function($div){
 
 			      },
 			      callback: function(callback){
+					  var data = '';
+					  var height = '';   
 					  if(callback['type'] == 1){
 						 data = callback['data'];
 						 height = '';
@@ -156,3 +170,66 @@ Ossn.NotificationMessagesClose = function($div){
 			  Ossn.NotificationBoxClose();
 			  $($div).attr('onClick', 'Ossn.NotificationMessagesShow(this)');
 };
+Ossn.NotificationsCheck = function(){
+Ossn.PostRequest({
+			  url: Ossn.site_url+"notification/count",
+			  callback: function(callback){
+				$notification = $('#ossn-notif-notification');
+				$notification_count = $notification.find('.ossn-notification-container');
+														 
+				$friends = $('#ossn-notif-friend');
+				$friends_count = $friends.find('.ossn-notification-container');
+				
+				$messages = $('#ossn-notif-messages');
+				$messages_count = $messages.find('.ossn-notification-container');
+								
+				if(callback['notifications']){
+				   	if(callback['notifications'] > 0){
+                       $notification_count.html(callback['notifications']);
+					   $notification.find('.ossn-icon').addClass('ossn-icons-topbar-notifications-new');
+					   $notification_count.attr('style', ' display:inline-block;');
+                    }
+                    if(callback['notifications'] <= 0){
+                       $notification_count.html('');
+					   $notification.find('.ossn-icon').removeClass('ossn-icons-topbar-notifications-new');
+					   $notification.find('.ossn-icon').addClass('ossn-icons-topbar-notification');
+					   $notification_count.hide();       
+                    }
+				} 
+				
+				if(callback['messages']){
+					if(callback['messages'] > 0){
+  				      $messages_count.html(callback['messages']);
+					  $messages.find('.ossn-icon').addClass('ossn-icons-topbar-messages-new');
+					  $messages_count.attr('style', ' display:inline-block;');
+					} 
+					if(callback['messages'] <= 0) {
+					  $messages_count.html('');
+					  $messages.find('.ossn-icon').removeClass('ossn-icons-topbar-messages-new');
+					 $messages.find('.ossn-icon').addClass('ossn-icons-topbar-messages');			  
+					  $messages_count.hide();	
+					}
+				} 
+				
+				if(callback['friends']){
+                  if(callback['friends'] > 0){
+				      $friends_count.html(callback['friends']);
+					  $friends.find('.ossn-icon').addClass('ossn-icons-topbar-friends-new');
+					  $friends_count.attr('style', ' display:inline-block;');
+                   }
+                   if(callback['friends'] <= 0){
+				      $friends_count.html('');
+					  $friends.find('.ossn-icon').removeClass('ossn-icons-topbar-friends-new');
+					  $friends.find('.ossn-icon').addClass('ossn-icons-topbar-friends');
+					  $friends_count.hide();                   
+                   }
+				} 				
+}
+			  }); 	
+};
+Ossn.RegisterStartupFunction(function(){
+  $(document).ready(function () {
+     setInterval(function(){Ossn.NotificationsCheck()}, 5000);     
+    });
+});
+
