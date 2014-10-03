@@ -324,9 +324,10 @@ if(isset($str)
 		   return substr($str, 0, $limit);
 	   }
    }
-   elseif(strlen($str) < $limit){
+   elseif(strlen($str) <= $limit){
 	return $str;   	   
    }
+   
 }
   return false; 
 }

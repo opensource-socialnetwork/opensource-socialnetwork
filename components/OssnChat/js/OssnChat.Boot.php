@@ -97,11 +97,13 @@ $.each(OssnChat['active_friends'], function(key, data){
 if(OssnChat['allfriends']){
   $.each(OssnChat['allfriends'], function(key, data){
        var $item  = $(".ossn-chat-windows-long .inner").find('#friend-list-item-'+data['guid']);
-       if($item){
+       if($item.length){
           $item.find('.ustatus').removeClass('ossn-chat-icon-online');
           $item.find('.ustatus').addClass(data['status']);
-        } else {
+        } 
+        if($item.length == 0){
          var appendata = '<div class="friends-list-item" id="friend-list-item-'+data['guid']+'" onClick="Ossn.ChatnewTab('+data['guid']+');"><div class="friends-item-inner"><div class="icon"><img src="'+data['icon']+'" /></div> <div class="name">'+data['name']+'</div><div class="'+data['status']+' ustatus"></div> </div></div>';    
+          $(".ossn-chat-windows-long .inner").find('.ossn-chat-none').hide();
           $(".ossn-chat-windows-long .inner").append(appendata);
         }
   });

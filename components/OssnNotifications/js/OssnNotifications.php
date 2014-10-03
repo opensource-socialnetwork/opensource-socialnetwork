@@ -177,7 +177,7 @@ Ossn.PostRequest({
 				$notification = $('#ossn-notif-notification');
 				$notification_count = $notification.find('.ossn-notification-container');
 														 
-				$friends = $('#ossn-notif-friend');
+				$friends = $('#ossn-notif-friends');
 				$friends_count = $friends.find('.ossn-notification-container');
 				
 				$messages = $('#ossn-notif-messages');
