@@ -42,9 +42,6 @@
  height:18px;
  position:absolute;
 }
-
-
-
 .ossn-notifications-all .data{
   position: absolute;
   margin-left: 23px;
@@ -64,25 +61,28 @@
   color:#ccc;
 }
 
-	.notification-friends li{
+.notification-friends li{
 		display:block;
 		border-bottom: 1px solid #eee;
-	}
-	.notification-friends .user{
+}
+notification-friends .user{
 	font-size: 13px;
-font-weight: bold;
-	}
-	.notification-friends .image {
+    font-weight: bold;
+}
+.notification-friends .image {
 		width:50px;
 		height:50px;
 		display:inline-table;
-	}
-	.ossn-notifications-friends-inner {
+}
+.ossn-notifications-friends-inner {
 padding: 6px;
 }
-	.ossn-notifications-friends-inner form{
+.ossn-notifications-friends-inner form{
     display:inline-table;
-	}
-    .ossn-notification-page li img {
+}
+.ossn-notification-page li img {
      display:none;	
-    }
+}
+.ossn-notif-hide {
+  display:none;
+}    
