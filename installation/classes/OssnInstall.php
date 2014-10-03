@@ -328,4 +328,14 @@ public static function isCon_WRITEABLE(){
 	}
 	return false;
 }
+/**
+* Check if mysqli class exist exist or not
+*
+* @last edit: $arsalanshah
+* @Reason: Initial;
+* @return bool;
+*/ 
+public static function is_mysqli_enabled(){
+   	return class_exists('mysqli');
+}
 }//class
