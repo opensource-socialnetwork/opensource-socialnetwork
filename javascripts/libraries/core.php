@@ -252,6 +252,8 @@ Ossn.RegisterStartupFunction(function(){
 Ossn.MessageBoxClose = function(){
   $('.ossn-message-box').hide();
   $('.ossn-halt').removeClass('ossn-light').hide(); 
+  $('.ossn-halt').attr('style', '');
+
 };
 /**
  * Load Message box
@@ -263,7 +265,9 @@ Ossn.MessageBox = function($url){
 					 url: Ossn.site_url+$url,
 					
 					 beforeSend: function(){
-						$('.ossn-halt').addClass('ossn-light').show(); 
+						$('.ossn-halt').addClass('ossn-light');
+                        $('.ossn-halt').attr('style', 'height:'+$(document).height()+'px;');
+                        $('.ossn-halt').show();
 						$('.ossn-message-box').html('<div class="ossn-loading ossn-box-loading"></div>');
 						$('.ossn-message-box').fadeIn('slow');
 					 },
