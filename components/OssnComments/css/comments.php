@@ -23,11 +23,6 @@
  display:none; 
 }
 
-.menu-links li{
- display: block;
- 
- padding: 8px;
-}
 .ossn-comment-menu .menu-links li:hover{
   border-top-color: #668EA8;
   border-bottom-color: #668EA8;
