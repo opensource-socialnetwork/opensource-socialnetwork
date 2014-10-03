@@ -9,7 +9,14 @@
  * @link      http://www.opensource-socialnetwork.com/licence
  */
 class OssnSitePages extends OssnObject {
-     public function SaveSitePage(){
+   /**
+	* Save site page
+	*
+	* @params $object->description: Page body
+	*
+	* @return bool;
+	*/		     
+	 public function SaveSitePage(){
 		$this->title = '';
 		$this->description = trim(htmlentities($this->pagebody));
 		
@@ -32,6 +39,11 @@ class OssnSitePages extends OssnObject {
 		}
 		return false; 
 	 }
+   /**
+	* Get page site page
+	*	*
+	* @return object;
+	*/			 
 	 public function getPage(){
 		$this->type = 'site';
 		$this->subtype = "sitepage:{$this->pagename}";
