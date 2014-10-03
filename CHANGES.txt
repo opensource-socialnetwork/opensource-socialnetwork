@@ -1,3 +1,20 @@
+OSSN - OPEN SOURCE SOCIAL NETWORK 1.5
+
+Bugfixes:
+
+* Cann't delete wall post ( fix width of link )
+* Fix unicode issues in wall post.
+
+ Enhancements:
+
+* OssnChat added as core.
+* Autorefresh topbar notification.
+* Add a new methods for saving and getting component settings
+
+Core changes:
+
+* A new way of gettings php errors on blank page issue
+
 OSSN - OPEN SOURCE SOCIAL NETWORK 1.4
 
 Bugfixes:
