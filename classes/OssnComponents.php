@@ -288,14 +288,83 @@ class OssnComponents extends OssnDatabase {
 				 ); 
  }
 /**
- * Required Components
- *
- * Admin can't disable required components;
+ * Bundled components
  *
  * @return array;
  */  
  public function bundledComponents(){
 	return array_merge(array('OssnGroups', 'OssnSitePages'), $this->requiredComponents()); 
+ }
+ /**
+ * Get component guid by component id 
+ *
+ * @param $component Component id
+ *
+ * @return guid or false;
+ */   
+ public function getComponentGuid($component){
+	  $params = array(
+					  'from' => 'ossn_components',
+					  'wheres' => array("com_id='{$component}'"),
+					  );
+	  $fetch = $this->select($params); 	 
+	  if(isset($fetch->id)){
+	     return $fetch->id;
+	  }
+	return false;  
+ }
+ /**
+ * Set component settings
+ *
+ * @params $component Component id
+ *         $setting Setting name
+ *         $value Setting value
+ *
+ * @return bool;
+ */   
+ public function setComSETTINGS($component, $setting, $value){
+	 $this->component = self::getComSettings($component);
+	 if(!isset($this->component->$setting)){
+	     if(isset($component)){
+		     $this->entity = new OssnEntities;
+		     $this->entity->type = 'component';
+		     $this->entity->subtype = $setting;
+		     $this->entity->owner_guid = self::getComponentGuid($component);
+   	   	     $this->entity->value = $value;
+		     if($this->entity->add()){
+			    return true; 
+		      }
+	       }
+	 } else {
+		 $this->entity = new OssnEntities;
+		 $this->entity->type = 'component';	
+	     $this->entity->owner_guid = self::getComponentGuid($component);
+		 $this->entity->data->$setting = $value;
+		 if($this->entity->save()){
+			 return true; 
+		 }
+	 }
+	return false;	 
+ }
+ /**
+ * Get Component Settings
+ *
+ * @params $component Component id
+ *
+ * @return array;
+ */  
+ public function getComSettings($component){
+		 $this->entity = new OssnEntities;
+		 $this->entity->type = 'component';
+		 $this->entity->owner_guid = self::getComponentGuid($component);
+		 $settings = $this->entity->get_entities();
+		 if(is_array($settings) && !empty($settings)){
+			 foreach($settings as $setting){
+			    $comsettings[$setting->subtype] = $setting->value; 
+			 }
+			 return arrayObject($comsettings, 'OssnComponents');
+		 }
+	return false;	 
  }
  
  	
