@@ -560,7 +560,7 @@ function ossn_string_decrypt($string) {
 */
 function ossn_errros(){
     $settings = ossn_site_settings('display_errors');
-	if($settings == 'on'){
+	if($settings == 'on' || is_file(ossn_route()->www.'DISPLAY_ERRORS')){
 	   error_reporting(E_NOTICE ^ ~E_WARNING);
 	} elseif($settings == 'off'){
 	   ini_set('display_errors', 'off');	
