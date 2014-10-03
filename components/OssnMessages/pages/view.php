@@ -64,8 +64,16 @@
     <div class="message-item">
       <img src="<?php echo ossn_site_url();?>avatar/<?php echo  $user->username;?>/smaller" />
        <div class="data">
-         <div class="name"><a href=""><?php echo $user->fullname;?></a></div>
-         <div class="text"> <?php echo $message->message;?> </div>
+         <div class="name"><a href="<?php echo $user->profileURL();?>"><?php echo $user->fullname;?></a></div>
+         <div class="text">
+          <?php 
+		  if(class_exists('OssnChat')){
+		      echo OssnChat::replaceIcon($message->message);
+		  } else {
+			  echo $message->message;
+		  }
+	      ?>
+         </div>
        </div>
     </div>   
   <?php } ?>
