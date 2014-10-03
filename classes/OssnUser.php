@@ -497,4 +497,18 @@ class OssnUser extends OssnEntities{
 	 }
 	 return false;
    }
+   /**
+   * Check if user is online or not
+   *
+   * @return bool;
+   */    
+   public function isOnline($intervals = 100){
+	 if(isset($this->last_activity)){  
+	     $time = time();
+	     if($this->last_activity > $time - $intervals){
+		      return true;   
+	     }
+	 }
+	   return false;
+   }
 }//CLASS
