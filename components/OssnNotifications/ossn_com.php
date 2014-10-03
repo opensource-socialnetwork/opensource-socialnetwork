@@ -108,6 +108,29 @@ function ossn_notification_page($pages){
 		  redirect();	
 		}
 		break;
+		case 'count':
+		   if(!ossn_isLoggedIn()){
+			  ossn_error_page();   
+		   }
+           $notification = new OssnNotifications;
+           $messages = new OssnMessages;
+           $count_notif = $notification->countNotification(ossn_loggedin_user()->guid);
+           $count_messages = $messages->countUNREAD(ossn_loggedin_user()->guid);
+		    if(!$count_notif){
+          	 $count_notif = 0;
+            }		
+           $friends = ossn_loggedin_user()->getFriendRequests();
+           $friends_c = 0;
+		   if(count($friends) > 0 && !empty($friends)){
+	          $friends_c = count($friends);
+           }		
+		   echo json_encode(array(
+								  'notifications' => $count_notif,
+								  'messages' => $count_messages,
+								  'friends' =>  $friends_c
+								  
+								  ));
+		break;
 		default:
 		 ossn_error_page();
 		break;
