@@ -329,8 +329,6 @@ display:none;
 }
 .ossn-wall-post-controls .menu-links li{
  display: block;
- 
- padding: 8px;
 }
 .ossn-wall-post-controls .menu-links li:hover{
   border-top-color: #668EA8;
@@ -342,8 +340,10 @@ display:none;
   color:#fff;
 }
 .ossn-wall-post-controls .menu-links a{
-	padding:10px;
-	color:#000;
+  color: #000;
+  width: 172px;
+  display: block;
+  padding:8px;
 }
 .ossn-wall-post-controls .menu-links a:hover{
   color:#fff;
