@@ -132,7 +132,6 @@ text-decoration:none;
 .home-left-contents {
   width: 565px;
   display:inline-table;
-  float:left;
 }
 .home-left-contents h1{
   font-size:20px;
@@ -774,7 +773,7 @@ margin-top: 1px;
  height: 200px;
  position: fixed;
  width: 900px;
- z-index: 2019;
+ z-index: 10000;
  margin-top: 70px;
  min-height:515px;
 }
@@ -797,7 +796,7 @@ margin-top: 1px;
  top: 0;
  left: 0;
  width: 100%;
- z-index: 100;
+ z-index: 10000;
  background-color: #000;
  opacity: 0.9;
  cursor: auto;
