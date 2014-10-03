@@ -13,8 +13,12 @@ if (!isset($OssnInstall)) {
 	$OssnInstall = new stdClass;
 } 
 session_start();
-ini_set('display_errors','off'); 
 
+if(is_file('DISPLAY_ERRORS')){
+   error_reporting(E_NOTICE ^ ~E_WARNING);
+} else {
+   ini_set('display_errors','off'); 
+}
 if(is_file('INSTALLED')){
     exit('It seems the Opensource-Socialnetwork is already installed');
 }
