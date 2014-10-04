@@ -132,9 +132,11 @@ text-decoration:none;
 .home-left-contents {
   width: 565px;
   display:inline-table;
+  float:left;
 }
 .home-left-contents h1{
   font-size:20px;
+  margin-top: 32px;
 }
 .home-right-contents {
   display:inline-table;
@@ -153,7 +155,8 @@ line-height: 28px;
 margin-top: -20px;
 }
 .ossn-home-container img {
-
+   box-shadow: 1px 4px 5px #333;
+   margin-top: 16px;
 }
 
 #ossn-header-login {
