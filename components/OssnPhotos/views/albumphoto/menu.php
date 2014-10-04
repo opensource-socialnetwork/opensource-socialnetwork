@@ -8,7 +8,9 @@
  * @license   General Public Licence http://opensource-socialnetwork.com/licence 
  * @link      http://www.opensource-socialnetwork.com/licence
  */
+if(ossn_isLoggedIn()){  
 ?>
 <div class="ossn-photo-menu">
  <li><a href="<?php echo ossn_site_url("action/photo/delete?id={$params->guid}");?>"> Delete Photo </a> </li>
 </div>
+<?php } ?>
