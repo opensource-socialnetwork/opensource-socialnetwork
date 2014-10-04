@@ -124,6 +124,7 @@ text-decoration:none;
 .home-left-contents {
   width: 565px;
   display:inline-table;
+  float:left;
 }
 .home-left-contents h1{
   font-size:20px;
