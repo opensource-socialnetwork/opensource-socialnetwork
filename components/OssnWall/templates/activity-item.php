@@ -19,7 +19,7 @@
       </div>
       <div class="post-controls">
          <?php 
-		     if(ossn_is_hook('wall', 'post:menu')){
+		     if(ossn_is_hook('wall', 'post:menu') && ossn_isLoggedIn()){
 			   $menu['post'] = $params['post'];	 
 	           echo ossn_call_hook('wall', 'post:menu', $menu); 
             }
