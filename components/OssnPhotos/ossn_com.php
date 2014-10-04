@@ -420,7 +420,9 @@ function ossn_profile_photos_page($hook, $type, $return, $params){
 * @access private;
 */
 function ossn_profile_photo_menu($hook, $type, $return, $params){
-   return ossn_view('components/OssnPhotos/views/profilephoto/menu', $params);	
+   if($params->owner_guid == ossn_loggedin_user()->guid || ossn_isAdminLoggedin()){
+       return ossn_view('components/OssnPhotos/views/profilephoto/menu', $params);	
+   }
 }
 /**
 * Show a leftside menu on album photo view
@@ -429,7 +431,10 @@ function ossn_profile_photo_menu($hook, $type, $return, $params){
 * @access private;
 */
 function ossn_album_photo_menu($hook, $type, $return, $params){
-   return ossn_view('components/OssnPhotos/views/albumphoto/menu', $params);	
+   $album = ossn_albums()->getAlbum($params->owner_guid);
+   if($album->album->owner_guid == ossn_loggedin_user()->guid || ossn_isAdminLoggedin()){
+     return ossn_view('components/OssnPhotos/views/albumphoto/menu', $params);	
+   }
 }
 /**
 * Delete photos like
