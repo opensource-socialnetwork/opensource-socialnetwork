@@ -21,7 +21,7 @@
 }
 .ossn-profile-sidebar {
  float: right;
- margin-top: -317px;
+ margin-top: -345px;
 }
 .ossn-profile .profile-photo {
  background-color: #fff;
@@ -218,3 +218,6 @@ text-decoration:underline;
 .ossn-profile-extra-menu li:hover a{ 
   color:#fff;
  }
+.ossn-profile-tn {
+  margin-top:0px !important;
+}
