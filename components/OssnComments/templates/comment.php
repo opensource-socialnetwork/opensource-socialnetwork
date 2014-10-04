@@ -48,13 +48,16 @@ if($likes_total > 0){
 				  ?>
                   </p>
                   <div class="comment-metadata"> <?php echo ossn_user_friendly_time($comment->time_created);?> 
-                    <?php if(!$OssnLikes->isLiked($comment->id, ossn_loggedin_user()->guid, $type)){ ?>
+               <?php if(ossn_isLoggedIn()){  ?>        
+					<?php if(!$OssnLikes->isLiked($comment->id, ossn_loggedin_user()->guid, $type)){ ?>
                      <a class="ossn-like-comment" href="<?php echo ossn_site_url();?>action/annotation/like?annotation=<?php echo $comment->id;?>">
 					 <?php echo ossn_print('like');?></a> 
                     <?php } else { ?>
                      <a class="ossn-like-comment" href="<?php echo ossn_site_url();?>action/annotation/unlike?annotation=<?php echo $comment->id;?>">
                      <?php echo ossn_print('unlike');?></a>    
                      <?php } ?>
+                     
+                 <?php } /* Likes only for loggedin users*/?>     
                    <a href="javascript::;" class="ossn-total-likes-<?php echo $comment->id;?>" data-likes='<?php echo $datalikes;?>'><?php echo $likes_total;?></a>                        
                   </div>
              </div>
