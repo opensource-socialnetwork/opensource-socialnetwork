@@ -14,9 +14,12 @@ $OssnComments = new OssnComments;
 $object= $params->guid;
 $count = $OssnLikes->CountLikes($object);
 ?>
+   <?php if(ossn_isLoggedIn()){  ?>
+
     <div class="like_share comments-like-comment-links">
     <div id="ossn-like-<?php echo $object;?>" class="button-container"> 
-    <?php if(!$OssnLikes->isLiked($object, ossn_loggedin_user()->guid)){
+    <?php
+	if(!$OssnLikes->isLiked($object, ossn_loggedin_user()->guid)){
 		 $link['onclick'] = "Ossn.PostLike({$object});";
 		 $link['href'] = 'javascript::;';
 		 $link['text'] = ossn_print('ossn:like');
@@ -28,14 +31,18 @@ $count = $OssnLikes->CountLikes($object);
 		 $link['href'] = 'javascript::;';
 		 $link['text'] = ossn_print('ossn:unlike');
 		 echo ossn_view('system/templates/link', $link);
-	 
-        } ?>  
-    </div>   
-     <span class="dot-comments">.</span> <a href="#comment-box-<?php echo $object;?>">Comment</a>
+        } 
+	  ?>  
+     </div>   
+     <span class="dot-comments">.</span>      
+     <a href="#comment-box-<?php echo $object;?>">Comment</a>
      <?php if($OssnComments->countComments($object) > 5 ){ ?>
      <span class="dot-comments">.</span> <a href="<?php echo ossn_site_url("post/view/{$object}");?>">View all comments</a>
      <?php } ?>
      </div>
+     
+ <?php } /* Likes and comments don't show for nonlogged in users */?>
+    
    <?php if($OssnLikes->CountLikes($object)){ ?> 
     <div class="like_share">
            <div class="ossn-like-icon"></div>
