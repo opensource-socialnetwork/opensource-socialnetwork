@@ -66,7 +66,7 @@ margin-top: -9px;
 color:#9B9B9B;
 }
 .comments-item {
-margin-bottom: -11px;
+margin-bottom: -5px;
 }
 
 .comments-likes .like_share .button-container,
