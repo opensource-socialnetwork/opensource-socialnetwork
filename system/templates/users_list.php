@@ -21,6 +21,7 @@ foreach($users as $user){ ?>
  <div class="uinfo">
     <a class="userlink" href="<?php echo ossn_site_url();?>u/<?php echo $user->username;?>"><?php echo $user->fullname;?></a>
  </div>
+ <?php if(ossn_isLoggedIn()){ ?>
     <?php if(ossn_loggedin_user()->guid !== $user->guid){ 
 			         if(!ossn_user_is_friend(ossn_loggedin_user()->guid ,$user->guid)){   
                    if(ossn_user()->requestExists(ossn_loggedin_user()->guid, $user->guid)){ ?>
@@ -39,7 +40,8 @@ foreach($users as $user){ ?>
                     </a>   
                        <?php }
 					   
-	}?>
+	}
+}?>
     </div>
 
 
