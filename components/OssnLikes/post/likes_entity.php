@@ -14,6 +14,7 @@ $OssnComments = new OssnComments;
 $object= $params['entity_guid'];
 $count = $OssnLikes->CountLikes($object, 'entity');
 ?>
+   <?php if(ossn_isLoggedIn()){  ?>
     <div class="like_share  comments-like-comment-links">
     <div id="ossn-like-<?php echo $object;?>" class="button-container">
     <?php if(!$OssnLikes->isLiked($object, ossn_loggedin_user()->guid, 'entity')){
@@ -36,6 +37,8 @@ $count = $OssnLikes->CountLikes($object, 'entity');
      <span class="dot-comments">.</span> <a href="#">View all comments</a>
      <?php } ?>
      </div>
+ <?php } /* Likes and comments don't show for nonlogged in users */?>
+     
    <?php if($OssnLikes->CountLikes($object, 'entity')){ ?> 
     <div class="like_share">
             <div class="ossn-like-icon"></div>      
