@@ -26,6 +26,7 @@ if(is_object($comments)){
      }
      echo '</div>';
 }
+if(ossn_isLoggedIn()){ 
 echo  '<div class="poster-image">';
 echo '<img src="'.ossn_site_url().'avatar/'.ossn_loggedin_user()->username.'/smaller" />';
 echo   '</div>';
@@ -40,3 +41,4 @@ echo ossn_view_form('entity/comment_add', array(
 							    ), false);
 
 
+}
