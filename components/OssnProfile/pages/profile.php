@@ -16,9 +16,13 @@ $coverp = $cover->coverParameters($user->guid);
 
 $cover_top = $coverp[0];
 $cover_left = $coverp[1];
-
+if(ossn_isLoggedIn()){
+  $class = 'ossn-profile';	
+} else {
+  $class = 'ossn-profile ossn-profile-tn';	
+}
 ?>
-<div class="ossn-profile">
+<div class="<?php echo  $class;?>">
 <div class="top-container">        
         <div id="container" class="profile-cover" style="overflow:hidden;">
             <?php if(ossn_loggedin_user()->guid == $user->guid){ ?>  
@@ -51,7 +55,7 @@ $cover_left = $coverp[1];
           </form>
           </div>
           <?php }
-		  if(get_profile_photo_guid($user->guid)){
+		  if(ossn_isLoggedIn() && get_profile_photo_guid($user->guid)){
 			 $viewer =  'onclick="Ossn.Viewer(\'photos/viewer?user='.$user->username.'\');"';  
 		  }?>
           <img src="<?php echo $user->iconURL()->larger;?>" height="170" width="170" <?php echo $viewer;?> />
@@ -62,7 +66,9 @@ $cover_left = $coverp[1];
        </div>
 
           <div id="profile-menu" class="profile-menu">
-          <?php if(ossn_loggedin_user()->guid == $user->guid){ ?>    
+          <?php 
+		  if(ossn_isLoggedIn()){ 
+		      if(ossn_loggedin_user()->guid == $user->guid){ ?>    
              <a href="<?php echo $user->profileURL('/edit');?>" class='button-grey'><?php echo ossn_print('update:info'); ?></a>
             <?php } ?>
             <?php if(ossn_loggedin_user()->guid !== $user->guid){ 
@@ -90,7 +96,8 @@ $cover_left = $coverp[1];
                 <div class="ossn-profile-extra-menu">
                   <?php echo ossn_view_menu('profile_extramenu', 'components/OssnProfile/menus/extra'); ?>
                </div>
-            <?php } ?>   
+            <?php } 
+		  }?>   
           </div>
            <div id="cover-menu" class="profile-menu">
             <a href="javascript::;" onclick="Ossn.repositionCOVER();" class='button-grey'><?php echo ossn_print('save:position');?></a>
