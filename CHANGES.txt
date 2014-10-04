@@ -1,3 +1,15 @@
+OSSN - OPEN SOURCE SOCIAL NETWORK 1.6-dev
+
+Bugfixes:
+
+* Don't let logged out users to comment.
+* Don't let logged out users to like anything.
+* Fix the margin top of profile cover when logged out.
+* Don't show photo viewer when logged out
+* Hide add friend, message and other menu from profile when user is logged out.
+* Fix major style issues.
+
+
 OSSN - OPEN SOURCE SOCIAL NETWORK 1.5
 
 Bugfixes:
