@@ -9,7 +9,8 @@ Bugfixes:
 * Hide add friend, message and other menu from profile when user is logged out.
 * Fix major style issues.
 * Hide photos delete form non loggedin users.
-* only allow admin and owners to see delete photo link.
+* Only allow admin and owners to see delete photo link.
+* Only upload comment images when user is loggedin.
 
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 1.5
