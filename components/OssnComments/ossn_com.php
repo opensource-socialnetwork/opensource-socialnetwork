@@ -121,7 +121,7 @@ function ossn_comment_page($pages){
 		break;
 		case 'attachment':
 		header('Content-Type: application/json');
-		if(isset($_FILES['file']['tmp_name'])){
+		if(isset($_FILES['file']['tmp_name']) && ossn_isLoggedin()){
              $file = $_FILES['file']['tmp_name'];
              $unique = time().'-'.substr(md5(time()), 0, 6).'.jpg';
              $newfile = ossn_get_userdata("tmp/photos/{$unique}");
