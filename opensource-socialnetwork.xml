@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <opensource_socialnework xmlns="http:/opensource-socialnetwork.com/v/1.0">
-	<version>1.6-dev</version>
-	<release>1412353569</release>
-	<licence>GPL V2</licence>
-	<author_url>http://www.opensource-socialnetwork.org</author_url>
-	<copyright>(C) 2014 Informatikon Technologies. All rights reserved</copyright>
+    <version>1.6-dev</version>
+    <release>1412353569</release>
+    <licence>GPL V2</licence>
+    <author_url>http://www.opensource-socialnetwork.org</author_url>
+    <copyright>(C) 2014 Informatikon Technologies. All rights reserved</copyright>
 </opensource_socialnework>

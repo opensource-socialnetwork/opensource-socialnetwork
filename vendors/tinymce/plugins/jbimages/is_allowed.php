@@ -11,11 +11,11 @@
  *
  * Version: 2.3 released 23/06/2013
  */
- 
- 
+
+
 /*-------------------------------------------------------------------
 |
-| IMPORTANT NOTE! In case, when TinyMCE’s folder is not protected with HTTP Authorisation,
+| IMPORTANT NOTE! In case, when TinyMCEï¿½s folder is not protected with HTTP Authorisation,
 | you should require is_allowed() function to return 
 | `TRUE` if user is authorised,
 | `FALSE` - otherwise
@@ -24,9 +24,8 @@
 | 
 -------------------------------------------------------------------*/
 
-function is_allowed()
-{
-	return TRUE;
+function is_allowed() {
+    return TRUE;
 }
 
 ?>

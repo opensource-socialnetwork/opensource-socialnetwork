@@ -1,12 +1,12 @@
 <?php
-	
-require_once(dirname(dirname(dirname(dirname(dirname(__FILE__))))).'/system/start.php');
+
+require_once(dirname(dirname(dirname(dirname(dirname(__FILE__))))) . '/system/start.php');
 $user = loggedin_default_identity();
-$config['img_path'] = fud_site_url()."/article/image/{$user['identity_id']}"; // Relative to domain name
+$config['img_path'] = fud_site_url() . "/article/image/{$user['identity_id']}"; // Relative to domain name
 
 $config['upload_path'] = fud_get_userdata("article/images/{$user['identity_id']}/"); // Physical path. [Usually works fine like this]
-if(!is_dir($config['upload_path'])){
-	mkdir($config['upload_path'], 0755, true);
+if (!is_dir($config['upload_path'])) {
+    mkdir($config['upload_path'], 0755, true);
 }
 /*-------------------------------------------------------------------
 | 
@@ -16,7 +16,7 @@ if(!is_dir($config['upload_path'])){
 | 
 | -------------------------------------------------------------------*/
 
-	
+
 $config['allowed_types'] = 'gif|jpg|png';
 
 
@@ -29,8 +29,8 @@ $config['allowed_types'] = 'gif|jpg|png';
 | 
 | -------------------------------------------------------------------*/
 
-	
-	$config['max_size'] = 0;
+
+$config['max_size'] = 0;
 
 
 /*-------------------------------------------------------------------
@@ -41,8 +41,8 @@ $config['allowed_types'] = 'gif|jpg|png';
 | 
 | -------------------------------------------------------------------*/
 
-	
-	$config['max_width'] = 0;
+
+$config['max_width'] = 0;
 
 
 /*-------------------------------------------------------------------
@@ -53,8 +53,8 @@ $config['allowed_types'] = 'gif|jpg|png';
 | 
 | -------------------------------------------------------------------*/
 
-	
-	$config['max_height'] = 0;
+
+$config['max_height'] = 0;
 
 
 /*-------------------------------------------------------------------
@@ -67,8 +67,8 @@ $config['allowed_types'] = 'gif|jpg|png';
 | 
 | -------------------------------------------------------------------*/
 
-	
-	$config['allow_resize'] = TRUE;
+
+$config['allow_resize'] = TRUE;
 
 
 /*-------------------------------------------------------------------
@@ -81,8 +81,8 @@ $config['allowed_types'] = 'gif|jpg|png';
 | 
 | -------------------------------------------------------------------*/
 
-	
-	$config['encrypt_name'] = TRUE;
+
+$config['encrypt_name'] = TRUE;
 
 
 /*-------------------------------------------------------------------
@@ -94,18 +94,15 @@ $config['allowed_types'] = 'gif|jpg|png';
 | -------------------------------------------------------------------*/
 
 
-	$config['overwrite'] = FALSE;
-	
-	
+$config['overwrite'] = FALSE;
+
+
 /*-------------------------------------------------------------------
 | 
 | Target upload folder relative to document root. Most likely, you will not need to change this setting.
 | 
 | -------------------------------------------------------------------*/
 
-	
-	
-	
 
 /*-------------------------------------------------------------------
 | 

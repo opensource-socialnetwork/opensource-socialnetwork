@@ -1,33 +1,33 @@
 <?php
 /**
- * 	OpenSource-SocialNetwork
+ *    OpenSource-SocialNetwork
  *
  * @package   (Informatikon.com).ossn
  * @author    OSSN Core Team <info@opensource-socialnetwork.com>
  * @copyright 2014 iNFORMATIKON TECHNOLOGIES
- * @license   General Public Licence http://opensource-socialnetwork.com/licence 
+ * @license   General Public Licence http://opensource-socialnetwork.com/licence
  * @link      http://www.opensource-socialnetwork.com/licence
  */
 echo '<div class="ossn-admin-menu-topbar">';
 echo '<ul>';
-	foreach($params['menu'] as $key => $links){
-	    if(count($links) > 1){
-			 $menu_parent = '<a href="#"><li>'.ossn_print($key).'</a><ul>';
-             unset($links['Configure']);
-		   foreach($links as $text => $link){
-			 $menu_parent.= '<a href="'.$link.'"><li>'.ossn_print($text).'</li></a>';
-		    }
-		   $menu_parent.= '</ul></li>';
-		  echo $menu_parent;
-		} else {
+foreach ($params['menu'] as $key => $links) {
+    if (count($links) > 1) {
+        $menu_parent = '<a href="#"><li>' . ossn_print($key) . '</a><ul>';
+        unset($links['Configure']);
+        foreach ($links as $text => $link) {
+            $menu_parent .= '<a href="' . $link . '"><li>' . ossn_print($text) . '</li></a>';
+        }
+        $menu_parent .= '</ul></li>';
+        echo $menu_parent;
+    } else {
 
-         foreach($links as $text => $link){
-			 $menu = '<a href="'.$link.'"><li>'.ossn_print($text).'</li></a>';
-		   }
-		   echo $menu;
-		}
-	}
+        foreach ($links as $text => $link) {
+            $menu = '<a href="' . $link . '"><li>' . ossn_print($text) . '</li></a>';
+        }
+        echo $menu;
+    }
+}
 
-echo '<a href="'.ossn_site_url("action/admin/logout").'"><li class="right">'.ossn_print('admin:logout').'</li></a>';
+echo '<a href="' . ossn_site_url("action/admin/logout") . '"><li class="right">' . ossn_print('admin:logout') . '</li></a>';
 echo '</ul>';
 echo '</div>';

@@ -1,12 +1,12 @@
 <?php
 /**
- * 	OpenSource-SocialNetwork
+ *    OpenSource-SocialNetwork
  *
  * @package   (Informatikon.com).ossn
  * @author    OSSN Core Team <info@opensource-socialnetwork.com>
  * @copyright 2014 iNFORMATIKON TECHNOLOGIES
- * @license   General Public Licence http://opensource-socialnetwork.com/licence 
+ * @license   General Public Licence http://opensource-socialnetwork.com/licence
  * @link      http://www.opensource-socialnetwork.com/licence
  */
-require_once(dirname(dirname(__FILE__)).'/start.php');
+require_once(dirname(dirname(__FILE__)) . '/start.php');
 ossn_action(input('action'));

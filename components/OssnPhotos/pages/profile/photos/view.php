@@ -1,49 +1,49 @@
 <?php
 /**
- * 	OpenSource-SocialNetwork
+ *    OpenSource-SocialNetwork
  *
  * @package   (Informatikon.com).ossn
  * @author    OSSN Core Team <info@opensource-socialnetwork.com>
  * @copyright 2014 iNFORMATIKON TECHNOLOGIES
- * @license   General Public Licence http://opensource-socialnetwork.com/licence 
+ * @license   General Public Licence http://opensource-socialnetwork.com/licence
  * @link      http://www.opensource-socialnetwork.com/licence
  */
 $image = $params['entity'];
 $img = str_replace('profile/photo/', '', $image->value);
 ?>
 <div class="ossn-photo-view">
-   <h2> <?php echo $name;?></h2>
-    <a href="<?php echo ossn_site_url("album/profile/{$image->owner_guid}");?>"> <?php echo ossn_print('back:to:album');?>  </a>
-    <br />
-   <table border="0" class="ossn-photo-viewer">
-  <tr>
-    <td class="image-block" style="text-align: center;width:465px;min-height:200px;">  
-    <img src="<?php echo ossn_site_url("album/getphoto/").$image->owner_guid;?>/<?php echo $img;?>?type=1"  />
-</td>
-  </tr>
-</table>
+    <a href="<?php echo ossn_site_url("album/profile/{$image->owner_guid}"); ?>"> <?php echo ossn_print('back:to:album'); ?>  </a>
+    <br/>
+    <table border="0" class="ossn-photo-viewer">
+        <tr>
+            <td class="image-block" style="text-align: center;width:465px;min-height:200px;">
+                <img
+                    src="<?php echo ossn_site_url("album/getphoto/") . $image->owner_guid; ?>/<?php echo $img; ?>?type=1"/>
+            </td>
+        </tr>
+    </table>
 
 </div>
-<br />
-<br />
+<br/>
+<br/>
 <div class="comments-likes ossn-photos-comments" style="width:525px;">
     <?php
-	 if(ossn_is_hook('post', 'likes:entity')){
-	  $entity['entity_guid'] = $params['photo'];
-	  echo ossn_call_hook('post', 'likes:entity', $entity); 
-     }
-	?>   
-     <?php 
-    if(ossn_is_hook('post', 'comments:entity')){
-	  $entity['entity_guid'] = $params['photo'];
-	 echo ossn_call_hook('post', 'comments:entity', $entity); 
-     }
-	?>
+    if (ossn_is_hook('post', 'likes:entity')) {
+        $entity['entity_guid'] = $params['photo'];
+        echo ossn_call_hook('post', 'likes:entity', $entity);
+    }
+    ?>
+    <?php
+    if (ossn_is_hook('post', 'comments:entity')) {
+        $entity['entity_guid'] = $params['photo'];
+        echo ossn_call_hook('post', 'comments:entity', $entity);
+    }
+    ?>
 </div>
 <div class="ossn-photo-view-controls">
-<?php
-	 if(ossn_is_hook('photo:view', 'profile:controls')){
-	  echo ossn_call_hook('photo:view', 'profile:controls', $image); 
-     }
-?>
+    <?php
+    if (ossn_is_hook('photo:view', 'profile:controls')) {
+        echo ossn_call_hook('photo:view', 'profile:controls', $image);
+    }
+    ?>
 </div>

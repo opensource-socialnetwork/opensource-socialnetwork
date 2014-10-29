@@ -1,47 +1,56 @@
 <?php
 /**
- * 	OpenSource-SocialNetwork
+ *    OpenSource-SocialNetwork
  *
  * @package   (Informatikon.com).ossn
  * @author    OSSN Core Team <info@opensource-socialnetwork.com>
  * @copyright 2014 iNFORMATIKON TECHNOLOGIES
- * @license   General Public Licence http://opensource-socialnetwork.com/licence 
+ * @license   General Public Licence http://opensource-socialnetwork.com/licence
  * @link      http://www.opensource-socialnetwork.com/licence
  */
 $users = $params['users'];
-if(!isset($params['icon_size'])){
- $avatar_size = 'large';	
+if (!isset($params['icon_size'])) {
+    $avatar_size = 'large';
 } else {
-  $avatar_size = $params['icon_size'];	
+    $avatar_size = $params['icon_size'];
 }
-foreach($users as $user){ ?>
+foreach ($users as $user) {
+    ?>
 
-<div class="ossn-list-users">
-  <img src="<?php echo ossn_site_url("avatar/{$user->username}/{$avatar_size}");?>" />
- <div class="uinfo">
-    <a class="userlink" href="<?php echo ossn_site_url();?>u/<?php echo $user->username;?>"><?php echo $user->fullname;?></a>
- </div>
- <?php if(ossn_isLoggedIn()){ ?>
-    <?php if(ossn_loggedin_user()->guid !== $user->guid){ 
-			         if(!ossn_user_is_friend(ossn_loggedin_user()->guid ,$user->guid)){   
-                   if(ossn_user()->requestExists(ossn_loggedin_user()->guid, $user->guid)){ ?>
-                   <a href="<?php echo ossn_site_url();?>action/friend/remove?cancel=true&user=<?php echo $user->guid;?>" class='button-grey friendlink'>
-                       <?php echo ossn_print('cancel:request');?>
-                    </a>   
-                        <?php } else { ?>
-                   <a href="<?php echo ossn_site_url();?>action/friend/add?user=<?php echo $user->guid;?>" class='button-grey friendlink'>
-                   <?php echo ossn_print('add:friend');?>
-                   </a> 
-                      <?php
-						}
-					   } else { ?>
-                  <a href="<?php echo ossn_site_url();?>action/friend/remove?user=<?php echo $user->guid;?>" class='button-grey friendlink'>
-                       <?php echo ossn_print('remove:friend');?>
-                    </a>   
-                       <?php }
-					   
-	}
-}?>
+    <div class="ossn-list-users">
+        <img src="<?php echo ossn_site_url("avatar/{$user->username}/{$avatar_size}"); ?>"/>
+
+        <div class="uinfo">
+            <a class="userlink"
+               href="<?php echo ossn_site_url(); ?>u/<?php echo $user->username; ?>"><?php echo $user->fullname; ?></a>
+        </div>
+        <?php if (ossn_isLoggedIn()) { ?>
+            <?php if (ossn_loggedin_user()->guid !== $user->guid) {
+                if (!ossn_user_is_friend(ossn_loggedin_user()->guid, $user->guid)) {
+                    if (ossn_user()->requestExists(ossn_loggedin_user()->guid, $user->guid)) {
+                        ?>
+                        <a href="<?php echo ossn_site_url(); ?>action/friend/remove?cancel=true&user=<?php echo $user->guid; ?>"
+                           class='button-grey friendlink'>
+                            <?php echo ossn_print('cancel:request'); ?>
+                        </a>
+                    <?php } else { ?>
+                        <a href="<?php echo ossn_site_url(); ?>action/friend/add?user=<?php echo $user->guid; ?>"
+                           class='button-grey friendlink'>
+                            <?php echo ossn_print('add:friend'); ?>
+                        </a>
+                    <?php
+                    }
+                } else {
+                    ?>
+                    <a href="<?php echo ossn_site_url(); ?>action/friend/remove?user=<?php echo $user->guid; ?>"
+                       class='button-grey friendlink'>
+                        <?php echo ossn_print('remove:friend'); ?>
+                    </a>
+                <?php
+                }
+
+            }
+        }?>
     </div>
 
 

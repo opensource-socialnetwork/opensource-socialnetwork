@@ -11,6 +11,6 @@
  * Version: 2.3 released 23/06/2013
  */
 
- tinyMCE.addI18n('en.jbimages',{
-	desc : 'Upload an image'
+tinyMCE.addI18n('en.jbimages', {
+    desc: 'Upload an image'
 });

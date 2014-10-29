@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <theme xmlns="http:/opensource-socialnetwork.theme/v/1.0">
     <theme_name>Black Theme</theme_name>
-	<theme_author>Core Team</theme_author>
-	<theme_description>Default Theme for OpenSource SocialNetwork.</theme_description>
-	<theme_license>GPL V2</theme_license>
-	<theme_licence_url></theme_licence_url>
-	<theme_version>1.0</theme_version>
+    <theme_author>Core Team</theme_author>
+    <theme_description>Default Theme for OpenSource SocialNetwork.</theme_description>
+    <theme_license>GPL V2</theme_license>
+    <theme_licence_url></theme_licence_url>
+    <theme_version>1.0</theme_version>
 </theme>

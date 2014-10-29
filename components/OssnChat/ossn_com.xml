@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component xmlns="http:/opensource-socialnetwork.org/v/1.0">
     <com_name>OssnChat</com_name>
-	<com_author>Core Team</com_author>
-	<com_description>Allow users to chat with each other.</com_description>
-	<com_license>GPL V2</com_license>
-	<com_licence_url>http://www.opensource-socialnetwork.org/licence
-</com_licence_url>
-	<com_version>1.0</com_version>
+    <com_author>Core Team</com_author>
+    <com_description>Allow users to chat with each other.</com_description>
+    <com_license>GPL V2</com_license>
+    <com_licence_url>http://www.opensource-socialnetwork.org/licence
+    </com_licence_url>
+    <com_version>1.0</com_version>
 </component>

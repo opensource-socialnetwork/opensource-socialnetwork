@@ -1,16 +1,16 @@
 <?php
 /**
- * 	OpenSource-SocialNetwork
+ *    OpenSource-SocialNetwork
  *
  * @package   (Informatikon.com).ossn
  * @author    OSSN Core Team <info@opensource-socialnetwork.com>
  * @copyright 2014 iNFORMATIKON TECHNOLOGIES
- * @license   General Public Licence http://opensource-socialnetwork.com/licence 
+ * @license   General Public Licence http://opensource-socialnetwork.com/licence
  * @link      http://www.opensource-socialnetwork.com/licence
  */
- 
- 
-require_once(dirname(dirname(dirname(__FILE__))).'/system/start.php');	 
+
+
+require_once(dirname(dirname(dirname(__FILE__))) . '/system/start.php');
 
 $user['username'] = input('username');
 $user['firstname'] = input('firstname');
@@ -24,16 +24,16 @@ $user['bdd'] = input('birthday');
 $user['bdm'] = input('birthm');
 $user['bdy'] = input('birthy');
 
-foreach($user as $field => $value){
-     if(empty($value)){
-		ossn_installation_message(ossn_print('fields:require'), 'fail');
-	    redirect(REF);
-	 }
+foreach ($user as $field => $value) {
+    if (empty($value)) {
+        ossn_installation_message(ossn_print('fields:require'), 'fail');
+        redirect(REF);
+    }
 }
 
-if($user['reemail'] !== $user['email']){
-	 ossn_installation_message(ossn_print('emai:match:error'), 'fail');	
-	 redirect(REF);
+if ($user['reemail'] !== $user['email']) {
+    ossn_installation_message(ossn_print('emai:match:error'), 'fail');
+    redirect(REF);
 }
 
 
@@ -50,20 +50,19 @@ $add->birthdate = $user['birthdate'];
 $add->sendactiviation = false;
 $add->usertype = 'admin';
 
-if(!$add->isUsername($user['username'])){
-     ossn_installation_message(ossn_print('username:error'), 'fail');
-	 redirect(REF);
+if (!$add->isUsername($user['username'])) {
+    ossn_installation_message(ossn_print('username:error'), 'fail');
+    redirect(REF);
 }
-if(!$add->isPassword()){
-	ossn_installation_message(ossn_print('password:error'), 'fail');
-	 redirect(REF);
+if (!$add->isPassword()) {
+    ossn_installation_message(ossn_print('password:error'), 'fail');
+    redirect(REF);
 }
- 
-if($add->addUser()){
-	 ossn_installation_message(ossn_print('account:created'), 'success');
-	 redirect('installation?page=installed');
-} 
-else {
-	 ossn_installation_message(ossn_print('account:create:error:admin'),'fail');
-	 redirect(REF);
+
+if ($add->addUser()) {
+    ossn_installation_message(ossn_print('account:created'), 'success');
+    redirect('installation?page=installed');
+} else {
+    ossn_installation_message(ossn_print('account:create:error:admin'), 'fail');
+    redirect(REF);
 }

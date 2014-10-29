@@ -1,17 +1,17 @@
 <?php
 /**
- * 	OpenSource-SocialNetwork
+ *    OpenSource-SocialNetwork
  *
  * @package   (Informatikon.com).ossn
  * @author    OSSN Core Team <info@opensource-socialnetwork.com>
  * @copyright 2014 iNFORMATIKON TECHNOLOGIES
- * @license   General Public Licence http://opensource-socialnetwork.com/licence 
+ * @license   General Public Licence http://opensource-socialnetwork.com/licence
  * @link      http://www.opensource-socialnetwork.com/licence
  */
- 
+
 $enable = new OssnComponents;
 $com = input('com');
-if($enable->DISABLE($com)){
-    ossn_trigger_message(ossn_print('com:disabled'), 'error', 'admin');	 
- 	redirect(REF);	
+if ($enable->DISABLE($com)) {
+    ossn_trigger_message(ossn_print('com:disabled'), 'error', 'admin');
+    redirect(REF);
 }

@@ -11,6 +11,6 @@
  * Version: 2.3 released 23/06/2013
  */
 
-tinyMCE.addI18n('fr.jbimages',{
-	desc : 'T\u00E9l\u00E9charger une image'
+tinyMCE.addI18n('fr.jbimages', {
+    desc: 'T\u00E9l\u00E9charger une image'
 });

@@ -1,11 +1,11 @@
 <?php
 /**
- * 	OpenSource-SocialNetwork
+ *    OpenSource-SocialNetwork
  *
  * @package   (Informatikon.com).ossn
  * @author    OSSN Core Team <info@opensource-socialnetwork.com>
  * @copyright 2014 iNFORMATIKON TECHNOLOGIES
- * @license   General Public Licence http://opensource-socialnetwork.com/licence 
+ * @license   General Public Licence http://opensource-socialnetwork.com/licence
  * @link      http://www.opensource-socialnetwork.com/licence
  */
 $settings = new OssnDatabase;
@@ -15,11 +15,9 @@ $owneremail = input('owneremail');
 $sitelang = input('sitelang');
 $errors = input('errors');
 
-if(empty($sitename) 
-		 || empty($owneremail) 
-		 || empty($sitelang)
-		 || empty($errors)){
-	redirect(REF);
+if (empty($sitename) || empty($owneremail) || empty($sitelang) || empty($errors)
+) {
+    redirect(REF);
 }
 
 ossn_site_setting_update('site_name', $sitename, 2);
