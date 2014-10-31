@@ -100,7 +100,31 @@ class OssnAnnotation extends OssnEntities {
         $data = array_merge(get_object_vars($annotation), $entities);
         return arrayObject($data, get_class($this));
     }
-
+    /**
+     * Get annotations by annotation type
+     *
+     * @requires : $object->(annotation_id)
+     *
+     * @return annotation;
+     */	
+	public function getAnnotationsByType(){
+	    self::initAttributes();
+		$params['from'] = 'ossn_annotations';
+		$params['wheres'] = array("type='{$this->type}'");
+		$params['order_by'] = $this->order_by;
+ 		$annotations = $this->OssnDatabase->select($params, true);
+		unset($this->order_by);
+		foreach($annotations as $annotation){
+				$this->owner_guid = $annotation->id;
+		        $this->type = 'annotation';
+		        $this->entities = $this->get_entities();
+				foreach($this->entities as $entity){
+		          $entities[$entity->subtype] = $entity->value;
+		         }
+			$data[] = array_merge(get_object_vars($annotation), $entities);	 
+		}
+		return arrayObject($data, get_class($this));	
+	}
     /**
      * Delete annotations by subject guid
      *
