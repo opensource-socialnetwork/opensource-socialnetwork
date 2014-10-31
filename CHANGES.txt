@@ -13,6 +13,10 @@ Bugfixes:
 * Only upload comment images when user is loggedin.
 
 
+Api Changes:
+
+* Get Annotations by types Method added.
+
 OSSN - OPEN SOURCE SOCIAL NETWORK 1.5
 
 Bugfixes:
