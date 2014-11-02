@@ -235,14 +235,16 @@ class OssnObject extends OssnEntities {
      * @return bool;
      */
     public function deleteObject($object) {
-        if ($this->deleteByOwnerGuid($object, 'object')) {
+      //delete entites of (this) object
+      if ($this->deleteByOwnerGuid($object, 'object')) {
             $data = ossn_get_userdata("object/{$object}/");
             if (is_dir($data)) {
                 OssnFile::DeleteDir($data);
                 rmdir($data);
             }
-            $this->statement("DELETE FROM ossn_object WHERE(guid='{$object}')");
-            $this->execute();
+		}
+    	$this->statement("DELETE FROM ossn_object WHERE(guid='{$object}')");
+		if($this->execute()){
             return true;
         }
         return false;
