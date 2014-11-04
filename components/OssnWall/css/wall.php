@@ -342,7 +342,7 @@ color:#fff;
 }
 .ossn-wall-post-controls .menu-links a{
 color: #000;
-width: 172px;
+width: 185px;
 display: block;
 padding:8px;
 }
