@@ -28,13 +28,13 @@ Front-End Features
 * Repostion Profile/Group cover
 * Notifications
 * Friend Requests
+* Chat Bar
 
 
 Future Release Features
 ========================
 * Events Manager
 * Pages
-* Chat Bar
 
 Backend Features
 =================
