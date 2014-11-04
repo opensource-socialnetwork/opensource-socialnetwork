@@ -44,7 +44,7 @@ function ossn_js_page_handler($pages) {
             $user = input('user');
             if (!empty($user)) {
                 $user = ossn_user_by_guid($user);
-                OssnChat::setUserChatSession($user->guid);
+                OssnChat::setUserChatSession($user);
                 $friend['user'] = $user;
                 echo ossn_view('components/OssnChat/views/OssnChat/selectfriend', $friend);
             }
