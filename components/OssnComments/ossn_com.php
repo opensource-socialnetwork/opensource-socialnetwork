@@ -95,12 +95,15 @@ function ossn_comment_menu($name, $type, $params) {
             }
         }
     }
-    if ((ossn_loggedin_user()->guid == $params['owner_guid']) || ossn_isAdminLoggedin()) {
-        ossn_register_menu_link('delete', ossn_print('comment:delete'), array(
-            'href' => ossn_site_url("action/delete/comment?comment={$params['id']}"),
-            'class' => 'ossn-delete-comment',
-        ), 'comments');
-    }
+	$user = ossn_loggedin_user();
+	if(ossn_isLoggedin()){
+      if (($user->guid == $params['owner_guid']) || ossn_isAdminLoggedin()) {
+          ossn_register_menu_link('delete', ossn_print('comment:delete'), array(
+              'href' => ossn_site_url("action/delete/comment?comment={$params['id']}"),
+              'class' => 'ossn-delete-comment',
+          ), 'comments');
+      }
+	}
 }
 
 /**
