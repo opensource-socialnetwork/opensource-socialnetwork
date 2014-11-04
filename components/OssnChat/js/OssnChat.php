@@ -47,6 +47,7 @@ Ossn.ChatOpenTab = function($user){
            $tabitem.find('input[type="text"]').show();
            $('#ftab'+$user).removeClass('ossn-chat-tab-active');
            $tabitem.find('.ossn-chat-new-message').hide();
+           //$tabitem.find('.ossn-chat-new-message').html('');           
            Ossn.ChatScrollMove($user);
         }
 };
@@ -78,10 +79,11 @@ Ossn.ajaxRequest({
 			  form: '#ossn-chat-send-'+$user,
 			 
 			  beforeSend: function(request){
-					
+				   $('#ftab-i'+$user).find('.ossn-chat-message-sending').show();
 			  },
 			  callback: function(callback){
 				   if(callback['type'] == 1){
+                     $('#ftab-i'+$user).find('.ossn-chat-message-sending').hide();
                      $('#ftab-i'+$user).find('.data').append(callback['message']);
                      $('#ftab-i'+$user).find('input[name="message"]').val('');
                      Ossn.ChatScrollMove($user);
@@ -137,8 +139,9 @@ Ossn.ChatScrollMove = function(fid){
 };
 
 Ossn.ChatInsertSmile = function($code, $tab){
-    var ChatTab = $('#ftab-i'+$tab).find('input[name="message"]');
-   ChatTab.attr('value', ChatTab.val()+' '+$code);
+    var ChatTab = $('#ossn-chat-input-'+$tab);
+    var chatval = ChatTab.val();
+    ChatTab.val(chatval+' '+$code);
 };
 
 Ossn.ChatShowSmilies = function($tab){
