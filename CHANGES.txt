@@ -1,4 +1,4 @@
-OSSN - OPEN SOURCE SOCIAL NETWORK 1.6-dev
+OSSN - OPEN SOURCE SOCIAL NETWORK 1.6
 
 Bugfixes:
 
@@ -11,11 +11,15 @@ Bugfixes:
 * Hide photos delete form non loggedin users.
 * Only allow admin and owners to see delete photo link.
 * Only upload comment images when user is loggedin.
-
+* Inbox url is borken in messages page.
+* OssnChat boot bug fixes.
+* Cannot include similes in chat(second time).
+* Friends notification never remove counts even if you add friend
 
 Api Changes:
 
 * Get Annotations by types Method added.
+* Don't log errors to file if errors are off
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 1.5
 
