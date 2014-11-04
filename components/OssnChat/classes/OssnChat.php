@@ -17,12 +17,12 @@ class OssnChat extends OssnDatabase {
      *
      * @return void;
      */
-    public static function setUserChatSession($to) {
-        if ($to < 1) {
-            return false;
-        }
-        if (isset($_SESSION['ossn_chat_users']) && !in_array($to, $_SESSION['ossn_chat_users'])) {
-            $_SESSION['ossn_chat_users'][] = $to;
+    public static function setUserChatSession($user) {
+		if(!isset($_SESSION['ossn_chat_users'])){
+			$_SESSION['ossn_chat_users'] = array();
+		}
+        if (!in_array($user->guid, $_SESSION['ossn_chat_users']) && $user) {
+            $_SESSION['ossn_chat_users'][] = $user->guid;
         }
     }
 
@@ -241,7 +241,7 @@ class OssnChat extends OssnDatabase {
         $params['from'] = 'ossn_messages';
         $params['wheres'] = array(
             "message_from='{$from}' AND
-								   message_to='{$to}' AND viewed='{$viewed}'"
+			 message_to='{$to}' AND viewed='{$viewed}'"
         );
         return $this->select($params, true);
     }
@@ -257,7 +257,7 @@ class OssnChat extends OssnDatabase {
     public function countOnlineFriends($user, $intervals = 100) {
         $friends = $this->getOnlineFriends($user, $intervals);
         if ($friends) {
-            $online = get_object_vars();
+            $online = get_object_vars($friends);
             return count($online);
         }
         return false;
