@@ -14,7 +14,7 @@ if (isset($params['user']->guid)) {
         <div id="get-recent" style="display:none;"></div>
         <div class="messages-from">
             <div class="title">
-                <a href="#"><?php echo ossn_print('inbox'); ?>
+            <a href="<?php echo ossn_site_url();?>messages/all"><?php echo ossn_print('inbox'); ?>
                     (<?php echo OssnMessages()->countUNREAD(ossn_loggedin_user()->guid); ?>) </a>
             </div>
             <div class="inner">
@@ -36,8 +36,8 @@ if (isset($params['user']->guid)) {
                             $new = '';
                         }
                         ?>
-                        <div class="user-item <?php echo $new; ?>">
-
+                        <div class="user-item <?php echo $new; ?>"
+                                                      onclick="Ossn.redirect('messages/message/<?php echo $user->username; ?>');">
 
                             <div class="image"><img
                                     src="<?php echo ossn_site_url(); ?>avatar/<?php echo $user->username; ?>/small"/>
