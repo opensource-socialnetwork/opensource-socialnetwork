@@ -48,6 +48,7 @@ function ossn_messages_page($pages) {
                 if (empty($user->guid)) {
                     ossn_error_page();
                 }
+				$title = ossn_print('ossn:message:between', array($user->fullname));
                 $OssnMessages->markViewed($user->guid, ossn_loggedin_user()->guid);
                 $params['data'] = $OssnMessages->get(ossn_loggedin_user()->guid, $user->guid);
                 $params['user'] = $user;
@@ -96,11 +97,8 @@ function ossn_messages_page($pages) {
                     $params['message'] = $message;
                     echo ossn_view('components/OssnMessages/templates/message-send', $params);
                 }
-                $check = get_object_vars($messages);
-            }
-            if (!isset($check)) {
-                $OssnMessages->markViewed($guid, ossn_loggedin_user()->guid);
-                echo '<script>Ossn.playSound();</script>';
+               $OssnMessages->markViewed($guid, ossn_loggedin_user()->guid);
+               echo '<script>Ossn.playSound();</script>';
             }
             break;
 
