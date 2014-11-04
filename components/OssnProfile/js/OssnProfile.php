@@ -127,10 +127,12 @@ $("#upload-photo").submit(function (event) {
 });
 
 Ossn.repositionCOVER = function(){
+     var $pcover_top = $('.profile-cover-img').css('top');
+     var $pcover_left = $('.profile-cover-img').css('left');
      $.ajax({
 		async: true,
 		type: 'post',
-		data: '&top='+Ossn.ProfileCover_top+'&left='+Ossn.ProfileCover_left,
+		data: '&top='+$pcover_top+'&left='+$pcover_left ,
 		url: Ossn.site_url+"action/profile/cover/reposition",
 		success: function(callback){
 				$('#profile-menu').show();
