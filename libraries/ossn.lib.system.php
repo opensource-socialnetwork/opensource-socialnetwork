@@ -595,6 +595,7 @@ function ossn_errros() {
     if ($settings == 'on' || is_file(ossn_route()->www . 'DISPLAY_ERRORS')) {
         error_reporting(E_NOTICE ^ ~E_WARNING);
     } elseif ($settings == 'off') {
+		ini_set("log_errors", 0);
         ini_set('display_errors', 'off');
     }
 }
