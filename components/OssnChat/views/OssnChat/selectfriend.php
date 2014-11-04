@@ -81,8 +81,10 @@ if ($total > 0) {
          onclick="Ossn.ChatOpenTab(<?php echo $user->guid; ?>);">
         <script>Ossn.ChatSendForm(<?php echo $user->guid;?>);</script>
         <form autocomplete="off" id="ossn-chat-send-<?php echo $user->guid; ?>">
-            <input type="text" name="message" autocomplete="off"/>
-
+            <input type="text" name="message" autocomplete="off" id="ossn-chat-input-<?php echo $user->guid; ?>"/>
+            <div class="ossn-chat-message-sending">
+               <div class="ossn-chat-sending-icon"></div>
+            </div>
             <div class="ossn-chat-inline-table ossn-chat-icon-smile-set">
                 <div class="ossn-chat-inline-table ossn-chat-icon-smile"
                      onClick="Ossn.ChatShowSmilies(<?php echo $user->guid; ?>);" style="margin-top: 5px;"></div>
