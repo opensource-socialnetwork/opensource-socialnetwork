@@ -401,3 +401,18 @@ margin-top: -17px;
 #ossn-chat-sound {
 display:none;
 }
+.ossn-chat-message-sending {
+ position: absolute;
+ width: 218px;
+ height: 11px;
+ margin-top: -9px;
+ margin-left: -9px;
+ padding: 10px;
+ background: #fff;
+ display:none;
+}
+.ossn-chat-sending-icon{
+  background:url("<?php echo ossn_site_url();?>components/OssnChat/images/loading-small.gif") no-repeat;
+  width:16px;
+  height:11px;
+}
