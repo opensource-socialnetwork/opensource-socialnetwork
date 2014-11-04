@@ -183,7 +183,6 @@ Ossn.PostRequest({
 				$messages = $('#ossn-notif-messages');
 				$messages_count = $messages.find('.ossn-notification-container');
 								
-				if(callback['notifications']){
 				   	if(callback['notifications'] > 0){
                        $notification_count.html(callback['notifications']);
 					   $notification.find('.ossn-icon').addClass('ossn-icons-topbar-notifications-new');
@@ -195,9 +194,7 @@ Ossn.PostRequest({
 					   $notification.find('.ossn-icon').addClass('ossn-icons-topbar-notification');
 					   $notification_count.hide();       
                     }
-				} 
 				
-				if(callback['messages']){
 					if(callback['messages'] > 0){
   				      $messages_count.html(callback['messages']);
 					  $messages.find('.ossn-icon').addClass('ossn-icons-topbar-messages-new');
@@ -209,9 +206,7 @@ Ossn.PostRequest({
 					 $messages.find('.ossn-icon').addClass('ossn-icons-topbar-messages');			  
 					  $messages_count.hide();	
 					}
-				} 
 				
-				if(callback['friends']){
                   if(callback['friends'] > 0){
 				      $friends_count.html(callback['friends']);
 					  $friends.find('.ossn-icon').addClass('ossn-icons-topbar-friends-new');
@@ -223,8 +218,7 @@ Ossn.PostRequest({
 					  $friends.find('.ossn-icon').addClass('ossn-icons-topbar-friends');
 					  $friends_count.hide();                   
                    }
-				} 				
-}
+                }
 			  }); 	
 };
 Ossn.RegisterStartupFunction(function(){
