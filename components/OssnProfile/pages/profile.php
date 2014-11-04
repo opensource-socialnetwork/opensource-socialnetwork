@@ -44,7 +44,7 @@ if (ossn_isLoggedIn()) {
             $cover = ossn_site_url() . "cover/{$user->username}";
             ?>
             <img id="draggable" class="profile-cover-img" src="<?php echo $cover; ?>"
-                 style='position:relative;top:<?php echo $cover_top; ?>px;left:<?php echo $cover_left; ?>px;'
+                 style='position:relative;top:<?php echo $cover_top; ?>;left:<?php echo $cover_left; ?>;'
                 />
         </div>
         <div class="profile-photo">
