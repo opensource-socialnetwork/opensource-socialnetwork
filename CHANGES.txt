@@ -14,7 +14,9 @@ Bugfixes:
 * Inbox url is borken in messages page.
 * OssnChat boot bug fixes.
 * Cannot include similes in chat(second time).
-* Friends notification never remove counts even if you add friend
+* Friends notification never remove counts even if you add friend.
+* Fix profile cover postion issue.
+* Fix broken style for comment menu item
 
 Api Changes:
 
