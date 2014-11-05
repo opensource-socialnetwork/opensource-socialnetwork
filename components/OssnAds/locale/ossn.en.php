@@ -20,5 +20,9 @@ $en = array(
     'ad:browse' => 'Browse',
     'ad:clicks' => 'Clicks',
     'sponsored' => 'SPONSORED',
+	'ad:deleted' => "Ad with title '%s' sucessfully delete",
+	'ad:delete:fail' => 'Can not delete ad try again',
+	'ad:edited' => 'Ad successfully edited',
+	'ad:edit:fail' => 'Can not edit ad please try again',
 );
 ossn_register_languages('en', $en); 
