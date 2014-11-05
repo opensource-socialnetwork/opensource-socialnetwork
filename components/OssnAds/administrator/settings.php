@@ -19,6 +19,14 @@ switch ($settings) {
     case 'add':
         echo ossn_view('components/OssnAds/pages/add');
         break;
+    case 'edit':
+	    $id = input('id');
+		if(!empty($id)){
+			$ads = new OssnAds;
+			$params['entity'] = $ads->getAd($id);
+            echo ossn_view('components/OssnAds/pages/edit', $params);
+		}
+        break;		
     default:
         break;
 
