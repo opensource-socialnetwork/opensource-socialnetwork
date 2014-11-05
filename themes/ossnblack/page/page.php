@@ -27,6 +27,8 @@ if (isset($params['contents'])) {
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title><?php echo $title; ?></title>
 
+    <!-- Open Source Social Network (Ossn) http://opensource-socialnetwork.org/ by Informatikon Technologies http://informatikon.com -->
+
     <?php echo ossn_fetch_extend_views('ossn/site/head'); ?>
 
     <script>
@@ -126,8 +128,11 @@ if (isset($params['contents'])) {
 </div>
 <div class="ossn-footer">
     <div class="ossn-footer-inner">
-        <div class="ossn-footer-copyrights">&copy; <a
-                href="<?php echo ossn_site_url(); ?>"><?php echo $sitename; ?></a> <?php echo date('Y'); ?></div>
+        <div class="ossn-footer-copyrights">
+        &copy;  <a href="<?php echo ossn_site_url(); ?>"><?php echo $sitename; ?></a> 
+		          <?php echo date('Y'); ?> -
+                  <a href="http://www.opensource-socialnetwork.org/"><?php echo ossn_print('powered');?></a>        
+        </div>
         <div class="ossn-footer-menu">
             <?php echo ossn_view_menu('footer'); ?>
         </div>
