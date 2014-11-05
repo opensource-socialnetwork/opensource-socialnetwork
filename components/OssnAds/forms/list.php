@@ -16,7 +16,7 @@ $pagination->setItem($ads->getAds());
 <div class="top-controls">
     <a href="<?php echo ossn_site_url("administrator/component/OssnAds?settings=add"); ?>"
        class="ossn-admin-button button-green"><?php echo ossn_print('add'); ?></a>
-    <input type="submit" class="ossn-admin-button button-red" value="Delete"/>
+       <input type="submit" class="ossn-admin-button button-red" value="Delete"/>
 </div>
 <table class="table">
     <tbody>
@@ -34,7 +34,7 @@ $pagination->setItem($ads->getAds());
         foreach ($items as $ads) {
             ?>
             <tr>
-                <td><input type="checkbox"/></td>
+                <td><input type="checkbox" name="entites[]" value="<?php echo $ads->guid; ?>"/></td>
                 <td><?php echo $ads->title; ?></td>
                 <td><?php echo $ads->description; ?></td>
                 <td> 32</td>
