@@ -18,11 +18,15 @@ require_once(__OSSN_ADS__ . 'classes/OssnAds.php');
  */
 function ossn_ads() {
     ossn_register_com_panel('OssnAds', 'settings');
-    if (ossn_isLoggedin()) {
+    if (ossn_isAdminLoggedin()) {
         ossn_register_action('ossnads/add', __OSSN_ADS__ . 'actions/add.php');
+        ossn_register_action('ossnads/edit', __OSSN_ADS__ . 'actions/edit.php');
+        ossn_register_action('ossnads/delete', __OSSN_ADS__ . 'actions/delete.php');
     }
     ossn_register_page('ossnads', 'ossn_ads_handler');
+	
     ossn_extend_view('css/ossn.default', 'components/OssnAds/css/ads');
+	ossn_extend_view('css/ossn.admin.default', 'components/OssnAds/css/ads.admin');
 }
 
 /**
@@ -82,5 +86,24 @@ function ossn_ads_image_url($guid) {
     $image = md5($guid);
     return ossn_site_url("ossnads/photo/{$guid}/{$image}.jpg");
 }
-
+/**
+ * Get ad entity
+ *
+ * @params $guid ad guid
+ *
+ * @return object;
+ * @access public
+ */
+function get_ad_entity($guid){
+	if($guid < 1 || empty($guid)){
+		return false;
+	}
+	$resume = new OssnObject;
+	$resume->object_guid = $guid;
+	$resume = $resume->getObjectById();
+	if(isset($resume->guid)){
+		return arrayObject($resume, 'OssnAds');
+	}
+	return false;
+}
 ossn_register_callback('ossn', 'init', 'ossn_ads');
