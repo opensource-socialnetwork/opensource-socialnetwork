@@ -9,6 +9,6 @@
  * @link      http://www.opensource-socialnetwork.org/licence
  */
 echo ossn_view_form('list', array(
-        'action' => ossn_site_url() . 'ossnads/remove',
+        'action' => ossn_site_url() . 'action/ossnads/delete',
         'component' => 'OssnAds',
     ), false);
