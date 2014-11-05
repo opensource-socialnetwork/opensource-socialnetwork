@@ -24,6 +24,6 @@ if ($add->addNewAd($params)) {
     ossn_trigger_message(ossn_print('ad:created'), 'success', 'admin');
     redirect(REF);
 } else {
-    ossn_trigger_message(ossn_print('ad:create:fail'), 'success', 'admin');
+    ossn_trigger_message(ossn_print('ad:create:fail'), 'error', 'admin');
     redirect(REF);
 }
