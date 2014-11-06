@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component xmlns="http:/opensource-socialnetwork.org/v/1.0">
-    <com_name>OssnLikes</com_name>
+    <com_name>OssnComments</com_name>
     <com_author>Core Team</com_author>
-    <com_description>Allow users to like the posts.</com_description>
+    <com_description>Allow users to comments on the posts.</com_description>
     <com_license>GPL V2</com_license>
     <com_licence_url></com_licence_url>
     <com_version>1.0</com_version>
