@@ -5,6 +5,9 @@ Bugfixes:
 * Admin cannot edit ads.
 * Fix error messages type when adding ad.
 * Add missing components in core.
+* There is no image attach option in entity comments.
+* Comment not display if there is no other comments.
+* Notification count is not working.
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 1.6
 
