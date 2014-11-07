@@ -301,7 +301,10 @@ class OssnComponents extends OssnDatabase {
     public function bundledComponents() {
         return array_merge(array(
                 'OssnGroups',
-                'OssnSitePages'
+                'OssnSitePages',
+                'OssnChat',
+                'OssnPoke',
+                'OssnBlock'
             ), $this->requiredComponents());
     }
 
