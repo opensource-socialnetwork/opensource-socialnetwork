@@ -14,8 +14,8 @@ $OssnComments = new OssnComments;
 $OssnLikes = new OssnLikes;
 
 $comments = $OssnComments->GetComments($object, 'entity');
+echo "<div class='ossn-comments-list-{$object}'>";
 if (is_object($comments)) {
-    echo "<div class='ossn-comments-list-{$object}'>";
     $count = 0;
     foreach ($comments as $comment) {
         if ($count <= 5) {
@@ -24,8 +24,8 @@ if (is_object($comments)) {
         }
         $count++;
     }
-    echo '</div>';
 }
+echo '</div>';
 if (ossn_isLoggedIn()) {
     echo '<div class="poster-image">';
     echo '<img src="' . ossn_site_url() . 'avatar/' . ossn_loggedin_user()->username . '/smaller" />';
@@ -40,5 +40,12 @@ if (ossn_isLoggedIn()) {
         'params' => array('object' => $object)
     ), false);
 
-
+    echo '<div class="ossn-comment-attachment" id="comment-attachment-container-' . $object . '">';
+    echo '<script>Ossn.CommentImage(' . $object . ');</script>';
+    echo ossn_view_form('comment_image', array(
+        'id' => "ossn-comment-attachment-{$object}",
+        'component' => 'OssnComments',
+        'params' => array('object' => $object)
+    ), false);
+    echo '</div>';
 }
