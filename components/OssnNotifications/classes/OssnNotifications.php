@@ -204,7 +204,7 @@ class OssnNotifications extends OssnDatabase {
         $this->execute();
         $notifications = $this->fetch(true);
         if ($notifications) {
-            $count = count(get_object_vars());
+            $count = count(get_object_vars($notifications));
             if ($count > 0) {
                 return $count;
             }
