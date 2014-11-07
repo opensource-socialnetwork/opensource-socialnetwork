@@ -4,6 +4,7 @@ Bugfixes:
 * Admin cannot delete ads.
 * Admin cannot edit ads.
 * Fix error messages type when adding ad.
+* Add missing components in core.
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 1.6
 
