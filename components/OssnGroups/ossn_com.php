@@ -59,7 +59,8 @@ function ossn_groups() {
     ossn_register_callback('page', 'load:group', 'ossn_group_load_event');
     ossn_register_callback('page', 'load:profile', 'ossn_profile_load_event');
     ossn_register_callback('page', 'load:search', 'ossn_group_search_link');
-
+    ossn_register_callback('user', 'delete', 'ossn_user_groups_delete');
+	
     //group list in newsfeed sidebar mebu
     $groups_user = ossn_get_user_groups(ossn_loggedin_user());
     if ($groups_user) {
@@ -302,5 +303,13 @@ function group_requests_page($hook, $type, $return, $params) {
         echo ossn_set_page_layout('module', $mod);
     }
 }
-
+function ossn_user_groups_delete($callback, $type, $params){
+	$deleteGroup = new OssnGroup;
+	$groups = $deleteGroup->getUserGroups($params['entity']->guid);
+	if($groups){
+		foreach($groups as $group){
+			$deleteGroup->deleteGroup($group->guid);
+		}
+	}
+}
 ossn_register_callback('ossn', 'init', 'ossn_groups');
