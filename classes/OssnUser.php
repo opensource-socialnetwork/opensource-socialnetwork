@@ -90,6 +90,7 @@ class OssnUser extends OssnEntities {
      */
     public function initAttributes() {
         $this->OssnDatabase = new OssnDatabase;
+		$this->OssnAnnotation = new OssnAnnotation;
         $this->notify = new OssnMail;
         if (!isset($this->sendactiviation)) {
             $this->sendactiviation = false;
@@ -575,4 +576,39 @@ class OssnUser extends OssnEntities {
         }
         return false;
     }
+    /**
+     * Delete user from syste,
+     *
+     * @return bool;
+     */	
+	 public function deleteUser(){
+		self::initAttributes(); 
+		if(!empty($this->guid) && !empty($this->username)){
+			$params['from'] = 'ossn_users';
+			$params['wheres'] = array("guid='{$this->guid}'");
+			if($this->OssnDatabase->delete($params)){
+				//delete user files 
+				$datadir = ossn_get_userdata("user/{$this->guid}/");;
+				if (is_dir($datadir)) {
+                    OssnFile::DeleteDir($datadir);
+                    rmdir($datadir);
+                }
+				//delete user entites also
+				$this->deleteByOwnerGuid($this->guid, 'user');
+				
+				//delete annotations 
+				$this->OssnAnnotation->owner_guid = $this->guid;
+				$this->OssnAnnotation->deleteAnnotationByOwner($this->guid);
+				//trigger callback so other components can be notified when user deleted.
+			    
+				//should delete relationships
+				ossn_delete_user_relations($this->guid);
+				
+                $vars['entity'] = $this;
+                ossn_trigger_callback('user', 'delete', $vars);				
+				return true;
+			}
+		}
+		return false;
+	 }
 }//CLASS
