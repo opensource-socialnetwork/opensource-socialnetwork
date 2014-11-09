@@ -114,7 +114,23 @@ class OssnLikes extends OssnDatabase {
         }
         return false;
     }
-
+    /**
+     * Delte likes by user guid
+     *
+     * @params $guid : User Guid
+     *
+     * @return bool;
+     */
+    public function deleteLikesByOwnerGuid($owner_guid) {
+		if(empty($guid)){
+			return false;
+		}
+        $this->statement("DELETE FROM ossn_likes WHERE(guid='{$owner_guid}');");
+        if ($this->execute()) {
+            return true;
+        }
+        return false;
+    }
     /**
      * Count likes
      *
