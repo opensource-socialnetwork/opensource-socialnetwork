@@ -32,8 +32,13 @@ function ossn_wall() {
     ossn_add_hook('notification:view', 'comments:post', 'ossn_likes_post_notifiation');
     ossn_add_hook('notification:view', 'wall:friends:tag', 'ossn_likes_post_notifiation');
     ossn_add_hook('notification:view', 'comments:post:group:wall', 'ossn_group_comment_post');
+	ossn_add_hook('notification:view', 'like:post:group:wall', 'ossn_group_comment_post');
+
     ossn_add_hook('wall', 'post:menu', 'ossn_wall_post_menu');
 
+   //callbacks
+   ossn_register_callback('group', 'delete', 'ossn_group_wall_delete');   
+   ossn_register_callback('user', 'delete', 'ossn_user_posts_delete');
 }
 
 function ossn_friend_picker() {
@@ -182,5 +187,23 @@ function ossn_wall_post_menu($hook, $type, $return, $params) {
     }
     return ossn_view_menu('wallpost', 'components/OssnWall/menus/post-controls');
 }
-
+function ossn_group_wall_delete($callback, $type, $params){
+	$wall = new OssnWall;
+	$posts = $wall->GetPostByOwner($params['entity']->guid, 'group');
+	if($posts){
+		foreach($posts as $post){
+			$wall->deletePost($post->guid);
+		}
+	}
+}
+function ossn_user_posts_delete($callback, $type, $params){
+	$wall = new OssnWall;
+	$posts = $wall->getUserGroupPostsGuids($params['entity']->guid);
+	if($posts){
+		foreach($posts as $post){
+			//$post is here int
+			$wall->deletePost($post);
+		}
+	}
+}
 ossn_register_callback('ossn', 'init', 'ossn_wall');
