@@ -97,6 +97,7 @@ class OssnEntities extends OssnDatabase {
             $this->type = 'entity';
         }
         $this->data = new stdClass;
+		$this->annotations = new OssnAnnotation;
     }
 
     /**
