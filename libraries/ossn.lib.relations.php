@@ -41,17 +41,20 @@ function ossn_add_relation($from, $to, $type) {
     return false;
 }
 
-function ossn_delete_user_relations($user){
-	if($user){
-	     $delete = new OssnDatabase;	
-		 $params['from'] = 'ossn_relationships';
-		 $params['wheres'] = array(
-		    "relation_from='{$user->guid}' OR", 
-		    "relation_to='{$user->guid}'"
-		  );
-		 if($delete->delete($params)){
-			 return true;
-		 }
-	}
-	return false;
+function ossn_delete_user_relations($user) {
+    if ($user) {
+        $delete = new OssnDatabase;
+        $params['from'] = 'ossn_relationships';
+        //delete friend requests and group member requests if user deleted
+        $params['wheres'] = array(
+            "relation_from='{$user->guid}' AND type='friend:request' OR",
+            "relation_to='{$user->guid}' AND type='friend:request' OR",
+            "relation_from='{$user->guid}' AND type='group:join' OR",
+            "relation_to='{$user->guid}' AND type='group:join:approve'"
+        );
+        if ($delete->delete($params)) {
+            return true;
+        }
+    }
+    return false;
 }
