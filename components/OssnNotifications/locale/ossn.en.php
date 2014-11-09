@@ -20,7 +20,8 @@ $en = array(
     'ossn:notifications:comments:post:group:wall' => "%s commented on the group post",
     'ossn:notifications:like:entity:file:profile:photo' => "%s commented the profile photo",
     'ossn:notifications:comments:entity:file:profile:photo' => "%s liked the profile photo",
-
+    'ossn:notifications:like:post:group:wall' => '%s liked your post',
+	
     'ossn:notification:are:friends' => 'You are now friends',
     'ossn:notification:delete:friend' => 'Friend request deleted',
     'notifications' => 'Notifications',
