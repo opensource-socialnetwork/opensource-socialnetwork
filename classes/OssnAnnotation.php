@@ -126,6 +126,34 @@ class OssnAnnotation extends OssnEntities {
 		return arrayObject($data, get_class($this));	
 	}
     /**
+     * Get annotations by owner 
+     *
+     * @requires : $this->owner_guid
+     *
+     * @return object;
+     */	
+	public function getAnnotationsByOwner(){
+	    self::initAttributes();
+		if(empty($this->owner_guid)){
+			return false;
+		}
+		$params['from'] = 'ossn_annotations';
+		$params['wheres'] = array("owner_guid='{$this->owner_guid}'");
+		$params['order_by'] = $this->order_by;
+ 		$annotations = $this->OssnDatabase->select($params, true);
+		unset($this->order_by);
+		foreach($annotations as $annotation){
+				$this->owner_guid = $annotation->id;
+		        $this->type = 'annotation';
+		        $this->entities = $this->get_entities();
+				foreach($this->entities as $entity){
+		          $entities[$entity->subtype] = $entity->value;
+		         }
+			$data[] = array_merge(get_object_vars($annotation), $entities);	 
+		}
+		return arrayObject($data, get_class($this));	
+	}	
+    /**
      * Delete annotations by subject guid
      *
      * @params $subject = subject_guid,
@@ -208,7 +236,26 @@ class OssnAnnotation extends OssnEntities {
         }
         return false;
     }
-
+    /**
+     * Delete Annotation
+     *
+     * @params $annotation = annotation_id
+     *
+     * @return bool;
+     */
+    public function deleteAnnotationByOwner($ownerguid) {
+        self::initAttributes();
+		if(empty($ownerguid)){
+			return false;
+		}
+		$this->owner_guid = $ownerguid;
+		$annotations = $this->getAnnotationsByOwner();
+		if($annotations){
+			foreach($annotations as $annotation){
+				$this->deleteAnnotation($annotation->id);
+			}
+		}
+     }
     /**
      * Get newly create annoation id
      *
