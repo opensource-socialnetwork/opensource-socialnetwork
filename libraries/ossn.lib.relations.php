@@ -40,3 +40,18 @@ function ossn_add_relation($from, $to, $type) {
     }
     return false;
 }
+
+function ossn_delete_user_relations($user){
+	if($user){
+	     $delete = new OssnDatabase;	
+		 $params['from'] = 'ossn_relationships';
+		 $params['wheres'] = array(
+		    "relation_from='{$user->guid}' OR", 
+		    "relation_to='{$user->guid}'"
+		  );
+		 if($delete->delete($params)){
+			 return true;
+		 }
+	}
+	return false;
+}
