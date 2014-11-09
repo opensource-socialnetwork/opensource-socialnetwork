@@ -163,5 +163,35 @@ class OssnWall extends OssnObject {
         $this->order_by = 'guid DESC';
         return $this->getObjectsByTypes();
     }
+    /**
+     * Get user group posts guids
+     *
+	 * @param (int) $userguid Guid of user
+	 *
+     * @return array;
+     */	
+	public static function getUserGroupPostsGuids($userguid){
+		if(empty($userguid)){
+			return false;
+		}
+		$statement = "SELECT * FROM ossn_entities, ossn_entities_metadata WHERE(
+				  ossn_entities_metadata.guid = ossn_entities.guid 
+				  AND  ossn_entities.subtype='poster_guid'
+				  AND type = 'object'
+				  AND value = '{$userguid}'
+				  );";
+		$database = new OssnDatabase;
+		$database->statement($statement);
+		$database->execute();
+		$objects = $database->fetch(true);
+		if($objects){
+			foreach($objects as $object){
+				$guids[] = $object->owner_guid;
+			}
+			asort($guids);
+			return $guids;
+		}
+		return false;
+	}
 
 }//class
