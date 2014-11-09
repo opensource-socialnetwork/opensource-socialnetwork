@@ -40,7 +40,13 @@ function ossn_add_relation($from, $to, $type) {
     }
     return false;
 }
-
+/**
+ * Delete user relations if user is deleted
+ *
+ * @param  (object) $user Entity of user 
+ *
+ * @return bool
+ */
 function ossn_delete_user_relations($user) {
     if ($user) {
         $delete = new OssnDatabase;
@@ -57,4 +63,26 @@ function ossn_delete_user_relations($user) {
         }
     }
     return false;
+}
+/**
+ * Delete group relations if user is deleted
+ *
+ * @param  (object) $group Group Entity
+ *
+ * @return bool
+ */
+function ossn_delete_group_relations($group){
+    if ($user) {
+        $delete = new OssnDatabase;
+        $params['from'] = 'ossn_relationships';
+        //delete group member requests if group deleted
+        $params['wheres'] = array(
+            "relation_from='{$group->guid}' AND type='group:join:approve' OR",
+            "relation_to='{$group->guid}' AND type='group:join'"
+        );
+        if ($delete->delete($params)) {
+            return true;
+        }
+    }
+    return false;	
 }

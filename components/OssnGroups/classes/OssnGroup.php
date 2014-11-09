@@ -139,6 +139,8 @@ class OssnGroup extends OssnObject {
 		}
 		$vars['entity'] = ossn_get_group_by_guid($guid);
         if ($this->deleteObject($guid)) {
+			 //delete group relations
+			 ossn_delete_group_relations($vars['entity']);
 		     //trigger callback so other components can be notified when group is deleted.
             ossn_trigger_callback('group', 'delete', $vars);				
             return true;
