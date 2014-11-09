@@ -13,6 +13,16 @@ Bugfixes:
 * Fix borken css in ossnchat.
 * Added missing component from core.
 * 1412353569.php is missing for fresh installation.
+* Fixed manifest of OssnComments by @sathish
+
+Api Changes
+* getAnnotationsByOwner method added (class OssnAnnotation)
+* deleteAnnotationByOwner method added (class OssnAnnotation)
+* deleteUser method added (class OssnUser)
+* deleteLikesByOwnerGuid method added (calss OssnLikes)
+* deleteUserNotifications method added (class OssnNotifications)
+* getUserGroupPostsGuids method added. This will return array contaning guids of wall posts created by user in group.
+* ossn_delete_user_relations function added (library relations)
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 1.6
 
