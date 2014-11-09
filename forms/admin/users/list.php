@@ -21,29 +21,27 @@ if (!empty($search)) {
 <div class="top-controls">
     <a href="<?php echo ossn_site_url("administrator/adduser"); ?>"
        class="ossn-admin-button button-green"><?php echo ossn_print('add'); ?></a>
-    <input type="submit" class="ossn-admin-button button-red" value="Delete"/>
 </div>
 <table class="table ossn-users-list">
     <tbody>
     <tr class="table-titles">
-        <td></td>
         <td><?php echo ossn_print('name'); ?></td>
         <td><?php echo ossn_print('username'); ?></td>
         <td><?php echo ossn_print('email'); ?></td>
         <td><?php echo ossn_print('type'); ?></td>
         <td><?php echo ossn_print('lastlogin'); ?></td>
         <td><?php echo ossn_print('edit'); ?></td>
+        <td><?php echo ossn_print('delete'); ?></td>
     </tr>
     <?php foreach ($pagination->getItem() as $user) {
         $user = ossn_user_by_guid($user->guid);
         ?>
         <tr>
-            <td><input type="checkbox"/></td>
             <td>
                 <div class="image"><img
                         src="<?php echo ossn_site_url(); ?>avatar/<?php echo $user->username; ?>/smaller"/></div>
                 <div class="name"
-                     style="margin-left:39px;margin-top: -39px;"><?php echo strl($user->fullname, 20); ?></div>
+                     style="margin-left:39px;margin-top: -39px;min-height: 30px;"><?php echo strl($user->fullname, 20); ?></div>
             </td>
             <td><?php echo $user->username; ?></td>
             <td><?php echo $user->email; ?></td>
@@ -52,6 +50,7 @@ if (!empty($search)) {
             <td>
                 <a href="<?php echo ossn_site_url("administrator/edituser/{$user->username}"); ?>"><?php echo ossn_print('edit'); ?></a>
             </td>
+            <td><a href="<?php echo ossn_site_url("action/admin/delete/user?guid={$user->guid}"); ?>"><?php echo ossn_print('delete'); ?></a></td>
 
         </tr>
     <?php } ?>
