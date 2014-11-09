@@ -35,26 +35,32 @@ function ossn_admin() {
     ossn_register_menu_link('support', 'admin:support', 'http://community.opensource-socialnetwork.org', 'topbar_admin');
 
     ossn_register_menu_link('viewsite', 'admin:view:site', ossn_site_url(), 'topbar_admin');
+    
+	ossn_register_action('admin/login', ossn_route()->actions . 'administrator/login.php');
 
-    ossn_register_site_settings_page('account', 'pages/account');
+    if(ossn_isAdminLoggedin()) {
+        ossn_register_site_settings_page('account', 'pages/account');
+     
+        ossn_register_action('component/enable', ossn_route()->actions . 'administrator/component/enable.php');
+        ossn_register_action('component/disable', ossn_route()->actions . 'administrator/component/disable.php');
+        ossn_register_action('component/delete', ossn_route()->actions . 'administrator/component/delete.php');
 
-    ossn_register_action('component/enable', ossn_route()->actions . 'administrator/component/enable.php');
-    ossn_register_action('component/disable', ossn_route()->actions . 'administrator/component/disable.php');
-    ossn_register_action('component/delete', ossn_route()->actions . 'administrator/component/delete.php');
+        ossn_register_action('admin/logout', ossn_route()->actions . 'administrator/logout.php');
 
-    ossn_register_action('admin/login', ossn_route()->actions . 'administrator/login.php');
-    ossn_register_action('admin/logout', ossn_route()->actions . 'administrator/logout.php');
+        ossn_register_action('theme/enable', ossn_route()->actions . 'administrator/theme/enable.php');
+        ossn_register_action('theme/delete', ossn_route()->actions . 'administrator/theme/delete.php');
 
-    ossn_register_action('theme/enable', ossn_route()->actions . 'administrator/theme/enable.php');
-    ossn_register_action('theme/delete', ossn_route()->actions . 'administrator/theme/delete.php');
-
-
-    ossn_register_action('admin/com_install', ossn_route()->actions . 'administrator/component/com_install.php');
-    ossn_register_action('admin/theme_install', ossn_route()->actions . 'administrator/theme/theme_install.php');
-    ossn_register_action('admin/settings/save/basic', ossn_route()->actions . 'administrator/settings/save/basic.php');
-    ossn_register_action('admin/add/user', ossn_route()->actions . 'administrator/user/add.php');
-    ossn_register_action('admin/edit/user', ossn_route()->actions . 'administrator/user/edit.php');
-    ossn_register_action('admin/cache/create', ossn_route()->actions . 'administrator/cache/create.php');
+        ossn_register_action('admin/add/user', ossn_route()->actions . 'administrator/user/add.php');
+        ossn_register_action('admin/edit/user', ossn_route()->actions . 'administrator/user/edit.php');
+		ossn_register_action('admin/delete/user', ossn_route()->actions . 'administrator/user/delete.php');
+		
+        ossn_register_action('admin/com_install', ossn_route()->actions . 'administrator/component/com_install.php');
+        ossn_register_action('admin/theme_install', ossn_route()->actions . 'administrator/theme/theme_install.php');
+		
+        ossn_register_action('admin/settings/save/basic', ossn_route()->actions . 'administrator/settings/save/basic.php');
+        ossn_register_action('admin/cache/create', ossn_route()->actions . 'administrator/cache/create.php');
+		
+	}
 
     /*
      * Register login and backend pages
