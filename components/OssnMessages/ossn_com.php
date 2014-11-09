@@ -11,6 +11,10 @@
 define('__OSSN_MESSAGES__', ossn_route()->com . 'OssnMessages/');
 require_once(__OSSN_MESSAGES__ . 'classes/OssnMessages.php');
 
+function OssnMessages() {
+    $OssnMessages = new OssnMessages;
+    return $OssnMessages;
+}
 function ossn_messages() {
     ossn_extend_view('css/ossn.default', 'components/OssnMessages/css/message');
     ossn_register_page('messages', 'ossn_messages_page');
