@@ -8,6 +8,11 @@ Bugfixes:
 * There is no image attach option in entity comments.
 * Comment not display if there is no other comments.
 * Notification count is not working.
+* Fix notification for group post like.
+* Allow admin to delete user.
+* Fix borken css in ossnchat.
+* Added missing component from core.
+* 1412353569.php is missing for fresh installation.
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 1.6
 
