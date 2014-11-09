@@ -77,9 +77,12 @@ $en = array(
     'add' => 'Add',
     'edit' => 'Edit',
     'search' => 'Search',
+	'delete' => 'Delete',
 
     'admin:users' => 'List Users',
     'admin:add:user' => 'Add User',
+	'admin:user:deleted' => 'User has been deleted',
+	'admin:user:delete:error' => 'Cannot delete user please try again later',
 
     'type' => 'Type',
     'normal' => 'Normal',
@@ -209,6 +212,7 @@ Please click the link below to reset password or copy the link and paste in your
 
     'ossn:new:version:error' => 'Unknown',
     'ossn:version:avaialbe' => "%s",
+	
     /*
        * List of ISO 639-1 language codes
        * http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
