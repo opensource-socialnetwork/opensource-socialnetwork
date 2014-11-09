@@ -11,6 +11,12 @@
 
 define('__OSSN_NOTIF__', ossn_route()->com . 'OssnNotifications/');
 require_once(__OSSN_NOTIF__ . 'classes/OssnNotifications.php');
+/**
+ * Initialize Notification Component
+ *
+ * @return void;
+ * @access private
+ */
 function ossn_notifications() {
     //css
     ossn_extend_view('css/ossn.default', 'components/OssnNotifications/css/notifications');
@@ -25,14 +31,25 @@ function ossn_notifications() {
     ossn_register_callback('like', 'created', 'ossn_notification_like');
     ossn_register_callback('wall', 'post:created', 'ossn_notification_walltag');
     ossn_register_callback('annotations', 'created', 'ossn_notification_annotation');
+    ossn_register_callback('user', 'delete', 'ossn_user_notifications_delete');
 
 }
-
-function ossn_notification_annotation($type, $event_type, $params) {
+/**
+ * Create a notification for annotation like
+ *
+ * @return void;
+ * @access private
+ */
+function ossn_notification_annotation($callback, $type, $params) {
     $notification = new OssnNotifications;
     $notification->add($params['type'], $params['owner_guid'], $params['subject_guid'], $params['annotation_guid']);
 }
-
+/**
+ * Notification Page
+ *
+ * @return mixed data;
+ * @access public
+ */
 function ossn_notification_page($pages) {
     $page = $pages[0];
     if (empty($page)) {
@@ -134,7 +151,14 @@ function ossn_notification_page($pages) {
 
     }
 }
-
+/**
+ * Notifications page
+ *
+ * @param (array) $pages Array containg pages
+ *
+ * @return mixed data;
+ * @access public
+ */
 function ossn_notifications_page($pages) {
     $page = $pages[0];
     if (empty($page)) {
@@ -154,12 +178,22 @@ function ossn_notifications_page($pages) {
 
     }
 }
-
+/**
+ * Create a notification for like created
+ *
+ * @return void;
+ * @access private
+ */
 function ossn_notification_like($type, $event_type, $params) {
     $notification = new OssnNotifications;
     $notification->add($params['type'], $params['owner_guid'], $params['subject_guid'], $params['subject_guid']);
 }
-
+/**
+ * Create a notification for wall tag
+ *
+ * @return void;
+ * @access private
+ */
 function ossn_notification_walltag($type, $ctype, $params) {
     $notification = new OssnNotifications;
     if (isset($params['friends']) && is_array($params['friends'])) {
@@ -171,10 +205,14 @@ function ossn_notification_walltag($type, $ctype, $params) {
         }
     }
 }
-
-function OssnMessages() {
-    $OssnMessages = new OssnMessages;
-    return $OssnMessages;
+/**
+ * Delete user notifiactions when user deleted
+ *
+ * @return void;
+ * @access private
+ */
+function ossn_user_notifications_delete($callback, $type, $params){
+	$delete = new OssnNotifications;
+    $delete->deleteUserNotifications($params['entity']);
 }
-
 ossn_register_callback('ossn', 'init', 'ossn_notifications');
