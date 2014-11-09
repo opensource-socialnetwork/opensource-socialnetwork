@@ -32,6 +32,7 @@ function ossn_likes() {
     ossn_register_callback('post', 'delete', 'ossn_post_like_delete');
     ossn_register_callback('comment', 'delete', 'ossn_comment_like_delete');
     ossn_register_callback('annotation', 'delete', 'ossn_comment_like_delete');
+    ossn_register_callback('user', 'delete', 'ossn_user_likes_delete');
 
     ossn_register_page('likes', 'ossn_likesview_page_handler');
 
@@ -50,7 +51,16 @@ function ossn_post_like_delete($name, $type, $params) {
     $delete = new OssnLikes;
     $delete->deleteLikes($params);
 }
-
+/**
+ * Delete user likes
+ *
+ * @return voud;
+ * @access private
+ */
+function ossn_user_likes_delete($name, $type, $entity) {
+    $delete = new OssnLikes;
+    $delete->deleteLikesByOwnerGuid($entity->guid);
+}
 /**
  * Comment likes delete
  *
