@@ -58,7 +58,7 @@ class OssnNotifications extends OssnDatabase {
 
             }
             //check if comment is posted on group wall
-            if ($type == 'comments:post:group:wall') {
+            if ($type == 'comments:post:group:wall' || $type == 'like:post:group:wall') {
                 $object = new OssnObject;
                 $object->object_guid = $subject_guid;
                 $object = $object->getObjectById();
@@ -240,5 +240,22 @@ class OssnNotifications extends OssnDatabase {
         }
         return false;
     }
+    /**
+     * Delete user notifications
+     *
+     * @param (object) $user User entity
+     *
+     * @return bool;
+     */	
+	public function deleteUserNotifications($user){
+		if($user){
+			$this->statement("DELETE FROM ossn_notifications WHERE(
+							  poster_guid='{$user->guid}' OR owner_guid='{$user->guid}');");
+			if($this->execute()){
+				return true;
+			}
+		}
+		return false;
+	}
 
 }
