@@ -72,7 +72,7 @@ function ossn_delete_user_relations($user) {
  * @return bool
  */
 function ossn_delete_group_relations($group){
-    if ($user) {
+    if ($group) {
         $delete = new OssnDatabase;
         $params['from'] = 'ossn_relationships';
         //delete group member requests if group deleted
