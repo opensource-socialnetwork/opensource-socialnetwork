@@ -276,7 +276,12 @@ function ossn_administrator_pagehandler($pages) {
 
     }
 }
-
+/**
+ * Register a page handler for administrator login;
+ * @pages:
+ *       administrator/login,
+ * @return mixeddata
+ */
 function ossn_administrator_login_pagehandler($pages) {
     $page = $pages[0];
     if (empty($page)) {
