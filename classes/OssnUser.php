@@ -602,7 +602,7 @@ class OssnUser extends OssnEntities {
 				//trigger callback so other components can be notified when user deleted.
 			    
 				//should delete relationships
-				ossn_delete_user_relations($this->guid);
+				ossn_delete_user_relations($this);
 				
                 $vars['entity'] = $this;
                 ossn_trigger_callback('user', 'delete', $vars);				
