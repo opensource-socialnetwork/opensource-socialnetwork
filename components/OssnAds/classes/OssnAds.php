@@ -49,6 +49,7 @@ class OssnAds extends OssnObject {
     public function initAttributes() {
         $this->OssnDatabase = new OssnDatabase;
         $this->OssnFile = new OssnFile;
+		$this->data = new stdClass;
     }
 
     /**
@@ -94,6 +95,7 @@ class OssnAds extends OssnObject {
      * @return bool;
      */		
 	public function EditAd($params){
+	   self::initAttributes();
 	   if(!empty($params['guid']) && !empty($params['title']) 
 		   && !empty($params['description']) && !empty($params['siteurl'])){
 		   $entity = get_ad_entity($params['guid']);
@@ -104,7 +106,8 @@ class OssnAds extends OssnObject {
 		    $data = array(
 			 $params['title'],
 			 $params['description']
-		    );		   
+		    );
+		   $this->data->site_url = $params['siteurl'];
 		   if($this->updateObject($fields, $data, $entity->guid)){
 			  if(isset($_FILES['ossn_ads']) && $_FILES['ossn_ads']['size']  !== 0){
 				  $path  = $entity->getParam('file:ossnads');
