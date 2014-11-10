@@ -14,6 +14,7 @@ Bugfixes:
 * Added missing component from core.
 * 1412353569.php is missing for fresh installation.
 * Fixed manifest of OssnComments by @sathish
+* Fixed component delete ( it was not working) thanks to @sathish
 
 Api Changes
 * getAnnotationsByOwner method added (class OssnAnnotation)
