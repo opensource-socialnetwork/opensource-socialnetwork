@@ -122,7 +122,7 @@ class OssnLikes extends OssnDatabase {
      * @return bool;
      */
     public function deleteLikesByOwnerGuid($owner_guid) {
-		if(empty($guid)){
+		if(empty($owner_guid)){
 			return false;
 		}
         $this->statement("DELETE FROM ossn_likes WHERE(guid='{$owner_guid}');");
