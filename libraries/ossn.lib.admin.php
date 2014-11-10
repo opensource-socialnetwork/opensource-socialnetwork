@@ -37,6 +37,7 @@ function ossn_admin() {
     ossn_register_menu_link('viewsite', 'admin:view:site', ossn_site_url(), 'topbar_admin');
     
 	ossn_register_action('admin/login', ossn_route()->actions . 'administrator/login.php');
+    ossn_register_action('admin/logout', ossn_route()->actions . 'administrator/logout.php');
 
     if(ossn_isAdminLoggedin()) {
         ossn_register_site_settings_page('account', 'pages/account');
@@ -44,9 +45,7 @@ function ossn_admin() {
         ossn_register_action('component/enable', ossn_route()->actions . 'administrator/component/enable.php');
         ossn_register_action('component/disable', ossn_route()->actions . 'administrator/component/disable.php');
         ossn_register_action('component/delete', ossn_route()->actions . 'administrator/component/delete.php');
-
-        ossn_register_action('admin/logout', ossn_route()->actions . 'administrator/logout.php');
-
+		
         ossn_register_action('theme/enable', ossn_route()->actions . 'administrator/theme/enable.php');
         ossn_register_action('theme/delete', ossn_route()->actions . 'administrator/theme/delete.php');
 
