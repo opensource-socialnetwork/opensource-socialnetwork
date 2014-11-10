@@ -59,7 +59,7 @@ function ossn_post_like_delete($name, $type, $params) {
  */
 function ossn_user_likes_delete($name, $type, $entity) {
     $delete = new OssnLikes;
-    $delete->deleteLikesByOwnerGuid($entity->guid);
+    $delete->deleteLikesByOwnerGuid($entity['entity']->guid);
 }
 /**
  * Comment likes delete
