@@ -1,4 +1,4 @@
-OSSN - OPEN SOURCE SOCIAL NETWORK 1.7 development
+OSSN - OPEN SOURCE SOCIAL NETWORK 1.7
 
 Bugfixes:
 * Admin cannot delete ads.
