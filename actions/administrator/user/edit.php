@@ -42,9 +42,9 @@ $user['birthdate'] = "{$user['bdd']}/{$user['bdm']}/{$user['bdy']}";
 
 $OssnUser = new OssnUser;
 $OssnUser->password = $password;
+$OssnUser->email = $user['email'];
 
 $OssnDatabase = new OssnDatabase;
-$user_get = ossn_user_by_username(input('username'));
 
 
 $params['table'] = 'ossn_users';
@@ -62,7 +62,11 @@ $params['values'] = array(
     $user['email'],
     $user['type']
 );
-
+//check if email is not in user
+if($OssnUser->isOssnEmail()){
+    ossn_trigger_message(ossn_print('email:inuse'), 'error', 'admin');
+    redirect(REF);
+}
 //check if password then change password
 if (!empty($password)) {
     if (!$OssnUser->isPassword()) {
