@@ -67,18 +67,44 @@ class OssnUser extends OssnEntities {
                     $link = ossn_site_url("uservalidate/acitvate/{$guid}/{$activation}");
                     $sitename = ossn_site_settings('site_name');
                     $activation = ossn_print('ossn:add:user:mai:body', array(
-                            $sitename,
-                            $link,
-                            ossn_site_url()
-                        ));
+                        $sitename,
+                        $link,
+                        ossn_site_url()
+                    ));
                     $subject = ossn_print('ossn:add:user:mail:subject', array(
-                            $this->first_name,
-                            $sitename
-                        ));
+                        $this->first_name,
+                        $sitename
+                    ));
                     $this->notify->NotifiyUser($this->email, $subject, $activation);
                 }
                 return true;
             }
+        }
+        return false;
+    }
+
+    /**
+     * Check if username is exist in database or not.
+     *
+     * @return bool;
+     */
+    public function isOssnUsername() {
+        $user = $this->getUser();
+        if (!empty($user->guid) && $this->username == $user->username) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Check if email is exist in database or not.
+     *
+     * @return bool;
+     */
+    public function isOssnEmail() {
+        $user = $this->getUser();
+        if (!empty($user->guid) && $this->email == $user->email) {
+            return true;
         }
         return false;
     }
@@ -90,7 +116,7 @@ class OssnUser extends OssnEntities {
      */
     public function initAttributes() {
         $this->OssnDatabase = new OssnDatabase;
-		$this->OssnAnnotation = new OssnAnnotation;
+        $this->OssnAnnotation = new OssnAnnotation;
         $this->notify = new OssnMail;
         if (!isset($this->sendactiviation)) {
             $this->sendactiviation = false;
@@ -108,12 +134,13 @@ class OssnUser extends OssnEntities {
             $params['from'] = 'ossn_users';
             $params['wheres'] = array("email='{$this->email}'");
             $user = $this->OssnDatabase->select($params);
-
-        } elseif (!empty($this->username)) {
+        }
+        if (empty($user) && !empty($this->username)) {
             $params['from'] = 'ossn_users';
             $params['wheres'] = array("username='{$this->username}'");
             $user = $this->OssnDatabase->select($params);
-        } elseif (!empty($this->guid)) {
+        }
+        if (empty($user) && !empty($this->guid)) {
             $params['from'] = 'ossn_users';
             $params['wheres'] = array("guid='{$this->guid}'");
             $user = $this->OssnDatabase->select($params);
@@ -508,10 +535,10 @@ class OssnUser extends OssnEntities {
         $sitename = ossn_site_settings('site_name');
 
         $emailmessage = ossn_print('ossn:reset:password:body', array(
-                $this->first_name,
-                $emailreset_url,
-                $sitename
-            ));
+            $this->first_name,
+            $emailreset_url,
+            $sitename
+        ));
         $emailsubject = ossn_print('ossn:reset:password:subject');
         if (!empty($this->value) && $this->notify->NotifiyUser($this->email, $emailsubject, $emailmessage)) {
             return true;
@@ -576,39 +603,40 @@ class OssnUser extends OssnEntities {
         }
         return false;
     }
+
     /**
      * Delete user from syste,
      *
      * @return bool;
-     */	
-	 public function deleteUser(){
-		self::initAttributes(); 
-		if(!empty($this->guid) && !empty($this->username)){
-			$params['from'] = 'ossn_users';
-			$params['wheres'] = array("guid='{$this->guid}'");
-			if($this->OssnDatabase->delete($params)){
-				//delete user files 
-				$datadir = ossn_get_userdata("user/{$this->guid}/");;
-				if (is_dir($datadir)) {
+     */
+    public function deleteUser() {
+        self::initAttributes();
+        if (!empty($this->guid) && !empty($this->username)) {
+            $params['from'] = 'ossn_users';
+            $params['wheres'] = array("guid='{$this->guid}'");
+            if ($this->OssnDatabase->delete($params)) {
+                //delete user files
+                $datadir = ossn_get_userdata("user/{$this->guid}/");;
+                if (is_dir($datadir)) {
                     OssnFile::DeleteDir($datadir);
                     rmdir($datadir);
                 }
-				//delete user entites also
-				$this->deleteByOwnerGuid($this->guid, 'user');
-				
-				//delete annotations 
-				$this->OssnAnnotation->owner_guid = $this->guid;
-				$this->OssnAnnotation->deleteAnnotationByOwner($this->guid);
-				//trigger callback so other components can be notified when user deleted.
-			    
-				//should delete relationships
-				ossn_delete_user_relations($this);
-				
+                //delete user entites also
+                $this->deleteByOwnerGuid($this->guid, 'user');
+
+                //delete annotations
+                $this->OssnAnnotation->owner_guid = $this->guid;
+                $this->OssnAnnotation->deleteAnnotationByOwner($this->guid);
+                //trigger callback so other components can be notified when user deleted.
+
+                //should delete relationships
+                ossn_delete_user_relations($this);
+
                 $vars['entity'] = $this;
-                ossn_trigger_callback('user', 'delete', $vars);				
-				return true;
-			}
-		}
-		return false;
-	 }
+                ossn_trigger_callback('user', 'delete', $vars);
+                return true;
+            }
+        }
+        return false;
+    }
 }//CLASS
