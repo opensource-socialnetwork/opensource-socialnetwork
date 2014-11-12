@@ -97,6 +97,6 @@ if ($OssnDatabase->update($params)) {
         $user_get->data->birthdate = $user['birthdate'];
         $user_get->save();
     }
-    ossn_trigger_message(ossn_print('user:updated'), 'success', 'admin');
+    ossn_trigger_message(ossn_print('user:updated'), 'success');
     redirect(REF);
 } 
