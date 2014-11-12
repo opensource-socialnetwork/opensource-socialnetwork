@@ -56,7 +56,14 @@ if (!$add->isPassword()) {
     ossn_trigger_message(ossn_print('password:error'), 'error', 'admin');
     redirect(REF);
 }
-
+if($add->isOssnUsername()){
+    ossn_trigger_message(ossn_print('username:inuse'), 'error', 'admin');
+    redirect(REF);
+}
+if($add->isOssnEmail()){
+    ossn_trigger_message(ossn_print('email:inuse'), 'error', 'admin');
+    redirect(REF);
+}
 if ($add->addUser()) {
     ossn_trigger_message(ossn_print('account:created'), 'success', 'admin');
     redirect(REF);
