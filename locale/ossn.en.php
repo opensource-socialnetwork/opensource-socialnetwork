@@ -157,6 +157,7 @@ If you can't click on the link, copy and paste it to your browser manually.
     'logged:out' => 'You are now logged out',
 	'username:inuse' => 'Username already exist please try another usename',
 	'email:inuse' => 'Email already exist please try another email',
+	'email:invalid' => 'Email is invalid. Make sure the email you entered is correct.',
     'account:created:email' => "Your account has been registered. We have sent you account activation email. If you didn't recieved email please check your spam/junk folder",
 
     'administration' => 'Administration',
