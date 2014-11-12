@@ -74,6 +74,12 @@ if($add->isOssnEmail()){
     echo json_encode($em);
     exit;	
 }
+//check if email is valid email 
+if(!$add->isEmail()){
+    $em['dataerr'] = ossn_print('email:invalid');
+    echo json_encode($em);
+    exit;		
+}
 if ($add->addUser()) {
     $em['success'] = 1;
     $em['datasuccess'] = ossn_print('account:created:email');
