@@ -56,6 +56,7 @@ class OssnDatabase {
     public function execute() {
         $this->database = $this->Connect();
         if (isset($this->query) && !empty($this->query)) {
+            $this->database->set_charset("utf8");
             $this->exe = $this->database->query($this->query);
             if (!$this->exe) {
                 throw new exception("{$this->database->error} \n {$this->query} ");
