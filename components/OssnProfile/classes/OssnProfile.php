@@ -1,4 +1,5 @@
 <?php
+
 /**
  *    OpenSource-SocialNetwork
  *
@@ -8,95 +9,104 @@
  * @license   General Public Licence http://opensource-socialnetwork.com/licence
  * @link      http://www.opensource-socialnetwork.com/licence
  */
+class OssnProfile extends OssnDatabase {
+    /**
+     * Reposition cover
+     *
+     * @params $guid: User guid
+     *         $top : Position from top
+     *         $left: Position from left
+     *
+     * @return bool;
+     */
+    public function repositionCOVER($guid, $top, $left) {
+        $user = ossn_user_by_guid($guid);
+        if (!isset($user->cover_position) && empty($user->cover_position)) {
+            $position = array(
+                $top,
+                $left
+            );
+            $fields = new OssnEntities;
+            $fields->owner_guid = $guid;
+            $fields->type = 'user';
+            $fields->subtype = 'cover_position';
+            $fields->value = json_encode($position);
+            if ($fields->add()) {
+                return true;
+            }
+        } else {
+            $this->statement("SELECT * FROM ossn_entities WHERE(
+				             owner_guid='{$guid}' AND 
+				             type='user' AND 
+				             subtype='cover_position');");
+            $this->execute();
+            $entity = $this->fetch();
+            $entity_id = $entity->guid;
 
-$user['firstname'] = input('firstname');
-$user['lastname'] = input('lastname');
-$user['email'] = input('email');
-$user['gender'] = input('gender');
-$user['username'] = input('username');
+            $position = array(
+                $top,
+                $left
+            );
+            $fields = new OssnEntities;
+            $fields->owner_id = $guid;
+            $fields->guid = $entity_id;
+            $fields->type = 'user';
 
-$user['bdd'] = input('birthday');
-$user['bdm'] = input('birthm');
-$user['bdy'] = input('birthy');
-if (!empty($user)) {
-    foreach ($user as $field => $value) {
-        if (empty($value)) {
-            ossn_trigger_message(ossn_print('fields:require'), 'error');
-            redirect(REF);
+            $fields->subtype = 'cover_position';
+            $fields->value = json_encode($position);
+            if ($fields->updateEntity()) {
+                return true;
+            }
         }
+        return false;
     }
-}
-$password = input('password');
-$user['birthdate'] = "{$user['bdd']}/{$user['bdm']}/{$user['bdy']}";
 
-$OssnUser = new OssnUser;
-$OssnUser->password = $password;
-$OssnUser->email = $user['email'];
+    /**
+     * Reset cover back to it original position
+     *
+     * @params $guid: User guid
+     *
+     * @return bool;
+     */
+    public function ResetCoverPostition($guid) {
+        $this->statement("SELECT * FROM ossn_entities WHERE(
+				             owner_guid='{$guid}' AND 
+				             type='user' AND 
+				             subtype='cover_position');");
+        $this->execute();
+        $entity = $this->fetch();
+        $position = array(
+            '',
+            ''
+        );
 
-$OssnDatabase = new OssnDatabase;
-$user_get = ossn_user_by_username(input('username'));
-if ($user_get->guid !== ossn_loggedin_user()->guid) {
-    redirect("home");
-}
+        $fields = new OssnEntities;
+        $fields->owner_id = $guid;
+        $fields->guid = $entity->guid;
+        $fields->type = 'user';
 
-$params['table'] = 'ossn_users';
-$params['wheres'] = array("guid='{$user_get->guid}'");
-
-$params['names'] = array(
-    'first_name',
-    'last_name',
-    'email'
-);
-$params['values'] = array(
-    $user['firstname'],
-    $user['lastname'],
-    $user['email']
-);
-//check if email is not in user
-if($OssnUser->isOssnEmail()){
-    ossn_trigger_message(ossn_print('email:inuse'), 'error');
-    redirect(REF);
-}
-//check if email is valid email 
-if(!$OssnUser->isEmail()){
-    ossn_trigger_message(ossn_print('email:invalid'), 'error');
-    redirect(REF);	
-}
-//check if password then change password
-if (!empty($password)) {
-    if (!$OssnUser->isPassword()) {
-        ossn_trigger_message(ossn_print('password:error'), 'error');
-        redirect(REF);
+        $fields->subtype = 'cover_position';
+        $fields->value = json_encode($position);
+        if ($fields->updateEntity()) {
+            return true;
+        }
+        return false;
     }
-    $salt = $OssnUser->generateSalt();
-    $password = $OssnUser->generate_password($password, $salt);
-    $params['names'] = array(
-        'first_name',
-        'last_name',
-        'email',
-        'password',
-        'salt'
-    );
-    $params['values'] = array(
-        $user['firstname'],
-        $user['lastname'],
-        $user['email'],
-        $password,
-        $salt
-    );
-}
 
-//save
-if ($OssnDatabase->update($params)) {
-    //update entities
-    $guid = $user_get->guid;
-    if (!empty($guid)) {
-        $user_get->owner_guid = $guid;
-        $user_get->type = 'user';
-        $user_get->data->gender = $user['gender'];
-        $user_get->data->birthdate = $user['birthdate'];
-        $user_get->save();
+    /**
+     * Get cover parameters
+     *
+     * @params $guid: User guid
+     *
+     * @return array;
+     */
+    public function coverParameters($guid) {
+        $user = ossn_user_by_guid($guid);
+        if (isset($user->cover_position)) {
+            $parameters = $user->cover_position;
+            return json_decode($parameters);
+        }
+        return false;
     }
-    ossn_trigger_message(ossn_print('user:updated'), 'success', 'admin');
-    redirect(REF);
-} 
+
+}//class
