@@ -64,7 +64,16 @@ if (!$add->isPassword()) {
     echo json_encode($em);
     exit;
 }
-
+if($add->isOssnUsername()){
+    $em['dataerr'] = ossn_print('username:inuse');
+    echo json_encode($em);
+    exit;	
+}
+if($add->isOssnEmail()){
+    $em['dataerr'] = ossn_print('email:inuse');
+    echo json_encode($em);
+    exit;	
+}
 if ($add->addUser()) {
     $em['success'] = 1;
     $em['datasuccess'] = ossn_print('account:created:email');
