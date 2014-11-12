@@ -3,7 +3,8 @@ Bugfixes
 * Show a message if username is in use.
 * Show a message if email is in use.
 * Fix deault char set for OssnDatabase.
-* Fixed empty wall posting ( added ossnwall_json_unencaped_unicode)
+* Fixed empty wall posting (added ossnwall_json_unencaped_unicode)
+* Fix invalid translation in OssnLikes
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 1.7
 
