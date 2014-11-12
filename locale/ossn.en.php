@@ -155,6 +155,8 @@ If you can't click on the link, copy and paste it to your browser manually.
     'account:create:error:admin' => 'Cannot register account please try again later',
     'user:updated' => 'User has been updated',
     'logged:out' => 'You are now logged out',
+	'username:inuse' => 'Username already exist please try another usename',
+	'email:inuse' => 'Email already exist please try another email',
     'account:created:email' => "Your account has been registered. We have sent you account activation email. If you didn't recieved email please check your spam/junk folder",
 
     'administration' => 'Administration',
