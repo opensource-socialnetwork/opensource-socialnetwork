@@ -206,4 +206,11 @@ function ossn_user_posts_delete($callback, $type, $params){
 		}
 	}
 }
+function ossnwall_json_unencaped_unicode($matches) {
+   return mb_convert_encoding(
+            pack('H*', $matches[1]), 
+            'UTF-8', 
+            'UTF-16'
+            );
+}
 ossn_register_callback('ossn', 'init', 'ossn_wall');
