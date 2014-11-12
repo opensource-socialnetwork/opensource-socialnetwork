@@ -31,6 +31,7 @@ $user['birthdate'] = "{$user['bdd']}/{$user['bdm']}/{$user['bdy']}";
 
 $OssnUser = new OssnUser;
 $OssnUser->password = $password;
+$OssnUser->email = $user['email'];
 
 $OssnDatabase = new OssnDatabase;
 $user_get = ossn_user_by_username(input('username'));
@@ -51,11 +52,20 @@ $params['values'] = array(
     $user['lastname'],
     $user['email']
 );
-
+//check if email is not in user
+if($OssnUser->isOssnEmail()){
+    ossn_trigger_message(ossn_print('email:inuse'), 'error');
+    redirect(REF);
+}
+//check if email is valid email 
+if(!$OssnUser->isEmail()){
+    ossn_trigger_message(ossn_print('email:invalid'), 'error');
+    redirect(REF);	
+}
 //check if password then change password
 if (!empty($password)) {
     if (!$OssnUser->isPassword()) {
-        ossn_trigger_message(ossn_print('password:error'), 'error', 'admin');
+        ossn_trigger_message(ossn_print('password:error'), 'error');
         redirect(REF);
     }
     $salt = $OssnUser->generateSalt();
