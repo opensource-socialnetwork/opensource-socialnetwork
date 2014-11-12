@@ -67,6 +67,11 @@ if($OssnUser->isOssnEmail()){
     ossn_trigger_message(ossn_print('email:inuse'), 'error', 'admin');
     redirect(REF);
 }
+//check if email is valid email 
+if(!$OssnUser->isEmail()){
+    ossn_trigger_message(ossn_print('email:invalid'), 'error', 'admin');
+    redirect(REF);	
+}
 //check if password then change password
 if (!empty($password)) {
     if (!$OssnUser->isPassword()) {
