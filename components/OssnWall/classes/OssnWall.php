@@ -40,7 +40,10 @@ class OssnWall extends OssnObject {
         if (!empty($location)) {
             $wallpost['location'] = $location;
         }
-        $this->description = json_encode($wallpost, JSON_UNESCAPED_UNICODE);
+        $this->description = json_encode($wallpost);
+        $this->description = preg_replace_callback('/\\\\u([0-9a-f]{4})/i',
+                                                   'ossnwall_json_unencaped_unicode',
+                                                    $this->description);
         if ($this->addObject()) {
             $this->wallguid = $this->getObjectId();
             if (isset($_FILES['ossn_photo'])) {
