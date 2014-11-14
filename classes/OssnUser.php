@@ -173,8 +173,18 @@ class OssnUser extends OssnEntities {
         }
         return false;
     }
-
     /**
+     * Check if password is > 5 or not.
+     *
+     * @return bool;
+     */
+    public function isEmail() {
+        if (filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
+            return true;
+        }
+        return false;
+    }  
+	/**
      * Check if the user is correct or not.
      *
      * @return bool;
