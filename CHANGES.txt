@@ -1,3 +1,7 @@
+OSSN - OPEN SOURCE SOCIAL NETWORK 1.7.2
+Bugfixes
+* Missing method added.
+
 OSSN - OPEN SOURCE SOCIAL NETWORK 1.7.1
 
 Bugfixes
