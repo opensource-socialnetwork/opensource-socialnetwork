@@ -9,6 +9,10 @@
  * @link      http://www.opensource-socialnetwork.com/licence
  */
 
+$entity = ossn_user_by_username(input('username'));
+if(!$entity){
+	redirect(REF);
+}
 $user['firstname'] = input('firstname');
 $user['lastname'] = input('lastname');
 $user['email'] = input('email');
@@ -63,9 +67,11 @@ $params['values'] = array(
     $user['type']
 );
 //check if email is not in user
-if($OssnUser->isOssnEmail()){
+if($entity->email !== input('email')){
+  if($OssnUser->isOssnEmail()){
     ossn_trigger_message(ossn_print('email:inuse'), 'error', 'admin');
     redirect(REF);
+  }
 }
 //check if email is valid email 
 if(!$OssnUser->isEmail()){
