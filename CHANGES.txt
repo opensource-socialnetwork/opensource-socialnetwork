@@ -1,3 +1,8 @@
+OSSN - OPEN SOURCE SOCIAL NETWORK 1.8-dev
+Bugfixes
+* User edit error email in user.
+
+
 OSSN - OPEN SOURCE SOCIAL NETWORK 1.7.2
 Bugfixes
 * Missing method added.
