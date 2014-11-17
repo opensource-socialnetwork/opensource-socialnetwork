@@ -32,6 +32,8 @@ $contents = '';
 <?php echo ossn_fetch_extend_views('ossn/admin/js/head'); ?>
 
 </script>
+<script src="<?php echo ossn_site_url(); ?>vendors/jquery/jquery-1.11.1.min.js"></script>
+<script src="<?php echo ossn_site_url(); ?>vendors/delete.js"></script>
         <script src="<?php echo ossn_site_url();?>vendors/tinymce/tinymce.min.js"></script>
 
 <script>
