@@ -377,7 +377,7 @@ height: 14px;
 and (min-width : 1280px) {
     .ossn-chat-base {
         width: 910px !important;
-    };
+    }
 }
 
 @media only screen
