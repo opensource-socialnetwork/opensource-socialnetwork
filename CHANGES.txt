@@ -2,6 +2,9 @@ OSSN - OPEN SOURCE SOCIAL NETWORK 1.8-dev
 Bugfixes
 * User edit error email in use.
 
+Github:
+* Created .travis.yml for project to track pull requests
+
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 1.7.2
 Bugfixes
