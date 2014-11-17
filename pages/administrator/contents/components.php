@@ -25,8 +25,8 @@ foreach($OssnComs->getComponents() as $Com){
     echo "<a href='{$configure}' class='components-button components-button-blue'>Configure</a>";
 	}
     if(!in_array($Com, $OssnComs->requiredComponents())){
-	$delete = ossn_site_url("action/component/delete?component={$Com}");
-	echo "<a href='{$delete}' class='components-button components-button-red'>Delete</a>";
+	//$delete = ossn_site_url("action/component/delete?component={$Com}");
+	echo "<a href='{$delete}' class='components-button components-button-red' data-component='{$Com}'>Delete</a>";
 	}
 	echo "</div>";
     
