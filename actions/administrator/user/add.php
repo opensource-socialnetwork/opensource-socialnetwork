@@ -65,7 +65,7 @@ if($add->isOssnEmail()){
     redirect(REF);
 }
 //check if email is valid email 
-if(!$OssnUser->isEmail()){
+if(!$add->isEmail()){
     ossn_trigger_message(ossn_print('email:invalid'), 'error', 'admin');
     redirect(REF);	
 }
