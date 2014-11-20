@@ -11,3 +11,4 @@ The following deveopers contributed to this project:
 * Anthony E. Sikora
 * Charles E. Lawler
 * Shaf Brady Hussain
+* Softaculous Team
