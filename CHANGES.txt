@@ -1,4 +1,4 @@
-OSSN - OPEN SOURCE SOCIAL NETWORK 1.8-dev
+OSSN - OPEN SOURCE SOCIAL NETWORK 1.8
 Bugfixes
 * User edit error email in use.
 
