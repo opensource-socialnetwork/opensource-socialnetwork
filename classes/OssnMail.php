@@ -28,6 +28,8 @@ class OssnMail extends PHPMailer {
 
         $this->Subject = $subject;
         $this->Body = $body;
+        $this->CharSet = "UTF-8";
+        
         if ($this->send()) {
             return true;
         }
