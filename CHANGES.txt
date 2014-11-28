@@ -1,3 +1,15 @@
+OSSN - OPEN SOURCE SOCIAL NETWORK 2.0-dev
+
+Api Additions:
+
+Functions in existing libraries and classes:
+  * ossn_unlink_new_js: Remove a js from system. This will not remove js file it will just unregister it.
+  * ossn_unload_js: Ossn system unloads js from head.
+  * ossn_unlink_new_css: Remove a css from system. This will not remove css file it will just unregister it.
+  * ossn_unload_css: Ossn system unloads css from head
+  
+Libraries
+
 OSSN - OPEN SOURCE SOCIAL NETWORK 1.8
 Bugfixes
 * User edit error email in use.
