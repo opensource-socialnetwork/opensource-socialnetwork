@@ -68,6 +68,21 @@ function ossn_new_css($name, $file) {
 }
 
 /**
+ * Remove a css from system
+ *
+ * This will not remove css file it will just unregister it
+ * @param string $name The name of the css
+ *
+ * @return void
+ */
+function ossn_unlink_new_css($name, $file) {
+    global $Ossn;
+    if(isset($Ossn->css[$name])){
+	   unset($Ossn->css[$name]);	
+	}
+}
+
+/**
  * Get a tag for inserting css
  *
  * @params string $args   array()
@@ -90,7 +105,20 @@ function ossn_load_css($name, $type = 'site') {
     global $Ossn;
     $Ossn->csshead[$type][] = $name;
 }
-
+/**
+ * Ossn system unloads css from head
+ *
+ * @param string $name The name of the css
+ *
+ * @return void
+ */
+function ossn_unload_css($name, $type = 'site') {
+    global $Ossn;
+	$css = array_search($name, $Ossn->csshead[$type]);
+    if($css !== false){
+		unset($Ossn->csshead[$type][$css]);
+	}
+}
 /**
  * Load registered css to system for site
  *
