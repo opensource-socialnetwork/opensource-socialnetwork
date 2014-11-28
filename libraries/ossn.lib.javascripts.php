@@ -69,6 +69,20 @@ function ossn_new_js($name, $file) {
     $add = $Ossn->js[$name] = $file;
     return $add;
 }
+/**
+ * Remove a js from system
+ *
+ * This will not remove js file it will just unregister it
+ * @param string $name The name of the js
+ *
+ * @return void
+ */
+function ossn_unlink_new_js($name, $file) {
+    global $Ossn;
+    if(isset($Ossn->js[$name])){
+	   unset($Ossn->js[$name]);	
+	}
+}
 
 /**
  * Get a tag for inserting css
@@ -91,6 +105,20 @@ function ossn_load_js($name) {
     global $Ossn;
     $js = $Ossn->jshead[] = $name;
     return $js;
+}
+/**
+ * Ossn system unloads js from head
+ *
+ * @param string $name The name of the js
+ *
+ * @return void
+ */
+function ossn_unload_js($name, $type = 'site') {
+    global $Ossn;
+	$js = array_search($name, $Ossn->jshead[$type]);
+    if($js !== false){
+		unset($Ossn->jshead[$type][$js]);
+	}
 }
 
 /**
