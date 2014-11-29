@@ -25,6 +25,12 @@ define('REF', true);
 global $Ossn;
 $settings = new OssnSite;
 $Ossn->siteSettings = $settings->getAllSettings();
+
+/*
+ * Set exceptions handler 
+ */
+set_exception_handler('_ossn_exception_handler'); 
+
 /**
  * Get site url
  *
@@ -622,6 +628,15 @@ function ossn_check_update() {
     }
     return ossn_print('ossn:update:check:error');
 }
-
+/**
+ * Add exception handler
+ *
+ * @return (html);
+ * @access public;
+ */
+function _ossn_exception_handler($exception){
+	$params['exception'] = $exception;
+	echo ossn_view('system/handlers/errors', $params);
+}
 ossn_errros();
 ossn_register_callback('ossn', 'init', 'ossn_system');
