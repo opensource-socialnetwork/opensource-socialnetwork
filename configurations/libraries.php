@@ -14,6 +14,8 @@ $Ossn->libraries = array(
     'input',
     'languages',
     'relations',
+	'entities',
+	'objects',
     'system',
     'views',
     'page',
