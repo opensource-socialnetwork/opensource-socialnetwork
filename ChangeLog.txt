@@ -1,0 +1,205 @@
+OSSN - OPEN SOURCE SOCIAL NETWORK 1.8
+Bugfixes
+* User edit error email in use.
+
+Github:
+* Created .travis.yml for project to track pull requests
+
+
+OSSN - OPEN SOURCE SOCIAL NETWORK 1.7.2
+Bugfixes
+* Missing method added.
+
+OSSN - OPEN SOURCE SOCIAL NETWORK 1.7.1
+
+Bugfixes
+* Show a message if username is in use.
+* Show a message if email is in use.
+* Fix deault char set for OssnDatabase.
+* Fixed empty wall posting (added ossnwall_json_unencaped_unicode)
+* Fix invalid translation in OssnLikes
+* Fix method getUser (class OssnUser)
+
+OSSN - OPEN SOURCE SOCIAL NETWORK 1.7
+
+Bugfixes:
+* Admin cannot delete ads.
+* Admin cannot edit ads.
+* Fix error messages type when adding ad.
+* Add missing components in core.
+* There is no image attach option in entity comments.
+* Comment not display if there is no other comments.
+* Notification count is not working.
+* Fix notification for group post like.
+* Allow admin to delete user.
+* Fix borken css in ossnchat.
+* Added missing component from core.
+* 1412353569.php is missing for fresh installation.
+* Fixed manifest of OssnComments by @sathish
+* Fixed component delete ( it was not working) thanks to @sathish
+
+Api Changes
+* getAnnotationsByOwner method added (class OssnAnnotation)
+* deleteAnnotationByOwner method added (class OssnAnnotation)
+* deleteUser method added (class OssnUser)
+* deleteLikesByOwnerGuid method added (calss OssnLikes)
+* deleteUserNotifications method added (class OssnNotifications)
+* getUserGroupPostsGuids method added. This will return array contaning guids of wall posts created by user in group.
+* ossn_delete_user_relations function added (library relations)
+
+OSSN - OPEN SOURCE SOCIAL NETWORK 1.6
+
+Bugfixes:
+
+* Don't let logged out users to comment.
+* Don't let logged out users to like anything.
+* Fix the margin top of profile cover when logged out.
+* Don't show photo viewer when logged out
+* Hide add friend, message and other menu from profile when user is logged out.
+* Fix major style issues.
+* Hide photos delete form non loggedin users.
+* Only allow admin and owners to see delete photo link.
+* Only upload comment images when user is loggedin.
+* Inbox url is borken in messages page.
+* OssnChat boot bug fixes.
+* Cannot include similes in chat(second time).
+* Friends notification never remove counts even if you add friend.
+* Fix profile cover postion issue.
+* Fix broken style for comment menu item
+
+Api Changes:
+
+* Get Annotations by types Method added.
+* Don't log errors to file if errors are off
+
+OSSN - OPEN SOURCE SOCIAL NETWORK 1.5
+
+Bugfixes:
+
+* Cann't delete wall post ( fix width of link )
+* Fix unicode issues in wall post.
+
+ Enhancements:
+
+* OssnChat added as core.
+* Autorefresh topbar notification.
+* Add a new methods for saving and getting component settings
+
+Core changes:
+
+* A new way of gettings php errors on blank page issue
+
+OSSN - OPEN SOURCE SOCIAL NETWORK 1.4
+
+Bugfixes:
+
+* OssnWall access icon class fixes;
+
+ Enhancements:
+
+* ossncomments add ajax likes #52
+* Added icon with likes
+* Moved post links (like, comment) outside of like_share bar.
+* Allow users to delete comments.
+* Ajax error box added.
+* User can now add image to comments. #53
+* Black Theme added
+* OssnWall Privacy system is added ( allow users to select privacy) #42
+* Allow users to delete photos 
+* Errors on/off settings has been added.
+* Allows group admins to change their group cover
+
+Core changes:
+
+* Get user icon by OssnUser->iconURL()->size
+* Get user profile url by OssnUser->profileUSER();
+* Get param from object using object->getParam(param);
+
+CONTRIBUTORS TO THIS RELEASE:
+
+* Syed Arsalan Hussain Shah of Informatikon Techologies (informatikon.com)
+* Sathish Kumar of Webbehinds.com
+* Johnson John
+* Shaf Brady Hussain of hostingandvps.com
+* Anthony E. Sikora Informatikon Technologies
+* Mike Wagner Informatikon Technologies
+
+OSSN - OPEN SOURCE SOCIAL NETWORK 1.3.1
+
+Bugfixes:
+
+* User post empty wall post
+* comment is now displaying likes
+
+OSSN - OPEN SOURCE SOCIAL NETWORK 1.3
+
+Bugfixes:
+
+* Cover update fail on first time upload
+* Escaping is adding / to posts #32.
+* Search layout contain static ads #28
+* Component(ossngroups): group view page layout is broken #30
+* Component(ossnnotifications): see all link is broken #27
+* Relation type is int instead for text
+* add website name in installation form #36
+* component(ossngroups): group display owner two times in header #41
+* Profile modules title height fixed
+* Fix Ads on layout media.
+* Notification database time_created time to int(11)
+* (ossnmessages)clear form when sending message #38
+* Fixed Ossn Modal box title height
+* Don't show messages page if there is invalid user
+* Cannot search user by full name.
+* Cannot cancel group membership request.
+* Group  description added on landing page if group is private
+
+ Enhancements:
+
+* Merged profile photos with ossnphotos.
+* View notification if someone comment on user photo
+* View notification if some like user photo
+* Upgrade feature added.
+* OssnBlock component added.
+* OssnPoke component added
+
+OSSN - OPEN SOURCE SOCIAL NETWORK 1.2
+
+Bugfixes:
+
+* Apache mod_rewrite test fails. 
+* User can delete wall post.
+* Comments profile links are not working #14
+* Groups buttons text missing.
+* Messages count on topbar.
+* User photos are hidden on notifications #26
+* Images are broken on messages page.
+* Notification for comments/likes for groups posts missing.
+* Invalid link from group member requests page.
+* Fixed translation on member request page.
+* Add friend button not working #21
+* Message button is not working in profile page #18
+* Fixed the missing translation from admin panel.
+* Shows cache status on cache settings page
+
+Enhancement
+
+* Allow users to post image on user wall.
+* Allow members to post image on group wall.
+* Otimization
+
+OSSN - OPEN SOURCE SOCIAL NETWORK 1.1
+
+Bugfixes:
+
+* Add groups click event not working #9
+* User validation is missing #10
+* remove photo viewer if there is not profile photo #3
+* Show transparent photo if there is no profile cover #4
+* component(ossnphotos): photos is not displaying correctly in albums photos #6
+* Installation Issues fixed
+* Post image is mission on profile page
+
+
+Enhancement
+* Installation should check all requirments.
+* Litespeed server is supported now.
