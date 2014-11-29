@@ -3,16 +3,19 @@ OSSN - OPEN SOURCE SOCIAL NETWORK 2.0-dev
 Api Additions:
 
 Functions in existing libraries and classes:
+
   * ossn_unlink_new_js: Remove a js from system. This will not remove js file it will just unregister it.
   * ossn_unload_js: Ossn system unloads js from head.
   * ossn_unlink_new_css: Remove a css from system. This will not remove css file it will just unregister it.
   * ossn_unload_css: Ossn system unloads css from head
 
 Classes: 
+
  * OssnDatabaseException  
  * OssnSiteException
 
 Libraries:
+
  * ossn.lib.annotations
  * ossn.lib.objects
  * ossn.lib.entities
@@ -20,3 +23,9 @@ Libraries:
 General: 
 
  * excption handler added.
+
+Language Strings Addition:
+
+locale / 
+  
+  * ossn:exception:title
