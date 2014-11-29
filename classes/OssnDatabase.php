@@ -11,6 +11,20 @@
  */
 class OssnDatabase {
     /**
+     * Connect to mysql database
+     *
+     * @return bool;
+     */
+    public function Connect() {
+        $settings = ossn_database_settings();
+        $connect = new mysqli($settings->host, $settings->user, $settings->password, $settings->database);
+        if (!$connect->connect_errno) {
+            return $connect;
+        } else {
+            return false;
+        }
+    }	
+    /**
      * Prepare a query to insert data in database
      *
      * @params = array();
@@ -59,7 +73,7 @@ class OssnDatabase {
             $this->database->set_charset("utf8");
             $this->exe = $this->database->query($this->query);
             if (!$this->exe) {
-                throw new exception("{$this->database->error} \n {$this->query} ");
+                throw new OssnDatabaseException("{$this->database->error} \n {$this->query} ");
             }
             if (isset($this->database->insert_id)) {
                 $this->last_id = $this->database->insert_id;
@@ -69,21 +83,6 @@ class OssnDatabase {
             return true;
         }
         return false;
-    }
-
-    /**
-     * Connect to mysql database
-     *
-     * @return bool;
-     */
-    public function Connect() {
-        $settings = ossn_database_settings();
-        $connect = new mysqli($settings->host, $settings->user, $settings->password, $settings->database);
-        if (!$connect->connect_errno) {
-            return $connect;
-        } else {
-            return false;
-        }
     }
 
     /**
@@ -154,7 +153,11 @@ class OssnDatabase {
             if (!empty($params['wheres'])) {
                 $wheres = "WHERE({$where})";
             }
-            $query = "SELECT {$parameters} FROM `{$params['from']}` {$wheres} {$order_by};";
+			$limit = '';
+			if (!empty($params['limit'])){
+				$limit = "LIMIT {$params['limit']}";
+			}
+            $query = "SELECT {$parameters} FROM `{$params['from']}` {$wheres} {$order_by} {$limit};";
             $this->statement($query);
             if ($this->execute()) {
                 return $this->fetch($multi);
