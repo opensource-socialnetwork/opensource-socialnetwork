@@ -93,6 +93,9 @@ class OssnEntities extends OssnDatabase {
         if (empty($this->order_by)) {
             $this->order_by = '';
         }
+		if (empty($this->limit)){
+			$this->limit = '';
+		}
         if (empty($this->type)) {
             $this->type = 'entity';
         }
@@ -112,7 +115,6 @@ class OssnEntities extends OssnDatabase {
         $this->get = array(
             'from' => 'ossn_entities',
             'wheres' => array("guid ='{$this->entity_guid}'"),
-            'order_by' => $this->order_by
         );
         $this->get = $this->select($this->get);
         $metadata = $this->select(array(
@@ -197,10 +199,14 @@ class OssnEntities extends OssnDatabase {
         } else {
             $this->subtype = '';
         }
+		if(isset($this->owner_guid)){
+			$this->byowner = "owner_guid ='{$this->owner_guid}' AND";
+		}
         $this->get = array(
             'from' => 'ossn_entities',
-            'wheres' => array("owner_guid ='{$this->owner_guid}' AND type='{$this->type}' {$this->subtype}"),
-            'order_by' => $this->order_by
+            'wheres' => array("{$this->byowner} type='{$this->type}' {$this->subtype}"),
+            'order_by' => $this->order_by,
+			'limit' => $this->limit,
         );
         $this->get = $this->select($this->get, true);
         if ($this->get) {
