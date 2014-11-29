@@ -9,6 +9,8 @@
  * @link      http://www.opensource-socialnetwork.com/licence
  */
 $Ossn->classes = array(
+	'SiteException',				   
+	'DatabaseException',
     'Mail',
     'Pagination',
     'Database',
