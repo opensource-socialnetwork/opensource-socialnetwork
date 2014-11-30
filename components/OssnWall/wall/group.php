@@ -40,7 +40,7 @@ if ($posts) {
             $image = '';
         }
         $user = ossn_user_by_guid($post->poster_guid);
-        echo ossn_view('components/OssnWall/templates/group-activity-item', array(
+        echo ossn_wall_view_template(array(
             'post' => $post,
             'friends' => explode(',', $data->friend),
             'text' => $text,
@@ -48,7 +48,6 @@ if ($posts) {
             'user' => $user,
             'image' => $image,
         ));
-
     }
 }
 echo $Pagination->pagination();
