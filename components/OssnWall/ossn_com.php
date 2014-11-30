@@ -35,7 +35,11 @@ function ossn_wall() {
 	ossn_add_hook('notification:view', 'like:post:group:wall', 'ossn_group_comment_post');
 
     ossn_add_hook('wall', 'post:menu', 'ossn_wall_post_menu');
-
+    
+	//templates
+	ossn_add_hook('wall:template', 'user', 'ossn_wall_templates');
+	ossn_add_hook('wall:template', 'group', 'ossn_wall_templates');
+	
    //callbacks
    ossn_register_callback('group', 'delete', 'ossn_group_wall_delete');   
    ossn_register_callback('user', 'delete', 'ossn_user_posts_delete');
@@ -212,5 +216,19 @@ function ossnwall_json_unencaped_unicode($matches) {
             'UTF-8', 
             'UTF-16'
             );
+}
+function ossn_wall_view_template(array $params){
+	$type = $params['post']->type;
+	if(isset($params['post']->item_type)){ 
+ 		$type = $params['post']->item_type;
+	}
+	if (ossn_is_hook('wall:template', $type)) {
+		return ossn_call_hook('wall:template', $type, $params);
+	}
+	return false;
+}
+
+function ossn_wall_templates($hook, $type, $return, $params){
+	return ossn_view("components/OssnWall/templates/wall/{$type}/item", $params);
 }
 ossn_register_callback('ossn', 'init', 'ossn_wall');
