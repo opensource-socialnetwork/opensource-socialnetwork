@@ -22,7 +22,13 @@ function ossn_register_page($handler, $function) {
     $pages = $Ossn->page[$handler] = $function;
     return $pages;
 }
-
+/**
+ * Unregister a page from syste,
+ * @param (string) $handler Page handler name;
+ *
+ * @last edit: $arsalanshah
+ * @return void;
+ */
 function ossn_unregister_page($handler) {
     global $Ossn;
     unset($Ossn->page[$handler]);
@@ -33,8 +39,8 @@ function ossn_unregister_page($handler) {
  *
  * If page is not registered then user will see a 404 page;
  *
- * @params: #handler  = page handler;
- * @params:  $page = subpage;
+ * @param  (string) $handler Page handler name;
+ * @param  (string) $page  handler/page;
  * @last edit: $arsalanshah
  * @Reason: Initial;
  *
@@ -63,7 +69,7 @@ function ossn_load_page($handler, $page) {
 /**
  * Set page owner guid, this is very useful
  *
- * @params = $guid => owner guid
+ * @param (int) $guid  Guid of owner
  *
  * @return void
  */
