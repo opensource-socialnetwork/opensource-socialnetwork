@@ -29,4 +29,5 @@ $Ossn->libraries = array(
     'admin',
     'components',
     'upgrade',
+	'securitytoken',
 );
