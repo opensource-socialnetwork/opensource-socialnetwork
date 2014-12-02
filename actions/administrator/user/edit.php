@@ -8,7 +8,6 @@
  * @license   General Public Licence http://opensource-socialnetwork.com/licence
  * @link      http://www.opensource-socialnetwork.com/licence
  */
-
 $entity = ossn_user_by_username(input('username'));
 if(!$entity){
 	redirect(REF);
@@ -52,7 +51,7 @@ $OssnDatabase = new OssnDatabase;
 
 
 $params['table'] = 'ossn_users';
-$params['wheres'] = array("guid='{$user_get->guid}'");
+$params['wheres'] = array("guid='{$entity->guid}'");
 
 $params['names'] = array(
     'first_name',
@@ -107,13 +106,13 @@ if (!empty($password)) {
 //save
 if ($OssnDatabase->update($params)) {
     //update entities
-    $guid = $user_get->guid;
+    $guid = $entity->guid;
     if (!empty($guid)) {
-        $user_get->owner_guid = $guid;
-        $user_get->type = 'user';
-        $user_get->data->gender = $user['gender'];
-        $user_get->data->birthdate = $user['birthdate'];
-        $user_get->save();
+        $entity->owner_guid = $guid;
+        $entity->type = 'user';
+        $entity->data->gender = $user['gender'];
+        $entity->data->birthdate = $user['birthdate'];
+        $entity->save();
     }
     ossn_trigger_message(ossn_print('user:updated'), 'success', 'admin');
     redirect(REF);
