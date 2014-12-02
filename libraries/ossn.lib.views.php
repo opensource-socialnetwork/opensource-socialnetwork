@@ -229,3 +229,18 @@ function ossn_view_widget($name, $title, $contents) {
     $widget['contents'] = $contents;
     return ossn_view("themes/{$active_theme}/widgets/{$name}", $widget);
 }
+/**
+ * View a template
+ *
+ * Use a templates from core (image view, url view etc)
+ * 
+ * @param string $template A name of template
+ * @param array $params
+ * 
+ * @return mix data
+ */
+function ossn_view_template($template = '', array $params){
+	if(!empty($template)){
+		return ossn_view("system/templates/{$template}", $params);
+	}
+}
