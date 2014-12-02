@@ -54,6 +54,8 @@ $en = array(
     'close:group:notice' => 'Join this group to see the post, photos and comment.',
     'closed:group' => 'Closed group',
     'group:admin' => 'Admin',
+	
+	'title:access:private:group' => 'Private group post',
 
 
 );
