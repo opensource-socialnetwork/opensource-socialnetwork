@@ -2,7 +2,9 @@ OSSN - OPEN SOURCE SOCIAL NETWORK 2.0-dev
 
 Bugfixes:
  * If admin edit user it didn't updated in system #117
-
+ * Leave group button problem #111
+ * In backend user list 'last_login' time is invalid.
+ 
 Api Additions:
 
 Functions in existing libraries and classes:
