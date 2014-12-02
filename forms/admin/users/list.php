@@ -35,6 +35,10 @@ if (!empty($search)) {
     </tr>
     <?php foreach ($pagination->getItem() as $user) {
         $user = ossn_user_by_guid($user->guid);
+		$lastlogin = '';
+		if(!empty($user->last_login)){
+			$lastlogin = ossn_user_friendly_time($user->last_login);
+		}
         ?>
         <tr>
             <td>
@@ -46,11 +50,11 @@ if (!empty($search)) {
             <td><?php echo $user->username; ?></td>
             <td><?php echo $user->email; ?></td>
             <td><?php echo $user->type; ?></td>
-            <td><?php echo $user->type; ?></td>
+            <td><?php echo $lastlogin; ?></td>
             <td>
                 <a href="<?php echo ossn_site_url("administrator/edituser/{$user->username}"); ?>"><?php echo ossn_print('edit'); ?></a>
             </td>
-            <td><a href="<?php echo ossn_site_url("action/admin/delete/user?guid={$user->guid}"); ?>"><?php echo ossn_print('delete'); ?></a></td>
+            <td><a href="<?php echo ossn_add_tokens_to_url(ossn_site_url("action/admin/delete/user?guid={$user->guid}")); ?>"><?php echo ossn_print('delete'); ?></a></td>
 
         </tr>
     <?php } ?>
