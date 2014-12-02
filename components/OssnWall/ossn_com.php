@@ -179,10 +179,10 @@ function ossn_post_page($pages) {
 function ossn_wall_post_menu($hook, $type, $return, $params) {
     if ($params['post']->poster_guid == ossn_loggedin_user()->guid || $params['post']->owner_guid == ossn_loggedin_user()->guid || ossn_isAdminLoggedin()
     ) {
-
+		$deleteurl = ossn_site_url("action/wall/post/delete?post={$params['post']->guid}");
         ossn_register_menu_link("delete", ossn_print('ossn:post:delete'), array(
             'class' => 'ossn-wall-post-delete',
-            'href' => ossn_site_url("action/wall/post/delete?post={$params['post']->guid}"),
+            'href' => ossn_add_tokens_to_url($deleteurl),
             'data-guid' => $params['post']->guid
         ), 'wallpost');
 
