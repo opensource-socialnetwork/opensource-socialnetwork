@@ -25,7 +25,7 @@ $en = array(
 
     'copyright' => '&copy; COPYRIGHT',
     'powered' => 'Powered Open Source Social Network',
-	
+
     'name' => 'Name',
     'birthdate' => 'Birthdate',
     'first:name' => 'First Name',
@@ -77,12 +77,12 @@ $en = array(
     'add' => 'Add',
     'edit' => 'Edit',
     'search' => 'Search',
-	'delete' => 'Delete',
+    'delete' => 'Delete',
 
     'admin:users' => 'List Users',
     'admin:add:user' => 'Add User',
-	'admin:user:deleted' => 'User has been deleted',
-	'admin:user:delete:error' => 'Cannot delete user please try again later',
+    'admin:user:deleted' => 'User has been deleted',
+    'admin:user:delete:error' => 'Cannot delete user please try again later',
 
     'type' => 'Type',
     'normal' => 'Normal',
@@ -155,9 +155,9 @@ If you can't click on the link, copy and paste it to your browser manually.
     'account:create:error:admin' => 'Cannot register account please try again later',
     'user:updated' => 'User has been updated',
     'logged:out' => 'You are now logged out',
-	'username:inuse' => 'Username already exist please try another usename',
-	'email:inuse' => 'Email already exist please try another email',
-	'email:invalid' => 'Email is invalid. Make sure the email you entered is correct.',
+    'username:inuse' => 'Username already exist please try another usename',
+    'email:inuse' => 'Email already exist please try another email',
+    'email:invalid' => 'Email is invalid. Make sure the email you entered is correct.',
     'account:created:email' => "Your account has been registered. We have sent you account activation email. If you didn't recieved email please check your spam/junk folder",
 
     'administration' => 'Administration',
@@ -215,9 +215,10 @@ Please click the link below to reset password or copy the link and paste in your
 
     'ossn:new:version:error' => 'Unknown',
     'ossn:version:avaialbe' => "%s",
-	
-	'ossn:exception:title' => 'System error occurred. Please try again later. Email Administrator at %s',
-	
+
+    'ossn:exception:title' => 'System error occurred. Please try again later. Email Administrator at %s',
+    'ossn:securitytoken:failed' => 'The action you requested is invalid.',
+
     /*
        * List of ISO 639-1 language codes
        * http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
