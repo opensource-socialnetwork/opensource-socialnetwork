@@ -12,3 +12,4 @@ The following deveopers contributed to this project:
 * Charles E. Lawler
 * Shaf Brady Hussain
 * Softaculous Team
+* Michael Zülsdorff 
