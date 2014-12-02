@@ -66,6 +66,8 @@ Ossn.PostMenu = function($id){
      $element.hide();
    }     	
 };
+<?php
+/*
 Ossn.WallRefreshActivity = function(){
    Ossn.PostRequest({
                     url: Ossn.site_url+'post/refresh_home',
@@ -79,7 +81,7 @@ $(document).ready(function(){
          setInterval(function(){Ossn.WallRefreshActivity()}, 5000);     
 }); 
 }); 
-
+*/ ?>
 Ossn.RegisterStartupFunction(function(){
 $(document).ready(function(){
       $('.ossn-wall-privacy').on('click', function(e){
