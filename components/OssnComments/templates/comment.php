@@ -33,8 +33,12 @@ if ($likes_total > 0) {
     </div>
     <div class="comment-text">
         <p>
-            <a class="owner-link" href="<?php echo $user->profileURL(); ?>"><?php echo $user->fullname; ?></a>
             <?php
+			 echo ossn_view_template('output/url', array(
+									'href' => $user->profileURL(), 
+									'text' => $user->fullname, 
+									'class' => 'owner-link',
+			  ));			
             if ($comment->type == 'comments:entity') {
                 echo $comment->getParam('comments:entity');
             } elseif ($comment->type == 'comments:post') {
@@ -50,20 +54,32 @@ if ($likes_total > 0) {
         </p>
 
         <div class="comment-metadata"> <?php echo ossn_user_friendly_time($comment->time_created); ?>
-            <?php if (ossn_isLoggedIn()) { ?>
-                <?php if (!$OssnLikes->isLiked($comment->id, ossn_loggedin_user()->guid, $type)) { ?>
-                    <a class="ossn-like-comment"
-                       href="<?php echo ossn_site_url(); ?>action/annotation/like?annotation=<?php echo $comment->id; ?>">
-                        <?php echo ossn_print('like'); ?></a>
-                <?php } else { ?>
-                    <a class="ossn-like-comment"
-                       href="<?php echo ossn_site_url(); ?>action/annotation/unlike?annotation=<?php echo $comment->id; ?>">
-                        <?php echo ossn_print('unlike'); ?></a>
-                <?php } ?>
+            <?php if (ossn_isLoggedIn()) {
+                	 if (!$OssnLikes->isLiked($comment->id, ossn_loggedin_user()->guid, $type)) {
+							echo ossn_view_template('output/url', array(
+									'href' => ossn_site_url("action/annotation/like?annotation={$comment->id}"), 
+									'text' => ossn_print('like'), 
+									'class' => 'ossn-like-comment',
+									'action' => true
+									));
+                		 } else { 
+						 	echo ossn_view_template('output/url', array(
+									'href' => ossn_site_url("action/annotation/unlike?annotation={$comment->id}"), 
+									'text' => ossn_print('unlike'), 
+									'class' => 'ossn-like-comment',
+									'action' => true
+									));
+                		 }
 
-            <?php } /* Likes only for loggedin users*/ ?>
-            <a href="javascript::;" class="ossn-total-likes-<?php echo $comment->id; ?>"
-               data-likes='<?php echo $datalikes; ?>'><?php echo $likes_total; ?></a>
+            	} // Likes only for loggedin users end 
+				// Show total likes
+				echo ossn_view_template('output/url', array(
+						'href' => 'javascript::;', 
+						'text' => $likes_total, 
+						'class' => "ossn-total-likes-{$comment->id}",
+						'data-likes' => $datalikes,
+						));				
+				?>
         </div>
     </div>
 </div>
