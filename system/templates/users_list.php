@@ -29,23 +29,23 @@ foreach ($users as $user) {
                 if (!ossn_user_is_friend(ossn_loggedin_user()->guid, $user->guid)) {
                     if (ossn_user()->requestExists(ossn_loggedin_user()->guid, $user->guid)) {
                         ?>
-                        <a href="<?php echo ossn_site_url(); ?>action/friend/remove?cancel=true&user=<?php echo $user->guid; ?>"
+          <a href="<?php echo ossn_add_tokens_to_url(ossn_site_url("action/friend/remove?cancel=true&user={$user->guid}")); ?>"
+                               class='button-grey friendlink'>
+                                <?php echo ossn_print('cancel:request'); ?>
+                            </a>
+                        <?php } else { ?>
+                            <a href="<?php echo ossn_add_tokens_to_url(ossn_site_url("action/friend/add?user={$user->guid}")); ?>"
+                               class='button-grey friendlink'>
+                                <?php echo ossn_print('add:friend'); ?>
+                            </a>
+                        <?php
+                        }
+                    } else {
+                        ?>
+                        <a href="<?php echo ossn_add_tokens_to_url(ossn_site_url("action/friend/remove?user={$user->guid}")); ?>"
                            class='button-grey friendlink'>
-                            <?php echo ossn_print('cancel:request'); ?>
+                            <?php echo ossn_print('remove:friend'); ?>
                         </a>
-                    <?php } else { ?>
-                        <a href="<?php echo ossn_site_url(); ?>action/friend/add?user=<?php echo $user->guid; ?>"
-                           class='button-grey friendlink'>
-                            <?php echo ossn_print('add:friend'); ?>
-                        </a>
-                    <?php
-                    }
-                } else {
-                    ?>
-                    <a href="<?php echo ossn_site_url(); ?>action/friend/remove?user=<?php echo $user->guid; ?>"
-                       class='button-grey friendlink'>
-                        <?php echo ossn_print('remove:friend'); ?>
-                    </a>
                 <?php
                 }
 
