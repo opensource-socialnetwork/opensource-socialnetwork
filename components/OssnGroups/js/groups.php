@@ -11,8 +11,9 @@ $(document).ready(function(){
     $("#group-upload-cover").submit(function (event) {
         event.preventDefault();
         var formData = new FormData($(this)[0]);
+        var $url = Ossn.site_url+'action/group/cover/upload';
         $.ajax({
-            url: Ossn.site_url+'action/group/cover/upload',
+            url: Ossn.AddTokenToUrl($url),
             type: 'POST',
             data: formData,
             async: true,
@@ -111,11 +112,12 @@ Ossn.RegisterStartupFunction(function(){
 });
 
 Ossn.repositionGroupCOVER = function($group){
+	 var $url = Ossn.site_url+"action/group/cover/reposition";
      $.ajax({
 		async: true,
 		type: 'post',
 		data: '&top='+Ossn.GroupCover_top+'&left='+Ossn.GroupCover_left+'&group='+$group,
-		url: Ossn.site_url+"action/group/cover/reposition",
+		url: Ossn.AddTokenToUrl($url),
 		success: function(callback){
                 $('.group-c-position').attr('style', 'display:none !important;');   
  				$("#draggable").draggable({
