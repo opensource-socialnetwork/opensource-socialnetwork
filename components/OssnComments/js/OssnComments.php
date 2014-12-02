@@ -71,6 +71,7 @@ Ossn.RegisterStartupFunction(function(){
              
              Ossn.PostRequest({
 			      url: $url,
+                  action:false,
 			      beforeSend: function(){
    	                $('#comments-item-'+$comment_id).attr('style', 'opacity:0.6;');
 			      },
