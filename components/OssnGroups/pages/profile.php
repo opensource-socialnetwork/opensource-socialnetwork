@@ -75,7 +75,7 @@ if ($cover) {
                     if ($params['group']->isMember(NULL, ossn_loggedin_user()->guid)) {
                         $ismember = 1;
                         ?>
-                        <a href="<?php echo ossn_add_tokens_to_url(ossn_site_url("action/group/leave?group={$params['group']->guid}")); ?>"
+                        <a href="<?php echo ossn_add_tokens_to_url(ossn_site_url("action/group/member/cancel?group={$params['group']->guid}")); ?>"
                            class='button-grey'>
                             <?php echo ossn_print('leave:group'); ?></a>
                     <?php
@@ -87,7 +87,7 @@ if ($cover) {
                     <?php
                     }
 
-                    if ($params['group']->requestExists(ossn_loggedin_user()->guid, false)) {
+                    if (!$ismember && $params['group']->requestExists(ossn_loggedin_user()->guid, false)) {
                         ?>
                         <a href="<?php echo ossn_add_tokens_to_url(ossn_site_url("action/group/member/cancel?group={$params['group']->guid}")); ?>"
                            class='button-grey'>
