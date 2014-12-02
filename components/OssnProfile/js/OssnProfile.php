@@ -57,9 +57,9 @@ $('#reposition-cover').click(function(){
 $("#upload-photo").submit(function (event) {
         event.preventDefault();
         var formData = new FormData($(this)[0]);
-
+		var $url = Ossn.site_url+'action/profile/photo/upload';
         $.ajax({
-            url: Ossn.site_url+'action/profile/photo/upload',
+            url: Ossn.AddTokenToUrl($url),
             type: 'POST',
             data: formData,
             async: true,
@@ -87,8 +87,9 @@ $("#upload-photo").submit(function (event) {
     $("#upload-cover").submit(function (event) {
         event.preventDefault();
         var formData = new FormData($(this)[0]);
+        var $url = Ossn.site_url+'action/profile/cover/upload';
         $.ajax({
-            url: Ossn.site_url+'action/profile/cover/upload',
+            url: Ossn.AddTokenToUrl($url),
             type: 'POST',
             data: formData,
             async: true,
