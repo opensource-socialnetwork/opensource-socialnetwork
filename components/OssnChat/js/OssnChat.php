@@ -95,6 +95,7 @@ Ossn.ajaxRequest({
 Ossn.ChatnewTab = function($user){
 Ossn.PostRequest({
 			  url: Ossn.site_url+"ossnchat/selectfriend?user="+$user,
+              action:false,
 			  callback: function(callback){
 				 if($('#ftab-i'+$user).length == 0){   						      
                     if($(".ossn-chat-containers").children(".friend-tab-item").size() < 4){
