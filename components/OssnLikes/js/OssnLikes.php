@@ -100,6 +100,7 @@ Ossn.RegisterStartupFunction(function(){
                 var $url = $item.attr('href');
               	Ossn.PostRequest({
 					 url: $url,
+                     action:false,
 					 beforeSend: function(){
 					    $item.html('<img src="'+Ossn.site_url+'components/OssnComments/images/loading.gif" />');
 					 },
