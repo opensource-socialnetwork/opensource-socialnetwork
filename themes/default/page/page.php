@@ -19,7 +19,6 @@ if (isset($params['contents'])) {
 } else {
     $contents = '';
 }
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -32,9 +31,7 @@ if (isset($params['contents'])) {
     <?php echo ossn_fetch_extend_views('ossn/site/head'); ?>
 
     <script>
-
         <?php echo ossn_fetch_extend_views('ossn/js/head'); ?>
-
     </script>
 
     <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
@@ -98,7 +95,13 @@ if (isset($params['contents'])) {
                             <a href="<?php echo ossn_site_url("u/" . ossn_loggedin_user()->username . "/edit"); ?>"><?php echo ossn_print('acount:settings'); ?></a>
                         </li>
                         <li>
-                            <a href="<?PHP echo ossn_site_url(); ?>action/user/logout"><?php echo ossn_print('logout'); ?></a>
+                          <?php
+						  	echo ossn_view_template('output/url', array(
+									'href' => ossn_site_url('action/user/logout'), 
+									'text' => ossn_print('logout'), 
+									'action' => true 
+									));
+						  ?>
                         </li>
                     </ul>
 
