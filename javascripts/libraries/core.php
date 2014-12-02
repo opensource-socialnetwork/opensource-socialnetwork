@@ -47,6 +47,8 @@ Ossn.ajaxRequest = function($data){
 	 var callback = $data['callback'];
 	 var error = $data['error'];
      var befsend = $data['beforeSend']; 
+     var action = $data['action'];
+     
      if(url == true){
       url = $($form_name).attr('action');
      }
@@ -59,7 +61,12 @@ Ossn.ajaxRequest = function($data){
 	 if(!befsend){
 		befsend = function(){} 
 	 }
-	
+     if(!action){
+     	action = false;
+     }
+     if(action == true){
+		url = Ossn.AddTokenToUrl(url);
+     }
 	 if(!error){
 	    error = function(xhr, status, error) {
               if(error == 'Internal Server Error' || error !== ''){
@@ -96,13 +103,20 @@ Ossn.PostRequest = function($data){
 	 var error = $data['error'];
      var befsend = $data['beforeSend']; 
 	 var $fdata = $data['params'];
+	 var action = $data['action'];
+
 	 if(!callback){
 	    return false;	
 	 }
 	 if(!befsend){
 		befsend = function(){} 
 	 }
-	
+     if(!action){
+     	action = true;
+     }
+     if(action == true){
+		url = Ossn.AddTokenToUrl(url);
+     }	
 	 if(!error){
 	    error = function(){};
 	 }		  
@@ -263,7 +277,6 @@ Ossn.MessageBoxClose = function(){
 Ossn.MessageBox = function($url){
 	Ossn.PostRequest({
 					 url: Ossn.site_url+$url,
-					
 					 beforeSend: function(){
 						$('.ossn-halt').addClass('ossn-light');
                         $('.ossn-halt').attr('style', 'height:'+$(document).height()+'px;');
@@ -333,7 +346,146 @@ Ossn.UrlParams = function(name, url) {
     }
     return results[1] || 0;
 };
+/**
+ * Returns an object with key/values of the parsed query string.
+ *
+ * @param  {String} string The string to parse
+ * @return {Object} The parsed object string
+ */
+Ossn.ParseStr = function(string) {
+	var params = {},
+		result,
+		key,
+		value,
+		re = /([^&=]+)=?([^&]*)/g,
+		re2 = /\[\]$/;
 
+	while (result = re.exec(string)) {
+		key = decodeURIComponent(result[1].replace(/\+/g, ' '));
+		value = decodeURIComponent(result[2].replace(/\+/g, ' '));
+
+		if (re2.test(key)) {
+			key = key.replace(re2, '');
+			if (!params[key]) {
+				params[key] = [];
+			}
+			params[key].push(value);
+		} else {
+			params[key] = value;
+		}
+	}
+	
+	return params;
+};
+/**
+ * Parse a URL into its parts. Mimicks http://php.net/parse_url
+ *
+ * @param {String} url       The URL to parse
+ * @param {Int}    component A component to return
+ * @param {Bool}   expand    Expand the query into an object? Else it's a string.
+ *
+ * @return {Object} The parsed URL
+ */
+Ossn.ParseUrl = function(url, component, expand) {
+	// Adapted from http://blog.stevenlevithan.com/archives/parseuri
+	// which was release under the MIT
+	// It was modified to fix mailto: and javascript: support.
+	expand = expand || false;
+	component = component || false;
+	
+	var re_str =
+			// scheme (and user@ testing)
+			'^(?:(?![^:@]+:[^:@/]*@)([^:/?#.]+):)?(?://)?'
+			// possibly a user[:password]@
+			+ '((?:(([^:@]*)(?::([^:@]*))?)?@)?'
+			// host and port
+			+ '([^:/?#]*)(?::(\\d*))?)'
+			// path
+			+ '(((/(?:[^?#](?![^?#/]*\\.[^?#/.]+(?:[?#]|$)))*/?)?([^?#/]*))'
+			// query string
+			+ '(?:\\?([^#]*))?'
+			// fragment
+			+ '(?:#(.*))?)',
+		keys = {
+			1: "scheme",
+			4: "user",
+			5: "pass",
+			6: "host",
+			7: "port",
+			9: "path",
+			12: "query",
+			13: "fragment"
+		},
+		results = {};
+
+	if (url.indexOf('mailto:') === 0) {
+		results['scheme'] = 'mailto';
+		results['path'] = url.replace('mailto:', '');
+		return results;
+	}
+
+	if (url.indexOf('javascript:') === 0) {
+		results['scheme'] = 'javascript';
+		results['path'] = url.replace('javascript:', '');
+		return results;
+	}
+
+	var re = new RegExp(re_str);
+	var matches = re.exec(url);
+
+	for (var i in keys) {
+		if (matches[i]) {
+			results[keys[i]] = matches[i];
+		}
+	}
+
+	if (expand && typeof(results['query']) != 'undefined') {
+		results['query'] = ParseStr(results['query']);
+	}
+
+	if (component) {
+		if (typeof(results[component]) != 'undefined') {
+			return results[component];
+		} else {
+			return false;
+		}
+	}
+	return results;
+};
+/**
+ * Add action token to url
+ * 
+ * @param string data Full complete url
+ */
+Ossn.AddTokenToUrl = function(data) {
+	// 'http://example.com?data=sofar'
+	if (typeof data === 'string') {
+		// is this a full URL, relative URL, or just the query string?
+		var parts = Ossn.ParseUrl(data),
+			args = {},
+			base = '';
+		
+		if (parts['host'] === undefined) {
+			if (data.indexOf('?') === 0) {
+				// query string
+				base = '?';
+				args = Ossn.ParseStr(parts['query']);
+			}
+		} else {
+			// full or relative URL
+			if (parts['query'] !== undefined) {
+				// with query string
+				args = Ossn.ParseStr(parts['query']);
+			}
+			var split = data.split('?');
+			base = split[0] + '?';
+		}
+		args["ossn_ts"] = Ossn.Config.token.ossn_ts;
+		args["ossn_token"] = Ossn.Config.token.ossn_token;
+
+		return base + jQuery.param(args);
+	}
+};
 /**
  * Initialize ossn startup functions
  *
