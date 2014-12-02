@@ -55,7 +55,7 @@ $en = array(
     'closed:group' => 'Closed group',
     'group:admin' => 'Admin',
 	
-	'title:access:private:group' => 'Private group post',
+	'title:access:private:group' => 'Group post',
 
 
 );
