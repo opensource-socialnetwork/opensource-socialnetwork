@@ -26,9 +26,7 @@ Ossn.SendMessage = function($user){
 Ossn.getMessages = function($user, $guid){
 				 Ossn.PostRequest({
 			      url: Ossn.site_url+"messages/getnew/"+$user,
-			      beforeSend: function(request){
-   	              
-			      },
+                  action:false,
 			      callback: function(callback){
 				    $('#message-append-'+$guid).append(callback);
 					  Ossn.message_scrollMove($guid);
@@ -38,6 +36,7 @@ Ossn.getMessages = function($user, $guid){
 Ossn.getRecent = function($user){
 				Ossn.PostRequest({
 			      url: Ossn.site_url+"messages/getrecent/"+$user,
+                  action:false,
 			      callback: function(callback){
 					$('#get-recent').html(callback);
 					$('#get-recent').addClass('inner');
