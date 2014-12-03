@@ -24,11 +24,11 @@ if ($members) {
                 if (ossn_loggedin_user()->guid !== $user->guid) {
                     if (!ossn_user_is_friend(ossn_loggedin_user()->guid, $user->guid)) {
                         ?>
-                        <a href="<?php echo ossn_site_url(); ?>action/friend/add?user=<?php echo $user->guid; ?>"
+                        <a href="<?php echo ossn_add_tokens_to_url(ossn_site_url("action/friend/add?user={}")); ?>"
                            class='friendlink button-grey-light'>
                             <?php echo ossn_print('add:friend'); ?></a>
                     <?php } else { ?>
-                        <a href="<?php echo ossn_site_url(); ?>action/friend/remove?user=<?php echo $user->guid; ?>"
+                        <a href="<?php echo ossn_add_tokens_to_url(ossn_site_url("action/friend/remove?user={$user->guid}")); ?>"
                            class='friendlink button-grey-light'>
                             <?php echo ossn_print('remove:friend'); ?></a>
                     <?php
@@ -38,7 +38,7 @@ if ($members) {
                 if ($user->guid !== $params['group']->owner_guid && $params['group']->isMember($params['group']->guid, $user->guid)) {
                     ?>
 
-                    <a href="<?php echo ossn_site_url(); ?>action/group/member/decline?group=<?php echo $params['group']->guid; ?>&user=<?php echo $user->guid; ?>"
+                    <a href="<?php echo ossn_add_tokens_to_url(ossn_site_url("action/group/member/decline?group={$params['group']->guid}&user={$user->guid}")); ?>"
                        class='friendlink button-grey-light'><?php echo ossn_print('group:memb:remove'); ?></a>
                 <?php
                 }
