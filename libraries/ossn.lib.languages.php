@@ -100,3 +100,17 @@ function ossn_load_locales() {
         }
     }
 }
+/**
+ * Load json locales.
+ *
+ * @return json or false
+ */
+function ossn_load_json_locales(){
+	global $Ossn;
+	$code = ossn_site_settings('language');
+	$json = json_encode($Ossn->localestr[$code]);
+	if($json){
+		return $json;
+	}
+	return false;
+}
