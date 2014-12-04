@@ -14,18 +14,18 @@ foreach ($OssnComs->getComponents() as $Com) {
     echo "<div class='ossn-components-item'>";
     echo "<div class='component-controls'>";
     if (!$OssnComs->isActive($Com)) {
-        $enable = ossn_site_url("action/component/enable?com={$Com}");
+        $enable = ossn_add_tokens_to_url(ossn_site_url("action/component/enable?com={$Com}"));
         echo "<a href='{$enable}' class='components-button components-button-green'>Enable</a>";
     } elseif (!in_array($Com, $OssnComs->requiredComponents())) {
-        $disable = ossn_site_url("action/component/disable?com={$Com}");
+        $disable = ossn_add_tokens_to_url(ossn_site_url("action/component/disable?com={$Com}"));
         echo "<a href='{$disable}' class='components-button components-button-orange'>Disable</a>";
     }
     if (in_array($Com, ossn_registered_com_panel())) {
-        $configure = ossn_site_url("administrator/component/{$Com}");
+        $configure = ossn_add_tokens_to_url(ossn_site_url("administrator/component/{$Com}"));
         echo "<a href='{$configure}' class='components-button components-button-blue'>Configure</a>";
     }
     if (!in_array($Com, $OssnComs->requiredComponents())) {
-        $delete = ossn_site_url("action/component/delete?component={$Com}");
+        $delete = ossn_add_tokens_to_url(ossn_site_url("action/component/delete?component={$Com}"));
         echo "<a href='{$delete}' class='components-button components-button-red'>Delete</a>";
     }
     echo "</div>";
