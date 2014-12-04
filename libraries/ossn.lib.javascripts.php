@@ -19,10 +19,19 @@ function ossn_javascript() {
     ossn_add_hook('js', 'register', 'ossn_js_trigger');
 
     ossn_extend_view('ossn/site/head', 'ossn_site_js');
+    ossn_extend_view('ossn/admin/head', 'ossn_admin_js');
+	
     ossn_extend_view('ossn/site/head', 'ossn_jquery_add');
+    ossn_extend_view('ossn/admin/head', 'ossn_jquery_add');
 
     ossn_new_js('opensource.socialnetwork', 'javascripts/libraries/core');
+    ossn_new_js('ossn.language', 'javascripts/libraries/languages');
+	
     ossn_load_js('opensource.socialnetwork');
+    ossn_load_js('opensource.socialnetwork', 'admin');
+	
+	ossn_load_js('ossn.language');
+	ossn_load_js('ossn.language', 'admin');
 }
 
 /**
@@ -101,9 +110,9 @@ function ossn_html_js($args) {
  *
  * @return html.tag
  */
-function ossn_load_js($name) {
+function ossn_load_js($name, $type = 'site') {
     global $Ossn;
-    $js = $Ossn->jshead[] = $name;
+    $js = $Ossn->jshead[$type][] = $name;
     return $js;
 }
 /**
@@ -122,15 +131,33 @@ function ossn_unload_js($name, $type = 'site') {
 }
 
 /**
- * Load css to system
+ * Load js for frontend
  *
  * @return html.tags
  */
 function ossn_site_js() {
     global $Ossn;
     $url = ossn_site_url();
-    if (isset($Ossn->jshead)) {
-        foreach ($Ossn->jshead as $js) {
+    if (isset($Ossn->jshead['site'])) {
+        foreach ($Ossn->jshead['site'] as $js) {
+            $src = "{$url}js/view/{$js}.js";
+            if (ossn_site_settings('cache') == 1) {
+                $src = "{$url}cache/js/view/{$js}.js";
+            }
+            echo ossn_html_js(array('src' => $src));
+        }
+    }
+}
+/**
+ * Load js to backend
+ *
+ * @return html.tags
+ */
+function ossn_admin_js() {
+    global $Ossn;
+    $url = ossn_site_url();
+    if (isset($Ossn->jshead['admin'])) {
+        foreach ($Ossn->jshead['admin'] as $js) {
             $src = "{$url}js/view/{$js}.js";
             if (ossn_site_settings('cache') == 1) {
                 $src = "{$url}cache/js/view/{$js}.js";
