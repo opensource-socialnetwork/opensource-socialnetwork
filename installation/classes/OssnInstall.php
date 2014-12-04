@@ -72,7 +72,7 @@ class OssnInstallation {
     }
 
     /**
-     * Check if php is > than 5.3
+     * Check if php is > than 5.4
      * @last edit: $arsalanshah
      * @Reason: Initial;
      *
