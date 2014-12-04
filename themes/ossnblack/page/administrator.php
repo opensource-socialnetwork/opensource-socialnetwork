@@ -33,6 +33,7 @@ if (isset($params['contents'])) {
 
     </script>
     <script src="<?php echo ossn_site_url(); ?>vendors/tinymce/tinymce.min.js"></script>
+    <script src="<?php echo ossn_site_url(); ?>vendors/jquery/jquery.tokeninput.js"></script>
 
     <script>
         tinymce.init({
