@@ -14,13 +14,15 @@ Functions in existing libraries and classes:
   * ossn_unload_js: Ossn system unloads js from head.
   * ossn_unlink_new_css: Remove a css from system. This will not remove css file it will just unregister it.
   * ossn_unload_css: Ossn system unloads css from head
-  * ossn_view_template View a template. Use a templates from core. (image view, url view etc)
+  * ossn_view_template View a template. Use a templates from core. (image view, url view etc).
+  * ossn_load_json_locales: To get all system language strings in json format.
  
  JAVASCRIPT:
   
  * Ossn.AddTokenToUrl : Add action token to url
  * Ossn.ParseUrl: Parse a URL into its parts.
  * Ossn.ParseStr: Returns an object with key/values of the parsed query string. 
+ * Ossn.Print : To print language string
 
 Classes: 
 
@@ -43,6 +45,9 @@ General:
  * Templates are added.
        * output/url
        * input/security_token
+ * Jquery for backend added
+ * Core js for backedn added.
+ * Requires PHP 5.4 
 
 Language Strings Addition:
 
@@ -50,6 +55,7 @@ locale /
   
   * ossn:exception:title 
   * ossn:securitytoken:failed
+  * ossn:component:delete:exception
 
 components/OssnGroups/locale/
  
