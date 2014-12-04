@@ -27,6 +27,7 @@ function ossn_initialize() {
         'icon' => $icon
     ));
     ossn_extend_view('ossn/js/head', 'javascripts/head');
+    ossn_extend_view('ossn/admin/js/head', 'javascripts/head');
     //actions
     ossn_register_action('user/login', ossn_route()->actions . 'user/login.php');
     ossn_register_action('user/register', ossn_route()->actions . 'user/register.php');
