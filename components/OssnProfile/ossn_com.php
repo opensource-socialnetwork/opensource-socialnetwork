@@ -36,6 +36,7 @@ function ossn_profile() {
     ossn_add_hook('search', 'type:users', 'profile_search_handler');
     ossn_add_hook('profile', 'subpage', 'profile_edit_page');
     ossn_add_hook('profile', 'modules', 'profile_modules');
+	ossn_add_hook('wall:template', 'profile:photo', 'ossn_wall_profile_photo');
 
     //notifications
     ossn_add_hook('notification:view', 'like:entity:file:profile:photo', 'ossn_notification_like_profile_photo');
@@ -273,4 +274,15 @@ function ossn_notification_like_profile_photo($hook, $type, $return, $params) {
 		   </div></li>';
 }
 
+function ossn_wall_profile_photo($hook, $type, $return, $params){
+	return ossn_view("components/OssnProfile/templates/wall/profile/photo", $params);
+}
+function ossn_profile_photo_wall_url($photo){
+	if($photo){
+        $imagefile = str_replace('profile/photo/', '', $photo->value);		
+	  	$image = ossn_site_url("album/getphoto/{$photo->owner_guid}/{$imagefile}?type=1");	
+		return $image;
+	}
+	return false;
+}
 ossn_register_callback('ossn', 'init', 'ossn_profile');
