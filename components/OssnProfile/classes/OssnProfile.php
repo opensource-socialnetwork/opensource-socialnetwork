@@ -108,5 +108,19 @@ class OssnProfile extends OssnDatabase {
         }
         return false;
     }
-
+	public function addPhotoWallPost($ownerguid, $itemguid, $type = 'profile:photo'){
+		if(empty($ownerguid) || empty($itemguid)){
+			return false;
+		}
+		$this->wall = new OssnWall;
+			
+		$this->wall->item_type = $type;
+		$this->wall->owner_guid = $ownerguid;
+		$this->wall->poster_guid = $ownerguid;
+		$this->wall->item_guid = $itemguid;
+		
+		if($this->wall->Post('null:data')){
+			return true;
+		}
+	}
 }//class
