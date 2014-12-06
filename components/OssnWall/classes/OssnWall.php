@@ -28,6 +28,12 @@ class OssnWall extends OssnObject {
         if ($this->owner_guid < 1 || $this->poster_guid < 1 || empty($post)) {
             return false;
         }
+		if(isset($this->item_type) && !empty($this->item_type)){
+			$this->data->item_type = $this->item_type;
+		}
+		if(isset($this->item_guid) && !empty($this->item_guid)){
+			$this->data->item_guid = $this->item_guid;
+		}		
         $this->data->poster_guid = $this->poster_guid;
         $this->data->access = $access;
         $this->subtype = 'wall';
