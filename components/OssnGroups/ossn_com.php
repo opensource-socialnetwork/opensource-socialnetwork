@@ -40,6 +40,7 @@ function ossn_groups() {
     ossn_add_hook('group', 'subpage', 'group_requests_page');
     ossn_add_hook('newsfeed', "left", 'ossn_add_groups_to_newfeed');
     ossn_add_hook('search', 'type:groups', 'groups_search_handler');
+	ossn_add_hook('notification:add', 'comments:post:group:wall', 'ossn_notificaiton_groups_comments_hook');
 
     //group actions
     if (ossn_isLoggedin()) {
@@ -303,6 +304,16 @@ function group_requests_page($hook, $type, $return, $params) {
         echo ossn_set_page_layout('module', $mod);
     }
 }
+/**
+ * Group delete callback
+ *
+ * @param string $callback Callback name
+ * @param string $type Callback type
+ * @param array Callback data
+ *
+ * @return void;
+ * @access private
+ */
 function ossn_user_groups_delete($callback, $type, $params){
 	$deleteGroup = new OssnGroup;
 	$groups = $deleteGroup->getUserGroups($params['entity']->guid);
@@ -311,5 +322,25 @@ function ossn_user_groups_delete($callback, $type, $params){
 			$deleteGroup->deleteGroup($group->guid);
 		}
 	}
+}
+/**
+ * Group comments/likes notification hook
+ *
+ * @param string $hook Hook name
+ * @param string $type Hook type
+ * @param array Callback data
+ *
+ * @return array or false;
+ * @access public
+ */
+function ossn_notificaiton_groups_comments_hook($hook, $type, $return, $params){
+	$object = new OssnObject;
+	$object->object_guid = $params['subject_guid'];
+	$object = $object->getObjectById();
+	if($object){
+		$params['owner_guid'] = $object->poster_guid;
+		return $params;
+	}
+	return false;
 }
 ossn_register_callback('ossn', 'init', 'ossn_groups');
