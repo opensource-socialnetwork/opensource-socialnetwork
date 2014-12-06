@@ -4,6 +4,7 @@ Bugfixes:
  * If admin edit user it didn't updated in system #117
  * Leave group button problem #111
  * In backend user list 'last_login' time is invalid.
+ * Rearrance code ossnwall privacy button #119
  
 Api Additions:
 
@@ -40,14 +41,16 @@ General:
 
  * Excption handler added.
  * JS(Ossn.PostRequest) Action token are now added automatically.
- * JS(Ossn.ajaxRequest) Action tojen are not added automatically as its mostly used for forms and forms already have token.
+ * JS(Ossn.ajaxRequest) Action token are not added automatically as its mostly used for forms and forms already have token.
 
  * Templates are added.
        * output/url
        * input/security_token
  * Jquery for backend added
- * Core js for backedn added.
+ * Core js for backend added.
  * Requires PHP 5.4 
+ * Count notification from get notifications.
+ * Add a wall post for new profile picture. 
 
 Language Strings Addition:
 
@@ -56,7 +59,14 @@ locale /
   * ossn:exception:title 
   * ossn:securitytoken:failed
   * ossn:component:delete:exception
+  * title:access1
+  * title:access2
+  * title:access3
 
 components/OssnGroups/locale/
  
   * title:access:private:group
+
+Components/OssnProfile/locale/
+
+  * ossn:profile:picture:updated
