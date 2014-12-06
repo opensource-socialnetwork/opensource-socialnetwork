@@ -32,7 +32,13 @@ function ossn_notifications() {
     ossn_register_callback('wall', 'post:created', 'ossn_notification_walltag');
     ossn_register_callback('annotations', 'created', 'ossn_notification_annotation');
     ossn_register_callback('user', 'delete', 'ossn_user_notifications_delete');
-
+	
+	//hooks 
+	ossn_add_hook('notification:add', 'comments:post', 'ossn_notificaiton_comments_post_hook');
+	ossn_add_hook('notification:add', 'like:post', 'ossn_notificaiton_comments_post_hook');
+	ossn_add_hook('notification:add', 'like:annotation', 'ossn_notificaiton_like_annotation_hook');
+	ossn_add_hook('notification:add', 'comments:entity', 'ossn_notificaiton_comment_entity_hook');
+	ossn_add_hook('notification:add', 'like:entity', 'ossn_notificaiton_comment_entity_hook');
 }
 /**
  * Create a notification for annotation like
@@ -215,4 +221,86 @@ function ossn_user_notifications_delete($callback, $type, $params){
 	$delete = new OssnNotifications;
     $delete->deleteUserNotifications($params['entity']);
 }
+/**
+ * Wall post comments/likes notification hook
+ *
+ * @param string $hook Hook name
+ * @param string $type Hook type
+ * @param array Callback data
+ *
+ * @return array or false;
+ * @access public
+ */
+function ossn_notificaiton_comments_post_hook($hook, $type, $return, $params){
+	$object = new OssnObject;
+	$object->object_guid = $params['subject_guid'];
+	
+	$object = $object->getObjectById();
+	if($object){
+		$params['owner_guid'] = $object->owner_guid;
+	
+		if ($object->type !== 'user') {
+			$params['type'] = "{$params['type']}:{$object->type}:{$object->subtype}";
+		}	
+		return $params;
+	}
+	return false;
+}
+/**
+ * Annotations likes notification hook
+ *
+ * @param string $hook Hook name
+ * @param string $type Hook type
+ * @param array Callback data
+ *
+ * @return array or false;
+ * @access public
+ */
+function ossn_notificaiton_like_annotation_hook($hook, $type, $return, $params){
+	$annotation = new OssnAnnotation;
+	$annotation->annotation_id = $params['subject_guid'];
+	
+	$annotation = $annotation->getAnnotationById();
+	if($annotation){
+		$params['owner_guid'] = $annotation->owner_guid;
+		$params['subject_guid'] = $annotation->subject_guid;	
+		return $params;
+	}
+	return false;
+}
+/**
+ * Entity comments/likes notification hook
+ *
+ * @param string $hook Hook name
+ * @param string $type Hook type
+ * @param array Callback data
+ *
+ * @return array or false;
+ * @access public
+ */
+function ossn_notificaiton_comment_entity_hook($hook, $type, $return, $params){
+	$entity = new OssnEntities;
+	$entity->entity_guid = $params['subject_guid'];
+	
+	$entity = $entity->get_entity();
+	$params['type'] = "{$params['type']}:{$entity->subtype}";
+	
+	if($entity){
+		if ($entity->type == 'user') {
+			$params['owner_guid'] = $entity->owner_guid;
+		}
+	
+		if ($entity->type == 'object') {
+			$object = new OssnObject;
+			$object->object_guid = $entity->owner_guid;
+			$object = $object->getObjectById();
+			if($object){
+				$params['owner_guid'] = $object->owner_guid;
+			}
+		}
+		return $params;
+	}
+	return false;
+}
+//initialize notification component
 ossn_register_callback('ossn', 'init', 'ossn_notifications');
