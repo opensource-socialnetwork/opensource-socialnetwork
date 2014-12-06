@@ -1,5 +1,4 @@
 <?php
-
 /**
  *    OpenSource-SocialNetwork
  *
@@ -22,51 +21,26 @@ class OssnNotifications extends OssnDatabase {
      */
     public function add($type, $poster_guid, $subject_guid, $item_guid = NULL, $notification_owner = '') {
         if (!empty($type) && !empty($subject_guid) && !empty($poster_guid)) {
-            //check if notification is type of comment or like => post
-            if ($type == 'comments:post' || $type == 'like:post') {
-                $object = new OssnObject;
-                $object->object_guid = $subject_guid;
-                $object = $object->getObjectById();
-                $guid_two = $object->owner_guid;
-                if ($object->type !== 'user') {
-                    $type = "{$type}:{$object->type}:{$object->subtype}";
-                }
-            }
-            // check if notfication for liking comment
-            if ($type == 'like:annotation') {
-                $annotation = new OssnAnnotation;
-                $annotation->annotation_id = $subject_guid;
-                $annotation = $annotation->getAnnotationById();
-                $guid_two = $annotation->owner_guid;
-                $subject_guid = $annotation->subject_guid;
-            }
-            //check if user comment of entity or like it
-            if ($type == 'comments:entity' || $type == 'like:entity') {
-                $entity = new OssnEntities;
-                $entity->entity_guid = $subject_guid;
-                $entity = $entity->get_entity();
-                $type = "{$type}:{$entity->subtype}";
-                if ($entity->type == 'user') {
-                    $guid_two = $entity->owner_guid;
-                }
-                if ($entity->type == 'object') {
-                    $object = new OssnObject;
-                    $object->object_guid = $entity->owner_guid;
-                    $object = $object->getObjectById();
-                    $guid_two = $object->owner_guid;
-                }
-
-            }
-            //check if comment is posted on group wall
-            if ($type == 'comments:post:group:wall' || $type == 'like:post:group:wall') {
-                $object = new OssnObject;
-                $object->object_guid = $subject_guid;
-                $object = $object->getObjectById();
-                $guid_two = $object->poster_guid;
-            }
-            //check if notification owner is set then use it
-            if (!empty($notification_owner)) {
-                $guid_two = $notification_owner;
+			$vars = array(
+						  'type' => $type,
+						  'poster_guid' => $poster_guid,
+						  'owner_guid' => null,
+						  'item_guid' => $item_guid,
+						  'subject_guid' => $subject_guid,
+						  'notification_owner' => $notification_owner,
+						  );
+			$this->notification = ossn_call_hook('notification:add', $type, $vars);
+			if(!$this->notification){
+				return false;
+			}		
+			//check if owner_guid is empty or owner_guid is same as poster_guid then return false, 
+			if(empty($this->notification['owner_guid']) || 
+				$this->notification['owner_guid'] == $this->notification['poster_guid']){
+				return false;
+			}
+            //check if notification owner is set then use it.
+            if (!empty($this->notification['notification_owner'])) {
+                $this->notification['owner_guid'] = $this->notification['notification_owner'];
             }
             if ($poster_guid == $guid_two) {
                 $paricipates = $this->get_comments_participates($subject_guid);
@@ -82,11 +56,11 @@ class OssnNotifications extends OssnDatabase {
                             'time_created'
                         );
                         $params['values'] = array(
-                            $type,
-                            $guid_two,
+                            $this->notification['type'],
+                            $this->notification['poster_guid'],
                             $partcipate,
-                            $subject_guid,
-                            $item_guid,
+                            $this->notification['subject_guid'],
+                            $this->notification['item_guid'],
                             time()
                         );
                         if ($partcipate !== $poster_guid) {
@@ -107,11 +81,11 @@ class OssnNotifications extends OssnDatabase {
                 'time_created'
             );
             $params['values'] = array(
-                $type,
-                $poster_guid,
-                $guid_two,
-                $subject_guid,
-                $item_guid,
+                $this->notification['type'],
+                $this->notification['poster_guid'],
+                $this->notification['owner_guid'],
+                $this->notification['subject_guid'],
+                $this->notification['item_guid'],
                 time()
             );
             if ($this->insert($params)) {
@@ -128,11 +102,11 @@ class OssnNotifications extends OssnDatabase {
                             'time_created'
                         );
                         $params['values'] = array(
-                            $type,
-                            $poster_guid,
+                            $this->notification['type'],
+                            $this->notification['poster_guid'],
                             $partcipate,
-                            $subject_guid,
-                            $item_guid,
+                            $this->notification['subject_guid'],
+                            $this->notification['item_guid'],
                             time()
                         );
                         if ($partcipate !== $poster_guid) {
@@ -193,18 +167,17 @@ class OssnNotifications extends OssnDatabase {
 
     /**
      * Count user notification
+
+
      *
      * @params $guid: Count user notifications
      *
      * @return int;
      */
     public function countNotification($guid) {
-        $this->statement("SELECT * FROM ossn_notifications WHERE(
-		                  owner_guid='{$guid}' AND viewed IS NULL) ORDER by guid DESC");
-        $this->execute();
-        $notifications = $this->fetch(true);
+        $notifications = $this->get($guid);
         if ($notifications) {
-            $count = count(get_object_vars($notifications));
+            $count = count($notifications);
             if ($count > 0) {
                 return $count;
             }
