@@ -1,6 +1,6 @@
 <?php
 /**
- *    OpenSource-SocialNetwork
+ * OpenSource-SocialNetwork
  *
  * @package   (Informatikon.com).ossn
  * @author    OSSN Core Team <info@opensource-socialnetwork.com>
@@ -8,14 +8,19 @@
  * @license   General Public Licence http://opensource-socialnetwork.com/licence
  * @link      http://www.opensource-socialnetwork.com/licence
  */
+$profile = new OssnProfile; 
 $file = new OssnFile;
+
 $file->owner_guid = ossn_loggedin_user()->guid;
 $file->type = 'user';
 $file->subtype = 'profile:photo';
 $file->setFile('userphoto');
 $file->setPath('profile/photo/');
+
 if ($file->addFile()) {
     $resize = $file->getFiles();
+	$profile->addPhotoWallPost($file->owner_guid, $resize->{0}->guid);
+	
     if (isset($resize->{0}->value)) {
         $guid = ossn_loggedin_user()->guid;
         $datadir = ossn_get_userdata("user/{$guid}/{$resize->{0}->value}");
