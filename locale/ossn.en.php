@@ -219,6 +219,11 @@ Please click the link below to reset password or copy the link and paste in your
     'ossn:exception:title' => 'System error occurred. Please try again later. Email Administrator at %s',
     'ossn:securitytoken:failed' => 'The action you requested is invalid.',
     'ossn:component:delete:exception' => 'Are you sure you want to delete this component?',
+	
+	//access
+	'title:access1' => 'Private',
+	'title:access2' => 'Public',
+	'title:access3' => 'Friends',
 
     /*
        * List of ISO 639-1 language codes
