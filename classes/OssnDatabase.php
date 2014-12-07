@@ -209,6 +209,10 @@ class OssnDatabase {
             if (!empty($params['wheres'])) {
                 $wheres = "WHERE({$where})";
             }
+			//don't let any component or query to empty entire table
+			if(empty($params['wheres'])){
+				return false;
+			}
             $query = "DELETE FROM `{$params['from']}` {$wheres};";
             $this->statement($query);
             if ($this->execute()) {
