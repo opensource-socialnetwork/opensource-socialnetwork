@@ -8,6 +8,14 @@
  * @license   General Public Licence http://opensource-socialnetwork.com/licence
  * @link      http://www.opensource-socialnetwork.com/licence
  */
+
+/**
+ * Ossn Get Entity
+ *
+ * @param int $guid Guid of entity
+ *
+ * @return bool
+ */
 function ossn_get_entity($guid){
 	if(!empty($guid)){
 	 	$entity = new OssnEntities;
@@ -19,6 +27,18 @@ function ossn_get_entity($guid){
 	}
 		return false;
 }
+/**
+ * Ossn Get Entities
+ *
+ * @param array $params search data
+ * @param string $params['type'] Entity type
+ * @param string $params['subtype'] Entity subtype
+ * @param string $params['order_by'] Order by (ASC , DESC)
+ * @param string $params['limit'] Limit for data that need to be fetched
+ * @param string $params['owner_guid'] Owner guid
+ *
+ * @return bool
+ */
 function ossn_get_entities(array $params){
   if(isset($params['type'])){
 	  $entities = new OssnEntities;
@@ -40,4 +60,52 @@ function ossn_get_entities(array $params){
 	  }
   }
   return false;
+}
+/**
+ * Ossn Add Entity
+ *
+ * @param array $params search data
+ * @param string $params['type'] Entity type
+ * @param string $params['subtype'] Entity subtype
+ * @param string $params['value'] Entity Value
+ * @param string $params['owner_guid'] Owner guid
+ * @param string $params['premission'] Pre-mission (access of entity)
+ * @param string $params['active'] 1 or 0 Does your entity is active?
+ *
+ * @return bool
+ */
+function ossn_add_entity(array $params){
+	$entity = new OssnEntities;
+	$entity->type = $params['type'];
+	$entity->owner_guid = $params['owner_guid'];
+	$entity->value = $params['value'];
+	
+	if(isset($params['subtype'])){
+		$entity->subtype = $params['subtype'];
+	}	
+	if(isset($params['premission'])){
+		$entity->entity_premission = $params['value'];
+	}
+	if(isset($params['active'])){
+		$entity->active = $params['active'];
+	}
+	if($entity->add()){
+		return true;
+	}
+	return false;
+}
+/**
+ * Ossn update entity
+ *
+ * @param int $guid Entity guid
+ * @param string $value Entity new value
+ *
+ * @return bool
+ */
+function ossn_update_entity($guid, $value){
+	$update = new OssnEntities;
+	$update->guid = $guid;
+	$update->value = $value;
+	
+	return $update->updateEntity();
 }
