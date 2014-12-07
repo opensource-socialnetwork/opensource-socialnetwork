@@ -4,7 +4,7 @@ Bugfixes:
  * If admin edit user it didn't updated in system #117
  * Leave group button problem #111
  * In backend user list 'last_login' time is invalid.
- * Rearrance code ossnwall privacy button #119
+ * Rearrange code ossnwall privacy button #119
  
 Api Additions:
 
@@ -17,6 +17,8 @@ Functions in existing libraries and classes:
   * ossn_unload_css: Ossn system unloads css from head
   * ossn_view_template View a template. Use a templates from core. (image view, url view etc).
   * ossn_load_json_locales: To get all system language strings in json format.
+  * ossn_add_entity: add a new entity.
+  * ossn_update_entity: update entity.
  
  JAVASCRIPT:
   
