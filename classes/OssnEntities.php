@@ -240,13 +240,24 @@ class OssnEntities extends OssnDatabase {
      */
     public function updateEntity() {
         if (!empty($this->guid)) {
-            $this->statement("UPDATE ossn_entities_metadata SET
-						  value='{$this->value}' WHERE(guid='{$this->guid}')");
-            if ($this->execute()) {
-                return true;
-            }
-            return false;
+            
+			$params['table'] = 'ossn_entities_metadata';
+            $params['names'] = array('value');
+            $params['values'] = array($this->value);
+            $params['wheres'] = array("guid='{$this->guid}'");			
+			
+			if ($this->update($params)) {
+               	
+				$params['table'] = 'ossn_entities';
+                $params['names'] = array('time_updated');
+                $params['values'] = array(time());
+                $params['wheres'] = array("guid='{$this->guid}'");
+                
+				$this->update($params);
+				return true;
+			}
         }
+	    return false;	
     }
 
     /**
@@ -259,10 +270,11 @@ class OssnEntities extends OssnDatabase {
      * @return (bool);
      */
     public function deleteByOwnerGuid($guid, $type) {
-        $this->statement("SELECT * FROM ossn_entities
-					 WHERE(owner_guid='{$guid}' AND type='{$type}');");
-        $this->execute();
-        $ids = $this->fetch(true);
+
+		$params['from'] = 'ossn_entities';
+		$params['wheres'] = array("owner_guid='{$guid}' AND type='{$type}'");
+		
+		$ids = $this->select($params, true);
         if (!$ids) {
             return false;
         }
@@ -280,17 +292,26 @@ class OssnEntities extends OssnDatabase {
      * @return (bool);
      */
     public function deleteEntity($guid) {
-        $this->statement("DELETE FROM ossn_entities WHERE(guid='{$guid}');");
-        if ($this->execute()) {
-            $this->statement("DELETE FROM ossn_entities_metadata WHERE(guid='{$guid}');");
-            $this->execute();
-            $params['entity'] = $guid;
-            ossn_trigger_callback('delete', 'entity', $params);
+		if(isset($this->guid) && !empty($this->guid)){
+			$guid = $this->guid;
+		}
+		
+		$params['from'] = 'ossn_entities';
+		$params['wheres'] = array("guid = '{$guid}'");
+
+        if ($this->delete($params)) {
+
+			$metadata['from'] = 'ossn_entities';
+			$metadata['wheres'] = array("guid = '{$guid}'");			
+            $this->delete($metadata);
+			
+			$vars['entity'] = $guid;
+            ossn_trigger_callback('delete', 'entity', $vars);
+			
             return true;
         }
         return false;
     }
-
     /**
      * Get a parameter from object
      *
@@ -303,15 +324,6 @@ class OssnEntities extends OssnDatabase {
             return $this->$param;
         }
         return false;
-    }
-
-    /**
-     * Deconstruct Class
-     *
-     * @return (void);
-     */
-    public function __destruct() {
-
     }
 
     /**
@@ -331,4 +343,15 @@ class OssnEntities extends OssnDatabase {
         }
         return false;
     }
+    /**
+     * Get Entity guid.
+     *
+     * @return int;
+     */	
+	public function getGUID(){
+		if(isset($this->guid)){
+			return $this->guid;
+		}
+		return false;
+	}
 }//class
