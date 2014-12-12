@@ -10,6 +10,10 @@ Options -Indexes
 Options +FollowSymLinks
 DirectoryIndex index.php
 
+<Files "error_log">
+	order allow,deny
+	deny from all
+</Files>
 
 <IfModule mod_rewrite.c>
 SetEnv HTTP_MOD_REWRITE 1
