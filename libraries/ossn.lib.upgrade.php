@@ -72,7 +72,7 @@ function ossn_trigger_upgrades() {
     }
     $upgrades = ossn_get_process_upgrade_files();
     if (!is_array($upgrades) || empty($upgrades)) {
-        ossn_trigger_message(ossn_print('upgrade:not:available'), 'error', 'admin');
+        ossn_trigger_message(ossn_print('upgrade:not:available'), 'error');
         redirect('administrator');
         return false;
     }
