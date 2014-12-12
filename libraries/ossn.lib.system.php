@@ -38,9 +38,13 @@ set_exception_handler('_ossn_exception_handler');
  *
  * @return string
  */
-function ossn_site_url($extend = '') {
+function ossn_site_url($extend = '', $action = false) {
     global $Ossn;
-    return "{$Ossn->url}{$extend}";
+	$siteurl = "{$Ossn->url}{$extend}";
+	if($action === true){
+		$siteurl = ossn_add_tokens_to_url($siteurl);
+	}
+    return $siteurl;
 }
 
 /**
@@ -399,37 +403,37 @@ function ossn_site_setting_update($name, $value, $id) {
  *
  * @return bool
  */
-function ossn_system_message_add($message = null, $register = "ossn-message-success", $for = 'site', $count = false) {
+function ossn_system_message_add($message = null, $register = "ossn-message-success", $count = false) {
     if (!isset($_SESSION['ossn_messages'])) {
-        $_SESSION['ossn_messages'][$for] = array();
+        $_SESSION['ossn_messages'] = array();
     }
-    if (!isset($_SESSION['ossn_messages'][$for][$register]) && !empty($register)) {
-        $_SESSION['ossn_messages'][$for][$register][time()] = array();
+    if (!isset($_SESSION['ossn_messages'][$register]) && !empty($register)) {
+        $_SESSION['ossn_messages'][$register] = array();
     }
     if (!$count) {
         if (!empty($message) && is_array($message)) {
-            $_SESSION['ossn_messages'][$for][$register][time()] = array_merge($_SESSION['ossn_messages'][$register], $message);
+            $_SESSION['ossn_messages'][$register] = array_merge($_SESSION['ossn_messages'][$register], $message);
             return true;
         } else if (!empty($message) && is_string($message)) {
-            $_SESSION['ossn_messages'][$for][$register][time()][] = $message;
+            $_SESSION['ossn_messages'][$register][] = $message;
             return true;
         } else if (is_null($message)) {
             if ($register != "") {
                 $returnarray = array();
-                $returnarray[$register] = $_SESSION['ossn_messages'][$register][time()];
-                $_SESSION['ossn_messages'][$for][$register][time()] = array();
+                $returnarray[$register] = $_SESSION['ossn_messages'][$register];
+                $_SESSION['ossn_messages'][$register] = array();
             } else {
                 $returnarray = $_SESSION['ossn_messages'];
-                $_SESSION['ossn_messages'][$for] = array();
+                $_SESSION['ossn_messages'] = array();
             }
             return $returnarray;
         }
     } else {
         if (!empty($register)) {
-            return sizeof($_SESSION['ossn_messages'][$for][$register][time()]);
+            return sizeof($_SESSION['ossn_messages'][$register]);
         } else {
             $count = 0;
-            foreach ($_SESSION['ossn_messages'][$for] as $submessages) {
+            foreach ($_SESSION['ossn_messages'] as $submessages) {
                 $count += sizeof($submessages);
             }
             return $count;
@@ -443,20 +447,33 @@ function ossn_system_message_add($message = null, $register = "ossn-message-succ
  *
  * @params $messages => Message for user
  *         $type = message type
- *         $for  =>  for site/frontend or admin/backend
  *
  * @return void
  */
-function ossn_trigger_message($message, $type = 'success', $for = 'site') {
-    if ($type == 'error') {
-        ossn_system_message_add($message, 'ossn-message-error', $for);
+function ossn_trigger_message($message, $type = 'success') {
+    if ($type == 'error'); {
+        ossn_system_message_add($message, 'ossn-message-error');
     }
     if ($type == 'success') {
-        ossn_system_message_add($message, 'ossn-message-success', $for);
+        ossn_system_message_add($message, 'ossn-message-success');
     }
 
 }
-
+/**
+ * Display a error if post size exceed
+ * 
+ * @param string $error Langauge string
+ * @param string $redirect Custom redirect url
+ */
+function ossn_post_size_exceed_error($error = 'ossn:post:size:exceed', $redirect){
+	if(!empty($_SERVER['CONTENT_LENGTH']) && empty($_POST)){
+			if(empty($redirect)){
+				$redirect = null;	
+			}
+			ossn_trigger_message(ossn_print($error), 'error');
+			redirect($redirect);
+	}
+}
 /**
  * Display a system messages
  *
@@ -464,22 +481,18 @@ function ossn_trigger_message($message, $type = 'success', $for = 'site') {
  *
  * @return mix data
  */
-function ossn_display_system_messages($for = 'site') {
-    if (isset($_SESSION['ossn_messages'][$for])) {
-        $dermessage = $_SESSION['ossn_messages'][$for];
+function ossn_display_system_messages() {
+    if (isset($_SESSION['ossn_messages'])) {
+        $dermessage = $_SESSION['ossn_messages'];
         if (!empty($dermessage)) {
 
             if (isset($dermessage) && is_array($dermessage) && sizeof($dermessage) > 0) {
                 foreach ($dermessage as $type => $list) {
-                    foreach ($list as $messages) {
-                        foreach ($messages as $message) {
                             $m = "<div class='$type'>";
                             $m .= $message;
                             $m .= '</div>';
                             $ms[] = $m;
-                            unset($_SESSION['ossn_messages'][$for][$type]);
-                        }
-                    }
+                            unset($_SESSION['ossn_messages'][$type]);
                 }
             }
 
