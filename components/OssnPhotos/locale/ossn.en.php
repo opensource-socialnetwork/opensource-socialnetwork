@@ -23,8 +23,10 @@ $en = array(
     'edit:profile' => 'Edit Profile',
     'reposition:cover' => 'Reposition',
     'profile:photos' => 'Profile Photos',
-    'photo:deleted:success' => 'Profile photo successfully deleted',
-    'photo:delete:error' => 'Cannot delete profile photo',
+	
+    'photo:deleted:success' => 'Photo successfully deleted',
+    'photo:delete:error' => 'Cannot delete photo',
+	
     'photos' => 'Photos',
     'back' => 'Back',
     'add:photos' => 'Add photos',
