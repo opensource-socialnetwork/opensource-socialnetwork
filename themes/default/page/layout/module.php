@@ -18,7 +18,7 @@ if (isset($params['module_width'])) {
 <br/>
 <div class="ossn-layout-module" <?php echo $style; ?>>
     <div class="module-title">
-        <a class="title" href="#"><?php echo $params['title']; ?></a>
+        <div class="title"><?php echo $params['title']; ?></div>
 
         <div class="controls">
             <?php echo $params['controls']; ?>
