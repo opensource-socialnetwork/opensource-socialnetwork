@@ -42,15 +42,18 @@ function ossn_build_token_url($parts){
  * Add action tokens to url
  * 
  * @param string $url	Full complete url
+ * 
+ * @return string
  */
 function ossn_add_tokens_to_url($url){
 	$params = parse_url($url);
 	
 	$query = array();
-	parse_str($params['query'],  $query);
-	
+	if(isset($params['query'])){
+		parse_str($params['query'],  $query);
+	}
 	$tokens['ossn_ts'] = time();
-	$tokens['ossn_token'] = ossn_generate_action_token($params['ossn_ts']);
+	$tokens['ossn_token'] = ossn_generate_action_token($tokens['ossn_ts']);
 	$tokens = array_merge($query, $tokens);
 	
 	$query = http_build_query($tokens);
@@ -92,6 +95,10 @@ function ossn_action_validate_callback($callback, $type, $params){
 	$action = $params['action'];
 	$bypass = array();
 	$bypass = ossn_call_hook('action', 'validate:bypass', null, $bypass);
+	
+	//validate post request also
+	ossn_post_size_exceed_error();
+	
 	if(!in_array($action, $bypass)){
 		if(!ossn_validate_actions()){
 			ossn_trigger_message(ossn_print('ossn:securitytoken:failed'), 'error');
