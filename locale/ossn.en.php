@@ -225,7 +225,28 @@ Please click the link below to reset password or copy the link and paste in your
 	'title:access2' => 'Public',
 	'title:access3' => 'Friends',
 
-    /*
+   	'upload:file:error:ini_size' => 'The file you tried to upload is too large.',
+	'upload:file:error:form_size' => 'The file you tried to upload is too large.',
+	'upload:file:error:partial' => 'The file upload did not complete.',
+	'upload:file:error:no_file' => 'No file was selected.',
+	'upload:file:error:no_tmp_dir' => 'Cannot save the uploaded file.',
+	'upload:file:error:cant_write' => 'Cannot save the uploaded file.',
+	'upload:file:error:extension' => 'Cannot save the uploaded file.',
+	'upload:file:error:unknown' => 'The file upload failed.',
+	
+	'ossn:post:size:exceed' => 'The action you requested exceed the size limit.',
+	
+	'admin:components' => 'Components',
+	'admin:themes' => 'Themes',
+	'admin:com:installer' => 'Component Installer',
+	'admin:theme:installer' => 'Theme Installer',
+	'admin:cache:settings' => 'Cache Settings',
+	'admin:add:user' => 'Add user',
+	'admin:user:list' => 'Users List',
+	'admin:edit:user' => 'Edit User',
+	'admin:login' => 'Login',
+	
+	/*
        * List of ISO 639-1 language codes
        * http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
        */
