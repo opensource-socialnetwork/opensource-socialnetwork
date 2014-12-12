@@ -11,7 +11,7 @@
 if (ossn_isLoggedIn()) {
     ?>
     <div class="ossn-photo-menu">
-        <li><a href="<?php echo ossn_site_url("action/profile/photo/delete?id={$params->guid}"); ?>"> Delete Photo </a>
+        <li><a href="<?php echo ossn_site_url("action/profile/photo/delete?id={$params->guid}", true); ?>"> Delete Photo </a>
         </li>
     </div>
 <?php } ?>
