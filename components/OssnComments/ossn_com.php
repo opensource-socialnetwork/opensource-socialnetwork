@@ -89,7 +89,7 @@ function ossn_comment_menu($name, $type, $params) {
             $post = $ossnwall->GetPost($comment->subject_guid);
             if (ossn_loggedin_user()->guid == $post->owner_guid) {
                 ossn_register_menu_link('delete', ossn_print('comment:delete'), array(
-                    'href' => ossn_add_tokens_to_url(ossn_site_url("action/delete/comment?comment={$params['id']}")),
+                    'href' => ossn_site_url("action/delete/comment?comment={$params['id']}", true),
                     'class' => 'ossn-delete-comment',
                 ), 'comments');
             }
@@ -99,7 +99,7 @@ function ossn_comment_menu($name, $type, $params) {
 	if(ossn_isLoggedin()){
       if (($user->guid == $params['owner_guid']) || ossn_isAdminLoggedin()) {
           ossn_register_menu_link('delete', ossn_print('comment:delete'), array(
-              'href' => ossn_add_tokens_to_url(ossn_site_url("action/delete/comment?comment={$params['id']}")),
+              'href' => ossn_site_url("action/delete/comment?comment={$params['id']}", true),
               'class' => 'ossn-delete-comment',
           ), 'comments');
       }

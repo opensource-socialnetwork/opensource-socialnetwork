@@ -21,9 +21,9 @@ if (empty($requests)) {
             <div class="uinfo">
                 <a class="userlink" href="<?php echo $user->profileURL(); ?>"><?php echo $user->fullname; ?></a>
             </div>
-            <a href="<?php echo ossn_add_tokens_to_url(ossn_site_url("action/group/member/approve?group={$params['group']->guid}&user={$user->guid}")); ?>"
+            <a href="<?php echo ossn_site_url("action/group/member/approve?group={$params['group']->guid}&user={$user->guid}", true); ?>"
                class='friendlink button-grey-light'><?php echo ossn_print('approve'); ?></a>
-			 <a href="<?php echo ossn_add_tokens_to_url(ossn_site_url("action/group/member/decline?group={$params['group']->guid}&user={$user->guid}")); ?>"
+			 <a href="<?php echo ossn_site_url("action/group/member/decline?group={$params['group']->guid}&user={$user->guid}", true); ?>"
 
                class='friendlink button-grey-light'><?php echo ossn_print('decline'); ?></a>
 
