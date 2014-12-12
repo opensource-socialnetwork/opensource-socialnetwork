@@ -613,12 +613,70 @@ function ossn_errros() {
     $settings = ossn_site_settings('display_errors');
     if ($settings == 'on' || is_file(ossn_route()->www . 'DISPLAY_ERRORS')) {
         error_reporting(E_NOTICE ^ ~E_WARNING);
+		
+        ini_set('log_errors', 1);		
+		ini_set('error_log', ossn_route()->www . 'error_log');
+		
+		set_error_handler('_ossn_php_error_handler');
     } elseif ($settings !== 'on') {
 		ini_set("log_errors", 0);
         ini_set('display_errors', 'off');
     } 
 }
+/**
+ * Intercepts catchable PHP errors.
+ *
+ * @warning This function should never be called directly.
+ *
+ * @internal
+ * For catchable fatal errors, throws an Exception with the error.
+ *
+ * For non-fatal errors, depending upon the debug settings, either
+ * log the error or ignore it.
+ *
+ * @see http://www.php.net/set-error-handler
+ *
+ * @param int    $errno    The level of the error raised
+ * @param string $errmsg   The error message
+ * @param string $filename The filename the error was raised in
+ * @param int    $linenum  The line number the error was raised at
+ * @param array  $vars     An array that points to the active symbol table where error occurred
+ *
+ * @return true
+ * @throws Exception
+ * @access private
+ * @todo Replace error_log calls with elgg_log calls.
+ */
+function _ossn_php_error_handler($errno, $errmsg, $filename, $linenum, $vars) {
+	$error = date("Y-m-d H:i:s (T)") . ": \"$errmsg\" in file $filename (line $linenum)";
+	switch ($errno) {
+		case E_USER_ERROR:
+			error_log("PHP ERROR: $error");
+			register_error("ERROR: $error");
 
+			// Since this is a fatal error, we want to stop any further execution but do so gracefully.
+			throw new Exception($error);
+			break;
+
+		case E_WARNING :
+		case E_USER_WARNING :
+		case E_RECOVERABLE_ERROR: // (e.g. type hint violation)
+			
+			// check if the error wasn't suppressed by the error control operator (@)
+			if (error_reporting()) {
+				error_log("PHP WARNING: $error");
+			}
+			break;
+
+		default:
+			global $CONFIG;
+			if (isset($CONFIG->debug) && $CONFIG->debug === 'NOTICE') {
+				error_log("PHP NOTICE: $error");
+			}
+	}
+
+	return true;
+}
 /**
  * Check ossn update version
  *
