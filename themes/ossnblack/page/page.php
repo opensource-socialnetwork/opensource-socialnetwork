@@ -47,7 +47,7 @@ if (isset($params['contents'])) {
 <div class="ossn-viewer" style="display:none"></div>
 <div class="ossn-system-messages">
     <?php
-    echo ossn_display_system_messages('site'); ?>
+    echo ossn_display_system_messages(); ?>
 </div>
 <?php if (!ossn_isLoggedin()) { ?>
     <div class="ossn-header">

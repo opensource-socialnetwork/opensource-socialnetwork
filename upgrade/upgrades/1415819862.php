@@ -58,9 +58,9 @@ $update['values'] = array($upgrade_json);
 $update['wheres'] = array("name='upgrades'");
 
 if ($database->update($update)) {
-    ossn_trigger_message(ossn_print('upgrade:success'), 'success', 'admin');
+    ossn_trigger_message(ossn_print('upgrade:success'), 'success');
     redirect('administrator');
 } else {
-    ossn_trigger_message(ossn_print('upgrade:failed'), 'error', 'admin');
+    ossn_trigger_message(ossn_print('upgrade:failed'), 'error');
     redirect('administrator');
 }

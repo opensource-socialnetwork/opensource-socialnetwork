@@ -25,13 +25,13 @@
 <div class="ossn-layout-admin">
     <div class="sidebar">
         <?php
-        //		  ossn_trigger_message('Test', 'success', 'admin');
+        //		  ossn_trigger_message('Test', 'success');
         echo ossn_view_admin_sidemenu(); ?>
     </div>
     <div class="contents">
         <div class="ossn-admin-message" style="margin-bottom: 15px;">
             <?php
-            echo ossn_display_system_messages('admin'); ?>
+            echo ossn_display_system_messages(); ?>
         </div>
         <div class="title"> <?php echo $params['title']; ?></div>
         <div class="content">
