@@ -53,6 +53,11 @@ General:
  * Requires PHP 5.4 
  * Count notification from get notifications.
  * Add a wall post for new profile picture. 
+ * ossn_site_url set 2nd arg true if its action
+ * Now no need to add admin/site in trigger message.
+ * OssnFile now support others file upload.
+ * Display error if file size exceed.
+ * Display file upload error.
 
 Language Strings Addition:
 
@@ -64,11 +69,29 @@ locale /
   * title:access1
   * title:access2
   * title:access3
+  * upload:file:error:ini_size
+  * upload:file:error:form_size
+  * upload:file:error:partia
+  * upload:file:error:no_file
+  * upload:file:error:no_tmp_dir
+  * upload:file:error:cant_write
+  * upload:file:error:extension
+  * upload:file:error:unknown
+  * ossn:post:size:exceed
+  * admin:components
+  * admin:themes
+  * admin:com:installer
+  * admin:theme:installer
+  * admin:cache:settings
+  * admin:add:user
+  * admin:user:list
+  * admin:edit:user
+  * admin:login
 
 components/OssnGroups/locale/
  
   * title:access:private:group
 
-Components/OssnProfile/locale/
+components/OssnProfile/locale/
 
   * ossn:profile:picture:updated
