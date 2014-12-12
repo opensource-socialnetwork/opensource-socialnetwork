@@ -5,7 +5,8 @@ Bugfixes:
  * Leave group button problem #111
  * In backend user list 'last_login' time is invalid.
  * Rearrange code ossnwall privacy button #119
- 
+ * Error reporting not working out of the box #120
+
 Api Additions:
 
 Functions in existing libraries and classes:
