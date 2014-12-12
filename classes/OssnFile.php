@@ -57,7 +57,8 @@ class OssnFile extends OssnEntities {
      * @return void;
      */
     public function setFile($name) {
-        if (isset($_FILES[$name]['type'])) {
+		$this->showFileUploadError();
+		if (isset($_FILES[$name]['type'])) {
             $file = $_FILES[$name];
             $this->file = $file;
         }
@@ -72,8 +73,100 @@ class OssnFile extends OssnEntities {
     public function setPath($path) {
         $this->path = $path;
     }
-
     /**
+     * Get file extension from its name
+     *
+     * @param string $file Full file name
+     * @return string;
+     */	
+	public function getFileExtension($file){
+		if(isset($file)){
+			$extension = pathinfo($file, PATHINFO_EXTENSION);
+			if($extension){
+				return $extension;
+			}
+		}
+		return false;
+	}
+    /**
+     * Allowed file extensions
+     * Validate file extension before save
+     *
+     * @return (bool)
+     */
+	 public function allowedFileExtensions(){
+		 $types = array(
+           			 'zip', 'doc', 'docx', 'mp4', 'mp3', 'pdf', 'zip', 'jpg', 'png', 'gif', 'jpeg',	
+					);
+		 return ossn_call_hook('file', 'allowed:extensions', null, $types);
+	 }
+    /**
+	 * getFileUploadError
+     * Print user friendly file upload error
+     *
+	 * @param (int) $code Error code 
+	 *
+     * @return string
+     */	 
+	 public function getFileUploadError($code){
+			switch ($code) {
+				case UPLOAD_ERR_OK:
+					return '';
+			
+				case UPLOAD_ERR_INI_SIZE:
+					$key = 'ini_size';
+					break;
+		
+				case UPLOAD_ERR_FORM_SIZE:
+					$key = 'form_size';
+					break;
+
+				case UPLOAD_ERR_PARTIAL:
+					$key = 'partial';
+					break;
+
+				case UPLOAD_ERR_NO_FILE:
+					$key = 'no_file';
+					break;
+
+				case UPLOAD_ERR_NO_TMP_DIR:
+					$key = 'no_tmp_dir';
+					break;
+
+				case UPLOAD_ERR_CANT_WRITE:
+					$key = 'cant_write';
+					break;
+
+				case UPLOAD_ERR_EXTENSION:
+					$key = 'extension';
+					break;
+		
+				default:
+					$key = 'unknown';
+				break;
+			}
+			return ossn_print("upload:file:error:$key");
+	 }
+	/**
+	 * showFileUploadError
+     * Show file upload errors
+     *
+     * @param    string $this->redirect Custom url for redirect
+     * @param    string $this->context site or admin
+     *
+     * @return void
+     */	 
+	 public function showFileUploadError(){
+		if(empty($this->redirect)){
+			$this->redirect = REF;
+		}
+		if(isset($this->file) && $this->file['error'] !== UPLOAD_ERR_OK){
+			ossn_trigger_message($this->getFileUploadError($this->file['error']), 'error');
+            redirect($this->redirect);	
+		}
+		 
+	 }
+	/**
      * addFile
      * Add file to database
      *
@@ -84,34 +177,39 @@ class OssnFile extends OssnEntities {
      * @return (bool)
      */
     public function addFile() {
-        if (isset($this->file) && !empty($this->file) && !empty($this->owner_guid) && !empty($this->subtype) && !empty($this->type)
-        ) {
-            if (preg_match('/image/i', $this->file['type'])) {
-                $this->mime = $this->MimeTypeImages();
-                $this->newfilename = md5($this->file['name'] . rand() . time()) . '.' . $this->mime[$this->file['type']];
-                $this->newfile = $this->path . $this->newfilename;
-                $this->dir = ossn_get_userdata("{$this->type}/{$this->owner_guid}/{$this->path}");
-                if (!is_dir(ossn_get_userdata($this->dir))) {
-                    mkdir($this->dir, 0755, true);
-                }
+        if (isset($this->file) && !empty($this->file) && !empty($this->owner_guid) 
+			&& !empty($this->subtype) && !empty($this->type)) {
+			
+		$this->extensions = $this->allowedFileExtensions();
+		$this->extension = $this->getFileExtension($this->file['name']);	
+		
+        if(in_array($this->extension, $this->extensions)){
+			
+			$this->newfilename = md5($this->file['name'] . rand() . time()) . '.' . $this->extension;
+        	$this->newfile = $this->path . $this->newfilename;
+			
+        	$this->dir = ossn_get_userdata("{$this->type}/{$this->owner_guid}/{$this->path}");
+        	if (!is_dir(ossn_get_userdata($this->dir))) {
+         			mkdir($this->dir, 0755, true);
+        	}
 
-                $this->subtype = "file:{$this->subtype}";
-                $this->value = $this->newfile;
-                if ($this->add()) {
-                    $image = ossn_resize_image($this->file['tmp_name'], 2048, 2048);
-                    file_put_contents("{$this->dir}{$this->newfilename}", $image);
-                    return true;
-                }
-            }
-
-            //normal types goes here
-            //version 1.x
-            //dev $arsalanshah
-
-        }
-
+       		$this->subtype = "file:{$this->subtype}";
+        	$this->value = $this->newfile;
+			
+        	if ($this->add()) {
+				 $filecontents = file_get_contents($this->file['tmp_name']);
+				 if (preg_match('/image/i', $this->file['type'])) {
+					 //compress image before save
+					$filecontents =  ossn_resize_image($this->file['tmp_name'], 2048, 2048);
+				 }
+           		 file_put_contents("{$this->dir}{$this->newfilename}", $filecontents);
+            	 return true;
+        	}
+		}
+		}
+		return false;
     }
-
+	
     /**
      * MimeTypeImages
      * Get Image MimeTypes
@@ -126,8 +224,7 @@ class OssnFile extends OssnEntities {
             'image/x-png' => 'png',
             'image/gif' => 'gif'
         );
-    }
-
+    } 
     /**
      * getFiles
      * Get owner files
