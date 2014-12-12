@@ -130,11 +130,12 @@ $("#upload-photo").submit(function (event) {
 Ossn.repositionCOVER = function(){
      var $pcover_top = $('.profile-cover-img').css('top');
      var $pcover_left = $('.profile-cover-img').css('left');
+     $url = Ossn.site_url+"action/profile/cover/reposition";
      $.ajax({
 		async: true,
 		type: 'post',
 		data: '&top='+$pcover_top+'&left='+$pcover_left ,
-		url: Ossn.site_url+"action/profile/cover/reposition",
+		url: Ossn.AddTokenToUrl($url),
 		success: function(callback){
 				$('#profile-menu').show();
             	$('#cover-menu').hide();
