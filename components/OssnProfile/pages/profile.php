@@ -37,6 +37,7 @@ if (ossn_isLoggedIn()) {
                 <form id="upload-cover" style="display:none;" method="post" enctype="multipart/form-data">
                     <input type="file" name="coverphoto" class="coverfile"
                            onchange="Ossn.Clk('#upload-cover .upload');"/>
+                    <?php echo ossn_view('system/templates/input/security_token'); ?>
                     <input type="submit" class="upload"/>
                 </form>
             <?php
@@ -55,6 +56,7 @@ if (ossn_isLoggedIn()) {
                     <form id="upload-photo" style="display:none;" method="post" enctype="multipart/form-data">
                         <input type="file" name="userphoto" class="pfile"
                                onchange="Ossn.Clk('#upload-photo .upload');"/>
+                         <?php echo ossn_view('system/templates/input/security_token'); ?>      
                         <input type="submit" class="upload"/>
                     </form>
                 </div>
@@ -83,12 +85,12 @@ if (ossn_isLoggedIn()) {
                     if (!ossn_user_is_friend(ossn_loggedin_user()->guid, $user->guid)) {
                         if (ossn_user()->requestExists(ossn_loggedin_user()->guid, $user->guid)) {
                             ?>
-                            <a href="<?php echo ossn_add_tokens_to_url(ossn_site_url("action/friend/remove?cancel=true&user={$user->guid}")); ?>"
+                            <a href="<?php echo ossn_site_url("action/friend/remove?cancel=true&user={$user->guid}", true); ?>"
                                class='button-grey'>
                                 <?php echo ossn_print('cancel:request'); ?>
                             </a>
                         <?php } else { ?>
-                            <a href="<?php echo ossn_add_tokens_to_url(ossn_site_url("action/friend/add?user={$user->guid}")); ?>"
+                            <a href="<?php echo ossn_site_url("action/friend/add?user={$user->guid}", true); ?>"
                                class='button-grey'>
                                 <?php echo ossn_print('add:friend'); ?>
                             </a>
