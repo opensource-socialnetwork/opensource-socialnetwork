@@ -25,7 +25,7 @@ $user['bdy'] = input('birthy');
 if (!empty($user)) {
     foreach ($user as $field => $value) {
         if (empty($value)) {
-            ossn_trigger_message(ossn_print('fields:require'), 'error', 'admin');
+            ossn_trigger_message(ossn_print('fields:require'), 'error');
             redirect(REF);
         }
     }
@@ -37,7 +37,7 @@ $types = array(
     'admin'
 );
 if (!in_array($user['type'], $types)) {
-    ossn_trigger_message(ossn_print('account:create:error:admin'), 'error', 'admin');
+    ossn_trigger_message(ossn_print('account:create:error:admin'), 'error');
     redirect(REF);
 }
 
@@ -68,19 +68,19 @@ $params['values'] = array(
 //check if email is not in user
 if($entity->email !== input('email')){
   if($OssnUser->isOssnEmail()){
-    ossn_trigger_message(ossn_print('email:inuse'), 'error', 'admin');
+    ossn_trigger_message(ossn_print('email:inuse'), 'error');
     redirect(REF);
   }
 }
 //check if email is valid email 
 if(!$OssnUser->isEmail()){
-    ossn_trigger_message(ossn_print('email:invalid'), 'error', 'admin');
+    ossn_trigger_message(ossn_print('email:invalid'), 'error');
     redirect(REF);	
 }
 //check if password then change password
 if (!empty($password)) {
     if (!$OssnUser->isPassword()) {
-        ossn_trigger_message(ossn_print('password:error'), 'error', 'admin');
+        ossn_trigger_message(ossn_print('password:error'), 'error');
         redirect(REF);
     }
     $salt = $OssnUser->generateSalt();
@@ -114,6 +114,6 @@ if ($OssnDatabase->update($params)) {
         $entity->data->birthdate = $user['birthdate'];
         $entity->save();
     }
-    ossn_trigger_message(ossn_print('user:updated'), 'success', 'admin');
+    ossn_trigger_message(ossn_print('user:updated'), 'success');
     redirect(REF);
 } 

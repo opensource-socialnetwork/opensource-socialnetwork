@@ -15,6 +15,6 @@ if (empty($loggedout)) {
     redirect(ossn_build_token_url('action/admin/logout?l=1'));
 }
 if ($loggedout == 1) {
-    ossn_trigger_message(ossn_print('logged:out'), 'success', 'admin');
+    ossn_trigger_message(ossn_print('logged:out'), 'success');
     redirect('administrator');
 }

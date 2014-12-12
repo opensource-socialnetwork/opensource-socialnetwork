@@ -13,7 +13,7 @@ if (ossn_is_xhr()) {
 }
 if (ossn_remove_friend(ossn_loggedin_user()->guid, input('user'))) {
     if (!ossn_is_xhr()) {
-        ossn_trigger_message(ossn_print('ossn:notification:delete:friend'), 'error', 'admin');
+        ossn_trigger_message(ossn_print('ossn:notification:delete:friend'), 'error');
         redirect(REF);
     }
     if (ossn_is_xhr()) {

@@ -15,11 +15,11 @@ if (ossn_isAdminLoggedin()) {
 $username = input('username');
 $password = input('password');
 if (ossn_user_by_username($username)->type !== 'admin') {
-    ossn_trigger_message(ossn_print('login:error'), 'error', 'admin');
+    ossn_trigger_message(ossn_print('login:error'), 'error');
     redirect(REF);
 }
 if (empty($username) || empty($password)) {
-    ossn_trigger_message(ossn_print('login:error'), 'error', 'admin');
+    ossn_trigger_message(ossn_print('login:error'), 'error');
     redirect(REF);
 }
 
@@ -27,9 +27,9 @@ $login = new OssnUser;
 $login->username = $username;
 $login->password = $password;
 if ($login->Login()) {
-    ossn_trigger_message(ossn_print('login:success'), 'success', 'admin');
+    ossn_trigger_message(ossn_print('login:success'), 'success');
     redirect(REF);
 } else {
-    ossn_trigger_message(ossn_print('login:error'), 'error', 'admin');
+    ossn_trigger_message(ossn_print('login:error'), 'error');
     redirect(REF);
 }

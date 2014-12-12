@@ -12,9 +12,9 @@
 $com = input('component');
 $delete = new OssnComponents;
 if ($delete->deletecom($com)) {
-    ossn_trigger_message(ossn_print('com:deleted'), 'success', 'admin');
+    ossn_trigger_message(ossn_print('com:deleted'), 'success');
     redirect(REF);
 } else {
-    ossn_trigger_message(ossn_print('con:delete:error'), 'error', 'admin');
+    ossn_trigger_message(ossn_print('con:delete:error'), 'error');
     redirect(REF);
 }

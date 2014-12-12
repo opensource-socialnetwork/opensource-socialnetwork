@@ -10,9 +10,9 @@
  */
 $OssnTheme = new OssnThemes;
 if ($OssnTheme->upload()) {
-    ossn_trigger_message(ossn_print('theme:installed'), 'success', 'admin');
+    ossn_trigger_message(ossn_print('theme:installed'), 'success');
     redirect(REF);
 } else {
-    ossn_trigger_message('theme:install:error', 'success', 'admin');
+    ossn_trigger_message('theme:install:error', 'success');
     redirect(REF);
 }

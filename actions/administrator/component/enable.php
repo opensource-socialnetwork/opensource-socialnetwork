@@ -12,6 +12,6 @@
 $enable = new OssnComponents;
 $com = input('com');
 if ($enable->ENABLE($com)) {
-    ossn_trigger_message(ossn_print('com:enabled'), 'success', 'admin');
+    ossn_trigger_message(ossn_print('com:enabled'), 'success');
     redirect(REF);
 }

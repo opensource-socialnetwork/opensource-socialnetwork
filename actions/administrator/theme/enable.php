@@ -11,6 +11,6 @@
 $theme = input('theme');
 $enable = new OssnThemes;
 if ($enable->Enable($theme)) {
-    ossn_trigger_message(ossn_print('theme:enabled'), 'success', 'admin');
+    ossn_trigger_message(ossn_print('theme:enabled'), 'success');
     redirect(REF);
 }

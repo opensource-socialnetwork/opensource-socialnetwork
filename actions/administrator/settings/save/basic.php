@@ -31,5 +31,5 @@ $update['values'] = array($errors);
 $update['wheres'] = array("name='display_errors'");
 $settings->update($update);
 
-ossn_trigger_message(ossn_print('settings:saved'), 'success', 'admin');
+ossn_trigger_message(ossn_print('settings:saved'), 'success');
 redirect(REF);
