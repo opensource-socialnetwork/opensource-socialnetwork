@@ -1350,9 +1350,8 @@ padding:10px;
 font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 font-size: 20px;
 font-weight: bold;
-height: 24px;
 line-height: 1;
-margin: 0 12px 5px;
+color: #2B5470;
 }
 .ossn-ajax-error {
 font-size: 15px;
