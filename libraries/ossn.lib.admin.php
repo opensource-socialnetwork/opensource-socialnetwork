@@ -202,28 +202,28 @@ function ossn_administrator_pagehandler($pages) {
             }
             break;
         case 'components':
-            $title = 'Components';
+            $title = ossn_print('admin:components');
             $contents['contents'] = ossn_view("pages/administrator/contents/components");
             $contents['title'] = $title;
             $content = ossn_set_page_layout('administrator/administrator', $contents);
             echo ossn_view_page($title, $content, 'administrator');
             break;
         case 'themes':
-            $title = 'Themes';
+            $title = ossn_print('admin:themes');
             $contents['contents'] = ossn_view("pages/administrator/contents/themes");
             $contents['title'] = $title;
             $content = ossn_set_page_layout('administrator/administrator', $contents);
             echo ossn_view_page($title, $content, 'administrator');
             break;
         case 'com_installer':
-            $title = 'Component Installer';
+            $title = ossn_print('admin:com:installer');
             $contents['contents'] = ossn_view("pages/administrator/contents/com_installer");
             $contents['title'] = $title;
             $content = ossn_set_page_layout('administrator/administrator', $contents);
             echo ossn_view_page($title, $content, 'administrator');
             break;
         case 'theme_installer':
-            $title = 'Theme Installer';
+            $title = ossn_print('admin:theme:installer');
             $contents['contents'] = ossn_view("pages/administrator/contents/theme_installer");
             $contents['title'] = $title;
             $content = ossn_set_page_layout('administrator/administrator', $contents);
@@ -240,21 +240,21 @@ function ossn_administrator_pagehandler($pages) {
             }
             break;
         case 'cache':
-            $title = 'Cache Settings';
+            $title =  ossn_print('admin:cache:settings');
             $contents['contents'] = ossn_view("pages/administrator/contents/cache");
             $contents['title'] = $title;
             $content = ossn_set_page_layout('administrator/administrator', $contents);
             echo ossn_view_page($title, $content, 'administrator');
             break;
         case 'adduser':
-            $title = 'Add User';
+            $title = ossn_print('admin:add:user');
             $contents['contents'] = ossn_view("pages/administrator/contents/adduser");
             $contents['title'] = $title;
             $content = ossn_set_page_layout('administrator/administrator', $contents);
             echo ossn_view_page($title, $content, 'administrator');
             break;
         case 'users':
-            $title = 'Users List';
+            $title = ossn_print('admin:user:list');
             $contents['contents'] = ossn_view("pages/administrator/contents/users/list");
             $contents['title'] = $title;
             $content = ossn_set_page_layout('administrator/administrator', $contents);
@@ -264,14 +264,14 @@ function ossn_administrator_pagehandler($pages) {
             if (isset($pages[1])) {
                 $user['user'] = ossn_user_by_username($pages[1]);
             }
-            $title = 'Edit User';
+            $title = ossn_print('admin:edit:user');
             $contents['contents'] = ossn_view("pages/administrator/contents/user/edit", $user);
             $contents['title'] = $title;
             $content = ossn_set_page_layout('administrator/administrator', $contents);
             echo ossn_view_page($title, $content, 'administrator');
             break;
         default:
-            echo 403;
+           	ossn_error_page();
             break;
 
     }
@@ -289,14 +289,14 @@ function ossn_administrator_login_pagehandler($pages) {
     }
     switch ($page) {
         case 'login':
-            $title = 'Login';
+            $title = ossn_print('admin:login');
             $contents['contents'] = ossn_view("pages/administrator/contents/login");
             $contents['title'] = $title;
             $content = ossn_set_page_layout('administrator/login', $contents);
             echo ossn_view_page($title, $content, 'administrator');
             break;
         default:
-            echo 403;
+            ossn_error_page();
             break;
 
     }
