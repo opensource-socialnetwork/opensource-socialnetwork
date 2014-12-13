@@ -488,13 +488,13 @@ function ossn_display_system_messages() {
 
             if (isset($dermessage) && is_array($dermessage) && sizeof($dermessage) > 0) {
                 foreach ($dermessage as $type => $list) {
-					foreach($list as $message){
+			foreach($list as $message){
                             $m = "<div class='$type'>";
                             $m .= $message;
                             $m .= '</div>';
                             $ms[] = $m;
                             unset($_SESSION['ossn_messages'][$type]);
-					}
+			}
                 }
             }
 
