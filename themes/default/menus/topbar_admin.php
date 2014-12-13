@@ -28,6 +28,6 @@ foreach ($params['menu'] as $key => $links) {
     }
 }
 
-echo '<a href="' . ossn_site_url("action/admin/logout") . '"><li class="right">' . ossn_print('admin:logout') . '</li></a>';
+echo '<a href="' . ossn_site_url("action/admin/logout", true) . '"><li class="right">' . ossn_print('admin:logout') . '</li></a>';
 echo '</ul>';
 echo '</div>';
