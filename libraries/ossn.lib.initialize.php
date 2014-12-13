@@ -47,7 +47,7 @@ function ossn_initialize() {
 
     ossn_register_page('resetlogin', 'ossn_user_pagehandler');
 
-    ossn_add_hook('newsfeed', "left", 'newfeed_menu_handler');
+    ossn_add_hook('newsfeed', "sidebar:left", 'newfeed_menu_handler');
 }
 
 /**
