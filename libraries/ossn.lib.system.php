@@ -488,11 +488,13 @@ function ossn_display_system_messages() {
 
             if (isset($dermessage) && is_array($dermessage) && sizeof($dermessage) > 0) {
                 foreach ($dermessage as $type => $list) {
+					foreach($list as $message){
                             $m = "<div class='$type'>";
                             $m .= $message;
                             $m .= '</div>';
                             $ms[] = $m;
                             unset($_SESSION['ossn_messages'][$type]);
+					}
                 }
             }
 
@@ -613,11 +615,13 @@ function ossn_errros() {
     $settings = ossn_site_settings('display_errors');
     if ($settings == 'on' || is_file(ossn_route()->www . 'DISPLAY_ERRORS')) {
         error_reporting(E_NOTICE ^ ~E_WARNING);
+		
         ini_set('log_errors', 1);		
-	ini_set('error_log', ossn_route()->www . 'error_log');
-	set_error_handler('_ossn_php_error_handler');
+		ini_set('error_log', ossn_route()->www . 'error_log');
+		
+		set_error_handler('_ossn_php_error_handler');
     } elseif ($settings !== 'on') {
-	ini_set("log_errors", 0);
+		ini_set("log_errors", 0);
         ini_set('display_errors', 'off');
     } 
 }
