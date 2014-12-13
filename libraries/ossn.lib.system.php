@@ -451,7 +451,7 @@ function ossn_system_message_add($message = null, $register = "ossn-message-succ
  * @return void
  */
 function ossn_trigger_message($message, $type = 'success') {
-    if ($type == 'error'); {
+    if ($type == 'error') {
         ossn_system_message_add($message, 'ossn-message-error');
     }
     if ($type == 'success') {
