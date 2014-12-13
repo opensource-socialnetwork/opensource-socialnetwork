@@ -465,7 +465,7 @@ function ossn_trigger_message($message, $type = 'success') {
  * @param string $error Langauge string
  * @param string $redirect Custom redirect url
  */
-function ossn_post_size_exceed_error($error = 'ossn:post:size:exceed', $redirect){
+function ossn_post_size_exceed_error($error = 'ossn:post:size:exceed', $redirect = null){
 	if(!empty($_SERVER['CONTENT_LENGTH']) && empty($_POST)){
 			if(empty($redirect)){
 				$redirect = null;	
