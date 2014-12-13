@@ -162,7 +162,7 @@
 }
 
 .ossn-wall-post {
-	width: 62px;
+	min-width: 62px;
 	padding: 5px;
 	margin-top: 7px;
 	margin-right: 6px;
