@@ -16,6 +16,7 @@ $Ossn->libraries = array(
     'relations',
 	'entities',
 	'objects',
+	'annotations',
     'system',
     'views',
     'page',
