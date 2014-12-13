@@ -7,6 +7,7 @@ Bugfixes:
  * Rearrange code ossnwall privacy button #119
  * Error reporting not working out of the box #120
  * Wrong backlinks from user albums and photos #126
+ * Fixed width of post button may lead to problem in other languages #123
 
 Api Additions:
 
