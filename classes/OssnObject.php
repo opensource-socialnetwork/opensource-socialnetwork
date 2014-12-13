@@ -1,5 +1,4 @@
 <?php
-
 /**
  *    OpenSource-SocialNetwork
  *
@@ -10,6 +9,23 @@
  * @link      http://www.opensource-socialnetwork.com/licence
  */
 class OssnObject extends OssnEntities {
+
+    /**
+     * Initialize the objects.
+     *
+     * @return void;
+     */
+    public function initAttributes() {
+        $this->OssnDatabase = new OssnDatabase;
+        $this->time_created = time();
+        if (empty($this->subtype)) {
+            $this->subtype = NULL;
+        }
+        if (empty($this->order_by)) {
+            $this->order_by = '';
+        }
+    }
+	
     /**
      * Create object;
      *
@@ -51,23 +67,6 @@ class OssnObject extends OssnEntities {
         }
         return false;
     }
-
-    /**
-     * Initialize the objects.
-     *
-     * @return void;
-     */
-    public function initAttributes() {
-        $this->OssnDatabase = new OssnDatabase;
-        $this->time_created = time();
-        if (empty($this->subtype)) {
-            $this->subtype = NULL;
-        }
-        if (empty($this->order_by)) {
-            $this->order_by = '';
-        }
-    }
-
     /**
      * Get object by owner guid;
      *
@@ -108,6 +107,7 @@ class OssnObject extends OssnEntities {
         if (isset($data) && is_array($data)) {
             return arrayObject($data, get_class($this));
         }
+		return false;
     }
 
     /**
@@ -147,11 +147,12 @@ class OssnObject extends OssnEntities {
                 } else {
                     $data[] = arrayObject($object, get_class($this));
                 }
-            }
-        }
-        if (isset($data) && is_array($data)) {
-            return arrayObject($data, get_class($this));
-        }
+            } //end of loop
+        	if (isset($data) && is_array($data)) {
+            	return arrayObject($data, get_class($this));
+        	}			
+        }//end of  if ($objects)
+		return false;
     }
 
     /**
@@ -175,18 +176,19 @@ class OssnObject extends OssnEntities {
         $this->subtype = '';
         $this->type = 'object';
         $this->entities = $this->get_entities();
+		
         if ($this->entities) {
             foreach ($this->entities as $entity) {
                 $fields[$entity->subtype] = $entity->value;
             }
+        	$data = array_merge(get_object_vars($object), $fields);
+        	if (!empty($fields)) {
+				return arrayObject($data, get_class($this));
+        	} else {
+				return arrayObject($object, get_class($this));
+       		 }			
         }
-
-        $data = array_merge(get_object_vars($object), $fields);
-        if (!empty($fields)) {
-            return arrayObject($data, get_class($this));
-        } else {
-            return arrayObject($object, get_class($this));
-        }
+		return false;
     }
 
     /**
@@ -235,6 +237,9 @@ class OssnObject extends OssnEntities {
      * @return bool;
      */
     public function deleteObject($object) {
+	  if(isset($this->guid)){
+		 $object = $this->guid; 
+	  }
       //delete entites of (this) object
       if ($this->deleteByOwnerGuid($object, 'object')) {
             $data = ossn_get_userdata("object/{$object}/");
@@ -243,8 +248,9 @@ class OssnObject extends OssnEntities {
                 rmdir($data);
             }
 		}
-    	$this->statement("DELETE FROM ossn_object WHERE(guid='{$object}')");
-		if($this->execute()){
+		$delete['from'] = 'ossn_object';
+		$delete['wheres'] = array("guid='{$object}'");
+		if($this->OssnDatabase->delete($delete)){
             return true;
         }
         return false;
