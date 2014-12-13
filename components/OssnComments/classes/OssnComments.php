@@ -46,11 +46,11 @@ class OssnComments extends OssnAnnotation {
                 $file = ossn_string_decrypt(base64_decode($image));
                 $file_path = rtrim(ossn_validate_filepath($file), '/');
                 $_FILES['attachment'] = array(
-                    'name' => $file_path,
-                    'tmp_name' => $file_path,
-                    'type' => 'image/jpeg',
-                    'size' => filesize($file_path),
-					'error' => UPLOAD_ERR_OK
+                	'name' => $file_path,
+                	'tmp_name' => $file_path,
+                	'type' => 'image/jpeg',
+                	'size' => filesize($file_path),
+			'error' => UPLOAD_ERR_OK
                 );
                 $file = new OssnFile;
                 $file->type = 'annotation';
