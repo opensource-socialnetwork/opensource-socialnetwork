@@ -16,7 +16,7 @@ $username = input('username');
 $password = input('password');
 
 if (empty($username) || empty($password)) {
-    ossn_trigger_message(ossn_print('login:error'), 'success'); 'site');
+    ossn_trigger_message(ossn_print('login:error'));
     redirect();
 }
 
