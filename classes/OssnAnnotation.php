@@ -1,5 +1,4 @@
 <?php
-
 /**
  *    OpenSource-SocialNetwork
  *
@@ -10,6 +9,24 @@
  * @link      http://www.opensource-socialnetwork.com/licence
  */
 class OssnAnnotation extends OssnEntities {
+    /**
+     * Initialize the objects.
+     *
+     * @return void;
+     */
+    public function initAttributes() {
+        $this->OssnDatabase = new OssnDatabase;
+        $this->time_created = time();
+        if (empty($this->subtype)) {
+            $this->subtype = NULL;
+        }
+        if (empty($this->premission)) {
+            $this->premission = OSSN_PUBLIC;
+        }
+        if (empty($this->order_by)) {
+            $this->order_by = '';
+        }
+    }	
     /**
      * Create annotation;
      *
@@ -53,26 +70,6 @@ class OssnAnnotation extends OssnEntities {
         }
         return false;
     }
-
-    /**
-     * Initialize the objects.
-     *
-     * @return void;
-     */
-    public function initAttributes() {
-        $this->OssnDatabase = new OssnDatabase;
-        $this->time_created = time();
-        if (empty($this->subtype)) {
-            $this->subtype = NULL;
-        }
-        if (empty($this->premission)) {
-            $this->premission = OSSN_PUBLIC;
-        }
-        if (empty($this->order_by)) {
-            $this->order_by = '';
-        }
-    }
-
     /**
      * Get annotation by annotation id;
      *
@@ -84,9 +81,7 @@ class OssnAnnotation extends OssnEntities {
         self::initAttributes();
         $params['from'] = 'ossn_annotations';
         $params['wheres'] = array("id='{$this->annotation_id}'");
-        $params['order_by'] = $this->order_by;
         $annotation = $this->OssnDatabase->select($params);
-        unset($this->order_by);
 
         $this->owner_guid = $annotation->id;
         $this->type = 'annotation';
@@ -113,6 +108,9 @@ class OssnAnnotation extends OssnEntities {
 		$params['wheres'] = array("type='{$this->type}'");
 		$params['order_by'] = $this->order_by;
  		$annotations = $this->OssnDatabase->select($params, true);
+		if(!$annotations){
+			return false;
+		}		
 		unset($this->order_by);
 		foreach($annotations as $annotation){
 				$this->owner_guid = $annotation->id;
@@ -141,6 +139,9 @@ class OssnAnnotation extends OssnEntities {
 		$params['wheres'] = array("owner_guid='{$this->owner_guid}'");
 		$params['order_by'] = $this->order_by;
  		$annotations = $this->OssnDatabase->select($params, true);
+		if(!$annotations){
+			return false;
+		}
 		unset($this->order_by);
 		foreach($annotations as $annotation){
 				$this->owner_guid = $annotation->id;
