@@ -17,8 +17,8 @@
         <div class="coloum-left">
             &nbsp;
             <?php
-            if (ossn_is_hook('newsfeed', "left")) {
-                $newsfeed_left = ossn_call_hook('newsfeed', "left", NULL, array());
+            if (ossn_is_hook('newsfeed', "sidebar:left")) {
+                $newsfeed_left = ossn_call_hook('newsfeed', "sidebar:left", NULL, array());
                 echo implode('', $newsfeed_left);
             }
             ?>
@@ -34,6 +34,10 @@
                 if (com_is_active('OssnAds')) {
                     echo ossn_view('components/OssnAds/page/view');
                 }
+         	if (ossn_is_hook('newsfeed', "sidebar:right")) {
+            	        $newsfeed_right = ossn_call_hook('newsfeed', "sidebar:right", NULL, array());
+                	echo implode('', $newsfeed_right);
+            	}	                
                 ?>
             </div>
         </div>
