@@ -260,7 +260,7 @@ class OssnChat extends OssnDatabase {
             $online = get_object_vars($friends);
             return count($online);
         }
-        return false;
+        return 0;
     }
 
     /**
