@@ -31,7 +31,7 @@ function ossn_profile() {
     ossn_register_callback('page', 'load:profile', 'ossn_profile_load_event');
 
     //hooks
-    ossn_add_hook('newsfeed', "left", 'profile_photo_newsefeed', 1);
+    ossn_add_hook('newsfeed', "sidebar:left", 'profile_photo_newsefeed', 1);
     ossn_add_hook('profile', 'subpage', 'profile_user_friends');
     ossn_add_hook('search', 'type:users', 'profile_search_handler');
     ossn_add_hook('profile', 'subpage', 'profile_edit_page');
