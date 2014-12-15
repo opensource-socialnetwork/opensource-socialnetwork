@@ -1349,6 +1349,8 @@ border-bottom: 1px solid #D3D6DB;
 }
 .ossn-layout-module .module-title .controls{
 float:right;
+display: inline-table;
+vertical-align: top;
 }
 .ossn-layout-module .module-contents {
 padding:10px;
@@ -1359,6 +1361,7 @@ font-size: 20px;
 font-weight: bold;
 line-height: 1;
 color: #2B5470;
+display: inline-table;
 }
 .ossn-ajax-error {
 font-size: 15px;
