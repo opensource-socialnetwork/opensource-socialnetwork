@@ -1352,6 +1352,7 @@ font-size: 20px;
 font-weight: bold;
 line-height: 1;
 color: #2B5470;
+
 }
 .ossn-ajax-error {
 font-size: 15px;
