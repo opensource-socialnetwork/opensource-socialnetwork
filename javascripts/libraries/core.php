@@ -264,14 +264,28 @@ Ossn.RegisterStartupFunction(function(){
  * @return void
  */ 
 Ossn.RegisterStartupFunction(function(){
-   $(document).ready(function(){        
+     $(document).ready(function(){        
           $('.component-controls .components-button-red').click(function(e){
            e.preventDefault();
-           var del = confirm(Ossn.Print('ossn:component:delete:exception'));
-           if (del == true) {
-               var actionurl = $(this).attr('href');
-               window.location = actionurl;
-           } 
+		var actionurl = $(this).attr('href');
+		var content = Ossn.Print('ossn:component:delete:exception');		
+		$.confirm({
+			'title'		: 'Delete Confirmation',
+			'message'	: content,
+			'buttons'	: {
+				'Yes'	: {
+					'class'	: 'blue',
+					'action': function(){						
+              					 window.location = actionurl;
+					}
+				},
+				'No'	: {
+					'class'	: 'gray',
+					'action': function(){}	// Nothing to do in this case. You can as well omit the action property.
+				}
+			}
+		});
+          
          });
    	});
 });
