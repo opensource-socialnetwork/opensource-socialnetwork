@@ -16,11 +16,11 @@ foreach ($OssnThemes->getThemes() as $id) {
     if (ossn_site_settings('theme') == $id) {
         echo "<a href='#' class='components-button components-button-blue'>Enabled</a>";
     } else {
-        $enable = ossn_site_url("action/theme/enable?theme={$id}");
+        $enable = ossn_site_url("action/theme/enable?theme={$id}", true);
         echo "<a href='{$enable}' class='components-button components-button-green'>Enable</a>";
     }
     if ($OssnThemes->getActive() !== $id) {
-        $delete = ossn_site_url("action/theme/delete?theme={$id}");
+        $delete = ossn_site_url("action/theme/delete?theme={$id}", true);
         echo "<a href='{$delete}' class='components-button components-button-red'>Delete</a>";
     }
     echo "</div>";
