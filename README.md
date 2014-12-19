@@ -44,7 +44,7 @@ Backend Features
 
 Prerequisite
 =============
-* PHP 5.4 OR >
+* PHP 5.4 OR > ( Will not work on 5.6 )
 * MYSQL 5 OR >
 * APACHE
 * mod_rewrite
