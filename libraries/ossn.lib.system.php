@@ -513,7 +513,7 @@ function ossn_display_system_messages() {
  */
 function ossn_site_total_themes() {
     $themes = new OssnThemes;
-    return count($themes->total());
+    return $themes->total();
 }
 
 /**
