@@ -8,6 +8,7 @@ Bugfixes:
  * Error reporting not working out of the box #120
  * Wrong backlinks from user albums and photos #126
  * Fixed width of post button may lead to problem in other languages #123
+ * Total themes count fixed in admin dashboard #136
 
 Api Additions:
 
