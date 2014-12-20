@@ -649,4 +649,38 @@ class OssnUser extends OssnEntities {
         }
         return false;
     }
+	/**
+	 * Check if user is validated or not
+	 * 
+	 * @return bool
+	 */
+	public function isUserVALIDATED(){
+		if(isset($this->activation) && empty($this->activation)){
+			return true;
+		}
+		return false;
+	}
+	/**
+	 * Resend validation email to user
+	 *
+	 * @return bool
+	 */
+	public function resendValidationEmail(){
+		self::initAttributes();
+		if(!$this->isUserVALIDATED()){
+			$link = ossn_site_url("uservalidate/acitvate/{$this->guid}/{$this->activation}");
+			$sitename = ossn_site_settings('site_name');
+			$activation = ossn_print('ossn:add:user:mai:body', array(
+                        $sitename,
+                        $link,
+                        ossn_site_url()
+                    ));
+			$subject = ossn_print('ossn:add:user:mail:subject', array(
+                        $this->first_name,
+                        $sitename
+                    ));
+			return $this->notify->NotifiyUser($this->email, $subject, $activation);
+		}
+		return false;
+	}
 }//CLASS
