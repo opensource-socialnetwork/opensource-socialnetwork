@@ -91,6 +91,7 @@ locale /
   * admin:user:list
   * admin:edit:user
   * admin:login
+  * admin:notification:email
 
 installation/locales
   
