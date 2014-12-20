@@ -1,4 +1,4 @@
- # 	OpenSource-SocialNetwork
+ # OpenSource-SocialNetwork
  #
  # @package   (Informatikon.com).ossn
  # @author    OSSN Core Team <info@opensource-socialnetwork.org>
@@ -16,8 +16,11 @@ DirectoryIndex index.php
 </Files>
 
 <IfModule mod_rewrite.c>
-SetEnv HTTP_MOD_REWRITE 1
+#SetEnv HTTP_MOD_REWRITE 1
+
 RewriteEngine on
+
+RewriteRule ^rewrite.php$ installation/tests/apache_rewrite.php [L]
 
 RewriteRule ^action\/([A-Za-z0-9\_\-\/]+)$ system/handlers/actions.php?action=$1&%{QUERY_STRING} [L]
 
