@@ -19,7 +19,12 @@ if (empty($username) || empty($password)) {
     ossn_trigger_message(ossn_print('login:error'));
     redirect();
 }
-
+$user = ossn_user_by_username($username);
+if(!$user->isUserVALIDATED()){
+	$user->resendValidationEmail();
+	ossn_trigger_message(ossn_print('ossn:user:validation:resend'), 'error');
+	redirect(REF);
+}
 $login = new OssnUser;
 $login->username = $username;
 $login->password = $password;
