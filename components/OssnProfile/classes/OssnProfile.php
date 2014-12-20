@@ -108,6 +108,15 @@ class OssnProfile extends OssnDatabase {
         }
         return false;
     }
+    /**
+     * Add a wall post for new profile picture
+     *
+     * @param int $ownerguid = Guid of owner
+	 * @param int $itemguid photo guid
+	 * @param string $type profile photo/cover
+     *
+     * @return bool;
+     */	
 	public function addPhotoWallPost($ownerguid, $itemguid, $type = 'profile:photo'){
 		if(empty($ownerguid) || empty($itemguid)){
 			return false;
@@ -122,5 +131,41 @@ class OssnProfile extends OssnDatabase {
 		if($this->wall->Post('null:data')){
 			return true;
 		}
+	}
+	/**
+	 * Delete profile photo/cover wall post
+	 * 
+	 * @param int $fileguid Profile/Cover file id
+	 * @return bool
+	 */
+	public function deletePhotoWallPost($fileguid){
+		if(empty($fileguid)){
+			return false;
+		}
+		//prepare a query to get post guid
+		$statement = "SELECT * FROM ossn_entities, ossn_entities_metadata WHERE(
+				  	  ossn_entities_metadata.guid = ossn_entities.guid 
+				      AND  ossn_entities.subtype='item_guid'
+				      AND  ossn_entities.type = 'object'
+				      AND ossn_entities_metadata.value = '{$fileguid}'
+				      );";	
+		
+		$this->statement($statement);
+		$this->execute();
+		$entity = $this->fetch();
+		
+		//check if post exists or not
+		if($entity){
+			//get object
+			$object = ossn_get_object($entity->owner_guid);
+			if($object && $object->subtype == 'wall'){
+				$wall = new OssnWall;
+				//delete wall post
+				if($wall->deletePost($object->guid)){
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 }//class
