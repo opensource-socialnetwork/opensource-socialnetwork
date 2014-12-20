@@ -245,7 +245,7 @@ Please click the link below to reset password or copy the link and paste in your
 	'admin:user:list' => 'Users List',
 	'admin:edit:user' => 'Edit User',
 	'admin:login' => 'Login',
-	
+	'admin:notification:email' => 'Site Notification Email',
 	/*
        * List of ISO 639-1 language codes
        * http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
