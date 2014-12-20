@@ -16,12 +16,12 @@ $photo = $delete->GetPhoto($delete->photoid);
 if (($photo->owner_guid == ossn_loggedin_user()->guid) || ossn_isAdminLoggedin()) {
     if ($delete->deleteProfilePhoto()) {
         ossn_trigger_message(ossn_print('photo:deleted:success'), 'success');
-        redirect();
+        redirect("album/profile/{$photo->owner_guid}");
     } else {
         ossn_trigger_message(ossn_print('photo:delete:error'), 'error');
-        redirect();
+        redirect(REF);
     }
 } else {
     ossn_trigger_message(ossn_print('photo:delete:error'), 'error');
-    redirect();
+    redirect(REF);
 }
