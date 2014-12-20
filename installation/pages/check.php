@@ -12,50 +12,50 @@
 
 echo '<div><div class="layout-installation"><h2>' . ossn_installation_print('ossn:settings') . '</h2><br /><div style="margin:0 auto; width:900px;">';
 if (OssnInstallation::isPhp()) {
-    echo '<div class="ossn-installation-message ossn-installation-success"> PHP ' . PHP_VERSION . ' </div>';
+    echo '<div class="ossn-installation-message ossn-installation-success">'. ossn_installation_print('ossn:install:php') . PHP_VERSION . ' </div>';
 } else {
-    echo '<div class="ossn-installation-message ossn-installation-fail">You have old PHP ' . PHP_VERSION . '. You need PHP 5.3 or Higher </div>';
+    echo '<div class="ossn-installation-message ossn-installation-fail"> ' . ossn_installation_print('ossn:install:old:php') . '</div>';
     $error[] = 'php';
 }
 if (OssnInstallation::is_mysqli_enabled()) {
-    echo '<div class="ossn-installation-message ossn-installation-success"> MYSQLI ENABLED </div>';
+    echo '<div class="ossn-installation-message ossn-installation-success">'.ossn_installation_print('ossn:install:mysqli').'</div>';
 } else {
-    echo '<div class="ossn-installation-message ossn-installation-fail">MYSQLI PHP EXTENSION REQUIRED</div>';
+    echo '<div class="ossn-installation-message ossn-installation-fail">'.ossn_installation_print('ossn:install:mysqli:required').'</div>';
     $error[] = 'mysqli';
 }
 if (OssnInstallation::isApache()) {
-    echo '<div class="ossn-installation-message ossn-installation-success">APACHE</div>';
+    echo '<div class="ossn-installation-message ossn-installation-success">'.ossn_installation_print('ossn:install:apache').'</div>';
 } else {
-    echo '<div class="ossn-installation-message ossn-installation-fail">APACHE IS REQUIRED.</div>';
+    echo '<div class="ossn-installation-message ossn-installation-fail">'.ossn_installation_print('ossn:install:apache:required').'</div>';
     $error[] = 'apache';
 }
 if (OssnInstallation::is_mod_rewrite()) {
-    echo '<div class="ossn-installation-message ossn-installation-success">  MOD_REWRITE</div>';
+    echo '<div class="ossn-installation-message ossn-installation-success">'.ossn_installation_print('ossn:install:modrewrite').'</div>';
 } else {
-    echo '<div class="ossn-installation-message ossn-installation-fail"> MOD_REWRITE</div>';
+    echo '<div class="ossn-installation-message ossn-installation-fail">'.ossn_installation_print('ossn:install:modrewrite:required').'</div>';
     $error[] = 'mod_rewrite';
 }
 if (OssnInstallation::isCurl()) {
-    echo '<div class="ossn-installation-message ossn-installation-success">PHP CURL</div>';
+    echo '<div class="ossn-installation-message ossn-installation-success">'.ossn_installation_print('ossn:install:curl').'</div>';
 } else {
-    echo '<div class="ossn-installation-message ossn-installation-fail">PHP CURL</div>';
+    echo '<div class="ossn-installation-message ossn-installation-fail">'.ossn_installation_print('ossn:install:curl:required').'</div>';
     $error[] = 'php:curl';
 }
 if (OssnInstallation::isPhpGd()) {
-    echo '<div class="ossn-installation-message ossn-installation-success">PHP GD LIBRARY</div>';
+    echo '<div class="ossn-installation-message ossn-installation-success">'.ossn_installation_print('ossn:install:gd').'</div>';
 } else {
-    echo '<div class="ossn-installation-message ossn-installation-fail">PHP GD LIBRARY</div>';
+    echo '<div class="ossn-installation-message ossn-installation-fail">'.ossn_installation_print('ossn:install:gd:required').'</div>';
     $error[] = 'php:gd';
 }
 if (OssnInstallation::isCon_WRITEABLE()) {
-    echo '<div class="ossn-installation-message ossn-installation-success">CONFIGURATION DIRECTORY WRITEABLE</div>';
+    echo '<div class="ossn-installation-message ossn-installation-success">'.ossn_installation_print('ossn:install:config').'</div>';
 } else {
-    echo '<div class="ossn-installation-message ossn-installation-fail">CONFIGURATION DIRECTORY IS NOT WRITEABLE</div>';
+    echo '<div class="ossn-installation-message ossn-installation-fail">'.ossn_installation_print('ossn:install:config:error').'</div>';
     $error[] = 'permission:configuration';
 }
 echo '<br />';
 if (!isset($error)) {
-    echo '<a href="' . ossn_installation_paths()->url . '?page=settings" class="button-blue primary">Next</a>';
+    echo '<a href="' . ossn_installation_paths()->url . '?page=settings" class="button-blue primary">'.ossn_installation_print('ossn:install:next').'</a>';
 }
 
 echo '</div><br /><br /></div>';
