@@ -62,6 +62,7 @@ General:
  * OssnFile now support others file upload.
  * Display error if file size exceed.
  * Display file upload error.
+ * Add site notification email settings.
 
 Language Strings Addition:
 
