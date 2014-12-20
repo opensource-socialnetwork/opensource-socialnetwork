@@ -228,7 +228,8 @@ class OssnAnnotation extends OssnEntities {
                 $data = ossn_get_userdata("annotation/{$annotation}/");
                 if (is_dir($data)) {
                     OssnFile::DeleteDir($data);
-                    rmdir($data);
+                    // As of v2.0 DeleteDir delete directory also
+                    //rmdir($data);
                 }
                 $params['annotation'] = $annotation;
                 ossn_trigger_callback('annotation', 'delete', $params);
