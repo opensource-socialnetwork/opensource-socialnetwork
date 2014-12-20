@@ -245,7 +245,8 @@ class OssnObject extends OssnEntities {
             $data = ossn_get_userdata("object/{$object}/");
             if (is_dir($data)) {
                 OssnFile::DeleteDir($data);
-                rmdir($data);
+                // As of v2.0 DeleteDir delete directory also
+                //rmdir($data);
             }
 		}
 		$delete['from'] = 'ossn_object';
