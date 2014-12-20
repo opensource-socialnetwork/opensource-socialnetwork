@@ -8,6 +8,13 @@
  * @license   General Public Licence http://opensource-socialnetwork.com/licence
  * @link      http://www.opensource-socialnetwork.com/licence
  */
+ 
+/**
+ * Ossn Installation Url
+ * Get a installation path url
+ *
+ * @return string
+ */
 function ossn_installation_url() {
     $type = true;
     $protocol = 'http';
@@ -24,11 +31,21 @@ function ossn_installation_url() {
     $url = "$protocol://{$_SERVER['SERVER_NAME']}$port{$uri}";
     return preg_replace('/\\?.*/', '', $url);
 }
-
+/**
+ * Ossn Url
+ * Get a root url
+ *
+ * @return string
+ */
 function ossn_url() {
     return str_replace('installation/', '', ossn_installation_url());
 }
-
+/**
+ * Ossn instalaltion paths
+ * Get paths needed for installing Ossn
+ *
+ * @return object
+ */
 function ossn_installation_paths() {
     global $OssnInstall;
     $path = str_replace("\\", "/", dirname(dirname(__FILE__)));
@@ -45,7 +62,12 @@ function ossn_installation_paths() {
     }
     return $OssnInstall;
 }
-
+/**
+ * Ossn Instalaltion Include
+ * Include a file 
+ *
+ * @return mixed data
+ */
 function ossn_installation_include($file = '', $params = array()) {
     $file = ossn_installation_paths()->root . $file;
     if (!empty($file) && is_file($file)) {
@@ -57,17 +79,30 @@ function ossn_installation_include($file = '', $params = array()) {
     }
 
 }
-
+/**
+ * Ossn Installation Register Languages
+ * Register a labguages need for installation
+ *
+ * @return void
+ */
 function ossn_installation_register_languages($strings = array()) {
     global $OssnInstall;
     $OssnInstall->langStrings = $strings;
 }
-
+/**
+ * Ossn load a installation language
+ *
+ * @return arrays
+ */
 function ossn_installation_languages() {
     include_once(ossn_installation_paths()->root . 'locales/ossn.en.php');
 }
-
 ossn_installation_languages();
+/**
+ * Ossn print language string
+ *
+ * @return string
+ */
 function ossn_installation_print($string) {
     global $OssnInstall;
     if (isset($OssnInstall->langStrings[$string])) {
@@ -76,14 +111,22 @@ function ossn_installation_print($string) {
         return $string;
     }
 }
-
+/**
+ * Ossn view instalaltion page
+ *
+ * @return arrays
+ */
 function ossn_installation_view_page($content, $title) {
     return ossn_installation_include("templates/page.php", array(
         'contents' => $content,
         'title' => ossn_installation_print($title),
     ));
 }
-
+/**
+ * Handle insallation pages
+ *
+ * @return mixed data
+ */
 function ossn_installation_page() {
     if (isset($_REQUEST['page'])) {
         $page = $_REQUEST['page'];
@@ -110,7 +153,11 @@ function ossn_installation_page() {
             break;
     }
 }
-
+/**
+ * Handle insallation actions
+ *
+ * @return mixed data
+ */
 function ossn_installation_actions() {
     if (isset($_REQUEST['action'])) {
         $page = $_REQUEST['action'];
@@ -130,11 +177,19 @@ function ossn_installation_actions() {
             break;
     }
 }
-
+/**
+ * Handle insallation error massages
+ *
+ * @return void
+ */
 function ossn_installation_message($message, $type) {
     $_SESSION['ossn-installation-messages']["ossn-installation-{$type}"][] = $message;
 }
-
+/**
+ * View installation error messages
+ *
+ * @return mixed data
+ */
 function ossn_installation_messages() {
     if (!isset($_SESSION['ossn-installation-messages'])) {
         return false;
