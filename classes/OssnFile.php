@@ -20,12 +20,16 @@ class OssnFile extends OssnEntities {
      */
     public static function DeleteDir($path) {
         if (is_dir($path)) {
-            array_map(function ($value) {
-                self::DeleteDir($value);
-                rmdir($value);
-            }, glob($path . '/*', GLOB_ONLYDIR));
-            array_map('unlink', glob($path . "/*"));
+			$files = array_diff(scandir($path), array('.', '..'));
+			foreach ($files as $file) {
+				if (is_dir("{$path}/{$file}")) {
+					self::DeleteDir("{$path}/{$file}");
+				} else {
+					unlink("{$path}/{$file}");
+				}
+			}
         }
+	return rmdir($path);
     }
 
     /**
