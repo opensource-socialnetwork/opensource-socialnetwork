@@ -21,9 +21,7 @@ if ($posts) {
         $data = json_decode(html_entity_decode($post->description));
         $text = $data->post;
         $location = '';
-        if (!isset($data->friend)) {
-            $data->friend = '';
-        }
+
         if (isset($data->location)) {
             $location = '- ' . $data->location;
         }
@@ -57,6 +55,7 @@ if ($posts) {
                 'image' => $image,
             ));
         }
+        unset($data->friend);
     }
 }
 echo $Pagination->pagination();
