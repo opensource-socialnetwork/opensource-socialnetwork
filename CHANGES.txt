@@ -92,6 +92,27 @@ locale /
   * admin:edit:user
   * admin:login
 
+installation/locales
+  
+  * data:directory:invalid 
+  * data:directory:outside 
+  * all:files:required 
+  * ossn:install:php
+  * ossn:install:old:php
+  * ossn:install:mysqli
+  * ossn:install:mysqli:required
+  * ossn:install:apache
+  * ossn:install:apache:required
+  * ossn:install:modrewrite
+  * ossn:install:modrewrite:required
+  * ossn:install:curl
+  * ossn:install:curl:required
+  * ossn:install:gd
+  * ossn:install:gd:required
+  * ossn:install:config
+  * ossn:install:config:error
+  * ossn:install:next
+
 components/OssnGroups/locale/
  
   * title:access:private:group
