@@ -629,7 +629,8 @@ class OssnUser extends OssnEntities {
                 $datadir = ossn_get_userdata("user/{$this->guid}/");;
                 if (is_dir($datadir)) {
                     OssnFile::DeleteDir($datadir);
-                    rmdir($datadir);
+                    //From of v2.0 DeleteDir delete directory also #138
+                    //rmdir($datadir);
                 }
                 //delete user entites also
                 $this->deleteByOwnerGuid($this->guid, 'user');
