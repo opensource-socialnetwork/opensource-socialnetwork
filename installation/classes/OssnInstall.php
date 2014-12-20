@@ -39,12 +39,11 @@ class OssnInstallation {
      *
      */
     public static function is_mod_rewrite() {
-        if (function_exists('apache_get_modules') && in_array('mod_rewrite', apache_get_modules())
-        ) {
-            return true;
-        } elseif (getenv('HTTP_MOD_REWRITE') == 1) {
-            return true;
-        }
+		$file = ossn_url();
+		$rewrite = file_get_contents($file . 'rewrite.php');
+        if($rewrite == 1){
+			return true;
+		}
         return false;
     }
 
@@ -78,7 +77,8 @@ class OssnInstallation {
      *
      */
     public static function isPhp() {
-        if (substr(PHP_VERSION, 0, 6) >= 5.3) {
+		$phpversion = substr(PHP_VERSION, 0, 6);
+        if ($phpversion >= 5.3 && $phpversion < 5.6) {
             return true;
         }
         return false;
@@ -159,7 +159,7 @@ class OssnInstallation {
         if (!empty($dbname)) {
             $this->dbname = $dbname;
         } else {
-            $this->dbname = 'BuddyexpressDesk';
+            $this->dbname = 'Ossn';
         }
     }
 
@@ -211,11 +211,11 @@ class OssnInstallation {
      */
     public function INSTALL() {
         if (stripos($this->datadir, $this->ossnInstallationDir()) === 0) {
-            $this->error_mesg = 'Data directory must outside';
+            $this->error_mesg =  ossn_installation_print('data:directory:outside');
             return false;
         }
         if (!is_dir($this->datadir) && !is_writable($this->datadir)) {
-            $this->error_mesg = 'Invalid data directoy or directory is not writeable';
+            $this->error_mesg = ossn_installation_print('data:directory:invalid');
             return false;
         }
         if (!$this->dbconnect()) {
@@ -260,7 +260,7 @@ class OssnInstallation {
      * Get Installation dir path;
      * @last edit: $arsalanshah
      * @Reason: Initial;
-     *
+     * @return strig
      */
     public static function ossnInstallationDir() {
         return str_replace("\\", "/", dirname(dirname(dirname(__FILE__)))) . '/';
@@ -270,7 +270,6 @@ class OssnInstallation {
      * Connect to database;
      * @last edit: $arsalanshah
      * @Reason: Initial;
-     *
      */
     public function dbconnect() {
         $connect = new mysqli($this->dbhost, $this->dbusername, $this->dbpassword, $this->dbname);
@@ -287,7 +286,6 @@ class OssnInstallation {
      * Database configuration;
      * @last edit: $arsalanshah
      * @Reason: Initial;
-     *
      */
     function configurations_db() {
         $params = array(
@@ -300,7 +298,7 @@ class OssnInstallation {
         $templateFile = $this->path . "configurations/ossn.config.db.example.php";
         $template = file_get_contents($templateFile);
         if (!$template) {
-            throw new Exception('All files are required please check your files');
+            throw new Exception(ossn_installation_print('all:files:required'));
         }
 
         foreach ($params as $k => $v) {
@@ -331,7 +329,7 @@ class OssnInstallation {
         $templateFile = $this->path . "configurations/ossn.config.site.example.php";
         $template = file_get_contents($templateFile);
         if (!$template) {
-            throw new Exception('All files are required please check your files');
+            throw new Exception(ossn_installation_print('all:files:required'));
         }
 
         foreach ($params as $k => $v) {
