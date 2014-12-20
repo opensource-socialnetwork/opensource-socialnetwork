@@ -137,9 +137,8 @@ class OssnThemes extends OssnSite {
      * @return bool;
      */
     public function deletetheme($theme) {
-        OssnFile::DeleteDir(ossn_route()->themes . "{$theme}/");
-        if (rmdir(ossn_route()->themes . "{$theme}/")) {
-            return true;
+        if(OssnFile::DeleteDir(ossn_route()->themes . "{$theme}/")){
+          return true;  
         }
         return false;
     }
