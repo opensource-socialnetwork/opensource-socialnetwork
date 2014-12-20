@@ -63,6 +63,7 @@ General:
  * Display error if file size exceed.
  * Display file upload error.
  * Add site notification email settings.
+ * Resend validation email if non-validated user try to login and show message.
 
 Language Strings Addition:
 
@@ -93,6 +94,7 @@ locale /
   * admin:edit:user
   * admin:login
   * admin:notification:email
+  * ossn:user:validation:resend
 
 installation/locales
   
