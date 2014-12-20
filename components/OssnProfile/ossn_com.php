@@ -10,7 +10,12 @@
  */
 define('__OSSN_PROFILE__', ossn_route()->com . 'OssnProfile/');
 require_once(__OSSN_PROFILE__ . 'classes/OssnProfile.php');
-
+/**
+ * Initialize Profile Component
+ *
+ * @return void;
+ * @access private;
+ */
 function ossn_profile() {
     //pages
     ossn_register_page('u', 'profile_page_handler');
@@ -29,6 +34,7 @@ function ossn_profile() {
     //callback
     ossn_register_callback('page', 'load:search', 'ossn_search_users_link');
     ossn_register_callback('page', 'load:profile', 'ossn_profile_load_event');
+	ossn_register_callback('delete', 'profile:photo', 'ossn_profile_delete_photo_wallpost');
 
     //hooks
     ossn_add_hook('newsfeed', "sidebar:left", 'profile_photo_newsefeed', 1);
@@ -42,8 +48,16 @@ function ossn_profile() {
     ossn_add_hook('notification:view', 'like:entity:file:profile:photo', 'ossn_notification_like_profile_photo');
     ossn_add_hook('notification:view', 'comments:entity:file:profile:photo', 'ossn_notification_like_profile_photo');
 
+	//subpages of profile
+	ossn_profile_subpage('friends');
+	ossn_profile_subpage('edit');
 }
-
+/**
+ * Add users link in search page
+ *
+ * @return void;
+ * @access private;
+ */
 function ossn_search_users_link($event, $type, $params) {
     $url = OssnPagination::constructUrlArgs();
     ossn_register_menu_link('search:users', 'search:users', "search?type=users{$url}", 'search');
@@ -60,19 +74,36 @@ if (ossn_isLoggedin()) {
     ));
 
 }
-
+/**
+ * Add a timeline, friends tab in profile
+ *
+ * @return void;
+ * @access private;
+ */
 function ossn_profile_load_event($event, $type, $params) {
     $owner = ossn_user_by_guid(ossn_get_page_owner_guid());
     $url = ossn_site_url();
     ossn_register_menu_link('timeline', 'timeline', $owner->profileURL(), 'user_timeline');
     ossn_register_menu_link('friends', 'friends', $owner->profileURL('/friends'), 'user_timeline');
 }
-
+/**
+ * Add profile subpage
+ *
+ * @param string $page Page name
+ *
+ * @return void;
+ */
 function ossn_profile_subpage($page) {
     global $VIEW;
     return $VIEW->pagePush[] = $page;
 }
-
+/**
+ * Check if is in profile sub page
+ *
+ * @param string $page Page name
+ *
+ * @return void;
+ */
 function ossn_is_profile_subapge($page) {
     global $VIEW;
     if (in_array($page, $VIEW->pagePush)) {
@@ -80,8 +111,11 @@ function ossn_is_profile_subapge($page) {
     }
     return false;
 }
-
-ossn_profile_subpage('friends');
+/**
+ * Add profile friends page
+ *
+ * @return mixed data
+ */
 function profile_user_friends($hook, $type, $return, $params) {
     $page = $params['subpage'];
     if ($page == 'friends') {
@@ -94,7 +128,11 @@ function profile_user_friends($hook, $type, $return, $params) {
     }
 }
 
-ossn_profile_subpage('edit');
+/**
+ * Add profile edit page
+ *
+ * @return mixed data;
+ */
 function profile_edit_page($hook, $type, $return, $params) {
     $page = $params['subpage'];
     if ($page == 'edit') {
@@ -115,7 +153,11 @@ function profile_edit_page($hook, $type, $return, $params) {
             ));
     }
 }
-
+/**
+ * Add profile search page handler
+ *
+ * @return mixed data;
+ */
 function profile_search_handler($hook, $type, $return, $params) {
     $Pagination = new OssnPagination;
     $users = new OssnUser;
@@ -129,7 +171,11 @@ function profile_search_handler($hook, $type, $return, $params) {
     }
     return $search;
 }
-
+/**
+ * Add modules to profile page
+ *
+ * @return modules;
+ */
 function profile_modules($h, $t, $module, $params) {
     $user['user'] = $params['user'];
 
@@ -142,12 +188,20 @@ function profile_modules($h, $t, $module, $params) {
 
     return $modules;
 }
-
+/**
+ * Add user profile picture on sidebar of newsfeed
+ *
+ * @return mixed data;
+ */
 function profile_photo_newsefeed($hook, $type, $return) {
     $return[] = ossn_view('components/OssnProfile/newsfeed/info');
     return $return;
 }
-
+/**
+ * Profile page handler
+ *
+ * @return mixed data;
+ */
 function profile_page_handler($page) {
     $user = ossn_user_by_username($page[0]);
     if (empty($user->guid)) {
@@ -171,7 +225,11 @@ function profile_page_handler($page) {
     $content = ossn_set_page_layout('contents', $contents);
     echo ossn_view_page($title, $content);
 }
-
+/**
+ * Get user default profile photo guid
+ *
+ * @return bool
+ */
 function get_profile_photo_guid($guid) {
     $photo = new OssnFile;
     $photo->owner_guid = $guid;
@@ -183,7 +241,11 @@ function get_profile_photo_guid($guid) {
     }
     return false;
 }
-
+/**
+ * Get user profile photo
+ *
+ * @return mixed data;
+ */
 function get_profile_photo($guid, $size) {
     $photo = new OssnFile;
     $photo->owner_guid = $guid;
@@ -206,7 +268,11 @@ function get_profile_photo($guid, $size) {
     }
     return false;
 }
-
+/**
+ * Get user default cover photo
+ *
+ * @return mixed data;
+ */
 function get_cover_photo($guid) {
     $photo = new OssnFile;
     $photo->owner_guid = $guid;
@@ -220,7 +286,11 @@ function get_cover_photo($guid) {
         redirect('components/OssnProfile/images/transparent.png');
     }
 }
-
+/**
+ * Cover page handler
+ *
+ * @return image
+ */
 function cover_page_handler($avatar) {
     if (isset($avatar[0])) {
         $user = ossn_user_by_username($avatar[0]);
@@ -230,7 +300,11 @@ function cover_page_handler($avatar) {
         }
     }
 }
-
+/**
+ * Avatar page handler
+ *
+ * @return image;
+ */
 function avatar_page_handler($avatar) {
     if (isset($avatar[0])) {
         if (!isset($avatar[1]) && empty($avatar[1])) {
@@ -245,7 +319,11 @@ function avatar_page_handler($avatar) {
         }
     }
 }
-
+/**
+ * Template for profile photo like/comment
+ *
+ * @return mixed data;
+ */
 function ossn_notification_like_profile_photo($hook, $type, $return, $params) {
     $notif = $params;
     $baseurl = ossn_site_url();
@@ -273,10 +351,19 @@ function ossn_notification_like_profile_photo($hook, $type, $return, $params) {
 		   <div class='data'>" . ossn_print("ossn:notifications:{$notif->type}", array($user->fullname)) . '</div>
 		   </div></li>';
 }
-
+/**
+ * Template for profile photo created wallpost
+ *
+ * @return mixed data;
+ */
 function ossn_wall_profile_photo($hook, $type, $return, $params){
 	return ossn_view("components/OssnProfile/templates/wall/profile/photo", $params);
 }
+/**
+ * Get profile photo url for wall
+ *
+ * @return string;
+ */
 function ossn_profile_photo_wall_url($photo){
 	if($photo){
         $imagefile = str_replace('profile/photo/', '', $photo->value);		
@@ -284,5 +371,17 @@ function ossn_profile_photo_wall_url($photo){
 		return $image;
 	}
 	return false;
+}
+/**
+ * Delete wall post if profile photo is deleted
+ *
+ * @return void;
+ */
+function ossn_profile_delete_photo_wallpost($callback, $type, $params){
+	$params['photo'] = arrayObject($params['photo']);
+	if(isset($params['photo']->guid) && !empty($params['photo']->guid)){
+		$profile = new OssnProfile;
+		$profile->deletePhotoWallPost($params['photo']->guid);
+	}
 }
 ossn_register_callback('ossn', 'init', 'ossn_profile');
