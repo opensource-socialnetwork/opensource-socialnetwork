@@ -249,7 +249,6 @@ class OssnComponents extends OssnDatabase {
 		$this->statement("DELETE FROM ossn_components WHERE(com_id='{$com}');");
         if ($this->execute()) {
             OssnFile::DeleteDir(ossn_route()->com . "{$com}/");
-            rmdir(ossn_route()->com . "{$com}/");
             return true;
         }
         return false;
