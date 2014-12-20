@@ -25,7 +25,7 @@ if (($owner->album->owner_guid == ossn_loggedin_user()->guid) || ossn_isAdminLog
         redirect("album/view/{$owner->album->guid}");
     } else {
         ossn_trigger_message(ossn_print('photo:delete:error'), 'error');
-        redirect("album/view/{$owner->guid}");
+        redirect(REF);
     }
 } else {
     ossn_trigger_message(ossn_print('photo:delete:error'), 'error');
