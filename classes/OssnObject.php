@@ -237,6 +237,7 @@ class OssnObject extends OssnEntities {
      * @return bool;
      */
     public function deleteObject($object) {
+	  self::initAttributes();
 	  if(isset($this->guid)){
 		 $object = $this->guid; 
 	  }
@@ -245,8 +246,6 @@ class OssnObject extends OssnEntities {
             $data = ossn_get_userdata("object/{$object}/");
             if (is_dir($data)) {
                 OssnFile::DeleteDir($data);
-                // As of v2.0 DeleteDir delete directory also
-                //rmdir($data);
             }
 		}
 		$delete['from'] = 'ossn_object';
