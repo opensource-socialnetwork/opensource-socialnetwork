@@ -39,8 +39,8 @@ class OssnInstallation {
      *
      */
     public static function is_mod_rewrite() {
-		$file = ossn_url();
-		$rewrite = file_get_contents($file . 'rewrite.php');
+	$file = ossn_url();
+	$rewrite = file_get_contents($file . 'rewrite.php');
         if($rewrite == 1){
 			return true;
 		}
