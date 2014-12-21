@@ -260,7 +260,7 @@ class OssnInstallation {
      * Get Installation dir path;
      * @last edit: $arsalanshah
      * @Reason: Initial;
-     * @return strig
+     * @return string
      */
     public static function ossnInstallationDir() {
         return str_replace("\\", "/", dirname(dirname(dirname(__FILE__)))) . '/';
