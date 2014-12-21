@@ -2588,7 +2588,7 @@ class PHPMailer {
      * @param string $path A filename or path, does not need to exist as a file
      * @param integer|string $options Either a PATHINFO_* constant,
      *      or a string name to return only the specified piece, allows 'filename' to work on PHP < 5.2
-     * @return string|array
+     * @return string
      * @static
      */
     public static function mb_pathinfo($path, $options = null) {
