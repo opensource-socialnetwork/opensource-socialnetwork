@@ -104,6 +104,10 @@
                 <input type="hidden" name="to" value="<?php echo $params['user']->guid; ?>"/>
 
                 <div class="controls">
+                    <?php 
+                    //this form should be in OssnMessages/forms 
+                    echo ossn_view('system/templates/input/security_token'); 
+                    ?>
                     <input type="submit" value="<?php echo ossn_print('send'); ?>"/>
                 </div>
             </form>
