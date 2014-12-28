@@ -101,8 +101,13 @@ function ossn_action_validate_callback($callback, $type, $params){
 	
 	if(!in_array($action, $bypass)){
 		if(!ossn_validate_actions()){
-			ossn_trigger_message(ossn_print('ossn:securitytoken:failed'), 'error');
-			redirect(REF);
+			if(ossn_is_xhr()){
+				header("HTTP/1.0 404 Not Found");
+				exit;
+			} else {
+				ossn_trigger_message(ossn_print('ossn:securitytoken:failed'), 'error');
+				redirect(REF);
+			}
 		}
 	}
 	
