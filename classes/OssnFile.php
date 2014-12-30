@@ -185,7 +185,9 @@ class OssnFile extends OssnEntities {
 			&& !empty($this->subtype) && !empty($this->type)) {
 			
 		$this->extensions = $this->allowedFileExtensions();
-		$this->extension = $this->getFileExtension($this->file['name']);	
+		$this->extension = $this->getFileExtension($this->file['name']);
+		//change user file extension to lower case #153
+		$this->extension  = strtolower($this->extension);
 		
         if(in_array($this->extension, $this->extensions)){
 			
