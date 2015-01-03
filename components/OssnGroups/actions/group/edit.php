@@ -32,7 +32,7 @@ if (in_array($memb, $access)) {
 
 if ($edit->updateGroup($name, $desc, $group->guid)) {
     ossn_trigger_message(ossn_print('group:updated'), 'success');
-    redirect(REF);
+    redirect("group/{$group->guid}");
 } else {
     ossn_trigger_message(ossn_print('group:update:fail'), 'success');
     redirect(REF);
