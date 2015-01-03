@@ -24,7 +24,7 @@ if ($members) {
                 if (ossn_loggedin_user()->guid !== $user->guid) {
                     if (!ossn_user_is_friend(ossn_loggedin_user()->guid, $user->guid)) {
                         ?>
-                        <a href="<?php echo ossn_site_url("action/friend/add?user={}", true); ?>"
+                        <a href="<?php echo ossn_site_url("action/friend/add?user={$user->guid}", true); ?>"
                            class='friendlink button-grey-light'>
                             <?php echo ossn_print('add:friend'); ?></a>
                     <?php } else { ?>
