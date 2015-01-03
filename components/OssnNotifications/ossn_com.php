@@ -65,7 +65,8 @@ function ossn_notification_page($pages) {
     switch ($page) {
         case 'notification':
             $get = new  OssnNotifications;
-            $notifications['notifications'] = $get->get(ossn_loggedin_user()->guid, true);
+            //removed true as second arg of get() as second arg is introduced in v2.0
+            $notifications['notifications'] = $get->get(ossn_loggedin_user()->guid);
             $notifications['seeall'] = ossn_site_url("notifications/all");
             if (!empty($notifications['notifications'])) {
                 $data = ossn_view('components/OssnNotifications/pages/notification/notification', $notifications);
