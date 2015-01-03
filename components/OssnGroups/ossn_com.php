@@ -292,10 +292,10 @@ function group_edit_page($hook, $type, $return, $params) {
 function group_requests_page($hook, $type, $return, $params) {
     $page = $params['subpage'];
     $group = ossn_get_group_by_guid(ossn_get_page_owner_guid());
-    if ($group->owner_guid !== ossn_loggedin_user()->guid) {
-        redirect("group/{$group->guid}");
-    }
     if ($page == 'requests') {
+		if ($group->owner_guid !== ossn_loggedin_user()->guid) {
+        	redirect("group/{$group->guid}");
+    	}
         $mod_content = ossn_view('components/OssnGroups/pages/requests', array('group' => $group));
         $mod = array(
             'title' => ossn_print('requests'),
