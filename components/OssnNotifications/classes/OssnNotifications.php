@@ -148,10 +148,14 @@ class OssnNotifications extends OssnDatabase {
      *
      * @return array
      */
-    public function get($guid_two) {
+    public function get($guid_two, $unread = false) {
+		$getunread = '';
+		if($unread === true){
+			$getunread = "AND viewed IS NULL";
+		}
         $baseurl = ossn_site_url();
         $this->statement("SELECT * FROM ossn_notifications WHERE(
-		                  owner_guid='{$guid_two}') ORDER by guid DESC");
+		                  owner_guid='{$guid_two}' {$getunread}) ORDER by guid DESC");
         $this->execute();
         $get = $this->fetch(true);
         if (!$get) {
@@ -175,7 +179,7 @@ class OssnNotifications extends OssnDatabase {
      * @return int;
      */
     public function countNotification($guid) {
-        $notifications = $this->get($guid);
+        $notifications = $this->get($guid, true);
         if ($notifications) {
             $count = count($notifications);
             if ($count > 0) {
