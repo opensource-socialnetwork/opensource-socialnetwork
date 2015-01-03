@@ -20,7 +20,7 @@ if (empty($username) || empty($password)) {
     redirect();
 }
 $user = ossn_user_by_username($username);
-if(!$user->isUserVALIDATED()){
+if($user && !$user->isUserVALIDATED()){
 	$user->resendValidationEmail();
 	ossn_trigger_message(ossn_print('ossn:user:validation:resend'), 'error');
 	redirect(REF);
