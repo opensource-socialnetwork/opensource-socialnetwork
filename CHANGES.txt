@@ -1,19 +1,25 @@
 OSSN - OPEN SOURCE SOCIAL NETWORK 2.0-dev
 
+Developers in this release:
+ * $dev.arsalanshah
+ * $dev.githubertus
+ * $dev.sathish
+ 
 Bugfixes:
- * If admin edit user it didn't updated in system #117
- * Leave group button problem #111
+ * If admin edit user it didn't updated in system #117 
+ * Leave group button problem #111 $dev.githubertus, 
  * In backend user list 'last_login' time is invalid.
- * Rearrange code ossnwall privacy button #119
- * Error reporting not working out of the box #120
- * Wrong backlinks from user albums and photos #126
+ * Rearrange code ossnwall privacy button #119  
+ * Error reporting not working out of the box #120 
+ * Wrong backlinks from user albums and photos #126  
  * Fixed width of post button may lead to problem in other languages #123
- * Total themes count fixed in admin dashboard #136
+ * Total themes count fixed in admin dashboard #136 
  * Redirect back to album after deleting photo #131
  * Content of public group is not visible to users #113
  * Allow to users to view members of groups #160
- * Wall post view: Missing image in comment-item #161 $dev.githubertus
-
+ * Wall post view: Missing image in comment-item #161
+ * Group members total count becomes 0 when group cover is set #156
+ 
 Api Additions:
 
 Functions in existing libraries and classes:
