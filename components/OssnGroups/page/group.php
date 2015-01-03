@@ -18,8 +18,8 @@ $grouppage_bg = ossn_call_hook('css', 'group:background', NULL, '#E9EAED');
         <div class="coloum-left">
             &nbsp;
             <?php
-            if (ossn_is_hook('newsfeed', "left")) {
-                $newsfeed_left = ossn_call_hook('newsfeed', "left", NULL, array());
+            if (ossn_is_hook('newsfeed', "sidebar:left")) {
+                $newsfeed_left = ossn_call_hook('newsfeed', "sidebar:left", NULL, array());
                 echo implode('', $newsfeed_left);
             }
             ?>
