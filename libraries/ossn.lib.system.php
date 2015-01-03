@@ -274,8 +274,7 @@ function ossn_site_settings($setting) {
 /**
  * Redirect a user to specific url
  *
- * @param $new url
- *        if it is REF then user redirected to the url that user just came from
+ * @param string $new uri of page. If it is REF then user redirected to the url that user just came from.
  *
  * @return return
  */
@@ -283,8 +282,10 @@ function redirect($new = '') {
     $url = ossn_site_url($new);
     if ($new === REF) {
         if (isset($_SERVER['HTTP_REFERER'])) {
-            $url = $_SERVER['HTTP_REFERER'];
-        }
+        	$url = $_SERVER['HTTP_REFERER'];
+        } else {
+		$url = ossn_site_url();
+	}
     }
     header("Location: {$url}");
     exit;
