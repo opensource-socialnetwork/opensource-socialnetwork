@@ -19,6 +19,8 @@ if ($cover) {
     $cover_left = '';
     $iscover = '';
 }
+//group members total count becomes 0 when group cover is set #156 $dev.githubertus 
+$members = $params['group']->getMembers();
 ?>
 <div class="ossn-group-profile">
     <div class="profile-header <?php echo $iscover; ?>">
@@ -50,7 +52,6 @@ if ($cover) {
         <?php } else { ?>
             <div class="header-users">
                 <?php
-                $members = $params['group']->getMembers();
                 if ($members) {
                     foreach ($members as $member) {
                         ?>
