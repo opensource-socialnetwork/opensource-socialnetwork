@@ -63,6 +63,9 @@ if (!isset($params['show_group'])) {
             <?php } ?>
         </div>
     </div>
+    <?php
+	if($params['ismember'] === 1){ 
+	?>
     <div class="comments-likes">
         <?php
         if (ossn_is_hook('post', 'likes')) {
@@ -77,4 +80,5 @@ if (!isset($params['show_group'])) {
             ?>
         </div>
     </div>
+    <?php } ?>
 </div>
