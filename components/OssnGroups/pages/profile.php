@@ -121,17 +121,15 @@ if ($cover) {
             ?>
             <div class="group-wall">
                 <?php
-					//#113 make contents of public groups visible. 
-					//send ismember, and member ship param to group wall
-                    echo ossn_view('components/OssnWall/wall/group', array(
-																		 'group' => $params, 
-																		 'ismember' => $ismember,
-																		 'membership' => $params['group']->membership
-																		 ));
-               
+			//#113 make contents of public groups visible. 
+			//send ismember, and member ship param to group wall
+                	echo ossn_view('components/OssnWall/wall/group', array(
+									'group' => $params, 
+									'ismember' => $ismember,
+									'membership' => $params['group']->membership
+									));
                 if ($params['group']->membership == OSSN_PRIVATE && $ismember !== 1) {
                     ?>
-
                     <div class="group-closed-container">
                         <div class="title-h3"><?php echo ossn_print('closed:group'); ?></div>
                         <p><?php echo ossn_print('close:group:notice'); ?></p>
