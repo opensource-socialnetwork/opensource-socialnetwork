@@ -8,21 +8,26 @@
  * @license   General Public Licence http://opensource-socialnetwork.com/licence
  * @link      http://www.opensource-socialnetwork.com/licence
  */
-echo '<div class="ossn-wall-container">';
-echo ossn_view_form('group/container', array(
-    'action' => ossn_site_url() . 'action/wall/post/g',
-    'component' => 'OssnWall',
-    'params' => array('group' => $params['group']),
-), false);
-echo '</div>';
+if($params['ismember'] === 1){
+	echo '<div class="ossn-wall-container">';
+	echo ossn_view_form('group/container', array(
+    	'action' => ossn_site_url() . 'action/wall/post/g',
+    	'component' => 'OssnWall',
+    	'params' => array('group' => $params['group']),
+	), false);
+	echo '</div>';
+}	
 echo '<div class="user-activity">';
-
 $posts = new OssnWall;
 $posts = $posts->GetPostByOwner($params['group']['group']->guid, 'group');
 
 $Pagination = new OssnPagination;
 $Pagination->setItem($posts);
-$posts = $Pagination->getItem();
+
+$posts = false;
+if($params['ismember'] === 1 || $params['membership'] == OSSN_PUBLIC){
+	$posts = $Pagination->getItem();
+}
 if ($posts) {
     foreach ($posts as $post) {
         $data = json_decode(html_entity_decode($post->description));
@@ -47,6 +52,7 @@ if ($posts) {
             'location' => $location,
             'user' => $user,
             'image' => $image,
+			'ismember' => $params['ismember'],
         ));
     }
 }
