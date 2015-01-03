@@ -29,7 +29,7 @@ $login = new OssnUser;
 $login->username = $username;
 $login->password = $password;
 if ($login->Login()) {
-    redirect('home');
+    redirect(REF);
 } else {
     redirect('login?error=1');
 }
