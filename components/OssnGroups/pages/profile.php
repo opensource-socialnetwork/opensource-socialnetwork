@@ -121,9 +121,14 @@ if ($cover) {
             ?>
             <div class="group-wall">
                 <?php
-                if ($ismember == 1) {
-                    echo ossn_view('components/OssnWall/wall/group', array('group' => $params));
-                }
+					//#113 make contents of public groups visible. 
+					//send ismember, and member ship param to group wall
+                    echo ossn_view('components/OssnWall/wall/group', array(
+																		 'group' => $params, 
+																		 'ismember' => $ismember,
+																		 'membership' => $params['group']->membership
+																		 ));
+               
                 if ($params['group']->membership == OSSN_PRIVATE && $ismember !== 1) {
                     ?>
 
