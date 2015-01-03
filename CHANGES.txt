@@ -12,6 +12,7 @@ Bugfixes:
  * Redirect back to album after deleting photo #131
  * Content of public group is not visible to users #113
  * Allow to users to view members of groups #160
+ * Wall post view: Missing image in comment-item #161 $dev.githubertus
 
 Api Additions:
 
