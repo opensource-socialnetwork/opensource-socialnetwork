@@ -526,7 +526,7 @@ class OssnGroup extends OssnObject {
     /**
      * Get user groups (owned groups and groups user member of)
      * 
-     * @param object $user->guid User entity
+     * @param object $user User entity
      * @return array
      */
     public function getMyGroups($user) {
