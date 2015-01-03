@@ -83,7 +83,8 @@ class OssnGroup extends OssnObject {
      */
     public function getGroups() {
         $this->type = 'user';
-        $this->subtype = 'ossngroups';
+        //fixes #154
+        $this->subtype = 'ossngroup';
         return $this->getObjectsByTypes();
     }
 
