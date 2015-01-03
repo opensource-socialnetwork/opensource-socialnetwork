@@ -15,8 +15,9 @@ $location = '';
 if (isset($data->location)) {
     $location = '- ' . $data->location;
 }
-if (isset($post->{'file:wallphoto'})) {
-    $image = str_replace('ossnwall/images/', '', $post->{'file:wallphoto'});
+//fix missing image in comment-item #161 $githubertus
+if (isset($params['post']->{'file:wallphoto'})) {
+    $image = str_replace('ossnwall/images/', '', $params['post']->{'file:wallphoto'});
 } else {
     unset($image);
 }
