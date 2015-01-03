@@ -10,6 +10,17 @@
  * @link      http://www.opensource-socialnetwork.com/licence
  */
 class OssnGroup extends OssnObject {
+	
+    /**
+     * Initialize the object.
+     *
+     * @return void;
+     */
+    public function initAttributes() {
+        $this->OssnDatabase = new OssnDatabase;
+        $this->OssnFile = new OssnFile;
+    }
+	
     /**
      * Create group
      *
@@ -39,16 +50,6 @@ class OssnGroup extends OssnObject {
             return true;
         }
         return false;
-    }
-
-    /**
-     * Initialize the object.
-     *
-     * @return void;
-     */
-    public function initAttributes() {
-        $this->OssnDatabase = new OssnDatabase;
-        $this->OssnFile = new OssnFile;
     }
 
     /**
@@ -513,7 +514,7 @@ class OssnGroup extends OssnObject {
     /**
      * Get cover position params
      *
-     * @param $guid Group guid
+     * @param int $guid Group guid
      *
      * @return array;
      * @access public;
@@ -521,5 +522,35 @@ class OssnGroup extends OssnObject {
     public function coverParameters($guid) {
         $parameters = ossn_get_group_by_guid($guid)->cover;
         return json_decode($parameters);
+    }
+    /**
+     * Get user groups (owned groups and groups user member of)
+     * 
+     * @param object $user->guid User entity
+     * @return array
+     */
+    public function getMyGroups($user) {
+		self::initAttributes();
+		if(empty($user->guid) || !$user instanceof OssnUser ){
+			return false;
+		}
+		$params = array();
+		$params['from'] = "ossn_relationships";
+		$params['wheres'] = array(
+					"relation_from='{$user->guid}'",
+					"AND type='group:join'"
+					);
+		$myGroups = $this->OssnDatabase->select($params, true);
+		$myGroups = get_object_vars($myGroups);
+		foreach ($myGroups as $group) {
+			$group = $this->getGroup($group->relation_to);
+			if ($this->isMember($group->guid, $user->guid)) {
+				$groupsEntities[] = arrayObject($group, get_class($this));
+			}
+		}
+		if(!empty($groupsEntities)){
+			return $groupsEntities;
+		}
+		return false;
     }
 }//class
