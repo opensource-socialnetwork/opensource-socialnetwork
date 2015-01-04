@@ -19,6 +19,7 @@ Bugfixes:
  * Allow to users to view members of groups #160
  * Wall post view: Missing image in comment-item #161
  * Group members total count becomes 0 when group cover is set #156
+ * Admin dashboard online user count shows 1.
  
 Api Additions:
 
