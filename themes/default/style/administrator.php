@@ -301,7 +301,7 @@ width:32px;
 height:32px;
 padding-bottom: 7px;
 }
-.top-controls { float:right; margin-bottom:10px;margin-top:6px; }
+.top-controls { float:left; margin-bottom:10px;margin-top:6px; }
 .top-controls a{
 margin-right:5px;
 }
