@@ -426,7 +426,7 @@ class OssnUser extends OssnEntities {
      * @return bool;
      */
     public function online_total() {
-        return count($this->getOnline());
+        return count((array)$this->getOnline());
     }
 
     /**
