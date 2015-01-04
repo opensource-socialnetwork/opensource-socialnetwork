@@ -61,13 +61,19 @@ border: 1px solid #ccc;
 }
 .ossn-comment-attach-photo {
 background:url('<?php echo ossn_site_url(); ?>components/OssnComments/images/camera.png') no-repeat;
-width:16px;
-height:12px;
+background-color: rgba(255,255,255,1);
+background-position: 10px 8px;
+width:32px;
+height:0px;
 
-margin-top: -22px;
-margin-left: 438px;
+margin-top: -32px;
+margin-left: 430px;
 position: absolute;
 cursor:pointer;
+padding: 30px 0 0;
+border-bottom: 1px solid #d3d6db;
+border-right: 1px solid #d3d6db;
+border-top: 1px solid #d3d6db;
 }
 
 .comments-likes .comment-text p img{
