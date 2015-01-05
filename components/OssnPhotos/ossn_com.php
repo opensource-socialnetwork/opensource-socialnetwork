@@ -274,7 +274,7 @@ function ossn_photos_page_handler($album) {
  *       profile,
  *       add
  *
- * @return mixed contents
+ * @return false|null contents
  */
 function ossn_album_page_handler($album) {
     $page = $album[0];

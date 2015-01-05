@@ -159,6 +159,7 @@ class OssnAnnotation extends OssnEntities {
      *
      * @params $subject = subject_guid,
      *         $type = annotation type
+     * @param string $type
      *
      * @return bool;
      */

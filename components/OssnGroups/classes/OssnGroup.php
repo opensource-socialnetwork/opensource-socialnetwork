@@ -364,7 +364,7 @@ class OssnGroup extends OssnObject {
     /**
      * Upload group cover
      *
-     * @return bool
+     * @return boolean|null
      * @access public;
      */
     public function UploadCover() {
