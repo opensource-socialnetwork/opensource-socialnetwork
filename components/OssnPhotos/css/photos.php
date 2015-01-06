@@ -53,6 +53,12 @@ margin-top: 25px;
 .ossn-viewer-comments .comments-likes input[type='text'] {
 width:214px;
 }
+.ossn-viewer-comments .comments-likes .comment-text p img {
+ max-width: 250px;
+}
+.ossn-viewer-comments .ossn-comment-attachment {
+width:265px;
+}
 .ossn-viewer-comments .comments-likes 
 .ossn-comment-attach-photo {
 margin-left:222px;	
