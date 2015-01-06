@@ -278,7 +278,7 @@ function ossn_uservalidate_pagehandler($pages) {
         echo ossn_error_page();
     }
     switch ($page) {
-        case 'acitvate':
+        case 'activate':
             if (!empty($pages[1]) && !empty($pages[2])) {
                 $user = new OssnUser;
                 $user->guid = $pages[1];
