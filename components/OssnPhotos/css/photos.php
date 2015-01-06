@@ -51,7 +51,11 @@ margin-top: 25px;
 .ossn-viewer-comments .comments-likes textarea,
 .ossn-viewer-comments .comments-likes .comment-text,
 .ossn-viewer-comments .comments-likes input[type='text'] {
-width:245px;
+width:214px;
+}
+.ossn-viewer-comments .comments-likes 
+.ossn-comment-attach-photo {
+margin-left:222px;	
 }
 .ossn-photos .pthumb{
 width:200px;

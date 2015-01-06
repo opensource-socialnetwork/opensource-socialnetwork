@@ -54,7 +54,7 @@ padding: 7px;
 height: 16px;
 margin-top: -32px;
 margin-left: -7px;
-width: 452px;
+width: 422px;
 resize:none;
 }
 .comment-text p {
