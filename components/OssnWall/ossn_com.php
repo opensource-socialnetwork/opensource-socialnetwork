@@ -185,11 +185,11 @@ function ossn_wall_post_menu($hook, $type, $return, $params) {
             'href' => $deleteurl,
             'data-guid' => $params['post']->guid
         ), 'wallpost');
-
+	return ossn_view_menu('wallpost', 'components/OssnWall/menus/post-controls');
     } else {
         ossn_unregister_menu('delete', 'wallpost');
     }
-    return ossn_view_menu('wallpost', 'components/OssnWall/menus/post-controls');
+    
 }
 function ossn_group_wall_delete($callback, $type, $params){
 	$wall = new OssnWall;
