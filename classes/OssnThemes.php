@@ -84,13 +84,14 @@ class OssnThemes extends OssnSite {
         if (!is_dir($data_dir)) {
             mkdir($data_dir, 0755, true);
         }
-        $zip = $_FILES['theme_file'];
-        $newfile = "{$data_dir}/{$zip['name']}";
-        if (move_uploaded_file($zip['tmp_name'], $newfile)) {
+        $zip = new OssnFile;
+        $zip->file = $_FILES['theme_file'];
+        $newfile = "{$data_dir}/{$zip->file['name']}";
+        if (move_uploaded_file($zip->file['tmp_name'], $newfile)) {
             if ($archive->open($newfile) === TRUE) {
                 $archive->extractTo($data_dir);
                 $archive->close();
-                $validate = pathinfo($zip['name'], PATHINFO_FILENAME);
+                $validate = pathinfo($zip->file['name'], PATHINFO_FILENAME);
                 if (is_file("{$data_dir}/{$validate}/ossn_theme.php") && is_file("{$data_dir}/{$validate}/ossn_theme.xml")
                 ) {
                     $archive->open($newfile);
@@ -101,6 +102,7 @@ class OssnThemes extends OssnSite {
                 }
             }
         }
+        $zip->showFileUploadError(false);
         return false;
     }
 
