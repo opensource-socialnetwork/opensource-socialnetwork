@@ -13,6 +13,6 @@ if ($OssnTheme->upload()) {
     ossn_trigger_message(ossn_print('theme:installed'), 'success');
     redirect(REF);
 } else {
-    ossn_trigger_message('theme:install:error', 'success');
+    ossn_trigger_message(ossn_print('theme:install:error'), 'success');
     redirect(REF);
 }
