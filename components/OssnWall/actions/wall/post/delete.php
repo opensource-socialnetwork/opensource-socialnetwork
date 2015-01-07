@@ -11,7 +11,7 @@
 $ossnwall = new OssnWall;
 $id = input('post');
 $post = $ossnwall->GetPost($id);
-if ($post->type == 'user' && ossn_isAdminLoggedin()) {
+if ($post->type == 'user' && !ossn_isAdminLoggedin()) {
     if ($post->poster_guid !== ossn_loggedin_user()->guid) {
         if (!ossn_is_xhr()) {
             ossn_trigger_message(ossn_print('post:delete:fail'), 'error');
