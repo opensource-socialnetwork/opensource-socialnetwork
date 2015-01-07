@@ -163,7 +163,7 @@ function ossn_notification_page($pages) {
  *
  * @param (array) $pages Array containg pages
  *
- * @return mixed data;
+ * @return false|null data;
  * @access public
  */
 function ossn_notifications_page($pages) {

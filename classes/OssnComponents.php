@@ -128,7 +128,7 @@ class OssnComponents extends OssnDatabase {
     /**
      * Load all active components
      *
-     * @return components startup files;
+     * @return false|null startup files;
      */
     public function loadComs() {
         $coms = $this->getActive();

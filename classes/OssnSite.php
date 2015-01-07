@@ -14,6 +14,7 @@ class OssnSite extends OssnDatabase {
      * Get site settings;
      *
      * @params = $settings => settings name
+     * @param string $settings
      *
      * @return string;
      */
@@ -44,6 +45,7 @@ class OssnSite extends OssnDatabase {
      * @params = $settings => array(settings)
      *           $values => array(values)
      *           $wheres => array(settings id)
+     * @param string[] $settings
      *
      * @return bool;
      */

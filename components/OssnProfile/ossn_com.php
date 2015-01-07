@@ -156,7 +156,7 @@ function profile_edit_page($hook, $type, $return, $params) {
 /**
  * Add profile search page handler
  *
- * @return mixed data;
+ * @return string data;
  */
 function profile_search_handler($hook, $type, $return, $params) {
     $Pagination = new OssnPagination;
@@ -200,7 +200,7 @@ function profile_photo_newsefeed($hook, $type, $return) {
 /**
  * Profile page handler
  *
- * @return mixed data;
+ * @return false|null data;
  */
 function profile_page_handler($page) {
     $user = ossn_user_by_username($page[0]);
@@ -271,7 +271,7 @@ function get_profile_photo($guid, $size) {
 /**
  * Get user default cover photo
  *
- * @return mixed data;
+ * @return string|null data;
  */
 function get_cover_photo($guid) {
     $photo = new OssnFile;
@@ -322,7 +322,7 @@ function avatar_page_handler($avatar) {
 /**
  * Template for profile photo like/comment
  *
- * @return mixed data;
+ * @return string data;
  */
 function ossn_notification_like_profile_photo($hook, $type, $return, $params) {
     $notif = $params;

@@ -16,7 +16,7 @@ class OssnFile extends OssnEntities {
      *
      * @param (path)  path of directory
      *
-     * @return void (void)
+     * @return boolean (void)
      */
     public static function DeleteDir($path) {
         if (is_dir($path)) {
@@ -58,6 +58,7 @@ class OssnFile extends OssnEntities {
      * Set a required file in memory
      *
      * @param (name) Name of file
+     * @param string $name
      * @return void;
      */
     public function setFile($name) {
@@ -72,6 +73,7 @@ class OssnFile extends OssnEntities {
      * Set a path for file where it need to upload
      *
      * @param (path) Path where file need to save
+     * @param string $path
      * @return void;
      */
     public function setPath($path) {
@@ -155,8 +157,6 @@ class OssnFile extends OssnEntities {
 	 * showFileUploadError
      * Show file upload errors
      *
-     * @param    string $this->redirect Custom url for redirect
-     * @param    string $this->context site or admin
      *
      * @return void
      */	 

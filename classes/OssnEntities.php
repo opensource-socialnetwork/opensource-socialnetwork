@@ -265,6 +265,7 @@ class OssnEntities extends OssnDatabase {
      *
      * @params = $guid = Entity guid in database
      *           $type = Entity type
+     * @param string $type
      *
      * @todo why not there is subtype?
      * @return (bool);
@@ -316,6 +317,7 @@ class OssnEntities extends OssnDatabase {
      * Get a parameter from object
      *
      * @params = parameter
+     * @param string $param
      *
      * @return string;
      */
