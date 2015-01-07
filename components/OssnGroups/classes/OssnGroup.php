@@ -531,16 +531,18 @@ class OssnGroup extends OssnObject {
      * @return array
      */
     public function getMyGroups($user) {
-		self::initAttributes();
-		if(empty($user->guid) || !$user instanceof OssnUser ){
-			return false;
-		}
-		$params = array();
-		$params['from'] = "ossn_relationships";
-		$params['wheres'] = array(
-					"relation_from='{$user->guid}'",
-					"AND type='group:join'"
-					);
+	self::initAttributes();
+	if(empty($user->guid) || !$user instanceof OssnUser ){
+		return false;
+	}
+	$params = array();
+	$params['from'] = "ossn_relationships";
+	$params['wheres'] = array(
+				"relation_from='{$user->guid}'",
+				"AND type='group:join'"
+				);
+	# zfix #177 old code throws PHP warnings if user is not member of any group	
+	if ($myGroups = $this->OssnDatabase->select($params, true)) {
 		$myGroups = $this->OssnDatabase->select($params, true);
 		$myGroups = get_object_vars($myGroups);
 		foreach ($myGroups as $group) {
@@ -552,6 +554,7 @@ class OssnGroup extends OssnObject {
 		if(!empty($groupsEntities)){
 			return $groupsEntities;
 		}
-		return false;
+	}
+	return false;
     }
 }//class
