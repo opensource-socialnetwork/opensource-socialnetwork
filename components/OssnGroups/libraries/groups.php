@@ -22,7 +22,7 @@ function ossn_get_group_by_guid($guid) {
 /**
  * Get group layout
  *
- * @param html $content Content of page (html, php)
+ * @param html $contents Content of page (html, php)
  * @return mixed data
  */
 function ossn_group_layout($contents) {

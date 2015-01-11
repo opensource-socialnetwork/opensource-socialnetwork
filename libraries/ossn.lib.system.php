@@ -78,7 +78,7 @@ function ossn_database_settings() {
 /**
  * Get version package file
  *
- * @return object
+ * @return SimpleXMLElement
  */
 function ossn_package_information() {
     return simplexml_load_file(ossn_route()->www . 'opensource-socialnetwork.xml');
@@ -219,8 +219,8 @@ function ossn_trigger_callback($event, $type, $params = null) {
  *
  * @param string $event Callback event name
  * @param string $type The type of the callback
- * @param mixed $params Additional parameters to pass to the handlers
  * @params $priority callback priority
+ * @param string $callback
  *
  * @return bool
  */
@@ -259,7 +259,7 @@ function ossn_register_callback($event, $type, $callback, $priority = 200) {
 /**
  * Get a site settings
  *
- * @param string $settings Settings Name like ( site_name, language)
+ * @param string $setting Settings Name like ( site_name, language)
  *
  * @return string or null
  */
@@ -295,7 +295,7 @@ function redirect($new = '') {
 /**
  * Get default access types
  *
- * @return array
+ * @return integer[]
  */
 function ossn_access_types() {
     return array(
@@ -354,6 +354,7 @@ function arraySerialize($array = NULL) {
  * Limit a words in a string
  * @params $str = string;
  * @params $limit = words limit;
+ * @param integer $limit
  *
  * @last edit: $arsalanshah
  * @return bool
@@ -480,7 +481,7 @@ function ossn_post_size_exceed_error($error = 'ossn:post:size:exceed', $redirect
  *
  * @params  $for  =>  for site/frontend or admin/backend
  *
- * @return mix data
+ * @return string|null data
  */
 function ossn_display_system_messages() {
     if (isset($_SESSION['ossn_messages'])) {
@@ -520,6 +521,7 @@ function ossn_site_total_themes() {
 /**
  * Validate filepath , add backslash to end of path
  *
+ * @param string $path
  * @return string;
  */
 function ossn_validate_filepath($path, $append_slash = TRUE) {
@@ -586,8 +588,9 @@ function ossn_validate_access_friends($owner) {
  * Ossn encrypt string
  *
  * @params $string a string you want to encrypt
+ * @param string $string
  *
- * @return encrypted string
+ * @return string string
  */
 function ossn_string_encrypt($string) {
     $key = ossn_site_settings('site_key');
@@ -598,8 +601,9 @@ function ossn_string_encrypt($string) {
  * Ossn decrypt string
  *
  * @params $string a string you want to decrypt
+ * @param string $string
  *
- * @return decrypted string
+ * @return string string
  */
 function ossn_string_decrypt($string) {
     $key = ossn_site_settings('site_key');
@@ -645,7 +649,7 @@ function ossn_errros() {
  * @param int    $linenum  The line number the error was raised at
  * @param array  $vars     An array that points to the active symbol table where error occurred
  *
- * @return true
+ * @return boolean
  * @throws Exception
  * @access private
  * @todo Replace error_log calls with elgg_log calls.

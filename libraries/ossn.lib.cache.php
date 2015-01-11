@@ -12,7 +12,7 @@
 /**
  * Generate css cache
  *
- * @return void
+ * @return false|null
  */
 function ossn_trigger_css_cache() {
     global $Ossn;
@@ -35,7 +35,7 @@ function ossn_trigger_css_cache() {
 /**
  * Generate js cache
  *
- * @return void
+ * @return false|null
  */
 function ossn_trigger_js_cache() {
     global $Ossn;

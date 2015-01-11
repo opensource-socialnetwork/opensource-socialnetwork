@@ -57,7 +57,7 @@ class CI_Config {
      * @param   string    the config file name
      * @param   boolean  if configuration values should be loaded into their own section
      * @param   boolean  true if errors should just return false, false if an error message should be displayed
-     * @return  boolean  if the file was successfully loaded or not
+     * @return  boolean|null  if the file was successfully loaded or not
      */
     function __construct() {
         $this->config =& get_config();
@@ -199,6 +199,7 @@ class CI_Config {
      * @access    public
      * @param    string    the config item name
      * @param    bool
+     * @param string $item
      * @return    string
      */
     function slash_item($item) {
@@ -222,6 +223,7 @@ class CI_Config {
      * @param    string    the config item name
      * @param    string    the index name
      * @param    bool
+     * @param string $item
      * @return    string
      */
     function item($item, $index = '') {
@@ -252,7 +254,7 @@ class CI_Config {
      * Build URI string for use in Config::site_url() and Config::base_url()
      *
      * @access protected
-     * @param  $uri
+     * @param  string $uri
      * @return string
      */
     protected function _uri_string($uri) {

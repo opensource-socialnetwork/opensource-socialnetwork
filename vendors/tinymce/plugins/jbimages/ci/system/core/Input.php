@@ -332,6 +332,7 @@ class CI_Input {
      * @access    public
      * @param    string
      * @param    bool
+     * @param string $index
      * @return    string
      */
     function get($index = NULL, $xss_clean = FALSE) {
@@ -382,6 +383,7 @@ class CI_Input {
      * @access    public
      * @param    string
      * @param    bool
+     * @param string $index
      * @return    string
      */
     function post($index = NULL, $xss_clean = FALSE) {
