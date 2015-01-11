@@ -44,7 +44,7 @@ function ossn_poke() {
  */
 function ossn_user_poke_menu($name, $type, $params) {
     $user = ossn_get_page_owner_guid();
-    $poke = ossn_site_url("action/poke/user?user={$user}");
+    $poke = ossn_site_url("action/poke/user?user={$user}", true);
     ossn_register_menu_link('poke', ossn_print('poke'), $poke, 'profile_extramenu');
 }
 
