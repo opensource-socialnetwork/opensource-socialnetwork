@@ -11,7 +11,7 @@
 /**
  * Get components object
  *
- * @return bool
+ * @return OssnComponents
  */
 function ossn_components() {
     $coms = new OssnComponents;
@@ -21,7 +21,7 @@ function ossn_components() {
 /**
  * Check whether component is active or not.
  *
- * @param string $com Component id
+ * @param string $comn Component id
  *
  * @return bool
  */
@@ -36,7 +36,7 @@ function com_is_active($comn) {
 /**
  * Count total components
  *
- * @return bool
+ * @return integer
  */
 function ossn_total_components() {
     $com = new OssnComponents;
@@ -67,7 +67,7 @@ $coms->loadComs();
 /**
  * Initialize components
  *
- * @return bool
+ * @return false|null
  * @access private;
  */
 

@@ -65,7 +65,7 @@ function newfeed_menu_handler($hook, $type, $return) {
  * @pages:
  *       unknown,
  *
- * @return bool
+ * @return boolean|null
  */
 function ossn_system_error_pagehandler($pages) {
     $page = $pages[0];
@@ -145,7 +145,7 @@ function ossn_user_pagehandler($home, $handler) {
  * @pages:
  *       index or home,
  *
- * @return bool
+ * @return boolean|null
  */
 function ossn_index_pagehandler($index) {
     if (ossn_isLoggedin()) {

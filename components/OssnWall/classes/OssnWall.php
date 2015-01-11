@@ -17,6 +17,7 @@ class OssnWall extends OssnObject {
      *         $friends: Friend guids
      *         $location: Post location
      *         $access: (OSSN_PUBLIC, OSSN_PRIVATE, OSSN_FRIENDS)
+     * @param string $post
      *
      * @return bool;
      */

@@ -15,6 +15,7 @@
  * @params $from => relation from guid
  *         $to => relation to guid
  *         $type => relation type
+ * @param string $type
  *
  * @return bool
  */
@@ -43,7 +44,7 @@ function ossn_add_relation($from, $to, $type) {
 /**
  * Delete user relations if user is deleted
  *
- * @param  (object) $user Entity of user 
+ * @param  OssnUser $user Entity of user 
  *
  * @return bool
  */

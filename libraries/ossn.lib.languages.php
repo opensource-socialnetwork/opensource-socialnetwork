@@ -103,7 +103,7 @@ function ossn_load_locales() {
 /**
  * Load json locales.
  *
- * @return json or false
+ * @return string|false or false
  */
 function ossn_load_json_locales(){
 	global $Ossn;

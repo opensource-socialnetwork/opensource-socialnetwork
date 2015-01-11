@@ -13,6 +13,8 @@
  * Register a page handler;
  * @params: $handler = page;
  * @params: $function = function which handles page;
+ * @param string $handler
+ * @param string $function
  *
  * @last edit: $arsalanshah
  * @Reason: Initial;
@@ -44,7 +46,7 @@ function ossn_unregister_page($handler) {
  * @last edit: $arsalanshah
  * @Reason: Initial;
  *
- * @return mixed data
+ * @return mix|null data
  * @access private
  */
 

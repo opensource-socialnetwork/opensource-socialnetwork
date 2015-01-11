@@ -77,6 +77,8 @@ function ossn_args(array $attrs) {
  * Register a view;
  * @params: $view = path of view;
  * @params: $file = file for view;
+ * @param string $views
+ * @param string $file
  * @last edit: $arsalanshah
  * @Reason: Initial;
  *
@@ -124,6 +126,7 @@ function ossn_remove_extend_view($layout) {
 /**
  * Add a context to page
  * @params: $cntext = name of context;
+ * @param string $context
  * @last edit: $arsalanshah
  * @Reason: Initial;
  *
@@ -169,6 +172,7 @@ function ossn_get_context() {
  * @last edit: $arsalanshah
  * @Reason: Initial;
  *
+ * @param string $layout
  */
 function ossn_set_page_layout($layout, $params = array()) {
     if (!empty($layout)) {
@@ -209,6 +213,7 @@ function ossn_default_theme() {
 /**
  * Ossn view form
  *
+ * @param string $name
  * @return mix data
  */
 function ossn_view_form($name, $args = array(), $type = 'core') {
@@ -220,6 +225,8 @@ function ossn_view_form($name, $args = array(), $type = 'core') {
 /**
  * Ossn view widget
  *
+ * @param string $name
+ * @param string $title
  * @return mix data
  */
 function ossn_view_widget($name, $title, $contents) {

@@ -80,6 +80,9 @@ function ossn_admin() {
  *               $link Full url
  *               $section Menu section
  *               $for sidebar name
+ * @param string $text
+ * @param string $link
+ * @param string $section
  *
  * @return void
  */
@@ -93,6 +96,7 @@ function ossn_register_admin_sidemenu($name, $text, $link, $section, $for = 'adm
  *
  * @param string $component Component Id
  *               $page Page url
+ * @param string $page
  *
  * @return void
  */
@@ -122,6 +126,7 @@ function ossn_registered_com_panel() {
  *
  * @param string $name <page> path
  *               $page page contents file
+ * @param string $page
  *
  * @return void
  */
@@ -173,7 +178,7 @@ function ossn_view_admin_sidemenu() {
  *       administrator/users,
  *       administrator/edituser
  *
- * @return bool
+ * @return boolean|null
  */
 function ossn_administrator_pagehandler($pages) {
     $page = $pages[0];

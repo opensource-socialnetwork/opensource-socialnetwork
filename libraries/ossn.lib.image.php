@@ -16,7 +16,7 @@
  * @param int $height Height of the original image
  * @param array $options See $defaults for the options
  *
- * @return array or FALSE
+ * @return resource or FALSE
  */
 function ossn_image_resize_parameters($width, $height, $options) {
 
@@ -144,7 +144,7 @@ function ossn_image_resize_parameters($width, $height, $options) {
  * @param int $y2 y coordinate for bottom, right corner
  * @param bool $upscale Resize images smaller than $maxwidth x $maxheight?
  *
- * @return false|mixed The contents of the resized image, or false on failure
+ * @return false|string The contents of the resized image, or false on failure
  */
 function ossn_resize_image($input_name, $maxwidth, $maxheight, $square = FALSE, $x1 = 0, $y1 = 0, $x2 = 0, $y2 = 0, $upscale = FALSE) {
 

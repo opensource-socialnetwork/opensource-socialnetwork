@@ -66,7 +66,7 @@ function ossn_installation_paths() {
  * Ossn Instalaltion Include
  * Include a file 
  *
- * @return mixed data
+ * @return string|null data
  */
 function ossn_installation_include($file = '', $params = array()) {
     $file = ossn_installation_paths()->root . $file;
@@ -114,7 +114,9 @@ function ossn_installation_print($string) {
 /**
  * Ossn view instalaltion page
  *
- * @return arrays
+ * @param string|null $content
+ * @param string $title
+ * @return string|null
  */
 function ossn_installation_view_page($content, $title) {
     return ossn_installation_include("templates/page.php", array(
@@ -156,7 +158,7 @@ function ossn_installation_page() {
 /**
  * Handle insallation actions
  *
- * @return mixed data
+ * @return false|null data
  */
 function ossn_installation_actions() {
     if (isset($_REQUEST['action'])) {
@@ -188,7 +190,7 @@ function ossn_installation_message($message, $type) {
 /**
  * View installation error messages
  *
- * @return mixed data
+ * @return false|string data
  */
 function ossn_installation_messages() {
     if (!isset($_SESSION['ossn-installation-messages'])) {

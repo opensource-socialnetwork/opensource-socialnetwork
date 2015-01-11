@@ -24,7 +24,7 @@ function ossn_css() {
 /**
  * Add css page handler
  *
- * @return bool
+ * @return false|null
  */
 function ossn_css_pagehandler($css) {
     if (ossn_site_settings('cache') == 1) {
@@ -161,7 +161,7 @@ function ossn_css_admin() {
 /**
  * Check if the requested css is registered then load css
  *
- * @return bool
+ * @return string|false
  */
 function ossn_css_trigger($hook, $type, $value, $params) {
     global $Ossn;

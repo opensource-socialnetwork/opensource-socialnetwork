@@ -13,6 +13,7 @@
  * @params: $name  = name of menu;
  * @params:  $text = text for menu;
  * @params $link = link for menu;
+ * @param string $name
  *
  * @last edit: $arsalanshah
  * @return void
@@ -25,6 +26,7 @@ function ossn_register_menu_link($name, $text, $link, $menutype = 'site') {
 /**
  * Unregister menu from system;
  * @params: $menu = menu name
+ * @param string $menu
  *
  * @last edit: $arsalanshah
  * @return void;
@@ -38,6 +40,7 @@ function ossn_unregister_menu($menu, $menutype = 'site') {
 /**
  * View a menu;
  * @params: $menu = menu name
+ * @param string $menu
  * @note This will fetch layout from defualt template that how menu should appear; check menu file for more info;
  *
  * @last edit: $arsalanshah
@@ -63,9 +66,10 @@ function ossn_view_menu($menu, $custom = false) {
 /**
  * Register a section base menu;
  * @params: $params array(type, section, url, text, icon, link)
+ * @param string $menu
  *
  * @last edit: $arsalanshah
- * @return void
+ * @return false|null
  */
 function ossn_register_sections_menu($menu, $params) {
     global $Ossn;
@@ -98,6 +102,7 @@ function ossn_register_sections_menu($menu, $params) {
 /**
  * View section base menu;
  * @params: $type = (frontend or backend(
+ * @param string $menu
  * @note This will fetch layout from defualt template that how menu should appear; check menu file for more info;
  *
  * @last edit: $arsalanshah

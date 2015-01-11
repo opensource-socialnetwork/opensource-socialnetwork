@@ -209,6 +209,8 @@ class OssnObject extends OssnEntities {
      *           $values => array(new values)
      *           $guid => object_guid
      *           (object)->data->object(update object entities)
+     * @param string[] $name
+     * @param string[] $value
      *
      * @return bool;
      */
