@@ -33,7 +33,7 @@ function ossn_css_pagehandler($css) {
     header("Content-type: text/css");
     $page = $css[0];
     if (empty($css[1])) {
-  			header('Content-Type: text/html; charset=utf-8');
+  		header('Content-Type: text/html; charset=utf-8');
            	ossn_error_page();
     }
     if (empty($page)) {
@@ -49,7 +49,7 @@ function ossn_css_pagehandler($css) {
             }
             break;
         default:
-			header('Content-Type: text/html; charset=utf-8');
+		header('Content-Type: text/html; charset=utf-8');
            	ossn_error_page();
             break;
 
