@@ -60,6 +60,7 @@ if ($likes_total > 0) {
 									'href' => ossn_site_url("action/annotation/like?annotation={$comment->id}"), 
 									'text' => ossn_print('like'), 
 									'class' => 'ossn-like-comment',
+									'data-type' => 'Like',
 									'action' => true
 									));
                 		 } else { 
@@ -67,6 +68,7 @@ if ($likes_total > 0) {
 									'href' => ossn_site_url("action/annotation/unlike?annotation={$comment->id}"), 
 									'text' => ossn_print('unlike'), 
 									'class' => 'ossn-like-comment',
+									'data-type' => 'Unlike',
 									'action' => true
 									));
                 		 }
