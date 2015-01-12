@@ -11,6 +11,12 @@ Ossn.NotificationBox = function($title, $meta, $type, height) {
     if (height == '') {
         height = '540px';
     }
+    /* get left positon of known element minus experimental found constant 870 */
+	var noti_element = $("#ossn-notif-notification");
+	var noti_position = noti_element.position();
+	var left_position = noti_position.left;
+	var horz_position = left_position - 870;
+
     if ($type) {
         $('.selected').addClass($type);
     }
@@ -21,6 +27,7 @@ Ossn.NotificationBox = function($title, $meta, $type, height) {
     if ($meta) {
         $('.ossn-notifications-box').find('.metadata').html($meta);
         $('.ossn-notifications-box').css('height', height);
+		$('.ossn-notifications-box').css('margin-right', horz_position);
     }
 };
 Ossn.NotificationBoxClose = function() {
