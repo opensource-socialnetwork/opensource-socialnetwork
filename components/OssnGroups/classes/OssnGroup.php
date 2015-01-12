@@ -266,14 +266,38 @@ class OssnGroup extends OssnObject {
      * @return bool;
      */
     public function sendRequest($from, $group) {
+    	self::initAttributes();
         if (!$this->requestExists($from, $group)) {
             if (ossn_add_relation($from, $group, 'group:join')) {
-                return true;
+				// #186 send notification to Group Owner
+				$current_group = $this->getGroup($group);
+				$group_owner = $current_group->owner_guid;
+
+				$type = 'group:joinrequest';
+				$params['into'] = 'ossn_notifications';
+				$params['names'] = array(
+					'type',
+					'poster_guid',
+					'owner_guid',
+					'subject_guid',
+					'item_guid',
+					'time_created'
+				);
+				$params['values'] = array(
+					$type,
+					$from,
+					$group_owner,
+					$group,
+					NULL,
+					time()
+				);
+				if ($this->OssnDatabase->insert($params)) {
+					return true;
+				}
             }
         }
         return false;
     }
-
     /**
      * Check if member request exist or not
      *
