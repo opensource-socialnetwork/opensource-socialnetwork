@@ -226,6 +226,20 @@ function update_last_activity() {
 function ossn_user_friendly_time($tm, $rcs = 0) {
     $cur_tm = time();
     $dif = $cur_tm - $tm;
+	// get language dependend items for display
+	$passedtime = ossn_print('site:timepassed');
+	// put them into array
+	// 0  = second
+	// 15 = decades
+	// 16 = trailing flag
+	// 17 = additional text to display
+	$pds = explode('|',$passedtime);
+	
+	// BETTER DO explode ONLY ONCE on start and when language changes
+	// and get already prepared array from there
+	// don't know how and where to do this correctly ?!?
+
+	/*
     $pds = array(
         'second',
         'minute',
@@ -236,6 +250,7 @@ function ossn_user_friendly_time($tm, $rcs = 0) {
         'year',
         'decade'
     );
+    */
     $lngh = array(
         1,
         60,
@@ -255,14 +270,24 @@ function ossn_user_friendly_time($tm, $rcs = 0) {
 
     $no = ($rcs ? floor($no) : round($no)); // if last denomination, round
 
+	// since our array now has 16 time elements instead of 8, we need to skip odd entries and fetch the next even one (the singular)
+	$v = $v * 2;
+	
     if ($no != 1)
-        $pds[$v] .= 's';
+        // $pds[$v] .= 's';
+        // in case of plural we need the current element's index + 1
+		$v++;
     $x = $no . ' ' . $pds[$v];
 
     if (($rcs > 0) && ($v >= 1))
         $x .= ' ' . ossn_user_friendly_time($_tm, $rcs - 1);
 
-    return $x . ' ago';
+	// trailing or leading text?
+	if ($pds[16] == 1)
+		return $x . ' ' . $pds[17]; 	// English style
+	else
+		return $pds[17] . ' ' . $x;		// German style
+    // return $x . ' ago';
 }
 
 /**
