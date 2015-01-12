@@ -26,7 +26,7 @@ Ossn.PostUnlike = function(post) {
                 $('#ossn-like-' + post).find('a').html(callback['button']);
                 $('#ossn-like-' + post).find('a').attr('onclick', 'Ossn.PostLike(' + post + ');');
             } else {
-                $('#ossn-like-' + post).find('a').html('Unlike');
+                $('#ossn-like-' + post).find('a').html(Ossn.Print('unlike'));
             }
         },
     });
@@ -44,7 +44,7 @@ Ossn.PostLike = function(post) {
                 $('#ossn-like-' + post).find('a').html(callback['button']);
                 $('#ossn-like-' + post).find('a').attr('onClick', 'Ossn.PostUnlike(' + post + ');');
             } else {
-                $('#ossn-like-' + post).find('a').html('Like');
+                $('#ossn-like-' + post).find('a').html(Ossn.Print('like'));
             }
         },
     });
@@ -63,7 +63,7 @@ Ossn.EntityUnlike = function(entity) {
                 $('#ossn-like-' + entity).find('a').html(callback['button']);
                 $('#ossn-like-' + entity).find('a').attr('onclick', 'Ossn.EntityLike(' + entity + ');');
             } else {
-                $('#ossn-like-' + entity).find('a').html('Unlike');
+                $('#ossn-like-' + entity).find('a').html(Ossn.Print('unlike'));
             }
         },
     });
@@ -81,7 +81,7 @@ Ossn.EntityLike = function(entity) {
                 $('#ossn-like-' + entity).find('a').html(callback['button']);
                 $('#ossn-like-' + entity).find('a').attr('onClick', 'Ossn.EntityUnlike(' + entity + ');');
             } else {
-                $('#ossn-like-' + post).find('a').html('Like');
+                $('#ossn-like-' + post).find('a').html(Ossn.Print('like'));
             }
         },
     });
@@ -92,7 +92,7 @@ Ossn.RegisterStartupFunction(function() {
         $(document).delegate('.ossn-like-comment', 'click', function(e) {
             e.preventDefault();
             var $item = $(this);
-            var $type = $.trim($item.text());
+            var $type = $.trim($item.attr('data-type'));
             var $url = $item.attr('href');
             Ossn.PostRequest({
                 url: $url,
@@ -105,7 +105,8 @@ Ossn.RegisterStartupFunction(function() {
                         $total_guid = Ossn.UrlParams('annotation', $url);
                         $total = $('.ossn-total-likes-' + $total_guid).attr('data-likes');
                         if ($type == 'Like') {
-                            $item.html('Unlike');
+                            $item.html(Ossn.Print('unlike'));
+                            $item.attr('data-type', 'Unlike');                            
                             var unlike = $url.replace("like", "unlike");
                             $item.attr('href', unlike);
                             $total_likes = $total;
@@ -114,7 +115,8 @@ Ossn.RegisterStartupFunction(function() {
                             $('.ossn-total-likes-' + $total_guid).html('<span class="dot-likes">.</span><div class="ossn-like-icon"></div>' + $total_likes);
                         }
                         if ($type == 'Unlike') {
-                            $item.html('Like');
+                            $item.html(Ossn.Print('like'));
+                            $item.attr('data-type', 'Like');                            
                             var like = $url.replace("unlike", "like");
                             $item.attr('href', like);
                             if ($total > 1) {
@@ -134,10 +136,12 @@ Ossn.RegisterStartupFunction(function() {
                     if (callback['done'] == 0) {
                         if ($type == 'Like') {
                             $item.html('Like');
+                            $item.attr('data-type', 'Like');
                             Ossn.MessageBox('syserror/unknown');
                         }
                         if ($type == 'Unlike') {
                             $item.html('Unlike');
+                            $item.attr('data-type', 'Unlike');
                             Ossn.MessageBox('syserror/unknown');
 
                         }
