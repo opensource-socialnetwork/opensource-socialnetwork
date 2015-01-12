@@ -33,7 +33,8 @@ function ossn_css_pagehandler($css) {
     header("Content-type: text/css");
     $page = $css[0];
     if (empty($css[1])) {
-        echo '404 SWITCH ERROR';
+  			header('Content-Type: text/html; charset=utf-8');
+           	ossn_error_page();
     }
     if (empty($page)) {
         $page = 'view';
@@ -48,6 +49,7 @@ function ossn_css_pagehandler($css) {
             }
             break;
         default:
+			header('Content-Type: text/html; charset=utf-8');
            	ossn_error_page();
             break;
 
