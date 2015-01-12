@@ -283,3 +283,9 @@ display:none !important;
 .groups-buttons a {
 display:inline-block;
 }
+.ossn-groups-notification-icon {
+background: url('<?php echo ossn_site_url(); ?>components/OssnGroups/images/group.png') no-repeat;
+width: 18px;
+height: 18px;
+position: absolute;
+}
