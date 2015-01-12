@@ -204,3 +204,18 @@ function ossn_installation_messages() {
     unset($_SESSION['ossn-installation-messages']);
     return implode('', $msgs);
 }
+/**
+ * Simple curl, get content of url
+ *
+ * @return mixed data
+ */
+function ossn_installation_simple_curl($url = '') {	
+if(isset($url)){
+	$curlinit = curl_init();
+	curl_setopt($curlinit, CURLOPT_URL, $url);
+	curl_setopt($curlinit, CURLOPT_RETURNTRANSFER, 1);
+	$result = curl_exec($curlinit);
+	curl_close($curlinit);
+}
+return $result;
+}
