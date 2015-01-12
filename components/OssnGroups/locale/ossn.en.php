@@ -57,6 +57,7 @@ $en = array(
 	
 	'title:access:private:group' => 'Group post',
 
-
+	// #186 group join request message var1 = user, var2 = name of group
+	'ossn:notifications:group:joinrequest' => '%s requested to join %s',
 );
 ossn_register_languages('en', $en); 
