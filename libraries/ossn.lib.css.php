@@ -48,7 +48,7 @@ function ossn_css_pagehandler($css) {
             }
             break;
         default:
-            echo '404 SWITCH ERROR';
+           	ossn_error_page();
             break;
 
     }
