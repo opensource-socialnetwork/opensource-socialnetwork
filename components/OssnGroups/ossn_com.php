@@ -41,6 +41,7 @@ function ossn_groups() {
     ossn_add_hook('newsfeed', "left", 'ossn_add_groups_to_newfeed');
     ossn_add_hook('search', 'type:groups', 'groups_search_handler');
 	ossn_add_hook('notification:add', 'comments:post:group:wall', 'ossn_notificaiton_groups_comments_hook');
+    ossn_add_hook('notification:view', 'group:joinrequest', 'ossn_group_joinrequest_notification');
 
     //group actions
     if (ossn_isLoggedin()) {
@@ -342,5 +343,28 @@ function ossn_notificaiton_groups_comments_hook($hook, $type, $return, $params){
 		return $params;
 	}
 	return false;
+}
+
+// #186 group join request hook
+function ossn_group_joinrequest_notification($name, $type, $return, $params) {
+    $baseurl = ossn_site_url();
+    $user = ossn_user_by_guid($params->poster_guid);
+    $user->fullname = "<strong>{$user->fullname}</strong>";
+	$group = ossn_get_group_by_guid($params->subject_guid);
+    $img = "<div class='notification-image'><img src='{$baseurl}avatar/{$user->username}/small' /></div>";
+    $type = "<div class='ossn-groups-notification-icon'></div>";
+    if ($params->viewed !== NULL) {
+        $viewed = '';
+    } elseif ($params->viewed == NULL) {
+        $viewed = 'class="ossn-notification-unviewed"';
+    }
+	// lead directly to groups request page
+    $url = "{$baseurl}group/{$params->subject_guid}/requests";
+    $notification_read = "{$baseurl}notification/read/{$params->guid}?notification=" . urlencode($url);
+    return "<a href='{$notification_read}'>
+	       <li {$viewed}> {$img} 
+		   <div class='notfi-meta'> {$type}
+		   <div class='data'>" . ossn_print("ossn:notifications:{$params->type}", array($user->fullname, $group->title)) . '</div>
+		   </div></li>';
 }
 ossn_register_callback('ossn', 'init', 'ossn_groups');
