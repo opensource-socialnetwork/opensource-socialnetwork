@@ -71,7 +71,7 @@
 
 <p>
     <?php echo ossn_print('account:create:notice'); ?>
-    <a href="<?php echo ossn_site_url('site/terms'); ?>"><?php echo ossn_print('terms'); ?></a>
+    <a href="<?php echo ossn_site_url('site/terms'); ?>"><?php echo ossn_print('site:terms'); ?></a>
 </p>
 
 <input type="submit" id="ossn-submit-button" value="<?php echo ossn_print('create:account'); ?>" class=""/>
