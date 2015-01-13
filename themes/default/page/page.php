@@ -94,6 +94,11 @@ if (isset($params['contents'])) {
                         <li>
                             <a href="<?php echo ossn_site_url("u/" . ossn_loggedin_user()->username . "/edit"); ?>"><?php echo ossn_print('acount:settings'); ?></a>
                         </li>
+                        <?php if (ossn_isAdminLoggedin()) { ?>
+			<li>
+				 <a href="<?php echo ossn_site_url('administrator'); ?>"><?php echo ossn_print('ossn:administrator'); ?></a>
+			</li>
+			<?php } ?>
                         <li>
                           <?php
 						  	echo ossn_view_template('output/url', array(
