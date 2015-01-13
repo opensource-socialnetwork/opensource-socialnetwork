@@ -51,6 +51,7 @@ $en = array(
 	'admin:logout' => 'Logout',
 	'logout' => 'Logout',
 	
+	'ossn:administrator' => 'Administrator',
 	'ossn:like:this' => '%s like this',
 	'ossn:like:you:and:this' => 'You and %s like this',
 	'ossn:like:people' => '%s People',
