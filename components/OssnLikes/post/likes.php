@@ -38,10 +38,9 @@ $user_liked = '';
             ?>
         </div>
         <span class="dot-comments">.</span>
-        <a href="#comment-box-<?php echo $object; ?>">Comment</a>
+        <a href="#comment-box-<?php echo $object; ?>"><?php echo ossn_print('comment:comment'); ?></a>
         <?php if ($OssnComments->countComments($object) > 5) { ?>
-            <span class="dot-comments">.</span> <a href="<?php echo ossn_site_url("post/view/{$object}"); ?>">View all
-                comments</a>
+            <span class="dot-comments">.</span> <a href="<?php echo ossn_site_url("post/view/{$object}"); ?>"><?php echo ossn_print('comment:view:all'); ?></a>
         <?php } ?>
     </div>
 
