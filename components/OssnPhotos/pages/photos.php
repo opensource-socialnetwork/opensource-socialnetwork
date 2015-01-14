@@ -15,7 +15,7 @@ $profiel_photo = ossn_site_url("avatar/{$params['user']->username}/larger");
 $pphotos_album = ossn_site_url("album/profile/{$params['user']->guid}");
 echo "<li>
 	<a href='{$pphotos_album}'><img src='{$profiel_photo}' class='pthumb' />
-	 <div class='ossn-album-name'>Profile Photos</div></a>
+	 <div class='ossn-album-name'>" . ossn_print('profile:photos') . "</div></a>
 	</li>";
 if ($photos) {
     foreach ($photos as $photo) {
