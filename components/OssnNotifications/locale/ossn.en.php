@@ -22,10 +22,9 @@ $en = array(
     'ossn:notifications:comments:entity:file:profile:photo' => "%s liked the profile photo",
     'ossn:notifications:like:post:group:wall' => '%s liked your post',
 	
-    'ossn:notification:are:friends' => 'You are now friends',
     'ossn:notification:delete:friend' => 'Friend request deleted',
     'notifications' => 'Notifications',
     'see:all' => 'See All',
-
+    'friend:requests' => 'Friend Requests',
 );
 ossn_register_languages('en', $en); 
