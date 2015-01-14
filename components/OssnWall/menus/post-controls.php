@@ -9,6 +9,7 @@
  * @link      http://www.opensource-socialnetwork.com/licence
  */
 $postcontrols = $params['menu'];
+if($postcontrols){
 ?>
 <div class="ossn-wall-post-controls" onclick="Ossn.PostMenu(this);">
     <div class="drop-down-arrow"></div>
@@ -29,3 +30,5 @@ $postcontrols = $params['menu'];
     </div>
 
 </div>
+<?php 
+}
