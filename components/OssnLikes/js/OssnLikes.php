@@ -135,12 +135,12 @@ Ossn.RegisterStartupFunction(function() {
                     }
                     if (callback['done'] == 0) {
                         if ($type == 'Like') {
-                            $item.html('Like');
+                            $item.html(Ossn.Print('like'));
                             $item.attr('data-type', 'Like');
                             Ossn.MessageBox('syserror/unknown');
                         }
                         if ($type == 'Unlike') {
-                            $item.html('Unlike');
+                            $item.html(Ossn.Print('unlike'));
                             $item.attr('data-type', 'Unlike');
                             Ossn.MessageBox('syserror/unknown');
 
