@@ -77,7 +77,7 @@ function ossn_notification_page($pages) {
             } else {
                 echo json_encode(array(
                     'type' => 0,
-                    'data' => '<div class="ossn-no-notification">Nothing to show</div>',
+                    'data' => '<div class="ossn-no-notification">'.ossn_print('ossn:notification:no:notification').'</div>',
                 ));
             }
             break;
@@ -93,7 +93,7 @@ function ossn_notification_page($pages) {
             } else {
                 echo json_encode(array(
                     'type' => 0,
-                    'data' => '<div class="ossn-no-notification">Nothing to show</div>',
+                    'data' => '<div class="ossn-no-notification">'.ossn_print('ossn:notification:no:notification').'</div>',
                 ));
             }
             break;
@@ -110,7 +110,7 @@ function ossn_notification_page($pages) {
             } else {
                 echo json_encode(array(
                     'type' => 0,
-                    'data' => '<div class="ossn-no-notification">Nothing to show</div>',
+                    'data' => '<div class="ossn-no-notification">'.ossn_print('ossn:notification:no:notification').'</div>',
                 ));
             }
             break;
