@@ -15,5 +15,7 @@ $en = array(
     'comment:deleted' => 'Comment successfully deleted',
     'comment:delete:error' => 'Cannot delete comment',
     'comment:delete' => 'Delete',
+    'comment:comment' => 'Comment',
+	'comment:view:all' => 'View all comments',
 );
 ossn_register_languages('en', $en); 
