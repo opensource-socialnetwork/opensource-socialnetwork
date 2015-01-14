@@ -221,9 +221,9 @@ Please click the link below to reset password or copy the link and paste in your
 	'ossn:component:delete:exception' => 'Are you sure you want to delete this component?',
 	
 	//access
-	'title:access1' => 'Private',
-	'title:access2' => 'Public',
-	'title:access3' => 'Friends',
+	'title:access:1' => 'Private',
+	'title:access:2' => 'Public',
+	'title:access:3' => 'Friends',
 	
 	'upload:file:error:ini_size' => 'The file you tried to upload is too large.',
 	'upload:file:error:form_size' => 'The file you tried to upload is too large.',
