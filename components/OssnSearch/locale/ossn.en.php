@@ -14,5 +14,6 @@ $en = array(
 	'result:type' => 'RESULT TYPE',
 	'search:result' => 'Search result for %s',
 	'ossn:search:topbar:search' => 'Search groups, friends and more',
+	'ossn:search:no:result' => 'No result found',
 );
 ossn_register_languages('en', $en); 
