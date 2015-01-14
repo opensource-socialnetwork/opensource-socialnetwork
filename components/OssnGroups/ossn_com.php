@@ -110,7 +110,7 @@ function groups_search_handler($hook, $type, $return, $params) {
     $search = ossn_view('components/OssnGroups/search/view', $group);
     $search .= $Pagination->pagination();
     if (empty($data)) {
-        return 'No result found';
+        return ossn_print('ossn:search:no:result');
     }
     return $search;
 }
