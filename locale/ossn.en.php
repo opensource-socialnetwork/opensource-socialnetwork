@@ -249,6 +249,7 @@ Please click the link below to reset password or copy the link and paste in your
 	'ossn:user:validation:resend' => 'Your account is not validated so the log in attempt failed. Another validation email has been sent.',
 	// localization of passed time: 16 time elements (even = singular / odd = plural) plus trailing flag and additional text
 	'site:timepassed' => 'second|seconds|minute|minutes|hour|hours|day|days|week|weeks|month|months|year|years|decade|decades|1|ago',
+	'ossn:notification:no:notification' => 'Nothing to show',
 	/*
 	 * List of ISO 639-1 language codes
 	 * http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
