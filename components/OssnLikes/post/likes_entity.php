@@ -32,9 +32,9 @@ $count = $OssnLikes->CountLikes($object, 'entity');
 
             } ?>
         </div>
-        <span class="dot-comments">.</span> <a href="#comment-box-<?php echo $object; ?>">Comment</a>
+        <span class="dot-comments">.</span> <a href="#comment-box-<?php echo $object; ?>"><?php echo ossn_print('comment:comment'); ?></a>
         <?php if ($OssnComments->countComments($object, 'entity') > 5) { ?>
-            <span class="dot-comments">.</span> <a href="#">View all comments</a>
+            <span class="dot-comments">.</span> <a href="#"><?php echo ossn_print('comment:view:all'); ?></a>
         <?php } ?>
     </div>
 <?php } /* Likes and comments don't show for nonlogged in users */ ?>
