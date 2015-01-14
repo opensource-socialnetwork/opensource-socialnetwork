@@ -77,6 +77,7 @@ Ossn.RegisterStartupFunction(function() {
                     $('.user-photo-uploading').attr('class', 'upload-photo').hide();
                     $imageurl = $('.profile-photo').find('img').attr('src');
                     $('.profile-photo').find('img').attr('src', $imageurl);
+                        location.reload();
                 }
             });
 
