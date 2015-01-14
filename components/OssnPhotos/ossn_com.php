@@ -141,7 +141,7 @@ function ossn_photos_sizes() {
 function profile_modules_albums($hook, $type, $module, $params) {
     $user['user'] = $params['user'];
     $content = ossn_view("components/OssnPhotos/modules/profile/albums", $user);
-    $module[] = ossn_view_widget('profile/widget', 'ALBUMS', $content);
+    $module[] = ossn_view_widget('profile/widget', strtoupper(ossn_print('photo:albums')), $content);
     return $module;
 }
 
