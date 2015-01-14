@@ -47,5 +47,5 @@
     </div>
 </div>
 <div class="bottom-all">
-    <a href="#">See All</a>
+    <!-- <a href="#">See All</a> -->
 </div>
