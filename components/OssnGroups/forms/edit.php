@@ -32,4 +32,4 @@ $group = $params['group'];
     <option value='1' <?php echo $close; ?>> <?php echo ossn_print('close'); ?> </option>
 </select>
 <input type="hidden" name="group" value="<?php echo $group->guid; ?>"/>
-<input type="submit" value="Save" class="ossn-button ossn-button-submit"/>
+<input type="submit" value="<?php echo ossn_print('save'); ?>" class="ossn-button ossn-button-submit"/>
