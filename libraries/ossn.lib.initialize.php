@@ -108,6 +108,9 @@ function ossn_user_pagehandler($home, $handler) {
             echo ossn_view_page($title, $content);
             break;
         case 'resetlogin':
+            if (ossn_isLoggedin()) {
+                redirect('home');
+            }            
             $user = input('user');
             $code = input('c');
             $contents['content'] = ossn_view('pages/contents/user/resetlogin');
@@ -120,6 +123,9 @@ function ossn_user_pagehandler($home, $handler) {
             echo ossn_view_page($title, $content);
             break;
         case 'login':
+            if (ossn_isLoggedin()) {
+                redirect('home');
+            }
             $title = ossn_print('site:login');
             $contents['content'] = ossn_view('pages/contents/user/login');
             $content = ossn_set_page_layout('startup', $contents);
@@ -127,6 +133,9 @@ function ossn_user_pagehandler($home, $handler) {
             break;
 
         case 'registered':
+            if (ossn_isLoggedin()) {
+                redirect('home');
+            }
             $title = ossn_print('account:registered');
             $contents['content'] = ossn_view('pages/contents/user/registered');
             $content = ossn_set_page_layout('startup', $contents);
