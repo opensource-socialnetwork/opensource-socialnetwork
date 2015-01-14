@@ -30,6 +30,7 @@ $en = array(
     'photos' => 'Photos',
     'back' => 'Back',
     'add:photos' => 'Add photos',
+    'delete:photo' => 'Delete photo',
 
 );
 ossn_register_languages('en', $en); 
