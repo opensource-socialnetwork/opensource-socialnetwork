@@ -157,16 +157,17 @@ class OssnFile extends OssnEntities {
 	 * showFileUploadError
      * Show file upload errors
      *
+     * @param (bool) $redirect Ask to redirect immediately
      *
      * @return void
      */	 
-	 public function showFileUploadError(){
+	 public function showFileUploadError($redirect = true){
 		if(empty($this->redirect)){
 			$this->redirect = REF;
 		}
 		if(isset($this->file) && $this->file['error'] !== UPLOAD_ERR_OK){
 			ossn_trigger_message($this->getFileUploadError($this->file['error']), 'error');
-            redirect($this->redirect);	
+			if($redirect) redirect($this->redirect);
 		}
 		 
 	 }
