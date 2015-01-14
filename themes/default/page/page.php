@@ -96,7 +96,7 @@ if (isset($params['contents'])) {
                         </li>
                         <?php if (ossn_isAdminLoggedin()) { ?>
 			<li>
-				 <a href="<?php echo ossn_site_url('administrator'); ?>"><?php echo ossn_print('ossn:administrator'); ?></a>
+				 <a href="<?php echo ossn_site_url('administrator'); ?>"><?php echo ossn_print('admin'); ?></a>
 			</li>
 			<?php } ?>
                         <li>
