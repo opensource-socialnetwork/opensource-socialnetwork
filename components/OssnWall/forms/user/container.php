@@ -16,7 +16,7 @@
             <div class="text"><?php echo ossn_print('post'); ?></div>
         </div>
     </div>
-    <textarea placeholder="What's on your mind?" name="post"></textarea>
+    <textarea placeholder="<?php echo ossn_print('wall:post:container'); ?>" name="post"></textarea>
 
     <div id="ossn-wall-location" style="display:none;">
         <input type="text" placeholder="<?php echo ossn_print('enter:location'); ?>" name="location"
