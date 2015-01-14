@@ -10,9 +10,9 @@
  */
 
 $en = array(
-    'ossn:search' => 'Search',
+	'ossn:search' => 'Search',
 	'result:type' => 'RESULT TYPE',
-    'search:result' => 'Search result for %s',
+	'search:result' => 'Search result for %s',
 	'ossn:search:topbar:search' => 'Search groups, friends and more',
 );
 ossn_register_languages('en', $en); 
