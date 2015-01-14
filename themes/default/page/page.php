@@ -68,9 +68,9 @@ if (isset($params['contents'])) {
             <div class="logo-second"></div>
             <div class="ossn-search">
                 <form action="<?php echo ossn_site_url("search"); ?>" method="get">
-                    <input type="text" name="q" placeholder="Search groups, friends and more"
-                           onblur="if (this.value=='') { this.value='Search' }"
-                           onFocus="if (this.value=='Search') { this.value='' };"/>
+                    <input type="text" name="q" placeholder="<?php echo ossn_print('ossn:search:topbar:search');?>"
+                           onblur="if (this.value=='') { this.value=Ossn.Print('ossn:search'); }"
+                           onFocus="if (this.value==Ossn.Print('ossn:search');) { this.value='' };"/>
                 </form>
             </div>
             <div class="ossn-topbar-menu">
