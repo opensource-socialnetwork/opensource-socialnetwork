@@ -13,7 +13,7 @@ if (ossn_is_xhr()) {
 }
 if (ossn_add_friend(ossn_loggedin_user()->guid, input('user'))) {
     if (!ossn_is_xhr()) {
-        ossn_trigger_message(ossn_print('ossn:notification:are:friends'), 'error');
+        ossn_trigger_message(ossn_print('ossn:notification:are:friends'));
         redirect(REF);
     }
     if (ossn_is_xhr()) {
