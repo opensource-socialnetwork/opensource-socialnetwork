@@ -84,7 +84,9 @@ class OssnThemes extends OssnSite {
         if (!is_dir($data_dir)) {
             mkdir($data_dir, 0755, true);
         }
-        $zip = $_FILES['theme_file'];
+		$file = new OssnFile;
+		$file->setFile('theme_file');
+        $zip = $file->file;
         $newfile = "{$data_dir}/{$zip['name']}";
         if (move_uploaded_file($zip['tmp_name'], $newfile)) {
             if ($archive->open($newfile) === TRUE) {
