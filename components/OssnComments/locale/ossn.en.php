@@ -9,13 +9,13 @@
  * @link      http://www.opensource-socialnetwork.org/licence
  */
 $en = array(
-    'write:comment' => 'Write a comment...',
-    'like' => 'Like',
-    'unlike' => 'Unlike',
-    'comment:deleted' => 'Comment successfully deleted',
-    'comment:delete:error' => 'Cannot delete comment',
-    'comment:delete' => 'Delete',
-    'comment:comment' => 'Comment',
+	'write:comment' => 'Write a comment...',
+	'like' => 'Like',
+	'unlike' => 'Unlike',
+	'comment:deleted' => 'Comment successfully deleted',
+	'comment:delete:error' => 'Cannot delete comment',
+	'comment:delete' => 'Delete',
+	'comment:comment' => 'Comment',
 	'comment:view:all' => 'View all comments',
 );
 ossn_register_languages('en', $en); 
