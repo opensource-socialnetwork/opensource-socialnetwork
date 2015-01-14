@@ -19,5 +19,5 @@ if ($friends) {
     }
 }
 if ($have !== 1) {
-    echo '<div class="ossn-chat-none">No one is online</div>';
+    echo '<div class="ossn-chat-none">'.ossn_print('ossn:chat:no:friend:online').'</div>';
 }
