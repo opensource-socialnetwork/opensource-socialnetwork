@@ -79,7 +79,7 @@ function ossn_groups() {
     }
     //add gorup link in sidebar
     ossn_register_sections_menu('newsfeed', array(
-        'text' => 'Add Group',
+        'text' => ossn_print('add:group'),
         'url' => 'javascript::;',
         'params' => array('id' => 'ossn-group-add'),
         'section' => 'groups',
@@ -244,7 +244,7 @@ function group_members_page($hook, $type, $return, $params) {
     if ($page == 'members') {
         $mod_content = ossn_view('components/OssnGroups/pages/members', $params);
         $mod = array(
-            'title' => 'Members',
+            'title' => ossn_print('members'),
             'content' => $mod_content,
         );
         echo ossn_set_page_layout('module', $mod);
@@ -275,7 +275,7 @@ function group_edit_page($hook, $type, $return, $params) {
         );
         $form = ossn_view_form('edit', $params, false);
         echo ossn_set_page_layout('module', array(
-                'title' => 'Edit',
+                'title' => ossn_print('edit'),
                 'content' => $form,
             ));
     }
