@@ -16,7 +16,7 @@ $pagination->setItem($ads->getAds());
 <div class="top-controls">
     <a href="<?php echo ossn_site_url("administrator/component/OssnAds?settings=add"); ?>"
        class="ossn-admin-button button-green"><?php echo ossn_print('add'); ?></a>
-       <input type="submit" class="ossn-admin-button button-red" value="Delete"/>
+       <input type="submit" class="ossn-admin-button button-red" value="<?php echo ossn_print('delete'); ?>"/>
 </div>
 <table class="table">
     <tbody>
