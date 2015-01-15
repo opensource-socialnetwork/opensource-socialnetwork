@@ -250,6 +250,16 @@ Please click the link below to reset password or copy the link and paste in your
 	// localization of passed time: 16 time elements (even = singular / odd = plural) plus trailing flag and additional text
 	'site:timepassed' => 'second|seconds|minute|minutes|hour|hours|day|days|week|weeks|month|months|year|years|decade|decades|1|ago',
 	'ossn:notification:no:notification' => 'Nothing to show',
+	'admin:button:enable' => 'Enable',
+	'admin:button:disable' => 'Disable',
+	'admin:button:configure' => 'Configure',
+	'admin:button:delete' => 'Delete',
+	'admin:component:author' => 'Author',
+	'admin:component:website' => 'Website',
+	'admin:sidemenu:components' => 'Components',
+	'admin:sidemenu:themes' => 'Themes',
+	'admin:sidemenu:settings' => 'Site Settings',
+	'admin:sidemenu:usermanager' => 'User Manager',	
 	/*
 	 * List of ISO 639-1 language codes
 	 * http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
