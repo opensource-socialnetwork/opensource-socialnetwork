@@ -15,25 +15,25 @@ foreach ($OssnComs->getComponents() as $Com) {
     echo "<div class='component-controls'>";
     if (!$OssnComs->isActive($Com)) {
         $enable = ossn_site_url("action/component/enable?com={$Com}", true);
-        echo "<a href='{$enable}' class='components-button components-button-green'>Enable</a>";
+        echo "<a href='{$enable}' class='components-button components-button-green'>" . ossn_print('admin:button:enable') ."</a>";
     } elseif (!in_array($Com, $OssnComs->requiredComponents())) {
         $disable = ossn_site_url("action/component/disable?com={$Com}", true);
-        echo "<a href='{$disable}' class='components-button components-button-orange'>Disable</a>";
+        echo "<a href='{$disable}' class='components-button components-button-orange'>" . ossn_print('admin:button:disable') ."</a>";
     }
     if (in_array($Com, ossn_registered_com_panel())) {
         $configure = ossn_site_url("administrator/component/{$Com}", true);
-        echo "<a href='{$configure}' class='components-button components-button-blue'>Configure</a>";
+        echo "<a href='{$configure}' class='components-button components-button-blue'>" . ossn_print('admin:button:configure') ."</a>";
     }
     if (!in_array($Com, $OssnComs->requiredComponents())) {
         $delete = ossn_site_url("action/component/delete?component={$Com}", true);
-        echo "<a href='{$delete}' class='components-button components-button-red'>Delete</a>";
+        echo "<a href='{$delete}' class='components-button components-button-red'>" . ossn_print('admin:button:delete') ."</a>";
     }
     echo "</div>";
 
     echo "<div class='component-name'>{$Component->com_name} {$Component->com_version}</div>";
     echo "<div class='compontnet-meta'>
-	        Author: {$Component->com_author}<br />
-			Website: {$Component->com_author_url}
+	        " . ossn_print('admin:component:author') .": {$Component->com_author}<br />
+			" . ossn_print('admin:component:website') .": {$Component->com_author_url}
 	 </div>";
     echo "<div class='component-description'>{$Component->com_description}</div>";
     echo '</div>';
