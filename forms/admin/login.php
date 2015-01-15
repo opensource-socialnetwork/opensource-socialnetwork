@@ -19,4 +19,4 @@
     <input type="password" name="password"/>
 </div>
 
-<input type="submit" value="<?php echo ossn_print('login'); ?>" class="ossn-admin-button button-dark-blue"/>
+<input type="submit" value="<?php echo ossn_print('admin:login'); ?>" class="ossn-admin-button button-dark-blue"/>
