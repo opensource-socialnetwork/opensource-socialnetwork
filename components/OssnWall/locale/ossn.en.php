@@ -20,5 +20,6 @@ $en = array(
     'ossn:post:delete' => 'Delete',
     'post:delete:fail' => 'Cannot delete post',
     'post:delete:success' => 'Post successfully deleted',
+    'post:select:privacy' => 'Please select privacy for wall post',
 );
 ossn_register_languages('en', $en); 
