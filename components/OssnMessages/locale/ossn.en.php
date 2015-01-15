@@ -12,7 +12,9 @@ $en = array(
     'user:messages' => 'Messages',
     'inbox' => 'Inbox',
     'send' => 'Send',
-	'ossn:message:between' => 'Messages %s',
-	'messages' => 'Messages',
+    'ossn:message:between' => 'Messages %s',
+    'messages' => 'Messages',
+    'message:placeholder' => 'Enter text here',
+    'no:messages' => 'No messages to display',
 );
 ossn_register_languages('en', $en); 
