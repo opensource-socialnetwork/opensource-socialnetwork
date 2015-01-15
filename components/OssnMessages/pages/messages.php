@@ -93,7 +93,7 @@ if (isset($params['user']->guid)) {
             <div class="message-form">
                 <form action="#" class="message-form-form" id="message-send-<?php echo $params['user']->guid; ?>"
                       method="post">
-                    <textarea name="message" placeholder='Enter text here'></textarea>
+                    <textarea name="message" placeholder="<?php echo ossn_print('message:placeholder'); ?>"></textarea>
                     <input type="hidden" name="to" value="<?php echo $params['user']->guid; ?>"/>
 
                     <div class="controls">
