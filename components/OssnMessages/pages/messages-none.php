@@ -1,3 +1,3 @@
 <div class="message-none">
-    <div> No messages to dispaly</div>
+    <div> <?php echo ossn_print('no:messages'); ?></div>
 </div>
