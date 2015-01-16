@@ -251,6 +251,7 @@ Please click the link below to reset password or copy the link and paste in your
 	'site:timepassed' => 'second|seconds|minute|minutes|hour|hours|day|days|week|weeks|month|months|year|years|decade|decades|1|ago',
 	'ossn:notification:no:notification' => 'Nothing to show',
 	'admin:button:enable' => 'Enable',
+	'admin:button:enabled' => 'Enabled',
 	'admin:button:disable' => 'Disable',
 	'admin:button:configure' => 'Configure',
 	'admin:button:delete' => 'Delete',
