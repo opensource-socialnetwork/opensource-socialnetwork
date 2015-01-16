@@ -259,7 +259,8 @@ Please click the link below to reset password or copy the link and paste in your
 	'admin:sidemenu:components' => 'Components',
 	'admin:sidemenu:themes' => 'Themes',
 	'admin:sidemenu:settings' => 'Site Settings',
-	'admin:sidemenu:usermanager' => 'User Manager',	
+	'admin:sidemenu:usermanager' => 'User Manager',
+	'cancel' => 'Cancel',
 	/*
 	 * List of ISO 639-1 language codes
 	 * http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
