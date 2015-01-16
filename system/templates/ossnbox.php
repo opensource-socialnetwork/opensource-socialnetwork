@@ -9,7 +9,7 @@
  * @link      http://www.opensource-socialnetwork.com/licence
  */
 if (!isset($params['button'])) {
-    $params['button'] = 'Save';
+    $params['button'] = ossn_print('save');
 }
 if (!isset($params['control'])) {
     $params['control'] = '';
@@ -36,7 +36,7 @@ if (!isset($params['callback'])) {
                 <a href="javascript::;" onclick="Ossn.Clk('<?php echo $params['callback']; ?>');"
                    class='button-blue-light'><?php echo $params['button']; ?></a>
             <?php } ?>
-            <a href="javascript::;" onclick="Ossn.MessageBoxClose();" class='button-grey-light'>Cancel</a>
+            <a href="javascript::;" onclick="Ossn.MessageBoxClose();" class='button-grey-light'><?php echo ossn_print('cancel'); ?></a>
         </div>
     </div>
 
