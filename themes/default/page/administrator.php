@@ -42,6 +42,7 @@ if (isset($params['contents'])) {
             plugins: "code image media link emoticons fullscreen insertdatetime print spellchecker preview",
             convert_urls: false,
             relative_urls: false,
+            language: "<?php echo ossn_site_settings('language'); ?>",
         });
     </script>
 
