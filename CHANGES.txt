@@ -21,6 +21,7 @@ Bugfixes:
  * Group members total count becomes 0 when group cover is set #156
  * Admin dashboard online user count shows 1.
  * Long comments overwriting camera icon #164
+ * Long lines exceeding post window boundaries #243
  
 Api Additions:
 
@@ -77,6 +78,7 @@ General:
  * Add site notification email settings.
  * Resend validation email if non-validated user try to login and show message.
  * Show a notification to group owner if new member join group #191
+ * Display tinymce menu according to Ossn language #242
 
 Language Strings Addition:
 
