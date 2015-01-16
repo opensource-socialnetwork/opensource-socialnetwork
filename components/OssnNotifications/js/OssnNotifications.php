@@ -26,7 +26,7 @@ Ossn.NotificationBox = function($title, $meta, $type, height) {
 Ossn.NotificationBoxClose = function() {
     $('.ossn-notifications-box').hide()
     $('.ossn-notifications-box').find('.type-name').html('');
-    $('.ossn-notifications-box').find('.metadata').html('<div style="height: 66px;"><div class="ossn-loading ossn-notification-box-loading"></div></div><div class="bottom-all"><a href="#">See All</a></div>');
+    $('.ossn-notifications-box').find('.metadata').html('<div style="height: 66px;"><div class="ossn-loading ossn-notification-box-loading"></div></div><div class="bottom-all"><a href="#"><?php echo ossn_print('see:all'); ?></a></div>');
     $('.ossn-notifications-box').css('height', '140px');
     $('.selected').attr('class', 'selected');
 
@@ -40,7 +40,7 @@ Ossn.NotificationShow = function($div) {
             Ossn.NotificationBoxClose();
             $('.ossn-notifications-friends').attr('onClick', 'Ossn.NotificationFriendsShow(this)');
             $('.ossn-notifications-messages').attr('onClick', 'Ossn.NotificationMessagesShow(this)');
-            Ossn.NotificationBox('Notifications', false, 'notifications');
+            Ossn.NotificationBox('<?php echo ossn_print('notifications'); ?>', false, 'notifications');
         },
         callback: function(callback) {
             var data = '';
@@ -53,7 +53,7 @@ Ossn.NotificationShow = function($div) {
                 data = callback['data'];
                 height = '100px';
             }
-            Ossn.NotificationBox('Notifications', data, 'notifications', height);
+            Ossn.NotificationBox('<?php echo ossn_print('notifications'); ?>', data, 'notifications', height);
         }
     });
 };
@@ -73,7 +73,7 @@ Ossn.NotificationFriendsShow = function($div) {
             Ossn.NotificationBoxClose();
             $('.ossn-notifications-notification').attr('onClick', 'Ossn.NotificationShow(this)');
             $('.ossn-notifications-messages').attr('onClick', 'Ossn.NotificationMessagesShow(this)');
-            Ossn.NotificationBox('Friend Requests', false, 'firends');
+            Ossn.NotificationBox('<?php echo ossn_print('friend:requests'); ?>', false, 'firends');
 
         },
         callback: function(callback) {
@@ -86,7 +86,7 @@ Ossn.NotificationFriendsShow = function($div) {
                 data = callback['data'];
                 height = '100px';
             }
-            Ossn.NotificationBox('Friend Requests', data, 'firends', height);
+            Ossn.NotificationBox('<?php echo ossn_print('friend:requests'); ?>', data, 'firends', height);
         }
     });
 };
@@ -166,7 +166,7 @@ Ossn.NotificationMessagesShow = function($div) {
                 data = callback['data'];
                 height = '100px';
             }
-            Ossn.NotificationBox('Messages', data, 'messages', height);
+            Ossn.NotificationBox('<?php echo ossn_print('messages'); ?>', data, 'messages', height);
         }
     });
 };
