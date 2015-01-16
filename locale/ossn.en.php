@@ -247,8 +247,9 @@ Please click the link below to reset password or copy the link and paste in your
 	'admin:login' => 'Login',
 	'admin:notification:email' => 'Site Notification Email',
 	'ossn:user:validation:resend' => 'Your account is not validated so the log in attempt failed. Another validation email has been sent.',
-	// localization of passed time: 16 time elements (even = singular / odd = plural) plus trailing flag and additional text
-	'site:timepassed' => 'second|seconds|minute|minutes|hour|hours|day|days|week|weeks|month|months|year|years|decade|decades|1|ago',
+	'site:timepassed:text' => '%s ago',
+	// localization of passed time: 16 time elements (even = singular / odd = plural)
+	'site:timepassed' => 'second|seconds|minute|minutes|hour|hours|day|days|week|weeks|month|months|year|years|decade|decades',
 	'ossn:notification:no:notification' => 'Nothing to show',
 	'admin:button:enable' => 'Enable',
 	'admin:button:enabled' => 'Enabled',
