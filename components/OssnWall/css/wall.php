@@ -108,6 +108,7 @@
 	margin-top: 10px;
 	width: 500px;
 	line-height: 20px;
+	word-break: break-all;
 }
 
 .activity-item-container .description img {
