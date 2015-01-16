@@ -199,7 +199,7 @@ function ossn_administrator_pagehandler($pages) {
             if (isset($pages[1]) && in_array($pages[1], ossn_registered_com_panel())) {
                 $com['com'] = OssnComponents::getCom($pages[1]);
                 $com['settings'] = ossn_components()->getComSettings($pages[1]);
-                $title = $com['com']->com_name;
+                $title = ossn_print($com['com']->com_title);
                 $contents['contents'] = ossn_view("components/{$pages[1]}/administrator/{$Ossn->com_panel[$pages[1]]}", $com);
                 $contents['title'] = $title;
                 $content = ossn_set_page_layout('administrator/administrator', $contents);
