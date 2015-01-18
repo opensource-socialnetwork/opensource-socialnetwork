@@ -10,9 +10,6 @@
  */
 
 $en = array(
-    'ossn:notification:are:friends' => 'You are now friends',
-    'ossn:notification:delete:friend' => 'Friend request deleted',
-    'notifications' => 'Notifications',
     'album:name' => 'Album Name',
     'add:album' => 'Add Album',
     'photo:select' => 'Select Photo',
