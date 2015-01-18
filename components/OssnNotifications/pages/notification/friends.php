@@ -13,6 +13,8 @@
     <div class="notification-friends">
         <?php
         if ($params['friends']) {
+            $confirmbutton = ossn_print('ossn:notifications:friendrequest:confirmbutton');
+            $denybutton = ossn_print('ossn:notifications:friendrequest:denybutton');
             foreach ($params['friends'] as $users) {
                 $baseurl = ossn_site_url();
                 $url = $users->profileURL();
@@ -29,10 +31,10 @@
 						  Ossn.removeFriendRequset($users->guid);
 						  </script>
 						  <form id='add-friend-{$users->guid}'>
-                           <input class='button-blue-light' type='submit' value='Confirm' />
+                           <input class='button-blue-light' type='submit' value='{$confirmbutton}' />
 						   </form>
 						   	<form id='remove-friend-{$users->guid}'>
-						   <input class='button-grey-light' type='submit' value='Cancel' />
+						   <input class='button-grey-light' type='submit' value='{$denybutton}' />
 						   </form>
 
                            </div>
