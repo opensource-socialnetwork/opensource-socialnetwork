@@ -293,7 +293,7 @@ class OssnEntities extends OssnDatabase {
      * @return (bool);
      */
     public function deleteEntity($guid) {
-		if(isset($this->guid) && !empty($this->guid)){
+		if(isset($this->guid) && !empty($this->guid) && empty($guid)){
 			$guid = $this->guid;
 		}
 		$params['from'] = 'ossn_entities';
