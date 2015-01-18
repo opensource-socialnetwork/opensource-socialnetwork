@@ -28,7 +28,7 @@ if ($OssnLikes->UnLike($subject, ossn_loggedin_user()->guid, $type)) {
         header('Content-Type: application/json');
         echo json_encode(array(
                 'done' => 1,
-                'button' => 'Like',
+                'button' => ossn_print('ossn:like'),
             ));
     }
 } else {
@@ -38,7 +38,7 @@ if ($OssnLikes->UnLike($subject, ossn_loggedin_user()->guid, $type)) {
         header('Content-Type: application/json');
         echo json_encode(array(
                 'done' => 0,
-                'button' => 'Unlike',
+                'button' => ossn_print('ossn:unlike'),
             ));
     }
 }
