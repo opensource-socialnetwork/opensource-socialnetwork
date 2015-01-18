@@ -17,18 +17,18 @@ require_once(dirname(dirname(dirname(__FILE__))) . '/system/start.php');
 
     <form action="<?php echo ossn_installation_paths()->url; ?>?action=account" method="post">
         <div>
-            <input type="text" name="firstname" placeholder="First Name"/>
-            <input type="text" name="lastname" placeholder="Last Name"/>
+            <input type="text" name="firstname" placeholder="<?php echo ossn_print('first:name'); ?>"/>
+            <input type="text" name="lastname" placeholder="<?php echo ossn_print('last:name'); ?>"/>
         </div>
 
         <div>
-            <input type="text" name="email" placeholder="Email"/>
-            <input name="email_re" type="text" placeholder="Re-enter Email"/>
+            <input type="text" name="email" placeholder="<?php echo ossn_print('email'); ?>"/>
+            <input name="email_re" type="text" placeholder="<?php echo ossn_print('email:again'); ?>"/>
         </div>
 
         <div>
-            <input type="text" name="username" placeholder="Username" class="long-input"/>
-            <input type="password" name="password" placeholder="Password" class="long-input"/>
+            <input type="text" name="username" placeholder="<?php echo ossn_print('username'); ?>" class="long-input"/>
+            <input type="password" name="password" placeholder="<?php echo ossn_print('password'); ?>" class="long-input"/>
         </div>
         <div>
             <label><?php echo ossn_print('birthdate'); ?> </label>
@@ -69,12 +69,12 @@ require_once(dirname(dirname(dirname(__FILE__))) . '/system/start.php');
         <br/>
 
         <div>
-            <label> Gender </label>
+            <label> <?php echo ossn_print('gender'); ?> </label>
             <span><input type="radio" name="gender" value="male"/> <?php echo ossn_print('male'); ?></span>
             <span><input type="radio" name="gender" value="female"/> <?php echo ossn_print('female'); ?></span>
         </div>
         <br/>
-        <input type="submit" value="Install" class="button-blue primary"/>
+        <input type="submit" value="<?php echo ossn_installation_print('ossn:install:create'); ?>" class="button-blue primary"/>
 
         </from>
     </form>
