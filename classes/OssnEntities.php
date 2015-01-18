@@ -296,22 +296,19 @@ class OssnEntities extends OssnDatabase {
 		if(isset($this->guid) && !empty($this->guid)){
 			$guid = $this->guid;
 		}
-		
 		$params['from'] = 'ossn_entities';
 		$params['wheres'] = array("guid = '{$guid}'");
-
-        if ($this->delete($params)) {
-
-			$metadata['from'] = 'ossn_entities';
+		
+        	if ($this->delete($params)) {
+			$metadata['from'] = 'ossn_entities_metadata';
 			$metadata['wheres'] = array("guid = '{$guid}'");			
-            $this->delete($metadata);
+            		$this->delete($metadata);
 			
 			$vars['entity'] = $guid;
-            ossn_trigger_callback('delete', 'entity', $vars);
-			
-            return true;
-        }
-        return false;
+            		ossn_trigger_callback('delete', 'entity', $vars);
+        	 	return true;
+        	}
+        	return false;
     }
     /**
      * Get a parameter from object
