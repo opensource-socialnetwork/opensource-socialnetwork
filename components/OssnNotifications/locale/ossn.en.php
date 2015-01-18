@@ -26,5 +26,7 @@ $en = array(
     'notifications' => 'Notifications',
     'see:all' => 'See All',
     'friend:requests' => 'Friend Requests',
+    'ossn:notifications:friendrequest:confirmbutton' => 'Confirm',
+    'ossn:notifications:friendrequest:denybutton' => 'Deny',
 );
 ossn_register_languages('en', $en); 
