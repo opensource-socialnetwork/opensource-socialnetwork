@@ -126,6 +126,7 @@ Ossn.removeFriendRequset = function($guid) {
     Ossn.ajaxRequest({
         url: action,
         form: '#remove-friend-' + $guid,
+        action:true,
 
         beforeSend: function(request) {
             $('#notification-friend-item-' + $guid).find('form').hide();
