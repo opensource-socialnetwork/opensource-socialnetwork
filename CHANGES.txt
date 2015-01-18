@@ -79,6 +79,7 @@ General:
  * Resend validation email if non-validated user try to login and show message.
  * Show a notification to group owner if new member join group #191
  * Display tinymce menu according to Ossn language #242
+ * German Language Included.
 
 Language Strings Addition:
 
