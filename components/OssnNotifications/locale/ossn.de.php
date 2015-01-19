@@ -26,5 +26,8 @@ $de = array(
     'notifications' => 'Benachrichtigungen',
     'see:all' => 'Alle ansehen',
     'friend:requests' => 'Freundschafts-Anfragen',
+
+    'ossn:notifications:friendrequest:confirmbutton' => 'Annehmen',
+    'ossn:notifications:friendrequest:denybutton' => 'Ablehnen',    
 );
 ossn_register_languages('de', $de); 
