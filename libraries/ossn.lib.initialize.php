@@ -9,8 +9,12 @@
  * @link      http://www.opensource-socialnetwork.com/licence
  */
 
-ossn_register_language('en', ossn_route()->locale . 'ossn.en.php');
-ossn_load_locales();
+//register all available language
+$available_languages = ossn_get_available_languages();
+foreach($available_languages as $language){
+	ossn_register_language($language, ossn_route()->locale . "ossn.{$language}.php");
+}
+ossn_default_load_locales();
 /**
  * Initialize the css library
  *
