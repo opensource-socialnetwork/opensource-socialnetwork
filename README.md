@@ -1,5 +1,5 @@
-Opensource-Socialnetwork [2.0-dev] [![Build Status](https://travis-ci.org/opensource-socialnetwork/opensource-socialnetwork.svg?branch=master)](https://travis-ci.org/opensource-socialnetwork/opensource-socialnetwork)
-=====================================
+Open Source Social Network [2.0-dev] [![Build Status](https://travis-ci.org/opensource-socialnetwork/opensource-socialnetwork.svg?branch=master)](https://travis-ci.org/opensource-socialnetwork/opensource-socialnetwork)
+======================================
 
 Opensource-Socialnetwork (OSSN) is a social networking software written in PHP. It allows you to make a social networking website and helps your members build social relationships, with people who share similar professional or personal interests.
 
