@@ -262,6 +262,7 @@ Um Dein Passwort zurückzusetzen klicke bitte auf den folgenden Link oder kopier
 	'admin:sidemenu:settings' => 'Einstellungen',
 	'admin:sidemenu:usermanager' => 'Benutzer Verwaltung',
 	'cancel' => 'Abbrechen',
+	'ossn:language:complete' => 'Komplett',
     /*
        * List of ISO 639-1 language codes
        * http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
