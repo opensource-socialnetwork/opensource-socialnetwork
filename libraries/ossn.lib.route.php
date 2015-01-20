@@ -73,6 +73,7 @@ function ossn_route() {
         'upgrade' => "$root/upgrade/",
         'cache' => "{$root}/cache/",
         'js' => "$root/javascripts/",
+		'components' => "$root/components",
     );
     return arrayObject($defaults);
 }
