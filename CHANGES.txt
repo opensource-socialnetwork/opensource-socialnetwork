@@ -80,7 +80,7 @@ General:
  * Show a notification to group owner if new member join group #191
  * Display tinymce menu according to Ossn language #242
  * German Language Included.
-
+ * There is no need to edit core files to register langauages its now automatically registered if language is available.
 Language Strings Addition:
 
 locale / 
