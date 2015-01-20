@@ -10,6 +10,9 @@
  */
 $setting = new OssnSite;
 $setting = $setting->getAllSettings();
+
+//load languages
+ossn_load_available_languages();
 ?>
 <label><?php echo ossn_print('website:name'); ?></label>
 <input type='text' name="sitename" value="<?php echo $setting->site_name; ?>" placeholder='Website Name'/>
@@ -18,8 +21,9 @@ $setting = $setting->getAllSettings();
 
 <label><?php echo ossn_print('default:lang'); ?></label>
 <select name="sitelang">
-    <?php foreach (ossn_locales() as $lang) {
-        if ($lang == $setting->language) {
+    <?php foreach (ossn_get_installed_translations() as $lang => $translation) {
+		$select = '';
+		if ($lang == $setting->language) {
             $select = 'selected';
         }
         ?>
