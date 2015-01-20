@@ -48,7 +48,7 @@ function ossn_total_components() {
  *
  * @return array
  */
-ossn_load_locales();
+ossn_default_load_locales();
 
 /**
  * Includes all components and active theme
