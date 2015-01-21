@@ -9,6 +9,7 @@
  * @link      http://www.opensource-socialnetwork.org/licence
  */
 $de = array(
+	'ossnwall' => 'OssnWall',			
     'post:created' => 'Der Beitrag wurde erstellt',
     'post:create:error' => 'Beitrag kann nicht erstellt werden',
     'post' => 'Posten',
@@ -21,5 +22,9 @@ $de = array(
     'post:delete:fail' => 'Der Beitrag kann nicht gelöscht werden',
     'post:delete:success' => 'Der Beitrag wurde gelöscht',
     'post:select:privacy' => 'Wähle die Sichtbarkeit dieses Beitrages',
+	'ossn:wall:settings:save:error' => 'Die Einstellungen können nicht gespeichert werden',
+	'ossn:wall:settings:saved' => 'Die Einstellungen wurden gespeichert',
+	'ossn:wall:admin:notice' => 'Homepage Beiträge',
+	'ossn:wall:allsite:posts' => 'Alle Website Beiträge',
 );
 ossn_register_languages('de', $de); 
