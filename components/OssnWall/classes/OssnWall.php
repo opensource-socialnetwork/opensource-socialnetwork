@@ -233,8 +233,8 @@ class OssnWall extends OssnObject {
 		   				AND o.guid = e.owner_guid";
 					
 						$this->OssnDatabase->statement("SELECT o.* FROM ossn_entities as e, 
-					  									ossn_entities_metadata as md, 
-					  									ossn_object as o WHERE({$wheres}) ORDER BY guid DESC;");
+					  					ossn_entities_metadata as md, 
+					  					ossn_object as o WHERE({$wheres}) ORDER BY guid DESC;");
 						$this->OssnDatabase->execute();
 						$data = $this->OssnDatabase->fetch(true);
 						if($data){
