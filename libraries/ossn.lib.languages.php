@@ -123,8 +123,6 @@ function ossn_load_json_locales() {
 
 function ossn_get_installed_translations() {
 		global $Ossn;
-		
-		
 		$installed = array();
 		
 		foreach($Ossn->locale as $k => $v) {
@@ -146,9 +144,6 @@ function ossn_get_installed_translations() {
  */
 function ossn_get_language_completeness($language) {
 		global $Ossn;
-		
-		// Ensure that all possible translations are loaded
-		
 		$en = count($Ossn->localestr['en']);
 		
 		$missing = ossn_get_missing_language_keys($language);
