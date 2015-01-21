@@ -9,15 +9,21 @@
  * @link      http://www.opensource-socialnetwork.org/licence
  */
 $posts = new OssnWall;
-$posts = $posts->GetPosts();
-
+$accesstype = ossn_get_homepage_wall_access();
+if($accesstype == 'friends'){
+ 	$posts = $posts->getFriendsPosts();
+} elseif($accesstype == 'public'){
+	$posts = $posts->GetPosts();	
+}
 $Pagination = new OssnPagination;
 $Pagination->setItem($posts);
 $posts = $Pagination->getItem();
 
 if ($posts) {
     foreach ($posts as $post) {
-
+		if(!isset($post->poster_guid)){
+			$post = ossn_get_object($post->guid);
+		}
         $data = json_decode(html_entity_decode($post->description));
         $text = $data->post;
         $location = '';
