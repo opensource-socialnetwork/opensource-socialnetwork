@@ -9,7 +9,7 @@
  * @link      http://www.opensource-socialnetwork.org/licence
  */
 $en = array(
-	'ossnwall' => 'OssnWall',			
+    'ossnwall' => 'OssnWall',
     'post:created' => 'Successfully created Post',
     'post:create:error' => 'Cannot create post',
     'post' => 'Post',
@@ -22,9 +22,9 @@ $en = array(
     'post:delete:fail' => 'Cannot delete post',
     'post:delete:success' => 'Post successfully deleted',
     'post:select:privacy' => 'Please select privacy for wall post',
-	'ossn:wall:settings:save:error' => 'Settings saved',
-	'ossn:wall:settings:saved' => 'Settings saved',
-	'ossn:wall:admin:notice' => 'Homepage Posts',
-	'ossn:wall:allsite:posts' => 'All site posts',
+    'ossn:wall:settings:save:error' => 'Settings saved',
+    'ossn:wall:settings:saved' => 'Settings saved',
+    'ossn:wall:admin:notice' => 'Homepage Posts',
+    'ossn:wall:allsite:posts' => 'All site posts'
 );
-ossn_register_languages('en', $en); 
+ossn_register_languages('en', $en);
