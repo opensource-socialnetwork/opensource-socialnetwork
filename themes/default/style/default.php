@@ -2,8 +2,7 @@
 *    OpenSource-SocialNetwork
 *
 * @package   (Informatikon.com).ossn
-* @author    OSSN Core Team
-<info@opensource-socialnetwork.com>
+* @author    OSSN Core Team <info@opensource-socialnetwork.com>
 * @copyright 2014 iNFORMATIKON TECHNOLOGIES
 * @license   General Public Licence http://opensource-socialnetwork.com/licence
 * @link      http://www.opensource-socialnetwork.com/licence
@@ -123,7 +122,7 @@ margin: 0 auto;
 padding-bottom: 20px;
 }
 .home-left-contents {
-width: 565px;
+width: 556px;
 display:inline-table;
 float:left;
 }
@@ -136,6 +135,7 @@ margin-top: 32px;
 display:inline-table;
 margin-left: 35px;
 width: 376px;
+float:right;
 }
 .home-right-contents h1{
 font-size: 30px;
