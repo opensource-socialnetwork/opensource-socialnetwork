@@ -131,7 +131,7 @@ margin: 0 auto;
 padding-bottom: 20px;
 }
 .home-left-contents {
-width: 565px;
+width: 556px;
 display:inline-table;
 float:left;
 }
