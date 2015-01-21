@@ -9,7 +9,7 @@
  * @license   General Public Licence http://opensource-socialnetwork.com/licence
  * @link      http://www.opensource-socialnetwork.com/licence
  */
-class OssnDatabase {
+class OssnDatabase extends OssnBase{
     /**
      * Connect to mysql database
      *
