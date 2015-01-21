@@ -311,21 +311,6 @@ class OssnEntities extends OssnDatabase {
         	return false;
     }
     /**
-     * Get a parameter from object
-     *
-     * @params = parameter
-     * @param string $param
-     *
-     * @return string;
-     */
-    public function getParam($param) {
-        if (isset($this->$param)) {
-            return $this->$param;
-        }
-        return false;
-    }
-
-    /**
      * Get subtypes from entites.
      *
      * @required (object)->data
@@ -342,15 +327,4 @@ class OssnEntities extends OssnDatabase {
         }
         return false;
     }
-    /**
-     * Get Entity guid.
-     *
-     * @return int;
-     */	
-	public function getGUID(){
-		if(isset($this->guid)){
-			return $this->guid;
-		}
-		return false;
-	}
 }//class
