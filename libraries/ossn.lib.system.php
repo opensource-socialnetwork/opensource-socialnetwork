@@ -652,7 +652,6 @@ function ossn_errros() {
  * @return boolean
  * @throws Exception
  * @access private
- * @todo Replace error_log calls with elgg_log calls.
  */
 function _ossn_php_error_handler($errno, $errmsg, $filename, $linenum, $vars) {
 	$error = date("Y-m-d H:i:s (T)") . ": \"$errmsg\" in file $filename (line $linenum)";
