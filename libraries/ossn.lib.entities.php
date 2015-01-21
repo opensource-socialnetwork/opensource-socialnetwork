@@ -46,7 +46,7 @@ function ossn_get_entities(array $params){
 	  $entities->type = $params['type'];
 	  
 	  if(isset($params['subtype'])){
-		  $entities->type = $params['subtype'];	  
+		  $entities->subtype = $params['subtype'];	  
 	  }
 	  if(isset($params['order_by'])){
 		  $entities->order_by = $params['order_by'];	  
