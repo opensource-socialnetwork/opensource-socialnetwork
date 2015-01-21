@@ -42,3 +42,4 @@
 	    <span><?php echo ossn_print('privacy'); ?></span>
 	</li>
 </div>
+<input type="hidden" name="privacy" id="ossn-wall-privacy"/>
