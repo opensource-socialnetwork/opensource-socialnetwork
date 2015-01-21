@@ -53,5 +53,5 @@ if (!isset($params['user']->guid)) {
 	</li>
 </div>
 <input type="hidden" value="<?php echo $params['user']->guid; ?>" name="wallowner"/>
-<input type="hidden" name="privacy" id="ossn-wall-privacy"/>
+<input type="hidden" name="privacy" id="ossn-wall-privacy" value="<?php echo OSSN_PUBLIC; ?>"/>
       
