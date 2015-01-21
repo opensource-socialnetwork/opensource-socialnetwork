@@ -82,6 +82,10 @@ General:
  * German Language Included.
  * There is no need to edit core files to register langauages its now automatically registered if language is available.
 Language Strings Addition:
+ * Added OssnWall settings to select homepage posts (friends/public)
+
+Language strings added:
+There are many new language strings added, few of them are:
 
 locale / 
   
