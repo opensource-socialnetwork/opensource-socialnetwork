@@ -11,6 +11,7 @@
 $Ossn->classes = array(
 	'SiteException',				   
 	'DatabaseException',
+	'Base',
     'Mail',
     'Pagination',
     'Database',
