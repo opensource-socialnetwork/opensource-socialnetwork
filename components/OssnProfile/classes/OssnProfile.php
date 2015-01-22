@@ -109,7 +109,7 @@ class OssnProfile extends OssnDatabase {
         return false;
     }
     /**
-     * Add a wall post for new profile picture
+     * Add a wall post for new profile/cover picture
      *
      * @param int $ownerguid = Guid of owner
 	 * @param int $itemguid photo guid
@@ -119,6 +119,7 @@ class OssnProfile extends OssnDatabase {
      */	
 	public function addPhotoWallPost($ownerguid, $itemguid, $type = 'profile:photo'){
 		if(empty($ownerguid) || empty($itemguid)){
+			error_log("Empty item/owner guid has been provided for new cover wall post", 0);
 			return false;
 		}
 		$this->wall = new OssnWall;
