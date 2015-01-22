@@ -37,12 +37,14 @@ function ossn_photos_initialize() {
     ossn_add_hook('notification:view', 'comments:entity:file:ossn:aphoto', 'ossn_notification_like_photo');
     ossn_add_hook('photo:view', 'profile:controls', 'ossn_profile_photo_menu');
     ossn_add_hook('photo:view', 'album:controls', 'ossn_album_photo_menu');
+    ossn_add_hook('cover:view', 'profile:controls', 'ossn_album_cover_photo_menu');
 
     //actions
     if (ossn_isLoggedin()) {
         ossn_register_action('ossn/album/add', __OSSN_PHOTOS__ . 'actions/album/add.php');
         ossn_register_action('ossn/photos/add', __OSSN_PHOTOS__ . 'actions/photos/add.php');
         ossn_register_action('profile/photo/delete', __OSSN_PHOTOS__ . 'actions/photo/profile/delete.php');
+        ossn_register_action('profile/cover/photo/delete', __OSSN_PHOTOS__ . 'actions/photo/profile/cover/delete.php');
         ossn_register_action('photo/delete', __OSSN_PHOTOS__ . 'actions/photo/delete.php');
     }
     //callbacks
@@ -234,6 +236,37 @@ function ossn_photos_page_handler($album) {
                 echo ossn_view_page($title, $content);
             }
             break;
+     		case 'cover':
+            if (isset($album[1]) && isset($album[2]) && $album[1] == 'view') {
+
+                $title = ossn_print('cover:view');
+                $photo['photo'] = $album[2];
+                $type = input('type');
+
+                $image = ossn_get_entity($photo['photo']);
+                $photo['entity'] = $image;
+
+                //redirect user if photo is empty
+                if (empty($image->value)) {
+                    redirect();
+                }
+                $addphotos = array(
+                    'text' => ossn_print('back'),
+                    'href' => 'javascript::;',
+                    'class' => 'button-grey',
+                );
+                $control = ossn_view('system/templates/link', $addphotos);
+                $contents = array(
+                    'title' => 'Photos',
+                    'content' => ossn_view('components/OssnPhotos/pages/profile/covers/view', $photo),
+                    'controls' => $control,
+                );
+                //set page layout
+                $module['content'] = ossn_set_page_layout('media', $contents);
+                $content = ossn_set_page_layout('contents', $module);
+                echo ossn_view_page($title, $content);
+            }
+            break;				
         case 'add':
             //add photos (ajax)
             if (!ossn_is_xhr()) {
@@ -312,6 +345,26 @@ function ossn_album_page_handler($album) {
                 ossn_error_page();
             }
             break;
+       case 'getcover':
+
+            $guid = $album[1];
+            $picture = $album[2];
+			$type = input('type');
+            // get image size
+            $datadir = ossn_get_userdata("user/{$guid}/profile/cover/{$picture}");
+            if(empty($type)){
+				$image = file_get_contents($datadir);
+			} elseif($type == 1){
+				$image =  ossn_resize_image($datadir, 170, 170, true);
+			}
+            //get image file else show error page
+            if (is_file($datadir)) {
+                header('Content-Type: image/jpeg');
+                echo $image;
+            } else {
+                ossn_error_page();
+            }
+            break;			
         case 'view':
             if (isset($album[1])) {
                 $title = ossn_print('photos');
@@ -377,6 +430,27 @@ function ossn_album_page_handler($album) {
                 echo ossn_view_page($title, $content);
             }
             break;
+        case 'covers':
+            if (isset($album[2]) && $album[1] == 'profile') {
+                $title = ossn_print('profile:covers');
+
+                $user['user'] = ossn_user_by_guid($album[2]);
+                if (empty($user['user']->guid)) {
+                    ossn_error_page();
+                }
+                //view profile photos in module layout
+                $contents = array(
+                    'title' => ossn_print('covers'),
+                    'content' => ossn_view('components/OssnPhotos/pages/profile/covers/all', $user),
+                    'controls' => false,
+                    'module_width' => '850px',
+                );
+                $module['content'] = ossn_set_page_layout('module', $contents);
+                //set page layout
+                $content = ossn_set_page_layout('contents', $module);
+                echo ossn_view_page($title, $content);
+            }
+            break;			
         case 'add':
             //add photos (ajax)
             echo ossn_view('system/templates/ossnbox', array(
@@ -447,7 +521,17 @@ function ossn_album_photo_menu($hook, $type, $return, $params) {
         return ossn_view('components/OssnPhotos/views/albumphoto/menu', $params);
     }
 }
-
+/**
+ * Show a leftside menu on profile cover photo vieww
+ *
+ * @return mix data
+ * @access private;
+ */
+function ossn_album_cover_photo_menu($hook, $type, $return, $params) {
+    if ($params->owner_guid == ossn_loggedin_user()->guid || ossn_isAdminLoggedin()) {
+        return ossn_view('components/OssnPhotos/views/coverphoto/menu', $params);
+    }
+}
 /**
  * Delete photos like
  *
