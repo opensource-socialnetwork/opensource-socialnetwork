@@ -13,10 +13,19 @@ $albums = new OssnAlbums;
 $photos = $albums->GetAlbums($params['user']->guid);
 $profiel_photo = ossn_site_url("avatar/{$params['user']->username}/larger");
 $pphotos_album = ossn_site_url("album/profile/{$params['user']->guid}");
+
+$profile_covers_url = ossn_site_url("album/covers/profile/{$params['user']->guid}");
+$profile_cover = ossn_site_url("cover/{$params['user']->username}/1");
+//show profile pictures album
 echo "<li>
 	<a href='{$pphotos_album}'><img src='{$profiel_photo}' class='pthumb' />
 	 <div class='ossn-album-name'>" . ossn_print('profile:photos') . "</div></a>
 	</li>";
+//show profile cover photos	
+echo "<li>
+	<a href='{$profile_covers_url}'><img src='{$profile_cover}' class='pthumb' />
+	 <div class='ossn-album-name'>" . ossn_print('profile:covers') . "</div></a>
+	</li>";	
 if ($photos) {
     foreach ($photos as $photo) {
         if (ossn_access_validate($photo->access, $photo->owner_guid)) {
