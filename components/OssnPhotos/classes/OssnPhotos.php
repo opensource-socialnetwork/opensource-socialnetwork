@@ -101,8 +101,6 @@ class OssnPhotos extends OssnFile {
     /**
      * Delete profile photo
      *
-     * @params = $this->photoid Id of photo
-     *
      * @return bool;
      */
     public function deleteProfilePhoto() {
@@ -118,7 +116,9 @@ class OssnPhotos extends OssnFile {
             foreach (ossn_user_image_sizes() as $size => $demensions) {
                 $filename = str_replace('profile/photo/', '', $file->value);
                 $filename = ossn_get_userdata("user/{$file->owner_guid}/profile/photo/{$size}_{$filename}");
-                unlink($filename);
+                if(is_file($filename)){
+					unlink($filename);
+				}
             }
             //delete photo from database
             if ($this->deleteEntity($file->guid)) {
@@ -127,6 +127,26 @@ class OssnPhotos extends OssnFile {
                 return true;
             }
 
+        }
+        return false;
+    }	
+    /**
+     * Delete profile cover photo
+     *
+     * @return bool;
+     */
+    public function deleteProfileCoverPhoto() {
+         if (isset($this->photoid)) {
+
+            $this->file_id = $this->photoid;
+            $this->entity = new OssnEntities;
+            $file = $this->fetchFile();
+            $source = ossn_get_userdata("user/{$file->owner_guid}/{$file->value}");
+
+			if(unlink($source)){
+				ossn_trigger_callback('delete', 'profile:cover:photo', $params);
+			}
+      
         }
         return false;
     }
