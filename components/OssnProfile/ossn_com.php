@@ -35,6 +35,7 @@ function ossn_profile() {
     ossn_register_callback('page', 'load:search', 'ossn_search_users_link');
     ossn_register_callback('page', 'load:profile', 'ossn_profile_load_event');
 	ossn_register_callback('delete', 'profile:photo', 'ossn_profile_delete_photo_wallpost');
+	ossn_register_callback('delete', 'profile:cover:photo', 'ossn_profile_delete_photo_wallpost');
 
     //hooks
     ossn_add_hook('newsfeed', "sidebar:left", 'profile_photo_newsefeed', 1);
@@ -43,7 +44,8 @@ function ossn_profile() {
     ossn_add_hook('profile', 'subpage', 'profile_edit_page');
     ossn_add_hook('profile', 'modules', 'profile_modules');
 	ossn_add_hook('wall:template', 'profile:photo', 'ossn_wall_profile_photo');
-
+	ossn_add_hook('wall:template', 'cover:photo', 'ossn_wall_profile_cover_photo');
+	
     //notifications
     ossn_add_hook('notification:view', 'like:entity:file:profile:photo', 'ossn_notification_like_profile_photo');
     ossn_add_hook('notification:view', 'comments:entity:file:profile:photo', 'ossn_notification_like_profile_photo');
@@ -273,15 +275,20 @@ function get_profile_photo($guid, $size) {
  *
  * @return string|null data;
  */
-function get_cover_photo($guid) {
+function get_cover_photo($guid, $params = array()) {
     $photo = new OssnFile;
     $photo->owner_guid = $guid;
     $photo->type = 'user';
     $photo->subtype = 'profile:cover';
     $photos = $photo->getFiles();
     if (isset($photos->{0}->value)) {
-        $datadir = ossn_get_userdata("user/{$guid}/{$photos->{0}->value}");
-        return file_get_contents($datadir);
+        if(!empty($params[1]) && $params[1] == 1){
+        	$datadir = ossn_get_userdata("user/{$guid}/{$photos->{0}->value}");	
+			echo ossn_resize_image($datadir, 170, 170, true);
+		} else {
+	        $datadir = ossn_get_userdata("user/{$guid}/{$photos->{0}->value}");		
+			return file_get_contents($datadir);
+		}
     } else {
         redirect('components/OssnProfile/images/transparent.png');
     }
@@ -291,12 +298,12 @@ function get_cover_photo($guid) {
  *
  * @return image
  */
-function cover_page_handler($avatar) {
-    if (isset($avatar[0])) {
-        $user = ossn_user_by_username($avatar[0]);
+function cover_page_handler($cover) {
+    if (isset($cover[0])) {
+        $user = ossn_user_by_username($cover[0]);
         if (!empty($user->guid)) {
             header('Content-Type: image/jpeg');
-            echo get_cover_photo($user->guid);
+            echo get_cover_photo($user->guid, $cover);
         }
     }
 }
@@ -360,14 +367,35 @@ function ossn_wall_profile_photo($hook, $type, $return, $params){
 	return ossn_view("components/OssnProfile/templates/wall/profile/photo", $params);
 }
 /**
+ * Template for profile cover photo created by ossnwall
+ *
+ * @return mixed data;
+ */
+function ossn_wall_profile_cover_photo($hook, $type, $return, $params){
+	return ossn_view("components/OssnProfile/templates/wall/cover/photo", $params);
+}
+/**
  * Get profile photo url for wall
  *
  * @return string;
  */
 function ossn_profile_photo_wall_url($photo){
 	if($photo){
-        $imagefile = str_replace('profile/photo/', '', $photo->value);		
+        $imagefile = str_replace(array('profile/photo/'), '', $photo->value);		
 	  	$image = ossn_site_url("album/getphoto/{$photo->owner_guid}/{$imagefile}?type=1");	
+		return $image;
+	}
+	return false;
+}
+/**
+ * Get profile photo url for wall
+ *
+ * @return string;
+ */
+function ossn_profile_coverphoto_wall_url($photo){
+	if($photo){
+        $imagefile = str_replace(array('profile/cover/'), '', $photo->value);		
+	  	$image = ossn_site_url("album/getcover/{$photo->owner_guid}/{$imagefile}");	
 		return $image;
 	}
 	return false;

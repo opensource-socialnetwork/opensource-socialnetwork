@@ -16,5 +16,6 @@ $de = array(
     'message' => 'Nachricht',
     'save:position' => 'Position speichern',
 	'ossn:profile:picture:updated' => 'Das Profil-Foto wurde aktualisiert.',
+	'ossn:profile:cover:picture:updated' => 'Das Profilabdeckung wurde aktualisiert.',
 );
 ossn_register_languages('de', $de); 
