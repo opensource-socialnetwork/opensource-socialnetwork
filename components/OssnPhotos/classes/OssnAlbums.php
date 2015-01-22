@@ -108,5 +108,20 @@ class OssnAlbums extends OssnObject {
         $photos->order_by = 'guid DESC';
         return $photos->getFiles();
     }
+    /**
+     * Get user cover photos album
+     *
+     * @params = $user User guid
+     *
+     * @return object;
+     */
+    public function GetUserCoverPhotos($user) {
+        $photos = new OssnFile;
+        $photos->owner_guid = $user;
+        $photos->type = 'user';
+        $photos->subtype = 'profile:cover';
+        $photos->order_by = 'guid DESC';
+        return $photos->getFiles();
+    }
 
 }
