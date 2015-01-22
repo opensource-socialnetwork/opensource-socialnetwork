@@ -28,6 +28,10 @@ $de = array(
     'back' => 'Zurück',
     'add:photos' => 'Fotos hinzufügen',
     'delete:photo' => 'Foto löschen',
+	
+	'covers' => 'Covers',
+	'cover:view' => 'Cover View',
+	'profile:covers' => 'Profile Covers',
     
 );
 ossn_register_languages('de', $de); 
