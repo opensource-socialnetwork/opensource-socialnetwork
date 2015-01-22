@@ -29,9 +29,9 @@ $en = array(
     'add:photos' => 'Add photos',
     'delete:photo' => 'Delete photo',
 	
-	'covers' => 'Covers',
-	'cover:view' => 'Cover View',
-	'profile:covers' => 'Profile Covers',
+    'covers' => 'Covers',
+    'cover:view' => 'Cover View',
+    'profile:covers' => 'Profile Covers',
 
 );
 ossn_register_languages('en', $en); 
