@@ -29,9 +29,9 @@ $de = array(
     'add:photos' => 'Fotos hinzufügen',
     'delete:photo' => 'Foto löschen',
 	
-    'covers' => 'Covers',
-    'cover:view' => 'Cover View',
-    'profile:covers' => 'Profile Covers',
+    'covers' => 'Titelbilder',
+    'cover:view' => 'Titelbild Ansicht',
+    'profile:covers' => 'Profil Titelbilder',
     
 );
 ossn_register_languages('de', $de); 
