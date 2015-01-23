@@ -487,7 +487,7 @@ class OssnUser extends OssnEntities {
         if ($user_activation->activation == $code) {
             $params['table'] = 'ossn_users';
             $params['names'] = array('activation');
-            $params['values'] = array(NULL);
+            $params['values'] = array('');
             $params['wheres'] = array("guid='{$guid}'");
             if ($this->OssnDatabase->update($params)) {
                 return true;
