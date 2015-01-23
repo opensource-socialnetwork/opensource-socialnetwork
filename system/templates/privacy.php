@@ -9,6 +9,17 @@
  * @link      http://www.opensource-socialnetwork.com/licence
  */
 ?>
+<script type="text/javascript">
+    var OSSN_PUBLIC = 2;
+    var OSSN_FRIENDS = 3;
+    var wallprivacy = $('#ossn-wall-privacy').val();
+    
+    if (wallprivacy == OSSN_PUBLIC) {
+        $('#radio-public-privacy').attr('checked',true);
+    } else if (wallprivacy == OSSN_FRIENDS) {
+        $('#radio-private-privacy').attr('checked',true);
+    }
+</script>
 <div class="ossn-privacy">
     <table border="0">
         <tr>
@@ -17,12 +28,12 @@
 
             </td>
             <td>
-                <input type="radio" name="privacy" value="2" checked="checked"/>
+                <input id="radio-public-privacy" type="radio" name="privacy" value="2"/>
                 <span><?php echo ossn_print('public'); ?></span>
 
                 <p> <?php echo ossn_print('privacy:public:note'); ?> </p>
 
-                <input type="radio" name="privacy" value="3"/>
+                <input id="radio-private-privacy" type="radio" name="privacy" value="3"/>
                 <span><?php echo ossn_print('friends'); ?></span>
 
                 <p> <?php echo ossn_print('privacy:friends:note'); ?> </p>
