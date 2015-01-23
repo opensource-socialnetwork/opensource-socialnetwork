@@ -20,7 +20,7 @@
 		$public = 'selected';
 	}
 	?>
- 	<option value="friends" <?php echo $friends;?>><?php echo ossn_print('ossn:wall:allsite:posts');?></option>
-    <option value="public" <?php echo $public;?>><?php echo ossn_print('user:friends');?></option>
+ 	<option value="friends" <?php echo $friends;?>><?php echo ossn_print('user:friends');?></option>
+    <option value="public" <?php echo $public;?>><?php echo ossn_print('public');?></option>
  </select>
  <input type="submit" value="<?php echo ossn_print("save");?>" class="ossn-admin-button button-dark-blue"/>
