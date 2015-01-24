@@ -116,5 +116,7 @@ function ossn_messages_page($pages) {
 
     }
 }
-
+function ossn_message_print($message){
+	return nl2br($message);
+}
 ossn_register_callback('ossn', 'init', 'ossn_messages');
