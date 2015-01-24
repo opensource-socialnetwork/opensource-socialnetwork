@@ -44,6 +44,8 @@ if ($posts) {
         } else {
             $image = '';
         }
+		//lastchage: Group admins are unable to delete member posting on group wall #171
+		$post->owner_guid = $params['group']['group']->owner_guid;
         $user = ossn_user_by_guid($post->poster_guid);
         echo ossn_wall_view_template(array(
             'post' => $post,
