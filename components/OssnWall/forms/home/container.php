@@ -12,11 +12,6 @@ if (!isset($params['user']->guid)) {
     $params['user'] = new stdClass;
     $params['user']->guid = '';
 }
-if(ossn_get_homepage_wall_access() == 'friends'){
-	$privacy = OSSN_FRIENDS;
-} elseif(ossn_get_homepage_wall_access() == 'public'){
-	$privacy = OSSN_PUBLIC;
-}
 ?>
 <div class="tabs-input">
     <div class="wall-tabs">
@@ -58,5 +53,5 @@ if(ossn_get_homepage_wall_access() == 'friends'){
 	</li>
 </div>
 <input type="hidden" value="<?php echo $params['user']->guid; ?>" name="wallowner"/>
-<input type="hidden" name="privacy" id="ossn-wall-privacy" value="<?php echo $privacy; ?>"/>
+<input type="hidden" name="privacy" id="ossn-wall-privacy" value="<?php echo OSSN_PUBLIC; ?>"/>
       
