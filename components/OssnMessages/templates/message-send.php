@@ -9,7 +9,7 @@
  * @link      http://www.opensource-socialnetwork.com/licence
  */
 $user = $params['user'];
-$message = $params['message']
+$message = ossn_message_print($params['message']);
 ?>
 <div class="message-item">
     <img src="<?php echo ossn_site_url(); ?>avatar/<?php echo $user->username; ?>/smaller"/>
