@@ -81,8 +81,16 @@ if (isset($params['user']->guid)) {
                             <img src="<?php echo ossn_site_url(); ?>avatar/<?php echo $user->username; ?>/smaller"/>
 
                             <div class="data">
-                                <div class="name"><a href=""><?php echo $user->fullname; ?></a></div>
-                                <div class="text"> <?php echo $message->message; ?> </div>
+                                <div class="name"><a href="<?php echo $user->profileURL(); ?>"><?php echo $user->fullname; ?></a></div>
+                                <div class="text">
+  							  <?php
+                                if (class_exists('OssnChat')) {
+                                    echo OssnChat::replaceIcon(ossn_message_print($message->message));
+                                } else {
+                                    echo ossn_message_print($message->message);
+                                }
+                                ?>                                
+                                 </div>
                             </div>
                         </div>
                     <?php
