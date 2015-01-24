@@ -135,7 +135,6 @@ margin-top: 32px;
 display:inline-table;
 margin-left: 35px;
 width: 376px;
-float:right;
 }
 .home-right-contents h1{
 font-size: 30px;
