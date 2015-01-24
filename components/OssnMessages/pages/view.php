@@ -84,9 +84,9 @@
                             <div class="text">
                                 <?php
                                 if (class_exists('OssnChat')) {
-                                    echo OssnChat::replaceIcon($message->message);
+                                    echo OssnChat::replaceIcon(ossn_message_print($message->message));
                                 } else {
-                                    echo $message->message;
+                                    echo ossn_message_print($message->message);
                                 }
                                 ?>
                             </div>
