@@ -85,8 +85,29 @@ $(document).ready(function(){
 Ossn.RegisterStartupFunction(function(){
 $(document).ready(function(){
       $('.ossn-wall-privacy').on('click', function(e){
-             Ossn.MessageBox('post/privacy'); 
-      });   
+        // setting up a special message box with customized callback
+        // in order to make radio buttons work in forms/privacy
+        Ossn.PostRequest({
+        url: Ossn.site_url + 'post/privacy',
+        beforeSend: function() {
+            $('.ossn-halt').addClass('ossn-light');
+            $('.ossn-halt').attr('style', 'height:' + $(document).height() + 'px;');
+            $('.ossn-halt').show();
+            $('.ossn-message-box').html('<div class="ossn-loading ossn-box-loading"></div>');
+            $('.ossn-message-box').fadeIn('slow');
+        },
+        callback: function(callback) {
+            $('.ossn-message-box').html(callback).fadeIn();
+            var OSSN_PUBLIC = 2;
+            var OSSN_FRIENDS = 3;
+            var wallprivacy = $('#ossn-wall-privacy').val();
+            if (wallprivacy == OSSN_PUBLIC) {
+                $('#radio-public-privacy').attr('checked', true);
+            } else if (wallprivacy == OSSN_FRIENDS) {
+                $('#radio-private-privacy').attr('checked', true);
+            }            
+        },
+    });      
       $('#ossn-wall-privacy').on('click', function(e){
              var wallprivacy = $('#ossn-wall-privacy-container').find('input[name="privacy"]:checked').val();
              $('#ossn-wall-privacy').val(wallprivacy);
