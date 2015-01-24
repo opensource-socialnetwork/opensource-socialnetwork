@@ -8,6 +8,7 @@
  * @license   General Public Licence http://opensource-socialnetwork.com/licence
  * @link      http://www.opensource-socialnetwork.com/licence
  */
-
+ 
+unset($_SESSION['OSSN_USER']);
 session_destroy();
 redirect();	
