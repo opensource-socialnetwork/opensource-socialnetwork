@@ -87,7 +87,14 @@ function ossn_comment_menu($name, $type, $params) {
         if (com_is_active('OssnWall')) {
             $ossnwall = new OssnWall;
             $post = $ossnwall->GetPost($comment->subject_guid);
-            if (ossn_loggedin_user()->guid == $post->owner_guid) {
+			
+			//check if type is group
+			if($post->type == 'group'){
+				$group = ossn_get_group_by_guid($post->owner_guid);
+			}
+			//group admins must be able to delete ANY comment in their own group #170
+			//just show menu if group owner is loggedin 
+            if ((ossn_loggedin_user()->guid == $post->owner_guid) || (ossn_loggedin_user()->guid == $group->owner_guid)) {
                 ossn_register_menu_link('delete', ossn_print('comment:delete'), array(
                     'href' => ossn_site_url("action/delete/comment?comment={$params['id']}", true),
                     'class' => 'ossn-delete-comment',
@@ -97,12 +104,18 @@ function ossn_comment_menu($name, $type, $params) {
     }
 	$user = ossn_loggedin_user();
 	if(ossn_isLoggedin()){
-      if (($user->guid == $params['owner_guid']) || ossn_isAdminLoggedin()) {
-          ossn_register_menu_link('delete', ossn_print('comment:delete'), array(
+	  if($comment->type == 'comments:entity'){
+		$entity = ossn_get_entity($comment->subject_guid);  
+	  }
+      if (($user->guid == $params['owner_guid']) || ossn_isAdminLoggedin() 
+		|| ($comment->type == 'comments:entity' && $entity->type = 'user' && $user->guid == $entity->owner_guid)) {
+         
+		 ossn_register_menu_link('delete', ossn_print('comment:delete'), array(
               'href' => ossn_site_url("action/delete/comment?comment={$params['id']}", true),
               'class' => 'ossn-delete-comment',
           ), 'comments');
-      }
+      
+	  }
 	}
 }
 
