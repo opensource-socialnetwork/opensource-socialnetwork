@@ -1239,6 +1239,7 @@ border-bottom: 2px solid #2B5470;
 .ossn-footer {
 width: 990px;
 margin: 0 auto;
+padding-bottom: 30px;
 }
 .ossn-footer-inner {
 color: #969696;
