@@ -85,7 +85,15 @@ $(document).ready(function(){
 Ossn.RegisterStartupFunction(function(){
 $(document).ready(function(){
       $('.ossn-wall-privacy').on('click', function(e){
-             Ossn.MessageBox('post/privacy'); 
+            Ossn.MessageBox('post/privacy');
+            var OSSN_PUBLIC = 2;
+            var OSSN_FRIENDS = 3;
+            var wallprivacy = $('#ossn-wall-privacy').val();
+            if (wallprivacy == OSSN_PUBLIC) {
+                $('#radio-public-privacy').attr('checked', true);
+            } else if (wallprivacy == OSSN_FRIENDS) {
+                $('#radio-private-privacy').attr('checked', true);
+            }
       });   
       $('#ossn-wall-privacy').on('click', function(e){
              var wallprivacy = $('#ossn-wall-privacy-container').find('input[name="privacy"]:checked').val();
