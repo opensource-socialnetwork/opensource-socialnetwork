@@ -22,7 +22,9 @@ Bugfixes:
  * Admin dashboard online user count shows 1.
  * Long comments overwriting camera icon #164
  * Long lines exceeding post window boundaries #243
- 
+ * Site admins are unable to access member profile threads without friendship #176
+ * Carriage return/newline handling in messages not satisfying #150
+
 Api Additions:
 
 Functions in existing libraries and classes:
@@ -47,7 +49,10 @@ Functions in existing libraries and classes:
 Classes: 
 
  * OssnDatabaseException  
- * OssnSiteException
+ * OssnSiteException 
+ * OssnUser
+ * OssnBase
+ * OssnDatabase
 
 Libraries:
 
@@ -55,6 +60,9 @@ Libraries:
  * ossn.lib.objects
  * ossn.lib.entities
  * ossn.lib.securitytoken
+ * ossn.lib.languages
+ * ossn.lib.system
+ * ossn.lib.components
 
 General: 
 
@@ -86,6 +94,9 @@ Language Strings Addition:
  * Show a new cover wall post in newsfeed.
  * Allow user to view his covers.
  * Allow user to delete his profile covers.
+ * Group admins are unable to delete member posting on group wall #171
+ * Group admins must be able to delete ANY comment in their own group #170
+ * Entity owner and post owner should able to delete others comments from post.
 
 Language strings added:
 There are many new language strings added, few of them are:
