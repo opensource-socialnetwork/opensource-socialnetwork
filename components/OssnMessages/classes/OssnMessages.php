@@ -20,7 +20,11 @@ class OssnMessages extends OssnDatabase {
      * @return bool;
      */
     public function send($from, $to, $message) {
-        $message = htmlentities($message, ENT_QUOTES, "UTF-8");
+		//send valid text to database only no html tags
+		//missing reconversion of html escaped characters in messages #118
+		$message = html_entity_decode($message, ENT_QUOTES, "UTF-8");
+		$message = strip_tags($message);
+		
         $params['into'] = 'ossn_messages';
         $params['names'] = array(
             'message_from',
@@ -37,6 +41,7 @@ class OssnMessages extends OssnDatabase {
             '0'
         );
         if ($this->insert($params)) {
+			$this->lastMessage = $this->getLastEntry();
             return true;
         }
         return false;
@@ -160,7 +165,7 @@ class OssnMessages extends OssnDatabase {
     /**
      * Count unread messages
      *
-     * @params  $to Users guid
+     * @params  integer $to Users guid
      *
      * @return object
      */
@@ -171,4 +176,20 @@ class OssnMessages extends OssnDatabase {
         $count = $this->select($params, true);
         return $count->{0}->new;
     }
+	/**
+     * Get message by id
+     *
+     * @params  integer $id ID of message
+     *
+     * @return object
+     */
+	public function getMessage($id){
+        $params['from'] = 'ossn_messages';
+        $params['wheres'] = array("id='{$id}'");
+        $get = $this->select($params);
+		if($get){
+			return $get;
+		}
+		return false;
+	}
 }//class
