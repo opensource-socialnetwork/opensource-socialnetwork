@@ -24,6 +24,7 @@ Bugfixes:
  * Long lines exceeding post window boundaries #243
  * Site admins are unable to access member profile threads without friendship #176
  * Carriage return/newline handling in messages not satisfying #150
+ * Links on footer only partly accessable when logged in #203
 
 Api Additions:
 
