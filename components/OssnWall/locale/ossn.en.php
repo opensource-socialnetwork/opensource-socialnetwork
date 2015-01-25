@@ -25,6 +25,7 @@ $en = array(
     'ossn:wall:settings:save:error' => 'Settings saved',
     'ossn:wall:settings:saved' => 'Settings saved',
     'ossn:wall:admin:notice' => 'Homepage Posts',
-    'ossn:wall:allsite:posts' => 'All site posts'
+    'ossn:wall:allsite:posts' => 'All site posts',
+    'ossn:wall:friends:posts' => 'Friends posts only',
 );
 ossn_register_languages('en', $en);
