@@ -25,6 +25,7 @@ $de = array(
     'ossn:wall:settings:save:error' => 'Die Einstellungen können nicht gespeichert werden',
     'ossn:wall:settings:saved' => 'Die Einstellungen wurden gespeichert',
     'ossn:wall:admin:notice' => 'Homepage Beiträge',
-    'ossn:wall:allsite:posts' => 'Alle Website Beiträge'
+    'ossn:wall:allsite:posts' => 'Beiträge aller Benutzer anzeigen',
+    'ossn:wall:friends:posts' => 'Nur Beiträge von Freunden anzeigen',
 );
 ossn_register_languages('de', $de);
