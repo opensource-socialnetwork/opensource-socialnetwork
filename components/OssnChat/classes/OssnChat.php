@@ -165,7 +165,8 @@ class OssnChat extends OssnDatabase {
      * @return bool;
      */
     public function send($from, $to, $message) {
-        $message = htmlentities($message, ENT_QUOTES, "UTF-8");
+        $message = html_entity_decode($message, ENT_QUOTES, "UTF-8");
+        $message = strip_tags($message);
         $params['into'] = 'ossn_messages';
         $params['names'] = array(
             'message_from',
