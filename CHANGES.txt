@@ -25,6 +25,8 @@ Bugfixes:
  * Site admins are unable to access member profile threads without friendship #176
  * Carriage return/newline handling in messages not satisfying #150
  * Links on footer only partly accessable when logged in #203
+ * Could not access your domain. Please make sure your domain is pointing to this server and there is no .htaccess file restricing access to your domain (Softaculous Installer)
+   (Cause SetEnv module not avaialble this check has been removed in v2.0 and Ossn handle this check in different way) 
 
 Api Additions:
 
