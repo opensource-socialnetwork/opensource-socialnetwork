@@ -30,7 +30,24 @@ $Ossn->siteSettings = $settings->getAllSettings();
  * Set exceptions handler 
  */
 set_exception_handler('_ossn_exception_handler'); 
-
+/**
+ * ossn_recursive_array_search 
+ * Searches the array for a given value and returns the corresponding key if successful
+ * @source: http://php.net/manual/en/function.array-search.php
+ * 
+ * @param mixed $needle The searched value. If needle is a string, the comparison is done in a case-sensitive manner.
+ * @param array $haystack The array
+ * @return false|integer
+ */
+function ossn_recursive_array_search($needle, $haystack) { 
+    foreach($haystack as $key => $value) { 
+        $current_key = $key; 
+        if(($needle === $value) || (is_array($value) && ossn_recursive_array_search($needle, $value))) { 
+            return $current_key; 
+        } 
+    } 
+    return false; 
+}
 /**
  * Get site url
  *
