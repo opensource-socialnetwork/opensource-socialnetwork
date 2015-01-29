@@ -112,8 +112,7 @@ if (isset($params['contents'])) {
 
                 </div>
             </div>
-
-        </div>
+<!-- notification box -->
         <div class="ossn-notifications-box" style="height: 140px;">
             <div class="selected"></div>
             <div class="type-name"> <?php echo ossn_print('notifications'); ?> </div>
@@ -126,7 +125,8 @@ if (isset($params['contents'])) {
                 </div>
             </div>
         </div>
-
+<!-- notification box end -->
+        </div>
     </div>
     <div class="ossn-content-spacing"></div>
 <?php } ?>
