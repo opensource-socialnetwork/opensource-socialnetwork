@@ -227,30 +227,16 @@ function ossn_user_friendly_time($tm, $rcs = 0) {
     $cur_tm = time();
     $dif = $cur_tm - $tm;
 	// get language dependend items for display
-	$passedtime = ossn_print('site:timepassed');
+	$passedtime = ossn_print('site:timepassed:data');
 	// put them into array
 	// 0  = second
 	// 15 = decades
-	// 16 = trailing flag
-	// 17 = additional text to display
 	$pds = explode('|',$passedtime);
 	
 	// BETTER DO explode ONLY ONCE on start and when language changes
 	// and get already prepared array from there
 	// don't know how and where to do this correctly ?!?
 
-	/*
-    $pds = array(
-        'second',
-        'minute',
-        'hour',
-        'day',
-        'week',
-        'month',
-        'year',
-        'decade'
-    );
-    */
     $lngh = array(
         1,
         60,
@@ -282,12 +268,7 @@ function ossn_user_friendly_time($tm, $rcs = 0) {
     if (($rcs > 0) && ($v >= 1))
         $x .= ' ' . ossn_user_friendly_time($_tm, $rcs - 1);
 
-	// trailing or leading text?
-	if ($pds[16] == 1)
-		return $x . ' ' . $pds[17]; 	// English style
-	else
-		return $pds[17] . ' ' . $x;		// German style
-    // return $x . ' ago';
+    return ossn_print('site:timepassed:text', $x);
 }
 
 /**
