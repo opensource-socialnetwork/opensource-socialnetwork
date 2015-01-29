@@ -825,7 +825,10 @@ margin:5px auto;
 .ossn-topbar .inner li {
 display:inline-table;
 }
-.ossn-topbar .inner div {
+.ossn-topbar .inner .logo-second,
+.ossn-topbar .inner .ossn-search,
+.ossn-topbar .inner .ossn-topbar-menu,
+.ossn-icons-topbar {
 display:inline-block;
 }
 
@@ -1015,11 +1018,14 @@ width: 430px;
 height:540px;
 background: #fff;
 margin-right: 208px;
-margin-top: 2px;
+margin-top: 6px;
 
 -webkit-box-shadow: 0 3px 8px rgba(0, 0, 0, .25);
 -webkit-border-radius: 3px;
 border: 1px solid rgba(100, 100, 100, .4);
+
+position: absolute;
+margin-left: 528px;
 }
 .ossn-notifications-box .type-name{
 font-size: 12px;
