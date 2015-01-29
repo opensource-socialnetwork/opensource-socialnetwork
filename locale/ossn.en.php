@@ -263,6 +263,9 @@ Please click the link below to reset password or copy the link and paste in your
 	'admin:sidemenu:usermanager' => 'User Manager',
 	'cancel' => 'Cancel',
 	'ossn:language:complete' => 'Complete',
+	'ossn:pagination:first' => 'First',
+	'ossn:pagination:last' => 'Last',
+	
 	/*
 	 * List of ISO 639-1 language codes
 	 * http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
