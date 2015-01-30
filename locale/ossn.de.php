@@ -247,9 +247,9 @@ Um Dein Passwort zurückzusetzen klicke bitte auf den folgenden Link oder kopier
 	'admin:login' => 'Anmelden',
 	'admin:notification:email' => 'Benachrichtigungs-Email',
 	'ossn:user:validation:resend' => 'Du hast Deine Registrierung nicht bestätigt, darum kannst Du Dich nicht anmelden. Eine weitere Aktivierungs-Anforderung wurde Dir per mail jetzt zugesandt.',
-	// vergangene Zeiträume bestehend aus 16 Elementen Singular|Plural + Schalter '0' = vorangestellter- oder  '1' = nachgestellter Zusatztext  
 	'site:timepassed:text' => 'Vor %s',
-	'site:timepassed:data' => 'Sekunde|Sekunden|Minute|Minuten|Stunde|Stunden|Tag|Tagen|Woche|Wochen|Monat|Monaten|Jahr|Jahren|Dekade|Dekaden|0|Vor',
+	// vergangene Zeiträume bestehend aus 16 Elementen Singular|Plural
+	'site:timepassed:data' => 'Sekunde|Sekunden|Minute|Minuten|Stunde|Stunden|Tag|Tagen|Woche|Wochen|Monat|Monaten|Jahr|Jahren|Dekade|Dekaden',
 	'ossn:notification:no:notification' => 'keine vorhanden',
 	'admin:button:enable' => 'Aktivieren',
     'admin:button:enabled' => 'Aktiv',
