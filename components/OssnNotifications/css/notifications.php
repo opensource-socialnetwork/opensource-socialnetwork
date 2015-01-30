@@ -11,7 +11,7 @@
 .ossn-notifications-all li{
 padding: 10px;
 border-bottom: 1px solid #ddd;
-display: block;
+display: block !important;
 
 min-height: 15px;
 }
