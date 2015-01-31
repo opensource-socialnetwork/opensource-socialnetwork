@@ -24,7 +24,7 @@ $component->ENABLE('OssnChat');
  * @access private
  */
 
-$upgrade_json = array_merge(ossn_get_upgraded_files(), $upgrades);
+$upgrade_json = array_merge(ossn_get_upgraded_files(), array($upgrade));
 $upgrade_json = json_encode($upgrade_json);
 
 $update['table'] = 'ossn_site_settings';
@@ -32,10 +32,9 @@ $update['names'] = array('value');
 $update['values'] = array($upgrade_json);
 $update['wheres'] = array("name='upgrades'");
 
+$upgrade = str_replace('.php', '', $upgrade);
 if ($database->update($update)) {
-    ossn_trigger_message(ossn_print('upgrade:success'), 'success');
-    redirect('administrator');
+    ossn_trigger_message(ossn_print('upgrade:success', array($upgrade)), 'success');
 } else {
-    ossn_trigger_message(ossn_print('upgrade:failed'), 'error');
-    redirect('administrator');
+    ossn_trigger_message(ossn_print('upgrade:failed', array($upgrade)), 'error');
 }
