@@ -10,4 +10,7 @@
  */
 require_once(dirname(dirname(__FILE__)) . '/system/start.php');
 
-ossn_trigger_upgrades();
+//redirect user after all upgrades
+if(ossn_trigger_upgrades()){
+	 redirect('administrator');
+}

@@ -179,8 +179,8 @@ If you can't click on the link, copy and paste it to your browser manually.
 	
 	/* Upgrades */
 	'upgrade:file:load:error' => 'Cannot load upgrade file',
-	'upgrade:success' => 'Your website has been upgraded successfully',
-	'upgrade:failed' => 'Cannot upgrade try again',
+	'upgrade:success' => "Your website has been upgraded successfully to release %s",
+	'upgrade:failed' => "Cannot upgrade your site to release %s",
 	'upgrade:not:available' => 'Nothing to upgrade',
 	
 	'site:login' => 'Login',

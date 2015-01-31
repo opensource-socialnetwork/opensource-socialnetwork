@@ -40,7 +40,8 @@ function ossn_get_upgrade_files() {
  * @access private
  */
 function ossn_get_upgraded_files() {
-    $upgrades = ossn_site_settings('upgrades');
+	$settings = new OssnSite;
+    $upgrades = $settings->getSettings('upgrades');
     $upgrades = json_decode($upgrades);
     if (!is_array($upgrades) || empty($upgrades)) {
         $upgrades = array();
