@@ -14,12 +14,20 @@ $image = input('comment-attachment');
 if (!empty($image)) {
     $OssnComment->comment_image = $image;
 }
+//setting a value for image in the comment
+if(!empty($image))
+{
+$img = 1;
+}else
+{
+$img = 0;
+}
 //entity on which comment is going to be posted
 $entity = input('entity');
 
 //comment text
 $comment = input('comment');
-if ($OssnComment->PostComment($entity, ossn_loggedin_user()->guid, $comment, 'entity')) {
+if ($OssnComment->PostComment($entity, ossn_loggedin_user()->guid, $comment, 'entity', $img)) {
     $data['comment'] = ossn_get_comment($OssnComment->getCommentId());
     $data = ossn_view('components/OssnComments/templates/comment', $data);;
     if (!ossn_is_xhr()) {
