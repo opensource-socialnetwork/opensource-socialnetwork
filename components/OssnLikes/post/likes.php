@@ -26,14 +26,14 @@ $user_liked = '';
                 $link['onclick'] = "Ossn.PostLike({$object});";
                 $link['href'] = 'javascript::;';
                 $link['text'] = ossn_print('ossn:like');
-                echo ossn_view('system/templates/link', $link);
+                echo ossn_view('system/templates/output/url', $link);
 
             } else {
                 $user_liked = true;
                 $link['onclick'] = "Ossn.PostUnlike({$object});";
                 $link['href'] = 'javascript::;';
                 $link['text'] = ossn_print('ossn:unlike');
-                echo ossn_view('system/templates/link', $link);
+                echo ossn_view('system/templates/output/url', $link);
             }
             ?>
         </div>
@@ -61,7 +61,7 @@ $user_liked = '';
             $link['onclick'] = "Ossn.ViewLikes({$object});";
             $link['href'] = '#';
             $link['text'] = ossn_print("ossn:like:{$total}", array($count));
-            $link = ossn_view('system/templates/link', $link);
+            $link = ossn_view('system/templates/output/url', $link);
             echo ossn_print("ossn:like:you:and:this", array($link));
         } elseif (!$user_liked) {
             $total = 'person';
@@ -71,7 +71,7 @@ $user_liked = '';
             $link['onclick'] = "Ossn.ViewLikes({$object});";
             $link['href'] = '#';
             $link['text'] = ossn_print("ossn:like:{$total}", array($count));
-            $link = ossn_view('system/templates/link', $link);
+            $link = ossn_view('system/templates/output/url', $link);
             echo ossn_print("ossn:like:this", array($link));
         }?>
     </div>

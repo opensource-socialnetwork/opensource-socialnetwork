@@ -192,7 +192,7 @@ function ossn_photos_page_handler($album) {
                     'href' => 'javascript::;',
                     'class' => 'button-grey',
                 );
-                $control = ossn_view('system/templates/link', $addphotos);
+                $control = ossn_view('system/templates/output/url', $addphotos);
                 $contents = array(
                     'title' => ossn_print('photos'),
                     'content' => ossn_view('components/OssnPhotos/pages/photo/view', $photo),
@@ -224,7 +224,7 @@ function ossn_photos_page_handler($album) {
                     'href' => 'javascript::;',
                     'class' => 'button-grey',
                 );
-                $control = ossn_view('system/templates/link', $addphotos);
+                $control = ossn_view('system/templates/output/url', $addphotos);
                 $contents = array(
                     'title' => 'Photos',
                     'content' => ossn_view('components/OssnPhotos/pages/profile/photos/view', $photo),
@@ -255,7 +255,7 @@ function ossn_photos_page_handler($album) {
                     'href' => 'javascript::;',
                     'class' => 'button-grey',
                 );
-                $control = ossn_view('system/templates/link', $addphotos);
+                $control = ossn_view('system/templates/output/url', $addphotos);
                 $contents = array(
                     'title' => 'Photos',
                     'content' => ossn_view('components/OssnPhotos/pages/profile/covers/view', $photo),
@@ -272,7 +272,7 @@ function ossn_photos_page_handler($album) {
             if (!ossn_is_xhr()) {
                 ossn_error_page();
             }
-            echo ossn_view('system/templates/ossnbox', array(
+            echo ossn_view('system/templates/output/ossnbox', array(
                 'title' => ossn_print('add:photos'),
                 'contents' => ossn_view('components/OssnPhotos/pages/photos/add'),
                 'callback' => '#ossn-photos-submit',
@@ -288,7 +288,7 @@ function ossn_photos_page_handler($album) {
             $photo_guid = get_profile_photo_guid(ossn_user_by_username($image)->guid);
             //set viewer sidebar (comments and likes)
             $sidebar = ossn_view('components/OssnPhotos/viewer/comments', array('entity_guid' => $photo_guid));
-            echo ossn_view('system/templates/viewer', array(
+            echo ossn_view('system/templates/output/viewer', array(
                     'media' => $media,
                     'sidebar' => $sidebar,
                 ));
@@ -392,7 +392,7 @@ function ossn_album_page_handler($album) {
                         'data-url' => '?album=' . $album[1],
                         'class' => 'button-grey',
                     );
-                    $control = ossn_view('system/templates/link', $addphotos);
+                    $control = ossn_view('system/templates/output/url', $addphotos);
                 } else {
                     $control = false;
                 }
@@ -453,7 +453,7 @@ function ossn_album_page_handler($album) {
             break;			
         case 'add':
             //add photos (ajax)
-            echo ossn_view('system/templates/ossnbox', array(
+            echo ossn_view('system/templates/output/ossnbox', array(
                 'title' => ossn_print('add:album'),
                 'contents' => ossn_view('components/OssnPhotos/pages/album/add'),
                 'success_id' => 'aga',
@@ -486,7 +486,7 @@ function ossn_profile_photos_page($hook, $type, $return, $params) {
                 'id' => 'ossn-add-album',
                 'class' => 'button-grey',
             );
-            $control = ossn_view('system/templates/link', $addalbum);
+            $control = ossn_view('system/templates/output/url', $addalbum);
         }
         $friends = ossn_view('components/OssnPhotos/pages/photos', $user);
         echo ossn_set_page_layout('module', array(

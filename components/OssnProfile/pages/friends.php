@@ -10,5 +10,5 @@
  */
 echo '<div style="margin-left:3px;">';
 $users['users'] = get_user_friends($params['user']->guid);
-echo ossn_view("system/templates/users", $users);
+echo ossn_view("system/templates/output/users", $users);
 echo '</div>';

@@ -9,4 +9,4 @@
  * @link      http://www.opensource-socialnetwork.com/licence
  */
 echo '<div style="font-size:12px;">' . ossn_print('post:select:privacy') . '</div>';
-echo ossn_view('system/templates/privacy');
+echo ossn_view('system/templates/input/privacy');

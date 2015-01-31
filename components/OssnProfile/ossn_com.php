@@ -166,7 +166,7 @@ function profile_search_handler($hook, $type, $return, $params) {
     $data = $users->searchUsers($params['q']);
     $Pagination->setItem($data);
     $user['users'] = $Pagination->getItem();
-    $search = ossn_view('system/templates/users', $user);
+    $search = ossn_view('system/templates/output/users', $user);
     $search .= $Pagination->pagination();
     if (empty($data)) {
         return ossn_print('ossn:search:no:result');

@@ -160,7 +160,7 @@ function ossn_groups_page($pages) {
                 'class' => 'ossn-form',
             );
             $form = ossn_view_form('add', $params, false);
-            echo ossn_view('system/templates/ossnbox', array(
+            echo ossn_view('system/templates/output/ossnbox', array(
                 'title' => ossn_print('add:group'),
                 'contents' => $form,
                 'callback' => '#ossn-group-submit',

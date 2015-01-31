@@ -14,5 +14,5 @@
 <input type="submit" class="ossn-hidden" id="ossn-photos-submit"/>
 <?php
 // Shouldn't album privacy applied on photos? $dev.arsalan
-//echo ossn_view('system/templates/privacy');
+//echo ossn_view('system/templates/input/privacy');
 ?>

@@ -25,5 +25,5 @@ if ($likes) {
 }
 $users['users'] = $users;
 $users['icon_size'] = 'small';
-echo ossn_view("system/templates/users_list", $users);
+echo ossn_view("system/templates/output/users_list", $users);
 echo '</div>';
