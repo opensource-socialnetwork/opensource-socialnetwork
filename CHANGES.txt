@@ -103,6 +103,7 @@ Language Strings Addition:
  * Entity owner and post owner should able to delete others comments from post.
  * List of unvalidated users page added.
  * Allow admins to validate users manually from unvalidate users page.
+ * Change the way of Ossn upgrade.
 
 Language strings added:
 There are many new language strings added, few of them are:
