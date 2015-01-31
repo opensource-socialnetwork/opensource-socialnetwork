@@ -219,7 +219,7 @@ function ossn_default_theme() {
 function ossn_view_form($name, $args = array(), $type = 'core') {
     $args['name'] = $name;
     $args['type'] = $type;
-    return ossn_view("system/templates/form", $args);
+    return ossn_view("system/templates/output/form", $args);
 }
 
 /**

@@ -18,7 +18,7 @@ if (!empty($search)) {
     $pagination->setItem($users->getSiteUsers());
 }
 ?>
-<div class="top-controls">
+<div class="top-controls top-controls-users-page">
     <a href="<?php echo ossn_site_url("administrator/adduser"); ?>"
        class="ossn-admin-button button-green"><?php echo ossn_print('add'); ?></a>
 </div>

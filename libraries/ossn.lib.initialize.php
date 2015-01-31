@@ -84,7 +84,7 @@ function ossn_system_error_pagehandler($pages) {
                 'contents' => $error,
                 'callback' => false,
             );
-            echo ossn_view('system/templates/ossnbox', $params);
+            echo ossn_view('system/templates/output/ossnbox', $params);
             break;
     }
 }

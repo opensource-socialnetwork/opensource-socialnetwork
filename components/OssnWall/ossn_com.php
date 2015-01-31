@@ -211,7 +211,7 @@ function ossn_post_page($pages) {
 										'contents' => ossn_view('components/OssnWall/wall/privacy'),
 										'callback' => '#ossn-wall-privacy'
 								);
-								echo ossn_view('system/templates/ossnbox', $params);
+								echo ossn_view('system/templates/output/ossnbox', $params);
 						}
 						break;
 				case 'refresh_home':
