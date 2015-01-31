@@ -32,8 +32,8 @@ class OssnComments extends OssnAnnotation {
      *
      * @return bool;
      */
-    public function PostComment($subject_id, $guid, $comment, $type = 'post') {
-        if ($subject_id < 1 || $guid < 1 || empty($comment)) {
+    public function PostComment($subject_id, $guid, $comment, $type = 'post', $img) {
+        if ($subject_id < 1 || $guid < 1 || (empty($comment) && $img == 0 )) {
             return false;
         }
         $this->subject_guid = $subject_id;
