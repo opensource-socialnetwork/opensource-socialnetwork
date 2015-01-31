@@ -26,6 +26,7 @@ function ossn_admin() {
 
     ossn_register_admin_sidemenu('admin/sidemenu', 'admin:users', ossn_site_url('administrator/users'), ossn_print('admin:sidemenu:usermanager'));
     ossn_register_admin_sidemenu('admin/sidemenu', 'admin:add:user', ossn_site_url('administrator/adduser'), ossn_print('admin:sidemenu:usermanager'));
+    ossn_register_admin_sidemenu('admin/sidemenu', 'admin:users:unvalidated', ossn_site_url('administrator/unvalidated_users'), ossn_print('admin:sidemenu:usermanager'));
 
 
     ossn_register_menu_link('home', 'admin:dashboard', ossn_site_url('administrator'), 'topbar_admin');
@@ -52,6 +53,7 @@ function ossn_admin() {
         ossn_register_action('admin/add/user', ossn_route()->actions . 'administrator/user/add.php');
         ossn_register_action('admin/edit/user', ossn_route()->actions . 'administrator/user/edit.php');
 		ossn_register_action('admin/delete/user', ossn_route()->actions . 'administrator/user/delete.php');
+        ossn_register_action('admin/validate/user', ossn_route()->actions . 'administrator/user/validate.php');
 		
         ossn_register_action('admin/com_install', ossn_route()->actions . 'administrator/component/com_install.php');
         ossn_register_action('admin/theme_install', ossn_route()->actions . 'administrator/theme/theme_install.php');
@@ -265,6 +267,13 @@ function ossn_administrator_pagehandler($pages) {
             $content = ossn_set_page_layout('administrator/administrator', $contents);
             echo ossn_view_page($title, $content, 'administrator');
             break;
+        case 'unvalidated_users':
+            $title = ossn_print('admin:users:unvalidated');
+            $contents['contents'] = ossn_view("pages/administrator/contents/users/unvalidated");
+            $contents['title'] = $title;
+            $content = ossn_set_page_layout('administrator/administrator', $contents);
+            echo ossn_view_page($title, $content, 'administrator');
+            break;			
         case 'edituser':
             if (isset($pages[1])) {
                 $user['user'] = ossn_user_by_username($pages[1]);
