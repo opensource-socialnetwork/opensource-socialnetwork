@@ -684,4 +684,19 @@ class OssnUser extends OssnEntities {
 		}
 		return false;
 	}
+	/**
+	 * Get list of unvalidated users
+	 *
+	 * @return false|object
+	 */	
+	public function getUnvalidatedUSERS(){
+		$params = array();
+		$params['from'] = 'ossn_users';
+		$params['wheres'] = array("activation <> ''");
+		$users = $this->select($params, true);
+		if($users){
+			return $users;
+		}
+		return false;
+	}
 }//CLASS
