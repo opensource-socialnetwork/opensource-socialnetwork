@@ -267,9 +267,9 @@ Um Dein Passwort zurückzusetzen klicke bitte auf den folgenden Link oder kopier
 	'ossn:pagination:first' => 'Anfang',
 	'ossn:pagination:last' => 'Ende',
 	'validate' => 'Bestätigen',
-	'admin:users:unvalidated' => 'Inaktiv Personen',
-	'admin:user:validated' => 'Benutzeraccount bestätigt.',
-	'admin:user:validate:error' => 'Benutzeraccount konnte nicht bestätigt werden.',
+	'admin:users:unvalidated' => 'Unbestätigte Benutzer',
+	'admin:user:validated' => 'Das Benutzer-Konto wurde bestätigt',
+	'admin:user:validate:error' => 'Das Benutzer-Konto konnte nicht bestätigt werden',
     /*
        * List of ISO 639-1 language codes
        * http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
