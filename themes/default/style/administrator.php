@@ -386,6 +386,7 @@ border-radius:2px;
 
 color: #b94a48;
 padding: 20px;
+margin-bottom:10px;
 }
 .ossn-message-success {
 background-color: #dff0d8;
@@ -395,7 +396,7 @@ border-radius:2px;
 
 color: #468847;
 padding: 20px;
-
+margin-bottom:10px;
 }
 
 
