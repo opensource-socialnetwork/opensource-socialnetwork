@@ -27,6 +27,7 @@ Bugfixes:
  * Links on footer only partly accessable when logged in #203
  * Could not access your domain. Please make sure your domain is pointing to this server and there is no .htaccess file restricing access to your domain (Softaculous Installer)
    (Cause SetEnv module not avaialble this check has been removed in v2.0 and Ossn handle this check in different way) 
+ * OssnAds ad adding page , description add space in start.
 
 Api Additions:
 
@@ -100,6 +101,8 @@ Language Strings Addition:
  * Group admins are unable to delete member posting on group wall #171
  * Group admins must be able to delete ANY comment in their own group #170
  * Entity owner and post owner should able to delete others comments from post.
+ * List of unvalidated users page added.
+ * Allow admins to validate users manually from unvalidate users page.
 
 Language strings added:
 There are many new language strings added, few of them are:
