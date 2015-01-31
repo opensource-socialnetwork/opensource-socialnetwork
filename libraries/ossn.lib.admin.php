@@ -14,18 +14,18 @@
  * @return void
  */
 function ossn_admin() {
-    ossn_register_admin_sidemenu('admin/sidemenu', 'admin:components', ossn_site_url('administrator/components'), 'components');
-    ossn_register_admin_sidemenu('admin/sidemenu', 'admin:install', ossn_site_url('administrator/com_installer'), 'components');
+    ossn_register_admin_sidemenu('admin/sidemenu', 'admin:components', ossn_site_url('administrator/components'), ossn_print('admin:sidemenu:components'));
+    ossn_register_admin_sidemenu('admin/sidemenu', 'admin:install', ossn_site_url('administrator/com_installer'), ossn_print('admin:sidemenu:components'));
 
-    ossn_register_admin_sidemenu('admin/sidemenu', 'admin:themes', ossn_site_url('administrator/themes'), 'themes');
-    ossn_register_admin_sidemenu('admin/sidemenu', 'admin:install', ossn_site_url('administrator/theme_installer'), 'themes');
+    ossn_register_admin_sidemenu('admin/sidemenu', 'admin:themes', ossn_site_url('administrator/themes'), ossn_print('admin:sidemenu:themes'));
+    ossn_register_admin_sidemenu('admin/sidemenu', 'admin:install', ossn_site_url('administrator/theme_installer'), ossn_print('admin:sidemenu:themes'));
 
-    ossn_register_admin_sidemenu('admin/sidemenu', 'admin:basic', ossn_site_url('administrator/settings/basic'), 'site settings');
-    ossn_register_admin_sidemenu('admin/sidemenu', 'admin:cache', ossn_site_url('administrator/cache'), 'site settings');
-    //ossn_register_admin_sidemenu('admin/sidemenu', 'admin:mode', ossn_site_url('administrator/theme_installer'), 'site settings');
+    ossn_register_admin_sidemenu('admin/sidemenu', 'admin:basic', ossn_site_url('administrator/settings/basic'), ossn_print('admin:sidemenu:settings'));
+    ossn_register_admin_sidemenu('admin/sidemenu', 'admin:cache', ossn_site_url('administrator/cache'), ossn_print('admin:sidemenu:settings'));
+    //ossn_register_admin_sidemenu('admin/sidemenu', 'admin:mode', ossn_site_url('administrator/theme_installer'), ossn_print('admin:sidemenu:settings'));
 
-    ossn_register_admin_sidemenu('admin/sidemenu', 'admin:users', ossn_site_url('administrator/users'), 'user manager');
-    ossn_register_admin_sidemenu('admin/sidemenu', 'admin:add:user', ossn_site_url('administrator/adduser'), 'user manager');
+    ossn_register_admin_sidemenu('admin/sidemenu', 'admin:users', ossn_site_url('administrator/users'), ossn_print('admin:sidemenu:usermanager'));
+    ossn_register_admin_sidemenu('admin/sidemenu', 'admin:add:user', ossn_site_url('administrator/adduser'), ossn_print('admin:sidemenu:usermanager'));
 
 
     ossn_register_menu_link('home', 'admin:dashboard', ossn_site_url('administrator'), 'topbar_admin');
