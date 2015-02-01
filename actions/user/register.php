@@ -36,7 +36,7 @@ if (isset($json['error']) && !empty($json['error'])) {
 }
 
 if ($user['reemail'] !== $user['email']) {
-    $em['dataerr'] = 'Email didnt Match';
+    $em['dataerr'] = ossn_print('email:error:matching');
     echo json_encode($em);
     exit;
 }
