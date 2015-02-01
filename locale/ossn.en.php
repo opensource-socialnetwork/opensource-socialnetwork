@@ -19,7 +19,7 @@ $en = array(
 	
 	'home:top:heading' => "Welcome to %s, join now to make new friends, create groups , add photos and much more",
 	'create:account' => 'Create an account',
-	'its:free' => 'Its free and always will be.',
+	'its:free' => "It's free and always will be.",
 	
 	'register:ok:message' => "Your account has been registered. We have sent you account activation email. If you didn't recieved email please check your spam/junk folder.",
 	
@@ -158,6 +158,7 @@ If you can't click on the link, copy and paste it to your browser manually.
 	'username:inuse' => 'Username already exist please try another usename',
 	'email:inuse' => 'Email already exist please try another email',
 	'email:invalid' => 'Email is invalid. Make sure the email you entered is correct.',
+	'email:error:matching' => "Email addresses don't match",
 	'account:created:email' => "Your account has been registered. We have sent you account activation email. If you didn't recieved email please check your spam/junk folder",
 	
 	'administration' => 'Administration',
