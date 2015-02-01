@@ -158,6 +158,7 @@ Falls der Link nicht anklickbar ist, kopiere ihn einfach in Deinen Browser.
 	'username:inuse' => 'Dieser Benutzer-Name ist schon vergeben - bitte versuche es mit einem anderen Namen',
 	'email:inuse' => 'Diese Email-Adresse ist schon in Benutzung - bitte versuche es mit einer anderen Adresse',
 	'email:invalid' => 'Die Email-Adresse ist fehlerhaft - bitte überprüfe sie noch einmal',
+	'email:error:matching' => "Die Email-Adressen stimmen nicht überein",
     'account:created:email' => "Dein Benutzer-Konto wurde nun eingerichtet, und Du hast eine Aktivierungs-Email erhalten. Sieh in Deinem Spam-Ordner nach, wenn Du die Nachricht im Posteingang nicht findest",
 
     'administration' => 'Administration',
