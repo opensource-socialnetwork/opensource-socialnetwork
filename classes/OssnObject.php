@@ -183,10 +183,11 @@ class OssnObject extends OssnEntities {
             }
         	$data = array_merge(get_object_vars($object), $fields);
         	if (!empty($fields)) {
-				return arrayObject($data, get_class($this));
-        	} else {
-				return arrayObject($object, get_class($this));
-       		 }			
+			return arrayObject($data, get_class($this));
+        	}
+        }
+        if(empty($fields)){
+         	return arrayObject($object, get_class($this));
         }
 		return false;
     }
