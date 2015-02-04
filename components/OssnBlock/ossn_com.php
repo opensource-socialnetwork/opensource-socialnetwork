@@ -45,10 +45,10 @@ function ossn_block() {
 function ossn_user_block_menu($name, $type, $params) {
     $user = ossn_user_by_guid(ossn_get_page_owner_guid());
     if (OssnBlock::isBlocked(ossn_loggedin_user(), $user)) {
-        $unblock = ossn_site_url("action/unblock/user?user={$user->guid}");
+        $unblock = ossn_site_url("action/unblock/user?user={$user->guid}", true);
         ossn_register_menu_link('block', ossn_print('user:unblock'), $unblock, 'profile_extramenu');
     } else {
-        $block = ossn_site_url("action/block/user?user={$user->guid}");
+        $block = ossn_site_url("action/block/user?user={$user->guid}", true);
         ossn_register_menu_link('block', ossn_print('user:block'), $block, 'profile_extramenu');
     }
 }
