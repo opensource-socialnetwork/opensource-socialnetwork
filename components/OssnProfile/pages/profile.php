@@ -98,7 +98,7 @@ if (ossn_isLoggedIn()) {
                         }
                     } else {
                         ?>
-                        <a href="<?php echo ossn_site_url(); ?>action/friend/remove?user=<?php echo $user->guid; ?>"
+                        <a href="<?php echo ossn_site_url("action/friend/remove?user={$user->guid}", true); ?>"  
                            class='button-grey'>
                             <?php echo ossn_print('remove:friend'); ?>
                         </a>
