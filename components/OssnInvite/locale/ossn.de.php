@@ -9,33 +9,36 @@
  * @link      http://www.opensource-socialnetwork.org/licence
  */
 $de = array(
-	'com:ossn:invite' => 'Invite',			
-	'com:ossn:invite:friends' => 'Invite Friends',
-	'com:ossn:invite:friends:note' => 'To invite friends to join you on this network, enter their email addresses and a message they will receive with your invitation',
-	'com:ossn:invite:emails:note' => 'Email addresses (seprated by a comma)',
-	'com:ossn:invite:emails:plceholder' => 'smith@example.com, john@example.com',
-	'com:ossn:invite:message' => 'Message',
+	'com:ossn:invite' => 'Abschicken',			
+	'com:ossn:invite:friends' => 'Freunde einladen',
+	'com:ossn:invite:friends:note' => 'Gib einfach die Email-Adressen aller Freunde ein, die Du gern in dieses Netzwerk einladen möchtest.
+    <br>Sie erhalten dann automatisch eine Einladung per Mail.',
+	'com:ossn:invite:emails:note' => 'Email Adressen (Komma getrennt)',
+	'com:ossn:invite:emails:plceholder' => 'inge@beispiel.de, r.hood@example.com',
+	'com:ossn:invite:message' => 'Einladungstext',
 		
-    'com:ossn:invite:mail:subject' => 'Invitation to join %s',	
-    'com:ossn:invite:mail:message' => 'You have been invited to join %s by %s. They included the following message:
+    'com:ossn:invite:mail:subject' => 'Eine Einladung vom %s',	
+    'com:ossn:invite:mail:message' => 'Hallo,
+    
+hier kommt eine Einladung vom %s. Die Nachricht wurde Dir von %s geschickt:
 
 %s
 
-To join, click the following link:
+Wenn Du mitmachen möchtest, klicke einfach auf den folgenden Link:
 
 %s
 
-Profile link: %s
+Direkt zu seinem Profil geht es hier: %s
 ',	
-	'com:ossn:invite:mail:message:default' => 'Hi,
+	'com:ossn:invite:mail:message:default' => 'Hallo,
 
-I want to invite you to join my network here on %s.
+ich wollte Dich einladen, bei %s mitzumachen.
 
-Profile link : %s',
-	'com:ossn:invite:sent' => 'Your friends were invited. Invites sent: %s.',
-	'com:ossn:invite:wrong:emails' => 'The following addresses are not valid: %s.',
-	'com:ossn:invite:sent:failed' => 'Cannot able invite following addresses: %s.',
-	'com:ossn:invite:already:members' => 'The following are already members: %s',
-	'com:ossn:invite:empty:emails' => 'Please add at least one email',
+Direkt zu meinem Profil geht es hier: %s',
+	'com:ossn:invite:sent' => 'Deine Freunde haben jetzt eine Einladung bekommen. Verschickte Einladungen: %s.',
+	'com:ossn:invite:wrong:emails' => 'Diese Adressen sind ungültig: %s.',
+	'com:ossn:invite:sent:failed' => 'Folgende Adressen konnten nicht eingeladen werden: %s.',
+	'com:ossn:invite:already:members' => 'Diese Adressen sind bereits bei uns registriert: %s',
+	'com:ossn:invite:empty:emails' => 'Bitte gib zumindest eine Adresse an',
 );
 ossn_register_languages('de', $de); 
