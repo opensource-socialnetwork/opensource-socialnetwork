@@ -11,11 +11,13 @@
 
 /**
  * Get input from user; using secure method;
- * @params: $input = name of input;
- * @params:  $validate = if you don't want to encode to html entities then add 1 as second arg in function;
- * @last edit: $arsalanshah
- * @Reason: Initial;
  *
+ * @param string $input Name of input;
+ * @params  integer $validate If you don't want to encode to html entities then add 1 as second arg in function.
+ *
+ * @last edit: $arsalanshah
+ * @reason: fix docs;
+ * @return false|string
  */
 function input($input, $validate = '') {
     $replacements = array(
@@ -34,4 +36,22 @@ function input($input, $validate = '') {
         return strtr($input, $replacements);
     }
     return false;
+}
+/**
+ * Ossn Restore New Lines
+ * Restore \n\r from the string to new line
+ *
+ * @param string $string A valid string in which you want to restore lines.
+ * @return string
+ */
+function ossn_restore_new_lines($string){
+	if(empty($string)){
+		return false;
+	}
+	$replacements = array(
+        "\n" => '\n',
+        "\r" => '\r',
+	);
+	$replacements = array_flip($replacements);
+	return strtr($string, $replacements);
 }
