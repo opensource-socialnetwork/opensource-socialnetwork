@@ -31,7 +31,10 @@ Profile link: %s
 
 I want to invite you to join my network here on %s.
 
-Profile link : %s',
+Profile link : %s
+
+Best regards.
+%s',
 	'com:ossn:invite:sent' => 'Your friends were invited. Invites sent: %s.',
 	'com:ossn:invite:wrong:emails' => 'The following addresses are not valid: %s.',
 	'com:ossn:invite:sent:failed' => 'Cannot able invite following addresses: %s.',
