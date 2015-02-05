@@ -28,6 +28,7 @@
 	public function sendInvitation(){
 		$email = $this->address;
 		$message = strip_tags($this->message);
+		$message = html_entity_decode($message, ENT_QUOTES, "UTF-8");
 
 		$user = ossn_loggedin_user();
 		if(!isset($user->guid) || empty($email)){
