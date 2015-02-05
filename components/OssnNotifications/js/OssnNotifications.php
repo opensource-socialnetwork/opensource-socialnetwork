@@ -117,6 +117,7 @@ Ossn.AddFriend = function($guid) {
                 $('#notification-friend-item-' + $guid).find('form').show();
                 $('#ossn-nfriends-' + $guid).find('.ossn-loading').remove();
             }
+            Ossn.NotificationsCheck();
         }
     });
 };
@@ -141,6 +142,7 @@ Ossn.removeFriendRequset = function($guid) {
                 $('#notification-friend-item-' + $guid).find('form').show();
                 $('#ossn-nfriends-' + $guid).find('.ossn-loading').remove();
             }
+            Ossn.NotificationsCheck();
         }
     });
 };
@@ -233,6 +235,6 @@ Ossn.RegisterStartupFunction(function() {
     $(document).ready(function() {
         setInterval(function() {
             Ossn.NotificationsCheck()
-        }, 5000);
+        }, 5000 * 12);
     });
 });
