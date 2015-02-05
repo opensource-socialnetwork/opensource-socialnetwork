@@ -63,7 +63,7 @@ color:#ccc;
 }
 
 .notification-friends li{
-display:block;
+display:block !important;
 border-bottom: 1px solid #eee;
 }
 notification-friends .user{
