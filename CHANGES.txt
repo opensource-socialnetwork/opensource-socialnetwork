@@ -104,6 +104,8 @@ Language Strings Addition:
  * List of unvalidated users page added.
  * Allow admins to validate users manually from unvalidate users page.
  * Change the way of Ossn upgrade.
+ * Add new component OssnInvite.
+ * Add new component OssnEmbed (Convert videos website url to player #105)
 
 Language strings added:
 There are many new language strings added, few of them are:
