@@ -9,7 +9,7 @@
  * @link      http://www.opensource-socialnetwork.org/licence
  */
  class OssnInvite extends OssnMail {
-	/**
+    /**
      * Check if email is valid or not
      *
      * @return bool;
@@ -20,7 +20,7 @@
         }
         return false;
     }
-	/**
+    /**
      * Send emails to provided addresses
      *
      * @return bool;
