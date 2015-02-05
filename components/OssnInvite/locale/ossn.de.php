@@ -16,8 +16,8 @@ $de = array(
 	'com:ossn:invite:emails:plceholder' => 'smith@example.com, john@example.com',
 	'com:ossn:invite:message' => 'Message',
 		
-    'com:ossn:invite:mail:subject' => 'Invitation to join %s',	
-    'com:ossn:invite:mail:message' => 'You have been invited to join %s by %s. They included the following message:
+    	'com:ossn:invite:mail:subject' => 'Invitation to join %s',	
+    	'com:ossn:invite:mail:message' => 'You have been invited to join %s by %s. They included the following message:
 
 %s
 
