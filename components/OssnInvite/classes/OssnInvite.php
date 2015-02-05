@@ -41,7 +41,7 @@
 		$url = ossn_site_url();
 		
 		if(empty($message)){
-			$params = array($url, $user->profileURL());
+			$params = array($url, $user->profileURL(), $user->fullname);
 			$message = ossn_print('com:ossn:invite:mail:message:default', $params);
 		} else {
 			$params = array($site, $user->fullname, $message, $url, $user->profileURL());	
