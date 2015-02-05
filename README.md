@@ -29,6 +29,8 @@ Front-End Features
 * Notifications
 * Friend Requests
 * Chat Bar
+* Invite Friends
+* Embed Videos
 
 Backend Features
 =================
@@ -41,6 +43,9 @@ Backend Features
 * Ads Manager
 * Site Cache Settings
 * Site Basic Settings
+* Unvalidated users
+* Manually validate unvalidated users
+* and much more components settings
 
 Prerequisite
 =============
