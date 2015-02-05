@@ -10,7 +10,6 @@ Supports:
 * Vimeo
 * Metacafe
 * Veoh
-* Viddler
 * Dailymotion
 * BlipTv
 * Teachertube

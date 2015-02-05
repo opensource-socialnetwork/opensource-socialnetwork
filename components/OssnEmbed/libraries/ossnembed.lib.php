@@ -60,8 +60,6 @@ function ossn_embed_create_embed_object($url, $guid, $videowidth=0) {
 		return ossn_embed_metacafe_handler($url, $guid, $videowidth);
 	} else if (strpos($url, 'veoh.com') != false) {
 		return ossn_embed_veoh_handler($url, $guid, $videowidth);
-	} else if (strpos($url, 'viddler.com') != false) {
-		return '<p><b>not handling viddler.com videos yet</b></p>';
 	} else if (strpos($url, 'dailymotion.com') != false) {
 		return ossn_embed_dm_handler($url, $guid, $videowidth);
 	} else if (strpos($url, 'blip.tv') != false) {
