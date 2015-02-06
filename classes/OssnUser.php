@@ -271,7 +271,14 @@ class OssnUser extends OssnEntities {
             return false;
         }
         foreach ($from as $fr) {
-            if (!$this->isFriend($user, $fr->relation_from)) {
+            $this->statement("SELECT * FROM ossn_relationships WHERE(
+                            relation_from='{$user}' AND
+                            relation_to='{$fr->relation_from}' AND
+                            type='friend:request'
+                            );");
+            $this->execute();
+            $from = $this->fetch();            
+            if (!isset($from->relation_id)) {
                 $uss[] = ossn_user_by_guid($fr->relation_from);
             }
         }
