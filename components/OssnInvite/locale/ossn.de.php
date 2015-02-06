@@ -34,7 +34,10 @@ Direkt zu seinem Profil geht es hier: %s
 
 ich wollte Dich einladen, bei %s mitzumachen.
 
-Direkt zu meinem Profil geht es hier: %s',
+Direkt zu meinem Profil geht es hier: %s
+
+Viele Grüße.
+%s',
 	'com:ossn:invite:sent' => 'Deine Freunde haben jetzt eine Einladung bekommen. Verschickte Einladungen: %s.',
 	'com:ossn:invite:wrong:emails' => 'Diese Adressen sind ungültig: %s.',
 	'com:ossn:invite:sent:failed' => 'Folgende Adressen konnten nicht eingeladen werden: %s.',
