@@ -177,6 +177,7 @@ Falls der Link nicht anklickbar ist, kopiere ihn einfach in Deinen Browser.
     'no:friends' => 'Keine Freunde',
     'settings' => 'Einstellungen',
     'ossn:add:friend:error' => 'Freund kann nicht hinzugefügt werden',
+    'ossn:friend:request:submitted' => 'Deine Freundschafts-Anfrage wurde losgeschickt',
 
     /* Upgrades */
     'upgrade:file:load:error' => 'Die Aktualisierungs-Datei kann nicht geladen werden',
