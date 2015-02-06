@@ -82,11 +82,15 @@ function ossn_embed_create_embed_object($url, $guid, $videowidth=0) {
  * @return string style code for video div
  */
 function ossn_embed_add_css($guid, $width, $height) {
+	// compatibility hack to work with ReadMore component
+	// first, close still open post-text <div> here, otherwise video will become a part of collapsible area
 	$videocss = "
+	  </div>
       <style type=\"text/css\">
         #ossnembed{$guid} { 
           height: {$height}px;
-          width: {$width}px; 
+          width: {$width}px;
+          padding-top: 15px;
         }
       </style>";
 
@@ -137,7 +141,8 @@ function ossn_embed_add_object($type, $url, $guid, $width, $height) {
 			break;
 	}
 
-	$videodiv .= "</div>";
+	$videodiv .= "</div><div class=\"post-text\">";
+	// re-open post-text again (last closing </div> comes with wall code as before )
 
 	return $videodiv;
 }
