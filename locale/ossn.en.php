@@ -177,6 +177,7 @@ If you can't click on the link, copy and paste it to your browser manually.
 	'no:friends' => 'No Friends',
 	'settings' => 'Settings',
 	'ossn:add:friend:error' => 'Cannot add friend',
+	'ossn:friend:request:submitted' => 'Your friend request was submitted successfully',
 	
 	/* Upgrades */
 	'upgrade:file:load:error' => 'Cannot load upgrade file',
