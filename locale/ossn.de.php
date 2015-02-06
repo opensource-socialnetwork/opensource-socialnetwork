@@ -220,6 +220,7 @@ Um Dein Passwort zurückzusetzen klicke bitte auf den folgenden Link oder kopier
 	'ossn:exception:title' => 'Ein System-Fehler ist aufgetreten. Versuche es später nochmal. Benachrichtige den Administrator bei %s',
 	'ossn:securitytoken:failed' => 'Das ist eine unerlaubte Aktion.',
 	'ossn:component:delete:exception' => 'Bist Du sicher, dass Du diese Komponente löschen willst?',
+	'ossn:user:delete:exception' => 'Sind Sie sicher, dass Sie diesen Benutzer löschen möchten?',
 	
 	//access
 	'title:access:1' => 'Privat',
