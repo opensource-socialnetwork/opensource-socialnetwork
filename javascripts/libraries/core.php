@@ -279,6 +279,24 @@ Ossn.RegisterStartupFunction(function() {
     });
 });
 /**
+ * Show exception on user delete
+ *
+ * @return void
+ */
+Ossn.RegisterStartupFunction(function() {
+    $(document).ready(function() {
+        $('.userdelete').click(function(e) {
+            e.preventDefault();
+            var del = confirm(Ossn.Print('ossn:user:delete:exception'));
+            if (del == true) {
+                var actionurl = $(this).attr('href');
+                window.location = actionurl;
+            }
+	
+        });
+    });
+});
+/**
  * Close a Ossn message box
  *
  * @return void
