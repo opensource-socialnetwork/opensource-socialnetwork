@@ -249,6 +249,9 @@ Please click the link below to reset password or copy the link and paste in your
 	'admin:edit:user' => 'Edit User',
 	'admin:login' => 'Login',
 	'admin:notification:email' => 'Site Notification Email',
+	'notification_email' => 'Notification Email (noreply@domain.com)',
+	'owner_email' => 'Owner Email (mysite@domain.com)',
+	'ossn:websitename' => 'Name of your website',
 	'ossn:user:validation:resend' => 'Your account is not validated so the log in attempt failed. Another validation email has been sent.',
 	'site:timepassed:text' => '%s ago',
 	// localization of passed time: 16 time elements (even = singular / odd = plural)
