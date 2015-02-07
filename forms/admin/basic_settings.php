@@ -15,9 +15,11 @@ $setting = $setting->getAllSettings();
 ossn_load_available_languages();
 ?>
 <label><?php echo ossn_print('website:name'); ?></label>
-<input type='text' name="sitename" value="<?php echo $setting->site_name; ?>" placeholder='Website Name'/>
+<input type='text' name="sitename" value="<?php echo $setting->site_name; ?>" placeholder="<?php echo ossn_print('ossn:websitename'); ?>"/>
 <label><?php echo ossn_print('owner:email'); ?></label>
-<input type='text' name="owneremail" value="<?php echo $setting->owner_email; ?>" placeholder='Owner Email'/>
+<input type='text' name="owneremail" value="<?php echo $setting->owner_email; ?>" placeholder="<?php echo ossn_print('owner_email'); ?>"/>
+<label><?php echo ossn_print('notification:email'); ?></label>
+<input type="text" name="notification_email" value="<?php echo $setting->notification_email; ?>" placeholder="<?php echo ossn_print('notification_email'); ?>"/>
 
 <label><?php echo ossn_print('default:lang'); ?></label>
 <select name="sitelang">
