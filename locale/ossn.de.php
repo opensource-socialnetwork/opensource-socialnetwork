@@ -249,6 +249,9 @@ Um Dein Passwort zurückzusetzen klicke bitte auf den folgenden Link oder kopier
 	'admin:edit:user' => 'Benutzer bearbeiten',
 	'admin:login' => 'Anmelden',
 	'admin:notification:email' => 'Benachrichtigungs-Email',
+	'notification_email' => 'Benachrichtigungs-Email (noreply@domain.de)',
+	'owner_email' => 'Betreiber-Email (administrator@domain.de)',
+	'ossn:websitename' => 'Name der Webseite',
 	'ossn:user:validation:resend' => 'Du hast Deine Registrierung nicht bestätigt, darum kannst Du Dich nicht anmelden. Eine weitere Aktivierungs-Anforderung wurde Dir per mail jetzt zugesandt.',
 	'site:timepassed:text' => 'Vor %s',
 	// vergangene Zeiträume bestehend aus 16 Elementen Singular|Plural
