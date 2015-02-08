@@ -36,7 +36,7 @@ class OssnPhotos extends OssnFile {
             $this->type = 'object';
             $this->subtype = 'ossn:aphoto';
             $this->setFile($photo);
-            $this->premission = $access;
+            $this->permission = $access;
             $this->setPath('album/photos/');
 
             //add file
