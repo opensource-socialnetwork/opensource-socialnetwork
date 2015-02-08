@@ -10,6 +10,7 @@
  */
 
 $database = new OssnDatabase;
+$Component = new OssnComponents;
 
 /**
  * Fix typo in database table
@@ -25,6 +26,11 @@ $database->statement("ALTER TABLE  `ossn_components`
 					  CHANGE  `com_id`  `com_id` TEXT CHARACTER SET utf8 
 					  COLLATE utf8_general_ci NOT NULL ;");	
 $database->execute();
+/**
+ * Add OssnEmbed and OssnInvite Component
+ */
+$Component->ENABLE('OssnEmbed');
+$Component->ENABLE('OssnInvite');
 
 /**
  * Update processed updates in database so user cannot upgrade again and again.
