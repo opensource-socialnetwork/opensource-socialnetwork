@@ -1,11 +1,15 @@
 OSSN - OPEN SOURCE SOCIAL NETWORK 2.0-dev
 
 Developers in this release:
- * $dev.arsalanshah
- * $dev.githubertus
- * $dev.sathish
+
+ * $dev.arsalanshah https://github.com/lianglee
+ * $dev.githubertus https://github.com/githubertus
+ * $dev.sathish https://github.com/sathish4fri
+ * jjehannet https://github.com/jjehannet
+ * robertito13 https://github.com/robertito13
  
 Bugfixes:
+
  * If admin edit user it didn't updated in system #117 
  * Leave group button problem #111 $dev.githubertus, 
  * In backend user list 'last_login' time is invalid.
@@ -106,7 +110,7 @@ Language Strings Addition:
  * Change the way of Ossn upgrade.
  * Add new component OssnInvite.
  * Add new component OssnEmbed (Convert videos website url to player #105)
-
+ * Add ossn ad view admin page #233
 Language strings added:
 There are many new language strings added, few of them are:
 
