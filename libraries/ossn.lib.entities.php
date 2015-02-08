@@ -69,7 +69,7 @@ function ossn_get_entities(array $params){
  * @param string $params['subtype'] Entity subtype
  * @param string $params['value'] Entity Value
  * @param string $params['owner_guid'] Owner guid
- * @param string $params['premission'] Pre-mission (access of entity)
+ * @param string $params['permission'] Permission (access of entity)
  * @param string $params['active'] 1 or 0 Does your entity is active?
  *
  * @return bool
@@ -83,8 +83,8 @@ function ossn_add_entity(array $params){
 	if(isset($params['subtype'])){
 		$entity->subtype = $params['subtype'];
 	}	
-	if(isset($params['premission'])){
-		$entity->entity_premission = $params['value'];
+	if(isset($params['permission'])){
+		$entity->entity_permission = $params['value'];
 	}
 	if(isset($params['active'])){
 		$entity->active = $params['active'];

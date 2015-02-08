@@ -64,6 +64,7 @@ $de = array(
     'ossn:install:install' => 'Installieren',
     'ossn:install:create' => 'Anlegen',
     'ossn:install:finish' => 'Fertig',
+	'fields:require' => 'Bitte fülle alle Eingabe-Felder aus',	
 );
 
 ossn_installation_register_languages($de);

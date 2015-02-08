@@ -17,16 +17,16 @@ $englsih = array(
 	'ossn:check' => 'Validate',
 	'ossn:installed' => 'Installed',
 	'ossn:installed:message' => 'Opensource Socialnetwork has been installed. After finish please remove installation directory.',
-       'ossn:prerequisites' => 'Installation prerequisites',
-       'ossn:settings' => 'Server Settings',
-       'ossn:dbsettings' => 'Database',
+    'ossn:prerequisites' => 'Installation prerequisites',
+    'ossn:settings' => 'Server Settings',
+    'ossn:dbsettings' => 'Database',
 	'ossn:dbuser' => 'Database User',
 	'ossn:dbpassword' => 'Database Password',
 	'ossn:dbname' => 'Database Name',
 	'ossn:dbhost' => 'Database Host',
-       'ossn:sitesettings' => 'Website',
-       'ossn:websitename' => 'Website name',
-       'ossn:mainsettings' => 'Paths',
+    'ossn:sitesettings' => 'Website',
+    'ossn:websitename' => 'Website name',
+    'ossn:mainsettings' => 'Paths',
 	'ossn:weburl' => 'OssnSite Url',
 	'installation:notes' => 'Data Direcotry contain users files, Data Directory must be outside or Ossn Installation',
 	'ossn:datadir' => 'Data Directory',
@@ -61,9 +61,11 @@ $englsih = array(
 	'ossn:install:config:error' => 'CONFIGURATION DIRECTORY IS NOT WRITEABLE',
 	
 	'ossn:install:next' => 'Next',
-       'ossn:install:install' => 'Install',
-       'ossn:install:create' => 'Create',
-       'ossn:install:finish' => 'Finish',
+    'ossn:install:install' => 'Install',
+    'ossn:install:create' => 'Create',
+    'ossn:install:finish' => 'Finish',
+	
+	'fields:require' => 'All fields are required',
 );
 
 ossn_installation_register_languages($englsih);

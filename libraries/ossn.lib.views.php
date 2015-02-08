@@ -14,11 +14,11 @@ $VIEW->register = array();
 
 /**
  * Include a specific file
- * @params: $file = name of file;
- * @params:  $params = args for file;
- * @last edit: $arsalanshah
- * @Reason: Initial;
  *
+ * @param string $file Valid file name;
+ * @param array $params Options;
+ * @last edit: $arsalanshah
+ * @return mixed data
  */
 function ossn_include($file = '', $params = array()) {
     if (!empty($file) && is_file($file)) {
@@ -32,12 +32,12 @@ function ossn_include($file = '', $params = array()) {
 }
 
 /**
- * Include a specific file
- * @params: $file = name of file;
- * @params:  $params = args for file;
- * @last edit: $arsalanshah
- * @Reason: Initial;
+ * View a file
  *
+ * @param string $file valid file name of php file without extension;
+ * @param array $params Options;
+ * @last edit: $arsalanshah
+ * @return mixed data
  */
 function ossn_view($path = '', $params = array()) {
     global $VIEW;
@@ -51,7 +51,11 @@ function ossn_view($path = '', $params = array()) {
         return $file;
     }
 }
-
+/**
+ * ossn_arg
+ *
+ * @param array $params Options;
+ */
 function ossn_args(array $attrs) {
     $attrs = $attrs;
     $attributes = array();
@@ -75,13 +79,13 @@ function ossn_args(array $attrs) {
 
 /**
  * Register a view;
- * @params: $view = path of view;
- * @params: $file = file for view;
- * @param string $views
- * @param string $file
- * @last edit: $arsalanshah
- * @Reason: Initial;
  *
+ * @param string $view Path of view;
+ * @param  stringn $file File name for view;
+ * @last edit: $arsalanshah
+ *
+ * @reason: Initial;
+ * @returnn mix data
  */
 function ossn_extend_view($views, $file) {
     global $VIEW;
@@ -91,11 +95,13 @@ function ossn_extend_view($views, $file) {
 
 /**
  * Fetch a register view
- * @params: $layout = name of view;
- * @params:  $params = args for file;
- * @last edit: $arsalanshah
- * @Reason: Initial;
  *
+ * @param string $layout Name of view;
+ * @params  string $params Args for file;
+ * @last edit: $arsalanshah
+ *
+ * @reason: Initial;
+ * @return mixed data
  */
 function ossn_fetch_extend_views($layout, $params = array()) {
     global $VIEW;
@@ -113,10 +119,12 @@ function ossn_fetch_extend_views($layout, $params = array()) {
 
 /**
  * Unregister a view from system
- * @params: $layout = name of view;
- * @last edit: $arsalanshah
- * @Reason: Initial;
  *
+ * @param string $layout Name of view;
+ *
+ * @last edit: $arsalanshah
+ * @reason: Initial;
+ * @return void
  */
 function ossn_remove_extend_view($layout) {
     global $VIEW;
@@ -125,11 +133,12 @@ function ossn_remove_extend_view($layout) {
 
 /**
  * Add a context to page
- * @params: $cntext = name of context;
- * @param string $context
- * @last edit: $arsalanshah
- * @Reason: Initial;
  *
+ * @param string $context Name of context;
+ * @last edit: $arsalanshah
+ *
+ * @Reason: Initial;
+ * @return void;
  */
 function ossn_add_context($context) {
     global $VIEW;
@@ -139,10 +148,11 @@ function ossn_add_context($context) {
 
 /**
  * Check the if are in registered context or not
- * @params: $context = name of context;
- * @last edit: $arsalanshah
- * @Reason: Initial;
  *
+ * @param: string $context Name of context;
+ * @last edit: $arsalanshah
+ * @reason: Initial;
+ * @return bool;
  */
 function ossn_is_context($context) {
     global $VIEW;
@@ -154,9 +164,11 @@ function ossn_is_context($context) {
 
 /**
  * Get a current context;
- * @last edit: $arsalanshah
- * @Reason: Initial;
  *
+ * @last edit: $arsalanshah
+ * @reason: Initial;
+ *
+ * @return false|string;
  */
 function ossn_get_context() {
     global $VIEW;
@@ -185,11 +197,12 @@ function ossn_set_page_layout($layout, $params = array()) {
 /**
  * View page;
  *
- * @params : $title = tile for page;
- * @params : $content = content for page;
- * @last edit: $arsalanshah
- * @Reason: Initial;
+ * @param  string $title Title for page;
+ * @param string $content Content for page;
  *
+ * @last edit: $arsalanshah
+ * @reason Initial;
+ * @return mixed data;
  */
 function ossn_view_page($title, $content, $page = 'page') {
     $params['title'] = $title;

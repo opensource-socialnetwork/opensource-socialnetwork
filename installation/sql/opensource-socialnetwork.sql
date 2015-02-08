@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS `ossn_entities` (
   `subtype` text NOT NULL,
   `time_created` int(11) NOT NULL,
   `time_updated` int(11) DEFAULT NULL,
-  `premission` int(1) NOT NULL,
+  `permission` int(1) NOT NULL,
   `active` int(1) NOT NULL,
   PRIMARY KEY (`guid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;

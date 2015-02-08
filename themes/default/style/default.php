@@ -584,7 +584,8 @@ border-left: 1px solid #EEE;
 #profile-hr-menu {
 border: none;
 border: 0px;
-padding: 0px;
+/* Pull request #301 */
+padding: 1px;
 font-size: 14px;
 font-weight: bold;
 width: auto;
