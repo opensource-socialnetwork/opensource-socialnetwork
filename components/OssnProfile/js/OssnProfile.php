@@ -74,9 +74,12 @@ Ossn.RegisterStartupFunction(function() {
                 contentType: false,
                 processData: false,
                 success: function(callback) {
+                    $time = $.now();
                     $('.user-photo-uploading').attr('class', 'upload-photo').hide();
-                    $imageurl = $('.profile-photo').find('img').attr('src');
+                    $imageurl = $('.profile-photo').find('img').attr('src') + '?' + $time;
                     $('.profile-photo').find('img').attr('src', $imageurl);
+                    $topbar_icon_url = $('.ossn-topbar-menu').find('img').attr('src') + '?' + $time;
+                    $('.ossn-topbar-menu').find('img').attr('src', $topbar_icon_url);
                 }
             });
 
