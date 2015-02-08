@@ -20,8 +20,8 @@ class OssnAnnotation extends OssnEntities {
         if (empty($this->subtype)) {
             $this->subtype = NULL;
         }
-        if (empty($this->premission)) {
-            $this->premission = OSSN_PUBLIC;
+        if (empty($this->permission)) {
+            $this->permission = OSSN_PUBLIC;
         }
         if (empty($this->order_by)) {
             $this->order_by = '';

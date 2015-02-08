@@ -15,7 +15,7 @@ class OssnEntities extends OssnDatabase {
      *
      * @params = $this->type => entity type; (this usually is user, object, annotation, site)
      *           $this->subtype => entity subtype;
-     *           $this->entity_premission => OSSN_ACCESS
+     *           $this->entity_permission => OSSN_ACCESS
      *           $this->active = is entity is active or not
      *           $this->value = data you want to insert
      *           $this->owner_guid = entity owner guid
@@ -32,7 +32,7 @@ class OssnEntities extends OssnDatabase {
                 'subtype',
                 'time_created',
                 'time_updated',
-                'premission',
+                'permission',
                 'active'
             );
             $this->params['values'] = array(
@@ -41,7 +41,7 @@ class OssnEntities extends OssnDatabase {
                 $this->subtype,
                 $this->time_created,
                 $this->time_updated,
-                $this->premission,
+                $this->permission,
                 $this->active
             );
             if ($this->insert($this->params)) {
@@ -72,8 +72,8 @@ class OssnEntities extends OssnDatabase {
         $this->time_updated = '';
         $this->active = 1;
 
-        if (empty($this->premission)) {
-            $this->premission = OSSN_PUBLIC;
+        if (empty($this->permission)) {
+            $this->permission = OSSN_PUBLIC;
         }
 
         $this->types = array(
