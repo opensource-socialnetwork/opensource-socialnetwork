@@ -17,7 +17,7 @@ if (empty($password)) {
 }
 if (!empty($user) && !empty($code)) {
     $user = ossn_user_by_username($user);
-    if ($code == $user->getParam('login:reset:code')) {
+    if ($user && $code == $user->getParam('login:reset:code')) {
         if ($user->resetPassword($password)) {
             $user->deleteResetCode();
             ossn_trigger_message(ossn_print('passord:reset:success'), 'success');

@@ -14,7 +14,7 @@ if (empty($user)) {
     redirect(REF);
 }
 $user = ossn_user_by_email($user);
-if ($user->SendResetLogin()) {
+if ($user && $user->SendResetLogin()) {
     ossn_trigger_message(ossn_print('passord:reset:email:success'), 'success');
     redirect();
 } else {
