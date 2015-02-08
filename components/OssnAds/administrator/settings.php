@@ -26,7 +26,16 @@ switch ($settings) {
 			$params['entity'] = $ads->getAd($id);
             echo ossn_view('components/OssnAds/pages/edit', $params);
 		}
-        break;		
+        break;	
+	//missing 'view' case - 'Browse' didn't work #233
+    case 'view':
+	    $id = input('id');
+		if(!empty($id)){
+			$ads = new OssnAds;
+			$params['entity'] = $ads->getAd($id);
+            echo ossn_view('components/OssnAds/pages/view', $params);
+		}
+        break;			
     default:
         break;
 
