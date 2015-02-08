@@ -40,9 +40,8 @@ class OssnInstallation {
      */
     public static function is_mod_rewrite() {
 	$file = ossn_url();
-	$file = $file . 'rewrite.php';
-	$rewrite = ossn_installation_simple_curl($file);
-        if($rewrite == 1 || file_get_contents($file) == 1){
+	$rewrite = ossn_installation_simple_curl($file . 'rewrite.php');
+        if($rewrite == 1){
 			return true;
 		}
         return false;
@@ -79,7 +78,7 @@ class OssnInstallation {
      */
     public static function isPhp() {
 		$phpversion = substr(PHP_VERSION, 0, 6);
-        if ($phpversion >= 5.3 && $phpversion < 5.6) {
+        if ($phpversion >= 5.4 && $phpversion < 5.6) {
             return true;
         }
         return false;
