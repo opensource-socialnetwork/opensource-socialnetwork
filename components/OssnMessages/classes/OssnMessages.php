@@ -24,6 +24,9 @@ class OssnMessages extends OssnDatabase {
 		//missing reconversion of html escaped characters in messages #118
 		$message = html_entity_decode($message, ENT_QUOTES, "UTF-8");
 		$message = strip_tags($message);
+		$search = array("\\r\\n", "'");
+        $replace = array("<br />", "\'");
+        $message = str_replace($search, $replace, $message);
 		
         $params['into'] = 'ossn_messages';
         $params['names'] = array(
