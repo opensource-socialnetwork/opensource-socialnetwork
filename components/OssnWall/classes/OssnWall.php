@@ -219,10 +219,8 @@ class OssnWall extends OssnObject {
 										$friend_guids[] = $friend->guid;
 								}
 						}
-						if(empty($friend_guids)) {
-								return false;
-						}
-						//all show users posts;
+						// add all users posts;
+						// (if user has 0 friends, show at least his own postings if wall access type = friends only)
 						$friend_guids[] = $user->guid;
 						$friend_guids   = implode(',', $friend_guids);
 						
