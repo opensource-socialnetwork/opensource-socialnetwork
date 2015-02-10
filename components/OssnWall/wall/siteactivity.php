@@ -10,10 +10,10 @@
  */
 $posts = new OssnWall;
 $accesstype = ossn_get_homepage_wall_access();
-if($accesstype == 'friends'){
- 	$posts = $posts->getFriendsPosts();
-} elseif($accesstype == 'public'){
+if($accesstype == 'public' || ossn_isAdminLoggedin()){
 	$posts = $posts->GetPosts();	
+} elseif($accesstype == 'friends'){
+ 	$posts = $posts->getFriendsPosts();
 }
 $Pagination = new OssnPagination;
 $Pagination->setItem($posts);
