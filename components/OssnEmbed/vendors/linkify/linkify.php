@@ -49,6 +49,6 @@ function linkify($text) {
         [a-z0-9\-_~$()*+=\/#[\]@%]  # Last char can\'t be [.!&\',;:?]
       )                        # End $14. Other non-delimited URL.
     /imx';
-    $url_replace = '$1$4$7$10$13<a href="$2$5$8$11$14">$2$5$8$11$14</a>$3$6$9$12';
+    $url_replace = '$1$4$7$10$13<a href="$2$5$8$11$14"><div style="word-break: break-all;">$2$5$8$11$14</div></a>$3$6$9$12';
     return preg_replace($url_pattern, $url_replace, $text);
 }
