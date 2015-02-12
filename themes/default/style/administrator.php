@@ -368,6 +368,7 @@ border-color: #406479;
 }
 .ossn-layout-admin .contents .content {
 padding:10px;
+display: inline;
 }
 .ossn-layout-admin-login {
 width:990px;
