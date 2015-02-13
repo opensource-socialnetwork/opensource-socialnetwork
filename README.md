@@ -5,6 +5,11 @@ Opensource-Socialnetwork (OSSN) is a social networking software written in PHP. 
 
 OSSN is released under the GNU General Public License (GPL) Version 2
 
+Languages
+==========
+* English
+* German
+
 Front-End Features
 ===================
 * User Regestration
