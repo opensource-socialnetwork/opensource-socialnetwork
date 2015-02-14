@@ -2,6 +2,11 @@ OSSN - OPEN SOURCE SOCIAL NETWORK 2.0 beta 2
 
 Bugfixes:
  * Update php version in installation language strings.
+ * Add break-word css in wall post text.
+ * Accept html characters also and encode them in chat and messages. 
+ 
+Components:
+ * OssnSmilies Component has been added.
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 2.0-dev
 
