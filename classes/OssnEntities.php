@@ -112,19 +112,18 @@ class OssnEntities extends OssnDatabase {
      */
     public function get_entity() {
         self::initAttributes();
-        $this->get = array(
-            'from' => 'ossn_entities',
-            'wheres' => array("guid ='{$this->entity_guid}'"),
-        );
-        $this->get = $this->select($this->get);
-        $metadata = $this->select(array(
-            'from' => 'ossn_entities_metadata',
-            'wheres' => array("guid='{$this->get->guid}'"),
-        ));
-        unset($metadata->id);
-        $data = array_merge(get_object_vars($this->get), get_object_vars($metadata));
-        $entity = arrayObject($data, $this->types[$this->type]);
-        return $entity;
+		
+		$params = array();
+		$params['from'] = 'ossn_entities as e';
+		$params['params'] = array('e.guid, e.time_created, e.time_updated, e.permission, e.active, e.owner_guid, emd.value');
+		$params['joins'] = "JOIN ossn_entities_metadata as emd ON e.guid=emd.guid";
+		$params['wheres'] = array("guid ='{$this->entity_guid}'");
+		
+        $data = $this->select($params);
+		if($data){
+        	$entity = arrayObject($data, $this->types[$this->type]);
+       		return $entity;
+		}
     }
 
     /**
@@ -202,24 +201,21 @@ class OssnEntities extends OssnDatabase {
 		if(isset($this->owner_guid)){
 			$this->byowner = "owner_guid ='{$this->owner_guid}' AND";
 		}
-        $this->get = array(
-            'from' => 'ossn_entities',
-            'wheres' => array("{$this->byowner} type='{$this->type}' {$this->subtype}"),
-            'order_by' => $this->order_by,
-			'limit' => $this->limit,
-        );
-        $this->get = $this->select($this->get, true);
+		
+		$params = array();
+		$params['from'] = 'ossn_entities as e';
+		$params['params'] = array('e.guid, e.time_created, e.time_updated, e.permission, e.active, e.owner_guid, emd.value');
+		$params['joins'] = "JOIN ossn_entities_metadata as emd ON e.guid=emd.guid";
+		$params['wheres'] = array("{$this->byowner} type='{$this->type}' {$this->subtype}");
+		$params['order_by'] =  $this->order_by;	
+		$params['limit'] = $this->limit;
+        
+		$this->get = $this->select($params, true);
         if ($this->get) {
-            foreach ($this->get as $entites) {
-                $metadata = $this->select(array(
-                    'from' => 'ossn_entities_metadata',
-                    'wheres' => array("guid='{$entites->guid}'"),
-                ));
-                unset($metadata->id);
-                $data = array_merge(get_object_vars($entites), get_object_vars($metadata));
-                $entity[] = arrayObject($data, $this->types[$this->type]);
-            }
-            return $entity;
+			foreach($this->get as $entity){
+            	$entities[] =  arrayObject($entity, $this->types[$this->type]);
+			}
+			return $entities;
         }
         return false;
     }
