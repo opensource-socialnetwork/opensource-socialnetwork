@@ -8,6 +8,9 @@
  * @link      http://www.opensource-socialnetwork.com/licence
  */
 Ossn.NotificationBox = function($title, $meta, $type, height) {
+	//trigger notification box again:
+  	Ossn.NotificationsCheck();
+    
     if (height == '') {
         height = '540px';
     }
