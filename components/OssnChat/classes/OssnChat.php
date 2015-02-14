@@ -168,6 +168,7 @@ class OssnChat extends OssnDatabase {
 		$message = html_entity_decode($message, ENT_QUOTES, "UTF-8");
 		$message = strip_tags($message);
 		$message = ossn_restore_new_lines($message);
+		$message = ossn_input_escape($message, false);
 		
         $params['into'] = 'ossn_messages';
         $params['names'] = array(
