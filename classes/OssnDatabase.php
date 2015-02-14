@@ -157,7 +157,11 @@ class OssnDatabase extends OssnBase{
 			if (!empty($params['limit'])){
 				$limit = "LIMIT {$params['limit']}";
 			}
-            $query = "SELECT {$parameters} FROM `{$params['from']}` {$wheres} {$order_by} {$limit};";
+			$joins = '';
+			if(!empty($params['joins'])){
+				$joins = $params['joins'];
+			}
+            $query = "SELECT {$parameters} FROM {$params['from']} {$joins} {$wheres} {$order_by} {$limit};";
             $this->statement($query);
             if ($this->execute()) {
                 return $this->fetch($multi);
