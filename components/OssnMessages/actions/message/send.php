@@ -13,8 +13,7 @@ $message = input('message');
 $to = input('to');
 if ($send->send(ossn_loggedin_user()->guid, $to, $message)) {
     $user = ossn_user_by_guid(ossn_loggedin_user()->guid);
-	$message = $send->getMessage($send->lastMessage);
-	$message = ossn_message_print($message->message);
+	$message = ossn_restore_new_lines($message);
 	
 	$params['user'] = $user;
     $params['message'] = $message;
