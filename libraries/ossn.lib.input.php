@@ -8,33 +8,47 @@
  * @license   General Public Licence http://www.opensource-socialnetwork.org/licence
  * @link      http://www.opensource-socialnetwork.org/licence
  */
-
+function ossn_input_escape($str, $newlines = true){
+    $replacements = array(
+        "\x00" => '\x00',
+        "\n" => '\n',
+        "'" => "\'",
+        '"' => '\"',
+        "\x1a" => '\x1a'
+    );
+	if($newlines === true){
+		$newline = array(       
+	        "\r" => '\r',
+            "\\" => '\\\\',
+	    );
+		$replacements = array_merge($replacements, $newline);
+	}
+	if(!empty($str)){
+		return strtr($str, $replacements);	
+	}
+	return false;
+}
 /**
  * Get input from user; using secure method;
  *
  * @param string $input Name of input;
- * @params  integer $validate If you don't want to encode to html entities then add 1 as second arg in function.
+ * @params  integer $noencode If you don't want to encode to html entities then add 1 as second arg in function.
  *
  * @last edit: $arsalanshah
  * @reason: fix docs;
  * @return false|string
  */
-function input($input, $validate = '') {
-    $replacements = array(
-        "\x00" => '\x00',
-        "\n" => '\n',
-        "\r" => '\r',
-        "\\" => '\\\\',
-        "'" => "\'",
-        '"' => '\"',
-        "\x1a" => '\x1a'
-    );
-    if (isset($_REQUEST[$input]) && empty($validate)) {
+function input($input, $noencode = '') {
+	$str = false;
+    if (isset($_REQUEST[$input]) && empty($noencode)) {
         $data = htmlentities($_REQUEST[$input], ENT_QUOTES, 'UTF-8');
-        return strtr($data, $replacements);
-    } elseif ($validate == 1) {
-        return strtr($input, $replacements);
+		$str = $data;
+    } elseif ($noencode == 1) {
+        $str = ossn_input_escape($data);
     }
+	if($str){
+		return ossn_input_escape($str);
+	}
     return false;
 }
 /**
