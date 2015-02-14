@@ -113,11 +113,11 @@ class OssnEntities extends OssnDatabase {
     public function get_entity() {
         self::initAttributes();
 		
-		$params = array();
-		$params['from'] = 'ossn_entities as e';
-		$params['params'] = array('e.guid, e.time_created, e.time_updated, e.permission, e.active, e.owner_guid, emd.value');
-		$params['joins'] = "JOIN ossn_entities_metadata as emd ON e.guid=emd.guid";
-		$params['wheres'] = array("guid ='{$this->entity_guid}'");
+	$params = array();
+	$params['from'] = 'ossn_entities as e';
+	$params['params'] = array('e.guid, e.time_created, e.time_updated, e.permission, e.active, e.owner_guid, emd.value');
+	$params['joins'] = "JOIN ossn_entities_metadata as emd ON e.guid=emd.guid";
+	$params['wheres'] = array("guid ='{$this->entity_guid}'");
 		
         $data = $this->select($params);
 		if($data){
@@ -198,24 +198,24 @@ class OssnEntities extends OssnDatabase {
         } else {
             $this->subtype = '';
         }
-		if(isset($this->owner_guid)){
-			$this->byowner = "owner_guid ='{$this->owner_guid}' AND";
-		}
+	if(isset($this->owner_guid)){
+		$this->byowner = "owner_guid ='{$this->owner_guid}' AND";
+	}
 		
-		$params = array();
-		$params['from'] = 'ossn_entities as e';
-		$params['params'] = array('e.guid, e.time_created, e.time_updated, e.permission, e.active, e.owner_guid, emd.value');
-		$params['joins'] = "JOIN ossn_entities_metadata as emd ON e.guid=emd.guid";
-		$params['wheres'] = array("{$this->byowner} type='{$this->type}' {$this->subtype}");
-		$params['order_by'] =  $this->order_by;	
-		$params['limit'] = $this->limit;
+	$params = array();
+	$params['from'] = 'ossn_entities as e';
+	$params['params'] = array('e.guid, e.time_created, e.time_updated, e.permission, e.active, e.owner_guid, emd.value');
+	$params['joins'] = "JOIN ossn_entities_metadata as emd ON e.guid=emd.guid";
+	$params['wheres'] = array("{$this->byowner} type='{$this->type}' {$this->subtype}");
+	$params['order_by'] =  $this->order_by;	
+	$params['limit'] = $this->limit;
         
-		$this->get = $this->select($params, true);
+	$this->get = $this->select($params, true);
         if ($this->get) {
-			foreach($this->get as $entity){
-            	$entities[] =  arrayObject($entity, $this->types[$this->type]);
-			}
-			return $entities;
+		foreach($this->get as $entity){
+            		$entities[] =  arrayObject($entity, $this->types[$this->type]);
+		}
+		return $entities;
         }
         return false;
     }
