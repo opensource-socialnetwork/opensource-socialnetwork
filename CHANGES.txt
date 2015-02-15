@@ -5,6 +5,9 @@ Bugfixes:
  * Add break-word css in wall post text.
  * Accept html characters also and encode them in chat and messages. 
  
+Performance:
+ * Reduce 2 queries used in get entities into 1 query.
+ 
 Components:
  * OssnSmilies Component has been added.
 
