@@ -117,7 +117,7 @@ class OssnEntities extends OssnDatabase {
 	$params['from'] = 'ossn_entities as e';
 	$params['params'] = array('e.guid, e.time_created, e.time_updated, e.permission, e.active, e.owner_guid, emd.value');
 	$params['joins'] = "JOIN ossn_entities_metadata as emd ON e.guid=emd.guid";
-	$params['wheres'] = array("guid ='{$this->entity_guid}'");
+	$params['wheres'] = array("e.guid ='{$this->entity_guid}'");
 		
         $data = $this->select($params);
 		if($data){
