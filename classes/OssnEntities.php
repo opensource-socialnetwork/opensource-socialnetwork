@@ -115,7 +115,7 @@ class OssnEntities extends OssnDatabase {
 		
 	$params = array();
 	$params['from'] = 'ossn_entities as e';
-	$params['params'] = array('e.guid, e.time_created, e.time_updated, e.permission, e.active, e.owner_guid, emd.value');
+	$params['params'] = array('e.guid, e.time_created, e.time_updated, e.permission, e.active, e.owner_guid, emd.value, e.type, e.subtype');
 	$params['joins'] = "JOIN ossn_entities_metadata as emd ON e.guid=emd.guid";
 	$params['wheres'] = array("e.guid ='{$this->entity_guid}'");
 		
@@ -204,7 +204,7 @@ class OssnEntities extends OssnDatabase {
 		
 	$params = array();
 	$params['from'] = 'ossn_entities as e';
-	$params['params'] = array('e.guid, e.time_created, e.time_updated, e.permission, e.active, e.owner_guid, emd.value');
+	$params['params'] = array('e.guid, e.time_created, e.time_updated, e.permission, e.active, e.owner_guid, emd.value, e.type, e.subtype');
 	$params['joins'] = "JOIN ossn_entities_metadata as emd ON e.guid=emd.guid";
 	$params['wheres'] = array("{$this->byowner} type='{$this->type}' {$this->subtype}");
 	$params['order_by'] =  $this->order_by;	
