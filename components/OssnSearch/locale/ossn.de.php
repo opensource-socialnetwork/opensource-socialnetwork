@@ -11,8 +11,8 @@
 
 $de = array(
         'ossn:search' => 'Suche',
-        'result:type' => 'ERGEBNISSE VOM TYP',
-        'search:result' => 'Such-Ergebnis für %s',
+        'result:type' => 'ERGEBNISTYP',
+        'search:result' => 'Suchergebnis für %s',
         'ossn:search:topbar:search' => 'Finde Gruppen, Freunde und mehr',
         'ossn:search:no:result' => 'Keine Treffer',
 );
