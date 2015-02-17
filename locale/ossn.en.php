@@ -17,14 +17,14 @@ $en = array(
 	'photos:ossn' => 'Photos',
 	'admin:view:site' => 'View Site',
 	
-	'home:top:heading' => "Welcome to %s, join now to make new friends, create groups , add photos and much more",
+	'home:top:heading' => "Welcome to %s! Join now to make new friends, create groups, add photos, and much more.",
 	'create:account' => 'Create an account',
 	'its:free' => "It's free and always will be.",
 	
-	'register:ok:message' => "Your account has been registered. We have sent you account activation email. If you didn't recieved email please check your spam/junk folder.",
+	'register:ok:message' => "Your account has been registered. We have sent you an account activation email. If you didn't receive the email, please check your spam/junk folder.",
 	
 	'copyright' => '&copy; COPYRIGHT',
-	'powered' => 'Powered Open Source Social Network',
+	'powered' => 'Powered by the Open Source Social Network',
 	
 	'name' => 'Name',
 	'birthdate' => 'Birthdate',
@@ -43,7 +43,7 @@ $en = array(
 	'gender' => 'Gender',
 	
 	'acount:settings' => 'Account Settings',
-	'page:error' => 'Page Not Found',
+	'page:error' => 'Page Not Found!',
 	'page:error:text' => 'Opps! The Page you requested was not found!',
 	'page:error:heading' => '404',
 	
@@ -51,11 +51,11 @@ $en = array(
 	'admin:logout' => 'Logout',
 	'logout' => 'Logout',
 	
-	'ossn:like:this' => '%s like this',
-	'ossn:like:you:and:this' => 'You and %s like this',
+	'ossn:like:this' => '%s liked this',
+	'ossn:like:you:and:this' => 'You and %s liked this',
 	'ossn:like:people' => '%s People',
 	'ossn:like:person' => '%s Person',
-	'ossn:liked:you' => 'You like this',
+	'ossn:liked:you' => 'You liked this',
 	'ossn:unlike' => 'Unlike',
 	'ossn:like' => 'Like',
 	
@@ -81,8 +81,8 @@ $en = array(
 	
 	'admin:users' => 'List Users',
 	'admin:add:user' => 'Add User',
-	'admin:user:deleted' => 'User has been deleted',
-	'admin:user:delete:error' => 'Cannot delete user please try again later',
+	'admin:user:deleted' => 'User has been deleted!',
+	'admin:user:delete:error' => 'Cannot delete user! Please try again later.',
 	
 	'type' => 'Type',
 	'normal' => 'Normal',
@@ -105,7 +105,7 @@ $en = array(
 	'friends' => 'Friends',
 	'links' => 'Links',
 	'ossn:add:user:mail:subject' => "%s please confirm your email address for %s!",
-	'ossn:add:user:mai:body' => "Before you can start you using %s, you must confirm your email address.
+	'ossn:add:user:mail:body' => "Before you can start using %s, you must confirm your email address.
 
 Please confirm your email address by clicking on the link below:
 
@@ -115,51 +115,51 @@ If you can't click on the link, copy and paste it to your browser manually.
 
 %s",
 	'user:friends' => 'Friends',
-	'user:account:validated' => 'Account has been successfully validated',
-	'user:account:validate:fail' => 'Cannot validate account please try again later',
+	'user:account:validated' => 'Account has been successfully validated!',
+	'user:account:validate:fail' => 'Cannot validate account! Please try again later.',
 	
-	'cache:enabled' => 'Cache successfully enabled',
-	'cache:disabled' => 'Cache successfully disabled',
+	'cache:enabled' => 'Cache successfully enabled!',
+	'cache:disabled' => 'Cache successfully disabled!',
 	'cache:enable' => 'Enable Cache',
 	'cache:disable' => 'Disable Cache',
 	
 	'cache:1' => 'Enabled',
 	'cache:0' => 'Disabled',
-	'cache:notice' => 'Cache will store CSS and JS in cache file and helps your site to load faster',
+	'cache:notice' => 'Cache will store CSS and JS in cache file and help your site load faster.',
 	
-	'theme:install:notice' => 'Upload a valid .zip theme package',
-	'com:install:notice' => 'Upload valid .zip component package',
+	'theme:install:notice' => 'Upload a valid .zip theme package.',
+	'com:install:notice' => 'Upload a valid .zip component package.',
 	
-	'login:error' => 'Invalid username or passsword',
-	'login:error:sub' => "We couldn't log you in. Please check your username or password and try again",
-	'login:success' => 'You are now loggedin',
-	'com:installed' => 'Component has been installed',
-	'com:install:error' => 'Cannot install component, make sure its correct package',
+	'login:error' => 'Invalid username or passsword!',
+	'login:error:sub' => "We couldn't log you in. Please check your username or password and try again.",
+	'login:success' => 'You are now logged in!',
+	'com:installed' => 'Component has been installed!',
+	'com:install:error' => 'Cannot install component! Make sure it is a valid package.',
 	'settings:saved' => 'Settings saved',
-	'com:deleted' => 'Component has been deleted',
-	'com:delete:error' => 'Cannot delete component please try again',
-	'com:disabled' => 'Successfully disabled',
-	'com:enabled' => 'Component Enabled',
+	'com:deleted' => 'Component has been deleted!',
+	'com:delete:error' => 'Cannot delete component! Please try again later.',
+	'com:disabled' => 'Successfully disabled!',
+	'com:enabled' => 'Component Enabled!',
 	
-	'theme:delete:active' => 'Cannot delete active theme',
-	'theme:deleted' => 'Theme has been deleted',
-	'theme:delete:error' => 'Cannot delete theme please try again',
-	'theme:enabled' => 'Successfully enabled',
-	'theme:installed' => 'Theme has been installed',
-	'theme:install:error' => 'Cannot install theme',
+	'theme:delete:active' => 'Cannot delete active theme.',
+	'theme:deleted' => 'Theme has been deleted.',
+	'theme:delete:error' => 'Cannot delete theme! Please try again later.',
+	'theme:enabled' => 'Successfully enabled!',
+	'theme:installed' => 'Theme has been installed!',
+	'theme:install:error' => 'Cannot install theme! Make sure it is a valid theme.',
 	
-	'fields:require' => 'All fields are required',
-	'username:error' => 'Username is incorrect',
-	'password:error' => 'Password must be more than 5 words',
-	'account:created' => 'The account has been created',
-	'account:create:error:admin' => 'Cannot register account please try again later',
-	'user:updated' => 'User has been updated',
-	'logged:out' => 'You are now logged out',
-	'username:inuse' => 'Username already exist please try another usename',
-	'email:inuse' => 'Email already exist please try another email',
-	'email:invalid' => 'Email is invalid. Make sure the email you entered is correct.',
-	'email:error:matching' => "Email addresses don't match",
-	'account:created:email' => "Your account has been registered. We have sent you account activation email. If you didn't recieved email please check your spam/junk folder",
+	'fields:require' => 'All fields are required!',
+	'username:error' => 'Username is incorrect.',
+	'password:error' => 'Password must be more than 5 words.',
+	'account:created' => 'Your account has been created.',
+	'account:create:error:admin' => 'Cannot register account! Please try again later.',
+	'user:updated' => 'User has been updated!',
+	'logged:out' => 'You are now logged out!',
+	'username:inuse' => 'Username already exist! Please select a different usename.',
+	'email:inuse' => 'Email address already exist! Please try another email address.',
+	'email:invalid' => 'Email address is invalid! Make sure the email address you entered is correct.',
+	'email:error:matching' => "Email addresses do not match.",
+	'account:created:email' => "Your account has been registered! We have sent you an account activation email. If you didn't receive the email, please check your spam/junk folder",
 	
 	'administration' => 'Administration',
 	
@@ -168,46 +168,46 @@ If you can't click on the link, copy and paste it to your browser manually.
 	'open' => 'Open',
 	'public' => 'Public',
 	'friends' => 'Friends',
-	'privacy:public:note' => 'Any one is on site can see this',
-	'privacy:friends:note' => 'Your friends can only see this',
+	'privacy:public:note' => 'Everyone on this site can see this.',
+	'privacy:friends:note' => 'Only your friends can see this.',
 	
 	'add:friend' => 'Add friend',
 	'cancel:request' => 'Cancel Request',
 	'remove:friend' => 'Unfriend',
 	'no:friends' => 'No Friends',
 	'settings' => 'Settings',
-	'ossn:add:friend:error' => 'Cannot add friend',
-	'ossn:friend:request:submitted' => 'Your friend request was submitted successfully',
+	'ossn:add:friend:error' => 'Cannot add friend!',
+	'ossn:friend:request:submitted' => 'Your friend request was submitted successfully!',
 	
 	/* Upgrades */
-	'upgrade:file:load:error' => 'Cannot load upgrade file',
-	'upgrade:success' => "Your website has been upgraded successfully to release %s",
-	'upgrade:failed' => "Cannot upgrade your site to release %s",
-	'upgrade:not:available' => 'Nothing to upgrade',
+	'upgrade:file:load:error' => 'Cannot load upgrade file!',
+	'upgrade:success' => "Your website has been upgraded successfully to release %s.",
+	'upgrade:failed' => "Cannot upgrade your site to release %s.",
+	'upgrade:not:available' => 'Nothing to upgrade!',
 	
 	'site:login' => 'Login',
 	/* Page errors */
-	'system:error:title' => 'Something went wrong',
-	'system:error:text' => 'Something went wrong please try again by reloading page',
+	'system:error:title' => 'Something went wrong!',
+	'system:error:text' => 'Something went wrong! Reload this page and try again.',
 	
 	/* Password Reset */
 	'reset:login' => 'Reset Password',
 	'reset:password' => 'Reset your password',
-	'enter:new:password' => 'Enter your new password below and click reset',
+	'enter:new:password' => 'Enter your new password below and click reset.',
 	'reset' => 'Reset',
-	'enter:emai:reset:pwd' => 'Enter the email address of your account in order to reset password',
+	'enter:emai:reset:pwd' => 'Enter the email address of your account in order to reset the password.',
 	'ossn:reset:password:subject' => 'Reset your password',
 	'ossn:reset:password:body' => "Hello %s,
 	
-Please click the link below to reset password or copy the link and paste in your browser address bar:
+Please click the link below to reset password or copy the link and paste into your browser's address bar:
 
 %s
 
 %s",
-	'passord:reset:success' => 'Password successfully changed',
-	'passord:reset:fail' => 'Cannot reset password please try again later',
-	'password:reset:email:required' => 'Email cannot be empty',
-	'passord:reset:email:success' => 'Password reset instruction has been sent to your email address',
+	'passord:reset:success' => 'Password successfully changed!',
+	'passord:reset:fail' => 'Cannot reset password! Please try again later.',
+	'password:reset:email:required' => 'Email cannot be empty!',
+	'passord:reset:email:success' => 'Password reset instructions have been sent to your email address.',
 	'reset:password' => 'Reset Password',
 	
 	'erros:reporting' => 'Error Reporting',
@@ -218,7 +218,7 @@ Please click the link below to reset password or copy the link and paste in your
 	'ossn:new:version:error' => 'Unknown',
 	'ossn:version:avaialbe' => "%s",
 	
-	'ossn:exception:title' => 'System error occurred. Please try again later. Email Administrator at %s',
+	'ossn:exception:title' => 'A system error has occurred. Please try again later. You may email the details of this error to the system administrator at %s.',
 	'ossn:securitytoken:failed' => 'The action you requested is invalid.',
 	'ossn:component:delete:exception' => 'Are you sure you want to delete this component?',
 	'ossn:user:delete:exception' => 'Are you sure you want to delete this user?',
@@ -252,7 +252,7 @@ Please click the link below to reset password or copy the link and paste in your
 	'notification_email' => 'Notification Email (noreply@domain.com)',
 	'owner_email' => 'Owner Email (mysite@domain.com)',
 	'ossn:websitename' => 'Name of your website',
-	'ossn:user:validation:resend' => 'Your account is not validated so the log in attempt failed. Another validation email has been sent.',
+	'ossn:user:validation:resend' => 'Your account is not validated! You must validate your account before logging in. Another validation email has been sent to your email address.',
 	'site:timepassed:text' => '%s ago',
 	// localization of passed time: 16 time elements (even = singular / odd = plural)
 	'site:timepassed:data' => 'second|seconds|minute|minutes|hour|hours|day|days|week|weeks|month|months|year|years|decade|decades',

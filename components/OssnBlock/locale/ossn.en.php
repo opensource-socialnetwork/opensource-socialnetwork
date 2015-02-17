@@ -9,8 +9,8 @@
  * @link      http://www.opensource-socialnetwork.org/licence
  */
 $en = array(
-    'user:blocked' => 'User has been blocked',
-    'user:block:error' => 'Cannot block user please try again later',
+    'user:blocked' => 'User has been blocked!',
+    'user:block:error' => 'Cannot block user! Please try again later.',
     'user:block' => 'Block',
     'user:unblock' => 'Unblock',
 );
