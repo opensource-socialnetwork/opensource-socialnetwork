@@ -18,8 +18,8 @@ $de = array(
     'ossn:notifications:wall:friends:tag' => '%s hat Dich mit einem Beitrag verbunden',
     'ossn:notification:are:friends' => 'Ihr seid nun Freunde',
     'ossn:notifications:comments:post:group:wall' => "%s hat einen Kommentar zu einem Gruppen-Beitrag abgegeben",
-    'ossn:notifications:like:entity:file:profile:photo' => "%s hat Dein Profil-Foto kommentiert",
-    'ossn:notifications:comments:entity:file:profile:photo' => "%s gefällt Dein Profil-Foto",
+    'ossn:notifications:comments:entity:file:profile:photo' => "%s hat Dein Profil-Foto kommentiert",
+    'ossn:notifications:like:entity:file:profile:photo' => "%s gefällt Dein Profil-Foto",
     'ossn:notifications:like:post:group:wall' => '%s gefällt Dein Beitrag',
 	
     'ossn:notification:delete:friend' => 'Die Freundschafts-Anfrage wurde gelöscht',
