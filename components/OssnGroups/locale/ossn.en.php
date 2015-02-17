@@ -14,27 +14,27 @@ $en = array(
     'requests' => 'Requests',
 
     'members' => 'Members',
-    'member:add:error' => 'Something went wrong please try again',
-    'member:added' => 'Membership approved',
+    'member:add:error' => 'Something went wrong! Please try again later.',
+    'member:added' => 'Membership request approved!',
 
-    'member:request:deleted' => 'Membership successfully declined',
-    'member:request:delete:fail' => 'Cannot decline membership please try again later',
-    'membership:cancel:succes' => 'Membership successfully canceled',
-    'membership:cancel:fail' => 'Cannot cancel membership please try again later',
+    'member:request:deleted' => 'Membership request declined!',
+    'member:request:delete:fail' => 'Cannot decline membership request! Please try again later.',
+    'membership:cancel:succes' => 'Membership request cancelled!',
+    'membership:cancel:fail' => 'Cannot cancel membership request! Please try again later.',
 
-    'group:added' => 'Successfully created the group',
-    'group:add:fail' => 'Cannot create group',
+    'group:added' => 'Successfully created the group!',
+    'group:add:fail' => 'Cannot create group! Please try again later.',
 
-    'memebership:sent' => 'Request successfully sent',
-    'memebership:sent:fail' => 'Cannot send request',
+    'memebership:sent' => 'Request successfully sent!',
+    'memebership:sent:fail' => 'Cannot send request! Please try again later.',
 
-    'group:updated' => 'Group has been updated successfully',
-    'group:update:fail' => 'Cannot update group',
+    'group:updated' => 'Group has been updated!',
+    'group:update:fail' => 'Cannot update group! Please try again later.',
 
     'group:name' => 'Group Name',
     'group:desc' => 'Group Description',
-    'privacy:group:public' => 'Any one can see the group, its post, only members can post',
-    'privacy:group:close' => 'Any one can see the group, only members can post',
+    'privacy:group:public' => 'Everyone can see this group and its posts. Only members can post to this group.',
+    'privacy:group:close' => 'Everyone can see this group. Only members can post and see posts.',
 
     'group:memb:remove' => 'Remove',
     'leave:group' => 'Leave Group',
@@ -51,13 +51,13 @@ $en = array(
     'decline' => 'Decline',
     'search:groups' => 'Search Groups',
 
-    'close:group:notice' => 'Join this group to see the post, photos and comment.',
+    'close:group:notice' => 'Join this group to see the posts, photos, and comments.',
     'closed:group' => 'Closed group',
     'group:admin' => 'Admin',
 	
 	'title:access:private:group' => 'Group post',
 
 	// #186 group join request message var1 = user, var2 = name of group
-	'ossn:notifications:group:joinrequest' => '%s requested to join %s',
+	'ossn:notifications:group:joinrequest' => '%s has requested to join %s',
 );
 ossn_register_languages('en', $en); 

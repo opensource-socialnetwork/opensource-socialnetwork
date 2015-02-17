@@ -16,7 +16,7 @@ $englsih = array(
 	'ossn:installation' => 'Installation',
 	'ossn:check' => 'Validate',
 	'ossn:installed' => 'Installed',
-	'ossn:installed:message' => 'Opensource Socialnetwork has been installed. After finish please remove installation directory.',
+	'ossn:installed:message' => 'Open Source Social Network has been installed. After you are finished, please remove the installation directory.',
     'ossn:prerequisites' => 'Installation prerequisites',
     'ossn:settings' => 'Server Settings',
     'ossn:dbsettings' => 'Database',
@@ -28,19 +28,19 @@ $englsih = array(
     'ossn:websitename' => 'Website name',
     'ossn:mainsettings' => 'Paths',
 	'ossn:weburl' => 'OssnSite Url',
-	'installation:notes' => 'Data Direcotry contain users files, Data Directory must be outside or Ossn Installation',
+	'installation:notes' => 'The data directory contains users files. The data directory must be located outside the OSSN installation path.',
 	'ossn:datadir' => 'Data Directory',
 	'owner_email' => 'Site Owner Email',
 	'notification_email' => 'Notification Email (noreply@domain.com)',
 	'create:admin:account' => 'Create Admin Account',
 	'ossn:setting:account' => 'Account settings',
 	
-	'data:directory:invalid' => 'Invalid data directoy or directory is not writeable',	
-	'data:directory:outside' => 'Data directory must outside',
-	'all:files:required' => 'All files are required please check your files',
+	'data:directory:invalid' => 'Invalid data directory or directory is not writeable.',	
+	'data:directory:outside' => 'Data directory must be outside the installation path.',
+	'all:files:required' => 'All files are required! Please check your files.',
 	
 	'ossn:install:php' => 'PHP ',
-	'ossn:install:old:php' => "You have old PHP " . PHP_VERSION . " You need PHP 5.4 or PHP 5.5",
+	'ossn:install:old:php' => "You have an old version of PHP " . PHP_VERSION . " You need PHP 5.4 or PHP 5.5",
 	
 	'ossn:install:mysqli' => 'MYSQLI ENABLED',
 	'ossn:install:mysqli:required' => 'MYSQLI PHP EXTENSION REQUIRED',
@@ -65,7 +65,7 @@ $englsih = array(
     'ossn:install:create' => 'Create',
     'ossn:install:finish' => 'Finish',
 	
-	'fields:require' => 'All fields are required',
+	'fields:require' => 'All fields are required!',
 );
 
 ossn_installation_register_languages($englsih);

@@ -21,8 +21,8 @@ $en = array(
     'reposition:cover' => 'Reposition',
     'profile:photos' => 'Profile Photos',
 	
-    'photo:deleted:success' => 'Photo successfully deleted',
-    'photo:delete:error' => 'Cannot delete photo',
+    'photo:deleted:success' => 'Photo successfully deleted!',
+    'photo:delete:error' => 'Cannot delete photo! Please try again later.',
 	
     'photos' => 'Photos',
     'back' => 'Back',

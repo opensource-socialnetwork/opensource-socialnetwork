@@ -10,9 +10,9 @@
  */
 $en = array(
     'ossnads' => 'Ads Manager',
-    'fields:required' => 'All fields are required',
-    'ad:created' => 'Ad have been created',
-    'ad:create:fail' => 'Cannot crate ad',
+    'fields:required' => 'All fields are required!',
+    'ad:created' => 'Ad has been created!',
+    'ad:create:fail' => 'Cannot create ad!',
     'ad:title' => 'Title',
     'ad:site:url' => 'Siteurl',
     'ad:desc' => 'Description',
@@ -20,9 +20,9 @@ $en = array(
     'ad:browse' => 'Browse',
     'ad:clicks' => 'Clicks',
     'sponsored' => 'SPONSORED',
-	'ad:deleted' => "Ad with title '%s' sucessfully delete",
-	'ad:delete:fail' => 'Can not delete ad try again',
-	'ad:edited' => 'Ad successfully edited',
-	'ad:edit:fail' => 'Can not edit ad please try again',
+	'ad:deleted' => "Ad with the title of '%s' has been successfully deleted.",
+	'ad:delete:fail' => 'Cannot delete ad! Please try again later.',
+	'ad:edited' => 'Ad successfully modified.',
+	'ad:edit:fail' => 'Cannot edit ad! Please try again later.',
 );
 ossn_register_languages('en', $en); 
