@@ -81,6 +81,7 @@ display:block;
 margin-top:5px;
 margin-bottom:15px;
 border: 1px solid #ccc;
+word-wrap: break-word;
 }
 .ossn-photo-view-controls {
 display: inline-table;
