@@ -19,14 +19,6 @@ Components:
  * OssnSmilies Component has been added.
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 2.0-dev
-
-Developers in this release:
-
- * $dev.arsalanshah https://github.com/lianglee
- * $dev.githubertus https://github.com/githubertus
- * $dev.sathish https://github.com/sathish4fri
- * jjehannet https://github.com/jjehannet
- * robertito13 https://github.com/robertito13
  
 Bugfixes:
 
@@ -191,3 +183,13 @@ components/OssnGroups/locale/
 components/OssnProfile/locale/
 
   * ossn:profile:picture:updated
+  
+  Developers in this release:
+
+ * $dev.arsalanshah https://github.com/lianglee
+ * $dev.githubertus https://github.com/githubertus
+ * $dev.sathish https://github.com/sathish4fri
+ * jjehannet https://github.com/jjehannet
+ * robertito13 https://github.com/robertito13
+ * bishopgodsey https://github.com/bishopgodsey
+ * TheGameHHH https://github.com/TheGameHHH
