@@ -23,6 +23,7 @@ require_once(__OSSN_EMBED__ . 'vendors/linkify/linkify.php');
  */
 function ossn_embed_init() {	
  	ossn_add_hook('wall', 'templates:item', 'ossn_embed_wall_template_item');
+	ossn_add_hook('comment:view', 'template:params', 'ossn_embed_comments_template_params');
 }
 /**
  * Replace videos links and simple url to html url.
@@ -57,6 +58,23 @@ function ossn_embed_wall_template_item($hook, $type, $return){
 			}
 		}
 	}
+	return $return;
+}
+/**
+ * Convert text links from comments into html links
+ *
+ * @note Please don't call this function directly in your code.
+ * 
+ * @param string $hook Name of hook
+ * @param string $type Hook type
+ * @param array|object $return Array or Object
+ * @params array $params Array contatins params
+ *
+ * @return array
+ * @access private
+ */
+function ossn_embed_comments_template_params($hook, $type, $return, $params){
+	$return['comment']['comments:post'] = linkify($return['comment']['comments:post']);
 	return $return;
 }
 //initilize ossn wall
