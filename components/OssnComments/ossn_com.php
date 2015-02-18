@@ -178,5 +178,15 @@ function ossn_comment_page($pages) {
             break;
     }
 }
-
+/**
+ * Comment view
+ * 
+ * @param array $vars Options
+ * @param string $template Template name
+ * @return mixed data
+ */
+ function ossn_comment_view($params, $template = 'comment'){
+	 $vars = ossn_call_hook('comment:view', 'template:params', $params, $params);
+	 return  ossn_view("components/OssnComments/templates/{$template}", $vars);
+ }
 ossn_register_callback('ossn', 'init', 'ossn_comments');
