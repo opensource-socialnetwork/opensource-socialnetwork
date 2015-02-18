@@ -21,10 +21,10 @@ if (is_object($comments)) {
     foreach ($comments as $comment) {
         if ($count <= 5) {
             $data['comment'] = get_object_vars($comment);
-            echo ossn_view('components/OssnComments/templates/comment', $data);
+            echo ossn_comment_view($data);
         } elseif($params->full_view === true){
             $data['comment'] = get_object_vars($comment);
-            echo ossn_view('components/OssnComments/templates/comment', $data);				
+            echo ossn_comment_view($data);				
 		}
         $count++;
     }
