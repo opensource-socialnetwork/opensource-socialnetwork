@@ -6,6 +6,9 @@ Bugfixes:
  * Accept html characters also and encode them in chat and 
  * Fix PHP prerequisite installation messages.
  * Post view page didn't displays all comments.
+ * Show smilies in comments.
+ * Add hook for comments template view parameters
+ * Make links in comments clickable #341
 
 messages. 
  
