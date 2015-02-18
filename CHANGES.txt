@@ -5,6 +5,7 @@ Bugfixes:
  * Add break-word css in wall post text.
  * Accept html characters also and encode them in chat and 
  * Fix PHP prerequisite installation messages.
+ * Post view page didn't displays all comments.
 
 messages. 
  
