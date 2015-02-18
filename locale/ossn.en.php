@@ -276,6 +276,8 @@ Please click the link below to reset password or copy the link and paste into yo
 	'admin:users:unvalidated' => 'Unvalidated Users',
 	'admin:user:validated' => 'User validated',
 	'admin:user:validate:error' => 'Could not validate user.',
+	
+	'radio:invalid' => 'Please select one gender',
 	/*
 	 * List of ISO 639-1 language codes
 	 * http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
