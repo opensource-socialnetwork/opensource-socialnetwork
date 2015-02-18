@@ -65,7 +65,9 @@ if (isset($params['contents'])) {
 <?php } else { ?>
     <div class="ossn-topbar">
         <div class="inner">
-            <div class="logo-second"></div>
+            <a href="<?php echo ossn_site_url(); ?>">
+			<div class="logo-second"></div>
+			</a>
             <div class="ossn-search">
                 <form action="<?php echo ossn_site_url("search"); ?>" method="get">
                     <input type="text" name="q" placeholder="<?php echo ossn_print('ossn:search:topbar:search');?>"

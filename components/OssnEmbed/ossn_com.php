@@ -37,7 +37,7 @@ function ossn_embed_init() {
  * @return array
  * @access private
  */
-function ossn_embed_wall_template_item($hook, $type, $return, $params){
+function ossn_embed_wall_template_item($hook, $type, $return){
 	$patterns = array(	'#(((https?://)?)|(^./))(((www.)?)|(^./))youtube\.com/watch[?]v=([^\[\]()<.,\s\n\t\r]+)#i',
 						'#(((https?://)?)|(^./))(((www.)?)|(^./))youtu\.be/([^\[\]()<.,\s\n\t\r]+)#i',
 						'/(https?:\/\/)(www\.)?(vimeo\.com\/groups)(.*)(\/videos\/)([0-9]*)/',
@@ -47,17 +47,17 @@ function ossn_embed_wall_template_item($hook, $type, $return, $params){
 						);
 	$regex = "/<a[\s]+[^>]*?href[\s]?=[\s\"\']+"."(.*?)[\"\']+.*?>"."([^<]+|.*?)?<\/a>/";
 	
-	$params['text'] = linkify($params['text']);
-	if(preg_match_all($regex, $params['text'], $matches, PREG_SET_ORDER)){
+	$return['text'] = linkify($return['text']);
+	if(preg_match_all($regex, $return['text'], $matches, PREG_SET_ORDER)){
 	foreach($matches as $match){
 			foreach ($patterns as $pattern){
 				if (preg_match($pattern, $match[2]) > 0){
-					$params['text'] = str_replace($match[0], ossn_embed_create_embed_object($match[2], uniqid('videos_embed_'), 500), $params['text']);
+					$return['text'] = str_replace($match[0], ossn_embed_create_embed_object($match[2], uniqid('videos_embed_'), 500), $return['text']);
 				}				
 			}
 		}
 	}
-	return $params;
+	return $return;
 }
 //initilize ossn wall
 ossn_register_callback('ossn', 'init', 'ossn_embed_init');

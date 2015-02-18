@@ -68,9 +68,9 @@ if (count($pages) !== 1) {
 	} 
    foreach ($pages as $page) {
         if ($page == $params['offset']) {
-            $slected = 'class="selected"';
+            $selected = 'class="selected"';
             $url = "?offset={$page}{$args_url}";
-            echo "<a href='{$url}' class='ossn-pagination-page'><li {$slected}>{$page}</li></a>";
+            echo "<a href='{$url}' class='ossn-pagination-page'><li {$selected}>{$page}</li></a>";
         } else {
             $url = "?offset={$page}{$args_url}";
             echo "<a href='{$url}' class='ossn-pagination-page'><li>{$page}</li></a>";
