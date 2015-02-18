@@ -21,28 +21,29 @@ if (isset($params['post']->{'file:wallphoto'})) {
 } else {
     unset($image);
 }
+$params['post']->full_view = true;
 $user = ossn_user_by_guid($params['post']->poster_guid);
 if ($params['post']->type == 'user') {
-    echo ossn_view('components/OssnWall/templates/activity-item', array(
+	$vars =  array(
         'post' => $params['post'],
         'text' => $text,
         'friends' => explode(',', $data->friend),
         'location' => $location,
         'user' => $user,
         'image' => $image,
-
-    ));
+    );
+    echo ossn_wall_view_template($vars);
 }
 if ($params['post']->type == 'group') {
-    echo ossn_view('components/OssnWall/templates/group-activity-item', array(
+	$vars = array(
         'post' => $params['post'],
         'text' => $text,
         'location' => $location,
         'user' => $user,
         'image' => $image,
         'show_group' => true,
-    ));
-
+    );
+    echo ossn_wall_view_template($vars);
 }
 
 echo '</div>';
