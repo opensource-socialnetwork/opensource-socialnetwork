@@ -191,8 +191,10 @@ Ossn.RegisterStartupFunction(function() {
         beforeSend: function(request) {
             $('#ossn-home-signup').find('#ossn-signup-errors').hide();
             $('#ossn-home-signup input').filter(function() {
-                if (this.type == 'radio' && !$(this).is(':checked')) {
-                    $(this).closest('span').addClass('ossn-required');
+               if (!$('#radio').is(':checked')) {
+                   $(this).closest('span').addClass('ossn-required');
+		    $('#ossn-signup-errors').show();
+		   $('#ossn-signup-errors').text(Ossn.Print('radio:invalid'));
                 }
                 if (this.value == "") {
                     $(this).addClass('ossn-red-borders');
