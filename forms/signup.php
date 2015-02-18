@@ -63,8 +63,8 @@
 </div>
 
 <div>
-    <span><h3><input type="radio" name="gender" value="male"/> <?php echo ossn_print('male'); ?></h3></span>
-    <span><h3><input type="radio" name="gender" value="female"/> <?php echo ossn_print('female'); ?></h3></span>
+    <span><h3><input type="radio" name="gender" id="radio" value="male"/> <?php echo ossn_print('male'); ?></h3></span>
+    <span><h3><input type="radio" name="gender" id="radio" value="female"/> <?php echo ossn_print('female'); ?></h3></span>
 </div>
 
 <div id="ossn-signup-errors" class="ossn-error-container"></div>
