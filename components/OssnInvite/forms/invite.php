@@ -14,7 +14,7 @@
     <p><?php echo ossn_print('com:ossn:invite:friends:note');?></p>
     
 	<label><?php echo ossn_print('com:ossn:invite:emails:note');?></label>
-    <textarea rows="4" name="addresses" placeholder="<?php echo ossn_print("com:ossn:invite:emails:plceholder");?>"></textarea>
+    <textarea rows="4" name="addresses" placeholder="<?php echo ossn_print("com:ossn:invite:emails:placeholder");?>"></textarea>
     
     <label><?php echo ossn_print('com:ossn:invite:message');?></label>
     <textarea name="message"></textarea>

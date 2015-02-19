@@ -14,7 +14,7 @@ $de = array(
 	'com:ossn:invite:friends:note' => 'Gib einfach die Email-Adressen aller Freunde ein, die Du gern in dieses Netzwerk einladen möchtest.
     <br>Sie erhalten dann automatisch eine Einladung per Mail.',
 	'com:ossn:invite:emails:note' => 'Email Adressen (Komma getrennt)',
-	'com:ossn:invite:emails:plceholder' => 'inge@beispiel.de, r.hood@example.com',
+	'com:ossn:invite:emails:placeholder' => 'inge@beispiel.de, r.hood@example.com',
 	'com:ossn:invite:message' => 'Einladungstext',
 		
     'com:ossn:invite:mail:subject' => 'Eine Einladung vom %s',	
