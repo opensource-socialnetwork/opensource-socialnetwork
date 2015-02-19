@@ -32,13 +32,13 @@ border-bottom: 1px solid #ddd;
 }
 .ossn-messages .message-with .message-form {
 background:#F2F2F2;
-height:120px;
+height:150px;
 width:100%;
 
 }
 
 .ossn-messages .message-with .messages-inner {
-height:400px;
+height:369px;
 overflow:hidden;
 overflow-y:scroll;
 }
@@ -51,7 +51,7 @@ border-top: 1px solid #ccc;
 
 resize: none;
 padding: 4px;
-height:40px;
+height:75px;
 
 }
 .ossn-messages .message-form .message-form-form {
@@ -64,7 +64,7 @@ border-bottom: 1px solid #ccc;
 border-left: 1px solid #ccc;
 border-right: 1px solid #ccc;
 
-height: 30px;
+height: 0px;
 margin-top: -2px;
 width: 479px;
 }
@@ -74,16 +74,41 @@ width: 479px;
 .message-form-form
 .controls input[type='submit']{
 float: right;
-background: #fff;
-padding: 7px;
-border-left: 1px solid #eee;
+cursor: pointer;
+	border: 1px solid #3d5e74;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	font-size: 12px;
+	font-family: arial, helvetica, sans-serif;
+	padding: 8px 8px 8px 8px;
+	text-decoration: none;
+	display: inline-block;
+	text-shadow: -1px -1px 0 rgba(0,0,0,0.3);
+	font-weight: bold;
+	color: #FFFFFF;
+	background-color: #507C99;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#507C99), to(#3C5D73));
+	background-image: -webkit-linear-gradient(top, #507C99, #3C5D73);
+	background-image: -moz-linear-gradient(top, #507C99, #3C5D73);
+	background-image: -ms-linear-gradient(top, #507C99, #3C5D73);
+	background-image: -o-linear-gradient(top, #507C99, #3C5D73);
+	background-image: linear-gradient(to bottom, #507C99, #3C5D73);
+	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#507C99, endColorstr=#3C5D73);
 }
 .ossn-messages
 .message-form
 .message-form-form
 .controls input[type='submit']:hover{
-background: #F8FAFC;
-cursor:pointer;
+ border: 1px solid #2d4656;
+	background-color: #38586B;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#38586B), to(#2F495A));
+	background-image: -webkit-linear-gradient(top, #38586B, #2F495A);
+	background-image: -moz-linear-gradient(top, #38586B, #2F495A);
+	background-image: -ms-linear-gradient(top, #38586B, #2F495A);
+	background-image: -o-linear-gradient(top, #38586B, #2F495A);
+	background-image: linear-gradient(to bottom, #38586B, #2F495A);
+	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#38586B, endColorstr=#2F495A);
 }
 .message-item {
 padding:10px;
