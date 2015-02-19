@@ -105,7 +105,7 @@ $de = array(
     'friends' => 'Freunde',
     'links' => 'Links',
     'ossn:add:user:mail:subject' => "%s, bitte bestätige Deine Email-Adresse bei %s!",
-    'ossn:add:user:mai:body' => "Bevor Du %s benutzen kannst, musst Du erst noch Deine Email Adresse bestätigen.
+    'ossn:add:user:mail:body' => "Bevor Du %s benutzen kannst, musst Du erst noch Deine Email Adresse bestätigen.
 
 Klicke dazu bitte auf den folgenden Link:
 

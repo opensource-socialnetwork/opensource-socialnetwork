@@ -66,7 +66,7 @@ class OssnUser extends OssnEntities {
                 if ($this->sendactiviation == true) {
                     $link = ossn_site_url("uservalidate/activate/{$guid}/{$activation}");
                     $sitename = ossn_site_settings('site_name');
-                    $activation = ossn_print('ossn:add:user:mai:body', array(
+                    $activation = ossn_print('ossn:add:user:mail:body', array(
                         $sitename,
                         $link,
                         ossn_site_url()
@@ -678,7 +678,7 @@ class OssnUser extends OssnEntities {
 		if(!$this->isUserVALIDATED()){
 			$link = ossn_site_url("uservalidate/activate/{$this->guid}/{$this->activation}");
 			$sitename = ossn_site_settings('site_name');
-			$activation = ossn_print('ossn:add:user:mai:body', array(
+			$activation = ossn_print('ossn:add:user:mail:body', array(
                         $sitename,
                         $link,
                         ossn_site_url()
