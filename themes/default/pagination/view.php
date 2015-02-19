@@ -49,7 +49,7 @@ if (count($pages) !== 1) {
 		if(isset($serialized_pages[$key + 1]) && isset($serialized_pages[$key - 1])){
 			$pages = array_merge($serialized_pages[$key - 1], $serialized_pages[$key], $serialized_pages[$key + 1]);
 		}
-		if(!isset($serialized_pages[$key + 1])){
+		if(!isset($serialized_pages[$key + 1]) && $key > 1){
 			$pages = array_merge($serialized_pages[$key - 1], $serialized_pages[$key]);			
 		}
 		if($key == 1 && $new_total > 1){
