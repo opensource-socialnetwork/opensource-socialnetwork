@@ -8,11 +8,7 @@
  * @license   General Public Licence http://www.opensource-socialnetwork.org/licence
  * @link      http://www.opensource-socialnetwork.org/licence
  */
-$grouppage_bg = ossn_call_hook('css', 'group:background', NULL, '#E9EAED');
 ?>
-<style> body {
-        background: <?php echo $grouppage_bg;?>;
-    } </style>
 <div class="ossn-layout-group">
     <div class="ossn-inner">
         <div class="coloum-left">
