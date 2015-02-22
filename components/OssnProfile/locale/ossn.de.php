@@ -10,12 +10,12 @@
  */
 $de = array(
     'people:like:this' => 'Leute, denen dieser Beitrag gefällt',
-    'change:cover' => 'Titelbild ändern',
-    'change:photo' => 'Profil-Foto ändern',
+    'change:cover' => 'Titelbild aktualisieren',
+    'change:photo' => 'Profilfoto aktualisieren',
     'update:info' => 'Informationen aktualisieren',
     'message' => 'Nachricht',
-    'save:position' => 'Position speichern',
-	'ossn:profile:picture:updated' => 'Das Profil-Foto wurde aktualisiert.',
-	'ossn:profile:cover:picture:updated' => 'Das Titelbild des Profils wurde aktualisiert.',
+    'save:position' => 'Änderungen speichern',
+    'ossn:profile:picture:updated' => 'hat das Profilbild geändert.',
+    'ossn:profile:cover:picture:updated' => 'hat das Titelbild geändert.',
 );
 ossn_register_languages('de', $de); 

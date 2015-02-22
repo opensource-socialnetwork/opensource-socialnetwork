@@ -171,8 +171,8 @@ Falls der Link nicht anklickbar ist, kopiere ihn einfach in Deinen Browser.
     'privacy:public:note' => 'Alle sollen das sehen',
     'privacy:friends:note' => 'Nur Deine Freunde sollen das sehen',
 
-    'add:friend' => 'Freunde werden',
-    'cancel:request' => 'Freundschafts-Anfrage abbrechen',
+    'add:friend' => 'Freund hinzufügen',
+    'cancel:request' => 'Freundschaftsanfrage abbrechen',
     'remove:friend' => 'Freundschaft beenden',
     'no:friends' => 'Keine Freunde',
     'settings' => 'Einstellungen',
