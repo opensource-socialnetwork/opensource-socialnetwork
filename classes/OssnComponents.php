@@ -77,10 +77,15 @@ class OssnComponents extends OssnDatabase {
         if (move_uploaded_file($zip['tmp_name'], $newfile)) {
             if ($archive->open($newfile) === TRUE) {
                 $archive->extractTo($data_dir);
-                $archive->close();
-                $validate = pathinfo($zip['name'], PATHINFO_FILENAME);
-                if (is_file("{$data_dir}/{$validate}/ossn_com.php") && is_file("{$data_dir}/{$validate}/ossn_com.xml")
-                ) {
+                
+		//make community components works on installer #394
+		$validate = $archive->statIndex(0);
+		$validate = str_replace('/', '', $validate['name']);
+				
+		$archive->close();
+				
+                if (is_dir("{$data_dir}/{$validate}") && is_file("{$data_dir}/{$validate}/ossn_com.php") 
+		    && is_file("{$data_dir}/{$validate}/ossn_com.xml")) {
                     $archive->open($newfile);
                     $archive->extractTo(ossn_route()->com);
                     $archive->close();
