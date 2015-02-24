@@ -9,7 +9,8 @@ Bugfixes:
  * Show smilies in comments.
  * Add hook for comments template view parameters
  * Make links in comments clickable #341
-
+ * component installer is not working #394
+ 
 messages. 
  
 Performance:
