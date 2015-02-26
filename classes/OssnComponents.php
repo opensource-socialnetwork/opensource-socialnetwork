@@ -309,7 +309,10 @@ class OssnComponents extends OssnDatabase {
                 'OssnSitePages',
                 'OssnChat',
                 'OssnPoke',
-                'OssnBlock'
+                'OssnBlock',
+                'OssnSmilies',
+            	'OssnInvite',
+            	'OssnEmbed'
             ), $this->requiredComponents());
     }
 
