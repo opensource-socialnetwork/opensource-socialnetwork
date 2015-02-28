@@ -11,8 +11,6 @@ Bugfixes:
  * Make links in comments clickable #341
  * component installer is not working #394
  
-messages. 
- 
 Performance:
  * Reduce 2 queries used in get entities into 1 query.
  
