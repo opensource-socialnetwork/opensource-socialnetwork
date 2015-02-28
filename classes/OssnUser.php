@@ -26,7 +26,8 @@ class OssnUser extends OssnEntities {
             $password = $this->generate_password($this->password, $this->salt);
             $activation = md5($this->password . time() . rand());
             if ($this->sendactiviation == false) {
-                $activation = NULL;
+                //don't set null , set empty value for users created by admin
+				$activation = '';
             }
             $params['into'] = 'ossn_users';
             $params['names'] = array(
@@ -63,8 +64,10 @@ class OssnUser extends OssnEntities {
                     $this->value = $this->birthdate;
                     $this->add();
                 }
+				$this->sendactiviation = ossn_call_hook('user', 'send:activation', false, $this->sendactiviation);
                 if ($this->sendactiviation == true) {
                     $link = ossn_site_url("uservalidate/activate/{$guid}/{$activation}");
+					$link = ossn_call_hook('user', 'validation:email:url', $this, $link);
                     $sitename = ossn_site_settings('site_name');
                     $activation = ossn_print('ossn:add:user:mail:body', array(
                         $sitename,
@@ -548,7 +551,7 @@ class OssnUser extends OssnEntities {
             $this->save();
         }
         $emailreset_url = ossn_site_url("resetlogin?user={$this->username}&c={$this->value}");
-        $emailreset_url = ossn_call_hook('user', 'icon:urls', $this, $emailreset_url);
+        $emailreset_url = ossn_call_hook('user', 'reset:login:url', $this, $emailreset_url);
         $sitename = ossn_site_settings('site_name');
 
         $emailmessage = ossn_print('ossn:reset:password:body', array(
@@ -677,6 +680,7 @@ class OssnUser extends OssnEntities {
 		self::initAttributes();
 		if(!$this->isUserVALIDATED()){
 			$link = ossn_site_url("uservalidate/activate/{$this->guid}/{$this->activation}");
+			$link = ossn_call_hook('user', 'validation:email:url', $this, $link);
 			$sitename = ossn_site_settings('site_name');
 			$activation = ossn_print('ossn:add:user:mail:body', array(
                         $sitename,
