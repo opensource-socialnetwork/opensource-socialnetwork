@@ -1,4 +1,4 @@
-OSSN - OPEN SOURCE SOCIAL NETWORK 2.0 beta 2
+OSSN - OPEN SOURCE SOCIAL NETWORK 2.0
 
 Bugfixes:
  * Update php version in installation language strings.
