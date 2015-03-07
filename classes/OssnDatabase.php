@@ -72,7 +72,7 @@ class OssnDatabase extends OssnBase{
         if (isset($this->query) && !empty($this->query)) {
             $this->database->set_charset("utf8");
             $this->exe = $this->database->query($this->query);
-			$exception =  ossn_call_hook('database', 'execution:message', false, true);
+	    $exception =  ossn_call_hook('database', 'execution:message', false, true);
             if (!$this->exe && $exception) {
                 throw new OssnDatabaseException("{$this->database->error} \n {$this->query} ");
             }
