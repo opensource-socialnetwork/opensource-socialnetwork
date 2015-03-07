@@ -8,6 +8,16 @@
  * @license   General Public Licence http://opensource-socialnetwork.com/licence
  * @link      http://www.opensource-socialnetwork.com/licence
  */
+ 
+/**
+ * Disable Errors during upgrade
+ *
+ * @return void
+ * @access private
+ */ 
+function ossn_upgrade_init(){
+	ossn_add_hook('database', 'execution:message', 'ossn_disable_database_exception');		
+} 
 /**
  * Get upgrade files
  *
@@ -69,14 +79,15 @@ function ossn_get_process_upgrade_files() {
  */
 function ossn_trigger_upgrades() {
     if (!ossn_isAdminLoggedin()) {
+		ossn_kill_upgrading();
         ossn_error_page();
     }
     $upgrades = ossn_get_process_upgrade_files();
     if (!is_array($upgrades) || empty($upgrades)) {
         ossn_trigger_message(ossn_print('upgrade:not:available'), 'error');
+		ossn_kill_upgrading();
         redirect('administrator');
-        return false;
-    }
+     }
     foreach ($upgrades as $upgrade) {
         $file = ossn_route()->upgrade . "upgrades/{$upgrade}";
         if (!include_once($file)) {
@@ -99,3 +110,38 @@ function ossn_trigger_upgrades() {
 function ossn_generate_site_screat() {
     return substr(md5('ossn' . rand()), 3, 8);
 }
+/**
+ * Get update status
+ *
+ * @return boolean
+ */
+function ossn_get_upgrade_status(){
+	$upgrading = ossn_route()->www . '_upgrading_process';
+	if(is_file($upgrading)){
+		return true;
+	}
+	return false;
+}
+/**
+ * Disable exception during upgrade
+ *
+ * @return void|false
+ */
+function ossn_disable_database_exception(){
+	if(ossn_get_upgrade_status()){
+		return false;
+	}
+}
+/**
+ * Kill upgrading
+ *
+ * @return boolean
+ */
+function ossn_kill_upgrading(){
+	if(ossn_get_upgrade_status()){
+		$upgrading = ossn_route()->www . '_upgrading_process';
+		unlink($upgrading);
+	}
+}
+//initilize upgrades
+ossn_register_callback('ossn', 'init', 'ossn_upgrade_init', 1);

@@ -8,9 +8,13 @@
  * @license   General Public Licence http://opensource-socialnetwork.com/licence
  * @link      http://www.opensource-socialnetwork.com/licence
  */
-require_once(dirname(dirname(__FILE__)) . '/system/start.php');
+//upgrade proccess 
+$upgrading = dirname(dirname(__FILE__)). '/_upgrading_process';
+file_put_contents($upgrading, 1);
 
+require_once(dirname(dirname(__FILE__)) . '/system/start.php');
 //redirect user after all upgrades
 if(ossn_trigger_upgrades()){
+	 ossn_kill_upgrading();
 	 redirect('administrator');
 }
