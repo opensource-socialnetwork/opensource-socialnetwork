@@ -79,13 +79,13 @@ function ossn_get_process_upgrade_files() {
  */
 function ossn_trigger_upgrades() {
     if (!ossn_isAdminLoggedin()) {
-		ossn_kill_upgrading();
+	ossn_kill_upgrading();
         ossn_error_page();
     }
     $upgrades = ossn_get_process_upgrade_files();
     if (!is_array($upgrades) || empty($upgrades)) {
         ossn_trigger_message(ossn_print('upgrade:not:available'), 'error');
-		ossn_kill_upgrading();
+	ossn_kill_upgrading();
         redirect('administrator');
      }
     foreach ($upgrades as $upgrade) {
