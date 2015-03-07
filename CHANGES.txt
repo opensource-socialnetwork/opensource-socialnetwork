@@ -1,3 +1,10 @@
+OSSN - OPEN SOURCE SOCIAL NETWORK 2.2
+
+Bugfixes:
+ * Unable to upgrade column 'e.permission' didn't exist.
+   Now database exception is disabled during upgrade.
+ * Added missing author url in ossn_com.xml file
+
 OSSN - OPEN SOURCE SOCIAL NETWORK 2.0
 
 Bugfixes:
