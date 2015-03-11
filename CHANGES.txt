@@ -1,3 +1,7 @@
+OSSN - OPEN SOURCE SOCIAL NETWORK 2.3
+Bugfixes:
+ * Add missing update files in processed updated for fresh instalaltion.
+
 OSSN - OPEN SOURCE SOCIAL NETWORK 2.2
 
 Bugfixes:
