@@ -25,7 +25,7 @@ if ($posts) {
 			$post = ossn_get_object($post->guid);
 		}
         $data = json_decode(html_entity_decode($post->description));
-        $text = $data->post;
+        $text = ossn_restore_new_lines($data->post, true);
         $location = '';
 
         if (isset($data->location)) {
