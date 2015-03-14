@@ -3,7 +3,8 @@ Bugfixes:
  * Add missing update files in processed updated for fresh instalaltion.
  * Switching between search results doesn't work #288
  * Don't allow to send empty chat messages.
-
+ * New lines in wallpost not working #404
+ 
 OSSN - OPEN SOURCE SOCIAL NETWORK 2.2
 
 Bugfixes:
