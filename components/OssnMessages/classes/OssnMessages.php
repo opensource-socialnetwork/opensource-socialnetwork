@@ -20,12 +20,15 @@ class OssnMessages extends OssnDatabase {
      * @return bool;
      */
     public function send($from, $to, $message) {
-		//send valid text to database only no html tags
-		//missing reconversion of html escaped characters in messages #118
-		$message = html_entity_decode($message, ENT_QUOTES, "UTF-8");
-		$message = strip_tags($message);
-		$message = ossn_restore_new_lines($message);
-		$message = ossn_input_escape($message, false);
+	if(empty($message)){
+		return false;
+	}
+	//send valid text to database only no html tags
+	//missing reconversion of html escaped characters in messages #118
+	$message = html_entity_decode($message, ENT_QUOTES, "UTF-8");
+	$message = strip_tags($message);
+	$message = ossn_restore_new_lines($message);
+	$message = ossn_input_escape($message, false);
 		
         $params['into'] = 'ossn_messages';
         $params['names'] = array(
@@ -43,7 +46,7 @@ class OssnMessages extends OssnDatabase {
             '0'
         );
         if ($this->insert($params)) {
-			$this->lastMessage = $this->getLastEntry();
+		$this->lastMessage = $this->getLastEntry();
             return true;
         }
         return false;

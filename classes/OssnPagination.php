@@ -24,10 +24,21 @@ class OssnPagination {
      *
      * @return string;
      */
-    public static function constructUrlArgs() {
+ public static function constructUrlArgs($kill = array()) {
+		
         unset($_GET['h']);
         unset($_GET['p']);
         unset($_GET['offset']);
+		
+		//kill someof variables
+		if(!empty($kill)){
+			foreach($kill as $type){
+				if(isset($_GET[$type])){
+					unset($_GET[$type]);
+				}
+			}
+		}
+		
         if (count($_GET)) {
             $args_url = '';
             foreach ($_GET as $key => $value) {

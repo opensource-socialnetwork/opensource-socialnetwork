@@ -1,4 +1,18 @@
-OSSN - OPEN SOURCE SOCIAL NETWORK 2.0 beta 2
+OSSN - OPEN SOURCE SOCIAL NETWORK 2.3
+Bugfixes:
+ * Add missing update files in processed updated for fresh instalaltion.
+ * Switching between search results doesn't work #288
+ * Don't allow to send empty chat messages.
+ * New lines in wallpost not working #404
+ 
+OSSN - OPEN SOURCE SOCIAL NETWORK 2.2
+
+Bugfixes:
+ * Unable to upgrade column 'e.permission' didn't exist.
+   Now database exception is disabled during upgrade.
+ * Added missing author url in ossn_com.xml file
+
+OSSN - OPEN SOURCE SOCIAL NETWORK 2.0
 
 Bugfixes:
  * Update php version in installation language strings.
@@ -9,8 +23,7 @@ Bugfixes:
  * Show smilies in comments.
  * Add hook for comments template view parameters
  * Make links in comments clickable #341
-
-messages. 
+ * component installer is not working #394
  
 Performance:
  * Reduce 2 queries used in get entities into 1 query.

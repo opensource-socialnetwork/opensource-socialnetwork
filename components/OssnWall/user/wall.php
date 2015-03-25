@@ -30,7 +30,7 @@ $posts = $Pagination->getItem();
 if($posts) {
 		foreach($posts as $post) {
 				$data     = json_decode(html_entity_decode($post->description));
-				$text     = $data->post;
+				$text     = ossn_restore_new_lines($data->post, true);
 				$location = '';
 				if(isset($data->location)) {
 						$location = '- ' . $data->location;

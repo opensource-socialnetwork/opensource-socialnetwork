@@ -134,7 +134,7 @@ function ossn_group_load_event($event, $type, $params) {
  * @access private
  */
 function ossn_group_search_link($event, $type, $params) {
-    $url = OssnPagination::constructUrlArgs();
+    $url = OssnPagination::constructUrlArgs(array('type'));
     ossn_register_menu_link('search:users', 'search:groups', "search?type=groups{$url}", 'search');
 }
 

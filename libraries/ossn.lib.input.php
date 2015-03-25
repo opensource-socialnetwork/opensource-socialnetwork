@@ -8,6 +8,14 @@
  * @license   General Public Licence http://www.opensource-socialnetwork.org/licence
  * @link      http://www.opensource-socialnetwork.org/licence
  */
+/**
+ * Escape input string
+ *
+ * @param string $str A valid string in which you want to restore lines.
+ * @param boolean $newlines If you also want to escape new lines , default settings will replace it
+ *
+ * @return string
+ */  
 function ossn_input_escape($str, $newlines = true){
     $replacements = array(
         "\x00" => '\x00',
@@ -56,9 +64,11 @@ function input($input, $noencode = '') {
  * Restore \n\r from the string to new line
  *
  * @param string $string A valid string in which you want to restore lines.
+ * @param boolean $br If you want newlines to replaced by html <br /> tag.
+ *
  * @return string
  */
-function ossn_restore_new_lines($string){
+function ossn_restore_new_lines($string, $br = false){
 	if(empty($string)){
 		return false;
 	}
@@ -67,5 +77,9 @@ function ossn_restore_new_lines($string){
         "\r" => '\r',
 	);
 	$replacements = array_flip($replacements);
-	return strtr($string, $replacements);
+	$result = strtr($string, $replacements);
+	if($br === true){
+		$result = nl2br($result);
+	}
+	return $result;
 }

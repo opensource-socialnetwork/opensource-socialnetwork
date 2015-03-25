@@ -61,7 +61,7 @@ function ossn_profile() {
  * @access private;
  */
 function ossn_search_users_link($event, $type, $params) {
-    $url = OssnPagination::constructUrlArgs();
+    $url = OssnPagination::constructUrlArgs(array('type'));
     ossn_register_menu_link('search:users', 'search:users', "search?type=users{$url}", 'search');
 }
 
