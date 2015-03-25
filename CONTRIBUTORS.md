@@ -1,4 +1,4 @@
-The following developers contributed to this project:
+The following deveopers contributed to this project:
 
 * Ethel M. Ward
 * Sophia Mahler
@@ -13,4 +13,3 @@ The following developers contributed to this project:
 * Shaf Brady Hussain
 * Softaculous Team
 * Michael Zülsdorff 
-* Gregory Godsey
