@@ -1,12 +1,12 @@
 <?php
 /**
- *    OpenSource-SocialNetwork
+ * Open Source Social Network
  *
  * @package   (Informatikon.com).ossn
- * @author    OSSN Core Team <info@opensource-socialnetwork.com>
+ * @author    OSSN Core Team <info@opensource-socialnetwork.org>
  * @copyright 2014 iNFORMATIKON TECHNOLOGIES
- * @license   General Public Licence http://opensource-socialnetwork.com/licence
- * @link      http://www.opensource-socialnetwork.com/licence
+ * @license   General Public Licence http://www.opensource-socialnetwork.org/licence
+ * @link      http://www.opensource-socialnetwork.org/licence
  */
 
 define('__OSSN_PHOTOS__', ossn_route()->com . 'OssnPhotos/');
@@ -26,9 +26,9 @@ require_once(__OSSN_PHOTOS__ . 'libraries/ossn.lib.albums.php');
  */
 function ossn_photos_initialize() {
     //css
-    ossn_extend_view('css/ossn.default', 'components/OssnPhotos/css/photos');
+    ossn_extend_view('css/ossn.default', 'css/photos');
     //js
-    ossn_extend_view('js/opensource.socialnetwork', 'components/OssnPhotos/js/OssnPhotos');
+    ossn_extend_view('js/opensource.socialnetwork', 'js/OssnPhotos');
 
     //hooks
     ossn_add_hook('profile', 'subpage', 'ossn_profile_photos_page');
@@ -142,7 +142,7 @@ function ossn_photos_sizes() {
  */
 function profile_modules_albums($hook, $type, $module, $params) {
     $user['user'] = $params['user'];
-    $content = ossn_view("components/OssnPhotos/modules/profile/albums", $user);
+    $content = ossn_plugin_view("photos/modules/profile/albums", $user);
     $module[] = ossn_view_widget('profile/widget', strtoupper(ossn_print('photo:albums')), $content);
     return $module;
 }
@@ -192,10 +192,10 @@ function ossn_photos_page_handler($album) {
                     'href' => 'javascript::;',
                     'class' => 'button-grey',
                 );
-                $control = ossn_view('system/templates/output/url', $addphotos);
+                $control = ossn_plugin_view('output/url', $addphotos);
                 $contents = array(
                     'title' => ossn_print('photos'),
-                    'content' => ossn_view('components/OssnPhotos/pages/photo/view', $photo),
+                    'content' => ossn_plugin_view('photos/pages/photo/view', $photo),
                     'controls' => $control,
                 );
                 //set page layout
@@ -224,10 +224,10 @@ function ossn_photos_page_handler($album) {
                     'href' => 'javascript::;',
                     'class' => 'button-grey',
                 );
-                $control = ossn_view('system/templates/output/url', $addphotos);
+                $control = ossn_plugin_view('output/url', $addphotos);
                 $contents = array(
                     'title' => 'Photos',
-                    'content' => ossn_view('components/OssnPhotos/pages/profile/photos/view', $photo),
+                    'content' => ossn_plugin_view('photos/pages/profile/photos/view', $photo),
                     'controls' => $control,
                 );
                 //set page layout
@@ -255,10 +255,10 @@ function ossn_photos_page_handler($album) {
                     'href' => 'javascript::;',
                     'class' => 'button-grey',
                 );
-                $control = ossn_view('system/templates/output/url', $addphotos);
+                $control = ossn_plugin_view('output/url', $addphotos);
                 $contents = array(
                     'title' => 'Photos',
-                    'content' => ossn_view('components/OssnPhotos/pages/profile/covers/view', $photo),
+                    'content' => ossn_plugin_view('photos/pages/profile/covers/view', $photo),
                     'controls' => $control,
                 );
                 //set page layout
@@ -272,9 +272,9 @@ function ossn_photos_page_handler($album) {
             if (!ossn_is_xhr()) {
                 ossn_error_page();
             }
-            echo ossn_view('system/templates/output/ossnbox', array(
+            echo ossn_plugin_view('output/ossnbox', array(
                 'title' => ossn_print('add:photos'),
-                'contents' => ossn_view('components/OssnPhotos/pages/photos/add'),
+                'contents' => ossn_plugin_view('photos/pages/photos/add'),
                 'callback' => '#ossn-photos-submit',
             ));
             break;
@@ -287,8 +287,8 @@ function ossn_photos_page_handler($album) {
 
             $photo_guid = get_profile_photo_guid(ossn_user_by_username($image)->guid);
             //set viewer sidebar (comments and likes)
-            $sidebar = ossn_view('components/OssnPhotos/viewer/comments', array('entity_guid' => $photo_guid));
-            echo ossn_view('system/templates/output/viewer', array(
+            $sidebar = ossn_plugin_view('photos/viewer/comments', array('entity_guid' => $photo_guid));
+            echo ossn_plugin_view('output/viewer', array(
                     'media' => $media,
                     'sidebar' => $sidebar,
                 ));
@@ -392,14 +392,14 @@ function ossn_album_page_handler($album) {
                         'data-url' => '?album=' . $album[1],
                         'class' => 'button-grey',
                     );
-                    $control = ossn_view('system/templates/output/url', $addphotos);
+                    $control = ossn_plugin_view('output/url', $addphotos);
                 } else {
                     $control = false;
                 }
                 //set photos in module
                 $contents = array(
                     'title' => ossn_print('photos'),
-                    'content' => ossn_view('components/OssnPhotos/pages/albums', $user),
+                    'content' => ossn_plugin_view('photos/pages/albums', $user),
                     'controls' => $control,
                     'module_width' => '850px',
                 );
@@ -420,7 +420,7 @@ function ossn_album_page_handler($album) {
                 //view profile photos in module layout
                 $contents = array(
                     'title' => ossn_print('photos'),
-                    'content' => ossn_view('components/OssnPhotos/pages/profile/photos/all', $user),
+                    'content' => ossn_plugin_view('photos/pages/profile/photos/all', $user),
                     'controls' => false,
                     'module_width' => '850px',
                 );
@@ -441,7 +441,7 @@ function ossn_album_page_handler($album) {
                 //view profile photos in module layout
                 $contents = array(
                     'title' => ossn_print('covers'),
-                    'content' => ossn_view('components/OssnPhotos/pages/profile/covers/all', $user),
+                    'content' => ossn_plugin_view('photos/pages/profile/covers/all', $user),
                     'controls' => false,
                     'module_width' => '850px',
                 );
@@ -453,9 +453,9 @@ function ossn_album_page_handler($album) {
             break;			
         case 'add':
             //add photos (ajax)
-            echo ossn_view('system/templates/output/ossnbox', array(
+            echo ossn_plugin_view('output/ossnbox', array(
                 'title' => ossn_print('add:album'),
-                'contents' => ossn_view('components/OssnPhotos/pages/album/add'),
+                'contents' => ossn_plugin_view('photos/pages/album/add'),
                 'success_id' => 'aga',
                 'callback' => '#ossn-album-submit',
             ));
@@ -486,9 +486,9 @@ function ossn_profile_photos_page($hook, $type, $return, $params) {
                 'id' => 'ossn-add-album',
                 'class' => 'button-grey',
             );
-            $control = ossn_view('system/templates/output/url', $addalbum);
+            $control = ossn_plugin_view('output/url', $addalbum);
         }
-        $friends = ossn_view('components/OssnPhotos/pages/photos', $user);
+        $friends = ossn_plugin_view('photos/pages/photos', $user);
         echo ossn_set_page_layout('module', array(
             'title' => ossn_print('photo:albums'),
             'content' => $friends,
@@ -505,7 +505,7 @@ function ossn_profile_photos_page($hook, $type, $return, $params) {
  */
 function ossn_profile_photo_menu($hook, $type, $return, $params) {
     if ($params->owner_guid == ossn_loggedin_user()->guid || ossn_isAdminLoggedin()) {
-        return ossn_view('components/OssnPhotos/views/profilephoto/menu', $params);
+        return ossn_plugin_view('photos/views/profilephoto/menu', $params);
     }
 }
 
@@ -518,7 +518,7 @@ function ossn_profile_photo_menu($hook, $type, $return, $params) {
 function ossn_album_photo_menu($hook, $type, $return, $params) {
     $album = ossn_albums()->getAlbum($params->owner_guid);
     if ($album->album->owner_guid == ossn_loggedin_user()->guid || ossn_isAdminLoggedin()) {
-        return ossn_view('components/OssnPhotos/views/albumphoto/menu', $params);
+        return ossn_plugin_view('photos/views/albumphoto/menu', $params);
     }
 }
 /**
@@ -529,7 +529,7 @@ function ossn_album_photo_menu($hook, $type, $return, $params) {
  */
 function ossn_album_cover_photo_menu($hook, $type, $return, $params) {
     if ($params->owner_guid == ossn_loggedin_user()->guid || ossn_isAdminLoggedin()) {
-        return ossn_view('components/OssnPhotos/views/coverphoto/menu', $params);
+        return ossn_plugin_view('photos/views/coverphoto/menu', $params);
     }
 }
 /**

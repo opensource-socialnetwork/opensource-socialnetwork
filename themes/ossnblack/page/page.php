@@ -1,12 +1,12 @@
 <?php
 /**
- *    OpenSource-SocialNetwork
+ * Open Source Social Network
  *
  * @package   (Informatikon.com).ossn
- * @author    OSSN Core Team <info@opensource-socialnetwork.com>
+ * @author    OSSN Core Team <info@opensource-socialnetwork.org>
  * @copyright 2014 iNFORMATIKON TECHNOLOGIES
- * @license   General Public Licence http://opensource-socialnetwork.com/licence
- * @link      http://www.opensource-socialnetwork.com/licence
+ * @license   General Public Licence http://www.opensource-socialnetwork.org/licence
+ * @link      http://www.opensource-socialnetwork.org/licence
  */
 $sitename = ossn_site_settings('site_name');
 if (isset($params['title'])) {
@@ -27,7 +27,7 @@ if (isset($params['contents'])) {
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title><?php echo $title; ?></title>
 
-    <!-- Open Source Social Network (Ossn) http://opensource-socialnetwork.org/ by Informatikon Technologies http://informatikon.com -->
+    <!-- Open Source Social Network (Ossn) http://www.opensource-socialnetwork.org/ by Informatikon Technologies http://informatikon.com -->
 
     <?php echo ossn_fetch_extend_views('ossn/site/head'); ?>
 
@@ -99,7 +99,7 @@ if (isset($params['contents'])) {
                         </li>
                         <li>
                           <?php
-						  	echo ossn_view_template('output/url', array(
+						  	echo ossn_plugin_view('output/url', array(
 									'href' => ossn_site_url('action/user/logout'), 
 									'text' => ossn_print('logout'), 
 									'action' => true 
@@ -137,7 +137,7 @@ if (isset($params['contents'])) {
         <div class="ossn-footer-copyrights">
         &copy;  <a href="<?php echo ossn_site_url(); ?>"><?php echo $sitename; ?></a> 
 		          <?php echo date('Y'); ?> -
-                  <a target="_blank" href="http://www.opensource-socialnetwork.org/"><?php echo ossn_print('powered');?></a>        
+                  <a target="_blank" href="http://www.Open Source Social Network.org/"><?php echo ossn_print('powered');?></a>        
         </div>
         <div class="ossn-footer-menu">
             <?php echo ossn_view_menu('footer'); ?>

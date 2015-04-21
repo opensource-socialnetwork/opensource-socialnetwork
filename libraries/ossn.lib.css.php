@@ -1,12 +1,12 @@
 <?php
 /**
- *    OpenSource-SocialNetwork
+ * Open Source Social Network
  *
  * @package   (Informatikon.com).ossn
- * @author    OSSN Core Team <info@opensource-socialnetwork.com>
+ * @author    OSSN Core Team <info@opensource-socialnetwork.org>
  * @copyright 2014 iNFORMATIKON TECHNOLOGIES
- * @license   General Public Licence http://opensource-socialnetwork.com/licence
- * @link      http://www.opensource-socialnetwork.com/licence
+ * @license   General Public Licence http://www.opensource-socialnetwork.org/licence
+ * @link      http://www.opensource-socialnetwork.org/licence
  */
 ossn_register_callback('ossn', 'init', 'ossn_css');
 /**
@@ -133,7 +133,8 @@ function ossn_css_site() {
         foreach ($Ossn->csshead['site'] as $css) {
             $href = "{$url}css/view/{$css}.css";
             if (ossn_site_settings('cache') == 1) {
-                $href = "{$url}cache/css/view/{$css}.css";
+				$cache = ossn_site_settings('last_cache');				
+                $href = "{$url}cache/css/{$cache}/view/{$css}.css";
             }
             echo ossn_html_css(array('href' => $href));
         }
@@ -153,7 +154,8 @@ function ossn_css_admin() {
         foreach ($Ossn->csshead['admin'] as $css) {
             $href = "{$url}css/view/{$css}.css";
             if (ossn_site_settings('cache') == 1) {
-                $href = "{$url}cache/css/view/{$css}.css";
+				$cache = ossn_site_settings('last_cache');
+                $href = "{$url}cache/css/{$cache}/view/{$css}.css";
             }
             echo ossn_html_css(array('href' => $href));
         }
@@ -170,7 +172,7 @@ function ossn_css_trigger($hook, $type, $value, $params) {
     if (isset($params[1]) && substr($params[1], '-4') == '.css') {
         $params[1] = str_replace('.css', '', $params[1]);
         if (isset($Ossn->css[$params[1]])) {
-            $file = ossn_view($Ossn->css[$params[1]]);
+            $file = ossn_plugin_view($Ossn->css[$params[1]]);
             $extended = ossn_fetch_extend_views("css/{$params[1]}");
             $data = array(
                 $file,

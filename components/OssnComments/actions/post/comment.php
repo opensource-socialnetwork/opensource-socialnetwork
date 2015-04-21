@@ -2,11 +2,11 @@
 /**
  * Open Source Social Network
  *
- * @package   Open Source Social Network
+ * @packageOpen Source Social Network
  * @author    Open Social Website Core Team <info@informatikon.com>
  * @copyright 2014 iNFORMATIKON TECHNOLOGIES
- * @license   General Public Licence http://www.opensource-socialnetwork.org/licence
- * @link      http://www.opensource-socialnetwork.org/licence
+ * @license   General Public Licence http://www.Open Source Social Network.org/licence
+ * @link      http://www.Open Source Social Network.org/licence
  */
 $OssnComment = new OssnComments;
 $image = input('comment-attachment');
@@ -21,7 +21,7 @@ $post = input('post');
 $comment = input('comment');
 if ($OssnComment->PostComment($post, ossn_loggedin_user()->guid, $comment)) {
     $data['comment'] = ossn_get_comment($OssnComment->getCommentId());
-    $data = ossn_view('components/OssnComments/templates/comment', $data);;
+    $data = ossn_plugin_view('comments/templates/comment', $data);;
     if (!ossn_is_xhr()) {
         redirect(REF);
     } else {

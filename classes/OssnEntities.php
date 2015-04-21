@@ -1,326 +1,472 @@
 <?php
-
 /**
- *    OpenSource-SocialNetwork
+ * Open Source Social Network
  *
  * @package   (Informatikon.com).ossn
- * @author    OSSN Core Team <info@opensource-socialnetwork.com>
+ * @author    OSSN Core Team <info@opensource-socialnetwork.org>
  * @copyright 2014 iNFORMATIKON TECHNOLOGIES
- * @license   General Public Licence http://opensource-socialnetwork.com/licence
- * @link      http://www.opensource-socialnetwork.com/licence
+ * @license   General Public Licence http://www.opensource-socialnetwork.org/licence
+ * @link      http://www.opensource-socialnetwork.org/licence
  */
 class OssnEntities extends OssnDatabase {
-    /**
-     * Add new entity.
-     *
-     * @params = $this->type => entity type; (this usually is user, object, annotation, site)
-     *           $this->subtype => entity subtype;
-     *           $this->entity_permission => OSSN_ACCESS
-     *           $this->active = is entity is active or not
-     *           $this->value = data you want to insert
-     *           $this->owner_guid = entity owner guid
-     *
-     * @return bool;
-     */
-    public function add() {
-        self::initAttributes();
-        if (!empty($this->owner_guid) && in_array($this->type, $this->entity_types)) {
-            $this->params['into'] = 'ossn_entities';
-            $this->params['names'] = array(
-                'owner_guid',
-                'type',
-                'subtype',
-                'time_created',
-                'time_updated',
-                'permission',
-                'active'
-            );
-            $this->params['values'] = array(
-                $this->owner_guid,
-                $this->type,
-                $this->subtype,
-                $this->time_created,
-                $this->time_updated,
-                $this->permission,
-                $this->active
-            );
-            if ($this->insert($this->params)) {
-                $this->params['into'] = 'ossn_entities_metadata';
-                $this->params['names'] = array(
-                    'guid',
-                    'value'
-                );
-                $this->params['values'] = array(
-                    $this->getLastEntry(),
-                    $this->value
-                );
-                $this->insert($this->params);
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
-     * Initialize the objects.
-     *
-     * @return void;
-     */
-    private function initAttributes() {
-        $this->data = new stdClass;
-        $this->time_created = time();
-        $this->time_updated = '';
-        $this->active = 1;
-
-        if (empty($this->permission)) {
-            $this->permission = OSSN_PUBLIC;
-        }
-
-        $this->types = array(
-            'object' => 'OssnObject',
-            'user' => 'OssnUser',
-            'annotation' => 'OssnAnnotation',
-            'entity' => 'OssnEntities',
-            'site' => 'OssnSite',
-            'component' => 'OssnComponents',
-        );
-
-        //generate entity types from $this->types
-        foreach ($this->types as $type => $class) {
-            $this->entity_types[] = $type;
-        }
-
-        if (empty($this->order_by)) {
-            $this->order_by = '';
-        }
-		if (empty($this->limit)){
-			$this->limit = '';
+		/**
+		 * Initialize the objects.
+		 *
+		 * @return void;
+		 */
+		private function initAttributes() {
+				$this->data         = new stdClass;
+				$this->time_created = time();
+				$this->time_updated = '';
+				$this->active       = 1;
+				
+				if(empty($this->permission)) {
+						$this->permission = OSSN_PUBLIC;
+				}
+				
+				$this->types = array(
+						'object' => 'OssnObject',
+						'user' => 'OssnUser',
+						'annotation' => 'OssnAnnotation',
+						'entity' => 'OssnEntities',
+						'site' => 'OssnSite',
+						'component' => 'OssnComponents'
+				);
+				
+				//generate entity types from $this->types
+				foreach($this->types as $type => $class) {
+						$this->entity_types[] = $type;
+				}
+				
+				if(empty($this->order_by)) {
+						$this->order_by = '';
+				}
+				if(empty($this->limit)) {
+						$this->limit = false;
+				}
+				if(empty($this->type)) {
+						$this->type = 'entity';
+				}
+				$this->data        = new stdClass;
+				$this->annotations = new OssnAnnotation;
+				
+				if(!isset($this->offset)) {
+						$this->offset = 1;
+				}
+				if(!isset($this->page_limit)) {
+						//default OssnPagination limit
+						$this->page_limit = ossn_call_hook('pagination', 'per_page', false, 10);
+				}
+				if(!isset($this->count)) {
+						$this->count = false;
+				}
 		}
-        if (empty($this->type)) {
-            $this->type = 'entity';
-        }
-        $this->data = new stdClass;
-		$this->annotations = new OssnAnnotation;
-    }
-
-    /**
-     * Get Entity.
-     *
-     * @params = $this->entity_guid => entity guid in database;
-     *
-     * @return (object);
-     */
-    public function get_entity() {
-        self::initAttributes();
 		
-	$params = array();
-	$params['from'] = 'ossn_entities as e';
-	$params['params'] = array('e.guid, e.time_created, e.time_updated, e.permission, e.active, e.owner_guid, emd.value, e.type, e.subtype');
-	$params['joins'] = "JOIN ossn_entities_metadata as emd ON e.guid=emd.guid";
-	$params['wheres'] = array("e.guid ='{$this->entity_guid}'");
-		
-        $data = $this->select($params);
-		if($data){
-        	$entity = arrayObject($data, $this->types[$this->type]);
-       		return $entity;
+		/**
+		 * Add new entity.
+		 *
+		 * @params = $this->type => entity type; (this usually is user, object, annotation, site)
+		 *           $this->subtype => entity subtype;
+		 *           $this->entity_permission => OSSN_ACCESS
+		 *           $this->active = is entity is active or not
+		 *           $this->value = data you want to insert
+		 *           $this->owner_guid = entity owner guid
+		 *
+		 * @return bool;
+		 */
+		public function add() {
+				self::initAttributes();
+				if(!empty($this->owner_guid) && in_array($this->type, $this->entity_types)) {
+						$this->params['into']   = 'ossn_entities';
+						$this->params['names']  = array(
+								'owner_guid',
+								'type',
+								'subtype',
+								'time_created',
+								'time_updated',
+								'permission',
+								'active'
+						);
+						$this->params['values'] = array(
+								$this->owner_guid,
+								$this->type,
+								$this->subtype,
+								$this->time_created,
+								$this->time_updated,
+								$this->permission,
+								$this->active
+						);
+						if($this->insert($this->params)) {
+								$this->params['into']   = 'ossn_entities_metadata';
+								$this->params['names']  = array(
+										'guid',
+										'value'
+								);
+								$this->params['values'] = array(
+										$this->getLastEntry(),
+										$this->value
+								);
+								$this->insert($this->params);
+								return true;
+						}
+				}
+				return false;
 		}
-    }
-
-    /**
-     * Update Entity in database.
-     *
-     * @required (object)->data
-     *
-     * @return bool;
-     */
-    public function save() {
-        if (!empty($this->owner_guid)) {
-            $this->datavars = $this->get_data_vars();
-            // i don't think we need to add new data on save $arsalanshah;
-            /*  foreach($this->datavars as $vars => $value){
-                  if(!in_array($vars, $this->get_data_dbvars())){
-                      $this->subtype = $vars;
-                      $this->value = $value;
-                      $this->add();
-                  }
-              }*/
-            foreach ($this->get_entities() as $entity) {
-                if (isset($this->datavars[$entity->subtype])) {
-                    $params['table'] = 'ossn_entities_metadata';
-                    $params['names'] = array('value');
-                    $params['values'] = array($this->datavars[$entity->subtype]);
-                    $params['wheres'] = array("guid='{$entity->guid}'");
-                    if ($this->update($params)) {
-                        $params['table'] = 'ossn_entities';
-                        $params['names'] = array('time_updated');
-                        $params['values'] = array(time());
-                        $params['wheres'] = array("guid='{$entity->guid}'");
-                        $this->update($params);
-                    }
-                }
-            }
-            return true;
-        }
-        return false;
-    }
-
-    /**
-     * Get data object.
-     *
-     * @required (object)->data
-     *
-     * @return (array);
-     */
-    private function get_data_vars() {
-        if (!$this->data) {
-            return false;
-        }
-        foreach ($this->data as $name => $value) {
-            $vars[$name] = $value;
-        }
-        return $vars;
-    }
-
-    /**
-     * Get entities.
-     *
-     * @params = $this->type => entity type;
-     *           $this->subtype => entity subtype;
-     *           $this->owner_guid => guid of entity owner
-     *           $this->order_by =  to sort the data in a recordset
-     *
-     * @return (object);
-     */
-    public function get_entities() {
-        self::initAttributes();
-        if (!empty($this->subtype)) {
-            $this->subtype = "AND subtype='{$this->subtype}'";
-        } else {
-            $this->subtype = '';
-        }
-	if(isset($this->owner_guid)){
-		$this->byowner = "owner_guid ='{$this->owner_guid}' AND";
-	}
-		
-	$params = array();
-	$params['from'] = 'ossn_entities as e';
-	$params['params'] = array('e.guid, e.time_created, e.time_updated, e.permission, e.active, e.owner_guid, emd.value, e.type, e.subtype');
-	$params['joins'] = "JOIN ossn_entities_metadata as emd ON e.guid=emd.guid";
-	$params['wheres'] = array("{$this->byowner} type='{$this->type}' {$this->subtype}");
-	$params['order_by'] =  $this->order_by;	
-	$params['limit'] = $this->limit;
-        
-	$this->get = $this->select($params, true);
-        if ($this->get) {
-		foreach($this->get as $entity){
-            		$entities[] =  arrayObject($entity, $this->types[$this->type]);
+		/**
+		 * Get Entity.
+		 *
+		 * @params = $this->entity_guid => entity guid in database;
+		 *
+		 * @return (object);
+		 */
+		public function get_entity() {
+				self::initAttributes();
+				
+				$params           = array();
+				$params['from']   = 'ossn_entities as e';
+				$params['params'] = array(
+						'e.guid',
+						'e.time_created',
+						'e.time_updated',
+						'e.permission',
+						'e.active',
+						'e.owner_guid',
+						'emd.value',
+						'e.type',
+						'e.subtype'
+				);
+				$params['joins']  = "JOIN ossn_entities_metadata as emd ON e.guid=emd.guid";
+				$params['wheres'] = array(
+						"e.guid ='{$this->entity_guid}'"
+				);
+				
+				$data = $this->select($params);
+				if($data) {
+						$entity = arrayObject($data, $this->types[$this->type]);
+						return $entity;
+				}
 		}
-		return $entities;
-        }
-        return false;
-    }
-
-    /**
-     * Get newly added entity guid.
-     *
-     * @return (int);
-     */
-    public function AddedEntityGuid() {
-        return $this->getLastEntry();
-    }
-
-    /**
-     * Update entity metadata only.
-     *
-     * @return bool;
-     */
-    public function updateEntity() {
-        if (!empty($this->guid)) {
-            
-			$params['table'] = 'ossn_entities_metadata';
-            $params['names'] = array('value');
-            $params['values'] = array($this->value);
-            $params['wheres'] = array("guid='{$this->guid}'");			
-			
-			if ($this->update($params)) {
-               	
-				$params['table'] = 'ossn_entities';
-                $params['names'] = array('time_updated');
-                $params['values'] = array(time());
-                $params['wheres'] = array("guid='{$this->guid}'");
-                
-				$this->update($params);
+		
+		/**
+		 * Update Entity in database.
+		 *
+		 * @required (object)->data
+		 *
+		 * @return bool;
+		 */
+		public function save() {
+				if(!empty($this->owner_guid)) {
+						$this->datavars = $this->get_data_vars();
+						// i don't think we need to add new data on save $arsalanshah; v1.x to 2.x
+						// added again in v3.0 $arsalanshah
+						foreach($this->datavars as $vars => $value) {
+								if(!in_array($vars, $this->get_data_dbvars())) {
+										$this->subtype = $vars;
+										$this->value   = $value;
+										$this->add();
+								}
+						}
+						foreach($this->get_entities() as $entity) {
+								if(isset($this->datavars[$entity->subtype])) {
+										$params['table']  = 'ossn_entities_metadata';
+										$params['names']  = array(
+												'value'
+										);
+										$params['values'] = array(
+												$this->datavars[$entity->subtype]
+										);
+										$params['wheres'] = array(
+												"guid='{$entity->guid}'"
+										);
+										if($this->update($params)) {
+												$params['table']  = 'ossn_entities';
+												$params['names']  = array(
+														'time_updated'
+												);
+												$params['values'] = array(
+														time()
+												);
+												$params['wheres'] = array(
+														"guid='{$entity->guid}'"
+												);
+												$this->update($params);
+										}
+								}
+						}
+						return true;
+				}
+				return false;
+		}
+		
+		/**
+		 * Get data object.
+		 *
+		 * @required (object)->data
+		 *
+		 * @return (array);
+		 */
+		private function get_data_vars() {
+				if(!$this->data) {
+						return false;
+				}
+				foreach($this->data as $name => $value) {
+						$vars[$name] = $value;
+				}
+				return $vars;
+		}
+		
+		/**
+		 * Get entities.
+		 *
+		 * @params = $this->type => entity type;
+		 *           $this->subtype => entity subtype;
+		 *           $this->owner_guid => guid of entity owner
+		 *           $this->order_by =  to sort the data in a recordset
+		 *
+		 * @return (object);
+		 */
+		public function get_entities() {
+				self::initAttributes();
+				$options = array(
+						'subtype' => $this->subtype,
+						'type' => $this->type,
+						'owner_guid' => $this->owner_guid,
+						'offset' => $this->offset,
+						'order_by' => $this->order_by,
+						'page_limit' => $this->page_limit,
+						'count' => $this->count,
+						'limit' => $this->limit
+				);
+				return $this->searchEntities($options);
+		}
+		
+		/**
+		 * Get newly added entity guid.
+		 *
+		 * @return (int);
+		 */
+		public function AddedEntityGuid() {
+				return $this->getLastEntry();
+		}
+		
+		/**
+		 * Update entity metadata only.
+		 *
+		 * @return bool;
+		 */
+		public function updateEntity() {
+				if(!empty($this->guid)) {
+						
+						$params['table']  = 'ossn_entities_metadata';
+						$params['names']  = array(
+								'value'
+						);
+						$params['values'] = array(
+								$this->value
+						);
+						$params['wheres'] = array(
+								"guid='{$this->guid}'"
+						);
+						
+						if($this->update($params)) {
+								
+								$params['table']  = 'ossn_entities';
+								$params['names']  = array(
+										'time_updated'
+								);
+								$params['values'] = array(
+										time()
+								);
+								$params['wheres'] = array(
+										"guid='{$this->guid}'"
+								);
+								
+								$this->update($params);
+								return true;
+						}
+				}
+				return false;
+		}
+		
+		/**
+		 * Delete all entities related to owner guid.
+		 *
+		 * @params = $guid = Entity guid in database
+		 *           $type = Entity type
+		 * @param string $type
+		 *
+		 * @todo why not there is subtype?
+		 * @return (bool);
+		 */
+		public function deleteByOwnerGuid($guid, $type) {
+				
+				$params['from']   = 'ossn_entities';
+				$params['wheres'] = array(
+						"owner_guid='{$guid}' AND type='{$type}'"
+				);
+				
+				$ids = $this->select($params, true);
+				if(!$ids) {
+						return false;
+				}
+				foreach($ids as $entity) {
+						$this->deleteEntity($entity->guid);
+				}
 				return true;
-			}
-        }
-	    return false;	
-    }
-
-    /**
-     * Delete all entities related to owner guid.
-     *
-     * @params = $guid = Entity guid in database
-     *           $type = Entity type
-     * @param string $type
-     *
-     * @todo why not there is subtype?
-     * @return (bool);
-     */
-    public function deleteByOwnerGuid($guid, $type) {
-
-		$params['from'] = 'ossn_entities';
-		$params['wheres'] = array("owner_guid='{$guid}' AND type='{$type}'");
-		
-		$ids = $this->select($params, true);
-        if (!$ids) {
-            return false;
-        }
-        foreach ($ids as $entity) {
-            $this->deleteEntity($entity->guid);
-        }
-        return true;
-    }
-
-    /**
-     * Delete entity.
-     *
-     * @params = $guid = Entity guid in database
-     *
-     * @return (bool);
-     */
-    public function deleteEntity($guid) {
-		if(isset($this->guid) && !empty($this->guid) && empty($guid)){
-			$guid = $this->guid;
 		}
-		$params['from'] = 'ossn_entities';
-		$params['wheres'] = array("guid = '{$guid}'");
 		
-        	if ($this->delete($params)) {
-			$metadata['from'] = 'ossn_entities_metadata';
-			$metadata['wheres'] = array("guid = '{$guid}'");			
-            		$this->delete($metadata);
-			
-			$vars['entity'] = $guid;
-            		ossn_trigger_callback('delete', 'entity', $vars);
-        	 	return true;
-        	}
-        	return false;
-    }
-    /**
-     * Get subtypes from entites.
-     *
-     * @required (object)->data
-     *
-     * @return (array);
-     */
-    private function get_data_dbvars() {
-        $entities = $this->get_entities();
-        if ($entities) {
-            foreach ($entities as $entity) {
-                $vars[] = $entity->subtype;
-            }
-            return $vars;
-        }
-        return false;
-    }
-}//class
+		/**
+		 * Delete entity.
+		 *
+		 * @params = $guid = Entity guid in database
+		 *
+		 * @return (bool);
+		 */
+		public function deleteEntity($guid) {
+				if(isset($this->guid) && !empty($this->guid) && empty($guid)) {
+						$guid = $this->guid;
+				}
+				$params['from']   = 'ossn_entities';
+				$params['wheres'] = array(
+						"guid = '{$guid}'"
+				);
+				
+				if($this->delete($params)) {
+						$metadata['from']   = 'ossn_entities_metadata';
+						$metadata['wheres'] = array(
+								"guid = '{$guid}'"
+						);
+						$this->delete($metadata);
+						
+						$vars['entity'] = $guid;
+						ossn_trigger_callback('delete', 'entity', $vars);
+						return true;
+				}
+				return false;
+		}
+		/**
+		 * Get subtypes from entites.
+		 *
+		 * @required (object)->data
+		 *
+		 * @return (array);
+		 */
+		private function get_data_dbvars() {
+				$entities = $this->get_entities();
+				if($entities) {
+						foreach($entities as $entity) {
+								$vars[] = $entity->subtype;
+						}
+						return $vars;
+				}
+				return false;
+		}
+		/**
+		 * Search entities
+		 *
+		 * @param array $params A valid options in format:
+		 * 	 'search_type' => true(default) to performs matching on a per-character basis 
+		 * 					  false for performs matching on exact value.
+		 * 	  'subtype' 	=> Valid entity subtype
+		 *	  'type' 		=> Valid entity type
+		 *	  'value'		=> Value which you want to search
+		 *    'owner_guid'  => A valid owner guid, which results integer value
+		 *    'limit'		=> Result limit default, Default is 20 values
+		 *	  'order_by'    => To show result in sepcific order. There is no default order.
+		 * 
+		 * reutrn array|false;
+		 *
+		 */
+		public function searchEntities(array $params = array()) {
+				self::initAttributes();
+				//set default values
+				$default = array(
+						'search_type' => true,
+						'subtype' => false,
+						'type' => false,
+						'value' => false,
+						'owner_guid' => false,
+						'limit' => false,
+						'order_by' => false,
+						'offset' => 1,
+						'page_limit' => ossn_call_hook('pagination', 'per_page', false, 10), //call hook for page limit
+						'count' => false
+				);
+				$options = array_merge($default, $params);
+				$wheres  = array();
+				//prepare limit
+				$limit   = $options['limit'];
+				
+				//validate offset values
+				if($limit !== false) {
+						$offset_vals = ceil($options['limit'] / $options['page_limit']);
+						$offset_vals = abs($offset_vals);
+						$offset_vals = range(1, $offset_vals);
+						if(!in_array($options['offset'], $offset_vals)) {
+								return false;
+						}
+				}
+				//get only required result, don't bust your server memory
+				$getlimit = $this->generateLimit($options['limit'], $options['page_limit'], $options['offset']);
+				if($getlimit) {
+						$options['limit'] = $getlimit;
+				}
+				
+				//search entities
+				if(!empty($options['subtype'])) {
+						$wheres[] = "e.subtype='{$options['subtype']}'";
+				}
+				if(!empty($options['type'])) {
+						$wheres[] = "e.type='{$options['type']}'";
+				}
+				if(!empty($options['owner_guid'])) {
+						$wheres[] = "e.owner_guid ='{$options['owner_guid']}'";
+				}
+				if(!empty($options['value']) && $options['search_type'] === true) {
+						$wheres[] = "emd.value LIKE '%{$options['value']}%'";
+				} elseif(!empty($options['value']) && $options['search_type'] === false) {
+						$wheres[] = "emd.value = '{$options['value']}'";
+				}
+				$params             = array();
+				$params['from']     = 'ossn_entities as e';
+				$params['params']   = array(
+						'e.guid',
+						'e.time_created',
+						'e.time_updated',
+						'e.permission',
+						'e.active',
+						'e.owner_guid',
+						'emd.value',
+						'e.type',
+						'e.subtype'
+				);
+				$params['joins']    = "JOIN ossn_entities_metadata as emd ON e.guid=emd.guid";
+				$params['wheres']   = array(
+						$this->constructWheres($wheres)
+				);
+				$params['order_by'] = $options['order_by'];
+				$params['limit']    = $options['limit'];
+				
+				$this->get = $this->select($params, true);
+				
+				//prepare count data;
+				if($options['count'] === true) {
+						unset($params['params']);
+						unset($params['limit']);
+						$count           = array();
+						$count['params'] = array(
+								"count(*) as total"
+						);
+						$count           = array_merge($params, $count);
+						return $this->select($count)->total;
+				}
+				if($this->get) {
+						foreach($this->get as $entity) {
+								//prepare entities for display
+								$entities[] = arrayObject($entity, $this->types[$this->type]);
+						}
+						return $entities;
+				}
+				return false;
+		}
+} //class

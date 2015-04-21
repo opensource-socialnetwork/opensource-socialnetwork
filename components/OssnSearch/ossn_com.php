@@ -2,11 +2,11 @@
 /**
  * Open Source Social Network
  *
- * @package   Open Source Social Network
+ * @packageOpen Source Social Network
  * @author    Open Social Website Core Team <info@informatikon.com>
  * @copyright 2014 iNFORMATIKON TECHNOLOGIES
- * @license   General Public Licence http://www.opensource-socialnetwork.org/licence
- * @link      http://www.opensource-socialnetwork.org/licence
+ * @license   General Public Licence http://www.Open Source Social Network.org/licence
+ * @link      http://www.Open Source Social Network.org/licence
  */
 
 define('__OSSN_SEARCH__', ossn_route()->com . 'OssnSearch/');
@@ -16,7 +16,7 @@ function ossn_search() {
     ossn_register_page('search', 'ossn_search_page');
     ossn_add_hook('search', "left", 'search_menu_handler');
 
-    ossn_extend_view('css/ossn.default', 'components/OssnSearch/css/search');
+    ossn_extend_view('css/ossn.default', 'css/search');
 }
 
 function search_menu_handler($hook, $type, $return) {
@@ -44,7 +44,7 @@ function ossn_search_page($pages) {
             if (ossn_is_hook('search', "type:{$type}")) {
                 $contents['contents'] = ossn_call_hook('search', "type:{$type}", array('q' => input('q')));
             }
-            $contents = array('content' => ossn_view('components/OssnSearch/pages/search', $contents),);
+            $contents = array('content' => ossn_plugin_view('search/pages/search', $contents),);
             $content = ossn_set_page_layout('search', $contents);
             echo ossn_view_page($title, $content);
             break;

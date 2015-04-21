@@ -1,12 +1,12 @@
 <?php
 /**
- *    OpenSource-SocialNetwork
+ * Open Source Social Network
  *
  * @package   (Informatikon.com).ossn
- * @author    OSSN Core Team <info@opensource-socialnetwork.com>
+ * @author    OSSN Core Team <info@opensource-socialnetwork.org>
  * @copyright 2014 iNFORMATIKON TECHNOLOGIES
- * @license   General Public Licence http://opensource-socialnetwork.com/licence
- * @link      http://www.opensource-socialnetwork.com/licence
+ * @license   General Public Licence http://www.opensource-socialnetwork.org/licence
+ * @link      http://www.opensource-socialnetwork.org/licence
  */
 
 /**
@@ -142,7 +142,8 @@ function ossn_site_js() {
         foreach ($Ossn->jshead['site'] as $js) {
             $src = "{$url}js/view/{$js}.js";
             if (ossn_site_settings('cache') == 1) {
-                $src = "{$url}cache/js/view/{$js}.js";
+				$cache = ossn_site_settings('last_cache');
+                $src = "{$url}cache/js/{$cache}/view/{$js}.js";
             }
             echo ossn_html_js(array('src' => $src));
         }
@@ -160,7 +161,8 @@ function ossn_admin_js() {
         foreach ($Ossn->jshead['admin'] as $js) {
             $src = "{$url}js/view/{$js}.js";
             if (ossn_site_settings('cache') == 1) {
-                $src = "{$url}cache/js/view/{$js}.js";
+				$cache = ossn_site_settings('last_cache');
+                $src = "{$url}cache/js/{$cache}/view/{$js}.js";
             }
             echo ossn_html_js(array('src' => $src));
         }
@@ -177,7 +179,7 @@ function ossn_js_trigger($hook, $type, $value, $params) {
     if (isset($params[1]) && substr($params[1], '-3') == '.js') {
         $params[1] = str_replace('.js', '', $params[1]);
         if (isset($Ossn->js[$params[1]])) {
-            $file = ossn_view($Ossn->js[$params[1]]);
+            $file = ossn_plugin_view($Ossn->js[$params[1]]);
             $extended = ossn_fetch_extend_views("js/{$params[1]}");
             $data = array(
                 $file,

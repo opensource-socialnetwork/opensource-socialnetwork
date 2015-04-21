@@ -1,19 +1,19 @@
 <?php
 /**
- *    OpenSource-SocialNetwork
+ * Open Source Social Network
  *
  * @package   (Informatikon.com).ossn
- * @author    OSSN Core Team <info@opensource-socialnetwork.com>
+ * @author    OSSN Core Team <info@opensource-socialnetwork.org>
  * @copyright 2014 iNFORMATIKON TECHNOLOGIES
- * @license   General Public Licence http://opensource-socialnetwork.com/licence
- * @link      http://www.opensource-socialnetwork.com/licence
+ * @license   General Public Licence http://www.opensource-socialnetwork.org/licence
+ * @link      http://www.opensource-socialnetwork.org/licence
  */
 define('__OSSN_SITE_PAGES__', ossn_route()->com . 'OssnSitePages/');
 require_once(__OSSN_SITE_PAGES__ . 'classes/OssnSitePages.php');
 
 function ossn_sitepages() {
     //css
-    ossn_extend_view('css/ossn.default', 'components/OssnSitePages/css/pages');
+    ossn_extend_view('css/ossn.default', 'css/pages');
     //register pages
     ossn_register_page('site', 'ossn_site_pages');
     //register admin panel page

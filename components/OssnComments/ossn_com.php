@@ -2,11 +2,11 @@
 /**
  * Open Source Social Network
  *
- * @package   Open Source Social Network
+ * @packageOpen Source Social Network
  * @author    Open Social Website Core Team <info@informatikon.com>
  * @copyright 2014 iNFORMATIKON TECHNOLOGIES
- * @license   General Public Licence http://www.opensource-socialnetwork.org/licence
- * @link      http://www.opensource-socialnetwork.org/licence
+ * @license   General Public Licence http://www.Open Source Social Network.org/licence
+ * @link      http://www.Open Source Social Network.org/licence
  */
 define('__OSSN_COMMENTS__', ossn_route()->com . 'OssnComments/');
 require_once(__OSSN_COMMENTS__ . 'classes/OssnComments.php');
@@ -29,8 +29,8 @@ function ossn_comments() {
 
     ossn_register_callback('comment', 'load', 'ossn_comment_menu');
 
-    ossn_extend_view('js/opensource.socialnetwork', 'components/OssnComments/js/OssnComments');
-    ossn_extend_view('css/ossn.default', 'components/OssnComments/css/comments');
+    ossn_extend_view('js/opensource.socialnetwork', 'js/OssnComments');
+    ossn_extend_view('css/ossn.default', 'css/comments');
 
     ossn_register_page('comment', 'ossn_comment_page');
 
@@ -45,7 +45,7 @@ function ossn_comments() {
  * @access private
  */
 function ossn_post_comments($hook, $type, $return, $params) {
-    return ossn_view('components/OssnComments/post/comments', $params);
+    return ossn_plugin_view('comments/post/comments', $params);
 }
 
 /**
@@ -55,7 +55,7 @@ function ossn_post_comments($hook, $type, $return, $params) {
  * @access private
  */
 function ossn_post_comments_entity($hook, $type, $return, $params) {
-    return ossn_view('components/OssnComments/post/comments_entity', $params);
+    return ossn_plugin_view('comments/post/comments_entity', $params);
 }
 
 /**
@@ -187,6 +187,6 @@ function ossn_comment_page($pages) {
  */
  function ossn_comment_view($params, $template = 'comment'){
 	 $vars = ossn_call_hook('comment:view', 'template:params', $params, $params);
-	 return  ossn_view("components/OssnComments/templates/{$template}", $vars);
+	 return  ossn_plugin_view("comments/templates/{$template}", $vars);
  }
 ossn_register_callback('ossn', 'init', 'ossn_comments');

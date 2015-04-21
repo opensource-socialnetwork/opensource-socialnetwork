@@ -2,11 +2,11 @@
 /**
  * Open Source Social Network
  *
- * @package   Open Source Social Network
+ * @packageOpen Source Social Network
  * @author    Open Social Website Core Team <info@informatikon.com>
  * @copyright 2014 iNFORMATIKON TECHNOLOGIES
- * @license   General Public Licence http://www.opensource-socialnetwork.org/licence
- * @link      http://www.opensource-socialnetwork.org/licence
+ * @license   General Public Licence http://www.Open Source Social Network.org/licence
+ * @link      http://www.Open Source Social Network.org/licence
  */
 
 define('__OSSN_GROUPS__', ossn_route()->com . 'OssnGroups/');
@@ -22,10 +22,10 @@ require_once(__OSSN_GROUPS__ . 'libraries/groups.php');
  */
 function ossn_groups() {
     //group css
-    ossn_extend_view('css/ossn.default', 'components/OssnGroups/css/groups');
+    ossn_extend_view('css/ossn.default', 'css/groups');
 
     //group js
-    ossn_extend_view('js/opensource.socialnetwork', 'components/OssnGroups/js/groups');
+    ossn_extend_view('js/opensource.socialnetwork', 'js/groups');
 
     //group pages
     ossn_register_page('group', 'ossn_group_page');
@@ -107,7 +107,7 @@ function groups_search_handler($hook, $type, $return, $params) {
     $data = $groups->searchGroups($params['q']);
     $Pagination->setItem($data);
     $group['groups'] = $Pagination->getItem();
-    $search = ossn_view('components/OssnGroups/search/view', $group);
+    $search = ossn_plugin_view('groups/search/view', $group);
     $search .= $Pagination->pagination();
     if (empty($data)) {
         return ossn_print('ossn:search:no:result');
@@ -160,7 +160,7 @@ function ossn_groups_page($pages) {
                 'class' => 'ossn-form',
             );
             $form = ossn_view_form('add', $params, false);
-            echo ossn_view('system/templates/output/ossnbox', array(
+            echo ossn_plugin_view('output/ossnbox', array(
                 'title' => ossn_print('add:group'),
                 'contents' => $form,
                 'callback' => '#ossn-group-submit',
@@ -223,7 +223,7 @@ function ossn_group_page($pages) {
 
         $params['group'] = $group;
         $title = $group->title;
-        $view = ossn_view('components/OssnGroups/pages/profile', $params);
+        $view = ossn_plugin_view('groups/pages/profile', $params);
         $contents['content'] = ossn_group_layout($view);
         $content = ossn_set_page_layout('contents', $contents);
         echo ossn_view_page($title, $content);
@@ -242,7 +242,7 @@ function ossn_group_page($pages) {
 function group_members_page($hook, $type, $return, $params) {
     $page = $params['subpage'];
     if ($page == 'members') {
-        $mod_content = ossn_view('components/OssnGroups/pages/members', $params);
+        $mod_content = ossn_plugin_view('groups/pages/members', $params);
         $mod = array(
             'title' => ossn_print('members'),
             'content' => $mod_content,
@@ -297,7 +297,7 @@ function group_requests_page($hook, $type, $return, $params) {
 		if ($group->owner_guid !== ossn_loggedin_user()->guid) {
         	redirect("group/{$group->guid}");
     	}
-        $mod_content = ossn_view('components/OssnGroups/pages/requests', array('group' => $group));
+        $mod_content = ossn_plugin_view('groups/pages/requests', array('group' => $group));
         $mod = array(
             'title' => ossn_print('requests'),
             'content' => $mod_content,

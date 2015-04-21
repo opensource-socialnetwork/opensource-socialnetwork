@@ -1,13 +1,13 @@
 <?php
 
 /**
- *    OpenSource-SocialNetwork
+ * Open Source Social Network
  *
  * @package   (Informatikon.com).ossn
- * @author    OSSN Core Team <info@opensource-socialnetwork.com>
+ * @author    OSSN Core Team <info@opensource-socialnetwork.org>
  * @copyright 2014 iNFORMATIKON TECHNOLOGIES
- * @license   General Public Licence http://opensource-socialnetwork.com/licence
- * @link      http://www.opensource-socialnetwork.com/licence
+ * @license   General Public Licence http://www.opensource-socialnetwork.org/licence
+ * @link      http://www.opensource-socialnetwork.org/licence
  */
 class OssnUser extends OssnEntities {
     /**
@@ -25,10 +25,10 @@ class OssnUser extends OssnEntities {
             $this->salt = $this->generateSalt();
             $password = $this->generate_password($this->password, $this->salt);
             $activation = md5($this->password . time() . rand());
-	    $this->sendactiviation = ossn_call_hook('user', 'send:activation', false, $this->sendactiviation);
+	    	$this->sendactiviation = ossn_call_hook('user', 'send:activation', false, $this->sendactiviation);
             if ($this->sendactiviation === false) {
                 //don't set null , set empty value for users created by admin
-		$activation = '';
+				$activation = '';
             }
             $params['into'] = 'ossn_users';
             $params['names'] = array(
@@ -67,7 +67,7 @@ class OssnUser extends OssnEntities {
                 }
                 if ($this->sendactiviation === true) {
                     $link = ossn_site_url("uservalidate/activate/{$guid}/{$activation}");
-		    $link = ossn_call_hook('user', 'validation:email:url', $this, $link);
+		    		$link = ossn_call_hook('user', 'validation:email:url', $this, $link);
                     $sitename = ossn_site_settings('site_name');
                     $activation = ossn_print('ossn:add:user:mail:body', array(
                         $sitename,

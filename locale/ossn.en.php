@@ -1,12 +1,12 @@
 <?php
 /**
- *    OpenSource-SocialNetwork
+ * Open Source Social Network
  *
  * @package   (Informatikon.com).ossn
- * @author    OSSN Core Team <info@opensource-socialnetwork.com>
+ * @author    OSSN Core Team <info@opensource-socialnetwork.org>
  * @copyright 2014 iNFORMATIKON TECHNOLOGIES
- * @license   General Public Licence http://opensource-socialnetwork.com/licence
- * @link      http://www.opensource-socialnetwork.com/licence
+ * @license   General Public Licence http://www.opensource-socialnetwork.org/licence
+ * @link      http://www.opensource-socialnetwork.org/licence
  */
 
 $en = array(
@@ -150,12 +150,12 @@ If you can't click on the link, copy and paste it to your browser manually.
 	
 	'fields:require' => 'All fields are required!',
 	'username:error' => 'Username is incorrect.',
-	'password:error' => 'Password must be more than 5 characters.',
+	'password:error' => 'Password must be more than 5 words.',
 	'account:created' => 'Your account has been created.',
 	'account:create:error:admin' => 'Cannot register account! Please try again later.',
 	'user:updated' => 'User has been updated!',
 	'logged:out' => 'You are now logged out!',
-	'username:inuse' => 'Username already exist! Please select a different username.',
+	'username:inuse' => 'Username already exist! Please select a different usename.',
 	'email:inuse' => 'Email address already exist! Please try another email address.',
 	'email:invalid' => 'Email address is invalid! Make sure the email address you entered is correct.',
 	'email:error:matching' => "Email addresses do not match.",

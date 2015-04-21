@@ -1,13 +1,13 @@
 <?php
 
 /**
- *    OpenSource-SocialNetwork
+ * Open Source Social Network
  *
  * @package   (Informatikon.com).ossn
- * @author    OSSN Core Team <info@opensource-socialnetwork.com>
+ * @author    OSSN Core Team <info@opensource-socialnetwork.org>
  * @copyright 2014 iNFORMATIKON TECHNOLOGIES
- * @license   General Public Licence http://opensource-socialnetwork.com/licence
- * @link      http://www.opensource-socialnetwork.com/licence
+ * @license   General Public Licence http://www.opensource-socialnetwork.org/licence
+ * @link      http://www.opensource-socialnetwork.org/licence
  */
 class OssnInstallation {
     /**
@@ -222,7 +222,7 @@ class OssnInstallation {
             $this->error_mesg = $this->connect_err->connect_errn;
             return false;
         }
-        if ($script = file_get_contents(ossn_installation_paths()->root . 'sql/opensource-socialnetwork.sql')) {
+        if ($script = file_get_contents(ossn_installation_paths()->root . 'sql/Open Source Social Network.sql')) {
             $script = str_replace('<<owner_email>>', $this->startup_settings['owner_email'], $script);
             $script = str_replace('<<notification_email>>', $this->startup_settings['notification_email'], $script);
             $script = str_replace('<<sitename>>', $this->startup_settings['sitename'], $script);

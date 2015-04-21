@@ -1,12 +1,12 @@
 <?php
 /**
- *    OpenSource-SocialNetwork
+ * Open Source Social Network
  *
  * @package   (Informatikon.com).ossn
- * @author    OSSN Core Team <info@opensource-socialnetwork.com>
+ * @author    OSSN Core Team <info@opensource-socialnetwork.org>
  * @copyright 2014 iNFORMATIKON TECHNOLOGIES
- * @license   General Public Licence http://opensource-socialnetwork.com/licence
- * @link      http://www.opensource-socialnetwork.com/licence
+ * @license   General Public Licence http://www.opensource-socialnetwork.org/licence
+ * @link      http://www.opensource-socialnetwork.org/licence
  */
 $site_name = ossn_site_settings('site_name');
 if (isset($params['title'])) {
@@ -67,7 +67,7 @@ if (isset($params['contents'])) {
             href="<?php echo ossn_site_url(); ?>"><?php echo $site_name; ?></a>
     </div>
     <div class="powered">
-        <?php echo 'POWERED <a href="http://opensource-socialnetwork.org">OPEN SOURCE SOCIAL NETWORK</a>'; ?>
+        <?php echo 'POWERED <a href="http://www.opensource-socialnetwork.org">OPEN SOURCE SOCIAL NETWORK</a>'; ?>
     </div>
 </div>
 <?php echo ossn_fetch_extend_views('ossn/administrator/footer'); ?>

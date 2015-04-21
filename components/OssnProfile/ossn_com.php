@@ -2,11 +2,11 @@
 /**
  * Open Source Social Network
  *
- * @package   Open Source Social Network
+ * @packageOpen Source Social Network
  * @author    Open Social Website Core Team <info@informatikon.com>
  * @copyright 2014 iNFORMATIKON TECHNOLOGIES
- * @license   General Public Licence http://www.opensource-socialnetwork.org/licence
- * @link      http://www.opensource-socialnetwork.org/licence
+ * @license   General Public Licence http://www.Open Source Social Network.org/licence
+ * @link      http://www.Open Source Social Network.org/licence
  */
 define('__OSSN_PROFILE__', ossn_route()->com . 'OssnProfile/');
 require_once(__OSSN_PROFILE__ . 'classes/OssnProfile.php');
@@ -22,8 +22,8 @@ function ossn_profile() {
     ossn_register_page('avatar', 'avatar_page_handler');
     ossn_register_page('cover', 'cover_page_handler');
     //css and js
-    ossn_extend_view('css/ossn.default', 'components/OssnProfile/css/profile');
-    ossn_extend_view('js/opensource.socialnetwork', 'components/OssnProfile/js/OssnProfile');
+    ossn_extend_view('css/ossn.default', 'css/profile');
+    ossn_extend_view('js/opensource.socialnetwork', 'js/OssnProfile');
     //actions
     if (ossn_isLoggedin()) {
         ossn_register_action('profile/photo/upload', __OSSN_PROFILE__ . 'actions/photo/upload.php');
@@ -122,7 +122,7 @@ function profile_user_friends($hook, $type, $return, $params) {
     $page = $params['subpage'];
     if ($page == 'friends') {
         $user['user'] = $params['user'];
-        $friends = ossn_view('components/OssnProfile/pages/friends', $user);
+        $friends = ossn_plugin_view('profile/pages/friends', $user);
         echo ossn_set_page_layout('module', array(
                 'title' => ossn_print('friends'),
                 'content' => $friends,
@@ -166,7 +166,7 @@ function profile_search_handler($hook, $type, $return, $params) {
     $data = $users->searchUsers($params['q']);
     $Pagination->setItem($data);
     $user['users'] = $Pagination->getItem();
-    $search = ossn_view('system/templates/output/users', $user);
+    $search = ossn_plugin_view('output/users', $user);
     $search .= $Pagination->pagination();
     if (empty($data)) {
         return ossn_print('ossn:search:no:result');
@@ -185,7 +185,7 @@ function profile_modules($h, $t, $module, $params) {
     /*$content = ossn_view("components/OssnProfile/modules/about", $user);
     $modules[] = ossn_view_widget('profile/widget', 'ABOUT', $content);*/
 
-    $content = ossn_view("components/OssnProfile/modules/friends", $user);
+    $content = ossn_plugin_view("profile/modules/friends", $user);
     $modules[] = ossn_view_widget('profile/widget', strtoupper(ossn_print('friends')), $content);
 
     return $modules;
@@ -196,7 +196,7 @@ function profile_modules($h, $t, $module, $params) {
  * @return mixed data;
  */
 function profile_photo_newsefeed($hook, $type, $return) {
-    $return[] = ossn_view('components/OssnProfile/newsfeed/info');
+    $return[] = ossn_plugin_view('profile/newsfeed/info');
     return $return;
 }
 /**
@@ -223,7 +223,7 @@ function profile_page_handler($page) {
         return false;
     }
     $title = $user->fullname;
-    $contents['content'] = ossn_view('components/OssnProfile/pages/profile', $params);
+    $contents['content'] = ossn_plugin_view('profile/pages/profile', $params);
     $content = ossn_set_page_layout('contents', $contents);
     echo ossn_view_page($title, $content);
 }
@@ -364,7 +364,7 @@ function ossn_notification_like_profile_photo($hook, $type, $return, $params) {
  * @return mixed data;
  */
 function ossn_wall_profile_photo($hook, $type, $return, $params){
-	return ossn_view("components/OssnProfile/templates/wall/profile/photo", $params);
+	return ossn_plugin_view("profile/wall/profile/photo", $params);
 }
 /**
  * Template for profile cover photo created by ossnwall
@@ -372,7 +372,7 @@ function ossn_wall_profile_photo($hook, $type, $return, $params){
  * @return mixed data;
  */
 function ossn_wall_profile_cover_photo($hook, $type, $return, $params){
-	return ossn_view("components/OssnProfile/templates/wall/cover/photo", $params);
+	return ossn_plugin_view("profile/wall/cover/photo", $params);
 }
 /**
  * Get profile photo url for wall

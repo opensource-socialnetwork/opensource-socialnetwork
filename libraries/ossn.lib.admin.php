@@ -1,12 +1,12 @@
 <?php
 /**
- *    OpenSource-SocialNetwork
+ * Open Source Social Network
  *
  * @package   (Informatikon.com).ossn
- * @author    OSSN Core Team <info@opensource-socialnetwork.com>
+ * @author    OSSN Core Team <info@opensource-socialnetwork.org>
  * @copyright 2014 iNFORMATIKON TECHNOLOGIES
- * @license   General Public Licence http://opensource-socialnetwork.com/licence
- * @link      http://www.opensource-socialnetwork.com/licence
+ * @license   General Public Licence http://www.opensource-socialnetwork.org/licence
+ * @link      http://www.opensource-socialnetwork.org/licence
  */
 /**
  * Initialize the admin library
@@ -32,8 +32,8 @@ function ossn_admin() {
     ossn_register_menu_link('home', 'admin:dashboard', ossn_site_url('administrator'), 'topbar_admin');
 
     ossn_register_menu_link('configure', 'Configure', '#', 'topbar_admin');
-    ossn_register_menu_link('help', 'admin:help', 'http://community.opensource-socialnetwork.org', 'topbar_admin');
-    ossn_register_menu_link('support', 'admin:support', 'http://community.opensource-socialnetwork.org', 'topbar_admin');
+    ossn_register_menu_link('help', 'admin:help', 'http://community.Open Source Social Network.org', 'topbar_admin');
+    ossn_register_menu_link('support', 'admin:support', 'http://community.Open Source Social Network.org', 'topbar_admin');
 
     ossn_register_menu_link('viewsite', 'admin:view:site', ossn_site_url(), 'topbar_admin');
     
@@ -162,7 +162,7 @@ function ossn_view_admin_sidemenu() {
     global $Ossn;
     $params['menu'] = $Ossn->menu['admin/sidemenu'];
     $active_theme = ossn_site_settings('theme');
-    return ossn_view("themes/{$active_theme}/menus/admin_sidemenu", $params);
+    return ossn_plugin_view("menus/admin_sidemenu", $params);
 }
 
 
@@ -202,7 +202,7 @@ function ossn_administrator_pagehandler($pages) {
                 $com['com'] = OssnComponents::getCom($pages[1]);
                 $com['settings'] = ossn_components()->getComSettings($pages[1]);
                 $title = $com['com']->com_name;
-                $contents['contents'] = ossn_view("components/{$pages[1]}/administrator/{$Ossn->com_panel[$pages[1]]}", $com);
+                $contents['contents'] = ossn_plugin_view("settings/administrator/{$pages[1]}/{$Ossn->com_panel[$pages[1]]}", $com);
                 $contents['title'] = $title;
                 $content = ossn_set_page_layout('administrator/administrator', $contents);
                 echo ossn_view_page($title, $content, 'administrator');
@@ -315,5 +315,4 @@ function ossn_administrator_login_pagehandler($pages) {
 
     }
 }
-
 ossn_register_callback('ossn', 'init', 'ossn_admin');

@@ -2,11 +2,11 @@
 /**
  * Open Source Social Network
  *
- * @package   Open Source Social Network
+ * @packageOpen Source Social Network
  * @author    Open Social Website Core Team <info@informatikon.com>
  * @copyright 2014 iNFORMATIKON TECHNOLOGIES
- * @license   General Public Licence http://www.opensource-socialnetwork.org/licence
- * @link      http://www.opensource-socialnetwork.org/licence
+ * @license   General Public Licence http://www.Open Source Social Network.org/licence
+ * @link      http://www.Open Source Social Network.org/licence
  */
 
 /* Define Paths */
@@ -23,7 +23,7 @@ require_once(__OSSN_POKE__ . 'classes/OssnPoke.php');
  */
 function ossn_poke() {
     //css
-    ossn_extend_view('css/ossn.default', 'components/OssnPoke/css/poke');
+    ossn_extend_view('css/ossn.default', 'css/poke');
 
     //actions
     if (ossn_isLoggedin()) {

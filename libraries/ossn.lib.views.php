@@ -1,12 +1,12 @@
 <?php
 /**
- *    OpenSource-SocialNetwork
+ * Open Source Social Network
  *
  * @package   (Informatikon.com).ossn
- * @author    OSSN Core Team <info@opensource-socialnetwork.com>
+ * @author    OSSN Core Team <info@opensource-socialnetwork.org>
  * @copyright 2014 iNFORMATIKON TECHNOLOGIES
- * @license   General Public Licence http://opensource-socialnetwork.com/licence
- * @link      http://www.opensource-socialnetwork.com/licence
+ * @license   General Public Licence http://www.opensource-socialnetwork.org/licence
+ * @link      http://www.opensource-socialnetwork.org/licence
  */
 
 $VIEW = new stdClass;
@@ -108,7 +108,7 @@ function ossn_fetch_extend_views($layout, $params = array()) {
     if (isset($VIEW->register[$layout]) && !empty($VIEW->register[$layout])) {
         foreach ($VIEW->register[$layout] as $file) {
             if (!function_exists($file)) {
-                $fetch[] = ossn_view($file, $params);
+                $fetch[] = ossn_plugin_view($file, $params);
             } else {
                 $fetch[] = call_user_func($file, ossn_get_context(), $params, current_url());
             }
@@ -232,7 +232,7 @@ function ossn_default_theme() {
 function ossn_view_form($name, $args = array(), $type = 'core') {
     $args['name'] = $name;
     $args['type'] = $type;
-    return ossn_view("system/templates/output/form", $args);
+    return ossn_plugin_view("output/form", $args);
 }
 
 /**
@@ -261,6 +261,31 @@ function ossn_view_widget($name, $title, $contents) {
  */
 function ossn_view_template($template = '', array $params){
 	if(!empty($template)){
-		return ossn_view("system/templates/{$template}", $params);
+		return ossn_plugin_view("{$template}", $params);
 	}
+}
+/**
+ * Create a pagiantion using count and page limit
+ *
+ * @param integer $count total entities/objects
+ * @param integer $page_limit Number of entities/objects per page
+ *
+ * @return false|mixed data
+ */
+function ossn_view_pagination($count = false, $page_limit = 10){
+	$page_limit = ossn_call_hook('pagination', 'page_limit', false, $page_limit);
+	if(!empty($count) && !empty($page_limit)){
+		$pagination = new OssnPagination;
+	
+		$params = array();
+		$params['limit'] = $count;
+		$params['page_limit']  = $page_limit;
+		
+		$offset = input('offset');
+		if(empty($offset)){
+			ossn_set_input('offset', 1);
+		}
+		return $pagination->pagination($params);
+	}
+	return false;
 }

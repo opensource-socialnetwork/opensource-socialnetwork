@@ -1,12 +1,12 @@
 <?php
 /**
- *    OpenSource-SocialNetwork
+ * Open Source Social Network
  *
  * @package   (Informatikon.com).ossn
- * @author    OSSN Core Team <info@opensource-socialnetwork.com>
+ * @author    OSSN Core Team <info@opensource-socialnetwork.org>
  * @copyright 2014 iNFORMATIKON TECHNOLOGIES
- * @license   General Public Licence http://opensource-socialnetwork.com/licence
- * @link      http://www.opensource-socialnetwork.com/licence
+ * @license   General Public Licence http://www.opensource-socialnetwork.org/licence
+ * @link      http://www.opensource-socialnetwork.org/licence
  */
 
 //register all available language
@@ -52,6 +52,8 @@ function ossn_initialize() {
     ossn_register_page('resetlogin', 'ossn_user_pagehandler');
 
     ossn_add_hook('newsfeed', "sidebar:left", 'newfeed_menu_handler');
+	
+	ossn_register_plugins_by_path(ossn_route()->system);		
 }
 
 /**
@@ -84,7 +86,7 @@ function ossn_system_error_pagehandler($pages) {
                 'contents' => $error,
                 'callback' => false,
             );
-            echo ossn_view('system/templates/output/ossnbox', $params);
+            echo ossn_plugin_view('output/ossnbox', $params);
             break;
     }
 }
@@ -106,7 +108,7 @@ function ossn_user_pagehandler($home, $handler) {
             }
             $title = ossn_print('news:feed');
             if (com_is_active('OssnWall')) {
-                $contents['content'] = ossn_view('components/OssnWall/pages/wall');
+                $contents['content'] = ossn_plugin_view('wall/pages/wall');
             }
             $content = ossn_set_page_layout('newsfeed', $contents);
             echo ossn_view_page($title, $content);

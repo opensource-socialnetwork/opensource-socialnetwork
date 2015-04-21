@@ -1,13 +1,13 @@
 <?php
 
 /**
- *    OpenSource-SocialNetwork
+ * Open Source Social Network
  *
  * @package   (Informatikon.com).ossn
- * @author    OSSN Core Team <info@opensource-socialnetwork.com>
+ * @author    OSSN Core Team <info@opensource-socialnetwork.org>
  * @copyright 2014 iNFORMATIKON TECHNOLOGIES
- * @license   General Public Licence http://opensource-socialnetwork.com/licence
- * @link      http://www.opensource-socialnetwork.com/licence
+ * @license   General Public Licence http://www.opensource-socialnetwork.org/licence
+ * @link      http://www.opensource-socialnetwork.org/licence
  */
 class OssnComponents extends OssnDatabase {
     /**
@@ -145,6 +145,7 @@ class OssnComponents extends OssnDatabase {
             $dir = ossn_route()->com;
             $name = $this->getCom($com->com_id);
             if (!empty($name->com_name)) {
+				ossn_register_plugins_by_path("{$dir}{$com->com_id}/plugins/");
                 if (is_file("{$dir}{$com->com_id}/locale/ossn.{$lang}.php")) {
                     include("{$dir}{$com->com_id}/locale/ossn.{$lang}.php");
                 }

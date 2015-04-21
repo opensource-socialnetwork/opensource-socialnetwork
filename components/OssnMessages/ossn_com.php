@@ -1,12 +1,12 @@
 <?php
 /**
- *    OpenSource-SocialNetwork
+ * Open Source Social Network
  *
  * @package   (Informatikon.com).ossn
- * @author    OSSN Core Team <info@opensource-socialnetwork.com>
+ * @author    OSSN Core Team <info@opensource-socialnetwork.org>
  * @copyright 2014 iNFORMATIKON TECHNOLOGIES
- * @license   General Public Licence http://opensource-socialnetwork.com/licence
- * @link      http://www.opensource-socialnetwork.com/licence
+ * @license   General Public Licence http://www.opensource-socialnetwork.org/licence
+ * @link      http://www.opensource-socialnetwork.org/licence
  */
 define('__OSSN_MESSAGES__', ossn_route()->com . 'OssnMessages/');
 require_once(__OSSN_MESSAGES__ . 'classes/OssnMessages.php');
@@ -16,9 +16,9 @@ function OssnMessages() {
     return $OssnMessages;
 }
 function ossn_messages() {
-    ossn_extend_view('css/ossn.default', 'components/OssnMessages/css/message');
+    ossn_extend_view('css/ossn.default', 'css/message');
     ossn_register_page('messages', 'ossn_messages_page');
-    ossn_extend_view('js/opensource.socialnetwork', 'components/OssnMessages/js/OssnMessages');
+    ossn_extend_view('js/opensource.socialnetwork', 'js/OssnMessages');
 
     if (ossn_isLoggedin()) {
         ossn_register_action('message/send', __OSSN_MESSAGES__ . 'actions/message/send.php');
@@ -57,7 +57,7 @@ function ossn_messages_page($pages) {
                 $params['data'] = $OssnMessages->get(ossn_loggedin_user()->guid, $user->guid);
                 $params['user'] = $user;
                 $params['recent'] = $OssnMessages->recentChat(ossn_loggedin_user()->guid);
-                $contents = array('content' => ossn_view('components/OssnMessages/pages/view', $params),);
+                $contents = array('content' => ossn_plugin_view('messages/pages/view', $params),);
                 $content = ossn_set_page_layout('media', $contents);
                 echo ossn_view_page($title, $content);
 
@@ -81,9 +81,9 @@ function ossn_messages_page($pages) {
 
                 $params['user'] = $user;
             }
-            $contents = array('content' => ossn_view('components/OssnMessages/pages/messages', $params),);
+            $contents = array('content' => ossn_plugin_view('messages/pages/messages', $params),);
             if (!isset($getuser)) {
-                $contents = array('content' => ossn_view('components/OssnMessages/pages/messages-none'),);
+                $contents = array('content' => ossn_plugin_view('messages/pages/messages-none'),);
             }
             $title = ossn_print('messages');
             $content = ossn_set_page_layout('media', $contents);
@@ -99,7 +99,7 @@ function ossn_messages_page($pages) {
                     $message = $message->message;
                     $params['user'] = $user;
                     $params['message'] = $message;
-                    echo ossn_view('components/OssnMessages/templates/message-send', $params);
+                    echo ossn_plugin_view('messages/templates/message-send', $params);
                 }
                $OssnMessages->markViewed($guid, ossn_loggedin_user()->guid);
                echo '<script>Ossn.playSound();</script>';
@@ -108,7 +108,7 @@ function ossn_messages_page($pages) {
 
         case 'getrecent':
             $params['recent'] = $OssnMessages->recentChat(ossn_loggedin_user()->guid);
-            echo ossn_view('components/OssnMessages/templates/message-with', $params);
+            echo ossn_plugin_view('messages/templates/message-with', $params);
             break;
         default:
             ossn_error_page();

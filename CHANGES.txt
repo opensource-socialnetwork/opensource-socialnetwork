@@ -67,7 +67,7 @@ Functions in existing libraries and classes:
   * ossn_unload_js: Ossn system unloads js from head.
   * ossn_unlink_new_css: Remove a css from system. This will not remove css file it will just unregister it.
   * ossn_unload_css: Ossn system unloads css from head
-  * ossn_view_template View a template. Use a templates from core. (image view, url view etc).
+  * ossn_plugin_view View a template. Use a templates from core. (image view, url view etc).
   * ossn_load_json_locales: To get all system language strings in json format.
   * ossn_add_entity: add a new entity.
   * ossn_update_entity: update entity.

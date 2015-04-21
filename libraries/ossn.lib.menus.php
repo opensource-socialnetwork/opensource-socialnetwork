@@ -1,12 +1,12 @@
 <?php
 /**
- *    OpenSource-SocialNetwork
+ * Open Source Social Network
  *
  * @package   (Informatikon.com).ossn
- * @author    OSSN Core Team <info@opensource-socialnetwork.com>
+ * @author    OSSN Core Team <info@opensource-socialnetwork.org>
  * @copyright 2014 iNFORMATIKON TECHNOLOGIES
- * @license   General Public Licence http://opensource-socialnetwork.com/licence
- * @link      http://www.opensource-socialnetwork.com/licence
+ * @license   General Public Licence http://www.opensource-socialnetwork.org/licence
+ * @link      http://www.opensource-socialnetwork.org/licence
  */
 /**
  * Register a menu;
@@ -54,12 +54,11 @@ function ossn_view_menu($menu, $custom = false) {
     }
     $params['menu'] = $Ossn->menu[$menu];
     if ($custom == false) {
-        $active_theme = ossn_site_settings('theme');
         $params['menuname'] = $menu;
-        return ossn_view("themes/{$active_theme}/menus/{$menu}", $params);
+        return ossn_plugin_view("menus/{$menu}", $params);
     } elseif ($custom !== false) {
         $params['menuname'] = $menu;
-        return ossn_view($custom, $params);
+        return ossn_plugin_view($custom, $params);
     }
 }
 
@@ -112,9 +111,8 @@ function ossn_register_sections_menu($menu, $params) {
 function ossn_view_sections_menu($menu, $type = 'frontend') {
     global $Ossn;
     if (isset($menu) && isset($Ossn->sectionsmenu[$type][$menu])) {
-        $active_theme = ossn_site_settings('theme');
         $params['menu'] = $Ossn->sectionsmenu[$type][$menu];
         $params['menuname'] = $menu;
-        return ossn_view("themes/{$active_theme}/menus/sections/{$menu}", $params);
+        return ossn_plugin_view("menus/sections/{$menu}", $params);
     }
 }

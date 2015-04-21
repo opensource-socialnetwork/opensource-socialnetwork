@@ -2,11 +2,11 @@
 /**
  * Open Source Social Network
  *
- * @package   Open Source Social Network
+ * @packageOpen Source Social Network
  * @author    Open Social Website Core Team <info@informatikon.com>
  * @copyright 2014 iNFORMATIKON TECHNOLOGIES
- * @license   General Public Licence http://www.opensource-socialnetwork.org/licence
- * @link      http://www.opensource-socialnetwork.org/licence
+ * @license   General Public Licence http://www.Open Source Social Network.org/licence
+ * @link      http://www.Open Source Social Network.org/licence
  */
 
 define('__OSSN_LIKES__', ossn_route()->com . 'OssnLikes/');
@@ -26,8 +26,8 @@ function ossn_likes() {
         ossn_register_action('annotation/unlike', __OSSN_LIKES__ . 'actions/annotation/unlike.php');
 
     }
-    ossn_extend_view('js/opensource.socialnetwork', 'components/OssnLikes/js/OssnLikes');
-    ossn_extend_view('css/ossn.default', 'components/OssnLikes/css/likes');
+    ossn_extend_view('js/opensource.socialnetwork', 'js/OssnLikes');
+    ossn_extend_view('css/ossn.default', 'css/likes');
 
     ossn_register_callback('post', 'delete', 'ossn_post_like_delete');
     ossn_register_callback('comment', 'delete', 'ossn_comment_like_delete');
@@ -124,7 +124,7 @@ function ossn_like_annotation($hook, $type, $return, $params) {
  * @access private
  */
 function ossn_post_likes($hook, $type, $return, $params) {
-    return ossn_view('components/OssnLikes/post/likes', $params);
+    return ossn_plugin_view('likes/post/likes', $params);
 }
 
 /**
@@ -134,7 +134,7 @@ function ossn_post_likes($hook, $type, $return, $params) {
  * @access private
  */
 function ossn_post_likes_entity($h, $t, $r, $p) {
-    return ossn_view('components/OssnLikes/post/likes_entity', $p);
+    return ossn_plugin_view('likes/post/likes_entity', $p);
 }
 
 /**
@@ -144,7 +144,7 @@ function ossn_post_likes_entity($h, $t, $r, $p) {
  * @access public;
  */
 function ossn_likesview_page_handler() {
-    echo ossn_view('system/templates/output/ossnbox', array(
+    echo ossn_plugin_view('output/ossnbox', array(
         'title' => ossn_print('people:like:this'),
         'contents' => ossn_view('components/OssnLikes/pages/view'),
         'control' => false,

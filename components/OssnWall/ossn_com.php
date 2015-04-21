@@ -2,11 +2,11 @@
 /**
  * Open Source Social Network
  *
- * @package   Open Source Social Network
+ * @packageOpen Source Social Network
  * @author    Open Social Website Core Team <info@informatikon.com>
  * @copyright 2014 iNFORMATIKON TECHNOLOGIES
- * @license   General Public Licence http://www.opensource-socialnetwork.org/licence
- * @link      http://www.opensource-socialnetwork.org/licence
+ * @license   General Public Licence http://www.Open Source Social Network.org/licence
+ * @link      http://www.Open Source Social Network.org/licence
  */
 define('__OSSN_WALL__', ossn_route()->com . 'OssnWall/');
 require_once(__OSSN_WALL__ . 'classes/OssnWall.php');
@@ -30,8 +30,8 @@ function ossn_wall() {
 				ossn_register_action('wall/admin/settings', __OSSN_WALL__ . 'actions/wall/admin/settings.php');		
 		}
 		//css and js
-		ossn_extend_view('css/ossn.default', 'components/OssnWall/css/wall');
-		ossn_extend_view('js/opensource.socialnetwork', 'components/OssnWall/js/ossn_wall');
+		ossn_extend_view('css/ossn.default', 'css/wall');
+		ossn_extend_view('js/opensource.socialnetwork', 'js/ossn_wall');
 		
 		//pages
 		ossn_register_page('post', 'ossn_post_page');
@@ -191,7 +191,7 @@ function ossn_post_page($pages) {
 						$params['post'] = $post;
 						
 						$contents = array(
-								'content' => ossn_view('components/OssnWall/pages/view', $params)
+								'content' => ossn_plugin_view('wall/pages/view', $params)
 						);
 						$content  = ossn_set_page_layout('newsfeed', $contents);
 						echo ossn_view_page($title, $content);
@@ -208,14 +208,14 @@ function ossn_post_page($pages) {
 						if(ossn_is_xhr()) {
 								$params = array(
 										'title' => ossn_print('privacy'),
-										'contents' => ossn_view('components/OssnWall/wall/privacy'),
+										'contents' => ossn_plugin_view('all/privacy'),
 										'callback' => '#ossn-wall-privacy'
 								);
-								echo ossn_view('system/templates/output/ossnbox', $params);
+								echo ossn_plugin_view('output/ossnbox', $params);
 						}
 						break;
 				case 'refresh_home':
-						echo ossn_view('components/OssnWall/wall/siteactivity');
+						echo ossn_plugin_view('wall/siteactivity');
 						break;
 				default:
 						ossn_error_page();
@@ -246,7 +246,7 @@ function ossn_wall_post_menu($hook, $type, $return, $params) {
 		} else {
 				ossn_unregister_menu('delete', 'wallpost');
 		}
-		return ossn_view_menu('wallpost', 'components/OssnWall/menus/post-controls');
+		return ossn_view_menu('wallpost', 'wall/menus/post-controls');
 }
 /**
  * Delete group wall posts
@@ -327,7 +327,7 @@ function ossn_wall_view_template(array $params) {
  */
 function ossn_wall_templates($hook, $type, $return, $params) {
 		$params = ossn_call_hook('wall', 'templates:item', $params, $params);
-		return ossn_view("components/OssnWall/templates/wall/{$type}/item", $params);
+		return ossn_plugin_view("wall/templates/wall/{$type}/item", $params);
 }
 /**
  * Set homepage wall items type friends/public 

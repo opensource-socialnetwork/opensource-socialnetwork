@@ -1,12 +1,12 @@
 <?php
 /**
- *    OpenSource-SocialNetwork
+ * Open Source Social Network
  *
  * @package   (Informatikon.com).ossn
- * @author    OSSN Core Team <info@opensource-socialnetwork.com>
+ * @author    OSSN Core Team <info@opensource-socialnetwork.org>
  * @copyright 2014 iNFORMATIKON TECHNOLOGIES
- * @license   General Public Licence http://opensource-socialnetwork.com/licence
- * @link      http://www.opensource-socialnetwork.com/licence
+ * @license   General Public Licence http://www.opensource-socialnetwork.org/licence
+ * @link      http://www.opensource-socialnetwork.org/licence
  */
 ?>
 <style> body {
@@ -32,7 +32,7 @@
             <div style="padding:12px;min-height:300px;">
                 <?php
                 if (com_is_active('OssnAds')) {
-                    echo ossn_view('components/OssnAds/page/view');
+                    echo ossn_plugin_view('ads/page/view');
                 }
          	if (ossn_is_hook('newsfeed', "sidebar:right")) {
             	        $newsfeed_right = ossn_call_hook('newsfeed', "sidebar:right", NULL, array());

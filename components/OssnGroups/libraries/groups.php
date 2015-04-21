@@ -2,11 +2,11 @@
 /**
  * Open Source Social Network
  *
- * @package   Open Source Social Network
+ * @packageOpen Source Social Network
  * @author    Open Social Website Core Team <info@informatikon.com>
  * @copyright 2014 iNFORMATIKON TECHNOLOGIES
- * @license   General Public Licence http://www.opensource-socialnetwork.org/licence
- * @link      http://www.opensource-socialnetwork.org/licence
+ * @license   General Public Licence http://www.Open Source Social Network.org/licence
+ * @link      http://www.Open Source Social Network.org/licence
  */
  
 /**
@@ -27,7 +27,7 @@ function ossn_get_group_by_guid($guid) {
  */
 function ossn_group_layout($contents) {
     $content['content'] = $contents;
-    return ossn_view('components/OssnGroups/page/group', $content);
+    return ossn_plugin_view('groups/page/group', $content);
 }
 /**
  * Get user groups (owned/member of)

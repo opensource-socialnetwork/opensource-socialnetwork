@@ -1,13 +1,13 @@
 <?php
 
 /**
- *    OpenSource-SocialNetwork
+ * Open Source Social Network
  *
  * @package   (Informatikon.com).ossn
- * @author    OSSN Core Team <info@opensource-socialnetwork.com>
+ * @author    OSSN Core Team <info@opensource-socialnetwork.org>
  * @copyright 2014 iNFORMATIKON TECHNOLOGIES
- * @license   General Public Licence http://opensource-socialnetwork.com/licence
- * @link      http://www.opensource-socialnetwork.com/licence
+ * @license   General Public Licence http://www.opensource-socialnetwork.org/licence
+ * @link      http://www.opensource-socialnetwork.org/licence
  */
 class OssnPagination {
     /**
@@ -15,8 +15,11 @@ class OssnPagination {
      *
      * @return void;
      */
-    public function __construct($ppage = 10) {
-        $this->ppage = (int)$ppage;
+    public function __construct($ppage = 10, array $options = array()) {
+		if(is_integer($ppage)){
+	        $this->ppage = (int)$ppage;
+		}
+			$this->options = $options;
     }
 
     /**
@@ -113,10 +116,16 @@ class OssnPagination {
      *
      * @return html;
      */
-    public function pagination() {
-        if (!isset($this->setItem)) {
+    public function pagination($vars = array()) {
+        if (!isset($this->setItem) && !isset($vars)) {
             return false;
         }
+		if(!empty($vars)){
+			$vars['offset'] = (int)input('offset');	
+			$vars['total'] = abs($vars['limit']/$vars['page_limit']);
+			$vars['total'] = ceil($vars['total']);
+            return $this->view($vars);			
+		}
         $item = $this->setItem;
         if (is_array($item)) {
             $newitem = array_chunk($item, $this->ppage);
@@ -147,6 +156,5 @@ class OssnPagination {
         $theme = ossn_site_settings('theme');
         return ossn_view("themes/{$theme}/pagination/view", $params);
     }
-
 
 }//CLASS
