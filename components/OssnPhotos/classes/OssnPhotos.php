@@ -15,7 +15,7 @@ class OssnPhotos extends OssnFile {
      *
      * @params = $album Album guid
      *           $photo Photo type
-     *           $access Private or Public ( its actually depend on ablum privacy)
+     *           $access Private or Public ( its actually depend on album privacy)
      *
      * @return bool;
      */
@@ -24,11 +24,11 @@ class OssnPhotos extends OssnFile {
         if (!in_array($access, ossn_access_types())) {
             $access = OSSN_PUBLIC;
         }
-        //album initilize
+        //album initialize
         $this->album = new OssnAlbums;
         $this->album = $this->album->GetAlbum($album);
 
-        //check if album guid is not less then 0 and validate photo uploader
+        //check if album guid is not less than 0 and validate photo uploader
         if (!empty($album) && $album > 0 && $this->album->album->owner_guid == ossn_loggedin_user()->guid) {
 
             //initialize variables
@@ -59,7 +59,7 @@ class OssnPhotos extends OssnFile {
                         } else {
                             $resized = ossn_resize_image($datadir, $width, $height, false);
                         }
-                        //create newely created image
+                        //create newly created image
                         $image = ossn_get_userdata("object/{$album}/album/photos/{$size}_{$file_name}");
                         file_put_contents($image, $resized);
                     }
@@ -111,9 +111,9 @@ class OssnPhotos extends OssnFile {
             $file = $this->fetchFile();
             $source = ossn_get_userdata("user/{$file->owner_guid}/{$file->value}");
 
-            //delete croped photos
+            //delete cropped photos
             unlink($source);
-            foreach (ossn_user_image_sizes() as $size => $demensions) {
+            foreach (ossn_user_image_sizes() as $size => dimensions) {
                 $filename = str_replace('profile/photo/', '', $file->value);
                 $filename = ossn_get_userdata("user/{$file->owner_guid}/profile/photo/{$size}_{$filename}");
                 if(is_file($filename)){
@@ -168,7 +168,7 @@ class OssnPhotos extends OssnFile {
 
             //delete croped photos
             unlink($source);
-            foreach (ossn_photos_sizes() as $size => $demensions) {
+            foreach (ossn_photos_sizes() as $size => $dimensions) {
                 $filename = str_replace('album/photos/', '', $file->value);
                 $filename = ossn_get_userdata("object/{$file->owner_guid}/album/photos/{$size}_{$filename}");
                 unlink($filename);
