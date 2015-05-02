@@ -113,7 +113,7 @@ class OssnPhotos extends OssnFile {
 
             //delete cropped photos
             unlink($source);
-            foreach (ossn_user_image_sizes() as $size => dimensions) {
+            foreach (ossn_user_image_sizes() as $size => $dimensions) {
                 $filename = str_replace('profile/photo/', '', $file->value);
                 $filename = ossn_get_userdata("user/{$file->owner_guid}/profile/photo/{$size}_{$filename}");
                 if(is_file($filename)){
