@@ -15,6 +15,19 @@ DirectoryIndex index.php
 	deny from all
 </Files>
 
+<IfModule mod_mime.c>
+    AddType image/vnd.microsoft.icon .ico
+</IfModule>
+
+<IfModule mod_expires.c>
+	ExpiresActive On
+	ExpiresDefault "access plus 1 year"
+</IfModule>
+
+<FilesMatch "\.(jpg|jpeg|gif|png|mp3|flv|mov|avi|3pg|html|htm|swf|js|css|ico)$">
+	FileETag MTime Size
+</FilesMatch>
+
 <IfModule mod_rewrite.c>
 #SetEnv HTTP_MOD_REWRITE 1
 
