@@ -222,7 +222,7 @@ class OssnInstallation {
             $this->error_mesg = $this->connect_err->connect_errn;
             return false;
         }
-        if ($script = file_get_contents(ossn_installation_paths()->root . 'sql/Open Source Social Network.sql')) {
+        if ($script = file_get_contents(ossn_installation_paths()->root . 'sql/opensource-socialnetwork.sql')) {
             $script = str_replace('<<owner_email>>', $this->startup_settings['owner_email'], $script);
             $script = str_replace('<<notification_email>>', $this->startup_settings['notification_email'], $script);
             $script = str_replace('<<sitename>>', $this->startup_settings['sitename'], $script);
