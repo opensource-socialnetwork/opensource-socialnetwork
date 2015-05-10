@@ -20,6 +20,13 @@ if (empty($username) || empty($password)) {
     redirect();
 }
 $user = ossn_user_by_username($username);
+
+//check if username is email
+if (strpos($username, '@') !== false){
+	$user = ossn_user_by_email($username);
+	$username = $user->username;
+}
+
 if($user && !$user->isUserVALIDATED()){
 	$user->resendValidationEmail();
 	ossn_trigger_message(ossn_print('ossn:user:validation:resend'), 'error');
