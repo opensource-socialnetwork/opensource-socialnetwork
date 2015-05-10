@@ -1,5 +1,10 @@
 OSSN - OPEN SOURCE SOCIAL NETWORK 3.0-development
 
+Bugfixes:
+ * Can not delete profile cover #427
+
+Additions:
+	
  * Implementd plugins for components.
  * Browser css cache issue.
  * Store profile image in computer cache
@@ -9,4 +14,3 @@ OSSN - OPEN SOURCE SOCIAL NETWORK 3.0-development
  * Get object that are requried only (offset)
  * Get entities that are required only (offset)
  * Get annotation that are required only (offset)
-

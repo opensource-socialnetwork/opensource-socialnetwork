@@ -142,7 +142,10 @@ class OssnPhotos extends OssnFile {
             $file = $this->fetchFile();
             $source = ossn_get_userdata("user/{$file->owner_guid}/{$file->value}");
 
-			if(unlink($source)){
+			if($this->deleteEntity($this->file_id)){
+				//delete file
+				unlink($source);
+				$params['photo'] = get_object_vars($file);
 				ossn_trigger_callback('delete', 'profile:cover:photo', $params);
 			}
       
