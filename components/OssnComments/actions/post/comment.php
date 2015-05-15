@@ -14,12 +14,19 @@ $image = input('comment-attachment');
 if (!empty($image)) {
     $OssnComment->comment_image = $image;
 }
+if(!empty($image))
+{
+$img = 1;
+}else
+{
+$img = 0;
+}
 //post on which comment is going to be posted
 $post = input('post');
 
 //comment text
 $comment = input('comment');
-if ($OssnComment->PostComment($post, ossn_loggedin_user()->guid, $comment)) {
+if ($OssnComment->PostComment($post, ossn_loggedin_user()->guid, $comment, 'post' , $img)) {
     $data['comment'] = ossn_get_comment($OssnComment->getCommentId());
     $data = ossn_view('components/OssnComments/templates/comment', $data);;
     if (!ossn_is_xhr()) {
