@@ -147,6 +147,7 @@ class OssnPhotos extends OssnFile {
 				unlink($source);
 				$params['photo'] = get_object_vars($file);
 				ossn_trigger_callback('delete', 'profile:cover:photo', $params);
+				return true;
 			}
       
         }
