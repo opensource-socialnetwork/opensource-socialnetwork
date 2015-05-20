@@ -210,7 +210,7 @@ Please click the link below to reset password or copy the link and paste into yo
 	'password:reset:email:success' => 'Password reset instructions have been sent to your email address.',
 	'reset:password' => 'Reset Password',
 	
-	'error:reporting' => 'Error Reporting',
+	'errors:reporting' => 'Error Reporting',
 	'errors:off' => 'Off',
 	'errors:on' => 'On',
 	'basic:settings' => 'Basic Settings',
