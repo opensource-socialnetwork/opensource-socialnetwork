@@ -207,5 +207,6 @@ CREATE TABLE IF NOT EXISTS `ossn_users` (
   `last_login` int(11) NOT NULL,
   `last_activity` int(11) NOT NULL,
   `activation` text,
+  `time_created` int(11) NOT NULL,
   PRIMARY KEY (`guid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
