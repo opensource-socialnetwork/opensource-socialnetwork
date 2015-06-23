@@ -18,20 +18,17 @@ if (!empty($search)) {
     $pagination->setItem($users->getSiteUsers());
 }
 ?>
-<div class="top-controls top-controls-users-page">
-    <a href="<?php echo ossn_site_url("administrator/adduser"); ?>"
-       class="ossn-admin-button button-green"><?php echo ossn_print('add'); ?></a>
-</div>
+<div class="row margin-top-10">
 <table class="table ossn-users-list">
     <tbody>
     <tr class="table-titles">
-        <td><?php echo ossn_print('name'); ?></td>
-        <td><?php echo ossn_print('username'); ?></td>
-        <td><?php echo ossn_print('email'); ?></td>
-        <td><?php echo ossn_print('type'); ?></td>
-        <td><?php echo ossn_print('lastlogin'); ?></td>
-        <td><?php echo ossn_print('edit'); ?></td>
-        <td><?php echo ossn_print('delete'); ?></td>
+        <th><?php echo ossn_print('name'); ?></th>
+        <th><?php echo ossn_print('username'); ?></th>
+        <th><?php echo ossn_print('email'); ?></th>
+        <th><?php echo ossn_print('type'); ?></th>
+        <th><?php echo ossn_print('lastlogin'); ?></th>
+        <th><?php echo ossn_print('edit'); ?></th>
+        <th><?php echo ossn_print('delete'); ?></th>
     </tr>
     <?php foreach ($pagination->getItem() as $user) {
         $user = ossn_user_by_guid($user->guid);
@@ -42,10 +39,8 @@ if (!empty($search)) {
         ?>
         <tr>
             <td>
-                <div class="image"><img
-                        src="<?php echo ossn_site_url(); ?>avatar/<?php echo $user->username; ?>/smaller"/></div>
-                <div class="name"
-                     style="margin-left:39px;margin-top: -39px;min-height: 30px;"><?php echo strl($user->fullname, 20); ?></div>
+                <div class="left image"><img src="<?php echo $user->iconURL()->smaller; ?>"/></div>
+                <div class="name"><?php echo strl($user->fullname, 20); ?></div>
             </td>
             <td><?php echo $user->username; ?></td>
             <td><?php echo $user->email; ?></td>
@@ -60,4 +55,7 @@ if (!empty($search)) {
     <?php } ?>
     </tbody>
 </table>
-<?php echo $pagination->pagination(); ?>
+</div>
+<div class="row">
+	<?php echo $pagination->pagination(); ?>
+</div>

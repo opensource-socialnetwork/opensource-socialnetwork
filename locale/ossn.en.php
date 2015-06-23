@@ -276,6 +276,27 @@ Please click the link below to reset password or copy the link and paste into yo
 	'admin:users:unvalidated' => 'Unvalidated Users',
 	'admin:user:validated' => 'User validated',
 	'admin:user:validate:error' => 'Could not validate user.',
+	
+	//v3.0
+	//admin
+	'my:files:version' => 'My Ossn Files Version',
+	'cache:flush:error' => 'Can not flush cache, make sure cache is enabled in cache settings',
+	'cache:flushed' => 'Cache flushed successfully',
+	'ossn:version' => 'Ossn version', 
+	'php:extensionn' => 'PHP extension',
+	'php:versionn' => 'PHP version',
+	'php:function' => 'PHP function',
+	'admin:old:com' => "Your ossn_com.xml file is based on old version of Ossn. Please update '%s' component.",
+	'admin:old:theme' => "Your ossn_theme.xml file is based on old version of Ossn. Please update '%s' theme.",
+	'admin:button:disabled' => 'Disabled',
+	'admin:flush:cache' => 'Flsuh Cache',
+	'admin:com:version' => 'Version',
+	'admin:com:author' => 'Author',
+	'admin:com:author:url' => 'Author Url',
+	'admin:com:license' => 'License',
+	'admin:com:requirements' => 'Requirements',
+	'admin:com:availability' => 'Availability',
+
 	/*
 	 * List of ISO 639-1 language codes
 	 * http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes

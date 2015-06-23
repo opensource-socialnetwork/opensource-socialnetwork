@@ -25,13 +25,17 @@ function ossn_javascript() {
     ossn_extend_view('ossn/admin/head', 'ossn_jquery_add');
 
     ossn_new_js('opensource.socialnetwork', 'javascripts/libraries/core');
-    ossn_new_js('ossn.language', 'javascripts/libraries/languages');
 	
     ossn_load_js('opensource.socialnetwork');
     ossn_load_js('opensource.socialnetwork', 'admin');
 	
-	ossn_load_js('ossn.language');
-	ossn_load_js('ossn.language', 'admin');
+	//link chartjs and jquery Ossn v3
+	ossn_new_external_js('chart.js', 'vendors/Chartjs/Chart.min.js');
+	ossn_new_external_js('chart.legend.js', 'vendors/Chartjs/chart.legend.js');
+	ossn_new_external_js('jquery-1.11.1.min.js', 'vendors/jquery/jquery-1.11.1.min.js');
+	
+	ossn_load_external_js('jquery-1.11.1.min.js');
+	ossn_load_external_js('jquery-1.11.1.min.js', 'admin');
 }
 
 /**
@@ -75,8 +79,35 @@ function ossn_javascript_pagehandler($js) {
  */
 function ossn_new_js($name, $file) {
     global $Ossn;
-    $add = $Ossn->js[$name] = $file;
-    return $add;
+    $Ossn->js[$name] = $file;
+}
+/**
+ * Register a new external js to system
+ *
+ * @param string $name The name of the css
+ *               $file  complete url path to css file
+ *
+ * @return void
+ */
+function ossn_new_external_js($name, $file, $type = true) {
+    global $Ossn;
+	if($type){
+	    $Ossn->jsExternal[$name] = ossn_site_url($file);
+	} else {
+	    $Ossn->jsExternal[$name] = $file;		
+	}
+}
+/**
+ * Remove a external js from system
+ *
+ * @param string $name The name of the css
+ *               $file  complete url path to css file
+ *
+ * @return void
+ */
+function ossn_unlink_external_js($name) {
+    global $Ossn;
+    unset($Ossn->jsExternal[$name]);
 }
 /**
  * Remove a js from system
@@ -86,7 +117,7 @@ function ossn_new_js($name, $file) {
  *
  * @return void
  */
-function ossn_unlink_new_js($name, $file) {
+function ossn_unlink_new_js($name) {
     global $Ossn;
     if(isset($Ossn->js[$name])){
 	   unset($Ossn->js[$name]);	
@@ -101,19 +132,25 @@ function ossn_unlink_new_js($name, $file) {
  * @return string
  */
 function ossn_html_js($args) {
+	if(!is_array($args)){
+		return false;
+	}
+	$default = array(
+					 'type' => 'text/javascript',
+					 );	
+	$args = array_merge($default, $args);
     $extend = ossn_args($args);
-    return "\r\n<script type='text/javascript' {$extend}></script>";
+    return "\r\n<script {$extend}></script>";
 }
 
 /**
- * Load registered css to system for site
+ * Load registered js to system for site
  *
  * @return html.tag
  */
 function ossn_load_js($name, $type = 'site') {
     global $Ossn;
-    $js = $Ossn->jshead[$type][] = $name;
-    return $js;
+    $Ossn->jshead[$type][] = $name;
 }
 /**
  * Ossn system unloads js from head
@@ -129,6 +166,29 @@ function ossn_unload_js($name, $type = 'site') {
 		unset($Ossn->jshead[$type][$js]);
 	}
 }
+/**
+ * Load registered js to system for site
+ *
+ * @return html.tag
+ */
+function ossn_load_external_js($name, $type = 'site') {
+    global $Ossn;
+    $Ossn->jsheadExternal[$type][] = $name;
+}
+/**
+ * Ossn system unloads js from head
+ *
+ * @param string $name The name of the js
+ *
+ * @return void
+ */
+function ossn_unload_external_js($name, $type = 'site') {
+    global $Ossn;
+	$js = array_search($name, $Ossn->jsheadExternal[$type]);
+    if($js !== false){
+		unset($Ossn->jsheadExternal[$type][$js]);
+	}
+}
 
 /**
  * Load js for frontend
@@ -138,6 +198,16 @@ function ossn_unload_js($name, $type = 'site') {
 function ossn_site_js() {
     global $Ossn;
     $url = ossn_site_url();
+	
+	//load external js	
+	$external = $Ossn->jsheadExternal['site'];
+	if(!empty($external)){
+		foreach($external as $item){
+			echo ossn_html_js(array('src' =>  $Ossn->jsExternal[$item]));
+		}
+	}
+	
+	//load internal js
     if (isset($Ossn->jshead['site'])) {
         foreach ($Ossn->jshead['site'] as $js) {
             $src = "{$url}js/view/{$js}.js";
@@ -157,6 +227,16 @@ function ossn_site_js() {
 function ossn_admin_js() {
     global $Ossn;
     $url = ossn_site_url();
+	
+	//load external js	
+	$external = $Ossn->jsheadExternal['admin'];
+	if(!empty($external)){
+		foreach($external as $item){
+			echo ossn_html_js(array('src' =>  $Ossn->jsExternal[$item]));
+		}
+	}
+	
+	//load internal js
     if (isset($Ossn->jshead['admin'])) {
         foreach ($Ossn->jshead['admin'] as $js) {
             $src = "{$url}js/view/{$js}.js";
@@ -170,7 +250,7 @@ function ossn_admin_js() {
 }
 
 /**
- * Check if the requested css is registered then load css
+ * Check if the requested js is registered then load js
  *
  * @return bool
  */
@@ -190,14 +270,35 @@ function ossn_js_trigger($hook, $type, $value, $params) {
     }
     return false;
 }
-
 /**
  * Load jquery framework to system
  *
  * @return js.html.tag
+ * @use ossn_new_external_js()
  */
+/**
 function ossn_jquery_add() {
     echo ossn_html_js(array('src' => ossn_site_url('vendors/jquery/jquery-1.11.1.min.js')));
+} **/
+function ossn_languages_js(){
+	$lang = ossn_site_user_lang_code();
+	$cache = ossn_site_settings('cache');
+	$last_cache = ossn_site_settings('last_cache');
+	
+	if($cache == true){
+		$js = "ossn.{$lang}.language";
+		$url = "cache/js/{$last_cache}/view/{$js}.js";
+		ossn_new_external_js($js, $url);
+		
+		ossn_load_external_js($js, 'site');
+		ossn_load_external_js($js, 'admin');
+	} else {
+	
+		ossn_new_js('ossn.language', 'javascripts/libraries/languages');
+		
+		ossn_load_js('ossn.language');
+		ossn_load_js('ossn.language', 'admin');	
+	}
 }
-
+ossn_register_callback('ossn', 'init', 'ossn_languages_js');
 ossn_register_callback('ossn', 'init', 'ossn_javascript');

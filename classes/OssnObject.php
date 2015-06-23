@@ -16,7 +16,6 @@ class OssnObject extends OssnEntities {
 		 * @return void;
 		 */
 		public function initAttributes() {
-				$this->OssnDatabase = new OssnDatabase;
 				$this->time_created = time();
 				if(empty($this->subtype)) {
 						$this->subtype = NULL;
@@ -55,11 +54,11 @@ class OssnObject extends OssnEntities {
 						$this->title,
 						$this->description
 				);
-				if($this->OssnDatabase->insert($params)) {
-						$this->createdObject = $this->OssnDatabase->getLastEntry();
+				if($this->insert($params)) {
+						$this->createdObject = $this->getLastEntry();
 						if(isset($this->data) && is_object($this->data)) {
 								foreach($this->data as $name => $value) {
-										$this->owner_guid = $this->OssnDatabase->getLastEntry();
+										$this->owner_guid = $this->createdObject;
 										$this->type       = 'object';
 										$this->subtype    = $name;
 										$this->value      = $value;
@@ -139,7 +138,7 @@ class OssnObject extends OssnEntities {
 				//$params['order_by'] = $this->order_by;
 				unset($this->order_by);
 				
-				$object             = $this->OssnDatabase->select($params);
+				$object             = $this->select($params);
 				
 				$this->owner_guid = $object->guid;
 				$this->subtype    = '';
@@ -192,7 +191,7 @@ class OssnObject extends OssnEntities {
 				$params['wheres'] = array(
 						"guid='{$guid}'"
 				);
-				if($this->OssnDatabase->update($params)) {
+				if($this->update($params)) {
 						if(isset($this->data)) {
 								$this->owner_guid = $guid;
 								$this->type       = 'object';
@@ -226,7 +225,7 @@ class OssnObject extends OssnEntities {
 				$delete['wheres'] = array(
 						"guid='{$object}'"
 				);
-				if($this->OssnDatabase->delete($delete)) {
+				if($this->delete($delete)) {
 						return true;
 				}
 				return false;
@@ -235,7 +234,7 @@ class OssnObject extends OssnEntities {
 		 * Search object by its title, description etc
 		 *
 		 * @param array $params A valid options in format:
-		 * 	 'search_type' => true(default) to performs matching on a per-character basis 
+		 * 	  'search_type' => true(default) to performs matching on a per-character basis 
 		 * 					  false for performs matching on exact value.
 		 * 	  'subtype' 	=> Valid object subtype
 		 *	  'type' 		=> Valid object type
@@ -269,7 +268,7 @@ class OssnObject extends OssnEntities {
 				$wheres  = array();
 				
 				//validate offset values
-				if($options['limit']!== false) {
+				if($options['limit'] !== false && $options['limit'] !== 0 && $options['page_limit'] !== 0) {
 						$offset_vals = ceil($options['limit'] / $options['page_limit']);
 						$offset_vals = abs($offset_vals);
 						$offset_vals = range(1, $offset_vals);

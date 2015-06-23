@@ -8,33 +8,19 @@
  * @license   General Public Licence http://www.opensource-socialnetwork.org/licence
  * @link      http://www.opensource-socialnetwork.org/licence
  */
-$OssnComs = new OssnComponents;
-foreach ($OssnComs->getComponents() as $Com) {
-    $Component = $OssnComs->getCom($Com);
-    echo "<div class='ossn-components-item'>";
-    echo "<div class='component-controls'>";
-    if (!$OssnComs->isActive($Com)) {
-        $enable = ossn_site_url("action/component/enable?com={$Com}", true);
-        echo "<a href='{$enable}' class='components-button components-button-green'>" . ossn_print('admin:button:enable') ."</a>";
-    } elseif (!in_array($Com, $OssnComs->requiredComponents())) {
-        $disable = ossn_site_url("action/component/disable?com={$Com}", true);
-        echo "<a href='{$disable}' class='components-button components-button-orange'>" . ossn_print('admin:button:disable') ."</a>";
-    }
-    if (in_array($Com, ossn_registered_com_panel())) {
-        $configure = ossn_site_url("administrator/component/{$Com}", true);
-        echo "<a href='{$configure}' class='components-button components-button-blue'>" . ossn_print('admin:button:configure') ."</a>";
-    }
-    if (!in_array($Com, $OssnComs->requiredComponents())) {
-        $delete = ossn_site_url("action/component/delete?component={$Com}", true);
-        echo "<a href='{$delete}' class='components-button components-button-red'>" . ossn_print('admin:button:delete') ."</a>";
-    }
-    echo "</div>";
-
-    echo "<div class='component-name'>{$Component->com_name} {$Component->com_version}</div>";
-    echo "<div class='compontnet-meta'>
-	        " . ossn_print('admin:component:author') .": {$Component->com_author}<br />
-			" . ossn_print('admin:component:website') .": {$Component->com_author_url}
-	 </div>";
-    echo "<div class='component-description'>{$Component->com_description}</div>";
-    echo '</div>';
-}
+?>
+<div class="panel-group" id="accordion">
+   	<?php
+	$OssnComs = new OssnComponents;
+	$list = $OssnComs->getComponents();
+	if($list){
+		foreach($list as $component) {
+			$vars = array();
+			$vars['OssnCom'] = $OssnComs;
+			$vars['component'] = $OssnComs->getCom($component);
+			$vars['name'] = $component;
+			echo ossn_plugin_view("admin/components/list/item", $vars);
+		}
+	}
+	?>
+</div> 

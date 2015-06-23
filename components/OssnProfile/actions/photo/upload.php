@@ -11,21 +11,33 @@
 $profile = new OssnProfile; 
 $file = new OssnFile;
 
-$file->owner_guid = ossn_loggedin_user()->guid;
+$user = ossn_loggedin_user();
+
+$file->owner_guid = $user->guid;
 $file->type = 'user';
 $file->subtype = 'profile:photo';
 $file->setFile('userphoto');
 $file->setPath('profile/photo/');
 
 if ($file->addFile()) {
+	
+	//update user icon time, this time has nothing to do with photo entity time
+	$user->data->icon_time = time();
+	$user->save();
+	
+	//get a all user photo files
     $resize = $file->getFiles();
+	
+	//add a wall post for photo update
 	$profile->addPhotoWallPost($file->owner_guid, $resize->{0}->guid);
 	
     if (isset($resize->{0}->value)) {
-        $guid = ossn_loggedin_user()->guid;
+        $guid = $user->guid;
         $datadir = ossn_get_userdata("user/{$guid}/{$resize->{0}->value}");
         $file_name = str_replace('profile/photo/', '', $resize->{0}->value);
-        $sizes = ossn_user_image_sizes();
+        
+		//create sub photos
+		$sizes = ossn_user_image_sizes();
         foreach ($sizes as $size => $params) {
             $params = explode('x', $params);
             $width = $params[1];

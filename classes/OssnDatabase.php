@@ -146,6 +146,10 @@ class OssnDatabase extends OssnBase {
 						if(!empty($params['order_by'])) {
 								$order_by = "ORDER by {$params['order_by']}";
 						}
+						$group_by = '';
+						if(!empty($params['group_by'])) {
+								$group_by = "GROUP by {$params['group_by']}";
+						}						
 						$where = '';
 						if(isset($params['wheres']) && is_array($params['wheres'])) {
 								$where = implode(' ', $params['wheres']);
@@ -164,7 +168,7 @@ class OssnDatabase extends OssnBase {
 						} elseif(!empty($params['joins']) && is_array($params['joins'])) {
 								$joins = implode(' ', $params['joins']);
 						}
-						$query = "SELECT {$parameters} FROM {$params['from']} {$joins} {$wheres} {$order_by} {$limit};";
+						$query = "SELECT {$parameters} FROM {$params['from']} {$joins} {$wheres} {$order_by} {$group_by} {$limit};";
 						
 						$this->statement($query);
 						if($this->execute()) {

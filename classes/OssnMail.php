@@ -23,6 +23,9 @@ class OssnMail extends PHPMailer {
 		 * @return (bool)
 		 */
 		public function NotifiyUser($email, $subject, $body) {
+				if(empty($email)){
+					error_log('Can not send email to empty url', 0);
+				}
 				$this->setFrom(ossn_site_settings('notification_email'), ossn_site_settings('site_name'));
 				$this->addAddress($email);
 				
@@ -30,8 +33,9 @@ class OssnMail extends PHPMailer {
 				$this->Body    = $body;
 				$this->CharSet = "UTF-8";
 				
-				try {
-						if($this->send()) {
+				try {	
+						$send = ossn_call_hook('email', 'send', $this->send(), $this);
+						if($send) {
 								return true;
 						}
 				}

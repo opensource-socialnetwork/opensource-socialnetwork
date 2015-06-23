@@ -1,33 +1,44 @@
-<?php
-/**
- * Open Source Social Network
- *
- * @package   (Informatikon.com).ossn
- * @author    OSSN Core Team <info@opensource-socialnetwork.org>
- * @copyright 2014 iNFORMATIKON TECHNOLOGIES
- * @license   General Public Licence http://www.opensource-socialnetwork.org/licence
- * @link      http://www.opensource-socialnetwork.org/licence
- */
-echo '<div class="ossn-admin-menu-topbar">';
-echo '<ul>';
-foreach ($params['menu'] as $key => $links) {
-    if (count($links) > 1) {
-        $menu_parent = '<a href="#"><li>' . ossn_print($key) . '</a><ul>';
-        unset($links['Configure']);
-        foreach ($links as $text => $link) {
-            $menu_parent .= '<a href="' . $link . '"><li>' . ossn_print($text) . '</li></a>';
-        }
-        $menu_parent .= '</ul></li>';
-        echo $menu_parent;
-    } else {
+<div class="navbar navbar-default navbar-admin-second" role="navigation">
+    <div class="container">
+   		<div class="row">
+    		<div class="col-12">
+            	 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigationbar">
+               		<span class="sr-only">Toggle navigation</span>
+               		<span class="icon-bar"></span>
+               		<span class="icon-bar"></span>
+              		<span class="icon-bar"></span>
+           		 </button>
+        		<div class="collapse navbar-collapse" id="navigationbar">
+            		<ul class="nav navbar-nav navbar-right">
+						 <?php echo ossn_view_admin_sidemenu(); ?>
+           		 	</ul>
+            		<ul class="nav navbar-nav">
+            			<?php
+							foreach ($params['menu'] as $key => $links) {
+   								 if (count($links) > 1) {
+      								  $menu_parent = '<li>
+									  <a href="javascript::void(0);" class="dropdown-toggle" data-toggle="dropdown">'
+									  	. ossn_print($key) . 
+									   '<i class="fa fa-sort-desc"></i></a>
+									  <ul class="dropdown-menu multi-level">';
+        								unset($links['Configure']);
+       									foreach ($links as $text => $link) {
+           										 $menu_parent .= '<li><a href="' . $link . '">' . ossn_print($text) . '</a></li>';
+        								}
+      									$menu_parent .= '</ul></li>';
+        								echo $menu_parent;
+    							 } else {
 
-        foreach ($links as $text => $link) {
-            $menu = '<a href="' . $link . '"><li>' . ossn_print($text) . '</li></a>';
-        }
-        echo $menu;
-    }
-}
-
-echo '<a href="' . ossn_site_url("action/admin/logout", true) . '"><li class="right">' . ossn_print('admin:logout') . '</li></a>';
-echo '</ul>';
-echo '</div>';
+      							 	foreach ($links as $text => $link) {
+            							$menu = '<li><a href="' . $link . '">' . ossn_print($text) . '</a></li>';
+        						 	}
+        						 	echo $menu;
+    					 	 	}
+							}
+						?>
+            		</ul>
+        		</div>
+    		</div>
+    	</div>
+    </div>
+</div>

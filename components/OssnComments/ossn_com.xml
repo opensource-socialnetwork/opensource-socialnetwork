@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<component xmlns="http://www.opensource-socialnetwork.org/v/1.0">
-    <com_name>OssnComments</com_name>
-    <com_author>Core Team</com_author>
-    <com_description>Allow users to comments on the posts.</com_description>
-    <com_license>GPL V2</com_license>
-    <com_author_url>http://www.informatikon.com/</com_author_url>
-    <com_licence_url>http://www.opensource-socialnetwork.org/licence/</com_licence_url>
-    <com_version>1.0</com_version>
+<component xmlns="http://www.opensource-socialnetwork.org/v/3.0">
+    <name>OssnComments</name>
+    <author>Core Team</author>
+    <description>Allow users to comments on the posts.</description>
+    <license>GNU General Public License, version 2</license>
+    <author_url>http://www.informatikon.com/</author_url>
+    <license_url>http://www.opensource-socialnetwork.org/licence/</license_url>
+    <version>3.0</version>
+	<requires>
+		<type>ossn_version</type>
+		<version>3.0</version>
+	</requires>
 </component>

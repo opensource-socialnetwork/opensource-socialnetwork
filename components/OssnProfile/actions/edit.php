@@ -96,8 +96,6 @@ if ($OssnDatabase->update($params)) {
     //update entities
     $guid = $user_get->guid;
     if (!empty($guid)) {
-        $user_get->owner_guid = $guid;
-        $user_get->type = 'user';
         $user_get->data->gender = $user['gender'];
         $user_get->data->birthdate = $user['birthdate'];
         $user_get->save();

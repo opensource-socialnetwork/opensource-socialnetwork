@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<theme xmlns="http:/Open Source Social Network.theme/v/1.0">
-    <theme_name>Black Theme</theme_name>
-    <theme_author>Core Team</theme_author>
-    <theme_description>Default Theme for Open Source Social Network.</theme_description>
-    <theme_license>GPL V2</theme_license>
-    <theme_licence_url>http://www.Open Source Social Network.org/licence</theme_licence_url>
-    <theme_version>1.0</theme_version>
+<theme xmlns="http://www.opensource-socialnetwork.org/theme/v/3.0">
+    <name>Black Theme</name>
+    <author>Core Team</author>
+    <author_url>http://www.informatikon.com/</author_url>	
+    <description>Default Theme for Open Source Social Network.</description>
+    <license>GNU General Public License, version 2</license>    
+	<license_url>http://www.opensource-socialnetwork.org/licence</license_url>
+    <version>3.0</version>
+	<requires>
+		<type>ossn_version</type>
+		<version>3.0</version>
+	</requires>
 </theme>

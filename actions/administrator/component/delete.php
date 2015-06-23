@@ -9,12 +9,30 @@
  * @link      http://www.opensource-socialnetwork.org/licence
  */
 
-$com = input('component');
-$delete = new OssnComponents;
-if ($delete->deletecom($com)) {
+$delete 	 = new OssnComponents;
+$com 		 = input('component');
+$cache_flush = input('flush_cache', '', false);
+$cache		 = ossn_site_settings('cache');
+
+if (!$cache_flush && $delete->deletecom($com)) {
     ossn_trigger_message(ossn_print('com:deleted'), 'success');
-    redirect(REF);
+    if($cache == false){
+		redirect(REF);
+	} else {
+		//redirect and flush cache
+		$page = "action/component/delete?flush_cache=1";
+		$page = ossn_add_tokens_to_url($page);
+		redirect($page);
+	}
 } else {
     ossn_trigger_message(ossn_print('con:delete:error'), 'error');
     redirect(REF);
+}
+
+if($cache_flush){
+	if(ossn_disable_cache()){
+		if(ossn_create_cache()){
+				redirect('administrator/components');
+		}
+  	}	
 }

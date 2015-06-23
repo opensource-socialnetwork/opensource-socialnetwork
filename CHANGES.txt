@@ -15,3 +15,5 @@ Additions:
  * Get entities that are required only (offset)
  * Get annotation that are required only (offset)
  * Allow users to login with email also
+ * Allow admins to search unvalidated users.
+ * New backend theme

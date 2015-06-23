@@ -6,7 +6,7 @@
  * @author    OSSN Core Team <info@opensource-socialnetwork.org>
  * @copyright 2014 iNFORMATIKON TECHNOLOGIES
  * @license   General Public Licence http://www.opensource-socialnetwork.org/licence
- * @link      http://www.Open Source Social Network.org/licence
+ * @link      http://www.opensource-socialnetwork.org/licence
  */
 $from = $params['message_to'];
 $to = ossn_loggedin_user();

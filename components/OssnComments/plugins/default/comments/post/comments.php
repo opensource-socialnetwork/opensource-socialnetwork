@@ -5,28 +5,25 @@
  * @packageOpen Source Social Network
  * @author    Open Social Website Core Team <info@informatikon.com>
  * @copyright 2014 iNFORMATIKON TECHNOLOGIES
- * @license   General Public Licence http://www.Open Source Social Network.org/licence
- * @link      http://www.Open Source Social Network.org/licence
+ * @license   General Public Licence http://www.opensource-socialnetwork.org/licence
+ * @link      http://www.opensource-socialnetwork.org/licence
  */
 
 $object = $params->guid;
 
-$OssnComments = new OssnComments;
+$comments = new OssnComments;
 $OssnLikes = new OssnLikes;
 
-$comments = $OssnComments->GetComments($object);
+if($params->full_view !== true){
+	$comments->limit = 5;
+}
+$comments = $comments->GetComments($object);
+
 echo "<div class='ossn-comments-list-{$object}'>";
-if (is_object($comments)) {
-    $count = 0;
+if ($comments) {
     foreach ($comments as $comment) {
-        if ($count <= 5) {
             $data['comment'] = get_object_vars($comment);
             echo ossn_comment_view($data);
-        } elseif($params->full_view === true){
-            $data['comment'] = get_object_vars($comment);
-            echo ossn_comment_view($data);				
-		}
-        $count++;
     }
 }
 echo '</div>';

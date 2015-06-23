@@ -169,7 +169,7 @@ CREATE TABLE IF NOT EXISTS `ossn_site_settings` (
   `name` text NOT NULL,
   `value` text NOT NULL,
   PRIMARY KEY (`setting_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
 
 --
 -- Dumping data for table `ossn_site_settings`
@@ -184,7 +184,9 @@ INSERT INTO `ossn_site_settings` (`setting_id`, `name`, `value`) VALUES
 (6, 'notification_email', '<<notification_email>>'),
 (7, 'upgrades', '["1410545706.php","1411396351.php", "1412353569.php","1415553653.php","1415819862.php", "1423419053.php", "1423419054.php"]'),
 (9, 'display_errors', 'off'),
-(10, 'site_key', '<<screat>>');
+(10, 'site_key', '<<screat>>'),
+(11, 'last_cache', ''),
+(12, 'site_version', '3.0');
 
 
 -- --------------------------------------------------------

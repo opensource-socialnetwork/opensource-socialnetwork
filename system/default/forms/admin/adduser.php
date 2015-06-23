@@ -5,27 +5,32 @@
  * @packageOpen Source Social Network
  * @author    Open Social Website Core Team <info@informatikon.com>
  * @copyright 2014 iNFORMATIKON TECHNOLOGIES
- * @license   General Public Licence http://www.Open Source Social Network.org/licence
- * @link      http://www.Open Source Social Network.org/licence
+ * @license   General Public Licence http://www.opensource-socialnetwork.org/licence
+ * @link      http://www.opensource-socialnetwork.org/licence
  */
 ?>
-<label> <?php echo ossn_print('first:name'); ?> </label>
-<input type='text' name="firstname" placeholder=''/>
-
-<label> <?php echo ossn_print('last:name'); ?> </label>
-<input type='text' name="lastname" placeholder=''/>
-
-<label> <?php echo ossn_print('username'); ?> </label>
-<input type='text' name="username" placeholder=''/>
-
-<label> <?php echo ossn_print('email'); ?> </label>
-<input type='text' name="email" placeholder=''/>
-
-<label> <?php echo ossn_print('password'); ?> </label>
-<input type='password' name="password" placeholder=''/>
-
-<label> <?php echo ossn_print('birthdate'); ?> </label>
-<div class="groups-inline">
+<div>
+	<label> <?php echo ossn_print('first:name'); ?> </label>
+	<input type='text' name="firstname" placeholder=''/>
+</div>
+<div>
+	<label> <?php echo ossn_print('last:name'); ?> </label>
+	<input type='text' name="lastname" placeholder=''/>
+</div>
+<div>
+	<label> <?php echo ossn_print('username'); ?> </label>
+	<input type='text' name="username" placeholder=''/>
+</div>
+<div>
+	<label> <?php echo ossn_print('email'); ?> </label>
+	<input type='text' name="email" placeholder=''/>
+</div>
+<div>
+	<label> <?php echo ossn_print('password'); ?> </label>
+	<input type='password' name="password" placeholder=''/>
+</div>
+<div>
+	<label> <?php echo ossn_print('birthdate'); ?> </label> 
     <select name="birthday">
         <option value=""><?php echo ossn_print('day'); ?></option>
         <?php for ($day = 1; $day <= 31; $day++) { ?>
@@ -49,17 +54,21 @@
         <?php } ?>
     </select>
 </div>
-<label> <?php echo ossn_print('gender'); ?> </label>
-<select name="gender">
-    <option value="male"> <?php echo ossn_print('male'); ?> </option>
-    <option value="female"><?php echo ossn_print('female'); ?> </option>
-</select>
+<div>
+	<label> <?php echo ossn_print('gender'); ?> </label>
+	<select name="gender">
+    	<option value="male"> <?php echo ossn_print('male'); ?> </option>
+    	<option value="female"><?php echo ossn_print('female'); ?> </option>
+	</select>
+</div>
+<div>
+	<label> <?php echo ossn_print('type'); ?> </label>
 
-<label> <?php echo ossn_print('type'); ?> </label>
-
-<select name="type">
-    <option value="normal"><?php echo ossn_print('normal'); ?></option>
-    <option value="admin"> <?php echo ossn_print('admin'); ?> </option>
-</select>
-
-<input type="submit" class="ossn-admin-button button-dark-blue" value="<?php echo ossn_print('save'); ?>"/>
+	<select name="type">
+    	<option value="normal"><?php echo ossn_print('normal'); ?></option>
+    	<option value="admin"> <?php echo ossn_print('admin'); ?> </option>
+	</select>
+</div>
+<div>
+	<input type="submit" class="btn btn-primary" value="<?php echo ossn_print('save'); ?>"/>
+</div>

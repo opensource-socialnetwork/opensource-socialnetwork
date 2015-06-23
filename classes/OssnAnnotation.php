@@ -147,9 +147,17 @@ class OssnAnnotation extends OssnEntities {
 		 * @return annotations;
 		 */
 		public function getAnnotationBySubject() {
+				if(!isset($this->count)){
+					$this->count = false;
+				}
+				if(!isset($this->limit)){
+					$this->limit = false;
+				}
 				$params                 = array();
 				$params['type']         = $this->type;
 				$params['subject_guid'] = $this->subject_guid;
+				$params['count'] 		= $this->count;
+				$params['limit'] 		= $this->limit;
 				
 				return $this->searchAnnotation($params);
 		}
@@ -244,7 +252,7 @@ class OssnAnnotation extends OssnEntities {
 				$wheres  = array();
 				
 				//validate offset values
-				if($options['limit'] !== false) {
+				if($options['limit'] !== false && $options['limit'] !== 0 && $options['page_limit'] !== 0) {
 						$offset_vals = ceil($options['limit'] / $options['page_limit']);
 						$offset_vals = abs($offset_vals);
 						$offset_vals = range(1, $offset_vals);
@@ -263,6 +271,7 @@ class OssnAnnotation extends OssnEntities {
 				}
 				if(!empty($params['type'])) {
 						$wheres[] = "a.type='{$options['type']}'";
+						$wheres[] = "e.subtype='{$options['type']}'";						
 				}
 				if(!empty($params['owner_guid'])) {
 						$wheres[] = "a.owner_guid ='{$options['owner_guid']}'";
@@ -304,7 +313,7 @@ class OssnAnnotation extends OssnEntities {
 						$count           = array_merge($params, $count);
 						return $this->select($count)->total;
 				}
-				if($this->get) {
+					if($this->get) {
 						foreach($this->get as $annotation) {
 								$merge = array(
 										$annotation->type => $annotation->value
@@ -319,11 +328,12 @@ class OssnAnnotation extends OssnEntities {
 								$this->owner_guid = $annotation->id;
 							   	$this->type = 'annotation';
 							    $entities   = $this->get_entities();
-								if($entities){
+								if(!empty($entities)){
 									foreach($entities as $entity){
 										$entities_data[$entity->subtype] = $entity->value;
 									}
 									$merge = array_merge($merge, $entities_data);
+									unset($entities_data);
 								}
 								//construct object again
 								$annotations[] = arrayObject($merge, get_class($this));

@@ -5,8 +5,8 @@
  * @packageOpen Source Social Network
  * @author    Open Social Website Core Team <info@informatikon.com>
  * @copyright 2014 iNFORMATIKON TECHNOLOGIES
- * @license   General Public Licence http://www.Open Source Social Network.org/licence
- * @link      http://www.Open Source Social Network.org/licence
+ * @license   General Public Licence http://www.opensource-socialnetwork.org/licence
+ * @link      http://www.opensource-socialnetwork.org/licence
  */
 define('__OSSN_WALL__', ossn_route()->com . 'OssnWall/');
 require_once(__OSSN_WALL__ . 'classes/OssnWall.php');
@@ -208,7 +208,7 @@ function ossn_post_page($pages) {
 						if(ossn_is_xhr()) {
 								$params = array(
 										'title' => ossn_print('privacy'),
-										'contents' => ossn_plugin_view('all/privacy'),
+										'contents' => ossn_plugin_view('wall/privacy'),
 										'callback' => '#ossn-wall-privacy'
 								);
 								echo ossn_plugin_view('output/ossnbox', $params);

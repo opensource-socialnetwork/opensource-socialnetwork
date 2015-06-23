@@ -39,7 +39,8 @@ class OssnUser extends OssnEntities {
 								'type',
 								'password',
 								'salt',
-								'activation'
+								'activation',
+								'time_created',
 						);
 						$params['values'] = array(
 								$this->first_name,
@@ -49,22 +50,38 @@ class OssnUser extends OssnEntities {
 								$this->usertype,
 								$password,
 								$this->salt,
-								$activation
+								$activation,
+								time()
 						);
-						if($this->OssnDatabase->insert($params)) {
-								$guid = $this->OssnDatabase->getLastEntry();
+						if($this->insert($params)) {
+								$guid 	= $this->getLastEntry();
+								
+								//define user extra profile fields
+								$fields	= array(
+												'text' => array('birthdate'),
+												'radio' => array('gender')
+												);
 								if(!empty($guid) && is_int($guid)) {
+										
 										$this->owner_guid = $guid;
 										$this->type       = 'user';
 										
-										$this->subtype = 'gender';
-										$this->value   = $this->gender;
-										$this->add();
-										
-										$this->subtype = 'birthdate';
-										$this->value   = $this->birthdate;
-										$this->add();
+										//add user entities 
+										$extra_fields = ossn_call_hook('user', 'signup:fields', $this, $fields);
+										if(!empty($extra_fields)){
+											foreach($extra_fields as $type){
+												foreach($type as $field){	
+													if(isset($this->$field)){
+														$this->subtype  = $field;
+														$this->value 	= $this->$field;
+														//add entity
+														$this->add();
+													}
+												}
+											}
+										}
 								}
+								//should i send activation?
 								if($this->sendactiviation === true) {
 										$link       = ossn_site_url("uservalidate/activate/{$guid}/{$activation}");
 										$link       = ossn_call_hook('user', 'validation:email:url', $this, $link);
@@ -78,6 +95,7 @@ class OssnUser extends OssnEntities {
 												$this->first_name,
 												$sitename
 										));
+										//notify users for activation
 										$this->notify->NotifiyUser($this->email, $subject, $activation);
 								}
 								return true;
@@ -132,27 +150,26 @@ class OssnUser extends OssnEntities {
 		 * @return object;
 		 */
 		public function getUser() {
-				self::initAttributes();
 				if(!empty($this->email)) {
 						$params['from']   = 'ossn_users';
 						$params['wheres'] = array(
 								"email='{$this->email}'"
 						);
-						$user             = $this->OssnDatabase->select($params);
+						$user             = $this->select($params);
 				}
 				if(empty($user) && !empty($this->username)) {
 						$params['from']   = 'ossn_users';
 						$params['wheres'] = array(
 								"username='{$this->username}'"
 						);
-						$user             = $this->OssnDatabase->select($params);
+						$user             = $this->select($params);
 				}
 				if(empty($user) && !empty($this->guid)) {
 						$params['from']   = 'ossn_users';
 						$params['wheres'] = array(
 								"guid='{$this->guid}'"
 						);
-						$user             = $this->OssnDatabase->select($params);
+						$user             = $this->select($params);
 				}
 				if(!$user) {
 						return false;
@@ -162,13 +179,15 @@ class OssnUser extends OssnEntities {
 				$this->type       = 'user';
 				$entities         = $this->get_entities();
 				if(empty($entities)) {
-						return arrayObject($user, get_class($this));
+						$metadata = arrayObject($user, get_class($this));
+						return ossn_call_hook('user', 'get', false, $metadata);					
 				}
 				foreach($entities as $entity) {
 						$fields[$entity->subtype] = $entity->value;
 				}
 				$data = array_merge(get_object_vars($user), $fields);
-				return arrayObject($data, get_class($this));
+				$metadata = arrayObject($data, get_class($this));
+				return ossn_call_hook('user', 'get', false, $metadata);
 		}
 		
 		/**
@@ -248,7 +267,6 @@ class OssnUser extends OssnEntities {
 		 * @return bool;
 		 */
 		public function update_last_login() {
-				self::initAttributes();
 				$user             = ossn_loggedin_user();
 				$guid             = $user->guid;
 				$params['table']  = 'ossn_users';
@@ -261,7 +279,7 @@ class OssnUser extends OssnEntities {
 				$params['wheres'] = array(
 						"guid='{$guid}'"
 				);
-				if($guid > 0 && $this->OssnDatabase->update($params)) {
+				if($guid > 0 && $this->update($params)) {
 						return true;
 				}
 				return false;
@@ -427,7 +445,6 @@ class OssnUser extends OssnEntities {
 		 * @return bool;
 		 */
 		public function update_last_activity() {
-				self::initAttributes();
 				$user = ossn_loggedin_user();
 				if($user) {
 						$guid             = $user->guid;
@@ -441,7 +458,7 @@ class OssnUser extends OssnEntities {
 						$params['wheres'] = array(
 								"guid='{$guid}'"
 						);
-						if($guid > 0 && $this->OssnDatabase->update($params)) {
+						if($guid > 0 && $this->update($params)) {
 								return true;
 						}
 				}
@@ -465,13 +482,19 @@ class OssnUser extends OssnEntities {
 		 * @return object;
 		 */
 		public function getOnline($intervals = '100') {
-				self::initAttributes();
 				$time             = time();
 				$params['from']   = 'ossn_users';
 				$params['wheres'] = array(
 						"last_activity > {$time} - {$intervals}"
 				);
-				return $this->OssnDatabase->select($params, true);
+				$data             = (array)$this->select($params, true);
+				if($data) {
+						foreach($users as $user) {
+								$result[] = arrayObject($user, get_class($this));
+						}
+						return $result;
+				}
+				return false;
 		}
 		
 		/**
@@ -494,15 +517,31 @@ class OssnUser extends OssnEntities {
 		}
 		
 		/**
-		 * Search users.
+		 * Search users without entities.
 		 *
 		 * @return object;
 		 */
-		public function SearchSiteUsers($q) {
-				$this->statement("SELECT * FROM ossn_users WHERE(CONCAT(first_name, ' ', last_name) LIKE '%$q%' OR
-					 username LIKE '%$q%' OR email LIKE '%$q%')");
-				$this->execute();
-				return $this->fetch(true);
+		public function SearchSiteUsers($search) {
+				if(empty($search)) {
+						return false;
+				}
+				$params = array();
+				$wheres = array();
+				if(!empty($search)) {
+						$wheres[] = "CONCAT(first_name, ' ', last_name) LIKE '%$search%'";
+						$wheres[] = "username LIKE '%$search%'";
+						$wheres[] = "email LIKE '%$search%'";
+				}
+				
+				$params['from']   = 'ossn_users';
+				$params['wheres'] = array(
+						$this->constructWheres($wheres, 'OR')
+				);
+				$users            = $this->select($params, true);
+				if($users) {
+						return $users;
+				}
+				return false;
 		}
 		
 		/**
@@ -511,7 +550,6 @@ class OssnUser extends OssnEntities {
 		 * @return bool;
 		 */
 		public function ValidateRegistration($code) {
-				self::initAttributes();
 				$user_activation = $this->getUser();
 				$guid            = $user_activation->guid;
 				if($user_activation->activation == $code) {
@@ -525,7 +563,7 @@ class OssnUser extends OssnEntities {
 						$params['wheres'] = array(
 								"guid='{$guid}'"
 						);
-						if($this->OssnDatabase->update($params)) {
+						if($this->update($params)) {
 								return true;
 						}
 				}
@@ -540,7 +578,7 @@ class OssnUser extends OssnEntities {
 		public function iconURL() {
 				$this->iconURLS = new stdClass;
 				foreach(ossn_user_image_sizes() as $size => $dimensions) {
-						$seo                   = md5($this->username . $size);
+						$seo                   = md5($this->username . $size . $this->icon_time);
 						$url                   = ossn_site_url("avatar/{$this->username}/{$size}/{$seo}.jpeg");
 						$this->iconURLS->$size = $url;
 				}
@@ -598,7 +636,6 @@ class OssnUser extends OssnEntities {
 		 * @return bool;
 		 */
 		public function resetPassword($password) {
-				self::initAttributes();
 				if(!empty($password)) {
 						$this->salt      = $this->generateSalt();
 						$password        = $this->generate_password($password, $this->salt);
@@ -614,7 +651,7 @@ class OssnUser extends OssnEntities {
 						$reset['wheres'] = array(
 								"guid='{$this->guid}'"
 						);
-						if($this->OssnDatabase->update($reset)) {
+						if($this->update($reset)) {
 								return true;
 						}
 				}
@@ -664,10 +701,10 @@ class OssnUser extends OssnEntities {
 						$params['wheres'] = array(
 								"guid='{$this->guid}'"
 						);
-						if($this->OssnDatabase->delete($params)) {
+						if($this->delete($params)) {
 								//delete user files
 								$datadir = ossn_get_userdata("user/{$this->guid}/");
-								;
+								
 								if(is_dir($datadir)) {
 										OssnFile::DeleteDir($datadir);
 										//From of v2.0 DeleteDir delete directory also #138
@@ -731,14 +768,28 @@ class OssnUser extends OssnEntities {
 		 *
 		 * @return false|object
 		 */
-		public function getUnvalidatedUSERS() {
-				$params           = array();
-				$params['from']   = 'ossn_users';
-				$params['wheres'] = array(
-						"activation <> ''"
-				);
-				$users            = $this->select($params, true);
+		public function getUnvalidatedUSERS($search = '', $count = false) {
+				$params         = array();
+				$params['from'] = 'ossn_users';
+				if($count){
+					$params['params'] = array("count(*) as total");
+				}
+				if(empty($search)) {
+						$params['wheres'] = array(
+								"activation <> ''"
+						);
+				} else {
+						$params['wheres'] = array(
+								"activation <> '' AND",
+								"CONCAT(first_name, ' ', last_name) LIKE '%$search%' AND activation <> '' OR
+					 		 username LIKE '%$search%' AND activation <> '' OR email LIKE '%$search%' AND activation <> ''"
+						);
+				}
+				$users = $this->select($params, true);
 				if($users) {
+						if($count){
+							return	$users->{0}->total;
+						}
 						return $users;
 				}
 				return false;
@@ -748,37 +799,184 @@ class OssnUser extends OssnEntities {
 		 *
 		 * @return object|false
 		 */
-		public function getProfilePhoto(){
-			if(!empty($this->guid)){
-				$this->owner_guid = $this->guid;
-				$this->type = 'user';
-				$this->subtype = 'file:profile:photo';
-				$this->limit = 1;
-				$this->order_by = "guid DESC";
-				$entity = $this->get_entities();
-				if(isset($entity[0])){
-					return $entity[0];
+		public function getProfilePhoto() {
+				if(!empty($this->guid)) {
+						$this->owner_guid = $this->guid;
+						$this->type       = 'user';
+						$this->subtype    = 'file:profile:photo';
+						$this->limit      = 1;
+						$this->order_by   = "guid DESC";
+						$entity           = $this->get_entities();
+						if(isset($entity[0])) {
+								return $entity[0];
+						}
 				}
-			}
-			return false;
+				return false;
 		}
 		/**
 		 * Get a user last coverphoto photo
 		 *
 		 * @return object|false
-		 */		
-		public function getProfileCover(){
-			if(!empty($this->guid)){
-				$this->owner_guid = $this->guid;
-				$this->type = 'user';
-				$this->subtype = 'file:profile:cover';
-				$this->limit = 1;
-				$this->order_by = "guid DESC";
-				$entity = $this->get_entities();
-				if(isset($entity[0])){
-					return $entity[0];
+		 */
+		public function getProfileCover() {
+				if(!empty($this->guid)) {
+						$this->owner_guid = $this->guid;
+						$this->type       = 'user';
+						$this->subtype    = 'file:profile:cover';
+						$this->limit      = 1;
+						$this->order_by   = "guid DESC";
+						$entity           = $this->get_entities();
+						if(isset($entity[0])) {
+								return $entity[0];
+						}
+				}
+				return false;
+		}
+		/**
+		 * User logout
+		 *
+		 * @return void;
+		 */
+		public static function Logout() {
+				unset($_SESSION['OSSN_USER']);
+				session_destroy();
+		}
+		/**
+		 * Get total users per month for each year
+		 *
+		 * @return object|false
+		 * @access public
+		 */
+		public function countByYearMonth() {
+				
+				$wheres = array();
+				$params = array();
+				
+				$wheres[] = "type='user'";
+				$wheres[] = "subtype='gender'";
+				
+				$params['from']     = "ossn_entities";
+				$params['params']   = array(
+						"DATE_FORMAT(FROM_UNIXTIME(time_created), '%Y') AS year",
+						"DATE_FORMAT(FROM_UNIXTIME(time_created) , '%m') AS month",
+						"COUNT(guid) AS total"
+				);
+				$params['group_by'] = "DATE_FORMAT(FROM_UNIXTIME(time_created) ,  '%Y%m')";
+				$params["wheres"]   = array(
+						$this->constructWheres($wheres)
+				);
+				$data               = $this->select($params, true);
+				if($data) {
+						return $data;
+				}
+				return false;
+		}
+		/**
+		 * Gender types
+		 *
+		 * @return object|false
+		 * @access public
+		 */
+		public function genderTypes() {
+				$gender = array(
+						'male',
+						'female'
+				);
+				return ossn_call_hook('user', 'gender:types', $this, $gender);
+		}
+		/**
+		 * Get total users per month for each year
+		 *
+		 * @return object|false
+		 * @access public
+		 */
+		public function countByGender($gender = 'male') {
+				if(!in_array($gender, $this->genderTypes())) {
+						return false;
+				}
+				$params                = array();
+				$params['type']        = 'user';
+				$params['subtype']     = 'gender';
+				$params['page_limit']  = false;
+				$params['search_type'] = false;
+				$params['count']       = true;
+				$params['value']       = $gender;
+				
+				$data = $this->searchEntities($params);
+				if($data) {
+						return $data;
+				}
+				return false;
+		}
+		/**
+		 * Get online users by gender
+		 *
+		 * @param string $gender Gender type
+		 * @param boolean $count true or false
+		 * @param integer $intervals Seconds
+		 *
+		 * @return object|false
+		 * @access public
+		 */
+		public function onlineByGender($gender = 'male', $count = false, $intervals = 100) {
+				if(empty($gender) || !in_array($gender, $this->genderTypes())) {
+						return false;
+				}
+				$time             = time();
+				$params           = array();
+				$wheres['wheres'] = array();
+				$params['joins']  = array();
+				
+				$params['params'] = array(
+						'u.*, emd.value as gender'
+				);
+				$params['from']   = 'ossn_users as u';
+				
+				$wheres['wheres'][] = "e.type='user'";
+				$wheres['wheres'][] = "e.subtype='gender'";
+				$wheres['wheres'][] = "emd.value='{$gender}'";
+				$wheres['wheres'][] = "last_activity > {$time} - {$intervals}";
+				
+				$params['joins'][] = "JOIN ossn_entities as e ON e.owner_guid=u.guid";
+				$params['joins'][] = "JOIN ossn_entities_metadata as emd ON emd.guid=e.guid";
+				$params['wheres']  = array(
+						$this->constructWheres($wheres['wheres'])
+				);
+				
+				if($count) {
+						$params['params'] = array(
+								"count(*) as total"
+						);
+						$count            = $this->select($params);
+						return $count->total;
+				}
+				
+				$users = $this->select($params, true);
+				if($users) {
+						foreach($users as $user) {
+								$result[] = arrayObject($user, get_class($this));
+						}
+						return $result;
+				}
+				return false;
+		}
+		/**
+		 * Save a user entity
+		 *
+		 * @return boolean
+		 */
+		public function save(){
+			if(!isset($this->guid) || empty($this->guid)){
+				return false;
+			}
+			$this->owner_guid = $this->guid;
+			$this->type = 'user';
+			if(parent::save()){
+				//check if owner is loggedin user guid , if so update session
+				if(ossn_loggedin_user()->guid == $this->guid){
+					$_SESSION['OSSN_USER'] = ossn_user_by_guid($this->guid);
 				}
 			}
 			return false;
-		}		
+		}
 } //CLASS

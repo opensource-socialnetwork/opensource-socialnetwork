@@ -87,12 +87,20 @@ function ossn_unlink_new_css($name, $file) {
 /**
  * Get a tag for inserting css
  *
- * @params string $args   array()
+ * @params array $args array()
  *
  * @return string
  */
 function ossn_html_css($args) {
-    return '<link rel="stylesheet" ' . ossn_args($args) . ' type="text/css"/>';
+	if(!is_array($args)){
+		return false;
+	}
+	$default = array(
+					 'rel' => 'stylesheet',
+					 'type' => 'text/css',
+					 );
+	$args = array_merge($default, $args);
+    return "\r\n<link " . ossn_args($args) . " />";
 }
 
 /**

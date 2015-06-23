@@ -141,7 +141,7 @@ if (isset($params['contents'])) {
         <div class="ossn-footer-copyrights">
         &copy;  <a href="<?php echo ossn_site_url(); ?>"><?php echo $sitename; ?></a> 
 		          <?php echo date('Y'); ?> -
-                  <a target="_blank" href="http://www.Open Source Social Network.org/"><?php echo ossn_print('powered');?></a>        
+                  <a target="_blank" href="http://www.opensource-socialnetwork.org/"><?php echo ossn_print('powered');?></a>        
         </div>
         <div class="ossn-footer-menu">
             <?php echo ossn_view_menu('footer'); ?>

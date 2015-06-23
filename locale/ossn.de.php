@@ -276,7 +276,13 @@ Um Dein Passwort zurückzusetzen klicke bitte auf den folgenden Link oder kopier
 	'admin:users:unvalidated' => 'Unbestätigte Benutzer',
 	'admin:user:validated' => 'Das Benutzer-Konto wurde bestätigt',
 	'admin:user:validate:error' => 'Das Benutzer-Konto konnte nicht bestätigt werden',
-    /*
+	
+	//v3.0 
+	'my:files:version' => 'Mein Ossn Dateien Fassung',
+	'cache:flush:error' => 'Can not flush cache, make sure cache is enabled in cache settings',
+	'cache:flushed' => 'Cache flushed successfully',	
+    
+	/*
        * List of ISO 639-1 language codes
        * http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
        */

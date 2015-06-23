@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component xmlns="http://www.opensource-socialnetwork.org/v/3.0">
+    <name>Favicon</name>
+    <author>Core Team</author>
+    <description>Allow admin to upload a favicon of website.</description>
+    <license>GNU General Public License, version 2</license>
+    <author_url>http://www.informatikon.com/</author_url>
+    <license_url>http://www.opensource-socialnetwork.org/licence/</license_url>
+    <version>3.0</version>
+	<requires>
+		<type>ossn_version</type>
+		<version>3.0-dev</version>
+	</requires>
+	<requires>
+		<type>php_function</type>
+		<name>gd_info</name>
+	</requires>	
+</component>

@@ -8,13 +8,5 @@
  * @license   General Public Licence http://www.opensource-socialnetwork.org/licence
  * @link      http://www.opensource-socialnetwork.org/licence
  */
-
-$loggedout = input('l');
-if (empty($loggedout)) {
-    session_destroy();
-    redirect(ossn_build_token_url('action/admin/logout?l=1'));
-}
-if ($loggedout == 1) {
-    ossn_trigger_message(ossn_print('logged:out'), 'success');
-    redirect('administrator');
-}
+	OssnUser::Logout();
+ 	redirect('administrator?logout=true');

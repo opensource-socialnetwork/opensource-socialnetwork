@@ -5,8 +5,8 @@
  * @packageOpen Source Social Network
  * @author    Open Social Website Core Team <info@informatikon.com>
  * @copyright 2014 iNFORMATIKON TECHNOLOGIES
- * @license   General Public Licence http://www.Open Source Social Network.org/licence
- * @link      http://www.Open Source Social Network.org/licence
+ * @license   General Public Licence http://www.opensource-socialnetwork.org/licence
+ * @link      http://www.opensource-socialnetwork.org/licence
  */
 ?>
 <label><?php echo ossn_print('ad:title'); ?> </label>
@@ -21,4 +21,4 @@
 <label><?php echo ossn_print('ad:photo'); ?></label>
 <input type="file" name="ossn_ads"/>
 <br/>
-<input type="submit" class="ossn-admin-button button-dark-blue" value="<?php echo ossn_print('add'); ?>"/>
+<input type="submit" class="btn btn-primary" value="<?php echo ossn_print('add'); ?>"/>

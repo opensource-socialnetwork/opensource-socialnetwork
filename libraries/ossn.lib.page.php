@@ -52,15 +52,25 @@ function ossn_unregister_page($handler) {
 
 function ossn_load_page($handler, $page) {
     global $Ossn;
-    ossn_add_context($handler);
-    $page = explode('/', $page);
-    if (isset($Ossn->page) && isset($Ossn->page[$handler]) && !empty($handler) && is_callable($Ossn->page[$handler])
-    ) {
-        ob_start();
+	$context = $handler;
+	if(isset($page) && !empty($page)){
+		$context = "$handler/$page";
+	}
+    //set context
+	ossn_add_context($context);
+    
+	$page = explode('/', $page);
+    if(isset($Ossn->page) && isset($Ossn->page[$handler]) && !empty($handler) && is_callable($Ossn->page[$handler])){
+       
+	    //get page contents
+	    ob_start();
         call_user_func($Ossn->page[$handler], $page, $handler);
-        $contents = ob_get_clean();
-        $params['page'] = $page;
-        $params['handler'] = $handler;
+	    $contents = ob_get_clean();
+		
+		//supply params to hook
+        $params['page'] 	= $page;
+        $params['handler'] 	= $handler;
+		
         return ossn_call_hook('page', 'load', $params, $contents);
     } else {
         return ossn_error_page();

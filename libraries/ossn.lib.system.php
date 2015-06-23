@@ -422,7 +422,7 @@ function ossn_site_setting_update($name, $value, $id) {
  *
  * @return bool
  */
-function ossn_system_message_add($message = null, $register = "ossn-message-success", $count = false) {
+function ossn_system_message_add($message = null, $register = "success", $count = false) {
     if (!isset($_SESSION['ossn_messages'])) {
         $_SESSION['ossn_messages'] = array();
     }
@@ -470,13 +470,12 @@ function ossn_system_message_add($message = null, $register = "ossn-message-succ
  * @return void
  */
 function ossn_trigger_message($message, $type = 'success') {
-    if ($type == 'error') {
-        ossn_system_message_add($message, 'ossn-message-error');
+ 	if ($type == 'error') {
+        ossn_system_message_add($message, 'danger');
     }
     if ($type == 'success') {
-        ossn_system_message_add($message, 'ossn-message-success');
+        ossn_system_message_add($message, 'success');
     }
-
 }
 /**
  * Display a error if post size exceed
@@ -508,7 +507,8 @@ function ossn_display_system_messages() {
             if (isset($dermessage) && is_array($dermessage) && sizeof($dermessage) > 0) {
                 foreach ($dermessage as $type => $list) {
 			foreach($list as $message){
-                            $m = "<div class='$type'>";
+                            $m = "<div class='alert alert-$type'>";
+							$m .= '<a href="#" class="close" data-dismiss="alert">&times;</a>';
                             $m .= $message;
                             $m .= '</div>';
                             $ms[] = $m;

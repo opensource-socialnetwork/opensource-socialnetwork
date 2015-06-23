@@ -5,19 +5,23 @@
  * @packageOpen Source Social Network
  * @author    Open Social Website Core Team <info@informatikon.com>
  * @copyright 2014 iNFORMATIKON TECHNOLOGIES
- * @license   General Public Licence http://www.Open Source Social Network.org/licence
- * @link      http://www.Open Source Social Network.org/licence
+ * @license   General Public Licence http://www.opensource-socialnetwork.org/licence
+ * @link      http://www.opensource-socialnetwork.org/licence
  */
 
 $ads = new OssnAds;
 $pagination = new OssnPagination;
 $pagination->setItem($ads->getAds());
 ?>
-<div class="top-controls">
-    <a href="<?php echo ossn_site_url("administrator/component/OssnAds?settings=add"); ?>"
-       class="ossn-admin-button button-green"><?php echo ossn_print('add'); ?></a>
-       <input type="submit" class="ossn-admin-button button-red" value="<?php echo ossn_print('delete'); ?>"/>
+<div class="row right margin-bottom-10">
+	<div class="inline-block">
+    	<a href="<?php echo ossn_site_url("administrator/component/OssnAds?settings=add"); ?>" class="btn btn-success"><?php echo ossn_print('add'); ?></a>
+    </div>
+    <div class="inline-block">
+      <input type="submit" class="btn btn-danger" value="<?php echo ossn_print('delete'); ?>"/>
+   </div>   
 </div>
+<div class="row">
 <table class="table">
     <tbody>
     <tr class="table-titles">
@@ -52,4 +56,7 @@ $pagination->setItem($ads->getAds());
     }?>
     </tbody>
 </table>
-<?php echo $pagination->pagination(); ?>
+</div>
+<div class="row">
+	<?php echo $pagination->pagination(); ?>
+</div>

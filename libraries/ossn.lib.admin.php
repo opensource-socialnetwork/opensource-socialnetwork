@@ -32,8 +32,8 @@ function ossn_admin() {
     ossn_register_menu_link('home', 'admin:dashboard', ossn_site_url('administrator'), 'topbar_admin');
 
     ossn_register_menu_link('configure', 'Configure', '#', 'topbar_admin');
-    ossn_register_menu_link('help', 'admin:help', 'http://community.Open Source Social Network.org', 'topbar_admin');
-    ossn_register_menu_link('support', 'admin:support', 'http://community.Open Source Social Network.org', 'topbar_admin');
+    ossn_register_menu_link('help', 'admin:help', 'http://community.opensource-socialnetwork.org', 'topbar_admin');
+    ossn_register_menu_link('support', 'admin:support', 'http://community.opensource-socialnetwork.org', 'topbar_admin');
 
     ossn_register_menu_link('viewsite', 'admin:view:site', ossn_site_url(), 'topbar_admin');
     
@@ -60,6 +60,7 @@ function ossn_admin() {
 		
         ossn_register_action('admin/settings/save/basic', ossn_route()->actions . 'administrator/settings/save/basic.php');
         ossn_register_action('admin/cache/create', ossn_route()->actions . 'administrator/cache/create.php');
+        ossn_register_action('admin/cache/flush', ossn_route()->actions . 'administrator/cache/flush.php');
 		
 	}
 
@@ -201,7 +202,7 @@ function ossn_administrator_pagehandler($pages) {
             if (isset($pages[1]) && in_array($pages[1], ossn_registered_com_panel())) {
                 $com['com'] = OssnComponents::getCom($pages[1]);
                 $com['settings'] = ossn_components()->getComSettings($pages[1]);
-                $title = $com['com']->com_name;
+                $title = $com['com']->name;
                 $contents['contents'] = ossn_plugin_view("settings/administrator/{$pages[1]}/{$Ossn->com_panel[$pages[1]]}", $com);
                 $contents['title'] = $title;
                 $content = ossn_set_page_layout('administrator/administrator', $contents);
@@ -284,6 +285,13 @@ function ossn_administrator_pagehandler($pages) {
             $content = ossn_set_page_layout('administrator/administrator', $contents);
             echo ossn_view_page($title, $content, 'administrator');
             break;
+		case 'version':
+			header('Content-Type: application/json');
+			$version = array(
+							 'version' => ossn_check_update()
+							 );
+			echo json_encode($version);
+			break;
         default:
            	ossn_error_page();
             break;
@@ -301,6 +309,11 @@ function ossn_administrator_login_pagehandler($pages) {
     if (empty($page)) {
         $page = 'login';
     }
+	$logout = input('logout');
+	if($logout == 'true'){
+		ossn_trigger_message(ossn_print('logged:out'));
+		redirect('administrator');
+	}
     switch ($page) {
         case 'login':
             $title = ossn_print('admin:login');

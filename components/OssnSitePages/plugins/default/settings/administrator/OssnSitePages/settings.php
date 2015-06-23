@@ -5,19 +5,19 @@
  * @packageOpen Source Social Network
  * @author    Open Social Website Core Team <info@informatikon.com>
  * @copyright 2014 iNFORMATIKON TECHNOLOGIES
- * @license   General Public Licence http://www.Open Source Social Network.org/licence
- * @link      http://www.Open Source Social Network.org/licence
+ * @license   General Public Licence http://www.opensource-socialnetwork.org/licence
+ * @link      http://www.opensource-socialnetwork.org/licence
  */
 ?>
-<div class="top-controls">
+<div class="row margin-bottom-10 margin-top-10">
     <a href="<?php echo ossn_site_url("administrator/component/OssnSitePages?settings=terms"); ?>"
-       class="ossn-admin-button button-blue">
+       class="btn btn-primary">
         <?php echo ossn_print('site:terms'); ?></a>
     <a href="<?php echo ossn_site_url("administrator/component/OssnSitePages?settings=about"); ?>"
-       class="ossn-admin-button button-blue">
+       class="btn btn-primary">
         <?php echo ossn_print('site:about'); ?></a>
     <a href="<?php echo ossn_site_url("administrator/component/OssnSitePages?settings=privacy"); ?>"
-       class="ossn-admin-button button-blue">
+       class="btn btn-primary">
         <?php echo ossn_print('site:privacy'); ?></a>
 </div>
 <?php
@@ -30,7 +30,6 @@ switch ($settings) {
         $params = array(
             'action' => ossn_site_url() . 'action/sitepage/edit/terms',
             'component' => 'OssnSitePages',
-            'class' => 'ossn-admin-form'
         );
         echo ossn_view_form('terms', $params, false);
         break;
@@ -38,7 +37,6 @@ switch ($settings) {
         $params = array(
             'action' => ossn_site_url() . 'action/sitepage/edit/about',
             'component' => 'OssnSitePages',
-            'class' => 'ossn-admin-form'
         );
         echo ossn_view_form('about', $params, false);
         break;
@@ -47,7 +45,6 @@ switch ($settings) {
         $params = array(
             'action' => ossn_site_url() . 'action/sitepage/edit/privacy',
             'component' => 'OssnSitePages',
-            'class' => 'ossn-admin-form'
         );
         echo ossn_view_form('privacy', $params, false);
         break;

@@ -5,8 +5,8 @@
  * @packageOpen Source Social Network
  * @author    Open Social Website Core Team <info@informatikon.com>
  * @copyright 2014 iNFORMATIKON TECHNOLOGIES
- * @license   General Public Licence http://www.Open Source Social Network.org/licence
- * @link      http://www.Open Source Social Network.org/licence
+ * @license   General Public Licence http://www.opensource-socialnetwork.org/licence
+ * @link      http://www.opensource-socialnetwork.org/licence
  */
 define('__OSSN_PROFILE__', ossn_route()->com . 'OssnProfile/');
 require_once(__OSSN_PROFILE__ . 'classes/OssnProfile.php');
@@ -261,8 +261,13 @@ function get_profile_photo($user, $size) {
 		
 		$photo = $user->getProfilePhoto();
 		$etag  = $photo->guid . $photo->time_created;
+        
+		if(isset($photo->time_created)){
+		    header("Last-Modified: ".gmdate('D, d M Y H:i:s \G\M\T', $photo->time_created)); 
+		}
+    	header("Etag: $etag"); 
 		
-		if(isset($_SERVER['HTTP_IF_NONE_MATCH']) && trim($_SERVER['HTTP_IF_NONE_MATCH']) == "\"$etag\"") {
+		if(isset($photo->guid) && isset($_SERVER['HTTP_IF_NONE_MATCH']) && trim($_SERVER['HTTP_IF_NONE_MATCH']) == "\"$etag\"") {
 				header("HTTP/1.1 304 Not Modified");
 				exit;
 		}

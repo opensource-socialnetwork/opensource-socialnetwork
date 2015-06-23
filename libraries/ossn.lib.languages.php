@@ -5,21 +5,21 @@
  * @packageOpen Source Social Network
  * @author    Open Social Website Core Team <info@informatikon.com>
  * @copyright 2014 iNFORMATIKON TECHNOLOGIES
- * @license   General Public Licence http://www.Open Source Social Network.org/licence
- * @link      http://www.Open Source Social Network.org/licence
+ * @license   General Public Licence http://www.opensource-socialnetwork.org/licence
+ * @link      http://www.opensource-socialnetwork.org/licence
  */
 /**
  * Register a language in system;
- * @params: $code = code of language;
- * @params: $file = file which contain languages;
- * @last edit: $arsalanshah
- * @Reason: Initial;
+ * @param  string $code code of language;
+ * @params: string $file file which contain languages;
  *
+ * @last edit: $arsalanshah
+ * @return void;
  */
 function ossn_register_language($code = '', $file) {
 		if(isset($code) && isset($file)) {
 				global $Ossn;
-				return $Ossn->locale[$code][] = $file;
+				$Ossn->locale[$code][] = $file;
 		}
 }
 
@@ -107,7 +107,7 @@ function ossn_default_load_locales() {
  */
 function ossn_load_json_locales() {
 		global $Ossn;
-		$code = ossn_site_settings('language');
+		$code = ossn_site_user_lang_code();
 		$json = json_encode($Ossn->localestr[$code]);
 		if($json) {
 				return $json;
@@ -396,3 +396,23 @@ function ossn_get_available_languages() {
 		$langs = array_merge($com_langs, $core_langs);
 		return array_unique($langs);
 }
+/**
+ * Load a site language
+ *
+ * If user have different language then site language it will return user language
+ *
+ * @return string
+ */
+ function ossn_site_user_lang_code(){
+	 $lang =  ossn_site_settings('language');
+	 if(ossn_isLoggedin()){
+		 $user = ossn_loggedin_user();
+		 if(isset($user->language)){
+			 if(in_array($user->language, ossn_get_available_languages())){
+				 	$lang = $user->language;
+			 }
+		 }
+	 }
+	 return $lang;
+ }
+ 

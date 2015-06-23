@@ -90,11 +90,14 @@ class OssnComments extends OssnAnnotation {
      * @return int;
      */
     public function countComments($subject_id, $type = 'post') {
-        $comments = $this->GetComments($subject_id, $type);
-        if ($comments) {
-            return count(get_object_vars($comments));
+        $this->subject_guid = $subject_id;
+        $this->type = "comments:{$type}";
+		$this->count = true;
+        $this->order_by = 'id ASC';
+        $comments = $this->getAnnotationBySubject();
+        if (!empty($comments)) {
+            return $comments;
         }
-        return false;
     }
 
     /**

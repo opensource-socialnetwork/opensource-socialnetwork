@@ -9,7 +9,7 @@
  * @link      http://www.opensource-socialnetwork.org/licence
  */
 ?>
-
+//<script>
 /**
  * 	Open Source Social Network
  *
@@ -685,6 +685,24 @@ Ossn.Print = function(str, args) {
     }
     return str;
 };
+/**
+ * Get a available update version
+ * 
+ * @added in v3.0 
+ */
+Ossn.RegisterStartupFunction(function() {
+    $(document).ready(function() {
+    	Ossn.PostRequest({
+        	url: Ossn.site_url + "administrator/version",
+        	action: false,
+        	callback: function(callback) {
+           		if(callback['version']){
+           			$('.avaiable-updates').html(callback['version']);
+           		}
+        	}
+    	});
+    });   
+});
 /**
  * Initialize ossn startup functions
  *

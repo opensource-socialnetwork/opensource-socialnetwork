@@ -398,7 +398,7 @@ class OssnEntities extends OssnDatabase {
 				$limit   = $options['limit'];
 				
 				//validate offset values
-				if($limit !== false) {
+				if($options['limit'] !== false && $options['limit'] !== 0 && $options['page_limit'] !== 0) {
 						$offset_vals = ceil($options['limit'] / $options['page_limit']);
 						$offset_vals = abs($offset_vals);
 						$offset_vals = range(1, $offset_vals);

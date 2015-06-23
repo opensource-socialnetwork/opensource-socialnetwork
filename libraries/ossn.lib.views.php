@@ -89,8 +89,8 @@ function ossn_args(array $attrs) {
  */
 function ossn_extend_view($views, $file) {
     global $VIEW;
-    $result = $VIEW->register[$views][] = $file;
-    return $result;
+    $VIEW->register[$views][] = $file;
+	return true;
 }
 
 /**
@@ -142,8 +142,8 @@ function ossn_remove_extend_view($layout) {
  */
 function ossn_add_context($context) {
     global $VIEW;
-    $add = $VIEW->context = $context;
-    return $add;
+    $VIEW->context = $context;
+	return true;
 }
 
 /**
@@ -190,7 +190,7 @@ function ossn_set_page_layout($layout, $params = array()) {
     if (!empty($layout)) {
         $theme = new OssnThemes;
         $active_theme = $theme->getActive();
-        return ossn_view("themes/{$active_theme}/page/layout/{$layout}", $params);
+        return ossn_plugin_view("theme/page/layout/{$layout}", $params);
     }
 }
 
@@ -207,9 +207,7 @@ function ossn_set_page_layout($layout, $params = array()) {
 function ossn_view_page($title, $content, $page = 'page') {
     $params['title'] = $title;
     $params['contents'] = $content;
-    $theme = new OssnThemes;
-    $active_theme = $theme->getActive();
-    return ossn_view("themes/{$active_theme}/page/{$page}", $params);
+    return ossn_plugin_view("theme/page/{$page}", $params);
 }
 
 /**
