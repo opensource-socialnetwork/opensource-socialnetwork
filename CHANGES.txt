@@ -1,7 +1,8 @@
 OSSN - OPEN SOURCE SOCIAL NETWORK 3.0-development
 
 Bugfixes:
- * Can not delete profile cover #427
+ * Can not delete profile cover #427   
+ * Don't listup all users if search query is empty
 
 Additions:
 	
