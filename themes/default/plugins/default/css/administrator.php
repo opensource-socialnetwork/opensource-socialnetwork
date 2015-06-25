@@ -252,7 +252,7 @@ footer {
 	text-align:right;
 }
 .loading-version {
-	background:url('<?php echo ossn_site_url(); ?>themes/ossnthree/images/loading.gif') no-repeat;
+	background:url('<?php echo ossn_site_url(); ?>themes/default/images/loading.gif') no-repeat;
     width:24px;
     height:24px;
     margin: 0 auto;

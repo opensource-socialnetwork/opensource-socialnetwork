@@ -40,7 +40,7 @@ function ossn_three_head(){
 					'href' =>  'http://fonts.googleapis.com/css?family=Roboto+Slab:300,700,400'
 			  ));		
 	$head[]  = ossn_html_js(array(
-					'src' => $siteurl . 'themes/ossnthree/vendors/bootstrap/js/bootstrap.min.js'
+					'src' => $siteurl . 'themes/default/vendors/bootstrap/js/bootstrap.min.js'
 			  ));
 	return implode('', $head);
 }
