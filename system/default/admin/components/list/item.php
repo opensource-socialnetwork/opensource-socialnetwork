@@ -42,8 +42,8 @@
           <div class="right">
           <?php if (!$params['OssnCom']->isActive($params['name'])){ ?>
            	<i title="<?php echo ossn_print('admin:button:disabled');?>" class="component-title-icon component-title-delete fa fa-times-circle-o"></i>         
-          <?php } elseif(!in_array($params['name'], $params['OssnCom']->isActive())){?>
-           	<i title="<?php echo ossn_print('admin:button:disabled');?>" class="component-title-icon component-title-check fa fa-check-circle"></i>           
+          <?php } elseif($params['OssnCom']->isActive()){?>
+           	<i title="<?php echo ossn_print('admin:button:enabled');?>" class="component-title-icon component-title-check fa fa-check-circle"></i>           
 		  <?php } ?>
           </div>
         </h4>
