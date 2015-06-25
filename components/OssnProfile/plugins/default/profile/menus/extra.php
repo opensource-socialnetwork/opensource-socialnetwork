@@ -9,4 +9,15 @@
  * @link      http://www.opensource-socialnetwork.org/licence
  */
  
- echo ossn_plugin_view("profile/menus/extra", $params);
+?>
+<div>
+    <?php
+    if (!empty($params['menu'])) {
+        foreach ($params['menu'] as $menu) {
+            foreach ($menu as $text => $link) {
+                echo "<li><a href='{$link}'>{$text}</a></li>";
+            }
+        }
+    }
+    ?>
+</div>
