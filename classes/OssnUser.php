@@ -522,6 +522,7 @@ class OssnUser extends OssnEntities {
 		 * @return object;
 		 */
 		public function SearchSiteUsers($search) {
+				//don't listup all users if search query is empty
 				if(empty($search)) {
 						return false;
 				}
