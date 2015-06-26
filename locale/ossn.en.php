@@ -289,7 +289,7 @@ Please click the link below to reset password or copy the link and paste into yo
 	'admin:old:com' => "Your ossn_com.xml file is based on old version of Ossn. Please update '%s' component.",
 	'admin:old:theme' => "Your ossn_theme.xml file is based on old version of Ossn. Please update '%s' theme.",
 	'admin:button:disabled' => 'Disabled',
-	'admin:flush:cache' => 'Flsuh Cache',
+	'admin:flush:cache' => 'Flush Cache',
 	'admin:com:version' => 'Version',
 	'admin:com:author' => 'Author',
 	'admin:com:author:url' => 'Author Url',
