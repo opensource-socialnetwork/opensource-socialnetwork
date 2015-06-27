@@ -24,7 +24,7 @@ $en = array(
 	'register:ok:message' => "Your account has been registered. An activation email has been sent to your mailbox. If you didn't receive the email, please check your spam/junk folder.",
 	
 	'copyright' => '&copy; COPYRIGHT',
-	'powered' => 'Powered by the Open Source Social Network. This is a parody and is in no way affiliated or connected with Facebook.',
+	'powered' => 'Powered by the Open Source Social Network.',
 	
 	'name' => 'Name',
 	'birthdate' => 'Birthdate',
