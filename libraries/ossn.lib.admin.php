@@ -241,7 +241,8 @@ function ossn_administrator_pagehandler($pages) {
             global $Ossn;
             if (isset($pages[1]) && in_array($pages[1], ossn_registered_settings_pages())) {
                 $title = ossn_print("{$pages[1]}:settings");
-                $contents['contents'] = ossn_view($Ossn->adminSettingsPage[$pages[1]]);
+                //file should be in plugins/views/default/settings/<file> $arsalanshah
+                $contents['contents'] = ossn_plugin_view($Ossn->adminSettingsPage[$pages[1]]);
                 $contents['title'] = $title;
                 $content = ossn_set_page_layout('administrator/administrator', $contents);
                 echo ossn_view_page($title, $content, 'administrator');
