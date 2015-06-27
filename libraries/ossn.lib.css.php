@@ -142,7 +142,7 @@ function ossn_css_site() {
 		if(!empty($external)) {
 				foreach($external as $item) {
 						echo ossn_html_css(array(
-								'src' => $Ossn->cssExternal[$item]
+								'href' => $Ossn->cssExternal[$item]
 						));
 				}
 		}
@@ -176,7 +176,7 @@ function ossn_css_admin() {
 		if(!empty($external)) {
 				foreach($external as $item) {
 						echo ossn_html_css(array(
-								'src' => $Ossn->cssExternal[$item]
+								'href' => $Ossn->cssExternal[$item]
 						));
 				}
 		}
