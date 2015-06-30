@@ -977,6 +977,7 @@ class OssnUser extends OssnEntities {
 				if(ossn_loggedin_user()->guid == $this->guid){
 					$_SESSION['OSSN_USER'] = ossn_user_by_guid($this->guid);
 				}
+				return true;
 			}
 			return false;
 		}
