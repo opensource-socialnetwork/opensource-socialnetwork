@@ -157,15 +157,6 @@ class OssnEntities extends OssnDatabase {
 		public function save() {
 				if(!empty($this->owner_guid)) {
 						$this->datavars = $this->get_data_vars();
-						// i don't think we need to add new data on save $arsalanshah; v1.x to 2.x
-						// added again in v3.0 $arsalanshah
-						foreach($this->datavars as $vars => $value) {
-								if(!in_array($vars, $this->get_data_dbvars())) {
-										$this->subtype = $vars;
-										$this->value   = $value;
-										$this->add();
-								}
-						}
 						foreach($this->get_entities() as $entity) {
 								if(isset($this->datavars[$entity->subtype])) {
 										$params['table']  = 'ossn_entities_metadata';
@@ -193,6 +184,16 @@ class OssnEntities extends OssnDatabase {
 										}
 								}
 						}
+						// i don't think we need to add new data on save $arsalanshah; v1.x to 2.x
+						// added again in v3.0 $arsalanshah
+						//code re arrange 1st July 2015 $arsalanshah
+						foreach($this->datavars as $vars => $value) {
+								if(!in_array($vars, $this->get_data_dbvars())) {
+										$this->subtype = $vars;
+										$this->value   = $value;
+										$this->add();
+								}
+						}						
 						return true;
 				}
 				return false;
