@@ -50,7 +50,7 @@ class OssnSitePages extends OssnObject {
         $this->subtype = "sitepage:{$this->pagename}";
         $this->pageget = $this->getObjectsByTypes();
         if ($this->pageget) {
-            return $this->pageget->{0};
+            return $this->pageget[0];
         }
         return false;
     }
