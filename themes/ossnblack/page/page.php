@@ -26,7 +26,7 @@ if (isset($params['contents'])) {
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title><?php echo $title; ?></title>
-
+    <link rel="icon" type="image/png"  href="<?php echo ossn_site_url(); ?>themes/ossnthree/images/favicon.png">
     <!-- Open Source Social Network (Ossn) http://www.opensource-socialnetwork.org/ by Informatikon Technologies http://informatikon.com -->
 
     <?php echo ossn_fetch_extend_views('ossn/site/head'); ?>
