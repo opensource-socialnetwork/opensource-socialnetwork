@@ -136,6 +136,9 @@ class OssnComponents extends OssnDatabase {
 		public function loadComs() {
 				$coms = $this->getActive();
 				$lang = ossn_site_settings('language');
+				
+				$vars['activated'] = $coms;
+				ossn_trigger_callback('components', 'before:load', $vars);
 				if(!$coms) {
 						return false;
 				}
@@ -150,6 +153,7 @@ class OssnComponents extends OssnDatabase {
 								include_once("{$dir}{$com->com_id}/ossn_com.php");
 						}
 				}
+				ossn_trigger_callback('components', 'after:load', $vars);				
 		}
 		
 		/**

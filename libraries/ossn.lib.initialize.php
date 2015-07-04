@@ -52,8 +52,6 @@ function ossn_initialize() {
     ossn_register_page('resetlogin', 'ossn_user_pagehandler');
 
     ossn_add_hook('newsfeed', "sidebar:left", 'newfeed_menu_handler');
-	
-	ossn_register_plugins_by_path(ossn_route()->system);		
 }
 
 /**
@@ -181,5 +179,14 @@ function ossn_index_pagehandler($index) {
 
     }
 }
-
+/**
+ * Loads system plugins before we load components.
+ *
+ * @return void
+ */
+function ossn_system_plugins_load(){
+	//load system plugins before components load #451
+	ossn_register_plugins_by_path(ossn_route()->system);	
+}
 ossn_register_callback('ossn', 'init', 'ossn_initialize');
+ossn_register_callback('components', 'before:load', 'ossn_system_plugins_load');
