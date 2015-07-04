@@ -69,7 +69,7 @@ function ossn_admin() {
      */
     if (ossn_isAdminLoggedin()) {
         ossn_register_page('administrator', 'ossn_administrator_pagehandler');
-        ossn_register_site_settings_page('basic', 'pages/administrator/contents/basic_settings');
+        ossn_register_site_settings_page('basic', 'settings/admin/basic_settings');
     } else {
         ossn_register_page('administrator', 'ossn_administrator_login_pagehandler');
     }
