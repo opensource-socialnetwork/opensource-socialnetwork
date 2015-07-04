@@ -1,0 +1,4 @@
+#don't push settings files
+/configurations/ossn.config.db.php
+/configurations/ossn.config.site.php
+/installation/INSTALLED
