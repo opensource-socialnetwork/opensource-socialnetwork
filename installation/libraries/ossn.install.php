@@ -219,3 +219,19 @@ if(isset($url)){
 }
 return $result;
 }
+/**
+ * Generate .htaccess file
+ *
+ * @return ooolean;
+ */
+function ossn_generate_server_config($type){
+	if($type == 'apache'){
+		$path = str_replace('installation/', '', ossn_installation_paths()->root);
+		$file = ossn_installation_paths()->root . 'configs/htaccess.dist';
+		$file = file_get_contents($file);
+		return file_put_contents($path . '.htaccess', $file);
+	}elseif($type == 'nginx'){
+		return false;
+	}
+	return false;
+}

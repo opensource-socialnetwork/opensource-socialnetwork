@@ -15,6 +15,11 @@ DirectoryIndex index.php
 	deny from all
 </Files>
 
+<FilesMatch "(nginx|htaccess).dist">
+	order allow,deny
+	deny from all
+</FilesMatch>
+
 <IfModule mod_mime.c>
     AddType image/vnd.microsoft.icon .ico
 </IfModule>
