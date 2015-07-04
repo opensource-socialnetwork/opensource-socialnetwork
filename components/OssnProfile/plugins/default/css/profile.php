@@ -56,6 +56,9 @@ position: relative;
 .ossn-profile .profile-cover-img {
 
 }
+.profile-cover img {
+width: 100%;
+}
 .ossn-profile-bottom {
 width: 850px;
 }
