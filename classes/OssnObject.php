@@ -84,7 +84,7 @@ class OssnObject extends OssnEntities {
 				$params              = array();
 				$params['type']      = $this->type;
 				$params['subtype']   = $this->subtype;
-				$params['ower_guid'] = $this->owner_guid;
+				$params['owner_guid'] = $this->owner_guid;
 				$objects             = $this->searchObject($params);
 				if($objects) {
 						return $objects;
