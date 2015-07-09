@@ -137,8 +137,8 @@ CREATE TABLE IF NOT EXISTS `ossn_object` (
   `owner_guid` bigint(20) NOT NULL,
   `type` varchar(20) NOT NULL,
   `time_created` int(11) NOT NULL,
-  `title` longtext NOT NULL,
-  `description` text NOT NULL,
+  `title` text NOT NULL,
+  `description` longtext NOT NULL,
   `subtype` text NOT NULL,
   PRIMARY KEY (`guid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
