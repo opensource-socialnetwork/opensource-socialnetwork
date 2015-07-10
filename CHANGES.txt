@@ -3,7 +3,9 @@ OSSN - OPEN SOURCE SOCIAL NETWORK 3.0-development
 Bugfixes:
  * Can not delete profile cover #427   
  * Don't listup all users if search query is empty.
- * mod_rewrite issue, generate a .htaccess file before installation.
+ * mod_rewrite issue, generate a .htaccess file before. #432
+ * redirect website to absolute url, no more ajax errors #458
+ installation.
 
 Additions:
 	
@@ -19,3 +21,4 @@ Additions:
  * Allow users to login with email also
  * Allow admins to search unvalidated users.
  * New backend theme
+ * Add time_created in users table.
