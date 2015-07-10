@@ -1,5 +1,35 @@
-#don't push settings files
+#do not push settings files
 /configurations/ossn.config.db.php
 /configurations/ossn.config.site.php
+
+#do not include following files
+/components/*
+/cache
 /installation/INSTALLED
 /.htaccess
+Thumbs.db
+Desktop.ini
+
+#do not ignore ossn core components
+!/components/OssnAds
+!/components/OssnBlock
+!/components/OssnComments
+!/components/OssnEmbed
+!/components/OssnGroups
+!/components/OssnInvite
+!/components/OssnLikes
+!/components/OssnMessages
+!/components/OssnNotifications
+!/components/OssnPhotos
+!/components/OssnPoke
+!/components/OssnProfile
+!/components/OssnSearch
+!/components/OssnSitePages
+!/components/OssnSmilies
+!/components/OssnWall
+!/components/OssnChat
+
+#do not ignore config fils
+!/.scrutinizer.yml
+!/.travis.yml
+!.gitignore
