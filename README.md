@@ -61,9 +61,11 @@ Prerequisite
 * PHP 5.4 OR >
 * MYSQL 5 OR >
 * APACHE
-* mod_rewrite
-* PHP Function curl
+* MOD_REWRITE
+* PHP Function cURL
 * PHP GD Library
+* PHP ZIP Extension
+* PHP settings allow_url_fopen enabled
 * JSON Support
 * XML
 
