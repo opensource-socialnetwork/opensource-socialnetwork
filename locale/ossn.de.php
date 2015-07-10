@@ -280,7 +280,21 @@ Um Dein Passwort zurückzusetzen klicke bitte auf den folgenden Link oder kopier
 	//v3.0 
 	'my:files:version' => 'Mein Ossn Dateien Fassung',
 	'cache:flush:error' => 'Can not flush cache, make sure cache is enabled in cache settings',
-	'cache:flushed' => 'Cache flushed successfully',	
+	'cache:flushed' => 'Cache flushed successfully',
+	'ossn:version' => 'OSSN version', 
+	'php:extensionn' => 'PHP extension',
+	'php:versionn' => 'PHP version',
+	'php:function' => 'PHP function',
+	'admin:old:com' => "Your ossn_com.xml file is based on old version of Ossn. Please update '%s' component.",
+	'admin:old:theme' => "Your ossn_theme.xml file is based on old version of Ossn. Please update '%s' theme.",
+	'admin:button:disabled' => 'Disabled',
+	'admin:flush:cache' => 'Flush Cache',
+	'admin:com:version' => 'Version',
+	'admin:com:author' => 'Author',
+	'admin:com:author:url' => 'Author URL',
+	'admin:com:license' => 'License',
+	'admin:com:requirements' => 'Requirements',
+	'admin:com:availability' => 'Availability'	
     
 	/*
        * List of ISO 639-1 language codes
