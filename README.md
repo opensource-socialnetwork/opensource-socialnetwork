@@ -39,6 +39,7 @@ Front-End Features
 * Chat Bar
 * Invite Friends
 * Embed Videos
+* Smilies
 
 Backend Features
 =================
@@ -57,7 +58,7 @@ Backend Features
 
 Prerequisite
 =============
-* PHP 5.4 OR > ( Will not work on 5.6 )
+* PHP 5.4 OR >
 * MYSQL 5 OR >
 * APACHE
 * mod_rewrite
@@ -72,11 +73,11 @@ http://docs.opensource-socialnetwork.org/index.php/How_To_Install_Open_Source_So
 
 DEMO
 ====
-http://www.opensource-socialnetwork.org/demo/
+https://www.opensource-socialnetwork.org/demo/
 
 UPGRADE
 ========
 http://docs.opensource-socialnetwork.org/index.php/How_To_Upgrade_Ossn
 
 Having problem? Contact us www.informatikon.com/contact/support
-Copyright 2014 Informatikon Technologies (informatikon.com)
+Copyright 2014-2015 Informatikon Technologies (informatikon.com)
