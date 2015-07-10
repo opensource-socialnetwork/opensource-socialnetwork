@@ -37,7 +37,7 @@ function ossn_js_page_handler($pages) {
             }
             if (isset($pages[1]) && $pages[1] == 'ossn.boot.chat.js') {
                 header('Content-Type: application/javascript');
-                echo ossn_view('components/OssnChat/js/OssnChat.Boot');
+                echo ossn_plugin_view('js/OssnChat.Boot');
             }
             break;
         case 'selectfriend':
