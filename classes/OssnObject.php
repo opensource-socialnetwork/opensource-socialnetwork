@@ -34,8 +34,8 @@ class OssnObject extends OssnEntities {
 		 */
 		public function addObject() {
 				self::initAttributes();
-				if(empty($this->owner_guid) || empty($this->type)){
-					return false;
+				if(empty($this->owner_guid) || empty($this->type)) {
+						return false;
 				}
 				$params['into']   = 'ossn_object';
 				$params['names']  = array(
@@ -81,11 +81,16 @@ class OssnObject extends OssnEntities {
 				if(empty($this->type)) {
 						return false;
 				}
-				$params              = array();
-				$params['type']      = $this->type;
-				$params['subtype']   = $this->subtype;
+				$params               = array();
+				$params['type']       = $this->type;
+				$params['subtype']    = $this->subtype;
 				$params['owner_guid'] = $this->owner_guid;
-				$objects             = $this->searchObject($params);
+				$params['limit']      = $this->limit;
+				$params['order_by']   = $this->order_by;
+				$params['count']      = $this->count;
+				$params['page_limit'] = $this->page_limit;
+				$params['offset']     = $this->offset;
+				$objects              = $this->searchObject($params);
 				if($objects) {
 						return $objects;
 				}
@@ -101,17 +106,16 @@ class OssnObject extends OssnEntities {
 		 * @return (object);
 		 */
 		public function getObjectsByTypes() {
-				$options = array(
-						'subtype' => $this->subtype,
-						'type' => $this->type,
-						'owner_guid' => $this->owner_guid,
-						'offset' => $this->offset,
-						'order_by' => $this->order_by,
-						'page_limit' => $this->page_limit,
-						'count' => $this->count,
-						'limit' => $this->limit
-				);				
-				$objects           = $this->searchObject($options);
+				$params               = array();
+				$params['type']       = $this->type;
+				$params['subtype']    = $this->subtype;
+				$params['owner_guid'] = $this->owner_guid;
+				$params['limit']      = $this->limit;
+				$params['order_by']   = $this->order_by;
+				$params['count']      = $this->count;
+				$params['page_limit'] = $this->page_limit;
+				$params['offset']     = $this->offset;
+				$objects              = $this->searchObject($params);
 				if($objects) {
 						return $objects;
 				}
@@ -130,15 +134,15 @@ class OssnObject extends OssnEntities {
 				if(empty($this->object_guid)) {
 						return false;
 				}
-				$params['from']     = 'ossn_object as o';
-				$params['wheres']   = array(
+				$params['from']   = 'ossn_object as o';
+				$params['wheres'] = array(
 						"o.guid='{$this->object_guid}'"
 				);
 				//there is no need to order as its will fetch only one record
 				//$params['order_by'] = $this->order_by;
 				unset($this->order_by);
 				
-				$object             = $this->select($params);
+				$object = $this->select($params);
 				
 				$this->owner_guid = $object->guid;
 				$this->subtype    = '';
@@ -249,8 +253,8 @@ class OssnObject extends OssnEntities {
 		 */
 		public function searchObject(array $params = array()) {
 				self::initAttributes();
-				if(empty($params)){
-					return false;
+				if(empty($params)) {
+						return false;
 				}
 				//prepare default attributes
 				$default = array(
@@ -278,8 +282,8 @@ class OssnObject extends OssnEntities {
 				}
 				//get only required result, don't bust your server memory
 				$getlimit = $this->generateLimit($options['limit'], $options['page_limit'], $options['offset']);
-				if($getlimit){
-					$options['limit'] = $getlimit;
+				if($getlimit) {
+						$options['limit'] = $getlimit;
 				}
 				
 				if(!empty($options['object_guid'])) {
