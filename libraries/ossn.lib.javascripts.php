@@ -300,5 +300,24 @@ function ossn_languages_js(){
 		ossn_load_js('ossn.language', 'admin');	
 	}
 }
+/**
+ * Redirect users to absolute url, if he is on wrong url
+ *
+ * Many users have issue while registeration, this is due to ossn.ajax works on absolute path
+ * Github ticket: https://github.com/opensource-socialnetwork/opensource-socialnetwork/issues/458
+ * 
+ * @return void;
+ */
+ function ossn_redirect_absolute_url(){
+	$baseurl 	= ossn_site_url();
+	$parts		= parse_url($baseurl);
+	$iswww		= preg_match('/www./i', $parts['host']);
+	if($_SERVER['HTTP_HOST'] !== $parts['host']){
+			header("HTTP/1.1 301 Moved Permanently");
+			$url = "{$parts['scheme']}://{$parts['host']}{$_SERVER['REQUEST_URI']}";
+			header("Location: {$url}"); 		
+	}
+ }
 ossn_register_callback('ossn', 'init', 'ossn_languages_js');
 ossn_register_callback('ossn', 'init', 'ossn_javascript');
+ossn_register_callback('ossn', 'init', 'ossn_redirect_absolute_url');
