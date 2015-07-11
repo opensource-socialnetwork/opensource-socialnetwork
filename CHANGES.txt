@@ -10,7 +10,7 @@ Bugfixes:
  * redirect website to absolute url, no more ajax errors #458
  installation.
  * flush cache didn't flush the plugins path #460
- * show a confirmation mssage before delete component #444
+ * show a confirmation message before delete component #444
 
 Additions:
 	
