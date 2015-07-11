@@ -29,7 +29,7 @@ Desktop.ini
 !/components/OssnWall
 !/components/OssnChat
 
-#do not ignore config fils
+#do not ignore config files
 !/.scrutinizer.yml
 !/.travis.yml
 !.gitignore
