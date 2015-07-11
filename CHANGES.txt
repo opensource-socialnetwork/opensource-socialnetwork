@@ -1,11 +1,16 @@
 OSSN - OPEN SOURCE SOCIAL NETWORK 3.0-development
 
+Changes from 3.0 development till stable version:
+
 Bugfixes:
+
  * Can not delete profile cover #427   
  * Don't listup all users if search query is empty.
  * mod_rewrite issue, generate a .htaccess file before. #432
  * redirect website to absolute url, no more ajax errors #458
  installation.
+ * flush cache didn't flush the plugins path #460
+ * show a confirmation mssage before delete component #444
 
 Additions:
 	
