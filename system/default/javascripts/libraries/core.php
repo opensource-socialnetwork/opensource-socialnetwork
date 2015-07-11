@@ -268,7 +268,8 @@ Ossn.RegisterStartupFunction(function() {
  */
 Ossn.RegisterStartupFunction(function() {
     $(document).ready(function() {
-        $('.component-controls .components-button-red').click(function(e) {
+		//show a confirmation mssage before delete component #444
+        $('.ossn-com-delete-button').click(function(e) {
             e.preventDefault();
             var del = confirm(Ossn.Print('ossn:component:delete:exception'));
             if (del == true) {

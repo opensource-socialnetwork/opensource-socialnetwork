@@ -29,7 +29,7 @@
  }
  if (!in_array($params['name'], $params['OssnCom']->requiredComponents())) {
   	$delete = ossn_site_url("action/component/delete?component={$params['name']}", true);
-  	$delete = "<a href='{$delete}' class='btn btn-danger'><i class='fa fa-close'></i>" . ossn_print('admin:button:delete') ."</a>";
+  	$delete = "<a href='{$delete}' class='btn btn-danger ossn-com-delete-button'><i class='fa fa-close'></i>" . ossn_print('admin:button:delete') ."</a>";
  }		 
 ?>    
     
