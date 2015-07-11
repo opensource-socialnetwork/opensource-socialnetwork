@@ -2,7 +2,7 @@
 <component xmlns="http://www.opensource-socialnetwork.org/v/3.0">
     <name>OssnAds</name>
     <author>Core Team</author>
-    <description>Create a profile page for users.</description>
+    <description>Allow admins to create a ads.</description>
     <license>GNU General Public License, version 2</license>
     <author_url>http://www.informatikon.com/</author_url>
     <license_url>http://www.opensource-socialnetwork.org/licence/</license_url>
