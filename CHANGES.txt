@@ -11,6 +11,7 @@ Bugfixes:
  installation.
  * flush cache didn't flush the plugins path #460
  * show a confirmation message before delete component #444
+ * ossn system messages css issue on front end #443
 
 Additions:
 	
