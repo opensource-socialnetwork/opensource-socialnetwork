@@ -1191,6 +1191,10 @@ width: 100%;
 z-index: 3;
 margin-top: -8px;
 }
+.ossn-system-messages a {
+	display:none;
+}
+.alert-danger,
 .ossn-message-error {
 background: #FAE7E7;
 height: 25px;
@@ -1199,6 +1203,7 @@ padding: 13px;
 color: #F53333;
 font-size: 13px;
 }
+.alert-success,
 .ossn-message-success {
 background: #E7EDFA;
 height: 25px;
