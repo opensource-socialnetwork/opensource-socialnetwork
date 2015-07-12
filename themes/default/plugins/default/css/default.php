@@ -120,6 +120,7 @@ min-height:465px;
 width: 985px;
 margin: 0 auto;
 padding-bottom: 20px;
+min-height: 530px;
 }
 .home-left-contents {
 width: 556px;
@@ -253,6 +254,7 @@ border:1px  solid #DD3C10;
 border-width: 1px;
 background-color: #FFEBE8;
 padding:13px;
+color:#000;
 }
 .login-page {
 width: 583px;
@@ -1158,7 +1160,7 @@ margin-left: 12px;
 }
 .ossn-view-users .friendlink{
 float: right;
-margin-top: 27px;
+margin-top: 60px;
 margin-right: 9px;
 }
 .ossn-list-users {
