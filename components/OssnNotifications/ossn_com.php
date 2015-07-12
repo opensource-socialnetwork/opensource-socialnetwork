@@ -242,6 +242,7 @@ function ossn_notificaiton_comments_post_hook($hook, $type, $return, $params){
 	
 		if ($object->type !== 'user') {
 			$params['type'] = "{$params['type']}:{$object->type}:{$object->subtype}";
+			return ossn_call_hook('notification:add', $params['type'], $params, false);
 		}	
 		return $params;
 	}

@@ -29,7 +29,7 @@ class OssnNotifications extends OssnDatabase {
 						  'subject_guid' => $subject_guid,
 						  'notification_owner' => $notification_owner,
 						  );
-			$this->notification = ossn_call_hook('notification:add', $type, $vars);
+			$this->notification = ossn_call_hook('notification:add', $type, $vars, false);
 			if(!$this->notification){
 				return false;
 			}		

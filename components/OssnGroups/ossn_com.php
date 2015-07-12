@@ -41,6 +41,7 @@ function ossn_groups() {
 		ossn_add_hook('newsfeed', "left", 'ossn_add_groups_to_newfeed');
 		ossn_add_hook('search', 'type:groups', 'groups_search_handler');
 		ossn_add_hook('notification:add', 'comments:post:group:wall', 'ossn_notificaiton_groups_comments_hook');
+		ossn_add_hook('notification:add', 'like:post:group:wall', 'ossn_notificaiton_groups_comments_hook');
 		ossn_add_hook('notification:view', 'group:joinrequest', 'ossn_group_joinrequest_notification');
 		
 		//group actions
