@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component xmlns="http://www.opensource-socialnetwork.org/v/3.0">
-    <name>OssnSearch</name>
+    <name>OssnProfile</name>
+    <id>OssnProfile</id>
     <author>Core Team</author>
     <description>Allow users create a profile.</description>
     <license>GNU General Public License, version 2</license>
