@@ -18,6 +18,10 @@ Bugfixes:
  * ossnblack theme can't read registration message #304
  * PHP Fatal error:  Call to a member function isOnline() on a non-object classes/OssnChat.php on line 146
  * PHP WARNING: "Division by zero" in file OssnObject.php (line 276)
+ * Component installer problems with certain zip - archives #420
+ * Chat linefeed problem #278
+ * Notifications for group comments #435
+ * There is no need to add notification if no hook is present.
 
 Additions:
 	
