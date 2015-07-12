@@ -189,22 +189,36 @@ Ossn.RegisterStartupFunction(function() {
         form: '#ossn-home-signup',
 
         beforeSend: function(request) {
-            $('#ossn-home-signup').find('#ossn-signup-errors').hide();
+			var failedValidate = false;
+			$('#ossn-submit-button').show();
+			$('#ossn-home-signup .ossn-loading').addClass("ossn-hidden");				
+            
+			$('#ossn-home-signup').find('#ossn-signup-errors').hide();
             $('#ossn-home-signup input').filter(function() {
-                if (this.type == 'radio' && !$(this).is(':checked')) {
-                    $(this).closest('span').addClass('ossn-required');
+				$(this).closest('span').removeClass('ossn-required');										 
+                if (this.type == 'radio') {
+					if(!$("input[name='gender']:checked").val()){
+	                    $(this).closest('span').addClass('ossn-required');
+						failedValidate = true;
+					}
                 }
                 if (this.value == "") {
                     $(this).addClass('ossn-red-borders');
+					failedValidate = true;
                     request.abort();
                     return false;
                 }
-
-            });
+            });	
+			if(failedValidate == false){
+					$('#ossn-submit-button').hide();
+					$('#ossn-home-signup .ossn-loading').removeClass("ossn-hidden");							
+			}
         },
         callback: function(callback) {
             if (callback['dataerr']) {
                 $('#ossn-home-signup').find('#ossn-signup-errors').html(callback['dataerr']).fadeIn();
+				$('#ossn-submit-button').show();
+				$('#ossn-home-signup .ossn-loading').addClass("ossn-hidden");				
             }
             if (callback['success'] == 1) {
                 $('#ossn-home-signup').html(Ossn.MessageDone(callback['datasuccess']));
