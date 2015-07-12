@@ -9,7 +9,7 @@
  * @link      http://www.opensource-socialnetwork.org/licence
  */
  $OssnComs = new OssnComponents;
- $translit = OssnTranslit::urlize($params['component']->name);
+ $translit = OssnTranslit::urlize($params['component']->id);
  if(empty($params['component']->name)){
 	 $translit = rand();
  } 
