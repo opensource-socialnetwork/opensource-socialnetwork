@@ -12,6 +12,12 @@ Bugfixes:
  * flush cache didn't flush the plugins path #460
  * show a confirmation message before delete component #444
  * ossn system messages css issue on front end #443
+ * show a loading icon on registration submit #464
+ * During registration even if gender is selected its marked unselected #465
+ * cancel friendship' button colliding with user name #279
+ * ossnblack theme can't read registration message #304
+ * PHP Fatal error:  Call to a member function isOnline() on a non-object classes/OssnChat.php on line 146
+ * PHP WARNING: "Division by zero" in file OssnObject.php (line 276)
 
 Additions:
 	
