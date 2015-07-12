@@ -75,19 +75,30 @@ class OssnComponents extends OssnDatabase {
 				$newfile = "{$data_dir}/{$zip['name']}";
 				if(move_uploaded_file($zip['tmp_name'], $newfile)) {
 						if($archive->open($newfile) === TRUE) {
-								$archive->extractTo($data_dir);
+								$translit = OssnTranslit::urlize($zip['name']);
 								
 								//make community components works on installer #394
-								$validate = $archive->statIndex(0);
-								$validate = str_replace('/', '', $validate['name']);
+								//Component installer problems with certain zip - archives #420
 								
+								$archive->extractTo($data_dir . '/' . $translit);
+								$dirctory = scandir($data_dir . '/' . $translit, 1);
+								$dirctory = $dirctory[0];
+								
+								$files = $data_dir . '/' . $translit . '/' . $dirctory . '/';
 								$archive->close();
 								
-								if(is_dir("{$data_dir}/{$validate}") && is_file("{$data_dir}/{$validate}/ossn_com.php") && is_file("{$data_dir}/{$validate}/ossn_com.xml")) {
+								if(is_dir($files) && is_file("{$files}ossn_com.php") && is_file("{$files}ossn_com.xml")) {
+										
+										$ossn_com_xml = simplexml_load_file("{$files}ossn_com.xml");
 										$archive->open($newfile);
-										$archive->extractTo(ossn_route()->com);
+										$archive->extractTo(ossn_route()->com . $ossn_com_xml->id);
 										$archive->close();
-										$this->newCom($validate);
+										//need to check id , since ossn v3.x
+										if(isset($ossn_com_xml->id) && !empty($ossn_com_xml->id)) {
+												//add new component to system
+												$this->newCom($validate);
+										}
+										
 										OssnFile::DeleteDir($data_dir);
 										return true;
 								}
@@ -153,7 +164,7 @@ class OssnComponents extends OssnDatabase {
 								include_once("{$dir}{$com->com_id}/ossn_com.php");
 						}
 				}
-				ossn_trigger_callback('components', 'after:load', $vars);				
+				ossn_trigger_callback('components', 'after:load', $vars);
 		}
 		
 		/**
@@ -194,16 +205,16 @@ class OssnComponents extends OssnDatabase {
 		 * @param string $element Component xml string.
 		 *
 		 * @return boolean
-		 */		
-		public function isOld($element){
-			if(empty($element)){
+		 */
+		public function isOld($element) {
+				if(empty($element)) {
+						return false;
+				}
+				$version = current($element->getNamespaces());
+				if(substr($version, -3) == '1.0') {
+						return true;
+				}
 				return false;
-			}
-			$version = current($element->getNamespaces());
-			if(substr($version, -3) == '1.0'){
-				return true;
-			}
-			return false;
 		}
 		/**
 		 * Check component requirments 
@@ -224,7 +235,7 @@ class OssnComponents extends OssnDatabase {
 				);
 				if(isset($element->name)) {
 						if(isset($element->requires)) {
-								$result = array();
+								$result   = array();
 								$requires = $element->requires;
 								foreach($requires as $item) {
 										if(!in_array($item->type, $types)) {
@@ -290,8 +301,8 @@ class OssnComponents extends OssnDatabase {
 		 * @return bool;
 		 */
 		public function isActive($id = '') {
-				if(empty($id)){
-					return false;
+				if(empty($id)) {
+						return false;
 				}
 				$params['from']   = 'ossn_components';
 				$params['wheres'] = array(
