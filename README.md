@@ -45,6 +45,8 @@ Backend Features
 =================
 
 * Admin Dashboard for site overview
+* Online users count (male/female) graph
+* Total site users count (by months) graph
 * Update Notification
 * Add User
 * Remove User
