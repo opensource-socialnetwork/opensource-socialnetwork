@@ -10,5 +10,5 @@
  */
  
 unset($_SESSION['OSSN_USER']);
-session_destroy();
+@session_destroy();
 redirect();	
