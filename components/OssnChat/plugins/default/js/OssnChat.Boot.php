@@ -138,6 +138,12 @@ $.each(OssnChat['newmessages'], function(key, data){
                            }
                            Ossn.playSound();
                            Ossn.ChatScrollMove(data['fid']);
+                           
+                           //chat linefeed problem #278.
+                           // move scroll once again when div is loaded fully
+                           $("#ossn-chat-messages-data-"+data['fid']).load(function() {
+                           		Ossn.ChatScrollMove(data['fid']);
+                           });
 
                        }
                  
