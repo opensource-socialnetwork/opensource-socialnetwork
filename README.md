@@ -15,14 +15,14 @@ Languages
 
 Front-End Features
 ===================
-* User Regestration
+* User Registration
 * User Login
 * Profile 
 * Profile Photo
 * Profile Cover
 * Add/Remove Friends
 * Live Chat
-* Wall
+* Wall posts
 * Photos
 * Ads
 * Groups
@@ -40,6 +40,10 @@ Front-End Features
 * Invite Friends
 * Embed Videos
 * Smilies
+* SitePages (terms, privacy, about)
+* Site Search
+* Reset Password
+* Newsfeed page
 
 Backend Features
 =================
