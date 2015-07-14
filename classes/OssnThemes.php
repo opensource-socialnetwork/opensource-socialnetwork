@@ -113,7 +113,23 @@ class OssnThemes extends OssnSite {
 				$path = ossn_route()->themes;
 				return "{$path}{$this->getSettings('theme')}/ossn_theme.php";
 		}
-		
+		/**
+		 * Get active theme startup file
+		 *
+		 * @return string;
+		 */
+		public function loadActive() {
+				$path = ossn_route()->themes;
+				if(is_file("{$path}{$this->getSettings('theme')}/ossn_theme.php")) {
+						$lang      = ossn_site_user_lang_code();
+						$lang_file = "{$path}{$this->getSettings('theme')}/locale/ossn.{$lang}.php";
+						if(is_file($lang_file)) {
+								//feature request: multilanguage themes #281
+								include_once($lang_file);
+						}
+						require_once("{$path}{$this->getSettings('theme')}/ossn_theme.php");
+				}
+		}
 		/**
 		 * Enable Theme
 		 *
