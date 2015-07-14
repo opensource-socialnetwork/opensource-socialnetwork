@@ -22,6 +22,7 @@ Bugfixes:
  * Chat linefeed problem #278
  * Notifications for group comments #435
  * There is no need to add notification if no hook is present.
+ * Unwanted refresh in message window #416
 
 Additions:
 	
@@ -38,3 +39,5 @@ Additions:
  * Allow admins to search unvalidated users.
  * New backend theme
  * Add time_created in users table.
+ * We need to accept values in array() in setComSETTINGS #434
+ * feature request: multilanguage themes #281
