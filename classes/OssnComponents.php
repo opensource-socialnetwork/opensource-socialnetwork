@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Open Source Social Network
  *
@@ -120,7 +119,7 @@ class OssnComponents extends OssnDatabase {
 						 * @Reason: Initial;
 						 */
 						$this->statement("SELECT * FROM ossn_components
-			    WHERE (com_id='$com');");
+			    						  WHERE (com_id='$com');");
 						$this->execute();
 						$CHECK = $this->fetch();
 						if(!isset($CHECK->active)) {
@@ -130,8 +129,8 @@ class OssnComponents extends OssnDatabase {
 								 * @Reason: Initial;
 								 */
 								$this->statement("INSERT INTO `ossn_components`
-			  (`com_id`, `active`)
-		          VALUES ('$com', '0')");
+			 									 (`com_id`, `active`)
+		         								  VALUES ('$com', '0')");
 								$this->execute();
 								return true;
 						}
@@ -146,7 +145,7 @@ class OssnComponents extends OssnDatabase {
 		 */
 		public function loadComs() {
 				$coms = $this->getActive();
-				$lang = ossn_site_settings('language');
+				$lang = ossn_site_user_lang_code();
 				
 				$vars['activated'] = $coms;
 				ossn_trigger_callback('components', 'before:load', $vars);
@@ -320,7 +319,7 @@ class OssnComponents extends OssnDatabase {
 		 *
 		 * @return bool;
 		 */
-		public function ENABLE($com) {
+		public function enable($com) {
 				if(!empty($com) && is_dir(ossn_route()->com . $com)) {
 						/*
 						 * Get a com;
@@ -363,12 +362,16 @@ class OssnComponents extends OssnDatabase {
 		 *
 		 * @return bool;
 		 */
-		public function deletecom($com) {
+		public function delete($com) {
 				if(in_array($com, $this->requiredComponents())) {
 						return false;
 				}
-				$this->statement("DELETE FROM ossn_components WHERE(com_id='{$com}');");
-				if($this->execute()) {
+				$params           = array();
+				$params['from']   = "ossn_components";
+				$params['wheres'] = array(
+						"com_id='{$com}'"
+				);
+				if(parent::delete($params)) {
 						OssnFile::DeleteDir(ossn_route()->com . "{$com}/");
 						return true;
 				}
@@ -431,53 +434,70 @@ class OssnComponents extends OssnDatabase {
 						'OssnEmbed'
 				), $this->requiredComponents());
 		}
-		
 		/**
 		 * Set component settings
+		 *
+		 * setSettings should have array() to accept values #434
 		 *
 		 * @params $component Component id
 		 *         $setting Setting name
 		 *         $value Setting value
 		 *
+		 *
+		 * @return bool;
+		 */
+		public function setSettings($component, array $vars = array()) {
+				$settings = self::getComSettings($component);
+				$guid     = $this->getbyName($component)->getID();
+				$entity   = new OssnEntities;
+				if(empty($guid)) {
+						return false;
+				}
+				foreach($vars as $name => $value) {
+						if(!$settings->isParam($name)) {
+								$entity->owner_guid = $guid;
+								$entity->type       = 'component';
+								$entity->subtype    = $name;
+								$entity->value      = $value;
+								$entity->add();
+						} else {
+								$entity->owner_guid  = $guid;
+								$entity->type        = 'component';
+								$entity->data->$name = $value;
+								$entity->save();
+						}
+				}
+				return true;
+		}
+		/**
+		 * Set component settings
+		 *
+		 * @param string $component Component id
+		 * @param string $setting Setting name
+		 * @param string $value Setting value
+		 *
+		 * @note This method is deprecated and will be removed in Ossn v4.0
+		 *
 		 * @return bool;
 		 */
 		public function setComSETTINGS($component, $setting, $value) {
-				$this->component = self::getComSettings($component);
-				if(!isset($this->component->$setting)) {
-						if(isset($component)) {
-								$this->entity             = new OssnEntities;
-								$this->entity->type       = 'component';
-								$this->entity->subtype    = $setting;
-								$this->entity->owner_guid = self::getComponentGuid($component);
-								$this->entity->value      = $value;
-								if($this->entity->add()) {
-										return true;
-								}
-						}
-				} else {
-						$this->entity                 = new OssnEntities;
-						$this->entity->type           = 'component';
-						$this->entity->owner_guid     = self::getComponentGuid($component);
-						$this->entity->data->$setting = $value;
-						if($this->entity->save()) {
-								return true;
-						}
-				}
-				return false;
+				return $this->setSettings($component, array(
+						$setting => $value
+				));
 		}
 		
 		/**
 		 * Get Component Settings
 		 *
-		 * @params $component Component id
+		 * @params string $component Component id
 		 *
-		 * @return array;
+		 * @return false|array;
 		 */
-		public function getComSettings($component) {
-				$this->entity             = new OssnEntities;
-				$this->entity->type       = 'component';
-				$this->entity->owner_guid = self::getComponentGuid($component);
-				$settings                 = $this->entity->get_entities();
+		public function getSettings($component) {
+				$entity             = new OssnEntities;
+				$entity->type       = 'component';
+				$entity->owner_guid = $this->getbyName($component)->getGUID();
+				$settings           = $entity->get_entities();
 				if(is_array($settings) && !empty($settings)) {
 						foreach($settings as $setting) {
 								$comsettings[$setting->subtype] = $setting->value;
@@ -486,24 +506,33 @@ class OssnComponents extends OssnDatabase {
 				}
 				return false;
 		}
-		
 		/**
-		 * Get component guid by component id
+		 * Get Component Settings
 		 *
-		 * @param $component Component id
+		 * @params string $component Component id
 		 *
-		 * @return guid or false;
+		 * @note This method is deprecated and will be removed in Ossn v4.0
+		 *
+		 * @return false|array;
 		 */
-		public function getComponentGuid($component) {
-				$params = array(
-						'from' => 'ossn_components',
-						'wheres' => array(
-								"com_id='{$component}'"
-						)
+		public function getComSettings($component) {
+				return $this->getSettings($component);
+		}
+		/**
+		 * Get component
+		 *
+		 * @note This id is not a package id 
+		 *
+		 * @return integer|false;
+		 */
+		public function getbyName($name) {
+				$params          = array();
+				$params['from']  = 'ossn_components';
+				$params['where'] = array(
+						"com_id='{$name}'"
 				);
-				$fetch  = $this->select($params);
-				if(isset($fetch->id)) {
-						return $fetch->id;
+				if($data = $this->select($params)) {
+						return arrayObject($data, get_class($this));
 				}
 				return false;
 		}
