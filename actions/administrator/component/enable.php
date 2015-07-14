@@ -15,7 +15,7 @@ $com 		 = input('com');
 $cache_flush = input('flush_cache', '', false);
 $cache		 = ossn_site_settings('cache');
 
-if (!$cache_flush && $enable->ENABLE($com)) {
+if (!$cache_flush && $enable->enable($com)) {
     ossn_trigger_message(ossn_print('com:enabled'), 'success');
     if($cache == false){
 		redirect(REF);

@@ -14,7 +14,7 @@ $com 		 = input('component');
 $cache_flush = input('flush_cache', '', false);
 $cache		 = ossn_site_settings('cache');
 
-if (!$cache_flush && $delete->deletecom($com)) {
+if (!$cache_flush && $delete->delete($com)) {
     ossn_trigger_message(ossn_print('com:deleted'), 'success');
     if($cache == false){
 		redirect(REF);
