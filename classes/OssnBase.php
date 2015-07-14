@@ -45,4 +45,17 @@ class OssnBase {
         }
         return false;
     }	
+    /**
+     * isParam
+     *
+     * @param string $param
+     *
+     * @return string;
+     */
+    public function isParam($param) {
+        if (!empty($param) && isset($this->$param)) {
+            return true;
+        }
+        return false;
+    }		
 }//CLASS
