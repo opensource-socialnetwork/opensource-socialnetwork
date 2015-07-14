@@ -30,7 +30,10 @@ Ossn.getMessages = function($user, $guid) {
         action: false,
         callback: function(callback) {
             $('#message-append-' + $guid).append(callback);
-            Ossn.message_scrollMove($guid);
+            if(callback){
+            	//Unwanted refresh in message window #416 , there is no need to scroll if no new message.
+	            Ossn.message_scrollMove($guid);
+            }
         }
     });
 };

@@ -65,7 +65,7 @@
                     Ossn.getMessages('<?php echo $params['user']->username;?>', '<?php echo $params['user']->guid;?>');
                     //Ossn.getRecent('<?php echo $params['user']->guid;?>');
                 }, 5000);
-                Ossn.message_scrollMove(<?php echo $params['user']->guid;?>);
+               	Ossn.message_scrollMove(<?php echo $params['user']->guid;?>);
             });
         </script>
         <div class="title"> <?php echo $params['user']->fullname; ?></div>

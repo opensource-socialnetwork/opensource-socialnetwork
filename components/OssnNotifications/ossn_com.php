@@ -101,7 +101,7 @@ function ossn_notification_page($pages) {
         case 'messages':
             $OssnMessages = new OssnMessages;
             $params['recent'] = $OssnMessages->recentChat(ossn_loggedin_user()->guid);
-            $data = ossn_view('components/OssnMessages/templates/message-with-notifi', $params);
+            $data = ossn_plugin_view('messages/templates/message-with-notifi', $params);
             if (!empty($params['recent'])) {
                 echo json_encode(array(
                         'type' => 1,
