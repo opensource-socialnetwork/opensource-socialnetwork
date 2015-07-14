@@ -57,8 +57,8 @@ ossn_default_load_locales();
  */
 
 //loads active theme
-$themes = new OssnThemes;
-include_once($themes->getActivePath());
+$theme = new OssnThemes;
+$theme->loadActive();
 
 //load active components
 $coms = new OssnComponents;
