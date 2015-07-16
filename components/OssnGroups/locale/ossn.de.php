@@ -59,5 +59,6 @@ $de = array(
 	
 	// Gruppen-Beitritts-Anfrage var1 = Benutzer, var2 = Gruppe
 	'ossn:notifications:group:joinrequest' => '%s möchte %s beitreten',
+	'ossn:group:by' => 'Von:',	
 );
 ossn_register_languages('de', $de); 
