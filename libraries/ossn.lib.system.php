@@ -296,17 +296,21 @@ function ossn_site_settings($setting) {
  * @return return
  */
 function redirect($new = '') {
+	global $Ossn;
     $url = ossn_site_url($new);
     if ($new === REF) {
         if (isset($_SERVER['HTTP_REFERER'])) {
         	$url = $_SERVER['HTTP_REFERER'];
         } else {
 		$url = ossn_site_url();
-	}
+		}
     }
-    header("Location: {$url}");
-    exit;
-
+	if(ossn_is_xhr()){
+		$Ossn->redirect = $url;	
+	} else {
+    	header("Location: {$url}");
+		exit;
+	}
 }
 
 /**
@@ -562,13 +566,17 @@ function ossn_validate_filepath($path, $append_slash = TRUE) {
  * @return mix data
  */
 function ossn_error_page() {
-    $title = ossn_print('page:error');
-    $contents['content'] = ossn_view('pages/contents/error');
-    $contents['background'] = false;
-    $content = ossn_set_page_layout('contents', $contents);
-    $data = ossn_view_page($title, $content);
-    echo $data;
-    exit;
+	if(ossn_is_xhr()){
+		header("HTTP/1.0 404 Not Found");
+	} else {
+	    $title = ossn_print('page:error');
+    	$contents['content'] = ossn_view('pages/contents/error');
+    	$contents['background'] = false;
+    	$content = ossn_set_page_layout('contents', $contents);
+    	$data = ossn_view_page($title, $content);
+    	echo $data;
+	}
+    	exit;
 }
 
 /**
@@ -731,6 +739,20 @@ function ossn_check_update() {
 function _ossn_exception_handler($exception){
 	$params['exception'] = $exception;
 	echo ossn_view('system/handlers/errors', $params);
+}
+/**
+ * Set Ajax Data
+ * Use only in action files
+ *
+ * @param array $data A data array
+ *
+ * @return void
+ */
+function ossn_set_ajax_data(array $data = array()){
+	global $Ossn;
+	if(ossn_is_xhr()){
+		$Ossn->ajaxData = $data;
+	}
 }
 ossn_errros();
 ossn_register_callback('ossn', 'init', 'ossn_system');
