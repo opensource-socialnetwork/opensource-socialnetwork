@@ -14,9 +14,9 @@ class OssnFile extends OssnEntities {
 		 * DeleteDir
 		 * Delete the directories including files
 		 *
-		 * @param (path)  path of directory
+		 * @param string $path path of directory
 		 *
-		 * @return boolean (void)
+		 * @return boolean
 		 */
 		public static function DeleteDir($path) {
 				if(is_dir($path)) {
@@ -60,9 +60,8 @@ class OssnFile extends OssnEntities {
 		 * setFile
 		 * Set a required file in memory
 		 *
-		 * @param (name) Name of file
 		 * @param string $name
-		 * @return void;
+		 * @return void
 		 */
 		public function setFile($name) {
 				$this->showFileUploadError();
@@ -75,9 +74,8 @@ class OssnFile extends OssnEntities {
 		/**
 		 * Set a path for file where it need to upload
 		 *
-		 * @param (path) Path where file need to save
-		 * @param string $path
-		 * @return void;
+		 * @param string $path Path where file need to save
+		 * @return void
 		 */
 		public function setPath($path) {
 				$this->path = $path;
@@ -86,7 +84,7 @@ class OssnFile extends OssnEntities {
 		 * Get file extension from its name
 		 *
 		 * @param string $file Full file name
-		 * @return string;
+		 * @return string|false
 		 */
 		public function getFileExtension($file) {
 				if(isset($file)) {
@@ -101,7 +99,7 @@ class OssnFile extends OssnEntities {
 		 * Allowed file extensions
 		 * Validate file extension before save
 		 *
-		 * @return (bool)
+		 * @return boolean
 		 */
 		public function allowedFileExtensions() {
 				$types = array(
@@ -169,7 +167,6 @@ class OssnFile extends OssnEntities {
 		/**
 		 * showFileUploadError
 		 * Show file upload errors
-		 *
 		 *
 		 * @return void
 		 */

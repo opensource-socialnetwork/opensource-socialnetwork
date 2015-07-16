@@ -16,15 +16,15 @@ class OssnMail extends PHPMailer {
 		/**
 		 * Send email to user.
 		 *
-		 * @parans = $email => user email
-		 *           $subject => email subject
-		 *           $body = email body
+		 * @param string $email User email address
+		 * @param string $subject Email subject
+		 * @param string $body Email body
 		 *
-		 * @return (bool)
+		 * @return boolean
 		 */
 		public function NotifiyUser($email, $subject, $body) {
 				if(empty($email)){
-					error_log('Can not send email to empty url', 0);
+					error_log('Can not send email to empty email address', 0);
 				}
 				$this->setFrom(ossn_site_settings('notification_email'), ossn_site_settings('site_name'));
 				$this->addAddress($email);

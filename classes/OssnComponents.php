@@ -12,7 +12,7 @@ class OssnComponents extends OssnDatabase {
 		/**
 		 * Get components from compnents directory
 		 *
-		 * @return components ids;
+		 * @return array
 		 */
 		public function getComponentsDir() {
 				$dir     = ossn_route()->com;
@@ -34,7 +34,7 @@ class OssnComponents extends OssnDatabase {
 		/**
 		 * Count total components
 		 *
-		 * @return (int);
+		 * @return integer
 		 */
 		public function total() {
 				return count($this->getComponents());
@@ -43,7 +43,7 @@ class OssnComponents extends OssnDatabase {
 		/**
 		 * Get components list
 		 *
-		 * @return components ids;
+		 * @return array
 		 */
 		public function getComponents() {
 				$params['from'] = 'ossn_components';
@@ -60,9 +60,9 @@ class OssnComponents extends OssnDatabase {
 		/**
 		 * Upload component
 		 *
-		 * @requires component package file,
+		 * Requires component package file,
 		 *
-		 * @return bool;
+		 * @return boolean
 		 */
 		public function upload() {
 				$archive  = new ZipArchive;
@@ -109,7 +109,7 @@ class OssnComponents extends OssnDatabase {
 		/**
 		 * Insert a new component to system
 		 *
-		 * @return bool;
+		 * @return boolean
 		 */
 		public function newCom($com) {
 				if(!empty($com) && is_dir(ossn_route()->com . $com)) {
@@ -182,9 +182,9 @@ class OssnComponents extends OssnDatabase {
 		/**
 		 * Get component details
 		 *
-		 * @params $name = component id;
+		 * @params string $name Component id;
 		 *
-		 * @return (object) or return false;
+		 * @return false|object
 		 */
 		public static function getCom($name) {
 				$name = trim($name);
@@ -218,7 +218,7 @@ class OssnComponents extends OssnDatabase {
 		/**
 		 * Check component requirments 
 		 *
-		 * @param xml $element A valid component xml file
+		 * @param string $element A valid component xml file
 		 *
 		 * @return false|array
 		 */
@@ -297,7 +297,7 @@ class OssnComponents extends OssnDatabase {
 		/**
 		 * Check if component is active or not
 		 *
-		 * @return bool;
+		 * @return boolean
 		 */
 		public function isActive($id = '') {
 				if(empty($id)) {
@@ -317,7 +317,7 @@ class OssnComponents extends OssnDatabase {
 		/**
 		 * Enable Component
 		 *
-		 * @return bool;
+		 * @return boolean
 		 */
 		public function enable($com) {
 				if(!empty($com) && is_dir(ossn_route()->com . $com)) {
@@ -360,7 +360,7 @@ class OssnComponents extends OssnDatabase {
 		/**
 		 * Delete component
 		 *
-		 * @return bool;
+		 * @return boolean
 		 */
 		public function delete($com) {
 				if(in_array($com, $this->requiredComponents())) {
@@ -383,7 +383,7 @@ class OssnComponents extends OssnDatabase {
 		 *
 		 * Admin can't disable required components;
 		 *
-		 * @return array;
+		 * @return array
 		 */
 		public function requiredComponents() {
 				return array(
@@ -402,7 +402,7 @@ class OssnComponents extends OssnDatabase {
 		/**
 		 * Disable component
 		 *
-		 * @return bool;
+		 * @return boolean
 		 */
 		public function DISABLE($com = NULL) {
 				if(in_array($com, $this->requiredComponents())) {
@@ -420,7 +420,7 @@ class OssnComponents extends OssnDatabase {
 		/**
 		 * Bundled components
 		 *
-		 * @return array;
+		 * @return array
 		 */
 		public function bundledComponents() {
 				return array_merge(array(
@@ -439,12 +439,10 @@ class OssnComponents extends OssnDatabase {
 		 *
 		 * setSettings should have array() to accept values #434
 		 *
-		 * @params $component Component id
-		 *         $setting Setting name
-		 *         $value Setting value
+		 * @param  string $component Component id
+		 * @param  array vars Setting (two-dem array)
 		 *
-		 *
-		 * @return bool;
+		 * @return boolean
 		 */
 		public function setSettings($component, array $vars = array()) {
 				$settings = self::getComSettings($component);
@@ -478,7 +476,7 @@ class OssnComponents extends OssnDatabase {
 		 *
 		 * @note This method is deprecated and will be removed in Ossn v4.0
 		 *
-		 * @return bool;
+		 * @return boolean
 		 */
 		public function setComSETTINGS($component, $setting, $value) {
 				return $this->setSettings($component, array(

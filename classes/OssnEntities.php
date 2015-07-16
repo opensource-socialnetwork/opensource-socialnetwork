@@ -12,7 +12,7 @@ class OssnEntities extends OssnDatabase {
 		/**
 		 * Initialize the objects.
 		 *
-		 * @return void;
+		 * @return void
 		 */
 		private function initAttributes() {
 				$this->data         = new stdClass;
@@ -65,14 +65,14 @@ class OssnEntities extends OssnDatabase {
 		/**
 		 * Add new entity.
 		 *
-		 * @params = $this->type => entity type; (this usually is user, object, annotation, site)
-		 *           $this->subtype => entity subtype;
-		 *           $this->entity_permission => OSSN_ACCESS
-		 *           $this->active = is entity is active or not
-		 *           $this->value = data you want to insert
-		 *           $this->owner_guid = entity owner guid
+		 * Requires object  $this->type => entity type; (this usually is user, object, annotation, site)
+		 *           		$this->subtype => entity subtype;
+		 *           		$this->entity_permission => OSSN_ACCESS
+		 *           		$this->active = is entity is active or not
+		 *          	 	$this->value = data you want to insert
+		 *           		$this->owner_guid = entity owner guid
 		 *
-		 * @return bool;
+		 * @return boolean
 		 */
 		public function add() {
 				self::initAttributes();
@@ -115,9 +115,9 @@ class OssnEntities extends OssnDatabase {
 		/**
 		 * Get Entity.
 		 *
-		 * @params = $this->entity_guid => entity guid in database;
+		 * Requires object $this->entity_guid Entity guid in database;
 		 *
-		 * @return (object);
+		 * @return object|false
 		 */
 		public function get_entity() {
 				self::initAttributes();
@@ -150,9 +150,9 @@ class OssnEntities extends OssnDatabase {
 		/**
 		 * Update Entity in database.
 		 *
-		 * @required (object)->data
+		 * Requires $object->data
 		 *
-		 * @return bool;
+		 * @return boolean
 		 */
 		public function save() {
 				if(!empty($this->owner_guid)) {
@@ -202,9 +202,9 @@ class OssnEntities extends OssnDatabase {
 		/**
 		 * Get data object.
 		 *
-		 * @required (object)->data
+		 * Requires $object->data
 		 *
-		 * @return (array);
+		 * @return false|arrray;
 		 */
 		private function get_data_vars() {
 				if(!$this->data) {
@@ -219,12 +219,12 @@ class OssnEntities extends OssnDatabase {
 		/**
 		 * Get entities.
 		 *
-		 * @params = $this->type => entity type;
-		 *           $this->subtype => entity subtype;
-		 *           $this->owner_guid => guid of entity owner
-		 *           $this->order_by =  to sort the data in a recordset
+		 * Requires object 	$this->type => entity type;
+		 *           		$this->subtype => entity subtype;
+		 *           		$this->owner_guid => guid of entity owner
+		 *           		$this->order_by =  to sort the data in a recordset
 		 *
-		 * @return (object);
+		 * @return object
 		 */
 		public function get_entities() {
 				self::initAttributes();
@@ -244,7 +244,7 @@ class OssnEntities extends OssnDatabase {
 		/**
 		 * Get newly added entity guid.
 		 *
-		 * @return (int);
+		 * @return integer
 		 */
 		public function AddedEntityGuid() {
 				return $this->getLastEntry();
@@ -292,12 +292,11 @@ class OssnEntities extends OssnDatabase {
 		/**
 		 * Delete all entities related to owner guid.
 		 *
-		 * @params = $guid = Entity guid in database
-		 *           $type = Entity type
-		 * @param string $type
+		 * @param integer $guid Entity guid in database
+		 * @param  string $type Entity type
 		 *
 		 * @todo why not there is subtype?
-		 * @return (bool);
+		 * @return boolean
 		 */
 		public function deleteByOwnerGuid($guid, $type) {
 				
@@ -319,9 +318,9 @@ class OssnEntities extends OssnDatabase {
 		/**
 		 * Delete entity.
 		 *
-		 * @params = $guid = Entity guid in database
+		 * @param integer $guid Entity guid in database
 		 *
-		 * @return (bool);
+		 * @return boolean
 		 */
 		public function deleteEntity($guid) {
 				if(isset($this->guid) && !empty($this->guid) && empty($guid)) {
@@ -348,9 +347,9 @@ class OssnEntities extends OssnDatabase {
 		/**
 		 * Get subtypes from entites.
 		 *
-		 * @required (object)->data
+		 * Requires $object->data
 		 *
-		 * @return (array);
+		 * @return array
 		 */
 		private function get_data_dbvars() {
 				$entities = $this->get_entities();

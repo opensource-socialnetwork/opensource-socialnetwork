@@ -13,9 +13,9 @@ class OssnThemes extends OssnSite {
 		/**
 		 * Get theme details
 		 *
-		 * @params $name = theme id;
+		 * @param string $name Theme id;
 		 *
-		 * @return (object) or return false;
+		 * @return object|false;
 		 */
 		public static function getTheme($name) {
 				$name = trim($name);
@@ -42,7 +42,7 @@ class OssnThemes extends OssnSite {
 		/**
 		 * Get total themes
 		 *
-		 * @return int;
+		 * @return integer
 		 */
 		public function total() {
 				return count($this->getThemes());
@@ -73,9 +73,9 @@ class OssnThemes extends OssnSite {
 		/**
 		 * Upload component
 		 *
-		 * @requires component package file,
+		 * Requires component package file,
 		 *
-		 * @return bool;
+		 * @return boolean
 		 */
 		public function upload() {
 				$archive  = new ZipArchive;
@@ -108,7 +108,7 @@ class OssnThemes extends OssnSite {
 		/**
 		 * Get active theme startup file
 		 *
-		 * @return string;
+		 * @return string
 		 */
 		public function getActivePath() {
 				$path = ossn_route()->themes;
@@ -117,7 +117,7 @@ class OssnThemes extends OssnSite {
 		/**
 		 * Get active theme startup file
 		 *
-		 * @return string;
+		 * @return string
 		 */
 		public function loadActive() {
 				$path = ossn_route()->themes;
@@ -134,9 +134,9 @@ class OssnThemes extends OssnSite {
 		/**
 		 * Enable Theme
 		 *
-		 * @params $name = theme id;
+		 * @params string $name Theme id;
 		 *
-		 * @return bool;
+		 * @return boolean
 		 */
 		public function Enable($theme) {
 				if(!empty($theme)) {
@@ -156,7 +156,7 @@ class OssnThemes extends OssnSite {
 		/**
 		 * Delete theme
 		 *
-		 * @return bool;
+		 * @return boolean
 		 */
 		public function deletetheme($theme) {
 				if(OssnFile::DeleteDir(ossn_route()->themes . "{$theme}/")) {
@@ -184,7 +184,7 @@ class OssnThemes extends OssnSite {
 		/**
 		 * Check theme requirments 
 		 *
-		 * @param xml $element A valid theme xml file
+		 * @param string $element A valid theme xml file
 		 *
 		 * @return false|array
 		 */

@@ -13,7 +13,7 @@ class OssnObject extends OssnEntities {
 		/**
 		 * Initialize the objects.
 		 *
-		 * @return void;
+		 * @return void
 		 */
 		public function initAttributes() {
 				$this->time_created = time();
@@ -26,11 +26,11 @@ class OssnObject extends OssnEntities {
 		}
 		
 		/**
-		 * Create object;
+		 * Create objects
 		 *
-		 * @requires : (object)->(owner_guid, type, subtype, title, description)
+		 * requires $object->(owner_guid, type, subtype, title, description)
 		 *
-		 * @return bool;
+		 * @return boolean
 		 */
 		public function addObject() {
 				self::initAttributes();
@@ -72,10 +72,10 @@ class OssnObject extends OssnEntities {
 		/**
 		 * Get object by owner guid;
 		 *
-		 * @requires : (object)->(owner_guid)
-		 *             (object)->order_by => to sort the data in a recordset
+		 * Requires    $object->owner_guid
+		 *             $object->order_by To sort the data in a recordset
 		 *
-		 * @return (object);
+		 * @return object
 		 */
 		public function getObjectByOwner() {
 				if(empty($this->type)) {
@@ -100,10 +100,10 @@ class OssnObject extends OssnEntities {
 		/**
 		 * Get object by types;
 		 *
-		 * @requires : (object)->(type , subtype(optional))
-		 *             (object)->order_by => to sort the data in a recordset
+		 * Requires : $object->(type , subtype(optional))
+		 *            $object->order_by To sort the data in a recordset
 		 *
-		 * @return (object);
+		 * @return object
 		 */
 		public function getObjectsByTypes() {
 				$params               = array();
@@ -125,9 +125,9 @@ class OssnObject extends OssnEntities {
 		/**
 		 * Get object by object guid;
 		 *
-		 * @requires : (object)->(object_guid)
+		 * Requires : $object->object_guid
 		 *
-		 * @return (object);
+		 * @return object;
 		 */
 		public function getObjectById() {
 				self::initAttributes();
@@ -170,7 +170,7 @@ class OssnObject extends OssnEntities {
 		/**
 		 * Get newly created object
 		 *
-		 * @return (int);
+		 * @return void|integer
 		 */
 		public function getObjectId() {
 				if(isset($this->createdObject)) {
@@ -181,14 +181,11 @@ class OssnObject extends OssnEntities {
 		/**
 		 * Update Object;
 		 *
-		 * @params = $name => array(column names)
-		 *           $values => array(new values)
-		 *           $guid => object_guid
-		 *           (object)->data->object(update object entities)
-		 * @param string[] $name
-		 * @param string[] $value
+		 * @param array $name Names
+		 * @param array $value Values
+		 * @param integer $guid Object guid
 		 *
-		 * @return bool;
+		 * @return boolean
 		 */
 		public function updateObject($name, $value, $guid) {
 				self::initAttributes();
@@ -212,9 +209,9 @@ class OssnObject extends OssnEntities {
 		/**
 		 * Delete object;
 		 *
-		 * @params = $object => object guid
+		 * @param integer $object Object guid
 		 *
-		 * @return bool;
+		 * @return boolean
 		 */
 		public function deleteObject($object) {
 				self::initAttributes();

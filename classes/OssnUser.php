@@ -13,7 +13,7 @@ class OssnUser extends OssnEntities {
 		/**
 		 * Add user to system.
 		 *
-		 * @return bool;
+		 * @return boolean
 		 */
 		public function addUser() {
 				self::initAttributes();
@@ -107,7 +107,7 @@ class OssnUser extends OssnEntities {
 		/**
 		 * Check if username is exist in database or not.
 		 *
-		 * @return bool;
+		 * @return boolean
 		 */
 		public function isOssnUsername() {
 				$user = $this->getUser();
@@ -120,7 +120,7 @@ class OssnUser extends OssnEntities {
 		/**
 		 * Check if email is exist in database or not.
 		 *
-		 * @return bool;
+		 * @return boolean
 		 */
 		public function isOssnEmail() {
 				$user = $this->getUser();
@@ -133,7 +133,7 @@ class OssnUser extends OssnEntities {
 		/**
 		 * Initialize the objects.
 		 *
-		 * @return void;
+		 * @return void
 		 */
 		public function initAttributes() {
 				$this->OssnDatabase   = new OssnDatabase;
@@ -147,7 +147,7 @@ class OssnUser extends OssnEntities {
 		/**
 		 * Get user with its entities.
 		 *
-		 * @return object;
+		 * @return object
 		 */
 		public function getUser() {
 				if(!empty($this->email)) {
@@ -193,7 +193,7 @@ class OssnUser extends OssnEntities {
 		/**
 		 * Check if password is > 5 or not.
 		 *
-		 * @return bool;
+		 * @return boolean
 		 */
 		public function isPassword() {
 				if(strlen($this->password) > 5) {
@@ -204,7 +204,7 @@ class OssnUser extends OssnEntities {
 		/**
 		 * Check if password is > 5 or not.
 		 *
-		 * @return bool;
+		 * @return boolean
 		 */
 		public function isEmail() {
 				if(filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
@@ -215,7 +215,7 @@ class OssnUser extends OssnEntities {
 		/**
 		 * Check if the user is correct or not.
 		 *
-		 * @return bool;
+		 * @return boolean
 		 */
 		public function isUsername() {
 				if(preg_match("/^[a-zA-Z0-9]+$/", $this->username) && strlen($this->username) > 4) {
@@ -227,7 +227,7 @@ class OssnUser extends OssnEntities {
 		/**
 		 * Generate salt.
 		 *
-		 * @return string;
+		 * @return string
 		 */
 		public function generateSalt() {
 				return substr(uniqid(), 5);
@@ -236,7 +236,7 @@ class OssnUser extends OssnEntities {
 		/**
 		 * Generate password.
 		 *
-		 * @return hash;
+		 * @return string
 		 */
 		public function generate_password($password = '', $salt = '') {
 				return md5($password . $salt);
@@ -245,7 +245,7 @@ class OssnUser extends OssnEntities {
 		/**
 		 * Login into site.
 		 *
-		 * @return bool;
+		 * @return boolean
 		 */
 		public function Login() {
 				$user     = $this->getUser();
@@ -264,7 +264,7 @@ class OssnUser extends OssnEntities {
 		/**
 		 * Update user last login time.
 		 *
-		 * @return bool;
+		 * @return boolean
 		 */
 		public function update_last_login() {
 				$user             = ossn_loggedin_user();
@@ -288,7 +288,7 @@ class OssnUser extends OssnEntities {
 		/**
 		 * Get user friends requests.
 		 *
-		 * @return object;
+		 * @return object
 		 */
 		public function getFriendRequests($user = '') {
 				if(isset($this->guid)) {
@@ -324,7 +324,7 @@ class OssnUser extends OssnEntities {
 		/**
 		 * Check if the user is friend with other or not.
 		 *
-		 * @return bool;
+		 * @return boolean
 		 */
 		public function isFriend($usera, $user2) {
 				$this->statement("SELECT * FROM ossn_relationships WHERE(
@@ -350,7 +350,7 @@ class OssnUser extends OssnEntities {
 		/**
 		 * Get user friends.
 		 *
-		 * @return object;
+		 * @return object
 		 */
 		public function getFriends($user = '') {
 				if(isset($this->guid)) {
@@ -379,7 +379,7 @@ class OssnUser extends OssnEntities {
 		/**
 		 * Send request to other user.
 		 *
-		 * @return bool;
+		 * @return boolean
 		 */
 		public function sendRequest($from, $to) {
 				if($this->requestExists($from, $to)) {
@@ -394,7 +394,7 @@ class OssnUser extends OssnEntities {
 		/**
 		 * Check if the request already sent or not.
 		 *
-		 * @return bool;
+		 * @return boolean
 		 */
 		public function requestExists($from, $user) {
 				if(isset($this->guid)) {
@@ -416,7 +416,7 @@ class OssnUser extends OssnEntities {
 		/**
 		 * Delete friend from list
 		 *
-		 * @return bool;
+		 * @return boolean
 		 */
 		public function deleteFriend($from, $to) {
 				$this->statement("DELETE FROM ossn_relationships WHERE(
@@ -431,7 +431,7 @@ class OssnUser extends OssnEntities {
 		/**
 		 * Get site users.
 		 *
-		 * @return object;
+		 * @return object
 		 */
 		public function getSiteUsers() {
 				$this->statement("SELECT * FROM ossn_users");
@@ -442,7 +442,7 @@ class OssnUser extends OssnEntities {
 		/**
 		 * Update user last activity time
 		 *
-		 * @return bool;
+		 * @return boolean
 		 */
 		public function update_last_activity() {
 				$user = ossn_loggedin_user();
@@ -468,7 +468,7 @@ class OssnUser extends OssnEntities {
 		/**
 		 * Count Total online site users.
 		 *
-		 * @return bool;
+		 * @return boolean
 		 */
 		public function online_total() {
 				return count((array) $this->getOnline());
@@ -477,9 +477,9 @@ class OssnUser extends OssnEntities {
 		/**
 		 * Get online site users.
 		 *
-		 * @params = $intervals => seconds
+		 * @params integer $intervals Seconds
 		 *
-		 * @return object;
+		 * @return object
 		 */
 		public function getOnline($intervals = '100') {
 				$time             = time();
@@ -500,7 +500,7 @@ class OssnUser extends OssnEntities {
 		/**
 		 * Search site users with its entities
 		 *
-		 * @return bool;
+		 * @return boolean
 		 */
 		public function searchUsers($q) {
 				$search = $this->SearchSiteUsers($q);
@@ -519,7 +519,7 @@ class OssnUser extends OssnEntities {
 		/**
 		 * Search users without entities.
 		 *
-		 * @return object;
+		 * @return object
 		 */
 		public function SearchSiteUsers($search) {
 				//don't listup all users if search query is empty
@@ -548,7 +548,7 @@ class OssnUser extends OssnEntities {
 		/**
 		 * Validate User Registration
 		 *
-		 * @return bool;
+		 * @return boolean
 		 */
 		public function ValidateRegistration($code) {
 				$user_activation = $this->getUser();
@@ -574,7 +574,7 @@ class OssnUser extends OssnEntities {
 		/**
 		 * View user icon url
 		 *
-		 * @return url;
+		 * @return string
 		 */
 		public function iconURL() {
 				$this->iconURLS = new stdClass;
@@ -589,7 +589,7 @@ class OssnUser extends OssnEntities {
 		/**
 		 * View user profile url
 		 *
-		 * @return url;
+		 * @return string
 		 */
 		public function profileURL($extends = '') {
 				$this->profileurl = ossn_site_url("u/{$this->username}") . $extends;
@@ -599,7 +599,7 @@ class OssnUser extends OssnEntities {
 		/**
 		 * Send user reset password link
 		 *
-		 * @return bool;
+		 * @return boolean
 		 */
 		public function SendResetLogin() {
 				self::initAttributes();
@@ -634,7 +634,7 @@ class OssnUser extends OssnEntities {
 		/**
 		 * Reset user password
 		 *
-		 * @return bool;
+		 * @return boolean
 		 */
 		public function resetPassword($password) {
 				if(!empty($password)) {
@@ -662,7 +662,7 @@ class OssnUser extends OssnEntities {
 		/**
 		 * Remove user reset code
 		 *
-		 * @return bool;
+		 * @return boolean
 		 */
 		public function deleteResetCode() {
 				$this->type       = 'user';
@@ -678,7 +678,7 @@ class OssnUser extends OssnEntities {
 		/**
 		 * Check if user is online or not
 		 *
-		 * @return bool;
+		 * @return boolean
 		 */
 		public function isOnline($intervals = 100) {
 				if(isset($this->last_activity)) {
@@ -693,7 +693,7 @@ class OssnUser extends OssnEntities {
 		/**
 		 * Delete user from syste,
 		 *
-		 * @return bool;
+		 * @return boolean
 		 */
 		public function deleteUser() {
 				self::initAttributes();
@@ -732,7 +732,7 @@ class OssnUser extends OssnEntities {
 		/**
 		 * Check if user is validated or not
 		 * 
-		 * @return bool
+		 * @return boolean
 		 */
 		public function isUserVALIDATED() {
 				if(isset($this->activation) && empty($this->activation)) {
@@ -743,7 +743,7 @@ class OssnUser extends OssnEntities {
 		/**
 		 * Resend validation email to user
 		 *
-		 * @return bool
+		 * @return boolean
 		 */
 		public function resendValidationEmail() {
 				self::initAttributes();
@@ -836,7 +836,7 @@ class OssnUser extends OssnEntities {
 		/**
 		 * User logout
 		 *
-		 * @return void;
+		 * @return void
 		 */
 		public static function Logout() {
 				unset($_SESSION['OSSN_USER']);

@@ -12,7 +12,7 @@ class OssnAnnotation extends OssnEntities {
 		/**
 		 * Initialize the objects.
 		 *
-		 * @return void;
+		 * @return void
 		 */
 		public function initAttributes() {
 				$this->OssnDatabase = new OssnDatabase;
@@ -30,9 +30,9 @@ class OssnAnnotation extends OssnEntities {
 		/**
 		 * Create annotation;
 		 *
-		 * @requires : $object->(owner_guid, subject_guid, type, subtype, value)
+		 * Requires : $object->(owner_guid, subject_guid, type, subtype, value)
 		 *
-		 * @return bool;
+		 * @return boolean
 		 */
 		public function addAnnotation() {
 				self::initAttributes();
@@ -76,9 +76,9 @@ class OssnAnnotation extends OssnEntities {
 		/**
 		 * Get annotation by annotation id;
 		 *
-		 * @requires : $object->(annotation_id)
+		 * Requires : $object->(annotation_id)
 		 *
-		 * @return annotation;
+		 * @return object
 		 */
 		public function getAnnotationById() {
 				$params                 = array();
@@ -92,9 +92,9 @@ class OssnAnnotation extends OssnEntities {
 		/**
 		 * Get annotations by annotation type
 		 *
-		 * @requires : $object->(annotation_id)
+		 * Requires: $object->(annotation_id)
 		 *
-		 * @return annotation;
+		 * @return object;
 		 */
 		public function getAnnotationsByType() {
 				$params                 = array();
@@ -106,7 +106,7 @@ class OssnAnnotation extends OssnEntities {
 		/**
 		 * Get annotations by owner 
 		 *
-		 * @requires : $this->owner_guid
+		 * Requires : $this->owner_guid
 		 *
 		 * @return object;
 		 */
@@ -123,7 +123,7 @@ class OssnAnnotation extends OssnEntities {
 		 *         $type = annotation type
 		 * @param string $type
 		 *
-		 * @return bool;
+		 * @return object;
 		 */
 		public function annon_delete_by_subject($subject, $type) {
 				self::initAttributes();
@@ -142,9 +142,9 @@ class OssnAnnotation extends OssnEntities {
 		/**
 		 * Get annotation by subject_guid;
 		 *
-		 * @requires : $object->(subject_guid, types(optional))
+		 * Requires : $object->(subject_guid, types(optional))
 		 *
-		 * @return annotations;
+		 * @return object;
 		 */
 		public function getAnnotationBySubject() {
 				if(!isset($this->count)){
@@ -165,9 +165,9 @@ class OssnAnnotation extends OssnEntities {
 		/**
 		 * Delete Annotation
 		 *
-		 * @params $annotation = annotation_id
+		 * @param integer $annotation annotation_id
 		 *
-		 * @return bool;
+		 * @return boolean;
 		 */
 		public function deleteAnnotation($annotation) {
 				self::initAttributes();
@@ -190,9 +190,9 @@ class OssnAnnotation extends OssnEntities {
 		/**
 		 * Delete Annotation
 		 *
-		 * @params $annotation = annotation_id
+		 * @param integer $annotation annotation_id
 		 *
-		 * @return bool;
+		 * @return boolean
 		 */
 		public function deleteAnnotationByOwner($ownerguid) {
 				self::initAttributes();
@@ -210,7 +210,7 @@ class OssnAnnotation extends OssnEntities {
 		/**
 		 * Get newly create annoation id
 		 *
-		 * @return (int);
+		 * @return integer
 		 */
 		public function getAnnotationId() {
 				return $this->annotation_inserted;

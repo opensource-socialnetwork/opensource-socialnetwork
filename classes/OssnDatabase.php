@@ -13,7 +13,7 @@ class OssnDatabase extends OssnBase {
 		/**
 		 * Connect to mysql database
 		 *
-		 * @return bool;
+		 * @return boolean
 		 */
 		public function Connect() {
 				$settings = ossn_database_settings();
@@ -27,12 +27,12 @@ class OssnDatabase extends OssnBase {
 		/**
 		 * Prepare a query to insert data in database
 		 *
-		 * @params = array();
-		 *           $params['names'] = names of columns
-		 *           $params['values'] = values that need to be inserted
-		 *           $params['into'] = table name
+		 * @param array array();
+		 * 			'names' Names of columns
+		 *          'values' Values that need to be inserted
+		 *          'into' Table name
 		 *
-		 * @return bool;
+		 * @return boolean
 		 */
 		public function insert($params) {
 				if(is_array($params)) {
@@ -52,7 +52,7 @@ class OssnDatabase extends OssnBase {
 		/**
 		 * Prepare a mysqli query
 		 *
-		 * @return bool;
+		 * @return boolean
 		 */
 		public function statement($query) {
 				if(!empty($query)) {
@@ -65,7 +65,7 @@ class OssnDatabase extends OssnBase {
 		/**
 		 * Execute a mysqli query and store result in memory
 		 *
-		 * @return bool;
+		 * @return boolean
 		 */
 		public function execute() {
 				$this->database = $this->Connect();
@@ -89,13 +89,13 @@ class OssnDatabase extends OssnBase {
 		/**
 		 * Prepare a query to update data in database
 		 *
-		 * @params = array();
-		 *           $params['names'] = names of columns
-		 *           $params['values'] = values that need to be updated
-		 *           $params['table'] = table name
-		 *           $params['wheres'] =  specify a selection criteria to update required records
+		 * @param array array();
+		 *          'names' Names of columns
+		 *          'values' Values that need to be updated
+		 *          'table'	Table name
+		 *          'wheres' Specify a selection criteria to update required records
 		 *
-		 * @return bool;
+		 * @return boolean
 		 */
 		public function update($params = array()) {
 				if(is_array($params)) {
@@ -129,12 +129,12 @@ class OssnDatabase extends OssnBase {
 		/**
 		 * Prepare a query to select data from database
 		 *
-		 * @params = array();
-		 *           $params['from'] = names of table
-		 *           $params['params'] = names of columns which you want to select
-		 *           $params['wheres'] =  specify a selection criteria to get required records
+		 * @param array array();
+		 *           'from' Names of table
+		 *           'params' Names of columns which you want to select
+		 *           'wheres' Specify a selection criteria to get required records
 		 *
-		 * @return bool;
+		 * @return boolean
 		 */
 		public function select($params, $multi = '') {
 				if(is_array($params)) {
@@ -182,9 +182,9 @@ class OssnDatabase extends OssnBase {
 		/**
 		 * Fetch the data from memory that is stored during execution;
 		 *
-		 * @params = $data = (ture if you want to fetch all data , or flase if only one row)
+		 * @param boolean $data Ture if you want to fetch all data , or false if only one row
 		 *
-		 * @return bool;
+		 * @return boolean
 		 */
 		public function fetch($data = false) {
 				if(isset($this->exe)) {
@@ -210,11 +210,11 @@ class OssnDatabase extends OssnBase {
 		/**
 		 * Prepare a query to delete data from database
 		 *
-		 * @params = array();
-		 *           $params['from'] = names of table
-		 *           $params['wheres'] =  specify a criteria for deletion
+		 * @param array array();
+		 *           'from' Names of table
+		 *           'wheres' Specify a selection criteria to get required records
 		 *
-		 * @return bool;
+		 * @return boolean
 		 */
 		public function delete($params) {
 				if(is_array($params)) {
@@ -238,7 +238,7 @@ class OssnDatabase extends OssnBase {
 		/**
 		 * Get a guid of newly create entry
 		 *
-		 * @return (int);
+		 * @return integer
 		 */
 		public function getLastEntry() {
 				if(!empty($this->last_id)) {
@@ -251,7 +251,7 @@ class OssnDatabase extends OssnBase {
 		 * @param array $array A valid array containg wheres clauses;
 		 * @param string $operator AND, OR, LIKE
 		 *
-		 * @return string;
+		 * @return string
 		 */
 		public function constructWheres(array $array, $operator = "AND") {
 				if(!empty($array) && !empty($operator)) {

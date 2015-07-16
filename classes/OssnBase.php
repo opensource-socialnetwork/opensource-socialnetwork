@@ -34,7 +34,6 @@ class OssnBase {
     /**
      * Get a parameter from object
      *
-     * @params = parameter
      * @param string $param
      *
      * @return string;

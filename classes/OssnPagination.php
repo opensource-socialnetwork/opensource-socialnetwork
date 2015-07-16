@@ -13,7 +13,7 @@ class OssnPagination {
     /**
      * Construct a pagination class;
      *
-     * @return void;
+     * @return void
      */
     public function __construct($ppage = 10, array $options = array()) {
 		if(is_integer($ppage)){
@@ -25,7 +25,7 @@ class OssnPagination {
     /**
      * Get current url with arguments;
      *
-     * @return string;
+     * @return string
      */
  public static function constructUrlArgs($kill = array()) {
 		
@@ -56,9 +56,9 @@ class OssnPagination {
     /**
      * Set arrays or objects to pagination;
      *
-     * @params = $item => array, object
+     * @params array|object $item Item
      *
-     * @return bool;
+     * @return void
      */
     public function setItem($item) {
         if (is_object($item)) {
@@ -73,9 +73,9 @@ class OssnPagination {
     /**
      * Get spilted array or object;
      *
-     * @note =  (object may changed to arrays)
+     * object may changed to arrays
      *
-     * @return bool;
+     * @return boolean
      */
     public function getItem() {
         $item = $this->getItems();
@@ -96,9 +96,9 @@ class OssnPagination {
     }
 
     /**
-     * Spilt a arrays or objects into pagination;
+     * Spilt a arrays or objects into pagination
      *
-     * @return bool;
+     * @return boolean
      */
     private function getItems() {
         if (!isset($this->setItem)) {
@@ -112,9 +112,9 @@ class OssnPagination {
     }
 
     /**
-     * Output pagination bar;
+     * Output pagination bar
      *
-     * @return html;
+     * @return false|string
      */
     public function pagination($vars = array()) {
         if (!isset($this->setItem) && !isset($vars)) {
@@ -148,9 +148,9 @@ class OssnPagination {
     /**
      * Call a structure of pagination;
      *
-     * @params = array(count, active)
+     * @param array $params array(count, active)
      *
-     * @return html;
+     * @return string
      */
     private function view($params) {
         $theme = ossn_site_settings('theme');
