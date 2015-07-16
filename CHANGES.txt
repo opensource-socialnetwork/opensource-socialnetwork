@@ -24,6 +24,8 @@ Bugfixes:
  * There is no need to add notification if no hook is present.
  * Unwanted refresh in message window #416
  * [OSSN 3.x] OssnEmbed in settings #466
+ * CSS: Pagination with more than 10 users #468
+ * ossnblack theme white page issue #469
 
 Additions:
 	
@@ -47,3 +49,4 @@ Additions:
  * 3 state logic for notifications #202
  * Ossn Wall ajax post
  * allow duplicate group names? #112
+ * Match file during upload #402
