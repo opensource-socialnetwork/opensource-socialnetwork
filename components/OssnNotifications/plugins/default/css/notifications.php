@@ -1,13 +1,12 @@
 /**
-* Open Source Social Network
-*
-* @package   (Informatikon.com).ossn
-* @author    OSSN Core Team
-<info@opensource-socialnetwork.org>
-* @copyright 2014 iNFORMATIKON TECHNOLOGIES
-* @license   General Public Licence http://www.opensource-socialnetwork.org/licence
-* @link      http://www.opensource-socialnetwork.org/licence
-*/
+ * Open Source Social Network
+ * 
+ * @package   (Informatikon.com).ossn
+ * @author    OSSN Core Team <info@opensource-socialnetwork.org>
+ * @copyright 2014 iNFORMATIKON TECHNOLOGIES
+ * @license   General Public Licence http://www.opensource-socialnetwork.org/licence
+ * @link      http://www.opensource-socialnetwork.org/licence 
+ */
 .ossn-notifications-all li{
 padding: 10px;
 border-bottom: 1px solid #ddd;
@@ -87,3 +86,10 @@ display:none;
 .ossn-notif-hide {
 display:none;
 }    
+.ossn-notification-mark-read {
+  float: right;
+  font-weight: normal;
+}
+.ossn-notification-mark-read:hover {
+	text-decoration:underline;
+}
