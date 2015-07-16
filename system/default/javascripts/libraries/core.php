@@ -48,7 +48,8 @@ Ossn.ajaxRequest = function($data) {
         var error = $data['error'];
         var befsend = $data['beforeSend'];
         var action = $data['action'];
-
+		var containMedia = $data['containMedia'];
+		
         if (url == true) {
             url = $($form_name).attr('action');
         }
@@ -67,6 +68,7 @@ Ossn.ajaxRequest = function($data) {
             if (action == true) {
                 url = Ossn.AddTokenToUrl(url);
             }
+
             if (!error) {
                 error = function(xhr, status, error) {
                     if (error == 'Internal Server Error' || error !== '') {
@@ -75,15 +77,32 @@ Ossn.ajaxRequest = function($data) {
                 };
             }
             var $form = $(this);
-            $.ajax({
-                async: true,
-                type: 'post',
-                beforeSend: befsend,
-                url: url,
-                error: error,
-                data: $(this).serialize(),
-                success: callback,
-            });
+			if(containMedia == true){
+					$vars = {
+                		async: true,
+                		cache: false,
+                		contentType: false,				
+                		type: 'post',
+                		beforeSend: befsend,
+                		url: url,
+                		error: error,
+                		data: new FormData($form[0]),
+						processData: false,
+                		success: callback,
+            		};
+			} else {
+					$vars = {
+                		async: true,
+                		type: 'post',
+                		beforeSend: befsend,
+                		url: url,
+                		error: error,
+                		data: $form.serialize(),
+                		success: callback,
+            		};			
+			 }
+			
+            $.ajax($vars);
         });
     });
 };
@@ -240,6 +259,32 @@ Ossn.RegisterStartupFunction(function() {
         }, 6000).slideUp('slow');
     });
 });
+/**
+ * Add a system messages for users
+ *
+ * @param string $messages Message for user
+ * @param string $type Message type success (default) or error
+ *
+ * @return void
+ */
+Ossn.trigger_message = function($message, $type){
+	$type = $type || 'success';
+	if($type == 'error'){
+		//compitable to bootstrap framework
+		$type = 'danger';
+	}
+	if($message == ''){
+		return false;
+	}
+	$html = "<div class='alert alert-"+$type+"'><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a>"+$message+"</div>";
+	$('.ossn-system-messages').append($html);
+	if($('.ossn-system-messages').is(":not(:visible)")){
+		$('.ossn-system-messages').slideDown('slow');
+	}
+    $('.ossn-system-messages').find('div').animate({
+            opacity: 0.9
+    }, 6000).slideUp('slow');
+};
 /**
  * Setup Google Location input
  *
