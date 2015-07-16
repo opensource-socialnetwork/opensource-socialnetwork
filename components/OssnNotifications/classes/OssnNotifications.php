@@ -12,12 +12,12 @@ class OssnNotifications extends OssnDatabase {
     /**
      * Add notification to database
      *
-     * @params $subject_id: Id of item which user comment
-     *         $poster_guid: Guid of item poster
-     *         $item_guid: Guid of item
-     *         $notification_owner: Guid of notification owner
+     * @param integer $subject_id Id of item which user comment
+     * @param integer $poster_guid Guid of item poster
+     * @param integer $item_guid: Guid of item
+     * @param integer $notification_owner: Guid of notification owner
      *
-     * @return bool;
+     * @return boolean;
      */
     public function add($type, $poster_guid, $subject_guid, $item_guid = NULL, $notification_owner = '') {
         if (!empty($type) && !empty($subject_guid) && !empty($poster_guid)) {
@@ -123,7 +123,7 @@ class OssnNotifications extends OssnDatabase {
     /**
      * Get comments participates
      *
-     * @params $subject_id: Id of item which user comment
+     * @param integer $subject_id Id of item which user comment
      *
      * @return array;
      */
@@ -143,8 +143,8 @@ class OssnNotifications extends OssnDatabase {
     /**
      * Get notifications
      *
-     * @params $guid_two User guid
-     *         $poster_guid: Guid of item poster;
+     * @param integer $guid_two User guid
+     * @param integer $poster_guid Guid of item poster;
      *
      * @return array
      */
@@ -171,10 +171,8 @@ class OssnNotifications extends OssnDatabase {
 
     /**
      * Count user notification
-
-
      *
-     * @params $guid: Count user notifications
+     * @params integer $guid Count user notifications
      *
      * @return int;
      */
@@ -192,7 +190,7 @@ class OssnNotifications extends OssnDatabase {
     /**
      * Get notitication by guid
      *
-     * @params $guid: Notification guid
+     * @param integer $guid Notification guid
      *
      * @return object;
      */
@@ -206,7 +204,7 @@ class OssnNotifications extends OssnDatabase {
     /**
      * Mark notification as viewd
      *
-     * @params $guid: Notification guid
+     * @param integer $guid Notification guid
      *
      * @return object;
      */
@@ -220,9 +218,9 @@ class OssnNotifications extends OssnDatabase {
     /**
      * Delete user notifications
      *
-     * @param (object) $user User entity
+     * @param object $user User entity
      *
-     * @return bool;
+     * @return boolean;
      */	
 	public function deleteUserNotifications($user){
 		if($user){
@@ -233,6 +231,26 @@ class OssnNotifications extends OssnDatabase {
 			}
 		}
 		return false;
+	}
+    /**
+     * Clear all notifications of specific user
+     * See : 3 state logic for notifications #202 
+	 * https://github.com/opensource-socialnetwork/opensource-socialnetwork/issues/202
+	 *
+     * @param integer $guid User guid
+     *
+     * @return boolean;
+     */		
+	public function clearAll($guid){
+		if(empty($guid)){
+			return false;
+		}
+		$vars = array();
+		$vars['table'] = "ossn_notifications";
+		$vars['names']	= array('viewed');
+		$vars['values'] = array('');
+		$vars['wheres'] = array("owner_guid='{$guid}'");
+		return $this->update($vars);
 	}
 
 }
