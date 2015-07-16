@@ -724,8 +724,8 @@ function ossn_check_update() {
         $file = file_get_contents($url, false, $context);
         $data = json_decode($file);
         $file = simplexml_load_string(base64_decode($data->content));
-        if (!empty($file->version)) {
-            return ossn_print('ossn:version:avaialbe', $file->version);
+        if (!empty($file->stable_version)) {
+            return ossn_print('ossn:version:avaialbe', $file->stable_version);
         }
     }
     return ossn_print('ossn:update:check:error');

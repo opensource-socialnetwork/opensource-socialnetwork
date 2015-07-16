@@ -50,3 +50,4 @@ Additions:
  * Ossn Wall ajax post
  * allow duplicate group names? #112
  * Match file during upload #402
+ * Only show stable_version in available updates
