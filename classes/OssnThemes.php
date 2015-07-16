@@ -85,6 +85,7 @@ class OssnThemes extends OssnSite {
 				}
 				$file = new OssnFile;
 				$file->setFile('theme_file');
+				$file->setExtension(array('zip'));
 				$zip     = $file->file;
 				$newfile = "{$data_dir}/{$zip['name']}";
 				if(move_uploaded_file($zip['tmp_name'], $newfile)) {
