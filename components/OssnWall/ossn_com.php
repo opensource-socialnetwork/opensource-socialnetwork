@@ -26,8 +26,8 @@ function ossn_wall() {
 				ossn_register_action('wall/post/g', __OSSN_WALL__ . 'actions/wall/post/group.php');
 				ossn_register_action('wall/post/delete', __OSSN_WALL__ . 'actions/wall/post/delete.php');
 		}
-		if(ossn_isAdminLoggedin()){
-				ossn_register_action('wall/admin/settings', __OSSN_WALL__ . 'actions/wall/admin/settings.php');		
+		if(ossn_isAdminLoggedin()) {
+				ossn_register_action('wall/admin/settings', __OSSN_WALL__ . 'actions/wall/admin/settings.php');
 		}
 		//css and js
 		ossn_extend_view('css/ossn.default', 'css/wall');
@@ -351,8 +351,8 @@ function ossn_set_homepage_wall_access($default = 'friends') {
 						'value' => $default
 				));
 		} else {
-			$settings = $data[0];
-			return ossn_update_entity($settings->guid, $default);
+				$settings = $data[0];
+				return ossn_update_entity($settings->guid, $default);
 		}
 }
 /**
@@ -377,6 +377,43 @@ function ossn_get_homepage_wall_access() {
 		} else {
 				return 'public';
 		}
+}
+/**
+ * Convert wallobject to wall post item
+ *
+ * @param object $post A wall object
+ * 
+ * @return array|false
+ */
+function ossn_wallpost_to_item($post) {
+		if($post && $post instanceof OssnWall) {
+				if(!isset($post->poster_guid)) {
+						$post = ossn_get_object($post->guid);
+				}
+				$data     = json_decode(html_entity_decode($post->description));
+				$text     = ossn_restore_new_lines($data->post, true);
+				$location = '';
+				
+				if(isset($data->location)) {
+						$location = '- ' . $data->location;
+				}
+				if(isset($post->{'file:wallphoto'})) {
+						$image = str_replace('ossnwall/images/', '', $post->{'file:wallphoto'});
+				} else {
+						$image = '';
+				}
+				
+				$user = ossn_user_by_guid($post->poster_guid);
+				return array(
+						'post' => $post,
+						'friends' => explode(',', $data->friend),
+						'text' => $text,
+						'location' => $location,
+						'user' => $user,
+						'image' => $image
+				);
+		}
+		return false;
 }
 //initilize ossn wall
 ossn_register_callback('ossn', 'init', 'ossn_wall');
