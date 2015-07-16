@@ -9,7 +9,7 @@
  * @link      http://www.opensource-socialnetwork.org/licence
  */
 
-$class = 'ossn-textarea-input';
+$class = 'ossn-text-input';
 if(isset($params['class'])){
 	$class = $class . $params['class'];
 }
