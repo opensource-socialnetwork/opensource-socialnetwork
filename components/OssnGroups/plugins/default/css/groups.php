@@ -289,3 +289,9 @@ width: 18px;
 height: 18px;
 position: absolute;
 }
+.ossn-group-search-by {
+  font-size: 14px;
+  position: absolute;
+  margin-top: -40px;
+  margin-left: 12px;
+}
