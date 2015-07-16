@@ -1245,15 +1245,18 @@ background:#F7F7F7;
 
 text-align: center;
 border:1px solid #BBBBBB;
+
+padding: 0;
 }
 .ossn-pagination li{
 display:inline-block;
-padding: 10px;
 }
 .ossn-pagination a{
-font-size:12px;
+	font-size:12px;	
+	padding: 10px;
+    display:block;
 }
-.ossn-pagination .selected {
+.ossn-pagination .active {
 border-bottom: 2px solid #2B5470;
 }
 /** Footer **/

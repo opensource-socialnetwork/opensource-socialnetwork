@@ -60,26 +60,26 @@ if (count($pages) !== 1) {
 		}
 	}
 	
-	echo '<div class="ossn-pagination">';
+	echo '<ul class="pagination ossn-pagination">';
   	//disaply first if first page is exist
 	if(isset($first) && !empty($first)){
         $url = "?offset={$first}{$args_url}";
-     	echo "<a href='{$url}' class='ossn-pagination-page'><li>".ossn_print('ossn:pagination:first')."</li></a>";	
+     	echo "<li><a href='{$url}' class='ossn-pagination-page'>".ossn_print('ossn:pagination:first')."</a></li>";	
 	} 
    foreach ($pages as $page) {
         if ($page == $params['offset']) {
-            $selected = 'class="selected"';
+            $selected = 'class="active"';
             $url = "?offset={$page}{$args_url}";
-            echo "<a href='{$url}' class='ossn-pagination-page'><li {$selected}>{$page}</li></a>";
+            echo "<li {$selected}><a href='{$url}'>{$page}</a></li>";
         } else {
             $url = "?offset={$page}{$args_url}";
-            echo "<a href='{$url}' class='ossn-pagination-page'><li>{$page}</li></a>";
+            echo "<li><a href='{$url}'>{$page}</a></li>";
         }
     }
 	//disply last page if it exist
 	if(isset($last) && !empty($last)){
         $url = "?offset={$last}{$args_url}";
-     	echo "<a href='{$url}' class='ossn-pagination-page'><li>".ossn_print('ossn:pagination:last')."</li></a>";	
+     	echo "<li><a href='{$url}'>".ossn_print('ossn:pagination:last')."</a></li>";	
 	}
-echo '</div>';
+echo '</ul>';
 }
