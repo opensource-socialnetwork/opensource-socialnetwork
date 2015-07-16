@@ -1,3 +1,4 @@
+//<script>
 /**
  * 	Open Source Social Network
  *
@@ -7,10 +8,11 @@
  * @license   General Public Licence http://www.opensource-socialnetwork.org/licence
  * @link      http://www.opensource-socialnetwork.org/licence
  */
-Ossn.NotificationBox = function($title, $meta, $type, height) {
+Ossn.NotificationBox = function($title, $meta, $type, height, $extra) {
 	//trigger notification box again:
   	Ossn.NotificationsCheck();
     
+    $extra = $extra || '';
     if (height == '') {
         height = '540px';
     }
@@ -19,7 +21,7 @@ Ossn.NotificationBox = function($title, $meta, $type, height) {
     }
     if ($title) {
         $('.ossn-notifications-box').show()
-        $('.ossn-notifications-box').find('.type-name').html($title);
+        $('.ossn-notifications-box').find('.type-name').html($title+$extra);
     }
     if ($meta) {
         $('.ossn-notifications-box').find('.metadata').html($meta);
@@ -29,7 +31,7 @@ Ossn.NotificationBox = function($title, $meta, $type, height) {
 Ossn.NotificationBoxClose = function() {
     $('.ossn-notifications-box').hide()
     $('.ossn-notifications-box').find('.type-name').html('');
-    $('.ossn-notifications-box').find('.metadata').html('<div style="height: 66px;"><div class="ossn-loading ossn-notification-box-loading"></div></div><div class="bottom-all"><a href="#"><?php echo ossn_print('see:all'); ?></a></div>');
+    $('.ossn-notifications-box').find('.metadata').html('<div style="height: 66px;"><div class="ossn-loading ossn-notification-box-loading"></div></div><div class="bottom-all"><a href="#">'+Ossn.Print('see:all')+'</a></div>');
     $('.ossn-notifications-box').css('height', '140px');
     $('.selected').attr('class', 'selected');
 
@@ -56,7 +58,7 @@ Ossn.NotificationShow = function($div) {
                 data = callback['data'];
                 height = '100px';
             }
-            Ossn.NotificationBox(Ossn.Print('notifications'), data, 'notifications', height);
+            Ossn.NotificationBox(Ossn.Print('notifications'), data, 'notifications', height,  callback['extra']);
         }
     });
 };
@@ -236,8 +238,30 @@ Ossn.NotificationsCheck = function() {
 };
 Ossn.RegisterStartupFunction(function() {
     $(document).ready(function() {
+							   
         setInterval(function() {
             Ossn.NotificationsCheck()
         }, 5000 * 12);
+		
+		$(document).on('click','.ossn-notification-mark-read', function(e){
+				e.preventDefault();
+   				Ossn.PostRequest({
+        				url: Ossn.site_url + "action/notification/mark/allread",
+        				action:false,
+        				beforeSend: function(request) {
+							$('.ossn-notification-mark-read').attr('style', 'opacity:0.5;');
+ 	       				},
+        				callback: function(callback) {
+           					if(callback['success']){
+								Ossn.trigger_message(callback['success']);
+							}
+							if(callback['error']){
+								Ossn.trigger_message(callback['error']);								
+							}
+							$('.ossn-notification-mark-read').attr('style', '1;');								
+        				}
+    			 });
+		});
+		
     });
 });
