@@ -123,6 +123,7 @@ class OssnDatabase extends OssnBase {
 								
 						}
 				}
+				return false;
 		}
 		
 		/**
