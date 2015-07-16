@@ -45,6 +45,7 @@ if (!isset($params['user']->guid)) {
         <div class="ossn-wall-photo"></div>
     </li>
 	<div style="float:right;">
+    	<div class="ossn-loading ossn-hidden"></div>
    		 <input class="ossn-button-submit-b ossn-wall-post" type="submit" value="<?php echo ossn_print('post'); ?>"/>
 	</div>
     <li class="ossn-wall-privacy">
