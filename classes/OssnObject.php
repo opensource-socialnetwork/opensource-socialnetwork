@@ -149,11 +149,14 @@ class OssnObject extends OssnEntities {
 				$this->type       = 'object';
 				$this->entities   = $this->get_entities();
 				
-				if($this->entities) {
+				if($this->entities && $object) {
 						foreach($this->entities as $entity) {
 								$fields[$entity->subtype] = $entity->value;
 						}
-						$data = array_merge(get_object_vars($object), $fields);
+						$object_array = get_object_vars($object);
+						if(is_array($object_array)){
+							$data = array_merge($object_array, $fields);
+						}
 						if(!empty($fields)) {
 								return arrayObject($data, get_class($this));
 						}
