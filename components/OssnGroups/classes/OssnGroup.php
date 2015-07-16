@@ -400,6 +400,7 @@ class OssnGroup extends OssnObject {
         $this->OssnFile->type = 'object';
         $this->OssnFile->subtype = 'cover';
         $this->OssnFile->setFile('coverphoto');
+        $this->OssnFile->setExtension(array('jpg', 'png', 'jpeg', 'gif'));
         $this->OssnFile->setPath('cover/');
         if ($this->OssnFile->addFile()) {
             $this->ResetCoverPostition($this->OssnFile->owner_guid);

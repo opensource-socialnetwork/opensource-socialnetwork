@@ -56,6 +56,7 @@ class OssnWall extends OssnObject {
 								$this->OssnFile->subtype    = 'wallphoto';
 								$this->OssnFile->setFile('ossn_photo');
 								$this->OssnFile->setPath('ossnwall/images/');
+								$this->OssnFile->setExtension(array('jpg', 'png', 'jpeg', 'gif'));
 								$this->OssnFile->addFile();
 						}
 						$params['subject_guid'] = $this->wallguid;

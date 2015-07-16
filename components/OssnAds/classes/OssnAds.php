@@ -33,6 +33,7 @@ class OssnAds extends OssnObject {
                 $this->OssnFile->type = 'object';
                 $this->OssnFile->subtype = 'ossnads';
                 $this->OssnFile->setFile('ossn_ads');
+                $this->OssnFile->setExtension(array('jpg', 'png', 'jpeg', 'gif'));
                 $this->OssnFile->setPath('ossnads/images/');
                 $this->OssnFile->addFile();
             }

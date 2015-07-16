@@ -14,6 +14,7 @@ $file->type = 'user';
 $file->subtype = 'profile:cover';
 $file->setFile('coverphoto');
 $file->setPath('profile/cover/');
+$file->setExtension(array('jpg', 'png', 'jpeg', 'gif'));
 if ($file->addFile()) {
 	$newcover = $file->getFiles();
     $ossnprofile = new OssnProfile;

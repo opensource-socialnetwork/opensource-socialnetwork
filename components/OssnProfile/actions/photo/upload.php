@@ -18,6 +18,7 @@ $file->type = 'user';
 $file->subtype = 'profile:photo';
 $file->setFile('userphoto');
 $file->setPath('profile/photo/');
+$file->setExtension(array('jpg', 'png', 'jpeg', 'gif'));
 
 if ($file->addFile()) {
 	
