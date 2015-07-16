@@ -7,91 +7,108 @@
  * @license   General Public Licence http://www.opensource-socialnetwork.org/licence 
  * @link      http://www.opensource-socialnetwork.org/licence
  */
-Ossn.RegisterStartupFunction(function(){
-   $(document).ready(function(){
-	     $('.ossn-wall-container').find('.ossn-wall-friend').click(function(){
-           $('#ossn-wall-location').hide();
-           $('#ossn-wall-photo').hide();
-           $('#ossn-wall-friend').show();
-         }); 
-       	 $('.ossn-wall-container').find('.ossn-wall-location').click(function(){
-           $('#ossn-wall-friend').hide();
-           $('#ossn-wall-photo').hide();
-           $('#ossn-wall-location').show();
-         });
-         $('.ossn-wall-container').find('.ossn-wall-photo').click(function(){
-           $('#ossn-wall-friend').hide();
-           $('#ossn-wall-location').hide();
-           $('#ossn-wall-photo').show();
+Ossn.RegisterStartupFunction(function() {
+	$(document).ready(function() {
+		$('.ossn-wall-container').find('.ossn-wall-friend').click(function() {
+			$('#ossn-wall-location').hide();
+			$('#ossn-wall-photo').hide();
+			$('#ossn-wall-friend').show();
+		});
+		$('.ossn-wall-container').find('.ossn-wall-location').click(function() {
+			$('#ossn-wall-friend').hide();
+			$('#ossn-wall-photo').hide();
+			$('#ossn-wall-location').show();
+		});
+		$('.ossn-wall-container').find('.ossn-wall-photo').click(function() {
+			$('#ossn-wall-friend').hide();
+			$('#ossn-wall-location').hide();
+			$('#ossn-wall-photo').show();
 
-         }); 
-         $('.ossn-wall-post-delete').click(function(e){
-              $url = $(this);
-              e.preventDefault(); 
-              Ossn.PostRequest({
-			        url: $url.attr('href'),			 
-			        beforeSend: function(request){
-				          $('#activity-item-'+$url.attr('data-guid')).attr('style', 'opacity:0.5;');
-			        },
-			        callback: function(callback){
-				    	 if(callback == 1){
-                            $('#activity-item-'+$url.attr('data-guid')).fadeOut();
-                            $('#activity-item-'+$url.attr('data-guid')).remove();
-                         } else {
-                          $('#activity-item-'+$url.attr('data-guid')).attr('style', 'opacity:1;');
-                         }
-			        }
-			  });
+		});
+		$('.ossn-wall-post-delete').click(function(e) {
+			$url = $(this);
+			e.preventDefault();
+			Ossn.PostRequest({
+				url: $url.attr('href'),
+				beforeSend: function(request) {
+					$('#activity-item-' + $url.attr('data-guid')).attr('style', 'opacity:0.5;');
+				},
+				callback: function(callback) {
+					if (callback == 1) {
+						$('#activity-item-' + $url.attr('data-guid')).fadeOut();
+						$('#activity-item-' + $url.attr('data-guid')).remove();
+					} else {
+						$('#activity-item-' + $url.attr('data-guid')).attr('style', 'opacity:1;');
+					}
+				}
+			});
 
-         });  
+		});
 	});
 });
-Ossn.RegisterStartupFunction(function(){
-    $(document).ready(function(){
-	            $("#ossn-wall-friend-input").tokenInput(Ossn.site_url+"friendpicker", {
-                placeholder: 'Enter friend name',
-                hintText: false,
-                propertyToSearch: "first_name",
-                resultsFormatter: function(item){ return "<li>" + "<img src='" + item.imageurl + "' title='" + item.first_name + " " + item.last_name + "' height='25px' width='25px' />" + "<div style='display: inline-block; padding-left: 10px;'><div class='full_name' style='font-weight:bold;color:#2B5470;'>" + item.first_name + " " + item.last_name + "</div></div></li>" },
-                tokenFormatter: function(item) { return "<li><p>" + item.first_name + " " + item.last_name + "</p></li>" },      
-                });			
-                   			   
-	  });
+Ossn.RegisterStartupFunction(function() {
+	$(document).ready(function() {
+		$("#ossn-wall-friend-input").tokenInput(Ossn.site_url + "friendpicker", {
+			placeholder: 'Enter friend name',
+			hintText: false,
+			propertyToSearch: "first_name",
+			resultsFormatter: function(item) {
+				return "<li>" + "<img src='" + item.imageurl + "' title='" + item.first_name + " " + item.last_name + "' height='25px' width='25px' />" + "<div style='display: inline-block; padding-left: 10px;'><div class='full_name' style='font-weight:bold;color:#2B5470;'>" + item.first_name + " " + item.last_name + "</div></div></li>"
+			},
+			tokenFormatter: function(item) {
+				return "<li><p>" + item.first_name + " " + item.last_name + "</p></li>"
+			},
+		});
+
+	});
 });
-Ossn.PostMenu = function($id){
- $element = $($id).find('.menu-links');
-  if($element.is(":not(:visible)") ){
-     $element.show();
-    } else {
-     $element.hide();
-   }     	
+Ossn.PostMenu = function($id) {
+	$element = $($id).find('.menu-links');
+	if ($element.is(":not(:visible)")) {
+		$element.show();
+	} else {
+		$element.hide();
+	}
 };
-<?php
-/*
-Ossn.WallRefreshActivity = function(){
-   Ossn.PostRequest({
-                    url: Ossn.site_url+'post/refresh_home',
-			        callback: function(activity){
-				    	//$('.user-activity').html(activity);
-			        }
-			  });
-};
-Ossn.RegisterStartupFunction(function(){
-$(document).ready(function(){
-         setInterval(function(){Ossn.WallRefreshActivity()}, 5000);     
-}); 
-}); 
-*/ ?>
-Ossn.RegisterStartupFunction(function(){
-$(document).ready(function(){
-      $('.ossn-wall-privacy').on('click', function(e){
-             Ossn.MessageBox('post/privacy'); 
-      });   
-      $('#ossn-wall-privacy').on('click', function(e){
-             var wallprivacy = $('#ossn-wall-privacy-container').find('input[name="privacy"]:checked').val();
-             $('#ossn-wall-privacy').val(wallprivacy);
-             Ossn.MessageBoxClose();
-      });       
-      
-}); 
-}); 
+Ossn.RegisterStartupFunction(function() {
+	$(document).ready(function() {
+		$('.ossn-wall-privacy').on('click', function(e) {
+			Ossn.MessageBox('post/privacy');
+		});
+		$('#ossn-wall-privacy').on('click', function(e) {
+			var wallprivacy = $('#ossn-wall-privacy-container').find('input[name="privacy"]:checked').val();
+			$('#ossn-wall-privacy').val(wallprivacy);
+			Ossn.MessageBoxClose();
+		});
+		//ajax post
+		$(document).on('click', '.ossn-wall-post', function(e) {
+			$url = $('#ossn-wall-form').attr('action');
+            Ossn.ajaxRequest({
+				url: $url,
+                action:true,
+                containMedia:true,
+				form: '#ossn-wall-form',
+
+				beforeSend: function(request) {
+					$('#ossn-wall-form').find('input[type=submit]').hide();
+					$('#ossn-wall-form').find('.ossn-loading').removeClass('ossn-hidden');
+				},
+				callback: function(callback) {
+					if (callback['success']) {
+						Ossn.trigger_message(callback['success']);
+						if (callback['data']['post']) {
+							$('.user-activity').prepend(callback['data']['post']).fadeIn();
+						}
+					}
+					if (callback['error']) {
+						Ossn.trigger_message(callback['error'], 'error');
+					}
+					$('#ossn-wall-form').find('input[type=submit]').show();
+					$('#ossn-wall-form').find('.ossn-loading').addClass('ossn-hidden');
+                    $('#ossn-wall-form').find('textarea').val("");                    
+				}
+			});
+		});
+
+	});
+});
