@@ -17,6 +17,7 @@ if(ossn_user_is_friend(ossn_loggedin_user()->guid, $params['user']->guid) || oss
 		echo ossn_view_form('user/container', array(
 				'action' => ossn_site_url() . 'action/wall/post/u',
 				'component' => 'OssnWall',
+				'id' => 'ossn-wall-form',
 				'params' => array(
 						'user' => $params['user']
 				)

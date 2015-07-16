@@ -13,6 +13,7 @@ if($params['ismember'] === 1){
 	echo ossn_view_form('group/container', array(
     	'action' => ossn_site_url() . 'action/wall/post/g',
     	'component' => 'OssnWall',
+		'id' => 'ossn-wall-form',
     	'params' => array('group' => $params['group']),
 	), false);
 	echo '</div>';

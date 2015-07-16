@@ -8,15 +8,18 @@
  * @license   General Public Licence http://www.opensource-socialnetwork.org/licence
  * @link      http://www.opensource-socialnetwork.org/licence
  */
-if (!isset($params['user'])) {
-    $params['user'] = '';
+if(!isset($params['user'])) {
+		$params['user'] = '';
 }
 echo '<div class="ossn-wall-container">';
 echo ossn_view_form('home/container', array(
-    'action' => ossn_site_url() . 'action/wall/post/a',
-    'component' => 'OssnWall',
-    'enctype' => 'multipart/form-data',
-    'params' => array('user' => $params['user']),
+		'action' => ossn_site_url() . 'action/wall/post/a',
+		'component' => 'OssnWall',
+		'id' => 'ossn-wall-form',
+		'enctype' => 'multipart/form-data',
+		'params' => array(
+				'user' => $params['user']
+		)
 ), false);
 
 echo '</div>';
