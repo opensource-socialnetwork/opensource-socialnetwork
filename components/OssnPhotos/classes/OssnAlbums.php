@@ -123,5 +123,26 @@ class OssnAlbums extends OssnObject {
         $photos->order_by = 'guid DESC';
         return $photos->getFiles();
     }
+	/**
+	 * Delete Album
+	 *
+	 * @param integer $guid Album Guid
+	 *
+	 * @return boolean
+	 */
+	public function deleteAlbum($guid){
+		if(!empty($guid)){
+			$album = $this->GetAlbum($guid);
+			if($album->album->owner_guid == ossn_loggedin_user()->guid || ossn_isAdminLoggedin()){
+				$photos = new OssnPhotos;
+				foreach($album->photos as $photo){
+					$photos->photoid = $photo->guid;
+					$photos->deleteAlbumPhoto();
+				}
+				return true;
+			}
+		}
+		return false;
+	}
 
 }

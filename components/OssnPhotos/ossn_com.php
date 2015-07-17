@@ -42,6 +42,7 @@ function ossn_photos_initialize() {
 		//actions
 		if(ossn_isLoggedin()) {
 				ossn_register_action('ossn/album/add', __OSSN_PHOTOS__ . 'actions/album/add.php');
+				ossn_register_action('ossn/album/delete', __OSSN_PHOTOS__ . 'actions/album/delete.php');
 				ossn_register_action('ossn/photos/add', __OSSN_PHOTOS__ . 'actions/photos/add.php');
 				ossn_register_action('profile/photo/delete', __OSSN_PHOTOS__ . 'actions/photo/profile/delete.php');
 				ossn_register_action('profile/cover/photo/delete', __OSSN_PHOTOS__ . 'actions/photo/profile/cover/delete.php');
@@ -429,12 +430,19 @@ function ossn_album_page_handler($album) {
 								if(ossn_loggedin_user()->guid == $owner->owner_guid) {
 										$addphotos = array(
 												'text' => ossn_print('add:photos'),
-												'href' => 'javascript::;',
+												'href' => 'javascript::void(0);',
 												'id' => 'ossn-add-photos',
 												'data-url' => '?album=' . $album[1],
 												'class' => 'button-grey'
 										);
+										$delete_action = ossn_site_url("action/ossn/album/delete?guid={$album[1]}", true);
+										$delete_album = array(
+												'text' => ossn_print('delete:album'),
+												'href' => $delete_action,
+												'class' => 'button-grey'
+										);										
 										$control   = ossn_plugin_view('output/url', $addphotos);
+										$control   .= ossn_plugin_view('output/url', $delete_album);
 								} else {
 										$control = false;
 								}

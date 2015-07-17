@@ -32,6 +32,9 @@ $de = array(
     'covers' => 'Titelbilder',
     'cover:view' => 'Titelbild Ansicht',
     'profile:covers' => 'Profil Titelbilder',
+	'delete:album' => 'Album löschen',
     
+	'photo:album:deleted' => 'Fotoalbum erfolgreich gelöscht',
+	'photo:album:delete:error' => 'Fotoalbum kann nicht gelöscht werden',	
 );
 ossn_register_languages('de', $de); 

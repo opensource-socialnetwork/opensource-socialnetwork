@@ -32,6 +32,11 @@ $en = array(
     'covers' => 'Covers',
     'cover:view' => 'Cover View',
     'profile:covers' => 'Profile Covers',
+	'delete:album' => 'Delete Album',
+	
+	'photo:album:deleted' => 'Photo album successfully deleted',
+	'photo:album:delete:error' => 'Can not delete photo album',
+	
 
 );
 ossn_register_languages('en', $en); 
