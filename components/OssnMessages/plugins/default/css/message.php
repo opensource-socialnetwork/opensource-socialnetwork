@@ -220,3 +220,10 @@
 	font-size: 14px;
 	padding: 25px;
 }
+.message-form-form input[type='submit']{
+	margin-top:10px;
+}
+.message-form-form .ossn-loading {
+	margin-top:10px;
+    float:right;
+}

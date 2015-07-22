@@ -108,6 +108,7 @@
                     //this form should be in OssnMessages/forms 
                     echo ossn_plugin_view('input/security_token'); 
                     ?>
+                    <div class="ossn-loading ossn-hidden"></div>                               
                     <input type="submit" value="<?php echo ossn_print('send'); ?>"/>
                 </div>
             </form>
