@@ -92,7 +92,7 @@ background: #5C8CA9;
 
 
 .ossn-header {
-background:linear-gradient(to bottom, #333, #000);
+background:#222222;
 height:90px;
 }
 .logo-second {
