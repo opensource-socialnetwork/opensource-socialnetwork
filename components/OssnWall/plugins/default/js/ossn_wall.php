@@ -80,8 +80,7 @@ Ossn.RegisterStartupFunction(function() {
 			$('#ossn-wall-privacy').val(wallprivacy);
 			Ossn.MessageBoxClose();
 		});
-		//ajax post
-		$(document).on('click', '.ossn-wall-post', function(e) {
+			//ajax post
 			$url = $('#ossn-wall-form').attr('action');
             Ossn.ajaxRequest({
 				url: $url,
@@ -110,5 +109,4 @@ Ossn.RegisterStartupFunction(function() {
 			});
 		});
 
-	});
 });
