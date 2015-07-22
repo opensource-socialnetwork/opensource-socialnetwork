@@ -57,7 +57,7 @@ if (isset($params['contents'])) {
         	<div class="row">
             
         		<div class="col-md-6">
-            		<img src="<?php echo ossn_site_url(); ?>themes/default/images/logo_admin.png"/>
+            		<img src="<?php echo ossn_site_url(); ?>themes/default/images/logo_admin.jpg"/>
             	</div>
                 <?php if(ossn_isAdminLoggedin()){ ?>
             	<div class="col-md-6 header-dropdown">

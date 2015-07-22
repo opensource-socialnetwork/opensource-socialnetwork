@@ -35,11 +35,9 @@ form div {
     margin: 0;
     padding: 10px 0 0 0;
     list-style: none;
-    background: #2F4959 url('./../../themes/default/images/header-background.png') repeat-x;
-
-    -moz-box-shadow: 0 2px 1px #9c9c9c;
-    -webkit-box-shadow: 0 2px 1px #9c9c9c;
-    box-shadow: 0 2px 1px #9c9c9c;
+	background-color: #f8f8f8;
+  	border-color: #e7e7e7;
+	border:1px solid #eee;
 }
 
 #ossn-page-menubar li {
@@ -52,11 +50,10 @@ form div {
     float: left;
     height: 25px;
     padding: 0 25px;
-    color: #fff;
+    color: #000;
     text-transform: uppercase;
     font: bold 12px/25px Arial, Helvetica;
     text-decoration: none;
-    text-shadow: 0 1px 0 #000;
 }
 
 #ossn-page-menubar li:hover > a {
@@ -288,12 +285,13 @@ input[type=text]:focus, textarea:focus {
 }
 
 .ossn-header {
-    background: #2F4959 url('./../../themes/default/images/header-background.png') repeat-x;
-    height: 70px;
+  	height: 65px;
+  	color: #fff;
+ 	background: #3d3d3d;
 }
 
 .logo-installation {
-    background: url('./../../themes/default/images/logo_admin.png') no-repeat;
+    background: url('./../../themes/default/images/logo_admin.jpg') no-repeat;
     height: 57px;
     width: 187px;
 }
