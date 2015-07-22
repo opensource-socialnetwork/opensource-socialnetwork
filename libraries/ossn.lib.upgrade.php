@@ -143,5 +143,23 @@ function ossn_kill_upgrading(){
 		unlink($upgrading);
 	}
 }
+/**
+ * Update site version
+ *
+ * @param string $version new Version
+ * 
+ * @return boolean
+ */
+function ossn_update_db_version($version = ''){
+	if(!empty($version)){
+		$db = new OssnDatabase;
+		$vars = array();
+		$vars['table'] = 'ossn_site_settings';
+		$vars['names'] = array('value');
+		$vars['values'] = array($version);
+		$vars['wheres'] = array("name='site_version'");
+		return $db->update($vars);
+	}
+}
 //initilize upgrades
 ossn_register_callback('ossn', 'init', 'ossn_upgrade_init', 1);
