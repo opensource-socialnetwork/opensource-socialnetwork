@@ -66,6 +66,12 @@ $englsih = array(
     'ossn:install:finish' => 'Finish',
 	
 	'fields:require' => 'All fields are required!',
+	
+	'ossn:install:allowfopenurl' => 'PHP allow_url_fopen ENABLED',
+	'ossn:install:allowfopenurl:error' => 'PHP allow_url_fopen is required',
+	
+	'ossn:install:ziparchive' => 'PHP ZipArchive ENABLED',
+	'ossn:install:ziparchive:error' => 'PHP ZipArchive EXTENSION REQUIRED',
 );
 
 ossn_installation_register_languages($englsih);

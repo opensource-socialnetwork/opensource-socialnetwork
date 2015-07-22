@@ -45,9 +45,9 @@ echo '<h2>' . ossn_installation_print('site:settings') . '</h2>';
         <label> <?php echo ossn_installation_print('ossn:datadir'); ?> </label>
         <input type="text" name="datadir" value="<?php echo OssnInstallation::DefaultDataDir(); ?>"/>
     </div>
-
-    <input type="submit" value="<?php echo ossn_installation_print('ossn:install:install'); ?>" class="button-blue primary">
-
+	<div style="display:block;margin-top:10px;">
+	    <input type="submit" value="<?php echo ossn_installation_print('ossn:install:install'); ?>" class="button-blue primary">
+	</div>
 </form>
 
 

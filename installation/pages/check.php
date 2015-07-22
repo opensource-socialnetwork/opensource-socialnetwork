@@ -53,6 +53,18 @@ if (OssnInstallation::isCon_WRITEABLE()) {
     echo '<div class="ossn-installation-message ossn-installation-fail">'.ossn_installation_print('ossn:install:config:error').'</div>';
     $error[] = 'permission:configuration';
 }
+if(OssnInstallation::allowUrlFopen()){
+    echo '<div class="ossn-installation-message ossn-installation-success">'.ossn_installation_print('ossn:install:allowfopenurl').'</div>';	
+} else {
+    echo '<div class="ossn-installation-message ossn-installation-fail">'.ossn_installation_print('ossn:install:allowfopenurl:error').'</div>';
+    $error[] = 'allowfopenurl:error';	
+}
+if(OssnInstallation::isZipClass()){
+	    echo '<div class="ossn-installation-message ossn-installation-success">'.ossn_installation_print('ossn:install:ziparchive').'</div>';	
+} else {
+    echo '<div class="ossn-installation-message ossn-installation-fail">'.ossn_installation_print('ossn:install:ziparchive:error').'</div>';
+    $error[] = 'ziparchive:error';		
+}
 echo '<br />';
 if (!isset($error)) {
     echo '<a href="' . ossn_installation_paths()->url . '?page=settings" class="button-blue primary">'.ossn_installation_print('ossn:install:next').'</a>';

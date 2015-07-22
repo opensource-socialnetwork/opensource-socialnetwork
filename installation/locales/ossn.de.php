@@ -65,6 +65,12 @@ $de = array(
     'ossn:install:create' => 'Anlegen',
     'ossn:install:finish' => 'Fertig',
 	'fields:require' => 'Bitte fülle alle Eingabe-Felder aus',	
+
+	'ossn:install:allowfopenurl' => 'PHP allow_url_fopen VORHANDEN',
+	'ossn:install:allowfopenurl:error' => 'PHP allow_url_fopen ERWEITERUNG FEHLT',
+	
+	'ossn:install:ziparchive' => 'PHP ZipArchive VORHANDEN',
+	'ossn:install:ziparchive:error' => 'PHP ZipArchive ERWEITERUNG FEHLT',
 );
 
 ossn_installation_register_languages($de);

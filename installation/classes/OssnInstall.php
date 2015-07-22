@@ -69,7 +69,22 @@ class OssnInstallation {
         }
         return false;
     }
-
+	/**
+	 * Check if the ZipArchive class exists or not
+	 *
+	 * @return boolean
+	 */
+	public static function isZipClass(){
+		return class_exists('ZipArchive');
+	}
+	/**
+	 * Check if allow_url_fopen is available or not
+	 *
+	 * @return boolean
+	 */
+	public static function allowUrlFopen(){
+		return ini_get('allow_url_fopen');
+	}
     /**
      * Check if php is > than 5.4
      * @last edit: $arsalanshah
