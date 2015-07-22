@@ -22,3 +22,6 @@ if ($send->send(ossn_loggedin_user()->guid, $to, $message)) {
 } else {
     echo 0;
 }
+//messages only at some points #470
+// don't mess with system ajax requests
+exit;
