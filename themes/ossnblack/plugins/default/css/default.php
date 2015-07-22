@@ -107,7 +107,7 @@ margin:0 auto;
 color:#fff;
 }
 .ossn-logo {
-background:url('<?php echo ossn_site_url(); ?>themes/ossnblack/images/logo.png') no-repeat;
+background:url('<?php echo ossn_site_url(); ?>themes/ossnblack/images/logo.jpg') no-repeat;
 height: 49px;
 width: 166px;
 
