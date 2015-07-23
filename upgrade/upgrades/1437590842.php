@@ -83,7 +83,7 @@ $update['wheres'] = array(
 );
 
 $upgrade = str_replace('.php', '', $upgrade);
-if($database->update($update) && ossn_update_db_version('3.0 Sunny')) {
+if($database->update($update) && ossn_update_db_version('3.0')) {
 		ossn_trigger_message(ossn_print('upgrade:success', array(
 				$upgrade
 		)), 'success');
