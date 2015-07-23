@@ -21,20 +21,7 @@ if(!$cache_flush && $enable->enable($com)) {
 				redirect(REF);
 		} else {
 				//redirect and flush cache
-				$page = "action/component/enable?flush_cache=1";
-				$page = ossn_add_tokens_to_url($page);
-				redirect($page);
-		}
-}
-//also flush cache, code from actions -> cache flush
-$disable = input('disabled');
-if($cache_flush) {
-		if(ossn_disable_cache() && empty($disable)) {
-				$action = ossn_add_tokens_to_url("action/admin/cache/flush?disabled=disabled");
+				$action = ossn_add_tokens_to_url("action/admin/cache/flush");
 				redirect($action);
-		} elseif($disable == 'disabled') {
-				if(ossn_create_cache()) {
-						redirect('administrator/components');
-				}
 		}
 }
