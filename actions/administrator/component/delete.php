@@ -23,6 +23,6 @@ if($delete->delete($com)) {
 				redirect($action);
 		}
 } else {
-		ossn_trigger_message(ossn_print('con:delete:error'), 'error');
+		ossn_trigger_message(ossn_print('com:delete:error'), 'error');
 		redirect(REF);
 }
