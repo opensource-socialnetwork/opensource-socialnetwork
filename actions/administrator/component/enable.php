@@ -10,12 +10,10 @@
  */
 
 $enable = new OssnComponents;
+$com    = input('com');
+$cache  = ossn_site_settings('cache');
 
-$com         = input('com');
-$cache_flush = input('flush_cache', '', false);
-$cache       = ossn_site_settings('cache');
-
-if(!$cache_flush && $enable->enable($com)) {
+if($enable->enable($com)) {
 		ossn_trigger_message(ossn_print('com:enabled'), 'success');
 		if($cache == false) {
 				redirect(REF);
