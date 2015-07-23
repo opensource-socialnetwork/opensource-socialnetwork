@@ -90,12 +90,12 @@ class OssnComponents extends OssnDatabase {
 										
 										$ossn_com_xml = simplexml_load_file("{$files}ossn_com.xml");
 										$archive->open($newfile);
-										$archive->extractTo(ossn_route()->com . $ossn_com_xml->id);
+										$archive->extractTo(ossn_route()->com);
 										$archive->close();
 										//need to check id , since ossn v3.x
 										if(isset($ossn_com_xml->id) && !empty($ossn_com_xml->id)) {
 												//add new component to system
-												$this->newCom($validate);
+												$this->newCom($ossn_com_xml->id);
 										}
 										
 										OssnFile::DeleteDir($data_dir);
