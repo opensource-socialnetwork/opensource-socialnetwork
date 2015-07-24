@@ -11,7 +11,6 @@
 /**
  * Register a language in system;
  * @param  string $code code of language;
- * @params: string $file file which contain languages;
  *
  * @last edit: $arsalanshah
  * @return void;
@@ -25,25 +24,23 @@ function ossn_register_language($code = '', $file) {
 
 /**
  * Get a languages strings;
- * @params: $code = code of language;
- * @params: $params = strings;
- * @last edit: $arsalanshah
- * @Reason: Initial;
- *
+ * @param string $code Code of language;
+ * @param array $params Translations;
+ * 
+ * @return void;
  */
 function ossn_register_languages($code, $params = array()) {
 		global $Ossn;
 		if(isset($Ossn->localestr[$code], $code)) {
 				$params = array_merge($Ossn->localestr[$code], $params);
 		}
-		return $Ossn->localestr[$code] = $params;
+		$Ossn->localestr[$code] = $params;
 }
 
 /**
  * Get registered language codes;
- * @last edit: $arsalanshah
- * @Reason: Initial;
- *
+ * 
+ * @return array
  */
 function ossn_locales() {
 		global $Ossn;
@@ -63,10 +60,10 @@ function ossn_locales() {
 
 /**
  * Print a locale;
- * @params $id = id of locale;
- * @last edit: $arsalanshah
- * @Reason: Initial;
+ * @param string $id Id of locale;
+ * @param array $args Array;
  *
+ * @return string
  */
 function ossn_print($id = '', $args = array()) {
 		global $Ossn;
