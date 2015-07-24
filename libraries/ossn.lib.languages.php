@@ -124,6 +124,7 @@ function ossn_load_json_locales() {
 function ossn_get_installed_translations() {
 		global $Ossn;
 		$installed = array();
+		ossn_load_available_languages();
 		
 		foreach($Ossn->locale as $k => $v) {
 				$installed[$k] = ossn_print($k, array(), $k);
