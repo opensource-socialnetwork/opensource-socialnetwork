@@ -55,3 +55,4 @@ Additions:
  * Show a loading icon before send message.
  * Move 'Send' button 10px top bottom
  * Addition of PHP ZipArchive and allow_url_fopen check during installation.
+ * New non-core component: https://github.com/opensource-socialnetwork/SMTP
