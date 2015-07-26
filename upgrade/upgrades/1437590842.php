@@ -35,6 +35,14 @@ $database->statement("ALTER TABLE `ossn_object` CHANGE `title` `title` TEXT CHAR
 					 CHANGE `description` `description` LONGTEXT CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;");
 $database->execute();
 
+//add last_cache and site_version in settings
+
+$database->statement("INSERT INTO `ossn_site_settings` (`name`) VALUES ('last_cache')");
+$database->execute();
+
+$database->statement("INSERT INTO `ossn_site_settings` (`name`) VALUES ('site_version')");
+$database->execute();
+
 //update user time_created cloumn from user entites
 $users = ossn_get_entities(array(
 		'type' => 'user',
