@@ -56,3 +56,5 @@ Additions:
  * Move 'Send' button 10px top bottom
  * Addition of PHP ZipArchive and allow_url_fopen check during installation.
  * New non-core component: https://github.com/opensource-socialnetwork/SMTP
+ * Lift a installation limitation for php 5.6.
+ * Allow users to change their default language.
