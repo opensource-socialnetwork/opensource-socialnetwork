@@ -77,6 +77,13 @@ $birthdate = explode('/', $user->birthdate);
     <option value="male" <?php echo $male; ?>><?php echo ossn_print('male'); ?> </option>
     <option value="female" <?php echo $female; ?>><?php echo ossn_print('female'); ?></option>
 </select>
-
+<label><?php echo ossn_print('language');?></label>
+<?php
+	echo ossn_plugin_view('input/dropdown', array(
+											'name' => 'language',
+											'value' => $user->language,
+											'options' => ossn_get_installed_translations(false),
+	));
+?>
 <input type="hidden" value="<?php echo $user->username; ?>" name="username"/>
 <input type="submit" class="ossn-button ossn-button-submit" value="<?php echo ossn_print('save'); ?>"/>

@@ -281,7 +281,7 @@ function ossn_jquery_add() {
     echo ossn_html_js(array('src' => ossn_site_url('vendors/jquery/jquery-1.11.1.min.js')));
 } **/
 function ossn_languages_js(){
-	$lang = ossn_site_user_lang_code();
+	$lang = ossn_site_settings('language');
 	$cache = ossn_site_settings('cache');
 	$last_cache = ossn_site_settings('last_cache');
 	

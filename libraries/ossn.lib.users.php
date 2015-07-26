@@ -295,5 +295,24 @@ function ossn_uservalidate_pagehandler($pages) {
     }
 
 }
-
+/**
+ * Load a site language
+ *
+ * If user have different language then site language it will return user language
+ * What a hack lol its was not easy to override a site lanuage with user custom language
+ *
+ * @return string
+ */
+ function ossn_site_user_lang_code($hook, $type, $return, $params){
+		 $lang =  $return;
+		 if(ossn_isLoggedin()){
+			 $user = ossn_loggedin_user();
+			 if(isset($user->language)){
+						$lang = $user->language;
+			 }
+		 }
+		 return $lang;
+ }
+ 
 ossn_register_callback('ossn', 'init', 'ossn_users');
+ossn_add_hook('load:settings', 'language', 'ossn_site_user_lang_code');

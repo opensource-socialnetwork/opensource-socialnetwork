@@ -122,7 +122,7 @@ class OssnThemes extends OssnSite {
 		public function loadActive() {
 				$path = ossn_route()->themes;
 				if(is_file("{$path}{$this->getSettings('theme')}/ossn_theme.php")) {
-						$lang      = ossn_site_user_lang_code();
+						$lang      = ossn_site_settings('language');
 						$lang_file = "{$path}{$this->getSettings('theme')}/locale/ossn.{$lang}.php";
 						if(is_file($lang_file)) {
 								//feature request: multilanguage themes #281

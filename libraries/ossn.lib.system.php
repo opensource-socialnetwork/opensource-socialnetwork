@@ -276,14 +276,15 @@ function ossn_register_callback($event, $type, $callback, $priority = 200) {
 /**
  * Get a site settings
  *
- * @param string $setting Settings Name like ( site_name, language)
+ * @param string $setting Settings Name like (site_name, language)
  *
  * @return string or null
  */
 function ossn_site_settings($setting) {
     global $Ossn;
     if (isset($Ossn->siteSettings->$setting)) {
-        return $Ossn->siteSettings->$setting;
+		//allow to override a settings
+        return ossn_call_hook('load:settings', $setting, false, $Ossn->siteSettings->$setting);
     }
     return false;
 }

@@ -104,7 +104,7 @@ function ossn_default_load_locales() {
  */
 function ossn_load_json_locales() {
 		global $Ossn;
-		$code = ossn_site_user_lang_code();
+		$code = ossn_site_settings('language');
 		$json = json_encode($Ossn->localestr[$code]);
 		if($json) {
 				return $json;
@@ -118,7 +118,7 @@ function ossn_load_json_locales() {
  * @return array
  */
 
-function ossn_get_installed_translations() {
+function ossn_get_installed_translations($percentage = true) {
 		global $Ossn;
 		$installed = array();
 		ossn_load_available_languages();
@@ -126,7 +126,7 @@ function ossn_get_installed_translations() {
 		foreach($Ossn->locale as $k => $v) {
 				$installed[$k] = ossn_print($k, array(), $k);
 				$completeness  = ossn_get_language_completeness($k);
-				if(($completeness < 100) && ($k != 'en')) {
+				if(($completeness < 100) && ($k != 'en') && $percentage !== false) {
 						$installed[$k] .= " (" . $completeness . "% " . ossn_print('ossn:language:complete') . ")";
 				}
 		}
@@ -394,23 +394,3 @@ function ossn_get_available_languages() {
 		$langs = array_merge($com_langs, $core_langs);
 		return array_unique($langs);
 }
-/**
- * Load a site language
- *
- * If user have different language then site language it will return user language
- *
- * @return string
- */
- function ossn_site_user_lang_code(){
-	 $lang =  ossn_site_settings('language');
-	 if(ossn_isLoggedin()){
-		 $user = ossn_loggedin_user();
-		 if(isset($user->language)){
-			 if(in_array($user->language, ossn_get_available_languages())){
-				 	$lang = $user->language;
-			 }
-		 }
-	 }
-	 return $lang;
- }
- 

@@ -90,7 +90,13 @@ if (!empty($password)) {
         $salt
     );
 }
-
+$language = input('language');
+$success  = ossn_print('user:updated');
+if(!empty($language) && in_array($language, ossn_get_available_languages())){
+	$lang = $language;
+} else {
+	$lang = 'en';
+}
 //save
 if ($OssnDatabase->update($params)) {
     //update entities
@@ -98,8 +104,9 @@ if ($OssnDatabase->update($params)) {
     if (!empty($guid)) {
         $user_get->data->gender = $user['gender'];
         $user_get->data->birthdate = $user['birthdate'];
+		$user_get->data->language = $lang;
         $user_get->save();
     }
-    ossn_trigger_message(ossn_print('user:updated'), 'success');
+    ossn_trigger_message($success, 'success');
     redirect(REF);
 } 

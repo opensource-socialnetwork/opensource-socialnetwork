@@ -145,7 +145,7 @@ class OssnComponents extends OssnDatabase {
 		 */
 		public function loadComs() {
 				$coms = $this->getActive();
-				$lang = ossn_site_user_lang_code();
+				$lang = ossn_site_settings('language');
 				
 				$vars['activated'] = $coms;
 				ossn_trigger_callback('components', 'before:load', $vars);
