@@ -853,8 +853,7 @@ class OssnUser extends OssnEntities {
 				$wheres = array();
 				$params = array();
 				
-				//$wheres[] = "type='user'";
-				//$wheres[] = "subtype='gender'";
+				$wheres[] = "time_created > 0";
 				
 				$params['from']     = "ossn_users";
 				$params['params']   = array(
@@ -863,9 +862,9 @@ class OssnUser extends OssnEntities {
 						"COUNT(guid) AS total"
 				);
 				$params['group_by'] = "DATE_FORMAT(FROM_UNIXTIME(time_created) ,  '%Y%m')";
-				//$params["wheres"]   = array(
-				//		$this->constructWheres($wheres)
-				//);
+				$params["wheres"]   = array(
+						$this->constructWheres($wheres)
+				);
 				$data               = $this->select($params, true);
 				if($data) {
 						return $data;
