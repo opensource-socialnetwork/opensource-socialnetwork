@@ -755,5 +755,20 @@ function ossn_set_ajax_data(array $data = array()){
 		$Ossn->ajaxData = $data;
 	}
 }
+/**
+ * Generate .htaccess file
+ *
+ * @return ooolean;
+ */
+function ossn_generate_server_config($type){
+	if($type == 'apache'){
+		$file = ossn_route()->root . 'installation/configs/htaccess.dist';
+		$file = file_get_contents($file);
+		return file_put_contents(ossn_route()->root . '.htaccess', $file);
+	}elseif($type == 'nginx'){
+		return false;
+	}
+	return false;
+}
 ossn_errros();
 ossn_register_callback('ossn', 'init', 'ossn_system');
