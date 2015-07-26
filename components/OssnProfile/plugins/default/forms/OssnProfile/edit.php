@@ -80,9 +80,9 @@ $birthdate = explode('/', $user->birthdate);
 <label><?php echo ossn_print('language');?></label>
 <?php
 	echo ossn_plugin_view('input/dropdown', array(
-											'name' => 'language',
-											'value' => $user->language,
-											'options' => ossn_get_installed_translations(false),
+				'name' => 'language',
+				'value' => $user->language,
+				'options' => ossn_get_installed_translations(false),
 	));
 ?>
 <input type="hidden" value="<?php echo $user->username; ?>" name="username"/>
