@@ -762,9 +762,9 @@ function ossn_set_ajax_data(array $data = array()){
  */
 function ossn_generate_server_config($type){
 	if($type == 'apache'){
-		$file = ossn_route()->root . 'installation/configs/htaccess.dist';
+		$file = ossn_route()->www . 'installation/configs/htaccess.dist';
 		$file = file_get_contents($file);
-		return file_put_contents(ossn_route()->root . '.htaccess', $file);
+		return file_put_contents(ossn_route()->www . '.htaccess', $file);
 	}elseif($type == 'nginx'){
 		return false;
 	}
