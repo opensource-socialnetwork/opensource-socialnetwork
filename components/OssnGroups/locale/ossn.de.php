@@ -60,5 +60,8 @@ $de = array(
 	// Gruppen-Beitritts-Anfrage var1 = Benutzer, var2 = Gruppe
 	'ossn:notifications:group:joinrequest' => '%s möchte %s beitreten',
 	'ossn:group:by' => 'Von:',	
+	
+	'group:deleted' => 'Die Gruppe und der Inhalt der Gruppe wurde gelöscht.',
+	'group:delete:fail' => 'Die Gruppe konnte nicht gelöscht werden.',	
 );
 ossn_register_languages('de', $de); 

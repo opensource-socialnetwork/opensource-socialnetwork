@@ -60,5 +60,8 @@ $en = array(
 	// #186 group join request message var1 = user, var2 = name of group
 	'ossn:notifications:group:joinrequest' => '%s has requested to join %s',
 	'ossn:group:by' => 'By:',
+	
+	'group:deleted' => 'Group and group contents deleted',
+	'group:delete:fail' => 'Group could not be deleted',	
 );
 ossn_register_languages('en', $en); 

@@ -295,3 +295,6 @@ position: absolute;
   margin-top: -40px;
   margin-left: 12px;
 }
+.delete-group {
+	float:right;
+}
