@@ -57,7 +57,7 @@ class OssnComments extends OssnAnnotation {
                 $file->subtype = 'comment:photo';
                 $file->setFile('attachment');
                 $file->setPath('comment/photo/');
-				$file->setExtension(array('jpg', 'png', 'jpeg', 'gif'));
+		$file->setExtension(array('jpg', 'png', 'jpeg', 'gif'));
                 $file->owner_guid = $this->getAnnotationId();
                 if ($file->owner_guid !== 0) {
                     $file->addFile();
