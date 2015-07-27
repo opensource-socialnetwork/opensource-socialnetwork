@@ -35,6 +35,7 @@
     </li>
     <div style="float:right;">
         <input type="hidden" value="<?php echo $params['group']['group']->guid; ?>" name="wallowner"/>
+     	<div class="ossn-loading ossn-hidden"></div>       
         <input class="ossn-button-submit-b ossn-wall-post" type="submit" value="<?php echo ossn_print('post'); ?>"/>
     </div>
 </div>
