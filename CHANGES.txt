@@ -58,3 +58,5 @@ Additions:
  * New non-core component: https://github.com/opensource-socialnetwork/SMTP
  * Lift a installation limitation for php 5.6.
  * Allow users to change their default language.
+ * Allow group owner to delete group.
+ * Add 'Are you sure?' exception in js.core
