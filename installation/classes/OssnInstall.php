@@ -92,8 +92,9 @@ class OssnInstallation {
      *
      */
     public static function isPhp() {
-		$phpversion = substr(PHP_VERSION, 0, 6);
-        if ($phpversion >= 5.4 && $phpversion < 5.6) {
+	$phpversion = substr(PHP_VERSION, 0, 6);
+        //$phpversion < 5.6 , works fine with php 5.6
+        if ($phpversion >= 5.4) {
             return true;
         }
         return false;
