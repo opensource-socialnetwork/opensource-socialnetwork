@@ -26,7 +26,7 @@ require_once(dirname(__FILE__) . '/libraries/ossn.install.php');
 require_once(dirname(__FILE__) . '/classes/OssnInstall.php');
 
 //geneate .htaccess file #432
-ossn_generate_server_config('apache');
+ossn_generate_server_config_setup('apache');
 
 if (!isset($_REQUEST['action'])) {
     ossn_installation_page();
