@@ -15,7 +15,7 @@ $memb = input('membership');
 
 $group = ossn_get_group_by_guid(input('group'));
 if ($group->owner_guid !== ossn_loggedin_user()->guid) {
-    ossn_trigger_message(ossn_print('membership:cancel:succes'), 'success');
+    ossn_trigger_message(ossn_print('group:update:fail'), 'error');
     redirect(REF);
 }
 
@@ -31,9 +31,9 @@ if (in_array($memb, $access)) {
 }
 
 if ($edit->updateGroup($name, $desc, $group->guid)) {
-    ossn_trigger_message(ossn_print('group:updated'), 'success');
+    ossn_trigger_message(ossn_print('group:updated'));
     redirect("group/{$group->guid}");
 } else {
-    ossn_trigger_message(ossn_print('group:update:fail'), 'success');
+    ossn_trigger_message(ossn_print('group:update:fail'), 'error');
     redirect(REF);
 }
