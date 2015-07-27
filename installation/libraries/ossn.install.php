@@ -224,7 +224,7 @@ return $result;
  *
  * @return ooolean;
  */
-function ossn_generate_server_config($type){
+function ossn_generate_server_config_setup($type){
 	if($type == 'apache'){
 		$path = str_replace('installation/', '', ossn_installation_paths()->root);
 		$file = ossn_installation_paths()->root . 'configs/htaccess.dist';
