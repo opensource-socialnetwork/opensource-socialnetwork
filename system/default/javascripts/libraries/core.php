@@ -339,6 +339,23 @@ Ossn.RegisterStartupFunction(function() {
     });
 });
 /**
+ * Show exception , are you sure?
+ *
+ * @return void
+ */
+Ossn.RegisterStartupFunction(function() {
+    $(document).ready(function() {
+        $('.ossn-make-sure').click(function(e) {
+            e.preventDefault();
+            var del = confirm(Ossn.Print('ossn:exception:make:sure'));
+            if (del == true) {
+                var actionurl = $(this).attr('href');
+                window.location = actionurl;
+            }
+        });
+    });
+});
+/**
  * Show exception on user delete
  *
  * @return void
