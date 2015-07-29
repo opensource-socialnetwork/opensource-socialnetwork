@@ -15,7 +15,7 @@ $OssnLikes = new OssnLikes;
 
 $comments = $OssnComments->GetComments($object, 'entity');
 echo "<div class='ossn-comments-list-{$object}'>";
-if (is_object($comments)) {
+if ($comments) {
     $count = 0;
     foreach ($comments as $comment) {
         if ($count <= 5) {
