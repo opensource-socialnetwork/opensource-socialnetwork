@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Open Source Social Network
  *
@@ -13,12 +12,12 @@ class OssnAlbums extends OssnObject {
     /**
      * Create a photo album
      *
-     * @params = $owner_id User guid who is creating album
-     *           $name Album name
-     *           $acess Album access
-     *           $type Album type (user, group, page etc)
+     * @param integer $owner_id User guid who is creating album
+     * @param string $name Album name
+     * @param constant $access Album access
+     * @param string $type Album type (user, group, page etc)
      *
-     * @return bool;
+     * @return boolean
      */
     public function CreateAlbum($owner_id, $name, $access = OSSN_PUBLIC, $type = 'user') {
         //check if acess type is valid else set public
@@ -57,10 +56,10 @@ class OssnAlbums extends OssnObject {
     /**
      * Get albums by owner id and owner type
      *
-     * @params = $owner_id User guid who is creating album
-     *           $type Album type (user, group, page etc)
+     * @param integer $owner_id User guid who is creating album
+     * @param string $type Album type (user, group, page etc)
      *
-     * @return object;
+     * @return object
      */
     public function GetAlbums($owner_id, $type = 'user') {
         if (!empty($owner_id)) {
@@ -74,9 +73,9 @@ class OssnAlbums extends OssnObject {
     /**
      * Get album by id
      *
-     * @params = $album_id Id of album
+     * @param integer $album_id Id of album
      *
-     * @return object->album object->photos;
+     * @return void|object;
      */
     public function GetAlbum($album_id) {
         if (!empty($album_id)) {
@@ -96,9 +95,9 @@ class OssnAlbums extends OssnObject {
     /**
      * Get user profile photos album
      *
-     * @params = $user User guid
+     * @param integer $user User guid
      *
-     * @return object;
+     * @return object
      */
     public function GetUserProfilePhotos($user) {
         $photos = new OssnFile;
@@ -111,9 +110,9 @@ class OssnAlbums extends OssnObject {
     /**
      * Get user cover photos album
      *
-     * @params = $user User guid
+     * @param integer $user User guid
      *
-     * @return object;
+     * @return object
      */
     public function GetUserCoverPhotos($user) {
         $photos = new OssnFile;
@@ -139,7 +138,9 @@ class OssnAlbums extends OssnObject {
 					$photos->photoid = $photo->guid;
 					$photos->deleteAlbumPhoto();
 				}
-				return true;
+				if($album->album->deleteObject()){
+					return true;
+				}
 			}
 		}
 		return false;
