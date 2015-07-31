@@ -117,10 +117,10 @@ function ossn_user_pagehandler($home, $handler) {
             }            
             $user = input('user');
             $code = input('c');
-            $contents['content'] = ossn_view('pages/contents/user/resetlogin');
+            $contents['content'] = ossn_plugin_view('pages/contents/user/resetlogin');
 
             if (!empty($user) && !empty($code)) {
-                $contents['content'] = ossn_view('pages/contents/user/resetcode');
+                $contents['content'] = ossn_plugin_view('pages/contents/user/resetcode');
             }
             $title = ossn_print('reset:login');
             $content = ossn_set_page_layout('startup', $contents);
@@ -131,7 +131,7 @@ function ossn_user_pagehandler($home, $handler) {
                 redirect('home');
             }
             $title = ossn_print('site:login');
-            $contents['content'] = ossn_view('pages/contents/user/login');
+            $contents['content'] = ossn_plugin_view('pages/contents/user/login');
             $content = ossn_set_page_layout('startup', $contents);
             echo ossn_view_page($title, $content);
             break;
@@ -141,7 +141,7 @@ function ossn_user_pagehandler($home, $handler) {
                 redirect('home');
             }
             $title = ossn_print('account:registered');
-            $contents['content'] = ossn_view('pages/contents/user/registered');
+            $contents['content'] = ossn_plugin_view('pages/contents/user/registered');
             $content = ossn_set_page_layout('startup', $contents);
             echo ossn_view_page($title, $content);
             break;
@@ -170,7 +170,7 @@ function ossn_index_pagehandler($index) {
     }
     switch ($page) {
         case 'home':
-            echo ossn_view('pages/index');
+            echo ossn_plugin_view('pages/index');
             break;
 
         default:

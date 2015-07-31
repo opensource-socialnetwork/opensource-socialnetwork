@@ -192,7 +192,7 @@ function ossn_administrator_pagehandler($pages) {
     switch ($page) {
         case 'dashboard':
             $title = ossn_print('admin:dashboard');
-            $contents['contents'] = ossn_view('pages/administrator/contents/dashboard');
+            $contents['contents'] = ossn_plugin_view('pages/administrator/contents/dashboard');
             $contents['title'] = $title;
             $content = ossn_set_page_layout('administrator/administrator', $contents);
             echo ossn_view_page($title, $content, 'administrator');
@@ -211,28 +211,28 @@ function ossn_administrator_pagehandler($pages) {
             break;
         case 'components':
             $title = ossn_print('admin:components');
-            $contents['contents'] = ossn_view("pages/administrator/contents/components");
+            $contents['contents'] = ossn_plugin_view("pages/administrator/contents/components");
             $contents['title'] = $title;
             $content = ossn_set_page_layout('administrator/administrator', $contents);
             echo ossn_view_page($title, $content, 'administrator');
             break;
         case 'themes':
             $title = ossn_print('admin:themes');
-            $contents['contents'] = ossn_view("pages/administrator/contents/themes");
+            $contents['contents'] = ossn_plugin_view("pages/administrator/contents/themes");
             $contents['title'] = $title;
             $content = ossn_set_page_layout('administrator/administrator', $contents);
             echo ossn_view_page($title, $content, 'administrator');
             break;
         case 'com_installer':
             $title = ossn_print('admin:com:installer');
-            $contents['contents'] = ossn_view("pages/administrator/contents/com_installer");
+            $contents['contents'] = ossn_plugin_view("pages/administrator/contents/com_installer");
             $contents['title'] = $title;
             $content = ossn_set_page_layout('administrator/administrator', $contents);
             echo ossn_view_page($title, $content, 'administrator');
             break;
         case 'theme_installer':
             $title = ossn_print('admin:theme:installer');
-            $contents['contents'] = ossn_view("pages/administrator/contents/theme_installer");
+            $contents['contents'] = ossn_plugin_view("pages/administrator/contents/theme_installer");
             $contents['title'] = $title;
             $content = ossn_set_page_layout('administrator/administrator', $contents);
             echo ossn_view_page($title, $content, 'administrator');
@@ -250,28 +250,28 @@ function ossn_administrator_pagehandler($pages) {
             break;
         case 'cache':
             $title =  ossn_print('admin:cache:settings');
-            $contents['contents'] = ossn_view("pages/administrator/contents/cache");
+            $contents['contents'] = ossn_plugin_view("pages/administrator/contents/cache");
             $contents['title'] = $title;
             $content = ossn_set_page_layout('administrator/administrator', $contents);
             echo ossn_view_page($title, $content, 'administrator');
             break;
         case 'adduser':
             $title = ossn_print('admin:add:user');
-            $contents['contents'] = ossn_view("pages/administrator/contents/adduser");
+            $contents['contents'] = ossn_plugin_view("pages/administrator/contents/adduser");
             $contents['title'] = $title;
             $content = ossn_set_page_layout('administrator/administrator', $contents);
             echo ossn_view_page($title, $content, 'administrator');
             break;
         case 'users':
             $title = ossn_print('admin:user:list');
-            $contents['contents'] = ossn_view("pages/administrator/contents/users/list");
+            $contents['contents'] = ossn_plugin_view("pages/administrator/contents/users/list");
             $contents['title'] = $title;
             $content = ossn_set_page_layout('administrator/administrator', $contents);
             echo ossn_view_page($title, $content, 'administrator');
             break;
         case 'unvalidated_users':
             $title = ossn_print('admin:users:unvalidated');
-            $contents['contents'] = ossn_view("pages/administrator/contents/users/unvalidated");
+            $contents['contents'] = ossn_plugin_view("pages/administrator/contents/users/unvalidated");
             $contents['title'] = $title;
             $content = ossn_set_page_layout('administrator/administrator', $contents);
             echo ossn_view_page($title, $content, 'administrator');
@@ -281,7 +281,7 @@ function ossn_administrator_pagehandler($pages) {
                 $user['user'] = ossn_user_by_username($pages[1]);
             }
             $title = ossn_print('admin:edit:user');
-            $contents['contents'] = ossn_view("pages/administrator/contents/user/edit", $user);
+            $contents['contents'] = ossn_plugin_view("pages/administrator/contents/user/edit", $user);
             $contents['title'] = $title;
             $content = ossn_set_page_layout('administrator/administrator', $contents);
             echo ossn_view_page($title, $content, 'administrator');
@@ -318,7 +318,7 @@ function ossn_administrator_login_pagehandler($pages) {
     switch ($page) {
         case 'login':
             $title = ossn_print('admin:login');
-            $contents['contents'] = ossn_view("pages/administrator/contents/login");
+            $contents['contents'] = ossn_plugin_view("pages/administrator/contents/login");
             $contents['title'] = $title;
             $content = ossn_set_page_layout('administrator/login', $contents);
             echo ossn_view_page($title, $content, 'administrator');

@@ -571,7 +571,7 @@ function ossn_error_page() {
 		header("HTTP/1.0 404 Not Found");
 	} else {
 	    $title = ossn_print('page:error');
-    	$contents['content'] = ossn_view('pages/contents/error');
+    	$contents['content'] = ossn_plugin_view('pages/contents/error');
     	$contents['background'] = false;
     	$content = ossn_set_page_layout('contents', $contents);
     	$data = ossn_view_page($title, $content);
