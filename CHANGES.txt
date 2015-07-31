@@ -60,3 +60,4 @@ Additions:
  * Allow users to change their default language.
  * Allow group owner to delete group.
  * Add 'Are you sure?' exception in js.core
+ * Move pages to system/plugins/default
