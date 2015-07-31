@@ -6,15 +6,15 @@ Bugfixes:
 
  * Can not delete profile cover #427.
  * Don't listup all users if search query is empty.
- * mod_rewrite issue, generate a .htaccess file before installation #432.
- * redirect website to absolute url, no more ajax errors #458
- * flush cache didn't flush the plugins path #460.
- * show a confirmation message before delete component #444.
- * ossn system messages css issue on front end #443.
- * show a loading icon on registration submit #464.
+ * Mod_rewrite issue, generate a .htaccess file before installation #432.
+ * Redirect website to absolute url, no more ajax errors #458
+ * Flush cache didn't flush the plugins path #460.
+ * Show a confirmation message before delete component #444.
+ * Ossn system messages css issue on front end #443.
+ * Show a loading icon on registration submit #464.
  * During registration even if gender is selected its marked unselected #465.
- * cancel friendship' button colliding with user name #279.
- * ossnblack theme can't read registration message #304.
+ * Cancel friendship' button colliding with user name #279.
+ * Ossnblack theme can't read registration message #304.
  * PHP Fatal error:  Call to a member function isOnline() on a non-object classes/OssnChat.php on line 146.
  * PHP WARNING: "Division by zero" in file OssnObject.php (line 276).
  * Component installer problems with certain zip - archives #420.
@@ -24,7 +24,7 @@ Bugfixes:
  * Unwanted refresh in message window #416.
  * [OSSN 3.x] OssnEmbed in settings #466.
  * CSS: Pagination with more than 10 users #468.
- * ossnblack theme white page issue #469.
+ * Ossnblack theme white page issue #469.
  * [OSSN 3.x] Bug double post if 1 or 2 white line after the text in a post #471.
 
 Additions:
@@ -43,12 +43,12 @@ Additions:
  * New backend theme.
  * Add time_created in users table.
  * We need to accept values in array() in setComSETTINGS #434.
- * feature request: multilanguage themes #281.
+ * Feature request: multilanguage themes #281.
  * New js function Ossn.trigger_message.
  * Make actions valid for xhr, there is no need to use json_encode for simple actions.
  * 3 state logic for notifications #202.
  * Ossn Wall ajax post.
- * allow duplicate group names? #112.
+ * Allow duplicate group names? #112.
  * Match file during upload #402.
  * Only show stable_version in available updates.
  * Show a loading icon before send message.
