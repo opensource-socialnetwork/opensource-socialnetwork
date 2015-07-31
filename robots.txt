@@ -4,7 +4,6 @@ Disallow: /classes/
 Disallow: /configurations/
 Disallow: /installation/
 Disallow: /locale/
-Disallow: /pages/
 Disallow: /system/
 Disallow: /vendors/
 Disallow: /themes/
