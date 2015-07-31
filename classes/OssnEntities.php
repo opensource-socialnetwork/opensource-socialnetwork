@@ -187,12 +187,14 @@ class OssnEntities extends OssnDatabase {
 						// i don't think we need to add new data on save $arsalanshah; v1.x to 2.x
 						// added again in v3.0 $arsalanshah
 						//code re arrange 1st July 2015 $arsalanshah
-						foreach($this->datavars as $vars => $value) {
-								if(!in_array($vars, $this->get_data_dbvars())) {
-										$this->subtype = $vars;
-										$this->value   = $value;
-										$this->add();
-								}
+						if(!empty($this->datavars)){
+							foreach($this->datavars as $vars => $value) {
+									if(!in_array($vars, $this->get_data_dbvars())) {
+											$this->subtype = $vars;
+											$this->value   = $value;
+											$this->add();
+									}
+							}
 						}						
 						return true;
 				}
