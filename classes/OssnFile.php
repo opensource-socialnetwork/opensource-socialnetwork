@@ -307,6 +307,34 @@ class OssnFile extends OssnEntities {
 				return false;
 		}
 		/**
+		 * moveFiles
+		 * Move files from one directory to another
+		 *
+		 * @param string $from Complete directory path from where you want to move files.
+		 * @param string $to  Complete directory path where you want to move files.
+		 *
+		 * @return boolean
+		 */
+		public static function moveFiles($from, $to){
+			if(!is_dir($from)){
+				return false;
+			}
+			if(!is_dir($to)){
+				mkdir($to, 0755, true);
+			}
+			if(!is_dir($to)){
+				return false;
+			}
+  			$files = scandir($from);
+  			foreach($files as $fname) {
+      			if($fname != '.' && $fname != '..') {
+          			rename($from.$fname, $to.$fname);
+      			}
+  			}
+			self::DeleteDir($from);
+			return true;
+		}
+		/**
 		 * MIME types.
 		 *
 		 * This file contains most commonly used MIME types
