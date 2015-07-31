@@ -6,9 +6,8 @@ Bugfixes:
 
  * Can not delete profile cover #427.
  * Don't listup all users if search query is empty.
- * mod_rewrite issue, generate a .htaccess file before #432.
+ * mod_rewrite issue, generate a .htaccess file before installation #432.
  * redirect website to absolute url, no more ajax errors #458
- installation.
  * flush cache didn't flush the plugins path #460.
  * show a confirmation message before delete component #444.
  * ossn system messages css issue on front end #443.
