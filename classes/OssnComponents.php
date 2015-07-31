@@ -89,15 +89,14 @@ class OssnComponents extends OssnDatabase {
 								if(is_dir($files) && is_file("{$files}ossn_com.php") && is_file("{$files}ossn_com.xml")) {
 										
 										$ossn_com_xml = simplexml_load_file("{$files}ossn_com.xml");
-										$archive->open($newfile);
-										$archive->extractTo(ossn_route()->com);
-										$archive->close();
 										//need to check id , since ossn v3.x
 										if(isset($ossn_com_xml->id) && !empty($ossn_com_xml->id)) {
-												//add new component to system
-												$this->newCom($ossn_com_xml->id);
+												//move to components directory
+												if(OssnFile::moveFiles($files, ossn_route()->com . $ossn_com_xml->id . '/')){
+													//add new component to system
+													$this->newCom($ossn_com_xml->id);
+												}
 										}
-										
 										OssnFile::DeleteDir($data_dir);
 										return true;
 								}
@@ -452,7 +451,7 @@ class OssnComponents extends OssnDatabase {
 						return false;
 				}
 				foreach($vars as $name => $value) {
-						if(!$settings->isParam($name)) {
+						if($settings && !$settings->isParam($name)) {
 								$entity->owner_guid = $guid;
 								$entity->type       = 'component';
 								$entity->subtype    = $name;
