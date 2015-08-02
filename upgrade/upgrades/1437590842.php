@@ -46,7 +46,8 @@ $database->execute();
 //update user time_created cloumn from user entites
 $users = ossn_get_entities(array(
 		'type' => 'user',
-		'subtype' => 'gender'
+		'subtype' => 'gender',
+		'page_limit' => false,
 ));
 if($users) {
 		unset($vars);
