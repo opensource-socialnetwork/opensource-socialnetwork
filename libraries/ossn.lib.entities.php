@@ -40,26 +40,12 @@ function ossn_get_entity($guid){
  * @return bool
  */
 function ossn_get_entities(array $params){
-  if(isset($params['type'])){
-	  $entities = new OssnEntities;
-	  $entities->owner_guid = $params['owner_guid'];
-	  $entities->type = $params['type'];
-	  
-	  if(isset($params['subtype'])){
-		  $entities->subtype = $params['subtype'];	  
-	  }
-	  if(isset($params['order_by'])){
-		  $entities->order_by = $params['order_by'];	  
-	  }	  
-	  if(isset($params['limit'])){
-		  $entities->limit = $params['limit'];	  
-	  }	  	  
-	  $entities = $entities->get_entities();
+	  $entities = new OssnEntities;	  
+	  $entities = $entities->searchEntities($params);
 	  if($entities){
 		 return $entities; 
 	  }
-  }
-  return false;
+  	return false;
 }
 /**
  * Ossn Add Entity
