@@ -433,10 +433,14 @@ class OssnUser extends OssnEntities {
 		 *
 		 * @return object
 		 */
-		public function getSiteUsers() {
-				$this->statement("SELECT * FROM ossn_users");
-				$this->execute();
-				return $this->fetch(true);
+		public function getSiteUsers($params = array()) {
+				$vars		= array();
+				$vars['from'] 	= 'ossn_users';
+				
+				$args 	= array_merge($vars, $params);
+				$users	= $this->select($args, true);
+				return $users;
+				
 		}
 		
 		/**
