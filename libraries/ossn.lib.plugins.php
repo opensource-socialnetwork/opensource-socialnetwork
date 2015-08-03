@@ -21,8 +21,9 @@ function ossn_register_plugins_by_path($path) {
 		if(ossn_site_settings('cache') == 1){
 			return false;
 		}
-		
-		$path = $path . 'default/';
+		$type = 'default';
+		$type = ossn_call_hook('plugins', 'type', false, $type);
+		$path = $path . $type . '/';
 		if(!is_dir($path)) {
 				//disable error log, will cause a huge log file
 				//error_log("Ossn tried to register invalid plugins by path: {$path}");
