@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Open Source Social Network
  *
@@ -123,7 +122,7 @@ class OssnPagination {
 		if(!empty($vars)){
 			$vars['offset'] = (int)input('offset');	
 			$vars['total'] = abs($vars['limit']/$vars['page_limit']);
-			$vars['total'] = ceil($vars['total']);
+			$vars['total'] = (int)ceil($vars['total']);
             return $this->view($vars);			
 		}
         $item = $this->setItem;
