@@ -984,4 +984,19 @@ class OssnUser extends OssnEntities {
 			}
 			return false;
 		}
+		/**
+		 * Can Moderate
+		 * Check if user can moderate the requested item or not
+		 *
+		 * @return boolean
+		 */
+		public function canModerate(){
+			$allowed = false;
+			if(isset($this->guid) && $this instanceof OssnUser){
+				if(($this->type == 'user' && $this->can_moderate == 'yes') || ossn_isAdminLoggedin()){
+					$allowed = true;
+				}
+			}
+			return ossn_call_hook('user' , 'can:moderate', $this, $allowed);
+		}		
 } //CLASS
