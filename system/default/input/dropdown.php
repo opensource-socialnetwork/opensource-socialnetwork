@@ -36,4 +36,4 @@ unset($params['options']);
 $attributes = ossn_args($params);
 
 $values = implode('', $options);
-echo "<select {$attributes}>{$values}</selects>";
+echo "<select {$attributes}>{$values}</select>";
