@@ -471,4 +471,23 @@ class OssnEntities extends OssnDatabase {
 				}
 				return false;
 		}
+		/**
+		 * Can change
+		 * Check if user can change the requested item or not
+		 *
+		 * @param object $user User
+		 * @return boolean
+		 */
+		public function canChange($user = ''){
+			if(empty($user)){
+				$user = ossn_loggedin_user();
+			}
+			$allowed = false;
+			if(isset($user->guid) && $user instanceof OssnUser){
+				if((isset($this->owner_guid) && $this->type == 'user' && $this->owner_guid == $user->guid) || ossn_isAdminLoggedin()){
+					$allowed = true;
+				}
+			}
+			return ossn_call_hook('user' , 'can:change', $this, $allowed);
+		}
 } //class
