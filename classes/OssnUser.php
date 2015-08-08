@@ -506,8 +506,8 @@ class OssnUser extends OssnEntities {
 		 *
 		 * @return boolean
 		 */
-		public function searchUsers($q) {
-				$search = $this->SearchSiteUsers($q);
+		public function searchUsers($q, $limit = '') {
+				$search = $this->SearchSiteUsers($q, $limit);
 				if(!$search) {
 						return false;
 				}
@@ -525,7 +525,7 @@ class OssnUser extends OssnEntities {
 		 *
 		 * @return object
 		 */
-		public function SearchSiteUsers($search) {
+		public function SearchSiteUsers($search, $limit = '') {
 				//don't listup all users if search query is empty
 				if(empty($search)) {
 						return false;
@@ -537,7 +537,9 @@ class OssnUser extends OssnEntities {
 						$wheres[] = "username LIKE '%$search%'";
 						$wheres[] = "email LIKE '%$search%'";
 				}
-				
+				if(!empty($limit)){
+						$params['limit'] = $limit;	
+				}			
 				$params['from']   = 'ossn_users';
 				$params['wheres'] = array(
 						$this->constructWheres($wheres, 'OR')
