@@ -332,6 +332,7 @@ class OssnAnnotation extends OssnEntities {
 								
 								$this->owner_guid = $annotation->id;
 							   	$this->type = 'annotation';
+								$this->order_by = '';
 							    $entities   = $this->get_entities();
 								if(!empty($entities)){
 									foreach($entities as $entity){
