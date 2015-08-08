@@ -98,8 +98,10 @@ class OssnAnnotation extends OssnEntities {
 		 */
 		public function getAnnotationsByType() {
 				$params                 = array();
-				$params['type'] = $this->type;
-				$params['subtype'] = $this->subtype;
+				$params['type'] 	= $this->type;
+				$params['subtype'] 	= $this->subtype;
+				$params['limit'] 	= $this->limit;
+				$params['order_by'] 	= $this->order_by;
 				
 				return $this->searchAnnotation($params);
 		}
@@ -112,7 +114,9 @@ class OssnAnnotation extends OssnEntities {
 		 */
 		public function getAnnotationsByOwner() {
 				$params                 = array();
-				$params['owner_guid'] = $this->subject_guid;
+				$params['owner_guid'] 	= $this->subject_guid;
+				$params['limit'] 	= $this->limit;
+				$params['order_by'] 	= $this->order_by;
 				
 				return $this->searchAnnotation($params);
 		}
@@ -158,6 +162,7 @@ class OssnAnnotation extends OssnEntities {
 				$params['subject_guid'] = $this->subject_guid;
 				$params['count'] 		= $this->count;
 				$params['limit'] 		= $this->limit;
+				$params['order_by'] 	= $this->order_by;
 				
 				return $this->searchAnnotation($params);
 		}
