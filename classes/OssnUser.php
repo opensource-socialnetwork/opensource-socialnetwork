@@ -994,11 +994,24 @@ class OssnUser extends OssnEntities {
 		 */
 		public function canModerate(){
 			$allowed = false;
+			print_r($this);
 			if(isset($this->guid) && $this instanceof OssnUser){
-				if(($this->type == 'user' && $this->can_moderate == 'yes') || ossn_isAdminLoggedin()){
+				if(($this->type == 'normal' && $this->can_moderate == 'yes') || $this->type == 'admin'){
 					$allowed = true;
 				}
 			}
 			return ossn_call_hook('user' , 'can:moderate', $this, $allowed);
+		}
+		/**
+		 * isAdmin
+		 * Check if user is admin or not
+		 *
+		 * @return boolean
+		 */
+		public function isAdmin(){
+			if(isset($this->guid) && $this->type == 'admin'){
+				return true;
+			}
+			return false;
 		}		
 } //CLASS
