@@ -994,7 +994,6 @@ class OssnUser extends OssnEntities {
 		 */
 		public function canModerate(){
 			$allowed = false;
-			print_r($this);
 			if(isset($this->guid) && $this instanceof OssnUser){
 				if(($this->type == 'normal' && $this->can_moderate == 'yes') || $this->type == 'admin'){
 					$allowed = true;
