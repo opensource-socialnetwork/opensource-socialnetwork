@@ -312,7 +312,13 @@ function ossn_languages_js(){
 	$baseurl 	= ossn_site_url();
 	$parts		= parse_url($baseurl);
 	$iswww		= preg_match('/www./i', $parts['host']);
-	if($_SERVER['HTTP_HOST'] !== $parts['host']){
+	$ssl_redirect	= false;
+	if(stripos($_SERVER['SERVER_PROTOCOL'], 'https') === true && $parts['scheme'] == 'http'){
+			$ssl_redirect = true;
+	} elseif(stripos($_SERVER['SERVER_PROTOCOL'], 'https') === false && $parts['scheme'] == 'https'){
+			$ssl_redirect = true;			
+	}
+	if(($_SERVER['HTTP_HOST'] !== $parts['host']) || $ssl_redirect){
 			header("HTTP/1.1 301 Moved Permanently");
 			$url = "{$parts['scheme']}://{$parts['host']}{$_SERVER['REQUEST_URI']}";
 			header("Location: {$url}"); 		
