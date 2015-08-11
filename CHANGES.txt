@@ -1,4 +1,4 @@
-OSSN - OPEN SOURCE SOCIAL NETWORK 3.0-development
+OSSN - OPEN SOURCE SOCIAL NETWORK 3.0
 
 Changes from 3.0 development till stable version:
 
@@ -26,6 +26,8 @@ Bugfixes:
  * CSS: Pagination with more than 10 users #468.
  * Ossnblack theme white page issue #469.
  * [OSSN 3.x] Bug double post if 1 or 2 white line after the text in a post #471.
+ * Add compressed version of jquery.
+ * Remove JS files that was part of BuddyexpressDesk repository.
 
 Additions:
 	
