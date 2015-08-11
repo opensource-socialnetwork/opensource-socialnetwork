@@ -8,9 +8,11 @@
  * @license   General Public Licence http://www.opensource-socialnetwork.org/licence
  * @link      http://www.opensource-socialnetwork.org/licence
  */
+ 
+//This upgrade might timeout, so set no time limit 
+set_time_limit(0);
 
 //Please see: Things , should be provided in 3.x #421
-
 $database = new OssnDatabase;
 
 //delete a notification that have incorrect owner_guid
