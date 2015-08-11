@@ -313,9 +313,9 @@ function ossn_languages_js(){
 	$parts		= parse_url($baseurl);
 	$iswww		= preg_match('/www./i', $parts['host']);
 	$ssl_redirect	= false;
-    	if (empty($_SERVER["HTTPS"]) || (!empty($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] == "on" && $parts['scheme'] == 'http')) {
+    if ($parts['scheme'] == 'https' && empty($_SERVER["HTTPS"]) || (!empty($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] == "on" && $parts['scheme'] == 'http')) {
         	$ssl_redirect = true;
-    	}	
+    }	
 	if(($_SERVER['HTTP_HOST'] !== $parts['host']) || $ssl_redirect){
 			header("HTTP/1.1 301 Moved Permanently");
 			$url = "{$parts['scheme']}://{$parts['host']}{$_SERVER['REQUEST_URI']}";
