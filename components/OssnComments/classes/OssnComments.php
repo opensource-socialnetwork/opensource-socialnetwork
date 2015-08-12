@@ -94,7 +94,7 @@ class OssnComments extends OssnAnnotation {
         $this->subject_guid = $subject_id;
         $this->type = "comments:{$type}";
 		$this->count = true;
-        $this->order_by = 'id ASC';
+        $this->order_by = 'a.id ASC';
         $comments = $this->getAnnotationBySubject();
         if (!empty($comments)) {
             return $comments;
@@ -112,7 +112,7 @@ class OssnComments extends OssnAnnotation {
     public function GetComments($subject, $type = 'post') {
         $this->subject_guid = $subject;
         $this->type = "comments:{$type}";
-        $this->order_by = 'id ASC';
+        $this->order_by = 'a.id ASC';
         $comments = $this->getAnnotationBySubject();
         if (!empty($comments)) {
             return $comments;
