@@ -1,3 +1,9 @@
+OSSN - OPEN SOURCE SOCIAL NETWORK 3.01
+
+Bugfixes:
+
+* exception 'OssnDatabaseException' with message 'Column 'id' in order clause is ambiguous
+
 OSSN - OPEN SOURCE SOCIAL NETWORK 3.0
 
 Changes from 3.0 development till stable version:
