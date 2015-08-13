@@ -30,7 +30,9 @@ $de = array(
     'ossn:notifications:friendrequest:confirmbutton' => 'Annehmen',
     'ossn:notifications:friendrequest:denybutton' => 'Ablehnen',  
 	
-	'ossn:notification:mark:read:success' => 'Alles als gelesen markiert',
-	'ossn:notification:mark:read:error' => 'Es kann nicht alles als gelesen markiert werden',	
+    'ossn:notification:mark:read:success' => 'Alles als gelesen markiert',
+    'ossn:notification:mark:read:error' => 'Es kann nicht alles als gelesen markiert werden',
+    
+    'ossn:notifications:mark:as:read' => 'Alles als gelesen markieren',
 );
 ossn_register_languages('de', $de); 
