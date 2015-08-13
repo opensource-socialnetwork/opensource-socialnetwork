@@ -1,8 +1,15 @@
+OSSN - OPEN SOURCE SOCIAL NETWORK 3.1
+
+Bugfixes:
+
+* Site pages didn't updating pages #482
+* Privacy option is empty #481
+
 OSSN - OPEN SOURCE SOCIAL NETWORK 3.01
 
 Bugfixes:
 
-* exception 'OssnDatabaseException' with message 'Column 'id' in order clause is ambiguous
+* Exception 'OssnDatabaseException' with message 'Column 'id' in order clause is ambiguous
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 3.0
 
