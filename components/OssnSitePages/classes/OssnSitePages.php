@@ -26,7 +26,7 @@ class OssnSitePages extends OssnObject {
         $this->subtype = "sitepage:{$this->pagename}";
         //check if page exists of not
         $this->pageget = $this->getObjectsByTypes();
-        if (!is_object($this->pageget)) {
+        if (!is_array($this->pageget)) {
             if ($this->addObject()) {
                 return true;
             }
