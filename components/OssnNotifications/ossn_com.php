@@ -76,7 +76,7 @@ function ossn_notification_page($pages) {
 								'action' => true,
 								'href' => ossn_site_url('action/notification/mark/allread'),
 								'class' => 'ossn-notification-mark-read',
-								'text' => 'Mark all as read'
+								'text' => ossn_print('ossn:notifications:mark:as:read')
 						));
 						if(!empty($notifications['notifications'])) {
 								$data = ossn_plugin_view('notifications/pages/notification/notification', $notifications);
