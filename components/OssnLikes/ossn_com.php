@@ -146,7 +146,7 @@ function ossn_post_likes_entity($h, $t, $r, $p) {
 function ossn_likesview_page_handler() {
     echo ossn_plugin_view('output/ossnbox', array(
         'title' => ossn_print('people:like:this'),
-        'contents' => ossn_view('components/OssnLikes/pages/view'),
+        'contents' => ossn_plugin_view('likes/pages/view'),
         'control' => false,
     ));
 }
