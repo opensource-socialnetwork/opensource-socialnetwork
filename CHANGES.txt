@@ -5,7 +5,7 @@ Bugfixes:
 * Site pages didn't updating pages #482
 * Privacy option is empty #481
 * Fix old views paths to new plugin paths #483
-* ossn notification 'mark as read' missing translation #484
+* Ossn notification 'mark as read' missing translation #484
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 3.01
 
