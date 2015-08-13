@@ -29,7 +29,9 @@ $en = array(
     'ossn:notifications:friendrequest:confirmbutton' => 'Confirm',
     'ossn:notifications:friendrequest:denybutton' => 'Deny',
 	
-	'ossn:notification:mark:read:success' => 'Successfully marked all as read',
-	'ossn:notification:mark:read:error' => 'Can not mark all as read',
+    'ossn:notification:mark:read:success' => 'Successfully marked all as read',
+    'ossn:notification:mark:read:error' => 'Can not mark all as read',
+    
+    'ossn:notifications:mark:as:read' => 'Mark all as read',
 );
 ossn_register_languages('en', $en); 
