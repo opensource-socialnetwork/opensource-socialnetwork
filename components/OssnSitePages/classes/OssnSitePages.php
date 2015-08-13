@@ -33,7 +33,7 @@ class OssnSitePages extends OssnObject {
         } else {
             $data = array('description');
             $values = array($this->description);
-            if ($this->updateObject($data, $values, $this->pageget->{0}->guid)) {
+            if ($this->updateObject($data, $values, $this->pageget[0]->guid)) {
                 return true;
             }
         }
