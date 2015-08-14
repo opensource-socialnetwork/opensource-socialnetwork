@@ -223,22 +223,6 @@ class OssnFile extends OssnEntities {
 				}
 				return false;
 		}
-		
-		/**
-		 * MimeTypeImages
-		 * Get Image MimeTypes
-		 *
-		 * @return array
-		 */
-		private function MimeTypeImages() {
-				return array(
-						'image/jpeg' => 'jpeg',
-						'image/pjpeg' => 'jpeg',
-						'image/png' => 'png',
-						'image/x-png' => 'png',
-						'image/gif' => 'gif'
-				);
-		}
 		/**
 		 * getFiles
 		 * Get owner files
