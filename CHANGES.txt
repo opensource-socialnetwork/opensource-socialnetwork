@@ -6,6 +6,7 @@ Bugfixes:
 * Privacy option is empty #481
 * Fix old views paths to new plugin paths #483
 * Ossn notification 'mark as read' missing translation #484
+* Security fix : if user is deleted logout from his session.
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 3.01
 
