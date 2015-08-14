@@ -26,6 +26,17 @@ function ossn_user() {
  */
 function ossn_users() {
     ossn_register_page('uservalidate', 'ossn_uservalidate_pagehandler');
+	
+	/**
+	 * Logout outuser if user didn't exists
+	 */
+	if(ossn_isLoggedin()){
+		$user = ossn_user_by_guid(ossn_loggedin_user()->guid);
+		if(!$user){
+			ossn_logout();
+			redirect();
+		}
+	}
 }
 
 /**
@@ -313,6 +324,18 @@ function ossn_uservalidate_pagehandler($pages) {
 		 }
 		 return $lang;
  }
- 
+ /**
+  * Logout user from system
+  * 
+  * @return boolean
+  */
+ function ossn_logout(){
+		unset($_SESSION['OSSN_USER']);
+		@session_destroy(); 
+		if(!isset($_SESSION['OSSN_USER'])){
+			return true;
+		}
+		return false;
+ }
 ossn_register_callback('ossn', 'init', 'ossn_users');
 ossn_add_hook('load:settings', 'language', 'ossn_site_user_lang_code');
