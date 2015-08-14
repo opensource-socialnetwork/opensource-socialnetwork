@@ -9,6 +9,5 @@
  * @link      http://www.opensource-socialnetwork.org/licence
  */
  
-unset($_SESSION['OSSN_USER']);
-@session_destroy();
+ossn_logout();
 redirect();	
