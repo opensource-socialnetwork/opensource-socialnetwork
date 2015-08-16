@@ -16,7 +16,7 @@ if (empty($requests)) {
         ?>
 
         <div class="ossn-group-members">
-            <img src="<?php echo ossn_site_url("avatar/{$user->username}/large"); ?>" width='100' height="100"/>
+            <img src="<?php echo ossn_site_url("avatar/{$user->username}/large"); ?>" width="100" height="100"/>
 
             <div class="uinfo">
                 <a class="userlink" href="<?php echo $user->profileURL(); ?>"><?php echo $user->fullname; ?></a>
