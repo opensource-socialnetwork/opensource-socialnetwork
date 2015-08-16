@@ -14,7 +14,7 @@ if ($params['groups']) {
         ?>
 
         <div class="ossn-view-users">
-            <img src="<?php echo ossn_site_url("components/OssnGroups/images/search_group.png"); ?>" width='100'
+            <img src="<?php echo ossn_site_url("components/OssnGroups/images/search_group.png"); ?>" width="100"
                  height="100"/>
 
             <div class="uinfo">
