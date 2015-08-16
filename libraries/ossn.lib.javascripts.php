@@ -312,14 +312,21 @@ function ossn_languages_js(){
 	$baseurl 	= ossn_site_url();
 	$parts		= parse_url($baseurl);
 	$iswww		= preg_match('/www./i', $parts['host']);
+	$host		= parse_url($_SERVER['HTTP_HOST']);
 	$ssl_redirect	= false;
-    if ($parts['scheme'] == 'https' && empty($_SERVER["HTTPS"]) || (!empty($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] == "on" && $parts['scheme'] == 'http')) {
+	$port = ":{$parts['port']}";
+	if(isset($parts['port'])){
+		if ($parts['port'] == ':80' || $parts['port'] == ':443'){
+			$port = '';
+		} 
+	}
+    	if ($parts['scheme'] == 'https' && empty($_SERVER["HTTPS"]) || (!empty($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] == "on" && $parts['scheme'] == 'http')) {
         	$ssl_redirect = true;
-    }	
-	if(($_SERVER['HTTP_HOST'] !== $parts['host']) || $ssl_redirect){
-			header("HTTP/1.1 301 Moved Permanently");
-			$url = "{$parts['scheme']}://{$parts['host']}{$_SERVER['REQUEST_URI']}";
-			header("Location: {$url}"); 		
+    	}	
+	if(($host['host'] !== $parts['host']) || $ssl_redirect){
+		header("HTTP/1.1 301 Moved Permanently");
+		$url = "{$parts['scheme']}://{$parts['host']}{$port}{$_SERVER['REQUEST_URI']}";
+		header("Location: {$url}"); 		
 	}
  }
 ossn_register_callback('ossn', 'init', 'ossn_languages_js');
