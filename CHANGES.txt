@@ -7,6 +7,7 @@ Bugfixes:
 * Fix old views paths to new plugin paths #483
 * Ossn notification 'mark as read' missing translation #484
 * Security fix : if user is deleted logout from his session.
+* Can't install v3 on host having port #485
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 3.01
 
