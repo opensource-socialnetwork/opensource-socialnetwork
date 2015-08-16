@@ -313,18 +313,26 @@ function ossn_languages_js(){
 	$parts		= parse_url($baseurl);
 	$iswww		= preg_match('/www./i', $parts['host']);
 	$host		= parse_url($_SERVER['HTTP_HOST']);
-	$ssl_redirect	= false;
+	$redirect	= false;
 	$port 		= "";
-	if(isset($parts['port'])){
+	if(!isset($host['host'])){
+		$host = array();
+		$host['host'] = $_SERVER['HTTP_HOST'];
+	}
+	if(isset($parts['port']) && !empty($parts['port'])){
 		$port = ":{$parts['port']}";
 		if ($parts['port'] == ':80' || $parts['port'] == ':443'){
 			$port = '';
-		} 
+		}
 	}
-    	if ($parts['scheme'] == 'https' && empty($_SERVER["HTTPS"]) || (!empty($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] == "on" && $parts['scheme'] == 'http')) {
-        	$ssl_redirect = true;
-    	}	
-	if(($host['host'] !== $parts['host']) || $ssl_redirect){
+	if(empty($parts['port']) && isset($_SERVER['SERVER_PORT']) && !empty($_SERVER['SERVER_PORT'])){
+		$redirect = true;
+	}
+    	if($parts['scheme'] == 'https' && empty($_SERVER["HTTPS"]) 
+    		|| (!empty($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] == "on" && $parts['scheme'] == 'http')) {
+        	$redirect = true;
+    	}
+	if(($host['host'] !== $parts['host']) || $redirect){
 		header("HTTP/1.1 301 Moved Permanently");
 		$url = "{$parts['scheme']}://{$parts['host']}{$port}{$_SERVER['REQUEST_URI']}";
 		header("Location: {$url}"); 		
