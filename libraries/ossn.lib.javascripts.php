@@ -314,8 +314,9 @@ function ossn_languages_js(){
 	$iswww		= preg_match('/www./i', $parts['host']);
 	$host		= parse_url($_SERVER['HTTP_HOST']);
 	$ssl_redirect	= false;
-	$port = ":{$parts['port']}";
+	$port 		= "";
 	if(isset($parts['port'])){
+		$port = ":{$parts['port']}";
 		if ($parts['port'] == ':80' || $parts['port'] == ':443'){
 			$port = '';
 		} 
