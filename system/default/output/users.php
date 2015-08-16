@@ -14,7 +14,7 @@ if ($users) {
         ?>
 
         <div class="ossn-view-users">
-            <img src="<?php echo ossn_site_url("avatar/{$user->username}/large"); ?>" width='100' height="100"/>
+            <img src="<?php echo ossn_site_url("avatar/{$user->username}/large"); ?>" width="100" height="100"/>
 
             <div class="uinfo">
                 <a class="userlink"
