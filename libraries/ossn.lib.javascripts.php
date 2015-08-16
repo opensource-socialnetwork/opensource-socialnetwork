@@ -319,19 +319,25 @@ function ossn_languages_js(){
 		$host = array();
 		$host['host'] = $_SERVER['HTTP_HOST'];
 	}
+	
 	if(isset($parts['port']) && !empty($parts['port'])){
 		$port = ":{$parts['port']}";
 		if ($parts['port'] == ':80' || $parts['port'] == ':443'){
 			$port = '';
 		}
+		if($parts['port'] !== (int)$_SERVER['SERVER_PORT']){
+			$redirect = true;
+		}
 	}
-	if(empty($parts['port']) && isset($_SERVER['SERVER_PORT']) && !empty($_SERVER['SERVER_PORT'])){
-		$redirect = true;
+	if(empty($parts['port']) && isset($_SERVER['SERVER_PORT']) && !empty($_SERVER['SERVER_PORT']) 
+			&& $_SERVER['SERVER_PORT'] !== 80 && $_SERVER['SERVER_PORT'] == '443'){
+			$redirect = true;
 	}
     	if($parts['scheme'] == 'https' && empty($_SERVER["HTTPS"]) 
     		|| (!empty($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] == "on" && $parts['scheme'] == 'http')) {
         	$redirect = true;
     	}
+
 	if(($host['host'] !== $parts['host']) || $redirect){
 		header("HTTP/1.1 301 Moved Permanently");
 		$url = "{$parts['scheme']}://{$parts['host']}{$port}{$_SERVER['REQUEST_URI']}";
