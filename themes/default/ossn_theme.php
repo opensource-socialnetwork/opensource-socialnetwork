@@ -37,7 +37,7 @@ function ossn_three_head(){
 					'href' => '//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'
 			  ));	
 	$head[]  = ossn_html_css(array(
-					'href' =>  'http://fonts.googleapis.com/css?family=Roboto+Slab:300,700,400'
+					'href' =>  '//fonts.googleapis.com/css?family=Roboto+Slab:300,700,400'
 			  ));		
 	$head[]  = ossn_html_js(array(
 					'src' => $siteurl . 'themes/default/vendors/bootstrap/js/bootstrap.min.js'
