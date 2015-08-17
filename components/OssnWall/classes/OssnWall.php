@@ -38,7 +38,8 @@ class OssnWall extends OssnObject {
 				$this->data->access      = $access;
 				$this->subtype           = 'wall';
 				$this->title             = '';
-				
+
+				$post		  = preg_replace('/\t/', ' ', $post);
 				$wallpost['post'] = htmlspecialchars($post, ENT_QUOTES, 'UTF-8');
 				if(!empty($friends)) {
 						$wallpost['friend'] = $friends;
