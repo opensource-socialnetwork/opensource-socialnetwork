@@ -330,7 +330,7 @@ function ossn_languages_js(){
 		}
 	}
 	if(empty($parts['port']) && isset($_SERVER['SERVER_PORT']) && !empty($_SERVER['SERVER_PORT']) 
-			&& $_SERVER['SERVER_PORT'] !== 80 && $_SERVER['SERVER_PORT'] == '443'){
+			&& $_SERVER['SERVER_PORT'] !== '80' && $_SERVER['SERVER_PORT'] !=='443'){
 			$redirect = true;
 	}
     	if($parts['scheme'] == 'https' && empty($_SERVER["HTTPS"]) 
