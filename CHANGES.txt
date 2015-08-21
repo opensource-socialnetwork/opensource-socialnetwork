@@ -10,6 +10,7 @@ Bugfixes:
 * Can't install v3 on host having port #485
 * Blank post when have a tabulation in text #494
 * HTTP external css in themes with HTTPS site #495
+* Home link in main site and admin top bar #499
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 3.01
 
