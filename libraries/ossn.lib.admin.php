@@ -35,7 +35,7 @@ function ossn_admin() {
     ossn_register_menu_link('help', 'admin:help', 'http://community.opensource-socialnetwork.org', 'topbar_admin');
     ossn_register_menu_link('support', 'admin:support', 'http://community.opensource-socialnetwork.org', 'topbar_admin');
 
-    ossn_register_menu_link('viewsite', 'admin:view:site', ossn_site_url(), 'topbar_admin');
+   ossn_register_menu_link('viewsite', 'admin:view:site', ossn_site_url('home'), 'topbar_admin');
     
 	ossn_register_action('admin/login', ossn_route()->actions . 'administrator/login.php');
     ossn_register_action('admin/logout', ossn_route()->actions . 'administrator/logout.php');
