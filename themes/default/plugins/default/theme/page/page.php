@@ -85,7 +85,7 @@ if (isset($params['contents'])) {
                     </a>
                 </li>
                 <li>
-                    <a href="<?php echo ossn_site_url(); ?>"><span><?php echo ossn_print('home'); ?></span></a>
+                    <a href="<?php echo ossn_site_url(); ?>home"><span><?php echo ossn_print('home'); ?></span></a>
                 </li>
 
                 <?php echo ossn_view('components/OssnNotifications/page/topbar'); ?>
