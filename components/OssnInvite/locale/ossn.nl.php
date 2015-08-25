@@ -34,4 +34,4 @@ Met vriendelijke groet.
 	'com:ossn:invite:already:members' => 'De volgende addressen zijn al lid: %s',
 	'com:ossn:invite:empty:emails' => 'U dient op zijn minst een email adres toe te voegen',
 );
-ossn_register_languages('en', $en); 
+ossn_register_languages('nl', $nl); 
