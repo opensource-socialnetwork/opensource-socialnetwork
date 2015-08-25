@@ -7,7 +7,7 @@
  # @link      http://www.opensource-socialnetwork.org 
 
 Options -Indexes
-Options +FollowSymLinks
+Options +SymlinksIfOwnerMatch
 DirectoryIndex index.php
 
 <Files "error_log">
