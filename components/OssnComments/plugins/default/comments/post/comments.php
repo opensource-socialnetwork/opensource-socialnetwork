@@ -17,6 +17,10 @@ $OssnLikes = new OssnLikes;
 if($params->full_view !== true){
 	$comments->limit = 5;
 }
+if($params->full_view == true){
+	$comments->limit = false;
+	$comments->page_limit = false;
+}
 $comments = $comments->GetComments($object);
 
 echo "<div class='ossn-comments-list-{$object}'>";
