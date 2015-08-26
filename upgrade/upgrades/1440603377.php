@@ -10,6 +10,9 @@
  */
  
 $database = new OssnDatabase;
+//regenerate .htaccess file
+ossn_generate_server_config('apache');
+
 /**
  * Update processed updates in database so user cannot upgrade again and again.
  *
