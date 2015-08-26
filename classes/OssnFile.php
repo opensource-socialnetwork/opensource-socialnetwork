@@ -334,8 +334,8 @@ class OssnFile extends OssnEntities {
 		/**
 		 * MIME types.
 		 *
-		 * This file contains most commonly used MIME types in Ossn
-		 * according to file extension names.
+		 * This function contains most commonly used MIME types in Ossn
+		 * 
 		 * You can find mimtypes on the url below:
 		 * http://svn.apache.org/viewvc/httpd/httpd/trunk/docs/conf/mime.types?view=markup
 		 *
