@@ -13,6 +13,7 @@ Bugfixes:
 * Home link in main site and admin top bar #499
 * Security fix: FollowSymlinks does not protect against malicious links into other domain's directories, 
   use +SymLinksIfOwnerMatch. (reported by https://github.com/hazyapps)  #507 
+* View all comments shows 10 comments only.
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 3.01
 
