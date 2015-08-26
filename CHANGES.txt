@@ -11,7 +11,8 @@ Bugfixes:
 * Blank post when have a tabulation in text #494
 * HTTP external css in themes with HTTPS site #495
 * Home link in main site and admin top bar #499
-* Security fix: FollowSymlinks does not protect against malicious links into other domain's directories, use +SymLinksIfOwnerMatch. (reported by https://github.com/hazyapps)  #507 
+* Security fix: FollowSymlinks does not protect against malicious links into other domain's directories, 
+  use +SymLinksIfOwnerMatch. (reported by https://github.com/hazyapps)  #507 
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 3.01
 
