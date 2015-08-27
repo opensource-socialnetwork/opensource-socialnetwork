@@ -1,3 +1,12 @@
+OSSN - OPEN SOURCE SOCIAL NETWORK 3.2
+
+Bugfixes:
+
+* Ossn v3.0 components versions compatibility issue on v3.x
+* Fix typo in language strings.
+
+Thanks to David Orwig for reporting issues https://www.opensource-socialnetwork.org/u/David111567
+
 OSSN - OPEN SOURCE SOCIAL NETWORK 3.1
 
 Bugfixes:
