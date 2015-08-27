@@ -92,9 +92,9 @@ class OssnComponents extends OssnDatabase {
 										//need to check id , since ossn v3.x
 										if(isset($ossn_com_xml->id) && !empty($ossn_com_xml->id)) {
 												//move to components directory
-												if(OssnFile::moveFiles($files, ossn_route()->com . $ossn_com_xml->id . '/')){
-													//add new component to system
-													$this->newCom($ossn_com_xml->id);
+												if(OssnFile::moveFiles($files, ossn_route()->com . $ossn_com_xml->id . '/')) {
+														//add new component to system
+														$this->newCom($ossn_com_xml->id);
 												}
 										}
 										OssnFile::DeleteDir($data_dir);
@@ -246,8 +246,9 @@ class OssnComponents extends OssnDatabase {
 												$requirments['type']         = ossn_print('ossn:version');
 												$requirments['value']        = (string) $item->version;
 												$requirments['availability'] = 0;
+												$site_version                = (int) ossn_site_settings('site_version');
 												
-												if(ossn_site_settings('site_version') <= $item->version) {
+												if(($site_version <= $item->version) && ($site_version == (int) $item->version)) {
 														$requirments['availability'] = 1;
 												}
 												

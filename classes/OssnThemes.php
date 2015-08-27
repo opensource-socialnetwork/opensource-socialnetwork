@@ -85,7 +85,9 @@ class OssnThemes extends OssnSite {
 				}
 				$file = new OssnFile;
 				$file->setFile('theme_file');
-				$file->setExtension(array('zip'));
+				$file->setExtension(array(
+						'zip'
+				));
 				$zip     = $file->file;
 				$newfile = "{$data_dir}/{$zip['name']}";
 				if(move_uploaded_file($zip['tmp_name'], $newfile)) {
@@ -213,8 +215,9 @@ class OssnThemes extends OssnSite {
 												$requirments['type']         = ossn_print('ossn:version');
 												$requirments['value']        = (string) $item->version;
 												$requirments['availability'] = 0;
+												$site_version                = (int) ossn_site_settings('site_version');
 												
-												if(ossn_site_settings('site_version') <= $item->version) {
+												if(($site_version <= $item->version) && ($site_version == (int) $item->version)) {
 														$requirments['availability'] = 1;
 												}
 												
