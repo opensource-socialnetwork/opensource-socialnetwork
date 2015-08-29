@@ -1,3 +1,12 @@
+OSSN - OPEN SOURCE SOCIAL NETWORK 3.3
+
+Bugfixes:
+
+* When installing components it show success for lower version #510
+* Fresh installation of v3.2 still shows old version, v3.0, Reported by Softaculous Team.
+* Improve component installer language strings.
+
+
 OSSN - OPEN SOURCE SOCIAL NETWORK 3.2
 
 Bugfixes:
