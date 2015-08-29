@@ -175,7 +175,7 @@ function ossn_update_db_version($version = '') {
  * @return boolean
  */
 function ossn_update_upgraded_files($upgrade) {
-		if(!empty($upgrade)) {
+		if(empty($upgrade)) {
 				return false;
 		}
 		$database     = new OssnDatabase;
