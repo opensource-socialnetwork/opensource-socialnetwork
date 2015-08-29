@@ -95,10 +95,12 @@ class OssnComponents extends OssnDatabase {
 												if(OssnFile::moveFiles($files, ossn_route()->com . $ossn_com_xml->id . '/')) {
 														//add new component to system
 														$this->newCom($ossn_com_xml->id);
+														
+														//why it shows success even if the component is not updated #510
+														OssnFile::DeleteDir($data_dir);
+														return true;														
 												}
 										}
-										OssnFile::DeleteDir($data_dir);
-										return true;
 								}
 						}
 				}
