@@ -232,7 +232,6 @@ class OssnAnnotation extends OssnEntities {
 		 * @param string  $params['order_by']  To show result in sepcific order. There is no default order.
 		 * 
 		 * reutrn array|false;
-		 *
 		 */
 		public function searchAnnotation(array $params = array()) {
 				self::initAttributes();
