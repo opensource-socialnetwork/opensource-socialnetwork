@@ -223,14 +223,13 @@ class OssnAnnotation extends OssnEntities {
 		/**
 		 * Search annotation by its type, owner etc
 		 *
-		 * @param array $params A valid options in format:
-		 * 	  'search_type' => true(default) to performs matching on a per-character basis 
-		 * 					  false for performs matching on exact value.
-		 *	  'type' 		=> Valid annotation type
-		 *    'subject_guid'  => A valid subject guid, which results integer value
-		 *    'owner_guid'  => A valid owner guid, which results integer value
-		 *    'limit'		=> Result limit default, Default is 20 values
-		 *	  'order_by'    => To show result in sepcific order. There is no default order.
+		 * @param array   $params A valid options in format:
+		 * @param string  $params['search_type'] true(default) to performs matching on a per-character basis ,  false to performs matching on exact value.
+		 * @param string  $params['type']  Valid annotation type
+		 * @param integer $params['subject_guid']  A valid subject guid, which results integer value
+		 * @param integer $params['owner_guid'] A valid owner guid, which results integer value
+		 * @param integer $params['limit'] Result limit default, Default is 20 values
+		 * @param string  $params['order_by']  To show result in sepcific order. There is no default order.
 		 * 
 		 * reutrn array|false;
 		 *
