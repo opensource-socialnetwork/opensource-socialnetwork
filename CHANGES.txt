@@ -1,4 +1,4 @@
-OSSN - OPEN SOURCE SOCIAL NETWORK 3.4
+OSSN - OPEN SOURCE SOCIAL NETWORK 3.4-development
 
 Bugfixes:
 
@@ -9,9 +9,6 @@ Enhancement:
 * Added new hook 'plugin, view:type'.
 * Remove hook 'plugins, type'.
 * Move system/default to system/plugins/default
-
-
-
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 3.3
 
