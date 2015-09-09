@@ -186,7 +186,7 @@ function ossn_index_pagehandler($index) {
  */
 function ossn_system_plugins_load(){
 	//load system plugins before components load #451
-	ossn_register_plugins_by_path(ossn_route()->system);	
+	ossn_register_plugins_by_path(ossn_route()->system . 'plugins/');	
 }
 ossn_register_callback('ossn', 'init', 'ossn_initialize');
 ossn_register_callback('components', 'before:load', 'ossn_system_plugins_load');
