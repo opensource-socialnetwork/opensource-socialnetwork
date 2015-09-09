@@ -684,7 +684,7 @@ function _ossn_php_error_handler($errno, $errmsg, $filename, $linenum, $vars) {
 	switch ($errno) {
 		case E_USER_ERROR:
 			error_log("PHP ERROR: $error");
-			register_error("ERROR: $error");
+			ossn_trigger_message("ERROR: $error", 'error');
 
 			// Since this is a fatal error, we want to stop any further execution but do so gracefully.
 			throw new Exception($error);
