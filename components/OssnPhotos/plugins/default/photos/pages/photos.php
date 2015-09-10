@@ -11,6 +11,9 @@
 echo '<div class="ossn-photos">';
 $albums = new OssnAlbums;
 $photos = $albums->GetAlbums($params['user']->guid);
+
+$albums->count = true;
+$count = $albums->GetAlbums($params['user']->guid);
 $profiel_photo = ossn_site_url("avatar/{$params['user']->username}/larger");
 $pphotos_album = ossn_site_url("album/profile/{$params['user']->guid}");
 
@@ -51,3 +54,5 @@ if ($photos) {
 }
 ?>
 </div>
+<?php
+echo ossn_view_pagination($count);
