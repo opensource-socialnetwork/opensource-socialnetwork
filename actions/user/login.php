@@ -36,7 +36,8 @@ $login = new OssnUser;
 $login->username = $username;
 $login->password = $password;
 if ($login->Login()) {
-    redirect(REF);
+    //One uneeded redirection when login #516
+    redirect('home');
 } else {
     redirect('login?error=1');
 }
