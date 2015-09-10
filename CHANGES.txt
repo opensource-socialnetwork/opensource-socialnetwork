@@ -7,6 +7,7 @@ Bugfixes:
 * Remove chart legend code form chart.min.js #517
 * Photos limit issue, only 10 displays #523
 * Youtube https in ossnembed.lib.php #519
+* Translation for gender in dashboard users & users online #511
 
 
 Enhancement:

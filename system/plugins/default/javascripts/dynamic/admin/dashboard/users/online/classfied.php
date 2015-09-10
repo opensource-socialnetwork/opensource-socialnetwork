@@ -1,19 +1,20 @@
 <script>
 		/**
 		 * Get data for last two years
+		 * Translation for gender in dashboard users & users online #511
 		 */
 		var OnlineUsersPieData = [
 				{
 					value: <?php echo $params['total'][0]; ?>,
 					color:"#F7464A",
 					highlight: "#FF5A5E",
-					label: "Male"
+					label: "<?php echo ossn_print('male'); ?>"
 				},
 				{
 					value: <?php echo $params['total'][1]; ?>,
 					color: "#46BFBD",
 					highlight: "#5AD3D1",
-					label: "Female"
+					label: "<?php echo ossn_print('female'); ?>"
 				},
 			];
 			$(window).on('load', function(){
