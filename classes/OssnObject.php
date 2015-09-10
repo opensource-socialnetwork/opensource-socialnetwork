@@ -332,6 +332,9 @@ class OssnObject extends OssnEntities {
 				$params['order_by'] = $options['order_by'];
 				$params['limit']    = $options['limit'];
 				
+				if(!$options['order_by']){
+					$params['order_by'] = "o.guid ASC";				
+				}
 				$this->get = $this->select($params, true);
 				
 				//prepare count data;

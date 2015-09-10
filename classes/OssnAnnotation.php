@@ -303,6 +303,10 @@ class OssnAnnotation extends OssnEntities {
 				$params['order_by'] = $options['order_by'];
 				$params['limit']    = $options['limit'];
 				
+				if(!$options['order_by']){
+					$params['order_by'] = "a.id ASC";				
+				}
+				
 				$this->get = $this->select($params, true);
 				
 				//prepare count data;
