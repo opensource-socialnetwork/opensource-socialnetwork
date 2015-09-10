@@ -17,6 +17,7 @@ Enhancement:
 * Move system/default to system/plugins/default
 * Open link in new tab #518
 * Default order for entities , objects, annotations must be by their primary id.
+* Delete users messages if user is deleted #522
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 3.3
 
