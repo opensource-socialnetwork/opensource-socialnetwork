@@ -3,12 +3,19 @@ OSSN - OPEN SOURCE SOCIAL NETWORK 3.4-development
 Bugfixes:
 
 * Hook for changing plugin type isn't working.
+* One uneeded redirection when login #516
+* Remove chart legend code form chart.min.js #517
+* Photos limit issue, only 10 displays #523
+* Youtube https in ossnembed.lib.php #519
+
 
 Enhancement:
 
 * Added new hook 'plugin, view:type'.
 * Remove hook 'plugins, type'.
 * Move system/default to system/plugins/default
+* Open link in new tab #518
+* Default order for entities , objects, annotations must be by their primary id.
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 3.3
 
