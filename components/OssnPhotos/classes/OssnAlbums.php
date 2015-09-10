@@ -83,6 +83,8 @@ class OssnAlbums extends OssnObject {
             $this->album = $this->getObjectbyId();
             if (!empty($this->album)) {
                 $this->photos = new OssnPhotos;
+                //Photos limit issue, only 10 displays #523
+                $this->photos->page_limit = false;
                 $this->album = array(
                     'album' => $this->album,
                     'photos' => $this->photos->GetPhotos($album_id)
