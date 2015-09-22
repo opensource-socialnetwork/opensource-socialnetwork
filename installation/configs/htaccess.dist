@@ -52,15 +52,6 @@ RewriteRule ^([A-Za-z0-9\_\-]+)\/(.*)$ index.php?h=$1&p=$2 [QSA,L]
 
 </IfModule>
 
-<IfModule mod_expires.c>
-	ExpiresActive On
-	ExpiresDefault "access plus 1 year"
-</IfModule>
-
-<FilesMatch "\.(jpg|jpeg|gif|png|mp3|flv|mov|avi|3pg|html|htm|swf|js|css|ico)$">
-	FileETag MTime Size
-</FilesMatch>
-
 <IfModule mod_php5.c>
 	php_value memory_limit 128M
 	php_value register_globals 0
