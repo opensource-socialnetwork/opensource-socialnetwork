@@ -213,8 +213,15 @@ class OssnFile extends OssnEntities {
 								if($this->add()) {
 										$filecontents = file_get_contents($this->file['tmp_name']);
 										if(preg_match('/image/i', $this->file['type'])) {
+												//allow devs to change default size , see #528
+												$image_res = array(
+														'width' => 2048,
+														'height' => 2048
+												);
+												$image_res = ossn_call_hook('file', 'image:resolution', $this, $image_res);
+												
 												//compress image before save
-												$filecontents = ossn_resize_image($this->file['tmp_name'], 2048, 2048);
+												$filecontents = ossn_resize_image($this->file['tmp_name'], $image_res['width'], $image_res['height']);
 										}
 										file_put_contents("{$this->dir}{$this->newfilename}", $filecontents);
 										return true;
