@@ -198,9 +198,34 @@ function ossn_post_page($pages) {
 						break;
 				case 'photo':
 						if(isset($pages[1]) && isset($pages[2])) {
+								$name = str_replace(array(
+										'.jpg',
+										'.jpeg',
+										'gif'
+								), '', $pages[2]);
+								
+								$etag = $pages[1] . $name;
+								if(isset($_SERVER['HTTP_IF_NONE_MATCH']) && trim($_SERVER['HTTP_IF_NONE_MATCH']) == "\"$etag\"") {
+										header("HTTP/1.1 304 Not Modified");
+										exit;
+								}
+								
 								$image = ossn_get_userdata("object/{$pages[1]}/ossnwall/images/{$pages[2]}");
-								header('Content-Type: image/jpeg');
-								echo file_get_contents($image);
+								//get image file else show error page
+								if(is_file($image)) {
+										//Image cache on wall post #529
+										$filesize = filesize($image);
+										header("Content-type: image/jpeg");
+										header('Expires: ' . gmdate('D, d M Y H:i:s \G\M\T', strtotime("+6 months")), true);
+										header("Pragma: public");
+										header("Cache-Control: public");
+										header("Content-Length: $filesize");
+										header("ETag: \"$etag\"");
+										readfile($image);
+										return;
+								} else {
+										ossn_error_page();
+								}
 						}
 						
 						break;
