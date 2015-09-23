@@ -10,28 +10,28 @@
  */
 $object = $params['entity_guid'];
 
-$OssnComments = new OssnComments;
+$comments = new OssnComments;
 $OssnLikes = new OssnLikes;
 
-$comments = $OssnComments->GetComments($object, 'entity');
+if($params->full_view !== true){
+	$comments->limit = 5;
+}
+if($params->full_view == true){
+	$comments->limit = false;
+	$comments->page_limit = false;
+}
+$comments = $comments->GetComments($object, 'entity');
 echo "<div class='ossn-comments-list-{$object}'>";
 if ($comments) {
-    $count = 0;
     foreach ($comments as $comment) {
-        if ($count <= 5) {
             $data['comment'] = get_object_vars($comment);
             echo ossn_plugin_view('comments/templates/comment', $data);
-        } elseif($params->full_view === true){
-            $data['comment'] = get_object_vars($comment);
-            echo ossn_plugin_view('comments/templates/comment', $data);				
-		}
-        $count++;
     }
 }
 echo '</div>';
 if (ossn_isLoggedIn()) {
     echo '<div class="poster-image">';
-    echo '<img src="' . ossn_site_url() . 'avatar/' . ossn_loggedin_user()->username . '/smaller" />';
+    echo '<img src="' . ossn_loggedin_user()->iconURL()->smaller . '" />';
     echo '</div>';
     echo '<script>  Ossn.EntityComment(' . $object . '); </script>';
     echo ossn_view_form('entity/comment_add', array(
