@@ -351,6 +351,7 @@ function ossn_wall_view_template(array $params) {
  * @access private
  */
 function ossn_wall_templates($hook, $type, $return, $params) {
+		ossn_trigger_callback('wall', 'load:item', $params);
 		$params = ossn_call_hook('wall', 'templates:item', $params, $params);
 		return ossn_plugin_view("wall/templates/wall/{$type}/item", $params);
 }
