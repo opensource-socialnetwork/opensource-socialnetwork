@@ -33,7 +33,7 @@ if ($comments) {
 echo '</div>';
 if (ossn_isLoggedIn()) {
     echo '<div class="poster-image">';
-    echo '<img src="' . ossn_site_url() . 'avatar/' . ossn_loggedin_user()->username . '/smaller" />';
+    echo '<img src="' . ossn_loggedin_user()->iconURL()->smaller . '" />';
     echo '</div>';
     echo '<script>  Ossn.PostComment(' . $object . '); </script>';
 
