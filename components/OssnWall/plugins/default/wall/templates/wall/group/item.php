@@ -12,6 +12,7 @@ $image = $params['image'];
 if (!isset($params['show_group'])) {
     $params['show_group'] = NULL;
 }
+
 ?>
 <div class="activity-item" id="activity-item-<?php echo $params['post']->guid; ?>">
 
@@ -67,6 +68,11 @@ if (!isset($params['show_group'])) {
 	if($params['ismember'] === 1){ 
 	?>
     <div class="comments-likes">
+         <div class="menu-likes-comments-share">
+	    	<div class="like_share comments-like-comment-links">
+            	<?php echo ossn_view_menu('postextra', 'wall/menus/postextra');?>
+            </div>
+        </div>        
         <?php
         if (ossn_is_hook('post', 'likes')) {
             echo ossn_call_hook('post', 'likes', $params['post']);

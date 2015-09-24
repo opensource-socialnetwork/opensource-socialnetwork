@@ -84,7 +84,12 @@ $image = $params['image'];
         </div>
     </div>
     <div class="comments-likes">
-        <?php
+        <div class="menu-likes-comments-share">
+	    	<div class="like_share comments-like-comment-links">
+            	<?php echo ossn_view_menu('postextra', 'wall/menus/postextra');?>
+            </div>
+        </div>     
+		<?php
         if (ossn_is_hook('post', 'likes')) {
             echo ossn_call_hook('post', 'likes', $params['post']);
         }
