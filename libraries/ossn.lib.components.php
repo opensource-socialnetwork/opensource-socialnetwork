@@ -14,8 +14,8 @@
  * @return OssnComponents
  */
 function ossn_components() {
-    $coms = new OssnComponents;
-    return $coms;
+		$coms = new OssnComponents;
+		return $coms;
 }
 
 /**
@@ -26,11 +26,11 @@ function ossn_components() {
  * @return bool
  */
 function com_is_active($comn) {
-    $com = new OssnComponents;
-    if ($com->isActive($comn)) {
-        return true;
-    }
-    return false;
+		$com = new OssnComponents;
+		if($com->isActive($comn)) {
+				return true;
+		}
+		return false;
 }
 
 /**
@@ -39,8 +39,8 @@ function com_is_active($comn) {
  * @return integer
  */
 function ossn_total_components() {
-    $com = new OssnComponents;
-    return $com->total();
+		$com = new OssnComponents;
+		return $com->total();
 }
 
 /**
@@ -72,13 +72,18 @@ $coms->loadComs();
  */
 
 function ossn_components_init() {
-    $panels = ossn_registered_com_panel();
-    if (!$panels) {
-        return false;
-    }
-    foreach ($panels as $configure) {
-        ossn_register_menu_link('configure', $configure, ossn_site_url("administrator/component/{$configure}"), 'topbar_admin');
-    }
+		$panels = ossn_registered_com_panel();
+		if(!$panels) {
+				return false;
+		}
+		foreach($panels as $configure) {
+				ossn_register_menu_item('topbar_admin', array(
+						'name' => OssnTranslit::urlize($configure),
+						'text' => $configure,
+						'parent' => 'configure',
+						'href' => ossn_site_url("administrator/component/{$configure}")
+				));
+		}
 }
 
 ossn_register_callback('ossn', 'init', 'ossn_components_init');

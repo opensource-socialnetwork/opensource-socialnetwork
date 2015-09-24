@@ -90,8 +90,12 @@ function ossn_admin() {
  * @return void
  */
 function ossn_register_admin_sidemenu($name, $text, $link, $section, $for = 'admin/sidemenu') {
-    global $Ossn;
-    $Ossn->menu[$for][$name][$section][$text] = $link;
+	ossn_register_menu_item($for, array(
+								'name' => $name,
+								'text' => $text,
+								'href' => $link,
+								'parent' => strtolower($section),
+	 ));	
 }
 
 /**

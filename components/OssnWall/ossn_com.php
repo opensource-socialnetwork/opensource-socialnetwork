@@ -262,14 +262,17 @@ function ossn_post_page($pages) {
 function ossn_wall_post_menu($hook, $type, $return, $params) {
 		if($params['post']->poster_guid == ossn_loggedin_user()->guid || $params['post']->owner_guid == ossn_loggedin_user()->guid || ossn_isAdminLoggedin()) {
 				$deleteurl = ossn_site_url("action/wall/post/delete?post={$params['post']->guid}", true);
-				ossn_register_menu_link("delete", ossn_print('ossn:post:delete'), array(
+				ossn_unregister_menu('delete', 'wallpost');
+				ossn_register_menu_item("wallpost", array(
+					 	'name' => 'delete',
 						'class' => 'ossn-wall-post-delete',
+						'text' => ossn_print('delete'),
 						'href' => $deleteurl,
 						'data-guid' => $params['post']->guid
-				), 'wallpost');
+				));
 				
 		} else {
-				ossn_unregister_menu('delete', 'wallpost');
+				ossn_unregister_menu("delete", 'wallpost');
 		}
 		return ossn_view_menu('wallpost', 'wall/menus/post-controls');
 }

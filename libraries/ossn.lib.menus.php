@@ -19,8 +19,30 @@
  * @return void
  */
 function ossn_register_menu_link($name, $text, $link, $menutype = 'site') {
+	ossn_register_menu_item($menutype, array(
+								'name' => $name,
+								'text' => $text,
+								'href' => $link
+	 ));
+}
+/**
+ * Register a menu item
+ *
+ * @params string $name menu name;
+ * @params array  $options A link options;
+ * @params string $menutype A menu name
+ *
+ * @return void
+ */
+function ossn_register_menu_item($menutype, array $options = array()) {
     global $Ossn;
-    $Ossn->menu[$menutype][$name][$text] = $link;
+	if(!empty($options['name'])){
+		$name = $options['name'];
+		if(isset($options['parent']) && !empty($options['parent'])){
+			$name = $options['parent'];
+		}
+		$Ossn->menu[$menutype][$name][] = $options;
+	}
 }
 
 /**

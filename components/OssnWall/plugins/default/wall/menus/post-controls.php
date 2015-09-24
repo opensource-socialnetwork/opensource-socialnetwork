@@ -18,10 +18,17 @@ if($postcontrols){
             <?php
             if (!empty($postcontrols)) {
                 foreach ($postcontrols as $menu) {
-                    foreach ($menu as $text => $link) {
-                        $link = ossn_args($link);
+                    foreach ($menu as $link) {
+					 	$class = "post-control-".$link['name'];
+					 	if(isset($link['class'])){
+							$link['class'] = $class.' '.$link['class'];	
+						} else {
+							$link['class'] = $class;
+						}						
+						unset($link['name']);
+						$link = ossn_plugin_view('output/url', $link);						
                         ?>
-                        <li><a <?php echo $link; ?>><?php echo $text; ?></a></li>
+                        <li><?php echo $link; ?></li>
                     <?php
                     }
                 }

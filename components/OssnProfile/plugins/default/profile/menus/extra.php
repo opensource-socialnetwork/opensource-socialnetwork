@@ -14,8 +14,16 @@
     <?php
     if (!empty($params['menu'])) {
         foreach ($params['menu'] as $menu) {
-            foreach ($menu as $text => $link) {
-                echo "<li><a href='{$link}'>{$text}</a></li>";
+            foreach ($menu as  $link) {
+				$class = "profile-menu-extra-".$link['name'];
+				if(isset($link['class'])){
+					$link['class'] = $class.' '.$link['class'];	
+				} else {
+					$link['class'] = $class;
+				}
+				unset($link['name']);
+				$link = ossn_plugin_view('output/url', $link);
+                echo "<li>{$link}</li>";
             }
         }
     }

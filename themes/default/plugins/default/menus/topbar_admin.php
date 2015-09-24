@@ -16,21 +16,40 @@
             			<?php
 							foreach ($params['menu'] as $key => $links) {
    								 if (count($links) > 1) {
+									  unset($links[0]);
       								  $menu_parent = '<li>
 									  <a href="javascript::void(0);" class="dropdown-toggle" data-toggle="dropdown">'
 									  	. ossn_print($key) . 
 									   '<i class="fa fa-sort-desc"></i></a>
 									  <ul class="dropdown-menu multi-level">';
-        								unset($links['Configure']);
-       									foreach ($links as $text => $link) {
-           										 $menu_parent .= '<li><a href="' . $link . '">' . ossn_print($text) . '</a></li>';
+       									foreach ($links as $item) {
+												 $class = "menu-topbar-admin-" . $item['name']; 
+												 if(isset($item['class'])) { 
+												 		$item['class'] = $class . ' ' . $item['class']; 
+												  } else { 
+												  		$item['class'] = $class; 
+												  } 
+												 unset($item['name']);
+												 unset($item['parent']);
+												 $item['text'] = ossn_print($item['text']);
+												 $link = ossn_plugin_view('output/url', $item);
+           										 $menu_parent .= '<li>'.$link.'</li>';
         								}
       									$menu_parent .= '</ul></li>';
         								echo $menu_parent;
     							 } else {
 
-      							 	foreach ($links as $text => $link) {
-            							$menu = '<li><a href="' . $link . '">' . ossn_print($text) . '</a></li>';
+      							 	foreach ($links as $item) {
+										$class = "menu-topbar-admin-" . $item['name']; 
+										if(isset($item['class'])) { 
+												 $item['class'] = $class . ' ' . $item['class']; 
+										} else { 
+												  $item['class'] = $class; 
+										} 
+										unset($item['name']);										
+										$item['text'] = ossn_print($item['text']);
+										$link = ossn_plugin_view('output/url', $item);										
+            							$menu = '<li>'.$link.'</li>';
         						 	}
         						 	echo $menu;
     					 	 	}
