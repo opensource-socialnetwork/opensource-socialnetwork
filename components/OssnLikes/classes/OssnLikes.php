@@ -13,9 +13,9 @@ class OssnLikes extends OssnDatabase {
     /**
      * Like item
      *
-     * @params $subject_id: Id of item which users liked
-     *         $guid: Guid of user
-     *         $type: Post or Entity
+     * @params integer $subject_id Id of item which users liked
+     * @params integer $guid Guid of user
+	 * @params string  $type Subject type
      *
      * @return bool
      */
@@ -57,9 +57,9 @@ class OssnLikes extends OssnDatabase {
     /**
      * Check if user liked item or not
      *
-     * @params $subject_id: Id of item which users liked
-     *         $guid: Guid of user
-     *         $type: Post or Entity
+     * @params integer $subject_id Id of item which users liked
+     * @params integer $guid Guid of user
+	 * @params string  $type Subject type
      *
      * @return bool;
      */
@@ -78,20 +78,19 @@ class OssnLikes extends OssnDatabase {
     /**
      * Unlike item
      *
-     * @params $subject_id: Id of item which users liked
-     *         $guid: Guid of user
-     *         $type: Post or Entity
+     * @params integer $subject_id Id of item which users liked
+     * @params integer $guid Guid of user
+	 * @params string  $type Subject type
      *
      * @return bool;
      */
     public function UnLike($subject_id, $guid, $type = 'post') {
-        if (empty($subject_id) || empty($guid)
-        ) {
+        if (empty($subject_id) || empty($guid) || empty($type)) {
             return false;
         }
         if ($this->isLiked($subject_id, $guid, $type)) {
             $this->statement("DELETE FROM ossn_likes WHERE(
-	                         subject_id='{$subject_id}' AND guid='{$guid}');");
+	                         subject_id='{$subject_id}' AND guid='{$guid}' AND type='{$type}');");
             if ($this->execute()) {
                 return true;
             }
@@ -102,13 +101,16 @@ class OssnLikes extends OssnDatabase {
     /**
      * Delte subject likes
      *
-     * @params $subject_id: Id of item which users liked
-     *         $type: Post or Entity
+     * @params integer $subject_id Id of item which users liked
+	 * @params string  $type Subject type
      *
      * @return bool;
      */
-    public function deleteLikes($post, $type = 'post') {
-        $this->statement("DELETE FROM ossn_likes WHERE(subject_id='{$post}' AND type='{$type}');");
+    public function deleteLikes($subject_id, $type = 'post') {
+		if(empty($subject_id) || empty($type)){
+			return false;
+		}
+        $this->statement("DELETE FROM ossn_likes WHERE(subject_id='{$subject_id}' AND type='{$type}');");
         if ($this->execute()) {
             return true;
         }
@@ -117,7 +119,7 @@ class OssnLikes extends OssnDatabase {
     /**
      * Delte likes by user guid
      *
-     * @params $guid : User Guid
+     * @params integer $owner_guid Guid of user
      *
      * @return bool;
      */
@@ -134,8 +136,8 @@ class OssnLikes extends OssnDatabase {
     /**
      * Count likes
      *
-     * @params $subject_id: Id of item which users liked
-     *         $type: Post or Entity
+     * @params integer $subject_id Id of item which users liked
+	 * @params string  $type Subject type
      *
      * @return bool;
      */
@@ -153,8 +155,8 @@ class OssnLikes extends OssnDatabase {
     /**
      * Get likes
      *
-     * @params $subject_id: Id of item which users liked
-     *         $type: Post or Entity
+     * @params integer $subject_id Id of item which users liked
+	 * @params string  $type Subject type
      *
      * @return bool;
      */
