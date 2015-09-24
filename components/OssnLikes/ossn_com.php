@@ -34,6 +34,7 @@ function ossn_likes() {
     ossn_register_callback('annotation', 'delete', 'ossn_comment_like_delete');
     ossn_register_callback('user', 'delete', 'ossn_user_likes_delete');
 	ossn_register_callback('wall', 'load:item', 'ossn_wall_like_menu');
+	ossn_register_callback('entity', 'load:comment:share:like', 'ossn_entity_like_link');
 
     ossn_register_page('likes', 'ossn_likesview_page_handler');
 
@@ -67,6 +68,37 @@ function ossn_wall_like_menu($callback, $type, $params){
 					'href' => "javascript:;",
 					'id' => 'ossn-like-'.$guid,					
 					'onclick' => "Ossn.PostUnlike({$guid});",
+					'text' => ossn_print('ossn:unlike'),
+			));			
+		}
+	}
+}
+/**
+ * Add a entity like menu item
+ *
+ * @return void
+ */
+function ossn_entity_like_link($callback, $type, $params){
+	$guid = $params['entity']->guid;
+	
+	ossn_unregister_menu('like', 'entityextra'); 
+	
+	if(!empty($guid)){
+		$likes = new OssnLikes;
+		if(!$likes->isLiked($guid, ossn_loggedin_user()->guid, 'entity')){
+			ossn_register_menu_item('entityextra', array(
+					'name' => 'like', 
+					'href' => "javascript:;",
+					'id' => 'ossn-like-'.$guid,
+					'onclick' => "Ossn.EntityLike({$guid});",
+					'text' => ossn_print('ossn:like'),
+			));
+		} else {
+			ossn_register_menu_item('entityextra', array(
+					'name' => 'like', 
+					'href' => "javascript:;",
+					'id' => 'ossn-like-'.$guid,					
+					'onclick' => "Ossn.EntityUnlike({$guid});",
 					'text' => ossn_print('ossn:unlike'),
 			));			
 		}

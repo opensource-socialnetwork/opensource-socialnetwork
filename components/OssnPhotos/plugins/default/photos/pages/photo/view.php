@@ -30,20 +30,10 @@ $img = str_replace('album/photos/', '', $image->value);
 </div>
 <br/>
 <br/>
-<div class="comments-likes ossn-photos-comments" style="width:525px;">
-    <?php
-    if (ossn_is_hook('post', 'likes:entity')) {
-        $entity['entity_guid'] = $params['photo'];
-        echo ossn_call_hook('post', 'likes:entity', $entity);
-    }
-    ?>
-    <?php
-    if (ossn_is_hook('post', 'comments:entity')) {
-        $entity['entity_guid'] = $params['photo'];
-        echo ossn_call_hook('post', 'comments:entity', $entity);
-    }
-    ?>
-</div>
+<?php
+	$vars['entity'] = $image;
+	echo ossn_plugin_view('entity/comment/like/share/view', $params);
+?>
 <div class="ossn-photo-view-controls">
     <?php
     if (ossn_is_hook('photo:view', 'album:controls')) {

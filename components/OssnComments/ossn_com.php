@@ -36,6 +36,21 @@ function ossn_comments() {
 
     ossn_register_callback('post', 'delete', 'ossn_post_comments_delete');
 	ossn_register_callback('wall', 'load:item', 'ossn_wall_comment_menu');
+	ossn_register_callback('entity', 'load:comment:share:like', 'ossn_entity_comment_link');
+}
+function ossn_entity_comment_link($callback, $type, $params){
+	$guid = $params['entity']->guid;
+	ossn_unregister_menu('comment', 'entityextra'); 
+	
+	if(!empty($guid) && ossn_isLoggedIn()){
+		ossn_register_menu_item('entityextra', array(
+				'name' => 'comment', 
+				'class' => "comment-post",
+				'href' => "javascript::void(0)",
+				'data-guid' => $guid,
+				'text' => ossn_print('comment:comment'),
+		));	
+	}	
 }
 /**
  * Add a comment menu item in post
