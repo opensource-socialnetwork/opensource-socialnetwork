@@ -13,7 +13,12 @@ $OssnLikes = new OssnLikes;
 $OssnComments = new OssnComments;
 $object = $params['entity_guid'];
 $count = $OssnLikes->CountLikes($object, 'entity');
-
+$user_liked = '';
+if (ossn_isLoggedIn()) { 
+            if ($OssnLikes->isLiked($object, ossn_loggedin_user()->guid, 'entity')) {
+                $user_liked = true;
+            }
+}
 if ($count) { ?>
     <div class="like_share">
         <div class="ossn-like-icon"></div>
