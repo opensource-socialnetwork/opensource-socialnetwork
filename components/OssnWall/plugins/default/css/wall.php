@@ -397,3 +397,10 @@ div.token-input-dropdown ul li.token-input-selected-dropdown-item {
 	display: inline-block;
 	color: #ACACAC;
 }
+.menu-likes-comments-share a:after {
+    padding: 5px;
+    content: "-";
+}
+.menu-likes-comments-share a:last-child:after {
+    content: "";
+}
