@@ -18,15 +18,15 @@ Ossn.PostUnlike = function(post) {
     Ossn.PostRequest({
         url: Ossn.site_url + 'action/post/unlike',
         beforeSend: function() {
-            $('#ossn-like-' + post).find('a').html('<img src="' + Ossn.site_url + 'components/OssnComments/images/loading.gif" />');
+            $('#ossn-like-' + post).html('<img src="' + Ossn.site_url + 'components/OssnComments/images/loading.gif" />');
         },
         params: '&post=' + post,
         callback: function(callback) {
             if (callback['done'] !== 0) {
-                $('#ossn-like-' + post).find('a').html(callback['button']);
-                $('#ossn-like-' + post).find('a').attr('onclick', 'Ossn.PostLike(' + post + ');');
+                $('#ossn-like-' + post).html(callback['button']);
+                $('#ossn-like-' + post).attr('onclick', 'Ossn.PostLike(' + post + ');');
             } else {
-                $('#ossn-like-' + post).find('a').html(Ossn.Print('unlike'));
+                $('#ossn-like-' + post).html(Ossn.Print('unlike'));
             }
         },
     });
@@ -36,15 +36,15 @@ Ossn.PostLike = function(post) {
     Ossn.PostRequest({
         url: Ossn.site_url + 'action/post/like',
         beforeSend: function() {
-            $('#ossn-like-' + post).find('a').html('<img src="' + Ossn.site_url + 'components/OssnComments/images/loading.gif" />');
+            $('#ossn-like-' + post).html('<img src="' + Ossn.site_url + 'components/OssnComments/images/loading.gif" />');
         },
         params: '&post=' + post,
         callback: function(callback) {
             if (callback['done'] !== 0) {
-                $('#ossn-like-' + post).find('a').html(callback['button']);
-                $('#ossn-like-' + post).find('a').attr('onClick', 'Ossn.PostUnlike(' + post + ');');
+                $('#ossn-like-' + post).html(callback['button']);
+                $('#ossn-like-' + post).attr('onClick', 'Ossn.PostUnlike(' + post + ');');
             } else {
-                $('#ossn-like-' + post).find('a').html(Ossn.Print('like'));
+                $('#ossn-like-' + post).html(Ossn.Print('like'));
             }
         },
     });
@@ -55,15 +55,15 @@ Ossn.EntityUnlike = function(entity) {
     Ossn.PostRequest({
         url: Ossn.site_url + 'action/post/unlike',
         beforeSend: function() {
-            $('#ossn-like-' + entity).find('a').html('<img src="' + Ossn.site_url + 'components/OssnComments/images/loading.gif" />');
+            $('#ossn-like-' + entity).html('<img src="' + Ossn.site_url + 'components/OssnComments/images/loading.gif" />');
         },
         params: '&entity=' + entity,
         callback: function(callback) {
             if (callback['done'] !== 0) {
-                $('#ossn-like-' + entity).find('a').html(callback['button']);
-                $('#ossn-like-' + entity).find('a').attr('onclick', 'Ossn.EntityLike(' + entity + ');');
+                $('#ossn-like-' + entity).html(callback['button']);
+                $('#ossn-like-' + entity).attr('onclick', 'Ossn.EntityLike(' + entity + ');');
             } else {
-                $('#ossn-like-' + entity).find('a').html(Ossn.Print('unlike'));
+                $('#ossn-like-' + entity).html(Ossn.Print('unlike'));
             }
         },
     });
@@ -73,15 +73,15 @@ Ossn.EntityLike = function(entity) {
     Ossn.PostRequest({
         url: Ossn.site_url + 'action/post/like',
         beforeSend: function() {
-            $('#ossn-like-' + entity).find('a').html('<img src="' + Ossn.site_url + 'components/OssnComments/images/loading.gif" />');
+            $('#ossn-like-' + entity).html('<img src="' + Ossn.site_url + 'components/OssnComments/images/loading.gif" />');
         },
         params: '&entity=' + entity,
         callback: function(callback) {
             if (callback['done'] !== 0) {
-                $('#ossn-like-' + entity).find('a').html(callback['button']);
-                $('#ossn-like-' + entity).find('a').attr('onClick', 'Ossn.EntityUnlike(' + entity + ');');
+                $('#ossn-like-' + entity).html(callback['button']);
+                $('#ossn-like-' + entity).attr('onClick', 'Ossn.EntityUnlike(' + entity + ');');
             } else {
-                $('#ossn-like-' + post).find('a').html(Ossn.Print('like'));
+                $('#ossn-like-' + post).html(Ossn.Print('like'));
             }
         },
     });
