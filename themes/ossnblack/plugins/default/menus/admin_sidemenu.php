@@ -8,15 +8,15 @@
  * @license   General Public Licence http://www.opensource-socialnetwork.org/licence
  * @link      http://www.opensource-socialnetwork.org/licence
  */
-foreach ($params['menu'] as $value) {
-    foreach ($value as $key => $value) {
+foreach ($params['menu'] as $key => $value) {
         echo "<li><a href='javascript::void(0);' class='dropdown-toggle' data-toggle='dropdown'>" . strtoupper($key) . "<i class='fa fa-sort-desc'></i></a>";
         echo '<ul class="dropdown-menu multi-level">';
-        foreach ($value as $name => $link) {
-            $name_link = ossn_print($name);
-            $icon = str_replace(':', '-', $name);
-            echo "<li><a href='{$link}'>{$name_link}</a></li>";
+        foreach ($value as $link) {
+			unset($link['parent']);
+			unset($link['name']);
+            $link['text'] = ossn_print($link['text']);
+			$link = ossn_plugin_view('output/url', $link);
+            echo "<li>{$link}</li>";
         }
         echo '</ul></li>';
-    }
 }
