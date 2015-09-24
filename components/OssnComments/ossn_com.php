@@ -35,9 +35,37 @@ function ossn_comments() {
     ossn_register_page('comment', 'ossn_comment_page');
 
     ossn_register_callback('post', 'delete', 'ossn_post_comments_delete');
-
+	ossn_register_callback('wall', 'load:item', 'ossn_wall_comment_menu');
 }
-
+/**
+ * Add a comment menu item in post
+ *
+ * @return void
+ */
+function ossn_wall_comment_menu($callback, $type, $params){
+	$guid = $params['post']->guid;
+	
+	ossn_unregister_menu('comment', 'postextra'); 
+	ossn_unregister_menu('commentall', 'postextra'); 
+	
+	if(!empty($guid)){
+		$comment = new OssnComments;
+		ossn_register_menu_item('postextra', array(
+				'name' => 'comment', 
+				'class' => "comment-post",
+				'href' => "javascript::void(0)",
+				'data-guid' => $guid,
+				'text' => ossn_print('comment:comment'),
+		));	
+		if ($comment->countComments($guid) > 5) {
+		ossn_register_menu_item('postextra', array(
+				'name' => 'commentall', 
+				'href' => ossn_site_url("post/view/{$guid}"),
+				'text' => ossn_print('comment:view:all'),
+		));				
+		}
+	}
+}
 /**
  * View comments bar on wall posts
  *
