@@ -125,3 +125,13 @@ Ossn.CommentImage = function($container) {
     });
 
 };
+Ossn.RegisterStartupFunction(function() {
+    $(document).ready(function() {
+    	$('body').delegate('.comment-post', 'click', function(){
+        	var $guid = $(this).attr('data-guid');
+            if($guid){
+            	$("#comment-box-"+$guid).focus();
+            }
+        });
+    });
+});
