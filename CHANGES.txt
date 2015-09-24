@@ -8,6 +8,7 @@ Bugfixes:
 * Photos limit issue, only 10 displays #523
 * Youtube https in ossnembed.lib.php #519
 * Translation for gender in dashboard users & users online #511
+* Remove a duplicate callback from groups initialize function.
 
 
 Enhancement:
@@ -18,6 +19,9 @@ Enhancement:
 * Open link in new tab #518
 * Default order for entities , objects, annotations must be by their primary id.
 * Delete users messages if user is deleted #522
+* Add a wall 'postextra' menu.
+* When click on comment link focus on comment box.
+* Add a new function in menu library.
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 3.3
 
