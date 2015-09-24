@@ -61,7 +61,6 @@ function ossn_groups() {
 		
 		//callbacks
 		ossn_register_callback('page', 'load:group', 'ossn_group_load_event');
-		ossn_register_callback('page', 'load:profile', 'ossn_profile_load_event');
 		ossn_register_callback('page', 'load:search', 'ossn_group_search_link');
 		ossn_register_callback('user', 'delete', 'ossn_user_groups_delete');
 		
