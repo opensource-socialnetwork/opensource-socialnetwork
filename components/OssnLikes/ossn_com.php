@@ -33,6 +33,7 @@ function ossn_likes() {
     ossn_register_callback('comment', 'delete', 'ossn_comment_like_delete');
     ossn_register_callback('annotation', 'delete', 'ossn_comment_like_delete');
     ossn_register_callback('user', 'delete', 'ossn_user_likes_delete');
+	ossn_register_callback('wall', 'load:item', 'ossn_wall_like_menu');
 
     ossn_register_page('likes', 'ossn_likesview_page_handler');
 
@@ -40,7 +41,37 @@ function ossn_likes() {
     ossn_add_hook('post', 'likes', 'ossn_post_likes');
     ossn_add_hook('post', 'likes:entity', 'ossn_post_likes_entity');
 }
-
+/**
+ * Add a like menu item in post
+ *
+ * @return void
+ */
+function ossn_wall_like_menu($callback, $type, $params){
+	$guid = $params['post']->guid;
+	
+	ossn_unregister_menu('like', 'postextra'); 
+	
+	if(!empty($guid)){
+		$likes = new OssnLikes;
+		if(!$likes->isLiked($guid, ossn_loggedin_user()->guid)){
+			ossn_register_menu_item('postextra', array(
+					'name' => 'like', 
+					'href' => "javascript:;",
+					'id' => 'ossn-like-'.$guid,
+					'onclick' => "Ossn.PostLike({$guid});",
+					'text' => ossn_print('ossn:like'),
+			));
+		} else {
+			ossn_register_menu_item('postextra', array(
+					'name' => 'like', 
+					'href' => "javascript:;",
+					'id' => 'ossn-like-'.$guid,					
+					'onclick' => "Ossn.PostUnlike({$guid});",
+					'text' => ossn_print('ossn:unlike'),
+			));			
+		}
+	}
+}
 /**
  * Delete post likes
  *
