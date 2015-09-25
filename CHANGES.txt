@@ -9,6 +9,7 @@ Bugfixes:
 * Youtube https in ossnembed.lib.php #519
 * Translation for gender in dashboard users & users online #511
 * Remove a duplicate callback from groups initialize function.
+* Profile/cover like or comment notification view redirect to 404 page.
 
 
 Enhancement:
