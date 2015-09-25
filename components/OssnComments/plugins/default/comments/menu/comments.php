@@ -12,9 +12,9 @@ if (!empty($params['menu'])) {
     echo '<div class="drop-down-arrow ossn-comment-dropdown"></div>';
     echo '<div class="menu-links">';
     foreach ($params['menu'] as $menu) {
-        foreach ($menu as $text => $link) {
-            $link = ossn_args($link);
-            echo "<li> <a {$link}>{$text}</a></li>";
+        foreach ($menu as $link) {
+            $link = ossn_plugin_view('output/url', $link);
+            echo "<li>{$link}</li>";
         }
     }
     echo '</div>';

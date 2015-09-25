@@ -1,4 +1,4 @@
-OSSN - OPEN SOURCE SOCIAL NETWORK 3.4
+OSSN - OPEN SOURCE SOCIAL NETWORK 3.4-3.5
 
 Bugfixes:
 
@@ -10,6 +10,7 @@ Bugfixes:
 * Translation for gender in dashboard users & users online #511
 * Remove a duplicate callback from groups initialize function.
 * Profile/cover like or comment notification view redirect to 404 page.
+* Comment menu shows 0, 1 instead of delete
 
 
 Enhancement:
