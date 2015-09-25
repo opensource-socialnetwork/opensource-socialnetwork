@@ -28,7 +28,7 @@ $img = str_replace('profile/photo/', '', $image->value);
 <br/>
 <?php
 	$vars['entity'] = $image;
-	echo ossn_plugin_view('entity/comment/like/share/view', $params);
+	echo ossn_plugin_view('entity/comment/like/share/view', $vars);
 ?>
 <div class="ossn-photo-view-controls">
     <?php
