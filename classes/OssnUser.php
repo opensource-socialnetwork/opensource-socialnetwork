@@ -40,7 +40,7 @@ class OssnUser extends OssnEntities {
 								'password',
 								'salt',
 								'activation',
-								'time_created',
+								'time_created'
 						);
 						$params['values'] = array(
 								$this->first_name,
@@ -54,13 +54,17 @@ class OssnUser extends OssnEntities {
 								time()
 						);
 						if($this->insert($params)) {
-								$guid 	= $this->getLastEntry();
+								$guid = $this->getLastEntry();
 								
 								//define user extra profile fields
-								$fields	= array(
-												'text' => array('birthdate'),
-												'radio' => array('gender')
-												);
+								$fields = array(
+										'text' => array(
+												'birthdate'
+										),
+										'radio' => array(
+												'gender'
+										)
+								);
 								if(!empty($guid) && is_int($guid)) {
 										
 										$this->owner_guid = $guid;
@@ -68,17 +72,17 @@ class OssnUser extends OssnEntities {
 										
 										//add user entities 
 										$extra_fields = ossn_call_hook('user', 'signup:fields', $this, $fields);
-										if(!empty($extra_fields)){
-											foreach($extra_fields as $type){
-												foreach($type as $field){	
-													if(isset($this->$field)){
-														$this->subtype  = $field;
-														$this->value 	= $this->$field;
-														//add entity
-														$this->add();
-													}
+										if(!empty($extra_fields)) {
+												foreach($extra_fields as $type) {
+														foreach($type as $field) {
+																if(isset($this->$field)) {
+																		$this->subtype = $field;
+																		$this->value   = $this->$field;
+																		//add entity
+																		$this->add();
+																}
+														}
 												}
-											}
 										}
 								}
 								//should i send activation?
@@ -180,12 +184,12 @@ class OssnUser extends OssnEntities {
 				$entities         = $this->get_entities();
 				if(empty($entities)) {
 						$metadata = arrayObject($user, get_class($this));
-						return ossn_call_hook('user', 'get', false, $metadata);					
+						return ossn_call_hook('user', 'get', false, $metadata);
 				}
 				foreach($entities as $entity) {
 						$fields[$entity->subtype] = $entity->value;
 				}
-				$data = array_merge(get_object_vars($user), $fields);
+				$data     = array_merge(get_object_vars($user), $fields);
 				$metadata = arrayObject($data, get_class($this));
 				return ossn_call_hook('user', 'get', false, $metadata);
 		}
@@ -256,7 +260,11 @@ class OssnUser extends OssnEntities {
 						unset($user->salt);
 						$_SESSION['OSSN_USER'] = $user;
 						$this->update_last_login();
-						return true;
+						
+						$vars         = array();
+						$vars['user'] = $user;
+						$login        = ossn_call_hook('user', 'login', $vars, true);
+						return $login;
 				}
 				return false;
 		}
@@ -434,11 +442,11 @@ class OssnUser extends OssnEntities {
 		 * @return object
 		 */
 		public function getSiteUsers($params = array()) {
-				$vars		= array();
-				$vars['from'] 	= 'ossn_users';
+				$vars         = array();
+				$vars['from'] = 'ossn_users';
 				
-				$args 	= array_merge($vars, $params);
-				$users	= $this->select($args, true);
+				$args  = array_merge($vars, $params);
+				$users = $this->select($args, true);
 				return $users;
 				
 		}
@@ -491,7 +499,7 @@ class OssnUser extends OssnEntities {
 				$params['wheres'] = array(
 						"last_activity > {$time} - {$intervals}"
 				);
-				$data             = (array)$this->select($params, true);
+				$data             = (array) $this->select($params, true);
 				if($data) {
 						foreach($users as $user) {
 								$result[] = arrayObject($user, get_class($this));
@@ -537,9 +545,9 @@ class OssnUser extends OssnEntities {
 						$wheres[] = "username LIKE '%$search%'";
 						$wheres[] = "email LIKE '%$search%'";
 				}
-				if(!empty($limit)){
-						$params['limit'] = $limit;	
-				}			
+				if(!empty($limit)) {
+						$params['limit'] = $limit;
+				}
 				$params['from']   = 'ossn_users';
 				$params['wheres'] = array(
 						$this->constructWheres($wheres, 'OR')
@@ -778,8 +786,10 @@ class OssnUser extends OssnEntities {
 		public function getUnvalidatedUSERS($search = '', $count = false) {
 				$params         = array();
 				$params['from'] = 'ossn_users';
-				if($count){
-					$params['params'] = array("count(*) as total");
+				if($count) {
+						$params['params'] = array(
+								"count(*) as total"
+						);
 				}
 				if(empty($search)) {
 						$params['wheres'] = array(
@@ -794,8 +804,8 @@ class OssnUser extends OssnEntities {
 				}
 				$users = $this->select($params, true);
 				if($users) {
-						if($count){
-							return	$users->{0}->total;
+						if($count) {
+								return $users->{0}->total;
 						}
 						return $users;
 				}
@@ -971,20 +981,20 @@ class OssnUser extends OssnEntities {
 		 *
 		 * @return boolean
 		 */
-		public function save(){
-			if(!isset($this->guid) || empty($this->guid)){
-				return false;
-			}
-			$this->owner_guid = $this->guid;
-			$this->type = 'user';
-			if(parent::save()){
-				//check if owner is loggedin user guid , if so update session
-				if(ossn_loggedin_user()->guid == $this->guid){
-					$_SESSION['OSSN_USER'] = ossn_user_by_guid($this->guid);
+		public function save() {
+				if(!isset($this->guid) || empty($this->guid)) {
+						return false;
 				}
-				return true;
-			}
-			return false;
+				$this->owner_guid = $this->guid;
+				$this->type       = 'user';
+				if(parent::save()) {
+						//check if owner is loggedin user guid , if so update session
+						if(ossn_loggedin_user()->guid == $this->guid) {
+								$_SESSION['OSSN_USER'] = ossn_user_by_guid($this->guid);
+						}
+						return true;
+				}
+				return false;
 		}
 		/**
 		 * Can Moderate
@@ -992,14 +1002,14 @@ class OssnUser extends OssnEntities {
 		 *
 		 * @return boolean
 		 */
-		public function canModerate(){
-			$allowed = false;
-			if(isset($this->guid) && $this instanceof OssnUser){
-				if(($this->type == 'normal' && $this->can_moderate == 'yes') || $this->type == 'admin'){
-					$allowed = true;
+		public function canModerate() {
+				$allowed = false;
+				if(isset($this->guid) && $this instanceof OssnUser) {
+						if(($this->type == 'normal' && $this->can_moderate == 'yes') || $this->type == 'admin') {
+								$allowed = true;
+						}
 				}
-			}
-			return ossn_call_hook('user' , 'can:moderate', $this, $allowed);
+				return ossn_call_hook('user', 'can:moderate', $this, $allowed);
 		}
 		/**
 		 * isAdmin
@@ -1007,10 +1017,10 @@ class OssnUser extends OssnEntities {
 		 *
 		 * @return boolean
 		 */
-		public function isAdmin(){
-			if(isset($this->guid) && $this->type == 'admin'){
-				return true;
-			}
-			return false;
-		}		
+		public function isAdmin() {
+				if(isset($this->guid) && $this->type == 'admin') {
+						return true;
+				}
+				return false;
+		}
 } //CLASS
