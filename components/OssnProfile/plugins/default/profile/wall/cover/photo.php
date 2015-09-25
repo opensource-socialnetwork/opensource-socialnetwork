@@ -50,20 +50,8 @@ $image = ossn_profile_coverphoto_wall_url($image);
                  <img src="<?php echo $image; ?>"/>
         </div>
     </div>
-    <div class="comments-likes">
-        <?php
-        if (ossn_is_hook('post', 'likes:entity')) {
-			$entity['entity_guid'] = $params['post']->item_guid;
-            echo ossn_call_hook('post', 'likes:entity', $entity);
-        }
-        ?>
-        <div class="comments-item" style="border-bottom:1px solid #ddd;">
-            <?php
-            if (ossn_is_hook('post', 'comments:entity')) {
-				$entity['entity_guid'] = $params['post']->item_guid;
-                echo ossn_call_hook('post', 'comments:entity', $entity);
-            }
-            ?>
-        </div>
-    </div>
+<?php
+	$vars['entity'] = ossn_get_entity($params['post']->item_guid);
+	echo ossn_plugin_view('entity/comment/like/share/view', $vars);
+?>    
 </div>
