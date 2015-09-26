@@ -153,7 +153,7 @@ function ossn_like_annotation($hook, $type, $return, $params) {
     $user = ossn_user_by_guid($notif->poster_guid);
     $user->fullname = "<strong>{$user->fullname}</strong>";
 
-    $img = "<div class='notification-image'><img src='{$baseurl}/avatar/{$user->username}/small' /></div>";
+    $img = "<div class='notification-image'><img src='{$user->username->iconURL()->smaller}' /></div>";
     if (preg_match('/like/i', $notif->type)) {
         $type = 'like';
         $database = new OssnDatabase;
