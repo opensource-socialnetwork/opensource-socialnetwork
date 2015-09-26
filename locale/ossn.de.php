@@ -183,7 +183,7 @@ Falls der Link nicht anklickbar ist, kopiere ihn einfach in Deinen Browser.
     'upgrade:file:load:error' => 'Die Aktualisierungs-Datei kann nicht geladen werden',
     'upgrade:success' => "Ossn wurde erfolgreich auf Version %s aktualisiert",
     'upgrade:failed' => "Die Aktualisierung auf Version % ist fehlgeschlagen",
-    'upgrade:not:available' => 'Keine Aktualisierungen vorhangen',
+    'upgrade:not:available' => 'Keine Aktualisierungen vorhanden',
 
     'site:login' => 'Anmelden',
     /* Page errors */
