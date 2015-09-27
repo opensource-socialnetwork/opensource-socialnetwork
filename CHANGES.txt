@@ -3,6 +3,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK 3.6
 Bugfixes:
 
 * Message Inbox section - layout error #542
+* Poke translation issue #543
 
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 3.4-3.5
