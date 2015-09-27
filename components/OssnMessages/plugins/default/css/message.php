@@ -4,7 +4,7 @@
 }
 .ossn-messages .messages-from{
 	display: inline-table;
-	width: 200px;
+	width: 216px;
 	border: 1px solid #ddd;
 	height: 574px;
 }
@@ -18,8 +18,8 @@
 
 }
 .ossn-messages .message-with{
-	display: inline-table;
-	width: 527px;
+	display: inline-block;
+	width: 512px;
 	border: 1px solid #ddd;
 	min-height: 200px;
 	float: right;
@@ -116,7 +116,7 @@
 }
 .message-item .data{
 	display:inline-table;
-	width: 450px;
+	width: 436px;
 }
 .message-item .data .name {
 	margin-left: 5px;
@@ -145,6 +145,10 @@
 }
 .messages-from .inner .user-item .image {
 	display:inline-table;
+	width:50px;
+	height:50px;
+}
+.messages-from .inner .user-item .image {
 	width:50px;
 	height:50px;
 }
@@ -226,4 +230,9 @@
 .message-form-form .ossn-loading {
 	margin-top:10px;
     float:right;
+}
+.messages-from .inner {
+    height: 532px;
+    overflow: hidden;
+    overflow-y:scroll;
 }
