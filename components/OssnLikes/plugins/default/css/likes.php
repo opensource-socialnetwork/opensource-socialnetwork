@@ -7,8 +7,7 @@ min-height:50px;
 width:100%;
 }
 .ossn-photos-comments {
-display:inline-table;
-float: left;
+display:inline-block;
 }
 .comments-like-comment-links {
 background:#fff;

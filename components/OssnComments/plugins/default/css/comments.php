@@ -84,7 +84,8 @@ border: 1px solid #ccc;
 word-wrap: break-word;
 }
 .ossn-photo-view-controls {
-display: inline-table;
+display: inline-block;
 margin-top: 20px;
 margin-left: 30px;
+vertical-align: top;
 }

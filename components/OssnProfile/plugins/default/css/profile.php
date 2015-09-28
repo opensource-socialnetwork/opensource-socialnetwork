@@ -68,7 +68,7 @@ vertical-align:top;
 display: inline-block;
 width: 430px;
 margin-top: 19px;
-height: 200px;
+min-height: 200px;
 }
 .upload-photo {
 background: #000;
