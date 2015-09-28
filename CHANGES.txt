@@ -6,6 +6,7 @@ Bugfixes:
 * Poke translation issue #543
 * Css(class): ossn-profile-wall shouldn't have fixed hight #545
 * Profile edit form shows wrong default language #546
+* Change uppercase admin tobbar right menu.
 
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 3.4-3.5

@@ -78,14 +78,11 @@ function ossn_admin() {
 /**
  * Register sidebar menu
  *
- * @param string $name The name of the menu
- *               $text Link text
- *               $link Full url
- *               $section Menu section
- *               $for sidebar name
- * @param string $text
- * @param string $link
- * @param string $section
+ * @params string $name The name of the menu
+ * @params string $text Link text
+ * @params string $link Full url
+ * @params string $section Menu section
+ * @params string $for sidebar name
  *
  * @return void
  */
@@ -94,7 +91,7 @@ function ossn_register_admin_sidemenu($name, $text, $link, $section, $for = 'adm
 								'name' => $name,
 								'text' => $text,
 								'href' => $link,
-								'parent' => strtolower($section),
+								'parent' => $section,
 	 ));	
 }
 
