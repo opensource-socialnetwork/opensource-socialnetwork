@@ -193,6 +193,9 @@
 .friend-tab-item .data .message-reciever .text {
     margin-right: auto;
     background-image: -webkit-linear-gradient(bottom, #F2F2F2, #FFF);
+    background-image: -moz-linear-gradient(bottom, #F2F2F2, #FFF);
+    background-image: -ms-linear-gradient(bottom, #F2F2F2, #FFF);
+    background-image: linear-gradient(bottom, #F2F2F2, #FFF);
     border-radius: 3px;
     border: 1px solid #ccc;
     text-shadow: rgba(255, 255, 255, .5) 0 1px 0;
@@ -203,6 +206,7 @@
 .friend-tab-item .data .message-reciever .text .inner {
     padding: 5px;
     line-height: 15px;
+    max-width: 165px;
 }
 
 .friend-tab-item .data .message-sender {
@@ -218,6 +222,10 @@
 .friend-tab-item .data .message-reciever .user-icon {
     display: inline-table;
     padding: 3px;
+}
+.friend-tab-item .data .message-reciever .user-icon img {
+	width:32px;
+    height:32px;
 }
 
 .friend-tab-item .data .message-sender .text {

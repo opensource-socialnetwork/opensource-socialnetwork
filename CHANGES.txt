@@ -7,6 +7,7 @@ Bugfixes:
 * Css(class): ossn-profile-wall shouldn't have fixed hight #545
 * Profile edit form shows wrong default language #546
 * Change uppercase admin tobbar right menu.
+* There is issue in chat window layout firefox #548
 
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 3.4-3.5
