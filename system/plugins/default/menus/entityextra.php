@@ -9,7 +9,7 @@
  * @link      http://www.opensource-socialnetwork.org/licence
  */
 $entityextra = $params['menu'];
-if($entityextra) {
+if($entityextra && ossn_isLoggedin()) {
 		if(!empty($entityextra)) {
 				foreach($entityextra as $menu) {
 						foreach($menu as $link) {

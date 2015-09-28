@@ -7,9 +7,9 @@
  * @copyright 2014 iNFORMATIKON TECHNOLOGIES
  * @license   General Public Licence http://www.opensource-socialnetwork.org/licence
  * @link      http://www.opensource-socialnetwork.org/licence
- */
+ */ 
 $postextra = $params['menu'];
-if($postextra) {
+if($postextra && ossn_isLoggedin()) {
 		if(!empty($postextra)) {
 				foreach($postextra as $menu) {
 						foreach($menu as $link) {
