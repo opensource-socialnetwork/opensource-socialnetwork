@@ -4,6 +4,7 @@ Bugfixes:
 
 * Message Inbox section - layout error #542
 * Poke translation issue #543
+* css(class): ossn-profile-wall shouldn't have fixed hight #545
 
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 3.4-3.5
