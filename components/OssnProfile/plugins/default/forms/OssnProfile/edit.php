@@ -79,9 +79,11 @@ $birthdate = explode('/', $user->birthdate);
 </select>
 <label><?php echo ossn_print('language');?></label>
 <?php
+	//profile edit form shows wrong default language #546
+	$userlanguage = ossn_site_settings('language');
 	echo ossn_plugin_view('input/dropdown', array(
 				'name' => 'language',
-				'value' => $user->language,
+				'value' => $userlanguage,
 				'options' => ossn_get_installed_translations(false),
 	));
 ?>
