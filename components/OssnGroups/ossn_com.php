@@ -81,7 +81,7 @@ function ossn_groups() {
 		//add gorup link in sidebar
 		ossn_register_sections_menu('newsfeed', array(
 				'text' => ossn_print('add:group'),
-				'url' => 'javascript::;',
+				'url' => 'javascript::void(0);',
 				'params' => array(
 						'id' => 'ossn-group-add'
 				),
