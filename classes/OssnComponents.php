@@ -368,12 +368,21 @@ class OssnComponents extends OssnDatabase {
 				if(in_array($com, $this->requiredComponents())) {
 						return false;
 				}
+				$component = $this->getbyName($com);
+				if(!$component){
+					return false;
+				}
 				$params           = array();
 				$params['from']   = "ossn_components";
 				$params['wheres'] = array(
 						"com_id='{$com}'"
 				);
 				if(parent::delete($params)) {
+						//Delete component settings upon its deletion #538
+						$entities = new OssnEntities;
+						$entities->deleteByOwnerGuid($component->id, 'component');
+						
+						//delete component directory
 						OssnFile::DeleteDir(ossn_route()->com . "{$com}/");
 						return true;
 				}
