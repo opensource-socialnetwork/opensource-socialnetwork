@@ -163,12 +163,15 @@ class OssnAnnotation extends OssnEntities {
 				if(!isset($this->limit)) {
 						$this->limit = false;
 				}
+				if(!isset($this->page_limit)){
+						$this->page_limit = false;
+				}
 				$params                 = array();
 				$params['type']         = $this->type;
 				$params['subject_guid'] = $this->subject_guid;
 				$params['count']        = $this->count;
-				$params['limit']        = $this->limit;
 				$params['order_by']     = $this->order_by;
+				$params['limit']        = $this->limit;
 				$params['page_limit']   = $this->page_limit;
 				
 				return $this->searchAnnotation($params);
