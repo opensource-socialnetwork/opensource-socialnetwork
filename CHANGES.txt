@@ -9,6 +9,7 @@ Bugfixes:
 * Change uppercase admin tobbar right menu.
 * There is issue in chat window layout firefox #548
 * Add limit and page_limit false while deleting annotations by owner guid.
+* XSS Security fix, with OssnPagination class, thanks to Curesec.com
 
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 3.4-3.5

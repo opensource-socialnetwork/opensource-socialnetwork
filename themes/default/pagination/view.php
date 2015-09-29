@@ -14,14 +14,8 @@ $pages = range(1, $params['total']);
 unset($_GET['h']);
 unset($_GET['p']);
 unset($_GET['offset']);
-if (count($_GET)) {
-    $args_url = '';
-    foreach ($_GET as $key => $value) {
-        if ($key != 'page') {
-            $args_url .= '&' . $key . '=' . $value;
-        }
-    }
-}
+
+$args_url = OssnPagination::constructUrlArgs();
 
 //if there is only one page don't show pagination
 if (count($pages) !== 1) {
