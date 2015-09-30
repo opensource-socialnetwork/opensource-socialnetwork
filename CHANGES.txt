@@ -3,6 +3,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK 3.7 Minor fix
 Bugfixes:
 
 * Unable to delete user.
+* Update non-object iconURL() on OssnLikes/ossn_com.php 156
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 3.6
 
