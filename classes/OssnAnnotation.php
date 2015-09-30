@@ -97,6 +97,12 @@ class OssnAnnotation extends OssnEntities {
 		 * @return object;
 		 */
 		public function getAnnotationsByType() {
+				if(!isset($this->limit)) {
+						$this->limit = false;
+				}
+				if(!isset($this->page_limit)){
+						$this->page_limit = false;
+				}			
 				$params             = array();
 				$params['type']     = $this->type;
 				$params['subtype']  = $this->subtype;
@@ -113,6 +119,12 @@ class OssnAnnotation extends OssnEntities {
 		 * @return object;
 		 */
 		public function getAnnotationsByOwner() {
+				if(!isset($this->limit)) {
+						$this->limit = false;
+				}
+				if(!isset($this->page_limit)){
+						$this->page_limit = false;
+				}			
 				$params               = array();
 				$params['owner_guid'] = $this->subject_guid;
 				$params['limit']      = $this->limit;
