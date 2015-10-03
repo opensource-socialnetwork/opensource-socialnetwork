@@ -124,7 +124,7 @@ min-height: 530px;
 }
 .home-left-contents {
 width: 556px;
-display:inline-table;
+display:inline-block;
 float:left;
 }
 .home-left-contents h1{
@@ -133,7 +133,7 @@ color: #2F495B;
 margin-top: 32px;
 }
 .home-right-contents {
-display:inline-table;
+display:inline-block;
 margin-left: 35px;
 width: 376px;
 }
