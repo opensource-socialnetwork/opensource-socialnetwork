@@ -16,10 +16,11 @@ function ossn_chat_init() {
     ossn_extend_view('css/ossn.default', 'css/OssnChat');
 
     ossn_new_js('ossn.chat', 'js/OssnChat');
-    ossn_load_js('ossn.chat');
 
     //chat bar
     if (ossn_isLoggedIn()) {
+        //load js and chatbar if user is loggedin
+        ossn_load_js('ossn.chat');
         ossn_extend_view('ossn/page/footer', 'chat/chatbar');
     }
     ossn_register_page('ossnchat', 'ossn_js_page_handler');
