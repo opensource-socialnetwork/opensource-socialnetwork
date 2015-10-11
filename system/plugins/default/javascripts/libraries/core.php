@@ -48,8 +48,8 @@ Ossn.ajaxRequest = function($data) {
         var error = $data['error'];
         var befsend = $data['beforeSend'];
         var action = $data['action'];
-		var containMedia = $data['containMedia'];
-		
+        var containMedia = $data['containMedia'];
+
         if (url == true) {
             url = $($form_name).attr('action');
         }
@@ -77,31 +77,31 @@ Ossn.ajaxRequest = function($data) {
                 };
             }
             var $form = $(this);
-			if(containMedia == true){
-					$vars = {
-                		async: true,
-                		cache: false,
-                		contentType: false,				
-                		type: 'post',
-                		beforeSend: befsend,
-                		url: url,
-                		error: error,
-                		data: new FormData($form[0]),
-						processData: false,
-                		success: callback,
-            		};
-			} else {
-					$vars = {
-                		async: true,
-                		type: 'post',
-                		beforeSend: befsend,
-                		url: url,
-                		error: error,
-                		data: $form.serialize(),
-                		success: callback,
-            		};			
-			 }
-			
+            if (containMedia == true) {
+                $vars = {
+                    async: true,
+                    cache: false,
+                    contentType: false,
+                    type: 'post',
+                    beforeSend: befsend,
+                    url: url,
+                    error: error,
+                    data: new FormData($form[0]),
+                    processData: false,
+                    success: callback,
+                };
+            } else {
+                $vars = {
+                    async: true,
+                    type: 'post',
+                    beforeSend: befsend,
+                    url: url,
+                    error: error,
+                    data: $form.serialize(),
+                    success: callback,
+                };
+            }
+
             $.ajax($vars);
         });
     });
@@ -208,36 +208,36 @@ Ossn.RegisterStartupFunction(function() {
         form: '#ossn-home-signup',
 
         beforeSend: function(request) {
-			var failedValidate = false;
-			$('#ossn-submit-button').show();
-			$('#ossn-home-signup .ossn-loading').addClass("ossn-hidden");				
-            
-			$('#ossn-home-signup').find('#ossn-signup-errors').hide();
+            var failedValidate = false;
+            $('#ossn-submit-button').show();
+            $('#ossn-home-signup .ossn-loading').addClass("ossn-hidden");
+
+            $('#ossn-home-signup').find('#ossn-signup-errors').hide();
             $('#ossn-home-signup input').filter(function() {
-				$(this).closest('span').removeClass('ossn-required');										 
+                $(this).closest('span').removeClass('ossn-required');
                 if (this.type == 'radio') {
-					if(!$("input[name='gender']:checked").val()){
-	                    $(this).closest('span').addClass('ossn-required');
-						failedValidate = true;
-					}
+                    if (!$("input[name='gender']:checked").val()) {
+                        $(this).closest('span').addClass('ossn-required');
+                        failedValidate = true;
+                    }
                 }
                 if (this.value == "") {
                     $(this).addClass('ossn-red-borders');
-					failedValidate = true;
+                    failedValidate = true;
                     request.abort();
                     return false;
                 }
-            });	
-			if(failedValidate == false){
-					$('#ossn-submit-button').hide();
-					$('#ossn-home-signup .ossn-loading').removeClass("ossn-hidden");							
-			}
+            });
+            if (failedValidate == false) {
+                $('#ossn-submit-button').hide();
+                $('#ossn-home-signup .ossn-loading').removeClass("ossn-hidden");
+            }
         },
         callback: function(callback) {
             if (callback['dataerr']) {
                 $('#ossn-home-signup').find('#ossn-signup-errors').html(callback['dataerr']).fadeIn();
-				$('#ossn-submit-button').show();
-				$('#ossn-home-signup .ossn-loading').addClass("ossn-hidden");				
+                $('#ossn-submit-button').show();
+                $('#ossn-home-signup .ossn-loading').addClass("ossn-hidden");
             }
             if (callback['success'] == 1) {
                 $('#ossn-home-signup').html(Ossn.MessageDone(callback['datasuccess']));
@@ -267,22 +267,22 @@ Ossn.RegisterStartupFunction(function() {
  *
  * @return void
  */
-Ossn.trigger_message = function($message, $type){
-	$type = $type || 'success';
-	if($type == 'error'){
-		//compitable to bootstrap framework
-		$type = 'danger';
-	}
-	if($message == ''){
-		return false;
-	}
-	$html = "<div class='alert alert-"+$type+"'><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a>"+$message+"</div>";
-	$('.ossn-system-messages').append($html);
-	if($('.ossn-system-messages').is(":not(:visible)")){
-		$('.ossn-system-messages').slideDown('slow');
-	}
+Ossn.trigger_message = function($message, $type) {
+    $type = $type || 'success';
+    if ($type == 'error') {
+        //compitable to bootstrap framework
+        $type = 'danger';
+    }
+    if ($message == '') {
+        return false;
+    }
+    $html = "<div class='alert alert-" + $type + "'><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a>" + $message + "</div>";
+    $('.ossn-system-messages').append($html);
+    if ($('.ossn-system-messages').is(":not(:visible)")) {
+        $('.ossn-system-messages').slideDown('slow');
+    }
     $('.ossn-system-messages').find('div').animate({
-            opacity: 0.9
+        opacity: 0.9
     }, 6000).slideUp('slow');
 };
 /**
@@ -327,7 +327,7 @@ Ossn.RegisterStartupFunction(function() {
  */
 Ossn.RegisterStartupFunction(function() {
     $(document).ready(function() {
-		//show a confirmation mssage before delete component #444
+        //show a confirmation mssage before delete component #444
         $('.ossn-com-delete-button').click(function(e) {
             e.preventDefault();
             var del = confirm(Ossn.Print('ossn:component:delete:exception'));
@@ -369,7 +369,7 @@ Ossn.RegisterStartupFunction(function() {
                 var actionurl = $(this).attr('href');
                 window.location = actionurl;
             }
-	
+
         });
     });
 });
@@ -769,16 +769,18 @@ Ossn.Print = function(str, args) {
  */
 Ossn.RegisterStartupFunction(function() {
     $(document).ready(function() {
-    	Ossn.PostRequest({
-        	url: Ossn.site_url + "administrator/version",
-        	action: false,
-        	callback: function(callback) {
-           		if(callback['version']){
-           			$('.avaiable-updates').html(callback['version']);
-           		}
-        	}
-    	});
-    });   
+        if ($('.avaiable-updates').length) {
+            Ossn.PostRequest({
+                url: Ossn.site_url + "administrator/version",
+                action: false,
+                callback: function(callback) {
+                    if (callback['version']) {
+                        $('.avaiable-updates').html(callback['version']);
+                    }
+                }
+            });
+        }
+    });
 });
 /**
  * Initialize ossn startup functions
