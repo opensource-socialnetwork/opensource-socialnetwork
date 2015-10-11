@@ -1,3 +1,10 @@
+OSSN - OPEN SOURCE SOCIAL NETWORK 3.8-dev
+
+Bugfixes:
+
+* Don't load notification and chat boot api when user is not loggedin.
+* Disallow version check request to non-loggedin users #565
+
 OSSN - OPEN SOURCE SOCIAL NETWORK 3.7 Minor fix
 
 Bugfixes:
