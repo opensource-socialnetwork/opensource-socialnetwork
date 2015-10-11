@@ -238,11 +238,6 @@ Ossn.NotificationsCheck = function() {
 };
 Ossn.RegisterStartupFunction(function() {
     $(document).ready(function() {
-							   
-        setInterval(function() {
-            Ossn.NotificationsCheck()
-        }, 5000 * 12);
-		
 		$(document).on('click','.ossn-notification-mark-read', function(e){
 				e.preventDefault();
    				Ossn.PostRequest({

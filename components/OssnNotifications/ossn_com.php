@@ -41,6 +41,7 @@ function ossn_notifications() {
 		ossn_add_hook('notification:add', 'like:entity', 'ossn_notificaiton_comment_entity_hook');
 
 		if(ossn_isLoggedin()) {
+				ossn_extend_view('ossn/js/head', 'notifications/js/autocheck');
 				ossn_register_action('notification/mark/allread', __OSSN_NOTIF__ . 'actions/markread.php');
 		}
 }
