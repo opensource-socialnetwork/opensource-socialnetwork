@@ -4,6 +4,7 @@ Bugfixes:
 
 * Don't load notification and chat boot api when user is not loggedin.
 * Disallow version check request to non-loggedin users #565
+* Wall, tag a friend , GUID issue #566
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 3.7 Minor fix
 
