@@ -41,7 +41,9 @@ class OssnWall extends OssnObject {
 
 				$post		  = preg_replace('/\t/', ' ', $post);
 				$wallpost['post'] = htmlspecialchars($post, ENT_QUOTES, 'UTF-8');
-				if(!empty($friends)) {
+				
+				//wall tag a friend , GUID issue #566
+				if(!empty($friends) && ossn_user_by_guid($friends)) {
 						$wallpost['friend'] = $friends;
 				}
 				if(!empty($location)) {
