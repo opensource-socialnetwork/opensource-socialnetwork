@@ -43,8 +43,16 @@ class OssnWall extends OssnObject {
 				$wallpost['post'] = htmlspecialchars($post, ENT_QUOTES, 'UTF-8');
 				
 				//wall tag a friend , GUID issue #566
-				if(!empty($friends) && ossn_user_by_guid($friends)) {
-						$wallpost['friend'] = $friends;
+				if(!empty($friends)) {
+					$friend_guids = explode(',', $friends);
+					//reset friends guids
+					$friends = array();
+					foreach($friend_guids as $guid){
+						if(ossn_user_by_guid($guid)){
+							$friends[] = $guid;
+						}
+					}
+					$wallpost['friend'] = implode(',', $friends);
 				}
 				if(!empty($location)) {
 						$wallpost['location'] = $location;
