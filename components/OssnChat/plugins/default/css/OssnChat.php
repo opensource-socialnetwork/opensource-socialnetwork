@@ -279,7 +279,7 @@
 }
 
 .friend-tab-item .friend-tab input[type='text'] {
-    width: 218px;
+    width: 206px;
     height: 30px;
     padding: 2px;
     margin-top: -9px;
