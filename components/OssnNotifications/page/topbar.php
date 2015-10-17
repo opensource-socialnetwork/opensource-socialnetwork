@@ -13,10 +13,12 @@
 $friends_c = '';
 //init classes
 $notification = new OssnNotifications;
-$messages = new OssnMessages;
-
 $count_notif = $notification->countNotification(ossn_loggedin_user()->guid);
-$count_messages = $messages->countUNREAD(ossn_loggedin_user()->guid);
+
+if(class_exists('OssnMessages')){
+	$messages = new OssnMessages;
+	$count_messages = $messages->countUNREAD(ossn_loggedin_user()->guid);
+}
 
 $friends = ossn_loggedin_user()->getFriendRequests();
 if (count($friends) > 0 && !empty($friends)) {
@@ -36,7 +38,7 @@ if (count($friends) > 0 && !empty($friends)) {
                        </span>
     </a>
 </li>
-
+<?php if($messages){ ?>
 <li id="ossn-notif-messages">
     <a onClick="Ossn.NotificationMessagesShow(this)" href="javascript:void(0);" class="ossn-notifications-messages">
                        <span>
@@ -50,6 +52,7 @@ if (count($friends) > 0 && !empty($friends)) {
                         <?php } ?>
                        </span>
     </a></li>
+   <?php } ?> 
 <li id="ossn-notif-notification">
     <a onClick="Ossn.NotificationShow(this)" class="ossn-notifications-notification" href="javascript:void(0);">
                        <span>
