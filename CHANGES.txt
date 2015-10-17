@@ -5,6 +5,12 @@ Bugfixes:
 * Don't load notification and chat boot api when user is not loggedin.
 * Disallow version check request to non-loggedin users #565
 * Wall, tag a friend , GUID issue #566
+* Hardcoded paths in theme's css #563
+* Problem with group comments showing up via notification link #559
+* Change profile icon urls #537
+* Fix typo in link href javascript #536
+* Problem of characters lenght on the instant messenger #520
+* Admin Dashboard users graphic appear in January #557
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 3.7 Minor fix
 
