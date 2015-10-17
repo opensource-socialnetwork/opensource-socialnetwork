@@ -17,7 +17,9 @@
 	//sort out data
 	foreach($by_year as $item){
 		$years[] = $item->year;
-		$item->month = str_replace(0, '', $item->month);
+		if((int)$item->month !== 10){
+			$item->month = str_replace(0, '', $item->month);
+		}
 		$data[$item->year][$item->month] = $item->total;
 	}	
 	//get unqiue years
