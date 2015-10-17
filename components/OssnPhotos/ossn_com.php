@@ -84,8 +84,9 @@ function ossn_notification_like_photo($hook, $type, $return, $params) {
 		$baseurl        = ossn_site_url();
 		$user           = ossn_user_by_guid($notif->poster_guid);
 		$user->fullname = "<strong>{$user->fullname}</strong>";
+		$iconURL = $user->iconURL()->small;
 		
-		$img = "<div class='notification-image'><img src='{$baseurl}/avatar/{$user->username}/small' /></div>";
+		$img = "<div class='notification-image'><img src='{$iconURL}' /></div>";
 		if(preg_match('/like/i', $notif->type)) {
 				$type = 'like';
 		}
@@ -430,7 +431,7 @@ function ossn_album_page_handler($album) {
 								if(ossn_loggedin_user()->guid == $owner->owner_guid) {
 										$addphotos = array(
 												'text' => ossn_print('add:photos'),
-												'href' => 'javascript::void(0);',
+												'href' => 'javascript:void(0);',
 												'id' => 'ossn-add-photos',
 												'data-url' => '?album=' . $album[1],
 												'class' => 'button-grey'

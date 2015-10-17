@@ -9,7 +9,7 @@
  * @link      http://www.opensource-socialnetwork.org/licence
  */
 foreach ($params['menu'] as $key => $value) {
-        echo "<li><a href='javascript::void(0);' class='dropdown-toggle' data-toggle='dropdown'>" . $key . "<i class='fa fa-sort-desc'></i></a>";
+        echo "<li><a href='javascript:void(0);' class='dropdown-toggle' data-toggle='dropdown'>" . $key . "<i class='fa fa-sort-desc'></i></a>";
         echo '<ul class="dropdown-menu multi-level">';
         foreach ($value as $link) {
 			unset($link['parent']);

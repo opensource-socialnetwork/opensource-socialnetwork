@@ -18,7 +18,7 @@
    								 if (count($links) > 1) {
 									  unset($links[0]);
       								  $menu_parent = '<li>
-									  <a href="javascript::void(0);" class="dropdown-toggle" data-toggle="dropdown">'
+									  <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">'
 									  	. ossn_print($key) . 
 									   '<i class="fa fa-sort-desc"></i></a>
 									  <ul class="dropdown-menu multi-level">';
