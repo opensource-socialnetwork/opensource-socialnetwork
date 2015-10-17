@@ -216,11 +216,17 @@ function ossn_view_page($title, $content, $page = 'page') {
  * @return string
  */
 function ossn_default_theme() {
-    $theme = new OssnThemes;
-    $active_theme = $theme->getActive();
-    return ossn_route()->themes . $theme->getActive() . '/';
+    return ossn_route()->themes . ossn_site_settings('theme') . '/';
 }
-
+/**
+ * Activated theme URL
+ *
+ * @return string
+ */
+function ossn_theme_url(){
+	$default = ossn_site_settings('theme');
+	return ossn_site_url("themes/{$default}/");
+}
 /**
  * Ossn view form
  *

@@ -91,11 +91,11 @@ background: #5C8CA9;
 
 
 .ossn-header {
-background:#2F4959 url('<?php echo ossn_site_url(); ?>themes/default/images/header-background.png') repeat-x;
+background:#2F4959 url('<?php echo ossn_theme_url(); ?>images/header-background.png') repeat-x;
 height:90px;
 }
 .logo-second {
-background:url('<?php echo ossn_site_url(); ?>themes/default/images/logo_2.png') no-repeat;
+background:url('<?php echo ossn_theme_url(); ?>images/logo_2.png') no-repeat;
 height:28px;
 width:28px;
 }
@@ -106,14 +106,14 @@ margin:0 auto;
 color:#fff;
 }
 .ossn-logo {
-background:url('<?php echo ossn_site_url(); ?>themes/default/images/logo.jpg') repeat-x;
+background:url('<?php echo ossn_theme_url(); ?>images/logo.jpg') repeat-x;
 height: 49px;
 width: 166px;
 
 margin-top: 15px;
 }
 .ossn-home-container {
-background:#F2F2F2 url('<?php echo ossn_site_url(); ?>themes/default/images/home-background.png') repeat-x;
+background:#F2F2F2 url('<?php echo ossn_theme_url(); ?>images/home-background.png') repeat-x;
 min-height:465px;
 }
 .ossn-home-container .inner {
@@ -237,7 +237,7 @@ display:inline-block;
 Topbar
 *********************/
 .ossn-topbar {
-background:#2F4959 url('<?php echo ossn_site_url(); ?>themes/default/images/top-background.png') repeat-x;
+background:#2F4959 url('<?php echo ossn_theme_url(); ?>images/top-background.png') repeat-x;
 height:42px;
 position: fixed;
 left: 0;
@@ -409,7 +409,7 @@ Icons
 .ossn-icons-topbar-friends-new,
 .ossn-icons-topbar-messages-new,
 .ossn-icons-topbar-notifications-new{
-background: url('<?php echo ossn_site_url(); ?>themes/default/images/icons/topbar.png') no-repeat;
+background: url('<?php echo ossn_theme_url(); ?>images/icons/topbar.png') no-repeat;
 }
 .ossn-icons-topbar-messages{
 background-position: 0 -50px ;
@@ -452,7 +452,7 @@ position: absolute;
 margin-top: 3px;
 }
 .ossn-loading {
-background:url('<?php echo ossn_site_url(); ?>themes/default/images/loading.gif') no-repeat;
+background:url('<?php echo ossn_theme_url(); ?>images/loading.gif') no-repeat;
 height:24px;
 width:24px;
 }
@@ -461,37 +461,37 @@ margin-left: 216px;
 margin-top: 37px;
 }
 .ossn-wall-friend {
-background:url('<?php echo ossn_site_url(); ?>themes/default/images/icons/wall/friend.png') no-repeat;
+background:url('<?php echo ossn_theme_url(); ?>images/icons/wall/friend.png') no-repeat;
 width:20px;
 height:17px;
 }
 .ossn-wall-status {
-background:url('<?php echo ossn_site_url(); ?>themes/default/images/icons/wall/status.png') no-repeat;
+background:url('<?php echo ossn_theme_url(); ?>images/icons/wall/status.png') no-repeat;
 width:16px;
 height:16px;
 }
 .ossn-wall-location {
-background:url('<?php echo ossn_site_url(); ?>themes/default/images/icons/wall/location.png') no-repeat;
+background:url('<?php echo ossn_theme_url(); ?>images/icons/wall/location.png') no-repeat;
 width:20px;
 height:17px;
 }
 .ossn-wall-photo {
-background:url('<?php echo ossn_site_url(); ?>themes/default/images/icons/wall/photo.png') no-repeat;
+background:url('<?php echo ossn_theme_url(); ?>images/icons/wall/photo.png') no-repeat;
 width:17px;
 height:17px;
 }
 .ossn-icon-access-friends {
-background:url('<?php echo ossn_site_url(); ?>themes/default/images/icons/access/friends.png') no-repeat;
+background:url('<?php echo ossn_theme_url(); ?>images/icons/access/friends.png') no-repeat;
 width:12px;
 height:12px;
 }
 .ossn-icon-access-public {
-background:url('<?php echo ossn_site_url(); ?>themes/default/images/icons/access/public.png') no-repeat;
+background:url('<?php echo ossn_theme_url(); ?>images/icons/access/public.png') no-repeat;
 width:12px;
 height:13px;
 }
 .ossn-icon-access-private {
-background:url('<?php echo ossn_site_url(); ?>themes/default/images/icons/access/private.png') no-repeat;
+background:url('<?php echo ossn_theme_url(); ?>images/icons/access/private.png') no-repeat;
 width:10px;
 height:12px;
 }
