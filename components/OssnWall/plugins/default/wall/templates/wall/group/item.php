@@ -12,7 +12,12 @@ $image = $params['image'];
 if (!isset($params['show_group'])) {
     $params['show_group'] = NULL;
 }
-
+if(!isset($params['ismember'])){
+    $group = ossn_get_group_by_guid($params['post']->owner_guid);
+    if ($group->isMember(NULL, ossn_loggedin_user()->guid)) {
+      	$params['ismember'] = 1;
+    }
+}
 ?>
 <div class="activity-item" id="activity-item-<?php echo $params['post']->guid; ?>">
 
