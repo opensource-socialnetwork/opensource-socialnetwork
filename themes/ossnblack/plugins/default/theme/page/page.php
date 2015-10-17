@@ -78,9 +78,7 @@ if (isset($params['contents'])) {
             <div class="ossn-topbar-menu">
                 <li>
                     <a href="<?php echo ossn_site_url(); ?>u/<?php echo ossn_loggedin_user()->username; ?>?ref=ossntb">
-                        <img
-                            src="<?php echo ossn_site_url(); ?>avatar/<?php echo ossn_loggedin_user()->username; ?>/smaller"
-                            height="19" width="19"/>
+                         <img src="<?php echo ossn_loggedin_user()->iconURL()->smaller; ?>" height="19" width="19"/>
                         <span><?php echo ossn_loggedin_user()->first_name; ?></span>
                     </a>
                 </li>
@@ -88,7 +86,7 @@ if (isset($params['contents'])) {
                     <a href="<?php echo ossn_site_url(); ?>home"><span><?php echo ossn_print('home'); ?></span></a>
                 </li>
 
-                <?php echo ossn_view('components/OssnNotifications/page/topbar'); ?>
+                <?php echo ossn_plugin_view('notifications/page/topbar'); ?>
 
                 <div class="ossn-topbar-dropdown-menu">
                     <label class="ossn-topbar-dropdown-menu-button"><span class="arrow"></span></label>
