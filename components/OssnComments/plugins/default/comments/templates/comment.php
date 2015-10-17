@@ -9,17 +9,20 @@
  * @link      http://www.opensource-socialnetwork.org/licence
  */
 ossn_trigger_callback('comment', 'load', $params['comment']);
-$OssnLikes = new OssnLikes;
 $comment = arrayObject($params['comment'], 'OssnWall');
 $user = ossn_user_by_guid($comment->owner_guid);
 if ($comment->type == 'comments:post' || $comment->type == 'comments:entity') {
     $type = 'annotation';
 }
-$likes_total = $OssnLikes->CountLikes($comment->id, $type);
-$datalikes = '';
-if ($likes_total > 0) {
-    $datalikes = $likes_total;
-    $likes_total = '<span class="dot-likes">.</span><div class="ossn-like-icon"></div>' . $likes_total;
+
+if(class_exists('OssnLikes')){
+	$OssnLikes = new OssnLikes;
+	$likes_total = $OssnLikes->CountLikes($comment->id, $type);
+	$datalikes = '';
+	if ($likes_total > 0) {
+    	$datalikes = $likes_total;
+    	$likes_total = '<span class="dot-likes">.</span><div class="ossn-like-icon"></div>' . $likes_total;
+	}
 }
 ?>
 <div class="comments-item" id="comments-item-<?php echo $comment->id; ?>">
@@ -54,7 +57,7 @@ if ($likes_total > 0) {
         </p>
 
         <div class="comment-metadata"> <?php echo ossn_user_friendly_time($comment->time_created); ?>
-            <?php if (ossn_isLoggedIn()) {
+            <?php if (ossn_isLoggedIn() && class_exists('OssnLikes')) {
                 	 if (!$OssnLikes->isLiked($comment->id, ossn_loggedin_user()->guid, $type)) {
 							echo ossn_plugin_view('output/url', array(
 									'href' => ossn_site_url("action/annotation/like?annotation={$comment->id}"), 
@@ -75,12 +78,14 @@ if ($likes_total > 0) {
 
             	} // Likes only for loggedin users end 
 				// Show total likes
-				echo ossn_plugin_view('output/url', array(
-						'href' => 'javascript::;', 
+				if($likes_total){
+					echo ossn_plugin_view('output/url', array(
+						'href' => 'javascript:void(0);', 
 						'text' => $likes_total, 
 						'class' => "ossn-total-likes-{$comment->id}",
 						'data-likes' => $datalikes,
-						));				
+						));
+				}
 				?>
         </div>
     </div>

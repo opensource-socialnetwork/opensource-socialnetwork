@@ -12,7 +12,6 @@
 $object = $params->guid;
 
 $comments = new OssnComments;
-$OssnLikes = new OssnLikes;
 
 if($params->full_view !== true){
 	$comments->limit = 5;
