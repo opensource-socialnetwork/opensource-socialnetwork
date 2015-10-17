@@ -398,15 +398,7 @@ class OssnComponents extends OssnDatabase {
 		 */
 		public function requiredComponents() {
 				return array(
-						'OssnAds',
-						'OssnComments',
-						'OssnLikes',
-						'OssnMessages',
-						'OssnNotifications',
-						'OssnPhotos',
 						'OssnProfile',
-						'OssnSearch',
-						'OssnWall'
 				);
 		}
 		
@@ -442,7 +434,15 @@ class OssnComponents extends OssnDatabase {
 						'OssnBlock',
 						'OssnSmilies',
 						'OssnInvite',
-						'OssnEmbed'
+						'OssnEmbed',
+						'OssnAds',
+						'OssnComments',
+						'OssnLikes',
+						'OssnMessages',
+						'OssnNotifications',
+						'OssnPhotos',
+						'OssnSearch',
+						'OssnWall'						
 				), $this->requiredComponents());
 		}
 		/**
