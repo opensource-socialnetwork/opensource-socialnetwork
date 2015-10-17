@@ -12,6 +12,11 @@ Bugfixes:
 * Problem of characters lenght on the instant messenger #520
 * Admin Dashboard users graphic appear in January #557
 
+General:
+ * Move notification topbar to plugin views.
+ * Remove direct call to external component class.
+ * Remove invalid old files form ossnblack theme.
+ 
 OSSN - OPEN SOURCE SOCIAL NETWORK 3.7 Minor fix
 
 Bugfixes:
