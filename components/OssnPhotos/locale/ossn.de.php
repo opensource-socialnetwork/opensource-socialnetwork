@@ -17,9 +17,6 @@ $de = array(
     'no:photos' => 'Keine Fotos',
     'back:to:album' => 'Zurück zum Album',
     'photo:albums' => 'Foto Alben',
-    'edit:profile' => 'Profil bearbeiten',
-    'reposition:cover' => 'Neu positionieren',
-    'profile:photos' => 'Profil-Fotos',
 	
     'photo:deleted:success' => 'Profil-Foto erfolgreich gelöscht',
     'photo:delete:error' => 'Das Foto kann nicht gelöscht werden',

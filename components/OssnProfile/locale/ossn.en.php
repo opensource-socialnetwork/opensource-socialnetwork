@@ -18,5 +18,9 @@ $en = array(
 	'ossn:profile:picture:updated' => 'Changed profile picture.',
 	'ossn:profile:cover:picture:updated' => 'Changed profile cover.',
 	'language' => 'Language',
+
+    'edit:profile' => 'Edit Profile',
+    'reposition:cover' => 'Reposition',
+    'profile:photos' => 'Profile Photos',	
 );
 ossn_register_languages('en', $en); 

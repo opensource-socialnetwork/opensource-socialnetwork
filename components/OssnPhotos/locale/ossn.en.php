@@ -17,9 +17,6 @@ $en = array(
     'no:photos' => 'No Photos',
     'back:to:album' => 'Back to Album',
     'photo:albums' => 'Photo Albums',
-    'edit:profile' => 'Edit Profile',
-    'reposition:cover' => 'Reposition',
-    'profile:photos' => 'Profile Photos',
 	
     'photo:deleted:success' => 'Photo successfully deleted!',
     'photo:delete:error' => 'Cannot delete photo! Please try again later.',
