@@ -371,8 +371,9 @@ function ossn_notification_like_profile_photo($hook, $type, $return, $params) {
 		$baseurl        = ossn_site_url();
 		$user           = ossn_user_by_guid($notif->poster_guid);
 		$user->fullname = "<strong>{$user->fullname}</strong>";
+		$iconURL = $user->iconURL()->small;
 		
-		$img = "<div class='notification-image'><img src='{$baseurl}/avatar/{$user->username}/small' /></div>";
+		$img = "<div class='notification-image'><img src='{$iconURL}' /></div>";
 		if(preg_match('/like/i', $notif->type)) {
 				$type = 'like';
 		}

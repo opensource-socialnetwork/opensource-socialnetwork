@@ -95,8 +95,9 @@ function ossn_likes_post_notifiation($hook, $type, $return, $params) {
 		$baseurl        = ossn_site_url();
 		$user           = ossn_user_by_guid($notif->poster_guid);
 		$user->fullname = "<strong>{$user->fullname}</strong>";
+		$iconURL = $user->iconURL()->small;
 		
-		$img = "<div class='notification-image'><img src='{$baseurl}/avatar/{$user->username}/small' /></div>";
+		$img = "<div class='notification-image'><img src='{$iconURL}' /></div>";
 		$url = ossn_site_url("post/view/{$notif->subject_guid}");
 		
 		if(preg_match('/like/i', $notif->type)) {
@@ -140,8 +141,9 @@ function ossn_group_comment_post($hook, $type, $return, $params) {
 		$baseurl        = ossn_site_url();
 		$user           = ossn_user_by_guid($notif->poster_guid);
 		$user->fullname = "<strong>{$user->fullname}</strong>";
+		$iconURL = $user->iconURL()->small;
 		
-		$img = "<div class='notification-image'><img src='{$baseurl}/avatar/{$user->username}/small' /></div>";
+		$img = "<div class='notification-image'><img src='{$iconURL}' /></div>";
 		$url = ossn_site_url("post/view/{$notif->subject_guid}");
 		
 		if(preg_match('/like/i', $notif->type)) {
