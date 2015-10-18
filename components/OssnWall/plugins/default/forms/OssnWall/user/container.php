@@ -18,6 +18,10 @@
     </div>
     <textarea placeholder="<?php echo ossn_print('wall:post:container'); ?>" name="post"></textarea>
 
+    <div id="ossn-wall-friend" style="display:none;">
+        <input type="text" placeholder="<?php echo ossn_print('tag:friends'); ?>" name="friends"
+               id="ossn-wall-friend-input"/>
+    </div>
     <div id="ossn-wall-location" style="display:none;">
         <input type="text" placeholder="<?php echo ossn_print('enter:location'); ?>" name="location"
                id="ossn-wall-location-input"/>
@@ -27,6 +31,9 @@
     </div>
 </div>
 <div class="controls">
+    <li>
+        <div class="ossn-wall-friend"></div>
+    </li>	
     <li>
         <div class="ossn-wall-location"></div>
     </li>
