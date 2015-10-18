@@ -11,6 +11,7 @@ Bugfixes:
 * Fix typo in link href javascript #536
 * Problem of characters lenght on the instant messenger #520
 * Admin Dashboard users graphic appear in January #557
+* OssnWall friends settings,  didn't shows pagination #555
 
 General:
  * Move notification topbar to plugin views.
