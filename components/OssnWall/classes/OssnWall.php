@@ -38,21 +38,21 @@ class OssnWall extends OssnObject {
 				$this->data->access      = $access;
 				$this->subtype           = 'wall';
 				$this->title             = '';
-
-				$post		  = preg_replace('/\t/', ' ', $post);
+				
+				$post             = preg_replace('/\t/', ' ', $post);
 				$wallpost['post'] = htmlspecialchars($post, ENT_QUOTES, 'UTF-8');
 				
 				//wall tag a friend , GUID issue #566
 				if(!empty($friends)) {
-					$friend_guids = explode(',', $friends);
-					//reset friends guids
-					$friends = array();
-					foreach($friend_guids as $guid){
-						if(ossn_user_by_guid($guid)){
-							$friends[] = $guid;
+						$friend_guids = explode(',', $friends);
+						//reset friends guids
+						$friends      = array();
+						foreach($friend_guids as $guid) {
+								if(ossn_user_by_guid($guid)) {
+										$friends[] = $guid;
+								}
 						}
-					}
-					$wallpost['friend'] = implode(',', $friends);
+						$wallpost['friend'] = implode(',', $friends);
 				}
 				if(!empty($location)) {
 						$wallpost['location'] = $location;
@@ -67,7 +67,12 @@ class OssnWall extends OssnObject {
 								$this->OssnFile->subtype    = 'wallphoto';
 								$this->OssnFile->setFile('ossn_photo');
 								$this->OssnFile->setPath('ossnwall/images/');
-								$this->OssnFile->setExtension(array('jpg', 'png', 'jpeg', 'gif'));
+								$this->OssnFile->setExtension(array(
+										'jpg',
+										'png',
+										'jpeg',
+										'gif'
+								));
 								$this->OssnFile->addFile();
 						}
 						$params['subject_guid'] = $this->wallguid;
@@ -266,9 +271,21 @@ class OssnWall extends OssnObject {
 						$vars['wheres']   = array(
 								$this->constructWheres($wheres)
 						);
-						$vars['order_by'] = "guid DESC";
+						$vars['order_by'] = "o.guid DESC";
 						$vars['limit']    = $options['limit'];
-						$data             = $this->select($vars, true);
+						
+						//prepare count data;
+						if($options['count'] === true) {
+								unset($vars['params']);
+								unset($vars['limit']);
+								$count           = array();
+								$count['params'] = array(
+										"count(*) as total"
+								);
+								$count           = array_merge($vars, $count);
+								return $this->select($count)->total;
+						}
+						$data = $this->select($vars, true);
 						if($data) {
 								return $data;
 						}
