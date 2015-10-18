@@ -25,7 +25,7 @@ function ossn_embed_init() {
  	ossn_add_hook('wall', 'templates:item', 'ossn_embed_wall_template_item');
 	ossn_add_hook('comment:view', 'template:params', 'ossn_embed_comments_template_params');
 }
-/**
+/**https://player.vimeo.com/video/15371813
  * Replace videos links and simple url to html url.
  *
  * @note Please don't call this function directly in your code.
@@ -43,6 +43,7 @@ function ossn_embed_wall_template_item($hook, $type, $return){
 						'#(((https?://)?)|(^./))(((www.)?)|(^./))youtu\.be/([^\[\]()<.,\s\n\t\r]+)#i',
 						'/(https?:\/\/)(www\.)?(vimeo\.com\/groups)(.*)(\/videos\/)([0-9]*)/',
 						'/(https?:\/\/)(www\.)?(vimeo.com\/)([0-9]*)/',
+						'/(https?:\/\/)(player\.)?(vimeo.com\/video\/)([0-9]*)/',
 						'/(https?:\/\/)(www\.)?(metacafe\.com\/watch\/)([0-9a-zA-Z_-]*)(\/[0-9a-zA-Z_-]*)(\/)/',
 						'/(https?:\/\/www\.dailymotion\.com\/.*\/)([0-9a-z]*)/',
 						);

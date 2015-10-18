@@ -353,20 +353,20 @@ function ossn_embed_vimeo_parse_url($url) {
 			//echo "malformed vimeo group url";
 			return;
 		}
-
-		$hash = $matches[6];
-	} else {
-		if (!preg_match('/(http:\/\/)(www\.)?(vimeo.com\/)([0-9]*)/', $url, $matches)) {
-			//echo "malformed vimeo url";
-			return;
-		}
-
-		$hash = $matches[4];
+		return $matches[6];
+	} 
+	
+	if (preg_match('/(http:\/\/)(www\.)?(vimeo.com\/)([0-9]*)/', $url, $matches)) {
+			// this one seems to be obsolete
+			return $matches[4];
+	}
+		
+	if (preg_match('/(https:\/\/)(player\.)?(vimeo.com\/video\/)([0-9]*)/', $url, $matches)) {
+			// at least this one is working for me entering
+			// https://player.vimeo.com/video/xxxxxxxx
+			return $matches[4];
 	}
 
-	//echo $hash;
-
-	return $hash;
 }
 
 /**
