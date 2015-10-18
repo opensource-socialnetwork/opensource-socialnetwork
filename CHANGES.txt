@@ -18,6 +18,9 @@ General:
  * Remove direct call to external component class.
  * Remove invalid old files form ossnblack theme.
  
+Enhancements: 
+ * Add a tagging friend option to users wall #567
+ 
 OSSN - OPEN SOURCE SOCIAL NETWORK 3.7 Minor fix
 
 Bugfixes:
