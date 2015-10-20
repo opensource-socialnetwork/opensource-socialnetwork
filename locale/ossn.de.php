@@ -42,7 +42,7 @@ $de = array(
     'account:create:notice' => 'Mit der Anmeldung akzeptierst Du unsere',
     'gender' => 'Geschlecht',
 
-    'acount:settings' => 'Einstellungen',
+    'account:settings' => 'Einstellungen',
     'page:error' => 'Seite nicht gefunden',
     'page:error:text' => 'Oops! Die von Dir angeforderte Seite wurde nicht gefunden!',
     'page:error:heading' => '404',
