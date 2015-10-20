@@ -30,6 +30,12 @@ function ossn_profile() {
 				ossn_register_action('profile/cover/upload', __OSSN_PROFILE__ . 'actions/cover/upload.php');
 				ossn_register_action('profile/cover/reposition', __OSSN_PROFILE__ . 'actions/cover/reposition.php');
 				ossn_register_action('profile/edit', __OSSN_PROFILE__ . 'actions/edit.php');
+				
+				ossn_register_menu_item('topbar_dropdown', array(
+						'name' => 'account_settings',
+						'text' => ossn_print('acount:settings'),
+						'href' => ossn_loggedin_user()->profileURL('edit')
+				));
 		}
 		//callback
 		ossn_register_callback('page', 'load:search', 'ossn_search_users_link');
@@ -261,11 +267,11 @@ function get_profile_photo($user, $size) {
 		
 		$photo = $user->getProfilePhoto();
 		$etag  = $photo->guid . $photo->time_created;
-        
-		if(isset($photo->time_created)){
-		    header("Last-Modified: ".gmdate('D, d M Y H:i:s \G\M\T', $photo->time_created)); 
+		
+		if(isset($photo->time_created)) {
+				header("Last-Modified: " . gmdate('D, d M Y H:i:s \G\M\T', $photo->time_created));
 		}
-    	header("Etag: $etag"); 
+		header("Etag: $etag");
 		
 		if(isset($photo->guid) && isset($_SERVER['HTTP_IF_NONE_MATCH']) && trim($_SERVER['HTTP_IF_NONE_MATCH']) == "\"$etag\"") {
 				header("HTTP/1.1 304 Not Modified");
@@ -371,7 +377,7 @@ function ossn_notification_like_profile_photo($hook, $type, $return, $params) {
 		$baseurl        = ossn_site_url();
 		$user           = ossn_user_by_guid($notif->poster_guid);
 		$user->fullname = "<strong>{$user->fullname}</strong>";
-		$iconURL = $user->iconURL()->small;
+		$iconURL        = $user->iconURL()->small;
 		
 		$img = "<div class='notification-image'><img src='{$iconURL}' /></div>";
 		if(preg_match('/like/i', $notif->type)) {
