@@ -89,27 +89,7 @@ if (isset($params['contents'])) {
                 <?php echo ossn_plugin_view('notifications/page/topbar'); ?>
 
                 <div class="ossn-topbar-dropdown-menu">
-                    <label class="ossn-topbar-dropdown-menu-button"><span class="arrow"></span></label>
-                    <ul class="ossn-topbar-dropdown-menu-content">
-                        <li>
-                            <a href="<?php echo ossn_site_url("u/" . ossn_loggedin_user()->username . "/edit"); ?>"><?php echo ossn_print('acount:settings'); ?></a>
-                        </li>
-                        <?php if (ossn_isAdminLoggedin()) { ?>
-			<li>
-				 <a href="<?php echo ossn_site_url('administrator'); ?>"><?php echo ossn_print('admin'); ?></a>
-			</li>
-			<?php } ?>
-                        <li>
-                          <?php
-						  	echo ossn_plugin_view('output/url', array(
-									'href' => ossn_site_url('action/user/logout'), 
-									'text' => ossn_print('logout'), 
-									'action' => true 
-									));
-						  ?>
-                        </li>
-                    </ul>
-
+                   <?php echo ossn_view_menu('topbar_dropdown'); ?>
                 </div>
             </div>
 <!-- notification box -->
