@@ -40,6 +40,7 @@ function ossn_register_menu_item($menutype, array $options = array()) {
 						$name = $options['parent'];
 				}
 				$Ossn->menu[$menutype][$name][] = $options;
+				ksort($Ossn->menu[$menutype]);
 		}
 }
 

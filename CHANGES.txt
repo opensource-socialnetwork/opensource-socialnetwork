@@ -17,9 +17,11 @@ General:
  * Move notification topbar to plugin views.
  * Remove direct call to external component class.
  * Remove invalid old files form ossnblack theme.
+ * All the menus are now sorted to alphabetically.
  
 Enhancements: 
  * Add a tagging friend option to users wall #567
+ * Add topbar static menu to dynamic #541
  
 OSSN - OPEN SOURCE SOCIAL NETWORK 3.7 Minor fix
 
