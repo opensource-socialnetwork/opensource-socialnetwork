@@ -33,8 +33,8 @@ function ossn_profile() {
 				
 				ossn_register_menu_item('topbar_dropdown', array(
 						'name' => 'account_settings',
-						'text' => ossn_print('acount:settings'),
-						'href' => ossn_loggedin_user()->profileURL('edit')
+						'text' => ossn_print('account:settings'),
+						'href' => ossn_loggedin_user()->profileURL('/edit')
 				));
 		}
 		//callback

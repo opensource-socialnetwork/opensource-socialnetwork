@@ -42,7 +42,7 @@ $en = array(
 	'account:create:notice' => 'By clicking Create an account, you agree to our',
 	'gender' => 'Gender',
 	
-	'acount:settings' => 'Account Settings',
+	'account:settings' => 'Account Settings',
 	'page:error' => 'Page Not Found!',
 	'page:error:text' => 'The page you requested is unavailable or may have been deleted.',
 	'page:error:heading' => '404',
