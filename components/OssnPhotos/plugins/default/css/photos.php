@@ -1,9 +1,9 @@
-.ossn-profile-modlue-albums img {
+.ossn-profile-module-albums img {
 padding: 1.5px;
 width:100px;
 height:100px;
 }
-.ossn-profile-modlue-albums h3 {
+.ossn-profile-module-albums h3 {
 padding:4px;
 text-align:center;
 color:#ccc;

@@ -8,7 +8,7 @@
  * @license   General Public Licence http://www.opensource-socialnetwork.org/licence
  * @link      http://www.opensource-socialnetwork.org/licence
  */
-echo '<div class="ossn-profile-modlue-albums">';
+echo '<div class="ossn-profile-module-albums">';
 $albums = new OssnAlbums;
 $photos = $albums->GetAlbums($params['user']->guid);
 if ($photos) {

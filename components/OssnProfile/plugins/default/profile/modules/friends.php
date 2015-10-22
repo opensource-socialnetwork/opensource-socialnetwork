@@ -9,7 +9,7 @@
  * @link      http://www.opensource-socialnetwork.org/licence
  */
 $friends = $params['user']->getFriends();
-echo '<div class="ossn-profile-modlue-friends">';
+echo '<div class="ossn-profile-module-friends">';
 if (is_array($friends)) {
     foreach ($params['user']->getFriends() as $friend) {
         $url = $friend->iconURL()->large;
