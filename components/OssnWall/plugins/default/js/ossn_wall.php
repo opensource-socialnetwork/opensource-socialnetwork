@@ -49,7 +49,7 @@ Ossn.RegisterStartupFunction(function() {
 Ossn.RegisterStartupFunction(function() {
 	$(document).ready(function() {
 		$("#ossn-wall-friend-input").tokenInput(Ossn.site_url + "friendpicker", {
-			placeholder: 'Enter friend name',
+			placeholder: Ossn.Print('tag:friends'),
 			hintText: false,
 			propertyToSearch: "first_name",
 			resultsFormatter: function(item) {
