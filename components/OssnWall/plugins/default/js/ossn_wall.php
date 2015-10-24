@@ -49,7 +49,7 @@ Ossn.RegisterStartupFunction(function() {
 Ossn.RegisterStartupFunction(function() {
 	$(document).ready(function() {
 		$("#ossn-wall-friend-input").tokenInput(Ossn.site_url + "friendpicker", {
-			placeholder: Ossn.Print('tag:friends'),
+			placeholder: 'Enter friend name',
 			hintText: false,
 			propertyToSearch: "first_name",
 			resultsFormatter: function(item) {
@@ -109,4 +109,24 @@ Ossn.RegisterStartupFunction(function() {
 			});
 		});
 
+});
+/**
+ * Setup Google Location input
+ *
+ * @return void
+ */
+Ossn.RegisterStartupFunction(function() {
+    $(document).ready(function() {
+        if ($('#ossn-wall-location-input').length) {
+            var autocomplete;
+            if (typeof google === 'object') {
+                autocomplete = new google.maps.places.Autocomplete(
+                    /** @type {HTMLInputElement} */
+                    (document.getElementById('ossn-wall-location-input')), {
+                        types: ['geocode']
+                    });
+                google.maps.event.addListener(autocomplete, 'place_changed', function() {});
+            }
+        }
+    });
 });
