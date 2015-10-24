@@ -285,24 +285,7 @@ Ossn.trigger_message = function($message, $type) {
         opacity: 0.9
     }, 6000).slideUp('slow');
 };
-/**
- * Setup Google Location input
- *
- * @return void
- */
-Ossn.RegisterStartupFunction(function() {
-    $(document).ready(function() {
-        var autocomplete;
-        if (typeof google === 'object') {
-            autocomplete = new google.maps.places.Autocomplete(
-                /** @type {HTMLInputElement} */
-                (document.getElementById('ossn-wall-location-input')), {
-                    types: ['geocode']
-                });
-            google.maps.event.addListener(autocomplete, 'place_changed', function() {});
-        }
-    });
-});
+
 /**
  * Topbar dropdown button
  *
