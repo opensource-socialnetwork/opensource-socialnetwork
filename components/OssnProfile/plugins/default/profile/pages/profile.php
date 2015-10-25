@@ -106,7 +106,7 @@ if (ossn_isLoggedIn()) {
                     <a href="<?php echo ossn_site_url("messages/message/{$user->username}"); ?>" id="profile-message"
                        data-guid='<?php echo $user->guid; ?>' class='button-grey'>
                         <?php echo ossn_print('message'); ?></a>
-                    <a href="javascript::;" class='button-grey' id="profile-extra-menu">
+                    <a href="javascript:void(0);" class='button-grey' id="profile-extra-menu">
                         <span>...</span>
                     </a>
                     <div class="ossn-profile-extra-menu">
@@ -117,7 +117,7 @@ if (ossn_isLoggedIn()) {
             }?>
         </div>
         <div id="cover-menu" class="profile-menu">
-            <a href="javascript::;" onclick="Ossn.repositionCOVER();"
+            <a href="javascript:void(0);" onclick="Ossn.repositionCOVER();"
                class='button-grey'><?php echo ossn_print('save:position'); ?></a>
         </div>
     </div>

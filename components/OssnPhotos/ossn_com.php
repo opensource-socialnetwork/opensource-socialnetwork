@@ -193,7 +193,7 @@ function ossn_photos_page_handler($album) {
 								//shows widget back button
 								$addphotos         = array(
 										'text' => ossn_print('back'),
-										'href' => 'javascript::;',
+										'href' => 'javascript:void(0);',
 										'class' => 'button-grey'
 								);
 								$control           = ossn_plugin_view('output/url', $addphotos);
@@ -225,7 +225,7 @@ function ossn_photos_page_handler($album) {
 								}
 								$addphotos         = array(
 										'text' => ossn_print('back'),
-										'href' => 'javascript::;',
+										'href' => 'javascript:void(0);',
 										'class' => 'button-grey'
 								);
 								$control           = ossn_plugin_view('output/url', $addphotos);
@@ -256,7 +256,7 @@ function ossn_photos_page_handler($album) {
 								}
 								$addphotos         = array(
 										'text' => ossn_print('back'),
-										'href' => 'javascript::;',
+										'href' => 'javascript:void(0);',
 										'class' => 'button-grey'
 								);
 								$control           = ossn_plugin_view('output/url', $addphotos);
@@ -533,7 +533,7 @@ function ossn_profile_photos_page($hook, $type, $return, $params) {
 				if(ossn_loggedin_user()->guid == $user['user']->guid) {
 						$addalbum = array(
 								'text' => ossn_print('add:album'),
-								'href' => 'javascript::;',
+								'href' => 'javascript:void(0);',
 								'id' => 'ossn-add-album',
 								'class' => 'button-grey'
 						);

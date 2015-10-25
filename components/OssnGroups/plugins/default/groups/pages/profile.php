@@ -40,9 +40,9 @@ $members = $params['group']->getMembers();
             <div class="ossn-group-cover" id="container">
                 <?php if ($params['group']->owner_guid == ossn_loggedin_user()->guid) { ?>
                     <div class="ossn-group-cover-button">
-                        <a href="javascript::;" id="reposition-cover"
+                        <a href="javascript:void(0);" id="reposition-cover"
                            class='button-grey'><?php echo ossn_print('reposition:cover'); ?></a>
-                        <a href="javascript::;" id="add-cover-group"
+                        <a href="javascript:void(0);" id="add-cover-group"
                            class='button-grey'><?php echo ossn_print('change:cover'); ?></a>
                     </div>
                 <?php } ?>
@@ -101,10 +101,10 @@ $members = $params['group']->getMembers();
                     ?>
                     <a href="<?php echo ossn_group_url($params['group']->guid); ?>edit"
                        class='button-grey'><?php echo ossn_print('settings'); ?></a>
-                    <a href="javascript::;" onclick="Ossn.repositionGroupCOVER(<?php echo $params['group']->guid; ?>);"
+                    <a href="javascript:void(0);" onclick="Ossn.repositionGroupCOVER(<?php echo $params['group']->guid; ?>);"
                        class='button-grey group-c-position'><?php echo ossn_print('save:position'); ?></a>
                     <?php if (!$cover) { ?>
-                        <a href="javascript::;" id="add-cover-group"
+                        <a href="javascript:void(0);" id="add-cover-group"
                            class='button-grey'><?php echo ossn_print('change:cover'); ?></a>
                     <?php } ?>
                 <?php } ?>

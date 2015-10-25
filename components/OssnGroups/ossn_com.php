@@ -91,7 +91,7 @@ function ossn_groups() {
 		//my groups link
 		/* ossn_register_sections_menu('newsfeed', array(
 		'text' => 'My Groups',
-		'url' => 'javascript::;',
+		'url' => 'javascript:void(0);',
 		'section' => 'groups',
 		'icon' => ossn_site_url('components/OssnGroups/images/manages.png')
 		));*/
