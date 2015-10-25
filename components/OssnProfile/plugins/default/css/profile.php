@@ -1,12 +1,13 @@
 /**
- * Open Source Social Network
- *
- * @package   (Informatikon.com).ossn
- * @author    OSSN Core Team <info@opensource-socialnetwork.org>
- * @copyright 2014 iNFORMATIKON TECHNOLOGIES
- * @license   General Public Licence http://www.opensource-socialnetwork.org/licence
- * @link      http://www.opensource-socialnetwork.org/licence
- */
+* Open Source Social Network
+*
+* @package   (Informatikon.com).ossn
+* @author    OSSN Core Team
+<info@opensource-socialnetwork.org>
+* @copyright 2014 iNFORMATIKON TECHNOLOGIES
+* @license   General Public Licence http://www.opensource-socialnetwork.org/licence
+* @link      http://www.opensource-socialnetwork.org/licence
+*/
 .ossn-profile {
 width:850px;
 margin-top: -10px;
@@ -58,7 +59,7 @@ position: relative;
 .ossn-profile-bottom {
 width: 850px;
 }
-.ossn-profile-module {
+.ossn-profile-modules {
 display:inline-block;
 margin-top: 19px;
 vertical-align:top;
@@ -125,21 +126,21 @@ z-index: 1
 #cover-menu {
 display:none;
 }
-.ossn-profile-module-about {
+.ossn-profile-modules-about {
 padding:5px;
 font-size:12px;
 }
-.ossn-profile-module-about-item .label{
+.ossn-profile-modules-about-item .label{
 color:#6A7480;
 font-weight:bold;
 display:inline-table;
 
-}.ossn-profile-module-about-item .metadata{
+}.ossn-profile-modules-about-item .metadata{
 color:#2B5470;
 font-weight:bold;
 display:inline-table;
 }
-.ossn-profile-module-about-item {
+.ossn-profile-modules-about-item {
 padding: 10px;
 border-bottom: 1px solid #eee;
 }
