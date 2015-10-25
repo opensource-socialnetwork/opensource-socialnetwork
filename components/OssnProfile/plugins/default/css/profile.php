@@ -1,13 +1,12 @@
 /**
-* Open Source Social Network
-*
-* @package   (Informatikon.com).ossn
-* @author    OSSN Core Team
-<info@opensource-socialnetwork.org>
-* @copyright 2014 iNFORMATIKON TECHNOLOGIES
-* @license   General Public Licence http://www.opensource-socialnetwork.org/licence
-* @link      http://www.opensource-socialnetwork.org/licence
-*/
+ * Open Source Social Network
+ *
+ * @package   (Informatikon.com).ossn
+ * @author    OSSN Core Team <info@opensource-socialnetwork.org>
+ * @copyright 2014 iNFORMATIKON TECHNOLOGIES
+ * @license   General Public Licence http://www.opensource-socialnetwork.org/licence
+ * @link      http://www.opensource-socialnetwork.org/licence
+ */
 .ossn-profile {
 width:850px;
 margin-top: -10px;
@@ -59,7 +58,7 @@ position: relative;
 .ossn-profile-bottom {
 width: 850px;
 }
-.ossn-profile-modules {
+.ossn-profile-module {
 display:inline-block;
 margin-top: 19px;
 vertical-align:top;
@@ -126,40 +125,40 @@ z-index: 1
 #cover-menu {
 display:none;
 }
-.ossn-profile-modules-about {
+.ossn-profile-module-about {
 padding:5px;
 font-size:12px;
 }
-.ossn-profile-modules-about-item .label{
+.ossn-profile-module-about-item .label{
 color:#6A7480;
 font-weight:bold;
 display:inline-table;
 
-}.ossn-profile-modules-about-item .metadata{
+}.ossn-profile-module-about-item .metadata{
 color:#2B5470;
 font-weight:bold;
 display:inline-table;
 }
-.ossn-profile-modules-about-item {
+.ossn-profile-module-about-item {
 padding: 10px;
 border-bottom: 1px solid #eee;
 }
-.ossn-profile-modules-friends img {
+.ossn-profile-module-friends img {
 padding: 1.5px;
 }
-.ossn-profile-modules-friends  .user-image {
+.ossn-profile-module-friends  .user-image {
 width:100px;
 height:100px;
 display:inline-block;
 }
-.ossn-profile-modules-friends .user-name {
+.ossn-profile-module-friends .user-name {
 position: absolute;
 margin-top: -27px;
 margin-left: 8px;
 font-size: 12px;
 color: #fff;
 }
-.ossn-profile-modules-friends h3 {
+.ossn-profile-module-friends h3 {
 padding:4px;
 text-align:center;
 color:#ccc;
