@@ -40,7 +40,7 @@ position: absolute;
 }
 .ossn-profile .profile-cover {
 height:315px;
-background:#fff url('<?php echo ossn_site_url(); ?>themes/default/images/cover-bg.png') repeat-x;
+background:#fff url('<?php echo ossn_theme_url(); ?>images/cover-bg.png') repeat-x;
 }
 .ossn-profile .profile-name {
 color: #FFF;
