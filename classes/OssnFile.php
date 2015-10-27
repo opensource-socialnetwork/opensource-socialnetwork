@@ -203,7 +203,7 @@ class OssnFile extends OssnEntities {
 								$this->newfile     = $this->path . $this->newfilename;
 								
 								$this->dir = ossn_get_userdata("{$this->type}/{$this->owner_guid}/{$this->path}");
-								if(!is_dir(ossn_get_userdata($this->dir))) {
+								if(!is_dir($this->dir)) {
 										mkdir($this->dir, 0755, true);
 								}
 								
