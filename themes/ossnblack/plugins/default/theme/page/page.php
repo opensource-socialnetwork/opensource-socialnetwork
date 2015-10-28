@@ -78,7 +78,7 @@ if (isset($params['contents'])) {
             <div class="ossn-topbar-menu">
                 <li>
                     <a href="<?php echo ossn_site_url(); ?>u/<?php echo ossn_loggedin_user()->username; ?>?ref=ossntb">
-                         <img src="<?php echo ossn_loggedin_user()->iconURL()->smaller; ?>" height="19" width="19"/>
+                         <img src="<?php echo ossn_loggedin_user()->iconURL()->smaller; ?>" height="20" width="20"/>
                         <span><?php echo ossn_loggedin_user()->first_name; ?></span>
                     </a>
                 </li>
