@@ -13,6 +13,7 @@ Bugfixes:
 * Admin Dashboard users graphic appear in January #557
 * OssnWall friends settings,  didn't shows pagination #555
 * ossn_get_userdata($this->dir) results in wrong path #582
+* OssnChat css fixes typo #583
 
 General:
  * Move notification topbar to plugin views.
