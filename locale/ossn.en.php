@@ -49,8 +49,6 @@ $en = array(
 	
 	'search:users' => 'People',
 	'admin:logout' => 'Log out',
-	'admin:menu' => 'Admin Panel',
-	'feedback' => 'Send feedback',
 	'logout' => 'Log out',
 	
 	'ossn:like:this' => '%s liked this',
