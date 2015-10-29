@@ -338,7 +338,7 @@
 /** Icons **/
 .ossn-chat-icon {
     background: url("<?php echo ossn_site_url(); ?>components/OssnChat/images/useronline.png") no-repeat;
-    width16px;
+    width:16px;
 height: 14px;
 }
 
