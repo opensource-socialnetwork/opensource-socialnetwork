@@ -19,7 +19,7 @@ if ($params['groups']) {
 
             <div class="uinfo">
                 <a class="userlink" href="<?php echo ossn_site_url(); ?>group/<?php echo $group->guid; ?>"><?php echo $group->title; ?></a>
-                <p class="ossn-group-search-by"><?php echo ossn_print('ossn:group:by');?><a chref="<?php echo $owner->profileURL();?>"><?php echo $owner->fullname;?></a></p>
+                <p class="ossn-group-search-by"><?php echo ossn_print('ossn:group:by');?><a href="<?php echo $owner->profileURL();?>"><?php echo $owner->fullname;?></a></p>
             </div>
 
 
