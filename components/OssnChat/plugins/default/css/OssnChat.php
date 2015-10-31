@@ -338,8 +338,8 @@
 /** Icons **/
 .ossn-chat-icon {
     background: url("<?php echo ossn_site_url(); ?>components/OssnChat/images/useronline.png") no-repeat;
-    width:16px;
-height: 14px;
+    width: 16px !important;
+    height: 16px !important;
 }
 
 .ossn-chat-icon-online {
@@ -371,12 +371,6 @@ height: 14px;
     height: 14px;
     margin-left: 10px;
 }
-
-.ossn-chat-icon {
-    width: 16px !important;
-    height: 16px !important;
-}
-
 .ossn-chat-windows-long {
     display: none;
 }
