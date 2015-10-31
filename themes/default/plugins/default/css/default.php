@@ -70,7 +70,6 @@ box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 #FFF;
 
 border: 1px solid #999;
 border-bottom-color: #888;
-background: #EEE;
 background: -webkit-gradient(linear, 0 0, 0 100%, from(#F5F6F6), to(#E4E4E3));
 background: -moz-linear-gradient(#f5f6f6, #e4e4e3);
 background: -o-linear-gradient(#f5f6f6, #e4e4e3);
