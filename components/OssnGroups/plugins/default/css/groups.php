@@ -18,7 +18,6 @@ border-left: 1px solid #EEE;
 margin-top:-20px;
 }
 #group-header-menu {
-border: none;
 border: 0px;
 padding: 0px;
 font-size: 14px;
