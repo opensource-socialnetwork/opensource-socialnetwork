@@ -40,7 +40,6 @@ border-right: 1px solid #EEE;
 #group-header-menu li a {
 background: #fff;
 display: block;
-font-weight: normal;
 line-height: 45px;
 margin: 0px;
 padding: 0px 20px;
