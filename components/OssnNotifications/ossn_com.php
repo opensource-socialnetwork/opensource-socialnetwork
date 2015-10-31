@@ -39,6 +39,8 @@ function ossn_notifications() {
 		ossn_add_hook('notification:add', 'like:annotation', 'ossn_notificaiton_like_annotation_hook');
 		ossn_add_hook('notification:add', 'comments:entity', 'ossn_notificaiton_comment_entity_hook');
 		ossn_add_hook('notification:add', 'like:entity', 'ossn_notificaiton_comment_entity_hook');
+		//tag post with a friend, doesn't show in friend's notification #589
+		ossn_add_hook('notification:add', 'wall:friends:tag', 'ossn_notificaiton_walltag_hook');
 
 		if(ossn_isLoggedin()) {
 				ossn_extend_view('ossn/js/head', 'notifications/js/autocheck');
@@ -219,11 +221,24 @@ function ossn_notification_walltag($type, $ctype, $params) {
 		$notification = new OssnNotifications;
 		if(isset($params['friends']) && is_array($params['friends'])) {
 				foreach($params['friends'] as $friend) {
-						if($params['poster_guid'] > 0 && $params['subject_guid'] > 0 && $friend > 0) {
+						if(!empty($params['poster_guid']) && !empty($params['subject_guid']) && !empty($friend)) {
 								$notification->add('wall:friends:tag', $params['poster_guid'], $params['subject_guid'], NULL, $friend);
 						}
 				}
 		}
+}
+/**
+ * Wall post user tag notification hook
+ * 
+ * Tag post with a friend, doesn't show in friend's notification #589
+ * 
+ * @return boolean
+ */
+function ossn_notificaiton_walltag_hook($hook, $type, $return, $params) {
+	if(isset($params['notification_owner'])){
+		$params['owner_guid'] = $params['notification_owner'];
+	}
+	return $params;
 }
 /**
  * Delete user notifiactions when user deleted
