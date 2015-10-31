@@ -583,7 +583,6 @@ position: absolute;
 border-left: 1px solid #EEE;
 }
 #profile-hr-menu {
-border: none;
 border: 0px;
 /* Pull request #301 */
 padding: 1px;
