@@ -864,7 +864,6 @@ margin-left: 10px;
 margin-right:20px;
 }
 .ossn-topbar-dropdown-menu {
-display: block;
 display: inline-block;
 margin: 0px 3px;
 position: relative;
@@ -1103,8 +1102,6 @@ display:block;
 -moz-transition: all 0.30s ease-in-out;
 -ms-transition: all 0.30s ease-in-out;
 -o-transition: all 0.30s ease-in-out;
-
-border:1px solid #eee;
 }
 .ossn-edit-form textarea {
 height:100px;
