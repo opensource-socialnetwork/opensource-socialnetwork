@@ -739,7 +739,6 @@ color: #D9D9D9;
 height: 1px;
 }
 .ossn-privacy  {
-margin-top:20px;
 margin-top: 20px;
 border-top: 1px solid #ddd;
 padding-top: 10px;
