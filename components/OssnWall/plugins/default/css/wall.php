@@ -217,7 +217,6 @@ ul.token-input-list {
 
 li.token-input-token {
 	overflow: hidden;
-	height: auto !important;
 	height: 15px;
 	margin: 3px;
 	padding: 1px 3px;
