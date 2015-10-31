@@ -448,7 +448,7 @@ and (min-width : 1360px) {
         float: right;
         margin-right: 4px;
         margin-top: -17px;
-    };
+    }
 }
 /** Document **/
 #ossn-chat-sound {
