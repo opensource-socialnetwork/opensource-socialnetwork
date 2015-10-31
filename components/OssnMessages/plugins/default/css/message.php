@@ -148,10 +148,6 @@
 	width:50px;
 	height:50px;
 }
-.messages-from .inner .user-item .image {
-	width:50px;
-	height:50px;
-}
 .messages-from .inner .user-item .data{
 	display:inline-table;
 	float:right;
