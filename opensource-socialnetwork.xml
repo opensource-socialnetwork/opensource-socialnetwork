@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <opensource_socialnework xmlns="http:/opensource-socialnetwork.org/v/1.0">
-    <version>3.8</version>
+    <version>3.9-dev</version>
     <stable_version>3.8</stable_version>
     <release>1446311454</release>
     <licence>GNU General Public License, version 2</licence>
