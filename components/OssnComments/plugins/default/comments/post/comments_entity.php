@@ -15,7 +15,7 @@ $comments = new OssnComments;
 if($params->full_view !== true){
 	$comments->limit = 5;
 }
-if($params->full_view == true){
+if($params->full_view == true || $params['params']['full_view'] == true){
 	$comments->limit = false;
 	$comments->page_limit = false;
 }
