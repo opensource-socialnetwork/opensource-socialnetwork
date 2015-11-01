@@ -32,6 +32,7 @@ $img = str_replace('album/photos/', '', $image->value);
 <br/>
 <?php
 	$vars['entity'] = $image;
+	$vars['full_view'] = true;
 	echo ossn_plugin_view('entity/comment/like/share/view', $vars);
 ?>
 <div class="ossn-photo-view-controls">
