@@ -18,12 +18,14 @@
 	</div>     
  	<?php
     if (ossn_is_hook('post', 'likes:entity')) {
+	$entity['params'] = $params;	
         $entity['entity_guid'] = $params['entity']->guid;
         echo ossn_call_hook('post', 'likes:entity', $entity);
     }
     ?>
     <?php
     if (ossn_is_hook('post', 'comments:entity')) {
+    	$entity['params'] = $params;
         $entity['entity_guid'] =  $params['entity']->guid;
         echo ossn_call_hook('post', 'comments:entity', $entity);
     }
