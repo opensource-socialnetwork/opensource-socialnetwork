@@ -1,3 +1,9 @@
+OSSN - OPEN SOURCE SOCIAL NETWORK 3.9
+
+Bugfixes:
+
+* View all comments link missing on direct photo view #591
+
 OSSN - OPEN SOURCE SOCIAL NETWORK 3.8
 
 Bugfixes:
