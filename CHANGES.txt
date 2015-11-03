@@ -4,6 +4,11 @@ Bugfixes:
 
 * View all comments link missing on direct photo view #591
 * Poster image display problem with profile pics < 32 x 32 #595
+* Deleting the current profile pic/cover doesn't update cache #590 [In Progress]
+
+General:
+
+* Refactoring the ossn_view_widget function
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 3.8
 
