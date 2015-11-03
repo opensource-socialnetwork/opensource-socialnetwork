@@ -32,7 +32,7 @@ if(class_exists('OssnLikes')){
         ?>
     </div>
     <div class="poster-image">
-        <img src="<?php echo $user->iconURL()->smaller; ?>"/>
+        <img class="poster-image-icon" src="<?php echo $user->iconURL()->smaller; ?>"/>
     </div>
     <div class="comment-text">
         <p>
