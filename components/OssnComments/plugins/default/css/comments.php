@@ -108,6 +108,10 @@ margin-top: -10px;
 padding: 10px;
 display:inline-table;
 }
+.comments-likes .poster-image-icon {
+height: 32px;
+width: 32px;
+}
 .comments-likes .comment-container {
 display:inline-table;
 }
