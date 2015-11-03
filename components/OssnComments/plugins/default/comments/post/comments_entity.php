@@ -30,7 +30,7 @@ if ($comments) {
 echo '</div>';
 if (ossn_isLoggedIn()) {
     echo '<div class="poster-image">';
-    echo '<img src="' . ossn_loggedin_user()->iconURL()->smaller . '" />';
+    echo '<img class="poster-image-icon" src="' . ossn_loggedin_user()->iconURL()->smaller . '" />';
     echo '</div>';
     echo '<script>  Ossn.EntityComment(' . $object . '); </script>';
     echo ossn_view_form('entity/comment_add', array(
