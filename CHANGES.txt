@@ -3,6 +3,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK 3.9
 Bugfixes:
 
 * View all comments link missing on direct photo view #591
+* Poster image display problem with profile pics < 32 x 32 #595
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 3.8
 
