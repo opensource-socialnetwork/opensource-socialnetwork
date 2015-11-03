@@ -14,7 +14,7 @@ $photos = $albums->GetAlbums($params['user']->guid);
 
 $albums->count = true;
 $count = $albums->GetAlbums($params['user']->guid);
-$profiel_photo = ossn_site_url("avatar/{$params['user']->username}/larger");
+$profiel_photo = $params['user']->iconURL()->larger;
 $pphotos_album = ossn_site_url("album/profile/{$params['user']->guid}");
 
 $profile_covers_url = ossn_site_url("album/covers/profile/{$params['user']->guid}");

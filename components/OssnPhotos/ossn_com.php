@@ -84,7 +84,7 @@ function ossn_notification_like_photo($hook, $type, $return, $params) {
 		$baseurl        = ossn_site_url();
 		$user           = ossn_user_by_guid($notif->poster_guid);
 		$user->fullname = "<strong>{$user->fullname}</strong>";
-		$iconURL = $user->iconURL()->small;
+		$iconURL        = $user->iconURL()->small;
 		
 		$img = "<div class='notification-image'><img src='{$iconURL}' /></div>";
 		if(preg_match('/like/i', $notif->type)) {
@@ -147,7 +147,12 @@ function ossn_photos_sizes() {
 function profile_modules_albums($hook, $type, $module, $params) {
 		$user['user'] = $params['user'];
 		$content      = ossn_plugin_view("photos/modules/profile/albums", $user);
-		$module[]     = ossn_view_widget('profile/widget', strtoupper(ossn_print('photo:albums')), $content);
+		$title        = strtoupper(ossn_print('photo:albums'));
+		
+		$module[] = ossn_view_widget(array(
+				'title' => $title,
+				'contents' => $content
+		));
 		return $module;
 }
 
@@ -429,7 +434,7 @@ function ossn_album_page_handler($album) {
 								}
 								//shows add photos if owner is loggedin user
 								if(ossn_loggedin_user()->guid == $owner->owner_guid) {
-										$addphotos = array(
+										$addphotos     = array(
 												'text' => ossn_print('add:photos'),
 												'href' => 'javascript:void(0);',
 												'id' => 'ossn-add-photos',
@@ -437,13 +442,13 @@ function ossn_album_page_handler($album) {
 												'class' => 'button-grey'
 										);
 										$delete_action = ossn_site_url("action/ossn/album/delete?guid={$album[1]}", true);
-										$delete_album = array(
+										$delete_album  = array(
 												'text' => ossn_print('delete:album'),
 												'href' => $delete_action,
 												'class' => 'button-grey'
-										);										
-										$control   = ossn_plugin_view('output/url', $addphotos);
-										$control   .= ossn_plugin_view('output/url', $delete_album);
+										);
+										$control       = ossn_plugin_view('output/url', $addphotos);
+										$control .= ossn_plugin_view('output/url', $delete_album);
 								} else {
 										$control = false;
 								}

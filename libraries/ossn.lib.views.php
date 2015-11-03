@@ -242,16 +242,12 @@ function ossn_view_form($name, $args = array(), $type = 'core') {
 /**
  * Ossn view widget
  *
- * @param string $name
- * @param string $title
- * @return mix data
+ * @param array $params A options
+ *
+ * @return string
  */
-function ossn_view_widget($name, $title, $contents) {
-    $theme = new OssnThemes;
-    $active_theme = $theme->getActive();
-    $widget['title'] = $title;
-    $widget['contents'] = $contents;
-    return ossn_view("themes/{$active_theme}/widgets/{$name}", $widget);
+function ossn_view_widget(array $params = array()) {
+    return ossn_plugin_view("widget/view", $params);
 }
 /**
  * View a template

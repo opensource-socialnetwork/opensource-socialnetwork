@@ -193,8 +193,13 @@ function profile_modules($h, $t, $module, $params) {
 		/*$content = ossn_view("components/OssnProfile/modules/about", $user);
 		$modules[] = ossn_view_widget('profile/widget', 'ABOUT', $content);*/
 		
-		$content   = ossn_plugin_view("profile/modules/friends", $user);
-		$modules[] = ossn_view_widget('profile/widget', strtoupper(ossn_print('friends')), $content);
+		$content = ossn_plugin_view("profile/modules/friends", $user);
+		$title   = strtoupper(ossn_print('friends'));
+		
+		$modules[] = ossn_view_widget(array(
+				'title' => $title,
+				'contents' => $content
+		));
 		
 		return $modules;
 }
