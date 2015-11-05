@@ -45,11 +45,9 @@ Ossn.getRecent = function($user) {
         url: Ossn.site_url + "messages/getrecent/" + $user,
         action: false,
         callback: function(callback) {
-            $('#get-recent').html(callback);
-            $('#get-recent').addClass('inner');
+            $('.messages-from').find('.title').remove();
             $('.messages-from').find('.inner').remove();
-            $('#get-recent').appendTo('.messages-from');
-            $('#get-recent').show();
+            $('.messages-from').prepend(callback);
         }
     });
 };
