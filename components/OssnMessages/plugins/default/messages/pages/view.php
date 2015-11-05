@@ -63,7 +63,7 @@
             $(document).ready(function () {
                 setInterval(function () {
                     Ossn.getMessages('<?php echo $params['user']->username;?>', '<?php echo $params['user']->guid;?>');
-                    //Ossn.getRecent('<?php echo $params['user']->guid;?>');
+                    Ossn.getRecent('<?php echo $params['user']->guid;?>');
                 }, 5000);
                	Ossn.message_scrollMove(<?php echo $params['user']->guid;?>);
             });
