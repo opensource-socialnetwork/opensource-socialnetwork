@@ -8,8 +8,15 @@
  * @license   General Public Licence http://www.opensource-socialnetwork.org/licence
  * @link      http://www.opensource-socialnetwork.org/licence
  */
+ $class = '';
+ if(isset($params['class'])){ 
+ 	$class = $params['class'];
+ }
+ if(empty($params['title'])){
+	 return;
+ } 
 ?>
-<div class="ossn-profile-module-item">
+<div class="ossn-profile-module-item <?php echo $class;?>">
     <div class="module-title">
         <?php echo $params['title']; ?>
     </div>
