@@ -118,14 +118,14 @@ class OssnComments extends OssnAnnotation {
 				$vars                 = array();
 				$vars['subject_guid'] = $subject;
 				$vars['type']         = "comments:{$type}";
-				$vars['order_by']     = 'a.id ASC';
+				$vars['order_by']     = 'a.id DESC';
 				$vars['limit']        = $this->limit;
 				if($this->page_limit === false) {
 						$vars['page_limit'] = $this->page_limit;
 				}
 				$comments = $this->searchAnnotation($vars);
 				if(!empty($comments)) {
-						return $comments;
+						return array_reverse($comments);
 				}
 		}
 		
