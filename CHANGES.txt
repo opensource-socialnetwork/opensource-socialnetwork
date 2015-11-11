@@ -5,6 +5,7 @@ Bugfixes:
 * View all comments link missing on direct photo view #591
 * Poster image display problem with profile pics < 32 x 32 #595
 * Deleting the current profile pic/cover doesn't update cache #590 [In Progress]
+* Show latest comments instead of oldest comments #603
 
 General:
 
