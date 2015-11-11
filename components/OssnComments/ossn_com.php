@@ -147,6 +147,7 @@ function ossn_comment_menu($name, $type, $params) {
             }
         }
     }
+    ossn_unregister_menu('delete', 'comments');
 	$user = ossn_loggedin_user();
 	if(ossn_isLoggedin()){
 	  if($comment->type == 'comments:entity'){
