@@ -119,7 +119,6 @@ function ossn_post_comments_delete($event, $type, $params) {
  * @access private
  */
 function ossn_comment_menu($name, $type, $params) {
-
     $OssnComment = new OssnComments;
     if (is_object($params)) {
         $params = get_object_vars($params);
@@ -147,7 +146,6 @@ function ossn_comment_menu($name, $type, $params) {
             }
         }
     }
-    ossn_unregister_menu('delete', 'comments');
 	$user = ossn_loggedin_user();
 	if(ossn_isLoggedin()){
 	  if($comment->type == 'comments:entity'){
@@ -155,14 +153,14 @@ function ossn_comment_menu($name, $type, $params) {
 	  }
       if (($user->guid == $params['owner_guid']) || ossn_isAdminLoggedin() 
 		|| ($comment->type == 'comments:entity' && $entity->type = 'user' && $user->guid == $entity->owner_guid)) {
-         ossn_unregister_menu('delete', 'comments');
 		 ossn_register_menu_item('comments', array(
 			  'name' => 'delete',
               'href' => ossn_site_url("action/delete/comment?comment={$params['id']}", true),
               'class' => 'ossn-delete-comment',
 			  'text' => ossn_print('comment:delete'),
           ));
-      
+	  } else {
+		ossn_unregister_menu('delete', 'comments');		  
 	  }
 	}
 }
