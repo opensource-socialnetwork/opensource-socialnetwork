@@ -153,7 +153,8 @@ function ossn_comment_menu($name, $type, $params) {
 	  }
       if (($user->guid == $params['owner_guid']) || ossn_isAdminLoggedin() 
 		|| ($comment->type == 'comments:entity' && $entity->type = 'user' && $user->guid == $entity->owner_guid)) {
-		 ossn_register_menu_item('comments', array(
+		 	ossn_unregister_menu('delete', 'comments');	
+			ossn_register_menu_item('comments', array(
 			  'name' => 'delete',
               'href' => ossn_site_url("action/delete/comment?comment={$params['id']}", true),
               'class' => 'ossn-delete-comment',
