@@ -119,6 +119,12 @@ function ossn_post_comments_delete($event, $type, $params) {
  * @access private
  */
 function ossn_comment_menu($name, $type, $params) {
+	//unset previous comment menu item
+	//Post owner can not delete others comments #607
+	//Pull request #601 , refactoring
+	ossn_unregister_menu('delete', 'comments');	
+	$user = ossn_loggedin_user();
+	
     $OssnComment = new OssnComments;
     if (is_object($params)) {
         $params = get_object_vars($params);
@@ -135,7 +141,7 @@ function ossn_comment_menu($name, $type, $params) {
 			}
 			//group admins must be able to delete ANY comment in their own group #170
 			//just show menu if group owner is loggedin 
-            if ((ossn_loggedin_user()->guid == $post->owner_guid) || (ossn_loggedin_user()->guid == $group->owner_guid)) {
+            if ((ossn_loggedin_user()->guid == $post->owner_guid) || $user->guid == $comment->owner_guid ||(ossn_loggedin_user()->guid == $group->owner_guid)) {
                 ossn_unregister_menu('delete', 'comments');
 				ossn_register_menu_item('comments', array(
 					'name' => 'delete',
@@ -146,11 +152,9 @@ function ossn_comment_menu($name, $type, $params) {
             }
         }
     }
-	$user = ossn_loggedin_user();
-	if(ossn_isLoggedin()){
-	  if($comment->type == 'comments:entity'){
-		$entity = ossn_get_entity($comment->subject_guid);  
-	  }
+	//this section is for entity comment only
+	if(ossn_isLoggedin() && $comment->type == 'comments:entity'){
+	  $entity = ossn_get_entity($comment->subject_guid);  
       if (($user->guid == $params['owner_guid']) || ossn_isAdminLoggedin() 
 		|| ($comment->type == 'comments:entity' && $entity->type = 'user' && $user->guid == $entity->owner_guid)) {
 		 	ossn_unregister_menu('delete', 'comments');	
@@ -160,8 +164,6 @@ function ossn_comment_menu($name, $type, $params) {
               'class' => 'ossn-delete-comment',
 			  'text' => ossn_print('comment:delete'),
           ));
-	  } else {
-		ossn_unregister_menu('delete', 'comments');		  
 	  }
 	}
 }
