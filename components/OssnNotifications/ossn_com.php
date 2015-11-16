@@ -189,7 +189,7 @@ function ossn_notifications_page($pages) {
 				case 'all':
 						$title    = 'Notifications';
 						$contents = array(
-								'content' => ossn_view('components/OssnNotifications/pages/all')
+								'content' => ossn_plugin_view('notifications/pages/all')
 						);
 						$content  = ossn_set_page_layout('media', $contents);
 						echo ossn_view_page($title, $content);
