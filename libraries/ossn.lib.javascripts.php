@@ -329,6 +329,9 @@ function ossn_languages_js(){
 			$redirect = true;
 		}
 	}
+	if(isset($_SERVER['HTTP_CF_VISITOR']) && strpos($_SERVER['HTTP_CF_VISITOR'], 'https') !== false) {
+		 $_SERVER['HTTPS'] = 'on'; 
+	}	
 	if(empty($parts['port']) && isset($_SERVER['SERVER_PORT']) && !empty($_SERVER['SERVER_PORT']) 
 			&& $_SERVER['SERVER_PORT'] !== '80' && $_SERVER['SERVER_PORT'] !=='443'){
 			$redirect = true;
