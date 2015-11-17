@@ -501,7 +501,7 @@ class OssnUser extends OssnEntities {
 				);
 				$data             = (array) $this->select($params, true);
 				if($data) {
-						foreach($users as $user) {
+						foreach($data as $user) {
 								$result[] = arrayObject($user, get_class($this));
 						}
 						return $result;
