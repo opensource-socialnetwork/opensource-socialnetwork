@@ -499,10 +499,10 @@ class OssnUser extends OssnEntities {
 				$params['wheres'] = array(
 						"last_activity > {$time} - {$intervals}"
 				);
-				$data             = (array) $this->select($params, true);
+				$data             = $this->select($params, true);
 				if($data) {
 						foreach($data as $user) {
-								$result[] = arrayObject($user, get_class($this));
+								$result[] = arrayObject((array)$user, get_class($this));
 						}
 						return $result;
 				}
