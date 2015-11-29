@@ -4,7 +4,7 @@ Bugfixes:
 
 * View all comments link missing on direct photo view #591
 * Poster image display problem with profile pics < 32 x 32 #595
-* Deleting the current profile pic/cover doesn't update cache #590 [In Progress]
+* Deleting the current profile pic/cover doesn't update cache #590 [Fixed for profile pictrued, in progress with cover photo]
 * Show latest comments instead of oldest comments #603
 * Post owner can not delete others comments #607
 * Make 'notifications/all' page work again #610
@@ -12,6 +12,13 @@ Bugfixes:
 General:
 
 * Refactoring the ossn_view_widget function
+
+Developers:
+
+* Arsalan Shah	[TEAM LEADER]	- https://www.opensource-socialnetwork.org/u/arsalanshah
+* Zet Man 	[CORE TEAM] 	- https://www.opensource-socialnetwork.org/u/zetman
+* Eric F. 	[CORE TEAM] 	- https://www.opensource-socialnetwork.org/u/ctlui
+
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 3.8
 
