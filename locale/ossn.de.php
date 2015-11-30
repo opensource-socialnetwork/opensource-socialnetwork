@@ -180,6 +180,7 @@ Falls der Link nicht anklickbar ist, kopiere ihn einfach in Deinen Browser.
     'ossn:friend:request:submitted' => 'Deine Freundschafts-Anfrage wurde losgeschickt',
 
     /* Upgrades */
+    'upgrade:do' => 'Aktualisieren',
     'upgrade:file:load:error' => 'Die Aktualisierungs-Datei kann nicht geladen werden',
     'upgrade:success' => "Ossn wurde erfolgreich auf Version %s aktualisiert",
     'upgrade:failed' => "Die Aktualisierung auf Version % ist fehlgeschlagen",
@@ -285,6 +286,7 @@ Um Dein Passwort zurückzusetzen klicke bitte auf den folgenden Link oder kopier
 	'php:extension' => 'PHP Erweiterung',
 	'php:version' => 'PHP Version',
 	'php:function' => 'PHP Funktion',
+	'admin:upgrade' => 'Aktualisiere dein OSSN',
 	'admin:old:com' => "Die Datei ossn_com.xml deutet auf eine veraltete Version hin. Bitte aktualisiere die Komponente '%s'.",
 	'admin:old:theme' => "Die Datei ossn_theme.xml deutet auf eine veraltete Version hin. Bitte aktualisiere das Thema '%s'.",
 	'admin:button:disabled' => 'Deaktiviert',

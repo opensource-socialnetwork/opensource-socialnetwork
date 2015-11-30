@@ -159,6 +159,21 @@
         </div>   
                     
     </div>
+    
+    <div class="row">
+        <div class="col-md-4 admin-dashboard-item">
+            <div class="admin-dashboard-box">
+                <div class="admin-dashboard-title"><?php echo ossn_print('admin:upgrade'); ?></div>
+                <div class="admin-dashboard-contents center admin-dashboard-fixed-height">
+                    <div class="text center">
+                        <a href="/upgrade/upgrade.php" class="btn btn-primary"><?php echo ossn_print('upgrade:do'); ?></a>
+                    </div>
+                    <canvas id="users-classified-graph"></canvas>
+                    <div id="userclassified-lineLegend"></div>
+                </div>
+            </div>
+        </div>
+    </div>     
 </div>
 
 <!-- <div class="ossn-message-developers">

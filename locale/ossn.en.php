@@ -180,6 +180,7 @@ You may copy and paste the address to your browser manually in case the link doe
 	'ossn:friend:request:submitted' => 'Your friend request has been sent!',
 	
 	/* Upgrades */
+	'upgrade:do' => 'Upgrade',
 	'upgrade:file:load:error' => 'Cannot load upgrade file!',
 	'upgrade:success' => "Your website has been upgraded successfully to release %s.",
 	'upgrade:failed' => "Cannot upgrade your site to release %s.",
@@ -278,7 +279,6 @@ Please click the link below to reset password or copy the link and paste into yo
 	'admin:user:validate:error' => 'Could not validate user.',
 	
 	//v3.0
-	//admin
 	'my:files:version' => 'My Ossn Files Version',
 	'cache:flush:error' => 'Can not flush cache, make sure cache is enabled in cache settings',
 	'cache:flushed' => 'Cache flushed successfully',
@@ -286,6 +286,7 @@ Please click the link below to reset password or copy the link and paste into yo
 	'php:extension' => 'PHP extension',
 	'php:version' => 'PHP version',
 	'php:function' => 'PHP function',
+	'admin:upgrade' => 'Upgrade your OSSN',	
 	'admin:old:com' => "Your ossn_com.xml file is based on old version of Ossn. Please update '%s' component.",
 	'admin:old:theme' => "Your ossn_theme.xml file is based on old version of Ossn. Please update '%s' theme.",
 	'admin:button:disabled' => 'Disabled',
