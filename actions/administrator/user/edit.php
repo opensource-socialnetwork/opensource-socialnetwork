@@ -109,6 +109,8 @@ if ($OssnDatabase->update($params)) {
     if (!empty($guid)) {
         $entity->owner_guid = $guid;
         $entity->type = 'user';
+		
+		$entity->data = new stdClass;
 		foreach($fields as $items){
 				foreach($items as $field){
 						$entity->data->{$field} = $user[$field];
