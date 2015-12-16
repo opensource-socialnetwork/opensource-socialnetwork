@@ -33,14 +33,21 @@ class OssnComments extends OssnAnnotation {
 		 * @return bool;
 		 */
 		public function PostComment($subject_id, $guid, $comment, $type = 'post') {
-				if($subject_id < 1 || $guid < 1 || empty($comment)) {
+				if(empty($subject_id) || empty($guid)) {
 						return false;
+				}
+				$cancomment = false;
+				if(!empty($comment)) {
+						$cancomment = true;
+				}
+				if(!empty($this->comment_image)) {
+						$cancomment = true;
 				}
 				$this->subject_guid = $subject_id;
 				$this->owner_guid   = $guid;
 				$this->type         = "comments:{$type}";
 				$this->value        = $comment;
-				if($this->addAnnotation()) {
+				if($cancomment && $this->addAnnotation()) {
 						if(isset($this->comment_image)) {
 								$image                = base64_decode($this->comment_image);
 								$file                 = ossn_string_decrypt(base64_decode($image));
@@ -70,6 +77,12 @@ class OssnComments extends OssnAnnotation {
 										unset($_FILES['attachment']);
 								}
 						}
+						$params                 = array();
+						$params['id']           = $this->getAnnotationId();
+						$params['value']        = $comment;
+						$params['subject_guid'] = $subject_id;
+						$params['owner_guid']   = $owner_guid;
+						ossn_trigger_callback('comment', 'created', $params);
 						return true;
 				}
 				return false;

@@ -1,6 +1,11 @@
-.ossn-notification-icon-poke {
-background: url('<?php echo ossn_site_url(); ?>components/OssnPoke/images/poke.png') no-repeat;
-width: 18px;
-height: 18px;
-position: absolute;
+.ossn-notification-icon-poke,
+.ossn-notification-icon-poke:before {
+    display: inline-block;	
+}
+.ossn-notification-icon-poke:before {
+	content: "\f0a4";
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
 }

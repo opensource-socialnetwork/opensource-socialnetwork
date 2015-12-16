@@ -11,12 +11,11 @@
 $postcontrols = $params['menu'];
 if($postcontrols){
 ?>
-<div class="ossn-wall-post-controls" onclick="Ossn.PostMenu(this);">
-    <div class="drop-down-arrow"></div>
-    <div class="post-menu">
-        <div class="menu-links">
+<a id="dLabel" role="button" data-toggle="dropdown" class="btn" data-target="#">
+	<i class="fa fa-sort-desc"></i>
+</a>
+<ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
             <?php
-            if (!empty($postcontrols)) {
                 foreach ($postcontrols as $menu) {
                     foreach ($menu as $link) {
 					 	$class = "post-control-".$link['name'];
@@ -32,10 +31,7 @@ if($postcontrols){
                     <?php
                     }
                 }
-            }?>
-        </div>
-    </div>
-
-</div>
+            ?>
+    </ul>
 <?php 
 }

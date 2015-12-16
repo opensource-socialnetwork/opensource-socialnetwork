@@ -9,7 +9,7 @@
  * @link      http://www.opensource-socialnetwork.org/licence
  */
 ?>
-<div class="message-sender">
+<div class="message-sender" id="ossn-message-item-<?php echo $params['id'];?>">
     <div class="ossn-chat-text-data-right">
         <div class="ossn-chat-triangle ossn-chat-triangle-blue"></div>
         <div class="text">

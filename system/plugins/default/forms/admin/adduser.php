@@ -29,38 +29,14 @@
 	<label> <?php echo ossn_print('password'); ?> </label>
 	<input type='password' name="password" placeholder=''/>
 </div>
-<div>
-	<label> <?php echo ossn_print('birthdate'); ?> </label> 
-    <select name="birthday">
-        <option value=""><?php echo ossn_print('day'); ?></option>
-        <?php for ($day = 1; $day <= 31; $day++) { ?>
-            <option
-                value="<?php echo strlen($day) == 1 ? '0' . $day : $day; ?>"><?php echo strlen($day) == 1 ? '0' . $day : $day; ?></option>
-        <?php } ?>
-    </select>
-
-    <select name="birthm">
-        <option value=""><?php echo ossn_print('month'); ?></option>
-        <?php for ($month = 1; $month <= 12; $month++) { ?>
-            <option
-                value="<?php echo strlen($month) == 1 ? '0' . $month : $month; ?>"><?php echo strlen($month) == 1 ? '0' . $month : $month; ?></option>
-        <?php } ?>
-    </select>
-
-    <select name="birthy">
-        <option value=""><?php echo ossn_print('year'); ?></option>
-        <?php for ($year = date('Y'); $year > date('Y') - 100; $year--) { ?>
-            <option value="<?php echo $year; ?>"><?php echo $year; ?></option>
-        <?php } ?>
-    </select>
-</div>
-<div>
-	<label> <?php echo ossn_print('gender'); ?> </label>
-	<select name="gender">
-    	<option value="male"> <?php echo ossn_print('male'); ?> </option>
-    	<option value="female"><?php echo ossn_print('female'); ?> </option>
-	</select>
-</div>
+<?php
+$fields = ossn_default_user_fields();
+if($fields){
+			$vars	= array();
+			$vars['items'] = $fields;
+			echo ossn_plugin_view('user/fields/item', $vars);
+}
+?>
 <div>
 	<label> <?php echo ossn_print('type'); ?> </label>
 

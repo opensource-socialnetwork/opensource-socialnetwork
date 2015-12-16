@@ -11,42 +11,36 @@
 $members = $params['group']->getMembers();
 if ($members) {
     foreach ($members as $user) {
-        ?>
-
-        <div class="ossn-group-members">
-            <img src="<?php echo ossn_site_url("avatar/{$user->username}/large"); ?>" width='100' height="100"/>
-
-            <div class="uinfo">
-                <a class="userlink" href="<?php echo $user->profileURL(); ?>"><?php echo $user->fullname; ?></a>
-            </div>
-            <?php
-            if (ossn_loggedin_user()->guid !== $params['group']->owner_guid) {
-                if (ossn_loggedin_user()->guid !== $user->guid) {
-                    if (!ossn_user_is_friend(ossn_loggedin_user()->guid, $user->guid)) {
-                        ?>
-                        <a href="<?php echo ossn_site_url("action/friend/add?user={$user->guid}", true); ?>"
-                           class='friendlink button-grey-light'>
-                            <?php echo ossn_print('add:friend'); ?></a>
-                    <?php } else { ?>
-                        <a href="<?php echo ossn_site_url("action/friend/remove?user={$user->guid}", true); ?>"
-                           class='friendlink button-grey-light'>
-                            <?php echo ossn_print('remove:friend'); ?></a>
-                    <?php
-                    }
-                }
-            } else {
-                if ($user->guid !== $params['group']->owner_guid && $params['group']->isMember($params['group']->guid, $user->guid)) {
-                    ?>
-
-                    <a href="<?php echo ossn_site_url("action/group/member/decline?group={$params['group']->guid}&user={$user->guid}", true); ?>"
-                       class='friendlink button-grey-light'><?php echo ossn_print('group:memb:remove'); ?></a>
-                <?php
-                }
-            }
-            ?>
+      ?>
+		<div class="row">
+	        <div class="ossn-group-members">
+            	<div class="col-md-2 col-sm-2 hidden-xs">
+    	        		<img src="<?php echo $user->iconURL()->large; ?>" width="100" height="100"/>
+				</div>
+                <div class="col-md-10 col-sm-10 col-xs-12">
+	    	        <div class="uinfo">
+                        <?php
+							echo ossn_plugin_view('output/url', array(
+									'text' => $user->fullname,
+									'href' =>  $user->profileURL(),
+									'class' => 'userlink',
+							));						
+						?>
+        	   		</div>
+                    <div class="right request-controls">
+	                    <?php
+							if ($user->guid !== $params['group']->owner_guid && $params['group']->isMember($params['group']->guid, $user->guid)) {
+									echo ossn_plugin_view('output/url', array(
+										'text' => ossn_print('group:memb:remove'),
+										'href' =>  ossn_site_url("action/group/member/decline?group={$params['group']->guid}&user={$user->guid}", true),
+										'class' => 'btn btn-danger',
+								));
+							}
+						?>		
+                   </div> 
+               </div>
+            </div>           
         </div>
-
-
     <?php
     }
 

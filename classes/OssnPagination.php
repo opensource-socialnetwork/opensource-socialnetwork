@@ -151,8 +151,7 @@ class OssnPagination {
 		 * @return string
 		 */
 		private function view($params) {
-				$theme = ossn_site_settings('theme');
-				return ossn_view("themes/{$theme}/pagination/view", $params);
+				return ossn_plugin_view("pagination/view", $params);
 		}
 		
 } //CLASS

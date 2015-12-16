@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Open Source Social Network
  *
@@ -10,6 +9,20 @@
  * @link      http://www.opensource-socialnetwork.org/licence
  */
 class OssnUser extends OssnEntities {
+		/**
+		 * Initialize the objects.
+		 *
+		 * @return void
+		 */
+		public function initAttributes() {
+				$this->OssnDatabase   = new OssnDatabase;
+				$this->OssnAnnotation = new OssnAnnotation;
+				$this->notify         = new OssnMail;
+				if(!isset($this->sendactiviation)) {
+						$this->sendactiviation = false;
+				}
+				$this->data = new stdClass;
+		}	
 		/**
 		 * Add user to system.
 		 *
@@ -57,14 +70,7 @@ class OssnUser extends OssnEntities {
 								$guid = $this->getLastEntry();
 								
 								//define user extra profile fields
-								$fields = array(
-										'text' => array(
-												'birthdate'
-										),
-										'radio' => array(
-												'gender'
-										)
-								);
+								$fields = ossn_default_user_fields();
 								if(!empty($guid) && is_int($guid)) {
 										
 										$this->owner_guid = $guid;
@@ -72,12 +78,12 @@ class OssnUser extends OssnEntities {
 										
 										//add user entities 
 										$extra_fields = ossn_call_hook('user', 'signup:fields', $this, $fields);
-										if(!empty($extra_fields)) {
-												foreach($extra_fields as $type) {
+										if(!empty($extra_fields['required'])) {
+												foreach($extra_fields['required'] as $type) {
 														foreach($type as $field) {
-																if(isset($this->$field)) {
-																		$this->subtype = $field;
-																		$this->value   = $this->$field;
+																if(isset($this->{$field['name']})) {
+																		$this->subtype = $field['name'];
+																		$this->value   = $this->{$field['name']};
 																		//add entity
 																		$this->add();
 																}
@@ -132,20 +138,6 @@ class OssnUser extends OssnEntities {
 						return true;
 				}
 				return false;
-		}
-		
-		/**
-		 * Initialize the objects.
-		 *
-		 * @return void
-		 */
-		public function initAttributes() {
-				$this->OssnDatabase   = new OssnDatabase;
-				$this->OssnAnnotation = new OssnAnnotation;
-				$this->notify         = new OssnMail;
-				if(!isset($this->sendactiviation)) {
-						$this->sendactiviation = false;
-				}
 		}
 		
 		/**
@@ -335,24 +327,7 @@ class OssnUser extends OssnEntities {
 		 * @return boolean
 		 */
 		public function isFriend($usera, $user2) {
-				$this->statement("SELECT * FROM ossn_relationships WHERE(
-					     relation_from='{$usera}' AND
-					     relation_to='{$user2}' AND
-					     type='friend:request'
-					     );");
-				$this->execute();
-				$from = $this->fetch();
-				$this->statement("SELECT * FROM ossn_relationships WHERE(
-					     relation_from='{$user2}' AND
-					     relation_to='{$usera}' AND
-				 	     type='friend:request'
-					     );");
-				$this->execute();
-				$to = $this->fetch();
-				if(isset($from->relation_id) && isset($to->relation_id)) {
-						return true;
-				}
-				return false;
+				return ossn_relation_exists($usera, $user2, 'friend:request');
 		}
 		
 		/**
@@ -364,22 +339,17 @@ class OssnUser extends OssnEntities {
 				if(isset($this->guid)) {
 						$user = $this->guid;
 				}
-				$this->statement("SELECT * FROM ossn_relationships WHERE(
-			   		     relation_to='{$user}' AND
-					     type='friend:request'
-					     );");
-				$this->execute();
-				$from = $this->fetch(true);
-				if(!is_object($from)) {
-						return false;
-				}
-				foreach($from as $fr) {
-						if($this->isFriend($user, $fr->relation_from)) {
-								$uss[] = ossn_user_by_guid($fr->relation_from);
+				
+				$relationships = ossn_get_relationships(array(
+						'to' => $user,
+						'type' => 'friend:request',
+						'inverse' => true
+				));
+				if($relationships) {
+						foreach($relationships as $relation) {
+								$friends[] = ossn_user_by_guid($relation->relation_to);
 						}
-				}
-				if(isset($uss)) {
-						return $uss;
+						return $friends;
 				}
 				return false;
 		}
@@ -402,23 +372,16 @@ class OssnUser extends OssnEntities {
 		/**
 		 * Check if the request already sent or not.
 		 *
+		 * @param integer $from Relation from guid
+		 * @param integer $user Relation to , user guid
+		 *
 		 * @return boolean
 		 */
 		public function requestExists($from, $user) {
 				if(isset($this->guid)) {
 						$user = $this->guid;
 				}
-				$this->statement("SELECT * FROM ossn_relationships WHERE(
-					     relation_to='{$user}' AND
-						 relation_from='{$from}' AND
-					     type='friend:request'
-					     );");
-				$this->execute();
-				$request = $this->fetch();
-				if(!empty($request->relation_id)) {
-						return true;
-				}
-				return false;
+				return ossn_relation_exists($from, $user, 'friend:request');
 		}
 		
 		/**
@@ -439,15 +402,18 @@ class OssnUser extends OssnEntities {
 		/**
 		 * Get site users.
 		 *
-		 * @return object
+		 * @param array $params A options values
+		 * 
+		 * @note This method will be removed from Ossn v5
+		 *
+		 * @return array
 		 */
 		public function getSiteUsers($params = array()) {
-				$vars         = array();
-				$vars['from'] = 'ossn_users';
-				
-				$args  = array_merge($vars, $params);
-				$users = $this->select($args, true);
-				return $users;
+				$default = array(
+						'keyword' => false
+				);
+				$vars    = array_merge($default, $params);
+				return $this->searchUsers($vars);
 				
 		}
 		
@@ -502,7 +468,7 @@ class OssnUser extends OssnEntities {
 				$data             = $this->select($params, true);
 				if($data) {
 						foreach($data as $user) {
-								$result[] = arrayObject((array)$user, get_class($this));
+								$result[] = arrayObject((array) $user, get_class($this));
 						}
 						return $result;
 				}
@@ -510,51 +476,112 @@ class OssnUser extends OssnEntities {
 		}
 		
 		/**
-		 * Search site users with its entities
+		 * Search users using a keyword or entities_pairs
 		 *
-		 * @return boolean
+		 * @param array $params A valid options in format:
+		 * 	  'keyword' 		=> A keyword to search users
+		 *    'entities_pairs'  => A entities pairs options, must be array
+		 *    'limit'			=> Result limit default, Default is 10 values
+		 *    'count'			=> True if you wanted to count search items.
+		 *	  'order_by'    	=> To show result in sepcific order. Default is Assending
+		 * 
+		 * reutrn array|false;
+		 *
 		 */
-		public function searchUsers($q, $limit = '') {
-				$search = $this->SearchSiteUsers($q, $limit);
-				if(!$search) {
+		public function searchUsers(array $params = array()) {
+				if(empty($params)) {
 						return false;
 				}
-				$users = new OssnUser;
-				foreach($search as $user) {
-						$users->guid  = $user->guid;
-						$userentity[] = $users->getUser();
-				}
-				$data = $userentity;
-				return $data;
-		}
-		
-		/**
-		 * Search users without entities.
-		 *
-		 * @return object
-		 */
-		public function SearchSiteUsers($search, $limit = '') {
-				//don't listup all users if search query is empty
-				if(empty($search)) {
-						return false;
-				}
-				$params = array();
-				$wheres = array();
-				if(!empty($search)) {
-						$wheres[] = "CONCAT(first_name, ' ', last_name) LIKE '%$search%'";
-						$wheres[] = "username LIKE '%$search%'";
-						$wheres[] = "email LIKE '%$search%'";
-				}
-				if(!empty($limit)) {
-						$params['limit'] = $limit;
-				}
-				$params['from']   = 'ossn_users';
-				$params['wheres'] = array(
-						$this->constructWheres($wheres, 'OR')
+				//prepare default attributes
+				$default = array(
+						'keyword' => false,
+						'order_by' => false,
+						'offset' => input('offset', '', 1),
+						'page_limit' => ossn_call_hook('pagination', 'page_limit', false, 10), //call hook for page limit
+						'count' => false,
+						'entities_pairs' => false
 				);
-				$users            = $this->select($params, true);
+				
+				$options = array_merge($default, $params);
+				$wheres  = array();
+				$params  = array();
+				
+				//validate offset values
+				if($options['limit'] !== false && $options['limit'] != 0 && $options['page_limit'] != 0) {
+						$offset_vals = ceil($options['limit'] / $options['page_limit']);
+						$offset_vals = abs($offset_vals);
+						$offset_vals = range(1, $offset_vals);
+						if(!in_array($options['offset'], $offset_vals)) {
+								return false;
+						}
+				}
+				//get only required result, don't bust your server memory
+				$getlimit = $this->generateLimit($options['limit'], $options['page_limit'], $options['offset']);
+				if($getlimit) {
+						$options['limit'] = $getlimit;
+				}
+				if(!empty($options['keyword'])) {
+						$wheres[] = "(CONCAT(u.first_name, ' ', u.last_name) LIKE '%{$options['keyword']}%' OR
+									  u.username LIKE '%{$options['keyword']}%' OR
+									  u.email LIKE '%{$options['keyword']}%')";
+				}
+				if(isset($options['entities_pairs']) && is_array($options['entities_pairs'])) {
+						foreach($options['entities_pairs'] as $key => $pair) {
+								$operand = $pair['operand'];
+								if(empty($operand)) {
+										$operand = '=';
+								}
+								if(!empty($pair['name']) && isset($pair['value']) && !empty($operand)) {
+										if(!empty($pair['value'])) {
+												$pair['value'] = addslashes($pair['value']);
+										}
+										$wheres[] = "e{$key}.type='user'";
+										$wheres[] = "e{$key}.subtype='{$pair['name']}'";
+										if(isset($pair['wheres']) && !empty($pair['wheres'])){
+											$pair['wheres'] = str_replace('[this].', "emd{$key}.", $pair['wheres']);
+											$wheres[] = $pair['wheres'];
+										} else {
+											$wheres[] = "emd{$key}.value {$operand} '{$pair['value']}'";
+											
+										}
+										$params['joins'][] = "JOIN ossn_entities as e{$key} ON e{$key}.owner_guid=u.guid";
+										$params['joins'][] = "JOIN ossn_entities_metadata as emd{$key} ON e{$key}.guid=emd{$key}.guid";
+								}
+						}
+				}
+				$wheres[]           = "u.time_created IS NOT NULL";
+				if(isset($options['wheres']) && !empty($options['wheres'])){
+					$wheres[] = $options['wheres'];
+				}
+				$params['from']     = 'ossn_users as u';
+				$params['params']   = array(
+						'u.*'
+				);
+				$params['order_by'] = $options['order_by'];
+				$params['limit']    = $options['limit'];
+				
+				if(!$options['order_by']) {
+						$params['order_by'] = "u.guid ASC";
+				}
+				$params['wheres'] = array(
+						$this->constructWheres($wheres)
+				);
+				if($options['count'] === true) {
+						unset($params['params']);
+						unset($params['limit']);
+						$count           = array();
+						$count['params'] = array(
+								"count(*) as total"
+						);
+						$count           = array_merge($params, $count);
+						return $this->select($count)->total;
+				}
+				$users = $this->select($params, true);
 				if($users) {
-						return $users;
+						foreach($users as $user) {
+								$result[] = ossn_user_by_guid($user->guid);
+						}
+						return $result;
 				}
 				return false;
 		}

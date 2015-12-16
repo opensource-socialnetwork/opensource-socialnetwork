@@ -25,16 +25,16 @@
 		                <div class='notfi-meta'>
 		                
 						<a href='{$url}' class='user'>{$users->fullname}</a>
-						  <div style='float:right;' id='ossn-nfriends-{$users->guid}'>
+						  <div class='controls' id='ossn-nfriends-{$users->guid}'>
 						  <script>
 						  Ossn.AddFriend($users->guid); 
 						  Ossn.removeFriendRequset($users->guid);
 						  </script>
 						  <form id='add-friend-{$users->guid}'>
-                           <input class='button-blue-light' type='submit' value='{$confirmbutton}' />
+                           <input class='btn btn-primary' type='submit' value='{$confirmbutton}' />
 						   </form>
 						   	<form id='remove-friend-{$users->guid}'>
-						   <input class='button-grey-light' type='submit' value='{$denybutton}' />
+						   <input class='btn btn-default' type='submit' value='{$denybutton}' />
 						   </form>
 
                            </div>

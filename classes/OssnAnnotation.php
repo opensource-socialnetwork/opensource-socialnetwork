@@ -26,17 +26,18 @@ class OssnAnnotation extends OssnEntities {
 				if(empty($this->order_by)) {
 						$this->order_by = '';
 				}
+				$this->data = new stdClass;
 		}
 		/**
 		 * Create annotation;
-		 *
-		 * Requires : $object->(owner_guid, subject_guid, type, subtype, value)
+		 * 
+		 * Requires the owner_guid, subject_guid, and annotation type
 		 *
 		 * @return boolean
 		 */
 		public function addAnnotation() {
 				self::initAttributes();
-				if(empty($this->owner_guid) || empty($this->subject_guid)) {
+				if(empty($this->owner_guid) || empty($this->subject_guid) || empty($this->type)) {
 						return false;
 				}
 				$params['into']        = 'ossn_annotations';
@@ -53,16 +54,20 @@ class OssnAnnotation extends OssnEntities {
 						$this->time_created
 				);
 				$this->annotation_type = $this->type;
-				$this->owner_guid_old  = $this->owner_guid;
+				
+				$this->data->{$this->type} = $this->value;
+				$this->owner_guid_old      = $this->owner_guid;
 				if($this->OssnDatabase->insert($params)) {
 						$this->annotation_inserted = $this->OssnDatabase->getLastEntry();
-						$this->atype               = $this->type;
-						$this->type                = 'annotation';
-						$this->subtype             = $this->atype;
-						$this->owner_guid          = $this->annotation_inserted;
-						$this->value               = $this->value;
-						$this->add();
-						
+						if(isset($this->data) && is_object($this->data)) {
+								foreach($this->data as $name => $value) {
+										$this->owner_guid = $this->annotation_inserted;
+										$this->type       = 'annotation';
+										$this->subtype    = $name;
+										$this->value      = $value;
+										$this->add();
+								}
+						}
 						$params['subject_guid']    = $this->subject_guid;
 						$params['owner_guid']      = $this->owner_guid_old;
 						$params['type']            = $this->annotation_type;
@@ -100,9 +105,9 @@ class OssnAnnotation extends OssnEntities {
 				if(!isset($this->limit)) {
 						$this->limit = false;
 				}
-				if(!isset($this->page_limit)){
+				if(!isset($this->page_limit)) {
 						$this->page_limit = false;
-				}			
+				}
 				$params             = array();
 				$params['type']     = $this->type;
 				$params['subtype']  = $this->subtype;
@@ -122,9 +127,9 @@ class OssnAnnotation extends OssnEntities {
 				if(!isset($this->limit)) {
 						$this->limit = false;
 				}
-				if(!isset($this->page_limit)){
+				if(!isset($this->page_limit)) {
 						$this->page_limit = false;
-				}			
+				}
 				$params               = array();
 				$params['owner_guid'] = $this->subject_guid;
 				$params['limit']      = $this->limit;
@@ -175,7 +180,7 @@ class OssnAnnotation extends OssnEntities {
 				if(!isset($this->limit)) {
 						$this->limit = false;
 				}
-				if(!isset($this->page_limit)){
+				if(!isset($this->page_limit)) {
 						$this->page_limit = false;
 				}
 				$params                 = array();
@@ -275,6 +280,7 @@ class OssnAnnotation extends OssnEntities {
 				);
 				$options = array_merge($default, $params);
 				$wheres  = array();
+				$params  = array();
 				
 				//validate offset values
 				if($options['limit'] !== false && $options['limit'] !== 0 && $options['page_limit'] !== 0) {
@@ -294,23 +300,51 @@ class OssnAnnotation extends OssnEntities {
 				if(!empty($options['annotation_id'])) {
 						$wheres[] = "a.id='{$options['annotation_id']}'";
 				}
-				if(!empty($params['type'])) {
+				if(!empty($options['type'])) {
 						$wheres[] = "a.type='{$options['type']}'";
 						$wheres[] = "e.subtype='{$options['type']}'";
 				}
-				if(!empty($params['owner_guid'])) {
+				if(!empty($options['owner_guid'])) {
 						$wheres[] = "a.owner_guid ='{$options['owner_guid']}'";
 				}
-				if(!empty($params['subject_guid'])) {
+				if(!empty($options['subject_guid'])) {
 						$wheres[] = "a.subject_guid ='{$options['subject_guid']}'";
 				}
-				$wheres[] = "e.owner_guid=a.id";
+				if(isset($options['entities_pairs']) && is_array($options['entities_pairs'])) {
+						foreach($options['entities_pairs'] as $key => $pair) {
+								$operand = $pair['operand'];
+								if(empty($operand)) {
+										$operand = '=';
+								}
+								if(!empty($pair['name']) && isset($pair['value']) && !empty($operand)) {
+										if(!empty($pair['value'])) {
+												$pair['value'] = addslashes($pair['value']);
+										}
+										$wheres[] = "e{$key}.type='annotation'";
+										$wheres[] = "e{$key}.subtype {$operand} '{$pair['name']}'";
+										if(isset($pair['wheres']) && !empty($pair['wheres'])) {
+												$pair['wheres'] = str_replace('[this].', "emd{$key}.", $pair['wheres']);
+												$wheres[]       = $pair['wheres'];
+										} else {
+												$wheres[] = "emd{$key}.value {$operand} '{$pair['value']}'";
+												
+										}
+										$params['joins'][] = "JOIN ossn_entities as e{$key} ON e{$key}.owner_guid=a.id";
+										$params['joins'][] = "JOIN ossn_entities_metadata as emd{$key} ON e{$key}.guid=emd{$key}.guid";
+								}
+						}
+				}
+				$params['joins'][] = "JOIN ossn_entities as e ON e.owner_guid=a.id";
+				$params['joins'][] = "JOIN ossn_entities_metadata as emd ON e.guid=emd.guid";
+				
 				$wheres[] = "e.type='annotation'";
 				$wheres[] = "emd.guid=e.guid";
-				//prepare search	
-				$params   = array();
 				
-				$params['from']     = 'ossn_annotations as a, ossn_entities as e , ossn_entities_metadata as emd';
+				if(isset($options['wheres']) && !empty($options['wheres'])) {
+						$wheres[] = $options['wheres'];
+				}
+				//prepare search	
+				$params['from']     = 'ossn_annotations as a';
 				$params['params']   = array(
 						'a.id',
 						'a.time_created',
@@ -390,5 +424,41 @@ class OssnAnnotation extends OssnEntities {
 						}
 				}
 				return ossn_call_hook('user', 'can:change', $this, $allowed);
+		}
+		/**
+		 * A annotation save method
+		 *
+		 * @return boolean
+		 */
+		public function save() {
+				if(isset($this->id) && !empty($this->id)) {
+						$params['table']  = 'ossn_annotations as a';
+						$params['names']  = array(
+								'owner_guid',
+								'subject_guid'
+						);
+						$params['values'] = array(
+								$this->owner_guid,
+								$this->subject_guid
+						);
+						$params['wheres'] = array(
+								"a.id='{$this->id}'"
+						);
+						if($this->update($params)) {
+								if(isset($this->data)) {
+										$owner_self = $this->owner_guid;
+										$type_self  = $this->type;
+										
+										$this->type       = 'annotation';
+										$this->owner_guid = $this->id;
+										parent::save();
+										
+										$this->owner_guid = $owner_self;
+										$this->type       = $type_self;
+								}
+								return true;
+						}
+				}
+				return false;
 		}
 } //class

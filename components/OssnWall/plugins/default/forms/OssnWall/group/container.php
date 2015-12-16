@@ -8,6 +8,8 @@
  * @license   General Public Licence http://opensource-socialnetwork.com/licence
  * @link      http://www.opensource-socialnetwork.com/licence
  */
+  ossn_load_external_js('maps.google');
+  ossn_load_external_js('jquery.tokeninput'); 
 ?>
 <div class="tabs-input">
     <div class="wall-tabs">
@@ -27,15 +29,15 @@
     </div>
 </div>
 <div class="controls">
-    <li>
-        <div class="ossn-wall-location"></div>
+    <li class="ossn-wall-location">
+       <i class="fa fa-map-marker"></i>
     </li>
-    <li>
-        <div class="ossn-wall-photo"></div>
+    <li class="ossn-wall-photo">
+       <i class="fa fa-picture-o"></i>
     </li>
     <div style="float:right;">
         <input type="hidden" value="<?php echo $params['group']['group']->guid; ?>" name="wallowner"/>
-     	<div class="ossn-loading ossn-hidden"></div>       
-        <input class="ossn-button-submit-b ossn-wall-post" type="submit" value="<?php echo ossn_print('post'); ?>"/>
+     	<div class="ossn-loading ossn-hidden"></div>     
+        <input class="btn btn-primary ossn-wall-post" type="submit" value="<?php echo ossn_print('post'); ?>"/>
     </div>
 </div>

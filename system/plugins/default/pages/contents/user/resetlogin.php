@@ -8,10 +8,18 @@
  * @license   General Public Licence http://www.opensource-socialnetwork.org/licence
  * @link      http://www.opensource-socialnetwork.org/licence
  */
-echo ossn_view_form('user/resetlogin', array(
-    'id' => 'ossn-login',
-    'action' => ossn_site_url('action/resetlogin'),
-    'method' => 'post',
-    'class' => 'ossn-reset-login',
-));
 ?>
+<div class="row">
+       <div class="col-md-6 col-center ossn-page-contents">
+    	<?php 
+			$contents = ossn_view_form('user/resetlogin', array(
+ 				   'action' => ossn_site_url('action/resetlogin'),
+  				   'class' => 'ossn-reset-login',
+			));
+			echo ossn_plugin_view('widget/view', array(
+						'title' => ossn_print('reset:password'),
+						'contents' => $contents,
+			));
+			?>	       			
+       </div>     
+</div>	

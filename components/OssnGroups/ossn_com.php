@@ -384,7 +384,7 @@ function ossn_group_joinrequest_notification($name, $type, $return, $params) {
 		// lead directly to groups request page
 		$url               = "{$baseurl}group/{$params->subject_guid}/requests";
 		$notification_read = "{$baseurl}notification/read/{$params->guid}?notification=" . urlencode($url);
-		return "<a href='{$notification_read}'>
+		return "<a href='{$notification_read}' class='ossn-group-notification-item'>
 	       <li {$viewed}> {$img} 
 		   <div class='notfi-meta'> {$type}
 		   <div class='data'>" . ossn_print("ossn:notifications:{$params->type}", array(

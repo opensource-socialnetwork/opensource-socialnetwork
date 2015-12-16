@@ -13,10 +13,20 @@ $users = new OssnUser;
 $pagination = new OssnPagination;
 
 if (!empty($search)) {
-    $pagination->setItem($users->SearchSiteUsers($search));
+   $list = $users->searchUsers(array(
+				 'keyword' => $search,
+			));
+   $count = $users->searchUsers(array(
+				 'count' => true,
+			));  
 } else {
-    $pagination->setItem($users->getSiteUsers());
-}
+   $list = $users->searchUsers(array(
+				 'keyword' => false,
+			));
+   $count = $users->searchUsers(array(
+				 'keyword' => false,
+				 'count' => true,
+			));  }
 ?>
 <div class="row margin-top-10">
 <table class="table ossn-users-list">
@@ -30,8 +40,9 @@ if (!empty($search)) {
         <th><?php echo ossn_print('edit'); ?></th>
         <th><?php echo ossn_print('delete'); ?></th>
     </tr>
-    <?php foreach ($pagination->getItem() as $user) {
-        $user = ossn_user_by_guid($user->guid);
+    <?php 
+	if($list){
+	foreach ($list as $user) {
 		$lastlogin = '';
 		if(!empty($user->last_login)){
 			$lastlogin = ossn_user_friendly_time($user->last_login);
@@ -52,10 +63,13 @@ if (!empty($search)) {
             <td><a href="<?php echo ossn_site_url("action/admin/delete/user?guid={$user->guid}", true); ?>" class="userdelete"><?php echo ossn_print('delete'); ?></a></td>
 
         </tr>
-    <?php } ?>
+    <?php 
+		} 
+	}
+	?>
     </tbody>
 </table>
 </div>
 <div class="row">
-	<?php echo $pagination->pagination(); ?>
+	<?php echo ossn_view_pagination($count); ?>
 </div>

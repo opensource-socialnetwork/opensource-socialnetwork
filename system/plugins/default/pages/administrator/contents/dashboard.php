@@ -56,9 +56,7 @@
             	<div class="admin-dashboard-contents center admin-dashboard-fixed-height">
                         <div class="text center">
                         	<?php echo $unvalidated;?>
-                        </div>
-						<canvas id="users-classified-graph"></canvas>
-                        <div id="userclassified-lineLegend"></div>                         
+                        </div>                     
            	 	</div>
             </div>
         </div>
@@ -84,9 +82,7 @@
             	<div class="admin-dashboard-contents center admin-dashboard-fixed-height">
                         <div class="text center">
                         	<?php echo ossn_total_components(); ?>
-                        </div>
-						<canvas id="users-classified-graph"></canvas>
-                        <div id="userclassified-lineLegend"></div>                         
+                        </div>                 
            	 	</div>
             </div>
         </div>   
@@ -97,9 +93,7 @@
             	<div class="admin-dashboard-contents center admin-dashboard-fixed-height">
                         <div class="text center">
                             <?php echo ossn_site_total_themes(); ?>
-                        </div>
-						<canvas id="users-classified-graph"></canvas>
-                        <div id="userclassified-lineLegend"></div>                         
+                        </div>               
            	 	</div>
             </div>
         </div>   
@@ -110,9 +104,7 @@
             	<div class="admin-dashboard-contents center admin-dashboard-fixed-height">
                         <div class="text center">
                             <?php echo ossn_package_information()->version; ?>
-                        </div>
-						<canvas id="users-classified-graph"></canvas>
-                        <div id="userclassified-lineLegend"></div>                         
+                        </div>                     
            	 	</div>
             </div>
         </div>   
@@ -126,9 +118,7 @@
             	<div class="admin-dashboard-contents center admin-dashboard-fixed-height">
                         <div class="text center avaiable-updates">
                            <div class="loading-version"></div>
-                        </div>
-						<canvas id="users-classified-graph"></canvas>
-                        <div id="userclassified-lineLegend"></div>                         
+                        </div>                       
            	 	</div>
             </div>
         </div>       
@@ -139,9 +129,7 @@
             	<div class="admin-dashboard-contents center admin-dashboard-fixed-height">
                         <div class="text center">
                             <?php echo ossn_site_settings('site_version'); ?>
-                        </div>
-						<canvas id="users-classified-graph"></canvas>
-                        <div id="userclassified-lineLegend"></div>                         
+                        </div>                     
            	 	</div>
             </div>
         </div>     
@@ -151,9 +139,7 @@
             	<div class="admin-dashboard-contents center admin-dashboard-fixed-height">
                         <div class="text center">
                            	<a href="<?php echo $flush_cache;?>" class="btn btn-primary"><?php echo ossn_print('admin:flush:cache'); ?></a>
-                        </div>
-						<canvas id="users-classified-graph"></canvas>
-                        <div id="userclassified-lineLegend"></div>                         
+                        </div>                    
            	 	</div>
             </div>
         </div>   

@@ -15,13 +15,14 @@ if(!$entity){
 $user['firstname'] = input('firstname');
 $user['lastname'] = input('lastname');
 $user['email'] = input('email');
-$user['gender'] = input('gender');
 $user['type'] = input('type');
 $user['username'] = input('username');
 
-$user['bdd'] = input('birthday');
-$user['bdm'] = input('birthm');
-$user['bdy'] = input('birthy');
+$fields = ossn_user_fields_names();
+foreach($fields['required'] as $field){
+	$user[$field] = input($field);
+}
+
 if (!empty($user)) {
     foreach ($user as $field => $value) {
         if (empty($value)) {
@@ -40,8 +41,6 @@ if (!in_array($user['type'], $types)) {
     ossn_trigger_message(ossn_print('account:create:error:admin'), 'error');
     redirect(REF);
 }
-
-$user['birthdate'] = "{$user['bdd']}/{$user['bdm']}/{$user['bdy']}";
 
 $OssnUser = new OssnUser;
 $OssnUser->password = $password;
@@ -110,8 +109,11 @@ if ($OssnDatabase->update($params)) {
     if (!empty($guid)) {
         $entity->owner_guid = $guid;
         $entity->type = 'user';
-        $entity->data->gender = $user['gender'];
-        $entity->data->birthdate = $user['birthdate'];
+		foreach($fields as $items){
+				foreach($items as $field){
+						$entity->data->{$field} = $user[$field];
+				}
+		}		
         $entity->save();
     }
     ossn_trigger_message(ossn_print('user:updated'), 'success');

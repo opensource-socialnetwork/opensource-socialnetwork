@@ -10,11 +10,11 @@
  */
 $object = $params['object'];
 ?>
-<div class="ossn-comment-attach-photo" onclick="Ossn.Clk('#ossn-comment-image-file-<?php echo $object; ?>');"></div>
+<div class="ossn-comment-attach-photo" onclick="Ossn.Clk('#ossn-comment-image-file-<?php echo $object; ?>');"><i class="fa fa-camera"></i></div>
 <input type="text" name="comment" id="comment-box-<?php echo $object; ?>" class="comment-box"
        placeholder="<?php echo ossn_print('write:comment'); ?>"/>
 <input type="hidden" name="post" value="<?php echo $object; ?>"/>
 <input type="hidden" name="comment-attachment"/>
 
-          
+ 
       

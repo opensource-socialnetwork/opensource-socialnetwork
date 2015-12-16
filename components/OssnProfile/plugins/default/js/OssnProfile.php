@@ -9,6 +9,13 @@
  */
 Ossn.RegisterStartupFunction(function() {
     $(document).ready(function() {
+		var cYear = (new Date).getFullYear();
+		$("input[name='birthdate']").datepicker({
+			changeMonth: true,
+			changeYear: true,
+			dateFormat: 'dd/mm/yy',
+			yearRange: '1950:' + cYear,
+		});    
         /**
          * Reposition cover
          */
@@ -101,6 +108,27 @@ Ossn.RegisterStartupFunction(function() {
                 cache: false,
                 contentType: false,
                 processData: false,
+                beforeSend: function() {
+                    var fileInput = $('#upload-cover').find("input[type=file]")[0],
+                        file = fileInput.files && fileInput.files[0];
+
+                    if (file) {
+                        var img = new Image();
+
+                        img.src = window.URL.createObjectURL(file);
+
+                        img.onload = function() {
+                            var width = img.naturalWidth,
+                                height = img.naturalHeight;
+
+                            window.URL.revokeObjectURL(img.src);
+                            if (width < 850 || height < 300) {
+                                Ossn.MessageBox('cover/err1');
+                                return false;
+                            }
+                        };
+                    }
+                },
                 success: function(callback) {
                     $time = $.now();
                     $('.profile-cover').find('img').removeClass('user-cover-uploading');

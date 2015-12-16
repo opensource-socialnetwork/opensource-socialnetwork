@@ -25,6 +25,7 @@ function ossn_wall() {
 				ossn_register_action('wall/post/u', __OSSN_WALL__ . 'actions/wall/post/user.php');
 				ossn_register_action('wall/post/g', __OSSN_WALL__ . 'actions/wall/post/group.php');
 				ossn_register_action('wall/post/delete', __OSSN_WALL__ . 'actions/wall/post/delete.php');
+				ossn_register_action('wall/post/edit', __OSSN_WALL__ . 'actions/wall/post/edit.php');
 		}
 		if(ossn_isAdminLoggedin()) {
 				ossn_register_action('wall/admin/settings', __OSSN_WALL__ . 'actions/wall/admin/settings.php');
@@ -32,6 +33,9 @@ function ossn_wall() {
 		//css and js
 		ossn_extend_view('css/ossn.default', 'css/wall');
 		ossn_extend_view('js/opensource.socialnetwork', 'js/ossn_wall');
+		
+		ossn_new_external_js('jquery.tokeninput', 'vendors/jquery/jquery.tokeninput.js');
+		ossn_new_external_js('maps.google', 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places', false);
 		
 		//pages
 		ossn_register_page('post', 'ossn_post_page');
@@ -95,7 +99,7 @@ function ossn_likes_post_notifiation($hook, $type, $return, $params) {
 		$baseurl        = ossn_site_url();
 		$user           = ossn_user_by_guid($notif->poster_guid);
 		$user->fullname = "<strong>{$user->fullname}</strong>";
-		$iconURL = $user->iconURL()->small;
+		$iconURL        = $user->iconURL()->small;
 		
 		$img = "<div class='notification-image'><img src='{$iconURL}' /></div>";
 		$url = ossn_site_url("post/view/{$notif->subject_guid}");
@@ -141,7 +145,7 @@ function ossn_group_comment_post($hook, $type, $return, $params) {
 		$baseurl        = ossn_site_url();
 		$user           = ossn_user_by_guid($notif->poster_guid);
 		$user->fullname = "<strong>{$user->fullname}</strong>";
-		$iconURL = $user->iconURL()->small;
+		$iconURL        = $user->iconURL()->small;
 		
 		$img = "<div class='notification-image'><img src='{$iconURL}' /></div>";
 		$url = ossn_site_url("post/view/{$notif->subject_guid}");
@@ -241,8 +245,32 @@ function ossn_post_page($pages) {
 								echo ossn_plugin_view('output/ossnbox', $params);
 						}
 						break;
-				case 'refresh_home':
-						echo ossn_plugin_view('wall/siteactivity');
+				/*case 'refresh_home':
+				echo ossn_plugin_view('wall/siteactivity');
+				break;*/
+				case 'edit':
+						$post = ossn_get_object($pages[1]);
+						if(!ossn_is_xhr()) {
+								ossn_error_page();
+						}
+						if(!$post) {
+								header("HTTP/1.0 404 Not Found");
+						}
+						$user = ossn_loggedin_user();
+						if($post->poster_guid == $user->guid || $user->canModerate()) {
+								$params = array(
+										'title' => ossn_print('edit'),
+										'contents' => ossn_view_form('post/edit', array(
+												'action' => ossn_site_url('action/wall/post/edit'),
+												'component' => 'OssnWall',
+												'params' => array(
+														'post' => $post
+												)
+										), false),
+										'callback' => '#ossn-post-edit-save'
+								);
+								echo ossn_plugin_view('output/ossnbox', $params);
+						}
 						break;
 				default:
 						ossn_error_page();
@@ -262,11 +290,17 @@ function ossn_post_page($pages) {
  * @access private
  */
 function ossn_wall_post_menu($hook, $type, $return, $params) {
-		if($params['post']->poster_guid == ossn_loggedin_user()->guid || $params['post']->owner_guid == ossn_loggedin_user()->guid || ossn_isAdminLoggedin()) {
+		$user = ossn_loggedin_user();
+		if($params['post']->type == 'group') {
+				$group = ossn_get_object($params['post']->owner_guid);
+		}
+		if($params['post']->poster_guid == ossn_loggedin_user()->guid || $params['post']->owner_guid == $user->guid || (isset($group) && $group->owner_guid == $user->guid) || $user->canModerate()) {
+				
 				$deleteurl = ossn_site_url("action/wall/post/delete?post={$params['post']->guid}", true);
+				
 				ossn_unregister_menu('delete', 'wallpost');
 				ossn_register_menu_item("wallpost", array(
-					 	'name' => 'delete',
+						'name' => 'delete',
 						'class' => 'ossn-wall-post-delete',
 						'text' => ossn_print('delete'),
 						'href' => $deleteurl,
@@ -275,6 +309,18 @@ function ossn_wall_post_menu($hook, $type, $return, $params) {
 				
 		} else {
 				ossn_unregister_menu("delete", 'wallpost');
+		}
+		if($params['post']->poster_guid == ossn_loggedin_user()->guid || ossn_isAdminLoggedin()) {
+				ossn_unregister_menu('edit', 'wallpost');
+				ossn_register_menu_item("wallpost", array(
+						'name' => 'edit',
+						'class' => 'ossn-wall-post-edit',
+						'text' => ossn_print('edit'),
+						'href' => 'javascript:void(0);',
+						'data-guid' => $params['post']->guid
+				));
+		} else {
+				ossn_unregister_menu('edit', 'wallpost');
 		}
 		return ossn_view_menu('wallpost', 'wall/menus/post-controls');
 }

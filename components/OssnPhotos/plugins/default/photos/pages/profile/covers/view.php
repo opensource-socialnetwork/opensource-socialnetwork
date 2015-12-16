@@ -16,7 +16,7 @@ $img = str_replace('profile/cover/', '', $image->value);
     <br/>
     <table border="0" class="ossn-photo-viewer">
         <tr>
-            <td class="image-block" style="text-align: center;width:465px;min-height:200px;">
+            <td class="image-block">
                 <img
                     src="<?php echo ossn_site_url("album/getcover/") . $image->owner_guid; ?>/<?php echo $img; ?>"/>
             </td>
@@ -28,7 +28,6 @@ $img = str_replace('profile/cover/', '', $image->value);
 <br/>
 <?php
 	$vars['entity'] = $image;
-	$vars['full_view'] = true;
 	echo ossn_plugin_view('entity/comment/like/share/view', $params);
 ?>
 <div class="ossn-photo-view-controls">

@@ -386,4 +386,44 @@ class OssnFile extends OssnEntities {
 				);
 				return ossn_call_hook('file', 'mimetypes', false, $mimetypes);
 		}
+		/**
+		 * Get file
+		 * 
+		 * @return object
+		 */
+		public function getFile() {
+				if(isset($this->guid)) {
+						$this->entity_guid = $this->guid;
+						$entity            = $this->get_entity();
+						if($entity && substr($entity->subtype, 0, 5) == 'file:') {
+								return $entity;
+						}
+				}
+				return false;
+		}
+		
+		/**
+		 * Get a full file path in data root
+		 *
+		 * @return string
+		 */
+		public function getPath() {
+				if(isset($this->guid)) {
+						$path = ossn_get_userdata("{$this->type}/{$this->owner_guid}/{$this->value}");
+						return $path;
+				}
+				return false;
+		}
+		/**
+		 * Check if file exists or not
+		 *
+		 * @return boolean
+		 */
+		public function isFile() {
+				if(isset($this->guid)) {
+						$path = $this->getPath();
+						return is_file($path);
+				}
+				return false;
+		}
 } //class

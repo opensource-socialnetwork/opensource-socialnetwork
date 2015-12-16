@@ -9,7 +9,7 @@
  * @link      http://www.opensource-socialnetwork.org/licence
  */
 ?>
-<div class="ossn-chat-base">
+<div class="ossn-chat-base hidden-xs hidden-sm">
     <div class="ossn-chat-bar">
         <div class="friends-list">
 

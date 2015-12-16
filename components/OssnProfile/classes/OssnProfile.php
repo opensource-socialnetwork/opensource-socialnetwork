@@ -169,4 +169,22 @@ class OssnProfile extends OssnDatabase {
 		}
 		return false;
 	}
+	/**
+	 * Get cover URL
+	 *
+	 * @param object $user OssnUser object
+	 *
+	 * @return string|boolean
+	 */
+	public function getCoverURL($user = ''){
+		if(!empty($user) && $user instanceof OssnUser){
+			if(!isset($user->icon_time) && empty($user->icon_time)){
+				$user->icon_time = time();
+				$user->data->icon_time = $user->icon_time;
+				$user->save();
+			}
+			return ossn_site_url("cover/{$user->username}/".md5($user->icon_time).'.jpg');
+		}
+		return false;
+	}
 }//class

@@ -18,56 +18,78 @@
  * @license   General Public Licence http://www.opensource-socialnetwork.org/licence
  * @link      http://www.opensource-socialnetwork.org/licence
  */
-$new_all = ossn_chat()->getNewAll(array('message_from'));
+$new_all    = ossn_chat()->getNewAll(array(
+		'message_from'
+));
 $allfriends = OssnChat::AllNew();
 
 $active_sessions = OssnChat::GetActiveSessions();
 
 $construct_active = NULL;
-$new_messages = NULL;
+$new_messages     = NULL;
 
-if ($active_sessions) {
-    foreach ($active_sessions as $friend) {
-        $messages = ossn_chat()->getNew($friend, ossn_loggedin_user()->guid);
-        if ($messages) {
-            foreach ($messages as $message) {
-                if (ossn_loggedin_user()->guid == $message->message_from) {
-                    $vars['message'] = $message->message;
-                    $vars['time'] = $message->time;
-                    $messageitem = ossn_plugin_view('chat/message-item-send', $vars);
-                } else {
-                    $vars['reciever'] = ossn_user_by_guid($message->message_from);
-                    $vars['message'] = $message->message;
-                    $vars['time'] = $message->time;
-                    $messageitem = ossn_plugin_view('chat/message-item-received', $vars);
-                }
-                $total = get_object_vars($messages);
-                $new_messages[] = array(
-                    'fid' => $friend,
-                    'message' => $messageitem,
-                    'total' => count($total)
-                );
-            }
-        }
-
-        if (OssnChat::getChatUserStatus($friend, 10) == 'online') {
-            $status = 'ossn-chat-icon-online';
-        } else {
-            $status = 'ossn-chat-icon-offline';
-        }
-        $construct_active[$friend] = array('status' => $status);
-    }
+if($active_sessions) {
+		foreach($active_sessions as $friend) {
+				$messages = ossn_chat()->getNew($friend, ossn_loggedin_user()->guid);
+				if($messages) {
+						foreach($messages as $message) {
+								if(ossn_loggedin_user()->guid == $message->message_from) {
+										$vars['message'] = $message->message;
+										$vars['time']    = $message->time;
+										$vars['id']      = $message->id;
+										$messageitem     = ossn_plugin_view('chat/message-item-send', $vars);
+								} else {
+										$vars['reciever'] = ossn_user_by_guid($message->message_from);
+										$vars['message']  = $message->message;
+										$vars['time']     = $message->time;
+										$vars['id']       = $message->id;
+										$messageitem      = ossn_plugin_view('chat/message-item-received', $vars);
+								}
+								$total          = get_object_vars($messages);
+								$new_messages[] = array(
+										'fid' => $friend,
+										'id' => $message->id,
+										'message' => $messageitem,
+										'total' => count($total)
+								);
+						}
+				}
+				
+				if(OssnChat::getChatUserStatus($friend, 10) == 'online') {
+						$status = 'ossn-chat-icon-online';
+				} else {
+						$status = 'ossn-chat-icon-offline';
+				}
+				$construct_active[$friend] = array(
+						'status' => $status
+				);
+		}
+}
+foreach($new_messages as $item) {
+		$messages_items[$item['fid']][] = array(
+				'id' => $item['id'],
+				'fid' => $item['fid'],
+				'message' => $item['message'],
+				'total' => $item['total']
+		);
+}
+foreach($messages_items as $key => $mitem) {
+		$messages_combined[] = array(
+				'message' => $mitem,
+				'total' => $mitem[0]['total'],
+				'fid' => $key
+		);
 }
 $api = json_encode(array(
-    'active_friends' => $construct_active,
-    'allfriends' => $allfriends,
-    'friends' => array(
-        'online' => ossn_chat()->countOnlineFriends('', 10),
-        'data' => ossn_plugin_view('chat/friendslist'),
-    ),
-    'newmessages' => $new_messages,
-    'all_new' => $new_all,
-
+		'active_friends' => $construct_active,
+		'allfriends' => $allfriends,
+		'friends' => array(
+				'online' => ossn_chat()->countOnlineFriends('', 10),
+				'data' => ossn_plugin_view('chat/friendslist')
+		),
+		'newmessages' => $messages_combined,
+		'all_new' => $new_all
+		
 ));
 
 echo 'var OssnChat = ';
@@ -126,14 +148,19 @@ if(OssnChat['newmessages']){
 $.each(OssnChat['newmessages'], function(key, data){
             if($('.ossn-chat-base').find('#ftab-i'+data['fid']).length){
                       $totalelement = $('#ftab-i'+data['fid']).find('.ossn-chat-new-message');
-                      if(data['total'] > 0 &&  data['total'] != $totalelement.text()){
-                           $('#ftab-i'+data['fid']).find('.data').append(data['message']); 
+                      if(data['total'] > 0){
+                      	    $.each(data['message'], function(ikey, item){
+                            	  if($('#ossn-message-item-'+item['id']).length == 0){
+	 		                          $('#ftab-i'+data['fid']).find('.data').append(item['message']); 
+                                  }
+                            })
                            
                            if($('.ossn-chat-base').find('#ftab-i'+data['fid']).find('.tab-container').is(":not(:visible)")){
                                $('#ftab-i'+data['fid']).find('#ftab'+data['fid']).addClass('ossn-chat-tab-active');
                                $totalelement.html(data['total']);
                                $totalelement.show();
                            } else {
+                           	   $totalelement.empty();
                                Ossn.ChatMarkViewed(data['fid']);
                            }
                            Ossn.playSound();

@@ -25,7 +25,14 @@ class OssnWall extends OssnObject {
 				if(empty($access)) {
 						$access = OSSN_PUBLIC;
 				}
-				if($this->owner_guid < 1 || $this->poster_guid < 1 || empty($post)) {
+				$canpost = false;
+				if(!empty($post)){
+					$canpost = true;
+				}
+				if(!empty($_FILES['ossn_photo']['tmp_name'])){
+					$canpost = true;
+				}
+				if(empty($this->owner_guid)  || empty($this->poster_guid) || $canpost === false) {
 						return false;
 				}
 				if(isset($this->item_type) && !empty($this->item_type)) {
@@ -75,7 +82,7 @@ class OssnWall extends OssnObject {
 								));
 								$this->OssnFile->addFile();
 						}
-						$params['subject_guid'] = $this->wallguid;
+						$params['object_guid'] = $this->wallguid;
 						$params['poster_guid']  = $this->poster_guid;
 						if(isset($wallpost['friend'])) {
 								$params['friends'] = explode(',', $wallpost['friend']);
@@ -110,13 +117,19 @@ class OssnWall extends OssnObject {
 		 *
 		 * @return object;
 		 */
-		public function GetPostByOwner($owner, $type = 'user') {
+		public function GetPostByOwner($owner, $type = 'user', $count = false) {
 				self::initAttributes();
-				$this->type       = $type;
-				$this->subtype    = 'wall';
-				$this->owner_guid = $owner;
-				$this->order_by   = 'o.guid DESC';
-				return $this->getObjectByOwner();
+				if(empty($owner) || empty($type)){
+					return false;
+				}
+				$vars = array(
+						'type' => $type,
+						'subtype' => 'wall',
+						'order_by' => 'o.guid DESC',
+						'owner_guid' => $owner,
+						'count' => $count,
+				);
+				return $this->searchObject($vars);				
 		}
 		
 		/**
@@ -126,12 +139,8 @@ class OssnWall extends OssnObject {
 		 *
 		 * @return object;
 		 */
-		public function GetUserPosts($user) {
-				$this->type       = "user";
-				$this->subtype    = 'wall';
-				$this->owner_guid = $user;
-				$this->order_by   = 'o.guid DESC';
-				return $this->getObjectByOwner();
+		public function GetUserPosts($user, $count = false) {
+				return $this->GetPostByOwner($user, 'user', $count);
 		}
 		
 		/**

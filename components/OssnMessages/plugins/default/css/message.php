@@ -1,182 +1,81 @@
+
 .ossn-messages {
-	width: 735px;
-	height: 420px;
-}
-.ossn-messages .messages-from{
-	display: inline-table;
-	width: 216px;
-	border: 1px solid #ddd;
-	height: 574px;
-}
-.ossn-messages .messages-from .title {
-	border-bottom: 1px solid #ddd;
-	padding:14px;
 
 }
-.ossn-messages .messages-from .title a{
-	font-weight: bold;
-
+.ossn-messages .messages-recent .widget-contents {
+	padding:0px;
 }
-.ossn-messages .message-with{
-	display: inline-block;
-	width: 512px;
-	border: 1px solid #ddd;
-	min-height: 200px;
-	float: right;
+.ossn-messages .messages-recent .messages-from {
+    max-height: 555px;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
-.ossn-messages .message-with .title {
-	padding: 17px;
-	font-size: 16px;
-	font-weight: bold;
-	border-bottom: 1px solid #ddd;
-}
-.ossn-messages .message-with .message-form {
-	background:#F2F2F2;
-	height:150px;
-	width:100%;
-}
-.ossn-messages .message-with .messages-inner {
-	height:369px;
-	overflow:hidden;
-	overflow-y:scroll;
-}
-.ossn-messages .message-form textarea {
-	outline:none;
-	width: 471px;
-	border-left: 1px solid #ccc;
-	border-right: 1px solid #ccc;
-	border-top: 1px solid #ccc;
-	resize: none;
-	padding: 4px;
-	height:75px;
-}
-.ossn-messages .message-form .message-form-form {
-	padding: 22px;
-}
-.ossn-messages .message-form .message-form-form .controls{
-	background: #fff;
-	border-top: 1px solid #eee;
-	border-bottom: 1px solid #ccc;
-	border-left: 1px solid #ccc;
-	border-right: 1px solid #ccc;
-	height: 0px;
-	margin-top: -2px;
-	width: 479px;
-}
-.ossn-messages
-.message-form
-.message-form-form
-.controls input[type='submit']{
-	float: right;
-	cursor: pointer;
-	border: 1px solid #3d5e74;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	border-radius: 3px;
-	font-size: 12px;
-	font-family: arial, helvetica, sans-serif;
-	padding: 8px 8px 8px 8px;
-	text-decoration: none;
-	display: inline-block;
-	text-shadow: -1px -1px 0 rgba(0,0,0,0.3);
-	font-weight: bold;
-	color: #FFFFFF;
-	background-color: #507C99;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#507C99), to(#3C5D73));
-	background-image: -webkit-linear-gradient(top, #507C99, #3C5D73);
-	background-image: -moz-linear-gradient(top, #507C99, #3C5D73);
-	background-image: -ms-linear-gradient(top, #507C99, #3C5D73);
-	background-image: -o-linear-gradient(top, #507C99, #3C5D73);
-	background-image: linear-gradient(to bottom, #507C99, #3C5D73);
-	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#507C99, endColorstr=#3C5D73);
-}
-.ossn-messages
-.message-form
-.message-form-form
-.controls input[type='submit']:hover{
-	border: 1px solid #2d4656;
-	background-color: #38586B;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#38586B), to(#2F495A));
-	background-image: -webkit-linear-gradient(top, #38586B, #2F495A);
-	background-image: -moz-linear-gradient(top, #38586B, #2F495A);
-	background-image: -ms-linear-gradient(top, #38586B, #2F495A);
-	background-image: -o-linear-gradient(top, #38586B, #2F495A);
-	background-image: linear-gradient(to bottom, #38586B, #2F495A);
-	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#38586B, endColorstr=#2F495A);
-}
-.message-item {
-	padding:10px;
-}
-.message-item img{
-	display:inline-table;
-	width:32px;
-	height:32px;
-	float: left;
-	margin-right: 6px;
-}
-.message-item .data{
-	display:inline-table;
-	width: 436px;
-}
-.message-item .data .name {
-	margin-left: 5px;
-}
-.message-item .text {
-	margin-left: 5px;
-	font-size: 13px;
-}
-.message-item .data .name a{
-	font-size: 13px;
-	font-weight: bold;
-}
-.messate-item .data .text {
-	width: 460px;
-}
-.messages-from .inner .user-item {
-	padding: 4px;
-	border-bottom: 1px solid #eee;
-}
-.messages-from .inner .user-item:hover {
-	background:#F6F7F8;
+.ossn-messages .messages-recent .messages-from .user-item {
+    padding: 10px;
+    margin: 0px;
 	cursor:pointer;
+    border-bottom: 1px solid #eee;    
 }
-.messages-from .inner .message-new {
-	background:#eee;
+.ossn-messages .messages-recent .messages-from .user-item .image {
+    margin-top: 3px;
 }
-.messages-from .inner .user-item .image {
-	display:inline-table;
-	width:50px;
-	height:50px;
+.ossn-messages .messages-recent .messages-from .user-item .name {
+       font-weight: bold;
+    display: inline-block;
+        font-size: 13px;
 }
-.messages-from .inner .user-item .data{
-	display:inline-table;
+.ossn-messages .messages-recent .messages-from .message-new {
+    background: #F7F7F7;
+}
+.ossn-messages .messages-recent .messages-from .user-item .col-md-10,
+.ossn-messages .messages-recent .messages-from .user-item .col-md-2 {
+	padding:0px;
+}
+.ossn-messages .messages-recent .messages-from .user-item .reply {
+    margin-top: 0px;
+    font-size: 13px;
+}
+.ossn-notification-messages .fa-reply,
+.ossn-messages .messages-recent .messages-from .user-item .reply .fa-reply {
+	font-size:10px;
+    display: inline-block;  
+    margin-top:0px;
+}
+.ossn-messages .messages-recent .messages-from .user-item .reply .reply-text {
+	display: inline-block;  
+}
+.ossn-messages .messages-recent .messages-from .user-item .time {
+    display: inline-block;
+    float: right;
+}
+.ossn-messages .message-with  .user-icon {
+    margin-top: 15px;
+}
+.ossn-messages. message-form-form .textarea {
+
+}
+.ossn-messages .message-inner {
+    max-height: 400px;
+    padding-right: 20px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.ossn-messages .message-inner .row {
+    margin-left: -10px;
+}
+.message-form-form {
+    margin-top: 10px;
+    border-top: 1px solid #eee;
+    padding-top: 10px;
+}
+.ossn-messages .message-with .time-created {
 	float:right;
-	width: 139px;
+    margin-left:5px;
 }
-.messages-from .inner .user-item .data .name{
-	font-size: 13px;
-	font-weight: bold;
-	padding: 3px;
-}
-.ossn-arrow-back {
-	background:url("<?php echo ossn_site_url(); ?>components/OssnMessages/images/backward-arrow.png");
-	width:9px;
-	height:9px;
-	margin-top: -6px;
-	margin-left: 4px;
-}
-.reply-text {
-	margin-top: -12px;
-	margin-left: 17px;
-}
-.reply-text-from {
-	margin-top: -12px;
-	margin-left: 4px;
-}
-.messages-from .time {
-	color: #999;
-	float:right;
-}
+/*************************
+	Notifications
+**************************/
+
 .ossn-notification-messages  .user-item {
 	padding: 4px;
 	border-bottom: 1px solid #eee;
@@ -196,39 +95,107 @@
 .ossn-notification-messages .user-item .data{
 	display:inline-table;
 	float:right;
-	width: 340px;
+	width: 335px;
 }
 .ossn-notification-messages .user-item .data .name{
 	font-size: 13px;
 	font-weight: bold;
 	padding: 3px;
+    margin-top: -3px;
 }
 .ossn-notification-messages .user-item-inner .time {
 	color: #999;
 	float:right;
+      font-size: 14px;
+    font-style: italic;  
 }
-.user-item-inner {
+.ossn-notification-messages .reply-text,
+.ossn-notification-messages .reply-text-from {
+	margin-top: -0px;
+	margin-left: 4px;
+}
+.ossn-notification-messages .messages-from .time {
+	color: #999;
+	float:right;
+}
+.ossn-notification-messages .user-item-inner {
 	padding: 5px;
 }
-.message-none {
-	font-size: 13px;
-	width: 735px;
-	border: 1px solid #eee;
-	height: 200px;
+/************************
+	v4.0 chat message
+*************************/
+.message-box-recieved {
+    background-color: #F2F2F2;
+    border-radius: 5px;
+    box-shadow: 0 0 6px #B2B2B2;
+    display: inline-block;
+    padding: 10px 18px;
+    position: relative;
+    vertical-align: top;
+    float: left;
+    margin: 10px 0px 10px 10px;
+    border-color: #cdecb0;
+    text-align: justify;
 }
-.message-none div {
-	font-size: 14px;
-	padding: 25px;
+.message-box-recieved::before {
+    background-color: #F2F2F2;
+    content: "\00a0";
+    display: block;
+    height: 16px;
+    position: absolute;
+    top: 11px;
+    transform: rotate( 29deg) skew( -35deg);
+    -moz-transform: rotate( 29deg) skew( -35deg);
+    -ms-transform: rotate( 29deg) skew( -35deg);
+    -o-transform: rotate( 29deg) skew( -35deg);
+    -webkit-transform: rotate( 29deg) skew( -35deg);
+    width: 20px;
+    box-shadow: -2px 2px 2px 0 rgba( 178, 178, 178, .4);
+    left: -9px;
 }
-.message-form-form input[type='submit']{
-	margin-top:10px;
+.message-box-sent {
+    background-color: #dfeecf;
+    border-radius: 5px;
+    box-shadow: 0 0 6px #B2B2B2;
+    display: inline-block;
+    padding: 10px 18px;
+    position: relative;
+    vertical-align: top;
+    float: left;
+    margin: 5px 45px 5px 20px;
+    border-color: #cdecb0;
+    text-align: justify;
 }
-.message-form-form .ossn-loading {
-	margin-top:10px;
-    float:right;
+.message-box-sent::before {
+    float: right;
+    background-color: #dfeecf;
+    content: "\00a0";
+    display: block;
+    height: 19px;
+    position: relative;
+    left: 26px;
+    top: 0px;
+    transform: rotate( 205deg) skew( -35deg);
+    -moz-transform: rotate( 205deg) skew( -35deg);
+    -ms-transform: rotate( 205deg) skew( -35deg);
+    -o-transform: rotate( 205deg) skew( -35deg);
+    -webkit-transform: rotate( 205deg) skew( -35deg);
+    width: 20px;
+    box-shadow: -2px 2px 2px 0 rgba( 178, 178, 178, .4);
 }
-.messages-from .inner {
-    height: 532px;
-    overflow: hidden;
-    overflow-y:scroll;
+.message-box-sent {
+    float: right;
+    background-color: #dfeecf;
+    border-radius: 5px;
+    box-shadow: 0 0 6px #B2B2B2;
+    display: inline-block;
+    padding: 10px 18px;
+    position: relative;
+    vertical-align: top;
+    margin: 10px 0px;
+    border-color: #cdecb0;
+}
+
+.messages-with .widget-contents {
+    padding: 10px 0px;
 }

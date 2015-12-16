@@ -48,6 +48,12 @@ function ossn_input_escape($str, $newlines = true) {
  */
 function input($input, $noencode = '', $default = false) {
 		$str = false;
+		if(isset($_REQUEST[$input]) && is_array($_REQUEST[$input])) {
+				foreach($_REQUEST[$input] as $key => $value) {
+						$_REQUEST[$input][$key] = htmlentities($value, ENT_QUOTES, 'UTF-8');
+				}
+				return $_REQUEST[$input];
+		}
 		if(!isset($_REQUEST[$input]) && $default) {
 				return $default;
 		}

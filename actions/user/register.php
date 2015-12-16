@@ -18,11 +18,12 @@ $user['lastname'] = input('lastname');
 $user['email'] = input('email');
 $user['reemail'] = input('email_re');
 $user['password'] = input('password');
-$user['gender'] = input('gender');
 
-$user['bdd'] = input('birthday');
-$user['bdm'] = input('birthm');
-$user['bdy'] = input('birthy');
+$fields = ossn_user_fields_names();
+foreach($fields['required'] as $field){
+	$user[$field] = input($field);
+}
+
 if (!empty($user)) {
     foreach ($user as $field => $value) {
         if (empty($value)) {
@@ -42,17 +43,19 @@ if ($user['reemail'] !== $user['email']) {
 }
 
 
-$user['birthdate'] = "{$user['bdd']}/{$user['bdm']}/{$user['bdy']}";
-
 $add = new OssnUser;
 $add->username = $user['username'];
 $add->first_name = $user['firstname'];
 $add->last_name = $user['lastname'];
 $add->email = $user['email'];
 $add->password = $user['password'];
-$add->gender = $user['gender'];
-$add->birthdate = $user['birthdate'];
 $add->sendactiviation = true;
+
+foreach($fields as $items){
+	foreach($items as $field){
+		$add->{$field} = $user[$field];
+	}
+}
 
 if (!$add->isUsername($user['username'])) {
     $em['dataerr'] = ossn_print('username:error');

@@ -10,18 +10,20 @@
  */
 
 $OssnLikes = new OssnLikes;
-$OssnComments = new OssnComments;
-$object = $params['entity_guid'];
+
+$object = $params['entity_guid'];;
 $count = $OssnLikes->CountLikes($object, 'entity');
+
 $user_liked = '';
 if (ossn_isLoggedIn()) { 
             if ($OssnLikes->isLiked($object, ossn_loggedin_user()->guid, 'entity')) {
                 $user_liked = true;
             }
 }
-if ($count) { ?>
-    <div class="like_share">
-        <div class="ossn-like-icon"></div>
+/* Likes and comments don't show for nonlogged in users */ 
+if($count) { ?>
+    <div class="like-share">
+       <i class="fa fa-thumbs-up"></i>
         <?php if ($user_liked == true && $count == 1) { ?>
             <?php echo ossn_print("ossn:liked:you"); ?>
         <?php
@@ -31,7 +33,7 @@ if ($count) { ?>
             if ($count > 1) {
                 $total = 'people';
             }
-            $link['onclick'] = "Ossn.ViewLikes({$object}, 'entity');";
+            $link['onclick'] = "Ossn.ViewLikes({$object});";
             $link['href'] = '#';
             $link['text'] = ossn_print("ossn:like:{$total}", array($count));
             $link = ossn_plugin_view('output/url', $link);
@@ -41,7 +43,7 @@ if ($count) { ?>
             if ($count > 1) {
                 $total = 'people';
             }
-            $link['onclick'] = "Ossn.ViewLikes({$object}, 'entity');";
+            $link['onclick'] = "Ossn.ViewLikes({$object});";
             $link['href'] = '#';
             $link['text'] = ossn_print("ossn:like:{$total}", array($count));
             $link = ossn_plugin_view('output/url', $link);
@@ -49,3 +51,4 @@ if ($count) { ?>
         }?>
     </div>
 <?php } ?>
+

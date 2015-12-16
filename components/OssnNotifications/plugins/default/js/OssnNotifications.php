@@ -14,7 +14,7 @@ Ossn.NotificationBox = function($title, $meta, $type, height, $extra) {
     
     $extra = $extra || '';
     if (height == '') {
-        height = '540px';
+        //height = '540px';
     }
     if ($type) {
         $('.selected').addClass($type);
@@ -31,8 +31,8 @@ Ossn.NotificationBox = function($title, $meta, $type, height, $extra) {
 Ossn.NotificationBoxClose = function() {
     $('.ossn-notifications-box').hide()
     $('.ossn-notifications-box').find('.type-name').html('');
-    $('.ossn-notifications-box').find('.metadata').html('<div style="height: 66px;"><div class="ossn-loading ossn-notification-box-loading"></div></div><div class="bottom-all"><a href="#">'+Ossn.Print('see:all')+'</a></div>');
-    $('.ossn-notifications-box').css('height', '140px');
+    $('.ossn-notifications-box').find('.metadata').html('<div><div class="ossn-loading ossn-notification-box-loading"></div></div><div class="bottom-all"><a href="#">'+Ossn.Print('see:all')+'</a></div>');
+    //$('.ossn-notifications-box').css('height', '140px');
     $('.selected').attr('class', 'selected');
 
 };
@@ -52,11 +52,11 @@ Ossn.NotificationShow = function($div) {
             var height = '';
             if (callback['type'] == 1) {
                 data = callback['data'];
-                height = '540px';
+               // height = '540px';
             }
             if (callback['type'] == 0) {
                 data = callback['data'];
-                height = '100px';
+                //height = '100px';
             }
             Ossn.NotificationBox(Ossn.Print('notifications'), data, 'notifications', height,  callback['extra']);
         }
@@ -89,7 +89,7 @@ Ossn.NotificationFriendsShow = function($div) {
             }
             if (callback['type'] == 0) {
                 data = callback['data'];
-                height = '100px';
+                //height = '100px';
             }
             Ossn.NotificationBox(Ossn.Print('friend:requests'), data, 'firends', height);
         }
@@ -172,7 +172,7 @@ Ossn.NotificationMessagesShow = function($div) {
             }
             if (callback['type'] == 0) {
                 data = callback['data'];
-                height = '100px';
+               // height = '100px';
             }
             Ossn.NotificationBox(Ossn.Print('messages'), data, 'messages', height);
         }
@@ -201,7 +201,7 @@ Ossn.NotificationsCheck = function() {
             if (callback['notifications'] > 0) {
                 $notification_count.html(callback['notifications']);
                 $notification.find('.ossn-icon').addClass('ossn-icons-topbar-notifications-new');
-                $notification_count.attr('style', ' display:inline-block;');
+                $notification_count.attr('style', 'display:inline-block !important;');
             }
             if (callback['notifications'] <= 0) {
                 $notification_count.html('');
@@ -213,7 +213,7 @@ Ossn.NotificationsCheck = function() {
             if (callback['messages'] > 0) {
                 $messages_count.html(callback['messages']);
                 $messages.find('.ossn-icon').addClass('ossn-icons-topbar-messages-new');
-                $messages_count.attr('style', ' display:inline-block;');
+                $messages_count.attr('style', 'display:inline-block !important;');
             }
             if (callback['messages'] <= 0) {
                 $messages_count.html('');
@@ -225,7 +225,7 @@ Ossn.NotificationsCheck = function() {
             if (callback['friends'] > 0) {
                 $friends_count.html(callback['friends']);
                 $friends.find('.ossn-icon').addClass('ossn-icons-topbar-friends-new');
-                $friends_count.attr('style', ' display:inline-block;');
+                $friends_count.attr('style', 'display:inline-block !important;');
             }
             if (callback['friends'] <= 0) {
                 $friends_count.html('');

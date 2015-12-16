@@ -30,7 +30,10 @@ unset($params['component']);
 if (!isset($params['method'])) {
     $params['method'] = 'post';
 }
-$token = ossn_plugin_view('input/security_token');
 
+$token = ossn_plugin_view('input/security_token');
+if(isset($params['security_tokens']) && $params['security_tokens'] === false){
+	$token = false;
+}
 $attributes = ossn_args($params);
 echo "<form $attributes  enctype='multipart/form-data'><fieldset>$token $body</fieldset></form>";

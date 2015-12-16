@@ -10,7 +10,6 @@
  */
 ?>
 <div class="ossn-invite-friends">
-	<h2><?php echo ossn_print('com:ossn:invite:friends');?></h2>
     <p><?php echo ossn_print('com:ossn:invite:friends:note');?></p>
     
 	<label><?php echo ossn_print('com:ossn:invite:emails:note');?></label>
@@ -19,5 +18,5 @@
     <label><?php echo ossn_print('com:ossn:invite:message');?></label>
     <textarea name="message"></textarea>
     
-	<input type="submit" class="ossn-button ossn-button-submit" value="<?php echo ossn_print('com:ossn:invite');?>"/>    
+	<input type="submit" class="btn btn-primary" value="<?php echo ossn_print('com:ossn:invite');?>"/>    
 </div>

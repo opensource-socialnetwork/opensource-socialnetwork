@@ -121,7 +121,9 @@ class OssnEntities extends OssnDatabase {
 		 */
 		public function get_entity() {
 				self::initAttributes();
-				
+				if(empty($this->guid)){
+					return false;
+				}
 				$params           = array();
 				$params['from']   = 'ossn_entities as e';
 				$params['params'] = array(
@@ -142,7 +144,7 @@ class OssnEntities extends OssnDatabase {
 				
 				$data = $this->select($params);
 				if($data) {
-						$entity = arrayObject($data, $this->types[$this->type]);
+						$entity = arrayObject($data, get_class($this));
 						return $entity;
 				}
 		}
@@ -157,6 +159,7 @@ class OssnEntities extends OssnDatabase {
 		public function save() {
 				if(!empty($this->owner_guid)) {
 						$this->datavars = $this->get_data_vars();
+						$this->page_limit = false;
 						foreach($this->get_entities() as $entity) {
 								if(isset($this->datavars[$entity->subtype])) {
 										$params['table']  = 'ossn_entities_metadata';
@@ -236,7 +239,7 @@ class OssnEntities extends OssnDatabase {
 						'owner_guid' => $this->owner_guid,
 						'offset' => $this->offset,
 						'order_by' => $this->order_by,
-						'page_limit' => $this->page_limit,
+						'page_limit' => false,
 						'count' => $this->count,
 						'limit' => $this->limit
 				);
@@ -400,8 +403,8 @@ class OssnEntities extends OssnDatabase {
 				$limit   = $options['limit'];
 				
 				//validate offset values
-				if($options['limit'] !== false && $options['limit'] !== 0 && $options['page_limit'] !== 0) {
-						$offset_vals = ceil($options['limit'] / $options['page_limit']);
+				if(!empty($options['limit']) && !empty($options['limit']) && !empty($options['page_limit'])) {
+						$offset_vals = ceil($options['limit']/$options['page_limit']);
 						$offset_vals = abs($offset_vals);
 						$offset_vals = range(1, $offset_vals);
 						if(!in_array($options['offset'], $offset_vals)) {

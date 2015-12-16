@@ -14,12 +14,13 @@ $user['firstname'] = input('firstname');
 $user['lastname'] = input('lastname');
 $user['email'] = input('email');
 $user['password'] = input('password');
-$user['gender'] = input('gender');
 $user['type'] = input('type');
 
-$user['bdd'] = input('birthday');
-$user['bdm'] = input('birthm');
-$user['bdy'] = input('birthy');
+$fields = ossn_user_fields_names();
+foreach($fields['required'] as $field){
+	$user[$field] = input($field);
+}
+
 if (!empty($user)) {
     foreach ($user as $field => $value) {
         if (empty($value)) {
@@ -36,7 +37,6 @@ if (!in_array($user['type'], $types)) {
     ossn_trigger_message(ossn_print('account:create:error:admin'), 'error');
     redirect(REF);
 }
-$user['birthdate'] = "{$user['bdd']}/{$user['bdm']}/{$user['bdy']}";
 
 $add = new OssnUser;
 $add->username = $user['username'];
@@ -44,9 +44,13 @@ $add->first_name = $user['firstname'];
 $add->last_name = $user['lastname'];
 $add->email = $user['email'];
 $add->password = $user['password'];
-$add->gender = $user['gender'];
-$add->birthdate = $user['birthdate'];
 $add->usertype = $user['type'];
+
+foreach($fields as $items){
+	foreach($items as $field){
+		$add->{$field} = $user[$field];
+	}
+}
 
 if (!$add->isUsername($user['username'])) {
     ossn_trigger_message(ossn_print('username:error'), 'error');

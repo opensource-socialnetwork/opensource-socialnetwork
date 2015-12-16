@@ -9,7 +9,7 @@
  * @link      http://www.opensource-socialnetwork.org/licence
  */
 ?>
-<div class="message-reciever">
+<div class="message-reciever" id="ossn-message-item-<?php echo $params['id'];?>">
     <div class="user-icon">
         <img src="<?php echo $params['reciever']->iconURL()->smaller; ?>"/>
     </div>

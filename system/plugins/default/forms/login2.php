@@ -10,13 +10,18 @@
  */
 ?>
 <div>
-    <input type="text" name="username" placeholder="<?php echo ossn_print('username'); ?>" class="long-input">
+	<label><?php echo ossn_print('username'); ?></label>
+    <input type="text" name="username" />
 </div>
 
 <div>
-    <input type="password" name="password" placeholder="<?php echo ossn_print('password'); ?>" class="long-input">
+	<label><?php echo ossn_print('password'); ?></label>
+    <input type="password" name="password" />
 </div>
 <div>
-    <input type="submit" value="<?php echo ossn_print('site:login');?>" class="ossn-button ossn-button-submit"/>
+	<?php echo ossn_fetch_extend_views('forms/login2/before/submit'); ?>
+<div>
+<div>
+    <input type="submit" value="<?php echo ossn_print('site:login');?>" class="btn btn-primary"/>
+    <a href="<?php echo ossn_site_url('resetlogin'); ?>"><?php echo ossn_print('reset:login'); ?> </a>
 </div>
-<a href="<?php echo ossn_site_url('resetlogin'); ?>"> <?php echo ossn_print('reset:login'); ?> </a>

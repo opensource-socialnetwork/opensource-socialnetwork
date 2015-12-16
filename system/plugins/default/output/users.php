@@ -11,45 +11,53 @@
 $users = $params['users'];
 if ($users) {
     foreach ($users as $user) {
-        ?>
-
-        <div class="ossn-view-users">
-            <img src="<?php echo ossn_site_url("avatar/{$user->username}/large"); ?>" width="100" height="100"/>
-
-            <div class="uinfo">
-                <a class="userlink"
-                   href="<?php echo ossn_site_url(); ?>u/<?php echo $user->username; ?>"><?php echo $user->fullname; ?></a>
-            </div>
-            <?php if (ossn_isLoggedIn()) { ?>
-                <?php if (ossn_loggedin_user()->guid !== $user->guid) {
-                    if (!ossn_user_is_friend(ossn_loggedin_user()->guid, $user->guid)) {
-                        if (ossn_user()->requestExists(ossn_loggedin_user()->guid, $user->guid)) {
-                            ?>
-                            <a href="<?php echo ossn_site_url("action/friend/remove?cancel=true&user={$user->guid}", true); ?>"
-                               class='button-grey friendlink'>
-                                <?php echo ossn_print('cancel:request'); ?>
-                            </a>
-                        <?php } else { ?>
-                            <a href="<?php echo ossn_site_url("action/friend/add?user={$user->guid}", true); ?>"
-                               class='button-grey friendlink'>
-                                <?php echo ossn_print('add:friend'); ?>
-                            </a>
+      ?>
+		<div class="row ossn-users-list-item">
+            	<div class="col-md-2 col-sm-2 hidden-xs">
+    	        		<img src="<?php echo $user->iconURL()->large; ?>" width="100" height="100"/>
+				</div>
+                <div class="col-md-10 col-sm-10 col-xs-12">
+	    	        <div class="uinfo">
                         <?php
-                        }
-                    } else {
-                        ?>
-                        <a href="<?php echo ossn_site_url("action/friend/remove?user={$user->guid}", true); ?>"
-                           class='button-grey friendlink'>
-                            <?php echo ossn_print('remove:friend'); ?>
-                        </a>
-                    <?php
-                    }
-
-                }
-            }?>
+							echo ossn_plugin_view('output/url', array(
+									'text' => $user->fullname,
+									'href' =>  $user->profileURL(),
+									'class' => 'userlink',
+							));						
+						?>
+        	   		</div>
+                    <div class="right users-list-controls">
+	                    <?php
+						if (ossn_isLoggedIn()) {
+							if (ossn_loggedin_user()->guid !== $user->guid) {
+                    			if (!ossn_user_is_friend(ossn_loggedin_user()->guid, $user->guid)) {
+                        				if (ossn_user()->requestExists(ossn_loggedin_user()->guid, $user->guid)) {
+												echo ossn_plugin_view('output/url', array(
+													'text' => ossn_print('cancel:request'),
+													'href' =>  ossn_site_url("action/friend/remove?cancel=true&user={$user->guid}", true),
+													'class' => 'btn btn-danger',
+												));
+										} else {
+												echo ossn_plugin_view('output/url', array(
+													'text' => ossn_print('add:friend'),
+													'href' =>  ossn_site_url("action/friend/add?user={$user->guid}", true),
+													'class' => 'btn btn-primary',
+												));		
+										}
+								} else {
+									echo ossn_plugin_view('output/url', array(
+													'text' => ossn_print('remove:friend'),
+													'href' =>  ossn_site_url("action/friend/remove?user={$user->guid}", true),
+													'class' => 'btn btn-danger',
+									));	
+				
+								}
+							}
+						}
+						?>		
+                   </div>
+               </div>         
         </div>
-
-
     <?php
     }
 

@@ -57,31 +57,9 @@ function ossn_get_object_entities($object, $params = array()){
  *
  * @return object
  */
-function ossn_get_objects(array $params){
-	if(isset($params['owner_guid']) && !empty($params['owner_guid'])){
-		
+function ossn_get_objects(array $params){		
 		$object = new OssnObject;
-		$object->owner_guid = $params['owner_guid'];
-		
-		if(isset($params['type']) && !empty($params['type'])){
-			$object->type = $params['type'];
-		}
-		if(isset($params['subtype']) && !empty($params['subtype'])){
-			$object->subtype = $params['subtype'];
-		}
-		if(isset($params['limit']) && !empty($params['limit'])){
-			$object->limit = $params['limit'];
-		}
-		if(isset($params['order_by']) && !empty($params['order_by'])){
-			$object->order_by = $params['order_by'];
-		}
-		
-		$objects = $object->getObjectByOwner();
-		if($objects){
-			return $objects;
-		}
-	}
-	return false;
+		return $object->searchObject($params);
 }
 /**
  * Get objects by type
@@ -95,25 +73,5 @@ function ossn_get_objects(array $params){
  * @return object
  */
 function ossn_get_objects_by_type(array $params){
-	if(isset($params['type']) && !empty($params['type'])){
-		
-		$object = new OssnObject;
-		$object->type = $params['type'];
-
-		if(isset($params['subtype']) && !empty($params['subtype'])){
-			$object->subtype = $params['subtype'];
-		}
-		if(isset($params['limit']) && !empty($params['limit'])){
-			$object->limit = $params['limit'];
-		}
-		if(isset($params['order_by']) && !empty($params['order_by'])){
-			$object->order_by = $params['order_by'];
-		}
-		
-		$objects = $object->getObjectsByTypes();
-		if($objects){
-			return $objects;
-		}
-	}
-	return false;
+	return ossn_get_objects($params);
 }

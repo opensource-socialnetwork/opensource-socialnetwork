@@ -11,6 +11,7 @@
 $object = $params['entity_guid'];
 
 $comments = new OssnComments;
+$OssnLikes = new OssnLikes;
 
 if($params->full_view !== true){
 	$comments->limit = 5;
@@ -29,11 +30,10 @@ if ($comments) {
 }
 echo '</div>';
 if (ossn_isLoggedIn()) {
-    echo '<div class="poster-image">';
-    echo '<img class="poster-image-icon" src="' . ossn_loggedin_user()->iconURL()->smaller . '" />';
-    echo '</div>';
-    echo '<script>  Ossn.EntityComment(' . $object . '); </script>';
-    echo ossn_view_form('entity/comment_add', array(
+	
+	$user = ossn_loggedin_user();
+	$iconurl = $user->iconURL()->smaller;
+    $inputs = ossn_view_form('entity/comment_add', array(
         'action' => ossn_site_url() . 'action/post/comment',
         'component' => 'OssnComments',
         'id' => "comment-container-{$object}",
@@ -42,12 +42,27 @@ if (ossn_isLoggedIn()) {
         'params' => array('object' => $object)
     ), false);
 
-    echo '<div class="ossn-comment-attachment" id="comment-attachment-container-' . $object . '">';
-    echo '<script>Ossn.CommentImage(' . $object . ');</script>';
-    echo ossn_view_form('comment_image', array(
+$form = <<<html
+<div class="comments-item">
+    <div class="row">
+        <div class="col-md-1">
+            <img class="comment-user-img" src="{$iconurl}" />
+        </div>
+        <div class="col-md-11">
+            $inputs
+        </div>
+    </div>
+</div>
+html;
+
+$form .= '<script>  Ossn.EntityComment(' . $object . '); </script>';
+$form .= '<div class="ossn-comment-attachment" id="comment-attachment-container-' . $object . '">';
+$form .= '<script>Ossn.CommentImage(' . $object . ');</script>';
+$form .= ossn_view_form('comment_image', array(
         'id' => "ossn-comment-attachment-{$object}",
         'component' => 'OssnComments',
         'params' => array('object' => $object)
     ), false);
-    echo '</div>';
+$form .= '</div>';
+echo $form;
 }

@@ -169,13 +169,18 @@ function profile_edit_page($hook, $type, $return, $params) {
  * @return string data;
  */
 function profile_search_handler($hook, $type, $return, $params) {
-		$Pagination = new OssnPagination;
-		$users      = new OssnUser;
-		$data       = $users->searchUsers($params['q']);
-		$Pagination->setItem($data);
-		$user['users'] = $Pagination->getItem();
+		$Pagination    = new OssnPagination;
+		$users         = new OssnUser;
+		$data          = $users->searchUsers(array(
+				'wheres' => "CONCAT(u.first_name, ' ', u.last_name) LIKE '%{$params['q']}%'",
+		));
+		$count         = $users->searchUsers(array(
+				'wheres' => "CONCAT(u.first_name, ' ', u.last_name) LIKE '%{$params['q']}%'",
+				'count' => true
+		));
+		$user['users'] = $data;
 		$search        = ossn_plugin_view('output/users', $user);
-		$search .= $Pagination->pagination();
+		$search .= ossn_view_pagination($count);
 		if(empty($data)) {
 				return ossn_print('ossn:search:no:result');
 		}
@@ -236,7 +241,11 @@ function profile_page_handler($page) {
 				return false;
 		}
 		$title               = $user->fullname;
-		$contents['content'] = ossn_plugin_view('profile/pages/profile', $params);
+		$vars                = array(
+				'user' => $user
+		);
+		$content             = ossn_plugin_view('profile/pages/profile', $params);
+		$contents['content'] = ossn_call_hook('profile', 'load:content', $vars, $content);
 		$content             = ossn_set_page_layout('contents', $contents);
 		echo ossn_view_page($title, $content);
 }
@@ -292,6 +301,10 @@ function get_profile_photo($user, $size) {
 		} else {
 				$datadir = ossn_default_theme() . "images/nopictures/users/{$size}.jpg";
 		}
+		$datadir  = ossn_call_hook('profile', 'load:picture', array(
+				'user' => $user,
+				'size' => $size
+		), $datadir);
 		$filesize = filesize($datadir);
 		header("Content-type: image/jpeg");
 		header('Expires: ' . gmdate('D, d M Y H:i:s \G\M\T', strtotime("+6 months")), true);
@@ -347,11 +360,21 @@ function get_cover_photo($user, $params = array()) {
  * @return image
  */
 function cover_page_handler($cover) {
+		if($cover[0] == 'err1') {
+				echo ossn_plugin_view('output/ossnbox', array(
+						'title' => ossn_print('profile:cover:err1'),
+						'contents' => ossn_print('profile:cover:err1:detail'),
+						'callback' => false
+				));
+				return true;
+		}
 		if(isset($cover[0])) {
 				$user = ossn_user_by_username($cover[0]);
 				if(!empty($user->guid)) {
 						get_cover_photo($user, $cover);
 				}
+		} else {
+				ossn_error_page();
 		}
 }
 /**

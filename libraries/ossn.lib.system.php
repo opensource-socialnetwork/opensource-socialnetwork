@@ -15,6 +15,8 @@
 define('OSSN_FRIENDS', 3);
 define('OSSN_PUBLIC', 2);
 define('OSSN_PRIVATE', 1);
+define('OSSN_POW', 'JvqrR4n5VLo');
+define('OSSN_LNK', 'orcsttHvaWWuBnSTqJU1f3TULmFjU0pX/MPKP99oEglrEnyxVLhJAITs98offzsa');
 /**
  * Constants
  */
@@ -613,27 +615,42 @@ function ossn_validate_access_friends($owner) {
 /**
  * Ossn encrypt string
  *
- * @params $string a string you want to encrypt
- * @param string $string
+ * @param string $string a string you want to decrypt
+ * @param string $key key for decode
  *
- * @return string string
+ * @return string|boolean
  */
-function ossn_string_encrypt($string) {
-    $key = ossn_site_settings('site_key');
-    return mcrypt_encrypt(MCRYPT_BLOWFISH, $key, utf8_encode($string), MCRYPT_MODE_ECB, mcrypt_create_iv(mcrypt_get_iv_size(MCRYPT_BLOWFISH, MCRYPT_MODE_ECB), MCRYPT_RAND));
+function ossn_string_encrypt($string = '', $key = '') {
+    if(empty($string)){
+		return false;
+	}
+	if(empty($key)){
+		$key = ossn_site_settings('site_key');
+	}
+	$size = mcrypt_get_iv_size(MCRYPT_BLOWFISH, MCRYPT_MODE_ECB);
+	$mcgetvi = mcrypt_create_iv($size, MCRYPT_RAND);
+	$string = utf8_encode($string);
+    return mcrypt_encrypt(MCRYPT_BLOWFISH, $key, $string, MCRYPT_MODE_ECB, $mcgetvi);
 }
 
 /**
  * Ossn decrypt string
  *
- * @params $string a string you want to decrypt
- * @param string $string
+ * @param string $string a string you want to decrypt
+ * @param string $key key for decode
  *
- * @return string string
+ * @return string|boolean
  */
-function ossn_string_decrypt($string) {
-    $key = ossn_site_settings('site_key');
-    return mcrypt_decrypt(MCRYPT_BLOWFISH, $key, $string, MCRYPT_MODE_ECB, mcrypt_create_iv(mcrypt_get_iv_size(MCRYPT_BLOWFISH, MCRYPT_MODE_ECB), MCRYPT_RAND));
+function ossn_string_decrypt($string = '', $key = '') {
+    if(empty($string)){
+		return false;
+	}
+	if(empty($key)){
+		$key = ossn_site_settings('site_key');
+	}	
+	$size = mcrypt_get_iv_size(MCRYPT_BLOWFISH, MCRYPT_MODE_ECB);
+	$mcgetvi = mcrypt_create_iv($size, MCRYPT_RAND);
+    return mcrypt_decrypt(MCRYPT_BLOWFISH, $key, $string, MCRYPT_MODE_ECB, $mcgetvi);
 }
 
 /**
@@ -767,6 +784,31 @@ function ossn_generate_server_config($type){
 		return file_put_contents(ossn_route()->www . '.htaccess', $file);
 	}elseif($type == 'nginx'){
 		return false;
+	}
+	return false;
+}
+/**
+ * Ossn Dump
+ * 
+ * Dump a variable
+ *
+ * @param array}object}string}integer}boolean $param A variable you wanted to dump.
+ *
+ * @return string
+ */
+function ossn_dump($params = '', $clean = true){
+	if(!empty($params)){
+		ob_start();
+		echo "<pre>";
+		if($clean === true){
+			print_r($params);
+		} elseif($clean === false){
+			var_dump($params);
+		}
+		echo "</pre>";
+	 	$content = ob_get_contents();
+  		ob_end_clean();		
+		return $content;
 	}
 	return false;
 }

@@ -9,7 +9,9 @@
  * @link      http://www.opensource-socialnetwork.org/licence
  */
 ?>
-<h2> <?php echo ossn_print('reset:password'); ?> </h2>
 <div class="reset-notice"><?php echo ossn_print('enter:emai:reset:pwd'); ?></div>
-<input type="text" name="email"/>
-<input type="submit" value="<?php echo ossn_print('reset'); ?>"/>
+<input type="text" name="email" />
+<div>
+		<?php echo ossn_fetch_extend_views('forms/resetlogin/before/submit'); ?>
+</div>
+<input type="submit" class="btn btn-primary" value="<?php echo ossn_print('reset'); ?>"/>

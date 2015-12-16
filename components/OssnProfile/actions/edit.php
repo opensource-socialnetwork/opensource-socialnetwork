@@ -18,9 +18,10 @@ $user['email'] = input('email');
 $user['gender'] = input('gender');
 $user['username'] = input('username');
 
-$user['bdd'] = input('birthday');
-$user['bdm'] = input('birthm');
-$user['bdy'] = input('birthy');
+$fields = ossn_user_fields_names();
+foreach($fields['required'] as $field){
+	$user[$field] = input($field);
+}
 if (!empty($user)) {
     foreach ($user as $field => $value) {
         if (empty($value)) {
@@ -30,7 +31,6 @@ if (!empty($user)) {
     }
 }
 $password = input('password');
-$user['birthdate'] = "{$user['bdd']}/{$user['bdm']}/{$user['bdy']}";
 
 $OssnUser = new OssnUser;
 $OssnUser->password = $password;
@@ -100,10 +100,14 @@ if(!empty($language) && in_array($language, ossn_get_available_languages())){
 //save
 if ($OssnDatabase->update($params)) {
     //update entities
+	$user_get->data = new stdClass;
     $guid = $user_get->guid;
     if (!empty($guid)) {
-        $user_get->data->gender = $user['gender'];
-        $user_get->data->birthdate = $user['birthdate'];
+		foreach($fields as $items){
+				foreach($items as $field){
+						$user_get->data->{$field} = $user[$field];
+				}
+		}
 		$user_get->data->language = $lang;
         $user_get->save();
     }

@@ -15,8 +15,7 @@ if($accesstype == 'public' || ossn_isAdminLoggedin()){
 	$count = $wall->GetPosts(array('count' => true));
 } elseif($accesstype == 'friends'){
  	$posts = $wall->getFriendsPosts();
-	//OssnWall Settings (Homepage Posts) #555
-	$count = $wall->getFriendsPosts(array('count' => true));
+ 	$count = $wall->getFriendsPosts(array('count' => true));
 }
 if ($posts) {
     foreach ($posts as $post) {

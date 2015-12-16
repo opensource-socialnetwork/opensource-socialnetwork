@@ -10,27 +10,20 @@
  */
 $ads = new OssnAds;
 $ads = $ads->getAds();
+
 ?>
 <div class="ossn-ads">
-    <h4><?php echo ossn_print('sponsored'); ?></h4>
     <?php
     if ($ads) {
-        foreach ($ads as $ads) {
-            ?>
-            <div class="ossn-ads-item">
-                <a class="a-heading" href="<?php echo $ads->site_url; ?>"><?php echo $ads->title; ?></a>
-
-                <div class="ossn-ads-link"> <?php echo $ads->site_url; ?> </div>
-                <img src="<?php echo ossn_ads_image_url($ads->guid); ?>"/>
-
-                <div class="descript">
-                    <?php echo $ads->description; ?>
-                </div>
-
-            </div>
-
-        <?php
+        foreach ($ads as $ad) {
+          	$items[] = ossn_plugin_view('ads/item', array(
+											'item' => $ad, 
+					   ));
         }
+		echo ossn_plugin_view('widget/view', array(
+					'title' => ossn_print('sponsored'),
+					'contents' => implode('', $items),
+		));		
     }
     ?>
 </div>       

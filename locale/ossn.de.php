@@ -277,7 +277,8 @@ Um Dein Passwort zurückzusetzen klicke bitte auf den folgenden Link oder kopier
 	'admin:user:validated' => 'Das Benutzer-Konto wurde bestätigt',
 	'admin:user:validate:error' => 'Das Benutzer-Konto konnte nicht bestätigt werden',
 	
-	//v3.0 
+	//v3.0
+	//Administration
 	'my:files:version' => 'Meine Ossn Dateien Fassung',
 	'cache:flush:error' => 'Der Cache konnte nicht geleert werden. Stelle sicher, dass er bei den Cache Einstellungen aktiviert ist',
 	'cache:flushed' => 'Der Cache wurde erfolgreich geleert',
@@ -443,4 +444,4 @@ Um Dein Passwort zurückzusetzen klicke bitte auf den folgenden Link oder kopier
     "zh" => "Chinese",
     "zu" => "Zulu"
 );
-ossn_register_languages('de', $de); 
+ossn_register_languages('de', $de);

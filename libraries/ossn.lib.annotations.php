@@ -58,30 +58,8 @@ function ossn_get_annotation_entities($annotation, $params = array()){
  * @return object
  */
 function ossn_get_annotations(array $params){
-	if(isset($params['owner_guid']) && !empty($params['owner_guid'])){
-		
-		$annotation = new OssnAnnotation;
-		$annotation->owner_guid = $params['owner_guid'];
-		
-		if(isset($params['type']) && !empty($params['type'])){
-			$annotation->type = $params['type'];
-		}
-		if(isset($params['subtype']) && !empty($params['subtype'])){
-			$annotation->subtype = $params['subtype'];
-		}
-		if(isset($params['limit']) && !empty($params['limit'])){
-			$annotation->limit = $params['limit'];
-		}
-		if(isset($params['order_by']) && !empty($params['order_by'])){
-			$annotation->order_by = $params['order_by'];
-		}
-		
-		$annotations = $annotation->getAnnotationsByOwner();
-		if($annotations){
-			return $annotations;
-		}
-	}
-	return false;
+	$annotation = new OssnAnnotation;
+	return $annotation->searchAnnotation($params);
 }
 /**
  * Get annotations by types
@@ -95,22 +73,6 @@ function ossn_get_annotations(array $params){
  * @return object
  */
 function ossn_get_annotations_by_type(array $params){
-	if(isset($params['type']) && !empty($params['type'])){
-		
-		$annotation = new OssnAnnotation;
-		$annotation->type = $params['type'];
-
-		if(isset($params['limit']) && !empty($params['limit'])){
-			$annotation->limit = $params['limit'];
-		}
-		if(isset($params['order_by']) && !empty($params['order_by'])){
-			$annotation->order_by = $params['order_by'];
-		}
-		
-		$annotations = $annotation->getAnnotationsByType();
-		if($annotations){
-			return $annotations;
-		}
-	}
-	return false;
+	$annotation = new OssnAnnotation;
+	return $annotation->searchAnnotation($params);
 }

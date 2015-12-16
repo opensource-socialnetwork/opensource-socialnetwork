@@ -344,5 +344,80 @@ function ossn_logout() {
 		}
 		return false;
 }
+/**
+ * Ossn default user fields
+ *
+ * @return array
+ */
+function ossn_default_user_fields() {
+		$fields             = array();
+		$fields['required'] = array(
+				'text' => array(
+						array(
+								'name' => 'birthdate',
+								'params' => array(
+										'readonly' => true
+								)
+						)
+				),
+				'radio' => array(
+						array(
+								'name' => 'gender',
+								'options' => array(
+										'male' => ossn_print('male'),
+										'female' => ossn_print('female')
+								)
+						)
+				)
+		);
+		return ossn_call_hook('user', 'default:fields', false, $fields);
+}
+/**
+ * Ossn prepare user fields
+ *
+ * @param object $user A OssnUser object
+ *
+ * @return array
+ */
+function ossn_prepare_user_fields($user = '') {
+		$fields = ossn_default_user_fields();
+		if($fields && $user instanceof OssnUser) {
+				foreach($fields as $type => $items) {
+						foreach($items as $field => $data_items) {
+								foreach($data_items as $data) {
+										$args = array();
+										if(isset($user->{$data['name']})) {
+												$args['value'] = $user->{$data['name']};
+										} else {
+												$args['value'] = '';
+										}
+										$values                       = array_merge($args, $data);
+										$user_fields[$type][$field][] = $values;
+								}
+						}
+				}
+				return $user_fields;
+		}
+		return false;
+}
+/**
+ * User fields fields name
+ *
+ * @return array
+ */
+function ossn_user_fields_names() {
+		$fields = ossn_default_user_fields();
+		if($fields) {
+				foreach($fields as $type => $items) {
+						foreach($items as $field => $data_items) {
+								foreach($data_items as $data) {
+										$user_fields[$type][] = $data['name'];
+								}
+						}
+				}
+				return $user_fields;
+		}
+		return false;
+}
 ossn_register_callback('ossn', 'init', 'ossn_users');
 ossn_add_hook('load:settings', 'language', 'ossn_site_user_lang_code');

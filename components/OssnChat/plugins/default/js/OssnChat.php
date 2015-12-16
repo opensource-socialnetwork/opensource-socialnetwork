@@ -49,7 +49,7 @@ Ossn.ChatOpenTab = function($user) {
         $tabitem.find('input[type="text"]').show();
         $('#ftab' + $user).removeClass('ossn-chat-tab-active');
         $tabitem.find('.ossn-chat-new-message').hide();
-        //$tabitem.find('.ossn-chat-new-message').html('');           
+        $tabitem.find('.ossn-chat-new-message').empty();           
         Ossn.ChatScrollMove($user);
     }
 };

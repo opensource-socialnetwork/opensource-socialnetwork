@@ -57,7 +57,7 @@ function ossn_wall_like_menu($callback, $type, $params){
 		if(!$likes->isLiked($guid, ossn_loggedin_user()->guid)){
 			ossn_register_menu_item('postextra', array(
 					'name' => 'like', 
-					'href' => "javascript:;",
+					'href' => "javascript:void(0);",
 					'id' => 'ossn-like-'.$guid,
 					'onclick' => "Ossn.PostLike({$guid});",
 					'text' => ossn_print('ossn:like'),
@@ -65,7 +65,7 @@ function ossn_wall_like_menu($callback, $type, $params){
 		} else {
 			ossn_register_menu_item('postextra', array(
 					'name' => 'like', 
-					'href' => "javascript:;",
+					'href' => "javascript:void(0);",
 					'id' => 'ossn-like-'.$guid,					
 					'onclick' => "Ossn.PostUnlike({$guid});",
 					'text' => ossn_print('ossn:unlike'),
@@ -88,7 +88,7 @@ function ossn_entity_like_link($callback, $type, $params){
 		if(!$likes->isLiked($guid, ossn_loggedin_user()->guid, 'entity')){
 			ossn_register_menu_item('entityextra', array(
 					'name' => 'like', 
-					'href' => "javascript:;",
+					'href' => "javascript:void(0);",
 					'id' => 'ossn-like-'.$guid,
 					'onclick' => "Ossn.EntityLike({$guid});",
 					'text' => ossn_print('ossn:like'),
@@ -96,7 +96,7 @@ function ossn_entity_like_link($callback, $type, $params){
 		} else {
 			ossn_register_menu_item('entityextra', array(
 					'name' => 'like', 
-					'href' => "javascript:;",
+					'href' => "javascript:void(0);",
 					'id' => 'ossn-like-'.$guid,					
 					'onclick' => "Ossn.EntityUnlike({$guid});",
 					'text' => ossn_print('ossn:unlike'),

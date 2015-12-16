@@ -176,7 +176,7 @@ CREATE TABLE IF NOT EXISTS `ossn_site_settings` (
 --
 
 INSERT INTO `ossn_site_settings` (`setting_id`, `name`, `value`) VALUES
-(1, 'theme', 'default'),
+(1, 'theme', 'goblue'),
 (2, 'site_name', '<<sitename>>'),
 (3, 'language', 'en'),
 (4, 'cache', '0'),
@@ -186,7 +186,7 @@ INSERT INTO `ossn_site_settings` (`setting_id`, `name`, `value`) VALUES
 (9, 'display_errors', 'off'),
 (10, 'site_key', '<<screat>>'),
 (11, 'last_cache', ''),
-(12, 'site_version', '3.9');
+(12, 'site_version', '4.0b');
 
 
 -- --------------------------------------------------------

@@ -21,7 +21,7 @@ if($postextra && ossn_isLoggedin()) {
 								}
 								unset($link['name']);
 								$link = ossn_plugin_view('output/url', $link);
-								echo $link;
+								echo "<li>".$link."</li>";
 						}
 				}
 		}

@@ -39,5 +39,5 @@ foreach($values as $item => $label){
 	}
 	
 	$vars = ossn_args($vars);	
-	echo  "<input {$attributes} {$vars} /><span>{$label}</span>";
+	echo  "<div class='radio-block'><input {$attributes} {$vars} /><span>{$label}</span></div>";
 }

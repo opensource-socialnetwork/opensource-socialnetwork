@@ -195,21 +195,12 @@ function ossn_photos_page_handler($album) {
 												ossn_error_page();
 										}
 								}
-								//shows widget back button
-								$addphotos         = array(
-										'text' => ossn_print('back'),
-										'href' => 'javascript:void(0);',
-										'class' => 'button-grey'
-								);
-								$control           = ossn_plugin_view('output/url', $addphotos);
 								$contents          = array(
 										'title' => ossn_print('photos'),
 										'content' => ossn_plugin_view('photos/pages/photo/view', $photo),
-										'controls' => $control
 								);
 								//set page layout
-								$module['content'] = ossn_set_page_layout('media', $contents);
-								$content           = ossn_set_page_layout('contents', $module);
+								$content = ossn_set_page_layout('media', $contents);
 								echo ossn_view_page($title, $content);
 						}
 						break;
@@ -228,20 +219,12 @@ function ossn_photos_page_handler($album) {
 								if(empty($image->value)) {
 										redirect();
 								}
-								$addphotos         = array(
-										'text' => ossn_print('back'),
-										'href' => 'javascript:void(0);',
-										'class' => 'button-grey'
-								);
-								$control           = ossn_plugin_view('output/url', $addphotos);
 								$contents          = array(
 										'title' => 'Photos',
 										'content' => ossn_plugin_view('photos/pages/profile/photos/view', $photo),
-										'controls' => $control
 								);
 								//set page layout
-								$module['content'] = ossn_set_page_layout('media', $contents);
-								$content           = ossn_set_page_layout('contents', $module);
+								$content  = ossn_set_page_layout('media', $contents);
 								echo ossn_view_page($title, $content);
 						}
 						break;
@@ -259,20 +242,12 @@ function ossn_photos_page_handler($album) {
 								if(empty($image->value)) {
 										redirect();
 								}
-								$addphotos         = array(
-										'text' => ossn_print('back'),
-										'href' => 'javascript:void(0);',
-										'class' => 'button-grey'
-								);
-								$control           = ossn_plugin_view('output/url', $addphotos);
 								$contents          = array(
 										'title' => 'Photos',
 										'content' => ossn_plugin_view('photos/pages/profile/covers/view', $photo),
-										'controls' => $control
 								);
 								//set page layout
-								$module['content'] = ossn_set_page_layout('media', $contents);
-								$content           = ossn_set_page_layout('contents', $module);
+								$content = ossn_set_page_layout('media', $contents);
 								echo ossn_view_page($title, $content);
 						}
 						break;
@@ -452,6 +427,14 @@ function ossn_album_page_handler($album) {
 								} else {
 										$control = false;
 								}
+								//Missing back button to photos #570
+								$owner = ossn_user_by_guid($owner->owner_guid);
+								$back         = array(
+										'text' => ossn_print('back'),
+										'href' => ossn_site_url("u/{$owner->username}/photos"),
+										'class' => 'button-grey'
+								);
+								$control           .= ossn_plugin_view('output/url', $back);									
 								//set photos in module
 								$contents          = array(
 										'title' => ossn_print('photos'),
@@ -473,11 +456,18 @@ function ossn_album_page_handler($album) {
 								if(empty($user['user']->guid)) {
 										ossn_error_page();
 								}
+								//Missing back button to photos #570
+								$back         = array(
+										'text' => ossn_print('back'),
+										'href' => ossn_site_url("u/{$user['user']->username}/photos"),
+										'class' => 'button-grey'
+								);
+								$control           = ossn_plugin_view('output/url', $back);								
 								//view profile photos in module layout
 								$contents          = array(
 										'title' => ossn_print('photos'),
 										'content' => ossn_plugin_view('photos/pages/profile/photos/all', $user),
-										'controls' => false,
+										'controls' => $control,
 										'module_width' => '850px'
 								);
 								$module['content'] = ossn_set_page_layout('module', $contents);
@@ -494,11 +484,18 @@ function ossn_album_page_handler($album) {
 								if(empty($user['user']->guid)) {
 										ossn_error_page();
 								}
+								//Missing back button to photos #570
+								$back         = array(
+										'text' => ossn_print('back'),
+										'href' => ossn_site_url("u/{$user['user']->username}/photos"),
+										'class' => 'button-grey'
+								);
+								$control           = ossn_plugin_view('output/url', $back);										
 								//view profile photos in module layout
 								$contents          = array(
 										'title' => ossn_print('covers'),
 										'content' => ossn_plugin_view('photos/pages/profile/covers/all', $user),
-										'controls' => false,
+										'controls' => $control,
 										'module_width' => '850px'
 								);
 								$module['content'] = ossn_set_page_layout('module', $contents);
@@ -512,7 +509,6 @@ function ossn_album_page_handler($album) {
 						echo ossn_plugin_view('output/ossnbox', array(
 								'title' => ossn_print('add:album'),
 								'contents' => ossn_plugin_view('photos/pages/album/add'),
-								'success_id' => 'aga',
 								'callback' => '#ossn-album-submit'
 						));
 						break;

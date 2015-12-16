@@ -86,8 +86,7 @@ if ($total > 0) {
                <div class="ossn-chat-sending-icon"></div>
             </div>
             <div class="ossn-chat-inline-table ossn-chat-icon-smile-set">
-                <div class="ossn-chat-inline-table ossn-chat-icon-smile"
-                     onClick="Ossn.ChatShowSmilies(<?php echo $user->guid; ?>);" style="margin-top: 5px;"></div>
+                <div class="ossn-chat-icon-smile" onClick="Ossn.ChatShowSmilies(<?php echo $user->guid; ?>);"></div>
             </div>
              <?php echo ossn_plugin_view('input/security_token'); ?>
             <input type="hidden" name="to" value="<?php echo $user->guid; ?>"/>

@@ -154,8 +154,8 @@ class OssnObject extends OssnEntities {
 								$fields[$entity->subtype] = $entity->value;
 						}
 						$object_array = get_object_vars($object);
-						if(is_array($object_array)){
-							$data = array_merge($object_array, $fields);
+						if(is_array($object_array)) {
+								$data = array_merge($object_array, $fields);
 						}
 						if(!empty($fields)) {
 								return arrayObject($data, get_class($this));
@@ -197,9 +197,18 @@ class OssnObject extends OssnEntities {
 				);
 				if($this->update($params)) {
 						if(isset($this->data)) {
+								$owner_self   = $this->owner_guid;
+								$type_self    = $this->type;
+								$subtype_self = $this->subtype;
+								
 								$this->owner_guid = $guid;
 								$this->type       = 'object';
-								$this->save();
+								
+								parent::save();
+								
+								$this->owner_guid = $owner_self;
+								$this->type       = $type_self;
+								$this->subtype    = $subtype_self;
 						}
 						return true;
 				}
@@ -213,10 +222,13 @@ class OssnObject extends OssnEntities {
 		 *
 		 * @return boolean
 		 */
-		public function deleteObject($object) {
+		public function deleteObject($object = '') {
 				self::initAttributes();
 				if(isset($this->guid)) {
 						$object = $this->guid;
+				}
+				if(empty($object)) {
+						return false;
 				}
 				//delete entites of (this) object
 				if($this->deleteByOwnerGuid($object, 'object')) {
@@ -238,15 +250,17 @@ class OssnObject extends OssnEntities {
 		 * Search object by its title, description etc
 		 *
 		 * @param array $params A valid options in format:
-		 * 	  'search_type' => true(default) to performs matching on a per-character basis 
-		 * 					  false for performs matching on exact value.
-		 * 	  'subtype' 	=> Valid object subtype
-		 *	  'type' 		=> Valid object type
-		 *	  'title'		=> Valid object title
+		 * 	  'search_type' 	=> true(default) to performs matching on a per-character basis 
+		 *							false for performs matching on exact value.
+		 * 	  'subtype' 		=> Valid object subtype
+		 *	  'type' 			=> Valid object type
+		 *	  'title'			=> Valid object title
 		 *	  'description'		=> Valid object description
-		 *    'owner_guid'  => A valid owner guid, which results integer value
-		 *    'limit'		=> Result limit default, Default is 20 values
-		 *	  'order_by'    => To show result in sepcific order. There is no default order.
+		 *    'owner_guid'  	=> A valid owner guid, which results integer value
+		 *    'entities_pairs'  => A entities pairs options, must be array		
+		 *    'count'			=> True if you wanted to count search items.		 
+		 *    'limit'			=> Result limit default, Default is 10 values
+		 *	  'order_by'    	=> To show result in sepcific order. Default is Assending
 		 * 
 		 * reutrn array|false;
 		 *
@@ -266,10 +280,13 @@ class OssnObject extends OssnEntities {
 						'order_by' => false,
 						'offset' => input('offset', '', 1),
 						'page_limit' => ossn_call_hook('pagination', 'page_limit', false, 10), //call hook for page limit
-						'count' => false
+						'count' => false,
+						'entities_pairs' => false
 				);
+				
 				$options = array_merge($default, $params);
 				$wheres  = array();
+				$params  = array();
 				
 				//validate offset values
 				if($options['limit'] !== false && $options['limit'] != 0 && $options['page_limit'] != 0) {
@@ -292,10 +309,10 @@ class OssnObject extends OssnEntities {
 				if(!empty($options['subtype'])) {
 						$wheres[] = "o.subtype='{$options['subtype']}'";
 				}
-				if(!empty($params['type'])) {
+				if(!empty($options['type'])) {
 						$wheres[] = "o.type='{$options['type']}'";
 				}
-				if(!empty($params['owner_guid'])) {
+				if(!empty($options['owner_guid'])) {
 						$wheres[] = "o.owner_guid ='{$options['owner_guid']}'";
 				}
 				//check if developer want to search title or description
@@ -314,9 +331,34 @@ class OssnObject extends OssnEntities {
 								$wheres[] = "o.description = '{$options['description']}'";
 						}
 				}
+				if(isset($options['entities_pairs']) && is_array($options['entities_pairs'])) {
+						foreach($options['entities_pairs'] as $key => $pair) {
+								$operand = $pair['operand'];
+								if(empty($operand)) {
+										$operand = '=';
+								}
+								if(!empty($pair['name']) && isset($pair['value']) && !empty($operand)) {
+										if(!empty($pair['value'])) {
+												$pair['value'] = addslashes($pair['value']);
+										}
+										$wheres[] = "e{$key}.type='object'";
+										$wheres[] = "e{$key}.subtype='{$pair['name']}'";
+										if(isset($pair['wheres']) && !empty($pair['wheres'])) {
+												$pair['wheres'] = str_replace('[this].', "emd{$key}.", $pair['wheres']);
+												$wheres[]       = $pair['wheres'];
+										} else {
+												$wheres[] = "emd{$key}.value {$operand} '{$pair['value']}'";
+												
+										}
+										$params['joins'][] = "JOIN ossn_entities as e{$key} ON e{$key}.owner_guid=o.guid";
+										$params['joins'][] = "JOIN ossn_entities_metadata as emd{$key} ON e{$key}.guid=emd{$key}.guid";
+								}
+						}
+				}
+				if(isset($options['wheres']) && !empty($options['wheres'])) {
+						$wheres[] = $options['wheres'];
+				}
 				//prepare search
-				$params = array();
-				
 				$params['from']     = 'ossn_object as o';
 				$params['params']   = array(
 						'o.guid',
@@ -332,8 +374,8 @@ class OssnObject extends OssnEntities {
 				$params['order_by'] = $options['order_by'];
 				$params['limit']    = $options['limit'];
 				
-				if(!$options['order_by']){
-					$params['order_by'] = "o.guid ASC";				
+				if(!$options['order_by']) {
+						$params['order_by'] = "o.guid ASC";
 				}
 				$this->get = $this->select($params, true);
 				
@@ -354,6 +396,36 @@ class OssnObject extends OssnEntities {
 								$objects[]         = $this->getObjectById();
 						}
 						return $objects;
+				}
+				return false;
+		}
+		/**
+		 * A object save function
+		 *
+		 * Note updateObject does same job but its requires extra parements
+		 * updateObject may be removed in v5
+		 *
+		 * @return boolean
+		 */
+		public function save() {
+				if(isset($this->guid) && !empty($this->guid)) {
+						$names  = array(
+								'title',
+								'description',
+								'type',
+								'subtype',
+								'owner_guid'
+						);
+						$values = array(
+								$this->title,
+								$this->description,
+								$this->type,
+								$this->subtype,
+								$this->owner_guid
+						);
+						if($this->updateObject($names, $values, $this->guid)) {
+								return true;
+						}
 				}
 				return false;
 		}

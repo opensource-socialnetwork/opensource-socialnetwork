@@ -133,5 +133,9 @@ Ossn.RegisterStartupFunction(function() {
             	$("#comment-box-"+$guid).focus();
             }
         });
+    	$('body').delegate('.ossn-edit-comment', 'click', function(){
+        	var $dataguid = $(this).attr('data-guid');
+            Ossn.MessageBox('comment/edit/'+$dataguid);
+        });        
     });
 });

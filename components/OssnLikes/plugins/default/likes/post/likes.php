@@ -22,8 +22,8 @@ if (ossn_isLoggedIn()) {
 }
 /* Likes and comments don't show for nonlogged in users */ 
 if ($OssnLikes->CountLikes($object)) { ?>
-    <div class="like_share">
-        <div class="ossn-like-icon"></div>
+    <div class="like-share">
+       <i class="fa fa-thumbs-up"></i>
         <?php if ($user_liked == true && $count == 1) { ?>
             <?php echo ossn_print("ossn:liked:you"); ?>
         <?php

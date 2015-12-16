@@ -291,7 +291,7 @@ input[type=text]:focus, textarea:focus {
 }
 
 .logo-installation {
-    background: url('./../../themes/default/images/logo_admin.jpg') no-repeat;
+    background: url('./logo_admin.jpg') no-repeat;
     height: 57px;
     width: 187px;
 }
