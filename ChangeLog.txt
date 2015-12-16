@@ -1,3 +1,210 @@
+OSSN - OPEN SOURCE SOCIAL NETWORK 3.9
+
+Bugfixes:
+
+* View all comments link missing on direct photo view #591
+* Poster image display problem with profile pics < 32 x 32 #595
+* Deleting the current profile pic/cover doesn't update cache #590 [Fixed for profile pictrued, in progress with cover photo]
+* Show latest comments instead of oldest comments #603
+* Post owner can not delete others comments #607
+* Make 'notifications/all' page work again #610
+
+General:
+
+* Refactoring the ossn_view_widget function
+
+Developers:
+
+* Arsalan Shah	[TEAM LEADER]	- https://www.opensource-socialnetwork.org/u/arsalanshah
+* Zet Man 	[CORE TEAM] 	- https://www.opensource-socialnetwork.org/u/zetman
+* Eric F. 	[CORE TEAM] 	- https://www.opensource-socialnetwork.org/u/ctlui
+
+
+OSSN - OPEN SOURCE SOCIAL NETWORK 3.8
+
+Bugfixes:
+
+* Don't load notification and chat boot api when user is not loggedin.
+* Disallow version check request to non-loggedin users #565
+* Wall, tag a friend , GUID issue #566
+* Hardcoded paths in theme's css #563
+* Problem with group comments showing up via notification link #559
+* Change profile icon urls #537
+* Fix typo in link href javascript #536
+* Problem of characters lenght on the instant messenger #520
+* Admin Dashboard users graphic appear in January #557
+* OssnWall friends settings,  didn't shows pagination #555
+* ossn_get_userdata($this->dir) results in wrong path #582
+* OssnChat css fixes typo #583
+* Tag post with a friend, doesn't show in friend's notification #589
+
+General:
+ * Move notification topbar to plugin views.
+ * Remove direct call to external component class.
+ * Remove invalid old files form ossnblack theme.
+ * All the menus are now sorted to alphabetically.
+ 
+Enhancements: 
+ * Add a tagging friend option to users wall #567
+ * Add topbar static menu to dynamic #541
+ 
+OSSN - OPEN SOURCE SOCIAL NETWORK 3.7 Minor fix
+
+Bugfixes:
+
+* Unable to delete user.
+* Update non-object iconURL() on OssnLikes/ossn_com.php 156
+
+OSSN - OPEN SOURCE SOCIAL NETWORK 3.6
+
+Bugfixes:
+
+* Message Inbox section - layout error #542
+* Poke translation issue #543
+* Css(class): ossn-profile-wall shouldn't have fixed hight #545
+* Profile edit form shows wrong default language #546
+* Change uppercase admin tobbar right menu.
+* There is issue in chat window layout firefox #548
+* Add limit and page_limit false while deleting annotations by owner guid.
+* XSS Security fix, with OssnPagination class, thanks to Curesec.com
+* Delete component settings upon its deletion #538
+* Fix typo in link href javascript #536
+
+
+OSSN - OPEN SOURCE SOCIAL NETWORK 3.4-3.5
+
+Bugfixes:
+
+* Hook for changing plugin type isn't working.
+* One uneeded redirection when login #516
+* Remove chart legend code form chart.min.js #517
+* Photos limit issue, only 10 displays #523
+* Youtube https in ossnembed.lib.php #519
+* Translation for gender in dashboard users & users online #511
+* Remove a duplicate callback from groups initialize function.
+* Profile/cover like or comment notification view redirect to 404 page.
+* Comment menu shows 0, 1 instead of delete
+
+
+Enhancement:
+
+* Added new hook 'plugin, view:type'.
+* Remove hook 'plugins, type'.
+* Move system/default to system/plugins/default
+* Open link in new tab #518
+* Default order for entities , objects, annotations must be by their primary id.
+* Delete users messages if user is deleted #522
+* Add a wall 'postextra' menu.
+* When click on comment link focus on comment box.
+* Add a new function in menu library.
+
+OSSN - OPEN SOURCE SOCIAL NETWORK 3.3
+
+Bugfixes:
+
+* When installing components it show success for lower version #510
+* Fresh installation of v3.2 still shows old version, v3.0, Reported by Softaculous Team.
+* Improve component installer language strings.
+
+
+OSSN - OPEN SOURCE SOCIAL NETWORK 3.2
+
+Bugfixes:
+
+* Ossn v3.0 components versions compatibility issue on v3.x
+* Fix typo in language strings.
+
+Thanks to David Orwig for reporting issues https://www.opensource-socialnetwork.org/u/David111567
+
+OSSN - OPEN SOURCE SOCIAL NETWORK 3.1
+
+Bugfixes:
+
+* Site pages didn't updating pages #482
+* Privacy option is empty #481
+* Fix old views paths to new plugin paths #483
+* Ossn notification 'mark as read' missing translation #484
+* Security fix : if user is deleted logout from his session.
+* Can't install v3 on host having port #485
+* Blank post when have a tabulation in text #494
+* HTTP external css in themes with HTTPS site #495
+* Home link in main site and admin top bar #499
+* Security fix: FollowSymlinks does not protect against malicious links into other domain's directories, 
+  use +SymLinksIfOwnerMatch. (reported by https://github.com/hazyapps)  #507 
+* View all comments shows 10 comments only.
+
+OSSN - OPEN SOURCE SOCIAL NETWORK 3.01
+
+Bugfixes:
+
+* Exception 'OssnDatabaseException' with message 'Column 'id' in order clause is ambiguous
+
+OSSN - OPEN SOURCE SOCIAL NETWORK 3.0
+
+Changes from 3.0 development till stable version:
+
+Bugfixes:
+
+ * Can not delete profile cover #427.
+ * Don't listup all users if search query is empty.
+ * Mod_rewrite issue, generate a .htaccess file before installation #432.
+ * Redirect website to absolute url, no more ajax errors #458
+ * Flush cache didn't flush the plugins path #460.
+ * Show a confirmation message before delete component #444.
+ * Ossn system messages css issue on front end #443.
+ * Show a loading icon on registration submit #464.
+ * During registration even if gender is selected its marked unselected #465.
+ * Cancel friendship' button colliding with user name #279.
+ * Ossnblack theme can't read registration message #304.
+ * PHP Fatal error:  Call to a member function isOnline() on a non-object classes/OssnChat.php on line 146.
+ * PHP WARNING: "Division by zero" in file OssnObject.php (line 276).
+ * Component installer problems with certain zip - archives #420.
+ * Chat linefeed problem #278.
+ * Notifications for group comments #435.
+ * There is no need to add notification if no hook is present.
+ * Unwanted refresh in message window #416.
+ * [OSSN 3.x] OssnEmbed in settings #466.
+ * CSS: Pagination with more than 10 users #468.
+ * Ossnblack theme white page issue #469.
+ * [OSSN 3.x] Bug double post if 1 or 2 white line after the text in a post #471.
+ * Add compressed version of jquery.
+ * Remove JS files that was part of BuddyexpressDesk repository.
+
+Additions:
+	
+ * Implementd plugins for components.
+ * Browser css cache issue.
+ * Store profile image in computer cache.
+ * Store profile cover in computer cache.
+ * Store photos on wall into cache.
+ * Store group cover into cache.
+ * Get object that are requried only (offset).
+ * Get entities that are required only (offset).
+ * Get annotation that are required only (offset).
+ * Allow users to login with email also.
+ * Allow admins to search unvalidated users.
+ * New backend theme.
+ * Add time_created in users table.
+ * We need to accept values in array() in setComSETTINGS #434.
+ * Feature request: multilanguage themes #281.
+ * New js function Ossn.trigger_message.
+ * Make actions valid for xhr, there is no need to use json_encode for simple actions.
+ * 3 state logic for notifications #202.
+ * Ossn Wall ajax post.
+ * Allow duplicate group names? #112.
+ * Match file during upload #402.
+ * Only show stable_version in available updates.
+ * Show a loading icon before send message.
+ * Move 'Send' button 10px top bottom
+ * Addition of PHP ZipArchive and allow_url_fopen check during installation.
+ * New non-core component: https://github.com/opensource-socialnetwork/SMTP
+ * Lift a installation limitation for php 5.6.
+ * Allow users to change their default language.
+ * Allow group owner to delete group.
+ * Add 'Are you sure?' exception in js.core
+ * Move pages to system/plugins/default
+
+
 OSSN - OPEN SOURCE SOCIAL NETWORK 2.3
 Bugfixes:
  * Add missing update files in processed updated for fresh instalaltion.
