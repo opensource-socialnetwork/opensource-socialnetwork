@@ -1,4 +1,4 @@
-Open Source Social Network [3.x] 
+Open Source Social Network [4.0] 
 ======================================
 
 Opensource-Socialnetwork (OSSN) is a social networking software written in PHP. It allows you to make a social networking website and helps your members build social relationships, with people who share similar professional or personal interests.
@@ -41,6 +41,9 @@ Front-End Features
 * Site Search
 * Reset Password
 * Newsfeed page
+* Post Edit
+* Comment Edit
+* Mobile Friendly [v4 Theme]
 
 Backend Features
 =================
@@ -61,7 +64,7 @@ Backend Features
 
 Prerequisite
 =============
-* PHP 5.4, 5.5, 5.6
+* PHP 5.4 OR >
 * MYSQL 5 OR >
 * APACHE
 * MOD_REWRITE
@@ -74,7 +77,7 @@ Prerequisite
 
 Installation
 ============
-http://docs.opensource-socialnetwork.org/index.php/How_To_Install_Open_Source_Social_Network
+https://www.opensource-socialnetwork.org/wiki/view/706/how-to-install-open-source-social-network
 
 DEMO
 ====
@@ -82,7 +85,7 @@ https://www.opensource-socialnetwork.org/demo/
 
 UPGRADE
 ========
-http://docs.opensource-socialnetwork.org/index.php/How_To_Upgrade_Ossn
+https://www.opensource-socialnetwork.org/wiki/view/708/how-to-upgrade-ossn
 
-Having problem? Contact us www.informatikon.com/contact/support
 Copyright 2014-2015 Informatikon Technologies (informatikon.com)
+Copyright 2015 SOFTLAB24 (https://www.softlab24.com/)
