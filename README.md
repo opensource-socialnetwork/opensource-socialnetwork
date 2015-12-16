@@ -43,7 +43,7 @@ Front-End Features
 * Newsfeed page
 * Post Edit
 * Comment Edit
-* Mobile Friendly [v4 Theme]
+* Mobile Friendly
 
 Backend Features
 =================
@@ -87,5 +87,7 @@ UPGRADE
 ========
 https://www.opensource-socialnetwork.org/wiki/view/708/how-to-upgrade-ossn
 
+
 Copyright 2014-2015 Informatikon Technologies (informatikon.com)
+
 Copyright 2015 SOFTLAB24 (https://www.softlab24.com/)
