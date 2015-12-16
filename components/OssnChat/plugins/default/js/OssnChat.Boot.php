@@ -65,20 +65,24 @@ if($active_sessions) {
 				);
 		}
 }
-foreach($new_messages as $item) {
+if($new_messages){
+	foreach($new_messages as $item) {
 		$messages_items[$item['fid']][] = array(
 				'id' => $item['id'],
 				'fid' => $item['fid'],
 				'message' => $item['message'],
 				'total' => $item['total']
 		);
+	}
 }
-foreach($messages_items as $key => $mitem) {
+if($messages_items){
+	foreach($messages_items as $key => $mitem) {
 		$messages_combined[] = array(
 				'message' => $mitem,
 				'total' => $mitem[0]['total'],
 				'fid' => $key
 		);
+	}
 }
 $api = json_encode(array(
 		'active_friends' => $construct_active,
