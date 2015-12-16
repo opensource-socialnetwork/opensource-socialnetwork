@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<theme xmlns="http://www.opensource-socialnetwork.org/theme/v/3.0">
+    <name>GoBlue</name>
+    <author>Core Team</author>
+    <author_url>http://www.informatikon.com/</author_url>	
+    <description>A responsive theme for Ossn.</description>
+    <license>GNU General Public License, version 2</license>    
+	<license_url>http://www.opensource-socialnetwork.org/licence</license_url>
+    <version>3.0</version>
+	<requires>
+		<type>ossn_version</type>
+		<version>4.0</version>
+	</requires>
+</theme>
