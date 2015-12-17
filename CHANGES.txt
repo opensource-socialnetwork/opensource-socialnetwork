@@ -6,6 +6,10 @@ BUGFIXES:
 * Fix creating default object from empty value for user object
 * Theme(Oinitial) still marked to require 3.0 in xml #DEV-36
 
+Enhancements:
+
+* After album delete redirect user to referred page. 
+
 OSSN - OPEN SOURCE SOCIAL NETWORK 4.0b
 
 Bugfixes:
