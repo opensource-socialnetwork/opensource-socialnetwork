@@ -380,7 +380,10 @@ function ossnwall_json_unencaped_unicode($matches) {
  * @return mixed data
  * @access private
  */
-function ossn_wall_view_template(array $params) {
+function ossn_wall_view_template(array $params = array()) {
+		if(!is_array($params)){
+			return false;
+		}
 		$type = $params['post']->type;
 		if(isset($params['post']->item_type)) {
 				$type = $params['post']->item_type;
