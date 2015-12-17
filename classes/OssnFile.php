@@ -256,12 +256,13 @@ class OssnFile extends OssnEntities {
 		 * @param string  $object->type Owner type
 		 * @param string  $object->subtype file type
 		 *
+		 * @note will be removed in v5. use getFile() instead
+		 *
 		 * @return object
 		 */
 		public function fetchFile() {
-				$this->entity_guid = $this->file_id;
-				$file              = $this->get_entity();
-				return $file;
+				$this->guid = $this->file_id;
+				return $this->getFile();
 		}
 		/**
 		 * Set required file extension

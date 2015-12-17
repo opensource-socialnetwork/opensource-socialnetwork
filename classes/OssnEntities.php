@@ -121,7 +121,7 @@ class OssnEntities extends OssnDatabase {
 		 */
 		public function get_entity() {
 				self::initAttributes();
-				if(empty($this->guid)){
+				if(empty($this->entity_guid)){
 					return false;
 				}
 				$params           = array();
