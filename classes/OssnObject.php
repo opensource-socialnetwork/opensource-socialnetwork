@@ -9,12 +9,14 @@
  * @link      http://www.opensource-socialnetwork.org/licence
  */
 class OssnObject extends OssnEntities {
-		
 		/**
 		 * Initialize the objects.
 		 *
 		 * @return void
 		 */
+		public function __construct() {
+				$this->data = new stdClass;
+		}
 		public function initAttributes() {
 				$this->time_created = time();
 				if(empty($this->subtype)) {
@@ -25,10 +27,7 @@ class OssnObject extends OssnEntities {
 				}
 		}
 		
-		/**
-		 * Create objects
-		 *
-		 * requires $object->(owner_guid, type, subtype, title, description)
+		/** requires $object->(owner_guid, type, subtype, title, description)
 		 *
 		 * @return boolean
 		 */
