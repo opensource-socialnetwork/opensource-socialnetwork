@@ -176,6 +176,7 @@ class OssnUser extends OssnEntities {
 				$entities         = $this->get_entities();
 				if(empty($entities)) {
 						$metadata = arrayObject($user, get_class($this));
+						$metadata->data = new stdClass;
 						return ossn_call_hook('user', 'get', false, $metadata);
 				}
 				foreach($entities as $entity) {
@@ -183,6 +184,7 @@ class OssnUser extends OssnEntities {
 				}
 				$data     = array_merge(get_object_vars($user), $fields);
 				$metadata = arrayObject($data, get_class($this));
+				$metadata->data = new stdClass;
 				return ossn_call_hook('user', 'get', false, $metadata);
 		}
 		
