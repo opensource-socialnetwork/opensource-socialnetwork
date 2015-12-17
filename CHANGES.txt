@@ -4,6 +4,7 @@ BUGFIXES:
 
 * Getting entity is failed #DEV-33
 * Fix creating default object from empty value for user object
+* Theme(Oinitial) still marked to require 3.0 in xml #DEV-36
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 4.0b
 
