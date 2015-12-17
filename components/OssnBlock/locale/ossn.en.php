@@ -13,5 +13,7 @@ $en = array(
     'user:block:error' => 'Cannot block user! Please try again later.',
     'user:block' => 'Block',
     'user:unblock' => 'Unblock',
+    'user:unblocked' => 'User has been unblocked',
+    'user:unblock:error' => 'Can not unblock user',
 );
 ossn_register_languages('en', $en); 
