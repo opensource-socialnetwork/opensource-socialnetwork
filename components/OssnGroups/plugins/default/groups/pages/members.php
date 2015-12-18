@@ -29,7 +29,7 @@ if ($members) {
         	   		</div>
                     <div class="right request-controls">
 	                    <?php
-							if ($user->guid !== $params['group']->owner_guid && $params['group']->isMember($params['group']->guid, $user->guid)) {
+							if (ossn_loggedin_user()->guid == $params['group']->owner_guid && $user->guid !== $params['group']->owner_guid && $params['group']->isMember($params['group']->guid, $user->guid)) {
 									echo ossn_plugin_view('output/url', array(
 										'text' => ossn_print('group:memb:remove'),
 										'href' =>  ossn_site_url("action/group/member/decline?group={$params['group']->guid}&user={$user->guid}", true),
