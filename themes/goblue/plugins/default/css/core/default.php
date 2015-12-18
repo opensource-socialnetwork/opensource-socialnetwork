@@ -1750,6 +1750,7 @@ footer .ossn-footer-menu a:last-child::after {
     .ossn-profile .top-container .profile-cover img {
         width: auto;
     }
+    .ossn-group-cover-button,
     .profile-cover-controls {
         display: none;
     }
