@@ -923,8 +923,6 @@ p {
 }
 .notification-friends {
     max-height: 400px;
-    overflow: hidden;
-    overflow-y: scroll;
 }
 /*******************************
 	Profile
@@ -1001,6 +999,11 @@ p {
     margin-left: 211px;
     position: absolute;
     text-shadow: 0 0 3px #000;
+    /** overlapping issue with longer names on profile page #630 **/
+    max-width: 450px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;RG   
 }
 .ossn-profile-role {
     font-size: 25px !important;
@@ -1406,6 +1409,23 @@ div.token-input-dropdown ul li.token-input-selected-dropdown-item {
     font-size: 13px;
     margin-right: 13px;
 }
+/*******************************
+	Ossn Blocked
+*********************************/
+.ossn-blocked i {
+    font-size: 100px;
+}
+.ossn-blocked {
+	text-align: center;
+    padding: 100px;
+}
+.ossn-blocked div {
+    font-size: 50px;
+    font-weight: bold;
+}
+.ossn-blocked p {
+    font-size: 16px;
+}
 /********************************
 	Loading Icon
     @source: https://github.com/jlong/css-spinners
@@ -1714,6 +1734,7 @@ footer .ossn-footer-menu a:last-child::after {
         font-size: 16px;
         margin-left: 135px;
         margin-top: -100px;
+        width: 140px;
     }
     .ossn-profile .top-container .profile-cover {
         height: 188px;
