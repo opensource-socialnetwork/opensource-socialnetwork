@@ -812,5 +812,18 @@ function ossn_dump($params = '', $clean = true){
 	}
 	return false;
 }
+/**
+ * Ossn validate offset
+ *
+ * @return void
+ */
+function ossn_offset_validate(){
+	//pagination offset should be better protected #627
+	$offset = input('offset');
+	if(!is_numeric($offset)){
+		unset($_REQUEST['offset']);
+	}
+}
 ossn_errros();
+ossn_register_callback('ossn', 'init', 'ossn_offset_validate');
 ossn_register_callback('ossn', 'init', 'ossn_system');
