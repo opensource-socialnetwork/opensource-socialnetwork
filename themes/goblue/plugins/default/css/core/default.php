@@ -1939,6 +1939,10 @@ footer .ossn-footer-menu a:last-child::after {
 	.dropdown-menu {
     	margin-left: -110px;
     }    
+    .ossn-photo-viewer .image-block img,
+    .ossn-photo-viewer {
+        width: 100% !important;
+    }    
     /***********************
     	Comments
      ***********************/
