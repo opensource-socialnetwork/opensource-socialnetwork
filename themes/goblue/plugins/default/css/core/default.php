@@ -1752,7 +1752,7 @@ footer .ossn-footer-menu a:last-child::after {
     }
     .ossn-group-cover-button,
     .profile-cover-controls {
-        display: none;
+        display: none !important;
     }
     .upload-photo {
         width: 100px;
