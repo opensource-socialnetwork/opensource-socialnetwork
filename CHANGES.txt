@@ -6,6 +6,17 @@ BUGFIXES:
 * Fix creating default object from empty value for user object
 * Theme(Oinitial) still marked to require 3.0 in xml #DEV-36
 * Fix language stings when for unblocking user.
+* Hide notification box when we open topbar dropwn menu #617
+* Hide groups cover buttons on mobile.
+* Reposition/Change Cover buttons on top of notification #622
+* Admin profiles should be unblockable by 'normal' members #625
+* Delete groups.php.rej
+* Need to clear file path after uploading the file #626
+* Pagination offset should be better protected #627
+* Loosing typed in data when clicking Terms and Conditions link #620
+* Overlapping issue with longer names on profile page #630
+* Unused pagebar skeleton when ads are disabled #628
+* Pictures in single view are drifting rightwards out of place #629
 
 Enhancements:
 
