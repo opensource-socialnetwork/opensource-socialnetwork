@@ -141,6 +141,7 @@
     position: relative;
     max-height: 245px;
     width: 100%;
+    opacity:  .99;
 }
 .ossn-group-profile .profile-header .header-bottom {
     background: #fff;
