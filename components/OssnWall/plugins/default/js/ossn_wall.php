@@ -109,6 +109,11 @@ Ossn.RegisterStartupFunction(function() {
                 if (callback['error']) {
                     Ossn.trigger_message(callback['error'], 'error');
                 }
+                
+                //need to clear file path after uploading the file #626
+                var $file = $("#ossn-wall-form").find("input[type='file']");
+                $file.replaceWith($file.val('').clone(true));
+                
                 $('#ossn-wall-form').find('input[type=submit]').show();
                 $('#ossn-wall-form').find('.ossn-loading').addClass('ossn-hidden');
                 $('#ossn-wall-form').find('textarea').val("");
