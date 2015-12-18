@@ -31,10 +31,7 @@
         <div class="coloum-right">
             <div style="padding:12px;min-height:300px;">
                 <?php
-                if (com_is_active('OssnAds')) {
-                    echo ossn_plugin_view('ads/page/view');
-                }
-         	if (ossn_is_hook('newsfeed', "sidebar:right")) {
+         		if (ossn_is_hook('newsfeed', "sidebar:right")) {
             	        $newsfeed_right = ossn_call_hook('newsfeed', "sidebar:right", NULL, array());
                 	echo implode('', $newsfeed_right);
             	}	                
