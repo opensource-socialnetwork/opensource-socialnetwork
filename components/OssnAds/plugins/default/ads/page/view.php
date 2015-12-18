@@ -10,11 +10,8 @@
  */
 $ads = new OssnAds;
 $ads = $ads->getAds();
-
-?>
-<div class="ossn-ads">
-    <?php
-    if ($ads) {
+if ($ads) {
+		echo '<div class="ossn-ads">';
         foreach ($ads as $ad) {
           	$items[] = ossn_plugin_view('ads/item', array(
 											'item' => $ad, 
@@ -23,8 +20,8 @@ $ads = $ads->getAds();
 		echo ossn_plugin_view('widget/view', array(
 					'title' => ossn_print('sponsored'),
 					'contents' => implode('', $items),
-		));		
+		));	
+		echo '</div>';
     }
-    ?>
-</div>       
+    ?>   
        
