@@ -33,7 +33,7 @@ if($count) { ?>
             if ($count > 1) {
                 $total = 'people';
             }
-            $link['onclick'] = "Ossn.ViewLikes({$object});";
+            $link['onclick'] = "Ossn.ViewLikes({$object}, 'entity');";
             $link['href'] = '#';
             $link['text'] = ossn_print("ossn:like:{$total}", array($count));
             $link = ossn_plugin_view('output/url', $link);
@@ -43,7 +43,7 @@ if($count) { ?>
             if ($count > 1) {
                 $total = 'people';
             }
-            $link['onclick'] = "Ossn.ViewLikes({$object});";
+            $link['onclick'] = "Ossn.ViewLikes({$object}, 'entity');";
             $link['href'] = '#';
             $link['text'] = ossn_print("ossn:like:{$total}", array($count));
             $link = ossn_plugin_view('output/url', $link);
