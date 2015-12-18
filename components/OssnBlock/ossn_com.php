@@ -67,7 +67,7 @@ function ossn_user_block($name, $type, $return, $params) {
     if ($params['handler'] == 'u') {
         $user = ossn_user_by_username($params['page'][0]);
         if (OssnBlock::UserBlockCheck($user)) {
-            ossn_error_page();
+            ossn_block_page();
         }
     }
     /*
@@ -76,7 +76,7 @@ function ossn_user_block($name, $type, $return, $params) {
     if ($params['handler'] == 'messages' && isset($params['page'][1])) {
         $user = ossn_user_by_username($params['page'][1]);
         if ($user && OssnBlock::UserBlockCheck($user)) {
-            ossn_error_page();
+            ossn_block_page();
         }
     }
     /*
@@ -87,7 +87,7 @@ function ossn_user_block($name, $type, $return, $params) {
         $post = $post->GetPost($params['page'][1]);
         $user = ossn_user_by_guid($post->owner_guid);
         if (OssnBlock::UserBlockCheck($user)) {
-            ossn_error_page();
+            ossn_block_page();
         }
     }
     /*
@@ -104,9 +104,26 @@ function ossn_user_block($name, $type, $return, $params) {
             $user = ossn_user_by_guid($album->album->owner_guid);
         }
         if (isset($user) && OssnBlock::UserBlockCheck($user)) {
-            ossn_error_page();
+            ossn_block_page();
         }
     }
 }
-
+/**
+ * Ossn block page
+ *
+ * @return void
+ */
+function ossn_block_page(){
+	if(ossn_is_xhr()){
+		header("HTTP/1.0 404 Not Found");
+	} else {
+	    $title = ossn_print('ossn:blocked:error');
+    	$contents['content'] = ossn_plugin_view('block/error');
+    	$contents['background'] = false;
+    	$content = ossn_set_page_layout('contents', $contents);
+    	$data = ossn_view_page($title, $content);
+    	echo $data;
+	}
+   exit;
+}
 ossn_register_callback('ossn', 'init', 'ossn_block');

@@ -15,5 +15,7 @@ $en = array(
     'user:unblock' => 'Unblock',
     'user:unblocked' => 'User has been unblocked',
     'user:unblock:error' => 'Can not unblock user',
+    'ossn:blocked:error' => 'Blocked',
+    'ossn:blocked:error:note' => 'You can not view this page because you have been blocked by the user.',
 );
 ossn_register_languages('en', $en); 
