@@ -238,6 +238,9 @@ Ossn.NotificationsCheck = function() {
 };
 Ossn.RegisterStartupFunction(function() {
     $(document).ready(function() {
+    		$('.ossn-topbar-dropdown-menu').click(function(){
+                    Ossn.NotificationBoxClose();
+        	});
 		$(document).on('click','.ossn-notification-mark-read', function(e){
 				e.preventDefault();
    				Ossn.PostRequest({
