@@ -41,7 +41,8 @@
 .ossn-photo-viewer {
     text-align: center;
     background: #F6F6F6;
-    width: 736px;
+    /** pictures in single view are drifting rightwards out of place #629 **/
+    width: 100%;
 }
 .ossn-viewer-comments {
     margin-top: 25px;
