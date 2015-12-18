@@ -8,6 +8,13 @@
  * @license   General Public Licence http://www.opensource-socialnetwork.org/licence
  * @link      http://www.opensource-socialnetwork.org/licence
  */
+
+//unused pagebar skeleton when ads are disabled #628 
+if(ossn_is_hook('newsfeed', "sidebar:right")) {
+	$newsfeed_right = ossn_call_hook('newsfeed', "sidebar:right", NULL, array());
+	$sidebar = implode('', $newsfeed_right);
+	$isempty = trim($sidebar);
+} 
 ?>
 <div class="container">
 	<div class="row">
@@ -29,17 +36,13 @@
 				</div>
 			</div>
 			<div class="col-md-3">
+            	<?php if(!empty($isempty)){ ?>
 				<div class="newsfeed-right">
 					<?php
-						if(com_is_active('OssnAds')){
-							echo ossn_plugin_view('ads/page/view');
-						}
-						if(ossn_is_hook('newsfeed', "sidebar:right")) {
-								$newsfeed_right = ossn_call_hook('newsfeed', "sidebar:right", NULL, array());
-								echo implode('', $newsfeed_right);
-						}
+						echo $sidebar;
 						?>                            
 				</div>
+                <?php } ?>
 			</div>
 		</div>
 	</div>

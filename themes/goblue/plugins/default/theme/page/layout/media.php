@@ -8,6 +8,12 @@
  * @license   General Public Licence http://www.opensource-socialnetwork.org/licence
  * @link      http://www.opensource-socialnetwork.org/licence
  */
+
+//unused pagebar skeleton when ads are disabled #628  
+ if(com_is_active('OssnAds')){
+	 $ads = ossn_plugin_view('ads/page/view');
+ 	 $ads = trim($ads);
+ }
 ?>
 <div class="container">
 	<div class="row">
@@ -20,13 +26,13 @@
 					</div>
 				</div>
 				<div class="col-md-3">
+                 <?php if(!empty($ads)){ ?>
 					<div class="page-sidebar">
 						<?php
-							if (com_is_active('OssnAds')) {
-							  		echo ossn_plugin_view('ads/page/view');
-							}
+								echo $ads;
 							?>
 					</div>
+                    <?php } ?>
 				</div>
 			</div>
 		</div>
