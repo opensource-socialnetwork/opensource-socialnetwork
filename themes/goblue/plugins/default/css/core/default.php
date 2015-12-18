@@ -1003,7 +1003,7 @@ p {
     max-width: 450px;
     white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis;RG   
+    text-overflow: ellipsis;  
 }
 .ossn-profile-role {
     font-size: 25px !important;
