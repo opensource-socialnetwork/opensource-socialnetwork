@@ -10,6 +10,8 @@
  */
 echo '<div class="ossn-photos">';
 $albums = new OssnAlbums;
+$profile = new OssnProfile;
+
 $photos = $albums->GetAlbums($params['user']->guid);
 
 $albums->count = true;
@@ -18,7 +20,7 @@ $profiel_photo = $params['user']->iconURL()->larger;
 $pphotos_album = ossn_site_url("album/profile/{$params['user']->guid}");
 
 $profile_covers_url = ossn_site_url("album/covers/profile/{$params['user']->guid}");
-$profile_cover = ossn_site_url("cover/{$params['user']->username}/1");
+$profile_cover = $profile->getCoverURL($params['user']);
 //show profile pictures album
 echo "<li>
 	<a href='{$pphotos_album}'><img src='{$profiel_photo}' class='pthumb' />
