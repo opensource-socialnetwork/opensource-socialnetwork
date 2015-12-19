@@ -178,12 +178,12 @@ class OssnProfile extends OssnDatabase {
 	 */
 	public function getCoverURL($user = ''){
 		if(!empty($user) && $user instanceof OssnUser){
-			if(!isset($user->icon_time) && empty($user->icon_time)){
-				$user->icon_time = time();
-				$user->data->icon_time = $user->icon_time;
+			if(!isset($user->cover_time) && empty($user->cover_time)){
+				$user->cover_time = time();
+				$user->data->cover_time = $user->cover_time;
 				$user->save();
 			}
-			return ossn_site_url("cover/{$user->username}/".md5($user->icon_time).'.jpg');
+			return ossn_site_url("cover/{$user->username}/".md5($user->cover_time).'.jpg');
 		}
 		return false;
 	}
