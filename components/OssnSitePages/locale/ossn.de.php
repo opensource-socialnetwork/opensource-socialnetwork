@@ -11,7 +11,7 @@
 $de = array(
     'ossnsitepages' => 'Seiten-Verwaltung',
     'site:privacy' => 'Datenschutz',
-    'site:about' => 'Über uns',
+    'site:about' => 'Über&nbsp;uns',
     'site:terms' => 'AGB',
 
     'page:saved' => 'Die Seiten-Änderung wurde gespeichert',
