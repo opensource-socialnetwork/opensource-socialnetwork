@@ -289,7 +289,7 @@ p {
     margin-top: 15px;
 }
 .ossn-wall-item .post-contents img {
-    max-width: 100%;
+    width: 100%;
     border: 1px solid #EAE8E8;
 }
 .ossn-wall-item .meta .post-menu {
@@ -1972,4 +1972,26 @@ footer .ossn-footer-menu a:last-child::after {
     .sidebar-menu-nav .sidebar-menu .menu-content {
         display: block;
     }    
+}
+
+@media only screen and (max-width: 1199px) {
+    .comments-list .comments-item .col-md-1,
+    .comments-list .comments-item .comment-user-img {
+        display: none;
+    }
+     .comments-list .comments-item .col-md-11 {
+    		width: 100%;
+	 }
+    .comments-item .col-md-11 {
+        padding-left: 15px;
+    }
+    .group-search-details {
+    	margin-left: 10px;
+    }
+    .ossn-search-page .ossn-users-list-item .uinfo {
+    	margin-left: 35px;    
+    }
+    .ossn-users-list-item .users-list-controls {
+    	margin-bottom:10px;
+    }
 }

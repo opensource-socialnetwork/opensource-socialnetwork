@@ -7,6 +7,9 @@ CHANGES:
 * Notifications crashing if OssnMessages module is disabled #646
 * Make post text and tagged friends inline.
 * Datepicker display glitch on administrator/edituser #637
+* Member name overlapping user icon on viewport < 1200px (on search result list) #642
+* Group(-owner) name overlapping group icon on viewport < 1200px #644
+* Comment field overlapping user icon on viewport < 1200px #640
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 4.0b3
 
