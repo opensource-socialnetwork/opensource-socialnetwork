@@ -280,3 +280,8 @@ footer {
 	margin-left:5px;
     font-weight:bold;
 }
+.ui-datepicker-year,
+.ui-datepicker-month {
+    padding: 0px;
+    display: inline-block;
+}
