@@ -97,7 +97,7 @@ Ossn.RegisterStartupFunction(function() {
 
             beforeSend: function(request) {
                 $('#ossn-wall-form').find('input[type=submit]').hide();
-                $('#ossn-wall-form').find('.ossn-loading').removeClass('ossn-hidden');
+                $('#ossn-wall-form').find('.ossn-loading').removeClass('ossn-hidden');            
             },
             callback: function(callback) {
                 if (callback['success']) {
@@ -114,6 +114,11 @@ Ossn.RegisterStartupFunction(function() {
                 var $file = $("#ossn-wall-form").find("input[type='file']");
                 $file.replaceWith($file.val('').clone(true));
                 
+                //Tagged friend(s) and location should be cleared, too - after posting #641
+                $("#ossn-wall-location-input").val('');
+                $(".token-input-list").find('.token-input-token').remove();
+                $('#ossn-wall-friend-input').val('');
+                                              
                 $('#ossn-wall-form').find('input[type=submit]').show();
                 $('#ossn-wall-form').find('.ossn-loading').addClass('ossn-hidden');
                 $('#ossn-wall-form').find('textarea').val("");
