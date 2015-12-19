@@ -108,7 +108,7 @@ Ossn.RegisterStartupFunction(function() {
                 cache: false,
                 contentType: false,
                 processData: false,
-                beforeSend: function() {
+                beforeSend: function(xhr) {
                     var fileInput = $('#upload-cover').find("input[type=file]")[0],
                         file = fileInput.files && fileInput.files[0];
 
@@ -124,7 +124,7 @@ Ossn.RegisterStartupFunction(function() {
                             window.URL.revokeObjectURL(img.src);
                             if (width < 850 || height < 300) {
                                 Ossn.MessageBox('cover/err1');
-                                return false;
+                                xhr.abort();
                             }
                         };
                     }
