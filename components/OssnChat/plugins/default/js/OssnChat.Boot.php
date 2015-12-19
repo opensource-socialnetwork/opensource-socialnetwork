@@ -152,6 +152,7 @@ if(OssnChat['newmessages']){
 $.each(OssnChat['newmessages'], function(key, data){
             if($('.ossn-chat-base').find('#ftab-i'+data['fid']).length){
                       $totalelement = $('#ftab-i'+data['fid']).find('.ossn-chat-new-message');
+                      $texa = $('#ftab-i'+data['fid']).find('.ossn-chat-new-message').text();
                       if(data['total'] > 0){
                       	    $.each(data['message'], function(ikey, item){
                             	  if($('#ossn-message-item-'+item['id']).length == 0){
@@ -167,7 +168,9 @@ $.each(OssnChat['newmessages'], function(key, data){
                            	   $totalelement.empty();
                                Ossn.ChatMarkViewed(data['fid']);
                            }
-                           Ossn.playSound();
+                           if($texa != data['total']){
+	                           Ossn.playSound();
+                           }
                            Ossn.ChatScrollMove(data['fid']);
                            
                            //chat linefeed problem #278.
