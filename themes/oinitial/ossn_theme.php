@@ -15,7 +15,6 @@ ossn_register_callback('ossn', 'init', 'ossn_default_theme_init');
 function ossn_default_theme_init(){	
 	//add bootstrap
 	ossn_new_css('bootstrap.min', 'css/bootstrap/bootstrap.min.css');
-	ossn_new_css('jquery.ui', 'css/jquery/jquery-ui.css');
 	
 	ossn_new_css('ossn.default', 'css/default');
 	ossn_new_css('ossn.admin.default', 'css/administrator');
@@ -59,5 +58,8 @@ function ossn_three_head(){
 	$head[]  = ossn_html_js(array(
 					'src' => ossn_theme_url(). 'vendors/bootstrap/js/bootstrap.min.js'
 			  ));
+	$head[]  = ossn_html_css(array(
+					'href' => '//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.4/css/jquery-ui.css'
+			  ));	
 	return implode('', $head);
 }

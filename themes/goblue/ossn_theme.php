@@ -15,7 +15,6 @@ ossn_register_callback('ossn', 'init', 'ossn_goblue_theme_init');
 function ossn_goblue_theme_init(){	
 	//add bootstrap
 	ossn_new_css('bootstrap.min', 'css/bootstrap/bootstrap.min.css');
-	ossn_new_css('jquery.ui', 'css/jquery/jquery-ui.css');
 	//ossn_new_js('bootstrap.min', 'js/bootstrap/bootstrap.min.js');
 	
 	ossn_new_css('ossn.default', 'css/core/default');
@@ -24,10 +23,7 @@ function ossn_goblue_theme_init(){
 	//load bootstrap
 	ossn_load_css('bootstrap.min', 'admin');
 	ossn_load_css('bootstrap.min');
-	
-	ossn_load_css('jquery.ui', 'admin');
-	ossn_load_css('jquery.ui');	
-	
+
 	ossn_load_css('ossn.default');
 	ossn_load_css('ossn.admin.default', 'admin');
 	
@@ -47,11 +43,13 @@ function ossn_goblue_head(){
 	$head[]  = ossn_html_js(array(
 					'src' => ossn_theme_url() . 'vendors/bootstrap/js/bootstrap.min.js'
 			  ));
+	$head[]  = ossn_html_css(array(
+					'href' => '//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.4/css/jquery-ui.css'
+			  ));	
 	return implode('', $head);
 }
 function ossn_goblue_admin_head(){
-	$head	 = array();
-	
+	$head	 = array();	
 	$head[]  = ossn_html_css(array(
 					'href' => '//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'
 			  ));	
@@ -60,6 +58,9 @@ function ossn_goblue_admin_head(){
 			  ));		
 	$head[]  = ossn_html_js(array(
 					'src' => ossn_theme_url() . 'vendors/bootstrap/js/bootstrap.min.js'
+			  ));
+	$head[]  = ossn_html_css(array(
+					'href' => '//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.4/css/jquery-ui.css'
 			  ));
 	return implode('', $head);
 }
