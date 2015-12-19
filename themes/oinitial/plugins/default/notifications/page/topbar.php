@@ -8,7 +8,9 @@
  * @license   General Public Licence http://opensource-socialnetwork.com/licence
  * @link      http://www.opensource-socialnetwork.com/licence
  */
-
+if(!class_exists("OssnNotifications")){
+	return;
+}
 //declear empty variables;
 $friends_c = '';
 //init classes
