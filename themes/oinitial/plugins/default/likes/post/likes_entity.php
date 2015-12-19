@@ -10,7 +10,6 @@
  */
 
 $OssnLikes = new OssnLikes;
-$OssnComments = new OssnComments;
 $object = $params['entity_guid'];
 $count = $OssnLikes->CountLikes($object, 'entity');
 $user_liked = '';
