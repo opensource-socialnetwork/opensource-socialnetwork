@@ -115,7 +115,7 @@ Ossn.AddFriend = function($guid) {
         },
         callback: function(callback) {
             if (callback['type'] == 1) {
-                $('#notification-friend-item-' + $guid).attr('style', 'background:#FFF9D7;');
+                $('#notification-friend-item-' + $guid).addClass("ossn-notification-friend-submit");
                 $('#ossn-nfriends-' + $guid).addClass('friends-added-text').html(callback['text']);
             }
             if (callback['type'] == 0) {
@@ -140,7 +140,7 @@ Ossn.removeFriendRequset = function($guid) {
         },
         callback: function(callback) {
             if (callback['type'] == 1) {
-                $('#notification-friend-item-' + $guid).attr('style', 'background:#FFF9D7;');
+                $('#notification-friend-item-' + $guid).addClass("ossn-notification-friend-submit");
                 $('#ossn-nfriends-' + $guid).addClass('friends-added-text').html(callback['text']);
             }
             if (callback['type'] == 0) {

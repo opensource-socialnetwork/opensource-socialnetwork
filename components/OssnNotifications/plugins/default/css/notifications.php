@@ -42,3 +42,6 @@
     display: inline;
     margin-left: 5px;
 }
+.ossn-notification-friend-submit {
+	background:#FFF9D7;
+}
