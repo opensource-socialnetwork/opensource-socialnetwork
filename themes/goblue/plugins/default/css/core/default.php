@@ -387,6 +387,10 @@ p {
 .ossn-wall-item-type {
     display: inline-block;
 }
+.ossn-wall-item p,
+.ossn-wall-item .friends {
+	display:inline-block;
+}
 /*******************************
 	Comments Likes
 ********************************/
