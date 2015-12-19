@@ -10,8 +10,9 @@
  */
 $file             = new OssnFile;
 $user             = ossn_loggedin_user();
+$user             = ossn_user_by_guid($user->guid);
 $file->owner_guid = $user->guid;
-;
+
 $file->type    = 'user';
 $file->subtype = 'profile:cover';
 $file->setFile('coverphoto');

@@ -24,6 +24,6 @@ $en = array(
 		'profile:photos' => 'Profile Photos',
 		
 		'profile:cover:err1' => 'Cover image too small',
-		'profile:cover:err1:detail' => 'Your profile cover should be 800x300 or larger'
+		'profile:cover:err1:detail' => 'The cover picture must be at least 800 x 300 or greater.'
 );
 ossn_register_languages('en', $en);
