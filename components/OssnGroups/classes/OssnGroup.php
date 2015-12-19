@@ -407,16 +407,14 @@ class OssnGroup extends OssnObject {
 						'gif'
 				));
 				$this->OssnFile->setPath('cover/');
+				$files = clone $this->OssnFile;
+				$files = $files->getFiles();
+				if($files){
+						foreach($files as $file) {
+								$file->deleteEntity();
+						}					
+				}
 				if($this->OssnFile->addFile()) {
-						$files = $this->OssnFile->getFiles();
-						unset($files->{0});
-						$count = (array)$files;
-						$count = count($count);
-						if($count > 1) {
-								foreach($files as $file) {
-										$file->deleteEntity();
-								}
-						}
 						$this->ResetCoverPostition($this->OssnFile->owner_guid);
 						return true;
 				}
