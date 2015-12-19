@@ -41,7 +41,7 @@ function ossn_notifications() {
 		ossn_add_hook('notification:add', 'like:entity', 'ossn_notificaiton_comment_entity_hook');
 		//tag post with a friend, doesn't show in friend's notification #589
 		ossn_add_hook('notification:add', 'wall:friends:tag', 'ossn_notificaiton_walltag_hook');
-
+		
 		if(ossn_isLoggedin()) {
 				ossn_extend_view('ossn/js/head', 'notifications/js/autocheck');
 				ossn_register_action('notification/mark/allread', __OSSN_NOTIF__ . 'actions/markread.php');
@@ -147,10 +147,13 @@ function ossn_notification_page($pages) {
 						if(!ossn_isLoggedIn()) {
 								ossn_error_page();
 						}
-						$notification   = new OssnNotifications;
-						$messages       = new OssnMessages;
-						$count_notif    = $notification->countNotification(ossn_loggedin_user()->guid);
-						$count_messages = $messages->countUNREAD(ossn_loggedin_user()->guid);
+						$notification = new OssnNotifications;
+						$count_notif  = $notification->countNotification(ossn_loggedin_user()->guid);
+						//Notifications crashing if OssnMessages module is disabled #646
+						if(class_exists('OssnMessages')) {
+								$messages       = new OssnMessages;
+								$count_messages = $messages->countUNREAD(ossn_loggedin_user()->guid);
+						}
 						if(!$count_notif) {
 								$count_notif = 0;
 						}
@@ -235,10 +238,10 @@ function ossn_notification_walltag($type, $ctype, $params) {
  * @return boolean
  */
 function ossn_notificaiton_walltag_hook($hook, $type, $return, $params) {
-	if(isset($params['notification_owner'])){
-		$params['owner_guid'] = $params['notification_owner'];
-	}
-	return $params;
+		if(isset($params['notification_owner'])) {
+				$params['owner_guid'] = $params['notification_owner'];
+		}
+		return $params;
 }
 /**
  * Delete user notifiactions when user deleted
