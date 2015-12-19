@@ -1673,6 +1673,13 @@ footer .ossn-footer-menu a:last-child::after {
  
 }
 /**************************
+	Photos
+***************************/
+.ossn-photo-viewer .image-block img,
+.ossn-photo-viewer {
+     width: 100% !important;
+}
+/**************************
 	Mobile Layout Settings
 ***************************/
 
@@ -1894,14 +1901,6 @@ footer .ossn-footer-menu a:last-child::after {
     .ossn-messages .message-inner .row {
         margin-left: 0px !important;
     }
-    /***************************
-     	Photos
-     ****************************/
-    
-    .ossn-photo-viewer .image-block img,
-    .ossn-photo-viewer {
-        width: 100% !important;
-    }
     /*************************
      	Home Page
      **************************/
@@ -1938,11 +1937,7 @@ footer .ossn-footer-menu a:last-child::after {
     }
 	.dropdown-menu {
     	margin-left: -110px;
-    }    
-    .ossn-photo-viewer .image-block img,
-    .ossn-photo-viewer {
-        width: 100% !important;
-    }    
+    }     
     /***********************
     	Comments
      ***********************/
