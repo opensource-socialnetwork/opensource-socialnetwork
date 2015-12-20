@@ -529,10 +529,7 @@ class OssnUser extends OssnEntities {
 				}
 				if(isset($options['entities_pairs']) && is_array($options['entities_pairs'])) {
 						foreach($options['entities_pairs'] as $key => $pair) {
-								$operand = $pair['operand'];
-								if(empty($operand)) {
-										$operand = '=';
-								}
+								$operand = (empty($pair['operand'])) ? '=' : $pair['operand'];
 								if(!empty($pair['name']) && isset($pair['value']) && !empty($operand)) {
 										if(!empty($pair['value'])) {
 												$pair['value'] = addslashes($pair['value']);
