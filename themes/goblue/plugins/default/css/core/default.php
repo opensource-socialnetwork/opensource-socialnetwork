@@ -1666,6 +1666,7 @@ footer .ossn-footer-menu a:last-child::after {
 	display:inline-block !important;
     margin-left:2px;
     margin-right:2px;
+    width:initial !important;
 }
 /**************************
 	Embed
