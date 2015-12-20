@@ -26,13 +26,13 @@ class OssnWall extends OssnObject {
 						$access = OSSN_PUBLIC;
 				}
 				$canpost = false;
-				if(!empty($post)){
-					$canpost = true;
+				if(!empty($post)) {
+						$canpost = true;
 				}
-				if(!empty($_FILES['ossn_photo']['tmp_name'])){
-					$canpost = true;
+				if(!empty($_FILES['ossn_photo']['tmp_name'])) {
+						$canpost = true;
 				}
-				if(empty($this->owner_guid)  || empty($this->poster_guid) || $canpost === false) {
+				if(empty($this->owner_guid) || empty($this->poster_guid) || $canpost === false) {
 						return false;
 				}
 				if(isset($this->item_type) && !empty($this->item_type)) {
@@ -83,7 +83,7 @@ class OssnWall extends OssnObject {
 								$this->OssnFile->addFile();
 						}
 						$params['object_guid'] = $this->wallguid;
-						$params['poster_guid']  = $this->poster_guid;
+						$params['poster_guid'] = $this->poster_guid;
 						if(isset($wallpost['friend'])) {
 								$params['friends'] = explode(',', $wallpost['friend']);
 						}
@@ -119,17 +119,17 @@ class OssnWall extends OssnObject {
 		 */
 		public function GetPostByOwner($owner, $type = 'user', $count = false) {
 				self::initAttributes();
-				if(empty($owner) || empty($type)){
-					return false;
+				if(empty($owner) || empty($type)) {
+						return false;
 				}
 				$vars = array(
 						'type' => $type,
 						'subtype' => 'wall',
 						'order_by' => 'o.guid DESC',
 						'owner_guid' => $owner,
-						'count' => $count,
+						'count' => $count
 				);
-				return $this->searchObject($vars);				
+				return $this->searchObject($vars);
 		}
 		
 		/**
@@ -251,54 +251,17 @@ class OssnWall extends OssnObject {
 						$friend_guids[] = $user->guid;
 						$friend_guids   = implode(',', $friend_guids);
 						
-						//prepare default attributes
-						$default  = array(
-								'limit' => false,
-								'offset' => input('offset', '', 1),
-								'page_limit' => ossn_call_hook('pagination', 'page_limit', false, 10), //call hook for page limit
-								'count' => false
+						$default = array(
+								'type' => 'user',
+								'subtype' => 'wall',
+								'entities_pairs' => array(
+										'name' => 'post_guid',
+										'wheres' => "[this].value IN({$friend_guids})"
+								)
 						);
-						$options  = array_merge($default, $params);
-						//get only required result, don't bust your server memory
-						$getlimit = $this->generateLimit($options['limit'], $options['page_limit'], $options['offset']);
-						if($getlimit) {
-								$options['limit'] = $getlimit;
-						}
-						$wheres = array(
-								"md.guid = e.guid",
-								"e.subtype='poster_guid'",
-								"e.type = 'object'",
-								"md.value IN ({$friend_guids})",
-								"o.guid = e.owner_guid"
-						);
-						$vars   = array();
 						
-						$vars['from']     = 'ossn_entities as e, ossn_entities_metadata as md, ossn_object as o';
-						$vars['params']   = array(
-								"o.*"
-						);
-						$vars['wheres']   = array(
-								$this->constructWheres($wheres)
-						);
-						$vars['order_by'] = "o.guid DESC";
-						$vars['limit']    = $options['limit'];
-						
-						//prepare count data;
-						if($options['count'] === true) {
-								unset($vars['params']);
-								unset($vars['limit']);
-								$count           = array();
-								$count['params'] = array(
-										"count(*) as total"
-								);
-								$count           = array_merge($vars, $count);
-								return $this->select($count)->total;
-						}
-						$data = $this->select($vars, true);
-						if($data) {
-								return $data;
-						}
-						
+						$options = array_merge($default, $params);
+						return $this->searchObject($options);
 				}
 				return false;
 		}
