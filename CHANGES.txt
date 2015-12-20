@@ -11,6 +11,8 @@ CHANGES:
 * Group(-owner) name overlapping group icon on viewport < 1200px #644
 * Comment field overlapping user icon on viewport < 1200px #640
 * Latest chat message almost completely hidden #648
+* getFriendsPosts missing access index.
+* Show only a user posts on homepage.
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 4.0b3
 
