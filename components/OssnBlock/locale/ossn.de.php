@@ -9,12 +9,12 @@
  * @link      http://www.opensource-socialnetwork.org/licence
  */
 $de = array(
-    'user:blocked' => 'Der Benutzer wurde geblockt',
-    'user:block:error' => 'Der Benutzer kann nicht geblockt werden - versuche es später nochmal',
-    'user:block' => 'Blocken',
-    'user:unblock' => 'Entblocken',
-    'user:unblocked' => 'User has been unblocked',
-    'user:unblock:error' => 'Can not unblock user',	
+    'user:blocked' => 'Der Benutzer wurde gesperrt',
+    'user:block:error' => 'Der Benutzer kann nicht gesperrt werden - versuche es später nochmal',
+    'user:block' => 'Sperren',
+    'user:unblock' => 'Entsperren',
+    'user:unblocked' => 'Der Benutzer wurde entsperrt',
+    'user:unblock:error' => 'Der Benutzer kann nicht entsperrt werden',	
     'ossn:blocked:error' => 'Blocked',
     'ossn:blocked:error:note' => 'You can not view this page because you have been blocked by the user.',	
 );
