@@ -49,7 +49,7 @@ Ossn.ajaxRequest = function($data) {
 		var befsend = $data['beforeSend'];
 		var action = $data['action'];
 		var containMedia = $data['containMedia'];
-
+		var $xhr = $data['xhr'];
 		if (url == true) {
 			url = $($form_name).attr('action');
 		}
@@ -76,9 +76,13 @@ Ossn.ajaxRequest = function($data) {
 					}
 				};
 			}
+			if (!$xhr) {
+				$xhr = function() {}
+			}
 			var $form = $(this);
 			if (containMedia == true) {
 				$vars = {
+					xhr: $xhr,
 					async: true,
 					cache: false,
 					contentType: false,
@@ -92,6 +96,7 @@ Ossn.ajaxRequest = function($data) {
 				};
 			} else {
 				$vars = {
+					xhr: $xhr,
 					async: true,
 					type: 'post',
 					beforeSend: befsend,
@@ -123,7 +128,7 @@ Ossn.PostRequest = function($data) {
 	var befsend = $data['beforeSend'];
 	var $fdata = $data['params'];
 	var action = $data['action'];
-
+	var $xhr = $data['xhr'];
 	if (!callback) {
 		return false;
 	}
@@ -139,7 +144,11 @@ Ossn.PostRequest = function($data) {
 	if (!error) {
 		error = function() {};
 	}
+	if (!$xhr) {
+		$xhr = function() {}
+	}
 	$.ajax({
+		xhr: $xhr,
 		async: true,
 		type: 'post',
 		beforeSend: befsend,
