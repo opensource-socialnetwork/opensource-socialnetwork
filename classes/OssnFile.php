@@ -301,8 +301,8 @@ class OssnFile extends OssnEntities {
 						if(in_array($this->extension, $this->fileExtension)) {
 								$mimetypes = $this->mimeTypes();
 								if(!empty($this->fileMimeTypes) && is_array($this->fileMimeTypes)) {
-										$mimetypes                   = array();
-										$mimetypes[$this->extension] = $this->fileMimeTypes;
+										$mimetypes = array();
+										$mimetypes = $this->fileMimeTypes;
 								}
 								if(isset($mimetypes[$this->extension]) && in_array($this->file['type'], $mimetypes[$this->extension])) {
 										return true;
