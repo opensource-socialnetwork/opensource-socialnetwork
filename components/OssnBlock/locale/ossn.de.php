@@ -15,7 +15,7 @@ $de = array(
     'user:unblock' => 'Entsperren',
     'user:unblocked' => 'Der Benutzer wurde entsperrt',
     'user:unblock:error' => 'Der Benutzer kann nicht entsperrt werden',	
-    'ossn:blocked:error' => 'Blocked',
-    'ossn:blocked:error:note' => 'You can not view this page because you have been blocked by the user.',	
+    'ossn:blocked:error' => 'Gesperrt',
+    'ossn:blocked:error:note' => 'Du kannst diese Seite nicht sehen, weil dich der Benutzer gesperrt hat.',	
 );
 ossn_register_languages('de', $de); 
