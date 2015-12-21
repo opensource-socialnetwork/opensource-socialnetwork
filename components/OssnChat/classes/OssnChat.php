@@ -127,7 +127,7 @@ class OssnChat extends OssnDatabase {
      * @return string;
      */
     public static function messageTime($time) {
-        $time = date('d/m/Y h:m A', $time);
+        $time = date('d/m/Y h:i A', $time);
         return $time;
     }
 
