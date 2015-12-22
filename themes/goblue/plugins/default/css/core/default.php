@@ -164,6 +164,9 @@ p {
 .ossn-error-page  .fa-exclamation-triangle {
     font-size: 100px;
 }
+.ossn-group-members {
+	margin-right: 5px;
+}
 /*******************************
 	Topbar	
 ********************************/
@@ -651,6 +654,9 @@ p {
         width: 100%;
         margin-bottom: 10px;
     }
+	.ossn-group-members { 
+		height: 75px !important;
+	}    
 }
 /******************************
 	Ossn global css clsses
