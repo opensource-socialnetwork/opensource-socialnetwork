@@ -1934,9 +1934,6 @@ footer .ossn-footer-menu a:last-child::after {
 ****************************************/
 
 @media only screen and (max-width: 992px) {
-    .ossn-group-profile .profile-header {
-        max-height: initial !important;
-    }
     .ossn-group-cover img {
         top: auto !important;
     }
