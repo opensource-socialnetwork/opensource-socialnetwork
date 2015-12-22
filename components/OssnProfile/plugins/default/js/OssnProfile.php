@@ -123,7 +123,7 @@ Ossn.RegisterStartupFunction(function() {
 							window.URL.revokeObjectURL(img.src);
 							if (width < 850 || height < 300) {
 								xhr.abort();
-								Ossn.MessageBox('cover/err1');
+								Ossn.trigger_message(Ossn.Print('profile:cover:err1:detail'), 'error');
 								return false;
 							}
 						};
