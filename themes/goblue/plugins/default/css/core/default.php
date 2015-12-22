@@ -22,6 +22,7 @@ body {
     margin-bottom: 5px;
     outline: none;
     display: block;
+    resize:vertical;
 }
 .ossn-form input[type='submit'] {
 	margin-top:5px;
