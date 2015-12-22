@@ -79,9 +79,17 @@ Ossn.ChatSendForm = function($user) {
     Ossn.ajaxRequest({
         url: Ossn.site_url + "action/ossnchat/send",
         form: '#ossn-chat-send-' + $user,
-
+        
         beforeSend: function(request) {
-            $('#ftab-i' + $user).find('.ossn-chat-message-sending').show();
+             var $input = $('#ossn-chat-send-' + $user).find("input[type='text']");
+            //chat: annoying procedure on pressing just [Enter] without any input #651
+            if(!$.trim($input.val())){
+           		$('#ftab-i' + $user).find('.ossn-chat-message-sending').hide();
+                $('#ftab-i' + $user).find('input[name="message"]').val('');
+                request.abort();
+            } else {
+	            $('#ftab-i' + $user).find('.ossn-chat-message-sending').show();
+             }
         },
         callback: function(callback) {
             if (callback['type'] == 1) {
