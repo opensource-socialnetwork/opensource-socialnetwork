@@ -29,7 +29,10 @@ if($params['ismember'] === 1 || $params['membership'] == OSSN_PUBLIC) {
 if($posts) {
 		foreach($posts as $post) {
 				$vars = ossn_wallpost_to_item($post);
-				echo ossn_wall_view_template($vars);
+				//selecting a CLOSED group like MYSITE/group/123/ gives warning #663
+				if(!empty($vars) && is_array($vars)){ 	
+					echo ossn_wall_view_template($vars);
+				}
 		}
 }
 echo ossn_view_pagination($count);
