@@ -208,7 +208,7 @@ function ossn_embed_youtube_parse_url($url) {
 	parse_str($parts['query'], $vars);
 	$hash = $vars['v'];
 
-	return $domain . 'v/' . $hash;
+	return $domain . 'embed/' . $hash;
 }
 
 /**
