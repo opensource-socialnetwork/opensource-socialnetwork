@@ -7,7 +7,7 @@
 <div class="topbar">
 	<div class="container">
 		<div class="row">
-			<div class="col-md-4 left-side left">
+			<div class="col-md-2 left-side left">
 				<?php if(ossn_isLoggedin()){ ?>
 				<div class="topbar-menu-left">
 					<li id="sidebar-toggle" data-toggle='0'>
@@ -16,10 +16,10 @@
 				</div>
 				<?php } ?>
 			</div>
-			<div class="col-md-4 site-name text-center <?php echo $hide_loggedin;?>">
+			<div class="col-md-7 site-name text-center <?php echo $hide_loggedin;?>">
 				<span><a href="<?php echo ossn_site_url();?>"><?php echo ossn_site_settings('site_name');?></a></span>
 			</div>
-			<div class="col-md-4 text-right right-side">
+			<div class="col-md-3 text-right right-side">
 				<div class="topbar-menu-right">
 					<li class="ossn-topbar-dropdown-menu">
 						<div class="dropdown">
