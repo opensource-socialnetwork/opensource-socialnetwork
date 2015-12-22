@@ -77,7 +77,10 @@ Ossn.ajaxRequest = function($data) {
 				};
 			}
 			if (!$xhr) {
-				$xhr = function() {}
+				$xhr = function() {
+					var xhr = new window.XMLHttpRequest();
+					return xhr;
+				};
 			}
 			var $form = $(this);
 			if (containMedia == true) {
@@ -145,7 +148,10 @@ Ossn.PostRequest = function($data) {
 		error = function() {};
 	}
 	if (!$xhr) {
-		$xhr = function() {}
+		$xhr = function() {
+			var xhr = new window.XMLHttpRequest();
+			return xhr;
+		};
 	}
 	$.ajax({
 		xhr: $xhr,
@@ -511,6 +517,7 @@ Ossn.ParseUrl = function(url, component, expand) {
 	var re_str =
 		// scheme (and user@ testing)
 		'^(?:(?![^:@]+:[^:@/]*@)([^:/?#.]+):)?(?://)?'
+
 		// possibly a user[:password]@
 		+ '((?:(([^:@]*)(?::([^:@]*))?)?@)?'
 		// host and port
