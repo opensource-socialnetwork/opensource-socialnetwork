@@ -254,6 +254,7 @@ class OssnWall extends OssnObject {
 						$default = array(
 								'type' => 'user',
 								'subtype' => 'wall',
+								'order_by' => 'o.guid DESC',
 								'entities_pairs' => array(
 										'name' => 'post_guid',
 										'wheres' => "[this].value IN({$friend_guids})"
