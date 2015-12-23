@@ -121,8 +121,8 @@ class OssnEntities extends OssnDatabase {
 		 */
 		public function get_entity() {
 				self::initAttributes();
-				if(empty($this->entity_guid)){
-					return false;
+				if(empty($this->entity_guid)) {
+						return false;
 				}
 				$params           = array();
 				$params['from']   = 'ossn_entities as e';
@@ -158,47 +158,50 @@ class OssnEntities extends OssnDatabase {
 		 */
 		public function save() {
 				if(!empty($this->owner_guid)) {
-						$this->datavars = $this->get_data_vars();
+						$this->datavars   = $this->get_data_vars();
 						$this->page_limit = false;
-						foreach($this->get_entities() as $entity) {
-								if(isset($this->datavars[$entity->subtype])) {
-										$params['table']  = 'ossn_entities_metadata';
-										$params['names']  = array(
-												'value'
-										);
-										$params['values'] = array(
-												$this->datavars[$entity->subtype]
-										);
-										$params['wheres'] = array(
-												"guid='{$entity->guid}'"
-										);
-										if($this->update($params)) {
-												$params['table']  = 'ossn_entities';
+						$entities         = $this->get_entities();
+						if($entities) {
+								foreach($entities as $entity) {
+										if(isset($this->datavars[$entity->subtype])) {
+												$params['table']  = 'ossn_entities_metadata';
 												$params['names']  = array(
-														'time_updated'
+														'value'
 												);
 												$params['values'] = array(
-														time()
+														$this->datavars[$entity->subtype]
 												);
 												$params['wheres'] = array(
 														"guid='{$entity->guid}'"
 												);
-												$this->update($params);
+												if($this->update($params)) {
+														$params['table']  = 'ossn_entities';
+														$params['names']  = array(
+																'time_updated'
+														);
+														$params['values'] = array(
+																time()
+														);
+														$params['wheres'] = array(
+																"guid='{$entity->guid}'"
+														);
+														$this->update($params);
+												}
 										}
 								}
 						}
 						// i don't think we need to add new data on save $arsalanshah; v1.x to 2.x
 						// added again in v3.0 $arsalanshah
 						//code re arrange 1st July 2015 $arsalanshah
-						if(!empty($this->datavars)){
-							foreach($this->datavars as $vars => $value) {
-									if(!in_array($vars, $this->get_data_dbvars())) {
-											$this->subtype = $vars;
-											$this->value   = $value;
-											$this->add();
-									}
-							}
-						}						
+						if(!empty($this->datavars)) {
+								foreach($this->datavars as $vars => $value) {
+										if(!in_array($vars, $this->get_data_dbvars())) {
+												$this->subtype = $vars;
+												$this->value   = $value;
+												$this->add();
+										}
+								}
+						}
 						return true;
 				}
 				return false;
@@ -404,7 +407,7 @@ class OssnEntities extends OssnDatabase {
 				
 				//validate offset values
 				if(!empty($options['limit']) && !empty($options['limit']) && !empty($options['page_limit'])) {
-						$offset_vals = ceil($options['limit']/$options['page_limit']);
+						$offset_vals = ceil($options['limit'] / $options['page_limit']);
 						$offset_vals = abs($offset_vals);
 						$offset_vals = range(1, $offset_vals);
 						if(!in_array($options['offset'], $offset_vals)) {
@@ -451,9 +454,9 @@ class OssnEntities extends OssnDatabase {
 				);
 				$params['order_by'] = $options['order_by'];
 				$params['limit']    = $options['limit'];
-
-				if(!$options['order_by']){
-					$params['order_by'] = "e.guid ASC";				
+				
+				if(!$options['order_by']) {
+						$params['order_by'] = "e.guid ASC";
 				}
 				$this->get = $this->select($params, true);
 				
@@ -484,16 +487,16 @@ class OssnEntities extends OssnDatabase {
 		 * @param object $user User
 		 * @return boolean
 		 */
-		public function canChange($user = ''){
-			if(empty($user)){
-				$user = ossn_loggedin_user();
-			}
-			$allowed = false;
-			if(isset($user->guid) && $user instanceof OssnUser){
-				if((isset($this->owner_guid) && $this->type == 'user' && $this->owner_guid == $user->guid) || ossn_isAdminLoggedin()){
-					$allowed = true;
+		public function canChange($user = '') {
+				if(empty($user)) {
+						$user = ossn_loggedin_user();
 				}
-			}
-			return ossn_call_hook('user' , 'can:change', $this, $allowed);
+				$allowed = false;
+				if(isset($user->guid) && $user instanceof OssnUser) {
+						if((isset($this->owner_guid) && $this->type == 'user' && $this->owner_guid == $user->guid) || ossn_isAdminLoggedin()) {
+								$allowed = true;
+						}
+				}
+				return ossn_call_hook('user', 'can:change', $this, $allowed);
 		}
 } //class
