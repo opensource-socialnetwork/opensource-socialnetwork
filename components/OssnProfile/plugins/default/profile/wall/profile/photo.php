@@ -29,7 +29,7 @@ $image = ossn_profile_photo_wall_url($image);
 			<div class="user">
            <?php if ($params['user']->guid == $params['post']->owner_guid) { ?>
                 <a class="owner-link" href="<?php echo $params['user']->profileURL(); ?>"> <?php echo $params['user']->fullname; ?> </a>
-                <div class="ossn-wall-item-type"><?php echo ossn_print('ossn:profile:cover:picture:updated');?></div>
+                <div class="ossn-wall-item-type"><?php echo ossn_print('ossn:profile:picture:updated');?></div>
             <?Php
             } else {
 
