@@ -45,6 +45,7 @@ Ossn.EntityComment = function($container) {
                 $('.ossn-comments-list-' + $container).append(callback['comment']);
                 $('#comment-attachment-container-' + $container).hide();
                 $('#ossn-comment-attachment-' + $container).find('.image-data').html('');
+                $('#comment-container-' + $container).find('input[name="comment-attachment"]').val('');
             }
             if (callback['process'] == 0) {
                 $('#comment-box-' + $container).removeAttr('readonly');
