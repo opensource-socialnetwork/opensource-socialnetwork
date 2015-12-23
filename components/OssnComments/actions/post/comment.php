@@ -21,7 +21,10 @@ $post = input('post');
 $comment = input('comment');
 if ($OssnComment->PostComment($post, ossn_loggedin_user()->guid, $comment)) {
     $data['comment'] = ossn_get_comment($OssnComment->getCommentId());
-    $data = ossn_plugin_view('comments/templates/comment', $data);;
+    $smileyhook['comment']['comments:post'] = $comment;
+    $returned = ossn_call_hook('comment:view', 'template:params', $smileyhook, $smileyhook);
+    $data['comment']->{'comments:post'} = $returned['comment']['comments:post'];
+    $data = ossn_plugin_view('comments/templates/comment', $data);
     if (!ossn_is_xhr()) {
         redirect(REF);
     } else {
