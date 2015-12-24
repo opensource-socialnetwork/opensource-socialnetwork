@@ -1,3 +1,21 @@
+OSSN - OPEN SOURCE SOCIAL NETWORK 4.0 RC 2
+
+CHANGES:
+
+* Entities of type 'changed profile/cover' should be made uneditable #672
+* Smiley borders #668
+* Inverted post order on timeline #666
+* Cover update message mixup with profilepic
+* Foto update message mixup with coverpic
+* Double height header with longer sitenames #655
+* Right alignment of group memberlist #658
+* Commenting pic followed by text gives warnings #664
+* Annoying procedure on pressing just [Enter] without any input #651 
+* Group description dragging out of bounds #660
+* Selecting a CLOSED group like MYSITE/group/123/ gives warning #663
+* Current chat emoticons have no transparency #649
+* Old style icons on search result type #643
+
 OSSN - OPEN SOURCE SOCIAL NETWORK 4.0 RC
 
 CHANGES:
