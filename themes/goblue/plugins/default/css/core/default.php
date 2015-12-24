@@ -1148,12 +1148,8 @@ p {
 .ossn-menu-search li a:hover {
     text-decoration: none;
 }
-.ossn-menu-search li a .text,
-.ossn-menu-search li a img {
+.ossn-menu-search li a .text{
     display: inline-block;
-}
-.ossn-menu-search li a img {
-    margin-right: 5px;
 }
 .ossn-search-page .ossn-users-list-item {
     margin-left: 0px;
@@ -1161,6 +1157,22 @@ p {
 }
 .ossn-search-page .ossn-users-list-item .uinfo {
     margin-left: 25px;
+}
+.ossn-menu-search-users .text:before {
+	font-family: FontAwesome;
+	content: "\f007";
+	display: absolute;
+	padding-right: 10px;
+	vertical-align: middle;
+	float: left; 
+}
+.ossn-menu-search-groups .text:before {
+	font-family: FontAwesome;
+	content: "\f0c0";
+	display: absolute;
+	padding-right: 10px;
+	vertical-align: middle;
+	float: left; 
 }
 /******************************
 	Token Input

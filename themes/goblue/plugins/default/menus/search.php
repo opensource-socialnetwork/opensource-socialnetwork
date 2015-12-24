@@ -13,15 +13,14 @@ echo "<div class='ossn-menu-search'>";
 echo '<div class="title">' . ossn_print('result:type') . '</div>';
 foreach ($menus as $menu => $val) {
     foreach ($val as $link) {
-		$menu = str_replace(':', '-', $link['text']);
-        $icon = ossn_site_url() . "components/OssnSearch/images/{$menu}.png";
         $text = ossn_print($link['text']);
 		$link = $link['href'];
-        echo "<li><a href='{$link}'>
-		<img src='{$icon}' /> 
-		<div class='text'>{$text}</div>
-		</a>
-		</li>";
+		$class = OssnTranslit::urlize($menu);
+        echo "<li class='ossn-menu-search-{$class}'>
+				<a href='{$link}'>
+					<div class='text'>{$text}</div>
+				</a>
+			</li>";
     }
 }
 echo '</div>';

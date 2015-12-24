@@ -70,7 +70,7 @@ function ossn_search_users_link($event, $type, $params) {
 		$url = OssnPagination::constructUrlArgs(array(
 				'type'
 		));
-		ossn_register_menu_link('search:users', 'search:users', "search?type=users{$url}", 'search');
+		ossn_register_menu_link('users', 'search:users', "search?type=users{$url}", 'search');
 }
 
 if(ossn_isLoggedin()) {
