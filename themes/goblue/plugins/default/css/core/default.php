@@ -1682,10 +1682,12 @@ footer .ossn-footer-menu a:last-child::after {
 	Similies
 **************************/
 .ossn-smiley-item {
-	display:inline-block !important;
-    margin-left:2px;
-    margin-right:2px;
-    width:initial !important;
+    display: inline-block !important;
+    margin-left: 2px;
+    margin-right: 2px;
+    width: initial !important;
+    margin-bottom: 0px !important;
+    margin-top: 0px !important;
     border: 0px !important;
 }
 /**************************
