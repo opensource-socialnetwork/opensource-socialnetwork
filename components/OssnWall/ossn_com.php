@@ -317,6 +317,7 @@ function ossn_wall_post_menu($hook, $type, $return, $params) {
 						'class' => 'ossn-wall-post-edit',
 						'text' => ossn_print('edit'),
 						'href' => 'javascript:void(0);',
+						'priority' => 1,
 						'data-guid' => $params['post']->guid
 				));
 		} else {

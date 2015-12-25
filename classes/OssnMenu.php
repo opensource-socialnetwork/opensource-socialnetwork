@@ -108,19 +108,11 @@ class OssnMenu {
 				unset($Ossn->menu[$menutype]);
 				foreach($custom[$menutype] as $nitems) {
 						foreach($nitems as $nname => $nitem) {
+								if(isset($nitem['priority'])){
+									unset($nitem['priority']);
+								}
 								$Ossn->menu[$menutype][$nname][] = $nitem;
 						}
-				}
-		}
-		/**
-		 * Sort all menu items by priority
-		 * 
-		 * @return void
-		 */
-		public function sortAll() {
-				global $Ossn;
-				foreach($Ossn->menu as $name => $items) {
-						$this->sortMenu($name);
 				}
 		}
 } //class

@@ -63,6 +63,9 @@ function ossn_view_menu($menu, $custom = false) {
 		if(!isset($Ossn->menu[$menu])) {
 				return false;
 		}
+		$ossnmenu = new OssnMenu;
+		$ossnmenu->sortMenu($menu);
+		
 		$params['menu'] = $Ossn->menu[$menu];
 		if($custom == false) {
 				$params['menuname'] = $menu;
@@ -124,13 +127,3 @@ function ossn_view_sections_menu($menu, $type = 'frontend') {
 				return ossn_plugin_view("menus/sections/{$menu}", $params);
 		}
 }
-/**
- * Ossn menus initialize
- *
- * @return void
- */
-function ossn_menus_init() {
-		$menu = new OssnMenu;
-		$menu->sortAll();
-}
-ossn_register_callback('ossn', 'init', 'ossn_menus_init', 100000);
