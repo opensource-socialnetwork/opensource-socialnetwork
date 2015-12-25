@@ -15,6 +15,9 @@ CHANGES:
 * Selecting a CLOSED group like MYSITE/group/123/ gives warning #663
 * Current chat emoticons have no transparency #649
 * Old style icons on search result type #643
+* Orphan notification after posting/comment has been deleted #609
+* Different size of owner link on posting/comment #676
+* Achieve better control on footer menu link array order #675
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 4.0 RC
 

@@ -33,6 +33,10 @@ function ossn_notifications() {
 		ossn_register_callback('annotations', 'created', 'ossn_notification_annotation');
 		ossn_register_callback('user', 'delete', 'ossn_user_notifications_delete');
 		
+		//Orphan notification after posting/comment has been deleted #609
+		ossn_register_callback('post', 'delete', 'ossn_post_notifications_delete');
+		ossn_register_callback('like', 'deleted', 'ossn_like_notifications_delete');
+		
 		//hooks 
 		ossn_add_hook('notification:add', 'comments:post', 'ossn_notificaiton_comments_post_hook');
 		ossn_add_hook('notification:add', 'like:post', 'ossn_notificaiton_comments_post_hook');
@@ -254,11 +258,54 @@ function ossn_user_notifications_delete($callback, $type, $params) {
 		$delete->deleteUserNotifications($params['entity']);
 }
 /**
+ * Delete wall post notifiactions
+ *
+ * @param string  $hook Hook name
+ * @param string  $type Hook type
+ * @param integer $guid Post guid
+ *
+ * @return void
+ */
+function ossn_post_notifications_delete($callback, $type, $guid) {
+		$delete = new OssnNotifications;
+		if(!empty($guid)) {
+				$delete->deleteNotification(array(
+						'subject_guid' => $guid,
+						'type' => array(
+								'wall:friends:tag',
+								'like:post'
+						)
+				));
+		}
+}
+/**
+ * Delete like notifiactions
+ *
+ * @param string  $callback A callback name
+ * @param string  $type A callback type
+ * @param Array   $guid Option values
+ *
+ * @return void
+ */
+function ossn_like_notifications_delete($callback, $type, $vars) {
+		$delete = new OssnNotifications;
+		if(isset($vars['subject_id']) && !empty($vars['subject_id'])) {
+				$delete->deleteNotification(array(
+						'subject_guid' => $vars['subject_id'],
+						'type' => array(
+								'like:entity:file:profile:photo',
+								'like:entity:file:profile:cover',
+								'like:entity:file:ossn:aphoto'
+						)
+				));
+		}
+}
+/**
  * Wall post comments/likes notification hook
  *
  * @param string $hook Hook name
  * @param string $type Hook type
- * @param array Callback data
+ * @param array  $params Callback data
  *
  * @return array or false;
  * @access public

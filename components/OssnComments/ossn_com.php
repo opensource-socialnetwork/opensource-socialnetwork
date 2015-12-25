@@ -39,8 +39,43 @@ function ossn_comments() {
 				ossn_register_callback('post', 'delete', 'ossn_post_comments_delete');
 				ossn_register_callback('wall', 'load:item', 'ossn_wall_comment_menu');
 				ossn_register_callback('entity', 'load:comment:share:like', 'ossn_entity_comment_link');
+				ossn_register_callback('comment', 'delete', 'ossn_comment_notifications_delete');
 		}
 }
+/**
+ * Delete like notifiactions
+ *
+ * Orphan notification after posting/comment has been deleted #609
+ * 
+ * @param string  $callback A callback name
+ * @param string  $type A callback type
+ * @param array   $vars Option values
+ *
+ * @return void
+ */
+function ossn_comment_notifications_delete($callback, $type, $vars) {
+		$delete = new OssnNotifications;
+		if(isset($vars['comment']) && !empty($vars['comment'])) {
+				$delete->deleteNotification(array(
+						'item_guid' => $vars['comment'],
+						'type' => array(
+								'comments:post',
+								'comments:entity:file:profile:photo',
+								'comments:entity:file:profile:cover',
+								'comments:entity:file:ossn:aphoto'
+						)
+				));
+		}
+}
+/**
+ * Entity comment link
+ *
+ * @param string  $callback A callback name
+ * @param string  $type A callback type
+ * @param array   $params Option values
+ *
+ * @return void
+ */
 function ossn_entity_comment_link($callback, $type, $params) {
 		$guid = $params['entity']->guid;
 		ossn_unregister_menu('comment', 'entityextra');

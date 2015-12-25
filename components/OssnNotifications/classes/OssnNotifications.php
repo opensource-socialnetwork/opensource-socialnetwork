@@ -274,5 +274,55 @@ class OssnNotifications extends OssnDatabase {
 				);
 				return $this->update($vars);
 		}
+		/**
+		 * Delete a notifications
+		 * 
+		 * @param array $params A wheres clause
+		 * 
+		 * @return boolean
+		 */
+		public function deleteNotification(array $params = array()) {
+				if(!empty($params)) {
+						$valid = array(
+								'guid',
+								'type',
+								'poser_guid',
+								'owner_guid',
+								'subject_guid',
+								'item_guid'
+						);
+						foreach($params as $key => $item) {
+								if(!in_array($key, $valid)) {
+										unset($params[$key]);
+								}
+						}
+						if(empty($params)) {
+								return false;
+						}
+						foreach($params as $key => $where) {
+								if(is_array($where)) {
+										foreach($where as $implode) {
+												$items[] = "'{$implode}'";
+										}
+										$in       = implode(',', $items);
+										$wheres[] = "{$key} IN ($in)";
+										unset($items);
+										unset($in);
+								} else {
+										$wheres[] = "{$key} = '{$where}'";
+								}
+						}
+						if(empty($wheres)) {
+								return false;
+						}
+						$vars           = array();
+						$vars['from']   = 'ossn_notifications';
+						$vars['wheres'] = array(
+								$this->constructWheres($wheres)
+						);
+						return $this->delete($vars);
+				}
+				return false;
+		}
 		
 }
