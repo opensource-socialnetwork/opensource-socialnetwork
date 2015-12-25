@@ -475,6 +475,7 @@ p {
 .comment-contents .owner-link {
     font-weight: bold;
     margin-right: 5px;
+    font-size: 14px;
 }
 .comment-contents {
     width: 100%;
@@ -1593,6 +1594,7 @@ footer .ossn-footer-menu a::after {
     margin-left: 5px;
     margin-right: 5px;
 }
+footer .ossn-footer-menu a:nth-last-child(2)::after,
 footer .ossn-footer-menu a:last-child::after {
     content: "";
 }
@@ -1852,6 +1854,10 @@ footer .ossn-footer-menu a:last-child::after {
     .ossn-box-inner {
     	width:280px;
     }
+    footer .ossn-footer-menu a:nth-last-child(2)::after {
+    	content:"|";
+    }
+
     /**********************
     	Groups
     ************************/
