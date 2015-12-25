@@ -408,13 +408,18 @@ class OssnGroup extends OssnObject {
 				));
 				$this->OssnFile->setPath('cover/');
 				$files = clone $this->OssnFile;
-				$files = $files->getFiles();
-				if($files){
-						foreach($files as $file) {
-								$file->deleteEntity();
-						}					
-				}
 				if($this->OssnFile->addFile()) {
+						//Different sanity checks on uploading images? #667
+						$files = $files->getFiles();
+						$count = (array) $files;
+						if(count($count) > 1) {
+								unset($files->{0});
+								if($files) {
+										foreach($files as $file) {
+												$file->deleteEntity();
+										}
+								}
+						}
 						$this->ResetCoverPostition($this->OssnFile->owner_guid);
 						return true;
 				}
@@ -491,7 +496,11 @@ class OssnGroup extends OssnObject {
 		 * @access public;
 		 */
 		public function coverURL() {
-				$this->latestcover = $this->groupCovers()->getParam(0);
+				$covers = $this->groupCovers();
+				if(!$covers) {
+						return false;
+				}
+				$this->latestcover = $covers->getParam(0);
 				$file              = str_replace('cover/', '', $this->latestcover->value);
 				$this->coverurl    = ossn_site_url("groups/cover/{$this->latestcover->guid}/{$file}");
 				return ossn_call_hook('group', 'cover:url', $this, $this->coverurl);

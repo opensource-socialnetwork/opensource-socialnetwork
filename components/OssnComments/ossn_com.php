@@ -277,21 +277,23 @@ function ossn_comment_page($pages) {
 						break;
 				case 'attachment':
 						header('Content-Type: application/json');
-						if(isset($_FILES['file']['tmp_name']) && ossn_isLoggedin()) {
-								$file    = $_FILES['file']['tmp_name'];
-								$unique  = time() . '-' . substr(md5(time()), 0, 6) . '.jpg';
-								$newfile = ossn_get_userdata("tmp/photos/{$unique}");
-								$dir     = ossn_get_userdata("tmp/photos/");
-								if(!is_dir($dir)) {
-										mkdir($dir, 0755, true);
-								}
-								if(move_uploaded_file($file, $newfile)) {
-										$file = base64_encode(ossn_string_encrypt($newfile));
-										echo json_encode(array(
-												'file' => base64_encode($file),
-												'type' => 1
-										));
-										exit;
+						if(isset($_FILES['file']['tmp_name']) && ($_FILES['file']['error'] == UPLOAD_ERR_OK && $_FILES['file']['size'] !== 0) && ossn_isLoggedin()) {
+								if(preg_match("/image/i", $_FILES['file']['type'])){
+									$file    = $_FILES['file']['tmp_name'];
+									$unique  = time() . '-' . substr(md5(time()), 0, 6) . '.jpg';
+									$newfile = ossn_get_userdata("tmp/photos/{$unique}");
+									$dir     = ossn_get_userdata("tmp/photos/");
+									if(!is_dir($dir)) {
+											mkdir($dir, 0755, true);
+									}
+									if(move_uploaded_file($file, $newfile)) {
+											$file = base64_encode(ossn_string_encrypt($newfile));
+											echo json_encode(array(
+													'file' => base64_encode($file),
+													'type' => 1
+											));
+											exit;
+									}
 								}
 						}
 						echo json_encode(array(

@@ -330,9 +330,12 @@ class OssnEntities extends OssnDatabase {
 		 *
 		 * @return boolean
 		 */
-		public function deleteEntity($guid) {
+		public function deleteEntity($guid = '') {
 				if(isset($this->guid) && !empty($this->guid) && empty($guid)) {
 						$guid = $this->guid;
+				}
+				if(empty($guid)){
+					return false;
 				}
 				$params['from']   = 'ossn_entities';
 				$params['wheres'] = array(

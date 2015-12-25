@@ -64,7 +64,7 @@ class OssnFile extends OssnEntities {
 		 */
 		public function setFile($name) {
 				$this->showFileUploadError();
-				if(isset($_FILES[$name]['type'])) {
+				if(isset($_FILES[$name]['type']) && ($_FILES[$name]['error'] == UPLOAD_ERR_OK && $_FILES[$name]['size'] !== 0)) {
 						$file       = $_FILES[$name];
 						$this->file = $file;
 				}
@@ -173,7 +173,7 @@ class OssnFile extends OssnEntities {
 				if(empty($this->redirect)) {
 						$this->redirect = REF;
 				}
-				if(isset($this->file) && $this->file['error'] !== UPLOAD_ERR_OK) {
+				if(isset($this->file) && ($this->file['error'] !== UPLOAD_ERR_OK || $this->file['size'] == 0)) {
 						ossn_trigger_message($this->getFileUploadError($this->file['error']), 'error');
 						redirect($this->redirect);
 				}
