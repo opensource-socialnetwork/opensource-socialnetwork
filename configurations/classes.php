@@ -24,5 +24,6 @@ $Ossn->classes = array(
     'Annotation',
     'Themes',
     'File',
-    'Components'
+    'Components',
+    'Menu',	
 );

@@ -8,6 +8,7 @@
  * @license   General Public Licence http://www.opensource-socialnetwork.org/licence
  * @link      http://www.opensource-socialnetwork.org/licence
  */
+
 /**
  * Register a menu;
  * @params string $name Name of menu;
@@ -33,24 +34,8 @@ function ossn_register_menu_link($name, $text, $link, $menutype = 'site') {
  * @return void
  */
 function ossn_register_menu_item($menutype, array $options = array()) {
-		global $Ossn;
-		if(!empty($options['name'])) {
-				$name = $options['name'];
-				if(isset($options['parent']) && !empty($options['parent'])) {
-						$name = $options['parent'];
-				}
-    			
-				$priority = 100;
-				if(isset($options['priority'])){
-					$priority = $options['priority']; 
-				}
-				$priority = max((int)$priority, 0);
-   				while (isset($Ossn->menu[$menutype][$priority][$name])) {
-        			$priority++;
-    			}				
-				$Ossn->menu[$menutype][$priority][$name] = $options;
-				ksort($Ossn->menu[$menutype][$priority]);
-		}
+		$menu = new OssnMenu($menutype, $options);
+		$menu->register();
 }
 
 /**
@@ -77,13 +62,6 @@ function ossn_view_menu($menu, $custom = false) {
 		global $Ossn;
 		if(!isset($Ossn->menu[$menu])) {
 				return false;
-		}
-		foreach($Ossn->menu[$menu] as $priority => $item){
-			foreach($item as $name => $link){
-					if(isset($link['priority'])){
-						unset($Ossn->menu[$menu][$priority][$name]['priority']);
-					}
-			}
 		}
 		$params['menu'] = $Ossn->menu[$menu];
 		if($custom == false) {
@@ -146,3 +124,13 @@ function ossn_view_sections_menu($menu, $type = 'frontend') {
 				return ossn_plugin_view("menus/sections/{$menu}", $params);
 		}
 }
+/**
+ * Ossn menus initialize
+ *
+ * @return void
+ */
+function ossn_menus_init() {
+		$menu = new OssnMenu;
+		$menu->sortAll();
+}
+ossn_register_callback('ossn', 'init', 'ossn_menus_init', 100000);

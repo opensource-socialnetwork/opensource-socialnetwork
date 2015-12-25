@@ -16,7 +16,6 @@
             			<?php
 							foreach ($params['menu'] as $key => $links) {
    								 if (count($links) > 1) {
-									  unset($links[0]);
       								  $menu_parent = '<li>
 									  <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">'
 									  	. ossn_print($key) . 
