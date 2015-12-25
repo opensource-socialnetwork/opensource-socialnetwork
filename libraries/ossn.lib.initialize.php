@@ -206,7 +206,8 @@ function ossn_pow_lnk_args() {
 		return array(
 				'name' => $pow,
 				'text' => ossn_print($pow),
-				'href' => $lnk
+				'href' => $lnk,
+				'priority' => 1000,
 		);
 }
 /**

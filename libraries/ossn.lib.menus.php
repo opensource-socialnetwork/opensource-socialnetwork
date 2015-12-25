@@ -39,8 +39,17 @@ function ossn_register_menu_item($menutype, array $options = array()) {
 				if(isset($options['parent']) && !empty($options['parent'])) {
 						$name = $options['parent'];
 				}
-				$Ossn->menu[$menutype][$name][] = $options;
-				ksort($Ossn->menu[$menutype]);
+    			
+				$priority = 100;
+				if(isset($options['priority'])){
+					$priority = $options['priority']; 
+				}
+				$priority = max((int)$priority, 0);
+   				while (isset($Ossn->menu[$menutype][$priority][$name])) {
+        			$priority++;
+    			}				
+				$Ossn->menu[$menutype][$priority][$name] = $options;
+				ksort($Ossn->menu[$menutype][$priority]);
 		}
 }
 
@@ -68,6 +77,13 @@ function ossn_view_menu($menu, $custom = false) {
 		global $Ossn;
 		if(!isset($Ossn->menu[$menu])) {
 				return false;
+		}
+		foreach($Ossn->menu[$menu] as $priority => $item){
+			foreach($item as $name => $link){
+					if(isset($link['priority'])){
+						unset($Ossn->menu[$menu][$priority][$name]['priority']);
+					}
+			}
 		}
 		$params['menu'] = $Ossn->menu[$menu];
 		if($custom == false) {
