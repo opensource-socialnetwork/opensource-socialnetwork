@@ -1578,21 +1578,22 @@ div.token-input-dropdown ul li.token-input-selected-dropdown-item {
 
 footer {
     margin-top: 20px;
-    border-top: 1px solid #E8E8E8;
     padding-top: 5px;
+}
+footer .col-md-11 {
+    border-top: 1px solid #E8E8E8;
 }
 footer .container {} footer .ossn-footer-menu {
     padding-bottom: 10px;
 }
 footer .ossn-footer-menu a {
-    margin-right: 10px;
     color: #807D7D;
     font-size: 13px;
 }
 footer .ossn-footer-menu a::after {
     content: "|";
-    margin-left: 5px;
-    margin-right: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 footer .ossn-footer-menu a:nth-last-child(2)::after,
 footer .ossn-footer-menu a:last-child::after {
