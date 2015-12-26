@@ -164,7 +164,7 @@ You may copy and paste the address to your browser manually in case the link doe
 	'administration' => 'Administration',
 	
 	'privacy' => 'Privacy',
-	'close' => 'Close',
+	'close' => 'Closed',
 	'open' => 'Open',
 	'public' => 'Public',
 	'friends' => 'Friends',
