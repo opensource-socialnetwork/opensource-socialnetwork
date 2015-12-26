@@ -140,7 +140,7 @@ function ossn_group_search_link($event, $type, $params) {
 		$url = OssnPagination::constructUrlArgs(array(
 				'type'
 		));
-		ossn_register_menu_link('groups', 'search:groups', "search?type=groups{$url}", 'search');
+		ossn_register_menu_link('groups', 'groups', "search?type=groups{$url}", 'search');
 }
 
 /**
