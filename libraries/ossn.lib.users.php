@@ -41,7 +41,8 @@ function ossn_users() {
 						'name' => 'logout',
 						'text' => ossn_print('logout'),
 						'href' => ossn_site_url('action/user/logout'),
-						'action' => true
+						'action' => true,
+						'priority' => 200,
 				));
 		}
 }
