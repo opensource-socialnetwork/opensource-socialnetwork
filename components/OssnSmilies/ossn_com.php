@@ -55,7 +55,11 @@ function ossn_embed_smiley($hook, $type, $return, $params){
  * @access private
  */
 function ossn_smiley_in_comments($hook, $type, $return, $params){
-	$return['comment']['comments:post'] = smilify($return['comment']['comments:post']);
+	if(isset($return['comment']['comments:post'])){
+		$return['comment']['comments:post'] = smilify($return['comment']['comments:post']);
+	} elseif(isset($return['comment']['comments:entity'])){
+		$return['comment']['comments:entity'] = smilify($return['comment']['comments:entity']);		
+	}
 	return $return;	
 }
 //initilize ossn smilies

@@ -25,7 +25,7 @@ echo "<div class='ossn-comments-list-{$object}'>";
 if ($comments) {
     foreach ($comments as $comment) {
             $data['comment'] = get_object_vars($comment);
-            echo ossn_plugin_view('comments/templates/comment', $data);
+            echo ossn_comment_view($data);
     }
 }
 echo '</div>';
