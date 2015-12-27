@@ -1009,11 +1009,12 @@ p {
     font-weight: bold;
     margin-top: -155px;
     font-size: 35px;
+    font-size to 2.3vw
     margin-left: 211px;
     position: absolute;
     text-shadow: 0 0 3px #000;
     /** overlapping issue with longer names on profile page #630 **/
-    max-width: 450px;
+	max-width to 820px
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;  
@@ -1969,6 +1970,10 @@ footer .ossn-footer-menu a:last-child::after {
 	.dropdown-menu {
     	margin-left: -110px;
     }     
+    .ossn-profile .user-fullname {
+    	max-width:500px
+    }
+
     /***********************
     	Comments
      ***********************/
@@ -2021,4 +2026,12 @@ footer .ossn-footer-menu a:last-child::after {
     .ossn-users-list-item .users-list-controls {
     	margin-bottom:10px;
     }
+    .ossn-profile .user-fullname {
+    	max-width 640px
+    }    
+}
+@media only screen and (max-width: 767px) {
+    .ossn-profile .user-fullname {
+    	max-width 767px
+    }   
 }
