@@ -14,7 +14,6 @@
            		 	</ul>
             		<ul class="nav navbar-nav">
             			<?php
-							echo ossn_dump($params['menu']);
 							foreach ($params['menu'] as $key => $links) {
    								 if (count($links) > 1) {
       								  $menu_parent = '<li>
