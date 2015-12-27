@@ -1971,7 +1971,7 @@ footer .ossn-footer-menu a:last-child::after {
     	margin-left: -110px;
     }     
     .ossn-profile .user-fullname {
-    	max-width:500px
+    	max-width:500px;
     }
 
     /***********************
@@ -2027,11 +2027,11 @@ footer .ossn-footer-menu a:last-child::after {
     	margin-bottom:10px;
     }
     .ossn-profile .user-fullname {
-    	max-width 640px
+    	max-width: 640px;
     }    
 }
 @media only screen and (max-width: 767px) {
     .ossn-profile .user-fullname {
-    	max-width 767px
+    	max-width: 767px;
     }   
 }
