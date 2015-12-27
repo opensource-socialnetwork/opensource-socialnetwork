@@ -1009,12 +1009,12 @@ p {
     font-weight: bold;
     margin-top: -155px;
     font-size: 35px;
-    font-size to 2.3vw
+    font-size to 2.3vw;
     margin-left: 211px;
     position: absolute;
     text-shadow: 0 0 3px #000;
     /** overlapping issue with longer names on profile page #630 **/
-	max-width to 820px
+    max-width to 820px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;  
