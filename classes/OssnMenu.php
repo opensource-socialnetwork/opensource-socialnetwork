@@ -14,7 +14,7 @@ class OssnMenu {
 		 *
 		 * @return void
 		 */
-		public function __construct($type, $options = '') {
+		public function __construct($type = '', $options = '') {
 				$this->menutype = $type;
 				$this->options  = $options;
 		}
