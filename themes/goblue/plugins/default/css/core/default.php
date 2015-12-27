@@ -1014,7 +1014,7 @@ p {
     position: absolute;
     text-shadow: 0 0 3px #000;
     /** overlapping issue with longer names on profile page #630 **/
-    max-width to 820px;
+    max-width: 820px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;  
