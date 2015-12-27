@@ -84,8 +84,11 @@ class OssnMenu {
 										}
 								}
 						}
-						return max($list);
+						if(!empty($list)){
+							return max($list);
+						}
 				}
+				return false;
 		}
 		/**
 		 * Sort menu with priority
