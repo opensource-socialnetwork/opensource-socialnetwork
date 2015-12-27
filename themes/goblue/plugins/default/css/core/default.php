@@ -1009,7 +1009,7 @@ p {
     font-weight: bold;
     margin-top: -155px;
     font-size: 35px;
-    font-size to 2.3vw;
+    font-size: 2.3vw;
     margin-left: 211px;
     position: absolute;
     text-shadow: 0 0 3px #000;
