@@ -14,11 +14,17 @@ if (!isset($params['icon_size'])) {
 } else {
     $avatar_size = $params['icon_size'];
 }
+$sizes = array('large', 'larger', 'small', 'topbar');
 foreach ($users as $user) {
+	if(isset($avatar_size) && in_array($avatar_size, $sizes)){
+		$icon = $user->iconURL()->$avatar_size;
+	}	 else {
+		$icon = $user->iconURL()->small;
+	}
     ?>
 
     <div class="ossn-list-users">
-        <img src="<?php echo ossn_site_url("avatar/{$user->username}/{$avatar_size}"); ?>"/>
+        <img src="<?php echo $icon; ?>"/>
 
         <div class="uinfo">
             <a class="userlink"
