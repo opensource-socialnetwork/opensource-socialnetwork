@@ -24,7 +24,10 @@
 .ossn-comment-attachment  .image-data  {
 	padding: 6px;
 	background: #fff;
-    border: 1px solid #eee;    
+    border: 1px solid #eee;
+    /* Please, check scaling algorithm of comment picture previews #682 */
+    display: flex;
+    max-height: 200px;        
 }
 .ossn-comment-attachment  .image-data img {
 	width:100px;
@@ -57,4 +60,7 @@
 }
 .ossn-form textarea#comment-edit{
     height: 125px;
+}
+.ossn-delete-comment {
+    color: #EC2020 !important;
 }
