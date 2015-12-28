@@ -19,6 +19,7 @@ if($commentmenu){
             if (!empty($commentmenu)) {
     			foreach ($params['menu'] as $menu) {
         			foreach ($menu as $link) {
+            			unset($link['name']);
             			$link = ossn_plugin_view('output/url', $link);
             			echo "<li>{$link}</li>";
         			}
