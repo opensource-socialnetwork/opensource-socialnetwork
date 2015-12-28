@@ -18,7 +18,6 @@ foreach($menus as $menu) {
 						$link['class'] = $class;
 				}
 				unset($link['name']);
-				
 				echo ossn_plugin_view('output/url', $link);
 		}
 }
