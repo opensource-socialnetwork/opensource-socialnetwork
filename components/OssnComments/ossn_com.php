@@ -189,7 +189,8 @@ function ossn_comment_menu($name, $type, $params) {
 										'name' => 'delete',
 										'href' => ossn_site_url("action/delete/comment?comment={$params['id']}", true),
 										'class' => 'ossn-delete-comment',
-										'text' => ossn_print('comment:delete')
+										'text' => ossn_print('comment:delete'),
+										'priority' => 200,
 								));
 						}
 				}
@@ -203,7 +204,8 @@ function ossn_comment_menu($name, $type, $params) {
 								'name' => 'delete',
 								'href' => ossn_site_url("action/delete/comment?comment={$params['id']}", true),
 								'class' => 'ossn-delete-comment',
-								'text' => ossn_print('comment:delete')
+								'text' => ossn_print('comment:delete'),
+								'priority' => 200,
 						));
 				}
 		}
