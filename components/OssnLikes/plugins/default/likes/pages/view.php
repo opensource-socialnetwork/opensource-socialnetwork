@@ -18,9 +18,10 @@ if (empty($type)) {
 $likes = $likes->GetLikes($guid, $type);
 if ($likes) {
     foreach ($likes as $us) {
-        if ($us->guid !== ossn_loggedin_user()->guid) {
+        //empty liker list #686
+		//if ($us->guid !== ossn_loggedin_user()->guid) {
             $users[] = ossn_user_by_guid($us->guid);
-        }
+        //}
     }
 }
 $users['users'] = $users;
