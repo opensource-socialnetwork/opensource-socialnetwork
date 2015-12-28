@@ -11,10 +11,13 @@
 $guid    = input('guid');
 $text    = input('comment');
 $comment = ossn_get_annotation($guid);
+
 if(!$comment || empty($text)) {
 		ossn_trigger_message(ossn_print('comment:edit:failed'), 'error');
 		redirect(REF);
 }
+//editing, then saving a comment gives warning #685
+$comment->data	= new stdClass;
 if($comment->type == 'comments:entity') {
 		$comment->data->{'comments:entity'} = $text;
 } elseif($comment->type == 'comments:post') {
