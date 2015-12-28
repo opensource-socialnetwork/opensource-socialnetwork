@@ -107,6 +107,10 @@ class OssnMenu {
 								$custom[$menutype][$item['priority']][$name] = $item;
 						}
 				}
+				//still warnings from OssnMenue when displaying newsthread #683
+				if(empty($custom[$menutype]) || !is_array($custom[$menutype])){
+					return false;
+				}
 				ksort($custom[$menutype]);
 				unset($Ossn->menu[$menutype]);
 				foreach($custom[$menutype] as $nitems) {
