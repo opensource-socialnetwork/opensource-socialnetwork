@@ -8,6 +8,9 @@
  * @license   General Public Licence http://www.opensource-socialnetwork.org/licence
  * @link      http://www.opensource-socialnetwork.org/licence
  */
+ if(!ossn_loggedin_user()){
+	 return;
+ }
 ?>
 <div class="newseed-uinfo">
     <img src="<?php echo ossn_loggedin_user()->iconURL()->small; ?>"/>
