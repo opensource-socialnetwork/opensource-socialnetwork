@@ -27,46 +27,17 @@
     <input type="password" name="password" placeholder="<?php echo ossn_print('password'); ?>" class="long-input"/>
 </div>
 
+<?php
+$fields = ossn_default_user_fields();
+if($fields){
+			$vars	= array();
+			$vars['items'] = $fields;
+			echo ossn_plugin_view('user/fields/item', $vars);
+}
+?>
 <div>
-    <h2><?php echo ossn_print('birthdate'); ?> </h2>
-    <select name="birthday">
-        <?php if (!empty($birthdate)) { ?>
-            <option value="<?php echo $birthdate[0]; ?>"> <?php echo $birthdate[0]; ?> </option>
-        <?php } ?>
-        <option value=""><?php echo ossn_print('day'); ?></option>
-        <?php for ($day = 1; $day <= 31; $day++) { ?>
-            <option
-                value="<?php echo strlen($day) == 1 ? '0' . $day : $day; ?>"><?php echo strlen($day) == 1 ? '0' . $day : $day; ?></option>
-        <?php } ?>
-    </select>
-
-    <select name="birthm">
-        <?php if (!empty($birthdate)) { ?>
-            <option value="<?php echo $birthdate[1]; ?>"> <?php echo $birthdate[1]; ?> </option>
-        <?php } ?>
-        <option value=""><?php echo ossn_print('month'); ?></option>
-        <?php for ($month = 1; $month <= 12; $month++) { ?>
-            <option
-                value="<?php echo strlen($month) == 1 ? '0' . $month : $month; ?>"><?php echo strlen($month) == 1 ? '0' . $month : $month; ?></option>
-        <?php } ?>
-    </select>
-
-    <select name="birthy">
-        <?php if (!empty($birthdate)) { ?>
-            <option value="<?php echo $birthdate[2]; ?>"> <?php echo $birthdate[2]; ?> </option>
-        <?php } ?>
-        <option value=""><?php echo ossn_print('year'); ?></option>
-        <?php for ($year = date('Y'); $year > date('Y') - 100; $year--) { ?>
-            <option value="<?php echo $year; ?>"><?php echo $year; ?></option>
-        <?php } ?>
-    </select>
+<?php echo ossn_fetch_extend_views('forms/signup/before/submit'); ?>
 </div>
-
-<div>
-    <span><h3><input type="radio" name="gender" value="male"/> <?php echo ossn_print('male'); ?></h3></span>
-    <span><h3><input type="radio" name="gender" value="female"/> <?php echo ossn_print('female'); ?></h3></span>
-</div>
-
 <div id="ossn-signup-errors" class="ossn-error-container"></div>
 
 <p>

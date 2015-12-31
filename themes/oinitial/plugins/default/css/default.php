@@ -35,6 +35,22 @@ a {
     color: #2B5470;
     text-decoration: none;
 }
+.radio-block {
+	margin-top:10px;
+    margin-bottom:10px;
+}
+.radio-block span {
+    display: inline-block;
+    margin-right: 10px;
+    
+    font-size: 11px;
+    font-weight: bold;
+    margin-left: 10px;    
+}
+.radio-block input {
+	margin-bottom:0px !important;
+    float:left;
+}
 .ossn-layout-contents {
     width: 985px;
     margin: 0 auto;

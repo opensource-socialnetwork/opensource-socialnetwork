@@ -29,6 +29,7 @@ function ossn_default_theme_init(){
 	ossn_load_css('jquery.ui');	
 	
 	ossn_extend_view('ossn/admin/head', 'ossn_three_head');
+	ossn_extend_view('ossn/site/head', 'ossn_three_site_head');
 	
 	ossn_add_hook('embed', 'video:css', 'ossn_default_theme_embed_css');	
 }
@@ -58,6 +59,15 @@ function ossn_three_head(){
 	$head[]  = ossn_html_js(array(
 					'src' => ossn_theme_url(). 'vendors/bootstrap/js/bootstrap.min.js'
 			  ));
+	$head[]  = ossn_html_css(array(
+					'href' => '//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.4/css/jquery-ui.css'
+			  ));	
+	return implode('', $head);
+}
+
+function ossn_three_site_head(){
+	$siteurl = ossn_site_url();
+	$head	 = array();
 	$head[]  = ossn_html_css(array(
 					'href' => '//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.4/css/jquery-ui.css'
 			  ));	
