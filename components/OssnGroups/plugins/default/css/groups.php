@@ -235,6 +235,8 @@
 }
 .group-widget-members img {
 	margin-right:5px;
+    /* group-widget-members img need bottom margin #699 */
+	margin-bottom: 5px;
 }
 .ossn-notification-unviewed {
     background: #F9F9F9;
