@@ -327,6 +327,7 @@
     background: #fff;
     width: 29px;
     padding: 4px;
+    padding-top: 10px;    
     height: 27px;
     position: absolute;
     margin-left: 201px;
@@ -336,7 +337,7 @@
     display: none;
 }
 /** Icons **/
-.ossn-chat-icon {
+.ossn-chat-icon:not(.ossn-chat-item-smiles > .ossn-chat-icon){
     background: url("<?php echo ossn_site_url(); ?>components/OssnChat/images/useronline.png") no-repeat;
     width: 16px !important;
     height: 16px !important;
