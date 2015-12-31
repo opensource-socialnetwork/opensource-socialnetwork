@@ -16,8 +16,8 @@ if($user->guid == ossn_loggedin_user()->guid){
                                 <div class="col-md-10">
                                 		<div class="message-box-sent text">
                                 			<?php
-                               					 if (class_exists('OssnChat')) {
-                                					    echo OssnChat::replaceIcon(ossn_message_print($message));
+                               					 if (function_exists('smilify')) {
+                                					    echo smilify($message);
                              					   } else {
                                 					    echo ossn_message_print($message);
                             					    }
@@ -39,8 +39,8 @@ if($user->guid == ossn_loggedin_user()->guid){
                                 <div class="col-md-10">
                                 		<div class="message-box-recieved text">
                                 			<?php
-                               					 if (class_exists('OssnChat')) {
-                                					    echo OssnChat::replaceIcon($message);
+                               					 if (function_exists('smilify')) {
+                                					    echo smilify($message);
                              					   } else {
                                 					    echo $message;
                             					    }

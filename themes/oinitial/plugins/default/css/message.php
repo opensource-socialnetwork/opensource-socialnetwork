@@ -114,6 +114,14 @@
 	float: left;
 	margin-right: 6px;
 }
+.ossn-messages .message-with .message-item .text {
+	margin-top:5px;
+}
+.ossn-messages .message-with .message-item .text img {
+	width:16px;
+	height:16px;
+}
+
 .message-item .data{
 	display:inline-table;
 	width: 436px;

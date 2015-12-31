@@ -20,8 +20,8 @@ if ($params['data']) {
                                 <div class="col-md-10">
                                 		<div class="message-box-sent text">
                                 			<?php
-                               					 if (class_exists('OssnChat')) {
-                                					    echo OssnChat::replaceIcon(ossn_message_print($message->message));
+                               					 if (function_exists('smilify')) {
+                                					    echo smilify(ossn_message_print($message->message));
                              					   } else {
                                 					    echo ossn_message_print($message->message);
                             					    }
@@ -43,8 +43,8 @@ if ($params['data']) {
                                 <div class="col-md-10">
                                 		<div class="message-box-recieved text">
                                 			<?php
-                               					 if (class_exists('OssnChat')) {
-                                					    echo OssnChat::replaceIcon(ossn_message_print($message->message));
+                               					 if (function_exists('smilify')) {
+                                					    echo smilify(ossn_message_print($message->message));
                              					   } else {
                                 					    echo ossn_message_print($message->message);
                             					    }

@@ -84,8 +84,8 @@ if (isset($params['user']->guid)) {
                                 <div class="name"><a href="<?php echo $user->profileURL(); ?>"><?php echo $user->fullname; ?></a></div>
                                 <div class="text">
   							  <?php
-                                if (class_exists('OssnChat')) {
-                                    echo OssnChat::replaceIcon(ossn_message_print($message->message));
+                                if (function_exists('smilify')) {
+                                    echo smilify(ossn_message_print($message->message));
                                 } else {
                                     echo ossn_message_print($message->message);
                                 }
