@@ -140,7 +140,8 @@ $members = $params['group']->getMembers();
 
                             <?php
                             $members = $params['group']->getMembers();
-                            $limit = 30;
+                            //Oinitial only: incomplete memberlist in closed group #697
+                            $limit = 0;
                             if ($members) {
                                 foreach ($members as $member) {
                                     if ($limit <= 30) {
