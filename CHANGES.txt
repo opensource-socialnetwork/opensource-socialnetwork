@@ -19,6 +19,11 @@ CHANGES:
 * Different size of owner link on posting/comment #676
 * Achieve better control on footer menu link array order #675
 
+--
+
+* ossn-ad-image missing class #704
+* Add description enlarging #703
+
 OSSN - OPEN SOURCE SOCIAL NETWORK 4.0 RC
 
 CHANGES:

@@ -68,9 +68,10 @@ p {
 /************************************
 	Layouts
 ************************************/
-
+/** didn't we have a minimum page height in goblue? #702 **/
 .ossn-layout-module,
 .ossn-layout-contents,
+.ossn-layout-media,
 .ossn-layout-newsfeed {
     margin-top: 10px;
     min-height: 400px;
