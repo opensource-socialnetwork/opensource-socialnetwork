@@ -60,6 +60,7 @@ function ossn_comment_notifications_delete($callback, $type, $vars) {
 						'item_guid' => $vars['comment'],
 						'type' => array(
 								'comments:post',
+								'like:annotation',
 								'comments:entity:file:profile:photo',
 								'comments:entity:file:profile:cover',
 								'comments:entity:file:ossn:aphoto'
