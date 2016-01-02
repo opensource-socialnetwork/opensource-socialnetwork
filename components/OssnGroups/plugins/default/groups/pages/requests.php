@@ -16,10 +16,10 @@ if (empty($requests)) {
         ?>
 		<div class="row">
 	        <div class="ossn-group-members">
-            	<div class="col-md-2">
+            	<div class="col-md-2 col-sm-2 hidden-xs">
     	        		<img src="<?php echo $user->iconURL()->large; ?>" width="100" height="100"/>
 				</div>
-                <div class="col-md-10">
+                <div class="col-md-10 col-sm-10 col-xs-12">
 	    	        <div class="uinfo">
                         <?php
 							echo ossn_plugin_view('output/url', array(
@@ -42,7 +42,9 @@ if (empty($requests)) {
 									'class' => 'btn btn-danger',
 							));
 						?>		
-                   </div>     
+                   </div>
+                </div>
+            </div>
         </div>
 
     <?php
