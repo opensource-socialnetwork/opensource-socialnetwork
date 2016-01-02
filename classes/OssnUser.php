@@ -22,7 +22,7 @@ class OssnUser extends OssnEntities {
 						$this->sendactiviation = false;
 				}
 				$this->data = new stdClass;
-		}	
+		}
 		/**
 		 * Add user to system.
 		 *
@@ -175,15 +175,15 @@ class OssnUser extends OssnEntities {
 				$this->type       = 'user';
 				$entities         = $this->get_entities();
 				if(empty($entities)) {
-						$metadata = arrayObject($user, get_class($this));
+						$metadata       = arrayObject($user, get_class($this));
 						$metadata->data = new stdClass;
 						return ossn_call_hook('user', 'get', false, $metadata);
 				}
 				foreach($entities as $entity) {
 						$fields[$entity->subtype] = $entity->value;
 				}
-				$data     = array_merge(get_object_vars($user), $fields);
-				$metadata = arrayObject($data, get_class($this));
+				$data           = array_merge(get_object_vars($user), $fields);
+				$metadata       = arrayObject($data, get_class($this));
 				$metadata->data = new stdClass;
 				return ossn_call_hook('user', 'get', false, $metadata);
 		}
@@ -337,16 +337,28 @@ class OssnUser extends OssnEntities {
 		 *
 		 * @return object
 		 */
-		public function getFriends($user = '') {
+		public function getFriends($user = '', array $options = array()) {
 				if(isset($this->guid)) {
 						$user = $this->guid;
 				}
 				
+				$default       = array(
+						'page_limit' => false,
+						'limit' => false,
+						'count' => false
+				);
+				$args          = array_merge($default, $options);
 				$relationships = ossn_get_relationships(array(
 						'to' => $user,
 						'type' => 'friend:request',
-						'inverse' => true
+						'inverse' => true,
+						'page_limit' => $args['page_limit'],
+						'limit' => $args['limit'],
+						'count' => $args['count']
 				));
+				if($args['count'] == true) {
+						return $relationships;
+				}
 				if($relationships) {
 						foreach($relationships as $relation) {
 								$friends[] = ossn_user_by_guid($relation->relation_to);
@@ -536,21 +548,21 @@ class OssnUser extends OssnEntities {
 										}
 										$wheres[] = "e{$key}.type='user'";
 										$wheres[] = "e{$key}.subtype='{$pair['name']}'";
-										if(isset($pair['wheres']) && !empty($pair['wheres'])){
-											$pair['wheres'] = str_replace('[this].', "emd{$key}.", $pair['wheres']);
-											$wheres[] = $pair['wheres'];
+										if(isset($pair['wheres']) && !empty($pair['wheres'])) {
+												$pair['wheres'] = str_replace('[this].', "emd{$key}.", $pair['wheres']);
+												$wheres[]       = $pair['wheres'];
 										} else {
-											$wheres[] = "emd{$key}.value {$operand} '{$pair['value']}'";
-											
+												$wheres[] = "emd{$key}.value {$operand} '{$pair['value']}'";
+												
 										}
 										$params['joins'][] = "JOIN ossn_entities as e{$key} ON e{$key}.owner_guid=u.guid";
 										$params['joins'][] = "JOIN ossn_entities_metadata as emd{$key} ON e{$key}.guid=emd{$key}.guid";
 								}
 						}
 				}
-				$wheres[]           = "u.time_created IS NOT NULL";
-				if(isset($options['wheres']) && !empty($options['wheres'])){
-					$wheres[] = $options['wheres'];
+				$wheres[] = "u.time_created IS NOT NULL";
+				if(isset($options['wheres']) && !empty($options['wheres'])) {
+						$wheres[] = $options['wheres'];
 				}
 				$params['from']     = 'ossn_users as u';
 				$params['params']   = array(

@@ -83,7 +83,7 @@ function ossn_get_relationships(array $params = array()) {
 						$vars['joins'] = array(
 								'JOIN ossn_relationships as r1 ON r1.relation_from=r.relation_to'
 						);
-						$wheres[] = "r1.relation_to='{$params['to']}'";
+						$wheres[]      = "r1.relation_to='{$params['to']}'";
 				}
 				$wheres[] = "r.relation_from='{$params['from']}'";
 				if(is_array($params['type'])) {
@@ -106,7 +106,7 @@ function ossn_get_relationships(array $params = array()) {
 						$vars['joins'] = array(
 								'JOIN ossn_relationships as r1 ON r1.relation_to=r.relation_from'
 						);
-						$wheres[] = "r1.relation_from='{$params['to']}'";
+						$wheres[]      = "r1.relation_from='{$params['to']}'";
 				}
 				$wheres[] = "r.relation_to='{$params['to']}'";
 				
@@ -129,17 +129,42 @@ function ossn_get_relationships(array $params = array()) {
 		if(empty($params['type'])) {
 				return false;
 		}
+		$default = array(
+				'page_limit' => 10,
+				'limit' => false,
+				'offset' => input('offset', '', 1)
+		);
+		$options = array_merge($default, $params);
+		//validate offset values
+		if(!empty($options['limit']) && !empty($options['page_limit'])) {
+				$offset_vals = ceil($options['limit'] / $options['page_limit']);
+				$offset_vals = abs($offset_vals);
+				$offset_vals = range(1, $offset_vals);
+				if(!in_array($options['offset'], $offset_vals)) {
+						return false;
+				}
+		}
+		//get only required result, don't bust your server memory
+		$getlimit = $database->generateLimit($options['limit'], $options['page_limit'], $options['offset']);
+		if($getlimit) {
+				$vars['limit'] = $getlimit;
+		} else {
+				$vars['limit'] = $options['limit'];
+		}
 		$vars['from']   = 'ossn_relationships as r';
 		$vars['wheres'] = array(
 				$database->constructWheres($wheres)
 		);
-		if(isset($params['count'])) {
+		if(isset($params['count']) && $params['count'] === true) {
+				unset($vars['params']);
+				unset($vars['limit']);
 				$count['params'] = array(
 						"count(*) as total"
 				);
 				$count           = array_merge($vars, $count);
 				return $database->select($count)->total;
 		}
+		
 		$data = $database->select($vars, true);
 		if($data) {
 				return $data;
