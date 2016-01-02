@@ -33,7 +33,7 @@ Ossn.RegisterStartupFunction(function() {
         /*
          * Process sidebar chat height;
          */
-        var sidebarheight = $(document).height();
+        var sidebarheight = $(window).height();
         sidebarheight = sidebarheight - 45;
         $(".ossn-chat-windows-long").find('.inner').height(sidebarheight + 'px');
 

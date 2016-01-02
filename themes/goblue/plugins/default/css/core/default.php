@@ -11,6 +11,19 @@ body {
 .ossn-required {
     color: #a94442;
 }
+::-webkit-scrollbar {
+    width: 12px;
+}
+::-webkit-scrollbar-track {
+    background-color: #eaeaea;
+    border-left: 1px solid #ccc;
+}
+::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+}
+::-webkit-scrollbar-thumb:hover {
+    background-color: #aaa;
+}
 .ossn-form input[type='password'],
 .ossn-form text,
 .ossn-form select,
