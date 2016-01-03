@@ -55,7 +55,7 @@ function ossn_initialize() {
 		
 		ossn_register_menu_item('footer', array(
 				'name' => 'a_copyrights',
-				'text' => ossn_print('copyright') . ' ' . strtoupper(ossn_site_settings('site_name')),
+				'text' => ossn_print('copyright') . ' ' . ossn_site_settings('site_name'),
 				'href' => ossn_site_url()
 		));
 		
