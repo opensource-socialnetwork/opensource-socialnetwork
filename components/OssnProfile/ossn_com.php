@@ -199,7 +199,7 @@ function profile_modules($h, $t, $module, $params) {
 		$modules[] = ossn_view_widget('profile/widget', 'ABOUT', $content);*/
 		
 		$content = ossn_plugin_view("profile/modules/friends", $user);
-		$title   = strtoupper(ossn_print('friends'));
+		$title   = ossn_print('friends');
 		
 		$modules[] = ossn_view_widget(array(
 				'title' => $title,
