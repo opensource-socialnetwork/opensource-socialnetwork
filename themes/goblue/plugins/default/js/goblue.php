@@ -27,17 +27,21 @@ $(document).ready(function() {
 		$(".sidebar").height(document_height);
 	});
 	var $chatsidebar = $('.ossn-chat-windows-long .inner');
-	var $chatsidebar_height = $chatsidebar.css('height');
-	$chatsidebar_height = $chatsidebar_height.slice(0, -2);
+	if($chatsidebar.length){
+		var $chatsidebar_height = $chatsidebar.css('height');
+		$chatsidebar_height = $chatsidebar_height.slice(0, -2);
+	}
 	$(document).scroll(function() {
-		if ($(document).scrollTop() >= 50) {
-			$chatsidebar.addClass('ossnchat-scroll-top');
-			$height = +$chatsidebar_height + 55;
-			$chatsidebar.css('height', $height);
-		} else if ($(document).scrollTop() == 0) {
-			$('.ossn-chat-windows-long .inner').removeClass('ossnchat-scroll-top');
-			$height = $(window).height() - 55;
-			$chatsidebar.css('height', $height);
+		if($chatsidebar.length){
+			if ($(document).scrollTop() >= 50) {
+				$chatsidebar.addClass('ossnchat-scroll-top');
+				$height = +$chatsidebar_height + 55;
+				$chatsidebar.css('height', $height);
+			} else if ($(document).scrollTop() == 0) {
+				$('.ossn-chat-windows-long .inner').removeClass('ossnchat-scroll-top');
+				$height = $(window).height() - 55;
+				$chatsidebar.css('height', $height);
+			}
 		}
-	})
+	});
 });
