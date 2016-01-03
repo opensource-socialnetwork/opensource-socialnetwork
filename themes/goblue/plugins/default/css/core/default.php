@@ -1620,6 +1620,9 @@ footer .ossn-footer-menu a:last-child::after {
 .menu-footer-powered:after {
     display: none;
 }
+.menu-footer-a_copyrights {
+    text-transform: uppercase;
+}
 /****************************
 	Home
 ****************************/
