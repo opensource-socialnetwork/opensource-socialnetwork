@@ -1355,3 +1355,13 @@ hr {
 .ossn-reset-login input[type='text'] {
     width: 290px;
 }
+/**************************
+	Similies
+**************************/
+.ossn-smiley-item {
+    display: inline-block !important;
+    width: initial !important;
+    margin-bottom: -3px !important;
+    margin-top: 0px !important;
+    border: 0px !important;
+}
