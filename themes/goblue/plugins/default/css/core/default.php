@@ -1388,14 +1388,17 @@ div.token-input-dropdown ul li.token-input-selected-dropdown-item {
     max-width: 700px;
 }
 .ossn-message-box {
+    width: 470px;
     min-width: 470px;
     min-height: 96px;
     background: #fff;
     border: 1px solid #999;
     position: fixed;
     top: 0px;
-    left: 50%;
-    margin-left: -200px;
+    left: 0px;
+    right: 0px;
+    margin-left: auto;
+    margin-right: auto;
     z-index: 60000;
     margin-top: 100px;
     border-radius: 3px;
@@ -1861,7 +1864,6 @@ footer .ossn-footer-menu a:last-child::after {
     .ossn-message-box {
     	min-width: 300px;
         width:300px;
-        margin-left: -150px;
     }
     .ossn-box-loading {
     	margin-left: 150px;
