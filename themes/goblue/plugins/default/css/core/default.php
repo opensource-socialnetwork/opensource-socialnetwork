@@ -306,6 +306,9 @@ p {
 .ossn-wall-item .post-contents {
     margin-top: 15px;
 }
+.ossn-wall-item .post-contents p {
+    word-break: break-all;
+}
 .ossn-wall-item .post-contents img {
     width: 100%;
     border: 1px solid #EAE8E8;
@@ -479,6 +482,7 @@ p {
 }
 .comment-contents p {
     margin: 0px;
+    word-break: break-all;
 }
 .comment-contents p img {
     display: block;
