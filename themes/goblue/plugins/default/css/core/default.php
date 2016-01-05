@@ -1422,6 +1422,9 @@ div.token-input-dropdown ul li.token-input-selected-dropdown-item {
 .ossn-message-box .contents {
     padding: 10px;
     min-height: 150px;
+    max-height: 470px;
+    overflow-x: auto;
+    overflow: overlay;
 }
 .ossn-message-box .control {
     margin-left: 10px;
@@ -1676,6 +1679,10 @@ footer .ossn-footer-menu a:last-child::after {
     float: right;
     margin-top: 10px;
     margin-right: 9px;
+    text-overflow: ellipsis;
+    width: 280px;
+    white-space: nowrap;
+    overflow: hidden;
 }
 .sidebar-menu-nav .sidebar-menu .menu-content {
         display: block;
@@ -1757,6 +1764,23 @@ footer .ossn-footer-menu a:last-child::after {
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+    }
+    .ossn-list-users .uinfo .userlink {
+        text-overflow: ellipsis;
+        width: 195px;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+    .ossn-list-users a.right.btn.btn-primary {
+        display: none;
+    }
+    .ossn-list-users a.right.btn.btn-danger {
+        display: none;
+    }
+   .ossn-message-box .contents {
+        height: 280px ;
+        overflow-x: auto;
+		overflow: overlay;
     }
     /***************************
     	Topbar notification box
