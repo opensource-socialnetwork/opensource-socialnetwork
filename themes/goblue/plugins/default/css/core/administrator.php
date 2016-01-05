@@ -228,6 +228,9 @@ footer {
   padding-bottom: 20px;
   padding: 10px;
 }
+footer a {
+  text-transform: uppercase;
+}
 .charjs-legend {
 	text-align:center;
 }
