@@ -39,7 +39,8 @@ class OssnUser extends OssnEntities {
 						$password              = $this->generate_password($this->password, $this->salt);
 						$activation            = md5($this->password . time() . rand());
 						$this->sendactiviation = ossn_call_hook('user', 'send:activation', false, $this->sendactiviation);
-						if($this->sendactiviation === false) {
+						$this->validated       = ossn_call_hook('user', 'create:validated', false, $this->validated);
+						if($this->validated === true) {
 								//don't set null , set empty value for users created by admin
 								$activation = '';
 						}
