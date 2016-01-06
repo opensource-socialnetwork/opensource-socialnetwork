@@ -45,6 +45,7 @@ $add->last_name = $user['lastname'];
 $add->email = $user['email'];
 $add->password = $user['password'];
 $add->usertype = $user['type'];
+$add->validated = true;
 
 foreach($fields as $items){
 	foreach($items as $field){
