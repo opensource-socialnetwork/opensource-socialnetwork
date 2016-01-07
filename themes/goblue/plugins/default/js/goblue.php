@@ -28,19 +28,16 @@ $(document).ready(function() {
 	});
 	var $chatsidebar = $('.ossn-chat-windows-long .inner');
 	if($chatsidebar.length){
-		var $chatsidebar_height = $chatsidebar.css('height');
-		$chatsidebar_height = $chatsidebar_height.slice(0, -2);
+		$chatsidebar.css('height', $(window).height() - 45);
 	}
 	$(document).scroll(function() {
 		if($chatsidebar.length){
 			if ($(document).scrollTop() >= 50) {
 				$chatsidebar.addClass('ossnchat-scroll-top');
-				$height = +$chatsidebar_height + 55;
-				$chatsidebar.css('height', $height);
+				$chatsidebar.css('height', $(window).height());
 			} else if ($(document).scrollTop() == 0) {
-				$('.ossn-chat-windows-long .inner').removeClass('ossnchat-scroll-top');
-				$height = $(window).height() - 55;
-				$chatsidebar.css('height', $height);
+				$chatsidebar.removeClass('ossnchat-scroll-top');
+				$chatsidebar.css('height', $(window).height() - 45);
 			}
 		}
 	});
