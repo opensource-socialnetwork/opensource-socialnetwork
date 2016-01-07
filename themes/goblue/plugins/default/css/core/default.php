@@ -2080,5 +2080,8 @@ footer .ossn-footer-menu a:last-child::after {
 @media only screen and (max-width: 767px) {
     .ossn-profile .user-fullname {
     	max-width: 767px;
-    }   
+    }
+    .ossn-search-page .ossn-users-list-item .uinfo {
+	margin-left: 0;	
+    }
 }
