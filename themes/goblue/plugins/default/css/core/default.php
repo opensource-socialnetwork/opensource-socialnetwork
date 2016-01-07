@@ -1593,6 +1593,10 @@ div.token-input-dropdown ul li.token-input-selected-dropdown-item {
     font-weight: bold;
     margin-top: 20px;
     float: left;
+    text-overflow: ellipsis;
+    width: 300px;
+    white-space: nowrap;
+    overflow: hidden;    
 }
 .ossn-users-list-item .col-md-2 {
     text-align: center;
@@ -1678,6 +1682,10 @@ footer .ossn-footer-menu a:last-child::after {
     font-weight: bold;
     float: right;
     margin-left: 12px;
+    text-overflow: ellipsis;
+    width: 280px;
+    white-space: nowrap;
+    overflow: hidden;    
 }
 .ossn-list-users .friendlink {
     float: right;
