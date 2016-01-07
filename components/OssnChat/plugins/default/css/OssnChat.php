@@ -432,9 +432,8 @@ and (min-width : 1360px) {
     .ossn-chat-windows-long .inner {
         margin-top: 45px;
         border-top: 1px solid #ccc;
-        overflow: hidden;
-        overflow: auto;
-        height: 600px;
+        overflow-x: hidden;
+        overflow-y: auto;
     }
 
     .ossn-chat-windows-long .friends-list-item .friends-item-inner {
@@ -523,4 +522,7 @@ and (min-width : 1360px) {
 }
 footer { 
 	margin-bottom:50px;	
+}
+@-ms-viewport {
+   width: auto;
 }
