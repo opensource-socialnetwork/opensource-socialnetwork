@@ -2070,6 +2070,12 @@ footer .ossn-footer-menu a:last-child::after {
     .ossn-search-page .ossn-users-list-item .uinfo {
     	margin-left: 35px;    
     }
+    .ossn-search-page .ossn-users-list-item .uinfo a {
+        text-overflow: ellipsis;
+        width: 200px;
+        white-space: nowrap;
+        overflow: hidden;
+    }
     .ossn-users-list-item .users-list-controls {
     	margin-bottom:10px;
     }
