@@ -1747,7 +1747,7 @@ footer .ossn-footer-menu a:last-child::after {
 ***************************/
 .ossn-photo-viewer .image-block img,
 .ossn-photo-viewer {
-     width: 100% !important;
+     max-width: 100% !important;
 }
 /**************************
 	Mobile Layout Settings
