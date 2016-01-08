@@ -207,6 +207,7 @@
     padding: 5px;
     line-height: 15px;
     max-width: 165px;
+    word-wrap: break-word;
 }
 
 .friend-tab-item .data .message-sender {
