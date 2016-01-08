@@ -1123,10 +1123,14 @@ hr {
     position: absolute;
     margin-top: -68px;
     margin-left: 12px;
+    text-overflow: ellipsis;
+    width: 130px;
+    white-space: nowrap;
+    overflow: hidden;    
 }
 .ossn-view-users .friendlink {
     float: right;
-    margin-top: 60px;
+    margin-top: 30px;
     margin-right: 9px;
 }
 .ossn-list-users {
