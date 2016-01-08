@@ -56,7 +56,8 @@
     padding: 5px;
 }
 .ossn-comment-attachment .image-data img {
-    width: 100px;
+    max-width:100%;
+    height: 180px;
     border: 1px solid #ccc;
 }
 .ossn-comment-attach-photo {
