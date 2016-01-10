@@ -18,6 +18,7 @@
 }
 .ossn-messages .messages-recent .messages-from .user-item .image {
     margin-top: 3px;
+	border-radius: 16px;
 }
 .ossn-messages .messages-recent .messages-from .user-item .name {
        font-weight: bold;
@@ -50,6 +51,7 @@
 }
 .ossn-messages .message-with  .user-icon {
     margin-top: 15px;
+	border-radius: 25px;
 }
 .ossn-messages. message-form-form .textarea {
 
