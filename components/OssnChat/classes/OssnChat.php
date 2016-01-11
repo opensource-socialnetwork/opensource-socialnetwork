@@ -146,7 +146,7 @@ class OssnChat extends OssnDatabase {
             if (($friend instanceof OssnUser) && $friend->isOnline(10)) {
                 $status = 'ossn-chat-icon-online';
             }
-            $vars['name'] = strl($friend->fullname, 15);
+            $vars['name'] = $friend->fullname;
             $vars['icon'] = $friend->iconURL()->smaller;
             $vars['guid'] = $friend->guid;
             $vars['status'] = $status;
