@@ -96,7 +96,7 @@ if ($total > 0) {
         <div class="ossn-chat-new-message" <?php echo $style; ?>><?php echo $total; ?></div>
         <div id="ossnchat-ustatus-<?php echo $user->guid; ?>" class="<?php echo $status; ?>">
             <div class="ossn-chat-inner-text">
-                <?php echo strl($user->fullname, 20); ?>
+                <?php echo $user->fullname; ?>
             </div>
         </div>
     </div>
