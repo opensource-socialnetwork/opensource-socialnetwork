@@ -100,6 +100,11 @@
     font-weight: bold;
     margin-left: 9px;
     padding: 2px;
+    max-width: 175px;
+    white-space: nowrap;
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .ossn-chat-bar .friends-list .data {
