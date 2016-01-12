@@ -54,9 +54,12 @@
 }
 
 .ossn-chat-inner-text {
-    width: 160px;
+    width: 145px;
     margin-left: 20px;
     font-weight: bold;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .ossn-chat-tab-titles {
@@ -97,6 +100,11 @@
     font-weight: bold;
     margin-left: 9px;
     padding: 2px;
+    max-width: 175px;
+    white-space: nowrap;
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .ossn-chat-bar .friends-list .data {
@@ -126,6 +134,10 @@
 .ossn-chat-base .ossn-chat-bar .friends-list-item .name {
     margin-top: -25px;
     margin-left: 40px;
+    max-width: 110px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .ossn-chat-base .ossn-chat-bar .friends-list-item .ossn-chat-icon-online {
@@ -438,6 +450,10 @@ and (min-width : 1360px) {
     .ossn-chat-windows-long .friends-list-item .name {
         margin-top: -25px;
         margin-left: 40px;
+        max-width: 100px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
 
     .ossn-chat-windows-long .friends-list-item .ossn-chat-icon-online {
