@@ -180,6 +180,10 @@ label {
   margin-left: 42px;
   margin-top: 2px;
   min-height: 30px;
+  max-width: 160px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .table-titles {
   background: #f8f8f8;
