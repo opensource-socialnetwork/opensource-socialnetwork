@@ -44,7 +44,7 @@ if($list) {
         <tr>
             <td>
                 <div class="left image"><img src="<?php echo $user->iconURL()->smaller; ?>"/></div>
-                <div class="name"><?php echo strl($user->fullname, 20); ?></div>
+                <div class="name"><?php echo $user->fullname; ?></div>
             </td>
             <td><?php echo $user->username;?></td>
             <td><?php echo $user->email; ?></td>
