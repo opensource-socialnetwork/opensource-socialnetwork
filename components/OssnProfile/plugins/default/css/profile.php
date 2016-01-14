@@ -13,6 +13,10 @@
     margin-left: 8px;
     font-size: 12px;
     color: #fff;
+    max-width: 90px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 .ossn-profile-module-friends h3 {
     padding: 4px;
