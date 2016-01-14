@@ -16,7 +16,7 @@ if($friends) {
 		foreach($friends as $friend) {
 				$url       = $friend->iconURL()->large;
 				$profile   = $friend->profileURL();
-				$user_name = strl($friend->fullname, 11);
+				$user_name = $friend->fullname;
 				echo "<a href='{$profile}'>
           <div class='user-image'>
             <img src='{$url}' title='{$friend->fullname}'/>
