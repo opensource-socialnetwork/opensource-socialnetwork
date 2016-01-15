@@ -951,6 +951,9 @@ hr {
 .ossn-message-box .contents {
     padding: 10px;
     min-height: 150px;
+    max-height: 470px;
+    overflow-x: auto;
+    overflow: overlay;    
 }
 .ossn-message-box .control {
     margin-left: 10px;
