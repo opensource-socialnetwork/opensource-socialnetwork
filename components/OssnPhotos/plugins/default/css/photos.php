@@ -25,6 +25,10 @@
     font-weight: bold;
     padding: 3px;
     margin-bottom: 3px;
+    text-overflow: ellipsis;
+    width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
 }
 .ossn-photos {} .ossn-photos li img {
     /* border:1px solid #ccc; */
