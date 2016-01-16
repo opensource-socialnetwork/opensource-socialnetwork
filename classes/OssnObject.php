@@ -188,6 +188,9 @@ class OssnObject extends OssnEntities {
 		 */
 		public function updateObject($name, $value, $guid) {
 				self::initAttributes();
+				if(empty($guid)){
+					return false;
+				}
 				$params['table']  = 'ossn_object';
 				$params['names']  = $name;
 				$params['values'] = $value;
@@ -202,6 +205,7 @@ class OssnObject extends OssnEntities {
 								
 								$this->owner_guid = $guid;
 								$this->type       = 'object';
+								unset($this->subtype);
 								
 								parent::save();
 								
