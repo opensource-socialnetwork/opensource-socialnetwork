@@ -252,7 +252,7 @@ class OssnFile extends OssnEntities {
 										$file        = (array) $file;
 										$datafiles[] = arrayObject($file, get_class($this));
 								}
-								return $datafiles;
+								return arrayObject($datafiles, get_class($this));
 						}
 				}
 				return false;
