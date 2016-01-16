@@ -49,6 +49,7 @@ $add->gender = $user['gender'];
 $add->birthdate = $user['birthdate'];
 $add->sendactiviation = false;
 $add->usertype = 'admin';
+$add->validated = true;
 
 if (!$add->isUsername($user['username'])) {
     ossn_installation_message(ossn_print('username:error'), 'fail');
