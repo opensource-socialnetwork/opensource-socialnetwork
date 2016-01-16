@@ -115,7 +115,7 @@ img.ustatus.ossn-chat-icon-online {
     width: 195px;
     overflow: hidden;
     overflow-y: scroll;
-    height: 239px;
+    height: 236px;
     
     border-left: 1px solid #ccc;
     border-right: 1px solid #ccc;    
