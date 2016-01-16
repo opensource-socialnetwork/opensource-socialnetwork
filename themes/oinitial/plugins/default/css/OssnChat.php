@@ -111,7 +111,7 @@
     width: 193px;
     overflow: hidden;
     overflow-y: scroll;
-    height: 239px;
+    height: 236px;
 }
 
 .ossn-chat-base .ossn-chat-bar .friends-list-item:hover {
