@@ -194,8 +194,9 @@ class OssnEntities extends OssnDatabase {
 						// added again in v3.0 $arsalanshah
 						//code re arrange 1st July 2015 $arsalanshah
 						if(!empty($this->datavars)) {
+								$data_dbvars = $this->get_data_dbvars();
 								foreach($this->datavars as $vars => $value) {
-										if(!in_array($vars, $this->get_data_dbvars())) {
+										if(!in_array($vars, $data_dbvars)) {
 												$this->subtype = $vars;
 												$this->value   = $value;
 												$this->add();
