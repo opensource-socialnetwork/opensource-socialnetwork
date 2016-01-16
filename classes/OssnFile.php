@@ -245,8 +245,17 @@ class OssnFile extends OssnEntities {
 						$this->filetype = "file:{$this->subtype}";
 						$this->subtype  = preg_replace('/file:file:/i', 'file:', $this->filetype);
 						$this->order_by = 'guid DESC';
-						return arrayObject($this->get_entities(), get_class($this));
+						
+						$files = $this->get_entities();
+						if($files) {
+								foreach($files as $file) {
+										$file        = (array) $file;
+										$datafiles[] = arrayObject($file, get_class($this));
+								}
+								return $datafiles;
+						}
 				}
+				return false;
 		}
 		
 		/**
