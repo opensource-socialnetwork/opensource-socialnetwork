@@ -9,10 +9,12 @@
  * @link      http://www.opensource-socialnetwork.org/licence
  */
 $wall       = new OssnWall;
+$group      = new OssnGroup;
 $accesstype = ossn_get_homepage_wall_access();
 if($accesstype == 'public' || ossn_isAdminLoggedin()) {
 		$posts = $wall->GetPosts(array(
-				'type' => 'user'
+				// 'type' => 'user'
+				// get users AND groups here
 		));
 		$count = $wall->GetPosts(array(
 				'count' => true
@@ -36,6 +38,12 @@ if($posts) {
 				}
 				if($post->access == OSSN_PUBLIC) {
 						echo ossn_wall_view_template($item);
+				}
+				if($post->access == OSSN_PRIVATE) { // the group records
+					if ($group->isMember($post->owner_guid, ossn_loggedin_user()->guid)) {
+						// calling isMember each time ... au weia :(
+						echo ossn_wall_view_template($item);
+					}
 				}
 		}
 		
