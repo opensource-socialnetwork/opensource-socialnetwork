@@ -12,5 +12,5 @@
 	margin-right: 5px;
     	padding: 3px 5px 3px 5px;
     	border-radius: 1px;
-    	display: npne;
+    	display: none;
 }
