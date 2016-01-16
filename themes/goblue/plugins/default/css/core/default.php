@@ -1426,7 +1426,7 @@ div.token-input-dropdown ul li.token-input-selected-dropdown-item {
 .ossn-message-box .contents {
     padding: 10px;
     min-height: 150px;
-    max-height: 470px;
+    max-height: 420px;
     overflow-x: auto;
     overflow: overlay;
 }
@@ -1683,7 +1683,7 @@ footer .ossn-footer-menu a:last-child::after {
     float: right;
     margin-left: 12px;
     text-overflow: ellipsis;
-    width: 280px;
+    width: 370px;
     white-space: nowrap;
     overflow: hidden;    
 }
