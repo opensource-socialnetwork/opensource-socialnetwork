@@ -1429,6 +1429,7 @@ div.token-input-dropdown ul li.token-input-selected-dropdown-item {
     max-height: 470px;
     overflow-x: auto;
     overflow: overlay;
+    overflow-x: -moz-hidden-unscrollable
 }
 .ossn-message-box .control {
     margin-left: 10px;
