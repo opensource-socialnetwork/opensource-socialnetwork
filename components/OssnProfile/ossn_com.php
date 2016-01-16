@@ -14,7 +14,7 @@ require_once(__OSSN_PROFILE__ . 'classes/OssnProfile.php');
  * Initialize Profile Component
  *
  * @return void;
- * @access private;
+ * @access private
  */
 function ossn_profile() {
 		//pages
@@ -59,30 +59,29 @@ function ossn_profile() {
 		//subpages of profile
 		ossn_profile_subpage('friends');
 		ossn_profile_subpage('edit');
+		
+		if(ossn_isLoggedin()) {
+			$user_loggedin = ossn_loggedin_user();
+			$icon          = ossn_site_url('components/OssnProfile/images/friends.png');
+			ossn_register_sections_menu('newsfeed', array(
+					'text' => ossn_print('user:friends'),
+					'url' => $user_loggedin->profileURL('/friends'),
+					'section' => 'links',
+					'icon' => $icon
+			));
+		}		
 }
 /**
  * Add users link in search page
  *
  * @return void;
- * @access private;
+ * @access private
  */
 function ossn_search_users_link($event, $type, $params) {
 		$url = OssnPagination::constructUrlArgs(array(
 				'type'
 		));
 		ossn_register_menu_link('users', 'search:users', "search?type=users{$url}", 'search');
-}
-
-if(ossn_isLoggedin()) {
-		$user_loggedin = ossn_loggedin_user();
-		$icon          = ossn_site_url('components/OssnProfile/images/friends.png');
-		ossn_register_sections_menu('newsfeed', array(
-				'text' => ossn_print('user:friends'),
-				'url' => $user_loggedin->profileURL('/friends'),
-				'section' => 'links',
-				'icon' => $icon
-		));
-		
 }
 /**
  * Add a timeline, friends tab in profile
