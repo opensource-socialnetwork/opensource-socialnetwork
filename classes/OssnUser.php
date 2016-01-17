@@ -255,7 +255,7 @@ class OssnUser extends OssnEntities {
 						unset($user->password);
 						unset($user->salt);
 						
-						OssnSession::assign('OSSN_USER') = $user;
+						OssnSession::assign('OSSN_USER', $user);
 						$this->update_last_login();
 						
 						$vars         = array();
@@ -1023,6 +1023,7 @@ class OssnUser extends OssnEntities {
 		 * @return boolean
 		 */
 		public function save() {
+
 				if(!isset($this->guid) || empty($this->guid)) {
 						return false;
 				}
