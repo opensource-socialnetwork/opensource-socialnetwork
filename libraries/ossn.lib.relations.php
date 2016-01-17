@@ -96,9 +96,9 @@ function ossn_get_relationships(array $params = array()) {
 								$wheres[] = "r.type IN ({$type})";
 						}
 				} else {
-						$wheres[] = "r1.type='{$params['type']}'";
+						$wheres[] = "r.type='{$params['type']}'";
 						if(isset($params['inverse'])) {
-								$wheres[] = "r.type='{$params['type']}'";
+								$wheres[] = "r1.type='{$params['type']}'";
 						}
 				}
 		} elseif(isset($params['to']) && !empty($params['to'])) {
