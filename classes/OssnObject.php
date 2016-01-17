@@ -140,6 +140,7 @@ class OssnObject extends OssnEntities {
 						'o.owner_guid',
 						'o.description',
 						'o.title',
+						'o.type',
 						'o.subtype'
 				);
 				if(isset($options['unset_params']) && is_array($options['unset_params'])){
@@ -381,6 +382,7 @@ class OssnObject extends OssnEntities {
 						'o.owner_guid',
 						'o.description',
 						'o.title',
+						'o.type',
 						'o.subtype'
 				);
 				$params['wheres']   = array(
