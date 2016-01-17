@@ -256,8 +256,11 @@ class OssnWall extends OssnObject {
 								'subtype' => 'wall',
 								'order_by' => 'o.guid DESC',
 								'entities_pairs' => array(
-										'name' => 'poster_guid',
-										'wheres' => "[this].value IN({$friend_guids})"
+												array(
+												  	'name' => 'poster_guid',
+													'value' => true,
+												  	'wheres' => "[this].value IN({$friend_guids})"
+												  )
 								)
 						);
 						
