@@ -149,7 +149,7 @@
     border-bottom: 2px solid #C4CDE0;    
 }
 .ossn-group-profile .profile-header .group-name {
-    font-size: 13px;
+    font-size: 14px;
     font-weight: bold;
     padding: 13px;
     float: left;
