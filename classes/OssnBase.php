@@ -8,7 +8,7 @@
  * @license   General Public Licence http://www.opensource-socialnetwork.org/licence
  * @link      http://www.opensource-socialnetwork.org/licence
  */
-class OssnBase {
+class OssnBase extends OssnSession {
     /**
      * Get guid.
      *

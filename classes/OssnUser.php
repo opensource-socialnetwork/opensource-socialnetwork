@@ -251,9 +251,11 @@ class OssnUser extends OssnEntities {
 				$salt     = $user->salt;
 				$password = $this->generate_password($this->password . $salt);
 				if($password == $user->password && $user->activation == NULL) {
+					
 						unset($user->password);
 						unset($user->salt);
-						$_SESSION['OSSN_USER'] = $user;
+						
+						OssnSession::assign('OSSN_USER') = $user;
 						$this->update_last_login();
 						
 						$vars         = array();
