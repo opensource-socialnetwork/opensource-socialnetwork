@@ -42,7 +42,7 @@ function ossn_users() {
 						'text' => ossn_print('logout'),
 						'href' => ossn_site_url('action/user/logout'),
 						'action' => true,
-						'priority' => 200,
+						'priority' => 200
 				));
 		}
 }
@@ -419,6 +419,29 @@ function ossn_user_fields_names() {
 				return $user_fields;
 		}
 		return false;
+}
+/**
+ * Remove a field from a given user fields
+ *
+ * @param array $remove A name of fields you wanted to remove
+ * @param array $fields A user fields array
+ *
+ * @return array
+ */
+function ossn_remove_field_from_fields(array $remove = array(), array $fields = array()) {
+		if(!isset($remove) || !is_array($remove) || empty($fields) || !is_array($fields)) {
+				return false;
+		}
+		foreach($fields as $name => $type) {
+				foreach($type as $datatype => $data) {
+						foreach($data as $occurance => $field) {
+								if(isset($field['name']) && in_array($field['name'], $remove)) {
+										unset($fields[$name][$datatype][$occurance]);
+								}
+						}
+				}
+		}
+		return $fields;
 }
 ossn_register_callback('ossn', 'init', 'ossn_users');
 ossn_add_hook('load:settings', 'language', 'ossn_site_user_lang_code');
