@@ -9,6 +9,7 @@
  * @link      http://www.opensource-socialnetwork.org/licence
  */
 $members = $params['group']->getMembers();
+$count = $params['group']->getMembers(true);
 if ($members) {
     foreach ($members as $user) {
       ?>
@@ -43,5 +44,5 @@ if ($members) {
         </div>
     <?php
     }
-
+	echo ossn_view_pagination($count);
 }?>
