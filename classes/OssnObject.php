@@ -128,12 +128,27 @@ class OssnObject extends OssnEntities {
 		 *
 		 * @return object;
 		 */
-		public function getObjectById() {
+		public function getObjectById(array $options = array()) {
 				self::initAttributes();
 				if(empty($this->object_guid)) {
 						return false;
 				}
 				$params['from']   = 'ossn_object as o';
+				$params['params']   = array(
+						'o.guid',
+						'o.time_created',
+						'o.owner_guid',
+						'o.description',
+						'o.title',
+						'o.subtype'
+				);
+				if(isset($options['unset_params']) && is_array($options['unset_params'])){
+					foreach($options['unset_params'] as $item){
+						if(($key = array_search($item, $params['params'])) !== false) {
+   								 unset($params['params'][$key]);
+						}
+					}
+				}				
 				$params['wheres'] = array(
 						"o.guid='{$this->object_guid}'"
 				);
@@ -393,7 +408,7 @@ class OssnObject extends OssnEntities {
 				if($this->get) {
 						foreach($this->get as $object) {
 								$this->object_guid = $object->guid;
-								$objects[]         = $this->getObjectById();
+								$objects[]         = $this->getObjectById($options);
 						}
 						return $objects;
 				}
