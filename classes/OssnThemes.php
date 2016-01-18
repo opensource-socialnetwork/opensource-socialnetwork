@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Open Source Social Network
  *
@@ -92,15 +91,26 @@ class OssnThemes extends OssnSite {
 				$newfile = "{$data_dir}/{$zip['name']}";
 				if(move_uploaded_file($zip['tmp_name'], $newfile)) {
 						if($archive->open($newfile) === TRUE) {
-								$archive->extractTo($data_dir);
+								$translit = OssnTranslit::urlize($zip['name']);
+								
+								$archive->extractTo($data_dir . '/' . $translit);
+								$dirctory = scandir($data_dir . '/' . $translit, 1);
+								$dirctory = $dirctory[0];
+								$files    = $data_dir . '/' . $translit . '/' . $dirctory . '/';
+								
 								$archive->close();
-								$validate = pathinfo($zip['name'], PATHINFO_FILENAME);
-								if(is_file("{$data_dir}/{$validate}/ossn_theme.php") && is_file("{$data_dir}/{$validate}/ossn_theme.xml")) {
-										$archive->open($newfile);
-										$archive->extractTo(ossn_route()->themes);
-										$archive->close();
-										OssnFile::DeleteDir($data_dir);
-										return true;
+								
+								if(is_dir($files) && is_file("{$files}ossn_theme.php") && is_file("{$files}ossn_theme.xml")) {
+										$ossn_theme_xml = simplexml_load_file("{$files}ossn_theme.xml");
+										//need to check id , since ossn v3.x
+										if(isset($ossn_theme_xml->id) && !empty($ossn_theme_xml->id)) {
+												//move to components directory
+												if(OssnFile::moveFiles($files, ossn_route()->themes . $ossn_theme_xml->id . '/')) {
+														//why it shows success even if the component is not updated #510
+														OssnFile::DeleteDir($data_dir);
+														return true;
+												}
+										}
 								}
 						}
 				}
