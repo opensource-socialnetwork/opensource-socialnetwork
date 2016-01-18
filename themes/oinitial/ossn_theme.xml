@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <theme xmlns="http://www.opensource-socialnetwork.org/theme/v/3.0">
     <name>Ossn First</name>
+    <id>oinitial</id>
     <author>Core Team</author>
     <author_url>http://www.informatikon.com/</author_url>	
     <description>Facebook like theme for Ossn.</description>
