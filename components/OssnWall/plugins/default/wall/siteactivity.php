@@ -9,15 +9,23 @@
  * @link      http://www.opensource-socialnetwork.org/licence
  */
 $wall       = new OssnWall;
-$group      = new OssnGroup;
+$group	    = new OssnGroup;
 
-$posts = $wall->GetPosts();
-$count = $wall->GetPosts(array(
-	'count' => true
-));
-
-$accesstype = ossn_get_homepage_wall_access();		
+$accesstype = ossn_get_homepage_wall_access();
 $loggedinuser = ossn_loggedin_user();
+
+// allow admin to watch ALL postings independant of Wall setting
+if($accesstype == 'public' || $loggedinuser->canModerate()) {
+	$posts = $wall->GetPosts();
+	$count = $wall->GetPosts(array(
+		'count' => true
+	));
+} elseif($accesstype == 'friends') {
+	$posts = $wall->getFriendsWallAndGroupPosts();
+	$count = $wall->getFriendsWallAndGroupPosts(array(
+		'count' => true
+	));
+}
 
 if($posts) {
 	foreach($posts as $post) {
