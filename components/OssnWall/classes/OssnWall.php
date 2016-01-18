@@ -269,4 +269,46 @@ class OssnWall extends OssnObject {
 				}
 				return false;
 		}
+
+		/**
+		 * Get own and friend's newsfeed and group postings
+		 *
+		 * 
+		 *
+		 * @return array;
+		 */
+		public function getFriendsWallAndGroupPosts($params = array()) {
+				$user = ossn_loggedin_user();
+				if(isset($user->guid) && !empty($user->guid)) {
+						$friends      = $user->getFriends();
+						$friend_guids = '';
+						if($friends) {
+								foreach($friends as $friend) {
+										$friend_guids[] = $friend->guid;
+								}
+						}
+						// add all users posts;
+						// (if user has 0 friends, show at least his own postings if wall access type = friends only)
+						$friend_guids[] = $user->guid;
+						$friend_guids   = implode(',', $friend_guids);
+						
+						$default = array(
+								// 'type' => 'user',
+								'subtype' => 'wall',
+								'order_by' => 'o.guid DESC',
+								'entities_pairs' => array(
+												array(
+												  	'name' => 'poster_guid',
+													'value' => true,
+												  	'wheres' => "[this].value IN({$friend_guids})"
+												  )
+								)
+						);
+						
+						$options = array_merge($default, $params);
+						return $this->searchObject($options);
+				}
+				return false;
+		}
+		
 } //class
