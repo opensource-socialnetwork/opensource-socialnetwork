@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <theme xmlns="http://www.opensource-socialnetwork.org/theme/v/3.0">
     <name>GoBlue</name>
+    <id>goblue</id>
     <author>Core Team</author>
     <author_url>http://www.informatikon.com/</author_url>	
     <description>A responsive theme for Ossn.</description>
