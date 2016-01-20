@@ -385,10 +385,14 @@ class OssnObject extends OssnEntities {
 								$params['joins'][] = $jitem;
 						}
 				}
+				$distinct = '';
+				if($options['distinct'] === true) {
+						$distinct = "DISTINCT ";
+				}
 				//prepare search
 				$params['from']     = 'ossn_object as o';
 				$params['params']   = array(
-						'o.guid',
+						"{$distinct} o.guid",
 						'o.time_created',
 						'o.owner_guid',
 						'o.description',

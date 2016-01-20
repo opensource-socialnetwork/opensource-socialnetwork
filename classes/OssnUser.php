@@ -578,9 +578,14 @@ class OssnUser extends OssnEntities {
 								$params['joins'][] = $jitem;
 						}
 				}
+				$distinct = '';
+				if($options['distinct'] === true) {
+						$distinct = "DISTINCT ";
+				}				
 				$params['from']     = 'ossn_users as u';
 				$params['params']   = array(
-						'u.*'
+						"{$distinct}u.guid",
+						'u.*',
 				);
 				$params['order_by'] = $options['order_by'];
 				$params['limit']    = $options['limit'];

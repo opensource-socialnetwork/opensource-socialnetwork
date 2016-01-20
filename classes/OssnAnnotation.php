@@ -351,10 +351,14 @@ class OssnAnnotation extends OssnEntities {
 								$params['joins'][] = $jitem;
 						}
 				}
+				$distinct = '';
+				if($options['distinct'] === true) {
+						$distinct = "DISTINCT ";
+				}					
 				//prepare search	
 				$params['from']     = 'ossn_annotations as a';
 				$params['params']   = array(
-						'a.id',
+						"{$distinct}a.id",
 						'a.time_created',
 						'a.owner_guid',
 						'a.subject_guid',
