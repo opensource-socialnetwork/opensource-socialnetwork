@@ -523,10 +523,10 @@ class OssnUser extends OssnEntities {
 						'entities_pairs' => false
 				);
 				
-				$options = array_merge($default, $params);
-				$wheres  = array();
-				$params  = array();
-				
+				$options      = array_merge($default, $params);
+				$wheres       = array();
+				$params       = array();
+				$wheres_paris = array();
 				//validate offset values
 				if($options['limit'] !== false && $options['limit'] != 0 && $options['page_limit'] != 0) {
 						$offset_vals = ceil($options['limit'] / $options['page_limit']);
@@ -553,18 +553,22 @@ class OssnUser extends OssnEntities {
 										if(!empty($pair['value'])) {
 												$pair['value'] = addslashes($pair['value']);
 										}
-										$wheres[] = "e{$key}.type='user'";
-										$wheres[] = "e{$key}.subtype='{$pair['name']}'";
+										$wheres_paris[] = "e{$key}.type='object'";
+										$wheres_paris[] = "e{$key}.subtype='{$pair['name']}'";
 										if(isset($pair['wheres']) && !empty($pair['wheres'])) {
 												$pair['wheres'] = str_replace('[this].', "emd{$key}.", $pair['wheres']);
-												$wheres[]       = $pair['wheres'];
+												$wheres_paris[] = $pair['wheres'];
 										} else {
-												$wheres[] = "emd{$key}.value {$operand} '{$pair['value']}'";
+												$wheres_paris[] = "emd{$key}.value {$operand} '{$pair['value']}'";
 												
 										}
-										$params['joins'][] = "JOIN ossn_entities as e{$key} ON e{$key}.owner_guid=u.guid";
+										$params['joins'][] = "JOIN ossn_entities as e{$key} ON e{$key}.owner_guid=o.guid";
 										$params['joins'][] = "JOIN ossn_entities_metadata as emd{$key} ON e{$key}.guid=emd{$key}.guid";
 								}
+						}
+						if(!empty($wheres_paris)) {
+								$wheres_entities = '(' . $this->constructWheres($wheres_paris) . ')';
+								$wheres[]        = $wheres_entities;
 						}
 				}
 				$wheres[] = "u.time_created IS NOT NULL";
@@ -585,11 +589,11 @@ class OssnUser extends OssnEntities {
 				$distinct = '';
 				if($options['distinct'] === true) {
 						$distinct = "DISTINCT ";
-				}				
+				}
 				$params['from']     = 'ossn_users as u';
 				$params['params']   = array(
 						"{$distinct}u.guid",
-						'u.*',
+						'u.*'
 				);
 				$params['order_by'] = $options['order_by'];
 				$params['limit']    = $options['limit'];

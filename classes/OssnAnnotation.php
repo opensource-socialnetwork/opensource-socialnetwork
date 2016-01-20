@@ -266,7 +266,7 @@ class OssnAnnotation extends OssnEntities {
 						return false;
 				}
 				//prepare default attributes
-				$default = array(
+				$default      = array(
 						'search_type' => true,
 						'type' => false,
 						'owner_guid' => false,
@@ -278,10 +278,10 @@ class OssnAnnotation extends OssnEntities {
 						'page_limit' => ossn_call_hook('pagination', 'page_limit', false, 10), //call hook for page limit
 						'count' => false
 				);
-				$options = array_merge($default, $params);
-				$wheres  = array();
-				$params  = array();
-				
+				$options      = array_merge($default, $params);
+				$wheres       = array();
+				$params       = array();
+				$wheres_paris = array();
 				//validate offset values
 				if($options['limit'] !== false && $options['limit'] !== 0 && $options['page_limit'] !== 0) {
 						$offset_vals = ceil($options['limit'] / $options['page_limit']);
@@ -317,18 +317,22 @@ class OssnAnnotation extends OssnEntities {
 										if(!empty($pair['value'])) {
 												$pair['value'] = addslashes($pair['value']);
 										}
-										$wheres[] = "e{$key}.type='annotation'";
-										$wheres[] = "e{$key}.subtype {$operand} '{$pair['name']}'";
+										$wheres_paris[] = "e{$key}.type='object'";
+										$wheres_paris[] = "e{$key}.subtype='{$pair['name']}'";
 										if(isset($pair['wheres']) && !empty($pair['wheres'])) {
 												$pair['wheres'] = str_replace('[this].', "emd{$key}.", $pair['wheres']);
-												$wheres[]       = $pair['wheres'];
+												$wheres_paris[] = $pair['wheres'];
 										} else {
-												$wheres[] = "emd{$key}.value {$operand} '{$pair['value']}'";
+												$wheres_paris[] = "emd{$key}.value {$operand} '{$pair['value']}'";
 												
 										}
-										$params['joins'][] = "JOIN ossn_entities as e{$key} ON e{$key}.owner_guid=a.id";
+										$params['joins'][] = "JOIN ossn_entities as e{$key} ON e{$key}.owner_guid=o.guid";
 										$params['joins'][] = "JOIN ossn_entities_metadata as emd{$key} ON e{$key}.guid=emd{$key}.guid";
 								}
+						}
+						if(!empty($wheres_paris)) {
+								$wheres_entities = '(' . $this->constructWheres($wheres_paris) . ')';
+								$wheres[]        = $wheres_entities;
 						}
 				}
 				$params['joins'][] = "JOIN ossn_entities as e ON e.owner_guid=a.id";
@@ -354,7 +358,7 @@ class OssnAnnotation extends OssnEntities {
 				$distinct = '';
 				if($options['distinct'] === true) {
 						$distinct = "DISTINCT ";
-				}					
+				}
 				//prepare search	
 				$params['from']     = 'ossn_annotations as a';
 				$params['params']   = array(
