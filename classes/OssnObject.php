@@ -134,7 +134,7 @@ class OssnObject extends OssnEntities {
 						return false;
 				}
 				$params['from']   = 'ossn_object as o';
-				$params['params']   = array(
+				$params['params'] = array(
 						'o.guid',
 						'o.time_created',
 						'o.owner_guid',
@@ -143,13 +143,13 @@ class OssnObject extends OssnEntities {
 						'o.type',
 						'o.subtype'
 				);
-				if(isset($options['unset_params']) && is_array($options['unset_params'])){
-					foreach($options['unset_params'] as $item){
-						if(($key = array_search($item, $params['params'])) !== false) {
-   								 unset($params['params'][$key]);
+				if(isset($options['unset_params']) && is_array($options['unset_params'])) {
+						foreach($options['unset_params'] as $item) {
+								if(($key = array_search($item, $params['params'])) !== false) {
+										unset($params['params'][$key]);
+								}
 						}
-					}
-				}				
+				}
 				$params['wheres'] = array(
 						"o.guid='{$this->object_guid}'"
 				);
@@ -204,8 +204,8 @@ class OssnObject extends OssnEntities {
 		 */
 		public function updateObject($name, $value, $guid) {
 				self::initAttributes();
-				if(empty($guid)){
-					return false;
+				if(empty($guid)) {
+						return false;
 				}
 				$params['table']  = 'ossn_object';
 				$params['names']  = $name;
@@ -372,7 +372,18 @@ class OssnObject extends OssnEntities {
 						}
 				}
 				if(isset($options['wheres']) && !empty($options['wheres'])) {
-						$wheres[] = $options['wheres'];
+						if(!is_array($options['wheres'])) {
+								$wheres[] = $options['wheres'];
+						} else {
+								foreach($options['wheres'] as $witem) {
+										$wheres[] = $witem;
+								}
+						}
+				}
+				if(isset($options['joins']) && !empty($options['joins']) && is_array($options['joins'])) {
+						foreach($options['joins'] as $jitem) {
+								$params['joins'][] = $jitem;
+						}
 				}
 				//prepare search
 				$params['from']     = 'ossn_object as o';

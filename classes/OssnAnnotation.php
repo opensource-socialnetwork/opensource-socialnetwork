@@ -338,7 +338,18 @@ class OssnAnnotation extends OssnEntities {
 				$wheres[] = "emd.guid=e.guid";
 				
 				if(isset($options['wheres']) && !empty($options['wheres'])) {
-						$wheres[] = $options['wheres'];
+						if(!is_array($options['wheres'])) {
+								$wheres[] = $options['wheres'];
+						} else {
+								foreach($options['wheres'] as $witem) {
+										$wheres[] = $witem;
+								}
+						}
+				}
+				if(isset($options['joins']) && !empty($options['joins']) && is_array($options['joins'])) {
+						foreach($options['joins'] as $jitem) {
+								$params['joins'][] = $jitem;
+						}
 				}
 				//prepare search	
 				$params['from']     = 'ossn_annotations as a';

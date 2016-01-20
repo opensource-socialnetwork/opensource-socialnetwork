@@ -251,7 +251,7 @@ class OssnUser extends OssnEntities {
 				$salt     = $user->salt;
 				$password = $this->generate_password($this->password . $salt);
 				if($password == $user->password && $user->activation == NULL) {
-					
+						
 						unset($user->password);
 						unset($user->salt);
 						
@@ -565,7 +565,18 @@ class OssnUser extends OssnEntities {
 				}
 				$wheres[] = "u.time_created IS NOT NULL";
 				if(isset($options['wheres']) && !empty($options['wheres'])) {
-						$wheres[] = $options['wheres'];
+						if(!is_array($options['wheres'])) {
+								$wheres[] = $options['wheres'];
+						} else {
+								foreach($options['wheres'] as $witem) {
+										$wheres[] = $witem;
+								}
+						}
+				}
+				if(isset($options['joins']) && !empty($options['joins']) && is_array($options['joins'])) {
+						foreach($options['joins'] as $jitem) {
+								$params['joins'][] = $jitem;
+						}
 				}
 				$params['from']     = 'ossn_users as u';
 				$params['params']   = array(
@@ -1023,7 +1034,7 @@ class OssnUser extends OssnEntities {
 		 * @return boolean
 		 */
 		public function save() {
-
+				
 				if(!isset($this->guid) || empty($this->guid)) {
 						return false;
 				}
