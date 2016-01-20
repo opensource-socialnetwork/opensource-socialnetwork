@@ -54,6 +54,8 @@ class OssnUser extends OssnEntities {
 								'password',
 								'salt',
 								'activation',
+								'last_login',
+								'last_activity',
 								'time_created'
 						);
 						$params['values'] = array(
@@ -65,6 +67,8 @@ class OssnUser extends OssnEntities {
 								$password,
 								$this->salt,
 								$activation,
+								0,
+								0,
 								time()
 						);
 						if($this->insert($params)) {
