@@ -417,7 +417,7 @@ class OssnObject extends OssnEntities {
 						unset($params['limit']);
 						$count           = array();
 						$count['params'] = array(
-								"count(*) as total"
+								"count({$distinct}o.guid) as total"
 						);
 						$count           = array_merge($params, $count);
 						return $this->select($count)->total;
