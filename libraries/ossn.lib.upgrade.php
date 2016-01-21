@@ -202,5 +202,28 @@ function ossn_update_upgraded_files($upgrade) {
 				return false;
 		}
 }
+/** 
+ * Update version of Ossn
+ *
+ * @param integer $upgrade New release
+ *
+ * @return boolean
+ */
+function ossn_version_upgrade($upgrade, $version) {
+		if(empty($upgrade) || empty($version)) {
+				return false;
+		}
+		$release = str_replace('.php', '', $upgrade);
+		if(ossn_update_upgraded_files($upgrade) && ossn_update_db_version($version)) {
+				ossn_trigger_message(ossn_print('upgrade:success', array(
+						$release
+				)), 'success');
+		} else {
+				ossn_trigger_message(ossn_print('upgrade:failed', array(
+						$release
+				)), 'error');
+		}
+		return true;
+}
 //initilize upgrades
 ossn_register_callback('ossn', 'init', 'ossn_upgrade_init', 1);
