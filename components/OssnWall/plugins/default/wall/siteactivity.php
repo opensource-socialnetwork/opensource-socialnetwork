@@ -8,28 +8,44 @@
  * @license   General Public Licence http://www.opensource-socialnetwork.org/licence
  * @link      http://www.opensource-socialnetwork.org/licence
  */
-$wall  = new OssnWall;
-$group = new OssnGroup;
+$wall       = new OssnWall;
 
-$accesstype   = ossn_get_homepage_wall_access();
+$accesstype = ossn_get_homepage_wall_access();
 $loggedinuser = ossn_loggedin_user();
 
 // allow admin to watch ALL postings independant of Wall setting
 if($loggedinuser->canModerate()) {
-		$posts = $wall->GetPosts();
-		$count = $wall->GetPosts(array(
-				'count' => true
-		));
-} elseif($accesstype == 'public' && !$loggedinuser->canModerate()) {
-		$posts = $wall->getNewsFeedPosts();
-		$count = $wall->getNewsFeedPosts(array(
-				'count' => true
-		));
+	$posts = $wall->getAllPosts(array(
+				'type' => 'user',
+				'distinct' => true,
+	));
+	$count = $wall->getAllPosts(array(
+			'type' => 'user',
+			'count' => true,
+			'distinct' => true,
+	));
+// wall mode: all site posts
+} elseif($accesstype == 'public') {
+	$posts = $wall->getPublicPosts(array(
+				'type' => 'user',
+				'distinct' => true,
+	));
+	$count = $wall->getPublicPosts(array(
+			'type' => 'user',
+			'count' => true,
+			'distinct' => true,
+	));
+// wall mode: friends-only posts	
 } elseif($accesstype == 'friends') {
-		$posts = $wall->getFriendsWallAndGroupPosts();
-		$count = $wall->getFriendsWallAndGroupPosts(array(
-				'count' => true
-		));
+	$posts = $wall->getFriendsPosts(array(
+				'type' => 'user',
+				'distinct' => true,
+	));
+	$count = $wall->getFriendsPosts(array(
+			'type' => 'user',
+			'count' => true,
+			'distinct' => true,
+	));
 }
 
 if($posts) {
@@ -37,5 +53,7 @@ if($posts) {
 				$item = ossn_wallpost_to_item($post);
 				echo ossn_wall_view_template($item);
 		}
+		
 }
+
 echo ossn_view_pagination($count);
