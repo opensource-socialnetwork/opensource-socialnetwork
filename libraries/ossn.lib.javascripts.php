@@ -43,9 +43,6 @@ function ossn_javascript() {
 	ossn_load_external_js('jquery-ui.min.js', 'admin');
 	
 	ossn_load_external_js('tinymce.min', 'admin');
-	
-	ossn_new_external_js('jquery-arhandler-1.1-min.js', 'vendors/jquery/jquery-arhandler-1.1-min.js');
-	ossn_load_external_js('jquery-arhandler-1.1-min.js');
 }
 
 /**
