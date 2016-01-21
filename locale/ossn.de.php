@@ -297,6 +297,7 @@ Um Dein Passwort zurückzusetzen klicke bitte auf den folgenden Link oder kopier
 	'admin:com:requirements' => 'Voraussetzungen',
 	'admin:com:availability' => 'Verfügbarkeit',
 	'ossn:exception:make:sure' => 'Bist Du sicher?',
+	'ossn:premium' => 'Premium Version',
 	
 	/*
        * List of ISO 639-1 language codes
