@@ -27,7 +27,7 @@ $fr = array(
     'ossn:wall:admin:notice' => 'Accueil Messages',
     'ossn:wall:allsite:posts' => 'Tous les sujets du site',
     'ossn:wall:friends:posts' => 'Sujets des amis seulement',
-	'ossn:wall:post:saved' => "Post sauvegardé avec succès',
+	'ossn:wall:post:saved' => 'Post sauvegardé avec succès',
 	'ossn:wall:post:save:error' => 'Erreur de sauvegarde du post'	
 );
 ossn_register_languages('fr', $fr);
