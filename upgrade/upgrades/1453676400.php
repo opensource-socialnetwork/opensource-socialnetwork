@@ -11,3 +11,6 @@
 
 ossn_generate_server_config('apache');
 ossn_version_upgrade($upgrade, '4.0');
+
+$theme = new OssnThemes;
+$theme->Enable('goblue');
