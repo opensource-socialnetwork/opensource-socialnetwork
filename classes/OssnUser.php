@@ -562,7 +562,7 @@ class OssnUser extends OssnEntities {
 												$wheres_paris[] = "emd{$key}.value {$operand} '{$pair['value']}'";
 												
 										}
-										$params['joins'][] = "JOIN ossn_entities as e{$key} ON e{$key}.owner_guid=o.guid";
+										$params['joins'][] = "JOIN ossn_entities as e{$key} ON e{$key}.owner_guid=u.guid";
 										$params['joins'][] = "JOIN ossn_entities_metadata as emd{$key} ON e{$key}.guid=emd{$key}.guid";
 								}
 						}
@@ -592,7 +592,7 @@ class OssnUser extends OssnEntities {
 				}
 				$params['from']     = 'ossn_users as u';
 				$params['params']   = array(
-						"{$distinct}u.guid",
+						"{$distinct} u.guid",
 						'u.*'
 				);
 				$params['order_by'] = $options['order_by'];
