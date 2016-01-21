@@ -177,7 +177,7 @@ class OssnWall extends OssnObject {
 		 */
 		public function deleteAllPosts() {
 				$posts = $this->GetPosts(array(
-						'page_limit' => false
+							'page_limit' => false,							   
 				));
 				if(!$posts) {
 						return false;
@@ -232,9 +232,9 @@ class OssnWall extends OssnObject {
 				return false;
 		}
 		/**
-		 * Get user group posts guids
+		 * Get user wall postings for wall mode set to Friends-Only 
 		 *
-		 * @param integer $userguid Guid of user
+		 * @param 
 		 *
 		 * @return array;
 		 */
@@ -258,11 +258,16 @@ class OssnWall extends OssnObject {
 								'subtype' => 'wall',
 								'order_by' => 'o.guid DESC',
 								'entities_pairs' => array(
-										array(
-												'name' => 'poster_guid',
-												'value' => true,
-												'wheres' => "[this].value IN({$friend_guids})"
-										)
+												array(
+												  	'name' => 'access',
+													'value' => true,
+												  	'wheres' => "(1=1)"
+												  ),
+												array(
+												  	'name' => 'poster_guid',
+													'value' => true,
+													'wheres' => "((emd0.value=2 OR emd0.value=3) AND [this].value IN({$friend_guids}))"
+ 											  )
 								)
 						);
 						
@@ -271,14 +276,15 @@ class OssnWall extends OssnObject {
 				}
 				return false;
 		}
+
 		/**
-		 * Get userposts for newsfeed page
+		 * Get user wall postings for wall mode set to All-Site-Posts 
 		 *
-		 * @param integer $userguid Guid of user
+		 * @param 
 		 *
 		 * @return array;
 		 */
-		public function getNewsFeedPosts($params = array()) {
+		public function getPublicPosts($params = array()) {
 				$user = ossn_loggedin_user();
 				if(isset($user->guid) && !empty($user->guid)) {
 						$friends      = $user->getFriends();
@@ -292,26 +298,22 @@ class OssnWall extends OssnObject {
 						// (if user has 0 friends, show at least his own postings if wall access type = friends only)
 						$friend_guids[] = $user->guid;
 						$friend_guids   = implode(',', $friend_guids);
-						
-						$access_friends = OSSN_FRIENDS;
-						$access_public  = OSSN_PUBLIC;
 						
 						$default = array(
 								'type' => 'user',
 								'subtype' => 'wall',
 								'order_by' => 'o.guid DESC',
 								'entities_pairs' => array(
-										array(
-												'name' => 'access',
-												'value' => true,
-												'wheres' => "(1=1)"
-										),
-										array(
-												'name' => 'poster_guid',
-												'value' => true,
-												'wheres' => "(emd0.value={$access_friends} AND [this].value IN({$friend_guids})) OR 
-																 (emd0.value={$access_public} AND [this].value NOT IN({$friend_guids}))"
-										)
+												array(
+												  	'name' => 'access',
+													'value' => true,
+												  	'wheres' => "(1=1)"
+												  ),
+												array(
+												  	'name' => 'poster_guid',
+													'value' => true,
+													'wheres' => "(emd0.value=2) OR (emd0.value=3 AND [this].value IN({$friend_guids}))"
+												  )
 								)
 						);
 						
@@ -320,14 +322,15 @@ class OssnWall extends OssnObject {
 				}
 				return false;
 		}
+
 		/**
-		 * Get own and friend's newsfeed and group postings
+		 * Get all user wall posts for admins
 		 *
-		 * 
+		 * @param 
 		 *
 		 * @return array;
 		 */
-		public function getFriendsWallAndGroupPosts($params = array()) {
+		public function getAllPosts($params = array()) {
 				$user = ossn_loggedin_user();
 				if(isset($user->guid) && !empty($user->guid)) {
 						$friends      = $user->getFriends();
@@ -343,15 +346,20 @@ class OssnWall extends OssnObject {
 						$friend_guids   = implode(',', $friend_guids);
 						
 						$default = array(
-								// 'type' => 'user',
+								'type' => 'user',
 								'subtype' => 'wall',
 								'order_by' => 'o.guid DESC',
 								'entities_pairs' => array(
-										array(
-												'name' => 'poster_guid',
-												'value' => true,
-												'wheres' => "[this].value IN({$friend_guids})"
-										)
+												array(
+												  	'name' => 'access',
+													'value' => true,
+												  	'wheres' => "(1=1)"
+												  ),
+												array(
+												  	'name' => 'poster_guid',
+													'value' => true,
+													'wheres' => "(emd0.value=2 OR emd0.value=3)"
+												  )
 								)
 						);
 						
