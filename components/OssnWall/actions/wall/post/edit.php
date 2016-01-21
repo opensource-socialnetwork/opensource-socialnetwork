@@ -22,7 +22,7 @@ $post = htmlspecialchars($post, ENT_QUOTES, 'UTF-8');
 $json = html_entity_decode($object->description);
 
 $data         = json_decode($json, true);
-$data['post'] = input('post');
+$data['post'] = $post;
 
 $data                = json_encode($data, JSON_UNESCAPED_UNICODE);
 $object->description = $data;
