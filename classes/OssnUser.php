@@ -553,7 +553,7 @@ class OssnUser extends OssnEntities {
 										if(!empty($pair['value'])) {
 												$pair['value'] = addslashes($pair['value']);
 										}
-										$wheres_paris[] = "e{$key}.type='object'";
+										$wheres_paris[] = "e{$key}.type='user'";
 										$wheres_paris[] = "e{$key}.subtype='{$pair['name']}'";
 										if(isset($pair['wheres']) && !empty($pair['wheres'])) {
 												$pair['wheres'] = str_replace('[this].', "emd{$key}.", $pair['wheres']);
