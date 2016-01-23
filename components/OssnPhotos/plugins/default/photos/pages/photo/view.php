@@ -16,7 +16,7 @@ $img = str_replace('album/photos/', '', $image->value);
 ?>
 <div class="ossn-photo-view">
     <h2> <?php echo $name; ?></h2>
-    <a href="<?php echo ossn_site_url("album/view/{$image->owner_guid}");?>"> <?php echo ossn_print('back:to:album'); ?>  </a>
+    <a class="button-grey" href="<?php echo ossn_site_url("album/view/{$image->owner_guid}");?>"> <?php echo ossn_print('back:to:album'); ?>  </a>
     <br/>
     <table border="0" class="ossn-photo-viewer">
         <tr>
