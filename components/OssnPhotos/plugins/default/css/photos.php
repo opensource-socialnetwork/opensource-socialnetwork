@@ -39,8 +39,8 @@
     text-transform: uppercase;
 }
 .ossn-photo-view a {
-    margin-top: -7px;
-    float: left;
+    float: right;
+    margin-bottom: 10px;
 }
 .ossn-photo-viewer {
     text-align: center;
@@ -79,6 +79,7 @@
     font-size: 18px;
     font-weight: bold;
     margin-top:0px;
+    display: inline;
 }
 .ossn-photo-menu {
 	margin-top:10px;
