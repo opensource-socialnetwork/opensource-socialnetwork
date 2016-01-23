@@ -1544,7 +1544,6 @@ div.token-input-dropdown ul li.token-input-selected-dropdown-item {
 .btn-action {
     color: #333;
     font-weight: bold;
-    text-decoration: none;
     width: auto;
     margin: 0;
     font-size: 12px;
@@ -1557,12 +1556,12 @@ div.token-input-dropdown ul li.token-input-selected-dropdown-item {
     -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 #FFF;
     -moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.10), inset 0 1px 0 #fff;
     box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 #FFF;
-    border: 1px solid #999;
-    border-bottom-color: #888;
+    border: 1px solid #ccc;
     background: -webkit-gradient(linear, 0 0, 0 100%, from(#F5F6F6), to(#E4E4E3));
     background: -moz-linear-gradient(#f5f6f6, #e4e4e3);
     background: -o-linear-gradient(#f5f6f6, #e4e4e3);
     background: linear-gradient(#F5F6F6, #E4E4E3);
+    border-radius: 4px;
     text-decoration: none;
 }
 .button-grey:hover,
