@@ -137,6 +137,7 @@
     float: left;
     margin: 10px 0px 10px 10px;
     border-color: #cdecb0;
+    word-break: break-word;
     text-align: justify;
 }
 .message-box-recieved::before {
@@ -166,6 +167,7 @@
     float: left;
     margin: 5px 45px 5px 20px;
     border-color: #cdecb0;
+    word-break: break-word;
     text-align: justify;
 }
 .message-box-sent::before {
