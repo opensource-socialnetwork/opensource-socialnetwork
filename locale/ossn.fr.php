@@ -86,7 +86,7 @@ $fr = array(
 	
 	'type' => 'Type',
 	'normal' => 'Normal',
-	'admin' => 'Administration',
+	'admin' => 'Administrateur',
 	
 	'lastlogin' => 'Dernière connexion',
 
