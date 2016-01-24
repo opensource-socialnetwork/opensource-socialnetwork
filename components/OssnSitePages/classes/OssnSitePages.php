@@ -19,7 +19,7 @@ class OssnSitePages extends OssnObject {
      */
     public function SaveSitePage() {
         $this->title = '';
-        $this->description = trim(htmlentities($this->pagebody));
+        $this->description = trim(htmlspecialchars($this->pagebody));
 
         $this->owner_guid = 1;
         $this->type = 'site';
