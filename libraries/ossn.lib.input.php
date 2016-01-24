@@ -50,7 +50,7 @@ function input($input, $noencode = '', $default = false) {
 		$str = false;
 		if(isset($_REQUEST[$input]) && is_array($_REQUEST[$input])) {
 				foreach($_REQUEST[$input] as $key => $value) {
-						$_REQUEST[$input][$key] = htmlentities($value, ENT_QUOTES, 'UTF-8');
+						$_REQUEST[$input][$key] = htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
 				}
 				return $_REQUEST[$input];
 		}
@@ -58,7 +58,7 @@ function input($input, $noencode = '', $default = false) {
 				return $default;
 		}
 		if(isset($_REQUEST[$input]) && empty($noencode)) {
-				$data = htmlentities($_REQUEST[$input], ENT_QUOTES, 'UTF-8');
+				$data = htmlspecialchars($_REQUEST[$input], ENT_QUOTES, 'UTF-8');
 				$str  = $data;
 		} elseif($noencode == 1) {
 				$str = ossn_input_escape($data);
