@@ -227,7 +227,7 @@ class OssnThemes extends OssnSite {
 												$requirments['availability'] = 0;
 												$site_version                = (int) ossn_site_settings('site_version');
 												
-												if(($site_version <= $item->version) && ($site_version == (int) $item->version)) {
+												if(($site_version <= $item->version) && ($site_version == (int)$item->version) || (float)$item->version == 3.0) {
 														$requirments['availability'] = 1;
 												}
 												
