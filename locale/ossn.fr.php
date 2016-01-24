@@ -211,8 +211,8 @@ S'il vous plaît cliquez sur le lien ci-dessous pour réinitialiser le mot de pa
 	'reset:password' => "Réinitialiser mot de passe",
 	
 	'erros:reporting' => "Rapports d'erreurs",
-	'erros:off' => "Activer",
-	'erros:on' => "Désactiver",
+	'erros:off' => "Désactiver",
+	'erros:on' => "Activer",
 	'basic:settings' => "Paramètres de base",
 	
 	'ossn:new:version:error' => "Inconnu",
