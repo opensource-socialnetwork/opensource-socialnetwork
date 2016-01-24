@@ -115,6 +115,10 @@
 .ossn-notification-messages .reply-text-from {
 	margin-top: -0px;
 	margin-left: 4px;
+	text-overflow: ellipsis;
+	width: 320px;
+	white-space: nowrap;
+	overflow: hidden;
 }
 .ossn-notification-messages .messages-from .time {
 	color: #999;
