@@ -131,3 +131,4 @@ Developers:
 * Arsalan Shah	[TEAM LEADER]	- https://www.opensource-socialnetwork.org/u/arsalanshah
 * Zet Man 	[CORE TEAM] 	- https://www.opensource-socialnetwork.org/u/zetman
 * Eric F. 	[CORE TEAM] 	- https://www.opensource-socialnetwork.org/u/ctlui
+* Sathish Kumar S 	[CORE TEAM] 	- https://www.opensource-socialnetwork.org/u/sathish4fri
