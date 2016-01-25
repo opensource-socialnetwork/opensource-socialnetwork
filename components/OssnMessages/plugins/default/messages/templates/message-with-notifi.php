@@ -37,9 +37,9 @@
                                 src="<?php echo ossn_site_url(); ?>avatar/<?php echo $user->username; ?>/small"/></div>
                         <div class="data">
                             <div class="name">
-									<?php echo $user->fullname; ?>
-                            		<div class="time"><?php echo ossn_user_friendly_time($message->time); ?> </div>
-							</div>
+				<?php echo $user->fullname; ?>
+			    </div>
+			     <div class="time"><?php echo ossn_user_friendly_time($message->time); ?> </div>				
                             <div class="reply"><?php echo $replied; ?></div>
                         </div>
                     </div>
