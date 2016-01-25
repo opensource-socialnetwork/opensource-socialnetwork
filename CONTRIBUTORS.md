@@ -1,4 +1,4 @@
-The following deveopers contributed to this project:
+The following developers contributed to this project:
 
 * Ethel M. Ward
 * Sophia Mahler
