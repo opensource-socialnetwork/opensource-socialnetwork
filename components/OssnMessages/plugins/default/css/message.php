@@ -95,7 +95,6 @@
 	height:50px;
 }
 .ossn-notification-messages .user-item .data{
-	display:inline-table;
 	float:right;
 	width: 335px;
 }
@@ -103,13 +102,18 @@
 	font-size: 13px;
 	font-weight: bold;
 	padding: 3px;
-    margin-top: -3px;
+    	margin-top: -3px;
+    	text-overflow: ellipsis;
+    	width: 210px;
+    	white-space: nowrap;
+    	overflow: hidden;
 }
 .ossn-notification-messages .user-item-inner .time {
 	color: #999;
 	float:right;
-      font-size: 14px;
-    font-style: italic;  
+      	font-size: 14px;
+    	font-style: italic;
+    	margin-top: -24px;
 }
 .ossn-notification-messages .reply-text,
 .ossn-notification-messages .reply-text-from {
