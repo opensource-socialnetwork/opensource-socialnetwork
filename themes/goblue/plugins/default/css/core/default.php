@@ -1809,8 +1809,11 @@ footer .ossn-footer-menu a:last-child::after {
     }
     .ossn-notifications-box .notfi-meta,
     .ossn-notification-messages .user-item .data {
-        width: 220px !important;
+        width: 215px !important;
     }
+    .ossn-notification-messages .user-item .data .name {
+    	width: 110px !important;
+    }	
     .ossn-notification-messages .reply-text-from {
         width: 200px !important;
         white-space: nowrap;
