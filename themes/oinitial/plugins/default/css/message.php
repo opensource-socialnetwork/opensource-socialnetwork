@@ -210,6 +210,7 @@
 	font-size: 13px;
 	font-weight: bold;
 	padding: 3px;
+	margin-top: -32px;
 }
 .ossn-notification-messages .user-item-inner .time {
 	color: #999;
