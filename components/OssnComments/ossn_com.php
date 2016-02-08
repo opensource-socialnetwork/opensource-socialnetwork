@@ -85,7 +85,7 @@ function ossn_entity_comment_link($callback, $type, $params) {
 				ossn_register_menu_item('entityextra', array(
 						'name' => 'comment',
 						'class' => "comment-post",
-						'href' => "javascript::void(0)",
+						'href' => "javascript:void(0)",
 						'data-guid' => $guid,
 						'text' => ossn_print('comment:comment')
 				));
@@ -107,7 +107,7 @@ function ossn_wall_comment_menu($callback, $type, $params) {
 				ossn_register_menu_item('postextra', array(
 						'name' => 'comment',
 						'class' => "comment-post",
-						'href' => "javascript::void(0)",
+						'href' => "javascript:void(0)",
 						'data-guid' => $guid,
 						'text' => ossn_print('comment:comment')
 				));
