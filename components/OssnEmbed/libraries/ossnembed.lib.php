@@ -116,7 +116,7 @@ function ossn_embed_add_object($type, $url, $guid, $width, $height) {
 			$videodiv .= "<embed class='embed-responsive-item' id=\"VideoPlayback\" src=\"http://video.google.com/googleplayer.swf?docid={$url}&hl=en&fs=true\" style=\"width:{$width}px;height:{$height}px\" allowFullScreen=\"true\" allowScriptAccess=\"always\" type=\"application/x-shockwave-flash\"> </embed>";
 			break;
 		case 'vimeo':
-			$videodiv .= "<object class='embed-responsive-item' width=\"$width\" height=\"$height\"><param name=\"allowfullscreen\" value=\"true\" /><param name=\"allowscriptaccess\" value=\"always\" /><param name=\"movie\" value=\"http://vimeo.com/moogaloop.swf?clip_id={$url}&amp;server=vimeo.com&amp;show_title=0&amp;show_byline=0&amp;show_portrait=0&amp;color=&amp;fullscreen=1\" /><embed src=\"http://vimeo.com/moogaloop.swf?clip_id={$url}&amp;server=vimeo.com&amp;show_title=0&amp;show_byline=0&amp;show_portrait=0&amp;color=&amp;fullscreen=1\" type=\"application/x-shockwave-flash\" allowfullscreen=\"true\" allowscriptaccess=\"always\" width=\"$width\" height=\"$height\"></embed></object>";
+			$videodiv .= "<iframe src=\"https://player.vimeo.com/video/{$url}\" allowfullscreen></iframe>";
 			break;
 		case 'metacafe':
 			$videodiv .= "<embed class='embed-responsive-item' src=\"http://www.metacafe.com/fplayer/{$url}.swf\" width=\"$width\" height=\"$height\" wmode=\"transparent\" pluginspage=\"http://www.macromedia.com/go/getflashplayer\" type=\"application/x-shockwave-flash\"></embed>";
@@ -353,14 +353,13 @@ function ossn_embed_vimeo_parse_url($url) {
 		return $matches[6];
 	} 
 	
-	if (preg_match('/(http:\/\/)(www\.)?(vimeo.com\/)([0-9]*)/', $url, $matches)) {
-			// this one seems to be obsolete
+	if (preg_match('/(https:\/\/)(www\.)?(vimeo.com\/)([0-9]*)/', $url, $matches)) {
+			// this is the "share" link suggested by vimeo 
 			return $matches[4];
 	}
 		
 	if (preg_match('/(https:\/\/)(player\.)?(vimeo.com\/video\/)([0-9]*)/', $url, $matches)) {
-			// at least this one is working for me entering
-			// https://player.vimeo.com/video/xxxxxxxx
+			// that's the "embed" link suggested by vimeo
 			return $matches[4];
 	}
 
