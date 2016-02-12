@@ -298,7 +298,8 @@ S'il vous plaît cliquez sur le lien ci-dessous pour réinitialiser le mot de pa
 	'admin:com:availability' => 'Disponibilité',
 	'ossn:exception:make:sure' => "Etes-vous sûr ?",
 	'ossn:premium' => 'Version Premium',
-		
+	'datepicker:days' => "Di, Lu, Ma, Me, Je, Ve, Sa",
+	'datepicker:months' => "Janv., Févr., Mars, Avril, Mai, Juin, Juil., Août, Sept., Oct., Nov., Déc.",
     /*
        * List of ISO 639-1 language codes
        * http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
