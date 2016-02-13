@@ -10,11 +10,17 @@
 Ossn.RegisterStartupFunction(function() {
 	$(document).ready(function() {
 		var cYear = (new Date).getFullYear();
+		var alldays = Ossn.Print('datepicker:days');
+		var shortdays = alldays.split(",");
+		var allmonths = Ossn.Print('datepicker:months');
+		var shortmonths = allmonths.split(",");
 		$("input[name='birthdate']").datepicker({
 			changeMonth: true,
 			changeYear: true,
 			dateFormat: 'dd/mm/yy',
 			yearRange: '1950:' + cYear,
+			dayNamesMin: shortdays,
+			monthNamesShort: shortmonths
 		});
 		/**
 		 * Reposition cover
