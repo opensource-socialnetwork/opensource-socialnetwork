@@ -133,8 +133,8 @@ Falls der Link nicht anklickbar ist, kopiere ihn einfach in Deinen Browser.
     'login:error' => 'Fehler bei der Anmeldung: Der Benutzer-Name und/oder das Passwort ist falsch!',
     'login:error:sub' => "Bitte überprüfe beides noch einmal, achte auf Groß- und Klein-Schreibung und probiere es erneut.",
     'login:success' => 'Du bist nun angemeldet',
-    'com:installed' => 'Die Komponente wurde in die Komponentenliste hochgeladen. Sie können sie nun auf der Seite "Komponenten" aktivieren.',
-    'com:install:error' => 'Die Komponente konnte nicht hochgeladen werden. Überprüfen Sie ob es sich um ein gültiges Package handelt.',
+    'com:installed' => 'Die Komponente wurde in die Komponentenliste hochgeladen. Du kannst sie nun auf der Seite "Komponenten" aktivieren.',
+    'com:install:error' => 'Die Komponente konnte nicht hochgeladen werden. Überprüfe ob es sich um ein gültiges Archiv handelt.',
     'settings:saved' => 'Die Einstellungen wurden gespeichert',
     'com:deleted' => 'Die Komponente wurde gelöscht',
     'com:delete:error' => 'Die Komponente konnte nicht gelöscht werden - versuche es bitte erneut',
@@ -221,7 +221,7 @@ Um Dein Passwort zurückzusetzen klicke bitte auf den folgenden Link oder kopier
 	'ossn:exception:title' => 'Ein System-Fehler ist aufgetreten. Versuche es später nochmal. Benachrichtige den Administrator bei %s',
 	'ossn:securitytoken:failed' => 'Das ist eine unerlaubte Aktion.',
 	'ossn:component:delete:exception' => 'Bist Du sicher, dass Du diese Komponente löschen willst?',
-	'ossn:user:delete:exception' => 'Sind Sie sicher, dass Sie diesen Benutzer löschen möchten?',
+	'ossn:user:delete:exception' => 'Bist Du sicher, dass Du diesen Benutzer löschen möchtest?',
 	
 	//access
 	'title:access:1' => 'Privat',
@@ -298,6 +298,8 @@ Um Dein Passwort zurückzusetzen klicke bitte auf den folgenden Link oder kopier
 	'admin:com:availability' => 'Verfügbarkeit',
 	'ossn:exception:make:sure' => 'Bist Du sicher?',
 	'ossn:premium' => 'Premium Version',
+	'datepicker:days' => "So, Mo, Di, Mi, Do, Fr, Sa",
+	'datepicker:months' => "Jan., Feb., März, Apr., Mai, Juni, July, Aug., Sept., Okt., Nov., Dez.",
 	
 	/*
        * List of ISO 639-1 language codes
