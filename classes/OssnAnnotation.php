@@ -130,8 +130,11 @@ class OssnAnnotation extends OssnEntities {
 				if(!isset($this->page_limit)) {
 						$this->page_limit = false;
 				}
+				if(empty($this->owner_guid)){
+					return false;
+				}
 				$params               = array();
-				$params['owner_guid'] = $this->subject_guid;
+				$params['owner_guid'] = $this->owner_guid;
 				$params['limit']      = $this->limit;
 				$params['order_by']   = $this->order_by;
 				$params['page_limit'] = $this->page_limit;
