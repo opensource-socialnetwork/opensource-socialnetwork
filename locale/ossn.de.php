@@ -299,7 +299,7 @@ Um Dein Passwort zurückzusetzen klicke bitte auf den folgenden Link oder kopier
 	'ossn:exception:make:sure' => 'Bist Du sicher?',
 	'ossn:premium' => 'Premium Version',
 	'datepicker:days' => "So, Mo, Di, Mi, Do, Fr, Sa",
-	'datepicker:months' => "Jan., Feb., März, Apr., Mai, Juni, July, Aug., Sept., Okt., Nov., Dez.",
+	'datepicker:months' => "Jan., Feb., März, Apr., Mai, Juni, Juli, Aug., Sept., Okt., Nov., Dez.",
 	
 	/*
        * List of ISO 639-1 language codes
