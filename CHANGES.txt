@@ -2,6 +2,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK 4.1
 
 * Support Vimeo without flash #831
 * New strings for datepicker localization #835
+* Fixes comments vanishing issue #837
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 4.0 RC 2
 
