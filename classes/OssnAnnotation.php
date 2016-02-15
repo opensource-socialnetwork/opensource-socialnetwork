@@ -286,7 +286,7 @@ class OssnAnnotation extends OssnEntities {
 				$params       = array();
 				$wheres_paris = array();
 				//validate offset values
-				if($options['limit'] !== false && $options['limit'] !== 0 && $options['page_limit'] !== 0) {
+				if($options['limit'] !== false && $options['limit'] !== 0 && $options['page_limit'] !== false && $options['page_limit'] !== 0) {
 						$offset_vals = ceil($options['limit'] / $options['page_limit']);
 						$offset_vals = abs($offset_vals);
 						$offset_vals = range(1, $offset_vals);
