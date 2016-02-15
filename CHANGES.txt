@@ -3,6 +3,8 @@ OSSN - OPEN SOURCE SOCIAL NETWORK 4.1
 * Support Vimeo without flash #831
 * New strings for datepicker localization #835
 * Fixes comments vanishing issue #837
+* Stop offset calculation under unset conditons #841
+* If not explicitely set, set page_limit to false #842
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 4.0 RC 2
 
