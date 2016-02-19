@@ -11,7 +11,7 @@
 header('Content-Type: application/json');
 $group = input('group');
 $group = ossn_get_group_by_guid($group);
-if(ossn_loggedin_user()->guid !== $group->owner_guid) {
+if(ossn_loggedin_user()->guid !== $group->owner_guid && !ossn_isAdminLoggedin()) {
 		echo json_encode(array(
 				'type' => 0
 		));
