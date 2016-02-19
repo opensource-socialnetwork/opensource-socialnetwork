@@ -10,7 +10,7 @@
  */
 header('Content-Type: application/json');
 $group = ossn_get_group_by_guid(input('group'));
-if ($group->owner_guid !== ossn_loggedin_user()->guid) {
+if ($group->owner_guid !== ossn_loggedin_user()->guid && !ossn_isAdminLoggedin()) {
     exit;
 }
 if ($group->repositionCOVER($group->guid, input('top'), input('left'))) {
