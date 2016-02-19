@@ -14,7 +14,7 @@ $desc = input('groupdesc');
 $memb = input('membership');
 
 $group = ossn_get_group_by_guid(input('group'));
-if ($group->owner_guid !== ossn_loggedin_user()->guid) {
+if ($group->owner_guid !== ossn_loggedin_user()->guid && !ossn_isAdminLoggedin()) {
     ossn_trigger_message(ossn_print('group:update:fail'), 'error');
     redirect(REF);
 }
