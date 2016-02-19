@@ -281,7 +281,7 @@ function group_members_page($hook, $type, $return, $params) {
 function group_edit_page($hook, $type, $return, $params) {
 		$page  = $params['subpage'];
 		$group = ossn_get_group_by_guid(ossn_get_page_owner_guid());
-		if($group->owner_guid !== ossn_loggedin_user()->guid) {
+		if($group->owner_guid !== ossn_loggedin_user()->guid && !ossn_isAdminLoggedin()) {
 				return false;
 		}
 		if($page == 'edit') {
@@ -314,7 +314,7 @@ function group_requests_page($hook, $type, $return, $params) {
 		$page  = $params['subpage'];
 		$group = ossn_get_group_by_guid(ossn_get_page_owner_guid());
 		if($page == 'requests') {
-				if($group->owner_guid !== ossn_loggedin_user()->guid) {
+				if($group->owner_guid !== ossn_loggedin_user()->guid && !ossn_isAdminLoggedin()) {
 						redirect("group/{$group->guid}");
 				}
 				$mod_content = ossn_plugin_view('groups/pages/requests', array(
