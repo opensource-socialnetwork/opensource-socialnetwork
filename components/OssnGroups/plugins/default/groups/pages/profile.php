@@ -28,7 +28,7 @@ $members = $params['group']->getMembers();
 	<div class="ossn-group-top-row">
     <div class="col-md-11">
     	<div class="profile-header <?php echo $iscover; ?>">
-        <?php if ($params['group']->owner_guid == ossn_loggedin_user()->guid) { ?>
+        <?php if ($params['group']->owner_guid == ossn_loggedin_user()->guid || ossn_isAdminLoggedin()) { ?>
 
             <form id="group-upload-cover" style="display:none;" method="post" enctype="multipart/form-data">
                 <input type="file" name="coverphoto" class="coverfile"
@@ -42,7 +42,7 @@ $members = $params['group']->getMembers();
         if ($cover) {
             ?>
             <div class="ossn-group-cover" id="container">
-               <?php if ($params['group']->owner_guid == ossn_loggedin_user()->guid) { ?>
+               <?php if ($params['group']->owner_guid == ossn_loggedin_user()->guid || ossn_isAdminLoggedin()) { ?>
                     <div class="ossn-group-cover-button">
                         <a href="javascript:void(0);" id="reposition-cover"
                            class='button-grey'><?php echo ossn_print('reposition:cover'); ?></a>
@@ -89,7 +89,7 @@ $members = $params['group']->getMembers();
                     <?php } ?>
 
                 <?php } ?>
-                <?php  if ($params['group']->owner_guid == ossn_loggedin_user()->guid) {
+                <?php  if ($params['group']->owner_guid == ossn_loggedin_user()->guid || ossn_isAdminLoggedin()) {
                     $ismember = 1;
                     ?>
                     <a href="<?php echo ossn_group_url($params['group']->guid); ?>edit"
@@ -163,7 +163,7 @@ $members = $params['group']->getMembers();
 								'contents' => $params['group']->description,
 								'class' => 'widget-description',
 			));					
-			if ($params['group']->owner_guid == ossn_loggedin_user()->guid) {
+			if ($params['group']->owner_guid == ossn_loggedin_user()->guid || ossn_isAdminLoggedin()) {
 				$member_requests = ossn_plugin_view('output/url', array(
 										'text' => ossn_print('view:all'),
 										'href' => ossn_group_url($params['group']->guid).'requests'
