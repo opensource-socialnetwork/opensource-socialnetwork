@@ -5,6 +5,15 @@ OSSN - OPEN SOURCE SOCIAL NETWORK 4.1
 * Fixes comments vanishing issue #837
 * Stop offset calculation under unset conditons #841
 * If not explicitely set, set page_limit to false #842
+* Allow regular members to delete their own groups #844
+* Allow admins to remove members from any group #852
+* Give admin access to all settings/joinrequests pages #851
+* Allow admins to edit settings of any group #850
+* Allow admins to decline membership in any group #849
+* Allow admins to approve members in any group #848
+* Allow admins to reposition covers in any group #847
+* Allow admins to upload covers in any group #846
+* Allow admins to access group owner elements #845
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 4.0 RC 2
 
