@@ -125,7 +125,7 @@ class OssnGroup extends OssnObject {
 				if($this->updateObject($data, $values, $guid)) {
 						return true;
 				}
-				return true;
+				return false;
 		}
 		
 		/**
