@@ -10,13 +10,6 @@
  */
 
 $image = $params['image'];
-if(!isset($params['ismember'])){
-    if ($group = ossn_get_group_by_guid($params['post']->owner_guid)) {
-    	if ($group->isMember(NULL, ossn_loggedin_user()->guid)) {
-      		$params['ismember'] = 1;
-    	}
-    }
-}
 ?>
 <!-- wall item -->
 <div class="ossn-wall-item" id="activity-item-<?php echo $params['post']->guid; ?>">
