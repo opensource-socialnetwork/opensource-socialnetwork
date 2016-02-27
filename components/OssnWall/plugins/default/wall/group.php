@@ -30,7 +30,8 @@ if($posts) {
 		foreach($posts as $post) {
 				$vars = ossn_wallpost_to_item($post);
 				//selecting a CLOSED group like MYSITE/group/123/ gives warning #663
-				if(!empty($vars) && is_array($vars)){ 	
+				if(!empty($vars) && is_array($vars)){ 
+					$vars['ismember'] = $params['ismember'];
 					echo ossn_wall_view_template($vars);
 				}
 		}
