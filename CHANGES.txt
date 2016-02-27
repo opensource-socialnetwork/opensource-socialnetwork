@@ -15,6 +15,9 @@ OSSN - OPEN SOURCE SOCIAL NETWORK 4.1
 * Allow admins to upload covers in any group #846
 * Allow admins to access group owner elements #845
 * Don't call isMember() if no group found #853
+* Pass membership to wall\templates\wall\group\item #854
+* Return group update state correctly #856
+
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 4.0 RC 2
 
