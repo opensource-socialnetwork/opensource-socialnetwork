@@ -395,14 +395,9 @@ class OssnObject extends OssnEntities {
 				}
 				//prepare search
 				$params['from']     = 'ossn_object as o';
+				//v4.x search slow due to join and order_by #863
 				$params['params']   = array(
 						"{$distinct} o.guid",
-						'o.time_created',
-						'o.owner_guid',
-						'o.description',
-						'o.title',
-						'o.type',
-						'o.subtype'
 				);
 				$params['wheres']   = array(
 						$this->constructWheres($wheres)
