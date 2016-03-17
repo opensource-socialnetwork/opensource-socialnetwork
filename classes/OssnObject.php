@@ -323,35 +323,35 @@ class OssnObject extends OssnEntities {
 				}
 				
 				if(!empty($options['object_guid'])) {
-						if(!is_array($options['object_guid'])){
-							$wheres[] = "o.guid='{$options['object_guid']}'";
-						} elseif(is_array($options['object_guid']) && !empty($options['object_guid'])){
-							$object_guid_in = implode("','", $options['object_guid']);							
-							$wheres[] = "o.guid IN ('{$object_guid_in}')";
+						if(!is_array($options['object_guid'])) {
+								$wheres[] = "o.guid='{$options['object_guid']}'";
+						} elseif(is_array($options['object_guid']) && !empty($options['object_guid'])) {
+								$object_guid_in = implode("','", $options['object_guid']);
+								$wheres[]       = "o.guid IN ('{$object_guid_in}')";
 						}
 				}
 				if(!empty($options['subtype'])) {
-						if(!is_array($options['subtype'])){
-							$wheres[] = "o.subtype='{$options['subtype']}'";
-						} elseif(is_array($options['subtype']) && !empty($options['subtype'])){
-							$subtypes_in = implode("','", $options['subtype']);
-							$wheres[] = "o.subtype IN ('{$subtypes_in}')";							
+						if(!is_array($options['subtype'])) {
+								$wheres[] = "o.subtype='{$options['subtype']}'";
+						} elseif(is_array($options['subtype']) && !empty($options['subtype'])) {
+								$subtypes_in = implode("','", $options['subtype']);
+								$wheres[]    = "o.subtype IN ('{$subtypes_in}')";
 						}
 				}
 				if(!empty($options['type'])) {
-						if(!is_array($options['type'])){
-							$wheres[] = "o.type='{$options['type']}'";
-						} elseif(is_array($options['type']) && !empty($options['type'])){
-							$types_in = implode("','", $options['type']);
-							$wheres[] = "o.type IN ('{$types_in}')";														
+						if(!is_array($options['type'])) {
+								$wheres[] = "o.type='{$options['type']}'";
+						} elseif(is_array($options['type']) && !empty($options['type'])) {
+								$types_in = implode("','", $options['type']);
+								$wheres[] = "o.type IN ('{$types_in}')";
 						}
 				}
 				if(!empty($options['owner_guid'])) {
-						if(!is_array($options['owner_guid'])){
-							$wheres[] = "o.owner_guid ='{$options['owner_guid']}'";
-						} elseif(is_array($options['owner_guid']) && !empty($options['owner_guid'])){
-							$owners_guids_in = implode("','", $options['owner_guid']);
-							$wheres[] = "o.owner_guid IN ('{$owners_guids_in}')";
+						if(!is_array($options['owner_guid'])) {
+								$wheres[] = "o.owner_guid ='{$options['owner_guid']}'";
+						} elseif(is_array($options['owner_guid']) && !empty($options['owner_guid'])) {
+								$owners_guids_in = implode("','", $options['owner_guid']);
+								$wheres[]        = "o.owner_guid IN ('{$owners_guids_in}')";
 						}
 				}
 				//check if developer want to search title or description
@@ -417,7 +417,7 @@ class OssnObject extends OssnEntities {
 				$params['from']     = 'ossn_object as o';
 				//v4.x search slow due to join and order_by #863
 				$params['params']   = array(
-						"{$distinct} o.guid",
+						"{$distinct} o.guid"
 				);
 				$params['wheres']   = array(
 						$this->constructWheres($wheres)
