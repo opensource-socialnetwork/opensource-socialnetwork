@@ -17,6 +17,8 @@ OSSN - OPEN SOURCE SOCIAL NETWORK 4.1
 * Don't call isMember() if no group found #853
 * Pass membership to wall\templates\wall\group\item #854
 * Return group update state correctly #856
+* Make search users and objects faster #863
+
 
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 4.0 RC 2
