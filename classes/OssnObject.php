@@ -415,7 +415,6 @@ class OssnObject extends OssnEntities {
 				}
 				//prepare search
 				$params['from']     = 'ossn_object as o';
-				//v4.x search slow due to LEFT JOIN and order_by #863
 				$params['params']   = array(
 						"{$distinct} o.guid"
 				);
