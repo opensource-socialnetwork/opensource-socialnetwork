@@ -420,7 +420,7 @@ function ossn_album_page_handler($album) {
 										$delete_album  = array(
 												'text' => ossn_print('delete:album'),
 												'href' => $delete_action,
-												'class' => 'button-grey'
+												'class' => 'button-grey ossn-make-sure'
 										);
 										$control       = ossn_plugin_view('output/url', $addphotos);
 										$control .= ossn_plugin_view('output/url', $delete_album);
