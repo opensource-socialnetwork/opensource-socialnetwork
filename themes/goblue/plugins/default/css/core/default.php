@@ -310,8 +310,10 @@ p {
     word-break: break-all;
 }
 .ossn-wall-item .post-contents img {
-    width: 100%;
-    border: 1px solid #EAE8E8;
+    max-width: 100%;
+    border: 1px solid #eae8e8;
+    display: block;
+    margin-bottom: 10px;
 }
 .ossn-wall-item .meta .post-menu {
     float: right;

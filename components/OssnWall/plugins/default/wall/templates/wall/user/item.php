@@ -71,13 +71,12 @@ $image = $params['image'];
 							echo '</div>';
 						}
               ?>
-            <p> <?php
+            <?php
             if (!empty($image)) {
                 ?>
                 <img src="<?php echo ossn_site_url("post/photo/{$params['post']->guid}/{$image}"); ?>"/>
 
-            <?php } ?>
-			</p>            
+            <?php } ?>          
 		</div>
 		<div class="comments-likes">
 			<div class="menu-likes-comments-share">

@@ -56,13 +56,13 @@ if(!isset($params['ismember'])){
 		</div>
 		<div class="post-contents">
 			<p><?php echo stripslashes($params['text']); ?></p>
-            <p> <?php
+             <?php
             if (!empty($image)) {
                 ?>
                 <img src="<?php echo ossn_site_url("post/photo/{$params['post']->guid}/{$image}"); ?>"/>
 
             <?php } ?>
-			</p>            
+         
 		</div>
         <?php if($params['ismember'] === 1){  ?>
 		<div class="comments-likes">
