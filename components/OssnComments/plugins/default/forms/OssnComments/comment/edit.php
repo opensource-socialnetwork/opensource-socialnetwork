@@ -11,7 +11,7 @@
  if(isset($params['comment']->{'comments:entity'})){
 	 $comment = $params['comment']->getParam('comments:entity');
  }
- if(empty($comment) && isset($params['comment']->{'comments:post'}){
+ if(empty($comment) && isset($params['comment']->{'comments:post'})){
 	 $comment = $params['comment']->getParam('comments:post');
  }
  if(empty($comment)){
