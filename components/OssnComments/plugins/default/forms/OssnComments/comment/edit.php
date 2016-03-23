@@ -8,9 +8,14 @@
  * @license   General Public Licence http://www.opensource-socialnetwork.org/licence
  * @link      http://www.opensource-socialnetwork.org/licence
  */
- $comment = $params['comment']->getParam('comments:entity');
- if(empty($comment)){
+ if(isset($params['comment']->{'comments:entity'})){
+	 $comment = $params['comment']->getParam('comments:entity');
+ }
+ if(empty($comment) && isset($params['comment']->{'comments:post'}){
 	 $comment = $params['comment']->getParam('comments:post');
+ }
+ if(empty($comment)){
+	 return;
  }
  ?>
  <div>
