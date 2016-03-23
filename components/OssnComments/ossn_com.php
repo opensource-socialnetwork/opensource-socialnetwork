@@ -90,6 +90,7 @@ function ossn_entity_comment_link($callback, $type, $params) {
 						'text' => ossn_print('comment:comment')
 				));
 		}
+		ossn_trigger_callback('comment', 'entityextra:menu', $params);
 }
 /**
  * Add a comment menu item in post
@@ -191,7 +192,7 @@ function ossn_comment_menu($name, $type, $params) {
 										'href' => ossn_site_url("action/delete/comment?comment={$params['id']}", true),
 										'class' => 'ossn-delete-comment',
 										'text' => ossn_print('comment:delete'),
-										'priority' => 200,
+										'priority' => 200
 								));
 						}
 				}
@@ -206,7 +207,7 @@ function ossn_comment_menu($name, $type, $params) {
 								'href' => ossn_site_url("action/delete/comment?comment={$params['id']}", true),
 								'class' => 'ossn-delete-comment',
 								'text' => ossn_print('comment:delete'),
-								'priority' => 200,
+								'priority' => 200
 						));
 				}
 		}
@@ -281,22 +282,22 @@ function ossn_comment_page($pages) {
 				case 'attachment':
 						header('Content-Type: application/json');
 						if(isset($_FILES['file']['tmp_name']) && ($_FILES['file']['error'] == UPLOAD_ERR_OK && $_FILES['file']['size'] !== 0) && ossn_isLoggedin()) {
-								if(preg_match("/image/i", $_FILES['file']['type'])){
-									$file    = $_FILES['file']['tmp_name'];
-									$unique  = time() . '-' . substr(md5(time()), 0, 6) . '.jpg';
-									$newfile = ossn_get_userdata("tmp/photos/{$unique}");
-									$dir     = ossn_get_userdata("tmp/photos/");
-									if(!is_dir($dir)) {
-											mkdir($dir, 0755, true);
-									}
-									if(move_uploaded_file($file, $newfile)) {
-											$file = base64_encode(ossn_string_encrypt($newfile));
-											echo json_encode(array(
-													'file' => base64_encode($file),
-													'type' => 1
-											));
-											exit;
-									}
+								if(preg_match("/image/i", $_FILES['file']['type'])) {
+										$file    = $_FILES['file']['tmp_name'];
+										$unique  = time() . '-' . substr(md5(time()), 0, 6) . '.jpg';
+										$newfile = ossn_get_userdata("tmp/photos/{$unique}");
+										$dir     = ossn_get_userdata("tmp/photos/");
+										if(!is_dir($dir)) {
+												mkdir($dir, 0755, true);
+										}
+										if(move_uploaded_file($file, $newfile)) {
+												$file = base64_encode(ossn_string_encrypt($newfile));
+												echo json_encode(array(
+														'file' => base64_encode($file),
+														'type' => 1
+												));
+												exit;
+										}
 								}
 						}
 						echo json_encode(array(
