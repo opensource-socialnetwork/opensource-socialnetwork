@@ -42,6 +42,8 @@ function ossn_profile() {
 		ossn_register_callback('page', 'load:profile', 'ossn_profile_load_event');
 		ossn_register_callback('delete', 'profile:photo', 'ossn_profile_delete_photo_wallpost');
 		ossn_register_callback('delete', 'profile:cover:photo', 'ossn_profile_delete_photo_wallpost');
+		//show viewallcomments link #871
+		ossn_register_callback('comment', 'entityextra:menu', 'ossn_profile_images_allcomments');
 		
 		//hooks
 		ossn_add_hook('newsfeed', "sidebar:left", 'profile_photo_newsefeed', 1);
@@ -61,15 +63,15 @@ function ossn_profile() {
 		ossn_profile_subpage('edit');
 		
 		if(ossn_isLoggedin()) {
-			$user_loggedin = ossn_loggedin_user();
-			$icon          = ossn_site_url('components/OssnProfile/images/friends.png');
-			ossn_register_sections_menu('newsfeed', array(
-					'text' => ossn_print('user:friends'),
-					'url' => $user_loggedin->profileURL('/friends'),
-					'section' => 'links',
-					'icon' => $icon
-			));
-		}		
+				$user_loggedin = ossn_loggedin_user();
+				$icon          = ossn_site_url('components/OssnProfile/images/friends.png');
+				ossn_register_sections_menu('newsfeed', array(
+						'text' => ossn_print('user:friends'),
+						'url' => $user_loggedin->profileURL('/friends'),
+						'section' => 'links',
+						'icon' => $icon
+				));
+		}
 }
 /**
  * Add users link in search page
@@ -171,7 +173,7 @@ function profile_search_handler($hook, $type, $return, $params) {
 		$Pagination    = new OssnPagination;
 		$users         = new OssnUser;
 		$data          = $users->searchUsers(array(
-				'wheres' => "CONCAT(u.first_name, ' ', u.last_name) LIKE '%{$params['q']}%'",
+				'wheres' => "CONCAT(u.first_name, ' ', u.last_name) LIKE '%{$params['q']}%'"
 		));
 		$count         = $users->searchUsers(array(
 				'wheres' => "CONCAT(u.first_name, ' ', u.last_name) LIKE '%{$params['q']}%'",
@@ -485,6 +487,37 @@ function ossn_profile_delete_photo_wallpost($callback, $type, $params) {
 		if(isset($params['photo']->guid) && !empty($params['photo']->guid)) {
 				$profile = new OssnProfile;
 				$profile->deletePhotoWallPost($params['photo']->guid);
+		}
+}
+/** 
+ * Show view all comments menu on profile image and cover
+ *
+ * @param string $callback Name of callback
+ * @param string $type A callback type
+ * @param array  $params A option values
+ * 
+ * @return boolean|void
+ */
+function ossn_profile_images_allcomments($callback, $type, $params) {
+		if(!class_exists('OssnComments')) {
+				return false;
+		}
+		ossn_unregister_menu('commentall', 'entityextra');
+		switch($params['entity']->subtype) {
+				case 'file:profile:photo':
+						$url = ossn_site_url("photos/user/view/{$params['entity']->guid}");
+						break;
+				case 'file:profile:cover':
+						$url = ossn_site_url("photos/cover/view/{$params['entity']->guid}");
+						break;
+		}
+		$comment = new OssnComments;
+		if($comment->countComments($params['entity']->guid, 'entity') > 5) {
+				ossn_register_menu_item('entityextra', array(
+						'name' => 'commentall',
+						'href' => $url,
+						'text' => ossn_print('comment:view:all')
+				));
 		}
 }
 ossn_register_callback('ossn', 'init', 'ossn_profile');
