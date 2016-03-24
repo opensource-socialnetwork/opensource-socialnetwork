@@ -96,8 +96,13 @@ class OssnComments extends OssnAnnotation {
 		 * @return object;
 		 */
 		public function GetComment($id) {
-				$this->annotation_id = $id;
-				return $this->getAnnotationById();
+				if(empty($id)){
+					return false;
+				}
+				return $this->searchAnnotation(array(
+						'annotation_id' => $id,
+						'offset' => input('comments_offset', '', 1),
+				));
 		}
 		
 		/**
