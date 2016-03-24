@@ -307,7 +307,9 @@ p {
     margin-top: 15px;
 }
 .ossn-wall-item .post-contents p {
-    word-break: break-all;
+   /** Incorrect Hyphenation in the theme GoBlue 3.0 #824 **/
+    word-break: break-word;
+    text-align: justify;
 }
 .ossn-wall-item .post-contents img {
     max-width: 100%;
