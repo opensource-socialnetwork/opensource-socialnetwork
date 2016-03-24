@@ -221,15 +221,13 @@ function ossn_comment_menu($name, $type, $params) {
  *
  * @return void;
  */
-function ossn_comment_edit_menu($name, $type, $params) {
+function ossn_comment_edit_menu($name, $type, $comment) {
 		ossn_unregister_menu('edit', 'comments');
 		$user = ossn_loggedin_user();
-		
-		$OssnComment = new OssnComments;
-		if(is_object($params)) {
-				$params = get_object_vars($params);
+		if(empty($comment['id'])){
+			return false;
 		}
-		$comment = $OssnComment->getComment($params['id']);
+		$comment = (object)$comment;
 		if(ossn_isLoggedin()) {
 				if(($user->guid == $comment->owner_guid) || $user->canModerate()) {
 						ossn_unregister_menu('edit', 'comments');
