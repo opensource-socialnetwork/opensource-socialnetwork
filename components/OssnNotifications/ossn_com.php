@@ -76,8 +76,8 @@ function ossn_notification_page($pages) {
 		switch($page) {
 				case 'notification':
 						$get                            = new OssnNotifications;
-						//removed true as second arg of get() as second arg is introduced in v2.0
-						$notifications['notifications'] = $get->get(ossn_loggedin_user()->guid);
+						$unread                         = ossn_call_hook('list', 'notification:unread', false);
+						$notifications['notifications'] = $get->get(ossn_loggedin_user()->guid, $unread);
 						$notifications['seeall']        = ossn_site_url("notifications/all");
 						$clearall                       = ossn_plugin_view('output/url', array(
 								'action' => true,
