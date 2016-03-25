@@ -99,10 +99,11 @@ class OssnComments extends OssnAnnotation {
 				if(empty($id)){
 					return false;
 				}
-				return $this->searchAnnotation(array(
+				$res_array = $this->searchAnnotation(array(
 						'annotation_id' => $id,
 						'offset' => input('comments_offset', '', 1),
 				));
+				return $res_array[0];
 		}
 		
 		/**
