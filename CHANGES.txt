@@ -18,6 +18,12 @@ OSSN - OPEN SOURCE SOCIAL NETWORK 4.1
 * Pass membership to wall\templates\wall\group\item #854
 * Return group update state correctly #856
 * Make search users and objects faster #863
+* Can not edit comments #877
+* Incorrect Hyphenation in the theme GoBlue 3.0 #824
+* Wall item image inline block to block #866
+* Add a confirm message on album delete #870
+* Show all comments on profile/cover/view #871
+* v4.x newsfeed page slow due to join and order_by #863
 
 
 
