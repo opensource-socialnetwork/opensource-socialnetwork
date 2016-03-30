@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <opensource_socialnework xmlns="http:/opensource-socialnetwork.org/v/1.0">
-    <version>4.0</version>
+    <version>4.1</version>
     <stable_version>4.0</stable_version>
     <release>1453676400</release>
-    <build>eec3debddcda1708dc407ec31d2e100841e9b113</build>
+    <build>619bfcdcf1823817a24ae5c01841ec2b0cd09647</build>
     <licence>GNU General Public License, version 2</licence>
     <author_url>http://www.opensource-socialnetwork.org</author_url>
-    <copyright>(C) 2014-2015 Informatikon Technologies. All rights reserved</copyright>
+    <copyright>(C) 2014-2015 Informatikon Technologies, 2015-2016 SOFTLAB24 LTD. All rights reserved</copyright>
 </opensource_socialnework>
