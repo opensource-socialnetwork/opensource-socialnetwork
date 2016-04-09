@@ -11,7 +11,7 @@
 
 $en = array(
 	'home' => 'Home',
-	'site:index' => 'Welcome!',
+	'site:index' => 'Welcome',
 	'news:feed' => 'News Feed',
 	'new:feed' => 'News Feed',
 	'photos:ossn' => 'Photos',
