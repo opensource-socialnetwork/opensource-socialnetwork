@@ -34,11 +34,14 @@ class OssnMail extends PHPMailer {
 				$this->CharSet = "UTF-8";
 			
 				try {	
-						$send = ossn_call_hook('email', 'send', true, $this);
+						$send = ossn_call_hook('email', 'send:policy', true, $this);
 						if($send) {
 								if($this->send()){
 									return true;
 								}
+						} else {
+							//allow system to intract with mail
+							return ossn_call_hook('email', 'send', false, $this);
 						}
 				}
 				catch(phpmailerException $e) {
