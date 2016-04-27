@@ -213,6 +213,7 @@ class OssnObject extends OssnEntities {
 				$params['wheres'] = array(
 						"guid='{$guid}'"
 				);
+				
 				if($this->update($params)) {
 						if(isset($this->data)) {
 								$owner_self   = $this->owner_guid;
@@ -356,17 +357,17 @@ class OssnObject extends OssnEntities {
 				}
 				//check if developer want to search title or description
 				if($options['search_type'] === true) {
-						if(!empty($params['title'])) {
+						if(!empty($options['title'])) {
 								$wheres[] = "o.title LIKE '%{$options['title']}%'";
 						}
-						if(!empty($params['description'])) {
+						if(!empty($options['description'])) {
 								$wheres[] = "o.description LIKE '%{$options['description']}%'";
 						}
 				} elseif($options['search_type'] === false) {
-						if(!empty($params['title'])) {
+						if(!empty($options['title'])) {
 								$wheres[] = "o.title = '{$options['title']}'";
 						}
-						if(!empty($params['description'])) {
+						if(!empty($options['description'])) {
 								$wheres[] = "o.description = '{$options['description']}'";
 						}
 				}
