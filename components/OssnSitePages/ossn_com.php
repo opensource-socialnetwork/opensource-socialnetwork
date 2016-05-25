@@ -76,11 +76,8 @@ function ossn_site_pages($pages) {
             $content = ossn_set_page_layout('contents', $contents);
             echo ossn_view_page($title, $content);
             break;
-
-        default;
+        default:
             ossn_error_page();
-            break;
-
     }
 }
 
