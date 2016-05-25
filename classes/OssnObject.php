@@ -64,7 +64,7 @@ class OssnObject extends OssnEntities {
 										$this->add();
 								}
 						}
-						return true;
+						return $this->createdObject;
 				}
 				return false;
 		}
