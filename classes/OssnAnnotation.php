@@ -74,7 +74,7 @@ class OssnAnnotation extends OssnEntities {
 						$params['annotation_guid'] = $this->OssnDatabase->getLastEntry();
 						ossn_trigger_callback('annotations', 'created', $params);
 						
-						return true;
+						return $this->annotation_inserted;
 				}
 				return false;
 		}
