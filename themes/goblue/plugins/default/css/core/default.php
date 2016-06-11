@@ -486,7 +486,8 @@ p {
 }
 .comment-contents p {
     margin: 0px;
-    word-break: break-all;
+    word-break: break-word;
+    text-align: justify;
 }
 .comment-contents p img {
     display: block;
