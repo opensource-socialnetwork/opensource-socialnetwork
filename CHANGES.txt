@@ -1,6 +1,7 @@
 OSSN - OPEN SOURCE SOCIAL NETWORK 4.2 
 
 * Profile/cover photos upload are not responsive #888
+* Word break on comments #895
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 4.1 
 
