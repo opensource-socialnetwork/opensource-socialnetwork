@@ -2,6 +2,9 @@ OSSN - OPEN SOURCE SOCIAL NETWORK 4.2
 
 * Profile/cover photos upload are not responsive #888
 * Word break on comments #895
+* Load wall posts when page is fully loaded #898
+* Almost improved x2 DB performance.
+* (ajax didn't work) when delete newly created post #899
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 4.1 
 
