@@ -25,8 +25,8 @@ Ossn.RegisterStartupFunction(function() {
             $('#ossn-wall-photo').show();
 
         });
-        
-        $('.ossn-wall-post-delete').click(function(e) {
+
+        $('body').on('click', '.ossn-wall-post-delete', function(e) {
             $url = $(this);
             e.preventDefault();
             Ossn.PostRequest({
@@ -44,13 +44,24 @@ Ossn.RegisterStartupFunction(function() {
                 }
             });
         });
-        
-     	$('body').delegate('.ossn-wall-post-edit', 'click', function(){
-        	var $dataguid = $(this).attr('data-guid');
-            Ossn.MessageBox('post/edit/'+$dataguid);
-        });       
+
+        $('body').delegate('.ossn-wall-post-edit', 'click', function() {
+            var $dataguid = $(this).attr('data-guid');
+            Ossn.MessageBox('post/edit/' + $dataguid);
+        });
     });
-    
+
+});
+Ossn.RegisterStartupFunction(function() {
+    $(window).load(function() {
+        Ossn.PostRequest({
+            url: Ossn.site_url + "post/wall_load",
+            action: false,
+            callback: function(posts) {
+				$('.user-activity').html(posts);
+            }
+        });
+    });
 });
 Ossn.RegisterStartupFunction(function() {
     $(document).ready(function() {
@@ -97,7 +108,7 @@ Ossn.RegisterStartupFunction(function() {
 
             beforeSend: function(request) {
                 $('#ossn-wall-form').find('input[type=submit]').hide();
-                $('#ossn-wall-form').find('.ossn-loading').removeClass('ossn-hidden');            
+                $('#ossn-wall-form').find('.ossn-loading').removeClass('ossn-hidden');
             },
             callback: function(callback) {
                 if (callback['success']) {
@@ -109,16 +120,16 @@ Ossn.RegisterStartupFunction(function() {
                 if (callback['error']) {
                     Ossn.trigger_message(callback['error'], 'error');
                 }
-                
+
                 //need to clear file path after uploading the file #626
                 var $file = $("#ossn-wall-form").find("input[type='file']");
                 $file.replaceWith($file.val('').clone(true));
-                
+
                 //Tagged friend(s) and location should be cleared, too - after posting #641
                 $("#ossn-wall-location-input").val('');
                 $(".token-input-list").find('.token-input-token').remove();
                 $('#ossn-wall-friend-input').val('');
-                                              
+
                 $('#ossn-wall-form').find('input[type=submit]').show();
                 $('#ossn-wall-form').find('.ossn-loading').addClass('ossn-hidden');
                 $('#ossn-wall-form').find('textarea').val("");
