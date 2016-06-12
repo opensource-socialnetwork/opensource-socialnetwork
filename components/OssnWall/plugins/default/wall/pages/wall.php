@@ -23,6 +23,5 @@ echo ossn_view_form('home/container', array(
 ), false);
 
 echo '</div>';
-echo '<div class="user-activity">';
-echo ossn_plugin_view('wall/siteactivity');
+echo '<div class="user-activity"><div class="ossn-wall-loading"><div class="ossn-loading"></div></div>';
 echo '</div>';
