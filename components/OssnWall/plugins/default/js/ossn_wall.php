@@ -54,13 +54,15 @@ Ossn.RegisterStartupFunction(function() {
 });
 Ossn.RegisterStartupFunction(function() {
     $(window).load(function() {
-        Ossn.PostRequest({
-            url: Ossn.site_url + "post/wall_load",
-            action: false,
-            callback: function(posts) {
-				$('.user-activity').html(posts);
-            }
-        });
+        if ($('.user-activity').length) {
+            Ossn.PostRequest({
+                url: Ossn.site_url + "post/wall_load",
+                action: false,
+                callback: function(posts) {
+                    $('.user-activity').html(posts);
+                }
+            });
+        }
     });
 });
 Ossn.RegisterStartupFunction(function() {
