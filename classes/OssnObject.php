@@ -387,8 +387,8 @@ class OssnObject extends OssnEntities {
 												$wheres_paris[] = "emd{$key}.value {$operand} '{$pair['value']}'";
 												
 										}
-										$params['joins'][] = "LEFT JOIN ossn_entities as e{$key} ON e{$key}.owner_guid=o.guid";
-										$params['joins'][] = "LEFT JOIN ossn_entities_metadata as emd{$key} ON e{$key}.guid=emd{$key}.guid";
+										$params['joins'][] = "INNER JOIN ossn_entities as e{$key} ON e{$key}.owner_guid=o.guid";
+										$params['joins'][] = "INNER JOIN ossn_entities_metadata as emd{$key} ON e{$key}.guid=emd{$key}.guid";
 								}
 						}
 						if(!empty($wheres_paris)) {
@@ -417,7 +417,7 @@ class OssnObject extends OssnEntities {
 				//prepare search
 				$params['from']     = 'ossn_object as o';
 				$params['params']   = array(
-						"{$distinct} o.guid"
+						"{$distinct} o.guid, o.time_created"
 				);
 				$params['wheres']   = array(
 						$this->constructWheres($wheres)
