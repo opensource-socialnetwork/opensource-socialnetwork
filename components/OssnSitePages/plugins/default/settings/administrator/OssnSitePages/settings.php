@@ -40,7 +40,6 @@ switch ($settings) {
         );
         echo ossn_view_form('about', $params, false);
         break;
-    default:
     case 'privacy':
         $params = array(
             'action' => ossn_site_url() . 'action/sitepage/edit/privacy',
@@ -48,8 +47,4 @@ switch ($settings) {
         );
         echo ossn_view_form('privacy', $params, false);
         break;
-    default:
-        break;
-
 }
-?>
