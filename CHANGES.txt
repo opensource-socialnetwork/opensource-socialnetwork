@@ -5,6 +5,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK 4.2
 * Load wall posts when page is fully loaded #898
 * Almost improved x2 DB performance.
 * (ajax didn't work) when delete newly created post #899
+* Switch statements may only contain one default clause in OssnSitePages #897
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 4.1 
 
