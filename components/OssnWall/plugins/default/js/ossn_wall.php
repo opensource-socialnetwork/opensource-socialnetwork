@@ -54,12 +54,12 @@ Ossn.RegisterStartupFunction(function() {
 });
 Ossn.RegisterStartupFunction(function() {
     $(window).load(function() {
-        if ($('.user-activity').length) {
+        if ($('.user-activity-home').length) {
             Ossn.PostRequest({
                 url: Ossn.site_url + "post/wall_load",
                 action: false,
                 callback: function(posts) {
-                    $('.user-activity').html(posts);
+                    $('.user-activity-home').html(posts);
                 }
             });
         }
