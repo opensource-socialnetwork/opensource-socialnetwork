@@ -53,19 +53,6 @@ Ossn.RegisterStartupFunction(function() {
 
 });
 Ossn.RegisterStartupFunction(function() {
-    $(window).load(function() {
-        if ($('.user-activity-home').length) {
-            Ossn.PostRequest({
-                url: Ossn.site_url + "post/wall_load",
-                action: false,
-                callback: function(posts) {
-                    $('.user-activity-home').html(posts);
-                }
-            });
-        }
-    });
-});
-Ossn.RegisterStartupFunction(function() {
     $(document).ready(function() {
         if ($.isFunction($.fn.tokenInput)) {
             $("#ossn-wall-friend-input").tokenInput(Ossn.site_url + "friendpicker", {
