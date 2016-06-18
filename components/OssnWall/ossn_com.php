@@ -186,13 +186,6 @@ function ossn_post_page($pages) {
 				return false;
 		}
 		switch($page) {
-				case 'wall_load':
-					if(ossn_isLoggedin()){
-							if(ossn_is_xhr()){
-								echo ossn_plugin_view('wall/siteactivity');
-							}
-					}
-				break;
 				case 'view':
 						$title = ossn_print('post:view');
 						$wall  = new OssnWall;
