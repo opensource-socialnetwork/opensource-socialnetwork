@@ -6,6 +6,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK 4.2
 * (ajax didn't work) when delete newly created post #899
 * Switch statements may only contain one default clause in OssnSitePages #897
 * OssnInvites send duplicate emails #903
+* Remove google map search API as it requires API #906
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 4.1 
 

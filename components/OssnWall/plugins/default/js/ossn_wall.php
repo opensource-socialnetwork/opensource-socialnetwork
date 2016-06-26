@@ -130,20 +130,37 @@ Ossn.RegisterStartupFunction(function() {
 /**
  * Setup Google Location input
  *
+ * Remove google map search API as it requires API #906 
+ * 
  * @return void
  */
 Ossn.RegisterStartupFunction(function() {
     $(document).ready(function() {
         if ($('#ossn-wall-location-input').length) {
-            var autocomplete;
-            if (typeof google === 'object') {
-                autocomplete = new google.maps.places.Autocomplete(
-                    /** @type {HTMLInputElement} */
-                    (document.getElementById('ossn-wall-location-input')), {
-                        types: ['geocode']
-                    });
-                google.maps.event.addListener(autocomplete, 'place_changed', function() {});
-            }
+            $('#ossn-wall-location-input').autocomplete({
+                source: function(request, response) {
+                    jQuery.getJSON(
+                        "http://gd.geobytes.com/AutoCompleteCity?callback=?&sort=size&q=" + request.term,
+                        function(data) {
+                            response(data);
+                        }
+                    );
+                },
+                minLength: 3,
+                select: function(event, ui) {
+                    var selectedObj = ui.item;
+                    $('#ossn-wall-location-input').val(selectedObj.value);
+                    $(".ui-menu-item").hide();
+                    return false;
+                },
+                open: function() {
+                    jQuery(this).removeClass("ui-corner-all").addClass("ui-corner-top");
+                },
+                close: function() {
+                    jQuery(this).removeClass("ui-corner-top").addClass("ui-corner-all");
+                }
+            });
+            $('#ossn-wall-location-input').autocomplete("option", "delay", 100);
         }
     });
 });

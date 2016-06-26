@@ -35,7 +35,9 @@ function ossn_wall() {
 		ossn_extend_view('js/opensource.socialnetwork', 'js/ossn_wall');
 		
 		ossn_new_external_js('jquery.tokeninput', 'vendors/jquery/jquery.tokeninput.js');
-		ossn_new_external_js('maps.google', 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places', false);
+		
+		//Remove google map search API as it requires API #906
+		//ossn_new_external_js('maps.google', 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places', false);
 		
 		//pages
 		ossn_register_page('post', 'ossn_post_page');

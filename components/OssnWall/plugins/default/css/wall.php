@@ -12,3 +12,9 @@
 .ossn-wall-loading .ossn-loading {
     display: inline-block;
 }
+#ossn-wall-form .ui-autocomplete-loading {
+    background: white url("<?php echo ossn_theme_url();?>images/loading.gif") right center no-repeat;
+}
+#ossn-wall-form .ui-helper-hidden-accessible {
+  	display: none;
+}
