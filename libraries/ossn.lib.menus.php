@@ -11,9 +11,9 @@
 
 /**
  * Register a menu;
- * @params string $name Name of menu;
- * @params string $text Text for menu;
- * @params string $link Link for menu;
+ * @param string $name Name of menu;
+ * @param string $text Text for menu;
+ * @param string $link Link for menu;
  *
  * @return void
  */
@@ -27,9 +27,9 @@ function ossn_register_menu_link($name, $text, $link, $menutype = 'site') {
 /**
  * Register a menu item
  *
- * @params string $name menu name;
- * @params array  $options A link options;
- * @params string $menutype A menu name
+ * @param string $name menu name;
+ * @param array  $options A link options;
+ * @param string $menutype A menu name
  *
  * @return void
  */
@@ -40,8 +40,8 @@ function ossn_register_menu_item($menutype, array $options = array()) {
 
 /**
  * Unregister menu from system;
- * @params string $menu Menu name
- * @params string  $menutype MenuType
+ * @param string $menu Menu name
+ * @param string  $menutype MenuType
  *
  * @return void;
  *
@@ -55,7 +55,7 @@ function ossn_unregister_menu($menu, $menutype = 'site') {
  *
  * @param string $name Name of Menu Item
  * @param string $menu Name of Menu
- * @param strign $menutype The name of menutype
+ * @param string $menutype The name of menutype
  * 
  * @return void
  */
@@ -70,8 +70,11 @@ function ossn_unregister_menu_item($name, $menu, $menutype = 'site') {
 				}
 }
 /**
- * View a menu;
- * @params string $menu Menu name
+ * View a menu
+ *
+ * @param string $menu Menu name
+ * @param boolean $custom if the file path is custom
+ *
  * @note This will fetch layout from defualt template that how menu should appear; check menu file for more info;
  *
  * @return string
@@ -95,9 +98,10 @@ function ossn_view_menu($menu, $custom = false) {
 }
 
 /**
- * Register a section base menu;
- * @params array $params array(type, section, url, text, icon, link)
- * @param string $menu
+ * Register a section base menu
+ *
+ * @param string $menu A name of menu
+ * $param array $params A option values
  *
  * @return false|null
  */
@@ -129,9 +133,11 @@ function ossn_register_sections_menu($menu, $params) {
 }
 
 /**
- * View section base menu;
+ * View section base menu
+ *
  * @param string $type (frontend or backend(
  * @param string $menu
+ *
  * @note This will fetch layout from defualt template that how menu should appear; check menu file for more info;
  *
  * @return mixed data
