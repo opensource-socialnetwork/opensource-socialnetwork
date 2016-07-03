@@ -94,11 +94,19 @@ function ossn_trigger_upgrades() {
 						throw new exception(ossn_print('upgrade:file:load:error'));
 				}
 		}
+		/**
+		 * Since the update wiki states that disable cache,  so this code never works 
+		 * https://www.opensource-socialnetwork.org/wiki/view/708/how-to-upgrade-ossn
+		 *
+		 * OSSN v4.2
+		 */
+		 
 		//need to reset cache files
-		if(ossn_site_settings('cache') !== 0) {
-				ossn_trigger_css_cache();
-				ossn_trigger_js_cache();
-		}
+		//if(ossn_site_settings('cache') !== 0) {
+		//		ossn_trigger_css_cache();
+		//		ossn_trigger_js_cache();
+		//}
+		
 		return true;
 }
 
