@@ -537,7 +537,7 @@ class OssnComponents extends OssnDatabase {
 		public function getbyName($name) {
 				$params          = array();
 				$params['from']  = 'ossn_components';
-				$params['where'] = array(
+				$params['wheres'] = array(
 						"com_id='{$name}'"
 				);
 				if($data = $this->select($params)) {
