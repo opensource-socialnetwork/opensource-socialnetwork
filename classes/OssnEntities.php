@@ -17,7 +17,8 @@ class OssnEntities extends OssnDatabase {
 		private function initAttributes() {
 				$this->data         = new stdClass;
 				$this->time_created = time();
-				$this->time_updated = '';
+				//OssnDatabaseException' with message 'Incorrect integer value #904
+				$this->time_updated = 0;
 				$this->active       = 1;
 				
 				if(empty($this->permission)) {
