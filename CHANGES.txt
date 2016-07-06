@@ -8,6 +8,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK 4.2
 * OssnInvites send duplicate emails #903
 * Remove google map search API as it requires API #906
 * OssnComponents: getbyName shows wrong data #910
+* OssnDatabaseException' with message 'Incorrect integer value #904
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 4.1 
 
