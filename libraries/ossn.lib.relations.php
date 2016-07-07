@@ -35,6 +35,11 @@ function ossn_add_relation($from, $to, $type) {
 						time()
 				);
 				if($add->insert($params)) {
+						ossn_trigger_callback('relation', 'add', array(
+								'from' => $from,
+								'to' => $to,
+								'tyoe' => $type
+						));
 						return true;
 				}
 		}
