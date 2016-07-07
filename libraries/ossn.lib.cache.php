@@ -56,6 +56,7 @@ function ossn_trigger_js_cache($cache = '') {
 		if(!isset($Ossn->js)) {
 				return false;
 		}
+		header('Content-Type: text/html; charset=utf-8');
 		foreach($Ossn->js as $name => $file) {
 				$cache_file = "{$dir}js/{$cache}/view/{$name}.js";
 				$js         = JSMin::minify(ossn_plugin_view($file));
@@ -95,9 +96,9 @@ function ossn_trigger_language_cache($cache) {
 		
 		$coms = new OssnComponents;
 		$comlist = $coms->getActive();
-		$comdir  = ossn_route()->com;		
+		$comdir  = ossn_route()->com;	
 		
-		header('Content-Type: text/html; charset=utf-8');
+		header('Content-Type: application/json; charset=utf-8');
 		foreach($available_languages as $lang) {
 				//load all laguages
 				foreach($Ossn->locale[$lang] as $item){
@@ -117,7 +118,7 @@ function ossn_trigger_language_cache($cache) {
 						$json = ossn_load_json_locales($lang);
 						$json = "var OssnLocale = $json";
 						$cache_file = "{$dir}js/{$cache}/view/ossn.{$lang}.language.js";
-						file_put_contents($cache_file, $json);
+						file_put_contents($cache_file, "\xEF\xBB\xBF" . $json);
 				}
 		}
 }
