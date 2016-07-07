@@ -8,6 +8,6 @@
  * @license   General Public Licence http://www.opensource-socialnetwork.org/licence
  * @link      http://www.opensource-socialnetwork.org/licence
  */
-  header('Content-Type: application/json; charset=utf-8')
+  header('Content-Type: application/json; charset=utf-8');
 ?>
 var OssnLocale = <?php echo ossn_load_json_locales(); ?>;
