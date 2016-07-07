@@ -105,11 +105,17 @@ function ossn_default_load_locales() {
 function ossn_load_json_locales() {
 		global $Ossn;
 		$code = ossn_site_settings('language');
-		$json = json_encode($Ossn->localestr[$code]);
+		if(!isset($Ossn->localestr[$code])){
+			return false;
+		}
+		foreach($Ossn->localestr[$code] as $key => $item){
+				$strings[$key] = mb_substr($item, 0, 10,'utf-8');
+		}
+		$json = json_encode($strings, JSON_UNESCAPED_UNICODE);
 		if($json) {
 				return $json;
 		}
-		return false;
+		return json_encode(array());
 }
 /**
  * Return an array of installed translations as an associative
