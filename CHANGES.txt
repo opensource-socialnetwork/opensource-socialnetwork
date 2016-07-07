@@ -9,6 +9,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK 4.2
 * Remove google map search API as it requires API #906
 * OssnComponents: getbyName shows wrong data #910
 * OssnDatabaseException' with message 'Incorrect integer value #904
+* Add callback form relationship add #911
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 4.1 
 
