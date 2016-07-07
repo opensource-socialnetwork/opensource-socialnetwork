@@ -114,7 +114,7 @@ function ossn_trigger_language_cache($cache) {
 					}
 				}
 				if(isset($Ossn->localestr[$lang])) {
-						$json = json_encode($Ossn->localestr[$lang], JSON_UNESCAPED_UNICODE);
+						$json = ossn_load_json_locales($lang);
 						$json = "var OssnLocale = $json";
 						$cache_file = "{$dir}js/{$cache}/view/ossn.{$lang}.language.js";
 						file_put_contents($cache_file, $json);
