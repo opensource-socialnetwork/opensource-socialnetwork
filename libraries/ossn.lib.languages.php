@@ -102,9 +102,12 @@ function ossn_default_load_locales() {
  *
  * @return string|false or false
  */
-function ossn_load_json_locales() {
+function ossn_load_json_locales($lcode = "") {
 		global $Ossn;
 		$code = ossn_site_settings('language');
+		if(!empty($lcode)){
+			$code = $lcode;
+		}
 		if(!isset($Ossn->localestr[$code])){
 			return false;
 		}
