@@ -68,6 +68,7 @@ ALTER TABLE `ossn_users`
 	ADD FULLTEXT KEY `email` (`email`),
 	ADD FULLTEXT KEY `first_name` (`first_name`),
 	ADD FULLTEXT KEY `last_name` (`last_name`);");
+$database->execute();
 
 $factory = new OssnFactory(array(
 		'callback' => 'installation',
