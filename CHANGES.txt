@@ -12,6 +12,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK 4.2
 * Add callback form relationship add #911
 * ossn_load_json_locales failed on some language files #912
 * Add a check whether datepicker strings available in locale (#836) #885
+* Ossn notification for messages not working #913
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 4.1 
 
