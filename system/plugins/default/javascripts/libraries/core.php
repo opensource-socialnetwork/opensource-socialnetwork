@@ -770,6 +770,17 @@ Ossn.Print = function(str, args) {
 	return str;
 };
 /**
+ * Check if the language string is avaialble or not
+ *
+ * @return boolean
+ */
+Ossn.isLangString = function(str, args) {
+	if (OssnLocale[str]) {
+		return true;
+	}
+	return false;
+};
+/**
  * Get a available update version
  * 
  * @added in v3.0 
