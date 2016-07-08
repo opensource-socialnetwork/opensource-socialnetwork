@@ -115,16 +115,15 @@ class OssnMessages extends OssnDatabase {
 				foreach($chats as $rec) {
 						$recents[$rec->message_from] = $rec->message_to;
 				}
+
 				foreach($recents as $k => $v) {
 						if($k !== $to) {
 								$message_get = $this->get($to, $k);
 								if($message_get) {
 										$latest = get_object_vars($message_get);
-										$latest = array_reverse($latest);
-										$latest = arrayObject($latest[0]);
-										$c      = get_object_vars($latest);
+										$c = end($latest);
 										if(!empty($c)) {
-												$users[] = $latest;
+												$users[] = $c;
 										}
 								}
 						}
@@ -146,7 +145,7 @@ class OssnMessages extends OssnDatabase {
 		public function get($from, $to) {
 				$params['from']     = 'ossn_messages';
 				$params['wheres']   = array(
-						"message_from='{$from}' AND
+								 "message_from='{$from}' AND
 								  message_to='{$to}' OR
 								  message_from='{$to}' AND
 								  message_to='{$from}'"
