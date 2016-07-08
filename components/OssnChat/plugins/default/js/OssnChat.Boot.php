@@ -1,12 +1,12 @@
 /**
 * Open Source Social Network
 *
-* @package   (Informatikon.com).ossn
+* @package   (softlab24.com).ossn
 * @author    OSSN Core Team
 <info@opensource-socialnetwork.org>
-* @copyright 2014 iNFORMATIKON TECHNOLOGIES
+* @copyright 2014-2016 SOFTLAB24 LIMITED
 * @license   General Public Licence http://www.opensource-socialnetwork.org/licence
-* @link      http://www.opensource-socialnetwork.org/licence
+* @link      https://www.opensource-socialnetwork.org/
 */
 <?php
 /**
@@ -14,9 +14,9 @@
  *
  * @packageOpen Source Social Network
  * @author    Open Social Website Core Team <info@informatikon.com>
- * @copyright 2014 iNFORMATIKON TECHNOLOGIES
+ * @copyright 2014-2016 SOFTLAB24 LIMITED
  * @license   General Public Licence http://www.opensource-socialnetwork.org/licence
- * @link      http://www.opensource-socialnetwork.org/licence
+ * @link      https://www.opensource-socialnetwork.org/
  */
 $new_all    = ossn_chat()->getNewAll(array(
 		'message_from'
