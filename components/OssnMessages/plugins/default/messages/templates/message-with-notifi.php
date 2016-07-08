@@ -18,11 +18,11 @@
                 if ($message->message_from == ossn_loggedin_user()->guid) {
                     $user = ossn_user_by_guid($message->message_to);
                     $text = $message->message;
-                    $replied = "<div class='reply-text'><i class='fa fa-reply'></i>{$text}</div>";
+                    $replied = "<div class='reply-text'>{$text}</div>";
                 } else {
                     $user = ossn_user_by_guid($message->message_from);
                     $text = $message->message;
-                    $replied = "<div class='reply-text-from'><i class='fa fa-reply'></i>{$text}</div>";
+                    $replied = "<div class='reply-text-from'>{$text}</div>";
                 }
                 if ($message->viewed == 0 && $message->message_from !== ossn_loggedin_user()->guid) {
                     $new = 'message-new';
