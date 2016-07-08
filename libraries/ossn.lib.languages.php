@@ -112,7 +112,7 @@ function ossn_load_json_locales($lcode = "") {
 			return false;
 		}
 		foreach($Ossn->localestr[$code] as $key => $item){
-				$strings[$key] = mb_substr($item, 0, 10,'utf-8');
+				$strings[$key] = mb_substr($item, 0, strlen($item),'utf-8');
 		}
 		$json = json_encode($strings, JSON_UNESCAPED_UNICODE);
 		if($json) {
