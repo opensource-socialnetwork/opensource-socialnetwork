@@ -24,7 +24,7 @@ $de = array(
     'register:ok:message' => "Dein Benutzer-Konto wurde nun eingerichtet, und Du hast eine Aktivierungs-Email erhalten. Sieh in Deinem Spam-Ordner nach, wenn Du die Nachricht im Posteingang nicht findest.",
 
     'copyright' => '&copy; COPYRIGHT',
-    'powered' => 'Powered by Open Source Social Network',
+    'powered' => 'Powered by the Open Source Social Network.',
 	
     'name' => 'Name',
     'birthdate' => 'Geburtstag',
