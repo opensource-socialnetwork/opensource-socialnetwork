@@ -12,7 +12,7 @@
 ossn_generate_server_config('apache');
 ossn_version_upgrade($upgrade, '4.2');
 
-$database = new OssnDatbase;
+$database = new OssnDatabase;
 $database->statement("ALTER TABLE `ossn_annotations`
 	ADD KEY `owner_guid` (`owner_guid`),
 	ADD KEY `subject_guid` (`subject_guid`),
