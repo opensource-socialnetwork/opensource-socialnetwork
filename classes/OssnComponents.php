@@ -397,9 +397,10 @@ class OssnComponents extends OssnDatabase {
 		 * @return array
 		 */
 		public function requiredComponents() {
-				return array(
+				$default = array(
 						'OssnProfile',
 				);
+				return ossn_call_hook('required', 'components', false, $default);
 		}
 		
 		/**
