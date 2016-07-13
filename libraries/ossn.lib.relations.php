@@ -38,7 +38,7 @@ function ossn_add_relation($from, $to, $type) {
 						ossn_trigger_callback('relation', 'add', array(
 								'from' => $from,
 								'to' => $to,
-								'tyoe' => $type
+								'type' => $type
 						));
 						return true;
 				}
