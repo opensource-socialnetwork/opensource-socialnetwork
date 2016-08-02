@@ -1,3 +1,7 @@
+OSSN - OPEN SOURCE SOCIAL NETWORK 4.3
+
+* OSSN v4.x partially upgraded to v4.2
+
 OSSN - OPEN SOURCE SOCIAL NETWORK 4.2 
 
 * Profile/cover photos upload are not responsive #888
