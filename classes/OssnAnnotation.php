@@ -329,8 +329,8 @@ class OssnAnnotation extends OssnEntities {
 												$wheres_paris[] = "emd{$key}.value {$operand} '{$pair['value']}'";
 												
 										}
-										$params['joins'][] = "INNER JOIN ossn_entities as e{$key} ON e{$key}.owner_guid=a.id";
-										$params['joins'][] = "INNER JOIN ossn_entities_metadata as emd{$key} ON e{$key}.guid=emd{$key}.guid";
+										$params['joins'][] = "JOIN ossn_entities as e{$key} ON e{$key}.owner_guid=a.id";
+										$params['joins'][] = "JOIN ossn_entities_metadata as emd{$key} ON e{$key}.guid=emd{$key}.guid";
 								}
 						}
 						if(!empty($wheres_paris)) {
@@ -338,8 +338,8 @@ class OssnAnnotation extends OssnEntities {
 								$wheres[]        = $wheres_entities;
 						}
 				}
-				$params['joins'][] = "INNER JOIN ossn_entities as e ON e.owner_guid=a.id";
-				$params['joins'][] = "INNER JOIN ossn_entities_metadata as emd ON e.guid=emd.guid";
+				$params['joins'][] = "JOIN ossn_entities as e ON e.owner_guid=a.id";
+				$params['joins'][] = "JOIN ossn_entities_metadata as emd ON e.guid=emd.guid";
 				
 				$wheres[] = "e.type='annotation'";
 				$wheres[] = "emd.guid=e.guid";

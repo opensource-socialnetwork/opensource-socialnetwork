@@ -387,8 +387,8 @@ class OssnObject extends OssnEntities {
 												$wheres_paris[] = "emd{$key}.value {$operand} '{$pair['value']}'";
 												
 										}
-										$params['joins'][] = "INNER JOIN ossn_entities as e{$key} ON e{$key}.owner_guid=o.guid";
-										$params['joins'][] = "INNER JOIN ossn_entities_metadata as emd{$key} ON e{$key}.guid=emd{$key}.guid";
+										$params['joins'][] = "JOIN ossn_entities as e{$key} ON e{$key}.owner_guid=o.guid";
+										$params['joins'][] = "JOIN ossn_entities_metadata as emd{$key} ON e{$key}.guid=emd{$key}.guid";
 								}
 						}
 						if(!empty($wheres_paris)) {

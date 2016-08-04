@@ -138,7 +138,7 @@ class OssnEntities extends OssnDatabase {
 						'e.type',
 						'e.subtype'
 				);
-				$params['joins']  = "INNER JOIN ossn_entities_metadata as emd ON e.guid=emd.guid";
+				$params['joins']  = "JOIN ossn_entities_metadata as emd ON e.guid=emd.guid";
 				$params['wheres'] = array(
 						"e.guid ='{$this->entity_guid}'"
 				);
@@ -453,7 +453,7 @@ class OssnEntities extends OssnDatabase {
 						'e.type',
 						'e.subtype'
 				);
-				$params['joins']    = "INNER JOIN ossn_entities_metadata as emd ON e.guid=emd.guid";
+				$params['joins']    = "JOIN ossn_entities_metadata as emd ON e.guid=emd.guid";
 				$params['wheres']   = array(
 						$this->constructWheres($wheres)
 				);
