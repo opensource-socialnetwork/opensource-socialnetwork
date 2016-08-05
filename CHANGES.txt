@@ -1,6 +1,7 @@
 OSSN - OPEN SOURCE SOCIAL NETWORK 4.3
 
 * OSSN v4.x partially upgraded to v4.2
+* wall/view didn't escape new lines #920
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 4.2 
 
