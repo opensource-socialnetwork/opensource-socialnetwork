@@ -206,6 +206,12 @@ class OssnAnnotation extends OssnEntities {
 		 */
 		public function deleteAnnotation($annotation) {
 				self::initAttributes();
+				if(isset($this->id)){
+					$annotation = $this->id;
+				}
+				if(empty($annotation)){
+					return false;
+				}
 				if($this->deleteByOwnerGuid($annotation, 'annotation')) {
 						$this->statement("DELETE FROM ossn_annotations WHERE(id='{$annotation}')");
 						if($this->execute()) {
@@ -329,8 +335,8 @@ class OssnAnnotation extends OssnEntities {
 												$wheres_paris[] = "emd{$key}.value {$operand} '{$pair['value']}'";
 												
 										}
-										$params['joins'][] = "JOIN ossn_entities as e{$key} ON e{$key}.owner_guid=a.id";
-										$params['joins'][] = "JOIN ossn_entities_metadata as emd{$key} ON e{$key}.guid=emd{$key}.guid";
+										$params['joins'][] = "INNER JOIN ossn_entities as e{$key} ON e{$key}.owner_guid=a.id";
+										$params['joins'][] = "INNER JOIN ossn_entities_metadata as emd{$key} ON e{$key}.guid=emd{$key}.guid";
 								}
 						}
 						if(!empty($wheres_paris)) {
@@ -338,8 +344,8 @@ class OssnAnnotation extends OssnEntities {
 								$wheres[]        = $wheres_entities;
 						}
 				}
-				$params['joins'][] = "JOIN ossn_entities as e ON e.owner_guid=a.id";
-				$params['joins'][] = "JOIN ossn_entities_metadata as emd ON e.guid=emd.guid";
+				$params['joins'][] = "INNER JOIN ossn_entities as e ON e.owner_guid=a.id";
+				$params['joins'][] = "INNER JOIN ossn_entities_metadata as emd ON e.guid=emd.guid";
 				
 				$wheres[] = "e.type='annotation'";
 				$wheres[] = "emd.guid=e.guid";
