@@ -57,7 +57,6 @@ $image = $params['image'];
 			<p><?php echo stripslashes($params['text']); ?></p>
 			 <?php
 						if(!empty($params['friends'])){
-							echo '<div class="friends">';
 	                        foreach ($params['friends'] as $friend) {
 								if(!empty($friend)){
 	    	                        $user = ossn_user_by_guid($friend);
@@ -66,9 +65,10 @@ $image = $params['image'];
 								}
                 	        }
 							if(!empty($friends)){
+								echo '<div class="friends">';
 								echo implode(', ', $friends);
+								echo '</div>';
 							}
-							echo '</div>';
 						}
               ?>
             <?php
