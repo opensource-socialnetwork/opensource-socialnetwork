@@ -506,7 +506,7 @@ class OssnComponents extends OssnDatabase {
 		public function getSettings($component) {
 				$entity             = new OssnEntities;
 				$entity->type       = 'component';
-				$entity->owner_guid = $this->getbyName($component)->getGUID();
+				$entity->owner_guid = $this->getbyName($component)->getID();
 				$settings           = $entity->get_entities();
 				if(is_array($settings) && !empty($settings)) {
 						foreach($settings as $setting) {
