@@ -88,7 +88,7 @@ class OssnWall extends OssnObject {
 								$params['friends'] = explode(',', $wallpost['friend']);
 						}
 						ossn_trigger_callback('wall', 'post:created', $params);
-						return true;
+						return $this->wallguid;
 				}
 				return true;
 		}
