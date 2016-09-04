@@ -83,7 +83,7 @@ class OssnComments extends OssnAnnotation {
 						$params['subject_guid'] = $subject_id;
 						$params['owner_guid']   = $owner_guid;
 						ossn_trigger_callback('comment', 'created', $params);
-						return true;
+						return $this->getAnnotationId();
 				}
 				return false;
 		}
