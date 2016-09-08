@@ -53,7 +53,7 @@ Ossn.ajaxRequest = function($data) {
 		if (url == true) {
 			url = $($form_name).attr('action');
 		}
-		$($form_name).submit(function(event) {
+		$('body').on("submit", $form_name, function(event) {
 
 			event.preventDefault();
 			if (!callback) {
