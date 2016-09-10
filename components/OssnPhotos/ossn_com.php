@@ -383,7 +383,8 @@ function ossn_album_page_handler($album) {
 								header("Cache-Control: public");
 								header("Content-Length: $filesize");
 								header("ETag: \"$etag\"");
-								readfile($datadir);
+								//ossnphotos get cover type 1 not working #943
+								echo $image;
 								return;
 						} else {
 								ossn_error_page();
