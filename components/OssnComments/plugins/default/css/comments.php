@@ -22,14 +22,17 @@
 	display:none;
 }
 .ossn-comment-attachment  .image-data  {
-	padding: 6px;
-	background: #fff;
+    padding: 6px;
+    background: #fff;
     border: 1px solid #eee;
+    
     /* Please, check scaling algorithm of comment picture previews #682 */
     /** 
     comments attachment image not responsive #938
     display: flex; **/
-    max-height: 180px;        
+    
+    max-height: 180px;       
+    text-align: center;
 }
 .ossn-comment-attachment  .image-data img {
 	max-width:100%;
