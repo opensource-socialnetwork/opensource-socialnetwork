@@ -29,7 +29,7 @@
     /** 
     comments attachment image not responsive #938
     display: flex; **/
-    max-height: 100px;        
+    max-height: 180px;        
 }
 .ossn-comment-attachment  .image-data img {
 	max-width:100%;
