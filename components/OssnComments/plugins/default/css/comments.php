@@ -26,12 +26,14 @@
 	background: #fff;
     border: 1px solid #eee;
     /* Please, check scaling algorithm of comment picture previews #682 */
-    display: flex;
-    max-height: 200px;        
+    /** 
+    comments attachment image not responsive #938
+    display: flex; **/
+    max-height: 100px;        
 }
 .ossn-comment-attachment  .image-data img {
 	max-width:100%;
-	height: 180px;
+	height: 100px;
 	border: 1px solid #ccc;
 }
 .ossn-viewer-comments .ossn-comment-attachment {
