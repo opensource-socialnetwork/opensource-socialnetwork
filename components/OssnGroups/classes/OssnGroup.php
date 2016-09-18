@@ -287,7 +287,7 @@ class OssnGroup extends OssnObject {
 										$from,
 										$group_owner,
 										$group,
-										NULL,
+										0,
 										time()
 								);
 								if($this->OssnDatabase->insert($params)) {
