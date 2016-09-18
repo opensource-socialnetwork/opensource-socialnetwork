@@ -102,7 +102,7 @@ Ossn.CommentImage = function($container) {
                 async: true,
                 beforeSend: function() {
                     $('#ossn-comment-attachment-' + $container).find('.image-data')
-                        .html('<img src="' + Ossn.site_url + 'components/OssnComments/images/loading.gif" style="width:30px;border:none;" />');
+                        .html('<img src="' + Ossn.site_url + 'components/OssnComments/images/loading.gif" style="width:30px;border:none;height: initial;" />');
                     $('#comment-attachment-container-' + $container).show();
 
                 },
