@@ -4,7 +4,8 @@ OSSN - OPEN SOURCE SOCIAL NETWORK 4.3
 * wall/view didn't escape new lines #920
 * Components:getSettings shows wrong value #936
 * ossnphotos get cover type 1 not working #943
-
+* OssnGroups : Incorrect integer value: '' for column 'item_guid' #942
+* Refused to execute script from because strict mime type #944
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 4.2 
 
