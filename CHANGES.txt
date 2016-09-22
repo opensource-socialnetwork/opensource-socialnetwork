@@ -7,6 +7,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK 4.3
 * OssnGroups : Incorrect integer value: '' for column 'item_guid' #942
 * Refused to execute script from because strict mime type chorme #944
 * Comments attachment image not responsive #938
+* Remove spaces from the input #948
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 4.2 
 
