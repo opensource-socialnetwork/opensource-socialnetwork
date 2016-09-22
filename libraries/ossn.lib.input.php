@@ -39,14 +39,15 @@ function ossn_input_escape($str, $newlines = true) {
 /**
  * Get input from user; using secure method;
  *
- * @param string $input Name of input;
- * @params  integer $noencode If you don't want to encode to html entities then add 1 as second arg in function.
+ * @param string  $input Name of input;
+ * @param integer $noencode If you don't want to encode to html entities then add 1 as second arg in function.
+ * @param boolean $strip Remove spaces from start and end of input
  *
  * @last edit: $arsalanshah
  * @reason: fix docs;
  * @return false|string
  */
-function input($input, $noencode = '', $default = false) {
+function input($input, $noencode = '', $default = false, $strip = true) {
 		$str = false;
 		if(isset($_REQUEST[$input]) && is_array($_REQUEST[$input])) {
 				foreach($_REQUEST[$input] as $key => $value) {
@@ -60,11 +61,15 @@ function input($input, $noencode = '', $default = false) {
 		if(isset($_REQUEST[$input]) && empty($noencode)) {
 				$data = htmlspecialchars($_REQUEST[$input], ENT_QUOTES, 'UTF-8');
 				$str  = $data;
-		} elseif($noencode == 1) {
-				$str = ossn_input_escape($data);
+		} elseif($noencode == true) {
+				$str = $data;
 		}
 		if($str) {
-				return ossn_input_escape($str);
+				if($strip){
+					return trim(ossn_input_escape($str));
+				} else {
+					return ossn_input_escape($str);
+				}
 		}
 		return false;
 }
