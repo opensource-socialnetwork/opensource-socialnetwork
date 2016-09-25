@@ -20,6 +20,9 @@ $de = array(
     'ossn:notifications:comments:post:group:wall' => "%s hat einen Kommentar zu einem Beitrag abgegeben",
     'ossn:notifications:comments:entity:file:profile:photo' => "%s hat Dein Profil-Foto kommentiert",
     'ossn:notifications:like:entity:file:profile:photo' => "%s gefällt Dein Profil-Foto",
+    'ossn:notifications:like:entity:file:profile:cover' => "%s gefällt Dein Titelbild.",
+    'ossn:notifications:comments:entity:file:profile:cover' => "%s hat Dein Titelbild kommentiert.",
+
     'ossn:notifications:like:post:group:wall' => '%s gefällt Dein Beitrag',
 	
     'ossn:notification:delete:friend' => 'Die Freundschafts-Anfrage wurde gelöscht',
