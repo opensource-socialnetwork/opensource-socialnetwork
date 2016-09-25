@@ -10,6 +10,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK 4.3
 * Remove spaces from the input #948
 * Photos posted from phone get rotated #918
 * Add class name for dynamic menu items #934
+* Add hook to override the ossn input #928
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 4.2 
 
