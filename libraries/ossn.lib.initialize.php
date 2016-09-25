@@ -113,7 +113,8 @@ function ossn_user_pagehandler($home, $handler) {
 		switch($handler) {
 				case 'home':
 						if(!ossn_isLoggedin()) {
-								ossn_error_page();
+								//Redirect User to login page if session expired from home page #929
+								redirect('login');
 						}
 						$title = ossn_print('news:feed');
 						if(com_is_active('OssnWall')) {
