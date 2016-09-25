@@ -213,6 +213,9 @@ class OssnFile extends OssnEntities {
 								if($this->add()) {
 										$filecontents = file_get_contents($this->file['tmp_name']);
 										if(preg_match('/image/i', $this->file['type'])) {
+												//fix rotation #918
+												$this->resetRotation($this->file['tmp_name']);
+												
 												//allow devs to change default size , see #528
 												$image_res = array(
 														'width' => 2048,
@@ -435,5 +438,40 @@ class OssnFile extends OssnEntities {
 						return is_file($path);
 				}
 				return false;
+		}
+		/**
+		 * Fix image rotation #981
+		 * 
+		 * @return void
+		 */
+		public function resetRotation($filename) {
+				if(!is_file($filename)) {
+						return false;
+				}
+				if(function_exists('exif_read_data')) {
+						$exif = exif_read_data($filename);
+						if($exif && isset($exif['Orientation'])) {
+								$orientation = $exif['Orientation'];
+								$rotate = false;
+								if($orientation != 1) {
+										$img = imagecreatefromjpeg($filename);
+										switch($orientation) {
+												case 3:
+														$rotate = 180;
+														break;
+												case 6:
+														$rotate = 270;
+														break;
+												case 8:
+														$rotate = 90;
+														break;
+										}
+										if($rotate) {
+												$img = imagerotate($img, $rotate, 0);
+												imagejpeg($img, $filename, 90);
+										}
+								}
+						}
+				}
 		}
 } //class
