@@ -57,6 +57,8 @@ function ossn_profile() {
 		//notifications
 		ossn_add_hook('notification:view', 'like:entity:file:profile:photo', 'ossn_notification_like_profile_photo');
 		ossn_add_hook('notification:view', 'comments:entity:file:profile:photo', 'ossn_notification_like_profile_photo');
+		ossn_add_hook('notification:view', 'like:entity:file:profile:cover', 'ossn_notification_like_profile_cover');
+		ossn_add_hook('notification:view', 'comments:entity:file:profile:cover', 'ossn_notification_like_profile_cover');
 		
 		//subpages of profile
 		ossn_profile_subpage('friends');
@@ -423,6 +425,36 @@ function ossn_notification_like_profile_photo($hook, $type, $return, $params) {
 				$viewed = 'class="ossn-notification-unviewed"';
 		}
 		$url               = ossn_site_url("photos/user/view/{$notif->subject_guid}");
+		$notification_read = "{$baseurl}notification/read/{$notif->guid}?notification=" . urlencode($url);
+		return "<a href='{$notification_read}'>
+	       <li {$viewed}> {$img} 
+		   <div class='notfi-meta'> {$type}
+		   <div class='data'>" . ossn_print("ossn:notifications:{$notif->type}", array(
+				$user->fullname
+		)) . '</div>
+		   </div></li>';
+}
+function ossn_notification_like_profile_cover($hook, $type, $return, $params) {
+		$notif          = $params;
+		$baseurl        = ossn_site_url();
+		$user           = ossn_user_by_guid($notif->poster_guid);
+		$user->fullname = "<strong>{$user->fullname}</strong>";
+		$iconURL        = $user->iconURL()->small;
+		
+		$img = "<div class='notification-image'><img src='{$iconURL}' /></div>";
+		if(preg_match('/like/i', $notif->type)) {
+				$type = 'like';
+		}
+		if(preg_match('/comments/i', $notif->type)) {
+				$type = 'comment';
+		}
+		$type = "<div class='ossn-notification-icon-{$type}'></div>";
+		if($notif->viewed !== NULL) {
+				$viewed = '';
+		} elseif($notif->viewed == NULL) {
+				$viewed = 'class="ossn-notification-unviewed"';
+		}
+		$url               = ossn_site_url("photos/cover/view/{$notif->subject_guid}");
 		$notification_read = "{$baseurl}notification/read/{$notif->guid}?notification=" . urlencode($url);
 		return "<a href='{$notification_read}'>
 	       <li {$viewed}> {$img} 
