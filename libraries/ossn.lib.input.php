@@ -48,27 +48,40 @@ function ossn_input_escape($str, $newlines = true) {
  * @return false|string
  */
 function input($input, $noencode = '', $default = false, $strip = true) {
-		$str = false;
-		if(isset($_REQUEST[$input]) && is_array($_REQUEST[$input])) {
-				foreach($_REQUEST[$input] as $key => $value) {
-						$_REQUEST[$input][$key] = htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
+		$str  = false;
+		$hook = ossn_call_hook('ossn', 'input', false, array(
+				'input' => $input,
+				'noencode' => $noencode,
+				'default' => $default,
+				'strip' => $strip,
+				'data' => $_REQUEST[$input]
+		));
+		if($hook) {
+				$input    = $hook['input'];
+				$noencode = $hook['noencode'];
+				$default  = $hook['default'];
+				$strip    = $hook['strip'];
+				if(isset($hook['data']) && is_array($hook['data'])) {
+						foreach($hook['data'] as $key => $value) {
+								$hook['data'][$key] = htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
+						}
+						return $hook['data'];
 				}
-				return $_REQUEST[$input];
-		}
-		if(!isset($_REQUEST[$input]) && $default) {
-				return $default;
-		}
-		if(isset($_REQUEST[$input]) && empty($noencode)) {
-				$data = htmlspecialchars($_REQUEST[$input], ENT_QUOTES, 'UTF-8');
-				$str  = $data;
-		} elseif($noencode == true) {
-				$str = $data;
-		}
-		if($str) {
-				if($strip){
-					return trim(ossn_input_escape($str));
-				} else {
-					return ossn_input_escape($str);
+				if(!isset($hook['data']) && $default) {
+						return $default;
+				}
+				if(isset($hook['data']) && empty($noencode)) {
+						$data = htmlspecialchars($hook['data'], ENT_QUOTES, 'UTF-8');
+						$str  = $data;
+				} elseif($noencode == true) {
+						$str = $data;
+				}
+				if($str) {
+						if($strip) {
+								return trim(ossn_input_escape($str));
+						} else {
+								return ossn_input_escape($str);
+						}
 				}
 		}
 		return false;
