@@ -14,34 +14,42 @@ $menus = $params['menu'];
           <div class="sidebar-menu">
                  <ul id="menu-content" class="menu-content collapse out">
 <?php                        
-foreach ($menus as $key => $menu) {
-    $section = ossn_print($key);
+foreach ($menus as $name => $menu) {
+	$section = 'menu-section-'.OssnTranslit::urlize($name).' ';
+	$items = 'menu-section-items-'.OssnTranslit::urlize($name).' ';
+	$item = 'menu-section-item-'.OssnTranslit::urlize($menu['text']).' ';
+	
 	$expend = '';
 	$icon = "fa-angle-right";
-	if($key == 'links'){
+	if($name == 'links'){
 		$expend = 'in';
 		$icon = "fa-newspaper-o";
 	}
-	if($key == 'groups'){
+	if($name  == 'groups'){
 		$icon = "fa-users";
 	}
-	$hash = md5($key);
+	$hash = md5($name);
 	
     ?>
-     <li data-toggle="collapse" data-target="#<?php echo $hash;?>" class="collapsed active">
-        	<a href="#"><i class="fa <?php echo $icon;?> fa-lg"></i><?php echo $section;?><span class="arrow"></span></a>
+     <li data-toggle="collapse" data-target="#<?php echo $hash;?>" class="<?php echo $section;?>collapsed active <?php echo $expend;?>">
+        	<a class="<?php $item;?>" href="#"><i class="fa <?php echo $icon;?> fa-lg"></i><?php echo ossn_print($name);?><span class="arrow"></span></a>
      </li>
-    <ul class="sub-menu collapse <?php echo $expend;?>" id="<?php echo $hash;?>"> 
+    <ul class="sub-menu collapse <?php echo $expend;?>" id="<?php echo $hash;?>" class="<?php echo $items;?>"> 
     <?php
-    foreach ($menu as $text => $data) {
-        $menu = str_replace(':', '-', $text);
-        $icon = $data[1];
-        if (!is_array($data[2])) {
-            $data[2] = array();
-        }
-        $args = ossn_args($data[2]);
-        echo "<li><a {$args} href='{$data[0]}'>{$text}</a></li>";
-    }
+	if(is_array($menu)){
+	    foreach ($menu as $data) {
+			$class = 'menu-section-item-'.OssnTranslit::urlize($data['name']);
+			$data['class'] = 'menu-section-item-a-'.OssnTranslit::urlize($data['name']);
+			unset($data['name']);
+			unset($data['icon']);
+			unset($data['section']);
+			unset($data['parent']);
+		
+			$link = ossn_plugin_view('output/url', $data);		
+			echo "<li class='{$class}'>{$link}</li>";
+			unset($class);
+    	}
+	}
 	echo "</ul>";
 }
 ?>

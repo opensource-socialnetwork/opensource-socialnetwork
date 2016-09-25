@@ -29,9 +29,10 @@ function ossn_invite_init() {
 		
     	$icon = ossn_site_url('components/OssnProfile/images/friends.png');
     	ossn_register_sections_menu('newsfeed', array(
+			'name' => 'invite_friends',
         	'text' => ossn_print('com:ossn:invite:friends'),
         	'url' => ossn_site_url('invite'),
-        	'section' => 'links',
+        	'parent' => 'links',
         	'icon' => $icon
     	));		
     }	

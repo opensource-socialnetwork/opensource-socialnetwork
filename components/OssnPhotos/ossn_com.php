@@ -63,10 +63,11 @@ function ossn_photos_initialize() {
 				$user_loggedin = ossn_loggedin_user();
 				$icon          = ossn_site_url('components/OssnPhotos/images/photos-ossn.png');
 				ossn_register_sections_menu('newsfeed', array(
+						'name' => 'photos',
 						'text' => ossn_print('photos:ossn'),
 						'url' => $user_loggedin->profileURL('/photos'),
-						'section' => 'links',
-						'icon' => $icon
+						'parent' => 'links',
+						'icon' => $icon,
 				));
 				
 		}

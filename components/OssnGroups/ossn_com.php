@@ -71,8 +71,9 @@ function ossn_groups() {
 						$icon = ossn_site_url('components/OssnGroups/images/group.png');
 						ossn_register_sections_menu('newsfeed', array(
 								'text' => $group->title,
+								'name' => "groups",
 								'url' => ossn_group_url($group->guid),
-								'section' => 'groups',
+								'parent' => 'groups',
 								'icon' => $icon
 						));
 						unset($icon);
@@ -80,12 +81,11 @@ function ossn_groups() {
 		}
 		//add gorup link in sidebar
 		ossn_register_sections_menu('newsfeed', array(
+				'name' => 'addgroup',
 				'text' => ossn_print('add:group'),
 				'url' => 'javascript:void(0);',
-				'params' => array(
-						'id' => 'ossn-group-add'
-				),
-				'section' => 'groups',
+				'id' => 'ossn-group-add',
+				'parent' => 'groups',
 				'icon' => ossn_site_url('components/OssnGroups/images/add.png')
 		));
 		//my groups link

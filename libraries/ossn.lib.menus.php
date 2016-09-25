@@ -105,31 +105,19 @@ function ossn_view_menu($menu, $custom = false) {
  *
  * @return false|null
  */
-function ossn_register_sections_menu($menu, $params) {
-				global $Ossn;
-				if(!isset($params['type'])) {
-								$params['type'] = '';
+function ossn_register_sections_menu($menu = '', array $params = array()) {
+				if(!isset($params['name'])){
+						$params['name'] = md5($params['name']);	
 				}
-				if(!isset($params['url']) || !isset($params['text']) || !isset($params['type']) || !isset($params['icon'])) {
-								return false;
+				if(isset($params['url'])){
+					$params['href'] = $params['url'];
+					unset($params['url']);
 				}
-				if(empty($params['params'])) {
-								$params['params'] = array();
+				if(isset($params['section'])){
+					$params['parent'] = $params['section'];
+					unset($params['section']);					
 				}
-				$type    = $params['type'];
-				$link    = $params['url'];
-				$text    = $params['text'];
-				$type    = $params['type'];
-				$icon    = $params['icon'];
-				$section = $params['section'];
-				if(empty($type)) {
-								$type = 'frontend';
-				}
-				$Ossn->sectionsmenu[$type][$menu][$section][$text] = array(
-								$link,
-								$icon,
-								$params['params']
-				);
+				ossn_register_menu_item($menu,  $params);				
 }
 
 /**
@@ -144,10 +132,5 @@ function ossn_register_sections_menu($menu, $params) {
  *
  */
 function ossn_view_sections_menu($menu, $type = 'frontend') {
-				global $Ossn;
-				if(isset($menu) && isset($Ossn->sectionsmenu[$type][$menu])) {
-								$params['menu']     = $Ossn->sectionsmenu[$type][$menu];
-								$params['menuname'] = $menu;
-								return ossn_plugin_view("menus/sections/{$menu}", $params);
-				}
+		return ossn_view_menu($menu, "menus/sections/{$menu}");		
 }

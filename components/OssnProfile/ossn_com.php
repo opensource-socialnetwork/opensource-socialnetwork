@@ -66,9 +66,10 @@ function ossn_profile() {
 				$user_loggedin = ossn_loggedin_user();
 				$icon          = ossn_site_url('components/OssnProfile/images/friends.png');
 				ossn_register_sections_menu('newsfeed', array(
+						'name' => 'friends',
 						'text' => ossn_print('user:friends'),
 						'url' => $user_loggedin->profileURL('/friends'),
-						'section' => 'links',
+						'parent' => 'links',
 						'icon' => $icon
 				));
 		}

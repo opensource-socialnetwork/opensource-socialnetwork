@@ -25,9 +25,10 @@ function ossn_initialize() {
 		
 		$icon = ossn_site_url('components/OssnWall/images/news-feed.png');
 		ossn_register_sections_menu('newsfeed', array(
+				'name' => 'newsfeed',
 				'text' => ossn_print('news:feed'),
 				'url' => "{$url}home",
-				'section' => 'links',
+				'parent' => 'links',
 				'icon' => $icon
 		));
 		ossn_extend_view('ossn/js/head', 'javascripts/head');

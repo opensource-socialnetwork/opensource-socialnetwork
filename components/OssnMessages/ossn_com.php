@@ -37,9 +37,10 @@ function ossn_messages() {
 				$user_loggedin = ossn_loggedin_user();
 				$icon          = ossn_site_url('components/OssnMessages/images/messages.png');
 				ossn_register_sections_menu('newsfeed', array(
+						'name' => 'messages',
 						'text' => ossn_print('user:messages'),
 						'url' => ossn_site_url('messages/all'),
-						'section' => 'links',
+						'parent' => 'links',
 						'icon' => $icon
 				));
 				
