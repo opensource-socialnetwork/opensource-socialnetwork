@@ -20,6 +20,9 @@ $fr = array(
     'ossn:notifications:comments:post:group:wall' => "%s a commenté un post de groupe.",
     'ossn:notifications:like:entity:file:profile:photo' => "%s aime la photo de profil.",
     'ossn:notifications:comments:entity:file:profile:photo' => "%s a commenté la photo de profil.",
+    'ossn:notifications:like:entity:file:profile:cover' => "%s aime la photo de couverture.",
+    'ossn:notifications:comments:entity:file:profile:cover' => "%s a commenté la photo de couverture.",
+
     'ossn:notifications:like:post:group:wall' => '%s aime votre message.',
 	
     'ossn:notification:delete:friend' => 'Demdande d\'amis supprimé!',
