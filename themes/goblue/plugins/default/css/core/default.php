@@ -631,6 +631,9 @@ p {
     vertical-align: middle;
     float: right;
 }
+.sidebar-menu-nav ul .sub-menu li{
+	padding-left:20px;
+}	
 .sidebar-menu-nav ul .sub-menu li,
 .sidebar-menu-nav li .sub-menu li {
     border: none;
@@ -1154,6 +1157,34 @@ p {
 }
 .ossn-profile-extra-menu {
     display: inline-block;
+}
+/*****************************
+	Side Menu icons
+*******************************/
+.menu-section-item-newsfeed:before{
+    content: "\f0a1" !important;
+}
+.menu-section-item-friends:before {
+    content: "\f0c0" !important;
+}
+.menu-section-item-photos:before {
+    content: "\f03e" !important;
+}
+.menu-section-item-messages:before {
+    content: "\f0e0" !important;
+}
+.menu-section-item-invite-friends:before {
+    content: "\f234" !important;
+}
+.menu-section-item-addgroup:before {
+    content: "\f067" !important;
+}
+.menu-section-item-groups {
+	white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 200px;
+    padding-right: 10px;
 }
 /******************************
 	Search
