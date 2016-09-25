@@ -18,8 +18,11 @@ $en = array(
     'ossn:notifications:wall:friends:tag' => '%s tagged you in a post.',
     'ossn:notification:are:friends' => 'You are now friends!',
     'ossn:notifications:comments:post:group:wall' => "%s commented on the group post.",
-    'ossn:notifications:like:entity:file:profile:photo' => "%s liked the profile photo.",
-    'ossn:notifications:comments:entity:file:profile:photo' => "%s commented on the profile photo.",
+    'ossn:notifications:like:entity:file:profile:photo' => "%s liked your profile photo.",
+    'ossn:notifications:comments:entity:file:profile:photo' => "%s commented your the profile photo.",
+    'ossn:notifications:like:entity:file:profile:cover' => "%s liked your profile cover.",
+    'ossn:notifications:comments:entity:file:profile:cover' => "%s commented on your profile cover.",
+
     'ossn:notifications:like:post:group:wall' => '%s liked your post.',
 	
     'ossn:notification:delete:friend' => 'Friend request deleted!',
