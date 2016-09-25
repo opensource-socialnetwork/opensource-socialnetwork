@@ -12,6 +12,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK 4.3
 * Add class name for dynamic menu items #934
 * Add hook to override the ossn input #928
 * Redirect User to login page if session expired from home page #929
+* Add mod_rewrite prerequisite skip param. #927
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 4.2 
 
