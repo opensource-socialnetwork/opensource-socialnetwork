@@ -13,7 +13,8 @@ OSSN - OPEN SOURCE SOCIAL NETWORK 4.3
 * Add hook to override the ossn input #928
 * Redirect User to login page if session expired from home page #929
 * Add mod_rewrite prerequisite skip param. #927
-* Sidebar (menu) design improvements
+* Sidebar (menu) design improvements.
+* Profile cover comment and likes notification not appears #945
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 4.2 
 
