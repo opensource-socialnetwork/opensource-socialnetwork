@@ -15,6 +15,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK 4.3
 * Add mod_rewrite prerequisite skip param. #927
 * Sidebar (menu) design improvements.
 * Profile cover comment and likes notification not appears #945
+* Site newsfeed (wall) becomes unusable if OssnLikes component is disabled #955
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 4.2 
 
