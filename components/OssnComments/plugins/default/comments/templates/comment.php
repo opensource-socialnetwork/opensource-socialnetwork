@@ -9,13 +9,17 @@
  * @link      https://www.opensource-socialnetwork.org/
  */
 ossn_trigger_callback('comment', 'load', $params['comment']);
-$OssnLikes = new OssnLikes;
 $comment = arrayObject($params['comment'], 'OssnWall');
 $user = ossn_user_by_guid($comment->owner_guid);
 if ($comment->type == 'comments:post' || $comment->type == 'comments:entity') {
     $type = 'annotation';
 }
-$likes_total = $OssnLikes->CountLikes($comment->id, $type);
+if(class_exists('OssnLikes')) {
+	$OssnLikes = new OssnLikes;
+	$likes_total = $OssnLikes->CountLikes($comment->id, $type);
+} else {
+	$likes_total = 0;
+}
 $datalikes = '';
 if ($likes_total > 0) {
     $datalikes = $likes_total;
@@ -53,7 +57,9 @@ if ($likes_total > 0) {
         </p>
 <div class="comment-metadata"> 
 			<div class="time-created"><?php echo ossn_user_friendly_time($comment->time_created); ?></div>
-            <?php if (ossn_isLoggedIn()) {
+            <?php
+			if (class_exists('OssnLikes')) {
+				if (ossn_isLoggedIn()) {
                 	 if (!$OssnLikes->isLiked($comment->id, ossn_loggedin_user()->guid, $type)) {
 							echo ossn_plugin_view('output/url', array(
 									'href' => ossn_site_url("action/annotation/like?annotation={$comment->id}"), 
@@ -80,8 +86,9 @@ if ($likes_total > 0) {
 						'onclick' => "Ossn.ViewLikes({$comment->id}, 'annotation')",
 						'class' => "ossn-total-likes ossn-total-likes-{$comment->id}",
 						'data-likes' => $datalikes,
-						));				
-				?>
+						));
+			} // OssnLikes class check end
+			?>
                      <div class="ossn-comment-menu">
             	<div class="dropdown">
 	        	<?php
