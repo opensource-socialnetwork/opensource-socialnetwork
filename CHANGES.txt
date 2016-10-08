@@ -16,6 +16,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK 4.3
 * Sidebar (menu) design improvements.
 * Profile cover comment and likes notification not appears #945
 * Site newsfeed (wall) becomes unusable if OssnLikes component is disabled #955
+* HTML(divs) must not be nested in paragraphs #962
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 4.2 
 
