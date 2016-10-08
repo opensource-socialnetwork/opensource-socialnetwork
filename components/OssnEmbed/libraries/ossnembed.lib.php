@@ -104,7 +104,7 @@ function ossn_embed_add_css($guid, $width, $height) {
  * @return string <object> code
  */
 function ossn_embed_add_object($type, $url, $guid, $width, $height) {
-	$videodiv = "<div id=\"ossnembed{$guid}\" class=\"ossn_embed_video embed-responsive embed-responsive-16by9\">";
+	$videodiv = "<span id=\"ossnembed{$guid}\" class=\"ossn_embed_video embed-responsive embed-responsive-16by9\">";
 
 	// could move these into an array and use sprintf
 	switch ($type) {
@@ -135,7 +135,7 @@ function ossn_embed_add_object($type, $url, $guid, $width, $height) {
 			break;
 	}
 
-	$videodiv .= "</div>";
+	$videodiv .= "</span>";
 	// re-open post-text again (last closing </div> comes with wall code as before )
 	// hmm no need for div post-text without ending tag , removed it from here and removed ending tag from ossn_embed_add_css() 
 	// $arsalanshah 12/4/2015
