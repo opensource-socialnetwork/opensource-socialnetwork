@@ -17,6 +17,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK 4.3
 * Profile cover comment and likes notification not appears #945
 * Site newsfeed (wall) becomes unusable if OssnLikes component is disabled #955
 * HTML(divs) must not be nested in paragraphs #962
+* Unused param removed from isUsername() check #969
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 4.2 
 
