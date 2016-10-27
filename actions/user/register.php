@@ -57,7 +57,7 @@ foreach($fields as $items){
 	}
 }
 
-if (!$add->isUsername($user['username'])) {
+if (!$add->isUsername()) {
     $em['dataerr'] = ossn_print('username:error');
     echo json_encode($em);
     exit;
