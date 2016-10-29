@@ -87,6 +87,7 @@ function ossn_database_settings() {
     global $Ossn;
     $defaults = array(
         'host' => $Ossn->host,
+        'port' => $Ossn->port,
         'user' => $Ossn->user,
         'password' => $Ossn->password,
         'database' => $Ossn->database
@@ -665,11 +666,11 @@ function ossn_errros() {
         error_reporting(E_NOTICE ^ ~E_WARNING);
 
         ini_set('log_errors', 1);		
-	ini_set('error_log', ossn_route()->www . 'error_log');
+	    ini_set('error_log', ossn_route()->www . 'error_log');
 
-	set_error_handler('_ossn_php_error_handler');
+	   set_error_handler('_ossn_php_error_handler');
     } elseif ($settings !== 'on') {
-	ini_set("log_errors", 0);
+	   ini_set("log_errors", 0);
         ini_set('display_errors', 'off');
     } 
 }

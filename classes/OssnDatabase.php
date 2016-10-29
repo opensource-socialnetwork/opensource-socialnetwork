@@ -17,7 +17,7 @@ class OssnDatabase extends OssnBase {
 		 */
 		public function Connect() {
 				$settings = ossn_database_settings();
-				$connect  = new mysqli($settings->host, $settings->user, $settings->password, $settings->database);
+				$connect  = new mysqli($settings->host, $settings->user, $settings->password, $settings->database, $settings->port);
 				if(!$connect->connect_errno) {
 						return $connect;
 				} else {
