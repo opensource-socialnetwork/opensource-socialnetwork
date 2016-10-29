@@ -188,10 +188,36 @@ class OssnInstallation {
 		 *
 		 */
 		public function dbhost($dbhost) {
+				preg_match('/([\w-\.]+)(|\:(\d+))$/', $dbhost, $matches);
+				
+				//set the host without port
+				if(isset($matches[1])){
+					$dbhost = $matches[1];
+				}
+
 				if(!empty($dbhost)) {
 						$this->dbhost = $dbhost;
 				} else {
 						$this->dbhost = 'localhost';
+				}
+				
+				//set the port
+				if(isset($matches[3])){
+					$this->dbport($matches[3]);
+				}
+		}
+
+		/**
+		 * Get db host;
+		 * @last edit: $arsalanshah
+		 * @Reason: Initial;
+		 *
+		 */
+		public function dbport($dbport) {
+				if(!empty($dbport)) {
+						$this->dbport = $dbport;
+				} else {
+						$this->dbport = '3306';
 				}
 		}
 		
@@ -291,7 +317,7 @@ class OssnInstallation {
 		 * @Reason: Initial;
 		 */
 		public function dbconnect() {
-				$connect = new mysqli($this->dbhost, $this->dbusername, $this->dbpassword, $this->dbname);
+				$connect = new mysqli($this->dbhost, $this->dbusername, $this->dbpassword, $this->dbname, $this->dbport);
 				if($connect->connect_errno) {
 						$this->connect_err->connect_errn = mysqli_connect_error();
 						return false;
@@ -309,6 +335,7 @@ class OssnInstallation {
 		function configurations_db() {
 				$params       = array(
 						'host' => $this->dbhost,
+						'port' => $this->dbport,
 						'user' => $this->dbusername,
 						'password' => $this->dbpassword,
 						'dbname' => $this->dbname

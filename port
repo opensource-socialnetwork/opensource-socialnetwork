@@ -1,3 +1,0 @@
-[feature_can_use_db_port b7a278b] Now you can connect the database to a different port instead the default. In the configuration file (configurations/ossn.config.db.php), just add -
- 3 files changed, 8 insertions(+), 2 deletions(-)
- create mode 100644 port

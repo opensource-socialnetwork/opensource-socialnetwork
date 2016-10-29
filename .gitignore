@@ -9,6 +9,8 @@
 /.htaccess
 Thumbs.db
 Desktop.ini
+DISPLAY_ERRORS
+error_log
 
 #do not ignore ossn core components
 !/components/OssnAds
