@@ -20,6 +20,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK 4.3
 * Unused param removed from isUsername() check #969
 * Allow to use db ports in hostname #970 Thanks to @rodrigodemacedo  <https://github.com/rodrigodemacedo>
 * Show errors to admins if enabled (not to visitors) #961
+* Delete unused files #956
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 4.2 
 
