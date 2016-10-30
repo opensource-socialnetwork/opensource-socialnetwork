@@ -28,8 +28,9 @@ $email = ossn_site_settings('owner_email');
         <div class="ossn-logo"></div>
         <div class="title"><?php echo ossn_print('ossn:exception:title', array($email)); ?></div>
     </div>
-    <div class="ossn-exception-description"><?php echo $params['exception']; ?></div>
-
+    <?php if(ossn_isAdminLoggedin()){ ?>
+    	<div class="ossn-exception-description"><?php echo $params['exception']; ?></div>
+	<?php } ?>
 </div>
 <body>
 </body>
