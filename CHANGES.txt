@@ -19,6 +19,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK 4.3
 * HTML(divs) must not be nested in paragraphs #962
 * Unused param removed from isUsername() check #969
 * Allow to use db ports in hostname #970 Thanks to @rodrigodemacedo  <https://github.com/rodrigodemacedo>
+* Show errors to admins if enabled (not to visitors) #961
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 4.2 
 
