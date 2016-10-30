@@ -43,9 +43,9 @@ if ($likes_total > 0) {
 									'class' => 'owner-link',
 			  ));			
             if ($comment->type == 'comments:entity') {
-                echo ' '.$comment->getParam('comments:entity');
+                echo ' '.nl2br($comment->getParam('comments:entity'));
             } elseif ($comment->type == 'comments:post') {
-                echo ' '.$comment->getParam('comments:post');
+                echo ' '.nl2br($comment->getParam('comments:post'));
             }
             $image = $comment->getParam('file:comment:photo');
             if (!empty($image)) {
