@@ -189,18 +189,15 @@ class OssnInstallation {
 		 */
 		public function dbhost($dbhost) {
 				preg_match('/([\w-\.]+)(|\:(\d+))$/', $dbhost, $matches);
-				
 				//set the host without port
 				if(isset($matches[1])){
 					$dbhost = $matches[1];
 				}
-
 				if(!empty($dbhost)) {
 						$this->dbhost = $dbhost;
 				} else {
 						$this->dbhost = 'localhost';
 				}
-				
 				//set the port
 				if(isset($matches[3])){
 					$this->dbport($matches[3]);
@@ -217,7 +214,7 @@ class OssnInstallation {
 				if(!empty($dbport)) {
 						$this->dbport = $dbport;
 				} else {
-						$this->dbport = '3306';
+						$this->dbport =  ini_get("mysqli.default_port");
 				}
 		}
 		
