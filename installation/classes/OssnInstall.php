@@ -199,9 +199,16 @@ class OssnInstallation {
 						$this->dbhost = 'localhost';
 				}
 				//set the port
-				if(isset($matches[3])){
+				if(isset($matches[3]) && !empty($matches[3])){
 					$this->dbport($matches[3]);
+				} else {
+					$port = ini_get("mysqli.default_port");
+					if(empty($port)){
+						$port = 3306;
+					}
+					$this->dbport($port);					
 				}
+				
 		}
 
 		/**
@@ -211,10 +218,8 @@ class OssnInstallation {
 		 *
 		 */
 		public function dbport($dbport) {
-				if(!empty($dbport)) {
+				if(!empty($dbport) && (int)$dbport > 0) {
 						$this->dbport = $dbport;
-				} else {
-						$this->dbport =  ini_get("mysqli.default_port");
 				}
 		}
 		
@@ -258,7 +263,7 @@ class OssnInstallation {
 				if(!is_dir($this->datadir) && !is_writable($this->datadir)) {
 						$this->error_mesg = ossn_installation_print('data:directory:invalid');
 						return false;
-				}
+				}			
 				if(!$this->dbconnect()) {
 						$this->error_mesg = $this->connect_err->connect_errn;
 						return false;
