@@ -503,13 +503,22 @@ p {
 .comment-contents {
     width: 100%;
 }
+.comment-container span[readonly='readonly'],
 .comment-container input[readonly='readonly'] {
     background: #eee;
 }
 .comment-box {
+    width: 100%;
+    border: 1px solid #eee;
     padding: 5px 30px 5px 5px !important;
-    z-index: 1;
-    position: relative;
+    margin-bottom: 5px;
+    outline: none;
+    display: block;
+    resize: vertical;
+    background: #fff;
+}
+[contentEditable=true]:empty:not(:focus)::before{
+        content:attr(placeholder);
 }
 /*********************************
 	Like
