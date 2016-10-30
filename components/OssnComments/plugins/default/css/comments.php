@@ -1,5 +1,4 @@
 .ossn-comment-attach-photo {
-    position: absolute;
     width: 100%;	
 }
 
