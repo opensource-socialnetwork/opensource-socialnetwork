@@ -208,7 +208,6 @@ Um Dein Passwort zurückzusetzen klicke bitte auf den folgenden Link oder kopier
     'passord:reset:fail' => 'Das Passwort kann z. Zt. nicht zurückgesetzt werden - bitte versuche es später nochmal',
     'password:reset:email:required' => 'Das Email-Feld darf nicht leer sein',
     'passord:reset:email:success' => 'Hinweise zum Zurücksetzen des Passwortes wurden an Deine Email-Adresse geschickt',
-    'reset:password' => 'Passwort zurücksetzen',
 
     'erros:reporting' => 'Fehler Protokollierung',
     'erros:off' => 'Aus',
@@ -239,12 +238,9 @@ Um Dein Passwort zurückzusetzen klicke bitte auf den folgenden Link oder kopier
 	
 	'ossn:post:size:exceed' => 'Die Aktion überschreitet die erlaubte Länge.',
 	
-	'admin:components' => 'Komponenten',
-	'admin:themes' => 'Themen',
 	'admin:com:installer' => 'Komponenten hinzufügen',
 	'admin:theme:installer' => 'Themen hinzufügen',
 	'admin:cache:settings' => 'Cache Einstellungen',
-	'admin:add:user' => 'Benutzer hinzufügen',
 	'admin:user:list' => 'Benutzer anzeigen',
 	'admin:edit:user' => 'Benutzer bearbeiten',
 	'admin:login' => 'Anmelden',
