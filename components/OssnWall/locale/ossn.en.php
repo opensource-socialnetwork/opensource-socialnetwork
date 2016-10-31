@@ -16,7 +16,6 @@ $en = array(
 		'enter:location' => 'Enter Location',
 		'tag:friends' => 'Tag Friends',
 		'wall:post:container' => "What's on your mind?",
-		'post' => 'Post',
 		'post:view' => 'Post View',
 		'ossn:post:delete' => 'Delete',
 		'post:delete:fail' => 'Cannot delete post! Please try again later.',
