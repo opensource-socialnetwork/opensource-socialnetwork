@@ -208,7 +208,6 @@ S'il vous plaît cliquez sur le lien ci-dessous pour réinitialiser le mot de pa
 	'passord:reset:fail' => "Vous ne pouvez pas réinitialiser le mot de passe! S'il vous plaît réessayez plus tard.",
 	'password:reset:email:required' => "Email ne peut être vide!",
 	'passord:reset:email:success' => "Les instructions de réinitialisation du mot de passe ont été envoyés à votre adresse email.",
-	'reset:password' => "Réinitialiser mot de passe",
 	
 	'erros:reporting' => "Rapports d'erreurs",
 	'erros:off' => "Désactiver",
@@ -239,12 +238,9 @@ S'il vous plaît cliquez sur le lien ci-dessous pour réinitialiser le mot de pa
 	
 	'ossn:post:size:exceed' => "L'action que vous avez demandé dépasse la limite de taille.",
 	
-	'admin:components' => "Composants",
-	'admin:themes' => "Thèmes",
 	'admin:com:installer' => "Installateur de composants",
 	'admin:theme:installer' => "Installeur de thèmes",
 	'admin:cache:settings' => "Paramètres du cache",
-	'admin:add:user' => "Ajouter un utilisateur",
 	'admin:user:list' => "Liste des utilisateurs",
 	'admin:edit:user' => "Edition d'utilisateurs",
 	'admin:login' => "Connexion",
