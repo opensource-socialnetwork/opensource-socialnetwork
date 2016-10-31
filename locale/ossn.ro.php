@@ -208,7 +208,6 @@ Te rugam sa click pe linkul de mai jos ca sa iti resetezi parola sau copy si pas
 	'passord:reset:fail' => 'Nu putem reseta parola! Incearca mai tarziu.',
 	'password:reset:email:required' => 'Campul de email nu poate fii gol!',
 	'passord:reset:email:success' => 'Instructiunile cum sa resetezi parola au fost trimise la adresa de email.',
-	'reset:password' => 'Reseteaza Parola',
 	
 	'erros:reporting' => 'Raportare Erori',
 	'erros:off' => 'NeActivata',
@@ -239,12 +238,9 @@ Te rugam sa click pe linkul de mai jos ca sa iti resetezi parola sau copy si pas
 	
 	'ossn:post:size:exceed' => 'Postarea ta depaseste limita de marime.',
 	
-	'admin:components' => 'Componenti',
-	'admin:themes' => 'Tematici',
 	'admin:com:installer' => 'Instalator de Componenti',
 	'admin:theme:installer' => 'Theme Installer',
 	'admin:cache:settings' => 'Cache Setare',
-	'admin:add:user' => 'Adauga utilizator',
 	'admin:user:list' => 'Lista cu utilizatori',
 	'admin:edit:user' => 'Editeaza utilizatorul',
 	'admin:login' => 'Logheaza',
