@@ -9,7 +9,6 @@
  * @link      https://www.opensource-socialnetwork.org/
  */
 $ro = array(
-		'people:like:this' => 'Persoane carora le-a placut postarea',
 		'change:cover' => 'Schimba Coperta',
 		'change:photo' => 'Schimba Fotografia',
 		'update:info' => 'Actualizeaza informatia',
