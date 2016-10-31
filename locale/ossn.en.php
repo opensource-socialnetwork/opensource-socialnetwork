@@ -208,7 +208,6 @@ Please click the link below to reset password or copy the link and paste into yo
 	'passord:reset:fail' => 'Cannot reset password! Please try again later.',
 	'password:reset:email:required' => 'Email cannot be empty!',
 	'passord:reset:email:success' => 'Password reset instructions have been sent to your email address.',
-	'reset:password' => 'Reset Password',
 	
 	'erros:reporting' => 'Error Reporting',
 	'erros:off' => 'Off',
@@ -239,12 +238,9 @@ Please click the link below to reset password or copy the link and paste into yo
 	
 	'ossn:post:size:exceed' => 'The action you requested exceeds the size limit.',
 	
-	'admin:components' => 'Components',
-	'admin:themes' => 'Themes',
 	'admin:com:installer' => 'Component Installer',
 	'admin:theme:installer' => 'Theme Installer',
 	'admin:cache:settings' => 'Cache Settings',
-	'admin:add:user' => 'Add user',
 	'admin:user:list' => 'Users List',
 	'admin:edit:user' => 'Edit User',
 	'admin:login' => 'Login',
