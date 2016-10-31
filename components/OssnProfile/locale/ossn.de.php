@@ -9,7 +9,6 @@
  * @link      https://www.opensource-socialnetwork.org/
  */
 $de = array(
-		'people:like:this' => 'Leute, denen dieser Beitrag gefällt',
 		'change:cover' => 'Titelbild ändern',
 		'change:photo' => 'Profil-Foto ändern',
 		'update:info' => 'Informationen aktualisieren',
