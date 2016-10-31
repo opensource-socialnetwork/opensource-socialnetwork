@@ -16,7 +16,6 @@ $ro = array(
 		'enter:location' => 'Adauga locatia',
 		'tag:friends' => 'Leaga prietenii',
 		'wall:post:container' => "La ce te gandesti?",
-		'post' => 'Postare',
 		'post:view' => 'Vezi Postarea',
 		'ossn:post:delete' => 'Sterge',
 		'post:delete:fail' => 'Nu putem sterge postarea! Incearca mai tarziu.',
