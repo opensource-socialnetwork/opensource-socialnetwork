@@ -9,7 +9,6 @@
  * @link      https://www.opensource-socialnetwork.org/
  */
 $en = array(
-		'people:like:this' => 'People who liked this post',
 		'change:cover' => 'Change Cover',
 		'change:photo' => 'Change Photo',
 		'update:info' => 'Update Info',
