@@ -16,7 +16,6 @@ $de = array(
 		'enter:location' => 'Füge einen Ort zu diesem Beitrag hinzu',
 		'tag:friends' => 'Markiere Personen im Beitrag',
 		'wall:post:container' => "Was machst Du gerade?",
-		'post' => 'Posten',
 		'post:view' => 'Beitrag ansehen',
 		'ossn:post:delete' => 'Löschen',
 		'post:delete:fail' => 'Der Beitrag kann nicht gelöscht werden',
