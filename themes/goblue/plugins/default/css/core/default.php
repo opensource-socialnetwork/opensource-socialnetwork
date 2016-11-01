@@ -516,6 +516,7 @@ p {
     display: block;
     resize: vertical;
     background: #fff;
+    min-height:32px;
 }
 [contentEditable=true]:empty:not(:focus)::before{
         content:attr(placeholder);
