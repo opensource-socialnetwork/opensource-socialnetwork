@@ -113,7 +113,7 @@ class OssnUser extends OssnEntities {
 										//notify users for activation
 										$this->notify->NotifiyUser($this->email, $subject, $activation);
 								}
-								return true;
+								return $guid;
 						}
 				}
 				return false;
