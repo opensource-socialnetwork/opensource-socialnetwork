@@ -26,5 +26,7 @@ $Ossn->classes = array(
 		'Themes',
 		'File',
 		'Components',
-		'Menu'
+		'Menu',
+		'System',
+		'Kernel',
 );
