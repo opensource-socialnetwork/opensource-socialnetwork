@@ -11,6 +11,7 @@ Languages
 * German
 * French
 * Romanian
+* Portuguese
 
 Front-End Features
 ===================
