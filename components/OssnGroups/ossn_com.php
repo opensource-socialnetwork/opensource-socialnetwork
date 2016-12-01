@@ -88,6 +88,14 @@ function ossn_groups() {
 				'parent' => 'groups',
 				'icon' => ossn_site_url('components/OssnGroups/images/add.png')
 		));
+		//Create link in nav to list all groups #990
+		ossn_register_sections_menu('newsfeed', array(
+				'name' => 'allgroups',
+				'text' => ossn_print('groups'),
+				'url' => ossn_site_url('search?type=groups&q='),
+				'parent' => 'groups',
+				'icon' => true,
+		));		
 		//my groups link
 		/* ossn_register_sections_menu('newsfeed', array(
 		'text' => 'My Groups',
