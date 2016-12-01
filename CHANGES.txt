@@ -22,6 +22,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK 4.3
 * Show errors to admins if enabled (not to visitors) #961
 * Delete unused files #956
 * Postings and comments with same behaviour #924
+* Create link in nav to list all groups #990
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 4.2 
 
