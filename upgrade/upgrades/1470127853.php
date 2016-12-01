@@ -9,6 +9,7 @@
  * @link      https://www.opensource-socialnetwork.org/
  */
 
+
 ossn_generate_server_config('apache');
 ossn_version_upgrade($upgrade, '4.3');
 
@@ -69,16 +70,23 @@ ALTER TABLE `ossn_users`
 	ADD FULLTEXT KEY `last_name` (`last_name`);");
 $sql_statements = preg_split('/;[\n\r]+/', $script);
 
-foreach($sql_statements as $statement) {
-		$database  = new OssnDatabase;
-		$statement = trim($statement);
-		if(!empty($statement)) {
-				try {
-						$database->statement($statement);
-						$database->execute();
-				}
-				catch(Exception $e) {
-						$errors[] = $e->getMessage();
+$db = new OssnDatabase;
+$db->statement("SHOW INDEX FROM ossn_entities WHERE KEY_NAME='owner_guid'");
+$db->execute();
+
+//check if it is based on v4.2 db or older
+if(!$db->fetch()) {
+		foreach($sql_statements as $statement) {
+				$database  = new OssnDatabase;
+				$statement = trim($statement);
+				if(!empty($statement)) {
+						try {
+								$database->statement($statement);
+								$database->execute();
+						}
+						catch(Exception $e) {
+								$errors[] = $e->getMessage();
+						}
 				}
 		}
 }
