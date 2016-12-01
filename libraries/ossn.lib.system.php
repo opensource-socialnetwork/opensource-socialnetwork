@@ -85,6 +85,9 @@ function ossn_get_userdata($extend = '') {
  */
 function ossn_database_settings() {
     global $Ossn;
+	if(!isset($Ossn->port)){
+			$Ossn->port = false;
+	}
     $defaults = array(
         'host' => $Ossn->host,
         'port' => $Ossn->port,
