@@ -1177,6 +1177,9 @@ p {
 .menu-section-item-friends:before {
     content: "\f0c0" !important;
 }
+.menu-section-item-allgroups:before {
+    content: "\f0c0" !important;
+}
 .menu-section-item-photos:before {
     content: "\f03e" !important;
 }
