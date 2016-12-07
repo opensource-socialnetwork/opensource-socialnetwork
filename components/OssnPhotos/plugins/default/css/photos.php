@@ -32,6 +32,7 @@
 }
 .ossn-photos {} .ossn-photos li img {
     /* border:1px solid #ccc; */
+    max-width: 100%;
 }
 .ossn-photos h2 {
     text-align: center;
