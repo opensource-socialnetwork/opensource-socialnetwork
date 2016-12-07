@@ -10,13 +10,6 @@
  */
 
 $image = $params['image'];
-if(!isset($params['ismember'])){
-    if ($group = ossn_get_group_by_guid($params['post']->owner_guid)) {
-    	if ($group->isMember(NULL, ossn_loggedin_user()->guid)) {
-      		$params['ismember'] = 1;
-    	}
-    }
-}
 ?>
 <!-- wall item -->
 <div class="ossn-wall-item" id="activity-item-<?php echo $params['post']->guid; ?>">
@@ -35,7 +28,7 @@ if(!isset($params['ismember'])){
 			</div>
 			<div class="user">
             <a class="owner-link" href="<?php echo $params['user']->profileURL(); ?>"> <?php echo $params['user']->fullname; ?> </a>
-            <?php if ($params['show_group'] == true) {
+            <?php if ($params['ismember'] === 1 && $params['show_group'] == true) {
                 $group = ossn_get_group_by_guid($params['post']->owner_guid);
                 ?>
                <i class="fa fa-angle-right fa-lg"></i>
