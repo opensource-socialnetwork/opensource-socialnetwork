@@ -190,6 +190,7 @@ class OssnDatabase extends OssnBase {
 				if(isset($this->exe)) {
 						if($data !== true) {
 								if($fetch = $this->exe) {
+										self::destruct();
 										return arrayObject($fetch->fetch_assoc());
 								}
 						}
@@ -200,6 +201,7 @@ class OssnDatabase extends OssnBase {
 										}
 								}
 								if(isset($alldata) && !empty($alldata)) {
+										self::destruct();
 										return arrayObject($alldata);
 								}
 						}
@@ -292,5 +294,13 @@ class OssnDatabase extends OssnBase {
 				}
 				return false;
 		}
-		
+		/**
+		 * Manual self destruct
+		 *
+		 * @return void
+		 */
+		public function destruct(){
+				unset($this->database);
+				unset($this->exe);
+		}
 } //class
