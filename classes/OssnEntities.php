@@ -463,7 +463,7 @@ class OssnEntities extends OssnDatabase {
 				if(!$options['order_by']) {
 						$params['order_by'] = "e.guid ASC";
 				}
-				$this->get = $this->select($params, true);
+				$fetched_entities = $this->select($params, true);
 				
 				//prepare count data;
 				if($options['count'] === true) {
@@ -476,8 +476,8 @@ class OssnEntities extends OssnDatabase {
 						$count           = array_merge($params, $count);
 						return $this->select($count)->total;
 				}
-				if($this->get) {
-						foreach($this->get as $entity) {
+				if($fetched_entities) {
+						foreach($fetched_entities as $entity) {
 								//prepare entities for display
 								$entities[] = arrayObject($entity, $this->types[$this->type]);
 						}
