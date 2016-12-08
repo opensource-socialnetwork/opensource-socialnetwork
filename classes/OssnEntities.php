@@ -49,7 +49,6 @@ class OssnEntities extends OssnDatabase {
 						$this->type = 'entity';
 				}
 				$this->data        = new stdClass;
-				$this->annotations = new OssnAnnotation;
 				
 				if(!isset($this->offset)) {
 						$this->offset = 1;
@@ -144,6 +143,7 @@ class OssnEntities extends OssnDatabase {
 				);
 				
 				$data = $this->select($params);
+				self::destruct();
 				if($data) {
 						$entity = arrayObject($data, get_class($this));
 						return $entity;
@@ -204,6 +204,7 @@ class OssnEntities extends OssnDatabase {
 										}
 								}
 						}
+						self::destruct();
 						return true;
 				}
 				return false;
@@ -481,6 +482,7 @@ class OssnEntities extends OssnDatabase {
 								//prepare entities for display
 								$entities[] = arrayObject($entity, $this->types[$this->type]);
 						}
+						self::destruct();
 						return $entities;
 				}
 				return false;
@@ -504,4 +506,22 @@ class OssnEntities extends OssnDatabase {
 				}
 				return ossn_call_hook('user', 'can:change', $this, $allowed);
 		}
+		/**
+		 * Manual self destruct
+		 *
+		 * @return void
+		 */
+		public function destruct(){
+				unset($this->types);
+				unset($this->entity_types);
+				unset($this->datavars);
+				unset($this->page_limit);
+				unset($this->count);
+				unset($this->offset);
+				unset($this->permission);
+				unset($this->last_id);
+				unset($this->order_by);
+				unset($this->active);
+				unset($this->limit);
+		}		
 } //class
