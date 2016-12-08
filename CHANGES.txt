@@ -1,3 +1,7 @@
+OSSN - OPEN SOURCE SOCIAL NETWORK 4.4
+
+* Embedded videos didn't show up in post #997
+
 OSSN - OPEN SOURCE SOCIAL NETWORK 4.3.1
 
 * Comments broken on profile cover
