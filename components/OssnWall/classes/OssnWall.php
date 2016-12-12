@@ -242,7 +242,8 @@ class OssnWall extends OssnObject {
 				$user = ossn_loggedin_user();
 				if(isset($user->guid) && !empty($user->guid)) {
 						$friends      = $user->getFriends();
-						$friend_guids = '';
+						//operator not supported for strings #999
+						$friend_guids = array();
 						if($friends) {
 								foreach($friends as $friend) {
 										$friend_guids[] = $friend->guid;
@@ -288,7 +289,8 @@ class OssnWall extends OssnObject {
 				$user = ossn_loggedin_user();
 				if(isset($user->guid) && !empty($user->guid)) {
 						$friends      = $user->getFriends();
-						$friend_guids = '';
+						//operator not supported for strings #999
+						$friend_guids = array();
 						if($friends) {
 								foreach($friends as $friend) {
 										$friend_guids[] = $friend->guid;
@@ -334,7 +336,8 @@ class OssnWall extends OssnObject {
 				$user = ossn_loggedin_user();
 				if(isset($user->guid) && !empty($user->guid)) {
 						$friends      = $user->getFriends();
-						$friend_guids = '';
+						//operator not supported for strings #999
+						$friend_guids = array();
 						if($friends) {
 								foreach($friends as $friend) {
 										$friend_guids[] = $friend->guid;
