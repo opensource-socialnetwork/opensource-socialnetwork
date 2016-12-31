@@ -146,6 +146,7 @@ class OssnSystem extends OssnComponents {
 						"time_responded" => time(),
 						"response" => $response
 				));
+			        exit;
 		}
 		/**
 		 * Initialize the system
