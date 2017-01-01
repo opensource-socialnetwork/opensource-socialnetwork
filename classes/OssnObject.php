@@ -14,9 +14,27 @@ class OssnObject extends OssnEntities {
 		 *
 		 * @return void
 		 */
-		public function __construct() {
+		public function __construct(int $guid = 0) {
 				$this->data = new stdClass;
+				//part for v5 added,  shouldn't used before v5 release in any component.
+				if(!empty($guid)){
+						$object = ossn_get_object($guid);
+						if($object){
+							foreach($object as $item => $val){
+								$this->{$item} = $val;	
+							}
+						} else {
+							//OSSN DB exceptions must start with 1<exception code>
+							throw new Exception("Failed to load object using {$guid}", 1404);	
+						}
+				}
+				//part end for v5 added,  shouldn't used before v5 release in any component.
 		}
+		/**
+		 * Initialize the attributes
+		 *
+		 * @return void
+		 */
 		public function initAttributes() {
 				$this->time_created = time();
 				if(empty($this->subtype)) {
@@ -459,6 +477,9 @@ class OssnObject extends OssnEntities {
 		 * @return boolean
 		 */
 		public function save() {
+				if(!isset($this->guid)){
+						return $this->addObject();	
+				}
 				if(isset($this->guid) && !empty($this->guid)) {
 						$names  = array(
 								'title',
