@@ -246,14 +246,18 @@ class OssnComponents extends OssnDatabase {
 										if($item->type == 'ossn_version') {
 												
 												$requirments['type']         = ossn_print('ossn:version');
-												$requirments['value']        = (string) $item->version;
+												$requirments['value']        = (string)$item->version;
 												$requirments['availability'] = 0;
-												$site_version                = (int) ossn_site_settings('site_version');
+												$site_version                =  ossn_site_settings('site_version');
 												
-												if(($site_version <= $item->version) && ($site_version == (int)$item->version) || (float)$item->version == 3.0) {
+												//Ossn Version checking not strict enough when installing components #1000
+												$comparator 				 = '>=';
+												if(isset($item->comparator) && !empty($item->comparator)){
+													$comparator = $item->comparator;	
+												}
+												if(version_compare($site_version, (string)$item->version,  $comparator)) {
 														$requirments['availability'] = 1;
 												}
-												
 										}
 										//check php extension
 										if($item->type == 'php_extension') {
