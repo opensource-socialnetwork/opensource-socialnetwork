@@ -76,12 +76,25 @@ function ossn_friend_picker() {
 		if(!$friends) {
 				return false;
 		}
+		$search_for = $_GET['q'];
+		// allow case insensitivity with first typed in char
+		$fc = mb_strtoupper(mb_substr($search_for, 0, 1,'UTF-8'), 'UTF-8');
+		$search_For = $fc . mb_substr($search_for, 1, null, 'UTF-8');
+		// show all friends with wildcard '*' in first place
+		if($search_for == '*') {
+			$search_for = '';
+			$search_For = '';
+		}
+		$search_len = mb_strlen($search_for,'UTF-8');
 		foreach($friends as $users) {
+			$first_name_start = mb_substr($users->first_name, 0, $search_len, 'UTF-8');
+			if($first_name_start == $search_for || $first_name_start == $search_For) {
 				$p['first_name'] = $users->first_name;
 				$p['last_name']  = $users->last_name;
 				$p['imageurl']   = ossn_site_url("avatar/{$users->username}/smaller");
 				$p['id']         = $users->guid;
 				$usera[]         = $p;
+			}
 		}
 		echo json_encode($usera);
 }
