@@ -2,6 +2,8 @@ OSSN - OPEN SOURCE SOCIAL NETWORK 4.4
 
 * Embedded videos didn't show up in post #997
 * Avoid the multiple db connections #1001
+* Trim function used with uninitalized var #1010
+* Make friend_picker list friends according to input #1011
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 4.3.1
 
