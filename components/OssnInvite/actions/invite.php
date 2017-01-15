@@ -12,7 +12,7 @@
  $addresses = input('addresses');
  
  //remove extra spaces from addresses.
- $emails = trim($emails);
+ $addresses = trim($addresses);
  
  //show error if no email provided
  if(empty($addresses)){
