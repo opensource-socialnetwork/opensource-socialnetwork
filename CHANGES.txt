@@ -4,6 +4,9 @@ OSSN - OPEN SOURCE SOCIAL NETWORK 4.4
 * Avoid the multiple db connections #1001
 * Trim function used with uninitalized var #1010
 * Make friend_picker list friends according to input #1011
+    - tagging input is matched with friend's first_name now
+    - first typed in char will be matched upper and lower case
+    - asterisk * may be used as wildcard to show complete friend' list when typed in as first char
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 4.3.1
 
