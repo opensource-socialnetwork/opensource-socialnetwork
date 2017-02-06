@@ -14,7 +14,7 @@ class OssnObject extends OssnEntities {
 		 *
 		 * @return void
 		 */
-		public function __construct(int $guid = 0) {
+		public function __construct($guid = 0) {
 				$this->data = new stdClass;
 				//part for v5 added,  shouldn't used before v5 release in any component.
 				if(!empty($guid)){
