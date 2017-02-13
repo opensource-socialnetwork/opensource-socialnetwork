@@ -475,6 +475,7 @@ class OssnComponents extends OssnDatabase {
 								$entity->value      = $value;
 								$entity->add();
 						} else {
+								$entity->data 	     = new stdClass;
 								$entity->owner_guid  = $guid;
 								$entity->type        = 'component';
 								$entity->data->$name = $value;
