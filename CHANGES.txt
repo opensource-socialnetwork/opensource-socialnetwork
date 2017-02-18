@@ -7,6 +7,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK 4.4
     - tagging input is matched with friend's first_name now
     - first typed in char will be matched upper and lower case
     - asterisk * may be used as wildcard to show complete friend' list when typed in as first char
+* Enable admin to delete any member's comment #1028
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 4.3.1
 
