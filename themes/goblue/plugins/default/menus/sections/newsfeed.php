@@ -29,10 +29,9 @@ foreach ($menus as $name => $menu) {
 		$icon = "fa-users";
 	}
 	$hash = md5($name);
-	
     ?>
      <li data-toggle="collapse" data-target="#<?php echo $hash;?>" class="<?php echo $section;?>collapsed active <?php echo $expend;?>">
-        	<a class="<?php $item;?>" href="#"><i class="fa <?php echo $icon;?> fa-lg"></i><?php echo ossn_print($name);?><span class="arrow"></span></a>
+        	<a class="<?php $item;?>" href="javascript:void(0);"><i class="fa <?php echo $icon;?> fa-lg"></i><?php echo ossn_print($name);?><span class="arrow"></span></a>
      </li>
     <ul class="sub-menu collapse <?php echo $expend;?>" id="<?php echo $hash;?>" class="<?php echo $items;?>"> 
     <?php
