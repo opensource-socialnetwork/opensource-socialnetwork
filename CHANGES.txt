@@ -9,6 +9,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK 4.4
     - asterisk * may be used as wildcard to show complete friend' list when typed in as first char
 * Enable admin to delete any member's comment #1028
 * Sidebar menu item takes to top of page #1029
+* Private posts becoming disclosed on still unconfirmed friend requests #1039
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 4.3.1
 
