@@ -44,6 +44,10 @@ function ossn_build_token_url($parts){
  * @param string $url	Full complete url
  * 
  * @return string
+ *
+ * This file contain code from other project
+ *
+ * See licenses/elgg/LICENSE.txt 
  */
 function ossn_add_tokens_to_url($url){
 	$params = parse_url($url);
