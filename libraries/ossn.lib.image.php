@@ -8,7 +8,15 @@
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
  * @link      https://www.opensource-socialnetwork.org/
  */
-
+/**
+ * Elgg filestore.
+ * This file contains functions for saving and retrieving data from files.
+ *
+ * @package Elgg.Core
+ * @subpackage DataModel.FileStorage
+ * 
+ * See licenses/elgg/LICENSE.txt
+ */
 /**
  * Calculate the parameters for resizing an image
  *
