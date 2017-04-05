@@ -140,6 +140,9 @@ function ossn_load_json_locales($lcode = "") {
  * Return an array of installed translations as an associative
  * array "two letter code" => "native language name".
  *
+ * This function contain code from other project
+ * See licenses/elgg/LICENSE.txt 
+ *
  * @return array
  */
 
@@ -162,6 +165,9 @@ function ossn_get_installed_translations($percentage = true) {
  * Return the level of completeness for a given language code (compared to english)
  *
  * @param string $language Language
+ *
+ * This function contain code from other project
+ * See licenses/elgg/LICENSE.txt 
  *
  * @return int
  */
