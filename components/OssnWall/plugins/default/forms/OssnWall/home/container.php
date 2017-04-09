@@ -12,7 +12,7 @@ if (!isset($params['user']->guid)) {
     $params['user'] = new stdClass;
     $params['user']->guid = '';
 }
- ossn_load_external_js('maps.google');
+ ossn_load_external_js('places.min');
  ossn_load_external_js('jquery.tokeninput'); 
 ?>
 <div class="tabs-input">
