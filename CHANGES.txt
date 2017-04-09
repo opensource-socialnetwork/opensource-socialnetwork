@@ -10,6 +10,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK 4.4
 * Enable admin to delete any member's comment #1028
 * Sidebar menu item takes to top of page #1029
 * Private posts becoming disclosed on still unconfirmed friend requests #1039
+* Location autocomplete not working over https #1043
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 4.3.1
 
