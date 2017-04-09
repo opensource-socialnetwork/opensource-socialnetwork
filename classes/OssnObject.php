@@ -20,12 +20,12 @@ class OssnObject extends OssnEntities {
 				if(!empty($guid)){
 						$object = ossn_get_object($guid);
 						if($object){
-							foreach($object as $item => $val){
-								$this->{$item} = $val;	
-							}
+								foreach($object as $item => $val) {
+										$this->{$item} = $val;
+								}
 						} else {
-							//OSSN DB exceptions must start with 1<exception code>
-							throw new Exception("Failed to load object using {$guid}", 1404);	
+								//OSSN DB exceptions must start with 1<exception code>
+								throw new Exception("Failed to load object using {$guid}", 1404);
 						}
 				}
 				//part end for v5 added,  shouldn't used before v5 release in any component.
@@ -82,6 +82,13 @@ class OssnObject extends OssnEntities {
 										$this->add();
 								}
 						}
+						$params['owner_guid']   = $params['values'][0];
+						$params['type']         = $params['values'][1];
+						$params['subtype']      = $params['values'][2];
+						$params['time_created'] = $params['values'][3];
+						$params['title']        = $params['values'][4];
+						$params['description']  = $params['values'][5];
+						ossn_trigger_callback('object', 'created', $params);
 						return $this->createdObject;
 				}
 				return false;
@@ -478,7 +485,7 @@ class OssnObject extends OssnEntities {
 		 */
 		public function save() {
 				if(!isset($this->guid)){
-						return $this->addObject();	
+						return $this->addObject();
 				}
 				if(isset($this->guid) && !empty($this->guid)) {
 						$names  = array(
