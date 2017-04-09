@@ -137,30 +137,11 @@ Ossn.RegisterStartupFunction(function() {
 Ossn.RegisterStartupFunction(function() {
     $(document).ready(function() {
         if ($('#ossn-wall-location-input').length) {
-            $('#ossn-wall-location-input').autocomplete({
-                source: function(request, response) {
-                    jQuery.getJSON(
-                        "http://gd.geobytes.com/AutoCompleteCity?callback=?&sort=size&q=" + request.term,
-                        function(data) {
-                            response(data);
-                        }
-                    );
-                },
-                minLength: 3,
-                select: function(event, ui) {
-                    var selectedObj = ui.item;
-                    $('#ossn-wall-location-input').val(selectedObj.value);
-                    $(".ui-menu-item").hide();
-                    return false;
-                },
-                open: function() {
-                    jQuery(this).removeClass("ui-corner-all").addClass("ui-corner-top");
-                },
-                close: function() {
-                    jQuery(this).removeClass("ui-corner-top").addClass("ui-corner-all");
-                }
+            //Location autocomplete not working over https #1043
+            //Change to places js
+            var placesAutocomplete = places({
+                container: document.querySelector('#ossn-wall-location-input')
             });
-            $('#ossn-wall-location-input').autocomplete("option", "delay", 100);
         }
     });
 });
