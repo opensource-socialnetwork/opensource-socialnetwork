@@ -82,13 +82,13 @@ class OssnObject extends OssnEntities {
 										$this->add();
 								}
 						}
-						$params['owner_guid']   = $params['values'][0];
-						$params['type']         = $params['values'][1];
-						$params['subtype']      = $params['values'][2];
-						$params['time_created'] = $params['values'][3];
-						$params['title']        = $params['values'][4];
-						$params['description']  = $params['values'][5];
-						ossn_trigger_callback('object', 'created', $params);
+						$args['owner_guid']   = $params['values'][0];
+						$args['type']         = $params['values'][1];
+						$args['subtype']      = $params['values'][2];
+						$args['time_created'] = $params['values'][3];
+						$args['title']        = $params['values'][4];
+						$args['description']  = $params['values'][5];
+						ossn_trigger_callback('object', 'created', $args);
 						return $this->createdObject;
 				}
 				return false;
