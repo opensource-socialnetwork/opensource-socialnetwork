@@ -107,6 +107,12 @@ class OssnEntities extends OssnDatabase {
 										$this->value
 								);
 								$this->insert($this->params);
+								
+								$args['owner_guid']   = $this->params['values'][0];
+								$args['type']         = $this->params['values'][1];
+								$args['subtype']      = $this->params['values'][2];
+								$args['time_created'] = $this->params['values'][3];
+								ossn_trigger_callback('entity', 'created', $args);								
 								return true;
 						}
 				}
