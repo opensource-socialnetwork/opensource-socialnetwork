@@ -96,7 +96,7 @@ https://www.opensource-socialnetwork.org/wiki/view/706/how-to-install-open-sourc
 
 DEMO
 ====
-https://www.opensource-socialnetwork.org/demo/
+http://demo.opensource-socialnetwork.org/
 
 UPGRADE
 ========
