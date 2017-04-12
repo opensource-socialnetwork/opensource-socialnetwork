@@ -73,7 +73,7 @@ class OssnBase extends OssnSession {
 				if(!ossn_is_hook('ossn/class/register/method', "{$name}:{$method}")) {
 						throw new exception("Call to undefined method {$name}:{$method}");
 				}
-				$hooked = ossn_call_hook('ossn/class/register/method', "{$name}:{$method}", $aargs, $this);
+				$hooked = ossn_call_hook('ossn/class/register/method', "{$name}:{$method}", $args, $this);
 				if($hooked->params == false && !empty($args)) {
 						throw new exception("Function expects no arguments, but arguments are supplied {$name}:{$method}({args})");
 				}
