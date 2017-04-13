@@ -351,11 +351,22 @@ p {
 }
 .ossn-wall-container .wall-tabs {
     border-bottom: 1px solid #E5E5E5;
-    height: 26px;
-}
-.ossn-wall-container .wall-tabs .item {
+    background-color: #F6F7F8;
+    border: 1px solid #E9EAED;
     margin-top: 5px;
 }
+.ossn-wall-container .wall-tabs .item{
+    padding: 10px;
+    display: inline-flex;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+    font-weight: bold;
+    font-size: 13px;
+}
+.ossn-wall-container .wall-tabs .item:hover	{
+	background:#eee;
+}
+
 .ossn-wall-container .wall-tabs .item div {
     display: inline-block;
 }
