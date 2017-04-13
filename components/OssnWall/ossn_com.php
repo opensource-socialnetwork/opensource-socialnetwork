@@ -61,6 +61,15 @@ function ossn_wall() {
 		//callbacks
 		ossn_register_callback('group', 'delete', 'ossn_group_wall_delete');
 		ossn_register_callback('user', 'delete', 'ossn_user_posts_delete');
+		
+		$menupost = array(
+				'name' => 'post',
+				'text' => '<i class="fa fa-bullhorn"></i>'.ossn_print('post'),
+				'href' => ossn_site_url()
+		);
+		ossn_register_menu_item('wall/container/home', $menupost);		
+		ossn_register_menu_item('wall/container/group', $menupost);		
+		ossn_register_menu_item('wall/container/user', $menupost);		
 }
 /**
  * Friends Picker

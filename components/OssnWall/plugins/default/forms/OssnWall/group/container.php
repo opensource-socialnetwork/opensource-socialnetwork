@@ -13,31 +13,34 @@
 ?>
 <div class="tabs-input">
     <div class="wall-tabs">
-        <div class="item">
-            <div class="ossn-wall-status"></div>
-            <div class="text"><?php echo ossn_print('post'); ?></div>
-        </div>
-    </div>
-    <textarea placeholder="<?php echo ossn_print('wall:post:container'); ?>" name="post"></textarea>
-
-    <div id="ossn-wall-location" style="display:none;">
-        <input type="text" placeholder="<?php echo ossn_print('enter:location'); ?>" name="location"
-               id="ossn-wall-location-input"/>
-    </div>
-    <div id="ossn-wall-photo" style="display:none;">
-        <input type="file" name="ossn_photo"/>
+        <?php
+			echo ossn_view_menu('wall/container/group', 'wall/menus/container'); 
+		?>
     </div>
 </div>
-<div class="controls">
-    <li class="ossn-wall-location">
-       <i class="fa fa-map-marker"></i>
-    </li>
-    <li class="ossn-wall-photo">
-       <i class="fa fa-picture-o"></i>
-    </li>
-    <div style="float:right;">
-        <input type="hidden" value="<?php echo $params['group']['group']->guid; ?>" name="wallowner"/>
-     	<div class="ossn-loading ossn-hidden"></div>     
-        <input class="btn btn-primary ossn-wall-post" type="submit" value="<?php echo ossn_print('post'); ?>"/>
+<div class="ossn-wall-container-data ossn-wall-container-data-post" data-type="post">
+    <textarea placeholder="<?php echo ossn_print('wall:post:container'); ?>" name="post"></textarea>
+    <div id="ossn-wall-location" style="display:none;">
+        <input type="text" placeholder="<?php echo ossn_print('enter:location'); ?>" name="location" id="ossn-wall-location-input" />
     </div>
+    <div id="ossn-wall-photo" style="display:none;">
+        <input type="file" name="ossn_photo" />
+    </div>
+    <div class="controls">
+        <li class="ossn-wall-location">
+            <i class="fa fa-map-marker"></i>
+        </li>
+        <li class="ossn-wall-photo">
+            <i class="fa fa-picture-o"></i>
+        </li>
+        <div style="float:right;">
+            <div class="ossn-loading ossn-hidden"></div>
+            <input class="btn btn-primary ossn-wall-post" type="submit" value="<?php echo ossn_print('post'); ?>" />
+        </div>
+        <li class="ossn-wall-privacy">
+            <div class="ossn-wall-privacy-lock"></div>
+            <span><i class="fa fa-lock"></i><span class="hidden-xs"><?php echo ossn_print('privacy'); ?></span></span>
+        </li>
+    </div>
+	 <input type="hidden" value="<?php echo $params['group']['group']->guid; ?>" name="wallowner"/>
 </div>
