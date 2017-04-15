@@ -26,7 +26,9 @@ class OssnAnnotation extends OssnEntities {
 				if(empty($this->order_by)) {
 						$this->order_by = '';
 				}
-				$this->data = new stdClass;
+				if(!isset($this->data)){
+					$this->data = new stdClass;
+				}
 		}
 		/**
 		 * Create annotation;
