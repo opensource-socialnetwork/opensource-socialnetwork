@@ -294,7 +294,7 @@ class OssnChat extends OssnDatabase {
 						$user = ossn_user_by_guid($user);
 				}
 				$friends      = $user->getFriends();
-				$friend_guids = '';
+				$friend_guids = array();
 				if($friends) {
 						foreach($friends as $friend) {
 								$friend_guids[] = $friend->guid;
