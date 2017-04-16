@@ -813,7 +813,9 @@ a {
 *******************************************/
 
 .ossn-ad-item {} .ossn-ad-item .ad-image {
-    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    display: block;   
 }
 .ossn-ad-item a {
     text-decoration: none;
