@@ -1,5 +1,8 @@
 //<script>
 $(document).ready(function() {
+	$('[data-toggle="tooltip"]').tooltip({
+		placement:'left',										  
+	}); 
 	$(document).on('click', '#sidebar-toggle', function() {
 		var $toggle = $(this).attr('data-toggle');
 		if ($toggle == 0) {

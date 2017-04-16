@@ -2191,3 +2191,16 @@ footer .ossn-footer-menu a:last-child::after {
 	margin-left: 0;	
     }
 }
+/*****************************************************
+		Adding icons for some 3rd party components
+******************************************************/
+.sidebar-menu-nav ul .sub-menu li:before {
+    font-family: FontAwesome;
+    display: inline-block;
+    padding-left: 10px;
+    padding-right: 10px;
+    vertical-align: middle;
+}
+.menu-section-item-groups:before{
+    content: "\f07b" !important
+}
