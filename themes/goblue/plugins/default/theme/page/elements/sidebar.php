@@ -3,7 +3,7 @@
 		return;
 	}
 ?>
-        <div class="sidebar">
+        <div class="sidebar ">
             <div class="sidebar-contents">
 
            		 <?php

@@ -13,7 +13,8 @@ $have = '';
 if ($friends) {
     foreach ($friends as $friend) {
         $vars['entity'] = $friend;
-        $vars['icon'] = $friend->iconURL()->smaller;
+        $vars['icon'] = $friend->iconURL()->small;
+		$vars['hide_names'] = true;
         $have = 1;
         echo ossn_plugin_view('chat/friends/friend-item', $vars);
     }

@@ -77,7 +77,16 @@ p {
     font-weight: bold;
     margin-left: 10px;    
 }
-
+.btn {
+    border-radius: 2px;
+    padding: 4px 8px;
+}
+.btn-primary {
+	background-color: #186DF2;
+}
+a {
+	color: #186DF2;
+}
 /************************************
 	Layouts
 ************************************/
@@ -182,14 +191,27 @@ p {
 .ossn-group-members {
 	margin-right: 5px;
 }
+.ossn-page-loading-annimation {
+	background:#fff;
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+}
+.ossn-page-loading-annimation .ossn-page-loading-annimation-inner {
+	width: 24px;
+    margin: 0 auto;
+    margin-top: 20%;
+}
 /*******************************
 	Topbar	
 ********************************/
 
 .topbar {
-    background: linear-gradient(#2C91B7, #0084B4);
+    background: #186DF2;
     color: #fff;
-    border-bottom: 1px solid #0B769C;
     z-index: 1;
     position: relative;
 }
@@ -226,7 +248,7 @@ p {
 .topbar-menu-right li:hover,
 .topbar-menu-left li:hover {
     cursor: pointer;
-    background-color: #07688C;
+    background-color: #1b60ce;
 }
 .topbar .right-side-nospace .topbar-menu-right {
     margin-right: 0px;
@@ -245,7 +267,7 @@ p {
 .topbar .ossn-icons-topbar-friends,
 .topbar .ossn-icons-topbar-messages,
 .topbar .ossn-icons-topbar-notification i {
-    color: #174D61;
+    color: #123c80;
 }
 .topbar .ossn-icons-topbar-friends-new,
 .topbar .ossn-icons-topbar-messages-new,
@@ -582,11 +604,14 @@ p {
     transition: all 0.5s ease;
 }
 .sidebar-open {
-    margin-left: 0px;
+	margin-left: 0px;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
     transition: all 0.5s ease;
+}
+.sidebar-open-no-annimation {
+  margin-left: 0px;
 }
 .sidebar-open-page-container {
     margin-left: 200px;
@@ -594,6 +619,9 @@ p {
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
     transition: all 0.5s ease;
+}
+.sidebar-open-page-container-no-annimation{
+	margin-left: 200px;
 }
 .sidebar-close-page-container {
     -webkit-transition: all 0.5s ease;

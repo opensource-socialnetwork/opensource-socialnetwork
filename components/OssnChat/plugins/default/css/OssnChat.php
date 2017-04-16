@@ -37,7 +37,9 @@
 .ossn-chat-base .ossn-chat-bar .inner:hover {
     background: #fff;
 }
-
+.ossn-chat-windows-long .friends-list-item img {
+    border: 3px solid #ec2828;
+}
 .ossn-chat-base .ossn-chat-bar .friends-list {
     background: #F9F9FB;
     width: 195px;
@@ -55,7 +57,7 @@ img.ustatus {
 }
 img.ustatus.ossn-chat-icon-online {
     border: 3px solid #4cae4c;
-    }
+}
 .ossn-chat-inner-text {
     width: 145px;
     margin-left: 20px;
@@ -66,12 +68,12 @@ img.ustatus.ossn-chat-icon-online {
 }
 
 .ossn-chat-tab-titles {
-    background: linear-gradient(#2C91B7, #0084B4);
+    background: #186DF2;
     color: #fff;
     padding: 5px;
-    border: 1px solid #0B769C;
-    border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
+    border: 1px solid #186DF2;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
 }
 
 .ossn-chat-inline-table {
@@ -95,8 +97,8 @@ img.ustatus.ossn-chat-icon-online {
 }
 
 .ossn-chat-tab-titles:hover {
-    background: #41667B;
-    border:1px solid #3A5A6D;
+    background: #1b60ce;
+    border:1px solid #1b60ce;
 }
 
 .ossn-chat-tab-titles .text {
@@ -172,8 +174,8 @@ img.ustatus.ossn-chat-icon-online {
     border: 1px solid #ccc;
     height: 35px;
     
-    border-top-right-radius: 4px;
-    border-top-left-radius: 4px;
+    border-top-right-radius: 2px;
+    border-top-left-radius: 2px;
 }
 
 .ossn-chat-tab-active {
@@ -381,8 +383,6 @@ img.ustatus.ossn-chat-icon-online {
     font-size: 12px;
     float: left;
 }
-
-
 .ossn-chat-icon-expend:before {
     content: "\f0b2";
     font-family: FontAwesome;
@@ -431,7 +431,7 @@ and (min-width : 1360px) {
         float: right;
         position: fixed;
         min-height: 500px;
-        width: 175px;
+        width: 80px;
         border-left: 1px solid #ccc;
         bottom: 0px;
         right: 0;
@@ -448,13 +448,15 @@ and (min-width : 1360px) {
     }
 
     .ossn-chat-windows-long .friends-list-item .friends-item-inner {
-        margin: 10px 5px 5px 5px;
-        height: 32px;
+    	margin: 5px 5px 5px 5px;
+    	height: 55px;
     }
 
     .ossn-chat-windows-long .friends-list-item {
         border-top: 1px solid #E9EAED;
         border-bottom: 1px solid #E9EAED;
+        padding-left: 2px;
+            text-align: center;
     }
 
     .ossn-chat-windows-long .friends-list-item:hover {
@@ -466,8 +468,8 @@ and (min-width : 1360px) {
 
     .ossn-chat-windows-long .friends-list-item .icon {
         display: inline-block;
-        width: 32px;
-        height: 32px;
+        width: 50px;
+        height: 50px;
     }
 	
 

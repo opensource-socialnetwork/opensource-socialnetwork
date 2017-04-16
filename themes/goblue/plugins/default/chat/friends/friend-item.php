@@ -19,6 +19,5 @@ if ($friend->isOnline(10)) {
      onClick="Ossn.ChatnewTab(<?php echo $friend->guid; ?>);">
     <div class="friends-item-inner">
         <div class="icon"><img class="<?php echo $status; ?> ustatus" src="<?php echo $params['icon']; ?>"/></div>
-        <div class="name"><?php echo $friend->fullname; ?></div>
     </div>
 </div>

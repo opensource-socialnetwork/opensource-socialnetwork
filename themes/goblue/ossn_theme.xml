@@ -7,9 +7,9 @@
     <description>A responsive theme for Ossn.</description>
     <license>GNU General Public License, version 2</license>    
 	<license_url>http://www.opensource-socialnetwork.org/licence</license_url>
-    <version>3.0</version>
+    <version>4.4</version>
 	<requires>
 		<type>ossn_version</type>
-		<version>4.0</version>
+		<version>4.4</version>
 	</requires>
 </theme>
