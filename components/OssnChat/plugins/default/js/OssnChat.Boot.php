@@ -136,11 +136,14 @@ if(OssnChat['allfriends']){
           $item.find('.ustatus').addClass(data['status']);
         } 
         if($item.length == 0){
-         var appendata = '<div class="friends-list-item" id="friend-list-item-'+data['guid']+'" onClick="Ossn.ChatnewTab('+data['guid']+');"><div class="friends-item-inner"><div class="icon"><img src="'+data['icon']+'" /></div> <div class="name">'+data['name']+'</div><div class="'+data['status']+' ustatus"></div> </div></div>';    
+         var appendata = '<div data-toggle="tooltip" title="'+data['name']+'" class="friends-list-item" id="friend-list-item-'+data['guid']+'" onClick="Ossn.ChatnewTab('+data['guid']+');"><div class="friends-item-inner"><div class="icon"><img class="ustatus" src="'+data['icon']+'" /></div><div class="'+data['status']+' ustatus"></div> </div></div>';    
           $(".ossn-chat-windows-long .inner").find('.ossn-chat-none').hide();
           $(".ossn-chat-windows-long .inner").append(appendata);
         }
   });
+	$('[data-toggle="tooltip"]').tooltip({
+		placement:'left',										  
+	});   
 }
 
 /**
