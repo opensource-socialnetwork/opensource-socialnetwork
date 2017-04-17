@@ -146,7 +146,7 @@ class OssnChat extends OssnDatabase {
 								$status = 'ossn-chat-icon-online';
 						}
 						$vars['name']   = $friend->fullname;
-						$vars['icon']   = $friend->iconURL()->smaller;
+						$vars['icon']   = $friend->iconURL()->small;
 						$vars['guid']   = $friend->guid;
 						$vars['status'] = $status;
 						$all[]          = $vars;
@@ -300,7 +300,7 @@ class OssnChat extends OssnDatabase {
 								$friend_guids[] = $friend->guid;
 						}
 				}
-				if(!is_array($friend_guids) && empty($friend_guids)) {
+				if(!is_array($friend_guids) || empty($friend_guids)) {
 						return false;
 				}
 				$friend_guids     = implode(',', $friend_guids);
