@@ -22,3 +22,6 @@ if ($photos->photos) {
     }
 }
 echo '</div>';
+echo ossn_plugin_view('photos/pages/gallery', array(
+		'photos' => $photos->photos,													
+));

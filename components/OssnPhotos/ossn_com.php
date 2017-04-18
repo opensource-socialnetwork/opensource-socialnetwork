@@ -71,7 +71,11 @@ function ossn_photos_initialize() {
 				));
 				
 		}
+		//gallery plugin dist include
+		ossn_new_external_js('jquery.fancybox.min.js', '//cdnjs.cloudflare.com/ajax/libs/fancybox/3.0.47/jquery.fancybox.min.js', false);
+		ossn_new_external_css('jquery.fancybox.min.css', '//cdnjs.cloudflare.com/ajax/libs/fancybox/3.0.47/jquery.fancybox.min.css', false);
 		
+
 }
 
 /**
@@ -392,6 +396,8 @@ function ossn_album_page_handler($album) {
 						}
 						break;
 				case 'view':
+						ossn_load_external_css('jquery.fancybox.min.css');
+						ossn_load_external_js('jquery.fancybox.min.js');
 						if(isset($album[1])) {
 								$title = ossn_print('photos');
 								
@@ -424,7 +430,14 @@ function ossn_album_page_handler($album) {
 												'href' => $delete_action,
 												'class' => 'button-grey ossn-make-sure'
 										);
-										$control       = ossn_plugin_view('output/url', $addphotos);
+										$gallery_button  = array(
+												'text' => "<i class='fa fa-caret-square-o-right'></i>",
+												'href' => 'javascript:void(0);',
+												'class' => 'button-grey',
+												'id' => 'ossn-photos-show-gallery',
+										);										
+										$control  = ossn_plugin_view('output/url', $gallery_button);
+										$control .= ossn_plugin_view('output/url', $addphotos);
 										$control .= ossn_plugin_view('output/url', $delete_album);
 								} else {
 										$control = false;
