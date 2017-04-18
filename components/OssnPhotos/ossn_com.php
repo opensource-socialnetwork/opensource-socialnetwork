@@ -415,6 +415,13 @@ function ossn_album_page_handler($album) {
 												ossn_error_page();
 										}
 								}
+								$gallery_button  = array(
+										'text' => "<i class='fa fa-caret-square-o-right'></i>",
+										'href' => 'javascript:void(0);',
+										'class' => 'button-grey',
+										'id' => 'ossn-photos-show-gallery',
+								);		
+								$control_gbutton  = ossn_plugin_view('output/url', $gallery_button);								
 								//shows add photos if owner is loggedin user
 								if(ossn_loggedin_user()->guid == $owner->owner_guid) {
 										$addphotos     = array(
@@ -429,15 +436,8 @@ function ossn_album_page_handler($album) {
 												'text' => ossn_print('delete:album'),
 												'href' => $delete_action,
 												'class' => 'button-grey ossn-make-sure'
-										);
-										$gallery_button  = array(
-												'text' => "<i class='fa fa-caret-square-o-right'></i>",
-												'href' => 'javascript:void(0);',
-												'class' => 'button-grey',
-												'id' => 'ossn-photos-show-gallery',
-										);										
-										$control  = ossn_plugin_view('output/url', $gallery_button);
-										$control .= ossn_plugin_view('output/url', $addphotos);
+										);							
+										$control = ossn_plugin_view('output/url', $addphotos);
 										$control .= ossn_plugin_view('output/url', $delete_album);
 								} else {
 										$control = false;
@@ -454,7 +454,7 @@ function ossn_album_page_handler($album) {
 								$contents          = array(
 										'title' => ossn_print('photos'),
 										'content' => ossn_plugin_view('photos/pages/albums', $user),
-										'controls' => $control,
+										'controls' => $control_gbutton.$control,
 										'module_width' => '850px'
 								);
 								//set page layout
