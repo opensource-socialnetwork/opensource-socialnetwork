@@ -12,6 +12,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK 4.4
 * Private posts becoming disclosed on still unconfirmed friend requests #1039
 * Location autocomplete not working over https #1043
 * Trigger a callback on object, entity, annotation creation #1042
+* Gallery view is added for photos.
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 4.3.1
 
