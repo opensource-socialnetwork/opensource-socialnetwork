@@ -13,6 +13,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK 4.4
 * Location autocomplete not working over https #1043
 * Trigger a callback on object, entity, annotation creation #1042
 * Gallery view is added for photos.
+* Walltag friend notification not working #1021
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 4.3.1
 
