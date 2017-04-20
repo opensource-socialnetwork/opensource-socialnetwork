@@ -24,10 +24,11 @@ require_once(__OSSN_BLOCK__ . 'classes/OssnBlock.php');
 function ossn_block() {
     //callbacks
     ossn_register_callback('page', 'load:profile', 'ossn_user_block_menu', 100);
+    ossn_register_callback('action', 'load', 'ossn_user_block_action');
 
     //hooks
     ossn_add_hook('page', 'load', 'ossn_user_block');
-
+	
     //actions
     if (ossn_isLoggedin()) {
         ossn_register_action('block/user', __OSSN_BLOCK__ . 'actions/user/block.php');
@@ -52,7 +53,25 @@ function ossn_user_block_menu($name, $type, $params) {
         ossn_register_menu_link('block', ossn_print('user:block'), $block, 'profile_extramenu');
     }
 }
-
+/**
+ * Check user blocks.
+ *
+ * @return void;
+ * @access private;
+ */
+function ossn_user_block_action(){
+		switch($params['action']){
+			case 'poke/user':
+				$user = ossn_user_by_guid(input('user'));
+				if($user){
+					if(OssnBlock::UserBlockCheck($user)){
+							ossn_trigger_message(ossn_print('user:poke:error'), 'error');
+    						redirect(REF);	
+					}
+				}
+			break;
+		}
+}
 /**
  * Check user blocks.
  *
@@ -60,7 +79,6 @@ function ossn_user_block_menu($name, $type, $params) {
  * @access private;
  */
 function ossn_user_block($name, $type, $return, $params) {
-
     /*
     * Deny from visiting profile
     */
@@ -107,6 +125,7 @@ function ossn_user_block($name, $type, $return, $params) {
             ossn_block_page();
         }
     }
+	return $return;
 }
 /**
  * Ossn block page
