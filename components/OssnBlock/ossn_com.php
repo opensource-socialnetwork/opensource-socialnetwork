@@ -59,7 +59,7 @@ function ossn_user_block_menu($name, $type, $params) {
  * @return void;
  * @access private;
  */
-function ossn_user_block_action(){
+function ossn_user_block_action($callback, $type, $params){
 		switch($params['action']){
 			case 'poke/user':
 				$user = ossn_user_by_guid(input('user'));
@@ -69,6 +69,11 @@ function ossn_user_block_action(){
     						redirect(REF);	
 					}
 				}
+			break;
+			case 'ossnchat/send':
+				header('Content-Type: application/json');
+				echo json_encode(array('type' => 0));
+				exit;
 			break;
 		}
 }
