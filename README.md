@@ -48,6 +48,7 @@ Front-End Features
 * Post Edit
 * Comment Edit
 * Mobile Friendly
+* A photo gallery view
 
 Backend Features
 =================
