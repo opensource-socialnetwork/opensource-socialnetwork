@@ -23,6 +23,8 @@ Ossn.RegisterStartupFunction(function() {
             e.preventDefault();
             $(".ossn-gallery").eq(0).trigger("click");
         })
-        $(".ossn-gallery").fancybox();
+        if($('.ossn-gallery').length){
+	        $(".ossn-gallery").fancybox();
+        }
     });
 });
