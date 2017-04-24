@@ -15,6 +15,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK 4.4
 * Gallery view is added for photos.
 * Walltag friend notification not working #1021
 * Add support for emoji #1049
+* Use of btn-link with btn in post-menu #1050
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 4.3.1
 
