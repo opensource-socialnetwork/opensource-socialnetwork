@@ -14,6 +14,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK 4.4
 * Trigger a callback on object, entity, annotation creation #1042
 * Gallery view is added for photos.
 * Walltag friend notification not working #1021
+* Add support for emoji #1049
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 4.3.1
 
