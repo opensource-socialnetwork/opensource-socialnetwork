@@ -82,8 +82,8 @@ class OssnWall extends OssnObject {
 								));
 								$this->OssnFile->addFile();
 						}
-						$params['subject_guid'] = $this->wallguid;
-						$params['poster_guid']  = $this->poster_guid;
+						$params['object_guid'] = $this->wallguid;
+						$params['poster_guid'] = $this->poster_guid;
 						if(isset($wallpost['friend'])) {
 								$params['friends'] = explode(',', $wallpost['friend']);
 						}

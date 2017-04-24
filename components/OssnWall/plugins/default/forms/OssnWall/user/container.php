@@ -30,15 +30,9 @@
         <input type="file" name="ossn_photo" />
     </div>
     <div class="controls">
-        <li class="ossn-wall-friend">
-            <i class="fa fa-users"></i>
-        </li>
-        <li class="ossn-wall-location">
-            <i class="fa fa-map-marker"></i>
-        </li>
-        <li class="ossn-wall-photo">
-            <i class="fa fa-picture-o"></i>
-        </li>
+        <?php
+			echo ossn_view_menu('wall/container/controls/user', 'wall/menus/container_controls'); 
+		?>      
         <div style="float:right;">
             <div class="ossn-loading ossn-hidden"></div>
             <input class="btn btn-primary ossn-wall-post" type="submit" value="<?php echo ossn_print('post'); ?>" />

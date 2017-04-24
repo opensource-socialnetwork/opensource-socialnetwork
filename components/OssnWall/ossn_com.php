@@ -67,9 +67,34 @@ function ossn_wall() {
 				'text' => '<i class="fa fa-bullhorn"></i>'.ossn_print('post'),
 				'href' => ossn_site_url()
 		);
+		$container_controls = array(
+			array(
+				'name' => 'tag_friend',
+				'class' => 'ossn-wall-friend',
+				'text' => '<i class="fa fa-users"></i>',
+			),
+			array(
+				'name' => 'location',
+				'class' => 'ossn-wall-location',
+				'text' => '<i class="fa fa-map-marker"></i>',
+			),
+			array(
+				'name' => 'photo',
+				'class' => 'ossn-wall-photo',
+				'text' => '<i class="fa fa-picture-o"></i>',
+			),			
+		);		
 		ossn_register_menu_item('wall/container/home', $menupost);		
 		ossn_register_menu_item('wall/container/group', $menupost);		
-		ossn_register_menu_item('wall/container/user', $menupost);		
+		ossn_register_menu_item('wall/container/user', $menupost);	
+		
+		foreach($container_controls as $key => $container_control){
+			ossn_register_menu_item('wall/container/controls/home', $container_control);		
+			ossn_register_menu_item('wall/container/controls/user', $container_control);	
+			if($container_control['name'] != 'tag_friend'){
+				ossn_register_menu_item('wall/container/controls/group', $container_control);		
+			}
+		}
 }
 /**
  * Friends Picker
