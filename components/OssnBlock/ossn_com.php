@@ -71,9 +71,14 @@ function ossn_user_block_action($callback, $type, $params){
 				}
 			break;
 			case 'ossnchat/send':
-				header('Content-Type: application/json');
-				echo json_encode(array('type' => 0));
-				exit;
+				$user = ossn_user_by_guid(input('to'));
+				if($user){
+					if(OssnBlock::UserBlockCheck($user)){
+						header('Content-Type: application/json');
+						echo json_encode(array('type' => 0));
+						exit;
+					}
+				}
 			break;
 		}
 }
