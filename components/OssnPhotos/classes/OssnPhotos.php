@@ -40,7 +40,7 @@ class OssnPhotos extends OssnFile {
             $this->setExtension(array('jpg', 'png', 'jpeg', 'gif'));
 
             //add file
-            if ($this->addFile()) {
+            if ($fileguid  = $this->addFile()) {
                 $sizes = ossn_photos_sizes();
                 $resize = $this->getFiles();
 
@@ -64,6 +64,9 @@ class OssnPhotos extends OssnFile {
                         file_put_contents($image, $resized);
                     }
                     //return true if photos is added to database
+					$args['guid'] = $fileguid;
+					$args['album'] = $this->album;
+					ossn_trigger_callback('ossn:photo', 'add', $args);
                     return true;
                 }
             }
