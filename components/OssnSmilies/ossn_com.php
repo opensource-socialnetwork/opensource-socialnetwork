@@ -23,6 +23,19 @@ require_once(__OSSN_SMILIES__ . 'libraries/smilify.lib.php');
 function ossn_smiley_embed_init() {	
  	ossn_add_hook('wall', 'templates:item', 'ossn_embed_smiley', 100);
 	ossn_add_hook('comment:view', 'template:params', 'ossn_smiley_in_comments', 100);	
+	
+	ossn_extend_view('css/ossn.default', 'css/smilies/emojii');
+	ossn_extend_view('js/opensource.socialnetwork', 'js/smilies/emojii');
+	
+	$emojii_button = array(
+			'name' => 'emojii_selector',
+			'text' => '<i class="fa fa-smile-o"></i>',
+			'href' => 'javascript:void(0);',
+	);
+	
+	ossn_register_menu_item('wall/container/controls/home', $emojii_button);		
+	ossn_register_menu_item('wall/container/controls/user', $emojii_button);	
+	ossn_register_menu_item('wall/container/controls/group', $emojii_button);		
 }
 /**
  * Replace certain ascii patterns with ossn emoticons.
