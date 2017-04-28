@@ -117,11 +117,15 @@ Ossn.RegisterStartupFunction(function() {
                 //need to clear file path after uploading the file #626
                 var $file = $("#ossn-wall-form").find("input[type='file']");
                 $file.replaceWith($file.val('').clone(true));
+                $('#ossn-wall-photo').hide();
 
                 //Tagged friend(s) and location should be cleared, too - after posting #641
                 $("#ossn-wall-location-input").val('');
-                $(".token-input-list").find('.token-input-token').remove();
+                $('#ossn-wall-location').hide();
+     
                 $('#ossn-wall-friend-input').val('');
+                $("#ossn-wall-friend-input").tokenInput("clear");
+                $('#ossn-wall-friend').hide();
 
                 $('#ossn-wall-form').find('input[type=submit]').show();
                 $('#ossn-wall-form').find('.ossn-loading').addClass('ossn-hidden');
