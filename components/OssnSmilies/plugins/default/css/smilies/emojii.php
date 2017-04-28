@@ -48,3 +48,28 @@
     font-style: initial;
     font-size: 20px;
 }
+.ossn-comment-attach-photo .fa-smile-o {
+    float: right;
+    position: relative;
+    margin-right: 5px;
+    margin-top: 5px;
+    width: 25px;
+    height: 25px;
+    padding: 5px;
+    z-index: 2;
+    cursor: pointer;
+    font-weight:bold;
+}
+.comment-container .emojii-container-main {
+    float: right;
+    margin-right: 285px;
+}
+/***************************************
+	Override the comment box width
+****************************************/
+.comment-box {
+	    padding: 5px 65px 5px 5px !important;
+}
+.comment-container {
+    z-index: initial;
+}
