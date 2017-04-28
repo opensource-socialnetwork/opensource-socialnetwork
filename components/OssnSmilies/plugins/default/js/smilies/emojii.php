@@ -26,9 +26,11 @@ $(document).ready(function() {
     });
     $('body').on('click', '.emojii-list li', function(e) {
         e.preventDefault();
-        $type = $(this).attr('data-val');
-        $element = '.ossn-wall-container textarea';
-        $($element).html($($element).val() + " " + "&#x" + $type + ";");
+ 	var $type = $(this).html();
+ 	var $element = '.ossn-wall-container-data textarea';
+ 	var tmp1 = $($element).val();
+  	var tmp2 = tmp1 + " " + $type;
+  	$($element).val(tmp2);
     });
     $('body').on('click', '.ossn-wall-container-control-menu-emojii-selector', function(e) {
          if($('.emojii-container-main').is(":hidden")){
