@@ -16,6 +16,8 @@ OSSN - OPEN SOURCE SOCIAL NETWORK 4.4
 * Walltag friend notification not working #1021
 * Add support for emoji #1049
 * Use of btn-link with btn in post-menu #1050
+* Re-initializing of token input for friend tagging #1015
+* Add Emoji for comments refactoring the #1049 
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 4.3.1
 
