@@ -18,6 +18,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK 4.4
 * Use of btn-link with btn in post-menu #1050
 * Re-initializing of token input for friend tagging #1015
 * Add Emoji for comments refactoring the #1049 
+* Correct filesize of both original and resized image in header #1058 #1057
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 4.3.1
 
