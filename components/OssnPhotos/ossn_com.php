@@ -381,7 +381,7 @@ function ossn_album_page_handler($album) {
 						}
 						//get image file else show error page
 						if(is_file($datadir)) {
-								$filesize = filesize($datadir);
+								$filesize = strlen($image);
 								header("Content-type: image/jpeg");
 								header('Expires: ' . gmdate('D, d M Y H:i:s \G\M\T', strtotime("+6 months")), true);
 								header("Pragma: public");
