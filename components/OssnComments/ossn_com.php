@@ -280,6 +280,10 @@ function ossn_comment_page($pages) {
 				case 'attachment':
 						header('Content-Type: application/json');
 						if(isset($_FILES['file']['tmp_name']) && ($_FILES['file']['error'] == UPLOAD_ERR_OK && $_FILES['file']['size'] !== 0) && ossn_isLoggedin()) {
+								//code of comment picture preview ignores EXIF header #1056
+								$OssnFile = new OssnFile;
+								$OssnFile->resetRotation($_FILES['file']['tmp_name']);
+								
 								if(preg_match("/image/i", $_FILES['file']['type'])) {
 										$file    = $_FILES['file']['tmp_name'];
 										$unique  = time() . '-' . substr(md5(time()), 0, 6) . '.jpg';
