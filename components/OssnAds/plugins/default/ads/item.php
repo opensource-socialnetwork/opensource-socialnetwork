@@ -1,6 +1,6 @@
 <div class="ossn-ad-item">
 <div class="row">
-	<a href="<?php echo $params['item']->site_url;?>">
+	<a target="_blank" href="<?php echo $params['item']->site_url;?>">
 		<div class="col-md-12">
 			<div class="ad-title"><?php echo $params['item']->title;?></div>
 			<div class="ad-link"><?php echo $params['item']->site_url;?></div>
