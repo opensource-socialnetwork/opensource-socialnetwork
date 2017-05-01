@@ -764,6 +764,8 @@ function ossn_check_update() {
  */
 function _ossn_exception_handler($exception){
 	$params['exception'] = $exception;
+	//support at least exception message  #1014
+	error_log($params['exception']);
 	echo ossn_view('system/handlers/errors', $params);
 }
 /**
