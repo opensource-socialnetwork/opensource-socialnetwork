@@ -65,7 +65,7 @@ function ossn_emojis_to_entites($content) {
 										
 										$unpacked = unpack('H*', mb_convert_encoding($emoji, 'UTF-32', 'UTF-8'));
 										if (isset($unpacked[1])) {
-												$entity  = '&#x' . ltrim($unpacked[1], '0') . ';';
+												$entity  = '<span class="emojii">&#x' . ltrim($unpacked[1], '0') . ';</span>';
 												$content = str_replace($emoji, $entity, $content);
 										}
 								}
