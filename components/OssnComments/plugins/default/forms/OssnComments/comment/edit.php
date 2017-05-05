@@ -17,6 +17,7 @@
  if(empty($comment)){
 	 return;
  }
+ $comment = preg_replace('/<span class="emojii">(.*?)<\/span>/', '$1', $comment);
  ?>
  <div>
  	<textarea id="comment-edit" name="comment"><?php echo  $comment;?></textarea>
