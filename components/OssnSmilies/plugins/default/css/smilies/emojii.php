@@ -1,3 +1,6 @@
+.emojii {
+    font-family: "Apple Color Emoji","Segoe UI Emoji","NotoColorEmoji","Segoe UI Symbol","Android Emoji","EmojiSymbols";
+}
 .emojii-container {
 	background: #fff;
     width: 285px;
@@ -9,6 +12,7 @@
     z-index: 1000;    
     
     box-shadow: 0 6px 12px rgba(0,0,0,.175);    
+    font-family: "Apple Color Emoji","Segoe UI Emoji","NotoColorEmoji","Segoe UI Symbol","Android Emoji","EmojiSymbols";
 }
 .emojii-container .nav {
 	
