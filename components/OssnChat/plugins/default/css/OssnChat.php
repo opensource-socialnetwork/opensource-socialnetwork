@@ -308,7 +308,6 @@ img.ustatus.ossn-chat-icon-online {
 	margin-top: -12px;
 	margin-left: -12px;
     position: absolute;
-    font-family: 'lucida grande',tahoma,verdana,arial,sans-serif;
     font-size: 12px;
     border:0px;
     outline:none;
