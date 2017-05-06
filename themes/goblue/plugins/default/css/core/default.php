@@ -82,10 +82,10 @@ p {
     padding: 4px 8px;
 }
 .btn-primary {
-	background-color: #186DF2;
+	background-color: #2a87a7;
 }
 a {
-	color: #186DF2;
+	color: #0f3b4a;
 }
 /************************************
 	Layouts
@@ -210,7 +210,7 @@ a {
 ********************************/
 
 .topbar {
-    background: #186DF2;
+    background: #0b769c;
     color: #fff;
     z-index: 1;
     position: relative;
@@ -248,7 +248,7 @@ a {
 .topbar-menu-right li:hover,
 .topbar-menu-left li:hover {
     cursor: pointer;
-    background-color: #1b60ce;
+    background-color: #0a6586;
 }
 .topbar .right-side-nospace .topbar-menu-right {
     margin-right: 0px;
@@ -267,7 +267,7 @@ a {
 .topbar .ossn-icons-topbar-friends,
 .topbar .ossn-icons-topbar-messages,
 .topbar .ossn-icons-topbar-notification i {
-    color: #123c80;
+    color: #0f3b4a;
 }
 .topbar .ossn-icons-topbar-friends-new,
 .topbar .ossn-icons-topbar-messages-new,
