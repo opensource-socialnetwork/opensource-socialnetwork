@@ -1,4 +1,4 @@
-OSSN - OPEN SOURCE SOCIAL NETWORK 4.4
+OSSN - OPEN SOURCE SOCIAL NETWORK 4.4-development
 
 * Embedded videos didn't show up in post #997
 * Avoid the multiple db connections #1001
