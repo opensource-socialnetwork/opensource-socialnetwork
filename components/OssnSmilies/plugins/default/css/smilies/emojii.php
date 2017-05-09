@@ -65,6 +65,15 @@
     margin-right: 285px;
 }
 /***************************************
+chat
+****************************************/
+.friend-tab .emojii-container {
+    bottom: 50%;
+    right: 50%;
+    top: inherit;
+    left: inherit;
+}
+/***************************************
 	Override the comment box width
 ****************************************/
 .comment-box {
