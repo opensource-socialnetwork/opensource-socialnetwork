@@ -51,7 +51,7 @@ Front-End Features
 * Comment Edit
 * Mobile Friendly
 * A photo gallery view.
-* Emojii Support
+* Emojii Support (chat)
 
 Backend Features
 =================
