@@ -82,8 +82,8 @@ if ($total > 0) {
     <div class="inner friend-tab <?php echo $tab_class; ?>" id="ftab<?php echo $user->guid; ?>"
          onclick="Ossn.ChatOpenTab(<?php echo $user->guid; ?>);">
         <script>Ossn.ChatSendForm(<?php echo $user->guid;?>);</script>
-        <form autocomplete="off" id="ossn-chat-send-<?php echo $user->guid; ?>">
-            <input type="text" name="message" autocomplete="off" id="ossn-chat-input-<?php echo $user->guid; ?>"/>
+        <form autocomplete="off" id="ossn-chat-send-<?php echo $user->guid; ?>" class="ossn-chat chat-container">
+            <input type="text" name="message" autocomplete="off" id="ossn-chat-input-<?php echo $user->guid; ?>" class="chat-box"/>
             <div class="ossn-chat-message-sending">
                <div class="ossn-chat-sending-icon"></div>
             </div>
