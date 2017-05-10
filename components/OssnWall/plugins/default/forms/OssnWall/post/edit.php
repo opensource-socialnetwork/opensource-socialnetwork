@@ -10,6 +10,7 @@
  */
  $description = json_decode(html_entity_decode($params['post']->description));
  $description = $description->post;
+ $description = preg_replace('/<span class="emojii">(.*?)<\/span>/', '$1', $description);
  ?>
  <div>
  	<textarea id="post-edit" name="post"><?php echo $description;?></textarea>
