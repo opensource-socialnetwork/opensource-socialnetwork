@@ -1731,7 +1731,7 @@ footer .ossn-footer-menu a:last-child::after {
 ****************************/
 
 .home-left-contents {
-    margin-top: 5%;
+    margin-top: 3%;
 }
 .home-left-contents .logo {
     text-align: center;
