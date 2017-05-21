@@ -110,3 +110,5 @@ https://www.opensource-socialnetwork.org/wiki/view/708/how-to-upgrade-ossn
 Copyright 2014-2016 Informatikon Technologies (informatikon.com)
 
 Copyright 2016-2017 SOFTLAB24 (https://www.softlab24.com/)
+
+Copyright 2014-2017 Open Source Social Network (https://www.opensource-socialnetwork.org/)
