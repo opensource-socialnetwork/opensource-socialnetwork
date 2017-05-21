@@ -291,11 +291,13 @@ function ossn_like_notifications_delete($callback, $type, $vars) {
 		$delete = new OssnNotifications;
 		if(isset($vars['subject_id']) && !empty($vars['subject_id'])) {
 				$delete->deleteNotification(array(
-						'subject_guid' => $vars['subject_id'],
+						'item_guid' => $vars['subject_id'],
 						'type' => array(
 								'like:entity:file:profile:photo',
 								'like:entity:file:profile:cover',
-								'like:entity:file:ossn:aphoto'
+								'like:entity:file:ossn:aphoto',
+								'like:post',
+								'like:annotation'
 						)
 				));
 		}
