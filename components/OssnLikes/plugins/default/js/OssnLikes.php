@@ -112,7 +112,7 @@ Ossn.RegisterStartupFunction(function() {
                             $total_likes = $total;
                             $total_likes++;
                             $('.ossn-total-likes-' + $total_guid).attr('data-likes', $total_likes);
-                            $('.ossn-total-likes-' + $total_guid).html('<span class="dot-likes">.</span><div class="ossn-like-icon"></div>' + $total_likes);
+                            $('.ossn-total-likes-' + $total_guid).html('<i class="fa fa-thumbs-up"></i>' + $total_likes);
                         }
                         if ($type == 'Unlike') {
                             $item.html(Ossn.Print('like'));
@@ -124,7 +124,7 @@ Ossn.RegisterStartupFunction(function() {
                                 0
                                 $like_remove--;
                                 $('.ossn-total-likes-' + $total_guid).attr('data-likes', $like_remove);
-                                $('.ossn-total-likes-' + $total_guid).html('<span class="dot-likes">.</span><div class="ossn-like-icon"></div>' + $like_remove);
+                                $('.ossn-total-likes-' + $total_guid).html('<i class="fa fa-thumbs-up"></i>' + $like_remove);
                             }
                             if ($total == 1) {
                                 $('.ossn-total-likes-' + $total_guid).attr('data-likes', 0);
