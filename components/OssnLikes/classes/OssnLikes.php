@@ -92,7 +92,7 @@ class OssnLikes extends OssnDatabase {
 	                         subject_id='{$subject_id}' AND guid='{$guid}' AND type='{$type}');");
 						if($this->execute()) {
 								$vars               = array();
-								$vars['subject_id'] = $subject_id;
+								$vars['item_guid']  = $subject_id;
 								$vars['type']       = $type;
 								$vars['guid']       = $guid;
 								ossn_trigger_callback('like', 'deleted', $vars);
