@@ -89,11 +89,11 @@ function ossn_emojis_to_entites($content) {
 function input($input, $noencode = '', $default = false, $strip = true) {
 		$str  = false;
 		$hook = ossn_call_hook('ossn', 'input', false, array(
-				'input' => preg_replace('/\s+/', ' ',$input),
+				'input' => $input,
 				'noencode' => $noencode,
 				'default' => $default,
 				'strip' => $strip,
-				'data' => $_REQUEST[$input]
+				'data' => preg_replace('/\s\s+/', ' ', $_REQUEST[$input]),
 		));
 		if ($hook) {
 				$input    = $hook['input'];
