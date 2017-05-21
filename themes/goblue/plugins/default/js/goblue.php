@@ -43,6 +43,9 @@ $(document).ready(function() {
 		$chatsidebar.css('height', $(window).height() - 45);
 	}
 	$(document).scroll(function() {
+		$document_height = $(document).height();						
+		$(".sidebar").height($document_height);
+		
 		if($chatsidebar.length){
 			if ($(document).scrollTop() >= 50) {
 				$chatsidebar.addClass('ossnchat-scroll-top');
