@@ -88,9 +88,8 @@ function ossn_emojis_to_entites($content) {
  */
 function input($input, $noencode = '', $default = false, $strip = true) {
 		$str  = false;
-		$input = preg_replace('!\s+!', ' ', $input);
 		$hook = ossn_call_hook('ossn', 'input', false, array(
-				'input' => $input,
+				'input' => preg_replace('/\s+/', ' ',$input),
 				'noencode' => $noencode,
 				'default' => $default,
 				'strip' => $strip,
