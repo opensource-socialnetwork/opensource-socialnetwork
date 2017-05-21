@@ -21,6 +21,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK 4.4-development
 * Correct filesize of both original and resized image in header #1058 #1057
 * Code of comment picture preview ignores EXIF header #1056
 * Ad should open in new tab #1013
+* Fix orphan notification records when un-liking #1079
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 4.3.1
 
