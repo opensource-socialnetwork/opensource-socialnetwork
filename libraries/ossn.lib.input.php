@@ -93,7 +93,7 @@ function input($input, $noencode = '', $default = false, $strip = true) {
 				'noencode' => $noencode,
 				'default' => $default,
 				'strip' => $strip,
-				'data' => preg_replace('/\h+/', ' ', $_REQUEST[$input]),
+				'data' => (!empty($_REQUEST[$input]) ? preg_replace('/\h+/', ' ', $_REQUEST[$input]) : null),
 		));
 		if ($hook) {
 				$input    = $hook['input'];
