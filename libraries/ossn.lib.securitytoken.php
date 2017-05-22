@@ -20,7 +20,8 @@ function ossn_generate_action_token($timestamp){
 	}
 	$site_screat = ossn_site_settings('site_key');
 	$session_id = session_id();
-	return md5($timestamp . $site_screat . $session_id);
+	$user_guid  = ossn_loggedin_user()->guid;
+	return md5($timestamp . $site_screat . $session_id . $user_guid);
 }
 /**
  * Build url from parts
