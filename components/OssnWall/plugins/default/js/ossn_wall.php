@@ -124,8 +124,10 @@ Ossn.RegisterStartupFunction(function() {
                 $('#ossn-wall-location').hide();
      
                 $('#ossn-wall-friend-input').val('');
-                $("#ossn-wall-friend-input").tokenInput("clear");
-                $('#ossn-wall-friend').hide();
+                if($('#ossn-wall-friend-input').length){
+	                $("#ossn-wall-friend-input").tokenInput("clear");
+	                $('#ossn-wall-friend').hide();
+                }
 
                 $('#ossn-wall-form').find('input[type=submit]').show();
                 $('#ossn-wall-form').find('.ossn-loading').addClass('ossn-hidden');
