@@ -12,7 +12,7 @@ $image = $params['entity'];
 $img = str_replace('profile/cover/', '', $image->value);
 ?>
 <div class="ossn-photo-view">
-    <a href="<?php echo ossn_site_url("album/covers/profile/{$image->owner_guid}"); ?>"> <?php echo ossn_print('back:to:album'); ?>  </a>
+    <a class="button-grey" href="<?php echo ossn_site_url("album/covers/profile/{$image->owner_guid}"); ?>"> <?php echo ossn_print('back:to:album'); ?>  </a>
     <br/>
     <table border="0" class="ossn-photo-viewer">
         <tr>
