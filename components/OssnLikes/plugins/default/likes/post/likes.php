@@ -34,7 +34,7 @@ if ($OssnLikes->CountLikes($object)) { ?>
                 $total = 'people';
             }
             $link['onclick'] = "Ossn.ViewLikes({$object});";
-            $link['href'] = '#';
+            $link['href'] = 'javascript:void(0);';
             $link['text'] = ossn_print("ossn:like:{$total}", array($count));
             $link = ossn_plugin_view('output/url', $link);
             echo ossn_print("ossn:like:you:and:this", array($link));
@@ -44,7 +44,7 @@ if ($OssnLikes->CountLikes($object)) { ?>
                 $total = 'people';
             }
             $link['onclick'] = "Ossn.ViewLikes({$object});";
-            $link['href'] = '#';
+            $link['href'] = 'javascript:void(0);';
             $link['text'] = ossn_print("ossn:like:{$total}", array($count));
             $link = ossn_plugin_view('output/url', $link);
             echo ossn_print("ossn:like:this", array($link));
