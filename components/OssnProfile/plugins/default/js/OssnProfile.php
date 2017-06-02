@@ -146,6 +146,7 @@ Ossn.RegisterStartupFunction(function() {
                 success: function(callback) {
                     $time = $.now();
                     $('.profile-cover').find('img').removeClass('user-cover-uploading');
+                    $('.profile-cover').find('img').addClass('profile-cover-img');
                     $imageurl = $('.profile-cover').find('img').attr('src') + '?' + $time;
                     $('.profile-cover').find('img').attr('src', $imageurl);
                     $('.profile-cover').find('img').attr('style', '');
