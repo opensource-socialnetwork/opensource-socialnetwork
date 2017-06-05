@@ -178,7 +178,7 @@ $members = $params['group']->getMembers();
 								'class' => 'group-requests-widget',
 				));					
 			}
-			$members = $params['group']->getMembers();
+			$count = $params['group']->getMembers(true);
             $limit = 1;
             if($members) {
                     foreach ($members as $member) {
@@ -194,7 +194,7 @@ $members = $params['group']->getMembers();
 					}
 						echo '<div class="group-widget-members">';
 						echo ossn_view_widget(array(
-													'title' => ossn_print('group:members', array(count($members))),
+													'title' => ossn_print('group:members', array($count)),
 													'contents' => implode('', $members_html)
 													));
 						echo '</div>';
