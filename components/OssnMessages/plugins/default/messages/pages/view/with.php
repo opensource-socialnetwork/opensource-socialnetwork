@@ -6,6 +6,12 @@
                     //Ossn.getRecent('<?php echo $params['user']->guid;?>');
                 }, 5000);
                	Ossn.message_scrollMove(<?php echo $params['user']->guid;?>);
+		    
+		$(".message-action").click(function(){
+		    var id=$(this).attr('data-id');
+		    Ossn.deleteMessage('<?php echo $params['user']->guid;?>', id);
+		});
+		    
       });
 </script>
 <div class="message-with">
@@ -25,7 +31,8 @@ if ($params['data']) {
                              					   } else {
                                 					    echo ossn_message_print($message->message);
                             					    }
-                              				?>
+                             				?>
+					<a id="message-<?php echo $message->id;?>" class="message-action" data-id="<?php echo $message->id;?>" href="#" title="Delete Message"><i class="fa fa-times"></i></a>
                                         <div class="time-created"><?php echo ossn_user_friendly_time($message->time);?></div>    
                                         </div>
                                 </div>
