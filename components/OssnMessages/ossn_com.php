@@ -124,6 +124,7 @@ function ossn_messages_page($pages) {
 						if($messages) {
 								foreach($messages as $message) {
 										$user              = ossn_user_by_guid($message->message_from);
+										$params['message_id']=$message->id;
 										$message           = $message->message;
 										$params['user']    = $user;
 										$params['message'] = $message;
@@ -142,7 +143,22 @@ function ossn_messages_page($pages) {
 				case 'deletemessage':
 						$id = $pages[1];
 						$delete = $OssnMessages->deleteMessage($id);
+						echo $delete;
 						break;
+						
+				case 'fromlist':
+					$from = $pages[1];
+					$list=$from;
+					$items=$OssnMessages->fromList($from);
+					if ($items){?>
+						<ul style="display:none !important;">
+						<?php foreach($items as $i=>$item){?>
+							<li data-id="<?php echo $item->id;?>" data-viewed="<?php echo $item->viewed;?>"><?php echo $item->id;?></li>
+						<?php } ?>
+						</ul>
+					<?php }
+					break;
+						
 				
 				default:
 						ossn_error_page();
