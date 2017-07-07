@@ -211,3 +211,13 @@
 .messages-with .widget-contents {
     padding: 10px 0px;
 }
+
+.message-box-sent a.message-action{
+	position:absolute;
+	right:0;
+	bottom:0;
+	display:none;
+	opacity:.15;
+}
+
+.message-box-sent:hover a.message-action{ display:block;}
