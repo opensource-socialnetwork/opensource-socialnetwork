@@ -63,3 +63,18 @@ Ossn.message_scrollMove = function(fid) {
         return message.scrollTop;
     }
 };
+
+Ossn.deleteMessage = function($guid, $id) {
+    Ossn.PostRequest({
+        url: Ossn.site_url + "messages/deletemessage/" + $id,
+        action: false,
+        callback: function(callback) {
+			$('#message-append-' + $guid).find('#message-'+$id).closest('div.row').remove();
+            if(callback){
+            	//Unwanted refresh in message window #416 , there is no need to scroll if no new message.
+	            Ossn.message_scrollMove($guid);
+            }
+        }
+    });
+	return true;
+};
