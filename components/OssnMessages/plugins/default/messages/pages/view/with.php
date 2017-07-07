@@ -7,9 +7,9 @@
                 }, 5000);
                	Ossn.message_scrollMove(<?php echo $params['user']->guid;?>);
 		    
-		$(".message-action").click(function(){
-		    var id=$(this).attr('data-id');
-		    Ossn.deleteMessage('<?php echo $params['user']->guid;?>', id);
+		$("#message-append-<?php echo $params['user']->guid;?>").on("click",".message-action", function(){
+			var id=$(this).attr('data-id');
+			Ossn.deleteMessage('<?php echo $params['user']->guid;?>', id);
 		});
 		    
       });
