@@ -138,6 +138,12 @@ function ossn_messages_page($pages) {
 						$params['recent'] = $OssnMessages->recentChat(ossn_loggedin_user()->guid);
 						echo ossn_plugin_view('messages/templates/message-with', $params);
 						break;
+				
+				case 'deletemessage':
+						$id = $pages[1];
+						$delete = $OssnMessages->deleteMessage($id);
+						break;
+				
 				default:
 						ossn_error_page();
 						break;
