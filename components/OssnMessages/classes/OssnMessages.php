@@ -231,7 +231,7 @@ class OssnMessages extends OssnDatabase {
 						)
 				));
 		}
-	
+		
 		/**
 		 * Delete message by id
 		 *
@@ -253,5 +253,25 @@ class OssnMessages extends OssnDatabase {
 			}
 			return false;
 		}
-	
+		
+		/**
+		 * Get messages IDs by from user id
+		 *
+		 * @params  integer $from Users guid
+		 *
+		 * @return int|false
+		 */
+		public function fromList($from) {
+			if(empty($from)) {
+					return false;
+			}
+			$params['from']   = 'ossn_messages';
+			$params['wheres'] = array(
+				"message_from='{$from}'"
+			);
+			$params['params'] = array(
+				'id,viewed'
+			);
+			return $this->select($params, true);
+		}
 } //class
