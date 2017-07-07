@@ -22,6 +22,7 @@ if($user->guid == ossn_loggedin_user()->guid){
                                 					    echo ossn_message_print($message);
                             					    }
                               				?>
+					    <a id="message-<?php echo $message->id;?>" class="message-action" data-id="<?php echo $message->id;?>" href="#" title="Delete Message"><i class="fa fa-times"></i></a>
                                             <div class="time-created"><?php echo ossn_user_friendly_time(time());?></div>
                                         </div>
                                 </div>
