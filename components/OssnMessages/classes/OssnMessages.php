@@ -231,4 +231,27 @@ class OssnMessages extends OssnDatabase {
 						)
 				));
 		}
+	
+		/**
+		 * Delete message by id
+		 *
+		 * @params  integer $id ID of message
+		 *
+		 * @return object|false
+		 */
+		public function deleteMessage($id) {
+			//first check if message exists
+			if (!$this->getMessage($id)){ return false; }
+			
+			$params['from']   = 'ossn_messages';
+			$params['wheres'] = array(
+				"id='{$id}'"
+			);
+			$delete = $this->delete($params);
+			if($delete) {
+				return $delete;
+			}
+			return false;
+		}
+	
 } //class
