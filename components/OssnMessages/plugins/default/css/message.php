@@ -206,6 +206,7 @@
     vertical-align: top;
     margin: 10px 0px;
     border-color: #cdecb0;
+	position:relative;
 }
 
 .messages-with .widget-contents {
