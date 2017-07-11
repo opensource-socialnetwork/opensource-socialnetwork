@@ -1,22 +1,35 @@
 <script>
     Ossn.SendMessage(<?php echo $params['user']->guid;?>);
-            $(document).ready(function () {
-                setInterval(function () {
-                    Ossn.getMessages('<?php echo $params['user']->username;?>', '<?php echo $params['user']->guid;?>');
-					Ossn.refreshList('<?php echo $params['user']->guid;?>');
-                    //Ossn.getRecent('<?php echo $params['user']->guid;?>');
-                }, 5000);
-               	Ossn.message_scrollMove(<?php echo $params['user']->guid;?>);
+	$(document).ready(function () {
+		setInterval(function () {
+            Ossn.getMessages('<?php echo $params['user']->username;?>', '<?php echo $params['user']->guid;?>');
+			Ossn.refreshList('<?php echo $params['user']->guid;?>');
+            //Ossn.getRecent('<?php echo $params['user']->guid;?>');
+        }, 5000);
+        Ossn.message_scrollMove(<?php echo $params['user']->guid;?>);
 
-				$("#message-append-<?php echo $params['user']->guid;?>").on("click",".message-action", function(){
-				var id=$(this).closest(".message-box-sent").attr('data-id');
-				Ossn.deleteMessage('<?php echo $params['user']->guid;?>', id);
-			});
+		$("#message-append-<?php echo $params['user']->guid;?>").on("click",".message-action", function(){
+			var id=$(this).closest("div.text").attr('data-id');
+			Ossn.deleteMessage('<?php echo $params['user']->guid;?>', id);
+		});
+		
+		$(".ossn-widget.messages-with .widget-heading").append(
+			'<a href="#" title="<?php echo ossn_print('delete:all:messages'); ?>" class="messages-action"><i class="fa fa-times"></i></a>'
+		);
+		$(".ossn-widget.messages-with .widget-heading").on("click",".messages-action", function(){
+			if (confirm("<?php echo ossn_print('confirm:Delete:messages'); ?>")){
+				$("#message-append-<?php echo $params['user']->guid; ?> .message-action").each(function(i,data){
+					$(data).trigger("click");
+				});
+			}
+		});
+
+		
+
     });
 	  
 </script>
 <div class="message-with">
-<div id="message-list"></div>
 
 <div class="message-inner" id="message-append-<?php echo $params['user']->guid; ?>">
 <?php
@@ -27,7 +40,7 @@ if ($params['data']) {
 					?>
                     	<div class="row">
                                 <div class="col-md-10">
-                                		<div class="message-box-sent text" style="position:relative;" id="ossn-message-item-<?php echo $message->id;?>" data-id="<?php echo $message->id;?>">
+                                		<div class="message-box-sent text" id="ossn-message-item-<?php echo $message->id;?>" data-id="<?php echo $message->id;?>">
                                 			<?php
                                					 if (function_exists('smilify')) {
                                 					    echo smilify(ossn_message_print($message->message));
@@ -36,7 +49,7 @@ if ($params['data']) {
                             					    }
 
                               				?>
-											<a href="#" title="Delete Message" class="message-action"><i class="fa fa-times"></i></a>
+											<a href="#" title="<?php echo ossn_print('delete:message'); ?>" class="message-action"><i class="fa fa-times"></i></a>
                                         <div class="time-created"><?php echo ossn_user_friendly_time($message->time);?></div>    
                                         </div>
                                 </div>
@@ -60,6 +73,7 @@ if ($params['data']) {
                                 					    echo ossn_message_print($message->message);
                             					    }
                               				?>
+											<a href="#" title="Delete Message" class="message-action"><i class="fa fa-times"></i></a>
                                         <div class="time-created"><?php echo ossn_user_friendly_time($message->time);?></div>                                                
                                         </div>
                                 </div>
