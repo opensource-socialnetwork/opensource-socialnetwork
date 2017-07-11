@@ -2,9 +2,6 @@
 $(document).ready(function() {
 	
 	$('body').click(function() {
-      $('.ossn-notifications-box').click(function(){
-        $('.ossn-notifications-box').show();
-         });
       $('.ossn-notifications-box').hide();
      });
 	
