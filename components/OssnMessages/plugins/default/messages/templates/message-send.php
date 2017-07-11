@@ -23,7 +23,7 @@ if($user->guid == ossn_loggedin_user()->guid){
                                 					    echo ossn_message_print($message);
                             					    }
                               				?>
-											<a href="#" title="Delete Message" class="message-action"><i class="fa fa-times"></i></a>
+											<a href="#" title="<?php echo ossn_print('delete:message'); ?>" class="message-action"><i class="fa fa-times"></i></a>
                                             <div class="time-created"><?php echo ossn_user_friendly_time(time());?></div>
                                         </div>
                                 </div>
@@ -47,6 +47,7 @@ if($user->guid == ossn_loggedin_user()->guid){
                                 					    echo $message;
                             					    }
                               				?>
+										 <a href="#" title="<?php echo ossn_print('delete:message'); ?>" class="message-action"><i class="fa fa-times"></i></a>
                                          <div class="time-created"><?php echo ossn_user_friendly_time(time());?></div>    
                                         </div>
                                 </div>
