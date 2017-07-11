@@ -64,6 +64,15 @@ function ossn_messages_page($pages) {
 		if(empty($page)) {
 				$page = 'messages';
 		}
+		
+		$statusBit=array();
+		$statusBit['hidden']=1; //0b00000001
+		$statusBit['archive']=2; //0b00000010
+		$statusBit['spam']=4; //0b00000100
+		$statusBit['block']=8; //0b00001000
+		//always make sure 'status' is not null
+		$OssnMessages->initStatus(ossn_loggedin_user()->guid); 
+		
 		switch($page) {
 				case 'message':
 						$username = $pages[1];
@@ -142,28 +151,33 @@ function ossn_messages_page($pages) {
 				
 				case 'deletemessage':
 						$id = $pages[1];
-						$delete = $OssnMessages->deleteMessage($id);
+						$delete = $OssnMessages->setStatus($id,$statusBit['hidden']);
 						echo $delete;
 						break;
 						
-				case 'fromlist':
-					$from = $pages[1];
-					$list=$from;
-					$items=$OssnMessages->fromList($from);
-					if ($items){?>
-						<ul style="display:none !important;">
-						<?php foreach($items as $i=>$item){?>
-							<li data-id="<?php echo $item->id;?>" data-viewed="<?php echo $item->viewed;?>"><?php echo $item->id;?></li>
-						<?php } ?>
-						</ul>
-					<?php }
+				case 'getlist':
+					$guid = $pages[1];
+					//get all messages of from / to users
+					$items = $OssnMessages->get(ossn_loggedin_user()->guid, $guid, 'all');
+					if ($items){
+						$lists=array();
+						foreach($items as $i=>$item){
+							$list='{"id":'.$item->id.',"viewed":'.$item->viewed.',"status":'.$item->status.'}';
+							foreach($statusBit as $key=>$status){
+								if ($item->status & $status){
+									$lists[$key][]=$list;
+								}
+							}
+						}
+						echo json_encode($lists);
+					} else {
+						echo '[]';
+					}
 					break;
-						
-				
+					
 				default:
-						ossn_error_page();
-						break;
-						
+					ossn_error_page();
+					break;
 		}
 }
 /**
