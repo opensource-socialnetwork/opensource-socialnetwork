@@ -15,6 +15,9 @@ $en = array(
     'ossn:message:between' => 'Messaggio da %s',
     'messages' => 'Messaggi',
     'message:placeholder' => 'Inserisci qui il testo',
-    'no:messages' => 'Non hai messaggi.'
+    'no:messages' => 'Non hai messaggi.',
+	'delete:message' => 'Elimina messaggio',
+	'delete:all:messages' => 'Elimina tutti i messaggi',
+	'confirm:delete:messages' =>'Questo eliminera tutti i messaggi in questo elenco. Vuoi procedere?'	
 );
 ossn_register_languages('it', $en); 
