@@ -16,5 +16,8 @@ $de = array(
     'messages' => 'Nachrichten',
     'message:placeholder' => 'Schreib was ...',
     'no:messages' => 'keine Nachrichten vorhanden',
+	'delete:message' => 'Nachricht loschen',
+	'delete:all:messages' => 'Alle Nachrichten loschen',
+	'confirm:delete:messages' =>'Dadurch werden alle Nachrichten in dieser Liste geloscht. Willst du fortfahren?',
 );
 ossn_register_languages('de', $de); 
