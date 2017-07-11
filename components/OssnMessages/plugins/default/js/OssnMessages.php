@@ -70,41 +70,82 @@ Ossn.deleteMessage = function($guid, $id) {
         action: false,
         callback: function(callback) {
             if(callback){
-				$('#message-append-' + $guid).find('#ossn-message-item-'+$id).closest('div.row').remove();
-				$('#ossn-chat-messages-data-' + $guid).find('#ossn-message-item-'+$id).remove();
+				$('#message-append-' + $guid).find('#ossn-message-item-'+$id).closest('div.row').hide(300,
+					function(){
+						this.remove();
+					});
+				$('#ossn-chat-messages-data-' + $guid).find('#ossn-message-item-'+$id).hide(300,
+					function(){
+						this.remove();
+					});
             }
         }
     });
 	return true;
 };
 
-
-Ossn.refreshList = function($from,$count) {
+Ossn.refreshList = function($from) {
     Ossn.PostRequest({
-        url: Ossn.site_url + "messages/fromlist/" + $from,
+        url: Ossn.site_url + "messages/getlist/" + $from,
         action: false,
-        callback: function(callback) {
-			$('#message-list').html(callback);
-            if(callback){
-				var list=$("#message-list ul li").size();
-				var onlist=$("#message-append-"+$from+" .message-box-recieved").size();
-				if (list!=onlist){
-					var id=0;
-					list=[];
-					$("#message-list ul li").each(function(index, item){
-						id=$(item).attr('data-id');
-						list[index]=id;
-					});
-					$("#message-append-"+$from+" .message-box-recieved").each(function(index, item){
-						id=$(item).attr('data-id');
-						if ( (id>0) && ($.inArray(id,list)===-1) ){
-							$('#message-append-' + $from).find('#ossn-message-item-'+id).closest('div.row').remove();
-							$('#ossn-chat-messages-data-' + $from).find('#ossn-message-item-'+id).remove();
-						}
-					});
+        callback: function(list) {
+			if (list){
+				var list=$.parseJSON(list);
+			}
+			$(list).each(function(i,vals){
+				var key=Object.keys(vals)[0];
+				if (( key=="hidden") && (vals.hidden) ){
+					Ossn.hiddenList(vals.hidden,$from);
 				}
-            }
+				if (( key=="archive") && (vals.archive) ){
+					Ossn.archiveList(vals.archive,$from);
+				}
+				if (( key=="spam") && (vals.spam) ){
+					Ossn.spamList(vals.spam,$from);
+				}
+				if (( key=="block") && (vals.block) ){
+					Ossn.blockList(vals.block,$from);
+				}
+			});
         }
     });
 	return true;
 };
+
+Ossn.hiddenList = function(items,$from) {
+	if (items.length>0){
+		var id=0;
+		var status=0;
+		var hide=0;
+		$(items).each(function(index, item){
+			item=$.parseJSON(item);
+			id=item.id;
+			status=item.status;
+			hide=((status==1) || (status>2));
+			if (hide){
+				$('#message-append-' + $from).find('#ossn-message-item-'+id).closest('div.row').hide(300,
+					function(){
+						this.remove();
+					});
+				$('#ossn-chat-messages-data-' + $from).find('#ossn-message-item-'+id).hide(300,
+					function(){
+						this.remove();
+					});
+			}
+		});
+	}
+}
+Ossn.archiveList = function(list,$from) {
+	//implement codes here
+}
+Ossn.spamList = function(list,$from) {
+	//spam list are also hidden
+	Ossn.hiddenList(list,$from);
+	//implement other codes here
+}
+Ossn.blockList = function(list,$from) {
+	//block list are also hidden
+	Ossn.hiddenList(list,$from);
+	//implement other codes here
+}
+
