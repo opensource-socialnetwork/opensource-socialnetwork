@@ -18,6 +18,6 @@ $fr = array(
 	'no:messages' => "Vous n'avez pas de messages.",
 	'delete:message' => 'Supprimer un message',
 	'delete:all:messages' => 'Supprimer tous les messages',
-	'confirm:delete:messages' =>'Cela supprimera tous les messages de cette liste. Voulez-vous poursuivre?'	
+	'confirm:delete:messages'=>'Cela supprimera tous les messages de cette liste. Voulez-vous poursuivre?'	
 );
 ossn_register_languages('fr', $fr); 
