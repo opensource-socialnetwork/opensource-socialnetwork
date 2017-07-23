@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component xmlns="http://www.opensource-socialnetwork.org/v/3.0">
     <name>OssnPhotos</name>
+    <id>OssnPhotos</id>
     <author>Core Team</author>
     <description>Allow users to share photos.</description>
     <license>Open Source Social Network License (OSSN LICENSE) v3.0</license>
