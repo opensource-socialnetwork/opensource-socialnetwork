@@ -37,6 +37,6 @@ $group = $params['group'];
 	echo ossn_plugin_view('output/url', array(
 			'text' => ossn_print('delete'),
 			'href' => ossn_site_url("action/group/delete?guid=$group->guid"),
-			'class' => 'btn btn-danger delete-group',
+			'class' => 'btn btn-danger delete-group ossn-make-sure',
 			'action' => true,
 	));
