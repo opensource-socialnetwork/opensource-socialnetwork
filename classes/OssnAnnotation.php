@@ -389,7 +389,9 @@ class OssnAnnotation extends OssnEntities {
 				if(!$options['order_by']) {
 						$params['order_by'] = "a.id ASC";
 				}
-				
+				if(isset($options['group_by']) && !empty($options['group_by'])) {
+						$params['group_by'] = $options['group_by'];
+				}					
 				$this->get = $this->select($params, true);
 				
 				//prepare count data;
