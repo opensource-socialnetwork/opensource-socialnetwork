@@ -470,6 +470,9 @@ class OssnEntities extends OssnDatabase {
 				if(!$options['order_by']) {
 						$params['order_by'] = "e.guid ASC";
 				}
+				if(isset($options['group_by']) && !empty($options['group_by'])) {
+						$params['group_by'] = $options['group_by'];
+				}					
 				$fetched_entities = $this->select($params, true);
 				
 				//prepare count data;
