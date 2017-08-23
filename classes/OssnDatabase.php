@@ -175,7 +175,7 @@ class OssnDatabase extends OssnBase {
 						} elseif(!empty($params['joins']) && is_array($params['joins'])) {
 								$joins = implode(' ', $params['joins']);
 						}
-						$query = "SELECT {$parameters} FROM {$params['from']} {$joins} {$wheres} {$order_by} {$group_by} {$limit};";
+						$query = "SELECT {$parameters} FROM {$params['from']} {$joins} {$wheres} {$group_by} {$order_by} {$limit};";
 						
 						$this->statement($query);
 						if($this->execute()) {
