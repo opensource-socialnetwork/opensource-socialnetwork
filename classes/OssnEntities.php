@@ -473,6 +473,10 @@ class OssnEntities extends OssnDatabase {
 				if(isset($options['group_by']) && !empty($options['group_by'])) {
 						$params['group_by'] = $options['group_by'];
 				}					
+				//override params
+				if(isset($options['params']) && !empty($options['params'])){
+						$params['params'] = $options['params'];
+				}				
 				$fetched_entities = $this->select($params, true);
 				
 				//prepare count data;
