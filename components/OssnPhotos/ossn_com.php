@@ -52,6 +52,7 @@ function ossn_photos_initialize() {
 		ossn_register_callback('page', 'load:profile', 'ossn_profile_menu_photos');
 		ossn_register_callback('delete', 'profile:photo', 'ossn_photos_likes_comments_delete');
 		ossn_register_callback('delete', 'album:photo', 'ossn_photos_likes_comments_delete');
+		ossn_register_callback('user', 'delete', 'ossn_user_photos_delete');
 		
 		ossn_profile_subpage('photos');
 		
@@ -77,7 +78,28 @@ function ossn_photos_initialize() {
 		
 
 }
-
+/**
+ * Delete user photos
+ * OssnPhotos still exists when user delete #1142
+ *
+ * @param string $callback Name of callback
+ * @param string $type Callback type
+ * @param array $params Arrays or Objects
+ *
+ * @return void
+ * @access private
+ */
+function ossn_user_photos_delete($callback, $type, $params){
+		$guid = $params['entity']->guid;
+		$album = new OssnAlbums;
+		$album->page_limit = false;
+		$albums = $album->GetAlbums($guid);
+		if($albums){
+			foreach($albums as $item){
+				$album->deleteAlbum($item->guid);	
+			}
+		}
+}
 /**
  * Set template for photos like for OssnNotifications
  *
