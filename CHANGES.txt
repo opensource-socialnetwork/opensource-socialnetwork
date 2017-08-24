@@ -6,6 +6,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v5.0
 * Allow to change the params for query for searching object, annotation, entities #1140
 * Group by should be supported in OssnObject, Annotations, Entities #1139
 * (OssnDatabase): group_by should be before order_by #1138
+* OssnPhotos still exists when user delete #1142
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 4.4
 
