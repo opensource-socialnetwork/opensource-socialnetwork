@@ -72,6 +72,7 @@ class OssnComponents extends OssnDatabase {
 				}
 				$zip     = $_FILES['com_file'];
 				$newfile = "{$data_dir}/{$zip['name']}";
+				
 				if(move_uploaded_file($zip['tmp_name'], $newfile)) {
 						if($archive->open($newfile) === TRUE) {
 								$translit = OssnTranslit::urlize($zip['name']);
@@ -388,6 +389,10 @@ class OssnComponents extends OssnDatabase {
 						
 						//delete component directory
 						OssnFile::DeleteDir(ossn_route()->com . "{$com}/");
+						
+						//Trigger callback upon component deletion, enable, installation #1111
+						$vars['component'] = $component;
+						ossn_trigger_callback('component', 'deleted', $vars);
 						return true;
 				}
 				return false;
