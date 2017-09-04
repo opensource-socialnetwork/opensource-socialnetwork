@@ -12,6 +12,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v5.0
 * If user didn't exists not wall item #1110
 * Broken wall posts upon deleting user #1129
 * URL being passed as text in CHAT #1068
+* Missing mcrypt module causes installation crash #941
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 4.4
 
