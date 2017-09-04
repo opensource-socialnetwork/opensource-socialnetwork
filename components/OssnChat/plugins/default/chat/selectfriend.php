@@ -37,6 +37,7 @@ if ($total > 0) {
 
         <div class="ossn-chat-tab-titles" id="ftab-t<?php echo $user->guid; ?>"
              onclick="Ossn.ChatCloseTab(<?php echo $user->guid; ?>);">
+			<div class="<?php echo $status; ?>"></div>
             <div class="text ossn-chat-inline-table"><?php echo $user->fullname; ?></div>
             <div class="options ossn-chat-inline-table">
                 <div class="ossn-chat-inline-table ossn-chat-icon-expend" title="Popout Chat"
@@ -88,10 +89,11 @@ if ($total > 0) {
                <div class="ossn-chat-sending-icon"></div>
             </div>
             <div class="ossn-chat-inline-table ossn-chat-icon-smile-set">
-                <div class="ossn-chat-icon-smile"></div>
+                <div class="ossn-chat-icon-smile" onClick="Ossn.ChatShowSmilies(<?php echo $user->guid; ?>);"></div>
             </div>
              <?php echo ossn_plugin_view('input/security_token'); ?>
             <input type="hidden" name="to" value="<?php echo $user->guid; ?>"/>
+			<div class="dropdown emojii-container-main emojii-container-main-<?php echo $user->guid; ?>"> <div class="emojii-container" data-active="emoticons"> <ul class="nav nav-tabs"></ul> </div> </div>
         </form>
         <div class="ossn-chat-new-message" <?php echo $style; ?>><?php echo $total; ?></div>
         <div id="ossnchat-ustatus-<?php echo $user->guid; ?>" class="<?php echo $status; ?>">
@@ -102,5 +104,4 @@ if ($total > 0) {
     </div>
 
 </div>
-<!-- Item End -->
-    
+<!-- Item End --> 
