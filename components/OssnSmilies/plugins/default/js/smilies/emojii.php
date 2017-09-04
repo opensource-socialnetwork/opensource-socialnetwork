@@ -13,11 +13,12 @@ $(document).ready(function() {
 		$('<div class="ossn-comment-attach-photo"><i class="fa fa-smile-o"></i></div>').insertAfter('.ossn-comment-attach-photo');
 		$('.comment-container').append('<div class="dropdown emojii-container-main"> <div class="emojii-container" data-active="emoticons"> <ul class="nav nav-tabs"></ul> </div> </div>');
 	}
-	if ($('.chat-container').length) {
-		$('.chat-container').append('<div class="dropdown emojii-container-main"> <div class="emojii-container" data-active="emoticons"> <ul class="nav nav-tabs"></ul> </div> </div>');
-	}
 	if ($('.ossn-wall-container-data').length) {
 		$('.ossn-wall-container-data').append('<div class="dropdown emojii-container-main"> <div class="emojii-container" data-active="emoticons"> <ul class="nav nav-tabs"></ul> </div> </div>');
+	}
+	if ($('.message-form-form').length) {
+		$('<div class="ossn-comment-attach-photo"><i class="fa fa-smile-o"></i></div>').insertAfter('.message-box');
+		$('.message-form-form').append('<div class="dropdown emojii-container-main"> <div class="emojii-container" data-active="emoticons"> <ul class="nav nav-tabs"></ul> </div> </div>');
 	}
 	$.each(EmojiiArray, function(key, data) {
 		firstele = data[0];
@@ -49,6 +50,14 @@ $(document).ready(function() {
 		var tmp2 = tmp1 + " " + $type;
 		$($element).val(tmp2);
 	});
+	$('body').on('click', '.message-form-form .emojii-list li', function(e) {
+		e.preventDefault();
+		var $type = $(this).html();
+		var $element = $(this).parent().parent().parent().parent().find('.message-box');
+		var tmp1 = $($element).val();
+		var tmp2 = tmp1 + " " + $type;
+		$($element).val(tmp2);
+	});
 	$('body').on('click', '.comment-container .emojii-list li', function(e) {
 		e.preventDefault();
 		var $type = $(this).html();
@@ -66,16 +75,6 @@ $(document).ready(function() {
 	});
 	$('body').on('click', '.ossn-comment-attach-photo .fa-smile-o', function(e) {
 		$parent = $(this).parent().parent().parent();
-		$display = $parent.find('.emojii-container-main').css('display');
-		if ($display == 'none') {
-			$parent.find('.emojii-container-main').show();
-		}
-		if ($display == 'block') {
-			$parent.find('.emojii-container-main').hide();
-		}
-	});
-	$('body').on('click', '.ossn-chat-icon-smile', function(e) {
-		$parent = $(this).parent().parent();
 		$display = $parent.find('.emojii-container-main').css('display');
 		if ($display == 'none') {
 			$parent.find('.emojii-container-main').show();
