@@ -47,9 +47,12 @@ function ossn_embed_create_embed_object($url, $guid, $videowidth=0) {
 	if (!isset($url)) {
 		return false;
 	}
-
 	if (strpos($url, 'youtube.com') != false) {
-		return ossn_embed_youtube_handler($url, $guid, $videowidth);
+		//m.youtube.com not being parsed by embed component #1132
+		$url = str_replace('m.youtube.com', 'www.youtube.com', $url);
+ 		return ossn_embed_youtube_handler($url, $guid, $videowidth);
+	} else if(strpos($url, 'm.youtube.com') != false) {
+		return ossn_embed_youtube_handler($url, $guid, $videowidth);		
 	} else if (strpos($url, 'youtu.be') != false) {
 		return ossn_embed_youtube_shortener_parse_url($url, $guid, $videowidth);
 	} else if (strpos($url, 'video.google.com') != false) {
