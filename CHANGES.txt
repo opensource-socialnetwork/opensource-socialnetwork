@@ -7,6 +7,8 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v5.0
 * Group by should be supported in OssnObject, Annotations, Entities #1139
 * (OssnDatabase): group_by should be before order_by #1138
 * OssnPhotos still exists when user delete #1142
+* m.youtube.com not being parsed by embed component #1132
+* Clicking close in system messages should close it complete #1137
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 4.4
 
