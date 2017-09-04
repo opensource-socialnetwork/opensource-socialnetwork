@@ -65,10 +65,16 @@ if(OssnInstallation::isZipClass()){
     echo '<div class="ossn-installation-message ossn-installation-fail">'.ossn_installation_print('ossn:install:ziparchive:error').'</div>';
     $error[] = 'ziparchive:error';		
 }
+//Missing mcrypt module causes installation crash #941
+if(function_exists('mcrypt_encrypt')) {
+	    echo '<div class="ossn-installation-message ossn-installation-success">PHP mcrypt</div>';		
+} else {
+    echo '<div class="ossn-installation-message ossn-installation-fail">PHP mcrypt</div>';
+    $error[] = 'php:mcrypt:error';			
+}
 echo '<br />';
 if (!isset($error)) {
     echo '<a href="' . ossn_installation_paths()->url . '?page=settings" class="button-blue primary">'.ossn_installation_print('ossn:install:next').'</a>';
 }
 
 echo '</div><br /><br /></div>';
-
