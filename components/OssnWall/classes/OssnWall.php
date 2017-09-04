@@ -371,5 +371,28 @@ class OssnWall extends OssnObject {
 				}
 				return false;
 		}
+		/**
+		 * Get Posts of user
+		 *
+		 * @param integer $guid A user id
+		 *
+		 * @return array;
+		 */
+		public function getPosterPosts($guid = "") {
+				if(isset($guid) && !empty($guid)) {
+						$default = array(
+								'subtype' => 'wall',
+								'order_by' => 'o.guid DESC',
+								'entities_pairs' => array(
+												array(
+												  	'name' => 'poster_guid',
+													'value' => $guid,
+												  ),
+								)
+						);
+						return $this->searchObject($default);
+				}
+				return false;
+		}		
 		
 } //class
