@@ -10,6 +10,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v5.0
 * m.youtube.com not being parsed by embed component #1132
 * Clicking close in system messages should close it complete #1137
 * If user didn't exists not wall item #1110
+* Broken wall posts upon deleting user #1129
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 4.4
 
