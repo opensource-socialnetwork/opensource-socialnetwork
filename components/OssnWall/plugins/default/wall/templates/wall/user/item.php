@@ -10,6 +10,11 @@
  */
 
 $image = $params['image'];
+//if user didn't exists not wall item #1110
+if(!$params['user']){
+		error_log("User didn't exists for wallpost with guid : {$params['post']->guid}");
+		return;
+}
 ?>
 <!-- wall item -->
 <div class="ossn-wall-item" id="activity-item-<?php echo $params['post']->guid; ?>">
