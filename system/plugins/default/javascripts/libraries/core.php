@@ -278,6 +278,10 @@ Ossn.RegisterStartupFunction(function() {
 			}, 10000, function() {
 				$('.ossn-system-messages').find('.ossn-system-messages-inner').empty();
 			}).slideUp('slow');
+			//Clicking close in system messages should close it complete #1137
+			$('body').on('click', '.ossn-system-messages .close', function(){
+				$('.ossn-system-messages').slideUp('slow');													   
+			});
 		}
 	});
 });
