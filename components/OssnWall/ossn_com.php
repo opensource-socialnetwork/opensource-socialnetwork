@@ -414,6 +414,14 @@ function ossn_user_posts_delete($callback, $type, $params) {
 						$wall->deletePost($post);
 				}
 		}
+		//Broken wall posts upon deleting user #1129
+		$wall  = new OssnWall;
+		$userposts = $wall->getPosterPosts($params['entity']->guid);
+		if($userposts){
+			foreach($userposts as $item){
+				$wall->deletePost($item->guid)
+			}
+		}
 }
 /**
  * Encode unecaped unicode characters
