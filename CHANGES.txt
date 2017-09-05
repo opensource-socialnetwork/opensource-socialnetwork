@@ -13,6 +13,8 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v5.0
 * Broken wall posts upon deleting user #1129
 * URL being passed as text in CHAT #1068
 * Missing mcrypt module causes installation crash #941
+* Added 'order_by' parm to ossn_get_relationships() #1148
+* Added 'order_by' parm added to getFriends() #1147
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 4.4
 
