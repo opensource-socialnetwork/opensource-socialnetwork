@@ -361,7 +361,8 @@ class OssnUser extends OssnEntities {
 						'inverse' => true,
 						'page_limit' => $args['page_limit'],
 						'limit' => $args['limit'],
-						'count' => $args['count']
+						'count' => $args['count'],
+						'order_by' => $args['order_by']
 				));
 				if($args['count'] == true) {
 						return $relationships;
