@@ -13,7 +13,13 @@ if (empty($user)) {
     ossn_trigger_message(ossn_print('password:reset:email:required'), 'error');
     redirect(REF);
 }
-$user = ossn_user_by_email($user);
+//allow to reset password with username or email #1149
+$user = ossn_user_by_username($user);
+//check if username is email
+if(strpos($username, '@') !== false) {
+        $user = ossn_user_by_email($user);
+}
+
 if ($user && $user->SendResetLogin()) {
     ossn_trigger_message(ossn_print('passord:reset:email:success'), 'success');
     redirect();
