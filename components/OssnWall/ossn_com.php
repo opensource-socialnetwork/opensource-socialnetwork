@@ -270,6 +270,10 @@ function ossn_post_page($pages) {
 								$image = ossn_get_userdata("object/{$pages[1]}/ossnwall/images/{$pages[2]}");
 								//get image file else show error page
 								if(is_file($image)) {
+										//Remove anything before show image fix
+										ob_end_clean();
+										ob_clean();
+										ob_start();
 										//Image cache on wall post #529
 										$filesize = filesize($image);
 										header("Content-type: image/jpeg");
