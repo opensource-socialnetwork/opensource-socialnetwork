@@ -299,29 +299,36 @@ function ossn_site_settings($setting) {
     return false;
 }
 
+
 /**
  * Redirect a user to specific url
  *
  * @param string $new uri of page. If it is REF then user redirected to the url that user just came from.
  *
+ * @param bool $external
  * @return return
  */
-function redirect($new = '') {
-	global $Ossn;
+function redirect($new = '', $external = false) {
+  if ($external) {
+    header("Location: {$new}");
+    exit;
+  } else {
+    global $Ossn;
     $url = ossn_site_url($new);
     if ($new === REF) {
-        if (isset($_SERVER['HTTP_REFERER'])) {
-        	$url = $_SERVER['HTTP_REFERER'];
-        } else {
-		$url = ossn_site_url();
-		}
+      if (isset($_SERVER['HTTP_REFERER'])) {
+        $url = $_SERVER['HTTP_REFERER'];
+      } else {
+        $url = ossn_site_url();
+      }
     }
-	if(ossn_is_xhr()){
-		$Ossn->redirect = $url;	
-	} else {
-    	header("Location: {$url}");
-		exit;
-	}
+    if (ossn_is_xhr()) {
+      $Ossn->redirect = $url;
+    } else {
+      header("Location: {$url}");
+      exit;
+    }
+  }
 }
 
 /**
