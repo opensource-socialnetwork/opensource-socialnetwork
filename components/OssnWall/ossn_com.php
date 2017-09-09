@@ -419,7 +419,7 @@ function ossn_user_posts_delete($callback, $type, $params) {
 		$userposts = $wall->getPosterPosts($params['entity']->guid);
 		if($userposts){
 			foreach($userposts as $item){
-				$wall->deletePost($item->guid)
+				$wall->deletePost($item->guid);
 			}
 		}
 }
