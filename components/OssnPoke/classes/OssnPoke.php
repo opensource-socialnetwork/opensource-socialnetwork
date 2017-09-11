@@ -46,8 +46,8 @@ class OssnPoke extends OssnDatabase {
             $type,
             $poker,
             $owner,
-            NULL,
-            NULL,
+            0,
+            0,
             time()
         );
         if ($this->insert($params)) {
