@@ -151,6 +151,7 @@ class OssnChat extends OssnDatabase {
 						$vars['status'] = $status;
 						$all[]          = $vars;
 				}
+				array_multisort(array_map(function($element){ return $element['status']; }, $all), SORT_DESC, SORT_STRING, $all);
 				return $all;
 		}
 		
