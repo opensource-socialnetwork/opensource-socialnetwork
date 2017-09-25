@@ -16,6 +16,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v5.0
 * Added 'order_by' parm to ossn_get_relationships() #1148
 * Added 'order_by' parm added to getFriends() #1147
 * (OssnPoke): `OssnDatabaseException: Incorrect integer value #1151
+* display online friends on top friends list #1154
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 4.4
 
