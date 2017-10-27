@@ -9,6 +9,6 @@
  * @link      https://www.opensource-socialnetwork.org/
  */
 $de = array(
-	'ossn:chat:no:friend:online' => 'Niemand da',
+	'ossn:chat:no:friend:online' => 'Keine Freunde online',
 );
 ossn_register_languages('de', $de); 
