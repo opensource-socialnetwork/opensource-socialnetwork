@@ -29,6 +29,9 @@ function ossn_ads() {
 		ossn_extend_view('css/ossn.admin.default', 'css/ads.admin');
 		
 		ossn_add_hook('newsfeed', "sidebar:right", 'ossn_ads_sidebar', 300);
+		ossn_add_hook('profile', 'modules', 'profile_modules_ads', 300);
+		ossn_add_hook('group', 'widgets', 'group_widgets_ads', 300);
+		ossn_add_hook('theme', 'sidebar:right', 'theme_sidebar_right_ads', 300);
 }
 
 /**
@@ -134,5 +137,32 @@ function get_ad_entity($guid) {
 function ossn_ads_sidebar($hook, $type, $return){
 	$return[] =  ossn_plugin_view('ads/page/view');
 	return $return;
+}
+/**
+ * Add Ads module to user profile
+ *
+ * @return array
+ */
+function profile_modules_ads($hook, $type, $module, $params) {
+		$module[] = ossn_plugin_view("ads/page/view_small");
+		return $module;
+}
+/**
+ * Add Ads widget to group page
+ *
+ * @return array
+ */
+function group_widgets_ads($hook, $type, $module, $params) {
+		$module[] = ossn_plugin_view("ads/page/view");
+		return $module;
+}
+/**
+ * Add Ads widget to some pages of a theme (e.g. messages)
+ *
+ * @return array
+ */
+function theme_sidebar_right_ads($hook, $type, $module, $params) {
+		$module[] = ossn_plugin_view("ads/page/view");
+		return $module;
 }
 ossn_register_callback('ossn', 'init', 'ossn_ads');
