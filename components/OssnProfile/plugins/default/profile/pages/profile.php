@@ -128,7 +128,6 @@ if (ossn_isLoggedIn()) {
          </div>      
 		<div class="col-md-4">
 			<div class="ossn-profile-sidebar hidden-xs">
-				<?php if (com_is_active( 'OssnAds')) { echo ossn_plugin_view( 'ads/page/view_small'); } ?>
  				<div class="ossn-profile-modules">
 					<?php if (ossn_is_hook( 'profile', 'modules')) { 
 								$params[ 'user'] = $user; 
