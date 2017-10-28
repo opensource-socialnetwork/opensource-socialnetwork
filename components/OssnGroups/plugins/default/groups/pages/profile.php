@@ -204,9 +204,6 @@ $members = $params['group']->getMembers();
 								$modules = ossn_call_hook('group', 'widgets', $params); 
 								echo implode( '', $modules);
 			}			
-			 if (com_is_active('OssnAds')) {
-                    echo ossn_plugin_view('ads/page/view');
-                }
              ?>
              </div>
         </div>
