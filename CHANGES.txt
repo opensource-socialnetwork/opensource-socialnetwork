@@ -1,4 +1,4 @@
-OSSN - OPEN SOURCE SOCIAL NETWORK v5.0
+OSSN - OPEN SOURCE SOCIAL NETWORK v4.5
 
 * (refactoring) add missing id #C2430
 * Fix system error caused by non breaking spaces #1128
