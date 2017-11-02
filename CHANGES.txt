@@ -18,6 +18,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v5.0
 * (OssnPoke): `OssnDatabaseException: Incorrect integer value #1151
 * display online friends on top friends list #1154
 * Added 3 hooks for easier configurable placement of ads #1165 - #1168
+* Disable the input field for website url upon installation #1174
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 4.4
 
