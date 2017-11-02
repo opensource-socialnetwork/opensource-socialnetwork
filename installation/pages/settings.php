@@ -36,10 +36,7 @@ echo '<h2>' . ossn_installation_print('site:settings') . '</h2>';
     <label> <?php echo ossn_installation_print('ossn:mainsettings'); ?>: </label>
     <br/>
 
-    <div>
-        <label> <?php echo ossn_installation_print('ossn:weburl'); ?> </label>
-        <input type="text" name="url" value="<?php echo OssnInstallation::url(); ?>"/>
-    </div>
+  	<input type="hidden" name="url" value="<?php echo OssnInstallation::url(); ?>"/>
 
     <div>
         <label> <?php echo ossn_installation_print('ossn:datadir'); ?> </label>
@@ -49,6 +46,4 @@ echo '<h2>' . ossn_installation_print('site:settings') . '</h2>';
 	    <input type="submit" value="<?php echo ossn_installation_print('ossn:install:install'); ?>" class="button-blue primary">
 	</div>
 </form>
-
-
 </div>
