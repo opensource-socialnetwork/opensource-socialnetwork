@@ -19,6 +19,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v4.5
 * display online friends on top friends list #1154
 * Added 3 hooks for easier configurable placement of ads #1165 - #1168
 * Disable the input field for website url upon installation #1174
+* Display online friends on top of friends list #1178
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 4.4
 
