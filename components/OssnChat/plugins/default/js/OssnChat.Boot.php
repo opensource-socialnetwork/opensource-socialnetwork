@@ -132,13 +132,23 @@ if(OssnChat['allfriends']){
   $.each(OssnChat['allfriends'], function(key, data){
        var $item  = $(".ossn-chat-windows-long .inner").find('#friend-list-item-'+data['guid']);
        if($item.length){
-          $item.find('.ustatus').removeClass('ossn-chat-icon-online');
-          $item.find('.ustatus').addClass(data['status']);
+			if (data['status'] == 'ossn-chat-icon-online' && $item.find('.ustatus').hasClass('ossn-chat-icon-online') == false) {
+				/* state change offline -> online: move friend to top of list */
+				$item.remove();
+				var prependata = '<div data-toggle="tooltip" title="'+data['name']+'" class="friends-list-item" id="friend-list-item-'+data['guid']+'" onClick="Ossn.ChatnewTab('+data['guid']+');"><div class="friends-item-inner"><div class="icon"><img class="ustatus ossn-chat-icon-online" src="'+data['icon']+'" /></div></div></div>';    
+				$(".ossn-chat-windows-long .inner").prepend(prependata);
+			}
+			if (data['status'] == '0' && $item.find('.ustatus').hasClass('ossn-chat-icon-online') == true) {
+				/* state change online -> offline: move friend to bottom of list */
+				$item.remove();
+				var appendata = '<div data-toggle="tooltip" title="'+data['name']+'" class="friends-list-item" id="friend-list-item-'+data['guid']+'" onClick="Ossn.ChatnewTab('+data['guid']+');"><div class="friends-item-inner"><div class="icon"><img class="ustatus" src="'+data['icon']+'" /></div></div></div>';    
+				$(".ossn-chat-windows-long .inner").append(appendata);
+			}
         } 
         if($item.length == 0){
-         var appendata = '<div data-toggle="tooltip" title="'+data['name']+'" class="friends-list-item" id="friend-list-item-'+data['guid']+'" onClick="Ossn.ChatnewTab('+data['guid']+');"><div class="friends-item-inner"><div class="icon"><img class="ustatus" src="'+data['icon']+'" /></div><div class="'+data['status']+' ustatus"></div> </div></div>';    
-          $(".ossn-chat-windows-long .inner").find('.ossn-chat-none').hide();
-          $(".ossn-chat-windows-long .inner").append(appendata);
+			var appendata = '<div data-toggle="tooltip" title="'+data['name']+'" class="friends-list-item" id="friend-list-item-'+data['guid']+'" onClick="Ossn.ChatnewTab('+data['guid']+');"><div class="friends-item-inner"><div class="icon"><img class="ustatus '+data['status']+'" src="'+data['icon']+'" /></div></div></div>';    
+         	$(".ossn-chat-windows-long .inner").find('.ossn-chat-none').hide();
+          	$(".ossn-chat-windows-long .inner").append(appendata);
         }
   });
 	$('[data-toggle="tooltip"]').tooltip({
