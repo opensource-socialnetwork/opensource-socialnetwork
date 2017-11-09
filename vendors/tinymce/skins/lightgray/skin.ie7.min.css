@@ -871,7 +871,8 @@ body .mce-abs-layout-item, .mce-abs-end {
     margin: 0;
     -webkit-border-radius: 0;
     -moz-border-radius: 0;
-    border-radius: 0
+    border-radius: 0;
+    float: left
 }
 
 .mce-btn-group .mce-first {
