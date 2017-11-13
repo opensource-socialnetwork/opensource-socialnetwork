@@ -21,6 +21,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v4.5
 * Disable the input field for website url upon installation #1174
 * Display online friends on top of friends list #1178
 * Make toolbar button-row responsive #1180
+* Making more icons available for usage in sidebar, etc. #1183
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 4.4
 
