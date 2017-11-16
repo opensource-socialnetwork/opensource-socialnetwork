@@ -15,6 +15,9 @@ $ro = array(
     'ossn:message:between' => 'Mesaje %s',
     'messages' => 'Mesaje',
     'message:placeholder' => 'Scrie aici',
-    'no:messages' => 'Nu ai mesaje noi.'
+    'no:messages' => 'Nu ai mesaje noi.',
+	'delete:message' => 'Stergeti mesajul',
+	'delete:all:messages' => 'Stergeti toate mesajele',
+	'confirm:delete:messages' =>'Aceasta va sterge toate mesajele din aceasta lista. Doriti sa continuati?'	
 );
 ossn_register_languages('ro', $ro); 

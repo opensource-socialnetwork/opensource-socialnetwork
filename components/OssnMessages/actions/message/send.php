@@ -17,6 +17,7 @@ if ($send->send(ossn_loggedin_user()->guid, $to, $message)) {
 	
 	$params['user'] = $user;
     $params['message'] = $message;
+	$params['message_id']   = $send->lastMessage;	
     echo ossn_plugin_view('messages/templates/message-send', $params);
 
 } else {

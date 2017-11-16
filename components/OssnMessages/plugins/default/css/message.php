@@ -211,3 +211,38 @@
 .messages-with .widget-contents {
     padding: 10px 0px;
 }
+
+.widget-contents .message-with{
+	position: relative;
+}
+
+.ossn-widget.messages-with .widget-heading{
+	position:relative;
+}
+.ossn-widget.messages-with .widget-heading a.messages-action {
+	position:absolute;
+	z-index:1;
+	right:0;
+	bottom:0px;
+	width:20px;
+	display:none;
+	opacity:.15;
+}
+.ossn-widget.messages-with .widget-heading:hover a.messages-action{ display:block;}
+
+
+.message-box-recieved a.message-action,
+.message-box-sent a.message-action{
+	position:absolute;
+	left:3px;
+	bottom:0;
+	display:none;
+	opacity:.15;
+}
+.message-box-sent a.message-action{
+	left:auto;
+	right:0;
+}
+
+.message-box-recieved:hover a.message-action,
+.message-box-sent:hover a.message-action{ display:block;}

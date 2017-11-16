@@ -71,8 +71,8 @@ class OssnMessages extends OssnDatabase {
 						1
 				);
 				$params['wheres'] = array(
-						"message_from='{$from}' AND
-								   message_to='{$to}'"
+						"message_from='{$from}' AND 
+						 message_to='{$to}'"
 				);
 				if($this->update($params)) {
 						return true;
@@ -90,9 +90,9 @@ class OssnMessages extends OssnDatabase {
 		 */
 		public function getNew($from, $to, $viewed = 0) {
 				$params['from']   = 'ossn_messages';
-				$params['wheres'] = array(
-						"message_from='{$from}' AND
-								   message_to='{$to}' AND viewed='{$viewed}'"
+				$params['wheres'] = array( "(status='0') AND ". 
+						"(message_from='{$from}' AND message_to='{$to}' AND 
+						  viewed='{$viewed}')"
 				);
 				return $this->select($params, true);
 		}
@@ -106,8 +106,10 @@ class OssnMessages extends OssnDatabase {
 		 */
 		public function recentChat($to) {
 				$params['from']     = 'ossn_messages';
-				$params['wheres']   = array(
-						"message_to='{$to}' OR message_from='{$to}'"
+				$params['wheres']   = array("(status='0') AND ". 
+						"(message_to='{$to}' OR 
+						  message_from='{$to}')"
+
 				);
 				$params['order_by'] = "id DESC";
 				$chats              = $this->select($params, true);
@@ -144,13 +146,16 @@ class OssnMessages extends OssnDatabase {
 		 *
 		 * @return object
 		 */
-		public function get($from, $to) {
+		public function get($from, $to, $status="0") {
+				if ($status=='all'){
+					$status='';
+				} else {
+					$status="(status='{$status}') AND ";
+				}
 				$params['from']     = 'ossn_messages';
-				$params['wheres']   = array(
-						"message_from='{$from}' AND
-								  message_to='{$to}' OR
-								  message_from='{$to}' AND
-								  message_to='{$from}'"
+				$params['wheres']   = array( $status.
+						"(message_from='{$from}' AND message_to='{$to}') OR
+						 (message_from='{$to}' AND message_to='{$from}')"
 				);
 				$params['order_by'] = "id ASC";
 				return $this->select($params, true);
@@ -165,8 +170,9 @@ class OssnMessages extends OssnDatabase {
 		 */
 		public function recentSent($from) {
 				$params['from']     = 'ossn_messages';
-				$params['wheres']   = array(
+				$params['wheres']   = array("(status='0') AND ". 
 						"message_from='{$from}'"
+
 				);
 				$params['order_by'] = "id DESC";
 				$c                  = $this->select($params, true);
@@ -185,7 +191,7 @@ class OssnMessages extends OssnDatabase {
 		 */
 		public function countUNREAD($to) {
 				$params['from']   = 'ossn_messages';
-				$params['wheres'] = array(
+				$params['wheres'] = array("(status='0') AND ". 
 						"message_to='{$to}' AND viewed='0'"
 				);
 				$params['params'] = array(
@@ -206,7 +212,7 @@ class OssnMessages extends OssnDatabase {
 				$params['wheres'] = array(
 						"id='{$id}'"
 				);
-				$get              = $this->select($params);
+				$get = $this->select($params);
 				if($get) {
 						return $get;
 				}
@@ -230,5 +236,59 @@ class OssnMessages extends OssnDatabase {
 								"message_to='{$guid}' OR message_from='{$guid}'"
 						)
 				));
+		}
+		
+		/**
+		 * Make sure status field is not null
+		 *
+		 * @params $from: User 1 guid
+		 *         $to User 2 guid
+		 *
+		 * @return bool
+		 */
+		public function initStatus($guid) {
+				$params['table']  = 'ossn_messages';
+				$params['names']  = array(
+						'status'
+				);
+				$params['values'] = array(
+						'0'
+				);
+				$params['wheres'] = array("(status IS NULL OR status='') AND 
+						(message_from='{$guid}' OR message_to='{$guid}')"
+				);
+				if($this->update($params)) {
+						return true;
+				}
+				return false;
+		}
+		
+		/**
+		 * Set message status by id and status bit
+		 *
+		 * @params  integer $id ID of message
+		 * 			byte $status status of message
+		 *
+		 * @return object|false
+		 */
+		public function setStatus($id,$status=0) { 
+			//first check if message exists
+			if (!$this->getMessage($id)){ return false; }
+
+			$item=$this->getMessage($id);
+			$status=($item->status | $status);
+
+			$params['table']  = 'ossn_messages';
+			$params['names']  = array('status');
+			$params['values'] = array($status);
+			$params['wheres'] = array(
+				"id='{$id}'"
+			);
+			
+			if($this->update($params)) {
+				return true;
+			}
+
+			return false;
 		}
 } //class

@@ -64,6 +64,15 @@ function ossn_messages_page($pages) {
 		if(empty($page)) {
 				$page = 'messages';
 		}
+		
+		$statusBit=array();
+		$statusBit['hidden']=1; //0b00000001
+		$statusBit['archive']=2; //0b00000010
+		$statusBit['spam']=4; //0b00000100
+		$statusBit['block']=8; //0b00001000
+		//always make sure 'status' is not null
+		$OssnMessages->initStatus(ossn_loggedin_user()->guid); 
+		
 		switch($page) {
 				case 'message':
 						$username = $pages[1];
@@ -124,6 +133,7 @@ function ossn_messages_page($pages) {
 						if($messages) {
 								foreach($messages as $message) {
 										$user              = ossn_user_by_guid($message->message_from);
+										$params['message_id']=$message->id;
 										$message           = $message->message;
 										$params['user']    = $user;
 										$params['message'] = $message;
@@ -138,10 +148,36 @@ function ossn_messages_page($pages) {
 						$params['recent'] = $OssnMessages->recentChat(ossn_loggedin_user()->guid);
 						echo ossn_plugin_view('messages/templates/message-with', $params);
 						break;
-				default:
-						ossn_error_page();
+				
+				case 'deletemessage':
+						$id = $pages[1];
+						$delete = $OssnMessages->setStatus($id,$statusBit['hidden']);
+						echo $delete;
 						break;
 						
+				case 'getlist':
+					$guid = $pages[1];
+					//get all messages of from / to users
+					$items = $OssnMessages->get(ossn_loggedin_user()->guid, $guid, 'all');
+					if ($items){
+						$lists=array();
+						foreach($items as $i=>$item){
+							$list='{"id":'.$item->id.',"viewed":'.$item->viewed.',"status":'.$item->status.'}';
+							foreach($statusBit as $key=>$status){
+								if ($item->status & $status){
+									$lists[$key][]=$list;
+								}
+							}
+						}
+						echo json_encode($lists);
+					} else {
+						echo '[]';
+					}
+					break;
+					
+				default:
+					ossn_error_page();
+					break;
 		}
 }
 /**

@@ -270,3 +270,7 @@ ALTER TABLE `ossn_users`
 	ADD FULLTEXT KEY `email` (`email`),
 	ADD FULLTEXT KEY `first_name` (`first_name`),
 	ADD FULLTEXT KEY `last_name` (`last_name`);
+	
+-- Added by homelancer 07/10/2017 for delete (hide) message and other actions
+ALTER TABLE `ossn_messages` 
+	ADD `status` VARCHAR(1) NOT NULL DEFAULT '0' AFTER `viewed`;	
