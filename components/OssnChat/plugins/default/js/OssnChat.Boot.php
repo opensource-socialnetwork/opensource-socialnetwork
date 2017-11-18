@@ -182,7 +182,7 @@ $.each(OssnChat['newmessages'], function(key, data){
                                Ossn.ChatMarkViewed(data['fid']);
                            }
                            if($texa != data['total']){
-	                           Ossn.playSound();
+	                           Ossn.ChatplaySound();
                            }
                            Ossn.ChatScrollMove(data['fid']);
                            
@@ -208,7 +208,7 @@ $.each(OssnChat['all_new'], function(key, data){
          var $friend = data['message_from'];
          Ossn.ChatnewTab($friend);         
            if(!$('#ftab-i'+$user)){   						     
-              Ossn.playSound();
+              Ossn.ChatplaySound();
               Ossn.ChatScrollMove(data['message_from']);
            }
      }
