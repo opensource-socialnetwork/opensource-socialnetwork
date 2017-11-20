@@ -156,7 +156,7 @@ Ossn.ChatInsertSmile = function($code, $tab) {
 };
 
 Ossn.ChatShowSmilies = function($tab) {
-    $box = $('#ftab-i' + $tab).find('.ossn-chat-icon-smilies');
+    $box = $('#ftab-i' + $tab).find('.emojii-container-main');
     if ($box.is(":not(:visible)")) {
         $box.slideDown('slow');
     } else {

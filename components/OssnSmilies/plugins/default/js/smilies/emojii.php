@@ -16,6 +16,10 @@ $(document).ready(function() {
 	if ($('.ossn-wall-container-data').length) {
 		$('.ossn-wall-container-data').append('<div class="dropdown emojii-container-main"> <div class="emojii-container" data-active="emoticons"> <ul class="nav nav-tabs"></ul> </div> </div>');
 	}
+	if ($('.message-form-form').length) {
+		$('<div class="ossn-comment-attach-photo"><i class="fa fa-smile-o"></i></div>').insertAfter('.message-box');
+		$('.message-form-form').append('<div class="dropdown emojii-container-main"> <div class="emojii-container" data-active="emoticons"> <ul class="nav nav-tabs"></ul> </div> </div>');
+	}
 	$.each(EmojiiArray, function(key, data) {
 		firstele = data[0];
 		$('.emojii-container').find('.nav-tabs').append("<li class='ossn-emojii-tab' data-type='" + key + "'><a href='javascript:void(0);'>&#x" + firstele + ";</a></li>");
@@ -34,6 +38,22 @@ $(document).ready(function() {
 		e.preventDefault();
 		var $type = $(this).html();
 		var $element = '.ossn-wall-container-data textarea';
+		var tmp1 = $($element).val();
+		var tmp2 = tmp1 + " " + $type;
+		$($element).val(tmp2);
+	});
+	$('body').on('click', '.chat-container .emojii-list li', function(e) {
+		e.preventDefault();
+		var $type = $(this).html();
+		var $element = $(this).parent().parent().parent().parent().find('.chat-box');
+		var tmp1 = $($element).val();
+		var tmp2 = tmp1 + " " + $type;
+		$($element).val(tmp2);
+	});
+	$('body').on('click', '.message-form-form .emojii-list li', function(e) {
+		e.preventDefault();
+		var $type = $(this).html();
+		var $element = $(this).parent().parent().parent().parent().find('.message-box');
 		var tmp1 = $($element).val();
 		var tmp2 = tmp1 + " " + $type;
 		$($element).val(tmp2);

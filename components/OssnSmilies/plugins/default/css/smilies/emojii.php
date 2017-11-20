@@ -33,10 +33,10 @@
 	    display: block;
 }
 .emojii-container .nav a {
-    font-size: 20px;
+    font-size: 19px;
 }
 .emojii-container .nav>li>a {
-    padding: 10px 12px;
+    padding: 8px 10px;
 }
 .ossn-wall-container-control-menu-emojii-selector i {
 	font-weight:bold;
@@ -63,6 +63,15 @@
 .comment-container .emojii-container-main {
     float: right;
     margin-right: 285px;
+}
+/***************************************
+chat
+****************************************/
+.friend-tab .emojii-container {
+    bottom: 50%;
+    right: 50%;
+    top: inherit;
+    left: inherit;
 }
 /***************************************
 	Override the comment box width
