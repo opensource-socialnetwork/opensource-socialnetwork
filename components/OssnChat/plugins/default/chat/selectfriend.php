@@ -83,7 +83,7 @@ if ($total > 0) {
             </div>
             <div class="ossn-chat-inline-table ossn-chat-icon-smile-set">
                 <?php if(com_is_active('OssnSmilies')){ ?>
-                    <div class="ossn-chat-icon-smile" onClick="Ossn.ChatShowSmilies(<?php echo $user->guid; ?>);"></div>
+                    <div class="ossn-chat-icon-smile" onClick="Ossn.OpenEmojiBox('#ossn-chat-input-' + <?php echo $user->guid; ?>);"></div>
                 <?php } ?>
             </div>
              <?php echo ossn_plugin_view('input/security_token'); ?>
