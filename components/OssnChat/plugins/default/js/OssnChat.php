@@ -60,6 +60,9 @@ Ossn.ChatCloseTab = function($user) {
     $tabitem.css('width', '200px');
     $tabitem.find('input[type="text"]').hide();
     $tabitem.removeClass('ossn-chat-tab-active');
+	// close emoji container if still open because no emoji has been selected
+	$('#master-moji-anchor').val('');
+	$('#master-moji .emojii-container-main').hide();
 };
 Ossn.ChatTerminateTab = function($user) {
     return Ossn.CloseChat($user);
@@ -146,21 +149,6 @@ Ossn.ChatScrollMove = function(fid) {
     if (message) {
         message.scrollTop = message.scrollHeight;
         return message.scrollTop;
-    }
-};
-
-Ossn.ChatInsertSmile = function($code, $tab) {
-    var ChatTab = $('#ossn-chat-input-' + $tab);
-    var chatval = ChatTab.val();
-    ChatTab.val(chatval + ' ' + $code);
-};
-
-Ossn.ChatShowSmilies = function($tab) {
-    $box = $('#ftab-i' + $tab).find('.ossn-chat-icon-smilies');
-    if ($box.is(":not(:visible)")) {
-        $box.slideDown('slow');
-    } else {
-        $box.slideUp('slow');
     }
 };
 
