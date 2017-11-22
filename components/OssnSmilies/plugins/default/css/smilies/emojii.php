@@ -1,14 +1,14 @@
 .emojii-container {
 	background: #fff;
-    width: 285px;
+    width: 287px;
     border: 1px solid #ececec;
     
-	position: absolute;
-    top: 100%;
-    left: 0;
-    z-index: 1000;    
+	position: fixed;
+    bottom: 1px;
+    right: 1px;
+    z-index: 10000;    
     
-    box-shadow: 0 6px 12px rgba(0,0,0,.175);
+    box-shadow: 0 6px 12px rgba(0,0,0,.175); 
 }
 .emojii-container .nav {
 	
@@ -22,7 +22,7 @@
 }
 .emojii-container .emojii-list li {
     display: inline-block;
-    font-size: 20px;
+    font-size: 19px;
     padding: 3px;		
 }
 .emojii-container .emojii-list li:hover {
@@ -36,7 +36,7 @@
     font-size: 20px;
 }
 .emojii-container .nav>li>a {
-    padding: 10px 12px;
+    padding: 10px 5px;
 }
 .ossn-wall-container-control-menu-emojii-selector i {
 	font-weight:bold;
@@ -48,7 +48,7 @@
     font-style: initial;
     font-size: 20px;
 }
-.ossn-comment-attach-photo .fa-smile-o {
+.ossn-comment-attach-photo .fa-smile-o, .ossn-message-attach-photo .fa-smile-o {
     float: right;
     position: relative;
     margin-right: 5px;
@@ -64,6 +64,12 @@
     float: right;
     margin-right: 285px;
 }
+
+.message-emojii {
+	float: right;
+	position: relative;
+	top: 105px;
+}
 /***************************************
 	Override the comment box width
 ****************************************/
@@ -74,12 +80,39 @@
     z-index: initial;
 }
 /***************************************
-    Add system fonts for consistent
-    emoji appearance on all platforms
-****************************************/
+	Add system fonts for consistent
+	emoji appearance on all platforms
+.ossn-wall-container {
+	font-family: "PT sans", "Apple Color Emoji","Segoe UI Emoji","NotoColorEmoji","Segoe UI Symbol","Android Emoji","EmojiSymbols";
+}
+
+.ossn-wall-item {
+	font-family: "PT sans", "Apple Color Emoji","Segoe UI Emoji","NotoColorEmoji","Segoe UI Symbol","Android Emoji","EmojiSymbols";
+}
+.message-inner {
+	font-family: "PT sans", "Apple Color Emoji","Segoe UI Emoji","NotoColorEmoji","Segoe UI Symbol","Android Emoji","EmojiSymbols";
+}
+.ossn-form textarea {
+	font-family: "PT sans", "Apple Color Emoji","Segoe UI Emoji","NotoColorEmoji","Segoe UI Symbol","Android Emoji","EmojiSymbols";
+}
+
+.ossn-message-box {
+	font-family: "PT sans", "Apple Color Emoji","Segoe UI Emoji","NotoColorEmoji","Segoe UI Symbol","Android Emoji","EmojiSymbols";
+}
+.ossn-chat-containers {
+	font-family: "Lucida Grande",Verdana,Arial,"Bitstream Vera Sans",sans-serif, "Apple Color Emoji","Segoe UI Emoji","NotoColorEmoji","Segoe UI Symbol","Android Emoji","EmojiSymbols";
+}
+.friend-tab-item .friend-tab input[type='text'] {
+	font-family: 'lucida grande',tahoma,verdana,arial,sans-serif, "Apple Color Emoji","Segoe UI Emoji","NotoColorEmoji","Segoe UI Symbol","Android Emoji","EmojiSymbols";
+}
+
+****************************************/	
+
+.ossn-chat-base {
+	font-family: "Lucida Grande", Verdana, Arial, "Bitstream Vera Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "NotoColorEmoji", "Segoe UI Symbol", "Android Emoji", "EmojiSymbols";
+}	
+
 body {
     font-family: "PT Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "NotoColorEmoji", "Segoe UI Symbol", "Android Emoji", "EmojiSymbols";
 }
-.ossn-chat-base {
-	font-family: "Lucida Grande", Verdana, Arial, "Bitstream Vera Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "NotoColorEmoji", "Segoe UI Symbol", "Android Emoji", "EmojiSymbols";
-}
+	

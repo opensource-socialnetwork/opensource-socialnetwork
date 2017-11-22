@@ -1,7 +1,9 @@
 OssnSmilies
 ===========
 
-Convert ascii patterns to smileys.
+Will make a set of more than 1000 unicode emojis available for inserting at various places of your site.
+
+With 'backward compatibility' enabled the following list of ascii patterns will be converted to smileys.
 
 Supports:
 

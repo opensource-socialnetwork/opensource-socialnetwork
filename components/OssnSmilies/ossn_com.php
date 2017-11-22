@@ -21,21 +21,36 @@ require_once(__OSSN_SMILIES__ . 'libraries/smilify.lib.php');
  * @access private
  */
 function ossn_smiley_embed_init() {	
- 	ossn_add_hook('wall', 'templates:item', 'ossn_embed_smiley', 100);
-	ossn_add_hook('comment:view', 'template:params', 'ossn_smiley_in_comments', 100);	
+	if (ossn_isLoggedin()) {
+		$component = new OssnComponents;
+		$settings = $component->getComSettings('OssnSmilies');
+		if($settings && $settings->compatibility_mode == 'on'){
+			ossn_add_hook('wall', 'templates:item', 'ossn_embed_smiley', 100);
+			ossn_add_hook('comment:view', 'template:params', 'ossn_smiley_in_comments', 100);	
+			ossn_add_hook('chat', 'message:smilify', 'ossn_embed_smiley_in_chat', 100);	
+			ossn_add_hook('messages', 'message:smilify', 'ossn_embed_smiley_in_messages', 100);	
+		}
+
+		ossn_new_css('ossn.emoji', 'css/smilies/emojii');
+		ossn_load_css('ossn.emoji');
+		ossn_load_css('ossn.emoji', 'admin');
+		ossn_extend_view('js/opensource.socialnetwork', 'js/smilies/emojii');
 	
-	ossn_extend_view('css/ossn.default', 'css/smilies/emojii');
-	ossn_extend_view('js/opensource.socialnetwork', 'js/smilies/emojii');
+		$emojii_button = array(
+				'name' => 'emojii_selector',
+				'text' => '<i class="fa fa-smile-o"></i>',
+				'href' => 'javascript:void(0);',
+		);
 	
-	$emojii_button = array(
-			'name' => 'emojii_selector',
-			'text' => '<i class="fa fa-smile-o"></i>',
-			'href' => 'javascript:void(0);',
-	);
-	
-	ossn_register_menu_item('wall/container/controls/home', $emojii_button);		
-	ossn_register_menu_item('wall/container/controls/user', $emojii_button);	
-	ossn_register_menu_item('wall/container/controls/group', $emojii_button);		
+		ossn_register_menu_item('wall/container/controls/home', $emojii_button);		
+		ossn_register_menu_item('wall/container/controls/user', $emojii_button);	
+		ossn_register_menu_item('wall/container/controls/group', $emojii_button);
+		
+		if(ossn_isAdminLoggedin()) {
+			ossn_register_action('smilies/admin/settings', __OSSN_SMILIES__ . 'actions/smilies/admin/settings.php');
+			ossn_register_com_panel('OssnSmilies', 'settings');
+		}
+	}
 }
 /**
  * Replace certain ascii patterns with ossn emoticons.
@@ -74,6 +89,12 @@ function ossn_smiley_in_comments($hook, $type, $return, $params){
 		$return['comment']['comments:entity'] = smilify($return['comment']['comments:entity']);		
 	}
 	return $return;	
+}
+function ossn_embed_smiley_in_chat($hook, $type, $return, $params){
+	return smilify($return);
+}
+function ossn_embed_smiley_in_messages($hook, $type, $return, $params){
+	return smilify($return);
 }
 //initilize ossn smilies
 ossn_register_callback('ossn', 'init', 'ossn_smiley_embed_init');

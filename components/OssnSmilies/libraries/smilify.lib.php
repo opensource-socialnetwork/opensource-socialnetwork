@@ -1,6 +1,12 @@
 <?php
-/* File:        smilify.lib.php
- * Version:     20150212_0001
+/**
+ * Open Source Social Network
+ *
+ * @package Open Source Social Network
+ * @author    Open Social Website Core Team <info@softlab24.com>
+ * @copyright 2014-2017 SOFTLAB24 LIMITED
+ * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
+ * @link      https://www.opensource-socialnetwork.org/
  */
 function smilify($text) {
 
@@ -24,25 +30,24 @@ function smilify($text) {
             'c:'
     );
     
-    $icon = ossn_site_url() . 'components/OssnChat/images/emoticons/';
     $smiley_icon = array(
-            "<img class='ossn-smiley-item' src='{$icon}ossnchat-sad.gif' />",
-            "<img class='ossn-smiley-item' src='{$icon}ossnchat-smile.gif' />",
-            "<img class='ossn-smiley-item' src='{$icon}ossnchat-happy.gif' />",
-            "<img class='ossn-smiley-item' src='{$icon}ossnchat-wink.gif' />",
-            "<img class='ossn-smiley-item' src='{$icon}ossnchat-tongue.gif' />",
-            "<img class='ossn-smiley-item' src='{$icon}ossnchat-sunglasses.gif' />",
-            "<img class='ossn-smiley-item' src='{$icon}ossnchat-confused.gif' />",
-            "<img class='ossn-smiley-item' src='{$icon}ossnchat-gasp.gif' />",
-            "<img class='ossn-smiley-item' src='{$icon}ossnchat-kiss.gif' />",
-            "<img class='ossn-smiley-item' src='{$icon}ossnchat-angel.gif' />",
-            "<img class='ossn-smiley-item' src='{$icon}ossnchat-heart.gif' />",
-            "<img class='ossn-smiley-item' src='{$icon}ossnchat-devil.gif' />",
-            "<img class='ossn-smiley-item' src='{$icon}ossnchat-upset.gif' />",
-            "<img class='ossn-smiley-item' src='{$icon}ossnchat-pacman.gif' />",
-            "<img class='ossn-smiley-item' src='{$icon}ossnchat-grumpy.gif' />",
-            "<img class='ossn-smiley-item' src='{$icon}ossnchat-glasses.gif' />",
-            "<img class='ossn-smiley-item' src='{$icon}ossnchat-cry.gif' />"
+            "&#x1f641;",
+            "&#x1f642;",
+            "&#x1f600;",
+            "&#x1f609;",
+            "&#x1f61b;",
+            "&#x1f60e;",
+            "&#x1f62f;",
+            "&#x1f632;",
+            "&#x1f618;",
+            "&#x1f607;",
+            "&#x2764;",
+            "&#x1f608;",
+            "&#x1f620;",
+            "&#x1f47b;",
+            "&#x1f61f;",
+            "&#x1f60e;",
+            "&#x1f62a;"
     );
 
     return str_replace($ascii_pattern, $smiley_icon, $text);
