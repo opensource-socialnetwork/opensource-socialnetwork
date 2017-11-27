@@ -6,11 +6,11 @@
                     foreach ($params['recent'] as $message) {
                         if ($message->message_from == ossn_loggedin_user()->guid) {
                             $user = ossn_user_by_guid($message->message_to);
-                            $text = strl($message->message, 32);
+                            $text = ossn_call_hook('messages', 'message:smilify', null, strl($message->message, 32));
                             $replied = "<i class='fa fa-reply'></i><div class='reply-text'>{$text}</div>";
                         } else {
                             $user = ossn_user_by_guid($message->message_from);
-                            $text = strl($message->message, 32);
+                            $text = ossn_call_hook('messages', 'message:smilify', null, strl($message->message, 32));
                             $replied = "<div class='reply-text-from'>{$text}</div>";
                         }
                         if ($message->viewed == 0 && $message->message_from !== ossn_loggedin_user()->guid) {
