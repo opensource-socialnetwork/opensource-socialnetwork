@@ -338,12 +338,7 @@ function ossn_site_user_lang_code($hook, $type, $return, $params) {
  * @return boolean
  */
 function ossn_logout() {
-		unset($_SESSION['OSSN_USER']);
-		@session_destroy();
-		if(!isset($_SESSION['OSSN_USER'])) {
-				return true;
-		}
-		return false;
+	OssnUser::Logout();
 }
 /**
  * Ossn default user fields
