@@ -20,16 +20,7 @@ if (!$cache_flush && $enable->Enable($theme)) {
 		redirect(REF);
 	} else {
 		//redirect and flush cache
-		$page = "action/theme/enable?flush_cache=1";
-		$page = ossn_add_tokens_to_url($page);
-		redirect($page);
+		$action = ossn_add_tokens_to_url("action/admin/cache/flush");
+		redirect($action);
 	}
-}
-
-if($cache_flush){
-	if(ossn_disable_cache()){
-		if(ossn_create_cache()){
-				redirect('administrator/themes');
-		}
-  	}	
 }
