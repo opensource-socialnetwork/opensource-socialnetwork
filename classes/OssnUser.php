@@ -1100,4 +1100,30 @@ class OssnUser extends OssnEntities {
 				}
 				return false;
 		}
+		/**
+		 * login the user based on given input (by username, email, guid)
+		 *
+		 * @param  int|string $user A username, email, guid
+		 *
+		 * @return boolean
+		 */
+		public static function setLogin($user) {
+				if(!empty($user)) {
+						if(is_int($user)) {
+								$user = ossn_user_by_guid($user);
+								OssnSession::assign('OSSN_USER', $user);
+								return true;
+						}
+						if(filter_var($user, FILTER_VALIDATE_EMAIL)) {
+								$user = ossn_user_by_email($user);
+								OssnSession::assign('OSSN_USER', $user);
+								return true;
+						} elseif(is_string($user)) {
+								$user = ossn_user_by_username($username);
+								OssnSession::assign('OSSN_USER', $user);
+								return true;
+						}
+				}
+				return false;
+		}
 } //CLASS
