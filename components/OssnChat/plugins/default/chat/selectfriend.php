@@ -46,12 +46,6 @@ if ($total > 0) {
                 </div>
             </div>
         </div>
-        <div class="ossn-chat-icon-smilies">
-            <?php
-            $vars['tab'] = $user->guid;
-            echo ossn_plugin_view('chat/smilies/view', $vars);
-            ?>
-        </div>
         <!-- $arsalan.shah datatstart -->
         <div class="data" id="ossn-chat-messages-data-<?php echo $user->guid; ?>">
             <?php
@@ -88,7 +82,9 @@ if ($total > 0) {
                <div class="ossn-chat-sending-icon"></div>
             </div>
             <div class="ossn-chat-inline-table ossn-chat-icon-smile-set">
-                <div class="ossn-chat-icon-smile" onClick="Ossn.ChatShowSmilies(<?php echo $user->guid; ?>);"></div>
+                <?php if(com_is_active('OssnSmilies')){ ?>
+                    <div class="ossn-chat-icon-smile" onClick="Ossn.OpenEmojiBox('#ossn-chat-input-' + <?php echo $user->guid; ?>);"></div>
+                <?php } ?>
             </div>
              <?php echo ossn_plugin_view('input/security_token'); ?>
             <input type="hidden" name="to" value="<?php echo $user->guid; ?>"/>
