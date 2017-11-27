@@ -1119,7 +1119,7 @@ class OssnUser extends OssnEntities {
 								OssnSession::assign('OSSN_USER', $user);
 								return true;
 						} elseif(is_string($user)) {
-								$user = ossn_user_by_username($username);
+								$user = ossn_user_by_username($user);
 								OssnSession::assign('OSSN_USER', $user);
 								return true;
 						}
