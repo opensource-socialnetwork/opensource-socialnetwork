@@ -1107,19 +1107,19 @@ class OssnUser extends OssnEntities {
 		 *
 		 * @return boolean
 		 */
-		public static function setLogin($user) {
-				if(!empty($user)) {
+		public static function setLogin($userid) {
+				if(!empty($userid)) {
+						$user = false;
 						if(is_int($user)) {
-								$user = ossn_user_by_guid($user);
-								OssnSession::assign('OSSN_USER', $user);
-								return true;
+								$user = ossn_user_by_guid($userid);
 						}
-						if(filter_var($user, FILTER_VALIDATE_EMAIL)) {
-								$user = ossn_user_by_email($user);
-								OssnSession::assign('OSSN_USER', $user);
-								return true;
-						} elseif(is_string($user)) {
-								$user = ossn_user_by_username($user);
+						if(filter_var($userid, FILTER_VALIDATE_EMAIL)) {
+								$user = ossn_user_by_email($userid);
+						}
+						if(is_string($user)) {
+								$user = ossn_user_by_username($userid);
+						}
+						if($user) {
 								OssnSession::assign('OSSN_USER', $user);
 								return true;
 						}
