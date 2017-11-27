@@ -23,6 +23,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v4.5
 * Make toolbar button-row responsive #1180
 * Making more icons available for usage in sidebar, etc. #1183
 * No sound in case OssnMessages is disabled/not available #1186
+* Logging out reloads newsfeed/main wall #1153
 
 OSSN - OPEN SOURCE SOCIAL NETWORK 4.4
 
