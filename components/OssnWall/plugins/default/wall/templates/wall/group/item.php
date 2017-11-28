@@ -60,7 +60,7 @@ if(!$params['user']){
 			</div>
 		</div>
 		<div class="post-contents">
-			<p><?php echo stripslashes($params['text']); ?></p>
+			<p><?php echo $params['text']; ?></p>
              <?php
             if (!empty($image)) {
                 ?>
