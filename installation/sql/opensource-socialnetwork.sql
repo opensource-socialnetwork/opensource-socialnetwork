@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS `ossn_annotations` (
 
 CREATE TABLE IF NOT EXISTS `ossn_components` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `com_id` varchar(20) NOT NULL,
+  `com_id` varchar(50) NOT NULL,
   `active` int(1) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=18 ;
