@@ -298,7 +298,25 @@ function ossn_site_settings($setting) {
     }
     return false;
 }
-
+/**
+ * Redirect a user to specific external url
+ *
+ * @param string $new uri of page
+ *
+ * @return boolean|void
+ */
+function redirect_external($url = '') {
+	global $Ossn;
+	if(empty($url)){
+		return false;	
+	}
+	if(ossn_is_xhr()){
+		$Ossn->redirect = $url;	
+	} else {
+    	header("Location: {$url}");
+		exit;
+	}
+}
 /**
  * Redirect a user to specific url
  *
