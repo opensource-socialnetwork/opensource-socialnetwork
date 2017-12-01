@@ -2,38 +2,40 @@ Ossn.RegisterStartupFunction(function() {
 
 	// replace Ossn's default editor init by new one with own emoji button
 	// former 'emoticons' are removed from toolbar and plugins
-	tinymce.init({
-		toolbar: "bold italic underline alignleft aligncenter alignright bullist numlist image media link unlink emojis autoresize fullscreen insertdatetime print spellchecker preview",
-		selector: '.ossn-editor',
-		plugins: "code image media link fullscreen insertdatetime print spellchecker preview",
-		convert_urls: false,
-		relative_urls: false,
-		language: "<?php echo ossn_site_settings('language'); ?>",
-		setup: function (editor) {
-			editor.addButton('emojis', {
-				text: '😉',
-				icon: false,
-				tooltip: 'Smileys',
-				onclick: function () {
-					Ossn.OpenEmojiBox('.ossn-editor');
-				}
-			});
-		}
-	});
+	if (typeof tinymce !== 'undefined') {
+		tinymce.init({
+			toolbar: "bold italic underline alignleft aligncenter alignright bullist numlist image media link unlink emojis autoresize fullscreen insertdatetime print spellchecker preview",
+			selector: '.ossn-editor',
+			plugins: "code image media link fullscreen insertdatetime print spellchecker preview",
+			convert_urls: false,
+			relative_urls: false,
+			language: "<?php echo ossn_site_settings('language'); ?>",
+			setup: function(editor) {
+				editor.addButton('emojis', {
+					text: '😉',
+					icon: false,
+					tooltip: 'Smileys',
+					onclick: function() {
+						Ossn.OpenEmojiBox('.ossn-editor');
+					}
+				});
+			}
+		});
+	}
 
 	// add emoji button to summernote editor toolbar
-	Ossn.EmojiButton = function (context) {
+	Ossn.EmojiButton = function(context) {
 		var ui = $.summernote.ui;
 		var button = ui.button({
 			contents: '<i class="fa fa-smile-o"/>',
 			tooltip: 'Smileys',
-			click: function () {
+			click: function() {
 				// we need to save the cursor position here first
 				context.invoke('editor.saveRange');
 				Ossn.OpenEmojiBox('#forum-editor');
 			}
 		});
-		return button.render();   // return button as jquery object
+		return button.render(); // return button as jquery object
 	}
 
 	$(document).ready(function() {
@@ -51,7 +53,7 @@ Ossn.RegisterStartupFunction(function() {
 		// A. append multi-purpose emoji container to end of document
 		// **********************************************************
 		$('body').append('<div id="master-moji"><input type="hidden" id="master-moji-anchor" value=""><div class="dropdown emojii-container-main"> <div class="emojii-container" data-active="emoticons"> <ul class="nav nav-tabs"></ul> </div> </div> </div>');
-	
+
 		// add emojis to container above
 		$.each(EmojiiArray, function(key, data) {
 			firstele = data[0];
@@ -73,7 +75,7 @@ Ossn.RegisterStartupFunction(function() {
 
 		// B. add clickable smiley icon to several input fields
 		// ****************************************************
-	
+
 		// 1. comment
 		if ($('.ossn-comment-attach-photo').length) {
 			$('<div class="ossn-comment-attach-photo"><i class="fa fa-smile-o"></i></div>').insertAfter('.ossn-comment-attach-photo');
@@ -86,20 +88,20 @@ Ossn.RegisterStartupFunction(function() {
 		if ($('.message-form-form').length) {
 			$('<div class="ossn-message-attach-photo"><i class="fa fa-smile-o"></i></div>').prependTo('.message-form-form .controls');
 		}
-	
+
 		// 4. chatbox
 		// inserted by OssnChat component
-	
+
 		// 5. textareas managed by tinymce
 		// done by additional button in editor (see top of file)
-	
+
 		// 6. textareas managed by summernote
 		// done by additional button in editor (see forum.js as example)
-	
-	
+
+
 		// C. open emoji box from several page locations
 		// *********************************************
-	
+
 		// 1. comment
 		$('body').on('click', '.ossn-comment-attach-photo .fa-smile-o', function(e) {
 			$parent = $(this).parent().parent().parent();
@@ -110,7 +112,7 @@ Ossn.RegisterStartupFunction(function() {
 		$('body').on('click', '.ossn-wall-container-control-menu-emojii-selector', function(e) {
 			Ossn.OpenEmojiBox('.ossn-wall-container-data textarea');
 		});
-	
+
 		// 3. message
 		$('body').on('click', '.ossn-message-attach-photo .fa-smile-o', function(e) {
 			Ossn.OpenEmojiBox('.message-form-form textarea');
@@ -118,13 +120,13 @@ Ossn.RegisterStartupFunction(function() {
 
 		// 4. chatbox
 		// handled by 'OnClick' in Chat component
-	
+
 		// 5. tinymce
 		// by click on toolbar button
-	
+
 		// 6. summernote
 		// by click on toolbar button
-	
+
 		Ossn.OpenEmojiBox = function(anchor) {
 			if ($('#master-moji .emojii-container-main').is(":hidden")) {
 				$('#master-moji-anchor').val(anchor);
@@ -133,7 +135,7 @@ Ossn.RegisterStartupFunction(function() {
 				$('#master-moji-anchor').val('');
 				$('#master-moji .emojii-container-main').hide();
 			}
-		}	
+		}
 
 		// D. insert emoji depending on anchor
 		// ***********************************
@@ -142,7 +144,7 @@ Ossn.RegisterStartupFunction(function() {
 			var type = $(this).html();
 			var anchor = $('#master-moji-anchor').val();
 			var element = $(anchor);
-		
+
 			// 1. comments need different handling
 			if (anchor.substring(0, 12) == '#comment-box') {
 				var tmp1 = $(element).html();
@@ -169,10 +171,10 @@ Ossn.RegisterStartupFunction(function() {
 				$(anchor).summernote('editor.focus');
 				$(anchor).summernote('editor.insertText', ' ' + type);
 			}
-		
+
 			// TODO: to avoid too many anchor comparisons here, the classification of editor managed textareas should 
 			// be the same all over Ossn in the future
-		
+
 			$('#master-moji-anchor').val('');
 			$('#master-moji .emojii-container-main').hide();
 		});
