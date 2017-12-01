@@ -29,6 +29,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v4.5
 * Allow External On Redirect Function #1150
 * Emoticon window/modal stays open after "post" #1173
 * Expression of SELECT list is not in GROUP BY clause and contains nonaggregated column #1218
+* Auto Save default notification email (noreply@host) to avoid users to enter their personal emails.
 
 Thanks to Zet Man <https://www.opensource-socialnetwork.org/u/zetman> for his efforts and hard working for v4.5
 
