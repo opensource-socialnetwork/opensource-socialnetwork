@@ -941,7 +941,6 @@ class OssnUser extends OssnEntities {
 		 * @access public
 		 */
 		public function countByYearMonth() {
-				
 				$wheres = array();
 				$params = array();
 				
@@ -951,9 +950,10 @@ class OssnUser extends OssnEntities {
 				$params['params']   = array(
 						"DATE_FORMAT(FROM_UNIXTIME(time_created), '%Y') AS year",
 						"DATE_FORMAT(FROM_UNIXTIME(time_created) , '%m') AS month",
+						"DATE_FORMAT(FROM_UNIXTIME(time_created),'%Y%m') AS YM",
 						"COUNT(guid) AS total"
 				);
-				$params['group_by'] = "DATE_FORMAT(FROM_UNIXTIME(time_created) ,  '%Y%m')";
+				$params['group_by'] = "YEAR, MONTH, YM";
 				$params["wheres"]   = array(
 						$this->constructWheres($wheres)
 				);
