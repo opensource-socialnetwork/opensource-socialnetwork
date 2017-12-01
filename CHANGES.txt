@@ -25,6 +25,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v4.5
 * No sound in case OssnMessages is disabled/not available #1186
 * Logging out reloads newsfeed/main wall #1153
 * Fixes slashes within the wall post #1216
+* Handling of components with too long ids #1152
 
 Thanks to Zet Man <https://www.opensource-socialnetwork.org/u/zetman> for his efforts and hard working for v4.5
 
