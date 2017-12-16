@@ -152,7 +152,32 @@ function ossn_add_hook($hook, $type, $callback, $priority = 200) {
     return true;
 
 }
+/**
+ * Unset a hook to system, hooks are usefull for callback returns
+ *
+ * @param string $hook The name of the hook
+ * @param string $type The type of the hook
+ * @param callable $callback The name of a valid function or an array with object and method
+ *
+ * @return bool
+ * 
+ */
+function ossn_unset_hook($hook, $type, $callback) {
+    global $Ossn;
 
+    if(empty($hook) || empty($type) || empty($callback)) {
+        return false;
+    }
+
+    if(ossn_is_hook($hook, $type)) {
+			$search = array_search($callback, $Ossn->hooks[$hook][$type]);
+			if(isset($search)){
+				unset($Ossn->hooks[$hook][$type][$search]);	
+				return true;
+			}
+    }
+	return false;
+}
 /**
  * Check if the hook exists or not
  *
@@ -163,7 +188,6 @@ function ossn_add_hook($hook, $type, $callback, $priority = 200) {
  */
 function ossn_is_hook($hook, $type) {
     global $Ossn;
-    $hooks = array();
     if (isset($Ossn->hooks[$hook][$type])) {
         return true;
     }
@@ -282,7 +306,31 @@ function ossn_register_callback($event, $type, $callback, $priority = 200) {
     return true;
 
 }
+/**
+ * Unset a callback
+ *
+ * @param string $event Callback event name
+ * @param string $type The type of the callback
+ * @param string $callback
+ *
+ * @return bool
+ */
+function ossn_unset_callback($event, $type, $callback) {
+    global $Ossn;
 
+    if (empty($event) || empty($type) || empty($callback)) {
+        return false;
+    }
+
+    if (isset($Ossn->events[$event][$type])) {
+			$search = array_search($callback, $Ossn->events[$event][$type]);
+			if(isset($search)){
+				unset($Ossn->events[$event][$type][$search]);	
+				return true;
+			}
+    }
+    return false;
+}
 /**
  * Get a site settings
  *
