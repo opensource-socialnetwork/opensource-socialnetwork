@@ -12,56 +12,56 @@ Ossn.RegisterStartupFunction(function() {
 			event.preventDefault();
 			var formData = new FormData($(this)[0]);
 			var $url = Ossn.site_url + 'action/group/cover/upload';
-			$.ajax({
-				url: Ossn.AddTokenToUrl($url),
-				type: 'POST',
-				data: formData,
-				async: true,
-				beforeSend: function(xhr, obj) {
-					if ($('.ossn-group-cover').length == 0) {
-						$('.header-users').attr('style', 'opacity:0.7;');
+			var fileInput = $('#group-upload-cover').find("input[type='file']")[0],
+				file = fileInput.files && fileInput.files[0];
+
+			if (file) {
+				var img = new Image();
+
+				img.src = window.URL.createObjectURL(file);
+
+				img.onload = function() {
+					var width = img.naturalWidth,
+						height = img.naturalHeight;
+
+					window.URL.revokeObjectURL(img.src);
+					if (width < 850 || height < 300) {
+						Ossn.trigger_message(Ossn.Print('profile:cover:err1:detail'), 'error');
+						return false;
 					} else {
-						$('.ossn-group-cover').attr('style', 'opacity:0.7;');
-					}
-					var fileInput = $('#group-upload-cover').find("input[type='file']")[0],
-						file = fileInput.files && fileInput.files[0];
-
-					if (file) {
-						var img = new Image();
-
-						img.src = window.URL.createObjectURL(file);
-
-						img.onload = function() {
-							var width = img.naturalWidth,
-								height = img.naturalHeight;
-
-							window.URL.revokeObjectURL(img.src);
-							if (width < 850 || height < 300) {
-								xhr.abort();
-								Ossn.trigger_message(Ossn.Print('profile:cover:err1:detail'), 'error');
-								return false;
+						$.ajax({
+							url: Ossn.AddTokenToUrl($url),
+							type: 'POST',
+							data: formData,
+							async: true,
+							beforeSend: function(xhr, obj) {
+								if ($('.ossn-group-cover').length == 0) {
+									$('.header-users').attr('style', 'opacity:0.7;');
+								} else {
+									$('.ossn-group-cover').attr('style', 'opacity:0.7;');
+								}
+							},
+							cache: false,
+							contentType: false,
+							processData: false,
+							success: function(callback) {
+								if (callback['type'] == 1) {
+									if ($('.ossn-group-cover').length == 0) {
+										location.reload();
+									} else {
+										$('.ossn-group-cover').attr('style', '');
+										$('.ossn-group-cover').find('img').attr('style', '');
+										$('.ossn-group-cover').find('img').attr('src', callback['url']);
+									}
+								}
+								if (callback['type'] == 0) {
+									Ossn.MessageBox('syserror/unknown');
+								}
 							}
-						};
+						});
 					}
-				},
-				cache: false,
-				contentType: false,
-				processData: false,
-				success: function(callback) {
-					if (callback['type'] == 1) {
-						if ($('.ossn-group-cover').length == 0) {
-							location.reload();
-						} else {
-							$('.ossn-group-cover').attr('style', '');
-							$('.ossn-group-cover').find('img').attr('style', '');
-							$('.ossn-group-cover').find('img').attr('src', callback['url']);
-						}
-					}
-					if (callback['type'] == 0) {
-						Ossn.MessageBox('syserror/unknown');
-					}
-				}
-			});
+				};
+			}
 			return false;
 		});
 
