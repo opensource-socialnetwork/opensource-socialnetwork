@@ -20,6 +20,6 @@ $factory = new OssnFactory(array(
 		'callback' => 'installation',
 		'website' => ossn_site_url(),
 		'email' => ossn_site_settings('owner_email'),
-		'version' => '4.4'
+		'version' => '4.5'
 ));
 $factory->connect;
