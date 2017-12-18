@@ -140,9 +140,6 @@ Ossn.CloseChat = function($fid) {
         }
     });
 };
-Ossn.ChatplaySound = function() {
-    document.getElementById('ossn-chat-sound').play();
-};
 
 Ossn.ChatScrollMove = function(fid) {
     var message = document.getElementById('ossn-chat-messages-data-' + fid);
