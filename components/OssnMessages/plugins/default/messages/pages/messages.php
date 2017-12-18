@@ -31,5 +31,4 @@ if (isset($params['user']->guid)) { ?>
 						?>
             </div>            
 </div>    
-<?php } ?>
-<audio id="ossn-chat-sound" src="<?php echo ossn_site_url("components/OssnMessages/sound/pling.mp3"); ?>" preload="auto"></audio>		
+<?php } ?>	
