@@ -11,6 +11,7 @@
 
 echo '<div><div class="layout-installation">';
 echo '<h2>' . ossn_installation_print('site:settings') . '</h2>';
+$notification_email = parse_url(ossn_installation_paths()->url);
 ?>
 <form action="<?php echo ossn_installation_paths()->url; ?>?action=install" method="post">
 
@@ -30,7 +31,12 @@ echo '<h2>' . ossn_installation_print('site:settings') . '</h2>';
         <input type="text" name="sitename" placeholder="<?php echo ossn_installation_print('ossn:websitename'); ?>"/>
 
         <input type="text" name="owner_email" placeholder="<?php echo ossn_installation_print('owner_email'); ?>"/>
-        <input type="text" name="notification_email" placeholder="<?php echo ossn_installation_print('notification_email'); ?>"/>
+        <?php
+		if(!filter_var($notification_email['host'], FILTER_VALIDATE_IP)){ ?>
+        <input type="hidden" name="notification_email" placeholder="<?php echo ossn_installation_print('notification_email'); ?>" value="noreply@<?php echo $notification_email['host'];?>"/>
+        <?php } else {  ?>
+        <input type="text" name="notification_email" placeholder="<?php echo ossn_installation_print('notification_email'); ?>" value=""/>                
+        <?php } ?>
     </div>
 
     <label> <?php echo ossn_installation_print('ossn:mainsettings'); ?>: </label>
