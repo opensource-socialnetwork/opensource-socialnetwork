@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS `ossn_components` (
   `com_id` varchar(50) NOT NULL,
   `active` int(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=18 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=19 ;
 
 --
 -- Dumping data for table `ossn_components`
@@ -45,7 +45,8 @@ INSERT INTO `ossn_components` (`id`, `com_id`, `active`) VALUES
 (14, 'OssnPoke', 1),
 (15, 'OssnInvite', 1),
 (16, 'OssnEmbed', 1),
-(17, 'OssnSmilies', 1);
+(17, 'OssnSmilies', 1),
+(18, 'OssnSounds', 1);
 
 -- --------------------------------------------------------
 
