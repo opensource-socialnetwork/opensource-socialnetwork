@@ -31,7 +31,7 @@ function ossn_input_escape($str, $newlines = true) {
 				);
 				$replacements = array_merge($replacements, $newline);
 		}
-		if (!empty($str)) {
+		if (strlen($str) > 0) {
 				return strtr($str, $replacements);
 		}
 		return false;
@@ -93,7 +93,7 @@ function input($input, $noencode = '', $default = false, $strip = true) {
 				'noencode' => $noencode,
 				'default' => $default,
 				'strip' => $strip,
-				'data' => (!empty($_REQUEST[$input]) ? preg_replace('/\x20+/', ' ', $_REQUEST[$input]) : null),
+				'data' => ((strlen($_REQUEST[$input]) > 0) ? preg_replace('/\x20+/', ' ', $_REQUEST[$input]) : null),
 		));
 		if ($hook) {
 				$input    = $hook['input'];
@@ -115,7 +115,7 @@ function input($input, $noencode = '', $default = false, $strip = true) {
 				} elseif ($noencode == true) {
 						$str = $data;
 				}
-				if ($str) {
+				if (strlen($str) > 0) {
 						$str = ossn_emojis_to_entites($str);
 						if ($strip) {
 								return trim(ossn_input_escape($str));
@@ -136,7 +136,7 @@ function input($input, $noencode = '', $default = false, $strip = true) {
  * @return string
  */
 function ossn_restore_new_lines($string, $br = false) {
-		if (empty($string)) {
+		if (strlen($string) == 0) {
 				return false;
 		}
 		$replacements = array(
