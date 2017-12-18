@@ -130,7 +130,7 @@ function ossn_messages_page($pages) {
 										echo ossn_plugin_view('messages/templates/message-send', $params);
 								}
 								$OssnMessages->markViewed($guid, ossn_loggedin_user()->guid);
-								echo '<script>Ossn.playSound();</script>';
+								echo '<script>Ossn.MessageplaySound();</script>';
 						}
 						break;
 				
