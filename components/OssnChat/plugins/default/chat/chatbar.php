@@ -57,8 +57,6 @@
         ?>
     </div>
 </div>
-<audio id="ossn-chat-sound" src="<?php echo ossn_site_url("components/OssnChat/sound/pling.mp3"); ?>"
-       preload="auto"></audio>
 <div class="ossn-chat-windows-long">
     <div class="inner">
         <?php
