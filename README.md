@@ -73,7 +73,7 @@ Backend Features
 Prerequisite
 =============
 * PHP 5.6 OR >
-* MYSQL 5 OR >
+* MYSQL 5.6 OR >
 * APACHE
 * MOD_REWRITE
 * PHP Function cURL
