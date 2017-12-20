@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <opensource_socialnework xmlns="http:/opensource-socialnetwork.org/v/1.0">
     <version>4.6</version>
-    <stable_version>4.5</stable_version>
+    <stable_version>4.6</stable_version>
     <release>1513783390</release>
     <build>76543da00bd0b1ff41c0d534f1988045</build>
     <licence>Open Source Social Network License (OSSN LICENSE) v3.0</licence>
