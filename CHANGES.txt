@@ -2,5 +2,5 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v4.6
 
 * input() didn't accept 0 as input and treat it as empty #1230 
    Fixed only the inout,  the issue may still have effect in various places and will be fixed in v5.0
-* Emojii panel appears on bottom of page if you logout and cache is enabled.
+* Emojii panel appears on bottom of page if you logout and cache is enabled. #1232
 
