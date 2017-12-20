@@ -21,6 +21,10 @@ require_once(__OSSN_SMILIES__ . 'libraries/smilify.lib.php');
  * @access private
  */
 function ossn_smiley_embed_init() {	
+	ossn_extend_view('css/ossn.default', 'css/smilies/emojii');
+	ossn_extend_view('css/ossn.admin.default', 'css/smilies/emojii');
+ 	ossn_extend_view('js/opensource.socialnetwork', 'js/smilies/emojii');
+
 	if (ossn_isLoggedin()) {
 		$component = new OssnComponents;
 		$settings = $component->getComSettings('OssnSmilies');
@@ -31,11 +35,6 @@ function ossn_smiley_embed_init() {
 			ossn_add_hook('messages', 'message:smilify', 'ossn_embed_smiley_in_messages', 100);	
 		}
 
-		ossn_new_css('ossn.emoji', 'css/smilies/emojii');
-		ossn_load_css('ossn.emoji');
-		ossn_load_css('ossn.emoji', 'admin');
-		ossn_extend_view('js/opensource.socialnetwork', 'js/smilies/emojii');
-	
 		$emojii_button = array(
 				'name' => 'emojii_selector',
 				'text' => '<i class="fa fa-smile-o"></i>',
