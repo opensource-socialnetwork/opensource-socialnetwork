@@ -192,7 +192,7 @@ class OssnNotifications extends OssnDatabase {
 		 *
 		 * @return array
 		 */
-		public function get($guid_two = '', $unread = false, $limit = false) {
+		public function get($guid_two = '', $unread = false, $limit = false, $count = false) {
 				if($unread === true) {
 						$vars['viewed'] = false;
 				}
@@ -200,8 +200,12 @@ class OssnNotifications extends OssnDatabase {
 						$vars['limit'] = $limit;
 				}
 				$vars['owner_guid'] = $guid_two; 
-				$vars['order_by'] = "n.guid DESC"; 
-				$get = $this->searchNotifications($vars);
+				$vars['count'] 		= $count;
+				$vars['order_by'] 	= "n.guid DESC"; 
+				$get				 = $this->searchNotifications($vars);
+				if($count){
+						return $get;	
+				}
 				if($get){
 					foreach($get as $notif) {
 							if(ossn_is_hook('notification:view', $notif->type)) {
