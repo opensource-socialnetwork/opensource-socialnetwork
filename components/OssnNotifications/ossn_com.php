@@ -50,6 +50,12 @@ function ossn_notifications() {
 				ossn_extend_view('ossn/js/head', 'notifications/js/autocheck');
 				ossn_register_action('notification/mark/allread', __OSSN_NOTIF__ . 'actions/markread.php');
 		}
+		ossn_register_sections_menu('newsfeed', array(
+				'name' => 'notifications',
+				'text' => ossn_print('notifications'),
+				'url' => ossn_site_url('notifications/all'),
+				'parent' => 'links',
+		));		
 }
 /**
  * Create a notification for annotation like
