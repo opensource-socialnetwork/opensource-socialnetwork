@@ -432,7 +432,7 @@ function ossn_notification_like_profile_photo($hook, $type, $return, $params) {
 		   <div class='data'>" . ossn_print("ossn:notifications:{$notif->type}", array(
 				$user->fullname
 		)) . '</div>
-		   </div></li>';
+		   </div></li></a>';
 }
 function ossn_notification_like_profile_cover($hook, $type, $return, $params) {
 		$notif          = $params;
@@ -462,7 +462,7 @@ function ossn_notification_like_profile_cover($hook, $type, $return, $params) {
 		   <div class='data'>" . ossn_print("ossn:notifications:{$notif->type}", array(
 				$user->fullname
 		)) . '</div>
-		   </div></li>';
+		   </div></li></a>';
 }
 /**
  * Template for profile photo created wallpost
