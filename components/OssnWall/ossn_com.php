@@ -178,7 +178,7 @@ function ossn_likes_post_notifiation($hook, $type, $return, $params) {
 		   <div class='data'>" . ossn_print("ossn:notifications:{$notif->type}", array(
 				$user->fullname
 		)) . '</div>
-		   </div></li>';
+		   </div></li></a>';
 }
 /**
  * Setting up a template for notification view for commponent post
@@ -221,7 +221,7 @@ function ossn_group_comment_post($hook, $type, $return, $params) {
 		   <div class='data'>" . ossn_print("ossn:notifications:{$notif->type}", array(
 				$user->fullname
 		)) . '</div>
-		   </div></li>';
+		   </div></li></a>';
 }
 /**
  * OssnWall post page handlers 
