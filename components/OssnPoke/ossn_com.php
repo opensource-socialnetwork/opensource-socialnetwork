@@ -75,7 +75,7 @@ function ossn_poke_notification($name, $type, $return, $params) {
 	       <li {$viewed}> {$img} 
 		   <div class='notfi-meta'> {$type}
 		   <div class='data'>" . ossn_print("ossn:notifications:{$notif->type}", array($user->fullname)) . '</div>
-		   </div></li>';
+		   </div></li></a>';
 
 }
 
