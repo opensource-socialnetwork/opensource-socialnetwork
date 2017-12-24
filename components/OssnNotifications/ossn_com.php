@@ -76,7 +76,7 @@ function ossn_notification_page($pages) {
 		switch($page) {
 				case 'notification':
 						$get                            = new OssnNotifications;
-						$unread                         = ossn_call_hook('list', 'notification:unread', false);
+						$unread                         = ossn_call_hook('list', 'notification:unread', array(), true);
 						$notifications['notifications'] = $get->get(ossn_loggedin_user()->guid, $unread);
 						$notifications['seeall']        = ossn_site_url("notifications/all");
 						$clearall                       = ossn_plugin_view('output/url', array(
