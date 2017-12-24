@@ -10,6 +10,31 @@
  */
 class OssnNotifications extends OssnDatabase {
 		/**
+		 * Initialize the objects.
+		 *
+		 * @return void
+		 */
+		private function initAttributes() {
+				if(empty($this->order_by)) {
+						$this->order_by = '';
+				}
+				if(empty($this->limit)) {
+						$this->limit = false;
+				}
+				$this->data        = new stdClass;
+				
+				if(!isset($this->offset)) {
+						$this->offset = 1;
+				}
+				if(!isset($this->page_limit)) {
+						//default OssnPagination limit
+						$this->page_limit = ossn_call_hook('pagination', 'per_page', false, 10);
+				}
+				if(!isset($this->count)) {
+						$this->count = false;
+				}
+		}	
+		/**
 		 * Add notification to database
 		 *
 		 * @param integer $subject_id Id of item which user comment
@@ -141,12 +166,14 @@ class OssnNotifications extends OssnDatabase {
 		 *
 		 * @return array;
 		 */
-		public function get_comments_participates($subject_guid) {
-				$params['from']   = 'ossn_notifications';
-				$params['wheres'] = array(
-						"type='comments:post' AND subject_guid='{$subject_guid}'"
-				);
-				$users            = $this->select($params, true);
+		public function get_comments_participates($subject_guid = '') {
+				if(empty($subject_guid)){
+						return false;	
+				}
+				$users            = $this->searchNotifications(array(
+									'type' => 'comments:post',	
+									'subject_guid' => $subject_guid,
+				));
 				$participates     = array();
 				if($users) {
 						foreach($users as $user) {
@@ -154,6 +181,7 @@ class OssnNotifications extends OssnDatabase {
 						}
 						return array_unique($participates);
 				}
+				return false;
 		}
 		
 		/**
@@ -164,46 +192,40 @@ class OssnNotifications extends OssnDatabase {
 		 *
 		 * @return array
 		 */
-		public function get($guid_two, $unread = false, $limit = false) {
-				$getunread = '';
+		public function get($guid_two = '', $unread = false, $limit = false) {
 				if($unread === true) {
-						$getunread = "AND viewed IS NULL";
+						$vars['viewed'] = false;
 				}
 				if($limit) {
-						$listlimit = "LIMIT {$limit}";
+						$vars['limit'] = $limit;
 				}
-				$baseurl = ossn_site_url();
-				$this->statement("SELECT * FROM ossn_notifications WHERE(
-		                  owner_guid='{$guid_two}' {$getunread}) ORDER by guid DESC {$listlimit}");
-				$this->execute();
-				$get = $this->fetch(true);
-				if(!$get) {
-						return false;
+				$vars['owner_guid'] = $guid_two; 
+				$vars['order_by'] = "n.guid DESC"; 
+				$get = $this->searchNotifications($vars);
+				if($get){
+					foreach($get as $notif) {
+							if(ossn_is_hook('notification:view', $notif->type)) {
+									$messages[] = ossn_call_hook('notification:view', $notif->type, $notif);
+							}
+					}
+					return $messages;
 				}
-				foreach($get as $notif) {
-						if(ossn_is_hook('notification:view', $notif->type)) {
-								$messages[] = ossn_call_hook('notification:view', $notif->type, $notif);
-						}
-				}
-				return $messages;
+				return false;
 		}
 		
 		/**
 		 * Count user notification
 		 *
-		 * @params integer $guid Count user notifications
+		 * @param integer $guid count user notifications
 		 *
-		 * @return int;
+		 * @return integer;
 		 */
 		public function countNotification($guid) {
-				$notifications = $this->get($guid, true);
-				if($notifications) {
-						$count = count($notifications);
-						if($count > 0) {
-								return $count;
-						}
-				}
-				return false;
+				return $this->searchNotifications(array(
+							'owner_guid' => $guid,
+							'count' => true,
+							'viewed' => false,
+				));
 		}
 		
 		/**
@@ -213,11 +235,17 @@ class OssnNotifications extends OssnDatabase {
 		 *
 		 * @return object;
 		 */
-		public function getbyGUID($guid) {
-				$this->statement("SELECT * FROM ossn_notifications WHERE(guid='{$guid}');");
-				$this->execute();
-				$data = $this->fetch();
-				return $data;
+		public function getbyGUID($guid = '') {
+				if(empty($guid)){
+						return false;	
+				}
+				$notifcation = $this->searchNotifications(array(
+							'guid' => $guid,
+				));
+				if($notifcation){
+					return $notifcation[0];	
+				}
+				return false;
 		}
 		
 		/**
@@ -327,5 +355,129 @@ class OssnNotifications extends OssnDatabase {
 				}
 				return false;
 		}
-		
+		/**
+		 * Search Notifcations
+		 *
+		 * @param array $params A valid options in format,
+		 * @param string $params['type'] Notification type 		
+		 * @param string $params['owner_guid'] Notification owner guid	
+		 * @param string $params['poster_guid'] Notification poster guid	
+		 * @param string $params['subject_guid'] Notifcation subject guid 		
+		 * @param string $params['item_created'] Notifcation time_created 		
+		 * @param string $params['item_guid'] Notifcation item guid 		
+		 * @param string $params['count'] If you wanted to count then true 		
+		 * @param string $params['viewed'] If viewed true, if not then false 		
+		 * @param string $params['guid'] Notifcation guid 		
+		 * @param string $params['order_by'] Order list , default ASC guid 		
+		 * 
+		 * reutrn array|false;
+		 *
+		 */		
+		public function searchNotifications(array $params = array()){
+				self::initAttributes();
+				$default = array(
+						'guid' => false,
+						'type' => false,
+						'poster_guid' => false,
+						'owner_guid' => false,
+						'subject_guid' => false,
+						'time_created' => false,
+						'item_guid' => false,
+						'limit' => false,
+						'order_by' => false,
+						'offset' => 1,
+						'page_limit' => ossn_call_hook('pagination', 'per_page', false, 10), //call hook for page limit
+						'count' => false
+				);
+				$options = array_merge($default, $params);
+				$wheres  = array();
+				//prepare limit
+				$limit   = $options['limit'];
+				
+				//validate offset values
+				if(!empty($options['limit']) && !empty($options['limit']) && !empty($options['page_limit'])) {
+						$offset_vals = ceil($options['limit'] / $options['page_limit']);
+						$offset_vals = abs($offset_vals);
+						$offset_vals = range(1, $offset_vals);
+						if(!in_array($options['offset'], $offset_vals)) {
+								return false;
+						}
+				}
+				//get only required result, don't bust your server memory
+				$getlimit = $this->generateLimit($options['limit'], $options['page_limit'], $options['offset']);
+				if($getlimit) {
+						$options['limit'] = $getlimit;
+				}
+				//search notifications
+				if(!empty($options['guid'])) {
+						$wheres[] = "n.guid='{$options['guid']}'";
+				}
+				if(!empty($options['type'])) {
+						$wheres[] = "n.type='{$options['type']}'";
+				}
+				if(!empty($options['owner_guid'])) {
+						$wheres[] = "n.owner_guid ='{$options['owner_guid']}'";
+				}
+				if(!empty($options['poster_guid'])) {
+						$wheres[] = "n.poster_guid ='{$options['poster_guid']}'";
+				}				
+				if(!empty($options['subject_guid'])) {
+						$wheres[] = "n.subject_guid ='{$options['subject_guid']}'";
+				}		
+				if(!empty($options['item_guid'])) {
+						$wheres[] = "n.item_guid ='{$options['item_guid']}'";
+				}			
+				if(!empty($options['time_created'])) {
+						$wheres[] = "n.time_created ='{$options['time_created']}'";
+				}							
+				if(isset($options['viewed']) && $options['viewed'] == true) {
+						$wheres[] = "n.viewed =''";
+				}							
+				if(isset($options['viewed']) && $options['viewed'] == false) {
+						$wheres[] = "n.viewed IS NULL";
+				}							
+				if(empty($wheres)){
+						return false;	
+				}
+				$params             = array();
+				$params['from']     = 'ossn_notifications as n';
+				$params['params']   = array(
+						'n.*',
+				);
+				$params['wheres']   = array(
+						$this->constructWheres($wheres)
+				);
+				$params['order_by'] = $options['order_by'];
+				$params['limit']    = $options['limit'];
+				
+				if(!$options['order_by']) {
+						$params['order_by'] = "n.guid ASC";
+				}
+				if(isset($options['group_by']) && !empty($options['group_by'])) {
+						$params['group_by'] = $options['group_by'];
+				}					
+				//override params
+				if(isset($options['params']) && !empty($options['params'])){
+						$params['params'] = $options['params'];
+				}			
+				//prepare count data;
+				if($options['count'] === true) {
+						unset($params['params']);
+						unset($params['limit']);
+						$count           = array();
+						$count['params'] = array(
+								"count(*) as total"
+						);
+						$count           = array_merge($params, $count);
+						return $this->select($count)->total;
+				}
+				$fetched_data = $this->select($params, true);
+				if($fetched_data){
+					foreach($fetched_data as $item){
+							$results[] = arrayObject($item, get_class($this));	
+					}
+					return $results;
+				}
+				return false;
+		}
 }
