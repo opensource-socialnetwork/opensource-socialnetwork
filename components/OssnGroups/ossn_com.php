@@ -399,6 +399,6 @@ function ossn_group_joinrequest_notification($name, $type, $return, $params) {
 				$user->fullname,
 				$group->title
 		)) . '</div>
-		   </div></li>';
+		   </div></li></a>';
 }
 ossn_register_callback('ossn', 'init', 'ossn_groups');
