@@ -134,7 +134,7 @@ function ossn_notification_like_photo($hook, $type, $return, $params) {
 		   <div class='data'>" . ossn_print("ossn:notifications:{$notif->type}", array(
 				$user->fullname
 		)) . '</div>
-		   </div></li>';
+		   </div></li></a>';
 }
 
 /**
