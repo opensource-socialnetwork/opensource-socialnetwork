@@ -486,4 +486,18 @@ class OssnNotifications extends OssnDatabase {
 				}
 				return false;
 		}
+		/**
+		 * Make notifcation item to output view
+		 *
+		 * @return string|false
+		 */
+		public function toTemplate(){
+				if(empty($this->guid)){
+					return false;	
+				}
+				if(ossn_is_hook('notification:view', $this->type)) {
+					return ossn_call_hook('notification:view', $this->type, $this);
+				}
+				return false;
+		}
 }
