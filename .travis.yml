@@ -10,4 +10,4 @@ script: phpunit --help
 
 branches:
   only:
-    - master
+    - v5.x
