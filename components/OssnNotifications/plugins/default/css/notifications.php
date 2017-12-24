@@ -45,3 +45,6 @@
 .ossn-notification-friend-submit {
 	background:#FFF9D7;
 }
+.menu-section-item-notifications:before{
+    content: "\f0f3" !important
+}
