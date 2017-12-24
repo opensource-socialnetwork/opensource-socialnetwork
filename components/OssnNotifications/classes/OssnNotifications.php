@@ -173,6 +173,7 @@ class OssnNotifications extends OssnDatabase {
 				$users            = $this->searchNotifications(array(
 									'type' => 'comments:post',	
 									'subject_guid' => $subject_guid,
+									'page_limit' => false,
 				));
 				$participates     = array();
 				if($users) {
@@ -201,8 +202,9 @@ class OssnNotifications extends OssnDatabase {
 				}
 				$vars['owner_guid'] = $guid_two; 
 				$vars['count'] 		= $count;
+				$vars['page_limit'] = false;
 				$vars['order_by'] 	= "n.guid DESC"; 
-				$get				 = $this->searchNotifications($vars);
+				$get				= $this->searchNotifications($vars);
 				if($count){
 						return $get;	
 				}
