@@ -7,4 +7,4 @@ script: phpunit --help
 
 branches:
   only:
-    - v4.x
+    - v5.x
