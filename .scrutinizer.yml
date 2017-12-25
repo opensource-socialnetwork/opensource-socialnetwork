@@ -7,6 +7,12 @@ build:
 checks:
     php:
         code_rating: true
+        remove_extra_empty_lines: true
+        remove_php_closing_tag: true
+        remove_trailing_whitespace: true
+        fix_php_opening_tag: true
+        fix_line_ending: true
+        fix_doc_comments: false       
 tools:
     php_code_coverage:
         enabled: true
