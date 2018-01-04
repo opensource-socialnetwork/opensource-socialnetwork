@@ -17,7 +17,7 @@ if(!$params['user']){
 }
 ?>
 <!-- wall item -->
-<div class="ossn-wall-item" id="activity-item-<?php echo $params['post']->guid; ?>">
+<div class="ossn-wall-item ossn-wall-item-<?php echo $params['post']->guid; ?>" id="activity-item-<?php echo $params['post']->guid; ?>">
 	<div class="row">
 		<div class="meta">
 			<img class="user-img" src="<?php echo $params['user']->iconURL()->small; ?>" />
