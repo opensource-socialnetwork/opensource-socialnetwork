@@ -1,6 +1,7 @@
 OSSN - OPEN SOURCE SOCIAL NETWORK v5.0
 
 * Add missing <a> tag in notifications view #1233
+* Add class identifier for each wall item #1237
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v4.6
 
