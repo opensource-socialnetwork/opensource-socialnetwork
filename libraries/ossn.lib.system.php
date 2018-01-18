@@ -701,10 +701,17 @@ function ossn_string_encrypt($string = '', $key = '') {
 	if(empty($key)){
 		$key = ossn_site_settings('site_key');
 	}
-	$size = mcrypt_get_iv_size(MCRYPT_BLOWFISH, MCRYPT_MODE_ECB);
-	$mcgetvi = mcrypt_create_iv($size, MCRYPT_RAND);
+	
+	$key = ossn_string_encrypt_key_cycled($key);
+	//string also need to be at least 16 bytes
 	$string = utf8_encode($string);
-    return mcrypt_encrypt(MCRYPT_BLOWFISH, $key, $string, MCRYPT_MODE_ECB, $mcgetvi);
+	if (strlen($string) % 8) {
+    		$string = str_pad($string, strlen($string) + 8 - strlen($string) % 8, "\0");
+	}
+	
+	$size = openssl_cipher_iv_length('bf-ecb');
+	$mcgetvi =  openssl_random_pseudo_bytes($size);
+    return trim(openssl_encrypt($string, "bf-ecb", $key , OPENSSL_RAW_DATA | OPENSSL_NO_PADDING, $mcgetvi));
 }
 
 /**
@@ -721,10 +728,14 @@ function ossn_string_decrypt($string = '', $key = '') {
 	}
 	if(empty($key)){
 		$key = ossn_site_settings('site_key');
-	}	
-	$size = mcrypt_get_iv_size(MCRYPT_BLOWFISH, MCRYPT_MODE_ECB);
-	$mcgetvi = mcrypt_create_iv($size, MCRYPT_RAND);
-    return mcrypt_decrypt(MCRYPT_BLOWFISH, $key, $string, MCRYPT_MODE_ECB, $mcgetvi);
+	}
+	$key = ossn_string_encrypt_key_cycled($key);
+	
+	$size = openssl_cipher_iv_length('bf-ecb');
+	$mcgetvi =  openssl_random_pseudo_bytes($size);
+	//note myrcrypt and now this acting mycrpyt adds the spaces to make 16 bytes if its less then 16 bytes
+	//you can use trim() to get orignal data without spaces
+    return openssl_decrypt($string, "bf-ecb", $key , OPENSSL_RAW_DATA | OPENSSL_NO_PADDING, $mcgetvi);
 }
 
 /**
