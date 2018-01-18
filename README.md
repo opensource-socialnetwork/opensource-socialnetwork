@@ -75,16 +75,8 @@ Backend Features
 
 Prerequisite
 =============
-* PHP 5.6 OR >
-* MYSQL 5.6 OR >
-* APACHE
-* MOD_REWRITE
-* PHP Function cURL
-* PHP GD Library
-* PHP ZIP Extension
-* PHP settings allow_url_fopen enabled
-* JSON Support
-* XML
+
+https://www.opensource-socialnetwork.org/wiki/view/706/how-to-install-open-source-social-network
 
 Directory Permissions
 ============
