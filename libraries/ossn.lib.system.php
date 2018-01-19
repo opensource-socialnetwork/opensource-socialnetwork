@@ -829,8 +829,8 @@ function _ossn_php_error_handler($errno, $errmsg, $filename, $linenum, $vars) {
 			break;
 		
 		default:
-			global $CONFIG;
-			if (isset($CONFIG->debug) && $CONFIG->debug === 'NOTICE') {
+			global $Ossn;
+			if (isset($Ossn->DebugNotice) && $Ossn->DebugNotice == true) {
 				error_log("PHP NOTICE: $error");
 			}
 	}
