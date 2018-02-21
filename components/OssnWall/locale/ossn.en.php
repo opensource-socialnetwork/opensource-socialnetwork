@@ -28,5 +28,6 @@ $en = array(
 		'ossn:wall:friends:posts' => 'Friends posts only',
 		'ossn:wall:post:saved' => 'Post successfully saved',
 		'ossn:wall:post:save:error' => 'Can not save post'
+		'embed' => 'Embed',
 );
 ossn_register_languages('en', $en);
