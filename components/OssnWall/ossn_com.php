@@ -112,7 +112,7 @@ function ossn_friend_picker() {
 		if(!$friends) {
 				return false;
 		}
-		$search_for = $_GET['q'];
+		$search_for = input('q');
 		// allow case insensitivity with first typed in char
 		$fc = mb_strtoupper(mb_substr($search_for, 0, 1,'UTF-8'), 'UTF-8');
 		$search_For = $fc . mb_substr($search_for, 1, null, 'UTF-8');
