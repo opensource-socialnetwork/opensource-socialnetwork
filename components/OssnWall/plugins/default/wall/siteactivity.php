@@ -49,9 +49,12 @@ if($loggedinuser->canModerate()) {
 }
 
 if($posts) {
+	$limit = time() - 172800;
 		foreach($posts as $post) {
 				$item = ossn_wallpost_to_item($post);
-				echo ossn_wall_view_template($item);
+				if($item['post']->time_created >= $limit) {				
+					echo ossn_wall_view_template($item);
+				}	
 		}
 		
 }
