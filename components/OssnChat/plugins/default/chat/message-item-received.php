@@ -17,7 +17,7 @@
         <div class="ossn-chat-triangle ossn-chat-triangle-white"></div>
         <div class="text">
             <div class="inner" title="<?php echo OssnChat::messageTime($params['time']); ?>">
-                <?php echo ossn_call_hook('chat', 'message:smilify', null, $params['message']); ?>
+                <?php echo ossn_call_hook('chat', 'message:smilify', null, linkify_chat($params['message'])); ?>
             </div>
         </div>
     </div>
