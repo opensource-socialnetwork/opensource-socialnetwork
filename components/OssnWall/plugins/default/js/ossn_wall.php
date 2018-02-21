@@ -53,6 +53,12 @@ Ossn.RegisterStartupFunction(function() {
             var $dataguid = $(this).attr('data-guid');
             Ossn.MessageBox('post/edit/' + $dataguid);
         });
+	 
+        $('body').delegate('.ossn-wall-post-embed', 'click', function() {
+            var $dataguid = $(this).attr('data-guid');
+            Ossn.MessageBox('post/embed/' + $dataguid);
+        });		 
+	 
     });
 
 });
