@@ -44,6 +44,7 @@ function ossn_wall() {
 		//pages
 		ossn_register_page('post', 'ossn_post_page');
 		ossn_register_page('friendpicker', 'ossn_friend_picker');
+		ossn_register_page('embed', 'ossn_post_embeder');
 		
 		//hooks
 		ossn_add_hook('notification:view', 'like:post', 'ossn_likes_post_notifiation');
@@ -323,6 +324,26 @@ function ossn_post_page($pages) {
 								echo ossn_plugin_view('output/ossnbox', $params);
 						}
 						break;
+				case 'embed':
+						$post = ossn_get_object($pages[1]);
+						if(!ossn_is_xhr()) {
+								ossn_error_page();
+						}
+						if(!$post) {
+								header("HTTP/1.0 404 Not Found");
+						}
+						$user = ossn_loggedin_user();
+						if($post->poster_guid == $user->guid || $user->canModerate()) {
+								$params = array(
+										'title' => ossn_print('embed'),
+										'contents' => ossn_view_form('post/embed', array('component' => 'OssnWall',
+							'params' => array('post' => $post)
+									), false),
+							'control' => false,
+								);
+								echo ossn_plugin_view('output/ossnbox', $params);
+						}
+						break;			
 				default:
 						ossn_error_page();
 						break;
@@ -374,6 +395,19 @@ function ossn_wall_post_menu($hook, $type, $return, $params) {
 		} else {
 				ossn_unregister_menu('edit', 'wallpost');
 		}
+		if(($params['post']->poster_guid == ossn_loggedin_user()->guid ) && !isset($params['post']->item_guid)) {
+				ossn_unregister_menu('Embed', 'wallpost');
+				ossn_register_menu_item("wallpost", array(
+						'name' => 'Embed',
+						'class' => 'ossn-wall-post-embed',
+						'text' => ossn_print('Embed'),
+						'href' => 'javascript:void(0);',
+						'priority' => 1,
+						'data-guid' => $params['post']->guid
+				));
+		} else {
+				ossn_unregister_menu('Embed', 'wallpost');
+		}	
 		return ossn_view_menu('wallpost', 'wall/menus/post-controls');
 }
 /**
@@ -554,6 +588,14 @@ function ossn_wallpost_to_item($post) {
 				);
 		}
 		return false;
+}
+function ossn_post_embeder($guid) {
+             $params['title'] = ossn_print('embed');
+             $title = $params['title'];
+             $params['guid'] = $guid;
+             $contents = array('content' => ossn_plugin_view('wall/embed', $params));
+            $content = ossn_set_page_layout('contents', $contents);
+             echo ossn_view_page($title, $content);
 }
 //initilize ossn wall
 ossn_register_callback('ossn', 'init', 'ossn_wall');
