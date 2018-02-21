@@ -395,6 +395,19 @@ function ossn_wall_post_menu($hook, $type, $return, $params) {
 		} else {
 				ossn_unregister_menu('edit', 'wallpost');
 		}
+		if(($params['post']->poster_guid == ossn_loggedin_user()->guid ) && !isset($params['post']->item_guid)) {
+				ossn_unregister_menu('Embed', 'wallpost');
+				ossn_register_menu_item("wallpost", array(
+						'name' => 'Embed',
+						'class' => 'ossn-wall-post-embed',
+						'text' => ossn_print('Embed'),
+						'href' => 'javascript:void(0);',
+						'priority' => 1,
+						'data-guid' => $params['post']->guid
+				));
+		} else {
+				ossn_unregister_menu('Embed', 'wallpost');
+		}	
 		return ossn_view_menu('wallpost', 'wall/menus/post-controls');
 }
 /**
