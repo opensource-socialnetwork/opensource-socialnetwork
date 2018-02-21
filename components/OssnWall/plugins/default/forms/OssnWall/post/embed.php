@@ -11,5 +11,5 @@
  
  ?>
  <div>
-    <input type="text"   value="<iframe src='<?= ossn_site_url(); ?>/embede/<?= $params['post']->guid;?>' width='500' height='445' style='border:none;overflow:hidden' scrolling='yes' frameborder='0' allowTransparency='true'></iframe>"  style='width:100%;'/>
+    <input type="text"   value="<iframe src='<?= ossn_site_url(); ?>/embed/<?= $params['post']->guid;?>' width='500' height='445' style='border:none;overflow:hidden' scrolling='yes' frameborder='0' allowTransparency='true'></iframe>"  style='width:100%;'/>
  </div>
