@@ -114,6 +114,9 @@ class OssnGroup extends OssnObject {
 		 * @return bool;
 		 */
 		public function updateGroup($name, $description, $guid) {
+				if(empty($name) || empty($guid)){
+					return false;	
+				}
 				$data   = array(
 						'title',
 						'description'
