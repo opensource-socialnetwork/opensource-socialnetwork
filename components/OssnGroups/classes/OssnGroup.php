@@ -118,6 +118,9 @@ class OssnGroup extends OssnObject {
 						'title',
 						'description'
 				);
+				if(empty(trim($name))){
+					return false;
+				}			
 				$values = array(
 						$name,
 						$description
