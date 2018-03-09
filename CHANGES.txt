@@ -4,6 +4,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v5.0
 * Add class identifier for each wall item #1237
 * OssnNotifications improvement #1231
 * php mcrypt is deprecated in php 7.1 and removed in 7.2 #1240
+* Restrict empty name in group on update #1276 (Malik https://github.com/Lablnet)
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v4.6
 
