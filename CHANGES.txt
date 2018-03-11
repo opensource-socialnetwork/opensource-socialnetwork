@@ -5,6 +5,9 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v5.0
 * OssnNotifications improvement #1231
 * php mcrypt is deprecated in php 7.1 and removed in 7.2 #1240
 * Restrict empty name in group on update #1276 (Malik https://github.com/Lablnet)
+* Allow a bit flexibility in overriding the pagination
+  - Can set the name for offset arg : example default is ?offset=x you can set ?custom_offset=x
+  - Set URL before ?offset=x
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v4.6
 
