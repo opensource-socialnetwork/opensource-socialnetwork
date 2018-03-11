@@ -231,4 +231,160 @@ class OssnMessages extends OssnDatabase {
 						)
 				));
 		}
+		/**
+		 * Search messages by some options
+		 *
+		 * @param array   $params A valid options in format:
+		 * @param string  $params['id']  message id
+		 * @param string  $params['message_from']  A user GUID who sent messages
+		 * @param string  $params['message_to']   A user GUID who receieve messages
+		 * @param integer $params['viewed']  True if message is viewed , false if message isn't viewed or 1/0
+		 * @param integer $params['limit'] Result limit default, Default is 20 values
+		 * @param string  $params['order_by']  To show result in sepcific order. Default is DESC.
+		 * @param string  $params['count']  Count the message
+		 * 
+		 * reutrn array|false;
+		 */
+		public function searchMessages(array $params = array()) {
+				if(empty($params)) {
+						return false;
+				}
+				//prepare default attributes
+				$default      = array(
+						'id' => false,
+						'message_from' => false,
+						'message_to' => false,
+						'viewed' => false,
+						'limit' => false,
+						'order_by' => false,
+						'entities_pairs' => false,
+						'offset' => 1,
+						'page_limit' => ossn_call_hook('pagination', 'messages:list:limit', false, 10), //call hook for page limit
+						'count' => false
+				);
+				$options      = array_merge($default, $params);
+				$wheres       = array();
+				$params       = array();
+				$wheres_paris = array();
+				//validate offset values
+				if($options['limit'] !== false && $options['limit'] !== 0 && $options['page_limit'] !== false && $options['page_limit'] !== 0) {
+						$offset_vals = ceil($options['limit'] / $options['page_limit']);
+						$offset_vals = abs($offset_vals);
+						$offset_vals = range(1, $offset_vals);
+						if(!in_array($options['offset'], $offset_vals)) {
+								return false;
+						}
+				}
+				//get only required result, don't bust your server memory
+				$getlimit = $this->generateLimit($options['limit'], $options['page_limit'], $options['offset']);
+				if($getlimit) {
+						$options['limit'] = $getlimit;
+				}
+				if(!empty($options['id'])) {
+						$wheres[] = "m.id='{$options['id']}'";
+				}
+				if(!empty($options['message_from'])) {
+						$wheres[] = "m.message_from ='{$options['message_from']}'";
+				}
+				if(!empty($options['message_to'])) {
+						$wheres[] = "m.message_to ='{$options['message_to']}'";
+				}
+				if(isset($options['entities_pairs']) && is_array($options['entities_pairs'])) {
+						foreach($options['entities_pairs'] as $key => $pair) {
+								$operand = (empty($pair['operand'])) ? '=' : $pair['operand'];
+								if(!empty($pair['name']) && isset($pair['value']) && !empty($operand)) {
+										if(!empty($pair['value'])) {
+												$pair['value'] = addslashes($pair['value']);
+										}
+										$wheres_paris[] = "e{$key}.type='message'";
+										$wheres_paris[] = "e{$key}.subtype='{$pair['name']}'";
+										if(isset($pair['wheres']) && !empty($pair['wheres'])) {
+												$pair['wheres'] = str_replace('[this].', "emd{$key}.", $pair['wheres']);
+												$wheres_paris[] = $pair['wheres'];
+										} else {
+												$wheres_paris[] = "emd{$key}.value {$operand} '{$pair['value']}'";
+												
+										}
+										$params['joins'][] = "INNER JOIN ossn_entities as e{$key} ON e{$key}.owner_guid=m.id";
+										$params['joins'][] = "INNER JOIN ossn_entities_metadata as emd{$key} ON e{$key}.guid=emd{$key}.guid";
+								}
+						}
+						if(!empty($wheres_paris)) {
+								$wheres_entities = '(' . $this->constructWheres($wheres_paris) . ')';
+								$wheres[]        = $wheres_entities;
+						}
+				}
+				if(isset($options['wheres']) && !empty($options['wheres'])) {
+						if(!is_array($options['wheres'])) {
+								$wheres[] = $options['wheres'];
+						} else {
+								foreach($options['wheres'] as $witem) {
+										$wheres[] = $witem;
+								}
+						}
+				}
+				if(isset($options['joins']) && !empty($options['joins']) && is_array($options['joins'])) {
+						foreach($options['joins'] as $jitem) {
+								$params['joins'][] = $jitem;
+						}
+				}
+				$distinct = '';
+				if($options['distinct'] === true) {
+						$distinct = "DISTINCT ";
+				}
+				//prepare search    
+				$params['from']     = 'ossn_messages as m';
+				$params['params']   = array(
+						"{$distinct}m.id",
+						'm.*'
+				);
+				$params['wheres']   = array(
+						$this->constructWheres($wheres)
+				);
+				$params['order_by'] = $options['order_by'];
+				$params['limit']    = $options['limit'];
+				
+				if(!$options['order_by']) {
+						$params['order_by'] = "m.id DESC";
+				}
+				if(isset($options['group_by']) && !empty($options['group_by'])) {
+						$params['group_by'] = $options['group_by'];
+				}
+				//override params
+				if(isset($options['params']) && !empty($options['params'])) {
+						$params['params'] = $options['params'];
+				}
+				$messages = $this->select($params, true);
+				//prepare count data;
+				if($options['count'] === true) {
+						unset($params['params']);
+						unset($params['limit']);
+						$count           = array();
+						$count['params'] = array(
+								"count({$distinct}m.id) as total"
+						);
+						$count           = array_merge($params, $count);
+						return $this->select($count)->total;
+				}
+				if($messages) {
+						$this->entities = new OssnEntities;
+						foreach($messages as $message) {
+								$lists = array();
+								if(isset($message->id)) {
+										$entities = $this->entities->searchEntities(array(
+												'type' => 'message',
+												'owner_guid' => $message->id,
+												'page_limit' => false
+										));
+										foreach($entities as $entity) {
+												$lists[$entity->subtype] = $entity->value;
+										}
+										$merged   = array_merge((array) $message, $lists);
+										$result[] = arrayObject($merged, get_class($this));
+								}
+						}
+						return $result;
+				}
+				return false;
+		}
 } //class
