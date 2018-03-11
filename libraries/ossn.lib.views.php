@@ -269,10 +269,11 @@ function ossn_view_template($template = '', array $params){
  *
  * @param integer $count total entities/objects
  * @param integer $page_limit Number of entities/objects per page
+ * @param array   $args Overwrite the default behaviour of pagination view
  *
  * @return false|mixed data
  */
-function ossn_view_pagination($count = false, $page_limit = 10){
+function ossn_view_pagination($count = false, $page_limit = 10, array $args = array()){
 	$page_limit = ossn_call_hook('pagination', 'page_limit', false, $page_limit);
 	if(!empty($count) && !empty($page_limit)){
 		$pagination = new OssnPagination;
@@ -281,10 +282,14 @@ function ossn_view_pagination($count = false, $page_limit = 10){
 		$params['limit'] = $count;
 		$params['page_limit']  = $page_limit;
 		
-		$offset = input('offset');
-		if(empty($offset)){
-			ossn_set_input('offset', 1);
+		if(!isset($args['offset_name']) || empty($args['offset_name'])){
+				$args['offset_name'] = 'offset';
 		}
+		$offset = input($args['offset_name']);
+		if(empty($offset)){
+			ossn_set_input($args['offset_name'], 1);
+		}
+		$params['options'] = $args;
 		return $pagination->pagination($params);
 	}
 	return false;
