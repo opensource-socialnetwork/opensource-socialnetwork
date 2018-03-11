@@ -53,6 +53,7 @@ class OssnPagination {
 		
 		/**
 		 * Set arrays or objects to pagination;
+		 * @removal It will be removed within any v5.x version $arsalanshah 3/11/2018
 		 *
 		 * @params array|object $item Item
 		 *
@@ -70,9 +71,10 @@ class OssnPagination {
 		
 		/**
 		 * Get spilted array or object;
+		 * @removal It will be removed within any v5.x version $arsalanshah 3/11/2018
 		 *
 		 * object may changed to arrays
-		 *
+		 * 
 		 * @return boolean
 		 */
 		public function getItem() {
@@ -95,6 +97,7 @@ class OssnPagination {
 		
 		/**
 		 * Spilt a arrays or objects into pagination
+		 * @removal It will be removed within any v5.x version $arsalanshah 3/11/2018		 
 		 *
 		 * @return boolean
 		 */
@@ -118,8 +121,11 @@ class OssnPagination {
 				if(!isset($this->setItem) && !isset($vars)) {
 						return false;
 				}
+				if(!isset($vars['options']['offset_name']) || empty($vars['options']['offset_name'])){
+						$vars['options']['offset_name'] = 'offset'; 
+				}					
 				if(!empty($vars)) {
-						$vars['offset'] = (int) input('offset') ? (int) input('offset') : 1;
+						$vars['offset'] = (int) input($vars['options']['offset_name']) ? (int) input($vars['options']['offset_name']) : 1;
 						$vars['total']  = abs($vars['limit'] / $vars['page_limit']);
 						$vars['total']  = (int) ceil($vars['total']);
 						return $this->view($vars);
@@ -130,7 +136,7 @@ class OssnPagination {
 						$newitem_total = count($newitem);
 						$pages         = arraySerialize($newitem);
 						
-						$offset = (int) input('offset');
+						$offset = (int) input($vars['options']['offset_name']);
 						if(!array_key_exists($offset, $pages)) {
 								$view = 1;
 						} elseif(array_key_exists($offset, $pages)) {
