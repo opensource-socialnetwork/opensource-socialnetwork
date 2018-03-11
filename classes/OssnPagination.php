@@ -136,8 +136,9 @@ class OssnPagination {
 						} elseif(array_key_exists($offset, $pages)) {
 								$view = $offset;
 						}
-						$params['offset'] = $view;
-						$params['total']  = $newitem_total;
+						$params['offset']  = $view;
+						$params['total']   = $newitem_total;
+						$params['options'] = $vars['options'];
 						return $this->view($params);
 				}
 				
