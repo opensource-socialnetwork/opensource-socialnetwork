@@ -9,7 +9,7 @@
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
  * @link      https://www.opensource-socialnetwork.org/
  */
-class OssnMessages extends OssnDatabase {
+class OssnMessages extends OssnEntities {
 		/**
 		 * Send message
 		 *
@@ -20,7 +20,7 @@ class OssnMessages extends OssnDatabase {
 		 * @return boolean
 		 */
 		public function send($from, $to, $message) {
-				if(empty($message)) {
+				if(empty($message) || empty($from) || empty($to)) {
 						return false;
 				}
 				$message = strip_tags($message);
@@ -44,6 +44,15 @@ class OssnMessages extends OssnDatabase {
 				);
 				if($this->insert($params)) {
 						$this->lastMessage      = $this->getLastEntry();
+						if(isset($this->data) && is_object($this->data)) {
+								foreach($this->data as $name => $value) {
+										$this->owner_guid = $this->lastMessage;
+										$this->type       = 'message';
+										$this->subtype    = $name;
+										$this->value      = $value;
+										$this->add();
+								}
+						}						
 						$params['message_id']   = $this->lastMessage;
 						$params['message_from'] = $from;
 						$params['message_to']   = $to;
@@ -367,11 +376,10 @@ class OssnMessages extends OssnDatabase {
 						return $this->select($count)->total;
 				}
 				if($messages) {
-						$this->entities = new OssnEntities;
 						foreach($messages as $message) {
 								$lists = array();
 								if(isset($message->id)) {
-										$entities = $this->entities->searchEntities(array(
+										$entities = $this->searchEntities(array(
 												'type' => 'message',
 												'owner_guid' => $message->id,
 												'page_limit' => false
