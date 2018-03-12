@@ -55,7 +55,7 @@ if (count($pages) !== 1) {
 	}
 	
 	echo '
-	<div class="container-table">
+	<div class="container-table container-table-pagination">
 		<div class="center-row">
 				<ul class="pagination ossn-pagination">';
   	//disaply first if first page is exist
