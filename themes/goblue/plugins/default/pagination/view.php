@@ -13,7 +13,7 @@ $pages = range(1, $params['total']);
 //unset non-required vars
 unset($_GET['h']);
 unset($_GET['p']);
-unset($_GET['offset']);
+unset($_GET[$args['offset_name']]);
 
 $args_url = OssnPagination::constructUrlArgs();
 $args	  = $params['options'];
