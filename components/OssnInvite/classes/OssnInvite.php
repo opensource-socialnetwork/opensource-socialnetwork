@@ -15,11 +15,34 @@
      * @return bool;
      */
     public function isEmail($email) {
-        if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    	$url = "https://".substr(strrchr($email, "@"), 1);
+        if (filter_var($email, FILTER_VALIDATE_EMAIL) && self::IsUrl($url)) {
             return true;
         }
         return false;
-    }
+    }	
+ 	/**
+     * Check if url is valid or not
+     *
+     * @return bool;
+     */        
+ 	public function IsUrl($url){
+       if(!filter_var($url, FILTER_VALIDATE_URL)){
+               return false;
+       }
+           $curl_init = curl_init($url);
+           curl_setopt($curl_init, CURLOPT_CONNECTTIMEOUT, 10);
+           curl_setopt($curl_init, CURLOPT_HEADER, true);
+          curl_setopt($curl_init, CURLOPT_NOBODY, true);
+          curl_setopt($curl_init, CURLOPT_RETURNTRANSFER, true);
+           $response = curl_exec($curl_init);
+           curl_close($curl_init);
+           if ($response){
+           		return true;
+           }else{
+           		return false;
+           }        
+       }      
 	/**
      * Send emails to provided addresses
      *
