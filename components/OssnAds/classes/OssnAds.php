@@ -62,6 +62,7 @@ class OssnAds extends OssnObject {
         $this->owner_guid = 1;
         $this->type = 'site';
         $this->subtype = 'ossnads';
+        $this->order_by = 'rand()';
         return $this->getObjectByOwner();
     }
     /**
