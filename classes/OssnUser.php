@@ -73,9 +73,6 @@ class OssnUser extends OssnEntities {
 						);
 						if($this->insert($params)) {
 								$guid = $this->getLastEntry();
-								ossn_trigger_callback('user', 'created', array(
-										'guid' => $guid
-								));
 								//define user extra profile fields
 								$fields = ossn_default_user_fields();
 								if(!empty($guid) && is_int($guid)) {
@@ -115,6 +112,9 @@ class OssnUser extends OssnEntities {
 										//notify users for activation
 										$this->notify->NotifiyUser($this->email, $subject, $activation);
 								}
+								ossn_trigger_callback('user', 'created', array(
+										'guid' => $guid
+								));							
 								return $guid;
 						}
 				}
