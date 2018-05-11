@@ -133,6 +133,22 @@ class OssnInstallation {
 		}
 		
 		/**
+		 * Check if components directory is writeable or not
+		 *
+		 * @last edit: $Salbei
+		 * @Reason: Initial;
+		 * @return bool;
+		 */
+		public static function isComp_WRITEABLE() {
+				$path = str_replace('installation/', '', ossn_installation_paths()->root);
+				$path = $path . 'components';
+				if(is_dir($path) && is_writable($path)) {
+						return true;
+				}
+				return false;
+		}
+		
+		/**
 		 * Check if mysqli class exist exist or not
 		 *
 		 * @last edit: $arsalanshah

@@ -60,6 +60,9 @@ $englsih = array(
 	'ossn:install:config' => 'CONFIGURATION DIRECTORY WRITEABLE',
 	'ossn:install:config:error' => 'CONFIGURATION DIRECTORY IS NOT WRITEABLE',
 	
+	'ossn:install:components' => 'COMPONENTS DIRECTORY WRITEABLE',
+	'ossn:install:components:error' => 'COMPONENTS DIRECTORY IS NOT WRITEABLE',
+	
 	'ossn:install:next' => 'Next',
     'ossn:install:install' => 'Install',
     'ossn:install:create' => 'Create',

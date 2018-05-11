@@ -58,7 +58,10 @@ $fr = array(
 	'ossn:install:gd:required' => 'LIBRAIRIE PHP GD REQUISE',
 	
 	'ossn:install:config' => 'REPERTOIRE DE CONFIGURATION ACCESSIBLE EN ECRITURE',
-	'ossn:install:config:error' => 'LE REPERTOIRE DE CONFIGURATION N\'EST ACCESSIBLE EN ECRITURE',
+	'ossn:install:config:error' => 'LE REPERTOIRE DE CONFIGURATION N\'EST PAS ACCESSIBLE EN ECRITURE',
+	
+	'ossn:install:components' => 'REPERTOIRE DES COMPOSANTS ACCESSIBLE EN ECRITURE',
+	'ossn:install:components:error' => 'LE REPERTOIRE DES COMPOSANTS N\'EST PAS ACCESSIBLE EN ECRITURE',
 	
 	'ossn:install:next' => 'Suivant',
     'ossn:install:install' => 'Installer',

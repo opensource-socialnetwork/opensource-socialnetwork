@@ -53,6 +53,12 @@ if (OssnInstallation::isCon_WRITEABLE()) {
     echo '<div class="ossn-installation-message ossn-installation-fail">'.ossn_installation_print('ossn:install:config:error').'</div>';
     $error[] = 'permission:configuration';
 }
+if (OssnInstallation::isComp_WRITEABLE()) {
+    echo '<div class="ossn-installation-message ossn-installation-success">'.ossn_installation_print('ossn:install:components').'</div>';
+} else {
+    echo '<div class="ossn-installation-message ossn-installation-fail">'.ossn_installation_print('ossn:install:components:error').'</div>';
+    $error[] = 'permission:components';
+}
 if(OssnInstallation::allowUrlFopen()){
     echo '<div class="ossn-installation-message ossn-installation-success">'.ossn_installation_print('ossn:install:allowfopenurl').'</div>';	
 } else {
