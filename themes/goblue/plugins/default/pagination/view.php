@@ -9,6 +9,7 @@
  * @link      https://www.opensource-socialnetwork.org/
  */
 $pages = range(1, $params['total']);
+$args  = $params['options'];
 
 //unset non-required vars
 unset($_GET['h']);
@@ -16,7 +17,6 @@ unset($_GET['p']);
 unset($_GET[$args['offset_name']]);
 
 $args_url = OssnPagination::constructUrlArgs();
-$args	  = $params['options'];
 //if there is only one page don't show pagination
 if (count($pages) !== 1) {
 	
