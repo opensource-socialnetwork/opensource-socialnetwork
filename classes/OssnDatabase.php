@@ -11,6 +11,20 @@
  */
 class OssnDatabase extends OssnBase {
 		/**
+		 * Initialize the database
+		 *
+		 * return void
+		 */
+		public function __construct(){
+				global $Ossn;
+				//set the sql mode and avoid setting again and again for each request
+				if(!isset($Ossn->setSQLMode)){					
+					$this->statement("SET SESSION sql_mode=(SELECT REPLACE(@@SESSION.sql_mode, 'ONLY_FULL_GROUP_BY', ''));");
+					$this->execute();
+					$Ossn->setSQLMode = true;
+				}
+		}	
+		/**
 		 * Connect to mysql database
 		 *
 		 * @return boolean
