@@ -9,9 +9,13 @@
  * @link      https://www.opensource-socialnetwork.org/
  */
 $en = array(
-    'ossn:notifications:ossnpoke:poke' => "%s подмигнул вам!",
-    'user:poked' => 'Вы подмигнули %s!',
-    'user:poke:error' => 'Не получилось подмигнуть %s! Повторите позже.',
-    'poke' => 'Подмигнуть',
+    'ossnsitepages' => 'Страницы сайта',
+    'site:privacy' => 'Конфиденциальность',
+    'site:about' => 'О сайте',
+    'site:terms' => 'Правила',
+
+    'page:saved' => 'Страница сохранена!',
+    'page:save:error' => 'Не получилось сохранить страницу. Попробуйте позже.',
+
 );
 ossn_register_languages('ru', $ru); 

@@ -8,10 +8,5 @@
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
  * @link      https://www.opensource-socialnetwork.org/
  */
-$en = array(
-    'ossn:notifications:ossnpoke:poke' => "%s подмигнул вам!",
-    'user:poked' => 'Вы подмигнули %s!',
-    'user:poke:error' => 'Не получилось подмигнуть %s! Повторите позже.',
-    'poke' => 'Подмигнуть',
-);
+$en = array('people:like:this' => 'Люди, которым понравилась запись',);
 ossn_register_languages('ru', $ru); 
