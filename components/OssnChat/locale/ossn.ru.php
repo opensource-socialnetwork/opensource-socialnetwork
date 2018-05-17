@@ -9,9 +9,6 @@
  * @link      https://www.opensource-socialnetwork.org/
  */
 $en = array(
-    'ossn:notifications:ossnpoke:poke' => "%s подмигнул вам!",
-    'user:poked' => 'Вы подмигнули %s!',
-    'user:poke:error' => 'Не получилось подмигнуть %s! Повторите позже.',
-    'poke' => 'Подмигнуть',
+	'ossn:chat:no:friend:online' => 'Нет друзей в сети',
 );
 ossn_register_languages('ru', $ru); 
