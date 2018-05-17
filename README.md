@@ -18,6 +18,7 @@ Languages
 * Turkish
 * Spanish
 * Italian
+* Russian
 
 Front-End Features
 ===================
