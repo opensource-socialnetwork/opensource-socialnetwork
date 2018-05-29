@@ -2,7 +2,7 @@
 <div class="message-inner" id="message-append-<?php echo $params['user']->guid; ?>" data-guid='<?php echo $params['user']->guid; ?>'>
 <?php
 echo ossn_view_pagination($params['count'], 10, array(
-							'offset_name' => 'offset_message_xhr_with',															 
+	'offset_name' => 'offset_message_xhr_with',															 
 ));
 if ($params['data']) {
                 foreach ($params['data'] as $message) {
