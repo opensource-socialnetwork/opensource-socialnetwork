@@ -1,4 +1,4 @@
- 		<div id="get-recent" style="display:none;"></div>
+ 	<div id="get-recent" style="display:none;"></div>
         <div class="messages-from">
             <div class="inner">
                 <?php
@@ -34,8 +34,10 @@
                     <?php
                     }
 
-                }?>
-
-
+                }
+		echo ossn_view_pagination($params['count'], 10, array(
+			'offset_name' => 'offset_message_xhr_recent',															 
+		));
+		?>		    
             </div>
         </div>
