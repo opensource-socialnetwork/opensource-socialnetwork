@@ -211,3 +211,35 @@
 .messages-with .widget-contents {
     padding: 10px 0px;
 }
+/*** Pagination ***/
+.ossn-messages .messages-recent .messages-from .inner .pagination {
+    margin: 10px;
+}
+.ossn-messages .ossn-widget .message-with .message-inner .container-table-pagination .pagination {
+	margin:0;
+}
+.ossn-messages .ossn-widget .message-with .message-inner .container-table-pagination,
+.ossn-notification-messages .container-table-pagination,
+.ossn-messages .messages-recent .messages-from .inner .container-table-pagination {
+   	visibility:hidden;
+}
+.ossn-messages .messages-recent .messages-from .inner .ossn-pagination .ossn-loading {
+    margin: 0 auto;
+}
+.ossn-messages-notification-pagination-loading .ossn-loading,
+.ossn-messages-pagination-loading .ossn-loading,
+.ossn-messages-with-pagination-loading .ossn-loading {
+    margin: 0 auto;
+}
+.ossn-messages-pagination-loading {
+    display: block;
+    margin-top: -40px;
+}
+.ossn-messages-with-pagination-loading {
+    display: block;
+    margin-top:10px;
+}
+.ossn-messages-notification-pagination-loading {
+    display: block;
+    margin-top: -55px;
+}

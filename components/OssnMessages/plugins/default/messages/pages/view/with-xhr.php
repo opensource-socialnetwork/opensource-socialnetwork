@@ -1,19 +1,6 @@
-<script>
-    Ossn.SendMessage(<?php echo $params['user']->guid;?>);
-            $(document).ready(function () {
-                setInterval(function () {
-                    Ossn.getMessages('<?php echo $params['user']->username;?>', '<?php echo $params['user']->guid;?>');
-                    //Ossn.getRecent('<?php echo $params['user']->guid;?>');
-                }, 5000);
-               	Ossn.message_scrollMove(<?php echo $params['user']->guid;?>);
-      });
-</script>
 <div class="message-with">
 <div class="message-inner" id="message-append-<?php echo $params['user']->guid; ?>" data-guid='<?php echo $params['user']->guid; ?>'>
 <?php
-if(isset($params['countm'])){
-		$params['count'] = $params['countm'];	
-}
 echo ossn_view_pagination($params['count'], 10, array(
 							'offset_name' => 'offset_message_xhr_with',															 
 ));
@@ -54,11 +41,3 @@ if ($params['data']) {
 ?>
 </div>
 </div>
-        <?php
-			echo ossn_view_form('send', array(
-					'component' => 'OssnMessages',
-					'class' => 'message-form-form',
-					'id' => "message-send-{$params['user']->guid}",
-					'params' => $params
-			), false);
-		?>

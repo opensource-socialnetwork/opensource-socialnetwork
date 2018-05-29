@@ -113,20 +113,23 @@ class OssnMessages extends OssnEntities {
 		 *
 		 * @return object
 		 */
-		public function recentChat($to) {
-				$params['from']     = 'ossn_messages';
-				$params['wheres']   = array(
-						"message_to='{$to}' OR message_from='{$to}'"
-				);
-				$params['order_by'] = "id DESC";
-				$chats              = $this->select($params, true);
+		public function recentChat($to, $count = false) {
+				$chats  = $this->searchMessages(array(
+					'wheres' => array("(message_to='{$to}' OR message_from='{$to}') AND m.message_from != '{$to}'"),		
+					'order_by' => 'm.id DESC',
+					'offset' => input('offset_message_xhr_recent', '', 1),
+					'count' => $count,
+					'group_by' => 'message_from, message_to',
+				));
+				if($count == true && $chats){
+						return $chats;	
+				}
 				if(!$chats) {
 						return false;
 				}
 				foreach($chats as $rec) {
 						$recents[$rec->message_from] = $rec->message_to;
 				}
-				
 				foreach($recents as $k => $v) {
 						if($k !== $to) {
 								$message_get = $this->get($to, $k);
@@ -144,7 +147,26 @@ class OssnMessages extends OssnEntities {
 				}
 				return false;
 		}
-		
+		/**
+		 * Get messages between two users
+		 *
+		 * @params $from: User 1 guid
+		 *         $to User 2 guid
+		 *
+		 * @return object
+		 */
+		public function getWith($from, $to, $count = false) {
+				$messages =  $this->searchMessages(array(
+					'wheres' => array("message_from='{$from}' AND message_to='{$to}' OR message_from='{$to}' AND message_to='{$from}'"),		
+					'order_by' => 'm.id DESC',
+					'offset' => input('offset_message_xhr_with', '', 1),
+					'count' => $count,
+				));
+				if($messages && !$count){
+						return array_reverse($messages);	
+				}
+				return $messages;
+		}		
 		/**
 		 * Get messages between two users
 		 *

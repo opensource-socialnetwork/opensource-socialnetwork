@@ -8,6 +8,8 @@
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
  * @link      https://www.opensource-socialnetwork.org/
  */
+$OssnMessages     = new OssnMessages;
+$params['count'] =  $OssnMessages->recentChat(ossn_loggedin_user()->guid, true);
 ?>
 <div class="messages-inner">
 
@@ -47,7 +49,11 @@
             <?php
             }
 
-        }?>
+        }
+		echo ossn_view_pagination($params['count'],10, array(
+							'offset_name' => 'offset_message_xhr_recent',															 
+		));
+		?>
 
     </div>
 </div>
