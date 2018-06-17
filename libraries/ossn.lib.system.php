@@ -759,7 +759,7 @@ function ossn_string_decrypt($string = '', $key = '') {
 	
 	$size    = openssl_cipher_iv_length('bf-ecb');
 	$mcgetvi = openssl_random_pseudo_bytes($size);
-	//note myrcrypt and now this acting mycrpyt adds the spaces to make 16 bytes if its less then 16 bytes
+	//note mcrypt and now this acting mcrpyt adds the spaces to make 16 bytes if its less then 16 bytes
 	//you can use trim() to get orignal data without spaces
 	return openssl_decrypt($string, "bf-ecb", $key, OPENSSL_RAW_DATA | OPENSSL_NO_PADDING, $mcgetvi);
 }
