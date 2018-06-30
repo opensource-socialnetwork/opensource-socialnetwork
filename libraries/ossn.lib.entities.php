@@ -70,7 +70,8 @@ function ossn_add_entity(array $params){
 		$entity->subtype = $params['subtype'];
 	}	
 	if(isset($params['permission'])){
-		$entity->entity_permission = $params['value'];
+		//ossn.lib.entities.php seems to be not updated #1248
+		$entity->permission = $params['value'];
 	}
 	if(isset($params['active'])){
 		$entity->active = $params['active'];
