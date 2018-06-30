@@ -8,6 +8,9 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v5.0
 * Allow a bit flexibility in overriding the pagination
   - Can set the name for offset arg : example default is ?offset=x you can set ?custom_offset=x
   - Set URL before ?offset=x
+* Optimized the OssnMessages,  its load more faster now.
+* Load only 10 messages in notification area and allow to view more by auto pagination.
+* Support php 5.6 or larger remove support for < 5.6 #1287
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v4.6
 
