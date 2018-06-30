@@ -229,7 +229,7 @@ function ossn_group_page($pages) {
 		if(empty($pages[0])) {
 				ossn_error_page();
 		}
-		if(!empty($pages[0]) && !empty($pages[0])) {
+		if(!empty($pages[0])) {
 				if(isset($pages[1])) {
 						$params['subpage'] = $pages[1];
 				} else {
