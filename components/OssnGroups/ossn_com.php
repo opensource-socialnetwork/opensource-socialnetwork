@@ -237,7 +237,7 @@ function ossn_group_page($pages) {
 				}
 				
 				if(!ossn_is_group_subapge($params['subpage']) && !empty($params['subpage'])) {
-						return false;
+						ossn_error_page();
 				}
 				$group = ossn_get_group_by_guid($pages[0]);
 				if(empty($group->guid)) {
