@@ -395,9 +395,8 @@ class OssnAnnotation extends OssnEntities {
 				//override params
 				if(isset($options['params']) && !empty($options['params'])){
 						$params['params'] = $options['params'];
-				}					
-				$this->get = $this->select($params, true);
-				
+				}	
+			
 				//prepare count data;
 				if($options['count'] === true) {
 						unset($params['params']);
@@ -409,6 +408,9 @@ class OssnAnnotation extends OssnEntities {
 						$count           = array_merge($params, $count);
 						return $this->select($count)->total;
 				}
+				//load fetch query after count condition #1316
+				$this->get = $this->select($params, true);
+							
 				if($this->get) {
 						foreach($this->get as $annotation) {
 								$merge = array(
