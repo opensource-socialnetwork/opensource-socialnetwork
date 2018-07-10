@@ -9,7 +9,7 @@
  * @link      https://www.opensource-socialnetwork.org/
  */
 
-
+define('OSSN_ALLOW_SYSTEM_START', TRUE);
 require_once(dirname(dirname(dirname(__FILE__))) . '/system/start.php');
 
 $user['username'] = input('username');
