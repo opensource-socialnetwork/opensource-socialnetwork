@@ -8,7 +8,7 @@
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
  * @link      https://www.opensource-socialnetwork.org/
  */
-$en = array(
+$ru = array(
 		'ossnwall' => 'Стена',
 		'post:created' => 'Пост создан успешно!',
 		'post:create:error' => 'Не получилось создать запись. Попробуйте позже.',

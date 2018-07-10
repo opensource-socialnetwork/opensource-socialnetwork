@@ -8,7 +8,7 @@
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
  * @link      https://www.opensource-socialnetwork.org/
  */
-$en = array(
+$ru = array(
     'ossnads' => 'Управление рекламой',
     'fields:required' => 'Все поля обязательны!',
     'ad:created' => 'Реклама создана!',

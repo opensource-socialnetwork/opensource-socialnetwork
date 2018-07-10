@@ -8,7 +8,7 @@
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
  * @link      https://www.opensource-socialnetwork.org/
  */
-$en = array(
+$ru = array(
 		'ossnsmilies' => 'Улыбашки',
 		'ossn:smilies:admin:settings:compat:title' => 'Режим обратной совместимости',
 		'ossn:smilies:admin:settings:compat:note' => '<i class="fa fa-info-circle"></i><br><i>

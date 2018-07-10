@@ -9,7 +9,7 @@
  * @link      https://www.opensource-socialnetwork.org/
  */
 
-$en = array(
+$ru = array(
     'ossn:notifications:comments:post' => "%s оставил комментарий к записи.",
     'ossn:notifications:like:post' => "%s полюбил вашу запись.",
     'ossn:notifications:like:annotation' => "%s полюбил ваш комментарий.",

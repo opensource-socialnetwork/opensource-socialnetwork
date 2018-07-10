@@ -9,7 +9,7 @@
  * @link      https://www.opensource-socialnetwork.org/
  */
 
-$en = array(
+$ru = array(
 	'home' => 'Домой',
 	'site:index' => 'Привет',
 	'news:feed' => 'Новости',

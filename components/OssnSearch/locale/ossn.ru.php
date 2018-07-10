@@ -9,7 +9,7 @@
  * @link      https://www.opensource-socialnetwork.org/
  */
 
-$en = array(
+$ru = array(
 	'ossn:search' => 'Поиск',
 	'result:type' => 'Тип вывода',
 	'search:result' => 'Искать результаты для %s',

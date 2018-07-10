@@ -9,7 +9,7 @@
  * @link      https://www.opensource-socialnetwork.org/
  */
 
-$en = array(
+$ru = array(
     'album:name' => 'Название альбома',
     'add:album' => 'Добавить альбом',
     'photo:select' => 'Выбрать фотографию',

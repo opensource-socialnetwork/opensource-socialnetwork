@@ -8,7 +8,7 @@
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
  * @link      https://www.opensource-socialnetwork.org/
  */
-$en = array(
+$ru = array(
 	'ossn:chat:no:friend:online' => 'Нет друзей в сети',
 );
 ossn_register_languages('ru', $ru); 
