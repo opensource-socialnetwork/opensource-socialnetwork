@@ -114,7 +114,7 @@ class OssnUser extends OssnEntities {
 								}
 								ossn_trigger_callback('user', 'created', array(
 										'guid' => $guid
-								));							
+								));								
 								return $guid;
 						}
 				}
@@ -201,7 +201,8 @@ class OssnUser extends OssnEntities {
 		 * @return boolean
 		 */
 		public function isPassword() {
-				if(strlen($this->password) > 5) {
+				$password_minimum  = ossn_call_hook('user', 'password:minimum:length', false, 6);
+				if(strlen($this->password) >= $password_minimum && !(strlen($this->password) < 6)) {
 						return true;
 				}
 				return false;
