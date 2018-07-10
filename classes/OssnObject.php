@@ -461,7 +461,6 @@ class OssnObject extends OssnEntities {
 				if(isset($options['params']) && !empty($options['params'])){
 						$params['params'] = $options['params'];
 				}				
-				$this->get = $this->select($params, true);
 				//prepare count data;
 				if($options['count'] === true) {
 						unset($params['params']);
@@ -473,6 +472,8 @@ class OssnObject extends OssnEntities {
 						$count           = array_merge($params, $count);
 						return $this->select($count)->total;
 				}
+				//load fetch query after count condition #1316
+				$this->get = $this->select($params, true);
 				if($this->get) {
 						foreach($this->get as $object) {
 								$this->object_guid = $object->guid;
