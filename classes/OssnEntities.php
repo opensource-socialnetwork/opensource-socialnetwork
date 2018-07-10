@@ -477,8 +477,6 @@ class OssnEntities extends OssnDatabase {
 				if(isset($options['params']) && !empty($options['params'])){
 						$params['params'] = $options['params'];
 				}				
-				$fetched_entities = $this->select($params, true);
-				
 				//prepare count data;
 				if($options['count'] === true) {
 						unset($params['params']);
@@ -490,6 +488,8 @@ class OssnEntities extends OssnDatabase {
 						$count           = array_merge($params, $count);
 						return $this->select($count)->total;
 				}
+				//load data after count condition #1316
+				$fetched_entities = $this->select($params, true);
 				if($fetched_entities) {
 						foreach($fetched_entities as $entity) {
 								//prepare entities for display
