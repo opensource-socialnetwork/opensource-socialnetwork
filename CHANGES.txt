@@ -15,6 +15,8 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v5.0
 * ossn.lib.entities.php seems to be not updated #1248 (https://github.com/dalilo2010)
 * Add hook to setup the password length #1317
 * load fetch query after count condition #1316
+* Load session start after classes #1318
+* Restrict calling system start file directly from browser #1315
 
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v4.6
