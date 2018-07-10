@@ -13,6 +13,8 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v5.0
 * Support php 5.6 or larger remove support for < 5.6 #1287
 * When groupsub page isn't valid show the default page instead #1309
 * ossn.lib.entities.php seems to be not updated #1248 (https://github.com/dalilo2010)
+* Add hook to setup the password length #1317
+* load fetch query after count condition #1316
 
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v4.6
