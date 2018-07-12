@@ -40,80 +40,105 @@ Ossn.RegisterStartupFunction = function($func) {
  *
  * @return bool
  */
+/**
+ * Register a ajax request
+ *
+ * @param $data['form'] = form id
+ *        $data['callback'] = call back function
+ *        $data['error'] = on error function
+ *        $data['beforeSend'] = before send function
+ *        $data['url'] = form action url
+ *
+ * @return bool
+ */
 Ossn.ajaxRequest = function($data) {
-	$(function() {
-		var $form_name = $data['form'];
-		var url = $data['url'];
-		var callback = $data['callback'];
-		var error = $data['error'];
-		var befsend = $data['beforeSend'];
-		var action = $data['action'];
-		var containMedia = $data['containMedia'];
-		var $xhr = $data['xhr'];
-		if (url == true) {
-			url = $($form_name).attr('action');
-		}
-		$('body').on("submit", $form_name, function(event) {
-            		event.preventDefault();
- 			event.stopImmediatePropagation();
- 			
-			if (!callback) {
-				return false;
-			}
-			if (!befsend) {
-				befsend = function() {}
-			}
-			if (!action) {
-				action = false;
-			}
-			if (action == true) {
-				url = Ossn.AddTokenToUrl(url);
-			}
+    $(function() {
+        var $form_name = $data['form'];
+        var url = $data['url'];
+        var callback = $data['callback'];
+        var error = $data['error'];
+        var befsend = $data['beforeSend'];
+        var action = $data['action'];
+        var containMedia = $data['containMedia'];
+        var $xhr = $data['xhr'];
+        if (url == true) {
+            url = $($form_name).attr('action');
+        }
+        $('body').on("submit", $form_name, function(event) {
+            event.preventDefault();
+            event.stopImmediatePropagation();
 
-			if (!error) {
-				error = function(xhr, status, error) {
-					if (error == 'Internal Server Error' || error !== '') {
-						Ossn.MessageBox('syserror/unknown');
-					}
-				};
-			}
-			if (!$xhr) {
-				$xhr = function() {
-					var xhr = new window.XMLHttpRequest();
-					return xhr;
-				};
-			}
-			var $form = $(this);
-			if (containMedia == true) {
-				$vars = {
-					xhr: $xhr,
-					async: true,
-					cache: false,
-					contentType: false,
-					type: 'post',
-					beforeSend: befsend,
-					url: url,
-					error: error,
-					data: new FormData($form[0]),
-					processData: false,
-					success: callback,
-				};
-			} else {
-				$vars = {
-					xhr: $xhr,
-					async: true,
-					type: 'post',
-					beforeSend: befsend,
-					url: url,
-					error: error,
-					data: $form.serialize(),
-					success: callback,
-				};
-			}
+            if (!callback) {
+                return false;
+            }
+            if (!befsend) {
+                befsend = function() {}
+            }
+            if (!action) {
+                action = false;
+            }
+            if (action == true) {
+                url = Ossn.AddTokenToUrl(url);
+            }
 
-			$.ajax($vars);
-		});
-	});
+            if (!error) {
+                error = function(xhr, status, error) {
+                    if (error == 'Internal Server Error' || error !== '') {
+                        Ossn.MessageBox('syserror/unknown');
+                    }
+                };
+            }
+            if (!$xhr) {
+                $xhr = function() {
+                    var xhr = new window.XMLHttpRequest();
+                    return xhr;
+                };
+            }
+            var $form = $(this);
+            if (containMedia == true) {
+                $requestData = new FormData($form[0]);
+                $removeNullFile = function(formData) {
+                    if (formData.keys) {
+                        for (var key of formData.keys()) {
+                            var fileName = null || formData.get(key)['name'];
+                            var fileSize = null || formData.get(key)['size'];
+                            if (fileName != null && fileSize != null && fileName == '' && fileSize == 0) {
+                                formData.delete(key);
+                            }
+                        }
+                    }
+                };
+                //Some Iphone devices unable to post #1295
+                $removeNullFile($requestData);
+                $vars = {
+                    xhr: $xhr,
+                    async: true,
+                    cache: false,
+                    contentType: false,
+                    type: 'post',
+                    beforeSend: befsend,
+                    url: url,
+                    error: error,
+                    data: $requestData,
+                    processData: false,
+                    success: callback,
+                };
+            } else {
+                $vars = {
+                    xhr: $xhr,
+                    async: true,
+                    type: 'post',
+                    beforeSend: befsend,
+                    url: url,
+                    error: error,
+                    data: $form.serialize(),
+                    success: callback,
+                };
+            }
+
+            $.ajax($vars);
+        });
+    });
 };
 /**
  * Register a post request
