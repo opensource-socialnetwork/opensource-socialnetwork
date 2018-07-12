@@ -17,6 +17,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v5.0
 * load fetch query after count condition #1316
 * Load session start after classes #1318
 * Restrict calling system start file directly from browser #1315
+* Some Iphone devices unable to post #1295
 
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v4.6
