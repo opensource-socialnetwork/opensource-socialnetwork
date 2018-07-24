@@ -55,4 +55,17 @@ class OssnSession {
 				}
 				return false;
 		}
+		/**
+		 * Get the session value
+		 *
+		 * @param string $name A session ID
+		 *
+		 * @return mixed
+		 */
+		public static function getSession($name = '') {
+				if(OssnSession::isSession($name)) {
+						return $_SESSION[$name];
+				}
+				return false;
+		}	
 } //class
