@@ -159,8 +159,9 @@ class OssnComponents extends OssnDatabase {
 						$name = $this->getCom($com->com_id);
 						if(!empty($name->name)) {
 								ossn_register_plugins_by_path("{$dir}{$com->com_id}/plugins/");
-								if(is_file("{$dir}{$com->com_id}/locale/ossn.{$lang}.php")) {
-										include("{$dir}{$com->com_id}/locale/ossn.{$lang}.php");
+								//Include only when cache is not enabled, cache the locale files #1321
+								if(ossn_site_settings('cache') == 0 && is_file("{$dir}{$com->com_id}/locale/ossn.{$lang}.php")) {
+									 include("{$dir}{$com->com_id}/locale/ossn.{$lang}.php");
 								}
 								include_once("{$dir}{$com->com_id}/ossn_com.php");
 						}
