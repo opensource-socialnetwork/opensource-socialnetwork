@@ -97,7 +97,11 @@ function ossn_trigger_language_cache($cache) {
 		$coms = new OssnComponents;
 		$comlist = $coms->getActive();
 		$comdir  = ossn_route()->com;	
-		
+
+		$system_locale_cache = ossn_get_userdata("system/locales/");
+		if(!is_dir($system_locale_cache)) {
+				mkdir($system_locale_cache, 0755, true);
+		}
 		header('Content-Type: application/json; charset=utf-8');
 		foreach($available_languages as $lang) {
 				//load all laguages
@@ -116,13 +120,17 @@ function ossn_trigger_language_cache($cache) {
 				}
 				if(isset($Ossn->localestr[$lang])) {
 						$json = ossn_load_json_locales($lang);
+						//private locale cache , Cache the locale files #1321
+						$file     = $system_locale_cache . "ossn.{$lang}.json";
+						file_put_contents($file, $json);
+						
+						//public js cache		
 						$json = "var OssnLocale = $json";
 						$cache_file = "{$dir}js/{$cache}/view/ossn.{$lang}.language.js";
 						file_put_contents($cache_file, "\xEF\xBB\xBF" . $json);
 				}
 		}
 }
-
 /**
  * Create and Enable site cache
  *
