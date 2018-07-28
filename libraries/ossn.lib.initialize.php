@@ -14,7 +14,7 @@ $available_languages = ossn_get_available_languages();
 foreach($available_languages as $language) {
 		ossn_register_language($language, ossn_route()->locale . "ossn.{$language}.php");
 }
-ossn_default_load_locales();
+//ossn_default_load_locales();
 /**
  * Initialize the css library
  *
