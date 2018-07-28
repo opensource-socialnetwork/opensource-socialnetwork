@@ -18,6 +18,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v5.0
 * Load session start after classes #1318
 * Restrict calling system start file directly from browser #1315
 * Some Iphone devices unable to post #1295
+* Cache the locale files #1321
 
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v4.6
