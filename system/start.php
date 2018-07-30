@@ -29,11 +29,6 @@ include_once(ossn_route()->configs . 'classes.php');
 include_once(ossn_route()->configs . 'ossn.config.site.php');
 include_once(ossn_route()->configs . 'ossn.config.db.php');
 
-foreach ($Ossn->classes as $class) {
-    if (!include_once(ossn_route()->classes . "Ossn{$class}.php")) {
-        throw new exception('Cannot include all classes');
-    }
-}
 //Load session start after classes #1318
 session_start();
 foreach ($Ossn->libraries as $lib) {
