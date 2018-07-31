@@ -133,4 +133,18 @@ function ossn_autoload_classes($name = '') {
 				require_once($Ossn->classes[$name]);
 		}
 }
+/**
+ * Unregister a class 
+ * Unregistering the system classes may result in strange behaviour 
+ * 
+ * @param array $classes A classes list with the path
+ * 
+ * @return void
+ */
+function ossn_unregister_class($name = ''){
+		global $Ossn;
+		if(isset($Ossn->classes[$name])) {
+				unset($Ossn->classes[$name]);
+		}	
+}
 spl_autoload_register('ossn_autoload_classes');
