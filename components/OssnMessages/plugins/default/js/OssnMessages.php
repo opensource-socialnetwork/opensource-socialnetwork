@@ -78,12 +78,13 @@ Ossn.SendMessage = function($user) {
             $('#message-send-' + $user).find('.ossn-loading').removeClass('ossn-hidden');
         },
         callback: function(callback) {
-            $('#message-append-' + $user).append(callback);
-            $('#message-send-' + $user).find('textarea').val('');
-            $('#message-send-' + $user).find('input[type=submit]').show();
-            $('#message-send-' + $user).find('.ossn-loading').addClass('ossn-hidden');
+			if(callback !== '0'){
+	            $('#message-append-' + $user).append(callback);
+			}
+    	    $('#message-send-' + $user).find('textarea').val('');
+       	    $('#message-send-' + $user).find('input[type=submit]').show();
+        	$('#message-send-' + $user).find('.ossn-loading').addClass('ossn-hidden');
             Ossn.message_scrollMove($user);
-
         }
     });
 

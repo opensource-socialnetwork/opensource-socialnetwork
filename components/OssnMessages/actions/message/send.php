@@ -10,6 +10,11 @@
  */
 $send = new OssnMessages;
 $message = input('message');
+
+if(trim(ossn_restore_new_lines($message)) == ''){
+	echo 0;
+	exit;
+}
 $to = input('to');
 if ($send->send(ossn_loggedin_user()->guid, $to, $message)) {
     $user = ossn_user_by_guid(ossn_loggedin_user()->guid);
