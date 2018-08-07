@@ -338,7 +338,7 @@ function ossn_site_user_lang_code($hook, $type, $return, $params) {
  * @return boolean
  */
 function ossn_logout() {
-	OssnUser::Logout();
+		OssnUser::Logout();
 }
 /**
  * Ossn default user fields
@@ -437,6 +437,22 @@ function ossn_remove_field_from_fields(array $remove = array(), array $fields = 
 				}
 		}
 		return $fields;
+}
+/**
+ * List all the admin users
+ *
+ * @return array|boolean
+ */
+function ossn_get_admin_users() {
+		$user = new OssnUser;
+		$list = $user->searchUsers(array(
+				'wheres' => 'u.type="admin"',
+				'page_limit' => false
+		));
+		if($list) {
+				return $list;
+		}
+		return false;
 }
 ossn_register_callback('ossn', 'init', 'ossn_users');
 ossn_add_hook('load:settings', 'language', 'ossn_site_user_lang_code');
