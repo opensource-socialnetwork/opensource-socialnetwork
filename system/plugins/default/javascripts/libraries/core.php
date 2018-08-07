@@ -831,6 +831,43 @@ Ossn.RegisterStartupFunction(function() {
 	});
 });
 /**
+ * Add cache tag to the local images
+ * 
+ * @added in v5.0 
+ */
+Ossn.RegisterStartupFunction(function() {
+    $(document).ready(function() {
+        if (Ossn.Config.cache.ossn_cache == 1) {
+            $('img').each(function() {
+                var data = $(this).attr('src');
+                $site_url = Ossn.ParseUrl(Ossn.site_url);
+                var parts = Ossn.ParseUrl(data),
+                    args = {},
+                    base = '';
+                if (parts['host'] == $site_url['host']) {
+                    if (parts['host'] === undefined) {
+                        if (data.indexOf('?') === 0) {
+                            // query string
+                            base = '?';
+                            args = Ossn.ParseStr(parts['query']);
+                        }
+                    } else {
+                        // full or relative URL
+                        if (parts['query'] !== undefined) {
+                            // with query string
+                            args = Ossn.ParseStr(parts['query']);
+                        }
+                        var split = data.split('?');
+                        base = split[0] + '?';
+                    }
+                    args["ossn_cache"] = Ossn.Config.cache.last_cache;
+                    $(this).attr('src', base + jQuery.param(args));
+                }
+            });
+        }
+    });
+});
+/**
  * Initialize ossn startup functions
  *
  * @return void
