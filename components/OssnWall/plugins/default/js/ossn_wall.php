@@ -1,3 +1,4 @@
+//<script>
 /**
  * 	Open Source Social Network
  *
@@ -53,8 +54,27 @@ Ossn.RegisterStartupFunction(function() {
             var $dataguid = $(this).attr('data-guid');
             Ossn.MessageBox('post/edit/' + $dataguid);
         });
+		//Change the privacy button as per the privacy value #1289
+		$('body').on('input', '#ossn-wall-privacy', function(){
+			switch(parseInt($(this).val())){
+					case 3:
+						$('.ossn-wall-privacy-lock').removeClass('fa-lock');
+						$('.ossn-wall-privacy-lock').removeClass('fa-globe');
+						$('.ossn-wall-privacy-lock').removeClass('fa-users');
+						$('.ossn-wall-privacy-lock').addClass('fa-users');
+					break;
+					case 2:
+						$('.ossn-wall-privacy-lock').removeClass('fa-lock');
+						$('.ossn-wall-privacy-lock').removeClass('fa-globe');
+						$('.ossn-wall-privacy-lock').removeClass('fa-users');
+						$('.ossn-wall-privacy-lock').addClass('fa-globe');
+					break;
+			}
+		});
+		if($('#ossn-wall-privacy').length){
+			$('#ossn-wall-privacy').trigger('input');
+		}
     });
-
 });
 Ossn.RegisterStartupFunction(function() {
     $(document).ready(function() {
@@ -89,6 +109,7 @@ Ossn.RegisterStartupFunction(function() {
         $('#ossn-wall-privacy').on('click', function(e) {
             var wallprivacy = $('#ossn-wall-privacy-container').find('input[name="privacy"]:checked').val();
             $('#ossn-wall-privacy').val(wallprivacy);
+			$('#ossn-wall-privacy').trigger("input");
             Ossn.MessageBoxClose();
         });
         //ajax post

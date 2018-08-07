@@ -35,8 +35,7 @@
             <input class="btn btn-primary ossn-wall-post" type="submit" value="<?php echo ossn_print('post'); ?>" />
         </div>
         <li class="ossn-wall-privacy">
-            <div class="ossn-wall-privacy-lock"></div>
-            <span><i class="fa fa-lock"></i><span class="hidden-xs"><?php echo ossn_print('privacy'); ?></span></span>
+            <span><i class="ossn-wall-privacy-lock fa fa-lock"></i><span class="hidden-xs"><?php echo ossn_print('privacy'); ?></span></span>
         </li>
     </div>
 	 <input type="hidden" value="<?php echo $params['group']['group']->guid; ?>" name="wallowner"/>
