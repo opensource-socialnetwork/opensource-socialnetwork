@@ -253,6 +253,16 @@ class OssnWall extends OssnObject {
 						// add all users posts;
 						// (if user has 0 friends, show at least his own postings if wall access type = friends only)
 						$friend_guids[] = $user->guid;
+						
+						//add visibility of admin postings to friends-only wall? #1294
+						$admins 	    = ossn_get_admin_users();
+						if($admins){
+							foreach($admins as $item){
+									if(!in_array($item->guid, $friend_guids)){
+										$friend_guids[] = $item->guid;	
+									}
+							}
+						}						
 						$friend_guids   = implode(',', $friend_guids);
 						
 						$default = array(
