@@ -99,7 +99,11 @@ class OssnComponents extends OssnDatabase {
 														
 														//why it shows success even if the component is not updated #510
 														OssnFile::DeleteDir($data_dir);
-														return true;														
+														//Trigger callback upon component deletion, enable, installation #1111
+														ossn_trigger_callback('component', 'installed', array(
+																'component' => $com
+														));
+														return true;
 												}
 										}
 								}
@@ -161,7 +165,7 @@ class OssnComponents extends OssnDatabase {
 								ossn_register_plugins_by_path("{$dir}{$com->com_id}/plugins/");
 								//Include only when cache is not enabled, cache the locale files #1321
 								if(ossn_site_settings('cache') == 0 && is_file("{$dir}{$com->com_id}/locale/ossn.{$lang}.php")) {
-									 include("{$dir}{$com->com_id}/locale/ossn.{$lang}.php");
+										include("{$dir}{$com->com_id}/locale/ossn.{$lang}.php");
 								}
 								include_once("{$dir}{$com->com_id}/ossn_com.php");
 						}
@@ -175,8 +179,8 @@ class OssnComponents extends OssnDatabase {
 		 * @return active components;
 		 */
 		public function getActive() {
-				$params['from']   = 'ossn_components';
-				$params['wheres'] = array(
+				$params['from']     = 'ossn_components';
+				$params['wheres']   = array(
 						"active='1'"
 				);
 				//components are not loading in the correct order #1328
@@ -250,16 +254,16 @@ class OssnComponents extends OssnDatabase {
 										if($item->type == 'ossn_version') {
 												
 												$requirments['type']         = ossn_print('ossn:version');
-												$requirments['value']        = (string)$item->version;
+												$requirments['value']        = (string) $item->version;
 												$requirments['availability'] = 0;
-												$site_version                =  ossn_site_settings('site_version');
+												$site_version                = ossn_site_settings('site_version');
 												
 												//Ossn Version checking not strict enough when installing components #1000
-												$comparator 				 = '>=';
-												if(isset($item->comparator) && !empty($item->comparator)){
-													$comparator = $item->comparator;	
+												$comparator = '>=';
+												if(isset($item->comparator) && !empty($item->comparator)) {
+														$comparator = $item->comparator;
 												}
-												if(version_compare($site_version, (string)$item->version,  $comparator)) {
+												if(version_compare($site_version, (string) $item->version, $comparator)) {
 														$requirments['availability'] = 1;
 												}
 										}
@@ -350,6 +354,10 @@ class OssnComponents extends OssnDatabase {
 			    SET active='1'
 			    WHERE (com_id='$com');");
 								$this->execute();
+								//Trigger callback upon component deletion, enable, installation #1111
+								ossn_trigger_callback('component', 'enabled', array(
+										'component' => $com
+								));
 								return true;
 						} elseif(!isset($CHECK->active)) {
 								/*
@@ -361,6 +369,10 @@ class OssnComponents extends OssnDatabase {
 			  (`com_id`, `active`)
 		          VALUES ('$com', '1')");
 								$this->execute();
+								//Trigger callback upon component deletion, enable, installation #1111
+								ossn_trigger_callback('component', 'enabled', array(
+										'component' => $com
+								));
 								return true;
 						}
 				}
@@ -377,8 +389,8 @@ class OssnComponents extends OssnDatabase {
 						return false;
 				}
 				$component = $this->getbyName($com);
-				if(!$component){
-					return false;
+				if(!$component) {
+						return false;
 				}
 				$params           = array();
 				$params['from']   = "ossn_components";
@@ -410,7 +422,7 @@ class OssnComponents extends OssnDatabase {
 		 */
 		public function requiredComponents() {
 				$default = array(
-						'OssnProfile',
+						'OssnProfile'
 				);
 				return ossn_call_hook('required', 'components', false, $default);
 		}
@@ -455,7 +467,7 @@ class OssnComponents extends OssnDatabase {
 						'OssnNotifications',
 						'OssnPhotos',
 						'OssnSearch',
-						'OssnWall'						
+						'OssnWall'
 				), $this->requiredComponents());
 		}
 		/**
@@ -483,7 +495,7 @@ class OssnComponents extends OssnDatabase {
 								$entity->value      = $value;
 								$entity->add();
 						} else {
-								$entity->data 	     = new stdClass;
+								$entity->data        = new stdClass;
 								$entity->owner_guid  = $guid;
 								$entity->type        = 'component';
 								$entity->data->$name = $value;
@@ -549,8 +561,8 @@ class OssnComponents extends OssnDatabase {
 		 * @return integer|false;
 		 */
 		public function getbyName($name) {
-				$params          = array();
-				$params['from']  = 'ossn_components';
+				$params           = array();
+				$params['from']   = 'ossn_components';
 				$params['wheres'] = array(
 						"com_id='{$name}'"
 				);
