@@ -149,8 +149,12 @@ function ossn_create_cache() {
 				"setting_id='4'"
 		);
 		if($database->update($params)) {
+				global $Ossn;
 				$cache = ossn_update_last_cache();
 				if($cache) {
+						//update last_cache settings on run time
+						$Ossn->siteSettings->cache = 1;						
+						$Ossn->siteSettings->last_cache = $cache;
 						ossn_link_cache_files($cache);
 				}
 				return true;
@@ -230,4 +234,29 @@ function ossn_link_cache_files($cache) {
 function ossn_unlink_cache_files() {
 		OssnFile::DeleteDir(ossn_route()->cache);
 		OssnFile::DeleteDir(ossn_get_userdata("system/"));
+}
+/**
+ * Add action tokens to url
+ * 
+ * @param string $url Full complete url
+ * 
+ * @return string
+ */
+function ossn_add_cache_to_url($url){
+	if(ossn_site_settings('cache') == 0){
+			return $url;	
+	}
+	$params = parse_url($url);
+	
+	$query = array();
+	if(isset($params['query'])){
+		parse_str($params['query'],  $query);
+	}
+	$tokens['ossn_cache'] = hash('crc32b', ossn_site_settings('last_cache'));
+	$tokens = array_merge($query, $tokens);
+	
+	$query = http_build_query($tokens);
+	
+	$params['query'] = $query;
+	return  ossn_build_token_url($params);	
 }
