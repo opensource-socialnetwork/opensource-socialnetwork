@@ -18,3 +18,9 @@
 #ossn-wall-form .ui-helper-hidden-accessible {
   	display: none;
 }
+.ossn-wall-post-time {
+	cursor:pointer;
+}
+.ossn-wall-post-time:hover {
+	    text-decoration: underline;
+}

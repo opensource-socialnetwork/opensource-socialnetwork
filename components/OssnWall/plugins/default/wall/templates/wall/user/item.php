@@ -47,7 +47,7 @@ if(!$params['user']){
             <?php } ?>
 			</div>
 			<div class="post-meta">
-				<span class="time-created"><?php echo ossn_user_friendly_time($params['post']->time_created); ?></span>
+				<span class="time-created ossn-wall-post-time" title="<?php echo date('d/m/Y', $params['post']->time_created);?>" onclick="Ossn.redirect('<?php echo("post/view/{$params['post']->guid}");?>');"><?php echo ossn_user_friendly_time($params['post']->time_created); ?></span>
                 <span class="time-created"><?php echo $params['location']; ?></span>
                 <?php
 					echo ossn_plugin_view('privacy/icon/view', array(
