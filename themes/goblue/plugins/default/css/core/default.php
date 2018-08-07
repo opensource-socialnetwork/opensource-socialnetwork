@@ -108,7 +108,7 @@ a {
 }
 .ossn-layout-startup {
     min-height: 560px;
-    background:url("<?php echo ossn_theme_url();?>images/background.jpg") no-repeat;
+    background:url("<?php echo ossn_add_cache_to_url(ossn_theme_url('images/background.jpg'));?>") no-repeat;
     background-size:cover;
 }
 
