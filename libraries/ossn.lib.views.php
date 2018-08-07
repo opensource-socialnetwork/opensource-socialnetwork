@@ -221,11 +221,13 @@ function ossn_default_theme() {
 /**
  * Activated theme URL
  *
+ * @param string $extend Extend the theme url with extra url param (path to file etc)
+ *
  * @return string
  */
-function ossn_theme_url(){
+function ossn_theme_url($extend = ''){
 	$default = ossn_site_settings('theme');
-	return ossn_site_url("themes/{$default}/");
+	return ossn_site_url("themes/{$default}/{$extend}");
 }
 /**
  * Ossn view form
