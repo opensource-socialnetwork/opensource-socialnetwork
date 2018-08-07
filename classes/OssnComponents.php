@@ -101,7 +101,7 @@ class OssnComponents extends OssnDatabase {
 														OssnFile::DeleteDir($data_dir);
 														//Trigger callback upon component deletion, enable, installation #1111
 														ossn_trigger_callback('component', 'installed', array(
-																'component' => $com
+																'component' => $ossn_com_xml->id
 														));
 														return true;
 												}
@@ -440,6 +440,9 @@ class OssnComponents extends OssnDatabase {
 						$this->statement("UPDATE ossn_components
 			    SET active='0' WHERE (com_id='$com')");
 						$this->execute();
+						ossn_trigger_callback('component', 'disabled', array(
+								'component' => $com
+						));
 						return true;
 				}
 				return false;
