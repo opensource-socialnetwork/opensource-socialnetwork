@@ -179,6 +179,8 @@ class OssnComponents extends OssnDatabase {
 				$params['wheres'] = array(
 						"active='1'"
 				);
+				//components are not loading in the correct order #1328
+				$params['order_by'] = 'id ASC';
 				return $this->select($params, true);
 		}
 		
