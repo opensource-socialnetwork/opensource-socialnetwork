@@ -20,6 +20,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v5.0
 * Some Iphone devices unable to post #1295
 * Cache the locale files #1321
 * ossn_default_load_locales is called twice first in initialzie and second in components class.
+* add visibility of admin postings to friends-only wall? #1294
 
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v4.6
