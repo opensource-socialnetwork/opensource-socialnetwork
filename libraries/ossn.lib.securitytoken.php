@@ -18,10 +18,10 @@ function ossn_generate_action_token($timestamp){
 	if(!isset($timestamp) && empty($timestamp)){
 		$timestamp = time();
 	}
-	$site_screat = ossn_site_settings('site_key');
+	$site_secret = ossn_site_settings('site_key');
 	$session_id = session_id();
 	$user_guid  = ossn_loggedin_user()->guid;
-	return md5($timestamp . $site_screat . $session_id . $user_guid);
+	return md5($timestamp . $site_secret . $session_id . $user_guid);
 }
 /**
  * Build url from parts

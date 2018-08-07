@@ -61,7 +61,7 @@ if (empty($site_key_settings->setting_id)) {
     );
     $insert['values'] = array(
         'site_key',
-        ossn_generate_site_screat()
+        ossn_generate_site_secret()
     );
     $database->insert($insert);
 }
