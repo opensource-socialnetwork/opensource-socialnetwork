@@ -26,8 +26,8 @@ Ossn.RegisterStartupFunction(function() {
             $('#ossn-wall-photo').show();
 
         });
-        $('body').on('click', '.ossn-wall-container-menu-post', function(e){
-        	e.preventDefault();
+        $('body').on('click', '.ossn-wall-container-menu-post', function(e) {
+            e.preventDefault();
             $('.ossn-wall-container-data-post').hide();
             $('.ossn-wall-container-data-post').show();
         });
@@ -54,26 +54,26 @@ Ossn.RegisterStartupFunction(function() {
             var $dataguid = $(this).attr('data-guid');
             Ossn.MessageBox('post/edit/' + $dataguid);
         });
-		//Change the privacy button as per the privacy value #1289
-		$('body').on('input', '#ossn-wall-privacy', function(){
-			switch(parseInt($(this).val())){
-					case 3:
-						$('.ossn-wall-privacy-lock').removeClass('fa-lock');
-						$('.ossn-wall-privacy-lock').removeClass('fa-globe');
-						$('.ossn-wall-privacy-lock').removeClass('fa-users');
-						$('.ossn-wall-privacy-lock').addClass('fa-users');
-					break;
-					case 2:
-						$('.ossn-wall-privacy-lock').removeClass('fa-lock');
-						$('.ossn-wall-privacy-lock').removeClass('fa-globe');
-						$('.ossn-wall-privacy-lock').removeClass('fa-users');
-						$('.ossn-wall-privacy-lock').addClass('fa-globe');
-					break;
-			}
-		});
-		if($('#ossn-wall-privacy').length){
-			$('#ossn-wall-privacy').trigger('input');
-		}
+        //Change the privacy button as per the privacy value #1289
+        $('body').on('input', '#ossn-wall-privacy', function() {
+            switch (parseInt($(this).val())) {
+                case 3:
+                    $('.ossn-wall-privacy-lock').removeClass('fa-lock');
+                    $('.ossn-wall-privacy-lock').removeClass('fa-globe');
+                    $('.ossn-wall-privacy-lock').removeClass('fa-users');
+                    $('.ossn-wall-privacy-lock').addClass('fa-users');
+                    break;
+                case 2:
+                    $('.ossn-wall-privacy-lock').removeClass('fa-lock');
+                    $('.ossn-wall-privacy-lock').removeClass('fa-globe');
+                    $('.ossn-wall-privacy-lock').removeClass('fa-users');
+                    $('.ossn-wall-privacy-lock').addClass('fa-globe');
+                    break;
+            }
+        });
+        if ($('#ossn-wall-privacy').length) {
+            $('#ossn-wall-privacy').trigger('input');
+        }
     });
 });
 Ossn.RegisterStartupFunction(function() {
@@ -109,7 +109,7 @@ Ossn.RegisterStartupFunction(function() {
         $('#ossn-wall-privacy').on('click', function(e) {
             var wallprivacy = $('#ossn-wall-privacy-container').find('input[name="privacy"]:checked').val();
             $('#ossn-wall-privacy').val(wallprivacy);
-			$('#ossn-wall-privacy').trigger("input");
+            $('#ossn-wall-privacy').trigger("input");
             Ossn.MessageBoxClose();
         });
         //ajax post
@@ -143,11 +143,11 @@ Ossn.RegisterStartupFunction(function() {
                 //Tagged friend(s) and location should be cleared, too - after posting #641
                 $("#ossn-wall-location-input").val('');
                 $('#ossn-wall-location').hide();
-     
+
                 $('#ossn-wall-friend-input').val('');
-                if($('#ossn-wall-friend-input').length){
-	                $("#ossn-wall-friend-input").tokenInput("clear");
-	                $('#ossn-wall-friend').hide();
+                if ($('#ossn-wall-friend-input').length) {
+                    $("#ossn-wall-friend-input").tokenInput("clear");
+                    $('#ossn-wall-friend').hide();
                 }
 
                 $('#ossn-wall-form').find('input[type=submit]').show();
