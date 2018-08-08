@@ -258,3 +258,24 @@ function ossn_user_image_sizes() {
         'larger' => '170x170',
     );
 }
+/**
+ * Conver multiple images into normalized array
+ *
+ * @param array $files An array of files
+ * @return boolean|array
+ */
+function ossn_input_images($name) {
+		$files = $_FILES[$name];
+		if(!isset($files)) {
+				return false;
+		}
+		$_files       = array();
+		$_files_count = count($files['name']);
+		$_files_keys  = array_keys($files);
+		for($i = 0; $i < $_files_count; $i++) {
+				foreach($_files_keys as $key) {
+						$_files[$i][$key] = $files[$key][$i];
+				}
+		}
+		return $_files;
+}
