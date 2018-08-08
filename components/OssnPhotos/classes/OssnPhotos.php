@@ -67,7 +67,7 @@ class OssnPhotos extends OssnFile {
 					$args['guid'] = $fileguid;
 					$args['album'] = $this->album;
 					ossn_trigger_callback('ossn:photo', 'add', $args);
-                    return true;
+                    return $fileguid;
                 }
             }
             return false;

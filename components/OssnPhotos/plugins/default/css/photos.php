@@ -88,3 +88,11 @@
 	text-align: center;
     min-height:200px;
 }
+.ossn-photos-add-button {
+    text-align: center;
+    padding: 20px;
+    margin-top: 30px;
+}	
+.ossn-photos-add-button .images {
+	display:none;
+}
