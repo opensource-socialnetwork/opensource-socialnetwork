@@ -24,6 +24,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v5.0
 * Allow the cache tag for the images #1314
 * Trigger callback upon component deletion, enable, installation #1111
 * Change the privacy button as per the privacy value #1289
+* Allow wheres clause to search entities.
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v4.6
 
