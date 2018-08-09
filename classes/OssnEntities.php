@@ -447,6 +447,15 @@ class OssnEntities extends OssnDatabase {
 				} elseif(!empty($options['value']) && $options['search_type'] === false) {
 						$wheres[] = "emd.value = '{$options['value']}'";
 				}
+				if(isset($options['wheres']) && !empty($options['wheres'])) {
+						if(!is_array($options['wheres'])) {
+								$wheres[] = $options['wheres'];
+						} else {
+								foreach($options['wheres'] as $witem) {
+										$wheres[] = $witem;
+								}
+						}
+				}				
 				$params             = array();
 				$params['from']     = 'ossn_entities as e';
 				$params['params']   = array(
