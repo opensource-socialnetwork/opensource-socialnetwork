@@ -142,6 +142,30 @@ class OssnAlbums extends OssnObject {
 												$photos->deleteAlbumPhoto();
 										}
 								}
+								if(class_exists('OssnWall')) {
+										$wall      = new OssnWall();
+										$wallposts = $wall->searchObject(array(
+												'type' => 'user',
+												'page_limit' => false,
+												'entities_pairs' => array(
+														array(
+																'name' => 'item_type',
+																'value' => 'album:photos:wall'
+														),
+														array(
+																'name' => 'item_guid',
+																'value' => $guid
+														)
+												)
+										));
+										if($wallposts) {
+												foreach($wallposts as $post) {
+														if(!empty($post->guid)) {
+																$post->deletePost($post->guid);
+														}
+												}
+										}
+								}
 								if($album->album->deleteObject()) {
 										return true;
 								}

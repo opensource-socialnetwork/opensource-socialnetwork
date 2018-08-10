@@ -96,3 +96,30 @@
 .ossn-photos-add-button .images {
 	display:none;
 }
+.ossn-photos-wall {
+    background: #f9f9f9;
+    margin-bottom: 10px;
+    padding-top: 10px;
+    border-radius: 2px;
+    border: 1px solid #eee;
+ 	text-align: center;   
+}
+.ossn-photos-wall-plain {
+	border:none;
+  	text-align: center;   
+    background:initial;
+}
+.ossn-photos-wall-title a{
+      font-weight: normal !important;
+}
+.ossn-photo-wall-item-small {
+    width:100px;
+}
+.ossn-photo-wall-item-medium {
+    width:200px;
+}
+.ossn-photos-wall-item {
+	display:inline-block !important;
+    cursor:pointer;
+    margin-right:2px;
+}

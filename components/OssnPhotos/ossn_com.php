@@ -38,6 +38,7 @@ function ossn_photos_initialize() {
 		ossn_add_hook('photo:view', 'profile:controls', 'ossn_profile_photo_menu');
 		ossn_add_hook('photo:view', 'album:controls', 'ossn_album_photo_menu');
 		ossn_add_hook('cover:view', 'profile:controls', 'ossn_album_cover_photo_menu');
+		ossn_add_hook('wall:template', 'album:photos:wall', 'ossn_photos_wall');
 		
 		//actions
 		if(ossn_isLoggedin()) {
@@ -53,6 +54,7 @@ function ossn_photos_initialize() {
 		ossn_register_callback('delete', 'profile:photo', 'ossn_photos_likes_comments_delete');
 		ossn_register_callback('delete', 'album:photo', 'ossn_photos_likes_comments_delete');
 		ossn_register_callback('user', 'delete', 'ossn_user_photos_delete');
+		ossn_register_callback('ossn:photo', 'add:multiple', 'ossn_photos_add_to_wall');
 		
 		ossn_profile_subpage('photos');
 		
@@ -68,15 +70,13 @@ function ossn_photos_initialize() {
 						'text' => ossn_print('photos:ossn'),
 						'url' => $user_loggedin->profileURL('/photos'),
 						'parent' => 'links',
-						'icon' => $icon,
+						'icon' => $icon
 				));
 				
 		}
 		//gallery plugin dist include
 		ossn_new_external_js('jquery.fancybox.min.js', '//cdnjs.cloudflare.com/ajax/libs/fancybox/3.0.47/jquery.fancybox.min.js', false);
 		ossn_new_external_css('jquery.fancybox.min.css', '//cdnjs.cloudflare.com/ajax/libs/fancybox/3.0.47/jquery.fancybox.min.css', false);
-		
-
 }
 /**
  * Delete user photos
@@ -89,16 +89,40 @@ function ossn_photos_initialize() {
  * @return void
  * @access private
  */
-function ossn_user_photos_delete($callback, $type, $params){
-		$guid = $params['entity']->guid;
-		$album = new OssnAlbums;
+function ossn_user_photos_delete($callback, $type, $params) {
+		$guid              = $params['entity']->guid;
+		$album             = new OssnAlbums;
 		$album->page_limit = false;
-		$albums = $album->GetAlbums($guid);
-		if($albums){
-			foreach($albums as $item){
-				$album->deleteAlbum($item->guid);	
-			}
+		$albums            = $album->GetAlbums($guid);
+		if($albums) {
+				foreach($albums as $item) {
+						$album->deleteAlbum($item->guid);
+				}
 		}
+}
+/**
+ * Add user album photos to wall
+ *
+ * @param string $callback Name of callback
+ * @param string $type Callback type
+ * @param array  $params array|object
+ *
+ * @return void
+ * @access private
+ */
+function ossn_photos_add_to_wall($callback, $type, $params) {
+		if(isset($params['album']) && isset($params['photo_guids'])) {
+				$wall = new OssnPhotos();
+				$wall->addWall($params['album'], $params['photo_guids']);
+		}
+}
+/**
+ * Template for wall file
+ *
+ * @return string
+ */
+function ossn_photos_wall($hook, $type, $return, $params) {
+		return ossn_plugin_view("photos/wall/template", $params);
 }
 /**
  * Set template for photos like for OssnNotifications
@@ -222,12 +246,12 @@ function ossn_photos_page_handler($album) {
 												ossn_error_page();
 										}
 								}
-								$contents          = array(
+								$contents = array(
 										'title' => ossn_print('photos'),
-										'content' => ossn_plugin_view('photos/pages/photo/view', $photo),
+										'content' => ossn_plugin_view('photos/pages/photo/view', $photo)
 								);
 								//set page layout
-								$content = ossn_set_page_layout('media', $contents);
+								$content  = ossn_set_page_layout('media', $contents);
 								echo ossn_view_page($title, $content);
 						}
 						break;
@@ -246,9 +270,9 @@ function ossn_photos_page_handler($album) {
 								if(empty($image->value)) {
 										redirect();
 								}
-								$contents          = array(
+								$contents = array(
 										'title' => 'Photos',
-										'content' => ossn_plugin_view('photos/pages/profile/photos/view', $photo),
+										'content' => ossn_plugin_view('photos/pages/profile/photos/view', $photo)
 								);
 								//set page layout
 								$content  = ossn_set_page_layout('media', $contents);
@@ -269,12 +293,12 @@ function ossn_photos_page_handler($album) {
 								if(empty($image->value)) {
 										redirect();
 								}
-								$contents          = array(
+								$contents = array(
 										'title' => 'Photos',
-										'content' => ossn_plugin_view('photos/pages/profile/covers/view', $photo),
+										'content' => ossn_plugin_view('photos/pages/profile/covers/view', $photo)
 								);
 								//set page layout
-								$content = ossn_set_page_layout('media', $contents);
+								$content  = ossn_set_page_layout('media', $contents);
 								echo ossn_view_page($title, $content);
 						}
 						break;
@@ -441,9 +465,9 @@ function ossn_album_page_handler($album) {
 										'text' => "<i class='fa fa-caret-square-o-right'></i>",
 										'href' => 'javascript:void(0);',
 										'class' => 'button-grey',
-										'id' => 'ossn-photos-show-gallery',
-								);		
-								$control_gbutton  = ossn_plugin_view('output/url', $gallery_button);								
+										'id' => 'ossn-photos-show-gallery'
+								);
+								$control_gbutton = ossn_plugin_view('output/url', $gallery_button);
 								//shows add photos if owner is loggedin user
 								if(ossn_loggedin_user()->guid == $owner->owner_guid) {
 										$addphotos     = array(
@@ -458,25 +482,25 @@ function ossn_album_page_handler($album) {
 												'text' => ossn_print('delete:album'),
 												'href' => $delete_action,
 												'class' => 'button-grey ossn-make-sure'
-										);							
-										$control = ossn_plugin_view('output/url', $addphotos);
+										);
+										$control       = ossn_plugin_view('output/url', $addphotos);
 										$control .= ossn_plugin_view('output/url', $delete_album);
 								} else {
 										$control = false;
 								}
 								//Missing back button to photos #570
 								$owner = ossn_user_by_guid($owner->owner_guid);
-								$back         = array(
+								$back  = array(
 										'text' => ossn_print('back'),
 										'href' => ossn_site_url("u/{$owner->username}/photos"),
 										'class' => 'button-grey'
 								);
-								$control           .= ossn_plugin_view('output/url', $back);									
+								$control .= ossn_plugin_view('output/url', $back);
 								//set photos in module
 								$contents          = array(
 										'title' => ossn_print('photos'),
 										'content' => ossn_plugin_view('photos/pages/albums', $user),
-										'controls' => $control_gbutton.$control,
+										'controls' => $control_gbutton . $control,
 										'module_width' => '850px'
 								);
 								//set page layout
@@ -494,12 +518,12 @@ function ossn_album_page_handler($album) {
 										ossn_error_page();
 								}
 								//Missing back button to photos #570
-								$back         = array(
+								$back              = array(
 										'text' => ossn_print('back'),
 										'href' => ossn_site_url("u/{$user['user']->username}/photos"),
 										'class' => 'button-grey'
 								);
-								$control           = ossn_plugin_view('output/url', $back);								
+								$control           = ossn_plugin_view('output/url', $back);
 								//view profile photos in module layout
 								$contents          = array(
 										'title' => ossn_print('photos'),
@@ -522,12 +546,12 @@ function ossn_album_page_handler($album) {
 										ossn_error_page();
 								}
 								//Missing back button to photos #570
-								$back         = array(
+								$back              = array(
 										'text' => ossn_print('back'),
 										'href' => ossn_site_url("u/{$user['user']->username}/photos"),
 										'class' => 'button-grey'
 								);
-								$control           = ossn_plugin_view('output/url', $back);										
+								$control           = ossn_plugin_view('output/url', $back);
 								//view profile photos in module layout
 								$contents          = array(
 										'title' => ossn_print('covers'),
