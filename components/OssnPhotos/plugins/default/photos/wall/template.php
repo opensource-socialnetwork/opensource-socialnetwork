@@ -14,8 +14,11 @@ if(!$album) {
 		return;
 }
 $photos_guid = $params['post']->photos_guids;
+$count  	 = count(explode(',', $photos_guid));
+
 $photos      = ossn_get_entities(array(
-		'wheres' => "e.guid IN({$photos_guid})"
+		'wheres' => "e.guid IN({$photos_guid})",
+		'page_limit' => 17,
 ));
 $total       = count((array) $photos);
 $container   = 'ossn-photos-wall';
@@ -74,6 +77,10 @@ if($total == 1) {
 										$view = "<a target='_blank' href='".ossn_site_url("photos/view/{$photo->guid}")."'><img class='img-thumbnail' src='{$url}' /></a>";
 									}
 									echo $view;
+							}
+							if($count > 17){
+										$url  = ossn_site_url("/components/OssnPhotos/images/more.jpg");									
+										echo "<a target='_blank' href='".ossn_site_url("album/view/{$album->guid}")."'><img class='img-thumbnail ossn-photos-wall-item ossn-photo-wall-item-small' src='{$url}' /></a>";								
 							}
 					}
 					if(!$photos){
