@@ -10,13 +10,13 @@
  */
 ?>
 <div>
-	<label><?php echo ossn_print('username'); ?></label>
-    <input type="text" name="username" />
+     <label><?php echo ossn_print('username'); ?></label>
+     <input type="text" name="username" />
 </div>
 
 <div>
-	<label><?php echo ossn_print('password'); ?></label>
-    <input type="password" name="password" />
+     <label><?php echo ossn_print('password'); ?></label>
+     <input type="password" name="password" autocomplete="off" />
 </div>
 <div>
 	<?php echo ossn_fetch_extend_views('forms/login2/before/submit'); ?>
