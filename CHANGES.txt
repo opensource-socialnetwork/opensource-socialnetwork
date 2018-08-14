@@ -25,9 +25,10 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v5.0
 * Trigger callback upon component deletion, enable, installation #1111
 * Change the privacy button as per the privacy value #1289
 * Allow wheres clause to search entities.
-* Allow to add multiple images to album.
-* Add the new photos added to wall on newsfeed page.
+* Allow to add multiple images to album #1329.
+* Add the new photos added to wall on newsfeed page #1329. 
    - The privacy of post will be same as privacy of the album.
+* disable autocomplete for passwords #1330
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v4.6
 
