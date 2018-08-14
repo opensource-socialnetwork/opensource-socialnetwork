@@ -16,7 +16,7 @@
 
 <div>
     <label> <?php echo ossn_print('password'); ?> </label>
-    <input type="password" name="password"/>
+    <input type="password" name="password" autocomplete="off" />
 </div>
 
 <input type="submit" value="<?php echo ossn_print('site:login');?>" class="ossn-button ossn-button-submit"/>
