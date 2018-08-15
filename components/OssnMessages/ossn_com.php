@@ -76,18 +76,18 @@ function ossn_messages_page($pages) {
 										$user->fullname
 								));
 								$OssnMessages->markViewed($user->guid, ossn_loggedin_user()->guid);
-								$params['data']   = $OssnMessages->getWith(ossn_loggedin_user()->guid, $user->guid);
-								$params['count']   = $OssnMessages->getWith(ossn_loggedin_user()->guid, $user->guid, true);
-								$params['user']   = $user;
+								$params['data']  = $OssnMessages->getWith(ossn_loggedin_user()->guid, $user->guid);
+								$params['count'] = $OssnMessages->getWith(ossn_loggedin_user()->guid, $user->guid, true);
+								$params['user']  = $user;
 								
-								$loggedin_guid = ossn_loggedin_user()->guid;
+								$loggedin_guid    = ossn_loggedin_user()->guid;
 								$params['recent'] = $OssnMessages->recentChat($loggedin_guid);
-								$params['count'] = $OssnMessages->recentChat($loggedin_guid, true);
+								$params['count']  = $OssnMessages->recentChat($loggedin_guid, true);
 								
-								$contents         = array(
+								$contents = array(
 										'content' => ossn_plugin_view('messages/pages/view', $params)
 								);
-								$content          = ossn_set_page_layout('media', $contents);
+								$content  = ossn_set_page_layout('media', $contents);
 								echo ossn_view_page($title, $content);
 								
 						} else {
@@ -95,44 +95,44 @@ function ossn_messages_page($pages) {
 						}
 						break;
 				case 'xhr':
-						switch($pages[1]){
+						switch($pages[1]) {
 								case 'recent':
-											$loggedin_guid = ossn_loggedin_user()->guid;
-											$params = array();
-											$params['recent'] = $OssnMessages->recentChat($loggedin_guid);
-											$params['count'] = $OssnMessages->recentChat($loggedin_guid, true);										
-											echo ossn_plugin_view('messages/pages/view/recent', $params);
-									break;
+										$loggedin_guid    = ossn_loggedin_user()->guid;
+										$params           = array();
+										$params['recent'] = $OssnMessages->recentChat($loggedin_guid);
+										$params['count']  = $OssnMessages->recentChat($loggedin_guid, true);
+										echo ossn_plugin_view('messages/pages/view/recent', $params);
+										break;
 								case 'notification':
-									$loggedin_guid = ossn_loggedin_user()->guid;
-									$params['recent'] = $OssnMessages->recentChat($loggedin_guid);
-									$data             = ossn_plugin_view('messages/templates/message-with-notifi', $params);
-									if(!empty($params['recent'])) {
-										echo $data;
-									} else {
-										echo '<div class="ossn-no-notification">' . ossn_print('ossn:notification:no:notification') . '</div>';
-									}								
-								break;
+										$loggedin_guid    = ossn_loggedin_user()->guid;
+										$params['recent'] = $OssnMessages->recentChat($loggedin_guid);
+										$data             = ossn_plugin_view('messages/templates/message-with-notifi', $params);
+										if(!empty($params['recent'])) {
+												echo $data;
+										} else {
+												echo '<div class="ossn-no-notification">' . ossn_print('ossn:notification:no:notification') . '</div>';
+										}
+										break;
 								case 'with':
-								$guid = input('guid');
-								if(!empty($guid)) {
-									$user = ossn_user_by_guid($guid);
-									if(empty($user->guid)) {
-										return;
-									}
-									$OssnMessages->markViewed($user->guid, ossn_loggedin_user()->guid);
-									$params['data']   = $OssnMessages->getWith(ossn_loggedin_user()->guid, $user->guid);
-									$params['count']   = $OssnMessages->getWith(ossn_loggedin_user()->guid, $user->guid, true);
-									$params['user']   = $user;
-									echo ossn_plugin_view('messages/pages/view/with-xhr', $params);
-								}						
-								break;
+										$guid = input('guid');
+										if(!empty($guid)) {
+												$user = ossn_user_by_guid($guid);
+												if(empty($user->guid)) {
+														return;
+												}
+												$OssnMessages->markViewed($user->guid, ossn_loggedin_user()->guid);
+												$params['data']  = $OssnMessages->getWith(ossn_loggedin_user()->guid, $user->guid);
+												$params['count'] = $OssnMessages->getWith(ossn_loggedin_user()->guid, $user->guid, true);
+												$params['user']  = $user;
+												echo ossn_plugin_view('messages/pages/view/with-xhr', $params);
+										}
+										break;
 						}
-					break;
+						break;
 				case 'all':
-						$loggedin_guid = ossn_loggedin_user()->guid;
+						$loggedin_guid    = ossn_loggedin_user()->guid;
 						$params['recent'] = $OssnMessages->recentChat($loggedin_guid);
-						$params['count'] = $OssnMessages->recentChat($loggedin_guid, true);
+						$params['count']  = $OssnMessages->recentChat($loggedin_guid, true);
 						$active           = $params['recent'][0];
 						if(isset($active->message_to) && $active->message_to == ossn_loggedin_user()->guid) {
 								$getuser = $active->message_from;
@@ -144,8 +144,8 @@ function ossn_messages_page($pages) {
 								$user = ossn_user_by_guid($getuser);
 								$OssnMessages->markViewed($getuser, ossn_loggedin_user()->guid);
 								$params['data']   = $OssnMessages->getWith(ossn_loggedin_user()->guid, $getuser);
-								$params['countm']   = $OssnMessages->getWith(ossn_loggedin_user()->guid, $getuser, true);								
-								$params['user'] = $user;
+								$params['countm'] = $OssnMessages->getWith(ossn_loggedin_user()->guid, $getuser, true);
+								$params['user']   = $user;
 						}
 						$contents = array(
 								'content' => ossn_plugin_view('messages/pages/messages', $params)
@@ -212,5 +212,23 @@ function ossn_user_messages_delete($callback, $type, $params) {
 		if(isset($params['entity']->guid)) {
 				$messages->deleteUser($params['entity']->guid);
 		}
+}
+/** 
+ * Get a message by id
+ *
+ * @param integer $id Message id
+ * @return boolean|object
+ */
+function ossn_get_message($id = false) {
+		if(isset($id) && $id > 0) {
+				$message  = new OssnMessages;
+				$messages = $message->searchMessages(array(
+						'id' => $id
+				));
+				if($messages) {
+						return $messages[0];
+				}
+		}
+		return false;
 }
 ossn_register_callback('ossn', 'init', 'ossn_messages');
