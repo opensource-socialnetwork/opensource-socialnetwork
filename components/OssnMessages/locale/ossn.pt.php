@@ -15,6 +15,7 @@ $pt = array(
     'ossn:message:between' => 'Mensagem %s',
     'messages' => 'Mensagens',
     'message:placeholder' => 'Digite seu texto aqui',
-    'no:messages' => 'Você não possui mensagens.'
+    'no:messages' => 'Você não possui mensagens.',
+	'ossnmessages:deleted' => 'Mensagem foi excluída',
 );
 ossn_register_languages('pt', $pt); 

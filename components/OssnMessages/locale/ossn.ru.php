@@ -15,6 +15,7 @@ $ru = array(
     'ossn:message:between' => 'Сообщения %s',
     'messages' => 'Сообщения',
     'message:placeholder' => 'Введите текст здесь',
-    'no:messages' => 'Вам никто не пишет'
+    'no:messages' => 'Вам никто не пишет',
+	'ossnmessages:deleted' => 'Сообщение удалено',
 );
 ossn_register_languages('ru', $ru); 

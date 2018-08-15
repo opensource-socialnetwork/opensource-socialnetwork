@@ -16,5 +16,6 @@ $de = array(
     'messages' => 'Nachrichten',
     'message:placeholder' => 'Schreib was ...',
     'no:messages' => 'keine Nachrichten vorhanden',
+	'ossnmessages:deleted' => 'Die Nachricht wurde gelöscht',	
 );
 ossn_register_languages('de', $de); 

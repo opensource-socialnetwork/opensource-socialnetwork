@@ -15,6 +15,7 @@ $fr = array(
     'ossn:message:between' => 'Messages %s',
     'messages' => 'Messages',
     'message:placeholder' => 'Entrer votre texte ici',
-	'no:messages' => "Vous n'avez pas de messages."
+	'no:messages' => "Vous n'avez pas de messages.",
+	'ossnmessages:deleted' => 'Le message a été supprimé',		
 );
 ossn_register_languages('fr', $fr); 

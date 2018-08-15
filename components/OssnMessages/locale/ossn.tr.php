@@ -15,6 +15,7 @@ $tr = array(
     'ossn:message:between' => 'Mesaj %s',
     'messages' => 'Mesajlar',
     'message:placeholder' => 'Metninizi girin',
-    'no:messages' => 'Mesajınız yok.'
+    'no:messages' => 'Mesajınız yok.',
+	'ossnmessages:deleted' => 'İleti silindi',
 );
 ossn_register_languages('tr', $tr); 
