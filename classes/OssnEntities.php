@@ -31,7 +31,8 @@ class OssnEntities extends OssnDatabase {
 						'annotation' => 'OssnAnnotation',
 						'entity' => 'OssnEntities',
 						'site' => 'OssnSite',
-						'component' => 'OssnComponents'
+						'component' => 'OssnComponents',
+						'message' => 'OssnMessages'
 				);
 				
 				//generate entity types from $this->types
