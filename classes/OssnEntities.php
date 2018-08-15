@@ -25,16 +25,14 @@ class OssnEntities extends OssnDatabase {
 						$this->permission = OSSN_PUBLIC;
 				}
 				
-				$this->types = array(
+				$this->types = ossn_call_hook('entities', 'types', false, array(
 						'object' => 'OssnObject',
 						'user' => 'OssnUser',
 						'annotation' => 'OssnAnnotation',
 						'entity' => 'OssnEntities',
 						'site' => 'OssnSite',
-						'component' => 'OssnComponents',
-						'message' => 'OssnMessages'
-				);
-				
+						'component' => 'OssnComponents'
+				));
 				//generate entity types from $this->types
 				foreach($this->types as $type => $class) {
 						$this->entity_types[] = $type;
@@ -49,7 +47,7 @@ class OssnEntities extends OssnDatabase {
 				if(empty($this->type)) {
 						$this->type = 'entity';
 				}
-				$this->data        = new stdClass;
+				$this->data = new stdClass;
 				
 				if(!isset($this->offset)) {
 						$this->offset = 1;
@@ -113,7 +111,7 @@ class OssnEntities extends OssnDatabase {
 								$args['type']         = $this->params['values'][1];
 								$args['subtype']      = $this->params['values'][2];
 								$args['time_created'] = $this->params['values'][3];
-								ossn_trigger_callback('entity', 'created', $args);								
+								ossn_trigger_callback('entity', 'created', $args);
 								return true;
 						}
 				}
@@ -344,8 +342,8 @@ class OssnEntities extends OssnDatabase {
 				if(isset($this->guid) && !empty($this->guid) && empty($guid)) {
 						$guid = $this->guid;
 				}
-				if(empty($guid)){
-					return false;
+				if(empty($guid)) {
+						return false;
 				}
 				$params['from']   = 'ossn_entities';
 				$params['wheres'] = array(
@@ -456,7 +454,7 @@ class OssnEntities extends OssnDatabase {
 										$wheres[] = $witem;
 								}
 						}
-				}				
+				}
 				$params             = array();
 				$params['from']     = 'ossn_entities as e';
 				$params['params']   = array(
@@ -482,11 +480,11 @@ class OssnEntities extends OssnDatabase {
 				}
 				if(isset($options['group_by']) && !empty($options['group_by'])) {
 						$params['group_by'] = $options['group_by'];
-				}					
+				}
 				//override params
-				if(isset($options['params']) && !empty($options['params'])){
+				if(isset($options['params']) && !empty($options['params'])) {
 						$params['params'] = $options['params'];
-				}				
+				}
 				//prepare count data;
 				if($options['count'] === true) {
 						unset($params['params']);
@@ -534,7 +532,7 @@ class OssnEntities extends OssnDatabase {
 		 *
 		 * @return void
 		 */
-		public function destruct(){
+		public function destruct() {
 				unset($this->types);
 				unset($this->entity_types);
 				unset($this->page_limit);
@@ -545,5 +543,5 @@ class OssnEntities extends OssnDatabase {
 				unset($this->order_by);
 				unset($this->active);
 				unset($this->limit);
-		}		
+		}
 } //class
