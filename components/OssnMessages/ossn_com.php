@@ -47,6 +47,8 @@ function ossn_messages() {
 		}
 		//callbacks
 		ossn_register_callback('user', 'delete', 'ossn_user_messages_delete');
+		//add messages entity type
+		ossn_add_hook('entities', 'types', 'ossn_messages_entity_type');
 }
 /**
  * Ossn messages page handler
@@ -230,5 +232,19 @@ function ossn_get_message($id = false) {
 				}
 		}
 		return false;
+}
+/**
+ * Add a entity type for messages
+ * 
+ * @param string $callback Name of callback
+ * @param string $type Callback type
+ * @param array $params Arrays or Objects
+ *
+ * @access private
+ * @return array
+ */
+function ossn_messages_entity_type($hook, $type, $return, $params) {
+		$return['message'] = 'OssnMessages';
+		return $return;
 }
 ossn_register_callback('ossn', 'init', 'ossn_messages');
