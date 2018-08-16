@@ -252,6 +252,32 @@ $(document).ready(function() {
 		}
 	});
 });
+Ossn.RegisterStartupFunction(function() {
+    $(document).ready(function() {
+        $('body').on('click', '.ossn-message-delete', function(e) {
+            e.preventDefault();
+            $text = "<i class='fa fa-times-circle'></i>" + Ossn.Print('ossnmessages:deleted');
+            $self   = $(this);
+			$parent = $(this).parent().parent();
+            $action = $(this).attr('href');
+            if ($action) {
+                Ossn.PostRequest({
+                    url: $action,
+                    action: false,
+                    callback: function(callback) {
+                        if (callback == 1) {
+                            if ($parent.hasClass('message-box-sent')) {
+                                $parent.find('span').html($text);
+                                $parent.addClass('ossn-message-deleted');
+                                $self.remove();
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    });
+});
 $(document).ready(function() {
 	var $MessageNotifcationPagination = [];	
 	$('body').on('click', '#ossn-notif-messages', function(){

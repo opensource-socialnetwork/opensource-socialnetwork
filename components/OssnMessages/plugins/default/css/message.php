@@ -1,4 +1,3 @@
-
 .ossn-messages {
 
 }
@@ -242,4 +241,16 @@
 .ossn-messages-notification-pagination-loading {
     display: block;
     margin-top: -55px;
+}
+.ossn-message-delete {
+	margin-left: 10px;
+    color: #c77878 !important;
+    visibility:hidden; 
+}
+.message-box-sent:hover .ossn-message-delete {
+		visibility:visible;
+}
+.ossn-message-deleted span {
+    font-style: italic;
+    color: #d27a7a;
 }

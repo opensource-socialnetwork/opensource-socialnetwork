@@ -33,6 +33,7 @@ function ossn_messages() {
 		
 		if(ossn_isLoggedin()) {
 				ossn_register_action('message/send', __OSSN_MESSAGES__ . 'actions/message/send.php');
+				ossn_register_action('message/delete', __OSSN_MESSAGES__ . 'actions/message/delete.php');
 				
 				$user_loggedin = ossn_loggedin_user();
 				$icon          = ossn_site_url('components/OssnMessages/images/messages.png');
@@ -243,8 +244,8 @@ function ossn_get_message($id = false) {
  * @access private
  * @return array
  */
-function ossn_messages_entity_type($hook, $type, $return, $params) {
-		$return['message'] = 'OssnMessages';
-		return $return;
+function ossn_messages_entity_type($hook, $type, $return, $params){
+			$return['message'] = 'OssnMessages';
+			return $return;
 }
 ossn_register_callback('ossn', 'init', 'ossn_messages');
