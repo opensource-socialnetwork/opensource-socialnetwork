@@ -29,6 +29,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v5.0
 * Add the new photos added to wall on newsfeed page #1329. 
    - The privacy of post will be same as privacy of the album.
 * disable autocomplete for passwords #1330
+* Allow to delete message that user own #1332
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v4.6
 
