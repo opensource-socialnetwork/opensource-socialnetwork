@@ -85,7 +85,7 @@ function ossn_messages_page($pages) {
 								
 								$loggedin_guid    = ossn_loggedin_user()->guid;
 								$params['recent'] = $OssnMessages->recentChat($loggedin_guid);
-								$params['count']  = $OssnMessages->recentChat($loggedin_guid, true);
+								$params['count_recent']  = $OssnMessages->recentChat($loggedin_guid, true);
 								
 								$contents = array(
 										'content' => ossn_plugin_view('messages/pages/view', $params)
@@ -135,7 +135,7 @@ function ossn_messages_page($pages) {
 				case 'all':
 						$loggedin_guid    = ossn_loggedin_user()->guid;
 						$params['recent'] = $OssnMessages->recentChat($loggedin_guid);
-						$params['count']  = $OssnMessages->recentChat($loggedin_guid, true);
+						$params['count_recent']  = $OssnMessages->recentChat($loggedin_guid, true);
 						$active           = $params['recent'][0];
 						if(isset($active->message_to) && $active->message_to == ossn_loggedin_user()->guid) {
 								$getuser = $active->message_from;

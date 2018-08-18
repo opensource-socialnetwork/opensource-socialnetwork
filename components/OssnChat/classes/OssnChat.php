@@ -9,7 +9,7 @@
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
  * @link      https://www.opensource-socialnetwork.org/
  */
-class OssnChat extends OssnDatabase {
+class OssnChat extends OssnMessages {
 		/**
 		 * Set uesr chat session
 		 *
@@ -106,115 +106,7 @@ class OssnChat extends OssnDatabase {
 				}
 				array_multisort(array_map(function($element){ return $element['status']; }, $all), SORT_DESC, SORT_STRING, $all);
 				return $all;
-		}
-		
-		/**
-		 * Send message
-		 *
-		 * @params $from: User 1 guid
-		 *         $to User 2 guid
-		 *         $message Message
-		 *
-		 * @return bool;
-		 */
-		public function send($from, $to, $message) {
-				if(empty($from) || empty($to) || empty($message)) {
-						return false;
-				}
-				$message = strip_tags($message);
-				$message = ossn_restore_new_lines($message);
-				$message = ossn_input_escape($message, false);
-				
-				$params['into']   = 'ossn_messages';
-				$params['names']  = array(
-						'message_from',
-						'message_to',
-						'message',
-						'time',
-						'viewed'
-				);
-				$params['values'] = array(
-						(int) $from,
-						(int) $to,
-						$message,
-						time(),
-						'0'
-				);
-				if($this->insert($params)) {
-						$this->lastMessage      = $this->getLastEntry();
-						$params['message_id']   = $this->lastMessage;
-						$params['message_from'] = $from;
-						$params['message_to']   = $to;
-						$params['message']      = $message;
-						ossn_trigger_callback('message', 'created', $params);
-						return true;
-				}
-				return false;
-		}
-		
-		/**
-		 * Get messages between two users
-		 *
-		 * @params $from: User 1 guid
-		 *         $to User 2 guid
-		 *
-		 * @return object
-		 */
-		public function get($from, $to) {
-				$params['from']     = 'ossn_messages';
-				$params['wheres']   = array(
-						"message_from='{$from}' AND
-								  message_to='{$to}' OR
-								  message_from='{$to}' AND
-								  message_to='{$from}'"
-				);
-				$params['order_by'] = "id ASC";
-				return $this->select($params, true);
-		}
-		
-		/**
-		 * Mark message as viewed
-		 *
-		 * @params $from: User 1 guid
-		 *         $to User 2 guid
-		 *
-		 * @return bool
-		 */
-		public function markViewed($from, $to) {
-				$params['table']  = 'ossn_messages';
-				$params['names']  = array(
-						'viewed'
-				);
-				$params['values'] = array(
-						1
-				);
-				$params['wheres'] = array(
-						"message_from='{$from}' AND
-								   message_to='{$to}'"
-				);
-				if($this->update($params)) {
-						return true;
-				}
-				return false;
-		}
-		
-		/**
-		 * Get new messages
-		 *
-		 * @params $from: User 1 guid
-		 *         $to User 2 guid
-		 *
-		 * @return bool
-		 */
-		public function getNew($from, $to, $viewed = 0) {
-				$params['from']   = 'ossn_messages';
-				$params['wheres'] = array(
-						"message_from='{$from}' AND
-			 message_to='{$to}' AND viewed='{$viewed}'"
-				);
-				return $this->select($params, true);
-		}
-		
+		}						
 		/**
 		 * Count online user friends
 		 *
@@ -292,4 +184,26 @@ class OssnChat extends OssnDatabase {
 				$friends          = $this->select($params, true);
 				return $friends;
 		}
+		/**
+		 * Get messages between two users
+		 *
+		 * @params $from: User 1 guid
+		 *         $to User 2 guid
+		 *
+		 * @return object
+		 */
+		public function getWith($from, $to, $count = false) {
+				$messages = $this->searchMessages(array(
+						'wheres' => array(
+								"message_from='{$from}' AND message_to='{$to}' OR message_from='{$to}' AND message_to='{$from}'"
+						),
+						'order_by' => 'm.id DESC',
+						'offset' => input("offset_message_xhr_with_{$to}", '', 1),
+						'count' => $count
+				));
+				if($messages && !$count) {
+						return array_reverse($messages);
+				}
+				return $messages;
+		}		
 } //class

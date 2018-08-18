@@ -12,9 +12,13 @@
 <div class="message-sender" id="ossn-message-item-<?php echo $params['id'];?>">
     <div class="ossn-chat-text-data-right">
         <div class="ossn-chat-triangle ossn-chat-triangle-blue"></div>
-        <div class="text">
+        <div class="text <?php echo $params['class'];?>">
             <div class="inner" title="<?php echo OssnChat::messageTime($params['time']); ?>">
-                <?php echo ossn_call_hook('chat', 'message:smilify', null, linkify_chat($params['message'])); ?>
+            	<?php if($params['deleted']){ ?>
+                	<span><i class="fa fa-times-circle"></i><?php echo ossn_print('ossnmessages:deleted');?></span>
+                <?php } else { ?>
+	                <span><?php echo ossn_call_hook('chat', 'message:smilify', null, linkify_chat($params['message'])); ?></span>
+                <?php } ?>    
             </div>
         </div>
     </div>

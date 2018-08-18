@@ -1,3 +1,4 @@
+//<script>
 /**
  * 	Open Source Social Network
  *
@@ -49,7 +50,7 @@ Ossn.ChatOpenTab = function($user) {
         $tabitem.find('input[type="text"]').show();
         $('#ftab' + $user).removeClass('ossn-chat-tab-active');
         $tabitem.find('.ossn-chat-new-message').hide();
-        $tabitem.find('.ossn-chat-new-message').empty();           
+        $tabitem.find('.ossn-chat-new-message').empty();
         Ossn.ChatScrollMove($user);
     }
 };
@@ -60,9 +61,9 @@ Ossn.ChatCloseTab = function($user) {
     $tabitem.css('width', '200px');
     $tabitem.find('input[type="text"]').hide();
     $tabitem.removeClass('ossn-chat-tab-active');
-	// close emoji container if still open because no emoji has been selected
-	$('#master-moji-anchor').val('');
-	$('#master-moji .emojii-container-main').hide();
+    // close emoji container if still open because no emoji has been selected
+    $('#master-moji-anchor').val('');
+    $('#master-moji .emojii-container-main').hide();
 };
 Ossn.ChatTerminateTab = function($user) {
     return Ossn.CloseChat($user);
@@ -82,17 +83,17 @@ Ossn.ChatSendForm = function($user) {
     Ossn.ajaxRequest({
         url: Ossn.site_url + "action/ossnchat/send",
         form: '#ossn-chat-send-' + $user,
-        
+
         beforeSend: function(request) {
-             var $input = $('#ossn-chat-send-' + $user).find("input[type='text']");
+            var $input = $('#ossn-chat-send-' + $user).find("input[type='text']");
             //chat: annoying procedure on pressing just [Enter] without any input #651
-            if(!$.trim($input.val())){
-           		$('#ftab-i' + $user).find('.ossn-chat-message-sending').hide();
+            if (!$.trim($input.val())) {
+                $('#ftab-i' + $user).find('.ossn-chat-message-sending').hide();
                 $('#ftab-i' + $user).find('input[name="message"]').val('');
                 request.abort();
             } else {
-	            $('#ftab-i' + $user).find('.ossn-chat-message-sending').show();
-             }
+                $('#ftab-i' + $user).find('.ossn-chat-message-sending').show();
+            }
         },
         callback: function(callback) {
             if (callback['type'] == 1) {
@@ -148,7 +149,47 @@ Ossn.ChatScrollMove = function(fid) {
         return message.scrollTop;
     }
 };
-
 Ossn.ChatExpand = function($username) {
     window.location = Ossn.site_url + 'messages/message/' + $username;
 };
+//message with user pagination
+Ossn.ChatLoading = function($friend_guid) {
+    $(document).ready(function() {
+        $calledOnce = [];
+        $('#ossn-chat-messages-data-' + $friend_guid).scroll(function() {
+            if ($('#ossn-chat-messages-data-' + $friend_guid + ' .ossn-pagination').visibleInScroll().isVisible) {
+                $element = $('#ossn-chat-messages-data-' + $friend_guid + ' .container-table-pagination');
+                $next = $element.find('.ossn-pagination .active').next();
+                var selfElement = $element;
+                if ($next) {
+                    $url = $next.find('a').attr('href');
+                    $offset = Ossn.MessagesURLparam('offset_message_xhr_with_' + $friend_guid, $url);
+                    $url = '?offset_message_xhr_with_' + $friend_guid + '=' + $offset;
+
+                    if ($.inArray($url, $calledOnce) == -1 && $offset > 0) {
+                        $calledOnce.push($url); //push to array so we don't need to call ajax request again for processed offset
+                        $user_guid = $friend_guid;
+                        Ossn.PostRequest({
+                            url: Ossn.site_url + 'ossnchat/load' + $url + '&guid=' + $user_guid,
+                            beforeSend: function() {
+                                $('#ossn-chat-messages-data-' + $friend_guid).prepend('<div class="ossn-messages-with-pagination-loading"><div class="ossn-loading"></div></div>');
+                            },
+                            callback: function(callback) {
+                                $element = $(callback); //make callback to jquery object
+                                if ($element.length) {
+                                    $clone = $element.find('.container-table-pagination').html();
+                                    $element.find('.container-table-pagination').remove(); //remove pagination from contents as we'll replace contents of already existing pagination.
+                                    $('#ossn-chat-messages-data-' + $friend_guid).prepend($element.html()); //append the new data
+                                    selfElement.html($clone); //set pagination content with new pagination contents
+                                    selfElement.prependTo('#ossn-chat-messages-data-' + $friend_guid); //append the pagnation back to at end
+                                    $('#ossn-chat-messages-data-' + $friend_guid + ' .ossn-messages-with-pagination-loading').remove();
+                                }
+                                return;
+                            },
+                        });
+                    } //if not in array **/
+                }
+            }
+        });
+    });
+}

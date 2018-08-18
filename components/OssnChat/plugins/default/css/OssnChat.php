@@ -542,3 +542,9 @@ footer {
 @-ms-viewport {
    width: auto;
 }
+.friend-tab-item .container-table-pagination {
+   	visibility:hidden;
+}
+.friend-tab-item .pagination {
+	margin:0;
+}

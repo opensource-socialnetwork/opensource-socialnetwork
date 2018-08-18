@@ -46,10 +46,17 @@ if ($total > 0) {
                 </div>
             </div>
         </div>
+ 		<script>
+			Ossn.ChatLoading(<?php echo $user->guid; ?>);
+	 	</script>
         <!-- $arsalan.shah datatstart -->
         <div class="data" id="ossn-chat-messages-data-<?php echo $user->guid; ?>">
             <?php
-            $messages_meta = ossn_chat()->get(ossn_loggedin_user()->guid, $user->guid);
+			$messages_meta  = ossn_chat()->getWith(ossn_loggedin_user()->guid, $user->guid);
+			$messages_count = ossn_chat()->getWith(ossn_loggedin_user()->guid, $user->guid, true);
+			echo ossn_view_pagination($messages_count, 10, array(
+							'offset_name' => "offset_message_xhr_with_{$user->guid}",															 
+			));			
             if ($messages_meta) {
                 foreach ($messages_meta as $message) {
                     if (ossn_loggedin_user()->guid == $message->message_from) {

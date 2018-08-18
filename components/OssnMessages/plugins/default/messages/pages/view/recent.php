@@ -35,7 +35,7 @@
                     }
 
                 }
-		echo ossn_view_pagination($params['count'], 10, array(
+		echo ossn_view_pagination($params['count_recent'], 10, array(
 			'offset_name' => 'offset_message_xhr_recent',															 
 		));
 		?>		    
