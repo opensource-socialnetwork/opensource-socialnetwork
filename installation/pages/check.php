@@ -10,7 +10,7 @@
  */
 
 
-echo '<div><div class="layout-installation"><h2>' . ossn_installation_print('ossn:prerequisites') . '</h2><br /><div style="margin:0 auto; width:900px;">';
+echo '<div><div class="layout-installation"><h2>' . ossn_installation_print('ossn:prerequisites') . '</h2><div style="margin:0 auto; width:900px;">';
 if (OssnInstallation::isPhp()) {
     echo '<div class="ossn-installation-message ossn-installation-success">'. ossn_installation_print('ossn:install:php') . PHP_VERSION . ' </div>';
 } else {
@@ -74,7 +74,7 @@ if(function_exists('openssl_encrypt')) {
 }
 echo '<br />';
 if (!isset($error)) {
-    echo '<a href="' . ossn_installation_paths()->url . '?page=settings" class="button-blue primary">'.ossn_installation_print('ossn:install:next').'</a>';
+    echo '<a href="' . ossn_installation_paths()->url . '?page=license" class="button-blue primary">'.ossn_installation_print('ossn:install:next').'</a>';
 }
 
 echo '</div><br /><br /></div>';

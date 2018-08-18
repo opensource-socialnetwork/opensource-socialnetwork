@@ -141,6 +141,10 @@ function ossn_installation_page() {
             $data = ossn_installation_include('pages/check.php');
             echo ossn_installation_view_page($data, 'ossn:check');
             break;
+        case 'license':
+            $data = ossn_installation_include('pages/license.php');
+            echo ossn_installation_view_page($data, 'ossn:check');
+            break;
         case 'settings':
             $data = ossn_installation_include('pages/settings.php');
             echo ossn_installation_view_page($data, 'ossn:settings');
