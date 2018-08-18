@@ -43,7 +43,7 @@ if ($params['data']) {
                                 	<img  class="user-icon" src="<?php echo $user->iconURL()->small;?>" />
                                 </div>                                
                                 <div class="col-md-10">
-                                	<div class="message-box-recieved text">
+                                	<div class="message-box-recieved text<?php echo $class;?>">
                                             <?php if($deleted){ ?>
                                             <span><i class="fa fa-times-circle"></i><?php echo ossn_print('ossnmessages:deleted');?></span>
                         					<?php } else { ?>
