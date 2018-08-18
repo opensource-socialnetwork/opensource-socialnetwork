@@ -68,12 +68,12 @@ img.ustatus.ossn-chat-icon-online {
 }
 
 .ossn-chat-tab-titles {
-    background: #186DF2;
+    background: #0b769c;
     color: #fff;
-    padding: 5px;
-    border: 1px solid #186DF2;
-    border-top-left-radius: 2px;
-    border-top-right-radius: 2px;
+    padding: 3px;
+    border: 1px solid #086c90;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
 }
 
 .ossn-chat-inline-table {
@@ -97,8 +97,8 @@ img.ustatus.ossn-chat-icon-online {
 }
 
 .ossn-chat-tab-titles:hover {
-    background: #1b60ce;
-    border:1px solid #1b60ce;
+    background: #086c90;
+    border: 1px solid #0b769c;
 }
 
 .ossn-chat-tab-titles .text {
