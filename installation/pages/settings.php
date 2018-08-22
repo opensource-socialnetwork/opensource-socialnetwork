@@ -12,6 +12,9 @@
 echo '<div><div class="layout-installation">';
 echo '<h2>' . ossn_installation_print('site:settings') . '</h2>';
 $notification_email = parse_url(ossn_installation_paths()->url);
+if(substr($notification_email['host'], 0, 4) == 'www.'){
+	$notification_email['host'] = substr($notification_email['host'], 4);
+}
 ?>
 <form action="<?php echo ossn_installation_paths()->url; ?>?action=install" method="post">
 
