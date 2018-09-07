@@ -77,9 +77,9 @@
     <div class="row">
  
          <div class="col-md-4 admin-dashboard-item">
-        	<div class="admin-dashboard-box">
+        	<div class="admin-dashboard-box admin-dashboard-box-small">
         		<div class="admin-dashboard-title"><?php echo ossn_print('components'); ?></div>
-            	<div class="admin-dashboard-contents center admin-dashboard-fixed-height">
+            	<div class="admin-dashboard-contents admin-dashboard-contents-small center admin-dashboard-fixed-height">
                         <div class="text center">
                         	<?php echo ossn_total_components(); ?>
                         </div>                 
@@ -88,9 +88,9 @@
         </div>   
  
          <div class="col-md-4 admin-dashboard-item">
-        	<div class="admin-dashboard-box">
+        	<div class="admin-dashboard-box admin-dashboard-box-small">
         		<div class="admin-dashboard-title"><?php echo ossn_print('themes'); ?></div>
-            	<div class="admin-dashboard-contents center admin-dashboard-fixed-height">
+            	<div class="admin-dashboard-contents admin-dashboard-contents-small center admin-dashboard-fixed-height">
                         <div class="text center">
                             <?php echo ossn_site_total_themes(); ?>
                         </div>               
@@ -99,9 +99,9 @@
         </div>   
  
           <div class="col-md-4 admin-dashboard-item">
-        	<div class="admin-dashboard-box">
+        	<div class="admin-dashboard-box admin-dashboard-box-small">
         		<div class="admin-dashboard-title"><?php echo ossn_print('my:files:version'); ?></div>
-            	<div class="admin-dashboard-contents center admin-dashboard-fixed-height">
+            	<div class="admin-dashboard-contents admin-dashboard-contents-small center admin-dashboard-fixed-height">
                         <div class="text center">
                             <?php echo ossn_package_information()->version; ?>
                         </div>                     
@@ -113,9 +113,9 @@
     
     <div class="row">
           <div class="col-md-4 admin-dashboard-item">
-        	<div class="admin-dashboard-box">
+        	<div class="admin-dashboard-box admin-dashboard-box-small">
         		<div class="admin-dashboard-title"><?php echo ossn_print('available:updates'); ?></div>
-            	<div class="admin-dashboard-contents center admin-dashboard-fixed-height">
+            	<div class="admin-dashboard-contents admin-dashboard-contents-small center admin-dashboard-fixed-height">
                         <div class="text center avaiable-updates">
                            <div class="loading-version"></div>
                         </div>                       
@@ -124,9 +124,9 @@
         </div>       
     
           <div class="col-md-4 admin-dashboard-item">
-        	<div class="admin-dashboard-box">
+        	<div class="admin-dashboard-box admin-dashboard-box-small">
         		<div class="admin-dashboard-title"><?php echo ossn_print('my:version'); ?></div>
-            	<div class="admin-dashboard-contents center admin-dashboard-fixed-height">
+            	<div class="admin-dashboard-contents admin-dashboard-contents-small center admin-dashboard-fixed-height">
                         <div class="text center">
                             <?php echo ossn_site_settings('site_version'); ?>
                         </div>                     
@@ -134,9 +134,9 @@
             </div>
         </div>     
           <div class="col-md-4 admin-dashboard-item">
-        	<div class="admin-dashboard-box">
+        	<div class="admin-dashboard-box admin-dashboard-box-small">
         		<div class="admin-dashboard-title"><?php echo ossn_print('admin:cache'); ?></div>
-            	<div class="admin-dashboard-contents center admin-dashboard-fixed-height">
+            	<div class="admin-dashboard-contents admin-dashboard-contents-small center admin-dashboard-fixed-height">
                         <div class="text center">
                            	<a href="<?php echo $flush_cache;?>" class="btn btn-primary"><?php echo ossn_print('admin:flush:cache'); ?></a>
                         </div>                    

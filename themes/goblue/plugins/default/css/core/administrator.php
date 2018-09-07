@@ -25,7 +25,7 @@ body {
 
 }
 .header {
-	height:65px;
+	height: 70px;
     color:#fff;
     background: #3D3D3D;
 }
@@ -143,11 +143,14 @@ label {
   float: right;
 }
 .page-title {
-  font-size: 20px;
-  border-bottom: 1px solid #eee;
-  padding-bottom: 10px;
-  margin-bottom:10px;
-  text-transform: uppercase;
+    background-color: #f8f8f8;
+    border: 1px solid #e7e7e7;
+    padding: 10px;
+    font-weight: 700;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    text-transform: uppercase;
+    margin-bottom:10px;
 }
 .page-botton-notice {
   margin-top:10px;
@@ -211,6 +214,8 @@ label {
   border: 1px solid #e7e7e7;
   padding: 10px;
   font-weight: 700;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;  
 }
 .admin-dashboard-contents .text {
   font-size: 40px;
@@ -294,4 +299,26 @@ footer a {
 .ui-datepicker-month {
     padding: 0px;
     display: inline-block;
+}
+.admin-dashboard-box-small {
+		min-height:100px;
+}
+.admin-dashboard-contents-small {
+	    max-height: 100px;
+}
+.admin-dashboard-contents-small .text {
+	padding:10px;
+}	
+.navbar-default {
+	background-color: #585858;
+    border-color: #6f6f6f;
+    border-radius: 0;
+    border:0;
+}
+.navbar-default .navbar-nav>li>a {
+	color:#fff;
+}
+.navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover {
+    color: #f1f1f1;
+    background-color: transparent;
 }

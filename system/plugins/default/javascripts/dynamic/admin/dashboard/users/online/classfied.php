@@ -6,14 +6,14 @@
 		var OnlineUsersPieData = [
 				{
 					value: <?php echo $params['total'][0]; ?>,
-					color:"#F7464A",
-					highlight: "#FF5A5E",
+					color:"#01ADEF",
+					highlight: "#01ADEF",
 					label: "<?php echo ossn_print('male'); ?>"
 				},
 				{
 					value: <?php echo $params['total'][1]; ?>,
-					color: "#46BFBD",
-					highlight: "#5AD3D1",
+					color: "#ED008C",
+					highlight: "#ED008C",
 					label: "<?php echo ossn_print('female'); ?>"
 				},
 			];

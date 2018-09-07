@@ -15,8 +15,8 @@
 	  	  )); 
 	?>    
     <div class="row">
-		<div class="page-title"><?php echo $params['title']; ?></div>
     	<div class="col-md-12 contents">
+			<div class="page-title"><?php echo $params['title']; ?></div>
     	 	<?php echo $params['contents']; ?>
     	</div>
 	</div>

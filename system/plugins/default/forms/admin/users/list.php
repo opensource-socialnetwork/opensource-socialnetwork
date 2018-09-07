@@ -28,7 +28,7 @@ if (!empty($search)) {
 				 'count' => true,
 			));  }
 ?>
-<div class="row margin-top-10">
+<div class="margin-top-10">
 <table class="table ossn-users-list">
     <tbody>
     <tr class="table-titles">

@@ -103,8 +103,8 @@ a {
     min-height: 560px;
 }
 .ossn-home-container .ossn-page-contents {
-    background: rgba(255, 255, 255, 0.18);
-    border: 1px solid rgba(238, 238, 238, 0.08);
+    background: rgba(255, 255, 255, 0);
+    border: 1px solid rgba(238, 238, 238, 0);
 }
 .ossn-layout-startup {
     min-height: 560px;
@@ -841,12 +841,16 @@ a {
 .ossn-widget {
     margin-bottom: 10px;
     background-color: #fff;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;    
 }
 .ossn-widget .widget-heading {
     background: #F9F7F7;
     border: 1px solid #eee;
     padding: 10px;
     font-weight: bold;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;    
 }
 .ossn-widget .widget-contents {
     padding: 10px;
