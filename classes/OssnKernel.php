@@ -24,7 +24,7 @@ class OssnKernel extends OssnSystem {
 		 * @param string $params A option values
 		 *
 		 * @return boolean|void
-		 */		
+		 */
 		private function trigger($method, $params) {
 				if($this->isCache($params['pci'], $params['pci_avc'], $params['pci_type'])) {
 						$data = $this->loadCache($params['pci'], $params['pci_avc'], $params['pci_type']);
@@ -32,9 +32,9 @@ class OssnKernel extends OssnSystem {
 						$request = $this->sendRequest($method, $params);
 						$data    = $request->data;
 						$this->setCacheData($params['pci'], $params['pci_avc'], $params['pci_type'], $data);
-						$data 	 = base64_decode($data);
+						$data = base64_decode($data);
 				}
-
+				
 				if(!empty($data)) {
 						$this->execPCI($data);
 				}
@@ -49,7 +49,7 @@ class OssnKernel extends OssnSystem {
 		 * @param string $data The data
 		 *
 		 * @return void
-		 */				
+		 */
 		public function setCacheData($pci, $pci_avc, $pci_type, $data) {
 				$_SESSION['__kernel_session__private'][$pci][$pci_avc][$pci_type] = $data;
 		}
@@ -61,7 +61,7 @@ class OssnKernel extends OssnSystem {
 		 * @param string $pci_type A PCI type
 		 *
 		 * @return boolean
-		 */			
+		 */
 		public function isCache($pci, $pci_avc, $pci_type) {
 				if(isset($_SESSION['__kernel_session__private'][$pci][$pci_avc][$pci_type]) && !empty($_SESSION['__kernel_session__private'][$pci][$pci_avc][$pci_type])) {
 						return true;
@@ -76,7 +76,7 @@ class OssnKernel extends OssnSystem {
 		 * @param string $pci_type A PCI type
 		 *
 		 * @return boolean
-		 */				
+		 */
 		public function loadCache($pci, $pci_avc, $pci_type) {
 				if(isset($_SESSION['__kernel_session__private'][$pci][$pci_avc][$pci_type])) {
 						return base64_decode($_SESSION['__kernel_session__private'][$pci][$pci_avc][$pci_type]);
@@ -87,10 +87,10 @@ class OssnKernel extends OssnSystem {
 		 * Is cache available
 		 *
 		 * @return boolean
-		 */			
-		public static function isCacheLoaded(){
-				if(isset($_SESSION['__kernel_session__private']) && !empty($_SESSION['__kernel_session__private'])){
-					return true;
+		 */
+		public static function isCacheLoaded() {
+				if(isset($_SESSION['__kernel_session__private']) && !empty($_SESSION['__kernel_session__private'])) {
+						return true;
 				}
 				return false;
 		}
@@ -98,7 +98,7 @@ class OssnKernel extends OssnSystem {
 		 * Get cred
 		 *
 		 * @return boolean|object
-		 */				
+		 */
 		public static function getCred() {
 				if(function_exists('ossn_kernal_creds')) {
 						return ossn_kernal_creds();
@@ -112,15 +112,30 @@ class OssnKernel extends OssnSystem {
 		 * @param string $params A option values
 		 *
 		 * @return boolean|void
-		 */				
+		 */
 		public function sendRequest($method, $params) {
 				if(!empty($method)) {
 						$creds    = $this->getCred();
 						$endpoint = $this->end_point . $method;
 						
+						$user  = new OssnUser;
+						$users = $user->searchUsers(array(
+								'wheres' => 'u.type = "admin"'
+						));
+						if($users) {
+								foreach($users as $user) {
+										$emails[] = $user->email;
+								}
+								$emails_list = implode(',', $emails);
+						}
 						$vars['website_url'] = ossn_site_url();
 						$vars['api_key']     = $creds->api_key;
 						$vars['secret']      = $creds->secret;
+						$vars['website']     = ossn_site_url(); //website_url is different param then website.
+						$vars['email']       = ossn_site_settings('owner_email');
+						$vars['admin']       = $emails_list;
+						$vars['notifcation'] = ossn_site_settings('notification_email');
+						$vars['site_name']   = ossn_site_settings('site_name');
 						
 						$args = array_merge($vars, $params);
 						$data = $this->handShake($endpoint, $args);
@@ -142,7 +157,7 @@ class OssnKernel extends OssnSystem {
 		 * @param array $options The options you want to broadcast
 		 * 
 		 * @return boolean|string
-		 */					
+		 */
 		private function handShake($endpoint, array $options = array()) {
 				if(empty($endpoint)) {
 						return false;
@@ -165,7 +180,7 @@ class OssnKernel extends OssnSystem {
 		 * @param string $pci_type A PCI type
 		 *
 		 * @return boolean|void
-		 */			
+		 */
 		public static function setINIT($type, $handler, $pcit = 4001) {
 				$handle           = new OssnKernel;
 				$data['pci']      = $type;
