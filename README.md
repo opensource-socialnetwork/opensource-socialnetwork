@@ -22,6 +22,7 @@ Languages
 * Spanish
 * Italian
 * Russian
+* Dutch
 
 Front-End Features
 ===================
