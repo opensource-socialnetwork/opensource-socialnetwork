@@ -25,9 +25,10 @@ if (isset($params['contents'])) {
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title><?php echo $title; ?></title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />0
+    <link rel="icon" href="<?php echo ossn_theme_url();?>images/favicon.ico" type="image/x-icon" />
 	
-	<?php echo ossn_fetch_extend_views('ossn/endpoint'); ?>
+    <?php echo ossn_fetch_extend_views('ossn/endpoint'); ?>
     <?php echo ossn_fetch_extend_views('ossn/site/head'); ?>
 
     <script>
