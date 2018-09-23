@@ -9,7 +9,7 @@
  * @link      https://www.opensource-socialnetwork.org/
  */
 ?>
-<div class="row margin-bottom-10 margin-top-10">
+<div class="margin-bottom-10 margin-top-10">
     <a href="<?php echo ossn_site_url("administrator/component/OssnSitePages?settings=terms"); ?>"
        class="btn btn-primary">
         <?php echo ossn_print('site:terms'); ?></a>
