@@ -94,8 +94,8 @@ function ossn_groups() {
 				'text' => ossn_print('groups'),
 				'url' => ossn_site_url('search?type=groups&q='),
 				'parent' => 'groups',
-				'icon' => true,
-		));		
+				'icon' => true
+		));
 		//my groups link
 		/* ossn_register_sections_menu('newsfeed', array(
 		'text' => 'My Groups',
@@ -113,13 +113,15 @@ function ossn_groups() {
  * @access private
  */
 function groups_search_handler($hook, $type, $return, $params) {
-		$Pagination = new OssnPagination;
-		$groups     = new OssnGroup;
-		$data       = $groups->searchGroups($params['q']);
-		$Pagination->setItem($data);
-		$group['groups'] = $Pagination->getItem();
+		$groups = new OssnGroup;
+		$data   = $groups->searchGroups($params['q']);
+		$count  = $groups->searchGroups($params['q'], array(
+				'count' => true
+		));
+		
+		$group['groups'] = $data;
 		$search          = ossn_plugin_view('groups/search/view', $group);
-		$search .= $Pagination->pagination();
+		$search .= ossn_view_pagination($count);
 		if(empty($data)) {
 				return ossn_print('ossn:search:no:result');
 		}
