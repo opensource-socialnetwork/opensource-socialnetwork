@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Open Source Social Network
  *
@@ -114,8 +113,8 @@ class OssnGroup extends OssnObject {
 		 * @return bool;
 		 */
 		public function updateGroup($name, $description, $guid) {
-				if(empty($name) || empty($guid)){
-					return false;	
+				if(empty($name) || empty($guid)) {
+						return false;
 				}
 				$data   = array(
 						'title',
@@ -239,16 +238,16 @@ class OssnGroup extends OssnObject {
 		 * @return object;
 		 */
 		public function getMembers($count = false) {
-				if(!isset($this->guid)){
-					return false;
+				if(!isset($this->guid)) {
+						return false;
 				}
 				$members = ossn_get_relationships(array(
 						'from' => $this->guid,
 						'type' => 'group:join:approve',
-						'count' => $count,
+						'count' => $count
 				));
-				if($count){
-					return $members;
+				if($count) {
+						return $members;
 				}
 				foreach($members as $member) {
 						$users[] = ossn_user_by_guid($member->relation_to);
@@ -370,15 +369,20 @@ class OssnGroup extends OssnObject {
 		 *
 		 * @return object;
 		 */
-		public function searchGroups($q) {
-				$params['from']   = 'ossn_object';
-				$params['wheres'] = array(
-						"(title LIKE '%{$q}%' OR description LIKE '%{$q}%') AND
-		                           type='user' AND subtype='ossngroup'"
+		public function searchGroups($q, array $args = array()) {
+				$params['from']    = 'ossn_object';
+				$params['type']    = 'user';
+				$params['subtype'] = 'ossngroup';
+				$params['wheres']  = array(
+						"(title LIKE '%{$q}%' OR description LIKE '%{$q}%')"
 				);
-				$search           = $this->select($params, true);
+				$vars              = array_merge($params, $args);
+				$search            = $this->searchObject($vars, true);
 				if(!$search) {
 						return false;
+				}
+				if($vars['count'] === true) {
+						return $search;
 				}
 				foreach($search as $group) {
 						$groupentity[] = ossn_get_group_by_guid($group->guid);
