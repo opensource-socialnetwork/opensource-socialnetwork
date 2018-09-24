@@ -154,25 +154,28 @@ function ossn_like_annotation($hook, $type, $return, $params) {
     $user->fullname = "<strong>{$user->fullname}</strong>";
 
     $img = "<div class='notification-image'><img src='{$user->iconURL()->small}' /></div>";
-    if (preg_match('/like/i', $notif->type)) {
+    if(preg_match('/like/i', $notif->type)) {
         $type = 'like';
         $database = new OssnDatabase;
         $database->statement("SELECT * FROM ossn_entities WHERE(guid='{$notif->subject_guid}')");
         $database->execute();
         $result = $database->fetch();
         $url = ossn_site_url("post/view/{$notif->subject_guid}#comments-item-{$notif->item_guid}");
-        if ($result->subtype == 'file:ossn:aphoto') {
+        if($result->subtype == 'file:ossn:aphoto') {
             $url = ossn_site_url("photos/view/{$notif->subject_guid}#comments-item-{$notif->item_guid}");
         }
-        if ($result->subtype == 'file:profile:photo') {
+        if($result->subtype == 'file:profile:photo') {
             $url = ossn_site_url("photos/user/view/{$notif->subject_guid}#comments-item-{$notif->item_guid}");
         }	
-        if ($result->subtype == 'file:profile:cover') {
+        if($result->subtype == 'file:profile:cover') {
             $url = ossn_site_url("photos/cover/view/{$notif->subject_guid}#comments-item-{$notif->item_guid}");
-        }			
+        }	
+	if($result->subtype == 'file:video') {		
+            $url = ossn_site_url("video/view/{$result->owner_guid}#comments-item-{$notif->item_guid}");		
+	}			    
     }
     $type = "<div class='ossn-notification-icon-{$type}'></div>";
-    if ($notif->viewed !== NULL) {
+    if($notif->viewed !== NULL) {
         $viewed = '';
     } elseif ($notif->viewed == NULL) {
         $viewed = 'class="ossn-notification-unviewed"';
