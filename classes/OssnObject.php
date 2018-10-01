@@ -82,6 +82,7 @@ class OssnObject extends OssnEntities {
 										$this->add();
 								}
 						}
+						$args['guid']         = $this->createdObject;
 						$args['owner_guid']   = $params['values'][0];
 						$args['type']         = $params['values'][1];
 						$args['subtype']      = $params['values'][2];
