@@ -58,6 +58,7 @@ class OssnAnnotation extends OssnEntities {
 				$this->annotation_type = $this->type;
 				
 				$this->data->{$this->type} = $this->value;
+				$actual_value			   = $this->value;
 				$this->owner_guid_old      = $this->owner_guid;
 				if($this->OssnDatabase->insert($params)) {
 						$this->annotation_inserted = $this->OssnDatabase->getLastEntry();
@@ -70,6 +71,7 @@ class OssnAnnotation extends OssnEntities {
 										$this->add();
 								}
 						}
+						$params['value']           = $actual_value;
 						$params['subject_guid']    = $this->subject_guid;
 						$params['owner_guid']      = $this->owner_guid_old;
 						$params['type']            = $this->annotation_type;
