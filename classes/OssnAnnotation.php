@@ -62,10 +62,10 @@ class OssnAnnotation extends OssnEntities {
 				$actual_value              = $this->value;
 				$this->owner_guid_old      = $this->owner_guid;
 				
-				$create = ossn_call_hook('annotation', 'create', true, array(
+				$create = ossn_call_hook('annotation', 'create', array(
 						'params' => $params,
 						'instance' => $this
-				));
+				), true);
 				if($create) {
 						if($this->OssnDatabase->insert($params)) {
 								$this->annotation_inserted = $this->OssnDatabase->getLastEntry();
