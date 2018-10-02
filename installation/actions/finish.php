@@ -20,6 +20,9 @@ $factory = new OssnFactory(array(
 ));
 $factory->connect;
 
+//Enable cache after installation complete! #1338
+ossn_create_cache();
+
 $installed = ossn_installation_paths()->ossn_url . 'administrator';
 header("Location: {$installed}");
   
