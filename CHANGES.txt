@@ -31,6 +31,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v5.0
 * disable autocomplete for passwords #1330
 * Allow to delete message that user own #1332
 * Enable cache after installation complete! #1338
+* Comments without text/image only can't be edited #1336
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v4.6
 
