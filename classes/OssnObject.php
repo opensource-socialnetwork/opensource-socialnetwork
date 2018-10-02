@@ -71,10 +71,10 @@ class OssnObject extends OssnEntities {
 						$this->title,
 						$this->description
 				);
-				$create           = ossn_call_hook('object', 'create', true, array(
+				$create           = ossn_call_hook('object', 'create', array(
 						'params' => $params,
 						'instance' => $this
-				));
+				), true);
 				if($create) {
 						if($this->insert($params)) {
 								$this->createdObject = $this->getLastEntry();
