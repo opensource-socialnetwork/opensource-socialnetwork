@@ -14,7 +14,8 @@
  if(empty($comment) && isset($params['comment']->{'comments:post'})){
 	 $comment = $params['comment']->getParam('comments:post');
  }
- if(empty($comment)){
+ //Comments without text/image only can't be edited #1336
+ if(!$params['comment']){
 	 return;
  }
  ?>
