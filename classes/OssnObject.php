@@ -17,9 +17,9 @@ class OssnObject extends OssnEntities {
 		public function __construct($guid = 0) {
 				$this->data = new stdClass;
 				//part for v5 added,  shouldn't used before v5 release in any component.
-				if(!empty($guid)){
+				if(!empty($guid)) {
 						$object = ossn_get_object($guid);
-						if($object){
+						if($object) {
 								foreach($object as $item => $val) {
 										$this->{$item} = $val;
 								}
@@ -71,26 +71,29 @@ class OssnObject extends OssnEntities {
 						$this->title,
 						$this->description
 				);
-				if($this->insert($params)) {
-						$this->createdObject = $this->getLastEntry();
-						if(isset($this->data) && is_object($this->data)) {
-								foreach($this->data as $name => $value) {
-										$this->owner_guid = $this->createdObject;
-										$this->type       = 'object';
-										$this->subtype    = $name;
-										$this->value      = $value;
-										$this->add();
+				$create           = ossn_call_hook('object', 'create', true, $params);
+				if($create) {
+						if($this->insert($params)) {
+								$this->createdObject = $this->getLastEntry();
+								if(isset($this->data) && is_object($this->data)) {
+										foreach($this->data as $name => $value) {
+												$this->owner_guid = $this->createdObject;
+												$this->type       = 'object';
+												$this->subtype    = $name;
+												$this->value      = $value;
+												$this->add();
+										}
 								}
+								$args['guid']         = $this->createdObject;
+								$args['owner_guid']   = $params['values'][0];
+								$args['type']         = $params['values'][1];
+								$args['subtype']      = $params['values'][2];
+								$args['time_created'] = $params['values'][3];
+								$args['title']        = $params['values'][4];
+								$args['description']  = $params['values'][5];
+								ossn_trigger_callback('object', 'created', $args);
+								return $this->createdObject;
 						}
-						$args['guid']         = $this->createdObject;
-						$args['owner_guid']   = $params['values'][0];
-						$args['type']         = $params['values'][1];
-						$args['subtype']      = $params['values'][2];
-						$args['time_created'] = $params['values'][3];
-						$args['title']        = $params['values'][4];
-						$args['description']  = $params['values'][5];
-						ossn_trigger_callback('object', 'created', $args);
-						return $this->createdObject;
 				}
 				return false;
 		}
@@ -459,9 +462,9 @@ class OssnObject extends OssnEntities {
 						$params['group_by'] = $options['group_by'];
 				}
 				//override params
-				if(isset($options['params']) && !empty($options['params'])){
+				if(isset($options['params']) && !empty($options['params'])) {
 						$params['params'] = $options['params'];
-				}				
+				}
 				//prepare count data;
 				if($options['count'] === true) {
 						unset($params['params']);
@@ -493,7 +496,7 @@ class OssnObject extends OssnEntities {
 		 * @return boolean
 		 */
 		public function save() {
-				if(!isset($this->guid)){
+				if(!isset($this->guid)) {
 						return $this->addObject();
 				}
 				if(isset($this->guid) && !empty($this->guid)) {
