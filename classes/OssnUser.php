@@ -71,51 +71,57 @@ class OssnUser extends OssnEntities {
 								0,
 								time()
 						);
-						if($this->insert($params)) {
-								$guid = $this->getLastEntry();
-								//define user extra profile fields
-								$fields = ossn_default_user_fields();
-								if(!empty($guid) && is_int($guid)) {
-										
-										$this->owner_guid = $guid;
-										$this->type       = 'user';
-										
-										//add user entities 
-										$extra_fields = ossn_call_hook('user', 'signup:fields', $this, $fields);
-										if(!empty($extra_fields['required'])) {
-												foreach($extra_fields['required'] as $type) {
-														foreach($type as $field) {
-																if(isset($this->{$field['name']})) {
-																		$this->subtype = $field['name'];
-																		$this->value   = $this->{$field['name']};
-																		//add entity
-																		$this->add();
+						$create           = ossn_call_hook('user', 'create', array(
+								'params' => $params,
+								'instance' => $this
+						), true);
+						if($create) {
+								if($this->insert($params)) {
+										$guid   = $this->getLastEntry();
+										//define user extra profile fields
+										$fields = ossn_default_user_fields();
+										if(!empty($guid) && is_int($guid)) {
+												
+												$this->owner_guid = $guid;
+												$this->type       = 'user';
+												
+												//add user entities 
+												$extra_fields = ossn_call_hook('user', 'signup:fields', $this, $fields);
+												if(!empty($extra_fields['required'])) {
+														foreach($extra_fields['required'] as $type) {
+																foreach($type as $field) {
+																		if(isset($this->{$field['name']})) {
+																				$this->subtype = $field['name'];
+																				$this->value   = $this->{$field['name']};
+																				//add entity
+																				$this->add();
+																		}
 																}
 														}
 												}
 										}
-								}
-								//should i send activation?
-								if($this->sendactiviation === true) {
-										$link       = ossn_site_url("uservalidate/activate/{$guid}/{$activation}");
-										$link       = ossn_call_hook('user', 'validation:email:url', $this, $link);
-										$sitename   = ossn_site_settings('site_name');
-										$activation = ossn_print('ossn:add:user:mail:body', array(
-												$sitename,
-												$link,
-												ossn_site_url()
+										//should i send activation?
+										if($this->sendactiviation === true) {
+												$link       = ossn_site_url("uservalidate/activate/{$guid}/{$activation}");
+												$link       = ossn_call_hook('user', 'validation:email:url', $this, $link);
+												$sitename   = ossn_site_settings('site_name');
+												$activation = ossn_print('ossn:add:user:mail:body', array(
+														$sitename,
+														$link,
+														ossn_site_url()
+												));
+												$subject    = ossn_print('ossn:add:user:mail:subject', array(
+														$this->first_name,
+														$sitename
+												));
+												//notify users for activation
+												$this->notify->NotifiyUser($this->email, $subject, $activation);
+										}
+										ossn_trigger_callback('user', 'created', array(
+												'guid' => $guid
 										));
-										$subject    = ossn_print('ossn:add:user:mail:subject', array(
-												$this->first_name,
-												$sitename
-										));
-										//notify users for activation
-										$this->notify->NotifiyUser($this->email, $subject, $activation);
+										return $guid;
 								}
-								ossn_trigger_callback('user', 'created', array(
-										'guid' => $guid
-								));								
-								return $guid;
 						}
 				}
 				return false;
@@ -201,7 +207,7 @@ class OssnUser extends OssnEntities {
 		 * @return boolean
 		 */
 		public function isPassword() {
-				$password_minimum  = ossn_call_hook('user', 'password:minimum:length', false, 6);
+				$password_minimum = ossn_call_hook('user', 'password:minimum:length', false, 6);
 				if(strlen($this->password) >= $password_minimum && !(strlen($this->password) < 6)) {
 						return true;
 				}
