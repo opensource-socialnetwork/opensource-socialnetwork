@@ -32,6 +32,8 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v5.0
 * Allow to delete message that user own #1332
 * Enable cache after installation complete! #1338
 * Comments without text/image only can't be edited #1336
+* fix html validation error because of unallowed child element #1343
+* Allow birth year starts from 1900 #1344
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v4.6
 
