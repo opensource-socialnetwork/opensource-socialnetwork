@@ -9,6 +9,7 @@
  * @link      https://www.opensource-socialnetwork.org/
  */
 $sitename = ossn_site_settings('site_name');
+$sitelanguage = ossn_site_settings('language');
 if (isset($params['title'])) {
     $title = $params['title'] . ' : ' . $sitename;
 } else {
@@ -21,7 +22,7 @@ if (isset($params['contents'])) {
 }
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="<?php echo $sitelanguage; ?>">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title><?php echo $title; ?></title>
