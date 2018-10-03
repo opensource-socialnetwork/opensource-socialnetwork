@@ -147,9 +147,7 @@ function ossn_html_js($args) {
 	if(!is_array($args)){
 		return false;
 	}
-	$default = array(
-					 'type' => 'text/javascript',
-					 );	
+	$default = array();	
 	$args = array_merge($default, $args);
     $extend = ossn_args($args);
     return "\r\n<script {$extend}></script>";
