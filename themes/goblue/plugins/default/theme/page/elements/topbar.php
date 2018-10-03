@@ -21,6 +21,7 @@
 			</div>
 			<div class="col-md-3 text-right right-side">
 				<div class="topbar-menu-right">
+					<ul>
 					<li class="ossn-topbar-dropdown-menu">
 						<div class="dropdown">
 						<?php
@@ -41,6 +42,7 @@
 							echo ossn_plugin_view('notifications/page/topbar');
 						}
 						?>
+					</ul>
 				</div>
 			</div>
 		</div>
