@@ -218,32 +218,22 @@ form div {
 	border-color: #0064cd #0064cd #003f81;
 	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
 }
-
+textarea,
+input[type=password],
 input[type=text] {
 	-webkit-transition: all 0.30s ease-in-out;
 	-moz-transition: all 0.30s ease-in-out;
 	-ms-transition: all 0.30s ease-in-out;
 	-o-transition: all 0.30s ease-in-out;
 	outline: none;
-	padding: 3px 0px 3px 3px;
-	margin: 5px 1px 3px 0px;
 	border: 1px solid #eee;
-	width: 400px;
-	height: 30px;
-	padding: 10px;
-	font-weight: bold;
-	color: #999;
 }
 
+input[type=password]:focus,
 input[type=text]:focus,
 textarea:focus {
 	box-shadow: 0 0 5px rgb(202, 202, 202);
-	padding: 3px 0px 3px 3px;
-	margin: 5px 1px 3px 0px;
-	padding: 10px;
 	border: 1px solid rgb(202, 202, 202);
-	font-weight: bold;
-	color: #999;
 }
 
 input[type=password],
@@ -256,22 +246,18 @@ input[type=text] {
 	padding: 3px 0px 3px 3px;
 	margin: 5px 1px 3px 0px;
 	border: 1px solid #eee;
-	width: 400px;
+	width: 430px;
 	height: 30px;
-	padding: 10px;
+	padding: 5px 10px;
 	font-weight: bold;
 	color: #999;
+	border-radius: 5px;
 }
-
+input[type=password]:focus,
 input[type=text]:focus,
 textarea:focus {
 	box-shadow: 0 0 5px rgb(202, 202, 202);
-	padding: 3px 0px 3px 3px;
-	margin: 5px 1px 3px 0px;
-	padding: 10px;
 	border: 1px solid rgb(202, 202, 202);
-	font-weight: bold;
-	color: #999;
 }
 
 .ossn-installation-success {
