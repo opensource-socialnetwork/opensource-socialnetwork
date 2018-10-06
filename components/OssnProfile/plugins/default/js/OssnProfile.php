@@ -20,7 +20,7 @@ Ossn.RegisterStartupFunction(function() {
 			changeMonth: true,
 			changeYear: true,
 			dateFormat: 'dd/mm/yy',
-			yearRange: '1900' + cYear,
+			yearRange: '1900:' + cYear,
 		};
 
 		if (Ossn.isLangString('datepicker:days')) {
