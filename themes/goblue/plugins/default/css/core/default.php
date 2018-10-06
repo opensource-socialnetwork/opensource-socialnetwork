@@ -263,6 +263,7 @@ a {
 	color: #fff;
 	z-index: 1;
 	position: relative;
+    height: 48px;
 }
 
 .topbar .fa {

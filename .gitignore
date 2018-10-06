@@ -31,6 +31,7 @@ error_log
 !/components/OssnWall
 !/components/OssnChat
 !/components/OssnSounds
+!/components/OssnAutoPagination
 
 #do not ignore config files
 !/.scrutinizer.yml

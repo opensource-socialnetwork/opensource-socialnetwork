@@ -1,4 +1,4 @@
-OSSN - OPEN SOURCE SOCIAL NETWORK v5.0
+OSSN - OPEN SOURCE SOCIAL NETWORK v5.0 RC1
 
 * Add missing <a> tag in notifications view #1233
 * Add class identifier for each wall item #1237
@@ -36,10 +36,3 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v5.0
 * Allow birth year starts from 1900 #1344
 * Removed explicit script type specification #1341
 * Language setting added to html tag #1342
-
-OSSN - OPEN SOURCE SOCIAL NETWORK v4.6
-
-* input() didn't accept 0 as input and treat it as empty #1230 
-   Fixed only the inout,  the issue may still have effect in various places and will be fixed in v5.0
-* Emojii panel appears on bottom of page if you logout and cache is enabled. #1232
-

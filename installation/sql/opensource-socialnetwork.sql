@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS `ossn_components` (
   `com_id` varchar(50) NOT NULL,
   `active` int(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=19 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=20 ;
 
 --
 -- Dumping data for table `ossn_components`
@@ -46,7 +46,8 @@ INSERT INTO `ossn_components` (`id`, `com_id`, `active`) VALUES
 (15, 'OssnInvite', 1),
 (16, 'OssnEmbed', 1),
 (17, 'OssnSmilies', 1),
-(18, 'OssnSounds', 1);
+(18, 'OssnSounds', 1),
+(19, 'OssnAutoPagination', 1);
 
 -- --------------------------------------------------------
 
@@ -183,11 +184,11 @@ INSERT INTO `ossn_site_settings` (`setting_id`, `name`, `value`) VALUES
 (4, 'cache', '0'),
 (5, 'owner_email', '<<owner_email>>'),
 (6, 'notification_email', '<<notification_email>>'),
-(7, 'upgrades', '["1410545706.php","1411396351.php", "1412353569.php","1415553653.php","1415819862.php", "1423419053.php", "1423419054.php", "1439295894.php", "1440716428.php", "1440867331.php", "1440603377.php", "1443202118.php", "1443211017.php", "1443545762.php", "1443617470.php", "1446311454.php", "1448807613.php", "1453676400.php", "1459411815.php", "1468010638.php", "1470127853.php", "1480759958.php", "1495366993.php", "1513524535.php", "1513603766.php", "1513783390.php"]'),
+(7, 'upgrades', '["1410545706.php","1411396351.php", "1412353569.php","1415553653.php","1415819862.php", "1423419053.php", "1423419054.php", "1439295894.php", "1440716428.php", "1440867331.php", "1440603377.php", "1443202118.php", "1443211017.php", "1443545762.php", "1443617470.php", "1446311454.php", "1448807613.php", "1453676400.php", "1459411815.php", "1468010638.php", "1470127853.php", "1480759958.php", "1495366993.php", "1513524535.php", "1513603766.php", "1513783390.php", "1538812874.php"]'),
 (9, 'display_errors', 'off'),
 (10, 'site_key', '<<secret>>'),
 (11, 'last_cache', ''),
-(12, 'site_version', '4.6');
+(12, 'site_version', '5.0 RC1');
 
 
 -- --------------------------------------------------------
