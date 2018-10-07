@@ -49,6 +49,29 @@ Ossn.RegisterStartupFunction(function() {
                 }
             });
         });
+        //post edit
+        Ossn.ajaxRequest({
+            url: Ossn.site_url + "action/wall/post/edit",
+            containMedia: true,
+            form: '#ossn-post-edit-form',
+            callback: function(callback) {
+                if (callback['success']) {
+                    $text = $('#ossn-post-edit-form').find('#post-edit').val();
+                    $guid = $('#ossn-post-edit-form').find('input[name="guid"]').val();
+                    $elem = $("#activity-item-" + $guid).find('.post-contents').find('p:first');
+                    if ($elem) {
+                        $elem.text($text);
+                    }
+                    Ossn.trigger_message(callback['success']);
+                }
+                if (callback['error']) {
+                    Ossn.trigger_message(callback['error'], 'error');
+                }
+                Ossn.MessageBoxClose();
+            }
+        });
+        //post-edit />
+
 
         $('body').delegate('.ossn-wall-post-edit', 'click', function() {
             var $dataguid = $(this).attr('data-guid');
