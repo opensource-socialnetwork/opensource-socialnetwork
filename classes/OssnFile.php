@@ -30,10 +30,10 @@ class OssnFile extends OssnEntities {
 										unlink("{$path}/{$file}");
 								}
 						}
+						return rmdir($path);
 				}
-				return rmdir($path);
+				return false;
 		}
-		
 		/**
 		 * MaxSize
 		 * Get server post max size
