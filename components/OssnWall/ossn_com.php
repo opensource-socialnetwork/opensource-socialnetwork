@@ -313,6 +313,7 @@ function ossn_post_page($pages) {
 										'title' => ossn_print('edit'),
 										'contents' => ossn_view_form('post/edit', array(
 												'action' => ossn_site_url('action/wall/post/edit'),
+												'id' => 'ossn-post-edit-form',
 												'component' => 'OssnWall',
 												'params' => array(
 														'post' => $post
