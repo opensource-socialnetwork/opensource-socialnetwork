@@ -41,12 +41,14 @@ if ($likes_total > 0) {
 									'href' => $user->profileURL(), 
 									'text' => $user->fullname, 
 									'class' => 'owner-link',
-			  ));			
+			  ));
+			 echo "<span class='comment-text'>";
             if ($comment->type == 'comments:entity') {
                 echo ' '.nl2br($comment->getParam('comments:entity'));
             } elseif ($comment->type == 'comments:post') {
                 echo ' '.nl2br($comment->getParam('comments:post'));
             }
+			echo "</span>";
             $image = $comment->getParam('file:comment:photo');
             if (!empty($image)) {
                 $image = str_replace('comment/photo/', '', $image);
