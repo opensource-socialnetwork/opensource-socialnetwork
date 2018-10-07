@@ -336,6 +336,7 @@ function ossn_comment_page($pages) {
 										'contents' => ossn_view_form('comment/edit', array(
 												'action' => ossn_site_url('action/comment/edit'),
 												'component' => 'OssnComments',
+												'id' => 'ossn-comment-edit-form',
 												'params' => array(
 														'comment' => $comment
 												)
