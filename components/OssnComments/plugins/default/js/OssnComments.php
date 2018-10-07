@@ -11,7 +11,7 @@ Ossn.PostComment = function($container) {
     $('#comment-box-' + $container).keypress(function(e) {
         if (e.which == 13) {
             if (e.shiftKey === false) {
-            	//Postings and comments with same behaviour #924
+                //Postings and comments with same behaviour #924
                 $replace_tags = function(input, allowed) {
                     allowed = (((allowed || '') + '').toLowerCase().match(/<[a-z][a-z0-9]*>/g) || []).join('')
                     var tags = /<\/?([a-z][a-z0-9]*)\b[^>]*>/gi
@@ -20,7 +20,7 @@ Ossn.PostComment = function($container) {
                         return allowed.indexOf('<' + $1.toLowerCase() + '>') > -1 ? $0 : ''
                     })
                 };
-				
+
                 $text = $('#comment-box-' + $container).html();
                 $text = $replace_tags($text, '<br>').replace(/\<br\\?>/g, "\n");
                 $('#comment-container-' + $container).append("<textarea name='comment' class='hidden'>" + $text + "</textarea>");
@@ -63,7 +63,7 @@ Ossn.EntityComment = function($container) {
     $('#comment-box-' + $container).keypress(function(e) {
         if (e.which == 13) {
             if (e.shiftKey === false) {
-            	//Postings and comments with same behaviour #924
+                //Postings and comments with same behaviour #924
                 $replace_tags = function(input, allowed) {
                     allowed = (((allowed || '') + '').toLowerCase().match(/<[a-z][a-z0-9]*>/g) || []).join('')
                     var tags = /<\/?([a-z][a-z0-9]*)\b[^>]*>/gi
@@ -72,7 +72,7 @@ Ossn.EntityComment = function($container) {
                         return allowed.indexOf('<' + $1.toLowerCase() + '>') > -1 ? $0 : ''
                     })
                 };
-				
+
                 $text = $('#comment-box-' + $container).html();
                 $text = $replace_tags($text, '<br>').replace(/\<br\\?>/g, "\n");
                 $('#comment-container-' + $container).append("<textarea name='comment' class='hidden'>" + $text + "</textarea>");
@@ -106,8 +106,8 @@ Ossn.EntityComment = function($container) {
                 $('#comment-box-' + $container).removeAttr('readonly');
                 Ossn.MessageBox('syserror/unknown');
             }
- 			$('#comment-box-' + $container).attr('contenteditable', true);
-            $('#comment-box-' + $container).html("");            
+            $('#comment-box-' + $container).attr('contenteditable', true);
+            $('#comment-box-' + $container).html("");
         }
     });
 };
@@ -197,5 +197,31 @@ Ossn.RegisterStartupFunction(function() {
             var $dataguid = $(this).attr('data-guid');
             Ossn.MessageBox('comment/edit/' + $dataguid);
         });
+        //comment edit
+        Ossn.ajaxRequest({
+            url: Ossn.site_url + "action/comment/edit",
+            containMedia: true,
+            form: '#ossn-comment-edit-form',
+            beforeSend: function() {
+                $('#ossn-comment-edit-form').find('textarea').hide();
+                $('#ossn-comment-edit-form').append('<div class="ossn-loading ossn-box-loading"></div>');
+            },
+            callback: function(callback) {
+                if (callback['success']) {
+                    $text = $('#ossn-comment-edit-form').find('#comment-edit').val();
+                    $guid = $('#ossn-comment-edit-form').find('input[name="guid"]').val();
+                    $elem = $("#comments-item-" + $guid).find('.comment-contents').find('.comment-text:first');
+                    if ($elem) {
+                        $elem.text($text);
+                    }
+                    Ossn.trigger_message(callback['success']);
+                }
+                if (callback['error']) {
+                    Ossn.trigger_message(callback['error'], 'error');
+                }
+                Ossn.MessageBoxClose();
+            }
+        });
+        //comment-edit />		
     });
 });
