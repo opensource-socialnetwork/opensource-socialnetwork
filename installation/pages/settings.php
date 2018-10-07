@@ -36,7 +36,7 @@ if(substr($notification_email['host'], 0, 4) == 'www.'){
         <input type="text" name="owner_email" placeholder="<?php echo ossn_installation_print('owner_email'); ?>"/>
         <?php
 		if(!filter_var($notification_email['host'], FILTER_VALIDATE_IP)){ ?>
-        <input type="hidden" name="notification_email" placeholder="<?php echo ossn_installation_print('notification_email'); ?>" value="noreply@<?php echo $notification_email['host'];?>"/>
+        <input type="text" name="notification_email" placeholder="<?php echo ossn_installation_print('notification_email'); ?>" value="noreply@<?php echo $notification_email['host'];?>"/>
         <?php } else {  ?>
         <input type="text" name="notification_email" placeholder="<?php echo ossn_installation_print('notification_email'); ?>" value=""/>                
         <?php } ?>
