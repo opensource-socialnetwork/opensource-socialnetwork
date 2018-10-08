@@ -54,11 +54,11 @@ Ossn.RegisterStartupFunction(function() {
             url: Ossn.site_url + "action/wall/post/edit",
             containMedia: true,
             form: '#ossn-post-edit-form',
-			beforeSend: function(){
-						$('#ossn-post-edit-form').find('textarea').hide();
-						$('#ossn-post-edit-form').append('<div class="ossn-loading ossn-box-loading"></div>');
-			},            
-            callback: function(callback) {
+	     beforeSend: function(){
+		   $('#ossn-post-edit-form').find('textarea').hide();
+		   $('#ossn-post-edit-form').append('<div class="ossn-loading ossn-box-loading"></div>');
+	     },            
+             callback: function(callback) {
                 if (callback['success']) {
                     $text = $('#ossn-post-edit-form').find('#post-edit').val();
                     $guid = $('#ossn-post-edit-form').find('input[name="guid"]').val();
