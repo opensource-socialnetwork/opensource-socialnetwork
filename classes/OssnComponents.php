@@ -178,14 +178,24 @@ class OssnComponents extends OssnDatabase {
 		 *
 		 * @return active components;
 		 */
-		public function getActive() {
+		public function getActive($ids_only = false) {
 				$params['from']     = 'ossn_components';
 				$params['wheres']   = array(
 						"active='1'"
 				);
 				//components are not loading in the correct order #1328
 				$params['order_by'] = 'id ASC';
-				return $this->select($params, true);
+				$list = $this->select($params, true);
+				if($ids_only){
+						if($list){
+							$lists = array();
+							foreach($list as $item){
+								$lists[] = $item->com_id;	
+							}
+							return $lists;
+						}
+				}
+				return $list;
 		}
 		
 		/**
