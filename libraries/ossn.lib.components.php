@@ -8,6 +8,10 @@
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
  * @link      https://www.opensource-socialnetwork.org/
  */
+global $Ossn;
+$OssnComponents = new OssnComponents;
+$Ossn->activeComponents = $OssnComponents->getActive(true);
+
 /**
  * Get components object
  *
@@ -25,10 +29,10 @@ function ossn_components() {
  *
  * @return bool
  */
-function com_is_active($comn) {
-		$com = new OssnComponents;
-		if($com->isActive($comn)) {
-				return true;
+function com_is_active($comn = '') {
+		global $Ossn;
+		if(!empty($comn) && in_array($comn, $Ossn->activeComponents)){
+				return true;	
 		}
 		return false;
 }
