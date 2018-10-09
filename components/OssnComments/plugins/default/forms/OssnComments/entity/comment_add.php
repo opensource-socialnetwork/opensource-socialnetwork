@@ -11,6 +11,7 @@
 $object = $params['object'];
 ?>
 <div class="ossn-comment-attach-photo" onclick="Ossn.Clk('#ossn-comment-image-file-<?php echo $object; ?>');"><i class="fa fa-camera"></i></div>
+<?php echo ossn_fetch_extend_views('comments/attachment/buttons'); ?>
 <span type="text" name="comment" id="comment-box-<?php echo $object; ?>" class="comment-box"
        placeholder="<?php echo ossn_print('write:comment'); ?>" contenteditable="true"></span>
 <input type="hidden" name="entity" value="<?php echo $object; ?>"/>
