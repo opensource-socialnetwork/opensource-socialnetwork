@@ -77,9 +77,10 @@ Ossn.RegisterStartupFunction(function() {
 		// ****************************************************
 
 		// 1. comment
-		if ($('.ossn-comment-attach-photo').length) {
-			$('<div class="ossn-comment-attach-photo"><i class="fa fa-smile-o"></i></div>').insertAfter('.ossn-comment-attach-photo');
-		}
+		// the button/icon is added now using ossn_extend_view('comments/attachment/buttons', 'smilies/comment/button'); to avoid the issue for dynamically loaded posts/comments $arsalanshah
+		//if ($('.ossn-comment-attach-photo').length) {
+		//	$('<div class="ossn-comment-attach-photo"><i class="fa fa-smile-o"></i></div>').insertAfter('.ossn-comment-attach-photo');
+		//}
 
 		// 2. wall post
 		// inserted as registered menu item in Ossn_com
