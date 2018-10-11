@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Open Source Social Network
  *
@@ -10,6 +9,15 @@
  * @link      https://www.opensource-socialnetwork.org/
  */
 class OssnMessages extends OssnEntities {
+		/**
+		 * Initialize the objects.
+		 *
+		 * @return void
+		 */
+		public function __construct() {
+				//php warnings when deleting a message #1353
+				$this->data = new stdClass;
+		}	
 		/**
 		 * Send message
 		 *
