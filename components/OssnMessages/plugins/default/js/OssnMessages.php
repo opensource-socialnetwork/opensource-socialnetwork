@@ -268,6 +268,7 @@ Ossn.RegisterStartupFunction(function() {
                         if (callback == 1) {
                             if ($parent.hasClass('message-box-sent')) {
                                 $parent.find('span').html($text);
+				$parent.find('.time-created').hide();
                                 $parent.addClass('ossn-message-deleted');
                                 $self.remove();
                             }
