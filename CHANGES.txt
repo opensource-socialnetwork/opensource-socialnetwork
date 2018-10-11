@@ -37,3 +37,4 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v5.0 RC1
 * Removed explicit script type specification #1341
 * Language setting added to html tag #1342
 * Warnings when disabling/enabling a component #1346
+* Issues when visiting administrator/unvalidated_users #1355
