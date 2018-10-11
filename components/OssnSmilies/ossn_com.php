@@ -24,7 +24,8 @@ function ossn_smiley_embed_init() {
 	ossn_extend_view('css/ossn.default', 'css/smilies/emojii');
 	ossn_extend_view('css/ossn.admin.default', 'css/smilies/emojii');
  	ossn_extend_view('js/opensource.socialnetwork', 'js/smilies/emojii');
-
+	ossn_extend_view('comments/attachment/buttons', 'smilies/comment/button');
+	
 	if (ossn_isLoggedin()) {
 		$component = new OssnComponents;
 		$settings = $component->getComSettings('OssnSmilies');
