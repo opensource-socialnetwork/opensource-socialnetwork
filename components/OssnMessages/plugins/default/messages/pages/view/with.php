@@ -36,8 +36,8 @@ if ($params['data']) {
                         					<?php } else { ?>
 					    <span><?php echo ossn_call_hook('messages', 'message:smilify', null, ossn_message_print($message->message)); ?></span>
                                             <?php } ?>
-                                        	<div class="time-created"><?php echo ossn_user_friendly_time($message->time);?>
                                             <?php if(!$deleted){ ?>
+                                        	<div class="time-created"><?php echo ossn_user_friendly_time($message->time);?>
                                             <a class="ossn-message-delete" href="<?php echo ossn_site_url("action/message/delete?id={$message->id}", true);?>"><i class="fa fa-times"></i></a>				
                                             <?php } ?>
                                             </div>    
@@ -60,8 +60,7 @@ if ($params['data']) {
                                             <span><i class="fa fa-times-circle"></i><?php echo ossn_print('ossnmessages:deleted');?></span>
                         					<?php } else { ?>
 					    <span><?php echo ossn_call_hook('messages', 'message:smilify', null, ossn_message_print($message->message)); ?></span>
-                                            <?php } ?>
-                                        	<div class="time-created"><?php echo ossn_user_friendly_time($message->time);?></div>                                                
+                                            <div class="time-created"><?php echo ossn_user_friendly_time($message->time);?></div>                                            <?php } ?>
                                         </div>
                                 </div>
                         </div>                       
