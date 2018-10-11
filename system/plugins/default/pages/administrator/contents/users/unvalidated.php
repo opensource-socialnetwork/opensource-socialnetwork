@@ -13,18 +13,19 @@ $pagination = new OssnPagination;
 $search = input('search_users');
 
 $data = $users->getUnvalidatedUSERS($search);
-
-$pagination->setItem($data);
-$list = $pagination->getItem();
+$count = $users->getUnvalidatedUSERS($search, 'count');
 
 ?>
 <div class="row">
+	<div class="col-md-12">
     <form method="post">
         <input type="text" name="search_users" placeholder="<?php echo ossn_print('search'); ?>" />
         <input type="submit" class="btn btn-primary" value="<?php echo ossn_print('search'); ?>"/>
     </form>    
+    </div>
 </div>
 <div class="row margin-top-10">
+<div class="col-md-12">
 <table class="table ossn-users-list">
     <tbody>
     <tr class="table-titles">
@@ -61,7 +62,6 @@ if($list) {
 ?>
     </tbody>
 </table>
+<?php echo ossn_view_pagination($count); ?>
 </div>
-<div class="row">
-	<?php echo $pagination->pagination(); ?>
 </div>
