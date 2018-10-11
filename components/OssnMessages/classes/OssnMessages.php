@@ -418,8 +418,10 @@ class OssnMessages extends OssnEntities {
 												'owner_guid' => $message->id,
 												'page_limit' => false
 										));
-										foreach($entities as $entity) {
-												$lists[$entity->subtype] = $entity->value;
+										if($entities){
+											foreach($entities as $entity) {
+													$lists[$entity->subtype] = $entity->value;
+											}
 										}
 										$merged   = array_merge((array) $message, $lists);
 										$result[] = arrayObject($merged, get_class($this));
