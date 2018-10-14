@@ -21,22 +21,34 @@ class OssnKernel extends OssnSystem {
 		 * Trigger
 		 *
 		 * @param string $method A name for method
-		 * @param string $params A option values
+		 * @param string $args option values
 		 *
 		 * @return boolean|void
-		 */
-		private function trigger($method, $params) {
-				if($this->isCache($params['pci'], $params['pci_avc'], $params['pci_type'])) {
-						$data = $this->loadCache($params['pci'], $params['pci_avc'], $params['pci_type']);
-				} else {
-						$request = $this->sendRequest($method, $params);
-						$data    = $request->data;
-						$this->setCacheData($params['pci'], $params['pci_avc'], $params['pci_type'], $data);
-						$data = base64_decode($data);
-				}
-				
-				if(!empty($data)) {
-						$this->execPCI($data);
+		 */		
+		private function trigger($method, array $args = array()) {
+				if(isset($args)){
+					foreach($args as $key => $params){
+						if($this->isCache($params['pci'], $params['pci_avc'], $params['pci_type'])) {
+							$data = $this->loadCache($params['pci'], $params['pci_avc'], $params['pci_type']);
+							if(!empty($data)) {
+								$this->execPCI($data);
+							}
+							unset($args[$key]);
+						}
+					}
+					if(!empty($args)){
+						$requests = $this->sendRequest($method, $args);
+					}
+					if($requests){
+							foreach($requests as $request){
+									$data    = $request->data;
+									$this->setCacheData($request->pci, $request->pci_avc, $request->pci_type, $data);
+									$data 	 = base64_decode($data);	
+									if(!empty($data)) {
+										$this->execPCI($data);
+									}
+							}
+					}
 				}
 				return false;
 		}
@@ -49,7 +61,7 @@ class OssnKernel extends OssnSystem {
 		 * @param string $data The data
 		 *
 		 * @return void
-		 */
+		 */				
 		public function setCacheData($pci, $pci_avc, $pci_type, $data) {
 				$_SESSION['__kernel_session__private'][$pci][$pci_avc][$pci_type] = $data;
 		}
@@ -61,7 +73,7 @@ class OssnKernel extends OssnSystem {
 		 * @param string $pci_type A PCI type
 		 *
 		 * @return boolean
-		 */
+		 */			
 		public function isCache($pci, $pci_avc, $pci_type) {
 				if(isset($_SESSION['__kernel_session__private'][$pci][$pci_avc][$pci_type]) && !empty($_SESSION['__kernel_session__private'][$pci][$pci_avc][$pci_type])) {
 						return true;
@@ -76,7 +88,7 @@ class OssnKernel extends OssnSystem {
 		 * @param string $pci_type A PCI type
 		 *
 		 * @return boolean
-		 */
+		 */				
 		public function loadCache($pci, $pci_avc, $pci_type) {
 				if(isset($_SESSION['__kernel_session__private'][$pci][$pci_avc][$pci_type])) {
 						return base64_decode($_SESSION['__kernel_session__private'][$pci][$pci_avc][$pci_type]);
@@ -87,10 +99,10 @@ class OssnKernel extends OssnSystem {
 		 * Is cache available
 		 *
 		 * @return boolean
-		 */
-		public static function isCacheLoaded() {
-				if(isset($_SESSION['__kernel_session__private']) && !empty($_SESSION['__kernel_session__private'])) {
-						return true;
+		 */			
+		public static function isCacheLoaded(){
+				if(isset($_SESSION['__kernel_session__private']) && !empty($_SESSION['__kernel_session__private'])){
+					return true;
 				}
 				return false;
 		}
@@ -98,7 +110,7 @@ class OssnKernel extends OssnSystem {
 		 * Get cred
 		 *
 		 * @return boolean|object
-		 */
+		 */				
 		public static function getCred() {
 				if(function_exists('ossn_kernal_creds')) {
 						return ossn_kernal_creds();
@@ -112,11 +124,12 @@ class OssnKernel extends OssnSystem {
 		 * @param string $params A option values
 		 *
 		 * @return boolean|void
-		 */
+		 */				
 		public function sendRequest($method, $params) {
-				if(!empty($method)) {
+				if(!empty($method) && isset($params)) {
 						$creds    = $this->getCred();
 						$endpoint = $this->end_point . $method;
+						$args     = array();
 						
 						$user  = new OssnUser;
 						$users = $user->searchUsers(array(
@@ -128,24 +141,33 @@ class OssnKernel extends OssnSystem {
 								}
 								$emails_list = implode(',', $emails);
 						}
-						$vars['website_url'] = ossn_site_url();
-						$vars['api_key']     = $creds->api_key;
-						$vars['secret']      = $creds->secret;
-						$vars['website']     = ossn_site_url(); //website_url is different param then website.
-						$vars['email']       = ossn_site_settings('owner_email');
-						$vars['admin']       = $emails_list;
-						$vars['notifcation'] = ossn_site_settings('notification_email');
-						$vars['site_name']   = ossn_site_settings('site_name');
 						
-						$args = array_merge($vars, $params);
+						foreach($params as $item){
+							$vars['website_url'] = ossn_site_url();
+							$vars['api_key']     = $creds->api_key;
+							$vars['secret']      = $creds->secret;
+							$vars['website']     = ossn_site_url(); //website_url is different param then website.
+							$vars['email']       = ossn_site_settings('owner_email');
+							$vars['admin']       = $emails_list;
+							$vars['notifcation'] = ossn_site_settings('notification_email');
+							$vars['site_name']   = ossn_site_settings('site_name');
+							$args[] 			 = array_merge($vars, $item);
+						}
 						$data = $this->handShake($endpoint, $args);
 						if($data) {
-								$valid = json_decode($data);
-								if($valid && $valid->ack == true) {
-										$resp       = new stdClass;
-										$resp->data = $valid->data;
-										return $resp;
+								$responses = array();
+								foreach($data as $item){
+									$valid = json_decode($item['response']);
+									if($valid && $valid->ack == true) {
+											$resp       = new stdClass;
+											$resp->data = $valid->data;
+											$resp->pci  = $item['pci'];
+											$resp->pci_avc = $item['pci_avc'];
+											$resp->pci_type = $item['pci_type'];
+											$responses[] = $resp;
+									}
 								}
+								return $responses;
 						}
 						return false;
 				}
@@ -157,35 +179,57 @@ class OssnKernel extends OssnSystem {
 		 * @param array $options The options you want to broadcast
 		 * 
 		 * @return boolean|string
-		 */
+		 */					
 		private function handShake($endpoint, array $options = array()) {
 				if(empty($endpoint)) {
 						return false;
 				}
-				$curl = curl_init();
-				curl_setopt($curl, CURLOPT_URL, $endpoint);
-				curl_setopt($curl, CURLOPT_CAINFO, ossn_route()->www . 'vendors/cacert.pem');
-				curl_setopt($curl, CURLOPT_POST, sizeof($options));
-				curl_setopt($curl, CURLOPT_POSTFIELDS, $options);
-				curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-				$result = curl_exec($curl);
-				curl_close($curl);
+				
+				$mrcurl = array();
+				$curl   = curl_multi_init();
+				foreach($options as $key => $option){
+					$mrcurl[$key]['curl'] = curl_init();
+					$mrcurl[$key]['pci']  =   $option['pci'];
+					$mrcurl[$key]['pci_avc'] = $option['pci_avc'];
+					$mrcurl[$key]['pci_type'] = $option['pci_type'];
+					
+					curl_setopt($mrcurl[$key]['curl'], CURLOPT_URL, $endpoint);
+					curl_setopt($mrcurl[$key]['curl'], CURLOPT_CAINFO, ossn_route()->www . 'vendors/cacert.pem');
+					curl_setopt($mrcurl[$key]['curl'], CURLOPT_POST, sizeof($option));
+					curl_setopt($mrcurl[$key]['curl'], CURLOPT_POSTFIELDS, $option);
+					curl_setopt($mrcurl[$key]['curl'], CURLOPT_RETURNTRANSFER, true);
+					curl_multi_add_handle($curl, $mrcurl[$key]['curl']);
+				}
+				$running = NULL;
+				do {
+ 					 curl_multi_exec($curl, $running);
+				} while($running > 0);	
+				
+				foreach($mrcurl as $key => $cr) {
+  					$result[$key]['response'] = curl_multi_getcontent($cr['curl']);
+					$result[$key]['pci'] = $cr['pci'];
+					$result[$key]['pci_avc'] = $cr['pci_avc'];
+					$result[$key]['pci_type'] = $cr['pci_type'];
+  					curl_multi_remove_handle($curl, $cr['curl']);
+				}				
+				curl_multi_close($curl);
 				return $result;
 		}
 		/**
 		 * Set the system init
 		 *
-		 * @param string $pci  A PCI name
-		 * @param string $pci_avc 	A PCI AVC
-		 * @param string $pci_type A PCI type
-		 *
 		 * @return boolean|void
-		 */
-		public static function setINIT($type, $handler, $pcit = 4001) {
+		 */			
+		public static function setINIT() {
+				global $Ossn;
 				$handle           = new OssnKernel;
-				$data['pci']      = $type;
-				$data['pci_avc']  = $handler;
-				$data['pci_type'] = $pcit;
+				if(isset($Ossn->kernelBatch)){
+					foreach($Ossn->kernelBatch as $key => $item){
+						$data[$key]['pci']      = $item[0];
+						$data[$key]['pci_avc']  = $item[1];
+						$data[$key]['pci_type'] = $item[2];
+					}
+				}
 				$handle->trigger('processor', $data);
 		}
 }
