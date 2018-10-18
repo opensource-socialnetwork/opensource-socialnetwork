@@ -1,4 +1,4 @@
-OPEN SOURCE SOCIAL NETWORK LICENSE (OSSN LICENSE) v3.0
+OPEN SOURCE SOCIAL NETWORK LICENSE (OSSN LICENSE) v3.1
 Copyright (C) 2014-2018 OPEN SOURCE SOCIAL NETWORK. <https://www.opensource-socialnetwork.org/>
 
 The Open Source Social Network License does not permit incorporating your program/software into proprietary program/software.
@@ -16,7 +16,7 @@ To "modify" a work means to copy from or adapt all or part of the work in a fash
 2.1 You are allowed to modify the program/software subject to the following conditions:
    	2.1.0 You shall not remove the copyrights including powered by notice/links.
    	2.1.1 You shall not try to apply any techniques that hides copyright,  'powered by' notice/links.
-2.2 You are allowed to distribute/sell the copies of product keeping the section 2.1 in mind.You need to take permission/authorization from us, in case of selling.
+2.2 You are allowed to distribute/sell the copies of product keeping the section 2.1 in mind.
 2.3 If you use the part/piece of software code within other software you must include the visible powered by Open Source Social Network in the footer of website.
 
 3. Other 3rd party open source program/software
