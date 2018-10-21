@@ -322,3 +322,8 @@ footer a {
     color: #f1f1f1;
     background-color: transparent;
 }
+@media (max-width: 480px) { 
+	.topbar-menu .nav li {
+    	    padding-left: 15px;
+    }
+}
