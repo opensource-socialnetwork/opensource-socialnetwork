@@ -75,12 +75,19 @@ $(document).ready(function() {
 		element: '.newsfeed-middle .user-activity .ossn-pagination',
 		callback: function(event, $all_elements) {
 			$next = $(this).find('.active').next();
+			$last = $(this).find('li:last');
 			var selfElement = $(this);
 			if ($next) {
 				$url = $next.find('a').attr('href');
 				$offset = Ossn.AutoPaginationURLparam('offset', $url);
 				$url = '?offset='+$offset;
-				//console.log('OFFSET: ' + $offset);
+				
+				//compute offset of 'Last' tab the same way for later comparison
+				$last_url = $last.find('a').attr('href');
+				$last_offset = Ossn.AutoPaginationURLparam('offset', $last_url);
+				
+				//console.log('NEXT_OFFSET' , $offset);
+				//console.log('LAST_OFFSET' , $last_offset);
 				//console.log('A R R A Y ' + JSON.stringify($calledOnce));
 				if ($.inArray($url, $calledOnce) == -1 && $offset > 0) {
 					//console.log('NEXT');
@@ -100,13 +107,32 @@ $(document).ready(function() {
 
 								$('.user-activity').append($element.html()); //append the new data
 								selfElement.html($clone); //set pagination content with new pagination contents
-								selfElement.appendTo('.user-activity'); //append the pagnation back to at end
+
+								// selfElement.appendTo('.user-activity'); //append the pagnation back to at end
+								// above code replaced by next line in order to make paginator look the same as with fresh page load
+								selfElement.appendTo('.user-activity .container-table-pagination .center-row'); //append the pagnation back to at end
+
 								$('.newsfeed-middle .user-activity .ossn-pagination li').css({"visibility":"hidden"});
+								
+								if($offset != $last_offset) {
+									// we're still somewhere in the middle of the newsfeed
+									// so remove any paginator from former pages, but keep last one, because OssnWall insert needs a unique! anchor
+									$('.container-table-pagination').not(':last').remove();
+								} else {
+									// newsfeed end has reached, we don't need a paginator anymore
+									$('.container-table-pagination').remove();
+									// positive side effects:
+									// - Ossn Wall insert will find no anchor anymore to append last page again and again
+									// - no more scrolling events will be triggered
+								}
 							}
                             return;
 						},
 					});
-				} //if not in array
+				} else {
+					//if not in array
+					$('.container-table-pagination').remove();
+				}
 			}
 		},
 	});
