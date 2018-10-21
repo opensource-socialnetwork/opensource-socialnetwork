@@ -156,6 +156,7 @@ Ossn.PostRequest = function($data) {
 	var error = $data['error'];
 	var befsend = $data['beforeSend'];
 	var $fdata = $data['params'];
+	var async = $data['async'];
 	var action = $data['action'];
 	var $xhr = $data['xhr'];
 	if (!callback) {
@@ -163,6 +164,9 @@ Ossn.PostRequest = function($data) {
 	}
 	if (!befsend) {
 		befsend = function() {}
+	}
+	if (typeof async === 'undefined') {
+		async = true;
 	}
 	if (!action) {
 		action = true;
@@ -181,7 +185,7 @@ Ossn.PostRequest = function($data) {
 	}
 	$.ajax({
 		xhr: $xhr,
-		async: true,
+		async: async,
 		type: 'post',
 		beforeSend: befsend,
 		url: url,
