@@ -21,7 +21,7 @@ if(class_exists('OssnMessages')){
 }
 
 $friends = ossn_loggedin_user()->getFriendRequests();
-if (count($friends) > 0 && !empty($friends)) {
+if ($friends) {
     $friends_c = count($friends);
 }
 ?>
