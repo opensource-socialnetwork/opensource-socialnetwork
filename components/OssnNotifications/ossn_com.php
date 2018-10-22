@@ -169,7 +169,7 @@ function ossn_notification_page($pages) {
 						}
 						$friends   = ossn_loggedin_user()->getFriendRequests();
 						$friends_c = 0;
-						if(count($friends) > 0 && !empty($friends)) {
+						if($friends) {
 								$friends_c = count($friends);
 						}
 						echo json_encode(array(
