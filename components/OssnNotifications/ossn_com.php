@@ -107,8 +107,7 @@ function ossn_notification_page($pages) {
 						break;
 				case 'friends':
 						$friends['friends'] = ossn_loggedin_user()->getFriendRequests();
-						$friends_count      = count($friends['friends']);
-						if($friends_count > 0 && !empty($friends['friends'])) {
+						if(!empty($friends['friends'])) {
 								$data = ossn_plugin_view('notifications/pages/notification/friends', $friends);
 								echo json_encode(array(
 										'type' => 1,
@@ -125,8 +124,8 @@ function ossn_notification_page($pages) {
 				case 'messages':
 						$OssnMessages     = new OssnMessages;
 						$params['recent'] = $OssnMessages->recentChat(ossn_loggedin_user()->guid);
-						$data             = ossn_plugin_view('messages/templates/message-with-notifi', $params);
 						if(!empty($params['recent'])) {
+								$data = ossn_plugin_view('messages/templates/message-with-notifi', $params);
 								echo json_encode(array(
 										'type' => 1,
 										'data' => $data
