@@ -2,7 +2,7 @@
 /**
  * Open Source Social Network
  *
- * @package   (softlab24.com).ossn
+ * @package   Open Source Social Network
  * @author    OSSN Core Team <info@softlab24.com>
  * @copyright (C) SOFTLAB24 LIMITED
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
