@@ -249,8 +249,10 @@ class OssnGroup extends OssnObject {
 				if($count) {
 						return $members;
 				}
-				foreach($members as $member) {
-						$users[] = ossn_user_by_guid($member->relation_to);
+				if($members) {
+					foreach($members as $member) {
+							$users[] = ossn_user_by_guid($member->relation_to);
+					}
 				}
 				if(isset($users)) {
 						return $users;
