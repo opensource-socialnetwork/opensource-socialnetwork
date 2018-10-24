@@ -1,6 +1,6 @@
 //<script>
 /**
- * 	Open Source Social Network
+ * Open Source Social Network
  *
  * @package   (softlab24.com).ossn
  * @author    OSSN Core Team <info@softlab24.com>
@@ -34,62 +34,84 @@ Ossn.RegisterStartupFunction(function() {
         $('body').on('click', '.ossn-wall-post-delete', function(e) {
             $url = $(this);
             e.preventDefault();
+			
+			// new code to insert the first posting from next page,
+			// if a posting of the current page has been deleted
+			
+			// make it work with /home, /u/USERNAME, /group/GROUP_ID
+			var base_page_url             = Ossn.site_url + $(location).attr('pathname').substr(1);
+			// ignore new posts which have just been added
+			// because they don't have an impact on the current pagination
+			// so first check, whether the to be deleted posting has a 'new' attribute
+			// see line #357 for marker setting
+			$to_be_deleted                = $('#activity-item-' + $url.attr('data-guid'));
+			var post_attribute            = $to_be_deleted.attr('post');
+			var old_posting_deleted       = false;
+			var last_page_posting_deleted = false;
+			var $element                  = '';
+			if (typeof post_attribute === 'undefined') {
+				// no attribute found - so this is an already existing older post
+				// check for existance of next page
+				$next = $('.user-activity .ossn-pagination').find('.active').next();
+				if ($next.length) {
+					// this page HAS a paginator !
+					var next_url = $next.find('a').attr('href');
+					var results  = new RegExp('[\?&]' + 'offset' + '=([0-9]*)').exec(next_url);
+					$next_offset = results[1] || false;
+					next_url     = '?offset=' + $next_offset;
+					
+					// remember the current page's offset we're on ...
+					// - to rebuild paginator if necessary when AutoPagination is disabled
+					// - to compare with last page offset, because there's nothing to insert on the last page
+					var current_url = $(location).attr('href');
+					var results     = new RegExp('[\?&]' + 'offset' + '=([0-9]*)').exec(current_url);
+					if (results) {
+						var $current_offset = results[1] || false;
+					} else {
+						// pages without explicite included offset are assumed to be page 1
+						var $current_offset = 1;
+					}
 
-            // new hack to insert the first posting from next page,
-            // if a posting of the current page has been deleted
+					// and get the last page's offset
+					$last        = $('.user-activity .ossn-pagination').find('li:last');
+					var last_url = $last.find('a').attr('href');
+					var results  = new RegExp('[\?&]' + 'offset' + '=([0-9]*)').exec(last_url);
+					$last_offset = results[1] || false;
 
-            // ignore new posts which have just been added
-            // because they don't change the current pagination
-            // so first check, whether the to be deleted posting has a 'new' attribute
-            // see line #284 for marker setting
-            $to_be_deleted = $('#activity-item-' + $url.attr('data-guid'));
-            var post_attribute = $to_be_deleted.attr('post');
-            var old_posting_deleted = false;
-            if (typeof post_attribute === 'undefined') {
-                // no attribute - so this is an already existing older post
+					if ($current_offset < $last_offset) {
+						Ossn.PostRequest({
+							// IMPORTANT: we must run the next 3 (4) XHR posts with async set to FALSE
+							// otherwise we're getting unpredictable results from the callbacks here
+							// like sometimes not the first posting is returned but a random other one,
+							// or record is still available althought already deleted
+							async: false, // !!!
+							action: false,
+							url: base_page_url + next_url,
+							beforeSend: function() {
+							},
+							callback: function(callback) {
+								// try to get the first posting of the next page
+								$element = $(callback).find('.ossn-wall-item').first();
+								if ($element.length) {
+									//append the posting at the bottom, right before pagination
+									$element.insertBefore('.user-activity .container-table-pagination');
+									// temporarely hide inserted element, to allow deleting of old posting first in next step to avoid flickering
+									$element.hide();
+									old_posting_deleted = true;
+								}
+							},
+						});
+					} else {
+						// we're on the last page
+						last_page_posting_deleted = true;
+					}
+				}
+			}
 
-                // check for existance of next page
-                $next = $('.user-activity .ossn-pagination').find('.active').next();
-                if ($next.length) {
-                    var next_url = $next.find('a').attr('href');
-                    var results = new RegExp('[\?&]' + 'offset' + '=([0-9]*)').exec(next_url);
-                    $offset = results[1] || false;
-                    next_url = '?offset=' + $offset;
-                    // console.log('NEXT OFFSET: ' + $offset);
-
-                    // remember current page we're on for later use - only needed in case of manual pagination
-                    // $offset already pointing to next page here, so substract 1
-                    var $current_offset = $offset - 1;
-
-                    Ossn.PostRequest({
-                        // IMPORTANT: we should be able to set async to false in the core lib
-                        // otherwise we're getting unpredictable results from the callback here
-                        // actually with async = true sometimes not the first posting was returned,
-                        // but any other one. no idea what's happening there
-                        // so I changed Javascript core lib to allow change of default value
-                        async: false, // !!!
-                        action: false,
-                        url: Ossn.site_url + 'home' + next_url,
-                        beforeSend: function() {},
-                        callback: function(callback) {
-                            // try to get the first posting of the next page
-                            $element = $(callback).find('.ossn-wall-item').first();
-                            //console.log($element);
-                            if ($element.length) {
-                                //append the posting at the bottom, right before pagination
-                                $element.insertBefore('.container-table-pagination');
-                                old_posting_deleted = true;
-                            }
-                            return;
-                        },
-                    });
-                }
-            }
-            //
-
+			// remove post from wall
             Ossn.PostRequest({
                 url: $url.attr('href'),
-                async: false,
+				async: false,
                 beforeSend: function(request) {
                     $('#activity-item-' + $url.attr('data-guid')).attr('style', 'opacity:0.5;');
                 },
@@ -102,70 +124,125 @@ Ossn.RegisterStartupFunction(function() {
                     }
                 }
             });
-            //
 
-            // needed for manual pagination only!
-            <?php
-			if(!com_is_active('OssnAutoPagination')) {
+			if ($element.length) {
+				// make inserted element visible
+				$element.show();
+			}
+			
+			// needed for manual pagination only!
+			<?php
+			if (!com_is_active('OssnAutoPagination')) {
 			?>
-            //console.log('MANUAL PAGINATION');
-            if (old_posting_deleted) {
-                // find out whether there are still postings on the last page
-                // if not, we have to shrink the paginator
-                $last = $('.user-activity .ossn-pagination').find('li:last');
-                if ($last.length) {
-                    var last_url = $last.find('a').attr('href');
-                    var results = new RegExp('[\?&]' + 'offset' + '=([0-9]*)').exec(last_url);
-                    $offset = results[1] || false;
-                    last_url = '?offset=' + $offset;
-
-                    Ossn.PostRequest({
-                        async: false,
-                        action: false,
-                        url: Ossn.site_url + 'home' + last_url,
-                        beforeSend: function() {},
-                        callback: function(callback) {
-                            $element = $(callback).find('.ossn-wall-item').first();
-                            //console.log($element);
-                            if ($element.length) {
-                                // the last page still has entries - do nothing
-                                //console.log('LEAVE_PAGINATION AS IS');
-                            } else {
-                                // pagination needs to be adjusted
-                                // so remove old pagination
-                                $('.container-table-pagination').remove();
-                                // and reload page we're currently on to retrieve a new one
-                                var current_url = '?offset=' + $current_offset;
-                                //console.log('REFRESH_PAGINATION of current offset: ', $current_offset);
-                                Ossn.PostRequest({
-                                    async: false,
-                                    action: false,
-                                    url: Ossn.site_url + 'home' + current_url,
-                                    beforeSend: function() {},
-                                    callback: function(callback) {
-                                        $element = $(callback).find('.container-table-pagination');
-                                        //console.log($element);
-                                        if ($element.length) {
-                                            // and add adjusted one
-                                            $element.appendTo('.user-activity');
-                                        }
-                                        // note: if there's no element found
-                                        // we have run into the special case
-                                        // offset = 1 and either no postings at all or number of postings < pagelimit
-                                        return;
-                                    },
-                                });
-                            }
-                            return;
-                        },
-                    });
-                }
-            }
-            // end of manual pagination part
-            <?php
+			if (old_posting_deleted) {
+				// now that we have deleted one posting,
+				// find out whether there are still postings on the last page pointed to by current paginator
+				// if not, we have to shrink the paginator
+				$last = $('.user-activity .ossn-pagination').find('li:last');
+				if ($last.length) {
+					var last_url = $last.find('a').attr('href');
+					var results  = new RegExp('[\?&]' + 'offset' + '=([0-9]*)').exec(last_url);
+					$offset      = results[1] || false;
+					last_url     = '?offset=' + $offset;
+				
+					Ossn.PostRequest({
+						async: false,
+						action: false,
+						url: base_page_url + last_url,
+						beforeSend: function() {
+						},
+						callback: function(callback) {
+							$element = $(callback).find('.ossn-wall-item').first();
+							if ($element.length) {
+								// the last page still has entries - do nothing
+							}
+							else {
+								// pagination needs to be adjusted
+								// so remove old pagination
+								$('.user-activity .container-table-pagination').remove();
+								// and reload page we're currently on to retrieve a new one
+								var current_url = '?offset=' + $current_offset;
+								Ossn.PostRequest({
+									async: false,
+									action: false,
+									url: base_page_url + current_url,
+									beforeSend: function() {
+									},
+									callback: function(callback) {
+										$element = $(callback).find('.container-table-pagination');
+										if ($element.length) {
+											// and add adjusted pagination
+											$element.appendTo('.user-activity');
+										}
+										// note: if there's no element found
+										// we have run into the special case
+										// offset = 1 and either no postings at all or number of postings < pagelimit
+									},
+								});
+							}
+						},
+					});
+				}
+			}
+			if (last_page_posting_deleted) {
+				// now that we have deleted one posting on the last page we're currently on,
+				// find out whether there are still other postings on this page
+				// if not, we are going to display the previous page instead - in case we're not on page 1 already
+				$last = $('.user-activity .ossn-pagination').find('li:last');
+				if ($last.length) {
+					var last_url = $last.find('a').attr('href');
+					var results  = new RegExp('[\?&]' + 'offset' + '=([0-9]*)').exec(last_url);
+					$offset      = results[1] || false;
+					last_url     = '?offset=' + $offset;
+				
+					Ossn.PostRequest({
+						async: false,
+						action: false,
+						url: base_page_url + last_url,
+						beforeSend: function() {
+						},
+						callback: function(callback) {
+							$element = $(callback).find('.ossn-wall-item').first();
+							if ($element.length) {
+								// the last page still has entries - do nothing
+							}
+							else {
+								// if the offset of our last page is 1, we don't have to care about a paginator
+								// because there's IS no paginator on incomplete page 1
+								if ($offset > 1) {
+									$('.user-activity .container-table-pagination').remove();
+									// the .user-activity div should be completely empty now
+									// we're not on page 1, so load and insert the previous page's wall items and pagination
+									$offset--;
+									var current_url = '?offset=' + $offset;
+									Ossn.PostRequest({
+										async: false,
+										action: false,
+										url: base_page_url + current_url,
+										beforeSend: function() {
+										},
+										callback: function(callback) {
+											// get complete feed of previous page
+											$element = $(callback).find('.user-activity');
+											if ($element.length) {
+												// and add it
+												var previous_page_feed = $element.html();
+												$(previous_page_feed).appendTo('.user-activity');
+											}
+										},
+									});
+								}
+							}
+						},
+					});
+				}
+				
+			}
+			// end of manual pagination part
+			<?php
 			}
 			?>
-        });
+		});
 
         //post edit
         Ossn.ajaxRequest({
