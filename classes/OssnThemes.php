@@ -227,10 +227,14 @@ class OssnThemes extends OssnSite {
 												$requirments['availability'] = 0;
 												$site_version                = (int) ossn_site_settings('site_version');
 												
-												if(($site_version <= $item->version) && ($site_version == (int)$item->version) || (float)$item->version == 3.0) {
+												//use same version checking as with components (see #1000)
+												$comparator = '>=';
+												if(isset($item->comparator) && !empty($item->comparator)) {
+														$comparator = $item->comparator;
+												}
+												if(version_compare($site_version, (string) $item->version, $comparator)) {
 														$requirments['availability'] = 1;
 												}
-												
 										}
 										//check php extension
 										if($item->type == 'php_extension') {
