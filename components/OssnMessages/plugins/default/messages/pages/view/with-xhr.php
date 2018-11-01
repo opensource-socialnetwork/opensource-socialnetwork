@@ -4,17 +4,27 @@
 echo ossn_view_pagination($params['count'], 10, array(
 	'offset_name' => 'offset_message_xhr_with',															 
 ));
-if ($params['data']) {
-				$user = ossn_user_by_guid($params['data'][0]->message_from);
-                foreach ($params['data'] as $message) {
+if ($params['data']) {				
+		$logged_in_user = ossn_user_by_guid(ossn_loggedin_user()->guid);
+		// guess other user from first record
+		// since it can be our own message !!!, compare to own guid
+		if($params['data'][0]->message_from == ossn_loggedin_user()->guid) {
+			// same id - so other user must be in message_to
+			$other_user = ossn_user_by_guid($params['data'][0]->message_to);
+		} else {
+			$other_user = ossn_user_by_guid($params['data'][0]->message_from);
+		}
+ 
+		foreach ($params['data'] as $message) {
 					$deleted = false;
 					$class = '';
 					if(isset($message->is_deleted) && $message->is_deleted == true){
 								$deleted = true;
 								$class = ' ossn-message-deleted';
 					}						
-					if($user->guid == ossn_loggedin_user()->guid){
-					?>
+			if($message->message_from == ossn_loggedin_user()->guid){
+				$user = $logged_in_user;
+			?>
                     	<div class="row">
                                 <div class="col-md-10">
                                 	<div class="message-box-sent text<?php echo $class;?>">
@@ -34,8 +44,9 @@ if ($params['data']) {
                                 </div>                                
                         </div>
                     <?php	
-					} else {
-						?>
+			} else {
+				$user = $other_user;
+			?>
                     	<div class="row">
                         	<div class="col-md-2">
                                 	<img  class="user-icon" src="<?php echo $user->iconURL()->small;?>" />
