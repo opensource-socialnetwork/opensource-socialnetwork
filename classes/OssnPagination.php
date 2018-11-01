@@ -126,6 +126,7 @@ class OssnPagination {
 				}					
 				if(!empty($vars)) {
 						$vars['offset'] = (int) input($vars['options']['offset_name']) ? (int) input($vars['options']['offset_name']) : 1;
+						$vars['page_limit'] = ($vars['page_limit'] === 0) ? 1 : $vars['page_limit'];
 						$vars['total']  = abs($vars['limit'] / $vars['page_limit']);
 						$vars['total']  = (int) ceil($vars['total']);
 						return $this->view($vars);
