@@ -10,7 +10,6 @@
     width: 25px;
     height: 25px;
     padding: 5px;
-    z-index: 2;
     cursor:pointer;
 }
 .ossn-comment-attachment {
