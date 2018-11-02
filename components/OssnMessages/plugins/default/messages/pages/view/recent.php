@@ -4,8 +4,8 @@
                 <?php
                 if ($params['recent']) {
                     foreach ($params['recent'] as $message) {
-                        if ($message->message_from == ossn_loggedin_user()->guid) {
-                            $user = ossn_user_by_guid($message->message_to);
+                        if ($message->answered) {
+                            $user = ossn_user_by_guid($message->message_from);
                             $text = ossn_call_hook('messages', 'message:smilify', null, strl($message->message, 32));
                             $replied = "<i class='fa fa-reply'></i><div class='reply-text'>{$text}</div>";
                         } else {
