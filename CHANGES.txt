@@ -38,6 +38,10 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v5.0 RC1
 * Language setting added to html tag #1342
 * Warnings when disabling/enabling a component #1346
 * Issues when visiting administrator/unvalidated_users #1355
+* Make message text appear in line with fa-reply icon #1380
+* Don't let camera icon appear on top of open notification window #1379
+* Don't let smiley icon appear on top of open notification window #1378
+* Handle message_from and message_to correctly #1377
 
 Many thanks to ZetMan/githubertus https://github.com/githubertus https://www.opensource-socialnetwork.org/u/zetman
 Due to his efforts we have completed the v5.0 version.  He have identified and fixed almost all the issues list on this page. 
