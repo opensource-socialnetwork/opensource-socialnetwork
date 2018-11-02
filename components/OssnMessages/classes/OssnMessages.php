@@ -149,7 +149,7 @@ class OssnMessages extends OssnEntities {
 						);
 						$params['from']   = 'ossn_messages';
 						$params['wheres'] = array(
-								"message_from = '{$chat->message_to}' AND message_to = '{$chat->message_from}' AND id > '{$chat->id}'"
+								"message != '' AND message_from = '{$chat->message_to}' AND message_to = '{$chat->message_from}' AND id > '{$chat->id}'"
 						);
 						if($this->select($params, false)->answered) {
 								$chat->answered = 1;
