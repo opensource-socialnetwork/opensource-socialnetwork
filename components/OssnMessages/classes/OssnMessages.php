@@ -122,14 +122,17 @@ class OssnMessages extends OssnEntities {
 		 * @return object
 		 */
 		public function recentChat($to, $count = false) {
+				// return the most recent message of each corresponding partner 
+				// exclude deleted ones
 				$chats = $this->searchMessages(array(
 						'wheres' => array(
-								"(message_to='{$to}' OR message_from='{$to}') AND m.message_from != '{$to}'"
+								"m2.id IS NULL AND m.message_to = '{$to}' AND m.message != ''"
 						),
-						'order_by' => 'm.id DESC',
+						'joins' => array(
+								"LEFT JOIN ossn_messages m2 ON (m.message_from = m2.message_from AND m.id < m2.id AND m2.message != '')"
+						),
 						'offset' => input('offset_message_xhr_recent', '', 1),
-						'count' => $count,
-						'group_by' => 'message_from, message_to'
+						'count'  => $count
 				));
 				if($count == true && $chats) {
 						return $chats;
@@ -137,25 +140,23 @@ class OssnMessages extends OssnEntities {
 				if(!$chats) {
 						return false;
 				}
-				foreach($chats as $rec) {
-						$recents[$rec->message_from] = $rec->message_to;
-				}
-				foreach($recents as $k => $v) {
-						if($k !== $to) {
-								$message_get = $this->get($to, $k);
-								if($message_get) {
-										$latest = get_object_vars($message_get);
-										$c      = end($latest);
-										if(!empty($c)) {
-												$users[] = $c;
-										}
-								}
+				foreach($chats as $chat) {
+						// if a more recent record of our own is found
+						// the message is assumed to be answered
+						$chat->answered   = 0;
+						$params['params'] = array(
+								'count(id) as answered'
+						);
+						$params['from']   = 'ossn_messages';
+						$params['wheres'] = array(
+								"message != '' AND message_from = '{$chat->message_to}' AND message_to = '{$chat->message_from}' AND id > '{$chat->id}'"
+						);
+						if($this->select($params, false)->answered) {
+								$chat->answered = 1;
 						}
+						$processed_chats[] = $chat;
 				}
-				if(isset($users)) {
-						return $users;
-				}
-				return false;
+				return $processed_chats;
 		}
 		/**
 		 * Get messages between two users
