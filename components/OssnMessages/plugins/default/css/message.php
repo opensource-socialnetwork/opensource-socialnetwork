@@ -122,6 +122,7 @@
 	width: 320px;
 	white-space: nowrap;
 	overflow: hidden;
+	display: inline;
 }
 .ossn-notification-messages .messages-from .time {
 	color: #999;
