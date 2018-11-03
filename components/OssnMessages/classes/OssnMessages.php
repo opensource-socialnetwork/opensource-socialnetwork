@@ -28,7 +28,7 @@ class OssnMessages extends OssnEntities {
 		 * @return boolean
 		 */
 		public function send($from, $to, $message) {
-				if(empty($message) || empty($from) || empty($to)) {
+				if(!strlen($message) || empty($from) || empty($to)) {
 						return false;
 				}
 				$message = strip_tags($message);
