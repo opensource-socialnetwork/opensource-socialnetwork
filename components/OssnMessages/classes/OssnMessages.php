@@ -66,7 +66,7 @@ class OssnMessages extends OssnEntities {
 						$params['message_to']   = $to;
 						$params['message']      = $message;
 						ossn_trigger_callback('message', 'created', $params);
-						return true;
+						return $this->lastMessage;
 				}
 				return false;
 		}
