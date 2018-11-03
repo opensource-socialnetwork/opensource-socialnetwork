@@ -132,6 +132,9 @@ $(document).ready(function() {
 		if ($('.ossn-pagination').visibleInScroll().isVisible) {
 			$element = $('.ossn-messages .messages-recent .messages-from .inner .container-table-pagination');
 			$next = $element.find('.ossn-pagination .active').next();
+			$last = $element.find('.ossn-pagination').find('li:last');
+			$last_url = $last.find('a').attr('href');
+			$last_offset = Ossn.MessagesURLparam('offset_message_xhr_recent', $last_url);
 			var selfElement = $element;
 			if ($next) {
 				$url = $next.find('a').attr('href');
@@ -160,6 +163,9 @@ $(document).ready(function() {
 								selfElement.html($clone); //set pagination content with new pagination contents
 								selfElement.appendTo('.ossn-messages .messages-recent .messages-from .inner'); //append the pagnation back to at end
 								$('.ossn-messages .messages-recent .messages-from .inner .ossn-messages-pagination-loading').remove();
+								if($offset == $last_offset) {
+									$('.ossn-messages .messages-recent .messages-from .inner .container-table-pagination').fadeOut();
+								}
 							}
 							return;
 						},
@@ -173,6 +179,9 @@ Ossn.MessageNotifcationPagination = function(event, $calledOnce){
 		if ($('.ossn-notification-messages .ossn-pagination').visibleInScroll().isVisible) {
 			$element = $('.ossn-notification-messages .container-table-pagination');
 			$next = $element.find('.ossn-pagination .active').next();
+			$last = $element.find('.ossn-pagination').find('li:last');
+			$last_url = $last.find('a').attr('href');
+			$last_offset = Ossn.MessagesURLparam('offset_message_xhr_recent', $last_url);
 			var selfElement = $element;
 			if ($next) {
 				$url = $next.find('a').attr('href');
@@ -200,6 +209,9 @@ Ossn.MessageNotifcationPagination = function(event, $calledOnce){
 								selfElement.html($clone); //set pagination content with new pagination contents
 								selfElement.appendTo('.ossn-notification-messages'); //append the pagnation back to at end
 								$('.ossn-notification-messages .ossn-messages-notification-pagination-loading').remove();
+								if($offset == $last_offset) {
+									$('.ossn-notification-messages .container-table-pagination').fadeOut();
+								}
 							}
 							return;
 						},
@@ -215,6 +227,9 @@ $(document).ready(function() {
 		if ($('.ossn-messages .ossn-widget .message-with .message-inner .ossn-pagination').visibleInScroll().isVisible) {
 			$element = $('.ossn-messages .ossn-widget .message-with .message-inner .container-table-pagination');
 			$next = $element.find('.ossn-pagination .active').next();
+			$last = $element.find('.ossn-pagination').find('li:last');
+			$last_url = $last.find('a').attr('href');
+			$last_offset = Ossn.MessagesURLparam('offset_message_xhr_with', $last_url);
 			var selfElement = $element;
 			if ($next) {
 				$url = $next.find('a').attr('href');
@@ -230,7 +245,14 @@ $(document).ready(function() {
 					Ossn.PostRequest({
 						url: Ossn.site_url + 'messages/xhr/with' + $url + '&guid='+$user_guid,
 						beforeSend: function() {
-							$('.ossn-messages .ossn-widget .message-with .message-inner').prepend('<div class="ossn-messages-with-pagination-loading"><div class="ossn-loading"></div></div>');
+							$('.ossn-messages .ossn-widget .message-with .message-inner').prepend('<div class="ossn-messages-with-pagination-loading"><div class="ossn-loading"></div></div>').fadeIn();
+							if($offset != $last_offset) {
+								// adjust the scrollbar a little backward
+								// because with Edge and Firefox it may still stay at topmost position
+								// hence you can't continue scrolling with your mouse
+								var scrollPos = $('.ossn-messages .ossn-widget .message-with .message-inner').scrollTop();
+								$('.ossn-messages .ossn-widget .message-with .message-inner').animate({scrollTop: scrollPos + 20}, 80);
+							}
 						},
 						callback: function(callback) {
 							//return false;
@@ -243,6 +265,9 @@ $(document).ready(function() {
 								selfElement.html($clone); //set pagination content with new pagination contents
 								selfElement.prependTo('.ossn-messages .ossn-widget .message-with .message-inner'); //append the pagnation back to at end
 								$('.ossn-messages .ossn-widget .message-with .message-inner .ossn-messages-with-pagination-loading').remove();
+								if($offset == $last_offset) {
+									$('.ossn-messages .ossn-widget .message-with .message-inner .container-table-pagination').fadeOut();
+								}
 							}
 							return;
 						},
