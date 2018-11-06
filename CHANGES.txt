@@ -43,6 +43,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v5.0 RC1
 * Don't let smiley icon appear on top of open notification window #1378
 * Handle message_from and message_to correctly #1377
 * Use same version requirement logic as with components #1371
+* Don't throw js error if sound is switched off #1391
 
 Many thanks to ZetMan/githubertus https://github.com/githubertus https://www.opensource-socialnetwork.org/u/zetman
 Due to his efforts we have completed the v5.0 version.  He have identified and fixed almost all the issues list on this page. 
