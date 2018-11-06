@@ -92,10 +92,16 @@ $(document).ready(function() {
 
 
 Ossn.ChatplaySound = function() {
-	document.getElementById('ossn-chat-sound').play();
+	var bell = document.getElementById('ossn-chat-sound');
+	if(bell.readyState) {
+		bell.play();
+	}
 };
 Ossn.MessageplaySound = function() {
-	document.getElementById('ossn-message-sound').play();
+	var bell = document.getElementById('ossn-message-sound');
+	if(bell.readyState) {
+		bell.play();
+	}
 };
 
 function setCookie(cname, cvalue, exdays) {
