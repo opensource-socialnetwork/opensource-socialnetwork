@@ -129,7 +129,7 @@ class OssnMessages extends OssnEntities {
 								"m2.id IS NULL AND m.message_to = '{$to}' AND m.message != ''"
 						),
 						'joins' => array(
-								"LEFT JOIN ossn_messages m2 ON (m.message_from = m2.message_from AND m.id < m2.id AND m2.message != '')"
+								"LEFT JOIN ossn_messages m2 ON m.message_from = m2.message_from AND m.message_to = m2.message_to AND m.id < m2.id"
 						),
 						'offset' => input('offset_message_xhr_recent', '', 1),
 						'count'  => $count
