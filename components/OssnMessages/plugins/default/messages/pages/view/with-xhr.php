@@ -25,7 +25,7 @@ if ($params['data']) {
 			if($message->message_from == ossn_loggedin_user()->guid){
 				$user = $logged_in_user;
 			?>
-                    	<div class="row">
+                    	<div class="row" id="message-item-<?php echo $message->id ?>">
                                 <div class="col-md-10">
                                 	<div class="message-box-sent text<?php echo $class;?>">
                                     		<?php if($deleted){ ?>
@@ -47,7 +47,7 @@ if ($params['data']) {
 			} else {
 				$user = $other_user;
 			?>
-                    	<div class="row">
+                    	<div class="row" id="message-item-<?php echo $message->id ?>">
                         	<div class="col-md-2">
                                 	<img  class="user-icon" src="<?php echo $user->iconURL()->small;?>" />
                                 </div>                                
