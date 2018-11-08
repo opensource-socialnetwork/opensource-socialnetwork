@@ -28,7 +28,7 @@ if ($params['data']) {
 					}					
 					if($user->guid == ossn_loggedin_user()->guid){
 					?>
-                    	<div class="row">
+                    	<div class="row" id="message-item-<?php echo $message->id ?>">
                                 <div class="col-md-10">
                                 	<div class="message-box-sent text<?php echo $class;?>">
                                     		<?php if($deleted){ ?>
@@ -50,7 +50,7 @@ if ($params['data']) {
                     <?php	
 					} else {
 						?>
-                    	<div class="row">
+                    	<div class="row" id="message-item-<?php echo $message->id ?>">
                         	<div class="col-md-2">
                                 	<img  class="user-icon" src="<?php echo $user->iconURL()->small;?>" />
                                 </div>                                
