@@ -220,60 +220,138 @@ Ossn.MessageNotifcationPagination = function(event, $calledOnce){
 			}
 		}
 };
-//message with user pagination
-$(document).ready(function() {
-	$calledOnce = [];
-	$('.ossn-messages .ossn-widget .message-with .message-inner').scroll(function() {
-		if ($('.ossn-messages .ossn-widget .message-with .message-inner .ossn-pagination').visibleInScroll().isVisible) {
-			$element = $('.ossn-messages .ossn-widget .message-with .message-inner .container-table-pagination');
-			$next = $element.find('.ossn-pagination .active').next();
-			$last = $element.find('.ossn-pagination').find('li:last');
-			$last_url = $last.find('a').attr('href');
-			$last_offset = Ossn.MessagesURLparam('offset_message_xhr_with', $last_url);
-			var selfElement = $element;
-			if ($next) {
-				$url = $next.find('a').attr('href');
-				$offset = Ossn.MessagesURLparam('offset_message_xhr_with', $url);
-				$url = '?offset_message_xhr_with=' + $offset;
+$(document).ready(function(e) {
+	e.preventDefault;
+	// initially, set vars like there's no pagination available on message page loading
+	var offset      = 1;
+	var old_offset  = offset;
+	var last_offset = 0;
+	var msg_window  = $('.ossn-messages .ossn-widget .message-with .message-inner');
+	var pagination  = $('.ossn-messages .ossn-widget .message-with .message-inner .container-table-pagination');
+	if(pagination.length) {
+		// if a pagination is found, the next page we're going to load must be page 2
+		offset = 2;
+		// go find the last page offset, too
+		$last = pagination.find('.ossn-pagination').find('li:last');
+		$last_url = $last.find('a').attr('href');
+		last_offset = Ossn.MessagesURLparam('offset_message_xhr_with', $last_url);
+	} else {
+		return;
+	}
+	//  number of pixels to move the scrollbar back after a new page has been loaded
+	const SCROLLBAR_ADJUSTMENT = 290;
+	//  client_height is the height of visible messages window div definded by css (in this case 400)
+	var client_height;
+	//  scroll_height is the complete height of messages window div (visible part plus scrolled away part)
+	var scroll_height;
+	var old_scroll_height = 0;
+	//  scroll_top is the number of pixels the content of a <div> element is scrolled vertically
+	var scroll_top;
+	//  scroll_pos is the computed absolute position of the scrollbar (0 = bottom end)
+	var scroll_pos = 0;
+	var old_scroll_pos = 0;
+	
+	//  some vars for handling xhr inserted new messages
+	const MAX_MESSAGES_PER_LOAD = 10;
+	var messages_loaded;
+	var messages_displayed;
+	var messages_xhr_inserted;
+	
+	msg_window.scroll(function() {
+		client_height = parseInt(msg_window[0].clientHeight);
+		scroll_height = parseInt(msg_window[0].scrollHeight);
+		scroll_top    = parseInt(msg_window[0].scrollTop);
+		scroll_pos    = scroll_height - client_height - scroll_top;
 
-				//console.log('A R R A Y ' + JSON.stringify($calledOnce));
-				//console.log('OFFSET: ' + $offset);
-				if ($.inArray($url, $calledOnce) == -1 && $offset > 0) {
-					//console.log('BEFORE' + JSON.stringify($calledOnce));
-					$calledOnce.push($url); //push to array so we don't need to call ajax request again for processed offset
-					$user_guid = $('.ossn-messages .ossn-widget .message-with .message-inner').attr('data-guid');
-					Ossn.PostRequest({
-						url: Ossn.site_url + 'messages/xhr/with' + $url + '&guid='+$user_guid,
-						beforeSend: function() {
-							$('.ossn-messages .ossn-widget .message-with .message-inner').prepend('<div class="ossn-messages-with-pagination-loading"><div class="ossn-loading"></div></div>').fadeIn();
-							if($offset != $last_offset) {
-								// adjust the scrollbar a little backward
-								// because with Edge and Firefox it may still stay at topmost position
-								// hence you can't continue scrolling with your mouse
-								var scrollPos = $('.ossn-messages .ossn-widget .message-with .message-inner').scrollTop();
-								$('.ossn-messages .ossn-widget .message-with .message-inner').animate({scrollTop: scrollPos + 20}, 80);
-							}
-						},
-						callback: function(callback) {
-							//return false;
-							$element = $(callback).find('.message-inner'); //make callback to jquery object
-							if ($element.length) {
-								$clone = $element.find('.container-table-pagination').html();
-								$element.find('.container-table-pagination').remove(); //remove pagination from contents as we'll replace contents of already existing pagination.
+		if(scroll_height > old_scroll_height) {
+			// we get in here if the content of the div has been expanded because of added content of next page
+			// practical usage shows that this isn't 100% foolproof as we're getting some jitter on extremely fast scrolling
+			// that's why comparison of offset > old_offset is additionally used to prevent loading the same page twice
+			old_scroll_height = scroll_height;
+			old_scroll_pos    = scroll_height - client_height; // max old scroll position (topmost bar position)
+		}
+		
+		if (scroll_pos >= old_scroll_pos && offset > old_offset && offset <= last_offset) {
+			// start loading next page only if scrollbar is reaching the top position and next page available
+			// console.log('scrollTopMax: ', scroll_height - client_height, ' scroll_top: ', scroll_top, ' scroll_height: ', scroll_height, ' page: ' , offset, ' scroll_pos: ', scroll_pos, ' client_height: ',client_height);
+			old_scroll_pos = scroll_pos;
+			old_offset     = offset;
+			
+			// verify whether new messages have been inserted meanwhile
+			// based on the fact that each complete message page we're currently looking at
+			// comes with 10 records already loaded, any difference must give us the number of newly inserted messages
+			// so get the number of theoretical possible records (10 * page number) first
+			messages_loaded = (offset - 1) * MAX_MESSAGES_PER_LOAD;
+			// and then get the real number of displayed messages
+			messages_displayed  = msg_window.find("[id^=message-item-]").length;
+			// this way messages_xhr_inserted comes true if there is a difference
+			messages_xhr_inserted = messages_displayed - messages_loaded;
+			// the tricky part:
+			// since 1 newly xhr inserted message will result in an out-of-sync pagination view by 1 position
+			// one record of the waiting to be added bunch must be a duplicate that needs to be removed
+			// thus in the end not 10 records will be added, but only 9.
+			// so when returning here, we're back to a clean multiple of 10 without rest
+			// the difference is 0 and messages_xhr_inserted will become false again
+			// the logic is working correctly even across page boundaries
+			// i.e. with 43 new messages we would get 4 page loads without adding anything (4 * 10 messages removed)
+			// plus the fifths page adding 7 messages, bringing us in sync finally 
+			// console.log('MSG_LOADED: ', messages_loaded, ' MSG_DISPALYED: ', messages_displayed, ' UNPROCESSED: ', messages_xhr_inserted);
+			
+			$url = '?offset_message_xhr_with=' + offset;
+			$user_guid = msg_window.attr('data-guid');
+			Ossn.PostRequest({
+				url: Ossn.site_url + 'messages/xhr/with' + $url + '&guid=' + $user_guid,
+				beforeSend: function() {
+					msg_window.prepend('<div class="ossn-messages-with-pagination-loading"><div class="ossn-loading"></div></div>').fadeIn();
+				},
+				callback: function(callback) {
+					$element = $(callback).find('.message-inner'); //make callback to jquery object
+					if ($element.length) {
+						offset++;
 
-								$('.ossn-messages .ossn-widget .message-with .message-inner').prepend($element.html()); //append the new data
-								selfElement.html($clone); //set pagination content with new pagination contents
-								selfElement.prependTo('.ossn-messages .ossn-widget .message-with .message-inner'); //append the pagnation back to at end
-								$('.ossn-messages .ossn-widget .message-with .message-inner .ossn-messages-with-pagination-loading').remove();
-								if($offset == $last_offset) {
-									$('.ossn-messages .ossn-widget .message-with .message-inner .container-table-pagination').fadeOut();
+						// we need to check last_offset here again
+						// because it will increase if the chat partner has sent more than 10 new messages in the meantime
+						$last = $element.find('.ossn-pagination').find('li:last');
+						$last_url = $last.find('a').attr('href');
+						// so update last_offset
+						last_offset = Ossn.MessagesURLparam('offset_message_xhr_with', $last_url);
+						// console.log('LAST_OFFSET: ', last_offset);
+
+						// Actually, ANY newly inserted message will change the database pagination 'view'
+						// resulting in already displayed records to be fetched again
+						// so we need to find and remove duplicate message records in $element
+						// before appending the block to the message window (see #1393 for example)
+						if(messages_xhr_inserted) {
+							var messages = $element.find("[id^=message-item-]");
+							// loop through ready to be appended records and search for duplicates
+							for (var i = 0; i < messages.length; i++) {
+								var msg_id = $(messages[i]).attr('id');
+								if(msg_window.find('#' + msg_id).length) {
+									// this message is already shown in message window - don't display in twice
+									// so remove it from the block to be appended
+									$element.find('#' + msg_id).remove();
+									// console.log('REMOVED: ', msg_id);
 								}
 							}
-							return;
-						},
-					});
-				} //if not in array **/
-			}
+						}
+
+						$clone = $element.find('.container-table-pagination').html();
+						$element.find('.container-table-pagination').remove(); //remove pagination from contents as we'll replace contents of already existing pagination.
+						msg_window.prepend($element.html()); //append the new data
+						pagination.html($clone); //set pagination content with new pagination contents
+						pagination.prependTo(msg_window); //append the pagnation back to at end
+					}
+					msg_window.find('.ossn-messages-with-pagination-loading').remove();
+					if(offset > last_offset) {
+							// last page reached, remove blank pagination part above oldest message on top
+							pagination.remove();
+					} else {
+							// next page available
+							// move the scrollbar a little backward to get some headrooom to scroll up again and trigger loading
+							msg_window.animate({scrollTop: SCROLLBAR_ADJUSTMENT}, 0);
+					}
+				},
+			});
 		}
 	});
 });
