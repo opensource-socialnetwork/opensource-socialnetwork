@@ -37,7 +37,7 @@ class OssnComments extends OssnAnnotation {
 						return false;
 				}
 				$cancomment = false;
-				if(!empty($comment)) {
+				if(strlen($comment)) {
 						$cancomment = true;
 				}
 				if(!empty($this->comment_image)) {
