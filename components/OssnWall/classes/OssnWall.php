@@ -26,7 +26,7 @@ class OssnWall extends OssnObject {
 						$access = OSSN_PUBLIC;
 				}
 				$canpost = false;
-				if(!empty($post)) {
+				if(strlen($post)) {
 						$canpost = true;
 				}
 				if(!empty($_FILES['ossn_photo']['tmp_name'])) {
