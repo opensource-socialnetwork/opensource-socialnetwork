@@ -154,42 +154,91 @@ Ossn.ChatExpand = function($username) {
 };
 //message with user pagination
 Ossn.ChatLoading = function($friend_guid) {
-    $(document).ready(function() {
-        $calledOnce = [];
-        $('#ossn-chat-messages-data-' + $friend_guid).scroll(function() {
-            if ($('#ossn-chat-messages-data-' + $friend_guid + ' .ossn-pagination').visibleInScroll().isVisible) {
-                $element = $('#ossn-chat-messages-data-' + $friend_guid + ' .container-table-pagination');
-                $next = $element.find('.ossn-pagination .active').next();
-                var selfElement = $element;
-                if ($next) {
-                    $url = $next.find('a').attr('href');
-                    $offset = Ossn.MessagesURLparam('offset_message_xhr_with_' + $friend_guid, $url);
-                    $url = '?offset_message_xhr_with_' + $friend_guid + '=' + $offset;
+	$(document).ready(function(e) {
+		e.preventDefault;
+		var offset      = 1;
+		var old_offset  = offset;
+		var last_offset = 0;
+		var msg_window  = $('#ossn-chat-messages-data-' + $friend_guid);
+		var pagination  = $('#ossn-chat-messages-data-' + $friend_guid + ' .container-table-pagination');
+		if(pagination.length) {
+			offset = 2;
+			$last = pagination.find('.ossn-pagination').find('li:last');
+			$last_url = $last.find('a').attr('href');
+			last_offset = Ossn.MessagesURLparam('offset_message_xhr_with_' + $friend_guid, $last_url);
+		} else {
+			return;
+		}
+		const SCROLLBAR_ADJUSTMENT = 190;
+		var client_height;
+		var scroll_height;
+		var old_scroll_height = 0;
+		var scroll_top;
+		var scroll_pos = 0;
+		var old_scroll_pos = 0;
+	
+		const MAX_MESSAGES_PER_LOAD = 10;
+		var messages_loaded;
+		var messages_displayed;
+		var messages_xhr_inserted;
+	
+		msg_window.scroll(function() {
+			client_height = parseInt(msg_window[0].clientHeight);
+			scroll_height = parseInt(msg_window[0].scrollHeight);
+			scroll_top    = parseInt(msg_window[0].scrollTop);
+			scroll_pos    = scroll_height - client_height - scroll_top;
 
-                    if ($.inArray($url, $calledOnce) == -1 && $offset > 0) {
-                        $calledOnce.push($url); //push to array so we don't need to call ajax request again for processed offset
-                        $user_guid = $friend_guid;
-                        Ossn.PostRequest({
-                            url: Ossn.site_url + 'ossnchat/load' + $url + '&guid=' + $user_guid,
-                            beforeSend: function() {
-                                $('#ossn-chat-messages-data-' + $friend_guid).prepend('<div class="ossn-messages-with-pagination-loading"><div class="ossn-loading"></div></div>');
-                            },
-                            callback: function(callback) {
-                                $element = $(callback); //make callback to jquery object
-                                if ($element.length) {
-                                    $clone = $element.find('.container-table-pagination').html();
-                                    $element.find('.container-table-pagination').remove(); //remove pagination from contents as we'll replace contents of already existing pagination.
-                                    $('#ossn-chat-messages-data-' + $friend_guid).prepend($element.html()); //append the new data
-                                    selfElement.html($clone); //set pagination content with new pagination contents
-                                    selfElement.prependTo('#ossn-chat-messages-data-' + $friend_guid); //append the pagnation back to at end
-                                    $('#ossn-chat-messages-data-' + $friend_guid + ' .ossn-messages-with-pagination-loading').remove();
-                                }
-                                return;
-                            },
-                        });
-                    } //if not in array **/
-                }
-            }
-        });
-    });
+			if(scroll_height > old_scroll_height) {
+				old_scroll_height = scroll_height;
+				old_scroll_pos    = scroll_height - client_height;
+			}
+		
+			if (scroll_pos >= old_scroll_pos && offset > old_offset && offset <= last_offset) {
+				old_scroll_pos = scroll_pos;
+				old_offset     = offset;
+			
+				messages_loaded = (offset - 1) * MAX_MESSAGES_PER_LOAD;
+				messages_displayed  = msg_window.find("[id^=ossn-message-item-]").length;
+				messages_xhr_inserted = messages_displayed - messages_loaded;
+			
+				$url = '?offset_message_xhr_with_' + $friend_guid + '=' + offset;
+				$user_guid = $friend_guid;
+				Ossn.PostRequest({
+					url: Ossn.site_url + 'ossnchat/load' + $url + '&guid=' + $user_guid,
+					beforeSend: function() {
+						msg_window.prepend('<div class="ossn-messages-with-pagination-loading"><div class="ossn-loading"></div></div>').fadeIn();
+					},
+					callback: function(callback) {
+						$element = $(callback);
+						if ($element.length) {
+							offset++;
+							$last = $element.find('.ossn-pagination').find('li:last');
+							$last_url = $last.find('a').attr('href');
+							last_offset = Ossn.MessagesURLparam('offset_message_xhr_with_' + $friend_guid, $last_url);
+							if(messages_xhr_inserted) {
+								var messages = $element.find("[id^=ossn-message-item-]");
+								for (var i = 0; i < messages.length; i++) {
+									var msg_id = $(messages[i]).attr('id');
+									if(msg_window.find('#' + msg_id).length) {
+										$element.find('#' + msg_id).remove();
+									}
+								}
+							}
+							$clone = $element.find('.container-table-pagination').html();
+							$element.find('.container-table-pagination').remove(); //remove pagination from contents as we'll replace contents of already existing pagination.
+							msg_window.prepend($element.html()); //append the new data
+							pagination.html($clone); //set pagination content with new pagination contents
+							pagination.prependTo(msg_window); //append the pagnation back to at end
+						}
+						msg_window.find('.ossn-messages-with-pagination-loading').remove();
+						if(offset > last_offset) {
+							pagination.remove();
+						} else {
+							msg_window.animate({scrollTop: SCROLLBAR_ADJUSTMENT}, 0);
+						}
+					},
+				});
+			}
+		});
+	});
 }
