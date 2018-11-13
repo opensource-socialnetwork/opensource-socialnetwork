@@ -46,6 +46,9 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v5.0 RC1
 * Don't throw js error if sound is switched off #1391
 * Handle error cases correctly for wallposts #1400
 * Allow new posts with just digit "0" #1399
+* Keep bell on top of friendlist if ordering of friends changes #1403
+* Allow just sending '0' in messages #1405
+
 
 Many thanks to ZetMan/githubertus https://github.com/githubertus https://www.opensource-socialnetwork.org/u/zetman
 Due to his efforts we have completed the v5.0 version.  He have identified and fixed almost all the issues list on this page. 
