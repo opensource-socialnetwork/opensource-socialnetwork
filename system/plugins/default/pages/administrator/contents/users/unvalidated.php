@@ -9,12 +9,10 @@
  * @link      https://www.opensource-socialnetwork.org/
  */
 $users      = new OssnUser;
-$pagination = new OssnPagination;
 $search = input('search_users');
 
-$data = $users->getUnvalidatedUSERS($search);
+$list = $users->getUnvalidatedUSERS($search);
 $count = $users->getUnvalidatedUSERS($search, 'count');
-
 ?>
 <div class="row">
 	<div class="col-md-12">
@@ -39,8 +37,7 @@ $count = $users->getUnvalidatedUSERS($search, 'count');
     </tr>
     <?php
 if($list) {
-		foreach($pagination->getItem() as $user) {
-				$user      = ossn_user_by_guid($user->guid);
+		foreach($list as $user) {
 ?>
         <tr>
             <td>
