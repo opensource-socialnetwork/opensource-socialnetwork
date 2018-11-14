@@ -61,15 +61,21 @@ class OssnAds extends OssnObject {
 		/**
 		 * Get site ads.
 		 *
-		 * @return object;
+		 * @param array $params option values
+		 * @param boolean $random do you wanted to see ads in ramdom order?
+		 *
+		 * @return array|boolean|integer
 		 */
-		public function getAds(array $params = array()) {
+		public function getAds(array $params = array(),  $random = true) {
 				$options = array(
 						'owner_guid' => 1,
 						'type' => 'site',
 						'subtype' => 'ossnads',
 						'order_by' => 'rand()'
 				);
+				if(!$random){
+						unset($options['order_by']);			
+				}
 				$args    = array_merge($options, $params);
 				return $this->searchObject($args);
 		}
