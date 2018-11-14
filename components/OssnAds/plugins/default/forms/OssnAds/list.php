@@ -10,7 +10,7 @@
  */
 
 $ads = new OssnAds;
-$items 		= $ads->getAds();
+$items 		= $ads->getAds(array(), false);
 $count      = $ads->getAds(array(
 				'count' => true,								 
 ));
