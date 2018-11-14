@@ -49,7 +49,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v5.0 RC1
 * Keep bell on top of friendlist if ordering of friends changes #1403
 * Allow just sending '0' in messages #1405
 * OssnAds is calling pagination w/o count and page_limit #1406
-
+* Ads->getAds() needs a randomize = true or false parameter #1407
 
 Many thanks to ZetMan/githubertus https://github.com/githubertus https://www.opensource-socialnetwork.org/u/zetman
 Due to his efforts we have completed the v5.0 version.  He have identified and fixed almost all the issues list on this page. 
