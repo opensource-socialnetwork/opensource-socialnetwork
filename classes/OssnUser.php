@@ -866,12 +866,8 @@ class OssnUser extends OssnEntities {
 		 * @return false|object
 		 */
 		public function getUnvalidatedUSERS($search = '', $count = false) {
-				$params         = array();
-				$params['from'] = 'ossn_users';
 				if($count) {
-						$params['params'] = array(
-								"count(*) as total"
-						);
+						$params['count'] = true;
 				}
 				if(empty($search)) {
 						$params['wheres'] = array(
@@ -879,16 +875,13 @@ class OssnUser extends OssnEntities {
 						);
 				} else {
 						$params['wheres'] = array(
-								"activation <> '' AND",
+								"activation <> ''",
 								"CONCAT(first_name, ' ', last_name) LIKE '%$search%' AND activation <> '' OR
 					 		 username LIKE '%$search%' AND activation <> '' OR email LIKE '%$search%' AND activation <> ''"
 						);
 				}
-				$users = $this->select($params, true);
+				$users = $this->searchUsers($params);
 				if($users) {
-						if($count) {
-								return $users->{0}->total;
-						}
 						return $users;
 				}
 				return false;
