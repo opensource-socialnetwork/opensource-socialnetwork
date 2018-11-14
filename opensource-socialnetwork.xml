@@ -2,9 +2,9 @@
 <opensource_socialnework xmlns="http:/opensource-socialnetwork.org/v/1.0">
     <version>5.0 RC1</version>
     <stable_version>4.6</stable_version>
-    <release>1538812874</release>
-    <build>0fa347ccf06f43f4692a80c6f34d2023</build>
+    <release>1542223614</release>
+    <build>7b3c64adf8fb006a8a68369041cab363f8c073fe</build>
     <licence>Open Source Social Network License (OSSN LICENSE)</licence>
     <author_url>http://www.opensource-socialnetwork.org</author_url>
-    <copyright>(C) 2014-2015 Informatikon Technologies, 2015-2018 SOFTLAB24 LTD, 2014-2018 Open Source Social Network. All rights reserved</copyright>
+    <copyright>(C) 2014-2015 Informatikon Technologies, 2015-2019 SOFTLAB24 LTD, 2014-2019 Open Source Social Network. All rights reserved</copyright>
 </opensource_socialnework>
