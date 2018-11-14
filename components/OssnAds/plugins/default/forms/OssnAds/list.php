@@ -10,10 +10,12 @@
  */
 
 $ads = new OssnAds;
-$pagination = new OssnPagination;
-$pagination->setItem($ads->getAds());
+$items 		= $ads->getAds();
+$count      = $ads->getAds(array(
+				'count' => true,								 
+));
 ?>
-<div class="row right margin-bottom-10">
+<div class="right margin-bottom-10">
 	<div class="inline-block">
     	<a href="<?php echo ossn_site_url("administrator/component/OssnAds?settings=add"); ?>" class="btn btn-success"><?php echo ossn_print('add'); ?></a>
     </div>
@@ -21,7 +23,7 @@ $pagination->setItem($ads->getAds());
       <input type="submit" class="btn btn-danger" value="<?php echo ossn_print('delete'); ?>"/>
    </div>   
 </div>
-<div class="row">
+<div>
 <table class="table">
     <tbody>
     <tr class="table-titles">
@@ -33,7 +35,6 @@ $pagination->setItem($ads->getAds());
         <td><?php echo ossn_print('edit'); ?></td>
     </tr>
     <?php
-    $items = $pagination->getItem();
     if ($items) {
         foreach ($items as $ads) {
             ?>
@@ -58,5 +59,5 @@ $pagination->setItem($ads->getAds());
 </table>
 </div>
 <div class="row">
-	<?php echo $pagination->pagination(); ?>
+	<?php echo ossn_view_pagination($count); ?>
 </div>
