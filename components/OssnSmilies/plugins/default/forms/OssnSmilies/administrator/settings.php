@@ -26,4 +26,4 @@
  	<option value="off" <?php echo $compat_off;?>><?php echo ossn_print('ossn:smilies:admin:settings:compat:off');?></option>
     <option value="on" <?php echo $compat_on;?>><?php echo ossn_print('ossn:smilies:admin:settings:compat:on');?></option>
  </select>
- <input type="submit" value="<?php echo ossn_print("save");?>" class="ossn-admin-button button-dark-blue"/>
+ <input type="submit" value="<?php echo ossn_print("save");?>" class="btn btn-success btn-sm"/>
