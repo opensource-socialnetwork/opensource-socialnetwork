@@ -23,4 +23,4 @@
  	<option value="friends" <?php echo $friends;?>><?php echo ossn_print('ossn:wall:friends:posts');?></option>
     <option value="public" <?php echo $public;?>><?php echo ossn_print('ossn:wall:allsite:posts');?></option>
  </select>
- <input type="submit" value="<?php echo ossn_print("save");?>" class="ossn-admin-button button-dark-blue"/>
+ <input type="submit" value="<?php echo ossn_print("save");?>" class="btn btn-success btn-sm"/>
