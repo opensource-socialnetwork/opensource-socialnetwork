@@ -22,6 +22,9 @@
 				 );
  
  $unvalidated = $users->getUnvalidatedUSERS('', true);
+ if(!$unvalidated){
+		$unvalidated = 0; 
+ }
  $flush_cache = ossn_site_url("action/admin/cache/flush", true);
 ?>
 <div class="ossn-admin-dsahboard">
