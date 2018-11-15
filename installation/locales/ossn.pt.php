@@ -40,7 +40,7 @@ $portuguese = array(
 	'all:files:required' => 'All files are required! Please check your files.',
 	
 	'ossn:install:php' => 'PHP ',
-	'ossn:install:old:php' => "You have an old version of PHP " . PHP_VERSION . " You need PHP 5.4 or PHP 5.5",
+	'ossn:install:old:php' => "You have an old version of PHP " . PHP_VERSION . " You need PHP 5.6 or 7.x",
 	
 	'ossn:install:mysqli' => 'MYSQLI ENABLED',
 	'ossn:install:mysqli:required' => 'MYSQLI PHP EXTENSION REQUIRED',
