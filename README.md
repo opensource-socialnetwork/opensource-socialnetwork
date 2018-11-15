@@ -7,7 +7,7 @@ Open Source Social Network [5.0 LTS]
 
 Opensource-Socialnetwork (OSSN) is a social networking software written in PHP. It allows you to make a social networking website and helps your members build social relationships, with people who share similar professional or personal interests. It is available in 10 international languages.
 
-OSSN is released under the ***Open Source Social Network License (OSSN LICENSE) v3.0***
+OSSN is released under the ***Open Source Social Network License (OSSN LICENSE)***
 
 Kernighan & Ritchie (K&R Variant 1TBS) coding standard is used for the OSSN.
 
