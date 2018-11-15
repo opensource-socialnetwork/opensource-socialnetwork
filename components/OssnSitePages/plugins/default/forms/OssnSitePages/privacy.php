@@ -16,6 +16,6 @@ $OssnSitePages = $OssnSitePages->getPage();
 	<label><?php echo ossn_print('site:privacy'); ?></label>
 	<textarea name="pagebody" class="ossn-editor"><?php echo html_entity_decode($OssnSitePages->description); ?></textarea>
 </div>
-<div>
-	<input type="submit" class="btn btn-primary" value="<?php echo ossn_print('save'); ?>"/>
+<div class="margin-top-10">
+	<input type="submit" class="btn btn-success btn-sm" value="<?php echo ossn_print('save'); ?>"/>
 </div>
