@@ -325,3 +325,7 @@ textarea:focus {
 	display: inline-block;
 	margin-top: 5px;
 }
+.ossn-installation-message-marg {
+	margin-left:20px;
+	margin-right:20px;
+}
