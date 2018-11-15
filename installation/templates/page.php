@@ -46,7 +46,7 @@
     </div>
     <div>
 
-        <div>
+        <div class="ossn-installation-message-marg">
             <?php
             echo ossn_installation_messages();?>
         </div>
