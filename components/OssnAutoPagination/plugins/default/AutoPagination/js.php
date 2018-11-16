@@ -46,6 +46,7 @@ $(document).ready(function() {
 					$calledOnce.push($url); //push to array so we don't need to call ajax request again for processed offset
 					Ossn.PostRequest({
 						action:false,
+						async: false,
 						url: $actual_next_url,
 						beforeSend: function() {
 									$('.user-activity .ossn-pagination').append('<div class="ossn-loading"></div>');
