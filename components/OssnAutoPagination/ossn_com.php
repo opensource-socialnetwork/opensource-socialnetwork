@@ -11,7 +11,7 @@
 define('AutoPagination', ossn_route()->com . 'AutoPagination/');
 
 function auto_pagination() {
-		ossn_new_external_js('ossn.autopagination', 'components/OssnAutoPagination/vendors/jquery.scrolling.js');
+		ossn_new_external_js('ossn.autopagination', ossn_add_cache_to_url('components/OssnAutoPagination/vendors/jquery.scrolling.js'));
 		ossn_load_external_js('ossn.autopagination');
 		ossn_load_external_js('ossn.autopagination', 'admin');
 		
