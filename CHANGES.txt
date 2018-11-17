@@ -50,6 +50,9 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v5.0 LTS
 * Allow just sending '0' in messages #1405
 * OssnAds is calling pagination w/o count and page_limit #1406
 * Ads->getAds() needs a randomize = true or false parameter #1407
+* Pagination logic adapted to #1409 fix #1410
+* Fixed issues on chrome mobile #1409
+* Make it work with async pagination and fast scrolling #1408
 
 Many thanks to ZetMan/githubertus https://github.com/githubertus https://www.opensource-socialnetwork.org/u/zetman
 Due to his efforts we have completed the v5.0 version.  He have identified and fixed almost all the issues list on this page. 
