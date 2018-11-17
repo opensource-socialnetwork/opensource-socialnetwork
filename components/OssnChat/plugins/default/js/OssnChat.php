@@ -172,7 +172,6 @@ Ossn.ChatLoading = function($friend_guid) {
 		const SCROLLBAR_ADJUSTMENT = 190;
 		var client_height;
 		var scroll_height;
-		var old_scroll_height = 0;
 		var scroll_top;
 		var scroll_pos = 0;
 		var old_scroll_pos = 0;
@@ -182,16 +181,13 @@ Ossn.ChatLoading = function($friend_guid) {
 		var messages_displayed;
 		var messages_xhr_inserted;
 	
-		msg_window.scroll(function() {
-			client_height = parseInt(msg_window[0].clientHeight);
-			scroll_height = parseInt(msg_window[0].scrollHeight);
-			scroll_top    = parseInt(msg_window[0].scrollTop);
-			scroll_pos    = scroll_height - client_height - scroll_top;
-
-			if(scroll_height > old_scroll_height) {
-				old_scroll_height = scroll_height;
-				old_scroll_pos    = scroll_height - client_height;
-			}
+		msg_window.scroll(function(event) {
+			event.stopImmediatePropagation();
+			client_height  = parseInt(msg_window[0].clientHeight);
+			scroll_height  = parseInt(msg_window[0].scrollHeight);
+			scroll_top     = parseInt(msg_window[0].scrollTop);
+			scroll_pos     = scroll_height - client_height - scroll_top;
+			old_scroll_pos = scroll_height - client_height;
 		
 			if (scroll_pos >= old_scroll_pos && offset > old_offset && offset <= last_offset) {
 				old_scroll_pos = scroll_pos;
