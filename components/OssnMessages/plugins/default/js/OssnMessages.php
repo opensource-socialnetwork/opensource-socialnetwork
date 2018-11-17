@@ -244,7 +244,6 @@ $(document).ready(function(e) {
 	var client_height;
 	//  scroll_height is the complete height of messages window div (visible part plus scrolled away part)
 	var scroll_height;
-	var old_scroll_height = 0;
 	//  scroll_top is the number of pixels the content of a <div> element is scrolled vertically
 	var scroll_top;
 	//  scroll_pos is the computed absolute position of the scrollbar (0 = bottom end)
@@ -257,19 +256,13 @@ $(document).ready(function(e) {
 	var messages_displayed;
 	var messages_xhr_inserted;
 	
-	msg_window.scroll(function() {
-		client_height = parseInt(msg_window[0].clientHeight);
-		scroll_height = parseInt(msg_window[0].scrollHeight);
-		scroll_top    = parseInt(msg_window[0].scrollTop);
-		scroll_pos    = scroll_height - client_height - scroll_top;
-
-		if(scroll_height > old_scroll_height) {
-			// we get in here if the content of the div has been expanded because of added content of next page
-			// practical usage shows that this isn't 100% foolproof as we're getting some jitter on extremely fast scrolling
-			// that's why comparison of offset > old_offset is additionally used to prevent loading the same page twice
-			old_scroll_height = scroll_height;
-			old_scroll_pos    = scroll_height - client_height; // max old scroll position (topmost bar position)
-		}
+	msg_window.scroll(function(event) {
+		event.stopImmediatePropagation();
+		client_height  = parseInt(msg_window[0].clientHeight);
+		scroll_height  = parseInt(msg_window[0].scrollHeight);
+		scroll_top     = parseInt(msg_window[0].scrollTop);
+		scroll_pos     = scroll_height - client_height - scroll_top;
+		old_scroll_pos = scroll_height - client_height; // max old scroll position (topmost bar position)
 		
 		if (scroll_pos >= old_scroll_pos && offset > old_offset && offset <= last_offset) {
 			// start loading next page only if scrollbar is reaching the top position and next page available
