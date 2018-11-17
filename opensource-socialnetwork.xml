@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <opensource_socialnework xmlns="http:/opensource-socialnetwork.org/v/1.0">
-    <version>5.1-dev</version>
+    <version>5.1</version>
     <stable_version>5.0</stable_version>
     <release>1542469368</release>
     <build>1f78109b50f6808004729144389952b619e60403</build>
