@@ -64,7 +64,13 @@
       return false;
     }
 	*/
+	if (!$element) {
+    	return false;
+    }
     var opts = $element.data(optionsAttribute);
+	if (typeof opts === 'undefined') {
+    	return false;
+    }
     var windowTop = $window.scrollTop();
     var windowLeft = $window.scrollLeft();
     var offset = $element.offset();
