@@ -53,12 +53,11 @@ if (isset($params['contents'])) {
     	<div class="container">
         
         	<div class="row">
-            
-        		<div class="col-md-6">
-            		<img src="<?php echo ossn_theme_url(); ?>images/logo_admin.jpg"/>
-            	</div>
+			<div class="col-md-6 col-sm-6 col-xs-6">
+            			<img src="<?php echo ossn_theme_url(); ?>images/logo_admin.jpg"/>
+            		</div>
                 <?php if(ossn_isAdminLoggedin()){ ?>
-            	<div class="col-md-6 header-dropdown">
+            	<div class="col-md-6 col-sm-6 col-xs-6 header-dropdown">
 					<ul class="navbar-right">	
                         <div class="dropdown">
                         	<a id="dLabel" role="button" data-toggle="dropdown" data-target="#"><i class="fa fa-bars fa-3"></i></a> 
