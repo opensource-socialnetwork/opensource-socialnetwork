@@ -9,16 +9,21 @@
  * @link      https://www.opensource-socialnetwork.org/
  */
 $cover = $params['group']->haveCover();
-$cover_left = '';
 $iscover = '';
 if ($cover) {
     $iscover = 'ossn-group-cover-header';
     $coverp = $params['group']->coverParameters($params['group']->guid);
-    if(!empty($coverp[0])){
+    if(strlen($coverp[0])){
 		$cover_top = "top:{$coverp[0]}px;";
 	}
-	if(!empty($coverp[1])){
+	else {
+		$cover_top = 'top:0px;';
+	}
+	if(strlen($coverp[1])){
 	    $cover_left = "left:{$coverp[1]}px;";
+	}
+	else {
+		$cover_left = 'left:0px;';
 	}
 }
 //group members total count becomes 0 when group cover is set #156 $dev.githubertus 
