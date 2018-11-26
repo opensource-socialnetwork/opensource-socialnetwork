@@ -110,9 +110,6 @@ Ossn.RegisterStartupFunction(function() {
 						}
 						ui.position.top = newTop;
 						ui.position.left = newLeft;
-
-						Ossn.GroupCover_top = newTop;
-						Ossn.GroupCover_left = newLeft;
 					}
 				});
 			});
@@ -131,11 +128,13 @@ Ossn.RegisterStartupFunction(function() {
 });
 
 Ossn.repositionGroupCOVER = function($group) {
+	var cover_top  = parseInt($('.ossn-group-cover').find('img').css('top'));
+	var cover_left = parseInt($('.ossn-group-cover').find('img').css('left'));
 	var $url = Ossn.site_url + "action/group/cover/reposition";
 	$.ajax({
 		async: true,
 		type: 'post',
-		data: '&top=' + Ossn.GroupCover_top + '&left=' + Ossn.GroupCover_left + '&group=' + $group,
+		data: '&top=' + cover_top + '&left=' + cover_left + '&group=' + $group,
 		url: Ossn.AddTokenToUrl($url),
 		success: function(callback) {
 			$('.group-c-position').attr('style', 'display:none !important;');
