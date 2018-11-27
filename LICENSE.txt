@@ -17,7 +17,7 @@ To "modify" a work means to copy from or adapt all or part of the work in a fash
 2.1 You are allowed to modify the program/software subject to the following conditions:
 2.1.0 You shall not remove the copyrights including powered by notice/links.
 2.1.1 You shall not try to apply any techniques that hides copyright, 'powered by' notice/links.
-2.1.2 You shall not claim the ownership of the software. The users data and the contents on the website is your ownership (you own the contents accept the software itself).
+2.1.2 You shall not claim the ownership of the software. The users data and the contents on the website is your ownership (you own the contents except the software itself).
 
 2.2. You are allowed to distribute, sell the copies of product keeping the section 2.1 in view.
 2.3 If you use the part or piece of software code within other software you must include the visible 'Powered by Open Source Social Network' in the footer of website.
