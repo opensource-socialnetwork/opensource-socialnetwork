@@ -1,3 +1,8 @@
+OSSN - OPEN SOURCE SOCIAL NETWORK V5.1 
+* Fix bug if 'reposition' was clicked, but image not dragged #1415
+* Make left/right cover repositioning work in groups #1414
+* Prevent echoing of invalid cover image style #1413
+
 OSSN - OPEN SOURCE SOCIAL NETWORK v5.0 LTS
 
 * Add missing <a> tag in notifications view #1233
