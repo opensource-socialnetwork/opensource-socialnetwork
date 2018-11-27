@@ -191,7 +191,6 @@
     height: 200px;
 }
 .ossn-group-cover img {
-	width:100%;
     position:relative;
 }
 .ossn-group-cover:hover > .ossn-group-cover-button {
