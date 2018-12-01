@@ -14,6 +14,7 @@ if(isset($params['class'])){
 	$class = $class . $params['class'];
 }
 $value = (isset($params['value'])) ? $params['value'] : '';
+unset ($params['value']);
 
 $defaults = array(
 	'disabled' => false,
