@@ -59,7 +59,7 @@
     margin-left: 222px;
 }
 .ossn-photos .pthumb {
-    width: 200px;
+    width: 100%;
     height: 200px;
 }
 .ossn-photo-menu li {
