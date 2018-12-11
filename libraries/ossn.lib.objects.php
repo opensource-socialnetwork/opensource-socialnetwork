@@ -19,10 +19,11 @@
 function ossn_get_object($guid){
 	if(!empty($guid)){
 		$object = new OssnObject;
-		$object->object_guid = $guid;
-		$object = $object->getObjectById();
-		if($object){
-			return $object;
+		$search = $object->searchObject(array(
+			'wheres'=> "o.guid='{$guid}'",
+		));
+		if($search && isset($search[0]->guid)){
+			return $search[0];
 		}
 	}
 	return false;
