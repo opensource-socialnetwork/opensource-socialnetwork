@@ -6,7 +6,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK V5.1
 * Display the version of a required component #1425
 * Pictures slightly overlapping right border #1423
 * Getting orphan like records on annotation bulk delete #1419
-
+* Added support for textareas #1417
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v5.0 LTS
 
