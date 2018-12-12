@@ -173,9 +173,11 @@ class OssnAnnotation extends OssnEntities {
 				$this->page_limit   = false;
 				$annotations        = $this->getAnnotationBySubject();
 				if($annotations) {
-						$like = new OssnLikes;
 						foreach($annotations as $annontation) {
-								$like->deleteLikes($annontation->id, 'annotation');
+								if(class_exists('OssnLikes')){
+									$like = new OssnLikes;
+									$like->deleteLikes($annontation->id, 'annotation');
+								}
 								$this->deleteAnnotation($annontation->id);
 						}
 						return true;
