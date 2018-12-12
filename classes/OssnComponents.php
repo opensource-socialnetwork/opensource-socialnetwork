@@ -314,8 +314,8 @@ class OssnComponents extends OssnDatabase {
 										}
 										if($item->type == 'ossn_component') {
 												
-												$requirments['type']         = ossn_print('components');
-												$requirments['value']        = (string) $item->name;
+												$requirments['type']         = (string) $item->name . ' ' . ossn_print('component');
+												$requirments['value']        = (string) $item->version;
 												$requirments['availability'] = 0;
 												
 												$OssnComponent = new OssnComponents();
