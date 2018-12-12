@@ -19,12 +19,40 @@ if(isset($params['items'])) {
 								$args['name']        = $item['name'];
 								$args['value']		 = $item['value'];
 								$args['placeholder'] = ossn_print("{$item['name']}");
+								if(isset($item['class'])){
+										$args['class']  = 'form-control '.$item['class'];	
+								} else {
+										$args['class']  = 'form-control ';											
+								}	
 								$vars                = array_merge($args, $item['params']);
 								echo "<div class='text'>";
 								if($params['label'] === true){
 									echo "<label>".ossn_print("{$item['name']}")."</label>";
 								}
 								echo ossn_plugin_view('input/text', $vars);
+								echo "</div>";
+						}
+				}
+				if(isset($fields['textarea'])) {
+						foreach($fields['textarea'] as $item) {
+								if(!isset($item['params'])){
+									$item['params'] = array();
+								}
+								$args                = array();
+								$args['name']        = $item['name'];
+								$args['value']		 = $item['value'];
+								$args['placeholder'] = ossn_print("{$item['name']}");
+								if(isset($item['class'])){
+										$args['class']  = 'form-control '.$item['class'];	
+								} else {
+										$args['class']  = 'form-control ';											
+								}	
+								$vars                = array_merge($args, $item['params']);
+								echo "<div class='text'>";
+								if($params['label'] === true){
+									echo "<label>".ossn_print("{$item['name']}")."</label>";
+								}
+								echo ossn_plugin_view('input/textarea', $vars);
 								echo "</div>";
 						}
 				}
