@@ -1,4 +1,4 @@
-                <textarea name="message" placeholder="<?php echo ossn_print('message:placeholder'); ?>"></textarea>
+                <textarea name="message" placeholder="<?php echo ossn_print('message:placeholder'); ?>" required></textarea>
                 <input type="hidden" name="to" value="<?php echo $params['user']->guid; ?>"/>
 
                 <div class="controls">
