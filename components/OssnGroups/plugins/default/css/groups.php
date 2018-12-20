@@ -151,7 +151,8 @@
 .ossn-group-profile .profile-header .group-name {
     font-size: 14px;
     font-weight: bold;
-    padding: 13px;
+    padding: 20px;
+    padding-top: 10px;
     float: left;
 }
 .groups-buttons {
