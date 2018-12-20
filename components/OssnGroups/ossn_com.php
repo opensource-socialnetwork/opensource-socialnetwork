@@ -30,11 +30,13 @@ function ossn_groups() {
 		//group pages
 		ossn_register_page('group', 'ossn_group_page');
 		ossn_register_page('groups', 'ossn_groups_page');
+		ossn_group_subpage('about');
 		ossn_group_subpage('members');
 		ossn_group_subpage('edit');
 		ossn_group_subpage('requests');
 		
 		//group hooks
+		ossn_add_hook('group', 'subpage', 'group_about_page');
 		ossn_add_hook('group', 'subpage', 'group_members_page');
 		ossn_add_hook('group', 'subpage', 'group_edit_page');
 		ossn_add_hook('group', 'subpage', 'group_requests_page');
@@ -137,7 +139,13 @@ function groups_search_handler($hook, $type, $return, $params) {
 function ossn_group_load_event($event, $type, $params) {
 		$owner = ossn_get_page_owner_guid();
 		$url   = ossn_site_url();
+		ossn_register_menu_link('about', 'about:group', ossn_group_url($owner) . 'about', 'groupheader');
 		ossn_register_menu_link('members', 'members', ossn_group_url($owner) . 'members', 'groupheader');
+		// show 'Requests' menu tab only on pending requests
+		$group = ossn_get_group_by_guid($owner);
+		if ($group && $group->countRequests() && ($group->owner_guid == ossn_loggedin_user()->guid || ossn_isAdminLoggedin())) {
+			ossn_register_menu_link('requests', 'requests', ossn_group_url($owner) . 'requests', 'groupheader');
+		}
 }
 
 /**
@@ -255,6 +263,27 @@ function ossn_group_page($pages) {
 				$contents['content'] = ossn_group_layout($view);
 				$content             = ossn_set_page_layout('contents', $contents);
 				echo ossn_view_page($title, $content);
+		}
+}
+
+/**
+ * Group about page
+ *
+ * Page:
+ *      group/<guid>/about
+ *
+ * @return mixdata;
+ * @access private
+ */
+function group_about_page($hook, $type, $return, $params) {
+		$page = $params['subpage'];
+		if($page == 'about') {
+				$mod_content = ossn_plugin_view('groups/pages/about', $params);
+				$mod         = array(
+						'title' => ossn_print('about:group'),
+						'content' => $mod_content
+				);
+				echo ossn_set_page_layout('module', $mod);
 		}
 }
 
