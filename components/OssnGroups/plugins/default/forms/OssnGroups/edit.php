@@ -14,7 +14,7 @@ $group = $params['group'];
 <input type="text" name="groupname" value="<?php echo $group->title; ?>"/>
 <label><?php echo ossn_print('group:desc'); ?></label>
 
-<textarea name="groupdesc"><?php echo trim($group->description); ?></textarea>
+<textarea name="groupdesc"><?php echo $group->description; ?></textarea>
 <br/>
 
 <label><?php echo ossn_print('privacy'); ?></label>
