@@ -7,6 +7,8 @@ OSSN - OPEN SOURCE SOCIAL NETWORK V5.1
 * Pictures slightly overlapping right border #1423
 * Getting orphan like records on annotation bulk delete #1419
 * Added support for textareas #1417
+* Added 'Group About' and 'Requests' tab to group menu #1433
+* Display 'Group About' page on mobile devices #1430
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v5.0 LTS
 
