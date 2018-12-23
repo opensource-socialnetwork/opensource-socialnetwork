@@ -9,6 +9,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK V5.1
 * Added support for textareas #1417
 * Added 'Group About' and 'Requests' tab to group menu #1433
 * Display 'Group About' page on mobile devices #1430
+* Allow to set searchObject result params #1436
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v5.0 LTS
 
