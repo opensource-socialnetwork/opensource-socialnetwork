@@ -175,6 +175,10 @@ class OssnObject extends OssnEntities {
 						'o.type',
 						'o.subtype'
 				);
+				//Allow to set searchObject result params #1436
+				if(isset($options['params']) && is_array($options['params']) && !empty($options['params'])) {
+						$params['params'] = $options['params'];
+				}					
 				if(isset($options['unset_params']) && is_array($options['unset_params'])) {
 						foreach($options['unset_params'] as $item) {
 								if(($key = array_search($item, $params['params'])) !== false) {
