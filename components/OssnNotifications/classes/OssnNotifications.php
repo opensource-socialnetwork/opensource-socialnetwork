@@ -58,13 +58,13 @@ class OssnNotifications extends OssnDatabase {
 						if(!$this->notification) {
 								return false;
 						}
-						//check if owner_guid is empty or owner_guid is same as poster_guid then return false, 
-						if(empty($this->notification['owner_guid']) || $this->notification['owner_guid'] == $this->notification['poster_guid']) {
-								return false;
-						}
 						//check if notification owner is set then use it.
 						if(!empty($this->notification['notification_owner'])) {
 								$this->notification['owner_guid'] = $this->notification['notification_owner'];
+						}
+						//check if owner_guid is empty or owner_guid is same as poster_guid then return false, 
+						if(empty($this->notification['owner_guid']) || $this->notification['owner_guid'] == $this->notification['poster_guid']) {
+								return false;
 						}
 						$callback = array(
 								'type' => $this->notification['type'],
