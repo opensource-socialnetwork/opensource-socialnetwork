@@ -161,11 +161,11 @@ $members = $params['group']->getMembers();
             </div>
         </div>
         <div class="col-md-4 margin-top-10">
-        	<div class="page-sidebar">
+        	<div class="page-sidebar hidden-xs">
         	<?php 
 			echo ossn_view_widget(array(
 								'title' => ossn_print('about:group'),
-								'contents' => $params['group']->description,
+								'contents' => nl2br($params['group']->description),
 								'class' => 'widget-description',
 			));					
 			if ($params['group']->owner_guid == ossn_loggedin_user()->guid || ossn_isAdminLoggedin()) {
