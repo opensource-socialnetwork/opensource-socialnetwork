@@ -10,6 +10,9 @@ OSSN - OPEN SOURCE SOCIAL NETWORK V5.1
 * Added 'Group About' and 'Requests' tab to group menu #1433
 * Display 'Group About' page on mobile devices #1430
 * Allow to set searchObject result params #1436
+* Fixed wrong logic sequence #1437
+* Hide Group page right sidebar on mobile devices #1432
+* Allow newlines for simple formatting #1431
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v5.0 LTS
 
