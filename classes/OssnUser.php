@@ -345,7 +345,7 @@ class OssnUser extends OssnEntities {
 		 * @return boolean
 		 */
 		public function isFriend($usera, $user2) {
-				return ossn_relation_exists($usera, $user2, 'friend:request');
+				return ossn_relation_exists($usera, $user2, 'friend:request') & ossn_relation_exists($user2, $usera, 'friend:request');
 		}
 		
 		/**
