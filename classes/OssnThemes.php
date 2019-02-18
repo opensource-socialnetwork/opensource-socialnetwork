@@ -270,6 +270,30 @@ class OssnThemes extends OssnSite {
 														$requirments['availability'] = 1;
 												}
 										}
+										if($item->type == 'ossn_component') {
+												$requirments['type']         = ossn_print('components');
+												$requirments['value']        = (string) $item->name;
+												$requirments['availability'] = 0;
+												
+												$OssnComponent = new OssnComponents();
+												if($OssnComponent->isActive($item->name)) {
+														$requirments['availability'] = 1;
+														
+														$comparator = '>=';
+														if(isset($item->comparator) && !empty($item->comparator)) {
+																$comparator = $item->comparator;
+														}
+														if(isset($item->version)) {
+																$com_load = $OssnComponent->getCom($item->name);
+																if($com_load && version_compare($com_load->version, (string) $item->version, $comparator)) {
+																		$requirments['availability'] = 1;
+																} else {
+																		$requirments['availability'] = 0;
+																}
+														}
+												}
+												
+										}									
 										$result[] = $requirments;
 								} //loop
 								return $result;
