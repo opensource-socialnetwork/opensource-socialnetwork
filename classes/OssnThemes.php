@@ -225,7 +225,7 @@ class OssnThemes extends OssnSite {
 												$requirments['type']         = ossn_print('ossn:version');
 												$requirments['value']        = (string) $item->version;
 												$requirments['availability'] = 0;
-												$site_version                = (int) ossn_site_settings('site_version');
+												$site_version                = ossn_site_settings('site_version');
 												
 												//Ossn Version checking not strict enough when installing components #1000
 												$comparator = '>=';
