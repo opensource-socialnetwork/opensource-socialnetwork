@@ -212,7 +212,12 @@ Ossn.RegisterStartupFunction(function() {
                     $guid = $('#ossn-comment-edit-form').find('input[name="guid"]').val();
                     $elem = $("#comments-item-" + $guid).find('.comment-contents').find('.comment-text:first');
                     if ($elem) {
-                        $elem.text($text);
+						lines = $text.split('\n');
+						$elem.text('');
+						for(i = 0; i < lines.length; i++) {
+							$(document.createTextNode(lines[i])).appendTo($elem);
+							$elem.append("<br>");
+						}
                     }
                     Ossn.trigger_message(callback['success']);
                 }
