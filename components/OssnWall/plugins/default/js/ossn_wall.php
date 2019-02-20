@@ -259,7 +259,12 @@ Ossn.RegisterStartupFunction(function() {
                     $guid = $('#ossn-post-edit-form').find('input[name="guid"]').val();
                     $elem = $("#activity-item-" + $guid).find('.post-contents').find('p:first');
                     if ($elem) {
-                        $elem.text($text);
+			lines = $text.split('\n');
+			$elem.text('');  
+			for(i = 0; i < lines.length; i++) {
+				$(document.createTextNode(lines[i])).appendTo($elem);
+				$elem.append("<br>");
+			}
                     }
                     Ossn.trigger_message(callback['success']);
                 }
