@@ -213,11 +213,11 @@ function ossn_delete_relationship(array $vars = array()) {
 		
 		$wheres[] = "relation_from='{$vars['from']}' AND relation_to='{$vars['to']}' AND type='{$vars['type']}'";
 		if(isset($vars['recursive'])) {
-				$wheres[] = "relation_to='{$vars['from']}' AND relation_from='{$vars['to']}' ADN type='{$vars['type']}'";
+				$wheres[] = "relation_to='{$vars['from']}' AND relation_from='{$vars['to']}' AND type='{$vars['type']}'";
 		}
 		$params['from']   = 'ossn_relationships';
 		$params['wheres'] = array(
-				$database->constructWheres($wheres)
+				$delete->constructWheres($wheres)
 		);
 		if($delete->delete($params)) {
 				return true;
