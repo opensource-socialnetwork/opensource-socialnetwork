@@ -37,7 +37,7 @@ class OssnPagination {
 				if(count($_GET)) {
 						$args_url = '';
 						foreach($_GET as $key => $value) {
-								if(!ctype_alnum($value) || in_array($key, $unset)) {
+								if(!preg_match('/^[a-zA-Z0-9 _]+$/', $value) || in_array($key, $unset)) {
 										continue;
 								}
 								//validate input again
