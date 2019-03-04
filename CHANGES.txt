@@ -14,6 +14,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK V5.1
 * Hide Group page right sidebar on mobile devices #1432
 * Allow newlines for simple formatting #1431
 * Fix alignment of group name with other menu entries #1429
+* Long Links in ad description distort the UI #1456
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v5.0 LTS
 
