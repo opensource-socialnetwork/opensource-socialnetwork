@@ -21,6 +21,7 @@ function ossn_get_object($guid){
 		$object = new OssnObject;
 		$search = $object->searchObject(array(
 			'wheres'=> "o.guid='{$guid}'",
+			'offset' => 1
 		));
 		if($search && isset($search[0]->guid)){
 			return $search[0];
