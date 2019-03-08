@@ -15,6 +15,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK V5.1
 * Allow newlines for simple formatting #1431
 * Fix alignment of group name with other menu entries #1429
 * Long Links in ad description distort the UI #1456
+* ossn_delete_notification typo #1453
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v5.0 LTS
 
