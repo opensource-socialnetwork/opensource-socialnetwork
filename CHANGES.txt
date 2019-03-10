@@ -16,6 +16,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK V5.1
 * Fix alignment of group name with other menu entries #1429
 * Long Links in ad description distort the UI #1456
 * ossn_delete_notification typo #1453
+* allow others passwords encryption algos #1457 (default is set to bcrypt)
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v5.0 LTS
 
