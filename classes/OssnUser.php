@@ -35,6 +35,10 @@ class OssnUser extends OssnEntities {
 				}
 				$user = $this->getUser();
 				if(empty($user->username) && $this->isPassword() && $this->isUsername()) {
+						//set default algo to bcrypt;
+						$password_encryption_alog = ossn_call_hook('user', 'password:algorithm', false, 'bcrypt');
+						$this->setPassAlgo($password_encryption_alog);
+						
 						$this->salt            = $this->generateSalt();
 						$password              = $this->generate_password($this->password, $this->salt);
 						$activation            = md5($this->password . time() . rand());
@@ -99,6 +103,10 @@ class OssnUser extends OssnEntities {
 																}
 														}
 												}
+												//v5.1 allow a specific password algorithm for each user
+												$this->subtype = 'password_algorithm';
+												$this->value   = $this->getPassAlog();
+												$this->add();
 										}
 										//should i send activation?
 										if($this->sendactiviation === true) {
@@ -244,13 +252,67 @@ class OssnUser extends OssnEntities {
 		public function generateSalt() {
 				return substr(uniqid(), 5);
 		}
-		
+		/**
+		 * Set a password encryption algorithm
+		 *
+		 * @param string $algo algorithm name bcrypt/argon2i/md5
+		 *
+		 * @return void
+		 */
+		public function setPassAlgo($algo = '') {
+				$this->password_algorithm = $algo;
+		}
+		/**
+		 * Get a password encryption algorithm
+		 *
+		 * @return string
+		 */
+		private function getPassAlog() {
+				if(!isset($this->password_algorithm)) {
+						return 'md5';
+				}
+				return $this->password_algorithm;
+		}
+		/**
+		 * Verify a password 
+		 *
+		 * @param string $password New entered password
+		 * @param string $salt	User actual password salt
+		 * @param string $hash  Actual password 
+		 *
+		 * @return boolean
+		 */
+		private function verifyPassword($password, $salt, $hash) {
+				$algo = $this->getPassAlog();
+				switch($algo) {
+						case 'bcrypt':
+						case 'argon2i':
+								return password_verify($password . $salt, $hash);
+								break;
+				}
+				$this->setPassAlgo('md5');
+				$password = $this->generate_password($password, $salt);
+				if($password === $hash) {
+						return true;
+				}
+				return false;
+		}
 		/**
 		 * Generate password.
 		 *
 		 * @return string
 		 */
 		public function generate_password($password = '', $salt = '') {
+				$algo = $this->getPassAlog();
+				switch($algo) {
+						case 'bcrypt':
+								return password_hash($password . $salt, PASSWORD_BCRYPT);
+								break;
+						case 'argon2i':
+								return password_hash($password . $salt, PASSWORD_ARGON2I);
+								break;
+				}
+				//default is always md5 no matter what algo used (then above)
 				return md5($password . $salt);
 		}
 		
@@ -260,10 +322,12 @@ class OssnUser extends OssnEntities {
 		 * @return boolean
 		 */
 		public function Login() {
-				$user     = $this->getUser();
-				$salt     = $user->salt;
-				$password = $this->generate_password($this->password . $salt);
-				if($password == $user->password && $user->activation == NULL) {
+				$user = $this->getUser();
+				if(isset($user->password_algorithm)) {
+						//setting user password algo
+						$this->setPassAlgo($user->password_algorithm);
+				}
+				if($user && $this->verifyPassword($this->password, $user->salt, $user->password) && $user->activation == NULL) {
 						
 						unset($user->password);
 						unset($user->salt);
