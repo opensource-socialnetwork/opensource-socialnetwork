@@ -37,16 +37,15 @@ foreach ($menus as $name => $menu) {
     <?php
 	if(is_array($menu)){
 	    foreach ($menu as $data) {
-			$class = 'menu-section-item-'.OssnTranslit::urlize($data['name']);
+		    	$data['li_class'] = 'menu-section-item-'.OssnTranslit::urlize($data['name']);
 			$data['class'] = 'menu-section-item-a-'.OssnTranslit::urlize($data['name']);
 			unset($data['name']);
 			unset($data['icon']);
 			unset($data['section']);
 			unset($data['parent']);
-		
-			$link = ossn_plugin_view('output/url', $data);		
-			echo "<li class='{$class}'>{$link}</li>";
-			unset($class);
+		    	echo ossn_plugin_view('output/section_submenu_url', $data);
+		    	unset($data['li_class']);
+		    	unset($data['class']);
     	}
 	}
 	echo "</ul>";
