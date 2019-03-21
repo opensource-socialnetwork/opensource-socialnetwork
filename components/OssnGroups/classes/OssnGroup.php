@@ -131,6 +131,30 @@ class OssnGroup extends OssnObject {
 		}
 		
 		/**
+		 * Change owner of group
+		 *
+		 * @params $owner Group new owner guid
+		 *         $guid Group guid
+		 *
+		 * @return bool;
+		 */
+		public function changeOwner($owner, $guid) {
+				if(empty($owner) || empty($guid)) {
+						return false;
+				}
+				$data   = array(
+						'owner_guid'
+				);
+				$values = array(
+						$owner
+				);
+				if($this->updateObject($data, $values, $guid)) {
+						return true;
+				}
+				return false;
+		}
+		
+		/**
 		 * Delete group
 		 *
 		 * @params $guid Group guid
