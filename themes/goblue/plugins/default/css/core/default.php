@@ -731,6 +731,10 @@ a {
 	color: #fff;
 }
 
+.sidebar a {
+	color: #fff;
+}
+
 .sidebar-close {
 	-webkit-transition: all 0.5s ease;
 	-moz-transition: all 0.5s ease;
