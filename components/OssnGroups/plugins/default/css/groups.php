@@ -252,7 +252,6 @@
     text-transform: uppercase;
 }
 .ossn-group-members .request-controls {
-	margin-top:20px;
 }
 .ossn-group-members .request-controls a {
 	margin-left:5px;
@@ -279,4 +278,11 @@
 }
 .group-search-details .ossn-group-search-by a {
     margin-left: 5px;
+}
+@media only screen and (max-width: 767px) {
+	.btn-responsive {
+		padding:4px 9px;
+		font-size:90%;
+		line-height: 1.2;
+	}
 }
