@@ -105,7 +105,7 @@ class OssnThemes extends OssnSite {
 										//need to check id , since ossn v3.x
 										if(isset($ossn_theme_xml->id) && !empty($ossn_theme_xml->id)) {
 												//move to components directory
-												if(OssnFile::moveFiles($files, ossn_route()->themes . $ossn_theme_xml->id . '/')) {
+												if((!is_dir(ossn_route()->themes . $ossn_theme_xml->id)) && (OssnFile::moveFiles($files, ossn_route()->themes . $ossn_theme_xml->id . '/'))) {
 														//why it shows success even if the component is not updated #510
 														OssnFile::DeleteDir($data_dir);
 														return true;
