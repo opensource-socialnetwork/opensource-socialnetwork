@@ -146,3 +146,22 @@ Ossn.repositionGroupCOVER = function($group) {
 		},
 	});
 };
+							
+Ossn.RegisterStartupFunction(function() {
+	$(document).ready(function() {
+		$('.ossn-group-change-owner').click(function(e) {
+			e.preventDefault();
+			var new_owner = $(this).attr('data-new-owner');
+			var is_admin  = $(this).attr('data-is-admin');
+			if (is_admin) {
+				var del = confirm(Ossn.Print('group:memb:make:owner:admin:confirm', [new_owner]));
+			} else {
+				var del = confirm(Ossn.Print('group:memb:make:owner:confirm', [new_owner]));
+			}
+			if (del == true) {
+				var actionurl = $(this).attr('href');
+				window.location = actionurl;
+			}
+		});
+	});
+});
