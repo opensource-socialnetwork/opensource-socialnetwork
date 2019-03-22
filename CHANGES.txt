@@ -17,6 +17,13 @@ OSSN - OPEN SOURCE SOCIAL NETWORK V5.1
 * Long Links in ad description distort the UI #1456
 * ossn_delete_notification typo #1453
 * allow others passwords encryption algos #1457 (default is set to bcrypt)
+* Allow changing of group owner #1468
+* Make entire area of section submenu clickable #1461
+* Return existing object unconditionally (= independant of current page… #1455
+* Don't remove query from search menu if it includes a whitepace #1454
+* Prevent overwriting of already installed themes #1449
+* Prevent overwriting of already installed components #1448
+* Suppress php warning on entering a group you're not a member of #1446
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v5.0 LTS
 
