@@ -206,8 +206,10 @@ $members = $params['group']->getMembers();
             }	
 			if (ossn_is_hook('group', 'widgets')){ 
 								$params['group'] = $params['group']; 
-								$modules = ossn_call_hook('group', 'widgets', $params); 
-								echo implode( '', $modules);
+								$modules = ossn_call_hook('group', 'widgets', $params);
+								if ($modules) {
+									echo implode( '', $modules);
+								}
 			}			
              ?>
              </div>
