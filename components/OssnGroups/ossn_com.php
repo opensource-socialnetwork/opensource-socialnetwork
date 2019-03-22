@@ -52,6 +52,7 @@ function ossn_groups() {
 				ossn_register_action('group/edit', __OSSN_GROUPS__ . 'actions/group/edit.php');
 				ossn_register_action('group/join', __OSSN_GROUPS__ . 'actions/group/join.php');
 				ossn_register_action('group/delete', __OSSN_GROUPS__ . 'actions/group/delete.php');
+				ossn_register_action('group/change_owner', __OSSN_GROUPS__ . 'actions/group/change_owner.php');
 				ossn_register_action('group/member/approve', __OSSN_GROUPS__ . 'actions/group/member/request/approve.php');
 				ossn_register_action('group/member/cancel', __OSSN_GROUPS__ . 'actions/group/member/request/cancel.php');
 				ossn_register_action('group/member/decline', __OSSN_GROUPS__ . 'actions/group/member/request/decline.php');
