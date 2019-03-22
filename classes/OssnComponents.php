@@ -93,7 +93,7 @@ class OssnComponents extends OssnDatabase {
 										//need to check id , since ossn v3.x
 										if(isset($ossn_com_xml->id) && !empty($ossn_com_xml->id)) {
 												//move to components directory
-												if(OssnFile::moveFiles($files, ossn_route()->com . $ossn_com_xml->id . '/')) {
+												if((!is_dir(ossn_route()->com . $ossn_com_xml->id)) && (OssnFile::moveFiles($files, ossn_route()->com . $ossn_com_xml->id . '/'))) {
 														//add new component to system
 														$this->newCom($ossn_com_xml->id);
 														
