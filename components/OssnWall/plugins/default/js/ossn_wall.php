@@ -258,8 +258,31 @@ Ossn.RegisterStartupFunction(function() {
                     $text = $('#ossn-post-edit-form').find('#post-edit').val();
                     $guid = $('#ossn-post-edit-form').find('input[name="guid"]').val();
                     $elem = $("#activity-item-" + $guid).find('.post-contents').find('p:first');
-                    if ($elem) {
-                        $elem.text($text);
+                    /* LinkPreview support */
+                    var preview_url = '';
+                    $preview_block  = $("#activity-item-" + $guid).find('.post-contents').find('.link-preview-item');
+                    $preview_link   = $("#activity-item-" + $guid).find('.post-contents').find('.link-preview-item').find('a');
+                    if ($preview_link.length) {
+                    // if available, get old preview link to be passed to and compared with edited text in embed action
+                        preview_url = $preview_link[0].href;
+                    }
+					
+                    if ($elem.length) {
+                        $elem.text('');  
+                        Ossn.PostRequest({
+                            url: Ossn.site_url + "action/wall/post/embed",
+                            params: 'text=' + $text + '&preview=' + preview_url + '&guid=' + $guid,
+                            callback: function(return_data) {
+                                $elem.append(return_data['text']);
+                                // handle existing/changed/removed/new preview according to action result
+                                if ((return_data['preview_state'] == 'removed') || (return_data['preview_state'] == 'changed')) {
+                                    $preview_block.remove();
+                                }
+                                if ((return_data['preview_state'] == 'created') || (return_data['preview_state'] == 'changed')) {
+                                    $("#activity-item-" + $guid).find('.post-contents').append(return_data['preview']);
+                                }
+                            }
+                        });
                     }
                     Ossn.trigger_message(callback['success']);
                 }
