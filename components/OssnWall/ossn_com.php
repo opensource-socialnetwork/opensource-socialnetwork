@@ -26,6 +26,7 @@ function ossn_wall() {
 				ossn_register_action('wall/post/g', __OSSN_WALL__ . 'actions/wall/post/group.php');
 				ossn_register_action('wall/post/delete', __OSSN_WALL__ . 'actions/wall/post/delete.php');
 				ossn_register_action('wall/post/edit', __OSSN_WALL__ . 'actions/wall/post/edit.php');
+				ossn_register_action('wall/post/embed', __OSSN_WALL__ . 'actions/wall/post/embed.php');
 		}
 		if(ossn_isAdminLoggedin()) {
 				ossn_register_action('wall/admin/settings', __OSSN_WALL__ . 'actions/wall/admin/settings.php');
