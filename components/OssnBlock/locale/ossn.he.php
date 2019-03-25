@@ -9,13 +9,13 @@
  * @link      https://www.opensource-socialnetwork.org/
  */
 $he = array(
-    'user:blocked' => 'User has been blocked!',
-    'user:block:error' => 'Cannot block user! Please try again later.',
-    'user:block' => 'Block',
-    'user:unblock' => 'Unblock',
-    'user:unblocked' => 'User has been unblocked',
-    'user:unblock:error' => 'Can not unblock user',
-    'ossn:blocked:error' => 'Blocked',
-    'ossn:blocked:error:note' => 'You can not view this page because you have been blocked by the user.',
+    'user:blocked' => 'המשתמש נחסם!',
+    'user:block:error' => 'לא ניתן לחסום משתמש! נסו שוב מאחר יותר.',
+    'user:block' => 'חסימה',
+    'user:unblock' => 'שחרור חסימה',
+    'user:unblocked' => 'המשתמש שוחרר מחסימה',
+    'user:unblock:error' => 'לא ניתן לשחרר משתמש מחסימה',
+    'ossn:blocked:error' => 'חסום',
+    'ossn:blocked:error:note' => 'לא ניתן לראות דף זה מאחר שנחזמת על ידי המשתמש.',
 );
 ossn_register_languages('he', $he); 
