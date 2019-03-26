@@ -9,15 +9,15 @@
  * @link      https://www.opensource-socialnetwork.org/
  */
 $he = array(
-	'write:comment' => 'Write a comment...',
-	'like' => 'Like',
-	'unlike' => 'Unlike',
-	'comment:deleted' => 'Comment successfully deleted!',
-	'comment:delete:error' => 'Cannot delete comment! Please try again later.',
-	'comment:delete' => 'Delete',
-	'comment:comment' => 'Comment',
-	'comment:view:all' => 'View all comments',
-	'comment:edit:success' => 'Comment has been edited successfully',
-	'comment:edit:failed' => 'Can not edit your comment',
+	'write:comment' => 'כתיבת תגובה...',
+	'like' => 'אוהב',
+	'unlike' => 'לא אוהב',
+	'comment:deleted' => 'התגובה נמחקה בהצלחה!',
+	'comment:delete:error' => 'לא ניתן למחוק תגובה! נסו שנית מאוחר יותר.',
+	'comment:delete' => 'מחיקה',
+	'comment:comment' => 'תגובה',
+	'comment:view:all' => 'הצגת כל התגובות',
+	'comment:edit:success' => 'התגובה נערכה בהצלחה',
+	'comment:edit:failed' => 'לא ניתן לערוך את תגובתך!',
 );
 ossn_register_languages('he', $he); 

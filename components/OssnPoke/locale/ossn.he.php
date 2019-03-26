@@ -9,9 +9,9 @@
  * @link      https://www.opensource-socialnetwork.org/
  */
 $he = array(
-    'ossn:notifications:ossnpoke:poke' => "%s has poked you!",
-    'user:poked' => 'You have poked %s!',
-    'user:poke:error' => 'Cannot poke %s! Please try again later.',
-    'poke' => 'Poke',
+    'ossn:notifications:ossnpoke:poke' => "%s נגע בך!",
+    'user:poked' => 'נגעו בך %s!',
+    'user:poke:error' => 'לא ניתן לגעת ב%s! נסו שוב מאוחר יותר.',
+    'poke' => 'נגיעה',
 );
 ossn_register_languages('he', $he); 

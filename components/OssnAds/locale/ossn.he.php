@@ -17,12 +17,12 @@ $he = array(
     'ad:site:url' => 'קישור',
     'ad:desc' => 'תיאור',
     'ad:photo' => 'תמונה',
-    'ad:browse' => 'Browse',
+    'ad:browse' => 'דפדף',
     'ad:clicks' => 'קליקים',
     'sponsored' => 'ממומן',
-	'ad:deleted' => "Ad with the title of '%s' has been successfully deleted.",
-	'ad:delete:fail' => 'Cannot delete ad! Please try again later.',
-	'ad:edited' => 'Ad successfully modified.',
-	'ad:edit:fail' => 'Cannot edit ad! Please try again later.',
+	'ad:deleted' => "פרסומת עם הכותרת '%s' נמחקה בהצלחה.",
+	'ad:delete:fail' => 'לא ניתן למחוק פרסומת נסו שנית מאוחר יותר.',
+	'ad:edited' => 'פרסומת נמחקה בהצלחה.',
+	'ad:edit:fail' => 'לא ניתן לערוך פרסומת! נסו שוב מאוחר יותר..',
 );
 ossn_register_languages('he', $he); 
