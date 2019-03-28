@@ -26,6 +26,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK V5.1
 * Suppress php warning on entering a group you're not a member of #1446
 * Fix WYSIWYG issues of edited post #1469
 * Blocked user should be removed from friend list #1439
+* Confirmed friendship needs to be based on the existance of a '1 to 2' AND a '2 to 1' relation #1442
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v5.0 LTS
 
