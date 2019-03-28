@@ -18,6 +18,9 @@ if(!$user || $user->isAdmin()){
     redirect(REF);	
 }
 if ($block->addBlock(ossn_loggedin_user()->guid, $user->guid)) {
+    //Blocked user should be removed from friend list #1439
+    ossn_remove_friend(ossn_loggedin_user()->guid, $user->guid);
+														 
     ossn_trigger_message(ossn_print('user:blocked'), 'success');
     redirect(REF);
 } else {
