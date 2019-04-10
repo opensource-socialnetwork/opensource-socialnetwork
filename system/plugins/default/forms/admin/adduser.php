@@ -34,6 +34,7 @@ $fields = ossn_default_user_fields();
 if($fields){
 			$vars	= array();
 			$vars['items'] = $fields;
+			$vars['label'] = true;
 			echo ossn_plugin_view('user/fields/item', $vars);
 }
 ?>
