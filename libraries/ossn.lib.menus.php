@@ -107,7 +107,8 @@ function ossn_view_menu($menu, $custom = false) {
  */
 function ossn_register_sections_menu($menu = '', array $params = array()) {
 				if(!isset($params['name'])){
-						$params['name'] = md5($params['name']);	
+						//If not set section menu name #1479
+						$params['name'] = md5($params['url']));	
 				}
 				if(isset($params['url'])){
 					$params['href'] = $params['url'];
