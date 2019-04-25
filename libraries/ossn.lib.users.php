@@ -305,7 +305,8 @@ function ossn_uservalidate_pagehandler($pages) {
 										ossn_trigger_message(ossn_print('user:account:validated'), 'success');
 										redirect();
 								} else {
-										ossn_trigger_message(ossn_print('user:account:validate:fail'), 'success');
+										//Shows a red warning if can not validate email address #1481
+										ossn_trigger_message(ossn_print('user:account:validate:fail'), 'error');
 										redirect();
 								}
 						}
