@@ -19,8 +19,17 @@
  $online = array(
 				 $users->onlineByGender('male', true),
 				 $users->onlineByGender('female', true)
-				 );
- 
+ );
+ foreach($total as $k => $t){
+		if($t === false){
+			$total[$k] = 0;	
+		}
+ }
+ foreach($online as $k => $o){
+		if($o === false){
+			$online[$k] = 0;	
+		}
+ }
  $unvalidated = $users->getUnvalidatedUSERS('', true);
  if(!$unvalidated){
 		$unvalidated = 0; 
