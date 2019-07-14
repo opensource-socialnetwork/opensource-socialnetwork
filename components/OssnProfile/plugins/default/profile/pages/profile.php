@@ -62,12 +62,9 @@ if (ossn_isLoggedIn()) {
 							</form>
 						</div>
 						<?php } 
-						$viewer= '' ; 
-						if (ossn_isLoggedIn() && get_profile_photo_guid($user->guid)) { 
-								$viewer = 'onclick="Ossn.Viewer(\'photos/viewer?user=' . $user->username . '\');"';
-						}
+						//issues with ossn-viewer-comments #1411 (removed viewer)
 						?>
-						<img src="<?php echo $user->iconURL()->larger; ?>" height="170" width="170" <?php echo $viewer; ?> />
+						<img src="<?php echo $user->iconURL()->larger; ?>" height="170" width="170"  />
 					</div>
 					<div class="user-fullname"><?php echo $user->fullname; ?></div>
                     <?php echo ossn_plugin_view('profile/role', array('user' => $user)); ?>
