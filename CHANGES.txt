@@ -32,6 +32,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK V5.1
 * Posts having friends privacy are visible to public using direct URL #1484
 * Allow the use of both to/from in ossn_get_relationships
 * Fixed hardcoded photos of user widget title #1482
+* If not set section menu name #1479
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v5.0 LTS
 
