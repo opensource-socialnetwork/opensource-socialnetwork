@@ -49,6 +49,16 @@ if (isset($params['contents'])) {
 
 </head>
 <body>
+	<div class="ossn-page-loading-annimation">
+    		<div class="ossn-page-loading-annimation-inner">
+            	<div class="ossn-loading"></div>
+            </div>
+    </div>
+
+	<div class="ossn-halt ossn-light"></div>
+	<div class="ossn-message-box"></div>
+	<div class="ossn-viewer" style="display:none"></div>
+    
 	<div class="header">
     	<div class="container">
         
