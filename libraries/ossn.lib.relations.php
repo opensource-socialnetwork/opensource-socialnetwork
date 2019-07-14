@@ -76,6 +76,7 @@ function ossn_relation_exists($from, $to, $type, $recursive = false) {
  * Ossn get relationships
  *
  * @param array $params A options
+ * @Note inverse should only work perfectly one setting only one (to/from) parameter
  *
  * @return objects
  */
@@ -106,7 +107,8 @@ function ossn_get_relationships(array $params = array()) {
 								$wheres[] = "r1.type='{$params['type']}'";
 						}
 				}
-		} elseif(isset($params['to']) && !empty($params['to'])) {
+		} 
+		if(isset($params['to']) && !empty($params['to'])) {
 				if(isset($params['inverse'])) {
 						$vars['joins'] = array(
 								'JOIN ossn_relationships as r1 ON r1.relation_to=r.relation_from'
@@ -217,7 +219,7 @@ function ossn_delete_relationship(array $vars = array()) {
 		}
 		$params['from']   = 'ossn_relationships';
 		$params['wheres'] = array(
-				$delete->constructWheres($wheres)
+				$database->constructWheres($wheres)
 		);
 		if($delete->delete($params)) {
 				return true;
