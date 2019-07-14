@@ -26,7 +26,6 @@ function ossn_wall() {
 				ossn_register_action('wall/post/g', __OSSN_WALL__ . 'actions/wall/post/group.php');
 				ossn_register_action('wall/post/delete', __OSSN_WALL__ . 'actions/wall/post/delete.php');
 				ossn_register_action('wall/post/edit', __OSSN_WALL__ . 'actions/wall/post/edit.php');
-				ossn_register_action('wall/post/embed', __OSSN_WALL__ . 'actions/wall/post/embed.php');
 		}
 		if(ossn_isAdminLoggedin()) {
 				ossn_register_action('wall/admin/settings', __OSSN_WALL__ . 'actions/wall/admin/settings.php');
@@ -96,6 +95,7 @@ function ossn_wall() {
 				ossn_register_menu_item('wall/container/controls/group', $container_control);		
 			}
 		}
+ossn_unregister_menu_item('support', 'support', 'topbar_admin');
 }
 /**
  * Friends Picker
@@ -246,6 +246,10 @@ function ossn_post_page($pages) {
 						if(empty($post->guid) || empty($pages[1])) {
 								ossn_error_page();
 						}
+						//Posts having friends privacy are visible to public using direct URL #1484
+						if($post->access == OSSN_FRIENDS && !ossn_isLoggedin()){
+								ossn_error_page();	
+						}						
 						$params['post'] = $post;
 						
 						$contents = array(
