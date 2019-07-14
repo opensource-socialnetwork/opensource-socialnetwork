@@ -293,8 +293,9 @@ function ossn_photos_page_handler($album) {
 								if(empty($image->value)) {
 										redirect();
 								}
+								//Fixed hardcoded photos of user widget title #1482
 								$contents = array(
-										'title' => 'Photos',
+										'title' => ossn_print('photos'),
 										'content' => ossn_plugin_view('photos/pages/profile/covers/view', $photo)
 								);
 								//set page layout
