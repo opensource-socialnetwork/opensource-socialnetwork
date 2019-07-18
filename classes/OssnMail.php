@@ -33,7 +33,7 @@ class OssnMail extends PHPMailer {
 				$this->Subject = $subject;
 				$this->Body    = $body;
 				$this->CharSet = "UTF-8";
-			
+				$this->XMailer = " "; //disable the exposure of x-mailer
 				try {	
 						$send = ossn_call_hook('email', 'send:policy', true, $this);
 						if($send) {
