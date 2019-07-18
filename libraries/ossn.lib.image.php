@@ -194,7 +194,15 @@ function ossn_resize_image($input_name, $maxwidth, $maxheight, $square = FALSE, 
     if ($params == false) {
         return false;
     }
-
+	//OssnFile to support animated gif photos #1473
+	if ($load_function == 'imagecreatefromgif' && ossn_is_hook('ossn','image:resize:gif')) {
+			$image_resize_options = array(
+					'max_width' => $maxwidth,
+					'max_height' => $maxheight,
+					'file_path' => $input_name,
+			);
+			return ossn_call_hook('ossn', 'image:resize:gif', $image_resize_options, false);
+	}
     // load original image
     $original_image = call_user_func($load_function, $input_name);
     if (!$original_image) {
