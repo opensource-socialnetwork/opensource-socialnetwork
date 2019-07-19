@@ -443,6 +443,22 @@ footer a {
 	font-size: 13px;
 	margin-right: 13px;
 }
+.ossn-page-loading-annimation {
+	background: #fff;
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+}
+
+.ossn-page-loading-annimation .ossn-page-loading-annimation-inner {
+	width: 24px;
+	margin: 0 auto;
+	margin-top: 20%;
+}
+
 ********************************
 	Loading Icon
     @source: https://github.com/jlong/css-spinners
