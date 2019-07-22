@@ -212,7 +212,18 @@ Ossn.RegisterStartupFunction(function() {
                     $guid = $('#ossn-comment-edit-form').find('input[name="guid"]').val();
                     $elem = $("#comments-item-" + $guid).find('.comment-contents').find('.comment-text:first');
                     if ($elem) {
-                        $elem.text($text);
+						$elem.text('');  
+						Ossn.PostRequest({
+							url: Ossn.site_url + "action/comment/embed",
+							// params: 'content=' + $text,
+							// make '+' characters work
+							// see https://stackoverflow.com/questions/1373414/ajax-post-and-plus-sign-how-to-encode
+							params: 'content=' + encodeURIComponent($text),
+							callback: function(return_data) {
+								console.log(return_data['data']);
+								$elem.append(return_data['data']);
+							}
+						});
                     }
                     Ossn.trigger_message(callback['success']);
                 }
