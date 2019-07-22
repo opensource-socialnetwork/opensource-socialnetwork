@@ -37,6 +37,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK V5.1
 * issues with ossn-viewer-comments #1411
 * Completed sanitizing in case a user of post has been deleted #1483
 * Support animated gif photos #1473 (use the provided component)
+* [ImgBot] Optimize images #1487
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v5.0 LTS
 
