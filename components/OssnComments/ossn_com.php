@@ -23,7 +23,8 @@ function ossn_comments() {
 				ossn_register_action('post/comment', __OSSN_COMMENTS__ . 'actions/post/comment.php');
 				ossn_register_action('post/entity/comment', __OSSN_COMMENTS__ . 'actions/post/entity/comment.php');
 				ossn_register_action('delete/comment', __OSSN_COMMENTS__ . 'actions/comment/delete.php');
-				ossn_register_action('comment/edit', __OSSN_COMMENTS__ . 'actions/comment/edit.php');
+				ossn_register_action('comment/edit', __OSSN_COMMENTS__ . 'actions/comment/edit.php');	
+				ossn_register_action('comment/embed', __OSSN_COMMENTS__ . 'actions/comment/embed.php');
 		}
 		ossn_add_hook('post', 'comments', 'ossn_post_comments');
 		ossn_add_hook('post', 'comments:entity', 'ossn_post_comments_entity');
