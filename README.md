@@ -23,6 +23,7 @@ Languages
 * Italian
 * Russian
 * Dutch
+* Hebrew
 
 Front-End Features
 ===================
