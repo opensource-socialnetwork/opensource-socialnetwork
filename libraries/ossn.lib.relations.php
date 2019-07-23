@@ -136,6 +136,15 @@ function ossn_get_relationships(array $params = array()) {
 		if(empty($params['type'])) {
 				return false;
 		}
+		if(isset($params['wheres']) && !empty($params['wheres'])) {
+				if(!is_array($params['wheres'])) {
+							$wheres[] = $params['wheres'];
+				} else {
+					foreach($params['wheres'] as $witem) {
+							$wheres[] = $witem;
+					}
+				}
+		}		
 		$default = array(
 				'page_limit' => 10,
 				'limit' => false,
