@@ -39,6 +39,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK V5.1
 * Support animated gif photos #1473 (use the provided component)
 * Optimize images #1487
 * Add wheres, in get_relationships #1475
+* Overwriting of php's default settings by Ossn not working on some servers #965
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v5.0 LTS
 
