@@ -370,6 +370,32 @@ function ossn_default_user_fields() {
 		return ossn_call_hook('user', 'default:fields', false, $fields);
 }
 /**
+ * Missing logic for not required fields on registration form #1421
+ *
+ * Add a class for required/non-required fields 
+ *
+ * @return array
+ */
+function ossn_user_fields_set_nonrequired($hook, $type, $fields, $params){
+		if(isset($fields['non_required'])){
+				foreach($fields['non_required'] as $ftype => $types){
+						foreach($types as $key => $field){
+								$class = $fields['non_required'][$ftype][$key]['class'];
+								$fields['non_required'][$ftype][$key]['class'] = trim($class.' ossn-field-not-required');
+						}
+				}
+		}
+		if(isset($fields['required'])){
+				foreach($fields['required'] as $ftype => $types){
+						foreach($types as $key => $field){
+								$class = $fields['required'][$ftype][$key]['class'];
+								$fields['required'][$ftype][$key]['class'] = trim($class.' ossn-field-required');
+						}
+				}
+		}		
+		return $fields;
+}
+/**
  * Ossn prepare user fields
  *
  * @param object $user A OssnUser object
@@ -457,3 +483,4 @@ function ossn_get_admin_users() {
 }
 ossn_register_callback('ossn', 'init', 'ossn_users');
 ossn_add_hook('load:settings', 'language', 'ossn_site_user_lang_code');
+ossn_add_hook('user', 'default:fields','ossn_user_fields_set_nonrequired', 201);
