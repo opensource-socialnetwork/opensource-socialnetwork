@@ -260,13 +260,13 @@ Ossn.RegisterStartupFunction(function() {
 			$('#ossn-home-signup').find('#ossn-signup-errors').hide();
 			$('#ossn-home-signup input').filter(function() {
 				$(this).closest('span').removeClass('ossn-required');
-				if (this.type == 'radio') {
+				if (this.type == 'radio' && !$(this).hasClass('ossn-field-not-required')) {
 					if (!$("input[name='gender']:checked").val()) {
 						$(this).closest('span').addClass('ossn-required');
 						failedValidate = true;
 					}
 				}
-				if (this.value == "") {
+				if (this.value == "" && !$(this).hasClass('ossn-field-not-required')) {
 					$(this).addClass('ossn-red-borders');
 					failedValidate = true;
 					request.abort();
