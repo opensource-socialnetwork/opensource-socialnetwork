@@ -65,5 +65,10 @@ $es = array(
 	
 	'group:deleted' => 'Contenido del grupo y grupo eliminado',
 	'group:delete:fail' => 'No se pudo eliminar el grupo',	
+	
+	//need translation
+    'group:memb:make:owner' => 'Make group owner',
+    'group:memb:make:owner:confirm' => 'Attention! This action will make >> %s << the new owner of the group and you will lose all of your group admin privileges. Are you sure to proceed?',
+    'group:memb:make:owner:admin:confirm' => 'Attention! This action will make >> %s << the new owner of the group and the former owner will lose all of his group admin privileges. Are you sure to proceed?',	
 );
 ossn_register_languages('es', $es); 

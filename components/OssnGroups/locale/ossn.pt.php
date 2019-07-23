@@ -63,5 +63,9 @@ $pt = array(
 	
 	'group:deleted' => 'Grupo e conteúdo do grupo deletados',
 	'group:delete:fail' => 'O grupo não pode ser deletado',	
+	//need translation
+    'group:memb:make:owner' => 'Make group owner',
+    'group:memb:make:owner:confirm' => 'Attention! This action will make >> %s << the new owner of the group and you will lose all of your group admin privileges. Are you sure to proceed?',
+    'group:memb:make:owner:admin:confirm' => 'Attention! This action will make >> %s << the new owner of the group and the former owner will lose all of his group admin privileges. Are you sure to proceed?',		
 );
 ossn_register_languages('pt', $pt); 
