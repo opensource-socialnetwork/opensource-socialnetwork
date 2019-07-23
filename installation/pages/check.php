@@ -9,6 +9,11 @@
  * @link      https://www.opensource-socialnetwork.org/
  */
 echo '<div><div class="layout-installation"><h2>' . ossn_installation_print('ossn:prerequisites') . '</h2><div style="margin:0 auto; width:900px;">';
+//overwriting of php's default settings by Ossn not working on some servers #965
+if(!preg_match('/apache/', php_sapi_name())){
+    echo '<div class="ossn-installation-message ossn-installation-fail">APACHE, PHP_SAPI ('.php_sapi_name().')</div>';
+    $error[] = 'php_sapi_apache';	
+}
 if (OssnInstallation::isPhp()) {
     echo '<div class="ossn-installation-message ossn-installation-success">'. ossn_installation_print('ossn:install:php') . PHP_VERSION . ' </div>';
 } else {
