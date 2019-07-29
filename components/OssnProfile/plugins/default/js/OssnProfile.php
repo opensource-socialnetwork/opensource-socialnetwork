@@ -34,46 +34,12 @@ Ossn.RegisterStartupFunction(function() {
 		/**
 		 * Reposition cover
 		 */
-		$('#reposition-cover').click(function() {
+		$('#reposition-profile-cover').click(function() {
 			$('#profile-menu').hide();
 			$('#cover-menu').show();
-			$(function() {
-				$.globalVars = {
-					originalTop: 0,
-					originalLeft: 0,
-					maxHeight: $("#draggable").height() - $("#container").height(),
-					maxWidth: $("#draggable").width() - $("#container").width()
-				};
-				$("#draggable").draggable({
-					start: function(event, ui) {
-						if (ui.position != undefined) {
-							$.globalVars.originalTop = ui.position.top;
-							$.globalVars.originalLeft = ui.position.left;
-						}
-					},
-					drag: function(event, ui) {
-						var newTop = ui.position.top;
-						var newLeft = ui.position.left;
-						if (ui.position.top < 0 && ui.position.top * -1 > $.globalVars.maxHeight) {
-							newTop = $.globalVars.maxHeight * -1;
-						}
-						if (ui.position.top > 0) {
-							newTop = 0;
-						}
-						if (ui.position.left < 0 && ui.position.left * -1 > $.globalVars.maxWidth) {
-							newLeft = $.globalVars.maxWidth * -1;
-						}
-						if (ui.position.left > 0) {
-							newLeft = 0;
-						}
-						ui.position.top = newTop;
-						ui.position.left = newLeft;
-
-						Ossn.ProfileCover_top = newTop;
-						Ossn.ProfileCover_left = newLeft;
-					}
-				});
-			});
+			$('.profile-cover-controls').hide();
+			$('.profile-cover').unbind('mouseenter').unbind('mouseleave');
+			Ossn.Drag();
 		});
 		$("#upload-photo").submit(function(event) {
 			event.preventDefault();
@@ -180,12 +146,13 @@ Ossn.repositionCOVER = function() {
 		data: '&top=' + $pcover_top + '&left=' + $pcover_left,
 		url: Ossn.AddTokenToUrl($url),
 		success: function(callback) {
+			$("#draggable").draggable('destroy');
 			$('#profile-menu').show();
 			$('#cover-menu').hide();
-			$("#draggable").draggable({
-				drag: function() {
-					return false;
-				}
+			$('.profile-cover').hover(function() {
+				$('.profile-cover-controls').show();
+			}, function() {
+				$('.profile-cover-controls').hide();
 			});
 		},
 	});
