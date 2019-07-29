@@ -1266,7 +1266,7 @@ a {
 }
 
 .ossn-profile .top-container .profile-cover img {
-	width: 100%;
+	width: auto;
 }
 
 .ossn-profile-row {
@@ -1474,6 +1474,13 @@ a {
 	display: inline-block;
 }
 
+/*****************************
+    Groups
+*****************************/
+
+.ossn-group-cover img {
+	width: auto;
+}
 
 /*****************************
 	Side Menu icons
@@ -2222,6 +2229,9 @@ footer .ossn-footer-menu a:last-child::after {
 .ossn-photo-viewer {
 	max-width: 100% !important;
 }
+.ui-draggable {
+	opacity: 0.7;
+}
 
 
 /**************************
@@ -2390,9 +2400,6 @@ footer .ossn-footer-menu a:last-child::after {
 	/**********************
     	Groups
     ************************/
-	.ossn-group-cover img {
-		top: auto !important;
-	}
 	.ossn-group-cover {
 		height: 100px !important;
 	}
@@ -2490,9 +2497,6 @@ footer .ossn-footer-menu a:last-child::after {
 ****************************************/
 
 @media only screen and (max-width: 992px) {
-	.ossn-group-cover img {
-		top: auto !important;
-	}
 	.dropdown-menu {
 		margin-left: -110px;
 	}
