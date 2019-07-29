@@ -1,3 +1,11 @@
+OSSN - OPEN SOURCE SOCIAL NETWORK V5.2 
+* Several fixes for handling of cover images #1488
+* Added general support for dragging images #1489
+* Add unique identifier for group cover repositioning #1490
+* Several fixes for group cover repositioning #1491
+* Add unique identifier for profile cover repositioning #1492
+* Several fixes for profile cover repositioning #1493
+
 OSSN - OPEN SOURCE SOCIAL NETWORK V5.1 
 * Fix bug if 'reposition' was clicked, but image not dragged #1415
 * Make left/right cover repositioning work in groups #1414
