@@ -34,11 +34,11 @@ if (ossn_isLoggedIn()) {
 				<div class="top-container">
 					<div id="container" class="profile-cover">
 						<?php if (ossn_loggedin_user()->guid == $user->guid) { ?>
-						<div class="profile-cover-controls">
+						<div class="profile-cover-controls" style="display:none;cursor:pointer;">
 							<a href="javascript:void(0);" onclick="Ossn.Clk('.coverfile');" class='btn-action change-cover'>
 								<?php echo ossn_print( 'change:cover'); ?>
 							</a>
-							<a href="javascript:void(0);" id="reposition-cover" class='btn-action reposition-cover'>
+							<a href="javascript:void(0);" id="reposition-profile-cover" class='btn-action reposition-cover'>
 								<?php echo ossn_print( 'reposition:cover'); ?>
 							</a>
 						</div>
