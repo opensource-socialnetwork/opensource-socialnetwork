@@ -72,47 +72,13 @@ Ossn.RegisterStartupFunction(function() {
 	});
 });
 
-
-
-
 Ossn.RegisterStartupFunction(function() {
 	$(document).ready(function() {
-		$('#reposition-cover').click(function() {
+		$('#reposition-group-cover').click(function() {
 			$('.group-c-position').attr('style', 'display:inline-block !important;');
-			$(function() {
-				$.globalVars = {
-					originalTop: 0,
-					originalLeft: 0,
-					maxHeight: $("#draggable").height() - $("#container").height(),
-					maxWidth: $("#draggable").width() - $("#container").width()
-				};
-				$("#draggable").draggable({
-					start: function(event, ui) {
-						if (ui.position != undefined) {
-							$.globalVars.originalTop = ui.position.top;
-							$.globalVars.originalLeft = ui.position.left;
-						}
-					},
-					drag: function(event, ui) {
-						var newTop = ui.position.top;
-						var newLeft = ui.position.left;
-						if (ui.position.top < 0 && ui.position.top * -1 > $.globalVars.maxHeight) {
-							newTop = $.globalVars.maxHeight * -1;
-						}
-						if (ui.position.top > 0) {
-							newTop = 0;
-						}
-						if (ui.position.left < 0 && ui.position.left * -1 > $.globalVars.maxWidth) {
-							newLeft = $.globalVars.maxWidth * -1;
-						}
-						if (ui.position.left > 0) {
-							newLeft = 0;
-						}
-						ui.position.top = newTop;
-						ui.position.left = newLeft;
-					}
-				});
-			});
+			$('.ossn-group-cover-button').hide();
+			$('.ossn-group-cover').unbind('mouseenter').unbind('mouseleave');
+			Ossn.Drag();
 		});
 	});
 });
@@ -137,11 +103,12 @@ Ossn.repositionGroupCOVER = function($group) {
 		data: '&top=' + cover_top + '&left=' + cover_left + '&group=' + $group,
 		url: Ossn.AddTokenToUrl($url),
 		success: function(callback) {
+			$("#draggable").draggable('destroy');
 			$('.group-c-position').attr('style', 'display:none !important;');
-			$("#draggable").draggable({
-				drag: function() {
-					return false;
-				}
+			$('.ossn-group-cover').hover(function() {
+				$('.ossn-group-cover-button').show();
+			}, function() {
+				$('.ossn-group-cover-button').hide();
 			});
 		},
 	});
