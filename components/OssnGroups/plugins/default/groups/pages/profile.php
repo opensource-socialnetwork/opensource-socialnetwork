@@ -49,7 +49,7 @@ $members = $params['group']->getMembers();
             <div class="ossn-group-cover" id="container">
                <?php if ($params['group']->owner_guid == ossn_loggedin_user()->guid || ossn_isAdminLoggedin()) { ?>
                     <div class="ossn-group-cover-button">
-                        <a href="javascript:void(0);" id="reposition-cover"
+                        <a href="javascript:void(0);" id="reposition-group-cover"
                            class='button-grey'><?php echo ossn_print('reposition:cover'); ?></a>
                         <a href="javascript:void(0);" id="add-cover-group"
                            class='button-grey'><?php echo ossn_print('change:cover'); ?></a>
