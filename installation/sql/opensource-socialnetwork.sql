@@ -188,7 +188,7 @@ INSERT INTO `ossn_site_settings` (`setting_id`, `name`, `value`) VALUES
 (9, 'display_errors', 'off'),
 (10, 'site_key', '<<secret>>'),
 (11, 'last_cache', ''),
-(12, 'site_version', '5.0');
+(12, 'site_version', '5.1');
 
 
 -- --------------------------------------------------------
