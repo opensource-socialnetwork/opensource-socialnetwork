@@ -5,6 +5,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK V5.2
 * Several fixes for group cover repositioning #1491
 * Add unique identifier for profile cover repositioning #1492
 * Several fixes for profile cover repositioning #1493
+* if not algo specified when user edit md5 is used #1503
 
 OSSN - OPEN SOURCE SOCIAL NETWORK V5.1 
 * Fix bug if 'reposition' was clicked, but image not dragged #1415
