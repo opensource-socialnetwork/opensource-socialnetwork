@@ -50,9 +50,8 @@ $OssnUser->email = $user['email'];
 if(isset($entity->password_algorithm) && !empty($entity->password_algorithm)){
 		$OssnUser->setPassAlgo($entity->password_algorithm);
 }
+
 $OssnDatabase = new OssnDatabase;
-
-
 $params['table'] = 'ossn_users';
 $params['wheres'] = array("guid='{$entity->guid}'");
 
