@@ -38,6 +38,10 @@ $password = input('password');
 $OssnUser = new OssnUser;
 $OssnUser->password = $password;
 $OssnUser->email = $user['email'];
+//if not algo specified when user edit md5 is used #1503
+if(isset($entity->password_algorithm) && !empty($entity->password_algorithm)){
+		$OssnUser->setPassAlgo($entity->password_algorithm);
+}
 
 $OssnDatabase = new OssnDatabase;
 $user_get = ossn_user_by_username(input('username'));
