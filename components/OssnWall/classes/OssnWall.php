@@ -391,14 +391,17 @@ class OssnWall extends OssnObject {
 		 */
 		public function getPosterPosts($guid = "") {
 				if(isset($guid) && !empty($guid)) {
+						//Deleting user didn't delete users wall posts if wall poster_guid is not same user as deleted #1505
+						//added page_limit => false
 						$default = array(
 								'subtype' => 'wall',
 								'order_by' => 'o.guid DESC',
+								'page_limit' => false,
 								'entities_pairs' => array(
-												array(
-												  	'name' => 'poster_guid',
-													'value' => $guid,
-												  ),
+									array(
+										'name' => 'poster_guid',
+										'value' => $guid,
+									),
 								)
 						);
 						return $this->searchObject($default);
