@@ -429,6 +429,20 @@ function ossn_user_posts_delete($callback, $type, $params) {
 				$wall->deletePost($item->guid);
 			}
 		}
+		//Deleting user didn't delete users wall posts if wall poster_guid is not same user as deleted #1505
+		if(!empty($params['entity']->guid)){
+			$posts_by_owner_guid = $wall->searchObject(array(
+							'type' => 'user',
+							'subtype' => 'wall',
+							'owner_guid' => $params['entity']->guid,
+							'page_limit' => false,
+			));
+			if($posts_by_owner_guid){
+					foreach($posts_by_owner_guid as $posti){
+						$posti->deletePost($posti->guid);	
+					}
+			}
+		}
 }
 /**
  * Encode unecaped unicode characters
