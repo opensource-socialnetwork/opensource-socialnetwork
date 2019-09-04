@@ -4,6 +4,7 @@ Open Source Social Network [5.1 LTS]
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://www.opensource-socialnetwork.org/)
 [![Build Status](https://travis-ci.org/opensource-socialnetwork/opensource-socialnetwork.svg?branch=v5.x)](https://travis-ci.org/opensource-socialnetwork/opensource-socialnetwork)
 [![Download Latest](https://img.shields.io/badge/Download-Latest%20Version-blue.svg)](https://www.opensource-socialnetwork.org/download)
+[![DeepScan grade](https://deepscan.io/api/teams/4774/projects/6525/branches/54923/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=4774&pid=6525&bid=54923)
 
 Opensource-Socialnetwork (OSSN) is a social networking software written in PHP. It allows you to make a social networking website and helps your members build social relationships, with people who share similar professional or personal interests. It is available in 10 international languages.
 
