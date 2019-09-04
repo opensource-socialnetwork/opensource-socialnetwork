@@ -848,13 +848,15 @@ function ossn_check_update() {
 	$args['method']  = 'GET';
 	$args['header']  = "Accept-language: en\r\n" . "Cookie: opensourcesocialnetwork=system\r\n" . "User-Agent: Mozilla/5.0\r\n";
 	$options['http'] = $args;
-	if (@fopen('http://github.com', 'r')) {
-		$context = stream_context_create($options);
-		$file    = file_get_contents($url, false, $context);
-		$data    = json_decode($file);
-		$file    = simplexml_load_string(base64_decode($data->content));
-		if (!empty($file->stable_version)) {
+	$context = stream_context_create($options);
+	$file    = file_get_contents($url, false, $context);
+	$data    = json_decode($file);
+	$file    = simplexml_load_string(base64_decode($data->content));
+	if (!empty($file->stable_version)) {
+		if(ossn_site_settings('site_version') < $file->stable_version) {
 			return ossn_print('ossn:version:avaialbe', $file->stable_version);
+		} else {
+			return ossn_print('ossn:version:avaialbe', '---');
 		}
 	}
 	return ossn_print('ossn:update:check:error');
