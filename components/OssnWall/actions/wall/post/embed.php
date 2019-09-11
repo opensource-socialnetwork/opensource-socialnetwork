@@ -8,7 +8,8 @@
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
  * @link      https://www.opensource-socialnetwork.org/
  */
- 
+//Post on edit not returning JSON type callback #1506
+header('Content-Type: application/json'); 
 // restore html linebreaks
 $text   = str_replace('\n', '<br/>', input('text'));
 
@@ -111,7 +112,6 @@ if (com_is_active('LinkPreview')) {
 // restore embedded stuff
 $return = ossn_call_hook('wall', 'templates:item', NULL, array('text' => $text));
 $embed  = $return['text'];
-
 echo json_encode(array(
 	"text" => $embed,
 	"preview_state" => $preview_state,
