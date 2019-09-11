@@ -8,6 +8,8 @@
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
  * @link      https://www.opensource-socialnetwork.org/
  */
+//Post on edit not returning JSON type callback #1506
+header('Content-Type: application/json'); 
 $data   = str_replace('\n', '<br/>', input('content'));
 error_log('$data ' . $data);
 $return = ossn_call_hook('comment:view', 'template:params', NULL, array('comment' => array('comments:post' => $data)));
