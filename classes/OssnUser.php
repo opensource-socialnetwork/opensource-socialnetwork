@@ -267,7 +267,7 @@ class OssnUser extends OssnEntities {
 		 *
 		 * @return string
 		 */
-		private function getPassAlog() {
+		public function getPassAlog() {
 				if(!isset($this->password_algorithm)) {
 						return 'md5';
 				}
@@ -282,7 +282,7 @@ class OssnUser extends OssnEntities {
 		 *
 		 * @return boolean
 		 */
-		private function verifyPassword($password, $salt, $hash) {
+		public function verifyPassword($password, $salt, $hash) {
 				$algo = $this->getPassAlog();
 				switch($algo) {
 						case 'bcrypt':
