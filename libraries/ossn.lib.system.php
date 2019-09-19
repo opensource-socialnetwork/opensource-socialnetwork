@@ -706,7 +706,8 @@ function ossn_string_encrypt_key_cycled($key = "") {
 	//older version of ossn that using php < 7.2 should able to decode the messsage.
 	
 	$keylen    = mb_strlen($key, '8bit');
-	$keylen    = (floor($keylen / 8) + 1) * 56; //total length of actual key (+-) till 56 bytes
+	//ossn_string_encrypt_key_cycled should not generate more than 56 bytes #1508
+	$keylen    = (floor($keylen / 8) + 1) * 20; //total length of actual key (+-) till 20 bytes
 	$ceil      = ceil($keylen / strlen($key));
 	$repeatStr = str_repeat($key, $ceil);
 	return substr($repeatStr, 0, $keylen);
