@@ -698,6 +698,7 @@ function ossn_string_encrypt_key_cycled($key = "") {
 	if (empty($key)) {
 		return false;
 	}
+	$required_length = 20;
 	//https://bugs.php.net/bug.php?id=72362
 	//repeate key until 56 bytes 123 beomes 123123123... until 56 bytes
 	// i can use OPENSSL_DONT_ZERO_PAD_KEY but its cycling key less then 16 bytes to something else
@@ -707,10 +708,11 @@ function ossn_string_encrypt_key_cycled($key = "") {
 	
 	$keylen    = mb_strlen($key, '8bit');
 	//ossn_string_encrypt_key_cycled should not generate more than 56 bytes #1508
-	$keylen    = (floor($keylen / 8) + 1) * 20; //total length of actual key (+-) till 20 bytes
-	$ceil      = ceil($keylen / strlen($key));
-	$repeatStr = str_repeat($key, $ceil);
-	return substr($repeatStr, 0, $keylen);
+	if($keylen < 20){ //lets say we need to generate 20 bytes
+		$ceil = ceil($required_length / $keylen);
+		$key  = str_repeat($key, $ceil);
+	}
+	return substr($key, 0, $required_length);
 	//key cycling and truncating end 	
 }
 /**
