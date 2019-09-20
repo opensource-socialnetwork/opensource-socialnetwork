@@ -441,7 +441,16 @@ class OssnNotifications extends OssnDatabase {
 				}							
 				if(isset($options['viewed']) && $options['viewed'] == false) {
 						$wheres[] = "n.viewed IS NULL";
-				}							
+				}
+				if(isset($options['wheres']) && !empty($options['wheres'])) {
+						if(!is_array($options['wheres'])) {
+								$wheres[] = $options['wheres'];
+						} else {
+								foreach($options['wheres'] as $witem) {
+										$wheres[] = $witem;
+								}
+						}
+				}				
 				if(empty($wheres)){
 						return false;	
 				}
