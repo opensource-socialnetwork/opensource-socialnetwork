@@ -86,7 +86,7 @@ class OssnWall extends OssnObject {
 						$params['object_guid'] = $this->wallguid;
 						$params['poster_guid'] = $this->poster_guid;
 						if(isset($wallpost['friend'])) {
-								$params['friends'] = $wallpost['friend'];
+								$params['friends'] = explode(',', $wallpost['friend']);
 						}
 						ossn_trigger_callback('wall', 'post:created', $params);
 						return $this->wallguid;
