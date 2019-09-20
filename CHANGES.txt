@@ -10,6 +10,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK V5.2
 * Don't lose searchstrings containing utf-8 chars #1496
 * Post on edit not returning JSON type callback #1506
 * ossn_string_encrypt_key_cycled should not generate more than 56 bytes #1508
+* Allow to use wheres clause in searchNotification #1510
 
 OSSN - OPEN SOURCE SOCIAL NETWORK V5.1 
 * Fix bug if 'reposition' was clicked, but image not dragged #1415
