@@ -233,9 +233,10 @@ function ossn_notification_walltag($type, $ctype, $params) {
 		$notification = new OssnNotifications;
 		if(isset($params['friends']) && is_array($params['friends'])) {
 				foreach($params['friends'] as $friend) {
-						if(!empty($params['poster_guid']) && !empty($params['subject_guid']) && !empty($friend)) {
-								$notification->add('wall:friends:tag', $params['poster_guid'], $params['subject_guid'], NULL, $friend);
-						}
+						//Tagging friend in wall isn't working #1511
+						//user object guid instead of itemguid
+						if(!empty($params['poster_guid']) && !empty($params['object_guid']) && !empty($friend)) {
+								$notification->add('wall:friends:tag', $params['poster_guid'], $params['object_guid'], $params['object_guid'], $friend);						}
 				}
 		}
 }
