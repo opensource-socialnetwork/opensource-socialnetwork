@@ -44,7 +44,8 @@ class OssnNotifications extends OssnDatabase {
 		 *
 		 * @return boolean;
 		 */
-		public function add($type, $poster_guid, $subject_guid, $item_guid = NULL, $notification_owner = '') {
+		//Tagging friend in wall isn't working #1511
+		public function add($type, $poster_guid, $subject_guid, $item_guid = 0, $notification_owner = '') {
 				if(!empty($type) && !empty($subject_guid) && !empty($poster_guid)) {
 						$vars               = array(
 								'type' => $type,
