@@ -11,6 +11,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK V5.2
 * Post on edit not returning JSON type callback #1506
 * ossn_string_encrypt_key_cycled should not generate more than 56 bytes #1508
 * Allow to use wheres clause in searchNotification #1510
+* Notification for tagging friend in wall isn't working #1511
 
 OSSN - OPEN SOURCE SOCIAL NETWORK V5.1 
 * Fix bug if 'reposition' was clicked, but image not dragged #1415
@@ -54,7 +55,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK V5.1
 * Optimize images #1487
 * Add wheres, in get_relationships #1475
 * Overwriting of php's default settings by Ossn not working on some servers #965
-
+* 
 OSSN - OPEN SOURCE SOCIAL NETWORK v5.0 LTS
 
 * Add missing <a> tag in notifications view #1233
