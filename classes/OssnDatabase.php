@@ -35,7 +35,8 @@ class OssnDatabase extends OssnBase {
 				if(!$connect->connect_errno) {
 						return $connect;
 				} else {
-						return false;
+						error_log('Database connection failed with error: ' . $connect->connect_errno . "\n", 3, ossn_route()->www . 'error_log');
+						exit('Database connection failed');
 				}
 		}
 		/**
