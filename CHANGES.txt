@@ -12,6 +12,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK V5.2
 * ossn_string_encrypt_key_cycled should not generate more than 56 bytes #1508
 * Allow to use wheres clause in searchNotification #1510
 * Notification for tagging friend in wall isn't working #1511
+* added option to display explicit time to ossn_user_friendly_time #1517
 
 OSSN - OPEN SOURCE SOCIAL NETWORK V5.1 
 * Fix bug if 'reposition' was clicked, but image not dragged #1415
