@@ -243,18 +243,20 @@ function update_last_activity() {
  * @return bool
  */
 function ossn_user_friendly_time($tm, $rcs = 0) {
+		$passedtime = ossn_print('site:timepassed:data');
+		$pds        = explode('|', $passedtime);
+		if(!$pds || $pds && count($pds) < 2) {
+			return;
+		}
+		if(count($pds) == 2) {
+			// Option 1: display explicit time and use formatting string
+			// using strftime, we can even get localized months
+			setlocale(LC_TIME, $pds[1]);
+			return strftime($pds[0], $tm);
+		}
+		// Option 2: display elapsed time (Ossn default)
 		$cur_tm     = time();
 		$dif        = $cur_tm - $tm;
-		// get language dependend items for display
-		$passedtime = ossn_print('site:timepassed:data');
-		// put them into array
-		// 0  = second
-		// 15 = decades
-		$pds        = explode('|', $passedtime);
-		
-		// BETTER DO explode ONLY ONCE on start and when language changes
-		// and get already prepared array from there
-		// don't know how and where to do this correctly ?!?
 		$lngh = array(
 				1,
 				60,
