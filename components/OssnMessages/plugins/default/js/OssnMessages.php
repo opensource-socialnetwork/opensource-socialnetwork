@@ -354,7 +354,7 @@ Ossn.RegisterStartupFunction(function() {
             e.preventDefault();
             $text = "<i class='fa fa-times-circle'></i>" + Ossn.Print('ossnmessages:deleted');
             $self   = $(this);
-			$parent = $(this).parent().parent();
+			$parent = $(this).parent();
             $action = $(this).attr('href');
             if ($action) {
                 Ossn.PostRequest({
