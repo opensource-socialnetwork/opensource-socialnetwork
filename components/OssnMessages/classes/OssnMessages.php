@@ -17,7 +17,7 @@ class OssnMessages extends OssnEntities {
 		public function __construct() {
 				//php warnings when deleting a message #1353
 				$this->data = new stdClass;
-		}	
+		}
 		/**
 		 * Send message
 		 *
@@ -132,7 +132,7 @@ class OssnMessages extends OssnEntities {
 								"LEFT JOIN ossn_messages m2 ON m.message_from = m2.message_from AND m.message_to = m2.message_to AND m.id < m2.id"
 						),
 						'offset' => input('offset_message_xhr_recent', '', 1),
-						'count'  => $count
+						'count' => $count
 				));
 				if($count == true && $chats) {
 						return $chats;
@@ -268,12 +268,59 @@ class OssnMessages extends OssnEntities {
 				if(empty($guid)) {
 						return false;
 				}
-				return $this->delete(array(
-						'from' => 'ossn_messages',
-						'wheres' => array(
-								"message_to='{$guid}' OR message_from='{$guid}'"
-						)
-				));
+				//obtained from DeleteMessages component.
+				//OssnMessages->deleteUser() leaves orphan entity records #1516
+				$params           = array();
+				$params['params'] = array(
+						'a.id'
+				);
+				$params['from']   = "ossn_messages as a";
+				$params['wheres'] = array(
+						"a.message_to='{$guid}' OR a.message_from='{$guid}'"
+				);
+				$message_ids      = $this->select($params, true);
+				if($message_ids) {
+						$deleted_messages = count((array) $message_ids);
+						$message_id_list = implode(',', array_map(function($x) {
+								return $x->id;
+						}, (array) $message_ids));
+						
+						$params           = array();
+						$params['params'] = array(
+								'a.guid'
+						);
+						$params['from']   = "ossn_entities a";
+						$params['wheres'] = array(
+								"a.owner_guid IN ({$message_id_list}) AND a.type = 'message'"
+						);
+						$entity_guids     = $this->select($params, true);
+						
+						if($entity_guids) {
+								$entity_guid_list = implode(',', array_map(function($x) {
+										return $x->guid;
+								}, (array) $entity_guids));
+								$this->delete(array(
+										'from' => 'ossn_entities_metadata',
+										'wheres' => array(
+												"guid IN ({$entity_guid_list})"
+										)
+								));
+								$this->delete(array(
+										'from' => 'ossn_entities',
+										'wheres' => array(
+												"guid IN ({$entity_guid_list})"
+										)
+								));
+						}
+						$this->delete(array(
+								'from' => 'ossn_messages',
+								'wheres' => array(
+										"id IN ({$message_id_list})"
+								)
+						));
+						return $deleted_messages;
+				}
+				return false;
 		}
 		/**
 		 * Search messages by some options
@@ -419,10 +466,10 @@ class OssnMessages extends OssnEntities {
 												'owner_guid' => $message->id,
 												'page_limit' => false
 										));
-										if($entities){
-											foreach($entities as $entity) {
-													$lists[$entity->subtype] = $entity->value;
-											}
+										if($entities) {
+												foreach($entities as $entity) {
+														$lists[$entity->subtype] = $entity->value;
+												}
 										}
 										$merged   = array_merge((array) $message, $lists);
 										$result[] = arrayObject($merged, get_class($this));
