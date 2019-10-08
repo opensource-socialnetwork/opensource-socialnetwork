@@ -269,7 +269,6 @@ class OssnMessages extends OssnEntities {
 						return false;
 				}
 				//obtained from DeleteMessages component.
-				//OssnMessages->deleteUser() leaves orphan entity records #1516
 				$params           = array();
 				$params['params'] = array(
 						'a.id'
@@ -287,11 +286,11 @@ class OssnMessages extends OssnEntities {
 						
 						$params           = array();
 						$params['params'] = array(
-								'a.guid'
+								'e.guid'
 						);
-						$params['from']   = "ossn_entities a";
+						$params['from']   = "ossn_entities as e";
 						$params['wheres'] = array(
-								"a.owner_guid IN ({$message_id_list}) AND a.type = 'message'"
+								"e.owner_guid IN ({$message_id_list}) AND e.type = 'message'"
 						);
 						$entity_guids     = $this->select($params, true);
 						
