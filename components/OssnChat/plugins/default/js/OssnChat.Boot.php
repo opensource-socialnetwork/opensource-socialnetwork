@@ -150,15 +150,11 @@ if(OssnChat['allfriends']){
 				$(".ossn-chat-windows-long .inner").append(appendata);
 			}
         	} 
-        	if($item.length == 0){
+        	else {
+			/* build initial list */
 			var appendata = '<div data-toggle="tooltip" title="'+data['name']+'" class="friends-list-item" id="friend-list-item-'+data['guid']+'" onClick="Ossn.ChatnewTab('+data['guid']+');"><div class="friends-item-inner"><div class="icon"><img class="ustatus '+data['status']+'" src="'+data['icon']+'" /></div></div></div>';    
          		$(".ossn-chat-windows-long .inner").find('.ossn-chat-none').hide();
-			if ($('.ossn-chat-pling').length) {
-				$(".ossn-chat-windows-long .inner .ossn-chat-pling").after(appendata);
-			}
-			else {
-				$(".ossn-chat-windows-long .inner").append(appendata);
-			}
+			$(".ossn-chat-windows-long .inner").append(appendata);
         	}
   	});
 	$('[data-toggle="tooltip"]').tooltip({
