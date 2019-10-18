@@ -13,6 +13,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK V5.2
 * Allow to use wheres clause in searchNotification #1510
 * Notification for tagging friend in wall isn't working #1511
 * added option to display explicit time to ossn_user_friendly_time #1517
+* Fixed the cirtical bug #1521 (discoverd by Tuomas Venhola in the infosec world, thanks to him!).
 
 OSSN - OPEN SOURCE SOCIAL NETWORK V5.1 
 * Fix bug if 'reposition' was clicked, but image not dragged #1415
