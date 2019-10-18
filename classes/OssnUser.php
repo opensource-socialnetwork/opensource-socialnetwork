@@ -769,11 +769,14 @@ class OssnUser extends OssnEntities {
 				$this->type       = 'user';
 				$this->subtype    = 'login:reset:code';
 				$this->owner_guid = $this->guid;
-				if(!isset($this->{'login:reset:code'}) && empty($this->old_code)) {
-						$this->value = md5(time() . $this->guid);
+				
+				$site_secret = ossn_site_settings('site_key');
+				$code	     = hash('sha256', time() . $this->guid. $site_secret . rand());
+				if(!isset($this->{'login:reset:code'}) && empty($this->old_code)){
+						$this->value = $code;
 						$this->add();
 				} else {
-						$this->value                      = md5(time() . $this->guid);
+						$this->value                      = $code;
 						$this->data->{'login:reset:code'} = $this->value;
 						$this->save();
 				}
