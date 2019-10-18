@@ -1,5 +1,6 @@
 The following developers contributed to this project:
 
+* Tuomas Venhola
 * Sathish Kumar
 * Arsalan Shah
 * Shaf Brady Hussain
