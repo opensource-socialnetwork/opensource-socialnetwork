@@ -193,6 +193,7 @@
 }
 .ossn-group-cover img {
     position:relative;
+    width:100%;
 }
 .ossn-group-cover:hover > .ossn-group-cover-button {
     display: block;
