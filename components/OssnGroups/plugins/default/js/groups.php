@@ -25,7 +25,7 @@ Ossn.RegisterStartupFunction(function() {
 						height = img.naturalHeight;
 
 					window.URL.revokeObjectURL(img.src);
-					if (width < 850 || height < 300) {
+					if (width < 1040 || height < 300) {
 						Ossn.trigger_message(Ossn.Print('profile:cover:err1:detail'), 'error');
 						return false;
 					} else {
