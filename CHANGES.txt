@@ -16,6 +16,8 @@ OSSN - OPEN SOURCE SOCIAL NETWORK V5.2
 * Fixed the cirtical bug #1521 (discoverd by Tuomas Venhola in the infosec world, thanks to him!).
 * OSSN GROUPS Component: group cover image on mobiles/tablets is not responsive #1520
 * Make cover minimum width to container width #1523
+* Broken messages view layout #1518
+* OssnMessages->deleteUser() leaves orphan entity records #1516
 
 OSSN - OPEN SOURCE SOCIAL NETWORK V5.1 
 * Fix bug if 'reposition' was clicked, but image not dragged #1415
