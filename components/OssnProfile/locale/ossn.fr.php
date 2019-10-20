@@ -23,6 +23,6 @@ $fr = array(
     'profile:photos' => 'Photo du Profil',
 		
 	'profile:cover:err1' => "L'image pour la couverture est trop petite",
-	'profile:cover:err1:detail' => "L'image de votre couverture de profil doit être 850 x 300 pixels ou plus",	
+	'profile:cover:err1:detail' => "L'image de votre couverture de profil doit être 1040 x 300 pixels ou plus",	
 );
 ossn_register_languages('fr', $fr); 

@@ -23,6 +23,6 @@ $ru = array(
 		'profile:photos' => 'Фотографии профиля',
 		
 		'profile:cover:err1' => 'Картинка слишком маленькая',
-		'profile:cover:err1:detail' => 'Обложка должна быть как минимум 850 x 300 пикселей.'
+		'profile:cover:err1:detail' => 'Обложка должна быть как минимум 1040 x 300 пикселей.'
 );
 ossn_register_languages('ru', $ru);

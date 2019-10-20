@@ -23,6 +23,6 @@ $tr = array(
 		'profile:photos' => 'Profil Resmi',
 		
 		'profile:cover:err1' => 'Kapak fotoğrafı çok küçük',
-		'profile:cover:err1:detail' => 'Kapak fotoğrafı minimum 850 x 300 px veya daha büyük olmalıdır.'
+		'profile:cover:err1:detail' => 'Kapak fotoğrafı minimum 1040 x 300 px veya daha büyük olmalıdır.'
 );
 ossn_register_languages('tr', $tr);

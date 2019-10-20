@@ -25,6 +25,6 @@ $es = array(
 		'profile:photos' => 'Fotos de Perfil',
 		
 		'profile:cover:err1' => 'Imagen de portada demasiado pequeña',
-		'profile:cover:err1:detail' => 'La imagen de portada debe tener al menos 850 x 300 o más.'
+		'profile:cover:err1:detail' => 'La imagen de portada debe tener al menos 1040 x 300 o más.'
 );
 ossn_register_languages('es', $es);

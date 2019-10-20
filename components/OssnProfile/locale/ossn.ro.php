@@ -23,6 +23,6 @@ $ro = array(
 		'profile:photos' => 'Fotografie de Profil',
 		
 		'profile:cover:err1' => 'Dimensiunea Fotografiei de coperta e prea mica',
-		'profile:cover:err1:detail' => 'Fotografia de coperta trebuie sa fie cel putin 850 x 300 pixeli sau mai mare.'
+		'profile:cover:err1:detail' => 'Fotografia de coperta trebuie sa fie cel putin 1040 x 300 pixeli sau mai mare.'
 );
 ossn_register_languages('ro', $ro);
