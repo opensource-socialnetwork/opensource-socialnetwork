@@ -18,6 +18,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK V5.2
 * Make cover minimum width to container width #1523
 * Broken messages view layout #1518
 * OssnMessages->deleteUser() leaves orphan entity records #1516
+* Optimize Pre-loader https://www.opensource-socialnetwork.org/component/view/3657/optimize-pre-loader
 
 OSSN - OPEN SOURCE SOCIAL NETWORK V5.1 
 * Fix bug if 'reposition' was clicked, but image not dragged #1415
