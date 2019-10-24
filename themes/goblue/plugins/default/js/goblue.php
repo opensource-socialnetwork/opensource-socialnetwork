@@ -60,6 +60,7 @@ $(document).ready(function() {
 		$('#sidebar-toggle').click();
 	}
 });
-$(window).load(function() {
+//https://www.opensource-socialnetwork.org/component/view/3657/optimize-pre-loader
+$(document).ready(function() {
 	   $(".ossn-page-loading-annimation").fadeOut("slow");
 });
