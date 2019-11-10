@@ -4,7 +4,7 @@
 
 body {
 	font-size: 14px;
-	background-color: #F7F7F7;
+	background-color: #eaeaea;
 	font-family: 'PT Sans', sans-serif;
 	height: 100%;
 }
@@ -147,9 +147,7 @@ a {
 }
 
 .ossn-layout-newsfeed .newsfeed-right {
-	background: #fff;
-	border: 1px solid #eee;
-	padding: 10px;
+
 }
 
 .ossn-page-container {
@@ -426,12 +424,9 @@ a {
 }
 
 .ossn-wall-container {
-	background: #fff;
-	border: 1px solid #eee;
-	border-radius: 2px;
-	padding: 10px;
-	padding-top: 0px;
-	margin-bottom: 10px;
+    border-radius: 2px;
+    margin-top: -5px;
+    margin-bottom: 10px;
 }
 
 .ossn-wall-container textarea {
@@ -1038,7 +1033,7 @@ a {
 }
 
 .ossn-widget .widget-heading {
-	background: #F9F7F7;
+	background: #F6F7F8;
 	border: 1px solid #eee;
 	padding: 10px;
 	font-weight: bold;
@@ -1178,6 +1173,7 @@ a {
 }
 
 .ossn-notification-container {
+
 	background-color: #dc0d17;
 	background-image: -webkit-linear-gradient(#fa3c45, #dc0d17);
 	color: #fff;
@@ -1826,6 +1822,7 @@ div.token-input-dropdown ul li.token-input-selected-dropdown-item {
 	margin-top: 100px;
 	border-radius: 3px;
 	display: none;
+
 	box-shadow: 0 2px 26px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(0, 0, 0, 0.1);
 }
 
@@ -2455,6 +2452,7 @@ footer .ossn-footer-menu a:last-child::after {
 		display: block;
 	}
 	.sidebar-hide-contents-xs {
+
 		display: none;
 	}
 	.home-left-contents .some-icons {
