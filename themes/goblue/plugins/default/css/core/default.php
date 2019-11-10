@@ -615,10 +615,15 @@ a {
 	display: inline-block;
 	border-radius: 32px;
 }
-
+/** UI improvements comments #1524 **/
 .comments-list .comments-item .comment-contents {
-	display: inline-block;
-	margin-top: -3px;
+    display: inline-block;
+    margin-top: -3px;
+    background-color: #ebedf0;
+    border-radius: 18px;
+    width: auto;
+    line-height: 16px;
+    padding: 6px 12px 7px 12px;
 }
 
 .comment-container {
