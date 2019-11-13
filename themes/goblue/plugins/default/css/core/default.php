@@ -558,6 +558,7 @@ a {
 
 .comments-item:hover .ossn-comment-menu {
 	display: block;
+    	margin-left: 10px;
 }
 
 .comments-likes {
