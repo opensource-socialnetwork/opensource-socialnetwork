@@ -53,14 +53,6 @@ $nl = array(
 	'feedback' => 'Verzend feedback',
 	'logout' => 'Log uit',
 	
-	'ossn:like:this' => '%s vind dit leuk',
-	'ossn:like:you:and:this' => 'jij en %s vinden dit leuk',
-	'ossn:like:people' => '%s Mensen',
-	'ossn:like:person' => '%s Persoon',
-	'ossn:liked:you' => 'Jij vind dit leuk',
-	'ossn:unlike' => 'Niet meer leuk',
-	'ossn:like' => 'Leuk',
-	
 	'admin:components' => 'Componenten',
 	'admin:dashboard' => 'Dashboard',
 	'admin:install' => 'Installeer',

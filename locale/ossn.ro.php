@@ -51,14 +51,6 @@ $ro = array(
 	'admin:logout' => 'Logheaza afara',
 	'logout' => 'Logheaza afara',
 	
-	'ossn:like:this' => 'Lui %s i-a placut asta',
-	'ossn:like:you:and:this' => 'Tu si %s v-au placut asta',
-	'ossn:like:people' => '%s Persoane',
-	'ossn:like:person' => '%s Persoana',
-	'ossn:liked:you' => 'Ti-a placut asta',
-	'ossn:unlike' => 'Nu imi mai place',
-	'ossn:like' => 'Imi place',
-	
 	'admin:components' => 'Componente',
 	'admin:dashboard' => 'BORD',
 	'admin:install' => 'Instalator',

@@ -50,14 +50,6 @@ $he = array(
 	'admin:logout' => 'התנתקות',
 	'logout' => 'התנתקות',
 	
-	'ossn:like:this' => '%s אהבות את זה',
-	'ossn:like:you:and:this' => 'אתה ו%s אהבתם את זה',
-	'ossn:like:people' => '%s אנשים',
-	'ossn:like:person' => '%s איש',
-	'ossn:liked:you' => 'אהבת את זה',
-	'ossn:unlike' => 'לא אוהב',
-	'ossn:like' => 'אוהב',
-	
 	'admin:components' => 'רכיבים',
 	'admin:dashboard' => 'דף ראשי',
 	'admin:install' => 'מתקין',

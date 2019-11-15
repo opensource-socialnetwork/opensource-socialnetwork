@@ -51,14 +51,6 @@ $en = array(
 	'admin:logout' => 'Log out',
 	'logout' => 'Log out',
 	
-	'ossn:like:this' => '%s liked this',
-	'ossn:like:you:and:this' => 'You and %s liked this',
-	'ossn:like:people' => '%s People',
-	'ossn:like:person' => '%s Person',
-	'ossn:liked:you' => 'You liked this',
-	'ossn:unlike' => 'Unlike',
-	'ossn:like' => 'Like',
-	
 	'admin:components' => 'Components',
 	'admin:dashboard' => 'Dashboard',
 	'admin:install' => 'Installer',

@@ -53,14 +53,6 @@ $es = array(
 	'admin:logout' => 'Cerrar sesión',
 	'logout' => 'Cerrar sesión',
 	
-	'ossn:like:this' => '%s le gusta esto',
-	'ossn:like:you:and:this' => 'Tu y %s le gusta esto',
-	'ossn:like:people' => '%s Personas',
-	'ossn:like:person' => '%s Persona',
-	'ossn:liked:you' => 'Te gustó esto',
-	'ossn:unlike' => 'No me gusta',
-	'ossn:like' => 'Me gusta',
-	
 	'admin:components' => 'Componentes',
 	'admin:dashboard' => 'Tablero',
 	'admin:install' => 'Instalador',

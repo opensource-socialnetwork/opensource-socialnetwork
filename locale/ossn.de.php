@@ -51,14 +51,6 @@ $de = array(
     'admin:logout' => 'Abmelden',
     'logout' => 'Abmelden',
 
-    'ossn:like:this' => '%s gefällt das',
-    'ossn:like:you:and:this' => 'Dir und %s gefällt das',
-    'ossn:like:people' => '%s Leuten',
-    'ossn:like:person' => '%s Person',
-    'ossn:liked:you' => 'Dir gefällt das',
-    'ossn:unlike' => 'Gefällt mir nicht mehr',
-    'ossn:like' => 'Gefällt mir',
-
     'admin:components' => 'Komponenten',
     'admin:dashboard' => 'Übersicht',
     'admin:install' => 'Installieren',

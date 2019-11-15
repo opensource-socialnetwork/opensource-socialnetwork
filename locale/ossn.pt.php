@@ -51,14 +51,6 @@ $pt = array(
 	'admin:logout' => 'Sair',
 	'logout' => 'Sair',
 	
-	'ossn:like:this' => '%s curtiu isso',
-	'ossn:like:you:and:this' => 'Você e %s curtiram isso',
-	'ossn:like:people' => '%s Pessoas',
-	'ossn:like:person' => '%s Pessoa',
-	'ossn:liked:you' => 'Você curtiu isso',
-	'ossn:unlike' => 'Descurtir',
-	'ossn:like' => 'Curtir',
-	
 	'admin:components' => 'Componentes',
 	'admin:dashboard' => 'Painel',
 	'admin:install' => 'Instalador',

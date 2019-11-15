@@ -51,14 +51,6 @@ $en = array(
 	'admin:logout' => 'Esci',
 	'logout' => 'Esci',
 
-	'ossn:like:this' => 'A %s è piaciuto',
-	'ossn:like:you:and:this' => 'A te e %s piace questo',
-	'ossn:like:people' => '%s Persone',
-	'ossn:like:person' => '%s Persona',
-	'ossn:liked:you' => 'Ti è piaciuto questo',
-	'ossn:unlike' => 'Non mi piace più',
-	'ossn:like' => 'Mi piace',
-
 	'admin:components' => 'Componenti',
 	'admin:dashboard' => 'Dashboard',
 	'admin:install' => 'Installer',

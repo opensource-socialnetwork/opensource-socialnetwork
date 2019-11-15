@@ -51,14 +51,6 @@ $fr = array(
     'admin:logout' => 'Déconnexion',
     'logout' => 'Déconnexion',
 
-    'ossn:like:this' => '%s aime ça',
-    'ossn:like:you:and:this' => 'Vous et %s aimez ça',
-    'ossn:like:people' => '%s Personnes',
-    'ossn:like:person' => '%s Personne',
-    'ossn:liked:you' => 'Vous aimez ça',
-    'ossn:unlike' => 'Ne plus aimer',
-    'ossn:like' => 'Aimer',
-
 	'admin:components' => 'Composants',
 	'admin:dashboard' => 'Tableau de bord',
 	'admin:install' => 'Installer',

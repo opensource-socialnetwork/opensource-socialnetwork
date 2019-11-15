@@ -51,14 +51,6 @@ $ru = array(
 	'admin:logout' => 'Выход',
 	'logout' => 'Выход',
 	
-	'ossn:like:this' => '%s заценил это',
-	'ossn:like:you:and:this' => 'Вы и %s заценили это',
-	'ossn:like:people' => '%s Люди',
-	'ossn:like:person' => '%s Человек',
-	'ossn:liked:you' => 'Ты это заценил',
-	'ossn:unlike' => 'Разлюбить',
-	'ossn:like' => 'Заценить',
-	
 	'admin:components' => 'Компоненты',
 	'admin:dashboard' => 'Панель управления',
 	'admin:install' => 'Установщик',

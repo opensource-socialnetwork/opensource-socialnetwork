@@ -51,14 +51,6 @@ $tr = array(
 	'admin:logout' => 'Çıkış Yap',
 	'logout' => 'Çıkış Yap',
 	
-	'ossn:like:this' => '%s bunu beğendi',
-	'ossn:like:you:and:this' => 'Sen ve %s bunu beğendi',
-	'ossn:like:people' => '%s İnsan',
-	'ossn:like:person' => '%s Kişi',
-	'ossn:liked:you' => 'Bunu beğendin',
-	'ossn:unlike' => 'Beğenmekten vazgeç',
-	'ossn:like' => 'Beğen',
-	
 	'admin:components' => 'Bileşenler',
 	'admin:dashboard' => 'Kontrol Paneli',
 	'admin:install' => 'Yükleyici',
