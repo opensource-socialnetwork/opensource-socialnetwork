@@ -10,10 +10,10 @@
  */
 $en = array(
 	'people:like:this' => 'People who liked this post',
-	'ossn:like:this' => '%s liked this',
-	'ossn:like:you:and:this' => 'You and %s',
-	'ossn:like:people' => '%s others',
-	'ossn:like:person' => '%s other',
+	'ossn:like:this' => '%s reacted on this',
+	'ossn:like:you:and:this' => 'You and %s reacted on this',
+	'ossn:like:people' => '%s People',
+	'ossn:like:person' => '%s Person',
 	'ossn:liked:you' => 'You reacted on this',
 	'ossn:unlike' => 'Unlike',
 	'ossn:like' => 'Like',		
