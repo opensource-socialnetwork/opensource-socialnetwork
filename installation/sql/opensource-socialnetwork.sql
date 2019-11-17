@@ -91,6 +91,7 @@ CREATE TABLE IF NOT EXISTS `ossn_likes` (
   `subject_id` bigint(20) NOT NULL,
   `guid` bigint(20) NOT NULL,
   `type` varchar(20) NOT NULL,
+  `subtype` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL  
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
