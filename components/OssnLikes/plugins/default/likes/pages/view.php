@@ -20,11 +20,13 @@ if ($likes) {
     foreach ($likes as $us) {
         //empty liker list #686
 		//if ($us->guid !== ossn_loggedin_user()->guid) {
-            $users[] = ossn_user_by_guid($us->guid);
+			$user = ossn_user_by_guid($us->guid);
+			$user->__like_subtype = $us->subtype;
+            $users[] = $user;
         //}
     }
 }
 $users['users'] = $users;
 $users['icon_size'] = 'small';
-echo ossn_plugin_view("output/users_list", $users);
+echo ossn_plugin_view("likes/users_list", $users);
 echo '</div>';

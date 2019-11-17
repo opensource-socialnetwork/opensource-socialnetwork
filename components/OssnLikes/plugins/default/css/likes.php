@@ -926,6 +926,27 @@
 .ossn-reaction-list .emoji__hand {
 	animation:none;
 }
+.ossn-reactions-list-whoreacted .emoji{
+
+}
+.ossn-reactions-list-wholiked-item img {
+    border: 1px solid #eee;
+    border-radius: 100%;
+}
+.ossn-reactions-list-wholiked-item {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.ossn-reactions-list-whoreacted-uinfo a {
+    font-weight: bold;
+}
+.ossn-reactions-list-whoreacted {
+	float:none;
+    margin-left:5px;
+}
 @media (max-width: 480px) {
 	.ossn-like-reactions-panel {
    	 	margin-left: -100px;

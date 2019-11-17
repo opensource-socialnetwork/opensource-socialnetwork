@@ -9,7 +9,7 @@
  * @link      https://www.opensource-socialnetwork.org/
  */
 $en = array(
-	'people:like:this' => 'People who liked this post',
+	'people:like:this' => 'People who reacted to this!',
 	'ossn:like:this' => '%s reacted on this',
 	'ossn:like:you:and:this' => 'You and %s reacted on this',
 	'ossn:like:people' => '%s People',
