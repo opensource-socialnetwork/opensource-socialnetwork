@@ -1,3 +1,4 @@
+//<script>
 /**
  * Open Source Social Network
  *
@@ -24,7 +25,17 @@ Ossn.PostUnlike = function(post) {
         callback: function(callback) {
             if (callback['done'] !== 0) {
                 $('#ossn-like-' + post).html(callback['button']);
-                $('#ossn-like-' + post).attr('onclick', 'Ossn.PostLike(' + post + ');');
+                $('#ossn-like-' + post).attr('data-reaction', 'Ossn.PostLike(' + post + ', "<<reaction_type>>");');
+				$('#ossn-like-' + post).removeAttr('onclick'); 
+				//reactions
+				$parent = $('#ossn-like-' + post).parent().parent().parent();				
+				if(callback['container']){
+						$parent.find('.like-share').remove();
+						$parent.find('.menu-likes-comments-share').after(callback['container']);
+				}
+				if(!callback['container']){
+						$parent.find('.like-share').remove();	
+				}				
             } else {
                 $('#ossn-like-' + post).html(Ossn.Print('unlike'));
             }
@@ -32,17 +43,24 @@ Ossn.PostUnlike = function(post) {
     });
 
 };
-Ossn.PostLike = function(post) {
+Ossn.PostLike = function(post, $reaction_type = '') {
     Ossn.PostRequest({
         url: Ossn.site_url + 'action/post/like',
         beforeSend: function() {
             $('#ossn-like-' + post).html('<img src="' + Ossn.site_url + 'components/OssnComments/images/loading.gif" />');
         },
-        params: '&post=' + post,
+        params: '&post=' + post + '&reaction_type='+$reaction_type,
         callback: function(callback) {
             if (callback['done'] !== 0) {
                 $('#ossn-like-' + post).html(callback['button']);
                 $('#ossn-like-' + post).attr('onClick', 'Ossn.PostUnlike(' + post + ');');
+				$('#ossn-like-' + post).removeAttr('data-reaction'); 
+				//reactions				
+				if(callback['container']){
+						$parent = $('#ossn-like-' + post).parent().parent().parent();
+						$parent.find('.like-share').remove();
+						$parent.find('.menu-likes-comments-share').after(callback['container']);
+				}
             } else {
                 $('#ossn-like-' + post).html(Ossn.Print('like'));
             }
@@ -55,33 +73,50 @@ Ossn.EntityUnlike = function(entity) {
     Ossn.PostRequest({
         url: Ossn.site_url + 'action/post/unlike',
         beforeSend: function() {
-            $('#ossn-like-' + entity).html('<img src="' + Ossn.site_url + 'components/OssnComments/images/loading.gif" />');
+            $('#ossn-elike-' + entity).html('<img src="' + Ossn.site_url + 'components/OssnComments/images/loading.gif" />');
         },
         params: '&entity=' + entity,
         callback: function(callback) {
             if (callback['done'] !== 0) {
-                $('#ossn-like-' + entity).html(callback['button']);
-                $('#ossn-like-' + entity).attr('onclick', 'Ossn.EntityLike(' + entity + ');');
+                $('#ossn-elike-' + entity).html(callback['button']);
+                $('#ossn-elike-' + entity).attr('data-reaction', 'Ossn.EntityLike(' + entity + ', "<<reaction_type>>");');
+				$('#ossn-elike-' + entity).removeAttr('onclick'); 
+				//reactions				
+				$parent = $('#ossn-elike-' + entity).parent().parent().parent();				
+				if(callback['container']){
+						$parent.find('.like-share').remove();
+						$parent.find('.menu-likes-comments-share').after(callback['container']);
+				}
+				if(!callback['container']){
+						$parent.find('.like-share').remove();	
+				}
             } else {
-                $('#ossn-like-' + entity).html(Ossn.Print('unlike'));
+                $('#ossn-elike-' + entity).html(Ossn.Print('unlike'));
             }
         },
     });
 
 };
-Ossn.EntityLike = function(entity) {
+Ossn.EntityLike = function(entity, $reaction_type = '') {
     Ossn.PostRequest({
         url: Ossn.site_url + 'action/post/like',
         beforeSend: function() {
-            $('#ossn-like-' + entity).html('<img src="' + Ossn.site_url + 'components/OssnComments/images/loading.gif" />');
+            $('#ossn-elike-' + entity).html('<img src="' + Ossn.site_url + 'components/OssnComments/images/loading.gif" />');
         },
-        params: '&entity=' + entity,
+        params: '&entity=' + entity + '&reaction_type='+$reaction_type,
         callback: function(callback) {
             if (callback['done'] !== 0) {
-                $('#ossn-like-' + entity).html(callback['button']);
-                $('#ossn-like-' + entity).attr('onClick', 'Ossn.EntityUnlike(' + entity + ');');
+                $('#ossn-elike-' + entity).html(callback['button']);
+                $('#ossn-elike-' + entity).attr('onClick', 'Ossn.EntityUnlike(' + entity + ');');
+				$('#ossn-elike-' + entity).removeAttr('data-reaction'); 
+				//reactions				
+				if(callback['container']){
+						$parent = $('#ossn-elike-' + entity).parent().parent().parent();
+						$parent.find('.like-share').remove();
+						$parent.find('.menu-likes-comments-share').after(callback['container']);
+				}				
             } else {
-                $('#ossn-like-' + post).html(Ossn.Print('like'));
+                $('#ossn-elike-' + post).html(Ossn.Print('like'));
             }
         },
     });
@@ -150,4 +185,42 @@ Ossn.RegisterStartupFunction(function() {
             });
         });
     });
+});
+$(document).ready(function(){			  
+	$html = '<div class="ossn-like-reactions-panel"> <li class="ossn-like-reaction-like"> <div class="emoji  emoji--like"> <div class="emoji__hand"> <div class="emoji__thumb"></div> </div> </div> </li> <li class="ossn-like-reaction-love"> <div class="emoji  emoji--love"> <div class="emoji__heart"></div> </div> </li> <li class="ossn-like-reaction-haha"> <div class="emoji  emoji--haha"> <div class="emoji__face"> <div class="emoji__eyes"></div> <div class="emoji__mouth"> <div class="emoji__tongue"></div> </div> </div> </div> </li> <li class="ossn-like-reaction-yay"> <div class="emoji  emoji--yay"> <div class="emoji__face"> <div class="emoji__eyebrows"></div> <div class="emoji__mouth"></div> </div> </div> </li> <li class="ossn-like-reaction-wow"> <div class="emoji  emoji--wow"> <div class="emoji__face"> <div class="emoji__eyebrows"></div> <div class="emoji__eyes"></div> <div class="emoji__mouth"></div> </div> </div> </li> <li class="ossn-like-reaction-sad"> <div class="emoji  emoji--sad"> <div class="emoji__face"> <div class="emoji__eyebrows"></div> <div class="emoji__eyes"></div> <div class="emoji__mouth"></div> </div> </div> </li> <li class="ossn-like-reaction-angry"> <div class="emoji  emoji--angry"> <div class="emoji__face"> <div class="emoji__eyebrows"></div> <div class="emoji__eyes"></div> <div class="emoji__mouth"></div> </div> </div> </li> </div>';					   
+	$('body').on('click',function(){
+			$('.ossn-like-reactions-panel').remove();									 
+	});
+	$MenuReactions = function ($elem) {
+			 $parent = $($elem).parent();
+			 $parent.remove('.ossn-like-reactions-panel');
+			 $onclick = $($elem).attr('data-reaction');
+			 if(!$onclick){
+					return true; 
+			 }
+			 $parent.append($html);			 
+			 $like	  = $onclick.replace("<<reaction_type>>", 'like');
+			 $love	  = $onclick.replace("<<reaction_type>>", 'love');
+			 $haha	  = $onclick.replace("<<reaction_type>>", 'haha');
+			 $yay	  = $onclick.replace("<<reaction_type>>", 'yay');
+			 $wow	  = $onclick.replace("<<reaction_type>>", 'wow');
+			 $sad	  = $onclick.replace("<<reaction_type>>", 'sad');
+			 $angry	  = $onclick.replace("<<reaction_type>>", 'angry');
+			 
+			 $parent.find('.ossn-like-reaction-like').attr('onclick', $like);
+			 $parent.find('.ossn-like-reaction-love').attr('onclick', $love);
+			 $parent.find('.ossn-like-reaction-haha').attr('onclick', $haha);
+			 $parent.find('.ossn-like-reaction-yay').attr('onclick', $yay);
+			 $parent.find('.ossn-like-reaction-wow').attr('onclick', $wow);
+			 $parent.find('.ossn-like-reaction-sad').attr('onclick', $sad);
+			 $parent.find('.ossn-like-reaction-angry').attr('onclick', $angry);
+   	};
+	$("body").on('touchstart', '.post-control-like', function(){
+			 $MenuReactions(this);
+	});	
+	$(".post-control-like, .entity-menu-extra-like").on({
+   		 mouseenter: function(){
+			 $MenuReactions(this);
+   		 }
+	});
 });

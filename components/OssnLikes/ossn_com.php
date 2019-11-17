@@ -59,7 +59,7 @@ function ossn_wall_like_menu($callback, $type, $params){
 					'name' => 'like', 
 					'href' => "javascript:void(0);",
 					'id' => 'ossn-like-'.$guid,
-					'onclick' => "Ossn.PostLike({$guid});",
+					'data-reaction' => "Ossn.PostLike({$guid}, '<<reaction_type>>');",
 					'text' => ossn_print('ossn:like'),
 			));
 		} else {
@@ -89,15 +89,15 @@ function ossn_entity_like_link($callback, $type, $params){
 			ossn_register_menu_item('entityextra', array(
 					'name' => 'like', 
 					'href' => "javascript:void(0);",
-					'id' => 'ossn-like-'.$guid,
-					'onclick' => "Ossn.EntityLike({$guid});",
+					'id' => 'ossn-elike-'.$guid,
+					'data-reaction' => "Ossn.EntityLike({$guid}, '<<reaction_type>>');",
 					'text' => ossn_print('ossn:like'),
 			));
 		} else {
 			ossn_register_menu_item('entityextra', array(
 					'name' => 'like', 
 					'href' => "javascript:void(0);",
-					'id' => 'ossn-like-'.$guid,					
+					'id' => 'ossn-elike-'.$guid,					
 					'onclick' => "Ossn.EntityUnlike({$guid});",
 					'text' => ossn_print('ossn:unlike'),
 			));			

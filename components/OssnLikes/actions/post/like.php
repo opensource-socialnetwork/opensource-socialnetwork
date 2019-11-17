@@ -11,6 +11,8 @@
 $OssnLikes = new OssnLikes;
 $anotation = input('post');
 $entity = input('entity');
+$reaction_type = input('reaction_type');
+
 if (!empty($anotation)) {
     $subject = $anotation;
     $type = 'post';
@@ -20,13 +22,24 @@ if (!empty($entity)) {
     $type = 'entity';
 
 }
-if ($OssnLikes->Like($subject, ossn_loggedin_user()->guid, $type)) {
+if ($OssnLikes->Like($subject, ossn_loggedin_user()->guid, $type, $reaction_type)) {
     if (!ossn_is_xhr()) {
         redirect(REF);
     } else {
+		if($type == 'entity'){
+			$likes_container = ossn_plugin_view('likes/post/likes_entity', array(
+					'entity_guid' => $subject,														  
+			));	
+		}
+		if($type == 'post'){
+			$object = new stdClass;
+			$object->guid = $subject;
+			$likes_container = ossn_plugin_view('likes/post/likes', $object);	
+		}		
         header('Content-Type: application/json');
         echo json_encode(array(
                 'done' => 1,
+				'container' => $likes_container,
                 'button' => ossn_print('ossn:unlike'),
             ));
     }
@@ -37,6 +50,7 @@ if ($OssnLikes->Like($subject, ossn_loggedin_user()->guid, $type)) {
         header('Content-Type: application/json');
         echo json_encode(array(
                 'done' => 0,
+				'container' => false,
                 'button' => ossn_print('ossn:like'),
             ));
     }

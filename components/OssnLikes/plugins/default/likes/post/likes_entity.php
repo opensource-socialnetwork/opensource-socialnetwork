@@ -21,9 +21,87 @@ if (ossn_isLoggedIn()) {
             }
 }
 /* Likes and comments don't show for nonlogged in users */ 
-if($count) { ?>
+if($count) {
+	foreach($OssnLikes->__likes_get_all as $item){
+		$last_three_icons[$item->subtype] = $item->subtype;
+	}
+	$last_three = array_slice($last_three_icons, -3);
+	?>
     <div class="like-share">
-       <i class="fa fa-thumbs-up"></i>
+<div class="ossn-reaction-list">
+	<?php if(isset($last_three['like'])){ ?>
+	<li>
+		<div class="emoji  emoji--like">
+			<div class="emoji__hand">
+				<div class="emoji__thumb"></div>
+			</div>
+		</div>
+	</li>
+	<?php } ?>        
+	<?php if(isset($last_three['love'])){ ?>
+	<li>
+		<div class="emoji emoji--love">
+			<div class="emoji__heart"></div>
+		</div>
+	</li>
+	<?php } ?>
+	<?php if(isset($last_three['haha'])){ ?>
+	<li>
+		<div class="emoji  emoji--haha">
+			<div class="emoji__face">
+				<div class="emoji__eyes"></div>
+				<div class="emoji__mouth">
+					<div class="emoji__tongue"></div>
+				</div>
+			</div>
+		</div>
+	</li>
+	<?php } ?> 
+	<?php if(isset($last_three['yay'])){ ?>        
+	<li>
+		<div class="emoji  emoji--yay">
+			<div class="emoji__face">
+				<div class="emoji__eyebrows"></div>
+				<div class="emoji__mouth"></div>
+			</div>
+		</div>
+	</li>
+	<?php } ?>
+	<?php if(isset($last_three['wow'])){ ?>
+	<li>
+		<div class="emoji  emoji--wow">
+			<div class="emoji__face">
+				<div class="emoji__eyebrows"></div>
+				<div class="emoji__eyes"></div>
+				<div class="emoji__mouth"></div>
+			</div>
+		</div>
+	</li>
+	<?php } ?>
+	<?php if(isset($last_three['sad'])){ ?>
+	<li>
+		<div class="emoji  emoji--sad">
+			<div class="emoji__face">
+				<div class="emoji__eyebrows"></div>
+				<div class="emoji__eyes"></div>
+				<div class="emoji__mouth"></div>
+			</div>
+		</div>
+	</li>
+	<?php } ?>
+	<?php if(isset($last_three['angry'])){ ?>
+	<li>
+		<div class="emoji  emoji--angry">
+			<div class="emoji__face">
+				<div class="emoji__eyebrows"></div>
+				<div class="emoji__eyes"></div>
+				<div class="emoji__mouth"></div>
+			</div>
+		</div>
+	</li>
+	<?php } ?>
+</div>
+    	<span class="ossn-reaction-title-wholiked">
         <?php if ($user_liked == true && $count == 1) { ?>
             <?php echo ossn_print("ossn:liked:you"); ?>
         <?php
@@ -49,6 +127,7 @@ if($count) { ?>
             $link = ossn_plugin_view('output/url', $link);
             echo ossn_print("ossn:like:this", array($link));
         }?>
+        </span>
     </div>
 <?php } ?>
 

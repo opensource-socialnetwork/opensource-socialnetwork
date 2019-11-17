@@ -19,9 +19,12 @@ class OssnLikes extends OssnDatabase {
 		 *
 		 * @return bool
 		 */
-		public function Like($subject_id, $guid, $type = 'post') {
+		public function Like($subject_id, $guid, $type = 'post', $reaction_type = 'like') {
 				if(empty($subject_id) || empty($guid) || empty($type)) {
 						return false;
+				}
+				if(empty($reaction_type)){
+					$reaction_type = 'like';	
 				}
 				if($type == 'annotation') {
 						$annotation                = new OssnAnnotation;
@@ -40,8 +43,8 @@ class OssnLikes extends OssnDatabase {
 						}
 				}
 				if(!$this->isLiked($subject_id, $guid, $type)) {
-						$this->statement("INSERT INTO ossn_likes (`subject_id`, `guid`, `type`)
-					           VALUES('{$subject_id}', '{$guid}', '{$type}');");
+						$this->statement("INSERT INTO ossn_likes (`subject_id`, `guid`, `type`, `subtype`)
+					           VALUES('{$subject_id}', '{$guid}', '{$type}', '{$reaction_type}');");
 						if($this->execute()) {
 								$params['subject_guid'] = $subject_id;
 								$params['owner_guid']   = $guid;
@@ -151,6 +154,7 @@ class OssnLikes extends OssnDatabase {
 		 */
 		public function CountLikes($subject_id, $type = 'post') {
 				$likes = $this->GetLikes($subject_id, $type);
+				$this->__likes_get_all = $likes;
 				if($likes) {
 						$likes = get_object_vars($likes);
 						if(!empty($likes)) {
