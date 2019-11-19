@@ -77,7 +77,7 @@ if ($likes_total > 0) {
 									'href' => ossn_site_url("action/annotation/unlike?annotation={$comment->id}"), 
 									'text' => ossn_print('unlike'), 
 									'class' => 'ossn-like-comment',
-									'id' => 'ossn-unlike-comment-'.$comment->id,									
+									'id' => 'ossn-like-comment-'.$comment->id,									
 									'data-type' => 'Unlike',
 									'data-id' => $comment->id,
 									'action' => true
