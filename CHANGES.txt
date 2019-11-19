@@ -22,6 +22,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK V5.2
 * UI improvements #1524
 * Add animation for uploading group/profile cover. #1527
 * Reactions has been added to posts and comments.
+* Uploading new group cover, it keeps the old cover file only. #1528
 
 OSSN - OPEN SOURCE SOCIAL NETWORK V5.1 
 * Fix bug if 'reposition' was clicked, but image not dragged #1415
