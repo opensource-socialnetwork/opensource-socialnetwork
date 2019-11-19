@@ -76,7 +76,7 @@ Ossn.RegisterStartupFunction(function() {
 
 		$("#upload-cover").submit(function(event) {
 			event.preventDefault();
-			console.log('no');
+			//console.log('no');
 			var formData = new FormData($(this)[0]);
 			var $url = Ossn.site_url + 'action/profile/cover/upload';
 			var fileInput = $('#upload-cover').find("input[type=file]")[0],
@@ -84,7 +84,6 @@ Ossn.RegisterStartupFunction(function() {
 
 			if (file) {
 				var img = new Image();
-
 				img.src = window.URL.createObjectURL(file);
 
 				img.onload = function() {
@@ -105,6 +104,7 @@ Ossn.RegisterStartupFunction(function() {
 							contentType: false,
 							processData: false,
 							beforeSend: function(xhr, obj) {
+								$('.profile-cover').prepend('<div class="ossn-covers-uploading-annimation"> <div class="ossn-loading"></div></div>');
 								$('.profile-cover-img').attr('class', 'user-cover-uploading');
 							},
 							success: function(callback) {
@@ -114,6 +114,7 @@ Ossn.RegisterStartupFunction(function() {
 								$imageurl = $('.profile-cover').find('img').attr('src') + '?' + $time;
 								$('.profile-cover').find('img').attr('src', $imageurl);
 								$('.profile-cover').find('img').attr('style', '');
+								$('.ossn-covers-uploading-annimation').remove();
 							},
 						});
 					}

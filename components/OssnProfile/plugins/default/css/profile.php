@@ -33,3 +33,13 @@
 .ossn-profile .profile-cover img {
 	position: relative;
 }
+.ossn-covers-uploading-annimation {
+    position: absolute;
+    float: right;
+    left: 50%;
+    top: 30%;
+    background: rgba(255, 255, 255, 0.62);
+    padding: 20px;
+    border-radius: 20px;
+    z-index: 1;
+}
