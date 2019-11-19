@@ -342,16 +342,15 @@ Ossn.RegisterStartupFunction(function() {
 	$(document).ready(function() {
 		if ($('.ossn-system-messages').find('a').length) {
 			$('.ossn-system-messages').find('.ossn-system-messages-inner').show();
-			$('.ossn-system-messages').find('.ossn-system-messages-inner').animate({
-				opacity: 0.9
-			}, 10000, function() {
-				$('.ossn-system-messages').find('.ossn-system-messages-inner').empty();
-			}).slideUp('slow');
-			//Clicking close in system messages should close it complete #1137
-			$('body').on('click', '.ossn-system-messages .close', function(){
-				$('.ossn-system-messages').slideUp('slow');													   
-			});
+			
+			setTimeout(function(){ 
+				$('.ossn-system-messages').find('.ossn-system-messages-inner').hide().empty();
+			}, 10000);
 		}
+		//Clicking close in system messages should close it complete #1137
+		$('body').on('click', '.ossn-system-messages .close', function(){
+				$('.ossn-system-messages').find('.ossn-system-messages-inner').hide().empty();
+		});		
 	});
 });
 /**
@@ -376,11 +375,9 @@ Ossn.trigger_message = function($message, $type) {
 	if ($('.ossn-system-messages').find('.ossn-system-messages-inner').is(":not(:visible)")) {
 		$('.ossn-system-messages').find('.ossn-system-messages-inner').slideDown('slow');
 	}
-	$('.ossn-system-messages').find('.ossn-system-messages-inner').animate({
-		opacity: 0.9
-	}, 10000, function() {
-		$('.ossn-system-messages').find('.ossn-system-messages-inner').empty();
-	}).slideUp('slow');
+	setTimeout(function(){ 
+		$('.ossn-system-messages').find('.ossn-system-messages-inner').empty().hide()
+	}, 10000);
 };
 
 /**
