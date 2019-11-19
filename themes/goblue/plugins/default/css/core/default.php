@@ -1711,6 +1711,8 @@ div.token-input-dropdown ul li.token-input-selected-dropdown-item {
 	margin-top: 20px;
 	margin-bottom: 20px;
 	display: none;
+	padding-left:15px;
+	padding-right:15px;
 }
 
 .ossn-system-messages .ossn-system-messages-inner .alert {
