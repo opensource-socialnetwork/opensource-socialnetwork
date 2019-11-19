@@ -952,5 +952,19 @@
    	 	margin-left: -100px;
     	transform: scale(0.8);
     }
+   .comment-contents .ossn-like-reactions-panel {
+    	margin-left: -30px;
+	}
 
+}
+.ossn-likes-annotation-total {
+	float:right;
+}
+.comment-metadata .ossn-reaction-list {
+    float: right;
+    margin-left: 10px;
+}
+.comment-metadata .ossn-reaction-list .emoji {
+	transform: scale(0.12);
+    margin-top: -51px;
 }
