@@ -448,6 +448,10 @@ class OssnGroup extends OssnObject {
 								unset($files->{0});
 								if($files) {
 										foreach($files as $file) {
+												//Uploading new group cover, it keeps the old cover file only. #1528
+												if($file->isFile()){
+													unlink($file->getPath());	
+												}											
 												$file->deleteEntity();
 										}
 								}
