@@ -68,6 +68,7 @@ if ($likes_total > 0) {
 									'text' => ossn_print('like'), 
 									'class' => 'ossn-like-comment',
 									'data-type' => 'Like',
+									'data-id' => $comment->id,
 									'action' => true
 									));
                 		 } else { 
@@ -76,6 +77,7 @@ if ($likes_total > 0) {
 									'text' => ossn_print('unlike'), 
 									'class' => 'ossn-like-comment',
 									'data-type' => 'Unlike',
+									'data-id' => $comment->id,
 									'action' => true
 									));
                 		 }
