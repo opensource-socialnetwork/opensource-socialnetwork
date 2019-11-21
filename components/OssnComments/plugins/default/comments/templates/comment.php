@@ -101,8 +101,8 @@ if($datalikes  > 0){
 						echo ossn_plugin_view('output/url', array(
 										'href' => 'javascript:void(0);', 
 										'text' => $likes_total, 
-										'onclick' => "Ossn.ViewLikes({$params['annotation_id']}, 'annotation')",
-										'class' => "ossn-total-likes ossn-total-likes-{$params['annotation_id']}",
+										'onclick' => "Ossn.ViewLikes({$params['comment']['id']}, 'annotation')",
+										'class' => "ossn-total-likes ossn-total-likes-{$params['comment']['id']}",
 										'data-likes' => $datalikes,
 						));
 						?>
