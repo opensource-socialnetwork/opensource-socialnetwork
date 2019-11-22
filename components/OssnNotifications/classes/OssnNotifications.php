@@ -21,7 +21,7 @@ class OssnNotifications extends OssnDatabase {
 				if(empty($this->limit)) {
 						$this->limit = false;
 				}
-				$this->data        = new stdClass;
+				$this->data = new stdClass;
 				
 				if(!isset($this->offset)) {
 						$this->offset = 1;
@@ -33,7 +33,7 @@ class OssnNotifications extends OssnDatabase {
 				if(!isset($this->count)) {
 						$this->count = false;
 				}
-		}	
+		}
 		/**
 		 * Add notification to database
 		 *
@@ -44,8 +44,7 @@ class OssnNotifications extends OssnDatabase {
 		 *
 		 * @return boolean;
 		 */
-		//Tagging friend in wall isn't working #1511
-		public function add($type, $poster_guid, $subject_guid, $item_guid = 0, $notification_owner = '') {
+		public function add($type, $poster_guid, $subject_guid, $item_guid = NULL, $notification_owner = '') {
 				if(!empty($type) && !empty($subject_guid) && !empty($poster_guid)) {
 						$vars               = array(
 								'type' => $type,
@@ -67,43 +66,13 @@ class OssnNotifications extends OssnDatabase {
 						if(empty($this->notification['owner_guid']) || $this->notification['owner_guid'] == $this->notification['poster_guid']) {
 								return false;
 						}
-						$callback = array(
+						$callback         = array(
 								'type' => $this->notification['type'],
 								'poster_guid' => $this->notification['poster_guid'],
 								'owner_guid' => $this->notification['owner_guid'],
 								'subject_guid' => $this->notification['subject_guid'],
 								'item_guid' => $this->notification['item_guid']
 						);
-						if($poster_guid == $guid_two) {
-								$paricipates = $this->get_comments_participates($subject_guid);
-								if($type !== 'like:post' && $paricipates) {
-										foreach($paricipates as $partcipate) {
-												$params['into']   = 'ossn_notifications';
-												$params['names']  = array(
-														'type',
-														'poster_guid',
-														'owner_guid',
-														'subject_guid',
-														'item_guid',
-														'time_created'
-												);
-												$params['values'] = array(
-														$this->notification['type'],
-														$this->notification['poster_guid'],
-														$partcipate,
-														$this->notification['subject_guid'],
-														$this->notification['item_guid'],
-														time()
-												);
-												if($partcipate !== $poster_guid) {
-														ossn_trigger_callback('notification', 'add:participates', $callback);
-														$this->insert($params);
-												}
-										}
-								}
-								return false;
-						}
-						
 						$params['into']   = 'ossn_notifications';
 						$params['names']  = array(
 								'type',
@@ -121,38 +90,41 @@ class OssnNotifications extends OssnDatabase {
 								$this->notification['item_guid'],
 								time()
 						);
+						
 						if($this->insert($params)) {
 								//notify participates
-								$paricipates = $this->get_comments_participates($subject_guid);
-								if($type !== 'like:post' && $paricipates) {
-										foreach($paricipates as $partcipate) {
-												$params['into']   = 'ossn_notifications';
-												$params['names']  = array(
-														'type',
-														'poster_guid',
-														'owner_guid',
-														'subject_guid',
-														'item_guid',
-														'time_created'
-												);
-												$params['values'] = array(
-														$this->notification['type'],
-														$this->notification['poster_guid'],
-														$partcipate,
-														$this->notification['subject_guid'],
-														$this->notification['item_guid'],
-														time()
-												);
-												if($partcipate !== $poster_guid) {
-														if($this->insert($params)) {
-																unset($callback['owner_guid']);
-																$callback['owner_guid'] = $partcipate;
-																ossn_trigger_callback('notification', 'add:participates', $callback);
+								//Notification sent to wrong User #1530
+								if($type !== 'like:post' && $type !== 'like:annotation') {
+										$paricipates = $this->get_comments_participates($subject_guid);
+										if($paricipates) {
+												foreach($paricipates as $partcipate) {
+														$params['into']   = 'ossn_notifications';
+														$params['names']  = array(
+																'type',
+																'poster_guid',
+																'owner_guid',
+																'subject_guid',
+																'item_guid',
+																'time_created'
+														);
+														$params['values'] = array(
+																$this->notification['type'],
+																$this->notification['poster_guid'],
+																$partcipate,
+																$this->notification['subject_guid'],
+																$this->notification['item_guid'],
+																time()
+														);
+														if($partcipate !== $poster_guid) {
+																if($this->insert($params)) {
+																		unset($callback['owner_guid']);
+																		$callback['owner_guid'] = $partcipate;
+																		ossn_trigger_callback('notification', 'add:participates', $callback);
+																}
 														}
 												}
 										}
 								}
-								
 								ossn_trigger_callback('notification', 'add', $callback);
 								return true;
 						}
@@ -168,15 +140,15 @@ class OssnNotifications extends OssnDatabase {
 		 * @return array;
 		 */
 		public function get_comments_participates($subject_guid = '') {
-				if(empty($subject_guid)){
-						return false;	
+				if(empty($subject_guid)) {
+						return false;
 				}
-				$users            = $this->searchNotifications(array(
-									'type' => 'comments:post',	
-									'subject_guid' => $subject_guid,
-									'page_limit' => false,
+				$users        = $this->searchNotifications(array(
+						'type' => 'comments:post',
+						'subject_guid' => $subject_guid,
+						'page_limit' => false
 				));
-				$participates     = array();
+				$participates = array();
 				if($users) {
 						foreach($users as $user) {
 								$participates[] = $user->poster_guid;
@@ -201,21 +173,21 @@ class OssnNotifications extends OssnDatabase {
 				if($limit) {
 						$vars['limit'] = $limit;
 				}
-				$vars['owner_guid'] = $guid_two; 
-				$vars['count'] 		= $count;
+				$vars['owner_guid'] = $guid_two;
+				$vars['count']      = $count;
 				$vars['page_limit'] = false;
-				$vars['order_by'] 	= "n.guid DESC"; 
-				$get				= $this->searchNotifications($vars);
-				if($count){
-						return $get;	
+				$vars['order_by']   = "n.guid DESC";
+				$get                = $this->searchNotifications($vars);
+				if($count) {
+						return $get;
 				}
-				if($get){
-					foreach($get as $notif) {
-							if(ossn_is_hook('notification:view', $notif->type)) {
-									$messages[] = ossn_call_hook('notification:view', $notif->type, $notif);
-							}
-					}
-					return $messages;
+				if($get) {
+						foreach($get as $notif) {
+								if(ossn_is_hook('notification:view', $notif->type)) {
+										$messages[] = ossn_call_hook('notification:view', $notif->type, $notif);
+								}
+						}
+						return $messages;
 				}
 				return false;
 		}
@@ -229,9 +201,9 @@ class OssnNotifications extends OssnDatabase {
 		 */
 		public function countNotification($guid) {
 				return $this->searchNotifications(array(
-							'owner_guid' => $guid,
-							'count' => true,
-							'viewed' => false,
+						'owner_guid' => $guid,
+						'count' => true,
+						'viewed' => false
 				));
 		}
 		
@@ -243,14 +215,14 @@ class OssnNotifications extends OssnDatabase {
 		 * @return object;
 		 */
 		public function getbyGUID($guid = '') {
-				if(empty($guid)){
-						return false;	
+				if(empty($guid)) {
+						return false;
 				}
 				$notifcation = $this->searchNotifications(array(
-							'guid' => $guid,
+						'guid' => $guid
 				));
-				if($notifcation){
-					return $notifcation[0];	
+				if($notifcation) {
+						return $notifcation[0];
 				}
 				return false;
 		}
@@ -379,8 +351,8 @@ class OssnNotifications extends OssnDatabase {
 		 * 
 		 * reutrn array|false;
 		 *
-		 */		
-		public function searchNotifications(array $params = array()){
+		 */
+		public function searchNotifications(array $params = array()) {
 				self::initAttributes();
 				$default = array(
 						'guid' => false,
@@ -427,38 +399,29 @@ class OssnNotifications extends OssnDatabase {
 				}
 				if(!empty($options['poster_guid'])) {
 						$wheres[] = "n.poster_guid ='{$options['poster_guid']}'";
-				}				
+				}
 				if(!empty($options['subject_guid'])) {
 						$wheres[] = "n.subject_guid ='{$options['subject_guid']}'";
-				}		
+				}
 				if(!empty($options['item_guid'])) {
 						$wheres[] = "n.item_guid ='{$options['item_guid']}'";
-				}			
+				}
 				if(!empty($options['time_created'])) {
 						$wheres[] = "n.time_created ='{$options['time_created']}'";
-				}							
+				}
 				if(isset($options['viewed']) && $options['viewed'] == true) {
 						$wheres[] = "n.viewed =''";
-				}							
+				}
 				if(isset($options['viewed']) && $options['viewed'] == false) {
 						$wheres[] = "n.viewed IS NULL";
 				}
-				if(isset($options['wheres']) && !empty($options['wheres'])) {
-						if(!is_array($options['wheres'])) {
-								$wheres[] = $options['wheres'];
-						} else {
-								foreach($options['wheres'] as $witem) {
-										$wheres[] = $witem;
-								}
-						}
-				}				
-				if(empty($wheres)){
-						return false;	
+				if(empty($wheres)) {
+						return false;
 				}
 				$params             = array();
 				$params['from']     = 'ossn_notifications as n';
 				$params['params']   = array(
-						'n.*',
+						'n.*'
 				);
 				$params['wheres']   = array(
 						$this->constructWheres($wheres)
@@ -471,11 +434,11 @@ class OssnNotifications extends OssnDatabase {
 				}
 				if(isset($options['group_by']) && !empty($options['group_by'])) {
 						$params['group_by'] = $options['group_by'];
-				}					
+				}
 				//override params
-				if(isset($options['params']) && !empty($options['params'])){
+				if(isset($options['params']) && !empty($options['params'])) {
 						$params['params'] = $options['params'];
-				}			
+				}
 				//prepare count data;
 				if($options['count'] === true) {
 						unset($params['params']);
@@ -488,11 +451,11 @@ class OssnNotifications extends OssnDatabase {
 						return $this->select($count)->total;
 				}
 				$fetched_data = $this->select($params, true);
-				if($fetched_data){
-					foreach($fetched_data as $item){
-							$results[] = arrayObject($item, get_class($this));	
-					}
-					return $results;
+				if($fetched_data) {
+						foreach($fetched_data as $item) {
+								$results[] = arrayObject($item, get_class($this));
+						}
+						return $results;
 				}
 				return false;
 		}
@@ -501,12 +464,12 @@ class OssnNotifications extends OssnDatabase {
 		 *
 		 * @return string|false
 		 */
-		public function toTemplate(){
-				if(empty($this->guid)){
-					return false;	
+		public function toTemplate() {
+				if(empty($this->guid)) {
+						return false;
 				}
 				if(ossn_is_hook('notification:view', $this->type)) {
-					return ossn_call_hook('notification:view', $this->type, $this);
+						return ossn_call_hook('notification:view', $this->type, $this);
 				}
 				return false;
 		}
