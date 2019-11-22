@@ -364,6 +364,7 @@ a {
 	margin-top: 20px;
 	background-color: #fff;
 	padding-bottom: 0px;
+    border-radius: 4px;
 }
 
 .ossn-wall-item:first-child {
@@ -668,13 +669,15 @@ a {
 .comment-box {
 	width: 100%;
 	border: 1px solid #eee;
-	padding: 5px 30px 5px 5px !important;
+	padding: 6px 65px 6px 12px !important;
 	margin-bottom: 5px;
 	outline: none;
 	display: block;
 	resize: vertical;
-	background: #fff;
 	min-height: 32px;
+    background-color: #f2f3f5;
+    border: 1px solid #ccd0d5;
+    border-radius: 15px;    
 }
 
 [contentEditable=true]:empty:not(:focus)::before {
