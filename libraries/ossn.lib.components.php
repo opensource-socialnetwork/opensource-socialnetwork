@@ -77,16 +77,15 @@ $coms->loadComs();
 
 function ossn_components_init() {
 		$panels = ossn_registered_com_panel();
-		if(!$panels) {
-				return false;
-		}
-		foreach($panels as $configure) {
+		if($panels) {
+			foreach($panels as $configure) {
 				ossn_register_menu_item('topbar_admin', array(
 						'name' => OssnTranslit::urlize($configure),
 						'text' => $configure,
 						'parent' => 'configure',
 						'href' => ossn_site_url("administrator/component/{$configure}")
 				));
+			}
 		}
 }
 
