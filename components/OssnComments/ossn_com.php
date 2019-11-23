@@ -23,7 +23,7 @@ function ossn_comments() {
 				ossn_register_action('post/comment', __OSSN_COMMENTS__ . 'actions/post/comment.php');
 				ossn_register_action('post/entity/comment', __OSSN_COMMENTS__ . 'actions/post/entity/comment.php');
 				ossn_register_action('delete/comment', __OSSN_COMMENTS__ . 'actions/comment/delete.php');
-				ossn_register_action('comment/edit', __OSSN_COMMENTS__ . 'actions/comment/edit.php');	
+				ossn_register_action('comment/edit', __OSSN_COMMENTS__ . 'actions/comment/edit.php');
 				ossn_register_action('comment/embed', __OSSN_COMMENTS__ . 'actions/comment/embed.php');
 		}
 		ossn_add_hook('post', 'comments', 'ossn_post_comments');
@@ -225,20 +225,19 @@ function ossn_comment_menu($name, $type, $params) {
 function ossn_comment_edit_menu($name, $type, $comment) {
 		ossn_unregister_menu('edit', 'comments');
 		$user = ossn_loggedin_user();
-		if(empty($comment['id'])){
-			return false;
-		}
-		$comment = (object)$comment;
-		if(ossn_isLoggedin()) {
-				if(($user->guid == $comment->owner_guid) || $user->canModerate()) {
-						ossn_unregister_menu('edit', 'comments');
-						ossn_register_menu_item('comments', array(
-								'name' => 'edit',
-								'href' => 'javascript:void(0);',
-								'data-guid' => $comment->id,
-								'class' => 'ossn-edit-comment',
-								'text' => ossn_print('edit')
-						));
+		if(!empty($comment['id'])) {
+				$comment = (object) $comment;
+				if(ossn_isLoggedin()) {
+						if(($user->guid == $comment->owner_guid) || $user->canModerate()) {
+								ossn_unregister_menu('edit', 'comments');
+								ossn_register_menu_item('comments', array(
+										'name' => 'edit',
+										'href' => 'javascript:void(0);',
+										'data-guid' => $comment->id,
+										'class' => 'ossn-edit-comment',
+										'text' => ossn_print('edit')
+								));
+						}
 				}
 		}
 }
