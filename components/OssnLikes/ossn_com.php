@@ -41,6 +41,8 @@ function ossn_likes() {
 		ossn_add_hook('notification:view', 'like:annotation', 'ossn_like_annotation');
 		ossn_add_hook('post', 'likes', 'ossn_post_likes');
 		ossn_add_hook('post', 'likes:entity', 'ossn_post_likes_entity');
+		ossn_add_hook('notification:participants', 'like:post', 'ossn_likes_suppress_participants_notifications');
+		ossn_add_hook('notification:participants', 'like:annotation', 'ossn_likes_suppress_participants_notifications');
 }
 /**
  * Add a like menu item in post
@@ -132,7 +134,7 @@ function ossn_user_likes_delete($name, $type, $entity) {
  */
 function ossn_comment_like_delete($name, $type, $params) {
 		$delete = new OssnLikes;
-		if(!isset($params['comment'])) {
+		if(isset($params['comment'])) {
 				$delete->deleteLikes($params['comment'], 'annotation');
 				if(isset($params['annotation'])) {
 						$delete->deleteLikes($params['annotation'], 'annotation');
@@ -207,6 +209,17 @@ function ossn_post_likes($hook, $type, $return, $params) {
  */
 function ossn_post_likes_entity($h, $t, $r, $p) {
 		return ossn_plugin_view('likes/post/likes_entity', $p);
+}
+
+/**
+ * Don't create participants notification records on likes
+ *
+ * @return false;
+ * @access private
+ */
+function ossn_likes_suppress_participants_notifications($h, $t, $r, $p) {
+	$notifyParticipants = false;
+	return $notifyParticipants;
 }
 
 /**
