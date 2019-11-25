@@ -91,39 +91,37 @@ class OssnNotifications extends OssnDatabase {
 								time()
 						);
 						
-						if($this->insert($params)) {
+						if($this->insert($params) && ossn_call_hook('notification:participants', $this->notification['type'], NULL, true)) {
 								//notify participates
 								//Notification sent to wrong User #1530
-								if($type !== 'like:post' && $type !== 'like:annotation') {
-										$paricipates = $this->get_comments_participates($subject_guid);
-										if($paricipates) {
-												foreach($paricipates as $partcipate) {
-														$params['into']   = 'ossn_notifications';
-														$params['names']  = array(
-																'type',
-																'poster_guid',
-																'owner_guid',
-																'subject_guid',
-																'item_guid',
-																'time_created'
-														);
-														$params['values'] = array(
-																$this->notification['type'],
-																$this->notification['poster_guid'],
-																$partcipate,
-																$this->notification['subject_guid'],
-																$this->notification['item_guid'],
-																time()
-														);
-														if($partcipate !== $poster_guid) {
-																if($this->insert($params)) {
-																		unset($callback['owner_guid']);
-																		$callback['owner_guid'] = $partcipate;
-																		ossn_trigger_callback('notification', 'add:participates', $callback);
-																}
-														}
-												}
-										}
+								$paricipates = $this->get_comments_participates($params['values']);
+								if($paricipates) {
+											foreach($paricipates as $partcipate) {
+													$params['into']   = 'ossn_notifications';
+													$params['names']  = array(
+															'type',
+															'poster_guid',
+															'owner_guid',
+															'subject_guid',
+															'item_guid',
+															'time_created'
+													);
+													$params['values'] = array(
+															$this->notification['type'],
+															$this->notification['poster_guid'],
+															$partcipate,
+															$this->notification['subject_guid'],
+															$this->notification['item_guid'],
+															time()
+													);
+													if($partcipate !== $poster_guid) {
+															if($this->insert($params)) {
+																	unset($callback['owner_guid']);
+																	$callback['owner_guid'] = $partcipate;
+																	ossn_trigger_callback('notification', 'add:participates', $callback);
+															}
+													}
+											}
 								}
 								ossn_trigger_callback('notification', 'add', $callback);
 								return true;
@@ -139,13 +137,13 @@ class OssnNotifications extends OssnDatabase {
 		 *
 		 * @return array;
 		 */
-		public function get_comments_participates($subject_guid = '') {
-				if(empty($subject_guid)) {
+		public function get_comments_participates($params) {
+				if(empty($params[3])) {
 						return false;
 				}
 				$users        = $this->searchNotifications(array(
-						'type' => 'comments:post',
-						'subject_guid' => $subject_guid,
+						'type' => $params[0],
+						'subject_guid' => $params[3],
 						'page_limit' => false
 				));
 				$participates = array();
