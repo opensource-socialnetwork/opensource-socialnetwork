@@ -26,6 +26,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK V5.2
 * Notification sent to wrong User #1530 [Thanks to Johannes https://www.opensource-socialnetwork.org/u/Yasu79 for helping to debug the issue]
 * Added new hook 'notification:participants' #1531
 * Added 2 hooks to prevent creation of participants notification records #1532
+* Added 2 hooks to change a quality of image saved/created 'ossn', 'image:save:quality' and ossn', 'image:resize:quality'
 
 OSSN - OPEN SOURCE SOCIAL NETWORK V5.1 
 * Fix bug if 'reposition' was clicked, but image not dragged #1415
