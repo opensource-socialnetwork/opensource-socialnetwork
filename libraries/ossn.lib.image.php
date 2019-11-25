@@ -223,9 +223,12 @@ function ossn_resize_image($input_name, $maxwidth, $maxheight, $square = FALSE, 
         return false;
     }
 
+    //quality set 
+    $imagejpeg_quality = ossn_call_hook('ossn', 'image:resize:quality', false, 90);
+	
     // grab a compressed jpeg version of the image
     ob_start();
-    imagejpeg($new_image, null, 90);
+    imagejpeg($new_image, null, $imagejpeg_quality);
     $jpeg = ob_get_clean();
 
     imagedestroy($new_image);
@@ -241,15 +244,16 @@ function ossn_resize_image($input_name, $maxwidth, $maxheight, $square = FALSE, 
  */
 function ossn_save_image($file, $destination) {
     $info = getimagesize($file);
-    if ($info['mime'] == 'image/jpeg')
+    $image_quality = ossn_call_hook('ossn', 'image:save:quality', false, 90);
+	
+    if($info['mime'] == 'image/jpeg'){
         $image = imagecreatefromjpeg($file);
-
-    elseif ($info['mime'] == 'image/gif')
+    } elseif($info['mime'] == 'image/gif'){
         $image = imagecreatefromgif($file);
-
-    elseif ($info['mime'] == 'image/png')
-        $image = imagecreatefrompng($file);
-    imagejpeg($image, $destination, 90);
+    } elseif ($info['mime'] == 'image/png'){
+         $image = imagecreatefrompng($file);
+    }
+    imagejpeg($image, $destination, $image_quality);
 }
 
 /**
