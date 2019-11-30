@@ -251,6 +251,15 @@ a {
 	margin-top: 20%;
 }
 
+.newsfeed-middle-top {
+	display: none;
+	background-color: #fff;
+	box-shadow: inset 0 0 0 1px rgba(144, 144, 144, 0.25);
+	border-radius: 3px;
+	margin-top: 2px;
+	margin-bottom: 4px;
+	padding: 9px;
+}
 
 /*******************************
 	Topbar	
@@ -2470,6 +2479,9 @@ footer .ossn-footer-menu a:last-child::after {
 	.newsfeed-right {
 		display: none;
 	}
+	.newsfeed-middle-top {
+		display: block;
+	}
 	.ossn-messages .message-with .user-icon,
 	.ossn-messages .messages-recent .messages-from .user-item .image {
 		display: none;
@@ -2526,6 +2538,9 @@ footer .ossn-footer-menu a:last-child::after {
      ****************************/
 	.newsfeed-right {
 		display: none;
+	}
+	.newsfeed-middle-top {
+		display: block;
 	}
 	/*******************
      	Messages
