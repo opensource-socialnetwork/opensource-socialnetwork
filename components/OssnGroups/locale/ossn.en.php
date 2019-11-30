@@ -65,6 +65,11 @@ $en = array(
 	'ossn:group:by' => 'By:',
 	
 	'group:deleted' => 'Group and group contents deleted',
-	'group:delete:fail' => 'Group could not be deleted',	
+	'group:delete:fail' => 'Group could not be deleted',
+
+	'group:delete:cover' => 'Delete Cover',
+	'group:delete:cover:error' => 'An error occurred while deleting the cover image',
+	'group:delete:cover:success' => 'The cover image was successfully deleted',
+
 );
 ossn_register_languages('en', $en); 
