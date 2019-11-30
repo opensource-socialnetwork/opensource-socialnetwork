@@ -59,6 +59,7 @@ function ossn_groups() {
 				
 				ossn_register_action('group/cover/upload', __OSSN_GROUPS__ . 'actions/group/cover/upload.php');
 				ossn_register_action('group/cover/reposition', __OSSN_GROUPS__ . 'actions/group/cover/reposition.php');
+				ossn_register_action('group/cover/delete', __OSSN_GROUPS__ . 'actions/group/cover/delete.php');
 		}
 		
 		
