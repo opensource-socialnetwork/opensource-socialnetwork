@@ -33,6 +33,7 @@ $group = $params['group'];
 </select>
 <input type="hidden" name="group" value="<?php echo $group->guid; ?>"/>
 <input type="submit" value="<?php echo ossn_print('save'); ?>" class="btn btn-success"/>
+<a class="btn btn-warning" href="<?php echo ossn_site_url("action/group/cover/delete?guid={$group->guid}", true);?>"><i class="fa fa-trash-o"></i><?php echo ossn_print('group:delete:cover');?></a>
 <?php
 	echo ossn_plugin_view('output/url', array(
 			'text' => ossn_print('delete'),
