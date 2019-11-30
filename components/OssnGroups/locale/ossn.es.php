@@ -65,6 +65,10 @@ $es = array(
 	
 	'group:deleted' => 'Contenido del grupo y grupo eliminado',
 	'group:delete:fail' => 'No se pudo eliminar el grupo',	
+
+	'group:delete:cover' => 'Borrar Portada',	
+	'group:delete:cover:error' => 'Se ha producido un error al eliminar la imagen de portada',
+	'group:delete:cover:success' => 'La imagen de portada se ha eliminado correctamente',
 	
 	//need translation
     'group:memb:make:owner' => 'Make group owner',
