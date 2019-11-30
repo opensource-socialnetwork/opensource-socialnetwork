@@ -27,6 +27,9 @@ OSSN - OPEN SOURCE SOCIAL NETWORK V5.2
 * Added new hook 'notification:participants' #1531
 * Added 2 hooks to prevent creation of participants notification records #1532
 * Added 2 hooks to change a quality of image saved/created 'ossn', 'image:save:quality' and ossn', 'image:resize:quality'
+* Added style 'for newsfeed-middle-top' div #1535
+* Display right sidebar content above newsfeed on mobile devices #1534
+* Provide indentical style for all submenu items of left sidebar #1533
 
 OSSN - OPEN SOURCE SOCIAL NETWORK V5.1 
 * Fix bug if 'reposition' was clicked, but image not dragged #1415
