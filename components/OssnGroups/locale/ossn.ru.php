@@ -64,6 +64,10 @@ $ru = array(
 	'group:deleted' => 'Группа и её содержимое удалены',
 	'group:delete:fail' => 'Группа не может быть удалена',	
 
+	'group:delete:cover' => 'удалить обложку',
+	'group:delete:cover:error' => 'При удалении изображения обложки произошла ошибка',
+	'group:delete:cover:success' => 'Изображение на обложке было успешно удалено',
+
 	//need translation
     'group:memb:make:owner' => 'Make group owner',
     'group:memb:make:owner:confirm' => 'Attention! This action will make >> %s << the new owner of the group and you will lose all of your group admin privileges. Are you sure to proceed?',
