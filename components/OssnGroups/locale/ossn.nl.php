@@ -63,6 +63,11 @@ $nl = array(
 	
 	'group:deleted' => 'Groep en inhoud verwijderen',
 	'group:delete:fail' => 'Groep kon niet worden verwijderd',	
+
+	'group:delete:cover' => 'Coverafbeelding verwijderen',
+	'group:delete:cover:error' => 'Er is een fout opgetreden bij het verwijderen van de coverafbeelding',
+	'group:delete:cover:success' => 'De coverafbeelding is met succes verwijderd',
+	
 	//need translation
     'group:memb:make:owner' => 'Make group owner',
     'group:memb:make:owner:confirm' => 'Attention! This action will make >> %s << the new owner of the group and you will lose all of your group admin privileges. Are you sure to proceed?',
