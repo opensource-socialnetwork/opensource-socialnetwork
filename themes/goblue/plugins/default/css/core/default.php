@@ -1519,7 +1519,7 @@ a {
 	content: "\f067" !important;
 }
 
-.menu-section-item-groups {
+li[class^="menu-section-item-"] {
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
