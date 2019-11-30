@@ -64,6 +64,10 @@ $he = array(
 	'group:deleted' => 'הקבוצה ותוכנה נמחקו',
 	'group:delete:fail' => 'לא ניתן למחוק קבוצה',	
 
+ 	'group:delete:cover' => 'מחק את תמונת הכותרת',
+	'group:delete:cover:error' => 'אירעה שגיאה בעת מחיקת תמונת השער',
+	'group:delete:cover:success' => 'תמונת השער נמחקה בהצלחה',
+	
 	//need translation
     'group:memb:make:owner' => 'Make group owner',
     'group:memb:make:owner:confirm' => 'Attention! This action will make >> %s << the new owner of the group and you will lose all of your group admin privileges. Are you sure to proceed?',
