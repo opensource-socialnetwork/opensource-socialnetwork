@@ -63,6 +63,10 @@ $fr = array(
 	
 	'group:deleted' => 'Groupe et contenu du groupe supprimé',
 	'group:delete:fail' => 'Le groupe ne peut pas être supprimé',	
+
+	'group:delete:cover' => 'Supprimer la photo de couverture',
+	'group:delete:cover:error' => "Une erreur s'est produite lors de la suppression de l'image de couverture",
+	'group:delete:cover:success' => "L'image de couverture a été supprimée avec succès",
 	
 	//need translation
     'group:memb:make:owner' => 'Make group owner',
