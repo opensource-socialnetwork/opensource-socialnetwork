@@ -14,27 +14,27 @@ $en = array(
     'requests' => 'Richieste',
 
     'members' => 'Membri',
-    'member:add:error' => 'Qualcosa è andata storta! Per favore riprova più tardi.',
+    'member:add:error' => 'Qualcosa Ã¨ andata storta! Per favore riprova piÃ¹ tardi.',
     'member:added' => 'Richiesta di iscrizione approvata!',
 
     'member:request:deleted' => 'Richiesta di iscrizione declinata!',
-    'member:request:delete:fail' => 'Impossibile declinare la richiesta di iscrizione! Per favore riprova più tardi.',
+    'member:request:delete:fail' => 'Impossibile declinare la richiesta di iscrizione! Per favore riprova piÃ¹ tardi.',
     'membership:cancel:succes' => 'Richiesta di iscrizione cancellata!',
-    'membership:cancel:fail' => 'Impossibile cancellare la richiesta di iscrizione! Per favore riprova più tardi.',
+    'membership:cancel:fail' => 'Impossibile cancellare la richiesta di iscrizione! Per favore riprova piÃ¹ tardi.',
 
     'group:added' => 'Gruppo creato con successo!',
-    'group:add:fail' => 'Impossibile creare il gruppo! Per favore riprova più tardi.',
+    'group:add:fail' => 'Impossibile creare il gruppo! Per favore riprova piÃ¹ tardi.',
 
     'memebership:sent' => 'Richiesta inviata con successo!',
-    'memebership:sent:fail' => 'Impossibile inviare la richiesta! Per favore riprova più tardi.',
+    'memebership:sent:fail' => 'Impossibile inviare la richiesta! Per favore riprova piÃ¹ tardi.',
 
-    'group:updated' => 'Il gruppo è stato aggiornato!',
-    'group:update:fail' => 'Impossibile aggiornare il gruppo! Per favore riprova più tardi.',
+    'group:updated' => 'Il gruppo Ã¨ stato aggiornato!',
+    'group:update:fail' => 'Impossibile aggiornare il gruppo! Per favore riprova piÃ¹ tardi.',
 
     'group:name' => 'Nome Gruppo',
     'group:desc' => 'Descrizione Gruppo',
-    'privacy:group:public' => 'Chiunque può vedere questo gruppo ed i suoi messaggi. Solo i membri possono pubblicare in questo gruppo.',
-    'privacy:group:close' => 'Chiunque può vedere questo gruppo. Solo i membri del gruppo possono pubblicare e vedere i posts.',
+    'privacy:group:public' => 'Chiunque puÃ² vedere questo gruppo ed i suoi messaggi. Solo i membri possono pubblicare in questo gruppo.',
+    'privacy:group:close' => 'Chiunque puÃ² vedere questo gruppo. Solo i membri del gruppo possono pubblicare e vedere i posts.',
 
     'group:memb:remove' => 'Rimuovi',
     'leave:group' => 'Abbandona gruppo',
@@ -62,7 +62,12 @@ $en = array(
 	'ossn:group:by' => 'By:',
 	
 	'group:deleted' => 'Gruppo e contenuti del gruppo cancellati',
-	'group:delete:fail' => 'Il gruppo non può essere cancellato.',	
+	'group:delete:fail' => 'Il gruppo non puÃ² essere cancellato.',	
+
+	'group:delete:cover' => 'Cancella cover',
+	'group:delete:cover:error' => "Si Ã¨ verificato un errore durante l'eliminazione dell'immagine di copertina",
+	'group:delete:cover:success' => "L'immagine di copertina Ã¨ stata eliminata con successo",
+	
 	//need translation
     'group:memb:make:owner' => 'Make group owner',
     'group:memb:make:owner:confirm' => 'Attention! This action will make >> %s << the new owner of the group and you will lose all of your group admin privileges. Are you sure to proceed?',
