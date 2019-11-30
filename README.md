@@ -42,9 +42,10 @@ Front-End Features
 * Tag friends in posts
 * User block system
 * User poke system
-* Ajax Comments
-* Ajax Likes
-* Ajax Photos in comments
+* Comments
+* Likes
+* Reactions
+* Photos in comments.
 * Group cover photos
 * Repostion Profile/Group cover
 * Notifications
