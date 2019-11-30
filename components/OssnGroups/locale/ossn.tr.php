@@ -64,6 +64,10 @@ $tr = array(
 	'group:deleted' => 'Grup silindi',
 	'group:delete:fail' => 'Grup silinemedi',	
 
+	'group:delete:cover' => 'Kapak resmi sil',
+	'group:delete:cover:error' => 'Kapak resmi başarıyla silindi',
+	'group:delete:cover:success' => 'Kapak resmi silinirken bir hata oluştu',
+
 	//need translation
     'group:memb:make:owner' => 'Make group owner',
     'group:memb:make:owner:confirm' => 'Attention! This action will make >> %s << the new owner of the group and you will lose all of your group admin privileges. Are you sure to proceed?',
