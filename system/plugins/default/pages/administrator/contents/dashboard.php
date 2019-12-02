@@ -12,14 +12,14 @@
  ossn_load_external_js('chart.legend.js', 'admin');
  
  $users = new OssnUser;
- $total = array(
-				$users->countByGender(),
-				$users->countByGender('female')
-				);
- $online = array(
-				 $users->onlineByGender('male', true),
-				 $users->onlineByGender('female', true)
- );
+ $genders = $users->getGenders();
+
+ $total = array();
+ $online = array();
+ foreach($genders as $gender) {
+		$total[]	= $users->countByGender($gender);
+		$online[]	= $users->onlineByGender($gender, true);
+ }
  foreach($total as $k => $t){
 		if($t === false){
 			$total[$k] = 0;	
@@ -166,5 +166,5 @@
 
 
 <?php echo ossn_plugin_view('javascripts/dynamic/admin/dashboard/users/users'); ?>
-<?php echo ossn_plugin_view('javascripts/dynamic/admin/dashboard/users/classfied', array('total' => $total)); ?>
-<?php echo ossn_plugin_view('javascripts/dynamic/admin/dashboard/users/online/classfied', array('total' => $online)); ?>
+<?php echo ossn_plugin_view('javascripts/dynamic/admin/dashboard/users/classfied', array('genders' => $genders, 'total' => $total)); ?>
+<?php echo ossn_plugin_view('javascripts/dynamic/admin/dashboard/users/online/classfied', array('genders' => $genders, 'total' => $online)); ?>
