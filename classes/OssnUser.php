@@ -1032,6 +1032,30 @@ class OssnUser extends OssnEntities {
 				}
 				return false;
 		}
+ 		/**
+		 * List existing Genders
+ 		 *
+		 * @return array
+ 		 * @access public
+ 		 */
+		public function getGenders() {
+				$params = array();
+				$wheres = array();
+
+				$params['params']  = array("DISTINCT value");
+				$params['from']    = "ossn_entities_metadata";
+				$wheres[]          = "guid IN (SELECT DISTINCT guid FROM ossn_entities WHERE subtype='gender')";
+				$params["wheres"]  = array(
+									$this->constructWheres($wheres)
+				);
+				$data              = $this->select($params, true);
+				$data              = json_decode(json_encode($data), true);
+				$data              = new RecursiveIteratorIterator(new RecursiveArrayIterator($data));
+
+				$genders           = iterator_to_array($data, false);
+	
+				return $genders;
+		}
 		/**
 		 * Gender types
 		 *
@@ -1039,10 +1063,7 @@ class OssnUser extends OssnEntities {
 		 * @access public
 		 */
 		public function genderTypes() {
-				$gender = array(
-						'male',
-						'female'
-				);
+				$gender                = $this->getGenders();
 				return ossn_call_hook('user', 'gender:types', $this, $gender);
 		}
 		/**
