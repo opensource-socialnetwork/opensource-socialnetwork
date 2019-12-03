@@ -287,6 +287,8 @@ $he = array(
 	'ossn:premium' => 'גרסה בתשלום',
 	'datepicker:days' => "א, ב, ג, ד, ה, ו, ש",
 	'datepicker:months' => "ינואר, פברואר, מרץ, אפריל, מאי, יוני, יולי, אוגוסט, ספטמבר, אוקטובר, נובמבר, דצמבר",
+	'male:gendercolor' => '#01ADEF',
+	'female:gendercolor' => '#ED008C',
 	/*
 	 * List of ISO 639-1 language codes
 	 * http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
