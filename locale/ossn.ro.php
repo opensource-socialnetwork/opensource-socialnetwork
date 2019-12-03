@@ -288,6 +288,8 @@ Te rugam sa click pe linkul de mai jos ca sa iti resetezi parola sau copy si pas
 	'ossn:premium' => 'Versiune Premium',
 	'datepicker:days' => "Du, Lu, Ma, Mi, Jo, Vi, Sa",
 	'datepicker:months' => "Ian., Feb., Mar., Apr., Mai, Iunie, Iulie, Aug., Sep., Oct., Noi., Dec.",
+	'male:gendercolor' => '#01ADEF',
+	'female:gendercolor' => '#ED008C',
 	/*
 	 * List of ISO 639-1 language codes
 	 * http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
