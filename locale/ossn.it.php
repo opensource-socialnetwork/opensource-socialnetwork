@@ -288,6 +288,8 @@ Per favore premi sul collegamento sottostante per reimpostare la tua password op
 	'ossn:premium' => 'Premium Version',
 	'datepicker:days' => "Su, Mo, Tu, We, Th, Fr, Sa",
 	'datepicker:months' => "Jan., Feb., Mar., Apr., May, June, July, Aug., Sep., Oct., Nov., Dec.",
+	'male:gendercolor' => '#01ADEF',
+	'female:gendercolor' => '#ED008C',
 	/*
 	 * List of ISO 639-1 language codes
 	 * http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
