@@ -26,7 +26,7 @@ if ($friends) {
 }
 ?>
 <li id="ossn-notif-friends">
-    <a onClick="Ossn.NotificationFriendsShow(this);" class="ossn-notifications-friends" href="javascript:void(0);">
+    <a onClick="Ossn.NotificationFriendsShow(this);" class="ossn-notifications-friends" href="javascript:void(0);" role="button" data-toggle="dropdown">
                        <span>
                       <?php if ($friends_c > 0) { ?>
                           <span class="ossn-notification-container"><?php echo $friends_c; ?></span>
