@@ -295,7 +295,8 @@ Klik op de link hieronder om je wachtwoord te resetten:
 	 /*Datepicker*/
 	'datepicker:days' => "Zo, Ma, Di, Wo, Do, Vr, Za",
 	'datepicker:months' => "Jan., Feb., Mar., Apr., Mei, Juni, Juli, Aug., Sep., Okt., Nov., Dec.",
-	 
+	'male:gendercolor' => '#01ADEF',
+	'female:gendercolor' => '#ED008C',
 	/*
 	 * List of ISO 639-1 language codes
 	 * http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
