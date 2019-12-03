@@ -288,6 +288,8 @@ $ru = array(
 	'ossn:premium' => 'Премиальная версия',
 	'datepicker:days' => "Вс, Пн, Вт, Ср, Чт, Пт, Сб",
 	'datepicker:months' => "Янв., Фев., Мар., Апр., Май, Июнь, Июль, Авг., Сеп., Окт., Ноя., Дек.",
+	'male:gendercolor' => '#01ADEF',
+	'female:gendercolor' => '#ED008C',
 	/*
 	 * List of ISO 639-1 language codes
 	 * http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
