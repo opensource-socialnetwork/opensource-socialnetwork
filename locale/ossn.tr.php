@@ -290,6 +290,8 @@ Bağlantı çalışmıyorsa kopyalayıp adres çubuğuna yapıştırarak deneyeb
 	'ossn:premium' => 'Ücretli Sürüm',
 	'datepicker:days' => "Pazar, Pazartesi, Salı, Çarşamba, Perşembe, Cuma, Cumartesi",
 	'datepicker:months' => "Ocak, Şubat, Mart, Nisan, Mayıs, Haziran, Temmuz, Ağustos, Eylül, Ekim, Kasım, Aralık",
+	'male:gendercolor' => '#01ADEF',
+	'female:gendercolor' => '#ED008C',
 	/*
 	 * List of ISO 639-1 language codes
 	 * http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
