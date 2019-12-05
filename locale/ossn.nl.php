@@ -297,6 +297,8 @@ Klik op de link hieronder om je wachtwoord te resetten:
 	'datepicker:months' => "Jan., Feb., Mar., Apr., Mei, Juni, Juli, Aug., Sep., Okt., Nov., Dec.",
 	'male:gendercolor' => '#01ADEF',
 	'female:gendercolor' => '#ED008C',
+	'ossn:admin:settings:off' => 'uitgeschakeld',
+	'ossn:admin:settings:on' => 'ingeschakeld',
 	/*
 	 * List of ISO 639-1 language codes
 	 * http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
