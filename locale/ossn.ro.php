@@ -290,6 +290,8 @@ Te rugam sa click pe linkul de mai jos ca sa iti resetezi parola sau copy si pas
 	'datepicker:months' => "Ian., Feb., Mar., Apr., Mai, Iunie, Iulie, Aug., Sep., Oct., Noi., Dec.",
 	'male:gendercolor' => '#01ADEF',
 	'female:gendercolor' => '#ED008C',
+	'ossn:admin:settings:off' => 'oprit',
+	'ossn:admin:settings:on' => 'pornit',
 	/*
 	 * List of ISO 639-1 language codes
 	 * http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
