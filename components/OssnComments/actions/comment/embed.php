@@ -18,3 +18,4 @@ echo json_encode(array(
             "data" => $embed,
             "process" => 1
 ));
+exit;
