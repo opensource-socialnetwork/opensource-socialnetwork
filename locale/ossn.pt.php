@@ -290,6 +290,8 @@ Por favor, clique no link abaixo para redefinir a senha ou copie o link e cole n
 	'datepicker:months' => "Jan., Feb., Mar., Apr., May, June, July, Aug., Sep., Oct., Nov., Dec.",	
 	'male:gendercolor' => '#01ADEF',
 	'female:gendercolor' => '#ED008C',
+	'ossn:admin:settings:off' => 'desativado',
+	'ossn:admin:settings:on' => 'activado',
 	/*
 	 * List of ISO 639-1 language codes
 	 * http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
