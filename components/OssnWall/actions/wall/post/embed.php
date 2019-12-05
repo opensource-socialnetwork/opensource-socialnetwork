@@ -117,3 +117,4 @@ echo json_encode(array(
 	"preview_state" => $preview_state,
 	"preview" => $preview_html
 ));
+exit;
