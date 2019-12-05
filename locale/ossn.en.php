@@ -290,6 +290,8 @@ Please click the link below to reset password or copy the link and paste into yo
 	'datepicker:months' => "Jan., Feb., Mar., Apr., May, June, July, Aug., Sep., Oct., Nov., Dec.",
 	'male:gendercolor' => '#01ADEF',
 	'female:gendercolor' => '#ED008C',
+	'ossn:admin:settings:off' => 'disabled',
+	'ossn:admin:settings:on' => 'enabled',
 	/*
 	 * List of ISO 639-1 language codes
 	 * http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
