@@ -290,6 +290,8 @@ Um Dein Passwort zurückzusetzen klicke bitte auf den folgenden Link oder kopier
 	'datepicker:months' => "Jan., Feb., März, Apr., Mai, Juni, Juli, Aug., Sept., Okt., Nov., Dez.",
 	'male:gendercolor' => '#01ADEF',
 	'female:gendercolor' => '#ED008C',
+	'ossn:admin:settings:off' => 'ausgeschaltet',
+	'ossn:admin:settings:on' => 'eingeschaltet',
 	/*
        * List of ISO 639-1 language codes
        * http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
