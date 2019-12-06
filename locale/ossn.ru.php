@@ -292,6 +292,8 @@ $ru = array(
 	'female:gendercolor' => '#ED008C',
 	'ossn:admin:settings:off' => 'выключить',
 	'ossn:admin:settings:on' => 'включить',
+	'ossn:admin:settings:saved' => 'Настройки сохранены!',
+	'ossn:admin:settings:save:error' => 'Не получилось сохранить настройки! Пожалуйста, проверьте ваш файл error_log.',
 	/*
 	 * List of ISO 639-1 language codes
 	 * http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
