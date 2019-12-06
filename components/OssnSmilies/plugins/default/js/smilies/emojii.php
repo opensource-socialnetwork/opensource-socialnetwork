@@ -57,10 +57,10 @@ Ossn.RegisterStartupFunction(function() {
 		// add emojis to container above
 		$.each(EmojiiArray, function(key, data) {
 			firstele = data[0];
-			$('.emojii-container').find('.nav-tabs').append("<li class='ossn-emojii-tab' data-type='" + key + "'><a href='javascript:void(0);'>&#x" + firstele + ";</a></li>");
+			$('.emojii-container').find('.nav-tabs').append("<li class='ossn-emojii-tab' data-type='" + key + "'><a class='emojii' href='javascript:void(0);'>&#x" + firstele + ";</a></li>");
 			$('.emojii-container').append("<div class='emojii-list emojii-list-" + key + "'></div>");
 			$.each(data, function(k, d) {
-				$('.emojii-list-' + key).append("<li data-val='" + d + "'>&#x" + d + ";</li>");
+				$('.emojii-list-' + key).append("<li class='emojii' data-val='" + d + "'>&#x" + d + ";</li>");
 			});
 		});
 
@@ -175,9 +175,6 @@ Ossn.RegisterStartupFunction(function() {
 
 			// TODO: to avoid too many anchor comparisons here, the classification of editor managed textareas should 
 			// be the same all over Ossn in the future
-
-			$('#master-moji-anchor').val('');
-			$('#master-moji .emojii-container-main').hide();
 		});
 	});
 });
