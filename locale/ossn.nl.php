@@ -299,6 +299,8 @@ Klik op de link hieronder om je wachtwoord te resetten:
 	'female:gendercolor' => '#ED008C',
 	'ossn:admin:settings:off' => 'uitgeschakeld',
 	'ossn:admin:settings:on' => 'ingeschakeld',
+	'ossn:admin:settings:saved' => 'Instellingen opgeslagen!',
+	'ossn:admin:settings:save:error' => 'Kon instellingen niet opslaan! Controleer uw error_log-bestand.',
 	/*
 	 * List of ISO 639-1 language codes
 	 * http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
