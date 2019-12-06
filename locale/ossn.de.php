@@ -292,6 +292,8 @@ Um Dein Passwort zurückzusetzen klicke bitte auf den folgenden Link oder kopier
 	'female:gendercolor' => '#ED008C',
 	'ossn:admin:settings:off' => 'ausgeschaltet',
 	'ossn:admin:settings:on' => 'eingeschaltet',
+	'ossn:admin:settings:saved' => 'Die Einstellungen wurden gespeichert!',
+	'ossn:admin:settings:save:error' => 'Die Einstellungen konnten nicht gespeichert werden! Bitte überprüfe die error_log Datei.',
 	/*
        * List of ISO 639-1 language codes
        * http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
