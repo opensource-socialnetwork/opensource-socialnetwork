@@ -292,6 +292,8 @@ Por favor, clique no link abaixo para redefinir a senha ou copie o link e cole n
 	'female:gendercolor' => '#ED008C',
 	'ossn:admin:settings:off' => 'desativado',
 	'ossn:admin:settings:on' => 'activado',
+	'ossn:admin:settings:saved' => 'Configurações salvas!',
+	'ossn:admin:settings:save:error' => 'Não foi possível salvar as configurações! Por favor verifique o seu ficheiro error_log.',
 	/*
 	 * List of ISO 639-1 language codes
 	 * http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
