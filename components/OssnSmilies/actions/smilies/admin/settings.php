@@ -9,18 +9,17 @@
  * @link      https://www.opensource-socialnetwork.org/
  */
 $component = new OssnComponents;
-$mode  = input('compatibility_mode');
 $modes = array(
 		'off',
 		'on'
 );
-if(!in_array($mode, $modes)) {
-		ossn_trigger_message(ossn_print('ossn:smilies:admin:settings:save:error'), 'error');
+$compat_mode     = input('compatibility_mode');
+$close_anywhere  = input('close_anywhere');
+if(in_array($compat_mode, $modes) && in_array($close_anywhere, $modes)) {
+	if($component->setSettings('OssnSmilies', array('compatibility_mode' => $compat_mode, 'close_anywhere' => $close_anywhere))) {
+		ossn_trigger_message(ossn_print('ossn:admin:settings:saved'));
 		redirect(REF);
+	}
 }
-if($component->setSettings('OssnSmilies', array('compatibility_mode' => $mode))) {
-		ossn_trigger_message(ossn_print('ossn:smilies:admin:settings:saved'));
-} else {
-		ossn_trigger_message(ossn_print('ossn:smilies:admin:settings:save:error'), 'error');
-}
+ossn_trigger_message(ossn_print('ossn:admin:settings:save:error'), 'error');
 redirect(REF);
