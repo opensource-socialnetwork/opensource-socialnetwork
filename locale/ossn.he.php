@@ -291,6 +291,8 @@ $he = array(
 	'female:gendercolor' => '#ED008C',
 	'ossn:admin:settings:off' => 'לא פעיל',
 	'ossn:admin:settings:on' => 'פעיל',
+	'ossn:admin:settings:saved' => 'הגדרות נשמרו!',
+	'ossn:admin:settings:save:error' => 'לא ניתן לשמור הגדרות, אנא בדוק את קובץ ה- error_log שלך.',
 	/*
 	 * List of ISO 639-1 language codes
 	 * http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
