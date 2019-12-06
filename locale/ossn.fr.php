@@ -290,7 +290,11 @@ S'il vous plaît cliquez sur le lien ci-dessous pour réinitialiser le mot de pa
 	'datepicker:months' => "Janv., Févr., Mars, Avril, Mai, Juin, Juil., Août, Sept., Oct., Nov., Déc.",
 	'male:gendercolor' => '#01ADEF',
 	'female:gendercolor' => '#ED008C',
-    /*
+	'ossn:admin:settings:off' => 'désactivé',
+	'ossn:admin:settings:on' => 'activée',
+  	'ossn:admin:settings:saved' => 'Paramètres enregistrés!',
+	'ossn:admin:settings:save:error' => 'Vous ne pouvez pas enregistrer les paramètres! Veuillez vérifier votre fichier error_log.',
+  	/*
        * List of ISO 639-1 language codes
        * http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
        */
