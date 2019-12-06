@@ -292,6 +292,10 @@ Bağlantı çalışmıyorsa kopyalayıp adres çubuğuna yapıştırarak deneyeb
 	'datepicker:months' => "Ocak, Şubat, Mart, Nisan, Mayıs, Haziran, Temmuz, Ağustos, Eylül, Ekim, Kasım, Aralık",
 	'male:gendercolor' => '#01ADEF',
 	'female:gendercolor' => '#ED008C',
+	'ossn:admin:settings:off' => 'kapalı',
+	'ossn:admin:settings:on' => 'açık',
+	'ossn:admin:settings:saved' => 'Ayarlar kaydedildi!',
+	'ossn:admin:settings:save:error' => 'Ayarlar kaydedilemedi! Lütfen error_log dosyanızı kontrol edin.',
 	/*
 	 * List of ISO 639-1 language codes
 	 * http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
