@@ -292,6 +292,8 @@ Te rugam sa click pe linkul de mai jos ca sa iti resetezi parola sau copy si pas
 	'female:gendercolor' => '#ED008C',
 	'ossn:admin:settings:off' => 'oprit',
 	'ossn:admin:settings:on' => 'pornit',
+	'ossn:admin:settings:saved' => 'Setingurile au fost salvate!',
+	'ossn:admin:settings:save:error' => 'Setarile nu pot fii salvate! Verificați fișierul dvs error_log.',
 	/*
 	 * List of ISO 639-1 language codes
 	 * http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
