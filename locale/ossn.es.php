@@ -294,6 +294,8 @@ Haga clic en el enlace de abajo para restablecer la contraseña o copie y pegue 
 	'female:gendercolor' => '#ED008C',
 	'ossn:admin:settings:off' => 'desactivado',
 	'ossn:admin:settings:on' => 'activado',
+	'ossn:admin:settings:saved' => '¡Ajustes guardados!',
+	'ossn:admin:settings:save:error' => '¡No se puede guardar la configuración! Por favor, compruebe su archivo error_log.',
 	/*
 	 * List of ISO 639-1 language codes
 	 * http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
