@@ -12,6 +12,7 @@
  */
 
 $es = array(
+	'ossnnotifications' => 'Notificaciones',
     'ossn:notifications:comments:post' => "%s comentó en el post.",
     'ossn:notifications:like:post' => "%s me ha gustado tu publicación.",
     'ossn:notifications:like:annotation' => "%s me gustó tu comentario",
@@ -38,5 +39,7 @@ $es = array(
     'ossn:notification:mark:read:error' => 'No se puede marcar todo como leído',
     
     'ossn:notifications:mark:as:read' => 'Marcar todo como leido',
+	'ossn:notifications:admin:settings:close_anywhere:title' => 'Cierre las ventanas de notificación haciendo clic en cualquier lugar',
+	'ossn:notifications:admin:settings:close_anywhere:note' => '<i class="fa fa-info-circle"></i> cierra cualquier ventana de notificación haciendo clic en cualquier lugar de la página<br><br>',
 );
 ossn_register_languages('es', $es); 
