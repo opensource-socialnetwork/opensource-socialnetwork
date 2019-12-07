@@ -10,6 +10,7 @@
  */
 
 $fr = array(
+	'ossnnotifications' => 'Notifications',
     'ossn:notifications:comments:post' => "%s a commenté le message.",
     'ossn:notifications:like:post' => "%s aime votre message.",
     'ossn:notifications:like:annotation' => "%s aime votre commentaire.",
@@ -36,5 +37,7 @@ $fr = array(
 	'ossn:notification:mark:read:error' => 'Ne peut pas les marquer toutes lues',
 
     'ossn:notifications:mark:as:read' => 'Marquer toutes lues',		
+	'ossn:notifications:admin:settings:close_anywhere:title' => "Fermez les fenêtres de notification en cliquant n'importe où",
+	'ossn:notifications:admin:settings:close_anywhere:note' => "<i class='fa fa-info-circle'></i> ferme toute fenêtre de notification en cliquant n'importe où sur la page<br><br>",
 );
 ossn_register_languages('fr', $fr);
