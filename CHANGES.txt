@@ -30,6 +30,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK V5.2
 * Added style 'for newsfeed-middle-top' div #1535
 * Display right sidebar content above newsfeed on mobile devices #1534
 * Provide indentical style for all submenu items of left sidebar #1533
+* Added Greek language thanks to Rafail (https://www.opensource-socialnetwork.org/u/RafailStratiotis)
 
 OSSN - OPEN SOURCE SOCIAL NETWORK V5.1 
 * Fix bug if 'reposition' was clicked, but image not dragged #1415
