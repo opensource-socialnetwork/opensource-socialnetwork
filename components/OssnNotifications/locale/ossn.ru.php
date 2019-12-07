@@ -10,6 +10,7 @@
  */
 
 $ru = array(
+	'ossnnotifications' => 'Уведомления',
     'ossn:notifications:comments:post' => "%s оставил комментарий к записи.",
     'ossn:notifications:like:post' => "%s полюбил вашу запись.",
     'ossn:notifications:like:annotation' => "%s полюбил ваш комментарий.",
@@ -36,5 +37,7 @@ $ru = array(
     'ossn:notification:mark:read:error' => 'Не получилось отметить как прочитаные',
     
     'ossn:notifications:mark:as:read' => 'Отметить всё как прочитаные',
+	'ossn:notifications:admin:settings:close_anywhere:title' => 'Закройте окна уведомлений, щелкнув в любом месте',
+	'ossn:notifications:admin:settings:close_anywhere:note' => '<i class="fa fa-info-circle"></i> закрывает любое окно уведомлений, нажимая в любом месте на странице<br><br>',
 );
 ossn_register_languages('ru', $ru); 
