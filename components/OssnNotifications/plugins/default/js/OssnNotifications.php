@@ -262,12 +262,3 @@ Ossn.RegisterStartupFunction(function() {
 		});
     });
 });
-//https://www.opensource-socialnetwork.org/component/view/3691/the-closer
-$(document).ready(function() {
-	$(document).click(function() {
-		// notification window
-		Ossn.NotificationBoxClose();
-		$('.ossn-notifications-notification').attr('onClick', 'Ossn.NotificationShow(this)');
-		// add code for other elements you want to close here ...
-	});
-});
