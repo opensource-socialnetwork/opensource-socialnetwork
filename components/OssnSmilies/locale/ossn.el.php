@@ -19,5 +19,7 @@ $el = array(
 		<br></i>',
 		'ossn:smilies:admin:settings:close_anywhere:title' => 'Smiley box closing by clicking anywhere',
 		'ossn:smilies:admin:settings:close_anywhere:note' => '<i class="fa fa-info-circle"></i> closes the smiley selector box by clicking anywhere on the page<br><br>',
+		'ossn:smilies:admin:settings:closeanywhere:title' => 'Κλείσιμο πλαισίου κάνοντας κλικ οπουδήποτε',
+		'ossn:smilies:admin:settings:closeanywhere:note' => '<i class="fa fa-info-circle"></i> Κλείνει το πλαίσιο επιλογής smiley κάνοντας κλικ οπουδήποτε στη σελίδα.<br><br>',		
 );
 ossn_register_languages('el', $el);
