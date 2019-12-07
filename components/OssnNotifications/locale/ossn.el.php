@@ -10,6 +10,7 @@
  */
 
 $el = array(
+	'ossnnotifications' => 'Ειδοποιήσεις',
     'ossn:notifications:comments:post' => "%s σχολίασε τη δημοσίευση.",
     'ossn:notifications:like:post' => "%s άρεσε η δημοσίευση σας.",
     'ossn:notifications:like:annotation' => "%s άρεσε το σχόλιό σας.",
@@ -36,5 +37,7 @@ $el = array(
     'ossn:notification:mark:read:error' => 'Δεν είναι δυνατή η επισήμανση όλων ως αναγνωσμένων',
     
     'ossn:notifications:mark:as:read' => 'Σημειώστε όλα ως αναγνωσμένα',
+	'ossn:notifications:admin:settings:close_anywhere:title' => 'Κλείστε τα παράθυρα ειδοποιήσεων κάνοντας κλικ οπουδήποτε',
+	'ossn:notifications:admin:settings:close_anywhere:note' => '<i class="fa fa-info-circle"></i> κλείνει οποιοδήποτε παράθυρο ειδοποίησης κάνοντας κλικ οπουδήποτε στη σελίδα<br><br>',
 );
 ossn_register_languages('el', $el); 
