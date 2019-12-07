@@ -22,6 +22,7 @@ function ossn_notifications() {
 		ossn_extend_view('css/ossn.default', 'css/notifications');
 		//js
 		ossn_extend_view('js/opensource.socialnetwork', 'js/OssnNotifications');
+		ossn_extend_view('ossn/site/head', 'js/notifications-settings');
 		
 		//pages
 		ossn_register_page('notification', 'ossn_notification_page');
@@ -49,6 +50,10 @@ function ossn_notifications() {
 		if(ossn_isLoggedin()) {
 				ossn_extend_view('ossn/js/head', 'notifications/js/autocheck');
 				ossn_register_action('notification/mark/allread', __OSSN_NOTIF__ . 'actions/markread.php');
+				if(ossn_isAdminLoggedin()) {
+						ossn_register_action('notifications/admin/settings', __OSSN_NOTIF__ . 'actions/notifications/admin/settings.php');
+						ossn_register_com_panel('OssnNotifications', 'settings');
+				}
 		}
 		ossn_register_sections_menu('newsfeed', array(
 				'name' => 'notifications',
