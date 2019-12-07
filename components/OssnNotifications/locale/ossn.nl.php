@@ -9,6 +9,7 @@
  * @link      https://www.opensource-socialnetwork.org/
  */
 $nl = array(
+	'ossnnotifications' => 'Notificaties',
     'ossn:notifications:comments:post' => "%s heeft gereageerd op je post.",
     'ossn:notifications:like:post' => "%s vind je post leukt.",
     'ossn:notifications:like:annotation' => "%s vind je reactie leuk.",
@@ -34,5 +35,7 @@ $nl = array(
     'ossn:notification:mark:read:error' => 'Kon niet alle als gelezen markeren',
     
     'ossn:notifications:mark:as:read' => 'Markeer alle als gelezen',
+	'ossn:notifications:admin:settings:close_anywhere:title' => 'Sluit meldingsvensters door ergens te klikken',
+	'ossn:notifications:admin:settings:close_anywhere:note' => '<i class="fa fa-info-circle"></i> sluit elk meldingsvenster door ergens op de pagina te klikken<br><br>',
 );
 ossn_register_languages('nl', $nl); 
