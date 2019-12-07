@@ -10,6 +10,7 @@
  */
 
 $tr = array(
+	'ossnnotifications' => 'Bildirimler',
     'ossn:notifications:comments:post' => "%s gönderine yorum yaptı.",
     'ossn:notifications:like:post' => "%s gönderini beğendi.",
     'ossn:notifications:like:annotation' => "%s yorumunu beğendi.",
@@ -36,5 +37,7 @@ $tr = array(
     'ossn:notification:mark:read:error' => 'Okunu olarak işaretlenemedi.',
     
     'ossn:notifications:mark:as:read' => 'Tümünü okundu olarak işaretle',
+	'ossn:notifications:admin:settings:close_anywhere:title' => 'Herhangi bir yeri tıklatarak bildirim pencerelerini kapatın',
+	'ossn:notifications:admin:settings:close_anywhere:note' => '<i class="fa fa-info-circle"></i> sayfada herhangi bir yeri tıklatarak herhangi bir bildirim penceresini kapatır<br><br>',
 );
 ossn_register_languages('tr', $tr); 
