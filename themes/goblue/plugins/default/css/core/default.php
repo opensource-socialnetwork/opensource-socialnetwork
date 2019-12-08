@@ -1474,9 +1474,6 @@ a {
 
 .page-sidebar,
 .ossn-profile-sidebar {
-	background: #fff;
-	border: 1px solid #eee;
-	padding: 10px;
 }
 
 .ossn-layout-media .content {
