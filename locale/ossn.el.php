@@ -51,14 +51,6 @@ $el = array(
 	'admin:logout' => 'Αποσύνδεση',
 	'logout' => 'Αποσύνδεση',
 	
-	'ossn:like:this' => '%s άρεσε αυτό',
-	'ossn:like:you:and:this' => 'Εσείς και %s ακόμη',
-	'ossn:like:people' => '%s Άτομα',
-	'ossn:like:person' => '%s Άτομο',
-	'ossn:liked:you' => 'Σου άρεσε αυτό',
-	'ossn:unlike' => 'Αφαίρεση αντιδράσεις',
-	'ossn:like' => 'Μου αρέσει!',
-	
 	'admin:components' => 'Εξαρτήματα',
 	'admin:dashboard' => 'Πίνακας πληροφοριών',
 	'admin:install' => 'Εγκαταστάτη',
