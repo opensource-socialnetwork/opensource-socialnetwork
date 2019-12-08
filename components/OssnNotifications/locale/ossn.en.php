@@ -10,6 +10,7 @@
  */
 
 $en = array(
+	'ossnnotifications' => 'Notifications',
     'ossn:notifications:comments:post' => "%s commented on the post.",
     'ossn:notifications:like:post' => "%s liked your post.",
     'ossn:notifications:like:annotation' => "%s liked your comment.",
@@ -36,5 +37,7 @@ $en = array(
     'ossn:notification:mark:read:error' => 'Can not mark all as read',
     
     'ossn:notifications:mark:as:read' => 'Mark all as read',
+	'ossn:notifications:admin:settings:close_anywhere:title' => 'Close notification windows by clicking anywhere',
+	'ossn:notifications:admin:settings:close_anywhere:note' => '<i class="fa fa-info-circle"></i> closes any notification window by clicking anywhere on the page<br><br>',
 );
 ossn_register_languages('en', $en); 
