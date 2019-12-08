@@ -66,5 +66,9 @@ $el = array(
 	
 	'group:deleted' => 'Διαγραφή ομάδας και περιεχομένων',
 	'group:delete:fail' => 'Δεν ήταν δυνατή η διαγραφή ομάδας',	
+
+	'group:delete:cover' => 'Διαγραφή καλύμματος',
+	'group:delete:cover:error' => 'Παρουσιάστηκε σφάλμα κατά τη διαγραφή της εικόνας εξωφύλλου',
+	'group:delete:cover:success' => 'Η εικόνα του καλύμματος διαγράφηκε με επιτυχία',
 );
 ossn_register_languages('el', $el); 
