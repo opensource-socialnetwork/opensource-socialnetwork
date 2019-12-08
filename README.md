@@ -25,6 +25,7 @@ Languages
 * Russian
 * Dutch
 * Hebrew
+* Greek
 
 Front-End Features
 ===================
