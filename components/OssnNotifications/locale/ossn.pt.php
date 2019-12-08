@@ -10,6 +10,7 @@
  */
 
 $pt = array(
+	'ossnnotifications' => 'Notificações',
     'ossn:notifications:comments:post' => "%s comentou sua postagem.",
     'ossn:notifications:like:post' => "%s curtiu sua postagem.",
     'ossn:notifications:like:annotation' => "%s curtiu seu comentário.",
@@ -36,5 +37,7 @@ $pt = array(
     'ossn:notification:mark:read:error' => 'Não foi possível marcar todas notificações como lidas',
     
     'ossn:notifications:mark:as:read' => 'Marcar tudo como lido',
+	'ossn:notifications:admin:settings:close_anywhere:title' => 'Feche as janelas de notificação clicando em qualquer lugar',
+	'ossn:notifications:admin:settings:close_anywhere:note' => '<i class="fa fa-info-circle"></i> fecha qualquer janela de notificação clicando em qualquer lugar da página<br><br>',
 );
 ossn_register_languages('pt', $pt); 
