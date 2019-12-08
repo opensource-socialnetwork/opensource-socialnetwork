@@ -296,6 +296,12 @@ $el = array(
 	'ossn:premium' => 'Προνομιακή έκδοση',
 	'datepicker:days' => "Δε, Τρ, Τε, Πε, Πα, Σα, Κυ",
 	'datepicker:months' => "Ιαν., Φεβ., Μαρ., Απρ., Μάι, Ιούν, Ιούλ, Αυγ., Σεπ., Οκτ., Νοέ., Δεκ.",
+	'male:gendercolor' => '#01ADEF',
+	'female:gendercolor' => '#ED008C',
+	'ossn:admin:settings:off' => 'απενεργοποιημένο',
+	'ossn:admin:settings:on' => 'άναψε',
+	'ossn:admin:settings:saved' => 'Οι ρυθμίσεις αποθηκεύτηκαν!',
+	'ossn:admin:settings:save:error' => 'Δεν είναι δυνατή η αποθήκευση των ρυθμίσεων! Ελέγξτε το αρχείο error_log.',
 	/*
 	 * List of ISO 639-1 language codes
 	 * http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
