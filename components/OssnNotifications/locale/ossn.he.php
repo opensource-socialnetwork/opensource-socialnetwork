@@ -10,6 +10,7 @@
  */
 
 $he = array(
+	'ossnnotifications' => 'התראות',
     'ossn:notifications:comments:post' => "%s הגיבו על הפוסט.",
     'ossn:notifications:like:post' => "%s אהבו את הפוסט שלך.",
     'ossn:notifications:like:annotation' => "%s אהבו את התגובה שלך.",
@@ -36,5 +37,7 @@ $he = array(
     'ossn:notification:mark:read:error' => 'לא ניתן לסמן את כולם כנקראו.',
     
     'ossn:notifications:mark:as:read' => 'סמן כנקראו',
+	'ossn:notifications:admin:settings:close_anywhere:title' => 'סגור את חלונות ההתראות על ידי לחיצה בכל מקום',
+	'ossn:notifications:admin:settings:close_anywhere:note' => '<i class="fa fa-info-circle"></i> סוגר חלון התראה על ידי לחיצה על מקום כלשהו בדף<br><br>',
 );
 ossn_register_languages('he', $he); 
