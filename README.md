@@ -26,6 +26,7 @@ Languages
 * Dutch
 * Hebrew
 * Greek
+* Esperanto 
 
 Front-End Features
 ===================
