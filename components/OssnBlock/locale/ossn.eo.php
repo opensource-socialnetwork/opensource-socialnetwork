@@ -1,0 +1,21 @@
+<?php
+/**
+ * Open Source Social Network
+ *
+ * @package   Open Source Social Network
+ * @author    Open Social Website Core Team <info@softlab24.com>
+ * @copyright (C) SOFTLAB24 LIMITED
+ * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
+ * @link      https://www.opensource-socialnetwork.org/
+ */
+$eo = array(
+    'user:blocked' => 'Uzanto estas barita!',
+    'user:block:error' => 'Ne povas bari uzanton! Bonvolu reprovi poste.',
+    'user:block' => 'Bari',
+    'user:unblock' => 'Malbari',
+    'user:unblocked' => 'Uzanto estas malbarita',
+    'user:unblock:error' => 'Ne povas malbari uzanton',
+    'ossn:blocked:error' => 'Barita',
+    'ossn:blocked:error:note' => 'Vi ne povas vidi ĉi tiun paĝon, ĉar vi estas blokita de la uzanto.',
+);
+ossn_register_languages('eo', $eo); 
