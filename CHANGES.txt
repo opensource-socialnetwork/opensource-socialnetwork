@@ -32,6 +32,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK V5.2
 * Provide indentical style for all submenu items of left sidebar #1533
 * Added Greek language thanks to Rafail (https://www.opensource-socialnetwork.org/u/RafailStratiotis)
 * Added 'Close notification windows by clicking anywhere' strings #15xx
+* Added Esperanto language, thanks to Johannes Genberg (https://www.opensource-socialnetwork.org/u/Yasu79)
 
 OSSN - OPEN SOURCE SOCIAL NETWORK V5.1 
 * Fix bug if 'reposition' was clicked, but image not dragged #1415
