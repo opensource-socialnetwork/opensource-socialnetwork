@@ -15,9 +15,11 @@ if(ossn_is_hook('newsfeed', "sidebar:right")) {
 	$sidebar = implode('', $newsfeed_right);
 	$isempty = trim($sidebar);
 }
+//show center:top div only when there is something otherwise on phone it results empty div with padding/whitebg.
 if(ossn_is_hook('newsfeed', "center:top")) {
 	$newsfeed_center_top = ossn_call_hook('newsfeed', "center:top", NULL, array());
 	$newsfeed_center_top = implode('', $newsfeed_center_top);
+	$isempty_top 	     = trim($newsfeed_center_top);
 }
 ?>
 <div class="container">
@@ -25,21 +27,23 @@ if(ossn_is_hook('newsfeed', "center:top")) {
        	<?php echo ossn_plugin_view('theme/page/elements/system_messages'); ?>    
 		<div class="ossn-layout-newsfeed">
 			<div class="col-md-7">
+				<?php if(!empty($isempty_top)){ ?>
 				<div class="newsfeed-middle-top">
 					<?php echo $newsfeed_center_top; ?>
 				</div>
+				 <?php } ?>
 				<div class="newsfeed-middle">
 					<?php echo $params['content']; ?>
 				</div>
 			</div>
 			<div class="col-md-4">
-            	<?php if(!empty($isempty)){ ?>
+            			<?php if(!empty($isempty)){ ?>
 				<div class="newsfeed-right">
 					<?php
 						echo $sidebar;
 						?>                            
 				</div>
-                <?php } ?>
+                		<?php } ?>
 			</div>
 		</div>
 	</div>
