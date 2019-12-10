@@ -33,6 +33,8 @@ OSSN - OPEN SOURCE SOCIAL NETWORK V5.2
 * Added Greek language thanks to Rafail (https://www.opensource-socialnetwork.org/u/RafailStratiotis)
 * Added 'Close notification windows by clicking anywhere' strings #15xx
 * Added Esperanto language, thanks to Johannes Genberg (https://www.opensource-socialnetwork.org/u/Yasu79)
+* Decreased size of emojiis in selector box #1614
+* Added right extra margin to rightmost chat window #1615
 
 OSSN - OPEN SOURCE SOCIAL NETWORK V5.1 
 * Fix bug if 'reposition' was clicked, but image not dragged #1415
