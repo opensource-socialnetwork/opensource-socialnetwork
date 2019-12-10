@@ -1,6 +1,9 @@
+.emojii {
+	font-size:17px !important;
+}
 .emojii-container {
 	background: #fff;
-	width: 287px;
+	width: 254px;
 	border: 1px solid #ececec;
 	position: fixed;
 	bottom: 1px;
@@ -12,9 +15,8 @@
 .emojii-container .nav {}
 
 .emojii-container .emojii-list {
-	padding: 5px;
 	display: none;
-	height: 170px;
+	height: 179px;
 	overflow: hidden;
 	overflow-y: scroll;
 }
@@ -39,7 +41,7 @@
 }
 
 .emojii-container .nav>li>a {
-	padding: 10px 5px;
+	padding: 10px 4px;
 }
 
 .ossn-wall-container-control-menu-emojii-selector i {
