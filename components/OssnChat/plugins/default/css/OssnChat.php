@@ -166,6 +166,10 @@ img.ustatus.ossn-chat-icon-online {
     float: right;
 }
 
+.friend-tab-item:first-child {
+	margin-right: 75px;
+}
+
 .friend-tab-item .friend-tab {
     padding: 12px;
     margin-left: 5px;
