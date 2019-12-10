@@ -12,6 +12,8 @@ $database = new OssnDatabase;
 $database->statement("ALTER TABLE `ossn_likes` ADD `subtype` VARCHAR(10) NOT NULL AFTER `type`;");
 $database->execute();
 
+ossn_version_upgrade($upgrade, '5.2');
+
 $factory = new OssnFactory(array(
 		'callback' => 'installation',
 		'website' => ossn_site_url(),
