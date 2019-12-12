@@ -126,8 +126,12 @@ Ossn.EntityLike = function(entity, $reaction_type = '') {
 Ossn.RegisterStartupFunction(function() {								  
     $(document).ready(function(){
 	var $htmlreactions = '<div class="ossn-like-reactions-panel"> <li class="ossn-like-reaction-like"> <div class="emoji  emoji--like"> <div class="emoji__hand"> <div class="emoji__thumb"></div> </div> </div> </li> <li class="ossn-like-reaction-love"> <div class="emoji  emoji--love"> <div class="emoji__heart"></div> </div> </li> <li class="ossn-like-reaction-haha"> <div class="emoji  emoji--haha"> <div class="emoji__face"> <div class="emoji__eyes"></div> <div class="emoji__mouth"> <div class="emoji__tongue"></div> </div> </div> </div> </li> <li class="ossn-like-reaction-yay"> <div class="emoji  emoji--yay"> <div class="emoji__face"> <div class="emoji__eyebrows"></div> <div class="emoji__mouth"></div> </div> </div> </li> <li class="ossn-like-reaction-wow"> <div class="emoji  emoji--wow"> <div class="emoji__face"> <div class="emoji__eyebrows"></div> <div class="emoji__eyes"></div> <div class="emoji__mouth"></div> </div> </div> </li> <li class="ossn-like-reaction-sad"> <div class="emoji  emoji--sad"> <div class="emoji__face"> <div class="emoji__eyebrows"></div> <div class="emoji__eyes"></div> <div class="emoji__mouth"></div> </div> </div> </li> <li class="ossn-like-reaction-angry"> <div class="emoji  emoji--angry"> <div class="emoji__face"> <div class="emoji__eyebrows"></div> <div class="emoji__eyes"></div> <div class="emoji__mouth"></div> </div> </div> </li> </div>';					   
-	$('body').on('click',function(){
-			$('.ossn-like-reactions-panel').remove();									 
+	$('body').on('click',function(e){
+			$class = $(e.target).attr('class');
+			console.log($class);
+			if($class && !$(e.target).hasClass('post-control-like') && !$(e.target).hasClass('entity-menu-extra-like') && !$(e.target).hasClass('ossn-like-comment') && !$(e.target).hasClass('ossn-like-reactions-panel')){					
+				$('.ossn-like-reactions-panel').remove();
+			}
 	});
 	$MenuReactions = function($elem){
 			 $parent = $($elem).parent();
@@ -153,10 +157,7 @@ Ossn.RegisterStartupFunction(function() {
 			 $parent.find('.ossn-like-reaction-sad').attr('onclick', $sad);
 			 $parent.find('.ossn-like-reaction-angry').attr('onclick', $angry);
    	};
-	$("body").on('touchstart', '.post-control-like', function(){
-			 $MenuReactions($(this));
-	});	
-	$("body").on('mouseenter', '.post-control-like, .entity-menu-extra-like',function(){
+	$("body").on('mouseenter touchstart', '.post-control-like, .entity-menu-extra-like',function(){
 			 $MenuReactions($(this));
 	});		
 	/*** for comments ***/
