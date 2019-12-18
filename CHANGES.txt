@@ -36,6 +36,9 @@ OSSN - OPEN SOURCE SOCIAL NETWORK V5.2
 * Decreased size of emojiis in selector box #1614
 * Added right extra margin to rightmost chat window #1615
 * Add a way of dynamic gender reporting in admin dashboard thanks to Shylo Hana for providing enhancement (https://www.opensource-socialnetwork.org/u/shylo)
+* Make saved drag position available for scaling calculation #1617
+* Improved scaling of group / profile cover images on mobile devices #1619
+* Don't display cover images before scale/dragposition is known #1618
 
 OSSN - OPEN SOURCE SOCIAL NETWORK V5.1 
 * Fix bug if 'reposition' was clicked, but image not dragged #1415
