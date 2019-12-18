@@ -48,7 +48,7 @@ if (ossn_isLoggedIn()) {
 							<input type="submit" class="upload" />
 						</form>
 						<?php } ?>
-						<img id="draggable" class="profile-cover-img" src="<?php echo $cover; ?>" style='<?php echo $cover_top; ?><?php echo $cover_left; ?>' />
+						<img id="draggable" class="profile-cover-img" src="<?php echo $cover; ?>" style='<?php echo $cover_top; ?><?php echo $cover_left; ?>' data-top='<?php echo $coverp[0]; ?>' data-left='<?php echo $coverp[1]; ?>'/>
 					</div>
 					<div class="profile-photo">
 						<?php if (ossn_loggedin_user()->guid == $user->guid) { ?>
