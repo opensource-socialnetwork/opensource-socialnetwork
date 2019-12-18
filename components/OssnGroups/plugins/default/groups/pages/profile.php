@@ -56,7 +56,7 @@ $members = $params['group']->getMembers();
                     </div>
                 <?php } ?>                        
                 <img id="draggable" src="<?php echo $params['group']->coverURL(); ?>"
-                     style='<?php echo $cover_top; ?><?php echo $cover_left; ?>'/>
+                     style='<?php echo $cover_top; ?><?php echo $cover_left; ?>' data-top='<?php echo $coverp[0]; ?>' data-left='<?php echo $coverp[1]; ?>'/>
             </div>
         <?php } ?>
 
