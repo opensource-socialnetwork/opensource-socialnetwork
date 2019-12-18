@@ -64,3 +64,45 @@ $(document).ready(function() {
 $(document).ready(function() {
 	   $(".ossn-page-loading-annimation").fadeOut("slow");
 });
+$(window).on('load resize', function () {
+	if (document.querySelector("#draggable")) {
+		if (($('.ossn-group-cover').height() + $('.profile-cover').height()) < 481) {
+			// we're on mobile and have a group cover image
+			const desktop_cover_width  = 1040;
+			const desktop_cover_height = 200;
+			var mobile_cover_height  = $('.ossn-group-cover').height() + $('.profile-cover').height();
+			var real_image_width  = document.querySelector("#draggable").naturalWidth;
+			var real_image_height = document.querySelector("#draggable").naturalHeight;
+			// 1. how many mobile heights would we need to hold the image?
+			var mobile_height_factor = real_image_height / mobile_cover_height;
+			// 2. how many pixels wide would be the scaled mobile image in comparison to fix desktop_cover_width?
+			var mobile_pixel_width = desktop_cover_width / mobile_height_factor;
+			// 3. how often would these pixels fit into the current coverwidth?
+			var current_cover_width = $('.ossn-group-cover').width() + $('.profile-cover').width();
+			var mobile_width_factor = current_cover_width / mobile_pixel_width;
+			// 4. how many pixels do we get with the current mobile cover height?
+			var mobile_pixel_height = mobile_width_factor * mobile_cover_height;
+			// setting the new height already here allows us to retrieve the new scaled image width calculated by the browser
+			$('#draggable').css('height', mobile_pixel_height);
+			mobile_pixel_width = parseInt($('#draggable').css('width'));
+			
+			// 5. calculate the height-scaling factor for dragging - get maximum possible scroll top position
+			var desktop_scroll_top_max = real_image_height - desktop_cover_height;
+			var mobile_scroll_top_max  = mobile_pixel_height - mobile_cover_height;
+			var height_scaling_factor  = desktop_scroll_top_max / mobile_scroll_top_max;
+			// 6. calculate the width-scaling factor for dragging - get maximum possible scroll left position
+			var desktop_scroll_left_max = real_image_width - desktop_cover_width;
+			var mobile_scroll_left_max  = mobile_pixel_width - current_cover_width;
+			var width_scaling_factor  = desktop_scroll_left_max / mobile_scroll_left_max;
+			// 7. retrieve the saved dragging positions and scale accordingly
+			var cover_top    = parseInt($('#draggable').data('top'));
+			var cover_left   = parseInt($('#draggable').data('left'));
+			var mobile_pixel_top  = cover_top / height_scaling_factor;
+			var mobile_pixel_left = cover_left / width_scaling_factor;
+			$('#draggable').css('top', mobile_pixel_top);
+			$('#draggable').css('left', mobile_pixel_left);
+		}
+	// don't display cover images before final scale and position is known
+	$('#draggable').fadeIn();
+	}
+});
