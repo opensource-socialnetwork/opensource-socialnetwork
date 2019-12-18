@@ -1281,6 +1281,7 @@ a {
 
 .ossn-profile .top-container .profile-cover img {
 	width: auto;
+	display: none;
 }
 
 .ossn-profile-row {
@@ -1491,6 +1492,7 @@ a {
 
 .ossn-group-cover img {
 	width: auto;
+	display: none;
 }
 
 /*****************************
