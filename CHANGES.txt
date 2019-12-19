@@ -39,6 +39,8 @@ OSSN - OPEN SOURCE SOCIAL NETWORK V5.2
 * Make saved drag position available for scaling calculation #1617
 * Improved scaling of group / profile cover images on mobile devices #1619
 * Don't display cover images before scale/dragposition is known #1618
+* Force newly uploaded cover images to 'display:inline' #1621
+* Use same cover uploading animation as with profile cover #1622
 
 OSSN - OPEN SOURCE SOCIAL NETWORK V5.1 
 * Fix bug if 'reposition' was clicked, but image not dragged #1415
