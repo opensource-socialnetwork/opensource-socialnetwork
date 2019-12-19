@@ -41,7 +41,7 @@ Ossn.RegisterStartupFunction(function() {
 									$('.ossn-group-cover').attr('style', 'opacity:0.7;');
 								}
 								$('.ossn-group-profile').find('.groups-buttons').find('a').hide();
-								$('.ossn-group-profile').find('.groups-buttons').prepend('<div class="ossn-loading"></div>');
+								$('.ossn-group-cover').prepend('<div class="ossn-covers-uploading-annimation"> <div class="ossn-loading"></div></div>');
 							},
 							cache: false,
 							contentType: false,
@@ -52,9 +52,10 @@ Ossn.RegisterStartupFunction(function() {
 										location.reload();
 									} else {
 										$('.ossn-group-cover').attr('style', '');
-										$('.ossn-group-profile').find('.groups-buttons').find('.ossn-loading').remove();
+										$('.ossn-covers-uploading-annimation').remove();
 										$('.ossn-group-profile').find('.groups-buttons').find('a').show();
 										$('.ossn-group-cover').find('img').attr('style', '');
+										$('.ossn-group-cover').find('img').show();
 										$('.ossn-group-cover').find('img').attr('src', callback['url']);
 									}
 								}
