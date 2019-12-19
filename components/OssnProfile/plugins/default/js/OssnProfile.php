@@ -114,6 +114,7 @@ Ossn.RegisterStartupFunction(function() {
 								$imageurl = $('.profile-cover').find('img').attr('src') + '?' + $time;
 								$('.profile-cover').find('img').attr('src', $imageurl);
 								$('.profile-cover').find('img').attr('style', '');
+								$('.profile-cover').find('img').show();
 								$('.ossn-covers-uploading-annimation').remove();
 							},
 						});
