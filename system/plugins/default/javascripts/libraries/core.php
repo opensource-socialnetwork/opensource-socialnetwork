@@ -249,11 +249,29 @@ Ossn.RegisterStartupFunction(function() {
  * @return void
  */
 Ossn.Drag = function() {
+	// some sanitizing to work with fluid themes and covers eventually resized according to screen width
+	const default_cover_width  = 1040;
+	const default_cover_height = 200;
+	var image_width  = document.querySelector("#draggable").naturalWidth;
+	var image_height = document.querySelector("#draggable").naturalHeight;
+	var cover_width  = $("#container").width();
+	var cover_height = $("#container").height();
+	var drag_width   = 0;
+	var drag_height  = 0;
+	// TODO: get rid of hardcoded dimensions
+	// the calculation below relies on current cover images HAVE a minimum width of 1040px
+	// which shouldn't be a must-have for every other theme
+	if(image_width > cover_width && image_width + cover_width > default_cover_width * 2) {
+		drag_width = image_width - default_cover_width;
+	}
+	if(image_height > cover_height && image_height + cover_height > default_cover_height * 2) {
+		drag_height = image_height - default_cover_height;
+	}
 	$.globalVars = {
 		originalTop: 0,
 		originalLeft: 0,
-		maxHeight: $("#draggable").height() - $("#container").height(),
-		maxWidth: $("#draggable").width() - $("#container").width()
+		maxHeight: drag_height,
+		maxWidth: drag_width
 	};
 	$("#draggable").draggable({
 		start: function(event, ui) {
