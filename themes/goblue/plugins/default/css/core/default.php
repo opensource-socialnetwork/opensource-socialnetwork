@@ -563,12 +563,12 @@ a {
 
 .ossn-comment-menu {
 	float: right;
-	display: none;
+    margin-left: 10px;
 }
 
 .comments-item:hover .ossn-comment-menu {
 	display: block;
-    	margin-left: 10px;
+    margin-left: 10px;
 }
 
 .comments-likes {
@@ -1281,7 +1281,6 @@ a {
 
 .ossn-profile .top-container .profile-cover img {
 	width: auto;
-	display: none;
 }
 
 .ossn-profile-row {
@@ -1492,7 +1491,6 @@ a {
 
 .ossn-group-cover img {
 	width: auto;
-	display: none;
 }
 
 /*****************************
@@ -2595,7 +2593,6 @@ footer .ossn-footer-menu a:last-child::after {
 		margin-left: 0;
 	}
 }
-
 
 /*****************************************************
 		Adding icons for some 3rd party components
