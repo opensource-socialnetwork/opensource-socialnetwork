@@ -24,10 +24,10 @@ foreach ($users as $user) {
     ?>
 <div class="ossn-reactions-list-wholiked-item">
 <div class="row">
-	<div class="col-md-2">
+	<div class="col-md-2 col-xs-3">
 		<img src="<?php echo $icon; ?>"/>
 	</div>
-	<div class="col-md-10">
+	<div class="col-md-10 col-xs-9">
 		<div class="ossn-reactions-list-whoreacted-uinfo">
 			<a class="userlink" href="<?php echo ossn_site_url(); ?>u/<?php echo $user->username; ?>"><?php echo $user->fullname; ?></a>
 			<div class="ossn-reaction-list ossn-reactions-list-whoreacted">
