@@ -650,7 +650,7 @@ a {
 .comment-contents p {
 	margin: 0px;
 	word-break: break-word;
-	text-align: justify;
+	text-align: left;
 }
 
 .comment-contents p img {
@@ -686,7 +686,9 @@ a {
 	min-height: 32px;
     background-color: #f2f3f5;
     border: 1px solid #ccd0d5;
-    border-radius: 15px;    
+    border-radius: 15px; 
+ 	word-break: break-word;
+	text-align: left;      
 }
 
 [contentEditable=true]:empty:not(:focus)::before {
