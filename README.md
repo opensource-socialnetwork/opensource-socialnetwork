@@ -1,4 +1,4 @@
-Open Source Social Network [5.2 DEV]
+Open Source Social Network [5.2 LTS]
 ======================================
 [![Open Source Love](https://badges.frapsoft.com/os/v2/open-source.svg?v=102)](https://www.opensource-socialnetwork.org/)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://www.opensource-socialnetwork.org/)
