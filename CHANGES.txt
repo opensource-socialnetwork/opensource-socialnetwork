@@ -41,6 +41,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK V5.2
 * Don't display cover images before scale/dragposition is known #1618
 * Force newly uploaded cover images to 'display:inline' #1621
 * Use same cover uploading animation as with profile cover #1622
+* Fix double-backslash display error after editing #1627
 
 OSSN - OPEN SOURCE SOCIAL NETWORK V5.1 
 * Fix bug if 'reposition' was clicked, but image not dragged #1415
