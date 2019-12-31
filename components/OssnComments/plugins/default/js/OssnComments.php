@@ -220,7 +220,6 @@ Ossn.RegisterStartupFunction(function() {
 							// see https://stackoverflow.com/questions/1373414/ajax-post-and-plus-sign-how-to-encode
 							params: 'content=' + encodeURIComponent($text),
 							callback: function(return_data) {
-								console.log(return_data['data']);
 								$elem.append(return_data['data']);
 							}
 						});
