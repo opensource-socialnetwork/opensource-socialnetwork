@@ -271,7 +271,7 @@ Ossn.RegisterStartupFunction(function() {
                         $elem.text('');  
                         Ossn.PostRequest({
                             url: Ossn.site_url + "action/wall/post/embed",
-                            params: 'text=' + $text + '&preview=' + preview_url + '&guid=' + $guid,
+                            params: 'text=' + encodeURIComponent($text) + '&preview=' + preview_url + '&guid=' + $guid,
                             callback: function(return_data) {
                                 $elem.append(return_data['text']);
                                 // handle existing/changed/removed/new preview according to action result
