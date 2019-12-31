@@ -43,6 +43,8 @@ OSSN - OPEN SOURCE SOCIAL NETWORK V5.2
 * Use same cover uploading animation as with profile cover #1622
 * Fix double-backslash display error after editing #1627
 
+ - Special Thanks to Z-Man for v5.2 release as he fixed 90% of issues!
+
 OSSN - OPEN SOURCE SOCIAL NETWORK V5.1 
 * Fix bug if 'reposition' was clicked, but image not dragged #1415
 * Make left/right cover repositioning work in groups #1414
