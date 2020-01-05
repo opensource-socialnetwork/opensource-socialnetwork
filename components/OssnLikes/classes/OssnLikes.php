@@ -90,14 +90,17 @@ class OssnLikes extends OssnDatabase {
 				if(empty($subject_id) || empty($guid) || empty($type)) {
 						return false;
 				}
+			
+				$vars               = array();
+				$vars['subject_id'] = $subject_id;
+				$vars['type']       = $type;
+				$vars['guid']       = $guid;
+				
+				ossn_trigger_callback('like', 'before:deleted', $vars);
 				if($this->isLiked($subject_id, $guid, $type)) {
 						$this->statement("DELETE FROM ossn_likes WHERE(
 	                         subject_id='{$subject_id}' AND guid='{$guid}' AND type='{$type}');");
 						if($this->execute()) {
-								$vars               = array();
-								$vars['subject_id'] = $subject_id;
-								$vars['type']       = $type;
-								$vars['guid']       = $guid;
 								ossn_trigger_callback('like', 'deleted', $vars);
 								return true;
 						}
