@@ -97,7 +97,7 @@ class OssnComments extends OssnAnnotation {
 		 */
 		public function GetComment($id) {
 				if(empty($id)){
-					return false;
+						return false;
 				}
 				$res_array = $this->searchAnnotation(array(
 						'annotation_id' => $id,
@@ -140,10 +140,9 @@ class OssnComments extends OssnAnnotation {
 				$vars['order_by']     = 'a.id DESC';
 				$vars['limit']        = $this->limit;
 				if(!isset($this->page_limit) || $this->page_limit === false) {
-					$vars['page_limit'] = false;
-				}
-				else {
-					$vars['page_limit'] = $this->page_limit;
+						$vars['page_limit'] = false;
+				} else {
+						$vars['page_limit'] = $this->page_limit;
 				}
 				$comments = $this->searchAnnotation($vars);
 				if(!empty($comments)) {
@@ -173,8 +172,13 @@ class OssnComments extends OssnAnnotation {
 		 * @return bool
 		 */
 		public function deleteComment($comment) {
+				if(empty($comment)) {
+						return false;
+				}
+				$params            = array();
+				$params['comment'] = $comment;
+				ossn_trigger_callback('comment', 'before:delete', $params);
 				if($this->deleteAnnotation($comment)) {
-						$params['comment'] = $comment;
 						ossn_trigger_callback('comment', 'delete', $params);
 						return true;
 				}
