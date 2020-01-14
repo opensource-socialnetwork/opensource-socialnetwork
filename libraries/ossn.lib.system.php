@@ -762,9 +762,20 @@ function ossn_string_decrypt($string = '', $key = '') {
 	
 	$size    = openssl_cipher_iv_length('bf-ecb');
 	$mcgetvi = openssl_random_pseudo_bytes($size);
+	
+	//as trim in encrypt removes extra padding,  because ecb requires the length in power of 8
+	//upon debugging its found the vertical tab / ascii code 11 = (/v)  is added in end of string if the string is not exactly in power of 8
+	//vertical tab is required to decode the string back correctly.
+	//if string is not in power of 8, then to make it in power of 8,  n ammount of \v are padded in end.
+	//the char is found using ord() by supplying end char.
+	
+	if(strlen($string) % 8) {
+		$string = str_pad($string, strlen($string) + 8 - strlen($string) % 8, "\v");	
+	}	
 	//note mcrypt and now this acting mcrpyt adds the spaces to make 16 bytes if its less then 16 bytes
 	//you can use trim() to get orignal data without spaces
-	return openssl_decrypt($string, "bf-ecb", $key, OPENSSL_RAW_DATA | OPENSSL_NO_PADDING, $mcgetvi);
+	//why not to use trim here as you used in encryption? $arsalnshah added 1/15/2020 12:40 AM
+	return trim(openssl_decrypt($string, "bf-ecb", $key, OPENSSL_RAW_DATA | OPENSSL_NO_PADDING, $mcgetvi));
 }
 
 /**
