@@ -350,6 +350,10 @@ class OssnEntities extends OssnDatabase {
 						"guid = '{$guid}'"
 				);
 				
+				$vars	= array();
+				$vars['entity'] = $guid;
+				ossn_trigger_callback('entity', 'before:delete', $vars);
+				
 				if($this->delete($params)) {
 						$metadata['from']   = 'ossn_entities_metadata';
 						$metadata['wheres'] = array(
