@@ -228,6 +228,11 @@ class OssnAnnotation extends OssnEntities {
 				if(empty($annotation)) {
 						return false;
 				}
+				
+				$vars	= array();
+				$params['annotation'] = $annotation;
+				ossn_trigger_callback('annotation', 'before:delete', $vars);				
+				
 				if($this->deleteByOwnerGuid($annotation, 'annotation')) {
 						$this->statement("DELETE FROM ossn_annotations WHERE(id='{$annotation}')");
 						if($this->execute()) {
