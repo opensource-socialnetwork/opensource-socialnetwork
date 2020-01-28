@@ -286,6 +286,9 @@ class OssnObject extends OssnEntities {
 				if(empty($object)) {
 						return false;
 				}
+				$vars	= array();
+				$vars['guid'] = $object;
+				ossn_trigger_callback('object', 'before:delete', $vars);
 				//delete entites of (this) object
 				if($this->deleteByOwnerGuid($object, 'object')) {
 						$data = ossn_get_userdata("object/{$object}/");
@@ -297,7 +300,8 @@ class OssnObject extends OssnEntities {
 				$delete['wheres'] = array(
 						"guid='{$object}'"
 				);
-				if($this->delete($delete)) {
+				if($this->delete($delete)){
+						ossn_trigger_callback('object', 'deleted', $vars);
 						return true;
 				}
 				return false;
