@@ -164,6 +164,9 @@ class OssnWall extends OssnObject {
 		 * @return bool;
 		 */
 		public function deletePost($post) {
+				if(empty($post)){
+					return false;	
+				}
 				ossn_trigger_callback('post', 'before:delete', $post);
 				if($this->deleteObject($post)) {
 						ossn_trigger_callback('post', 'delete', $post);
