@@ -1,5 +1,6 @@
 OSSN - OPEN SOURCE SOCAIL NETWORK V5.3
 * [B] notification, add callback isn't working #1634 (already patched Ossn v5.2 LTS).
+* [E] adaption to enhanced upload function #1641
 
 OSSN - OPEN SOURCE SOCIAL NETWORK V5.2 
 * Several fixes for handling of cover images #1488
