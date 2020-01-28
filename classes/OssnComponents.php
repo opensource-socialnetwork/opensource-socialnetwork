@@ -65,11 +65,31 @@ class OssnComponents extends OssnDatabase {
 		 * @return boolean
 		 */
 		public function upload() {
+				$upload_error_messages = array(
+						UPLOAD_ERR_OK         => 'There is no error, the file uploaded with success',
+						UPLOAD_ERR_INI_SIZE   => 'The uploaded file exceeds the upload_max_filesize directive in php.ini',
+						UPLOAD_ERR_FORM_SIZE  => 'The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the HTML form',
+						UPLOAD_ERR_PARTIAL    => 'The uploaded file was only partially uploaded',
+						UPLOAD_ERR_NO_FILE    => 'No file was uploaded',
+						UPLOAD_ERR_NO_TMP_DIR => 'Missing a temporary folder',
+						UPLOAD_ERR_CANT_WRITE => 'Failed to write file to disk',
+						UPLOAD_ERR_EXTENSION  => 'A PHP extension stopped the file upload',
+				);
 				$archive  = new ZipArchive;
 				$data_dir = ossn_get_userdata('tmp/components');
 				if(!is_dir($data_dir)) {
 						mkdir($data_dir, 0755, true);
 				}
+				if(!is_dir($data_dir)) {
+						ossn_trigger_message(ossn_print('com:installer:create:tmpdir:error'), 'error');
+						return;
+				}
+				// return upload error messages
+				if($_FILES['com_file']['error'] != UPLOAD_ERR_OK) {
+						ossn_trigger_message(ossn_print('com:installer:upload:error', array($upload_error_messages[$_FILES['com_file']['error']])), 'error');
+						return;
+				}
+
 				$zip     = $_FILES['com_file'];
 				$newfile = "{$data_dir}/{$zip['name']}";
 				
@@ -88,12 +108,26 @@ class OssnComponents extends OssnDatabase {
 								$archive->close();
 								
 								if(is_dir($files) && is_file("{$files}ossn_com.php") && is_file("{$files}ossn_com.xml")) {
-										
 										$ossn_com_xml = simplexml_load_file("{$files}ossn_com.xml");
 										//need to check id , since ossn v3.x
 										if(isset($ossn_com_xml->id) && !empty($ossn_com_xml->id)) {
+												// asure Ossn compatibility before overwriting an older component release
+												$required_version = $ossn_com_xml->requires->version;
+												$installed_version = ossn_site_settings('site_version');
+												if($installed_version < $required_version) {
+														ossn_trigger_message(ossn_print('com:installer:version:error', array($required_version)), 'error');
+														return;
+												}
+												// if former release of component is still in place, first delete the component directory
+												// otherwise overwrite will fail
+												OssnFile::DeleteDir(ossn_route()->com . $ossn_com_xml->id . '/');
+												if(is_dir(ossn_route()->com . $ossn_com_xml->id . '/')) {
+														ossn_trigger_message(ossn_print('com:installer:remove:comdir:error'), 'error');
+														return;
+												}
+												
 												//move to components directory
-												if((!is_dir(ossn_route()->com . $ossn_com_xml->id)) && (OssnFile::moveFiles($files, ossn_route()->com . $ossn_com_xml->id . '/'))) {
+												if(OssnFile::moveFiles($files, ossn_route()->com . $ossn_com_xml->id . '/')) {
 														//add new component to system
 														$this->newCom($ossn_com_xml->id);
 														
@@ -103,13 +137,23 @@ class OssnComponents extends OssnDatabase {
 														ossn_trigger_callback('component', 'installed', array(
 																'component' => $ossn_com_xml->id
 														));
-														return true;
+														ossn_trigger_message(ossn_print('com:installed'), 'success');
+														return;
 												}
+												ossn_trigger_message(ossn_print('com:installer:create:comdir:error'), 'error');
+												return;
 										}
+										ossn_trigger_message(ossn_print('com:installer:xml:incomplete:error'), 'error');
+										return;
 								}
+								ossn_trigger_message(ossn_print('com:installer:zip:incomplete:error'), 'error');
+								return;
 						}
+						ossn_trigger_message(ossn_print('com:installer:open:zip:error'), 'error');
+						return;
 				}
-				return false;
+				ossn_trigger_message(ossn_print('com:installer:move:uploaded:file:error'), 'error');
+				return;
 		}
 		
 		/**
