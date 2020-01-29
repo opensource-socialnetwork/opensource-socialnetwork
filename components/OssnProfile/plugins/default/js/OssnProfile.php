@@ -1,3 +1,4 @@
+//<script>
 /**
  * Open Source Social Network
  *
@@ -7,7 +8,6 @@
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
  * @link      https://www.opensource-socialnetwork.org/
  */
-//<script>
 Ossn.RegisterStartupFunction(function() {
 	$(document).ready(function() {
 		var cYear = (new Date).getFullYear();
