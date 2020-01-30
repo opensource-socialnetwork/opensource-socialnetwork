@@ -120,18 +120,22 @@ class OssnLikes extends OssnDatabase {
 				if(empty($subject_id) || empty($type)) {
 						return false;
 				}
-				$this->statement("DELETE FROM ossn_likes WHERE(subject_id='{$subject_id}' AND type='{$type}');");
-				if($this->execute()) {
-						$vars               = array();
-						$vars['subject_id'] = $subject_id;
-						$vars['type']       = $type;
-						ossn_trigger_callback('like', 'deleted', $vars);
-						return true;
+				//[B]Like deleted callback triggered even if there is no likes #1643
+				$likes = $this->GetLikes($subject_id, $type);
+				if($likes){
+					$this->statement("DELETE FROM ossn_likes WHERE(subject_id='{$subject_id}' AND type='{$type}');");
+					if($this->execute()) {
+							$vars               = array();
+							$vars['subject_id'] = $subject_id;
+							$vars['type']       = $type;
+							ossn_trigger_callback('like', 'deleted', $vars);
+							return true;
+					}
 				}
 				return false;
 		}
 		/**
-		 * Delte likes by user guid
+		 * Delete likes by user guid
 		 *
 		 * @params integer $owner_guid Guid of user
 		 *
