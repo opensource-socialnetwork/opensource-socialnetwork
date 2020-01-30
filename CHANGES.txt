@@ -1,6 +1,8 @@
 OSSN - OPEN SOURCE SOCAIL NETWORK V5.3
 * [B] notification, add callback isn't working #1634 (already patched Ossn v5.2 LTS).
 * [E] adaption to enhanced upload function #1641
+* [E] enhanced upload function #1640
+* [E] added error messages for component upload #1642
 * [B] Like deleted callback triggered even if there is no likes #1643
 * [B] No callback triggered for OssnComments::commentsDeleteAll #1644
 
