@@ -158,7 +158,16 @@ class OssnComments extends OssnAnnotation {
 		 * @return bool
 		 */
 		public function commentsDeleteAll($subject, $type = 'comments:post') {
-				if($this->annon_delete_by_subject($subject, $type)) {
+				//here we need a callback for each comment hence we need a indvidual comment.
+				if(empty($subject) || empty($type)) {
+						return false;
+				}
+				//[B]No callback triggered for OssnComments::commentsDeleteAll
+				$list = $this->GetComments($subject, $type);
+				if($list){
+						foreach($list as $comment) {
+								$this->deleteComment($comment->id);
+						}
 						return true;
 				}
 				return false;
