@@ -36,6 +36,21 @@ class OssnComments extends OssnAnnotation {
 				if(empty($subject_id) || empty($guid)) {
 						return false;
 				}
+				//[B]comment is added if the post/entity has been deleted already #1645
+				if($type == 'post') {
+						$postc = ossn_get_object($subject_id);
+						if(!$postc) {
+								return false;
+						}
+				}
+				
+				if($type == 'entity') {
+						$entityc = ossn_get_entity($subject_id);
+						if(!$entityc) {
+								return false;
+						}
+				}
+				
 				$cancomment = false;
 				if(strlen($comment)) {
 						$cancomment = true;
@@ -101,7 +116,7 @@ class OssnComments extends OssnAnnotation {
 				}
 				$res_array = $this->searchAnnotation(array(
 						'annotation_id' => $id,
-						'offset' => input('comments_offset', '', 1),
+						'offset' => input('comments_offset', '', 1)
 				));
 				return $res_array[0];
 		}
@@ -164,7 +179,7 @@ class OssnComments extends OssnAnnotation {
 				}
 				//[B]No callback triggered for OssnComments::commentsDeleteAll
 				$list = $this->GetComments($subject, $type);
-				if($list){
+				if($list) {
 						foreach($list as $comment) {
 								$this->deleteComment($comment->id);
 						}
