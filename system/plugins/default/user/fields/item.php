@@ -26,7 +26,10 @@ if(isset($params['items'])) {
 								}	
 								$vars                = array_merge($args, $item['params']);
 								echo "<div class='text'>";
-								if($params['label'] === true){
+								//[E]make the label arg assigned to any label of user/field #1646
+								if(isset($item['label']) && !is_bool($item['label'])){
+									echo "<label>".$item['label']."</label>";
+								} elseif(isset($item['label']) && $item['label'] === true || $params['label'] === true){
 									echo "<label>".ossn_print("{$item['name']}")."</label>";
 								}
 								echo ossn_plugin_view('input/text', $vars);
@@ -49,7 +52,10 @@ if(isset($params['items'])) {
 								}	
 								$vars                = array_merge($args, $item['params']);
 								echo "<div class='text'>";
-								if($params['label'] === true){
+								//[E]make the label arg assigned to any label of user/field #1646
+								if(isset($item['label']) && !is_bool($item['label'])){
+									echo "<label>".$item['label']."</label>";
+								} elseif(isset($item['label']) && $item['label'] === true || $params['label'] === true){
 									echo "<label>".ossn_print("{$item['name']}")."</label>";
 								}
 								echo ossn_plugin_view('input/textarea', $vars);
@@ -62,9 +68,12 @@ if(isset($params['items'])) {
 								$vars['name'] = $item['name'];
 								$args         = array_merge($vars, $item);
 								echo "<div class='dropdown-block'>";
-								if($params['label'] === true){
+								//[E]make the label arg assigned to any label of user/field #1646
+								if(isset($item['label']) && !is_bool($item['label'])){
+									echo "<label>".$item['label']."</label>";
+								} elseif(isset($item['label']) && $item['label'] === true || $params['label'] === true){
 									echo "<label>".ossn_print("{$item['name']}")."</label>";
-								}								
+								}
 								echo ossn_plugin_view('input/dropdown', $args);
 								echo "</div>";
 						}
@@ -75,9 +84,12 @@ if(isset($params['items'])) {
 								$vars['name'] = $item['name'];
 								$args         = array_merge($vars, $item);
 								echo "<div class='radio-block'>";
-								if($params['label'] === true){
+								//[E]make the label arg assigned to any label of user/field #1646
+								if(isset($item['label']) && !is_bool($item['label'])){
+									echo "<label>".$item['label']."</label>";
+								} elseif(isset($item['label']) && $item['label'] === true || $params['label'] === true){
 									echo "<label>".ossn_print("{$item['name']}")."</label>";
-								}								
+								}
 								echo ossn_plugin_view('input/radio', $args);
 								echo "</div>";
 						}
