@@ -5,6 +5,7 @@ OSSN - OPEN SOURCE SOCAIL NETWORK V5.3
 * [E] added error messages for component upload #1642
 * [B] Like deleted callback triggered even if there is no likes #1643
 * [B] No callback triggered for OssnComments::commentsDeleteAll #1644
+* [B] comment is added if the post/entity has been deleted already #1645
 
 OSSN - OPEN SOURCE SOCIAL NETWORK V5.2 
 * Several fixes for handling of cover images #1488
