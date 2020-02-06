@@ -7,6 +7,7 @@ OSSN - OPEN SOURCE SOCAIL NETWORK V5.3
 * [B] No callback triggered for OssnComments::commentsDeleteAll #1644
 * [B] comment is added if the post/entity has been deleted already #1645
 * [E] make the label arg assigned to any label of user/field #1646
+* [B] display ads on pages with offset > 1
 
 OSSN - OPEN SOURCE SOCIAL NETWORK V5.2 
 * Several fixes for handling of cover images #1488
