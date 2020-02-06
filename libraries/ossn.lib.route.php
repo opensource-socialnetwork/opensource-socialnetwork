@@ -81,16 +81,20 @@ function ossn_route() {
 /**
  * Get current url
  *
- * @param string  $uport Want port or not? default will be disable
+ * @param boolean $uport false in case you wants a port , true if you don't wants a port
+ * @param boolean $uport default false
  *
  * @return object
  */
-function current_url($uport = '') {
+function current_url($uport = false) {
 		$protocol = 'http';
 		$uri      = $_SERVER['REQUEST_URI'];
-		if($uport == true) {
-				$uri = substr($uri, 0, $uri);
-		}
+		
+		//[B] wrong 3rd parm in ossn.lib.route line 93 #1649
+		//if($uport == true) {
+		//		$uri = substr($uri, 0, $uri); , 3rd arg must be int:length
+		//}
+		
 		if(!empty($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] == "on") {
 				$protocol = 'https';
 		}
