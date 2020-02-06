@@ -9,7 +9,11 @@
  * @link      https://www.opensource-socialnetwork.org/
  */
 $ads = new OssnAds;
-$ads = $ads->getAds();
+$ads = $ads->getAds(
+	array (
+		'offset' => 1
+	)
+);
 if ($ads) {
 	echo '<div class="ossn-ads">';
         foreach ($ads as $ad) {
