@@ -15,6 +15,7 @@ $nl = array(
     'ossn:message:between' => 'Berichten %s',
     'messages' => 'Berichten',
     'message:placeholder' => 'Typ hier je bericht',
-	'no:messages' => 'Er zijn geen berichten.'
+	'no:messages' => 'Er zijn geen berichten.',
+	'ossnmessages:deleted' => 'Bericht is verwijderd',
 );
 ossn_register_languages('nl', $nl); 
