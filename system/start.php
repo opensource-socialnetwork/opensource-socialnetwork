@@ -20,6 +20,9 @@ if (!isset($Ossn)) {
 include_once(dirname(dirname(__FILE__)) . '/libraries/ossn.lib.route.php');
 
 if (!is_file(ossn_route()->configs . 'ossn.config.site.php') && !is_file(ossn_route()->configs . 'ossn.config.db.php')) {
+	header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+	header("Cache-Control: post-check=0, pre-check=0", false);
+	header("Pragma: no-cache");
     header("Location: installation");
 	exit;
 }
