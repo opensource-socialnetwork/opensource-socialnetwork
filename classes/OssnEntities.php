@@ -96,6 +96,12 @@ class OssnEntities extends OssnDatabase {
 								$this->active
 						);
 						if($this->insert($this->params)) {
+								//[B] Entities added via single DB connection may result in wrong last_id #1668
+								//As this supposed to be return a actual entity ID rather metadata guid
+								//so calling getLastEntry() after adding entity only make sense.
+								//if we call after metadata entry , it results metadata id not entity.
+								$this->inserted_entity_guid	= $this->getLastEntry();
+								
 								$this->params['into']   = 'ossn_entities_metadata';
 								$this->params['names']  = array(
 										'guid',
@@ -112,7 +118,7 @@ class OssnEntities extends OssnDatabase {
 								$args['subtype']      = $this->params['values'][2];
 								$args['time_created'] = $this->params['values'][3];
 								ossn_trigger_callback('entity', 'created', $args);
-								return true;
+								return $this->inserted_entity_guid;
 						}
 				}
 				return false;
@@ -263,7 +269,7 @@ class OssnEntities extends OssnDatabase {
 		 * @return integer
 		 */
 		public function AddedEntityGuid() {
-				return $this->getLastEntry();
+				return $this->inserted_entity_guid;
 		}
 		
 		/**
