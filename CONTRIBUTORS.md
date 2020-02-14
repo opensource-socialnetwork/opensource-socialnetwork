@@ -13,3 +13,4 @@ The following developers contributed to this project:
 * Julien Jehannet (https://github.com/jjehannet)
 * Tomáš Votruba (https://github.com/TomasVotruba)
 * Eric F. (https://www.opensource-socialnetwork.org/u/ctlui)
+* Kevin Breen
