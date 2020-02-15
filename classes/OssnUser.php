@@ -271,6 +271,7 @@ class OssnUser extends OssnEntities {
 				if(!isset($this->password_algorithm)) {
 						return 'md5';
 				}
+				
 				return $this->password_algorithm;
 		}
 		/**
@@ -638,8 +639,8 @@ class OssnUser extends OssnEntities {
 												$wheres_paris[] = "emd{$key}.value {$operand} '{$pair['value']}'";
 												
 										}
-										$params['joins'][] = "LEFT JOIN ossn_entities as e{$key} ON e{$key}.owner_guid=u.guid";
-										$params['joins'][] = "LEFT JOIN ossn_entities_metadata as emd{$key} ON e{$key}.guid=emd{$key}.guid";
+										$params['joins'][] = "JOIN ossn_entities as e{$key} ON e{$key}.owner_guid=u.guid";
+										$params['joins'][] = "JOIN ossn_entities_metadata as emd{$key} ON e{$key}.guid=emd{$key}.guid";
 								}
 						}
 						if(!empty($wheres_paris)) {
@@ -771,7 +772,7 @@ class OssnUser extends OssnEntities {
 				$this->owner_guid = $this->guid;
 				
 				$site_secret = ossn_site_settings('site_key');
-				$code	     = hash('sha256', time() . $this->guid. $site_secret . rand());
+				$code        = hash('sha256', time() . $this->guid . $site_secret . rand());
 				if(!isset($this->{'login:reset:code'}) && empty($this->old_code)){
 						$this->value = $code;
 						$this->add();
@@ -1032,29 +1033,33 @@ class OssnUser extends OssnEntities {
 				}
 				return false;
 		}
- 		/**
+		/**
 		 * List existing Genders
- 		 *
+		 *
 		 * @return array
- 		 * @access public
- 		 */
+		 * @access public
+		 */
 		public function getGenders() {
-				$params = array();
-				$wheres = array();
-
-				$params['params']  = array("DISTINCT value");
-				$params['from']    = "ossn_entities_metadata";
-				$wheres[]          = "guid IN (SELECT DISTINCT guid FROM ossn_entities WHERE subtype='gender')";
-				$params["wheres"]  = array(
-									$this->constructWheres($wheres)
+				$params             = array();
+				$params['params']   = array(
+						"emd.value as gender"
 				);
-				$data              = $this->select($params, true);
-				$data              = json_decode(json_encode($data), true);
-				$data              = new RecursiveIteratorIterator(new RecursiveArrayIterator($data));
-
-				$genders           = iterator_to_array($data, false);
-	
-				return $genders;
+				$params['from']     = "ossn_entities as e";
+				$params['joins']    = array(
+						"JOIN ossn_entities_metadata AS emd ON e.guid = emd.guid"
+				);
+				$params["wheres"]   = array(
+						"e.type = 'user' AND e.subtype = 'gender'"
+				);
+				$params['group_by'] = 'gender';
+				$genders            = $this->select($params, true);
+				$lists              = array();
+				if($genders) {
+						foreach($genders as $list) {
+								$lists[] = $list->gender;
+						}
+				}
+				return $lists;
 		}
 		/**
 		 * Gender types
@@ -1063,7 +1068,7 @@ class OssnUser extends OssnEntities {
 		 * @access public
 		 */
 		public function genderTypes() {
-				$gender                = $this->getGenders();
+				$gender = $this->getGenders();
 				return ossn_call_hook('user', 'gender:types', $this, $gender);
 		}
 		/**
@@ -1073,18 +1078,18 @@ class OssnUser extends OssnEntities {
 		 * @access public
 		 */
 		public function countByGender($gender = 'male') {
-				if(!in_array($gender, $this->genderTypes())) {
+				if(empty($gender)) {
 						return false;
 				}
-				$params                = array();
-				$params['type']        = 'user';
-				$params['subtype']     = 'gender';
-				$params['page_limit']  = false;
-				$params['search_type'] = false;
-				$params['count']       = true;
-				$params['value']       = $gender;
-				
-				$data = $this->searchEntities($params);
+				$data = $this->searchUsers(array(
+						'count' => true,
+						'entities_pairs' => array(
+								array(
+										'name' => 'gender',
+										'value' => $gender
+								)
+						)
+				));
 				if($data) {
 						return $data;
 				}
@@ -1117,7 +1122,7 @@ class OssnUser extends OssnEntities {
 				$wheres['wheres'][] = "e.type='user'";
 				$wheres['wheres'][] = "e.subtype='gender'";
 				$wheres['wheres'][] = "emd.value='{$gender}'";
-				$wheres['wheres'][] = "last_activity > {$time} - {$intervals}";
+				$wheres['wheres'][] = "u.last_activity > {$time} - {$intervals}";
 				
 				$params['joins'][] = "JOIN ossn_entities as e ON e.owner_guid=u.guid";
 				$params['joins'][] = "JOIN ossn_entities_metadata as emd ON emd.guid=e.guid";
