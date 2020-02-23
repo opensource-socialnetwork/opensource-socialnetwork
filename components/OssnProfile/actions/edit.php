@@ -15,7 +15,6 @@ if(!$entity){
 $user['firstname'] = input('firstname');
 $user['lastname'] = input('lastname');
 $user['email'] = input('email');
-$user['gender'] = input('gender');
 $user['username'] = input('username');
 
 $fields = ossn_user_fields_names();
