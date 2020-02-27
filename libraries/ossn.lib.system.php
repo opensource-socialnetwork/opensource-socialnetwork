@@ -756,7 +756,7 @@ function ossn_string_decrypt($string = '', $key = '') {
 	$size    = openssl_cipher_iv_length('aes-128-cbc');
 	$mcgetvi = substr($string, 0, $size);
 	$string  = substr($string, $size);
-	
+	//padding is removed you may still use trim if you getting some padding at start or end
 	return openssl_decrypt($string, "aes-128-cbc", $key, OPENSSL_RAW_DATA, $mcgetvi);
 }
 /**
