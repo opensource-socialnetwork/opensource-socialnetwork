@@ -382,8 +382,13 @@ function ossn_standard_language_codes() {
  *
  * @return void
  */
-function ossn_load_available_languages() {
-		$codes = ossn_standard_language_codes();
+function ossn_load_available_languages($language_selection = false) {
+		if(!$language_selection) {
+				$codes = ossn_standard_language_codes();
+		} else {
+				$codes = array();
+				$codes[] = $language_selection;
+		}
 		$path  = ossn_route();
 		
 		$components = new OssnComponents;
