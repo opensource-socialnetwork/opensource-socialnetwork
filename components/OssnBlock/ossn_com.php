@@ -73,9 +73,22 @@ function ossn_user_block_action($callback, $type, $params){
 			case 'ossnchat/send':
 				$user = ossn_user_by_guid(input('to'));
 				if($user){
-					if(OssnBlock::UserBlockCheck($user)){
+					//we need to check for other user too to avoid sending message to user that he blocked
+					//[E] Stop UserA to send messages to UserB if he blocked UserB #1676					
+					if(OssnBlock::UserBlockCheck($user) || OssnBlock::selfBlocked($user)){
 						header('Content-Type: application/json');
 						echo json_encode(array('type' => 0));
+						exit;
+					}
+				}
+			break;
+			case 'message/send':
+				$user = ossn_user_by_guid(input('to'));
+				if($user){
+					//we need to check for other user too to avoid sending message to user that he blocked
+					//[E] Stop UserA to send messages to UserB if he blocked UserB #1676
+					if(OssnBlock::UserBlockCheck($user) || OssnBlock::selfBlocked($user)){
+						echo 0;
 						exit;
 					}
 				}
