@@ -15,13 +15,23 @@ class OssnBlock extends OssnEntities {
 		 *
 		 * @params $user entity of user a
 		 *
-		 * @return bool;
-		 * @access public;
+		 * @return boolean
+		 * @access public
 		 */
 		public static function UserBlockCheck($user) {
 				return self::isBlocked($user, ossn_loggedin_user());
 		}
-		
+		/**
+		 * Check if loggedin user is block UserB.
+		 *
+		 * @params $user entity of user B
+		 *
+		 * @return bool;
+		 * @access public;
+		 */		
+		public static function selfBlocked($user){
+			return self::isBlocked(ossn_loggedin_user(), $user);
+		}
 		/**
 		 * Check if loggedin user is blocked by $user.
 		 *
