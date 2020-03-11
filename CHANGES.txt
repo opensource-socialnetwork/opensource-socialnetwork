@@ -10,6 +10,9 @@ OSSN - OPEN SOURCE SOCAIL NETWORK V5.3
 * [B] display ads on pages with offset > 1
 * [B] Dynamic genders select busting the memory #1669
 * [B] PHP 7.4 pseudo_bytes throws warning | migration from bow-fish #1673 (already patched Ossn v5.2 LTS).
+* [B] Entities add results in wrong last_id #1668
+* [E] Stop UserA to send messages to UserB if he blocked UserB #1676
+* [B] wrong 3rd parm in ossn.lib.route line 93 #1649
 
 OSSN - OPEN SOURCE SOCIAL NETWORK V5.2 
 * Several fixes for handling of cover images #1488
