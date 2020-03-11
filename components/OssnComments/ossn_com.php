@@ -312,10 +312,19 @@ function ossn_comment_page($pages) {
 								$file = ossn_string_decrypt(base64_decode($image));
 								header('content-type: image/jpeg');
 								$file = rtrim(ossn_validate_filepath($file), '/');
-								if(is_file($file)) {
-										echo file_get_contents($file);
+								
+								$tmpphotos = ossn_get_userdata("tmp/photos/");
+								$filename  = str_replace($tmpphotos, '', $file);
+								
+								//avoid slashes in the file. 
+								if(strpos($filename, '\\') !== FALSE || strpos($filename, '/') !== FALSE) {
+										redirect();
 								} else {
-										ossn_error_page();
+										if(is_file($file)) {
+												echo file_get_contents($file);
+										} else {
+												redirect();
+										}
 								}
 						} else {
 								ossn_error_page();
