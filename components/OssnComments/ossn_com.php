@@ -315,7 +315,7 @@ function ossn_comment_page($pages) {
 								
 								$tmpphotos = ossn_get_userdata("tmp/photos/");
 								$filename  = str_replace($tmpphotos, '', $file);
-								
+								$file      = $tmpphotos.$filename;
 								//avoid slashes in the file. 
 								if(strpos($filename, '\\') !== FALSE || strpos($filename, '/') !== FALSE) {
 										redirect();
