@@ -1205,13 +1205,13 @@ class OssnUser extends OssnEntities {
 		public static function setLogin($userid) {
 				if(!empty($userid)) {
 						$user = false;
-						if(is_int($user)) {
+						if(is_int($userid)) {
 								$user = ossn_user_by_guid($userid);
 						}
 						if(filter_var($userid, FILTER_VALIDATE_EMAIL)) {
 								$user = ossn_user_by_email($userid);
 						}
-						if(is_string($user)) {
+						if(is_string($userid)) {
 								$user = ossn_user_by_username($userid);
 						}
 						if($user) {
