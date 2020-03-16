@@ -30,8 +30,10 @@ if (!empty($user)) {
         }
     }
 }
-foreach($fields['non_required'] as $field){
-	$user[$field] = input($field);
+if($fields['non_required']) {
+	foreach($fields['non_required'] as $field){
+		$user[$field] = input($field);
+	}
 }
 $password = input('password');
 
