@@ -382,12 +382,18 @@ function ossn_standard_language_codes() {
  *
  * @return void
  */
-function ossn_load_available_languages() {
-		$codes = ossn_standard_language_codes();
+function ossn_load_available_languages($language_selection = false) {
+		if(!$language_selection) {
+				$codes = ossn_standard_language_codes();
+		} else {
+				$codes = array();
+				$codes[] = $language_selection;
+		}
 		$path  = ossn_route();
 		
 		$components = new OssnComponents;
-		
+		$themes = new OssnThemes;
+
 		//load core framework languages
 		foreach($codes as $code) {
 				$file = $path->locale . "ossn.{$code}.php";
@@ -396,10 +402,20 @@ function ossn_load_available_languages() {
 				}
 		}
 		//load component languages
-		$components = $components->getActive();
+		$components = $components->getComponents();
 		foreach($components as $component) {
 				foreach($codes as $code) {
-						$file = $path->components . '/' . $component->com_id . "/locale/ossn.{$code}.php";
+						$file = $path->components . '/' . $component . "/locale/ossn.{$code}.php";
+						if(is_file($file)) {
+								include_once($file);
+						}
+				}
+		}
+		//load theme languages
+		$themes = $themes->getThemes();
+		foreach($themes as $theme) {
+				foreach($codes as $code) {
+						$file = $path->themes . $theme . "/locale/ossn.{$code}.php";
 						if(is_file($file)) {
 								include_once($file);
 						}
