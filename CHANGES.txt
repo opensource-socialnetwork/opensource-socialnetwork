@@ -13,6 +13,12 @@ OSSN - OPEN SOURCE SOCAIL NETWORK V5.3
 * [B] Entities add results in wrong last_id #1668
 * [E] Stop UserA to send messages to UserB if he blocked UserB #1676
 * [B] wrong 3rd parm in ossn.lib.route line 93 #1649
+* [B] 2 typos fixed in setLogin() #1678
+* [B] suppress warning if site has no non_required fields #1672
+* [E] include locales of themes
+* [B] fix for issue triggered by RemoveGender component #1671
+* [B] added 'message was deleted' #1665
+* [E] prevent installation path from being cached #1664
 
 OSSN - OPEN SOURCE SOCIAL NETWORK V5.2 
 * Several fixes for handling of cover images #1488
