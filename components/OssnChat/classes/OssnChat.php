@@ -154,7 +154,14 @@ class OssnChat extends OssnMessages {
 				$params['wheres'] = array(
 						"last_activity > {$time} - {$intervals} AND guid IN ({$friend_guids})"
 				);
-				$friends          = $this->select($params, true);
+				$friends = false;
+				$friendsl          = $this->select($params, true);
+				//[B] user get hook didn't works on chat #1679
+				if($friendsl){
+					foreach($friendsl as $fl){
+						$friends[] = ossn_call_hook('user', 'get', false, $fl);		
+					}
+				}
 				return $friends;
 		}
 		
