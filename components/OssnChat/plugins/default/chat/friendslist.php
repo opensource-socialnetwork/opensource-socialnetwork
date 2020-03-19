@@ -13,7 +13,8 @@ $have = '';
 if ($friends) {
     foreach ($friends as $friend) {
         $friend = arrayObject($friend, 'OssnUser');
-        $friend->fullname = $friend->first_name . ' ' . $friend->last_name;
+        //[B] user get hook didn't works on chat #1679
+        //$friend->fullname = $friend->first_name . ' ' . $friend->last_name;
         $vars['entity'] = $friend;
         $vars['icon'] = $friend->iconURL()->smaller;
         $have = 1;
