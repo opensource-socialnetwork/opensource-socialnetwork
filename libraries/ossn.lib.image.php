@@ -9,12 +9,6 @@
  * @link      https://www.opensource-socialnetwork.org/
  */
 /**
- * Elgg filestore.
- * This file contains functions for saving and retrieving data from files.
- *
- * @package Elgg.Core
- * @subpackage DataModel.FileStorage
- * 
  * See licenses/elgg/LICENSE.txt
  */
 /**
