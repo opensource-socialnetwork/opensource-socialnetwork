@@ -422,6 +422,12 @@ Ossn.RegisterStartupFunction(function() {
             var placesAutocomplete = places({
                 container: document.querySelector('#ossn-wall-location-input')
             });
+			$('#ossn-wall-location-input').keypress(function(event){
+				if(event.keyCode == 13) {
+					event.preventDefault();
+					return false;
+				}
+			});		
         }
     });
 });
