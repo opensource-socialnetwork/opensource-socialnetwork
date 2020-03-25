@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Open Source Social Network
  *
@@ -108,18 +107,17 @@ class OssnChat extends OssnMessages {
 				return $all;
 		}						
 		/**
-		 * Count online user friends
+		 * Count online friends of user
 		 *
-		 * @params = $intervals => seconds
-		 *           $user User guid
+		 * @param int $intervals => seconds
+		 * @param object $user User guid
 		 *
-		 * @return object;
+		 * @return bool
 		 */
 		public function countOnlineFriends($user, $intervals = 100) {
 				$friends = $this->getOnlineFriends($user, $intervals);
 				if($friends) {
-						$online = get_object_vars($friends);
-						return count($online);
+						return count($friends);
 				}
 				return 0;
 		}
