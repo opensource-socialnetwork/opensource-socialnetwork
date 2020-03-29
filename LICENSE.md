@@ -7,7 +7,7 @@
 
 Open Source Social Network (Ossn) Licensed under the Cryptographic Autonomy License version 1.0
 
-Please see https://www.opensource-socialnetwork.org/licence/v4.0.html#questions
+Please see https://www.opensource-socialnetwork.org/licence/
 
 ## Cryptographic Autonomy License version 1.0
 
