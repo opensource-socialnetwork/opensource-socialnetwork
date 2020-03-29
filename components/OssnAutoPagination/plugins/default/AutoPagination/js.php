@@ -28,6 +28,29 @@ Ossn.AutoPaginationURLparam = function(name, url){
 $(document).ready(function() {
 	$calledOnce = [];
 	$('.user-activity .ossn-pagination li').css({"visibility":"hidden"});
+	
+	//[B] AutoPagination didnt set any URL query to next request #1682
+	$currenturlparams = Ossn.ParseUrl(window.location.href);
+	$currentUrlQuery  = '';
+	if($currenturlparams['query'] && $currenturlparams['query'] != ''){
+		//because in $url we using ?offset that means it will sent request on current page, 
+		//what if there are other args set in url ? 
+		//we need to send those paramters to next request too.
+		$removeOffset    = $currenturlparams['query'].split('&');
+		if($removeOffset){
+			$.each($removeOffset, function(k, v){
+					if(v.includes('offset')){
+							$removeOffset.splice(k, 1);
+							return false;
+
+					}
+			});
+		}
+		$currentUrlQuery = $removeOffset.join('&');
+		if($currentUrlQuery != ''){
+			$currentUrlQuery = 	'&'+$currentUrlQuery; 
+		}
+	}
 	Ossn.isInViewPort({
 		element: '.user-activity .ossn-pagination',
 		callback: function(event, $all_elements) {
@@ -38,7 +61,7 @@ $(document).ready(function() {
 				$actual_next_url = $next.find('a').attr('href');
 				$url = $actual_next_url;
 				$offset = Ossn.AutoPaginationURLparam('offset', $url);
-				$url = '?offset='+$offset;
+				$url = '?offset='+$offset+$currentUrlQuery;
 				//compute offset of 'Last' tab the same way for later comparison
 				$last_url = $last.find('a').attr('href');
 				$last_offset = Ossn.AutoPaginationURLparam('offset', $last_url);
