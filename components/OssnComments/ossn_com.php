@@ -11,6 +11,9 @@
 define('__OSSN_COMMENTS__', ossn_route()->com . 'OssnComments/');
 require_once(__OSSN_COMMENTS__ . 'classes/OssnComments.php');
 require_once(__OSSN_COMMENTS__ . 'libs/comments.php');
+if(!com_is_active('OssnNotifications')) {
+	require_once(ossn_route()->com . 'OssnNotifications/classes/OssnNotifications.php');
+}
 
 /**
  * Initialize Comments Component
