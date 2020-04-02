@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * Open Source Social Network
  *
