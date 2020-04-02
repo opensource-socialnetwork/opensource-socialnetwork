@@ -658,7 +658,8 @@ function ossn_photos_likes_comments_delete($name, $type, $params) {
 				$likes->deleteLikes($params['photo']['guid'], 'entity');
 				
 				$comments = new OssnComments;
-				$comments->commentsDeleteAll($params['photo']['guid'], 'comments:entity');
+				//[B] getting orphan like records from comments when deleting a post #1687
+				$comments->commentsDeleteAll($params['photo']['guid'], 'entity');
 		}
 }
 
