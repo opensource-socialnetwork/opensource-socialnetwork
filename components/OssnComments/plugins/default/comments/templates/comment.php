@@ -87,7 +87,7 @@ if($datalikes  > 0){
 						             		 }
 						
 						         	} // Likes only for loggedin users end 
-						?>
+						} ?>
 					<div class="ossn-comment-menu">
 						<div class="dropdown">
 							<?php
@@ -95,6 +95,7 @@ if($datalikes  > 0){
 								?>
 						</div>
 					</div>
+					<?php if (class_exists('OssnLikes')) { ?>
 					<span class="ossn-likes-annotation-total">
 					<?php
 						// Show total likes
