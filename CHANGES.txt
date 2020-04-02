@@ -25,6 +25,7 @@ OSSN - OPEN SOURCE SOCAIL NETWORK V5.3
 * [B] getting orphan like records from comments when deleting a post #1687
 * [E] Disable OssnChat automatically if OssnMesssges are disabled
 * [E] remove "message" button on profile if OssnMessages are disabled
+* [B] Japanese language files including BOM #1684
 
 OSSN - OPEN SOURCE SOCIAL NETWORK V5.2 
 * Several fixes for handling of cover images #1488
