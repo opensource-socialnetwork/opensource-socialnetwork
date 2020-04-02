@@ -22,6 +22,7 @@ OSSN - OPEN SOURCE SOCAIL NETWORK V5.3
 * [B] prevent submitting of wallpost when pressing Enter in location input
 * [B] AutoPagination didnt set any URL query to next request #1682
 * [B] prevent crash on deleting comment when Notifications are disabled
+* [B] getting orphan like records from comments when deleting a post #1687
 
 OSSN - OPEN SOURCE SOCIAL NETWORK V5.2 
 * Several fixes for handling of cover images #1488
