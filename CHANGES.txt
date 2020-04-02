@@ -21,6 +21,7 @@ OSSN - OPEN SOURCE SOCAIL NETWORK V5.3
 * [E] prevent installation path from being cached #1664
 * [B] prevent submitting of wallpost when pressing Enter in location input
 * [B] AutoPagination didnt set any URL query to next request #1682
+* [B] prevent crash on deleting comment when Notifications are disabled
 
 OSSN - OPEN SOURCE SOCIAL NETWORK V5.2 
 * Several fixes for handling of cover images #1488
