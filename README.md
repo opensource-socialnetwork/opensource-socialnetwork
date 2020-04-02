@@ -32,6 +32,7 @@ Languages
 * Hebrew
 * Greek
 * Esperanto 
+* Japanese
 
 Front-End Features
 ===================
