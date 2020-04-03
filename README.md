@@ -33,6 +33,7 @@ Languages
 * Greek
 * Esperanto 
 * Japanese
+* Indonesian
 
 Front-End Features
 ===================
