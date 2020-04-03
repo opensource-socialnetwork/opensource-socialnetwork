@@ -10,6 +10,7 @@
  */
 
 $ja = array(
+	'ossnnotifications' => 'Notifications',			
     'ossn:notifications:comments:post' => "%s さんが投稿にコメントしました。",
     'ossn:notifications:like:post' => "%s さんが投稿にいいね！しました。",
     'ossn:notifications:like:annotation' => "%s さんがあなたのコメントにいいね！しました。",
@@ -36,5 +37,8 @@ $ja = array(
     'ossn:notification:mark:read:error' => 'すべてを既読にすることができませんでした。',
     
     'ossn:notifications:mark:as:read' => 'すべて既読にする',
+
+	'ossn:notifications:admin:settings:close_anywhere:title' => 'Close notification windows by clicking anywhere',
+	'ossn:notifications:admin:settings:close_anywhere:note' => '<i class="fa fa-info-circle"></i> closes any notification window by clicking anywhere on the page<br><br>',
 );
 ossn_register_languages('ja', $ja); 

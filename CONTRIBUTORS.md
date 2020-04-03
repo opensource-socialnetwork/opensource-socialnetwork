@@ -14,3 +14,4 @@ The following developers contributed to this project:
 * Tomáš Votruba (https://github.com/TomasVotruba)
 * Eric F. (https://www.opensource-socialnetwork.org/u/ctlui)
 * Kevin Breen (https://github.com/kevthehermit)
+* Muh Arief Ikhsan Yafi (https://web.facebook.com/muharief.iy)

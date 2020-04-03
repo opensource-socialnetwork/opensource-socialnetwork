@@ -21,5 +21,7 @@ $ja = array(
 		'ossn:smilies:admin:settings:compat:on' => '有効',
 		'ossn:smilies:admin:settings:save:error' => '設定を保存できません！ error_logファイルを確認してください。',
 		'ossn:smilies:admin:settings:saved' => '設定を保存しました！',
+		'ossn:smilies:admin:settings:close_anywhere:title' => 'Smiley box closing by clicking anywhere',
+		'ossn:smilies:admin:settings:close_anywhere:note' => '<i class="fa fa-info-circle"></i> closes the smiley selector box by clicking anywhere on the page<br><br>',		
 );
 ossn_register_languages('ja', $ja);
