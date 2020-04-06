@@ -228,7 +228,7 @@ function ossn_delete_relationship(array $vars = array()) {
 		}
 		$params['from']   = 'ossn_relationships';
 		$params['wheres'] = array(
-				$database->constructWheres($wheres)
+				$delete->constructWheres($wheres)
 		);
 		if($delete->delete($params)) {
 				return true;
