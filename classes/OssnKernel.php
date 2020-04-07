@@ -2,6 +2,10 @@
 /**
  * Open Source Social Network
  *
+ * OssnKernal this file is provided in core on softlab24.com request
+ * This file is created for the customers using softlab24.com apis,
+ * For more information about the usage of this please contact softlab24.com/contact
+ * 
  * @package   Open Source Social Network
  * @author    Open Social Website Core Team <info@softlab24.com>
  * @copyright (C) SOFTLAB24 LIMITED
