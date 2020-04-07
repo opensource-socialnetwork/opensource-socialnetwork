@@ -429,6 +429,9 @@ class OssnComponents extends OssnDatabase {
 		 * @return boolean
 		 */
 		public function enable($com) {
+				ossn_trigger_callback('component', 'before:enable', array(
+						'component' => $com
+				));						
 				if(!empty($com) && is_dir(ossn_route()->com . $com)) {
 						/*
 						 * Get a com;
@@ -480,6 +483,9 @@ class OssnComponents extends OssnDatabase {
 		 * @return boolean
 		 */
 		public function delete($com) {
+				ossn_trigger_callback('component', 'before:delete', array(
+						'component' => $com
+				));						
 				if(in_array($com, $this->requiredComponents())) {
 						return false;
 				}
@@ -528,6 +534,9 @@ class OssnComponents extends OssnDatabase {
 		 * @return boolean
 		 */
 		public function DISABLE($com = NULL) {
+				ossn_trigger_callback('component', 'before:disable', array(
+						'component' => $com
+				));						
 				if(in_array($com, $this->requiredComponents())) {
 						return false;
 				}
