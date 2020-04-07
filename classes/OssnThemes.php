@@ -108,6 +108,9 @@ class OssnThemes extends OssnSite {
 												if((!is_dir(ossn_route()->themes . $ossn_theme_xml->id)) && (OssnFile::moveFiles($files, ossn_route()->themes . $ossn_theme_xml->id . '/'))) {
 														//why it shows success even if the component is not updated #510
 														OssnFile::DeleteDir($data_dir);
+														ossn_trigger_callback('theme', 'installed', array(
+																'theme' => $ossn_theme_xml->id
+														));														
 														return true;
 												}
 										}
@@ -171,7 +174,13 @@ class OssnThemes extends OssnSite {
 		 * @return boolean
 		 */
 		public function deletetheme($theme) {
+				ossn_trigger_callback('theme', 'before:delete', array(
+							'theme' => $theme
+				));						
 				if(OssnFile::DeleteDir(ossn_route()->themes . "{$theme}/")) {
+						ossn_trigger_callback('theme', 'deleted', array(
+							'theme' => $theme
+						));							
 						return true;
 				}
 				return false;
@@ -208,7 +217,8 @@ class OssnThemes extends OssnSite {
 						'ossn_version',
 						'php_extension',
 						'php_version',
-						'php_function'
+						'php_function',
+						'ossn_component'						
 				);
 				if(isset($element->name)) {
 						if(isset($element->requires)) {
