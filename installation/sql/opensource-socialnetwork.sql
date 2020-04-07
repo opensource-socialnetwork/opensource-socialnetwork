@@ -6,10 +6,10 @@ CREATE TABLE IF NOT EXISTS `ossn_annotations` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `owner_guid` bigint(20) NOT NULL,
   `subject_guid` bigint(20) NOT NULL,
-  `type` varchar(20) NOT NULL,
+  `type` varchar(30) NOT NULL,
   `time_created` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=1 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS `ossn_components` (
   `com_id` varchar(50) NOT NULL,
   `active` int(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=20 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=20 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ossn_components`
@@ -58,14 +58,14 @@ INSERT INTO `ossn_components` (`id`, `com_id`, `active`) VALUES
 CREATE TABLE IF NOT EXISTS `ossn_entities` (
   `guid` bigint(20) NOT NULL AUTO_INCREMENT,
   `owner_guid` bigint(20) NOT NULL,
-  `type` text NOT NULL,
-  `subtype` text NOT NULL,
+  `type`  VARCHAR(20) NOT NULL,
+  `subtype`  VARCHAR(50) NOT NULL,
   `time_created` int(11) NOT NULL,
   `time_updated` int(11) DEFAULT NULL,
   `permission` int(1) NOT NULL,
   `active` int(1) NOT NULL,
   PRIMARY KEY (`guid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=1 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -78,7 +78,7 @@ CREATE TABLE IF NOT EXISTS `ossn_entities_metadata` (
   `guid` bigint(20) NOT NULL,
   `value` longtext NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=1 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -90,10 +90,10 @@ CREATE TABLE IF NOT EXISTS `ossn_likes` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `subject_id` bigint(20) NOT NULL,
   `guid` bigint(20) NOT NULL,
-  `type` varchar(20) NOT NULL,
-  `subtype` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,  
+  `type` varchar(30) NOT NULL,
+  `subtype` varchar(10) CHARACTER SET utf8mb4 DEFAULT NULL,  
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=1 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -109,7 +109,7 @@ CREATE TABLE IF NOT EXISTS `ossn_messages` (
   `viewed` varchar(1) DEFAULT NULL,
   `time` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=1 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -119,7 +119,7 @@ CREATE TABLE IF NOT EXISTS `ossn_messages` (
 
 CREATE TABLE IF NOT EXISTS `ossn_notifications` (
   `guid` bigint(20) NOT NULL AUTO_INCREMENT,
-  `type` text CHARACTER SET latin1 NOT NULL,
+  `type` VARCHAR(50) NOT NULL,
   `poster_guid` bigint(20) NOT NULL,
   `owner_guid` bigint(20) NOT NULL,
   `subject_guid` bigint(20) NOT NULL,
@@ -127,7 +127,7 @@ CREATE TABLE IF NOT EXISTS `ossn_notifications` (
   `time_created` int(11) NOT NULL,
   `item_guid` bigint(20) NOT NULL,
   PRIMARY KEY (`guid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=1 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -142,9 +142,9 @@ CREATE TABLE IF NOT EXISTS `ossn_object` (
   `time_created` int(11) NOT NULL,
   `title` text NOT NULL,
   `description` longtext NOT NULL,
-  `subtype` text NOT NULL,
+  `subtype` varchar(30) NOT NULL,
   PRIMARY KEY (`guid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=1 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -156,10 +156,10 @@ CREATE TABLE IF NOT EXISTS `ossn_relationships` (
   `relation_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `relation_from` bigint(20) NOT NULL,
   `relation_to` bigint(20) NOT NULL,
-  `type` varchar(20)  NOT NULL,
+  `type` varchar(30)  NOT NULL,
   `time` int(11) NOT NULL,
   PRIMARY KEY (`relation_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=1 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -169,10 +169,10 @@ CREATE TABLE IF NOT EXISTS `ossn_relationships` (
 
 CREATE TABLE IF NOT EXISTS `ossn_site_settings` (
   `setting_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `name` text NOT NULL,
+  `name` varchar(30) NOT NULL,
   `value` text NOT NULL,
   PRIMARY KEY (`setting_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=13 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ossn_site_settings`
@@ -209,10 +209,10 @@ CREATE TABLE IF NOT EXISTS `ossn_users` (
   `last_name` text NOT NULL,
   `last_login` int(11) NOT NULL,
   `last_activity` int(11) NOT NULL,
-  `activation` text,
+  `activation` varchar(32),
   `time_created` int(11) NOT NULL,
   PRIMARY KEY (`guid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=1 COLLATE=utf8mb4_general_ci;
 
 --
 -- Ossn v4.2 Database improvements
@@ -223,7 +223,8 @@ ALTER TABLE `ossn_annotations`
 	ADD KEY `subject_guid` (`subject_guid`),
 	ADD KEY `time_created` (`time_created`);
   
-ALTER TABLE `ossn_annotations` ADD FULLTEXT KEY `type` (`type`);
+ALTER TABLE `ossn_annotations` 
+	ADD KEY `type` (`type`);
 
 ALTER TABLE `ossn_entities`
 	ADD KEY `owner_guid` (`owner_guid`),
@@ -233,8 +234,8 @@ ALTER TABLE `ossn_entities`
 	ADD KEY `permission` (`permission`);
   
 ALTER TABLE `ossn_entities` 
-	ADD FULLTEXT KEY `type` (`type`),
-	ADD FULLTEXT KEY `subtype` (`subtype`);
+	ADD KEY `type` (`type`),
+	ADD KEY `subtype` (`subtype`);
 
 ALTER TABLE `ossn_entities_metadata`
 	ADD KEY `guid` (`guid`);
@@ -247,21 +248,25 @@ ALTER TABLE `ossn_notifications`
 	ADD KEY `subject_guid` (`subject_guid`), 
 	ADD KEY `time_created` (`time_created`),
 	ADD KEY `item_guid` (`item_guid`);
-ALTER TABLE `ossn_notifications` ADD FULLTEXT KEY `type` (`type`);
+	
+ALTER TABLE `ossn_notifications` 
+	ADD KEY `type` (`type`);
 
 ALTER TABLE `ossn_object`
 	ADD KEY `owner_guid` (`owner_guid`),
 	ADD KEY `time_created` (`time_created`);
   
 ALTER TABLE `ossn_object` 
-	ADD FULLTEXT KEY `type` (`type`),
-	ADD FULLTEXT KEY `subtype` (`subtype`);
+	ADD KEY `type` (`type`),
+	ADD KEY `subtype` (`subtype`);
 
 ALTER TABLE `ossn_relationships`
 	ADD KEY `relation_to` (`relation_to`),
 	ADD KEY `relation_from` (`relation_from`),
 	ADD KEY `time` (`time`);
-ALTER TABLE `ossn_relationships` ADD FULLTEXT KEY `type` (`type`);
+	
+ALTER TABLE `ossn_relationships` 
+	ADD KEY `type` (`type`);
 
 ALTER TABLE `ossn_users`
 	ADD KEY `last_login` (`last_login`),
@@ -273,3 +278,10 @@ ALTER TABLE `ossn_users`
 	ADD FULLTEXT KEY `email` (`email`),
 	ADD FULLTEXT KEY `first_name` (`first_name`),
 	ADD FULLTEXT KEY `last_name` (`last_name`);
+
+ALTER TABLE `ossn_likes` 
+	ADD KEY `subtype` (`subtype`);
+
+ALTER TABLE `ossn_messages` 
+	ADD KEY `message_to` (`message_to`),
+	ADD KEY `message_from` (`message_from`);
