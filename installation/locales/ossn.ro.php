@@ -40,7 +40,7 @@ $romanian = array(
 	'all:files:required' => 'Toate dosarele sint  necesare! Verifica din nou.',
 	
 	'ossn:install:php' => 'PHP ',
-	'ossn:install:old:php' => "Ai o versiune veche de PHP " . PHP_VERSION . " Iti trebuie versiune PHP 5.6 or PHP 7.x",
+	'ossn:install:old:php' => "Ai o versiune veche de PHP " . PHP_VERSION . " Iti trebuie versiune PHP 7.0 or PHP 7.x",
 	
 	'ossn:install:mysqli' => 'MYSQLI ENABLED',
 	'ossn:install:mysqli:required' => 'MYSQLI PHP EXTENSION REQUIRED',
