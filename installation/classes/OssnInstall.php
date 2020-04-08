@@ -97,7 +97,8 @@ class OssnInstallation {
 				$phpversion = substr(PHP_VERSION, 0, 6);
 				//$phpversion >= 5.6 , works fine with php 5.6
 			        //Support php 5.6 or larger remove support for < 5.6 #1287
-				if($phpversion >= 5.6) {
+				//8tH April 2020, remove support for outdated PHP version
+				if($phpversion >= 7.0) {
 						return true;
 				}
 				return false;
