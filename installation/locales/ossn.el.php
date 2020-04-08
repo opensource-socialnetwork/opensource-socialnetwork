@@ -40,7 +40,7 @@ $greek = array(
 	'all:files:required' => 'Όλα τα αρχεία απαιτούνται! Παρακαλώ ελέγξτε τα αρχεία σας.',
 	
 	'ossn:install:php' => 'PHP ',
-	'ossn:install:old:php' => "Έχετε μια παλιά έκδοση της PHP " . PHP_VERSION . " Χρειάζεστε PHP 5.6 or 7.x",
+	'ossn:install:old:php' => "Έχετε μια παλιά έκδοση της PHP " . PHP_VERSION . " Χρειάζεστε PHP 7.0 or 7.x",
 	
 	'ossn:install:mysqli' => 'MYSQLI ΕΝΕΡΓΟ',
 	'ossn:install:mysqli:required' => 'MYSQLI PHP ΑΠΑΙΤΟΥΜΕΝΗ ΕΠΕΚΤΑΣΗ',
