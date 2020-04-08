@@ -40,7 +40,7 @@ $turkish = array(
 	'all:files:required' => 'Tüm dosyalar gerekli! Lütfen dosyaları kontrol edin.',
 	
 	'ossn:install:php' => 'PHP ',
-	'ossn:install:old:php' => "Esk bir PHP versiyonuna (" . PHP_VERSION . ") sahipsiniz. Minimum PHP versiyonu 5.6 olmalıdır.",
+	'ossn:install:old:php' => "Esk bir PHP versiyonuna (" . PHP_VERSION . ") sahipsiniz. Minimum PHP versiyonu 7.0 olmalıdır.",
 	
 	'ossn:install:mysqli' => 'MySQL etkin',
 	'ossn:install:mysqli:required' => 'MySQL PHP  uzatma gerekli',
