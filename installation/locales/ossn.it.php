@@ -40,7 +40,7 @@ $it = array(
 	'all:files:required' => 'Tutti i files sono richiesti! Per favore controlla i tuoi files.',
 	
 	'ossn:install:php' => 'PHP ',
-	'ossn:install:old:php' => "Hai una vecchia versione di PHP " . PHP_VERSION . " Ti serve PHP 5.6 o PHP 7.x",
+	'ossn:install:old:php' => "Hai una vecchia versione di PHP " . PHP_VERSION . " Ti serve PHP 7.0 o PHP 7.x",
 	
 	'ossn:install:mysqli' => 'MYSQLI ABILITATO',
 	'ossn:install:mysqli:required' => 'MYSQLI PHP ESTENSIONE RICHIESTA',
