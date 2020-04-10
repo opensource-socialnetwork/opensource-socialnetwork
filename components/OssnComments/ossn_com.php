@@ -88,7 +88,7 @@ function ossn_entity_comment_link($callback, $type, $params) {
 		if(!empty($guid) && ossn_isLoggedIn()) {
 				ossn_register_menu_item('entityextra', array(
 						'name' => 'comment',
-						'class' => "comment-post",
+						'class' => "comment-entity",
 						'href' => "javascript:void(0)",
 						'data-guid' => $guid,
 						'text' => ossn_print('comment:comment')

@@ -22,7 +22,7 @@ if($params->full_view == true){
 }
 $comments = $comments->GetComments($object);
 
-echo "<div class='ossn-comments-list-{$object}'>";
+echo "<div class='ossn-comments-list-p{$object}'>";
 if ($comments) {
     foreach ($comments as $comment) {
             $data['comment'] = get_object_vars($comment);
@@ -37,8 +37,8 @@ if (ossn_isLoggedIn()) {
     $inputs = ossn_view_form('post/comment_add', array(
         'action' => ossn_site_url() . 'action/post/comment',
         'component' => 'OssnComments',
-        'id' => "comment-container-{$object}",
-        'class' => 'comment-container',
+        'id' => "comment-container-p{$object}",
+        'class' => 'comment-container comment-container-p',
         'autocomplete' => 'off',
         'params' => array('object' => $object)
     ), false);
@@ -57,13 +57,16 @@ $form = <<<html
 html;
 
 $form .= '<script>  Ossn.PostComment(' . $object . '); </script>';
-$form .= '<div class="ossn-comment-attachment" id="comment-attachment-container-' . $object . '">';
-$form .= '<script>Ossn.CommentImage(' . $object . ');</script>';
+$form .= '<div class="ossn-comment-attachment" id="comment-attachment-container-p' . $object . '">';
+$form .= '<script>Ossn.CommentImage(' . $object . ',  "post");</script>';
 $form .= ossn_view_form('comment_image', array(
-        'id' => "ossn-comment-attachment-{$object}",
+        'id' => "ossn-comment-attachment-p{$object}",
         'component' => 'OssnComments',
-        'params' => array('object' => $object)
-    ), false);
+        'params' => array(
+			'object' => $object,
+			'type' => 'p',
+		)    
+	), false);
 $form .= '</div>';
 echo $form;
 }

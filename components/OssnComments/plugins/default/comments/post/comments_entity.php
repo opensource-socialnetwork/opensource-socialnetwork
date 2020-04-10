@@ -20,7 +20,7 @@ if($params->full_view == true || $params['params']['full_view'] == true){
 	$comments->page_limit = false;
 }
 $comments = $comments->GetComments($object, 'entity');
-echo "<div class='ossn-comments-list-{$object}'>";
+echo "<div class='ossn-comments-list-e{$object}'>";
 if ($comments) {
     foreach ($comments as $comment) {
             $data['comment'] = get_object_vars($comment);
@@ -35,8 +35,8 @@ if (ossn_isLoggedIn()) {
     $inputs = ossn_view_form('entity/comment_add', array(
         'action' => ossn_site_url() . 'action/post/comment',
         'component' => 'OssnComments',
-        'id' => "comment-container-{$object}",
-        'class' => 'comment-container',
+        'id' => "comment-container-e{$object}",
+        'class' => 'comment-container comment-container-e',
         'autocomplete' => 'off',
         'params' => array('object' => $object)
     ), false);
@@ -55,12 +55,15 @@ $form = <<<html
 html;
 
 $form .= '<script>  Ossn.EntityComment(' . $object . '); </script>';
-$form .= '<div class="ossn-comment-attachment" id="comment-attachment-container-' . $object . '">';
-$form .= '<script>Ossn.CommentImage(' . $object . ');</script>';
+$form .= '<div class="ossn-comment-attachment" id="comment-attachment-container-e' . $object . '">';
+$form .= '<script>Ossn.CommentImage(' . $object . ', "entity");</script>';
 $form .= ossn_view_form('comment_image', array(
-        'id' => "ossn-comment-attachment-{$object}",
+        'id' => "ossn-comment-attachment-e{$object}",
         'component' => 'OssnComments',
-        'params' => array('object' => $object)
+        'params' => array(
+			'object' => $object,
+			'type' => 'e',
+		)
     ), false);
 $form .= '</div>';
 echo $form;

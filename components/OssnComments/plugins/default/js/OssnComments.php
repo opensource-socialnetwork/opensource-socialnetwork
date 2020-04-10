@@ -8,7 +8,7 @@
  * @link      https://www.opensource-socialnetwork.org/
  */
 Ossn.PostComment = function($container) {
-    $('#comment-box-' + $container).keypress(function(e) {
+    $('#comment-box-p' + $container).keypress(function(e) {
         if (e.which == 13) {
             if (e.shiftKey === false) {
                 //Postings and comments with same behaviour #924
@@ -21,46 +21,46 @@ Ossn.PostComment = function($container) {
                     })
                 };
 
-                $text = $('#comment-box-' + $container).html();
+                $text = $('#comment-box-p' + $container).html();
                 $text = $replace_tags($text, '<br>').replace(/\<br\\?>/g, "\n");
-                $('#comment-container-' + $container).append("<textarea name='comment' class='hidden'>" + $text + "</textarea>");
-                $('#comment-container-' + $container).submit();
+                $('#comment-container-p' + $container).append("<textarea name='comment' class='hidden'>" + $text + "</textarea>");
+                $('#comment-container-p' + $container).submit();
             }
         }
     });
-    $('#comment-box-' + $container).on('paste', function(e) {
+    $('#comment-box-p' + $container).on('paste', function(e) {
         e.preventDefault();
         var text = (e.originalEvent || e).clipboardData.getData('text/plain') || prompt('Paste something..');
         window.document.execCommand('insertText', false, text);
     });
     Ossn.ajaxRequest({
         url: Ossn.site_url + 'action/post/comment',
-        form: '#comment-container-' + $container,
+        form: '#comment-container-p' + $container,
         beforeSend: function(request) {
-            $('#comment-box-' + $container).attr('readonly', 'readonly');
-            $('#comment-box-' + $container).attr('contenteditable', false);
+            $('#comment-box-p' + $container).attr('readonly', 'readonly');
+            $('#comment-box-p' + $container).attr('contenteditable', false);
         },
         callback: function(callback) {
             if (callback['process'] == 1) {
-                $('#comment-box-' + $container).removeAttr('readonly');
-                $('#comment-box-' + $container).val('');
-                $('.ossn-comments-list-' + $container).append(callback['comment']);
-                $('#comment-attachment-container-' + $container).hide();
-                $('#ossn-comment-attachment-' + $container).find('.image-data').html('');
+                $('#comment-box-p' + $container).removeAttr('readonly');
+                $('#comment-box-p' + $container).val('');
+                $('.ossn-comments-list-p' + $container).append(callback['comment']);
+                $('#comment-attachment-container-p' + $container).hide();
+                $('#ossn-comment-attachment-p' + $container).find('.image-data').html('');
                 //commenting pic followed by text gives warnings #664 $dev.githubertus
-                $('#comment-container-' + $container).find('input[name="comment-attachment"]').val('');
+                $('#comment-container-p' + $container).find('input[name="comment-attachment"]').val('');
             }
             if (callback['process'] == 0) {
-                $('#comment-box-' + $container).removeAttr('readonly');
+                $('#comment-box-p' + $container).removeAttr('readonly');
                 Ossn.MessageBox('syserror/unknown');
             }
-            $('#comment-box-' + $container).attr('contenteditable', true);
-            $('#comment-box-' + $container).html("");
+            $('#comment-box-p' + $container).attr('contenteditable', true);
+            $('#comment-box-p' + $container).html("");
         }
     });
 };
 Ossn.EntityComment = function($container) {
-    $('#comment-box-' + $container).keypress(function(e) {
+    $('#comment-box-e' + $container).keypress(function(e) {
         if (e.which == 13) {
             if (e.shiftKey === false) {
                 //Postings and comments with same behaviour #924
@@ -73,41 +73,41 @@ Ossn.EntityComment = function($container) {
                     })
                 };
 
-                $text = $('#comment-box-' + $container).html();
+                $text = $('#comment-box-e' + $container).html();
                 $text = $replace_tags($text, '<br>').replace(/\<br\\?>/g, "\n");
-                $('#comment-container-' + $container).append("<textarea name='comment' class='hidden'>" + $text + "</textarea>");
-                $('#comment-container-' + $container).submit();
+                $('#comment-container-e' + $container).append("<textarea name='comment' class='hidden'>" + $text + "</textarea>");
+                $('#comment-container-e' + $container).submit();
             }
         }
     });
-    $('#comment-box-' + $container).on('paste', function(e) {
+    $('#comment-box-e' + $container).on('paste', function(e) {
         e.preventDefault();
         var text = (e.originalEvent || e).clipboardData.getData('text/plain') || prompt('Paste something..');
         window.document.execCommand('insertText', false, text);
     });
     Ossn.ajaxRequest({
         url: Ossn.site_url + 'action/post/entity/comment',
-        form: '#comment-container-' + $container,
+        form: '#comment-container-e' + $container,
         beforeSend: function(request) {
-            $('#comment-box-' + $container).attr('readonly', 'readonly');
-            $('#comment-box-' + $container).attr('contenteditable', false);
+            $('#comment-box-e' + $container).attr('readonly', 'readonly');
+            $('#comment-box-e' + $container).attr('contenteditable', false);
 
         },
         callback: function(callback) {
             if (callback['process'] == 1) {
-                $('#comment-box-' + $container).removeAttr('readonly');
-                $('#comment-box-' + $container).val('');
-                $('.ossn-comments-list-' + $container).append(callback['comment']);
-                $('#comment-attachment-container-' + $container).hide();
-                $('#ossn-comment-attachment-' + $container).find('.image-data').html('');
-                $('#comment-container-' + $container).find('input[name="comment-attachment"]').val('');
+                $('#comment-box-e' + $container).removeAttr('readonly');
+                $('#comment-box-e' + $container).val('');
+                $('.ossn-comments-list-e' + $container).append(callback['comment']);
+                $('#comment-attachment-container-e' + $container).hide();
+                $('#ossn-comment-attachment-e' + $container).find('.image-data').html('');
+                $('#comment-container-e' + $container).find('input[name="comment-attachment"]').val('');
             }
             if (callback['process'] == 0) {
-                $('#comment-box-' + $container).removeAttr('readonly');
+                $('#comment-box-e' + $container).removeAttr('readonly');
                 Ossn.MessageBox('syserror/unknown');
             }
-            $('#comment-box-' + $container).attr('contenteditable', true);
-            $('#comment-box-' + $container).html("");
+            $('#comment-box-e' + $container).attr('contenteditable', true);
+            $('#comment-box-e' + $container).html("");
         }
     });
 };
@@ -147,20 +147,26 @@ Ossn.RegisterStartupFunction(function() {
         });
     });
 });
-Ossn.CommentImage = function($container) {
+Ossn.CommentImage = function($container, $ftype){
+	if($ftype == 'post'){
+    	$ftype = 'p';
+    }
+    if($ftype == 'entity'){
+    	$ftype = 'e';
+    }
     $(document).ready(function() {
-        $("#ossn-comment-image-file-" + $container).on('change', function(event) {
+        $("#ossn-comment-image-file-"+$ftype+"" + $container).on('change', function(event) {
             event.preventDefault();
-            var formData = new FormData($('#ossn-comment-attachment-' + $container)[0]);
+            var formData = new FormData($('#ossn-comment-attachment-'+$ftype+'' + $container)[0]);
             $.ajax({
                 url: Ossn.site_url + 'comment/attachment',
                 type: 'POST',
                 data: formData,
                 async: true,
                 beforeSend: function() {
-                    $('#ossn-comment-attachment-' + $container).find('.image-data')
+                    $('#ossn-comment-attachment-'+$ftype+'' + $container).find('.image-data')
                         .html('<img src="' + Ossn.site_url + 'components/OssnComments/images/loading.gif" style="width:30px;border:none;height: initial;" />');
-                    $('#comment-attachment-container-' + $container).show();
+                    $('#comment-attachment-container-'+$ftype+'' + $container).show();
 
                 },
                 cache: false,
@@ -168,13 +174,13 @@ Ossn.CommentImage = function($container) {
                 processData: false,
                 success: function(callback) {
                     if (callback['type'] == 1) {
-                        $('#comment-container-' + $container).find('input[name="comment-attachment"]').val(callback['file']);
-                        $('#ossn-comment-attachment-' + $container).find('.image-data')
+                        $('#comment-container-'+$ftype+'' + $container).find('input[name="comment-attachment"]').val(callback['file']);
+                        $('#ossn-comment-attachment-'+$ftype+'' + $container).find('.image-data')
                             .html('<img src="' + Ossn.site_url + 'comment/staticimage?image=' + callback['file'] + '" />');
                     }
                     if (callback['type'] == 0) {
-                        $('#comment-container-' + $container).find('input[name="comment-attachment"]').val('');
-                        $('#comment-attachment-container-' + $container).hide();
+                        $('#comment-container-'+$ftype+'' + $container).find('input[name="comment-attachment"]').val('');
+                        $('#comment-attachment-container-'+$ftype+'' + $container).hide();
                         Ossn.MessageBox('syserror/unknown');
                     }
 
@@ -190,9 +196,15 @@ Ossn.RegisterStartupFunction(function() {
         $('body').delegate('.comment-post', 'click', function() {
             var $guid = $(this).attr('data-guid');
             if ($guid) {
-                $("#comment-box-" + $guid).focus();
+                $("#comment-box-p" + $guid).focus();
             }
         });
+        $('body').delegate('.comment-entity', 'click', function() {
+            var $guid = $(this).attr('data-guid');
+            if ($guid) {
+                $("#comment-box-e" + $guid).focus();
+            }
+        });        
         $('body').delegate('.ossn-edit-comment', 'click', function() {
             var $dataguid = $(this).attr('data-guid');
             Ossn.MessageBox('comment/edit/' + $dataguid);
