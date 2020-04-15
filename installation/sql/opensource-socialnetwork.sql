@@ -3,11 +3,11 @@
 --
 
 CREATE TABLE IF NOT EXISTS `ossn_annotations` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `owner_guid` bigint(20) NOT NULL,
-  `subject_guid` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `owner_guid` bigint NOT NULL,
+  `subject_guid` bigint NOT NULL,
   `type` varchar(30) NOT NULL,
-  `time_created` int(11) NOT NULL,
+  `time_created` int NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=1 COLLATE=utf8mb4_general_ci;
 
@@ -18,9 +18,9 @@ CREATE TABLE IF NOT EXISTS `ossn_annotations` (
 --
 
 CREATE TABLE IF NOT EXISTS `ossn_components` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `id` bigint NOT NULL AUTO_INCREMENT,
   `com_id` varchar(50) NOT NULL,
-  `active` int(1) NOT NULL,
+  `active` int NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=20 COLLATE=utf8mb4_general_ci;
 
@@ -56,14 +56,14 @@ INSERT INTO `ossn_components` (`id`, `com_id`, `active`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `ossn_entities` (
-  `guid` bigint(20) NOT NULL AUTO_INCREMENT,
-  `owner_guid` bigint(20) NOT NULL,
+  `guid` bigint NOT NULL AUTO_INCREMENT,
+  `owner_guid` bigint NOT NULL,
   `type`  VARCHAR(20) NOT NULL,
   `subtype`  VARCHAR(50) NOT NULL,
-  `time_created` int(11) NOT NULL,
-  `time_updated` int(11) DEFAULT NULL,
-  `permission` int(1) NOT NULL,
-  `active` int(1) NOT NULL,
+  `time_created` int NOT NULL,
+  `time_updated` int DEFAULT NULL,
+  `permission` int NOT NULL,
+  `active` int NOT NULL,
   PRIMARY KEY (`guid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=1 COLLATE=utf8mb4_general_ci;
 
@@ -74,8 +74,8 @@ CREATE TABLE IF NOT EXISTS `ossn_entities` (
 --
 
 CREATE TABLE IF NOT EXISTS `ossn_entities_metadata` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `guid` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `guid` bigint NOT NULL,
   `value` longtext NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=1 COLLATE=utf8mb4_general_ci;
@@ -87,9 +87,9 @@ CREATE TABLE IF NOT EXISTS `ossn_entities_metadata` (
 --
 
 CREATE TABLE IF NOT EXISTS `ossn_likes` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `subject_id` bigint(20) NOT NULL,
-  `guid` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `subject_id` bigint NOT NULL,
+  `guid` bigint NOT NULL,
   `type` varchar(30) NOT NULL,
   `subtype` varchar(10) CHARACTER SET utf8mb4 DEFAULT NULL,  
   PRIMARY KEY (`id`)
@@ -102,12 +102,12 @@ CREATE TABLE IF NOT EXISTS `ossn_likes` (
 --
 
 CREATE TABLE IF NOT EXISTS `ossn_messages` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `message_from` bigint(20) NOT NULL,
-  `message_to` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `message_from` bigint NOT NULL,
+  `message_to` bigint NOT NULL,
   `message` text NOT NULL,
   `viewed` varchar(1) DEFAULT NULL,
-  `time` int(11) NOT NULL,
+  `time` int NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=1 COLLATE=utf8mb4_general_ci;
 
@@ -118,14 +118,14 @@ CREATE TABLE IF NOT EXISTS `ossn_messages` (
 --
 
 CREATE TABLE IF NOT EXISTS `ossn_notifications` (
-  `guid` bigint(20) NOT NULL AUTO_INCREMENT,
+  `guid` bigint NOT NULL AUTO_INCREMENT,
   `type` VARCHAR(50) NOT NULL,
-  `poster_guid` bigint(20) NOT NULL,
-  `owner_guid` bigint(20) NOT NULL,
-  `subject_guid` bigint(20) NOT NULL,
+  `poster_guid` bigint NOT NULL,
+  `owner_guid` bigint NOT NULL,
+  `subject_guid` bigint NOT NULL,
   `viewed` varchar(1) DEFAULT NULL,
-  `time_created` int(11) NOT NULL,
-  `item_guid` bigint(20) NOT NULL,
+  `time_created` int NOT NULL,
+  `item_guid` bigint NOT NULL,
   PRIMARY KEY (`guid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=1 COLLATE=utf8mb4_general_ci;
 
@@ -136,10 +136,10 @@ CREATE TABLE IF NOT EXISTS `ossn_notifications` (
 --
 
 CREATE TABLE IF NOT EXISTS `ossn_object` (
-  `guid` bigint(20) NOT NULL AUTO_INCREMENT,
-  `owner_guid` bigint(20) NOT NULL,
+  `guid` bigint NOT NULL AUTO_INCREMENT,
+  `owner_guid` bigint NOT NULL,
   `type` varchar(20) NOT NULL,
-  `time_created` int(11) NOT NULL,
+  `time_created` int NOT NULL,
   `title` text NOT NULL,
   `description` longtext NOT NULL,
   `subtype` varchar(30) NOT NULL,
@@ -153,11 +153,11 @@ CREATE TABLE IF NOT EXISTS `ossn_object` (
 --
 
 CREATE TABLE IF NOT EXISTS `ossn_relationships` (
-  `relation_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `relation_from` bigint(20) NOT NULL,
-  `relation_to` bigint(20) NOT NULL,
+  `relation_id` bigint NOT NULL AUTO_INCREMENT,
+  `relation_from` bigint NOT NULL,
+  `relation_to` bigint NOT NULL,
   `type` varchar(30)  NOT NULL,
-  `time` int(11) NOT NULL,
+  `time` int NOT NULL,
   PRIMARY KEY (`relation_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=1 COLLATE=utf8mb4_general_ci;
 
@@ -168,7 +168,7 @@ CREATE TABLE IF NOT EXISTS `ossn_relationships` (
 --
 
 CREATE TABLE IF NOT EXISTS `ossn_site_settings` (
-  `setting_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `setting_id` bigint NOT NULL AUTO_INCREMENT,
   `name` varchar(30) NOT NULL,
   `value` text NOT NULL,
   PRIMARY KEY (`setting_id`)
@@ -199,7 +199,7 @@ INSERT INTO `ossn_site_settings` (`setting_id`, `name`, `value`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `ossn_users` (
-  `guid` bigint(20) NOT NULL AUTO_INCREMENT,
+  `guid` bigint NOT NULL AUTO_INCREMENT,
   `type` text NOT NULL,
   `username` text NOT NULL,
   `email` text NOT NULL,
@@ -207,10 +207,10 @@ CREATE TABLE IF NOT EXISTS `ossn_users` (
   `salt` varchar(8) NOT NULL,
   `first_name` text NOT NULL,
   `last_name` text NOT NULL,
-  `last_login` int(11) NOT NULL,
-  `last_activity` int(11) NOT NULL,
+  `last_login` int NOT NULL,
+  `last_activity` int NOT NULL,
   `activation` varchar(32),
-  `time_created` int(11) NOT NULL,
+  `time_created` int NOT NULL,
   PRIMARY KEY (`guid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=1 COLLATE=utf8mb4_general_ci;
 
@@ -259,6 +259,7 @@ ALTER TABLE `ossn_object`
 ALTER TABLE `ossn_object` 
 	ADD KEY `type` (`type`),
 	ADD KEY `subtype` (`subtype`);
+
 
 ALTER TABLE `ossn_relationships`
 	ADD KEY `relation_to` (`relation_to`),
