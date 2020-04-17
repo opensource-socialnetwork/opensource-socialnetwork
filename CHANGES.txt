@@ -28,6 +28,7 @@ OSSN - OPEN SOURCE SOCAIL NETWORK V5.3
 * [B] Japanese language files including BOM #1684
 * [E] prevent comment-menu from disappearing if Likes are disabled #1691
 * [B] comments add and list guids mixed with object and entities guids #1693
+* [BE] prevent changing of video urls from https to http #1695
 
 OSSN - OPEN SOURCE SOCIAL NETWORK V5.2 
 * Several fixes for handling of cover images #1488
