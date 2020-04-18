@@ -15,3 +15,4 @@ The following developers contributed to this project:
 * Eric F. (https://www.opensource-socialnetwork.org/u/ctlui)
 * Kevin Breen (https://github.com/kevthehermit)
 * Muh Arief Ikhsan Yafi (https://web.facebook.com/muharief.iy)
+* James Chang(https://www.opensource-socialnetwork.org/u/zuyan)
