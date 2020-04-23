@@ -298,7 +298,8 @@ Klik op de link hieronder om je wachtwoord te resetten:
 	'admin:com:author:url' => 'Author URL',
 	'admin:com:license' => 'Licentie',
 	'admin:com:requirements' => 'Vereisten',
-	'admin:com:availability' => 'Beschikbaarheid',
+	'admin:com:requirement' => 'Vereiste',
+	'admin:com:fulfilled' => 'Vervuld',
 	'ossn:exception:make:sure' => 'Weet je het zeker?',
 	 /*Datepicker*/
 	'datepicker:days' => "Zo, Ma, Di, Wo, Do, Vr, Za",
