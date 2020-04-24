@@ -329,7 +329,7 @@ class OssnWall extends OssnObject {
 												array(
 												  	'name' => 'poster_guid',
 													'value' => true,
-													'wheres' => "(emd0.value=2) OR (emd0.value=3 AND [this].value IN({$friend_guids}))"
+													'wheres' => "((emd0.value=2) OR (emd0.value=3 AND [this].value IN({$friend_guids})))"
 												  )
 								)
 						);
