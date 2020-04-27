@@ -44,6 +44,7 @@ if (isset($params['contents'])) {
             convert_urls: false,
             relative_urls: false,
             language: "<?php echo ossn_site_settings('language'); ?>",
+		content_css: Ossn.site_url + 'css/view/bootstrap.min.css'
         });
     </script>
 
