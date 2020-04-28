@@ -29,7 +29,8 @@ body {
 ::-webkit-scrollbar-thumb:hover {
 	background-color: #aaa;
 }
-
+.ossn-form input[type='number'],
+.ossn-form input[type='email'],
 .ossn-form input[type='password'],
 .ossn-form text,
 .ossn-form select,
