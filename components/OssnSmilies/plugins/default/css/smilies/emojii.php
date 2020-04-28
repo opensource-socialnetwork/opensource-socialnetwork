@@ -1,6 +1,7 @@
 .emojii {
 	font-size:17px !important;
 }
+
 .emojii-container {
 	background: #fff;
 	width: 254px;
@@ -15,6 +16,7 @@
 .emojii-container .nav {}
 
 .emojii-container .emojii-list {
+	Xpadding: 5px;
 	display: none;
 	height: 179px;
 	overflow: hidden;
