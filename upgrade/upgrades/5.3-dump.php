@@ -84,10 +84,10 @@ ALTER TABLE `ossn_annotations`
 
 ALTER TABLE `ossn_entities` 
 	DROP INDEX `type`,
-	ADD INDEX `type`(`type`);
+	ADD INDEX `type`(`type`),
+	ADD KEY `eky_ts` (`type`,`subtype`),
+	ADD KEY `eky_tso` (`type`,`subtype`,`owner_guid`);
 
-ALTER TABLE `ossn_entities` 
-	ADD KEY `ossn_entities_ky_type_subtype` (`type`,`subtype`);
 	
 ALTER TABLE `ossn_entities` 
 	DROP INDEX `subtype`, 
@@ -111,7 +111,9 @@ ALTER TABLE `ossn_object`
 
 ALTER TABLE `ossn_object`
 	DROP INDEX `subtype`,
-	ADD INDEX `subtype`(`subtype`);
+	ADD INDEX `subtype`(`subtype`),
+	ADD KEY `oky_ts` (`type`, `subtype`),
+	ADD KEY `oky_tsg` (`type`,`subtype`,`guid`);
 
 ALTER TABLE `ossn_relationships`
 	DROP INDEX `type`,
