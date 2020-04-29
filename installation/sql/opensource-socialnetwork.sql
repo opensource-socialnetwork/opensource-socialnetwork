@@ -235,7 +235,7 @@ ALTER TABLE `ossn_entities`
   
 ALTER TABLE `ossn_entities` 
 	ADD KEY `type` (`type`),
-	ADD KEY `subtype` (`subtype`)
+	ADD KEY `subtype` (`subtype`),
 	ADD KEY `ossn_entities_ky_type_subtype` (`type`,`subtype`);
 
 ALTER TABLE `ossn_entities_metadata`
