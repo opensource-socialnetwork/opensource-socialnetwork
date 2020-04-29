@@ -237,7 +237,7 @@ ALTER TABLE `ossn_entities`
 	ADD KEY `type` (`type`),
 	ADD KEY `subtype` (`subtype`),
 	ADD KEY `eky_ts` (`type`,`subtype`),
-	ADD INDEX `eky_tso` (`type`,`subtype`,`owner_guid`);
+	ADD KEY `eky_tso` (`type`,`subtype`,`owner_guid`);
 
 ALTER TABLE `ossn_entities_metadata`
 	ADD KEY `guid` (`guid`);
