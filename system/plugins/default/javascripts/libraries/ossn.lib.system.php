@@ -26,8 +26,8 @@ Ossn.isset = function($variable) {
  * @author original byimproved by: Diplom@t (https://difane.com/)
  * @author original byimproved by: Brett Zamir (https://brett-zamir.me)
  * 
- * @param string 		    cb 			    A callback function
- * @param array|object  parameters 	A option values
+ * @param string 	cb		A callback function
+ * @param array|object  parameters	A option values
  * 
  * @return mixed
  */
@@ -84,8 +84,8 @@ Ossn.call_user_func_array = function(cb, parameters) {
  * @author original byimproved by: Diplom@t (https://difane.com/)
  * @author original byimproved by: Brett Zamir (https://brett-zamir.me)
  * 
- * @param variable|function 	mixedVar 	  A function or callback name
- * @param boolean             syntaxOnly 	If set to TRUE the function only verifies that var might be a function or method. It will only reject simple variables that are not strings, or an array that does not have a valid structure to be used as a callback. The valid ones are supposed to have only 2 entries, the first of which is an object or a string, and the second a string.
+ * @param variable|function 	mixedVar 	A function or callback name
+ * @param boolean             	syntaxOnly 	If set to TRUE the function only verifies that var might be a function or method. It will only reject simple variables that are not strings, or an array that does not have a valid structure to be used as a callback. The valid ones are supposed to have only 2 entries, the first of which is an object or a string, and the second a string.
  *
  * @return boolean
  */
@@ -147,8 +147,8 @@ Ossn.is_callable = function(mixedVar, syntaxOnly, callableName) {
 /**
  * Check if hook exists or not
  *
- * @param string 	$hook 	The name of the hook
- * @param string 	$type 	The type of the hook
+ * @param string $hook 	The name of the hook
+ * @param string $type 	The type of the hook
  *
  * @return boolean
  */
@@ -187,10 +187,10 @@ Ossn.unset_hook = function($hook, $type, $callback) {
 /**
  * Add a hook to system, hooks are usefull for callback returns
  *
- * @param string 	  $hook 		  The name of the hook
- * @param string 	  $type 		  The type of the hook
- * @param callable 	$callback 	The name of a valid function or an array with object and method
- * @param int 		  $priority 	The priority - 200 is default, lower numbers called first
+ * @param string	$hook		The name of the hook
+ * @param string	$type		The type of the hook
+ * @param callable 	$callback	The name of a valid function or an array with object and method
+ * @param int		$priority	The priority - 200 is default, lower numbers called first
  *
  * @return boolean
  */
@@ -222,10 +222,10 @@ Ossn.add_hook = function($hook, $type, $callback, $priority = 200) {
 /**
  * Call a hook
  *
- * @param string 		    $hook 			  The name of the hook
- * @param string 		    $type 			  The type of the hook
- * @param array|object  $params 		  Additional parameters to pass to the handlers
- * @param mixed 		    $returnvalue 	An initial return value
+ * @param string	$hook		The name of the hook
+ * @param string	$type		The type of the hook
+ * @param array|object  $params		Additional parameters to pass to the handlers
+ * @param mixed		$returnvalue 	An initial return value
  *
  * @return mixed
  */
