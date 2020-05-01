@@ -1,5 +1,168 @@
 //<script>
 /**
+ *  Open Source Social Network
+ *
+ * @package   (softlab24.com).ossn
+ * @author    OSSN Core Team <info@softlab24.com>
+ * @copyright (C) SOFTLAB24 LIMITED
+ * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
+ * @link      https://www.opensource-socialnetwork.org/
+ */
+var Ossn = Ossn || {};
+Ossn.Startups = new Array();
+Ossn.hooks = new Array();
+Ossn.events = new Array();
+/**
+ * Register a startup function
+ *
+ * @return void
+ */
+Ossn.RegisterStartupFunction = function($func) {
+	Ossn.Startups.push($func);
+};
+/**
+ * Click on element
+ *
+ * @param $elem = element;
+ *
+ * @return void
+ */
+Ossn.Clk = function($elem) {
+	$($elem).click();
+};
+/**
+ * Redirect user to other page
+ *
+ * @param $url path
+ *
+ * @return void
+ */
+Ossn.redirect = function($url) {
+	window.location = Ossn.site_url + $url;
+};
+/**
+ * Get url paramter
+ *
+ * @param name Parameter name;
+ * @param url complete url
+ *
+ * @return string
+ */
+Ossn.UrlParams = function(name, url) {
+	var results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(url);
+	if (!results) {
+		return 0;
+	}
+	return results[1] || 0;
+};
+/**
+ * Returns an object with key/values of the parsed query string.
+ *
+ * @param  {String} string The string to parse
+ * @return {Object} The parsed object string
+ */
+Ossn.ParseStr = function(string) {
+	var params = {},
+		result,
+		key,
+		value,
+		re = /([^&=]+)=?([^&]*)/g,
+		re2 = /\[\]$/;
+
+	while (result = re.exec(string)) {
+		key = decodeURIComponent(result[1].replace(/\+/g, ' '));
+		value = decodeURIComponent(result[2].replace(/\+/g, ' '));
+
+		if (re2.test(key)) {
+			key = key.replace(re2, '');
+			if (!params[key]) {
+				params[key] = [];
+			}
+			params[key].push(value);
+		} else {
+			params[key] = value;
+		}
+	}
+
+	return params;
+};
+/**
+ * Parse a URL into its parts. Mimicks http://php.net/parse_url
+ *
+ * @param {String} url       The URL to parse
+ * @param {Int}    component A component to return
+ * @param {Bool}   expand    Expand the query into an object? Else it's a string.
+ *
+ * @return {Object} The parsed URL
+ */
+Ossn.ParseUrl = function(url, component, expand) {
+	// Adapted from http://blog.stevenlevithan.com/archives/parseuri
+	// which was release under the MIT
+	// It was modified to fix mailto: and javascript: support.
+	expand = expand || false;
+	component = component || false;
+
+	var re_str =
+		// scheme (and user@ testing)
+		'^(?:(?![^:@]+:[^:@/]*@)([^:/?#.]+):)?(?://)?'
+
+		// possibly a user[:password]@
+		+ '((?:(([^:@]*)(?::([^:@]*))?)?@)?'
+		// host and port
+		+ '([^:/?#]*)(?::(\\d*))?)'
+		// path
+		+ '(((/(?:[^?#](?![^?#/]*\\.[^?#/.]+(?:[?#]|$)))*/?)?([^?#/]*))'
+		// query string
+		+ '(?:\\?([^#]*))?'
+		// fragment
+		+ '(?:#(.*))?)',
+		keys = {
+			1: "scheme",
+			4: "user",
+			5: "pass",
+			6: "host",
+			7: "port",
+			9: "path",
+			12: "query",
+			13: "fragment"
+		},
+		results = {};
+
+	if (url.indexOf('mailto:') === 0) {
+		results['scheme'] = 'mailto';
+		results['path'] = url.replace('mailto:', '');
+		return results;
+	}
+
+	if (url.indexOf('javascript:') === 0) {
+		results['scheme'] = 'javascript';
+		results['path'] = url.replace('javascript:', '');
+		return results;
+	}
+
+	var re = new RegExp(re_str);
+	var matches = re.exec(url);
+
+	for (var i in keys) {
+		if (matches[i]) {
+			results[keys[i]] = matches[i];
+		}
+	}
+
+	if (expand && typeof(results['query']) != 'undefined') {
+		results['query'] = ParseStr(results['query']);
+	}
+
+	if (component) {
+		if (typeof(results[component]) != 'undefined') {
+			return results[component];
+		} else {
+			return false;
+		}
+	}
+	return results;
+};
+/**
  * Ossn.isset
  * 
  * Checks if the variable isset or not
@@ -198,7 +361,6 @@ Ossn.add_hook = function($hook, $type, $callback, $priority = 200){
 	if($hook == '' || $type == ''){
 		return false;
 	}
-
 	if(!Ossn.isset(Ossn.hooks)){
 		Ossn.hooks = new Array();
 	}
@@ -233,7 +395,7 @@ Ossn.call_hook = function($hook, $type, $params = null, $returnvalue = null){
 	$hooks = new Array();
 	hookspush = Array.prototype.push
 
-	if(Ossn.hooks[$hook][$type].length){
+	if(Ossn.isset(Ossn.hooks[$hook]) && Ossn.isset(Ossn.hooks[$hook][$type])){
 		hookspush.apply($hooks, Ossn.hooks[$hook][$type]);
 	}
 	$hooks.sort(function(a, b){
@@ -245,14 +407,13 @@ Ossn.call_hook = function($hook, $type, $params = null, $returnvalue = null){
 		}
 		return (a.index < b.index) ? -1 : 1;
 	});
-	$tempvalue = null;
 	$.each($hooks, function(index, $item){
-		$value = Ossn.call_user_func_array($item.hook, [$hook, $type, $params, $returnvalue]);
+		$value = Ossn.call_user_func_array($item.hook, [$hook, $type, $returnvalue, $params]);
 		if(Ossn.isset($value)){
-			$tempvalue = $value;
+			$returnvalue = $value;
 		}
 	});
-	return $tempvalue;
+	return $returnvalue;
 };
 /**
  * Check if callback exists or not
@@ -271,7 +432,7 @@ Ossn.is_callback = function($event, $type){
 /**
  * Add a callback to system, callbacks are usefull for do something when some event occurs
  *
- * @param string	$callback	The name of the callback
+ * @param string	$event		The name of the callback
  * @param string	$type		The type of the callback
  * @param callable 	$callback	The name of a valid function
  * @param int		$priority	The priority - 200 is default, lower numbers called first
@@ -304,7 +465,7 @@ Ossn.register_callback = function($event, $type, $callback, $priority = 200){
 /**
  * Unset a event callback to system
  *
- * @param string 	$callback	The name of the callback
+ * @param string 	$event		The name of the callback
  * @param string	$type		The type of the callback
  * @param callable	$callback	The name of a valid function
  *
@@ -341,8 +502,10 @@ Ossn.trigger_callback = function($event, $type, $params = null){
 	$events = new Array();
 	eventspush = Array.prototype.push
 
-	if(Ossn.events[$event][$type].length){
+	if(Ossn.isset(Ossn.events[$event]) && Ossn.isset(Ossn.events[$event][$type])){
 		eventspush.apply($events, Ossn.events[$event][$type]);
+	} else {
+		return false;
 	}
 	$events.sort(function(a, b){
 		if(a.priority < b.priority){

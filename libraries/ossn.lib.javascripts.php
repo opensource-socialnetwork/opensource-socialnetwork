@@ -304,7 +304,7 @@ function ossn_languages_js(){
 		ossn_load_external_js($js, 'admin');
 	} else {
 	
-		ossn_new_js('ossn.language', 'javascripts/libraries/languages');
+		ossn_new_js('ossn.language', 'javascripts/languages');
 		
 		ossn_load_js('ossn.language');
 		ossn_load_js('ossn.language', 'admin');	
