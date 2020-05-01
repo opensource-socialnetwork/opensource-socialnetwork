@@ -159,3 +159,31 @@ Ossn.repositionCOVER = function() {
 		},
 	});
 };
+/**
+ * Setup a profile photo buttons
+ *
+ * @return void
+ */
+Ossn.RegisterStartupFunction(function() {
+	$(document).ready(function() {
+		$('.profile-photo').hover(function() {
+			$('.upload-photo').slideDown();
+		}, function() {
+			$('.upload-photo').slideUp();
+		});
+	});
+});
+/**
+ * Setup a profile cover buttons
+ *
+ * @return void
+ */
+Ossn.RegisterStartupFunction(function() {
+	$(document).ready(function() {
+		$('.profile-cover').hover(function() {
+			$('.profile-cover-controls').show();
+		}, function() {
+			$('.profile-cover-controls').hide();
+		});
+	});
+});
