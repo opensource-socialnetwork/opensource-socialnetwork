@@ -161,9 +161,9 @@ Ossn.is_hook = function($hook, $type){
 /**
  * Unset a hook to system, hooks are usefull for callback returns
  *
- * @param string 	  $hook 		  The name of the hook
- * @param string 	  $type 		  The type of the hook
- * @param callable 	$callback 	The name of a valid function or an array with object and method
+ * @param string	$hook		The name of the hook
+ * @param string	$type		The type of the hook
+ * @param callable	$callback	The name of a valid function or an array with object and method
  *
  * @return boolean
  */
