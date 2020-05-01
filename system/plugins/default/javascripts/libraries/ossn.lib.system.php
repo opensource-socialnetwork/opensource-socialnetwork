@@ -8,8 +8,8 @@
  * 
  * @return boolean
  */
-Ossn.isset = function($variable) {
-	if (typeof $variable !== 'undefined') {
+Ossn.isset = function($variable){
+	if(typeof $variable !== 'undefined'){
 		return true;
 	}
 	return false;
@@ -31,42 +31,42 @@ Ossn.isset = function($variable) {
  * 
  * @return mixed
  */
-Ossn.call_user_func_array = function(cb, parameters) {
+Ossn.call_user_func_array = function(cb, parameters){
 	var $global = (typeof window !== 'undefined' ? window : global)
 	var func
 	var scope = null
 
 	var validJSFunctionNamePattern = /^[_$a-zA-Z\xA0-\uFFFF][_$a-zA-Z0-9\xA0-\uFFFF]*$/
 
-	if (typeof cb === 'string') {
-		if (typeof $global[cb] === 'function') {
+	if(typeof cb === 'string'){
+		if(typeof $global[cb] === 'function'){
 			func = $global[cb]
-		} else if (cb.match(validJSFunctionNamePattern)) {
+		} else if(cb.match(validJSFunctionNamePattern)){
 			func = (new Function(null, 'return ' + cb)()) // eslint-disable-line no-new-func
 		}
-	} else if (Object.prototype.toString.call(cb) === '[object Array]') {
-		if (typeof cb[0] === 'string') {
-			if (cb[0].match(validJSFunctionNamePattern)) {
+	} else if(Object.prototype.toString.call(cb) === '[object Array]'){
+		if(typeof cb[0] === 'string'){
+			if(cb[0].match(validJSFunctionNamePattern)){
 				func = eval(cb[0] + "['" + cb[1] + "']") // eslint-disable-line no-eval
 			}
 		} else {
 			func = cb[0][cb[1]]
 		}
 
-		if (typeof cb[0] === 'string') {
-			if (typeof $global[cb[0]] === 'function') {
+		if(typeof cb[0] === 'string'){
+			if(typeof $global[cb[0]] === 'function'){
 				scope = $global[cb[0]]
-			} else if (cb[0].match(validJSFunctionNamePattern)) {
+			} else if(cb[0].match(validJSFunctionNamePattern)){
 				scope = eval(cb[0]) // eslint-disable-line no-eval
 			}
-		} else if (typeof cb[0] === 'object') {
+		} else if(typeof cb[0] === 'object'){
 			scope = cb[0]
 		}
-	} else if (typeof cb === 'function') {
+	} else if(typeof cb === 'function'){
 		func = cb
 	}
 
-	if (typeof func !== 'function') {
+	if(typeof func !== 'function'){
 		throw new Error(func + ' is not a valid function')
 	}
 
@@ -89,7 +89,7 @@ Ossn.call_user_func_array = function(cb, parameters) {
  *
  * @return boolean
  */
-Ossn.is_callable = function(mixedVar, syntaxOnly, callableName) {
+Ossn.is_callable = function(mixedVar, syntaxOnly, callableName){
 	var $global = (typeof window !== 'undefined' ? window : global)
 
 	var validJSFunctionNamePattern = /^[_$a-zA-Z\xA0-\uFFFF][_$a-zA-Z0-9\xA0-\uFFFF]*$/
@@ -99,44 +99,44 @@ Ossn.is_callable = function(mixedVar, syntaxOnly, callableName) {
 	var method = ''
 	var validFunctionName = false
 
-	var getFuncName = function(fn) {
+	var getFuncName = function(fn){
 		var name = (/\W*function\s+([\w$]+)\s*\(/).exec(fn)
-		if (!name) {
+		if(!name){
 			return '(Anonymous)'
 		}
 		return name[1]
 	}
 
 	// eslint-disable-next-line no-useless-escape
-	if (/(^class|\(this\,)/.test(mixedVar.toString())) {
+	if(/(^class|\(this\,)/.test(mixedVar.toString())){
 		return false
 	}
 
-	if (typeof mixedVar === 'string') {
+	if(typeof mixedVar === 'string'){
 		obj = $global
 		method = mixedVar
 		name = mixedVar
 		validFunctionName = !!name.match(validJSFunctionNamePattern)
-	} else if (typeof mixedVar === 'function') {
+	} else if(typeof mixedVar === 'function'){
 		return true
-	} else if (Object.prototype.toString.call(mixedVar) === '[object Array]' &&
+	} else if(Object.prototype.toString.call(mixedVar) === '[object Array]' &&
 		mixedVar.length === 2 &&
 		typeof mixedVar[0] === 'object' &&
-		typeof mixedVar[1] === 'string') {
+		typeof mixedVar[1] === 'string'){
 		obj = mixedVar[0]
 		method = mixedVar[1]
 		name = (obj.constructor && getFuncName(obj.constructor)) + '::' + method
 	}
 
-	if (syntaxOnly || typeof obj[method] === 'function') {
-		if (callableName) {
+	if(syntaxOnly || typeof obj[method] === 'function'){
+		if(callableName){
 			$global[callableName] = name
 		}
 		return true
 	}
 
-	if (validFunctionName && typeof eval(method) === 'function') { // eslint-disable-line no-eval
-		if (callableName) {
+	if(validFunctionName && typeof eval(method) === 'function'){ // eslint-disable-line no-eval
+		if(callableName){
 			$global[callableName] = name
 		}
 		return true
@@ -152,8 +152,8 @@ Ossn.is_callable = function(mixedVar, syntaxOnly, callableName) {
  *
  * @return boolean
  */
-Ossn.is_hook = function($hook, $type) {
-	if (Ossn.isset(Ossn.hooks[$hook][$type])) {
+Ossn.is_hook = function($hook, $type){
+	if(Ossn.isset(Ossn.hooks[$hook][$type])){
 		return true;
 	}
 	return false;
@@ -167,15 +167,15 @@ Ossn.is_hook = function($hook, $type) {
  *
  * @return boolean
  */
-Ossn.unset_hook = function($hook, $type, $callback) {
-	if ($hook == '' || $type == '' || $callback == '') {
+Ossn.unset_hook = function($hook, $type, $callback){
+	if($hook == '' || $type == '' || $callback == ''){
 		return false;
 	}
-	if (Ossn.is_hook($hook, $type)) {
-		for (i = 0; i <= Ossn.hooks[$hook][$type].length; i++) {
-			if (Ossn.isset(Ossn.hooks[$hook][$type][i])) {
-				if (Ossn.isset(Ossn.hooks[$hook][$type][i].hook)) {
-					if (Ossn.hooks[$hook][$type][i].hook == $callback) {
+	if(Ossn.is_hook($hook, $type)){
+		for (i = 0; i <= Ossn.hooks[$hook][$type].length; i++){
+			if(Ossn.isset(Ossn.hooks[$hook][$type][i])){
+				if(Ossn.isset(Ossn.hooks[$hook][$type][i].hook)){
+					if(Ossn.hooks[$hook][$type][i].hook == $callback){
 						Ossn.hooks[$hook][$type].splice(i, 1);
 						break;
 					}
@@ -194,21 +194,21 @@ Ossn.unset_hook = function($hook, $type, $callback) {
  *
  * @return boolean
  */
-Ossn.add_hook = function($hook, $type, $callback, $priority = 200) {
-	if ($hook == '' || $type == '') {
+Ossn.add_hook = function($hook, $type, $callback, $priority = 200){
+	if($hook == '' || $type == ''){
 		return false;
 	}
 
-	if (!Ossn.isset(Ossn.hooks)) {
+	if(!Ossn.isset(Ossn.hooks)){
 		Ossn.hooks = new Array();
 	}
-	if (!Ossn.isset(Ossn.hooks[$hook])) {
+	if(!Ossn.isset(Ossn.hooks[$hook])){
 		Ossn.hooks[$hook] = new Array();
 	}
-	if (!Ossn.isset(Ossn.hooks[$hook][$type])) {
+	if(!Ossn.isset(Ossn.hooks[$hook][$type])){
 		Ossn.hooks[$hook][$type] = new Array();
 	}
-	if (!Ossn.is_callable($callback, true)) {
+	if(!Ossn.is_callable($callback, true)){
 		return false;
 	}
 
@@ -229,28 +229,135 @@ Ossn.add_hook = function($hook, $type, $callback, $priority = 200) {
  *
  * @return mixed
  */
-Ossn.call_hook = function($hook, $type, $params = null, $returnvalue = null) {
+Ossn.call_hook = function($hook, $type, $params = null, $returnvalue = null){
 	$hooks = new Array();
 	hookspush = Array.prototype.push
 
-	if (Ossn.hooks[$hook][$type].length) {
+	if(Ossn.hooks[$hook][$type].length){
 		hookspush.apply($hooks, Ossn.hooks[$hook][$type]);
 	}
-	$hooks.sort(function(a, b) {
-		if (a.priority < b.priority) {
+	$hooks.sort(function(a, b){
+		if(a.priority < b.priority){
 			return -1;
 		}
-		if (a.priority > b.priority) {
+		if(a.priority > b.priority){
 			return 1;
 		}
 		return (a.index < b.index) ? -1 : 1;
 	});
 	$tempvalue = null;
-	$.each($hooks, function(index, $item) {
+	$.each($hooks, function(index, $item){
 		$value = Ossn.call_user_func_array($item.hook, [$hook, $type, $params, $returnvalue]);
-		if (Ossn.isset($value)) {
+		if(Ossn.isset($value)){
 			$tempvalue = $value;
 		}
 	});
 	return $tempvalue;
+};
+/**
+ * Check if callback exists or not
+ *
+ * @param string $callback 	The name of the callback
+ * @param string $type 	The type of the callback
+ *
+ * @return boolean
+ */
+Ossn.is_callback = function($event, $type){
+	if(Ossn.isset(Ossn.events[$event][$type])){
+		return true;
+	}
+	return false;
+}
+/**
+ * Add a callback to system, callbacks are usefull for do something when some event occurs
+ *
+ * @param string	$callback	The name of the callback
+ * @param string	$type		The type of the callback
+ * @param callable 	$callback	The name of a valid function
+ * @param int		$priority	The priority - 200 is default, lower numbers called first
+ *
+ * @return boolean
+ */
+Ossn.register_callback = function($event, $type, $callback, $priority = 200){
+	if($event == '' || $type == ''){
+		return false;
+	}
+	if(!Ossn.isset(Ossn.events)){
+		Ossn.events = new Array();
+	}
+	if(!Ossn.isset(Ossn.events[$event])){
+		Ossn.events[$event] = new Array();
+	}
+	if(!Ossn.isset(Ossn.events[$event][$type])){
+		Ossn.events[$event][$type] = new Array();
+	}
+	if(!Ossn.is_callable($callback, true)){
+		return false;
+	}
+	$priority = Math.max(parseInt($priority), 0);
+	Ossn.events[$event][$type].push({
+		'callback': $callback,
+		'priority': $priority,
+	});
+	return true;
+};
+/**
+ * Unset a event callback to system
+ *
+ * @param string 	$callback	The name of the callback
+ * @param string	$type		The type of the callback
+ * @param callable	$callback	The name of a valid function
+ *
+ * @return boolean
+ */
+Ossn.unset_callback = function($event, $type, $callback){
+	if($event == '' || $type == '' || $callback == ''){
+		return false;
+	}
+	if(Ossn.is_callback($event, $type)){
+		for (i = 0; i <= Ossn.events[$event][$type].length; i++){
+			if(Ossn.isset(Ossn.events[$event][$type][i])){
+				if(Ossn.isset(Ossn.events[$event][$type][i].callback)){
+					if(Ossn.events[$event][$type][i].callback == $callback){
+						Ossn.events[$event][$type].splice(i, 1);
+						break;
+					}
+				}
+			}
+		}
+	}
+};
+/**
+ * Trigger a callback
+ *
+ * @param string	$callback	The name of the callback
+ * @param string	$type		The type of the callback
+ * @param array|object  $params		Additional parameters to pass to the handlers
+ * @param mixed		$returnvalue 	An initial return value
+ *
+ * @return mixed
+ */
+Ossn.trigger_callback = function($event, $type, $params = null){
+	$events = new Array();
+	eventspush = Array.prototype.push
+
+	if(Ossn.events[$event][$type].length){
+		eventspush.apply($events, Ossn.events[$event][$type]);
+	}
+	$events.sort(function(a, b){
+		if(a.priority < b.priority){
+			return -1;
+		}
+		if(a.priority > b.priority){
+			return 1;
+		}
+		return (a.index < b.index) ? -1 : 1;
+	});
+	$tempvalue = null;
+	$.each($events, function(index, $item){
+		if(Ossn.is_callable($item.callback) && (Ossn.call_user_func_array($item.callback, [$event, $type, $params]) == false)){
+			return false;
+		}
+	});
+	return true;
 };
