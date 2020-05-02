@@ -11,6 +11,7 @@ Ossn.register_callback('ossn', 'init', 'ossn_makesure_confirmation');
 Ossn.register_callback('ossn', 'init', 'ossn_component_delelte_confirmation');
 Ossn.register_callback('ossn', 'init', 'ossn_system_messages');
 Ossn.register_callback('ossn', 'init', 'ossn_user_signup_form');
+Ossn.register_callback('ossn', 'init', 'ossn_topbar_dropdown');	
 /**
  * Setup ajax request for user register
  *
@@ -87,7 +88,7 @@ function ossn_system_messages(){
  *
  * @return void
  */
-Ossn.RegisterStartupFunction(function(){
+function ossn_topbar_dropdown(){
 	$(document).ready(function(){
 		$('.ossn-topbar-dropdown-menu-button').click(function(){
 			if($('.ossn-topbar-dropdown-menu-content').is(":not(:visible)")){
@@ -98,7 +99,7 @@ Ossn.RegisterStartupFunction(function(){
 		});
 
 	});
-});
+}
 /**
  * Show exception on component delete
  *
