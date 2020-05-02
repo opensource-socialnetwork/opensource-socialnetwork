@@ -8,7 +8,7 @@
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
  * @link      https://www.opensource-socialnetwork.org/
  */
- class OssnInvite extends OssnMail {
+class OssnInvite extends OssnMail {
 	/**
      * Check if email is valid or not
      *
@@ -51,8 +51,14 @@
 		}
 		
 		$subject = ossn_print("com:ossn:invite:mail:subject", array($site));
-
-		return $this->NotifiyUser($email, $subject, $message);
+		
+		$args = array(
+				'email' => $email,
+				'user' => $user,
+				'subject' => $subject,
+				'message' => $message,
+		);
+		$vars = ossn_call_hook('invite', 'user:options', $args, $args);
+		return $this->NotifiyUser($vars['email'], $vars['subject'], $vars['message']);
 	}
-	
- }//class
+}//class
