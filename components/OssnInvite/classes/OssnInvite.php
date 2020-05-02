@@ -31,12 +31,13 @@ class OssnInvite extends OssnMail {
 		$message = strip_tags($this->message);
 		$message = html_entity_decode($message, ENT_QUOTES, "UTF-8");
 		$message = ossn_restore_new_lines($message);
-
+		
 		$user = ossn_loggedin_user();
 		if(!isset($user->guid) || empty($email)){
 			return false;
 		}
-		$user_fullname = html_entity_decode($user->fullname, ENT_QUOTES, "UTF-8");
+		$actual_message = $message;
+		$user_fullname 	= html_entity_decode($user->fullname, ENT_QUOTES, "UTF-8");
 		
 		$site = ossn_site_settings('site_name');
 		$site = html_entity_decode($site, ENT_QUOTES, "UTF-8");
@@ -57,6 +58,7 @@ class OssnInvite extends OssnMail {
 				'user' => $user,
 				'subject' => $subject,
 				'message' => $message,
+				'actual_message' => $actual_message,
 		);
 		$vars = ossn_call_hook('invite', 'user:options', $args, $args);
 		return $this->NotifiyUser($vars['email'], $vars['subject'], $vars['message']);
