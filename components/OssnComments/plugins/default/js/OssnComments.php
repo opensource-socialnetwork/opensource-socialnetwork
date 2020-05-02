@@ -156,6 +156,10 @@ function ossn_comment_delete_handler(){
 					if(callback == 0){
 						$('#comments-item-' + $comment_id).attr('style', 'opacity:0.6;');
 					}
+					Ossn.trigger_callback('comment', 'delete:callback', {
+						id: $comment_id,
+						response: callback,
+					});					
 				}
 			});
 		});
