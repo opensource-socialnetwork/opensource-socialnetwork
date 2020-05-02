@@ -31,6 +31,70 @@ Ossn.Clk = function($elem) {
 	$($elem).click();
 };
 /**
+ * Ossn.str_replace
+ * 
+ * Replace all occurrences of the search string with the replacement string
+ * See https://www.php.net/manual/en/function.str-replace.php
+ *
+ * @author original by https://locutus.io/php/str_replace/
+ * 
+ * @param string  search   The value being searched for, otherwise known as the needle. An array may be used to designate multiple needles.
+ * @param string  replace  The replacement value that replaces found search values. An array may be used to designate multiple replacements.
+ * @param string  subject  The string or array being searched and replaced on, otherwise known as the haystack.
+ * @param integer countObj If passed, this will be set to the number of replacements performed.
+ *
+ * @return boolean
+ */
+Ossn.str_replace = function(search, replace, subject, countObj){
+	var i = 0
+	var j = 0
+	var temp = ''
+	var repl = ''
+	var sl = 0
+	var fl = 0
+	var f = [].concat(search)
+	var r = [].concat(replace)
+	var s = subject
+	var ra = Object.prototype.toString.call(r) === '[object Array]'
+	var sa = Object.prototype.toString.call(s) === '[object Array]'
+	s = [].concat(s)
+
+	var $global = (typeof window !== 'undefined' ? window : global)
+	$global.$locutus = $global.$locutus || {}
+	var $locutus = $global.$locutus
+	$locutus.php = $locutus.php || {}
+
+	if (typeof(search) === 'object' && typeof(replace) === 'string') {
+		temp = replace
+		replace = []
+		for (i = 0; i < search.length; i += 1) {
+			replace[i] = temp
+		}
+		temp = ''
+		r = [].concat(replace)
+		ra = Object.prototype.toString.call(r) === '[object Array]'
+	}
+
+	if (typeof countObj !== 'undefined') {
+		countObj.value = 0
+	}
+
+	for (i = 0, sl = s.length; i < sl; i++) {
+		if (s[i] === '') {
+			continue
+		}
+		for (j = 0, fl = f.length; j < fl; j++) {
+			temp = s[i] + ''
+			repl = ra ? (r[j] !== undefined ? r[j] : '') : r[0]
+			s[i] = (temp).split(f[j]).join(repl)
+			if (typeof countObj !== 'undefined') {
+				countObj.value += ((temp.split(f[j])).length - 1)
+			}
+		}
+	}
+	return sa ? s : s[0];
+};
+/**
  * Redirect user to other page
  *
  * @param $url path
