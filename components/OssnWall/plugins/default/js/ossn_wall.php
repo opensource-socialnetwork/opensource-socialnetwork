@@ -199,8 +199,6 @@ function ossn_wall_init(){
 					var results = new RegExp('[\?&]' + 'offset' + '=([0-9]*)').exec(last_url);
 					$last_offset = results[1] || false;
 					
-					console.log(base_page_url);
-					return true;
 					if($current_offset < $last_offset){
 						Ossn.PostRequest({
 							// IMPORTANT: we must run the next 3 (4) XHR posts with async set to FALSE
