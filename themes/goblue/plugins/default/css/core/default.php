@@ -1306,7 +1306,9 @@ a {
 	font-weight: bold;
 	border-right: 1px solid #eee;
 }
-
+.profile-hr-menu .dropdown-menu {
+    margin-left: 0px;
+}
 .profile-hr-menu .dropdown-menu li {
 	display: block;
 }
@@ -2359,6 +2361,7 @@ footer .ossn-footer-menu a:last-child::after {
 	}
 	.profile-hr-menu ul li a {
 		margin-right: 0px;
+        padding: 10px;
 	}
 	.ossn-profile-role {
 		display: none;
