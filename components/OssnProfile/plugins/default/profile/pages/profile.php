@@ -68,16 +68,21 @@ if (ossn_isLoggedIn()) {
 					</div>
 					<div class="user-fullname"><?php echo $user->fullname; ?></div>
                     <?php echo ossn_plugin_view('profile/role', array('user' => $user)); ?>
-					<div id='profile-hr-menu' class="profile-hr-menu">
-						<?php echo ossn_view_menu( 'user_timeline'); ?>
+					<div id='profile-hr-menu' class="profile-hr-menu visible-lg">
+						<?php echo ossn_plugin_view('menus/user_timeline', array('menu_width' => 60)); ?>
+					</div>
+					<div id='profile-hr-menu' class="profile-hr-menu visible-md">
+						<?php echo ossn_plugin_view('menus/user_timeline', array('menu_width' => 40)); ?>
+					</div>
+					<div id='profile-hr-menu' class="profile-hr-menu visible-sm">
+						<?php echo ossn_plugin_view('menus/user_timeline', array('menu_width' => 25)); ?>
+					</div>
+					<div id='profile-hr-menu' class="profile-hr-menu visible-xs">
+						<?php echo ossn_plugin_view('menus/user_timeline', array('menu_width' => 1)); ?>
 					</div>
 
 					<div id="profile-menu" class="profile-menu">
-						<?php if (ossn_isLoggedIn()) { if (ossn_loggedin_user()->guid == $user->guid) { ?>
-						<a href="<?php echo $user->profileURL('/edit'); ?>" class='btn-action'>
-							<?php echo ossn_print( 'update:info'); ?>
-						</a>
-						<?php } ?>
+						<?php if (ossn_isLoggedIn()) { ?>
 						<?php if (ossn_loggedin_user()->guid !== $user->guid) { if (!ossn_user_is_friend(ossn_loggedin_user()->guid, $user->guid)) { if (ossn_user()->requestExists(ossn_loggedin_user()->guid, $user->guid)) { ?>
 						<a href="<?php echo ossn_site_url("action/friend/remove?cancel=true&user={$user->guid}", true); ?>" class='btn-action'>
                                 <?php echo ossn_print('cancel:request'); ?>
