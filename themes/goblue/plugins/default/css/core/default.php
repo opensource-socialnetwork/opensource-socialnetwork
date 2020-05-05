@@ -2339,8 +2339,8 @@ footer .ossn-footer-menu a:last-child::after {
 		margin-top: -130px;
 	}
 	.profile-menu {
-		float: none;
-		margin: 13px;
+		float: right;
+    		margin-right: 10px;
 	}
 	.ossn-profile .top-container .profile-cover img {
 		width: auto;
@@ -2354,7 +2354,6 @@ footer .ossn-footer-menu a:last-child::after {
 	}
 	.profile-hr-menu ul li {
 		display: block;
-		text-align: center;
 		border-bottom: 1px solid rgb(238, 238, 238);
 		margin-right: 0px;
 	}
