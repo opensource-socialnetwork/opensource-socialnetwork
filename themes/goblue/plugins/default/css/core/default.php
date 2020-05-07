@@ -1062,7 +1062,16 @@ a {
 	border-bottom: 1px solid #eee;
 }
 
-
+.ossn-privacy  .radio-block {
+   margin-bottom:0;
+   margin-top:0;
+}
+.ossn-privacy label {
+	margin-bottom:0px;
+}
+.ossn-privacy .radio-block span {
+	font-weight:normal;
+}
 /***********************************
 	Ossn Notifications
 ***************************************/
@@ -1899,11 +1908,41 @@ div.token-input-dropdown ul li.token-input-selected-dropdown-item {
 .ossn-message-box .contents label {
 	color: #666;
 	font-weight: bold;
-	font-size: 13px;
 	margin-right: 13px;
 }
-
-
+.ossn-form input[type=radio]{
+     -webkit-appearance: none;
+     -moz-appearance: none;
+     appearance: none;
+     display: inline-block;
+     position: relative;
+     background-color: #ececec;
+     color: #666;
+     top: 10px;
+     height: 30px;
+     width: 30px;
+     border: 0;
+     border-radius: 50px;
+     cursor: pointer;     
+     margin-right: 7px;
+     outline: none;
+}
+.ossn-form input[type=radio]:checked::before{
+     position: absolute;
+     font: 13px/1 'Open Sans', sans-serif;
+     left: 11px;
+     top: 7px;
+     content: '\02143';
+     transform: rotate(40deg);
+}
+.ossn-form input[type=radio]:hover{
+     background-color: #f7f7f7;
+}
+.ossn-form input[type=radio]:checked {
+    background-color: #0b769c;
+    color: #fff;
+    font-weight: bold;
+}
 /*******************************
 	Ossn Blocked
 *********************************/
@@ -2258,6 +2297,13 @@ footer .ossn-footer-menu a:last-child::after {
 ***************************/
 
 @media (max-width: 480px) {
+	.ossn-wall-privacy {
+    	float:none;
+      	 margin-right:0;
+    }
+    .ossn-wall-container .controls {
+    	height:auto;
+    }
 	/***********************
     	Comments
      ***********************/
