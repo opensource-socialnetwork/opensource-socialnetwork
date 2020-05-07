@@ -10,12 +10,17 @@
  */
 
 $image = $params['image'];
+$group = ossn_get_group_by_guid($params['post']->owner_guid);
 if(!isset($params['ismember'])){
-    if ($group = ossn_get_group_by_guid($params['post']->owner_guid)) {
-    	if ($group->isMember(NULL, ossn_loggedin_user()->guid)) {
+    if ($group){
+    	if ($group->isMember(NULL, ossn_loggedin_user()->guid)){
       		$params['ismember'] = 1;
     	}
     }
+}
+if(!$group){
+		error_log("Group didn't exists for the wallpost with guid : {$params['post']->guid} and Group with Guid: {$params['post']->owner_guid}");
+		return;	
 }
 //if user didn't exists not wall item #1110
 if(!$params['user']){
@@ -51,8 +56,9 @@ if(!$params['user']){
 				<span class="time-created ossn-wall-post-time" title="<?php echo date('d/m/Y', $params['post']->time_created);?>" onclick="Ossn.redirect('<?php echo("post/view/{$params['post']->guid}");?>');"><?php echo ossn_user_friendly_time($params['post']->time_created); ?></span>
                 <span class="time-created"><?php echo $params['location']; ?></span>
                 <?php
+					//[E] Group wall post should show group privacy as wall privacy icon #1721
 					echo ossn_plugin_view('privacy/icon/view', array(
-							'privacy' => $params['post']->access,
+							'privacy' => (int)$group->membership,
 							'text' => '-',
 							'class' => 'time-created',
 					));
