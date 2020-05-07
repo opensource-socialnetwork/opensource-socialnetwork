@@ -31,6 +31,7 @@ OSSN - OPEN SOURCE SOCAIL NETWORK V5.3
 * [BE] prevent changing of video urls from https to http #1695
 * [B] Wall:getPublicPosts shows wrong posts #1715
 * [E] include bootstrap css with TinyMCE init
+* [E] Allow to edit album name and privacy #1720
 
 OSSN - OPEN SOURCE SOCIAL NETWORK V5.2 
 * Several fixes for handling of cover images #1488
