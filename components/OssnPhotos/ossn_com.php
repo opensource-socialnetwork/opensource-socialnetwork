@@ -44,6 +44,7 @@ function ossn_photos_initialize() {
 		if(ossn_isLoggedin()) {
 				ossn_register_action('ossn/album/add', __OSSN_PHOTOS__ . 'actions/album/add.php');
 				ossn_register_action('ossn/album/delete', __OSSN_PHOTOS__ . 'actions/album/delete.php');
+				ossn_register_action('ossn/album/edit', __OSSN_PHOTOS__ . 'actions/album/edit.php');
 				ossn_register_action('ossn/photos/add', __OSSN_PHOTOS__ . 'actions/photos/add.php');
 				ossn_register_action('profile/photo/delete', __OSSN_PHOTOS__ . 'actions/photo/profile/delete.php');
 				ossn_register_action('profile/cover/photo/delete', __OSSN_PHOTOS__ . 'actions/photo/profile/cover/delete.php');
@@ -442,6 +443,23 @@ function ossn_album_page_handler($album) {
 								ossn_error_page();
 						}
 						break;
+				case 'edit':
+					if(!ossn_isLoggedin() || !ossn_is_xhr()){
+						ossn_error_page();	
+					}
+					$album	  = ossn_get_object($album[1]);
+					if(isset($album->guid) && $album->subtype == 'ossn:album' && $album->owner_guid == ossn_loggedin_user()->guid){
+						echo ossn_plugin_view('output/ossnbox', array(
+								'title' => ossn_print('edit'),
+								'contents' => ossn_plugin_view('photos/pages/album/edit', array(
+										'album' => $album,																
+								)),
+								'callback' => '#ossn-album-edit-submit'
+						));
+					} else {
+						ossn_error_page();	
+					}
+					break;
 				case 'view':
 						ossn_load_external_css('jquery.fancybox.min.css');
 						ossn_load_external_js('jquery.fancybox.min.js');
@@ -478,13 +496,22 @@ function ossn_album_page_handler($album) {
 												'data-url' => '?album=' . $album[1],
 												'class' => 'button-grey'
 										);
+										
+										$edit_album  = array(
+												'text' => ossn_print('edit'),
+												'class' => 'button-grey',
+												'data-guid' => $album[1],
+												'id' => 'ossn-photos-edit-album',
+										);
+										
 										$delete_action = ossn_site_url("action/ossn/album/delete?guid={$album[1]}", true);
 										$delete_album  = array(
 												'text' => ossn_print('delete:album'),
 												'href' => $delete_action,
 												'class' => 'button-grey ossn-make-sure'
 										);
-										$control       = ossn_plugin_view('output/url', $addphotos);
+										$control  = ossn_plugin_view('output/url', $edit_album);
+										$control .= ossn_plugin_view('output/url', $addphotos);
 										$control .= ossn_plugin_view('output/url', $delete_album);
 								} else {
 										$control = false;

@@ -16,6 +16,10 @@ Ossn.RegisterStartupFunction(function() {
         $('#album-add').click(function() {
             Ossn.MessageBox('album/add');
         });
+        $('body').on('click', '#ossn-photos-edit-album', function(){
+			$guid = $(this).attr('data-guid');
+            Ossn.MessageBox("album/edit/"+$guid);
+        });		
         $('#ossn-add-photos').click(function() {
             $dataurl = $(this).attr('data-url');
             Ossn.MessageBox('photos/add' + $dataurl);
