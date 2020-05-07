@@ -2183,7 +2183,10 @@ footer .ossn-footer-menu a:last-child::after {
 #ossn-home-signup p {
 	margin-top: 10px;
 }
-
+#ossn-home-signup .radio-block {
+	margin-top: 0;
+    margin-bottom: 0;
+}
 
 /**************************
 	System
