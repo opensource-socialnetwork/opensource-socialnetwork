@@ -34,6 +34,9 @@ OSSN - OPEN SOURCE SOCAIL NETWORK V5.3
 * [E] Allow to edit album name and privacy #1720
 * [E] Group wall post should show group privacy as wall privacy icon #1721
 * [E] Merge profile menu from GreenByGreen theme #1718
+* [E] add option to update relation #1692
+* [B] strangeness of class extending in input modules #1635
+* [E] callbacks for items before being deleted #1630
 
 OSSN - OPEN SOURCE SOCIAL NETWORK V5.2 
 * Several fixes for handling of cover images #1488
