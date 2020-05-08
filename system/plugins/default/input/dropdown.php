@@ -11,7 +11,8 @@
 
 $class = 'ossn-dropdown-input';
 if(isset($params['class'])){
-	$class = $class . $params['class'];
+	//[B] strangeness of class extending in input modules #1635
+	$class = $class .' '. $params['class'];
 }
 $value = (isset($params['value'])) ? $params['value'] : '';
 $values = (isset($params['options'])) ? $params['options'] : array();
