@@ -862,10 +862,19 @@ function ossn_check_update() {
  * @return (html);
  * @access public;
  */
-function _ossn_exception_handler($exception) {
+function _ossn_exception_handler($exception){
+	$time	= time();
+	$session_id = session_id();
+	
 	$params['exception'] = $exception;
+	$params['time'] = $time;
+	$params['session_id'] = '';
+	if($session_id){
+		$params['session_id'] = strtoupper($session_id);
+	}	
+	//[E] Improve Error Reporting 
 	//support at least exception message  #1014
-	error_log($params['exception']);
+	error_log("[#{$time}|{$params['session_id']}] ".$params['exception']);
 	echo ossn_view('system/handlers/errors', $params);
 }
 /**
