@@ -304,6 +304,7 @@ $ja = array(
 	'ossn:admin:settings:on' => 'enabled',
 	'ossn:admin:settings:saved' => 'Settings saved!',
 	'ossn:admin:settings:save:error' => 'Cannot save settings! Please check your error_log file.',	
+	
 	'ossn:com:installer:create:tmpdir:error' => 'Cannot create temporary data directory', 
 	'ossn:com:installer:upload:error' => 'An error occured during upload: %s',
 	'ossn:com:installer:version:error' => 'This component requires Ossn %s or higher',
@@ -314,6 +315,19 @@ $ja = array(
 	'ossn:com:installer:open:zip:error' => 'Cannot open component zip-archive',
 	'ossn:com:installer:move:uploaded:file:error' => 'Invalid zip-archive',
 	'ossn:com:installer:com:installation:success' => 'Component has been uploaded to your components list, you can now enable it from components page.',
+
+	'ossn:theme:installer:create:tmpdir:error' => '一時的なデータディレクトリを作成できない', 
+	'ossn:theme:installer:upload:error' => 'アップロード中にエラーが発生しました。%s',
+	'ossn:theme:installer:version:error' => 'このテーマには Ossn %s 以上が必要です。',
+	'ossn:theme:installer:remove:themedir:error' => 'このテーマはすでにインストールされています - テーマページのリストから削除してください。',
+	'ossn:theme:installer:create:themedir:error' => 'テーマディレクトリにファイルをコピーできない',
+	'ossn:theme:installer:xml:incomplete:error' => 'テーマの説明ファイルがない、または不完全',
+	'ossn:theme:installer:zip:incomplete:error' => 'テーマの zip-archive 不完全',
+	'ossn:theme:installer:open:zip:error' => 'テーマのz ip-archiveが 開けない',
+	'ossn:theme:installer:move:uploaded:file:error' => '無効 zip-archive',
+	'ossn:theme:installer:theme:installation:success' => 'テーマがテーマリストにアップロードされました。',
+	
+
 	'php:upload_err_ok' => 'There is no error, the file uploaded with success',
 	'php:upload_err_ini_size' => 'The uploaded file exceeds the upload_max_filesize directive in php.ini',
 	'php:upload_err_form_size' => 'The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the HTML form',

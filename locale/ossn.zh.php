@@ -310,6 +310,18 @@ Please click the link below to reset password or copy the link and paste into yo
 	'ossn:com:installer:open:zip:error' => '無法解壓縮元件檔案',
 	'ossn:com:installer:move:uploaded:file:error' => '不正確的壓縮檔',
 	'ossn:com:installer:com:installation:success' => '元件檔案已上傳, 你可以在元件清單頁面內啟用它.',
+	
+	'ossn:theme:installer:create:tmpdir:error' => '無法創建臨時數據目錄', 
+	'ossn:theme:installer:upload:error' => '上載期間發生錯誤： %s',
+	'ossn:theme:installer:version:error' => '這個主題需要 Ossn %s 或更高',
+	'ossn:theme:installer:remove:themedir:error' => '此主題已安裝-請首先從主題頁面的列表中將其刪除',
+	'ossn:theme:installer:create:themedir:error' => '無法將文件複製到主題目錄',
+	'ossn:theme:installer:xml:incomplete:error' => '主題描述文件丟失或不完整',
+	'ossn:theme:installer:zip:incomplete:error' => '主題zip歸檔不完整',
+	'ossn:theme:installer:open:zip:error' => '無法解壓縮元件檔案',
+	'ossn:theme:installer:move:uploaded:file:error' => '不正確的壓縮檔',
+	'ossn:theme:installer:theme:installation:success' => '主題已上傳到您的主題列表，您現在可以從主題頁面啟用它。',
+		
 	'php:upload_err_ok' => '沒有錯誤,檔案上傳成功',	
 	'php:upload_err_ini_size' => '上傳檔案超過了在 php.ini 中 upload_max_filesize 參數的大小',
 	'php:upload_err_form_size' => '檔案上傳時超過了 MAX_FILE_SIZE 所設定的大小',

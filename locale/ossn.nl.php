@@ -127,6 +127,7 @@ Mocht de link niet werken dan kunt u proberen deze in de adresbalk van je browse
 	'login:error' => 'Verkeerde gebruikersnaam of wachtwoord!',
 	'login:error:sub' => "U kon niet worden aangemeld. Controleer alstublieft je gebruikersnaam en wachtwoord.",
 	'login:success' => 'Je bent succesvol aangemeld!',
+	
 	'ossn:com:installer:create:tmpdir:error' => 'Kan geen tijdelijke gegevensmap maken', 
 	'ossn:com:installer:upload:error' => 'Er is een fout opgetreden tijdens het uploaden: %s',
 	'ossn:com:installer:version:error' => 'Deze component vereist OSSN %s of hoger',
@@ -137,6 +138,19 @@ Mocht de link niet werken dan kunt u proberen deze in de adresbalk van je browse
 	'ossn:com:installer:open:zip:error' => 'Kan component zip-archief niet openen',
 	'ossn:com:installer:move:uploaded:file:error' => 'Ongeldig zip-archief',
 	'ossn:com:installer:com:installation:success' => 'Het Component is geinstalleerd!',
+	
+	'ossn:theme:installer:create:tmpdir:error' => 'Kan geen tijdelijke gegevensmap aanmaken', 
+	'ossn:theme:installer:upload:error' => 'Er is een fout opgetreden tijdens het uploaden: %s',
+	'ossn:theme:installer:version:error' => 'Dit thema vereist Ossn %s of hoger',
+	'ossn:theme:installer:remove:themedir:error' => 'Dit thema is al geinstalleerd - gelieve het eerst te verwijderen uit de lijst op de themapagina',
+	'ossn:theme:installer:create:themedir:error' => 'Kan geen bestanden kopiëren naar de themamap',
+	'ossn:theme:installer:xml:incomplete:error' => 'Thema-beschrijvingsbestand ontbreekt of is onvolledig',
+	'ossn:theme:installer:zip:incomplete:error' => 'Theme zip-archive incomplete',
+	'ossn:theme:installer:open:zip:error' => 'Kan het thema zip-archief niet openen',
+	'ossn:theme:installer:move:uploaded:file:error' => 'Invalid zip archive',
+	'ossn:theme:installer:theme:installation:success' => 'Thema is geüpload naar uw themalijst, u kunt deze nu inschakelen vanaf de thema-pagina.',
+		
+	
 	'settings:saved' => 'Instellingen opgeslagen',
 	'com:deleted' => 'Component is verwijderd!',
 	'com:delete:error' => 'Kon het component niet verlaten! Probeer het later nog eens.',

@@ -125,6 +125,7 @@ You may copy and paste the address to your browser manually in case the link doe
 	'login:error' => 'Invalid username or passsword!',
 	'login:error:sub' => "We couldn't log you in. Please check your username or password and try again.",
 	'login:success' => 'You are now logged in!',
+	
 	'ossn:com:installer:create:tmpdir:error' => 'Cannot create temporary data directory', 
 	'ossn:com:installer:upload:error' => 'An error occured during upload: %s',
 	'ossn:com:installer:version:error' => 'This component requires Ossn %s or higher',
@@ -135,6 +136,18 @@ You may copy and paste the address to your browser manually in case the link doe
 	'ossn:com:installer:open:zip:error' => 'Cannot open component zip-archive',
 	'ossn:com:installer:move:uploaded:file:error' => 'Invalid zip-archive',
 	'ossn:com:installer:com:installation:success' => 'Component has been uploaded to your components list, you can now enable it from components page.',
+
+	'ossn:theme:installer:create:tmpdir:error' => 'Cannot create temporary data directory', 
+	'ossn:theme:installer:upload:error' => 'An error occured during upload: %s',
+	'ossn:theme:installer:version:error' => 'This theme requires Ossn %s or higher',
+	'ossn:theme:installer:remove:themedir:error' => 'This theme has been installed already - please delete it from the list on the themes page, first',
+	'ossn:theme:installer:create:themedir:error' => 'Cannot copy files to theme directory',
+	'ossn:theme:installer:xml:incomplete:error' => 'Theme description file missing or incomplete',
+	'ossn:theme:installer:zip:incomplete:error' => 'Theme zip-archive incomplete',
+	'ossn:theme:installer:open:zip:error' => 'Cannot open theme zip-archive',
+	'ossn:theme:installer:move:uploaded:file:error' => 'Invalid zip-archive',
+	'ossn:theme:installer:theme:installation:success' => 'Theme has been uploaded to your themes list, you can now enable it from themes page.',
+	
 	'settings:saved' => 'Settings saved',
 	'com:deleted' => 'Component has been deleted!',
 	'com:delete:error' => 'Cannot delete component! Please try again later.',

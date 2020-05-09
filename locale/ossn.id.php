@@ -306,6 +306,18 @@ Silakan klik tautan di bawah untuk mengatur ulang kata sandi atau salin tautan d
 	'ossn:com:installer:open:zip:error' => 'File/Berkas Zip Komponent tidak dapat dibuka karena terjadi kesalahan',
 	'ossn:com:installer:move:uploaded:file:error' => 'File/Berkas Zip tidak valid',
 	'ossn:com:installer:com:installation:success' => 'Komponent telah berhasil di unggah ke Halaman Komponent,Selanjutnya silahkan aktifkan komponent tersebut di Halaman Komponent.',
+	
+	'ossn:theme:installer:create:tmpdir:error' => 'Tidak dapat membuat direktori data sementara', 
+	'ossn:theme:installer:upload:error' => 'Terjadi kesalahan saat mengunggah: %s',
+	'ossn:theme:installer:version:error' => 'Tema ini membutuhkan Ossn %s atau lebih tinggi',
+	'ossn:theme:installer:remove:themedir:error' => 'Tema ini sudah diinstal - silakan hapus dari daftar di halaman tema, pertama',
+	'ossn:theme:installer:create:themedir:error' => 'Tidak dapat menyalin file ke direktori tema',
+	'ossn:theme:installer:xml:incomplete:error' => 'File uraian tema hilang atau tidak lengkap',
+	'ossn:theme:installer:zip:incomplete:error' => 'Tema zip-arsip tidak lengkap',
+	'ossn:theme:installer:open:zip:error' => 'Tidak dapat membuka arsip zip tema',
+	'ossn:theme:installer:move:uploaded:file:error' => 'Invalid zip-archive',
+	'ossn:theme:installer:theme:installation:success' => 'Tema telah diunggah ke daftar tema Anda, kini Anda dapat mengaktifkannya dari halaman tema.',
+		
 	'php:upload_err_ok' => 'Tidak terjadi Kesalahan, File/Berkas tersebut telah sukses di unggah ',
 	'php:upload_err_ini_size' => 'File yang di unggah terlalu besar atau melebihi yang telah dibatasi pada upload_max_filesize pada PHP',
 	'php:upload_err_form_size' => 'File yang di unggah melebihi batas yang telah ditentukan MAX_FILE_SIZE dalam formulir HTML',

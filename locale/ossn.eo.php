@@ -132,6 +132,7 @@ Vi povus kopii kaj alglui la adreson al via retumilo permane se la ligilo ne fun
 	'login:error' => 'Nevalida uzantnomo aŭ pasvorto!',
 	'login:error:sub' => "Ni ne povis ensalutigi vin. Bonvolu kontroli vian uzantnomon aŭ pasvorton kaj reprovu.",
 	'login:success' => 'Vi estas nun ensalutanta!',
+	
 	'ossn:com:installer:create:tmpdir:error' => 'Ne eblas krei provizoran datuman dosierujon', 
 	'ossn:com:installer:upload:error' => 'Eraro okazis dum alŝuto: %s',
 	'ossn:com:installer:version:error' => 'Ĉi tiu ero bezonas OSSN %s aŭ pli altan',
@@ -142,6 +143,18 @@ Vi povus kopii kaj alglui la adreson al via retumilo permane se la ligilo ne fun
 	'ossn:com:installer:open:zip:error' => 'Ne eblas malfermi zip-arkivon de komponantoj',
 	'ossn:com:installer:move:uploaded:file:error' => 'Nevalida zip-ar archiveivo',
 	'ossn:com:installer:com:installation:success' => 'Komponanto estas alŝutita al via komponanta listo. Vi povas nun ebligi ĝin per la komponanta paĝo.',
+
+	'ossn:theme:installer:create:tmpdir:error' => 'Ne eblas krei provizoran datuman dosierujon', 
+	'ossn:theme:installer:upload:error' => 'Eraro okazis dum alŝuto: %s',
+	'ossn:theme:installer:version:error' => 'Ĉi tiu temo postulas Ossn %s aŭ pli altan',
+	'ossn:theme:installer:remove:themedir:error' => 'Ĉi tiu temo instalis jam - bonvolu forigi ĝin de la listo ĉe la temopaĝo',
+	'ossn:theme:installer:create:themedir:error' => 'Ne eblas kopii dosierojn en teman dosierujon',
+	'ossn:theme:installer:xml:incomplete:error' => 'Temo-priskriba dosiero mankas aŭ nekompleta',
+	'ossn:theme:installer:zip:incomplete:error' => 'Temo zip-arkivo nekompleta',
+	'ossn:theme:installer:open:zip:error' => 'Ne eblas malfermi zipan arkivon',
+	'ossn:theme:installer:move:uploaded:file:error' => 'Nevalida zip-ar archiveivo',
+	'ossn:theme:installer:theme:installation:success' => 'Temo estis alŝutita al via temo, vi povas nun ebligi ĝin de temoj paĝo.',
+
 	'settings:saved' => 'Agordo estas konservita',
 	'com:deleted' => 'Komponento estas forigita!',
 	'com:delete:error' => 'Ne povis forigi komponenton. Bonvolu reprovi poste.',

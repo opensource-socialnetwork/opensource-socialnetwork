@@ -127,6 +127,7 @@ Puede copiar y pegar la dirección a su navegador manualmente en caso de que el 
 	'login:error' => '¡Usuario o contraseña invalido!',
 	'login:error:sub' => 'No pudimos iniciar sesión. Por favor, compruebe su nombre de usuario o contraseña y vuelva a intentarlo.',
 	'login:success' => 'Ahora está conectado!',
+	
 	'ossn:com:installer:create:tmpdir:error' => 'No se puede crear un directorio de datos temporal', 
 	'ossn:com:installer:upload:error' => 'Se produjo un error durante la carga: %s',
 	'ossn:com:installer:version:error' => 'Este componente requiere OSSN %s o superior',
@@ -137,6 +138,18 @@ Puede copiar y pegar la dirección a su navegador manualmente en caso de que el 
 	'ossn:com:installer:open:zip:error' => 'No se puede abrir el archivo zip del componente',
 	'ossn:com:installer:move:uploaded:file:error' => 'Archivo zip inválido',
 	'ossn:com:installer:com:installation:success' => 'El componente se ha cargado en la lista de componentes, ahora puede habilitarlo desde la página de componentes.',
+	
+	'ossn:theme:installer:create:tmpdir:error' => 'No se puede crear un directorio de datos temporal', 
+	'ossn:theme:installer:upload:error' => 'Se produjo un error durante la carga: %s',
+	'ossn:theme:installer:version:error' => 'Este tema requiere Ossn %s o superior',
+	'ossn:theme:installer:remove:themedir:error' => 'Este tema ya se ha instalado; primero bórrelo de la lista en la página de temas',
+	'ossn:theme:installer:create:themedir:error' => 'No se pueden copiar archivos al directorio de temas',
+	'ossn:theme:installer:xml:incomplete:error' => 'Falta el archivo de descripción del tema o está incompleto',
+	'ossn:theme:installer:zip:incomplete:error' => 'Tema zip-archivo incompleto',
+	'ossn:theme:installer:open:zip:error' => 'No se puede abrir el archivo zip del tema',
+	'ossn:theme:installer:move:uploaded:file:error' => 'Archivo zip inválido',
+	'ossn:theme:installer:theme:installation:success' => 'El tema se ha subido a su lista de temas, ahora puede habilitarlo desde la página de temas.',
+	
 	'settings:saved' => 'Ajustes guardados',
 	'com:deleted' => '¡El componente ha sido eliminado!',
 	'com:delete:error' => 'No se puede eliminar el componente! Por favor, inténtelo de nuevo más tarde.',

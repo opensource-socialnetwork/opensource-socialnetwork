@@ -125,6 +125,7 @@ Puoi anche copiare e incollare l'indirizzo nel tuo browser nel caso in cui il li
 	'login:error' => 'Username o password errate!',
 	'login:error:sub' => "Non possiamo farti entrare. Controlla che il tuo username e la tua password siano corretti.",
 	'login:success' => 'Sei entrato!',
+	
 	'ossn:com:installer:create:tmpdir:error' => 'Impossibile creare la directory dei dati temporanei', 
 	'ossn:com:installer:upload:error' => 'Si è verificato un errore durante il caricamento: %s',
 	'ossn:com:installer:version:error' => 'Questo componente richiede OSSN %s o superiore',
@@ -135,6 +136,18 @@ Puoi anche copiare e incollare l'indirizzo nel tuo browser nel caso in cui il li
 	'ossn:com:installer:open:zip:error' => "Impossibile aprire l'archivio zip del componente",
 	'ossn:com:installer:move:uploaded:file:error' => 'Archivio zip non valido',
 	'ossn:com:installer:com:installation:success' => 'Component has been uploaded to your components list, you can now enable it from components page.',
+	
+	'ossn:theme:installer:create:tmpdir:error' => 'Il tema è stato caricato nella vostra lista dei temi, ora potete abilitarlo dalla pagina dei temi.', 
+	'ossn:theme:installer:upload:error' => 'Si è verificato un errore durante il caricamento: %s',
+	'ossn:theme:installer:version:error' => 'Questo tema richiede Ossn %s o superiore',
+	'ossn:theme:installer:remove:themedir:error' => 'Questo tema è già stato installato - si prega di cancellarlo dalla lista nella pagina dei temi, prima di tutto',
+	'ossn:theme:installer:create:themedir:error' => 'Impossibile copiare i file nella directory del tema',
+	'ossn:theme:installer:xml:incomplete:error' => 'File di descrizione del tema mancante o incompleto',
+	'ossn:theme:installer:zip:incomplete:error' => 'Tema zip-archivio incompleto',
+	'ossn:theme:installer:open:zip:error' => "Non è possibile aprire l'archivio zip a tema",
+	'ossn:theme:installer:move:uploaded:file:error' => 'Archivio zip non valido',
+	'ossn:theme:installer:theme:installation:success' => 'Il tema è stato caricato nella vostra lista dei temi, ora potete abilitarlo dalla pagina dei temi.',
+		
 	'settings:saved' => 'Impostazioni salvate',
 	'com:deleted' => 'Component has been deleted!',
 	'com:delete:error' => 'Cannot delete component! Please try again later.',

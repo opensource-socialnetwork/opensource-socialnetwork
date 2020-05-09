@@ -125,6 +125,7 @@ Si vous ne pouvez pas cliquer sur le lien, copier et coller le dans votre naviga
 	'login:error' => "Nom d'utilisateur ou mot de passe non valide!",
 	'login:error:sub' => "Nous ne pouvons pas vous connecter S'il vous plaît vérifier votre nom d'utilisateur ou mot de passe et essayez de nouveau..",
 	'login:success' => "Vous êtes maintenant connecté!",
+	
 	'ossn:com:installer:create:tmpdir:error' => 'Impossible de créer un répertoire de données temporaire', 
 	'ossn:com:installer:upload:error' => "Une erreur s'est produite lors du téléchargement: %s",
 	'ossn:com:installer:version:error' => 'Ce composant nécessite OSSN %s ou supérieur',
@@ -135,6 +136,18 @@ Si vous ne pouvez pas cliquer sur le lien, copier et coller le dans votre naviga
 	'ossn:com:installer:open:zip:error' => "Impossible d'ouvrir l'archive zip du composant",
 	'ossn:com:installer:move:uploaded:file:error' => 'Archive zip non valide',
 	'ossn:com:installer:com:installation:success' => 'Le composant a été installé!',
+
+	'ossn:theme:installer:create:tmpdir:error' => 'Impossible de créer un répertoire de données temporaire', 
+	'ossn:theme:installer:upload:error' => "Une erreur s'est produite lors du téléchargement : %s",
+	'ossn:theme:installer:version:error' => 'Ce thème nécessite Ossn %s ou plus',
+	'ossn:theme:installer:remove:themedir:error' => "Ce thème a déjà été installé - veuillez d'abord le supprimer de la liste sur la page des thèmes",
+	'ossn:theme:installer:create:themedir:error' => 'Impossible de copier les fichiers dans le répertoire des thèmes',
+	'ossn:theme:installer:xml:incomplete:error' => 'Fichier de description du thème manquant ou incomplet',
+	'ossn:theme:installer:zip:incomplete:error' => 'Thème archive zip incomplète',
+	'ossn:theme:installer:open:zip:error' => "Impossible d'ouvrir l'archive zip du thème",
+	'ossn:theme:installer:move:uploaded:file:error' => 'Archives zip non valides',
+	'ossn:theme:installer:theme:installation:success' => "Le thème a été téléchargé dans votre liste de thèmes, vous pouvez maintenant l'activer à partir de la page des thèmes.",
+
 	'settings:saved' => "Paramètres enregistrés",
 	'com:deleted' => "Le composant a été supprimé!",
 	'com:delete:error' => "Impossible de supprimer le composant! S'il vous plaît réessayez plus tard.",

@@ -125,6 +125,7 @@ Falls der Link nicht anklickbar ist, kopiere ihn einfach in Deinen Browser.
     'login:error' => 'Fehler bei der Anmeldung: Der Benutzer-Name und/oder das Passwort ist falsch!',
     'login:error:sub' => "Bitte überprüfe beides noch einmal, achte auf Groß- und Klein-Schreibung und probiere es erneut.",
     'login:success' => 'Du bist nun angemeldet',
+	
 	'ossn:com:installer:create:tmpdir:error' => 'Temporäres Datenverzeichnis kann nicht erstellt werden', 
 	'ossn:com:installer:upload:error' => 'Beim Hochladen ist ein Fehler aufgetreten: %s',
 	'ossn:com:installer:version:error' => 'Diese Komponente erfordert OSSN %s oder höher',
@@ -135,6 +136,18 @@ Falls der Link nicht anklickbar ist, kopiere ihn einfach in Deinen Browser.
 	'ossn:com:installer:open:zip:error' => 'Zip-Archiv der Komponente kann nicht geöffnet werden',
 	'ossn:com:installer:move:uploaded:file:error' => 'Ungültiges Zip-Archiv',
 	'ossn:com:installer:com:installation:success' => 'Die Komponente wurde in die Komponentenliste hochgeladen. Du kannst sie nun auf der Seite "Komponenten" aktivieren.',
+	
+	'ossn:theme:installer:create:tmpdir:error' => 'Temporäres Datenverzeichnis kann nicht erstellt werden', 
+	'ossn:theme:installer:upload:error' => 'Beim Hochladen ist ein Fehler aufgetreten: %s',
+	'ossn:theme:installer:version:error' => 'Diese Thema erfordert OSSN %s oder höher',
+	'ossn:theme:installer:remove:themedir:error' => 'Diese Thema wurde bereits installiert - bitte lösche sie zuerst aus der Liste auf der Themanseite',
+	'ossn:theme:installer:create:themedir:error' => 'Die Dateien können nicht in das Themanverzeichnis kopiert werden',
+	'ossn:theme:installer:xml:incomplete:error' => 'Themanbeschreibungsdatei fehlt oder ist unvollständig',
+	'ossn:theme:installer:zip:incomplete:error' => 'Theman-Zip-Archiv unvollständig',
+	'ossn:theme:installer:open:zip:error' => 'Zip-Archiv der Thema kann nicht geöffnet werden',
+	'ossn:theme:installer:move:uploaded:file:error' => 'Ungültiges Zip-Archiv',
+	'ossn:theme:installer:theme:installation:success' => 'Die Thema wurde in die Themanliste hochgeladen. Du kannst sie nun auf der Seite "Theman" aktivieren.',
+	
     'settings:saved' => 'Die Einstellungen wurden gespeichert',
     'com:deleted' => 'Die Komponente wurde gelöscht',
     'com:delete:error' => 'Die Komponente konnte nicht gelöscht werden - versuche es bitte erneut',

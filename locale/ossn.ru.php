@@ -125,6 +125,7 @@ $ru = array(
 	'login:error' => 'Неправильное имя пользователя или пароль!',
 	'login:error:sub' => "Мы не можем Вас залогинить. Проверьте имя пользователя и пароль.",
 	'login:success' => 'Вы сейчас залогинены!',
+	
 	'ossn:com:installer:create:tmpdir:error' => 'Невозможно создать временный каталог данных', 
 	'ossn:com:installer:upload:error' => 'Произошла ошибка во время загрузки: %s',
 	'ossn:com:installer:version:error' => 'Этот компонент требует OSSN %s или выше',
@@ -135,6 +136,19 @@ $ru = array(
 	'ossn:com:installer:open:zip:error' => 'Не удается открыть компонент zip-архива',
 	'ossn:com:installer:move:uploaded:file:error' => 'Неверный zip-архив',
 	'ossn:com:installer:com:installation:success' => 'Компонент был загружен в ваш список компонентов. Сейчас вы можете включить его на странице компонентов.',
+
+	'ossn:theme:installer:create:tmpdir:error' => 'Не могу создать временную директорию данных', 
+	'ossn:theme:installer:upload:error' => 'Во время загрузки произошла ошибка: %s',
+	'ossn:theme:installer:version:error' => 'Эта тема требует Ossn %s или выше.',
+	'ossn:theme:installer:remove:themedir:error' => 'Эта тема уже установлена - пожалуйста, сначала удалите ее из списка на странице тем.',
+	'ossn:theme:installer:create:themedir:error' => 'Невозможно скопировать файлы в каталог тем',
+	'ossn:theme:installer:xml:incomplete:error' => 'Файл описания темы отсутствует или неполон',
+	'ossn:theme:installer:zip:incomplete:error' => 'Тематический архив неполный',
+	'ossn:theme:installer:open:zip:error' => 'Не могу открыть тематический zip-archive',
+	'ossn:theme:installer:move:uploaded:file:error' => 'Недействительный zip-archive',
+	'ossn:theme:installer:theme:installation:success' => 'Тема была загружена в список тем, теперь вы можете включить ее со страницы тем.',
+	
+
 	'settings:saved' => 'Настройки сохранены',
 	'com:deleted' => 'Компонент удалён!',
 	'com:delete:error' => 'Не получилось удалить компонент. Попробуйте снова.',

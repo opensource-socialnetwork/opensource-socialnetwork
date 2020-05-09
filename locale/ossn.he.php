@@ -124,6 +124,7 @@ $he = array(
 	'login:error' => 'שם משתמש או סיסמה לא נכונים!',
 	'login:error:sub' => "לא הצלחנו לחבר אותך, יש לבדוק את שם המשתמש והסיסמה ולנסות שוב",
 	'login:success' => 'החיבור בוצע בהצלחה!',
+	
 	'ossn:com:installer:create:tmpdir:error' => 'לא ניתן ליצור ספריית נתונים זמנית', 
 	'ossn:com:installer:upload:error' => 'אירעה שגיאה במהלך העלאה: %s',
 	'ossn:com:installer:version:error' => 'רכיב זה דורש OSSN %s ומעלה',
@@ -134,6 +135,19 @@ $he = array(
 	'ossn:com:installer:open:zip:error' => 'לא ניתן לפתוח ארכיב zip zip רכיב',
 	'ossn:com:installer:move:uploaded:file:error' => 'ארכיב מיקוד לא חוקי',
 	'ossn:com:installer:com:installation:success' => 'הרכיב הותקן בהצלחה, יש להפעילו מעמוד הרכיבים',
+
+	'ossn:theme:installer:create:tmpdir:error' => 'לא ניתן ליצור ספריית נתונים זמנית', 
+	'ossn:theme:installer:upload:error' => 'אירעה שגיאה במהלך העלאה: %s',
+	'ossn:theme:installer:version:error' => 'נושא זה דורש Ossn %s ומעלה',
+	'ossn:theme:installer:remove:themedir:error' => 'נושא זה כבר הותקן - אנא מחק אותו תחילה מהרשימה בדף הנושאים',
+	'ossn:theme:installer:create:themedir:error' => 'לא ניתן להעתיק קבצים לספריית העיצוב',
+	'ossn:theme:installer:xml:incomplete:error' => 'קובץ תיאור העיצוב חסר או לא שלם',
+	'ossn:theme:installer:zip:incomplete:error' => 'נושא ארכיון zip לא שלם',
+	'ossn:theme:installer:open:zip:error' => 'לא ניתן לפתוח ארכיב zip zip',
+	'ossn:theme:installer:move:uploaded:file:error' => 'ארכיב מיקוד לא חוקי',
+	'ossn:theme:installer:theme:installation:success' => 'הנושא הועלה לרשימת העיצובים שלך, כעת תוכל להפעיל אותו מדף הנושאים.',
+	
+
 	'settings:saved' => 'הגדרות נשמרו',
 	'com:deleted' => 'הרכיב נמחק!',
 	'com:delete:error' => 'לא ניתן למחוק רכיב, נסה שנית.',

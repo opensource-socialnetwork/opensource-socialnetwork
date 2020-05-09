@@ -77,11 +77,31 @@ class OssnThemes extends OssnSite {
 		 * @return boolean
 		 */
 		public function upload() {
+				$upload_error_messages = array(
+						UPLOAD_ERR_OK         => 'php:upload_err_ok',
+						UPLOAD_ERR_INI_SIZE   => 'php:upload_err_ini_size',
+						UPLOAD_ERR_FORM_SIZE  => 'php:upload_err_form_size',
+						UPLOAD_ERR_PARTIAL    => 'php:upload_err_partial',
+						UPLOAD_ERR_NO_FILE    => 'php:upload_err_no_file',
+						UPLOAD_ERR_NO_TMP_DIR => 'php:upload_err_no_tmp_dir',
+						UPLOAD_ERR_CANT_WRITE => 'php:upload_err_cant_write',
+						UPLOAD_ERR_EXTENSION  => 'php:upload_err_extension',
+				);			
 				$archive  = new ZipArchive;
 				$data_dir = ossn_get_userdata('tmp/themes');
 				if(!is_dir($data_dir)) {
 						mkdir($data_dir, 0755, true);
 				}
+				if(!is_dir($data_dir)) {
+						ossn_trigger_message(ossn_print('ossn:theme:installer:create:tmpdir:error'), 'error');
+						error_log('Theme Installer Error: Cannot create temporary data directory');
+						return;
+				}				
+				if($_FILES['theme_file']['error'] != UPLOAD_ERR_OK) {
+						ossn_trigger_message(ossn_print('ossn:theme:installer:upload:error', array(ossn_print($upload_error_messages[$_FILES['theme_file']['error']])) ), 'error');
+						error_log('Theme Installer Error: ' . $upload_error_messages[$_FILES['theme_file']['error']]);
+						return;
+				}				
 				$file = new OssnFile;
 				$file->setFile('theme_file');
 				$file->setExtension(array(
@@ -104,20 +124,57 @@ class OssnThemes extends OssnSite {
 										$ossn_theme_xml = simplexml_load_file("{$files}ossn_theme.xml");
 										//need to check id , since ossn v3.x
 										if(isset($ossn_theme_xml->id) && !empty($ossn_theme_xml->id)) {
+												// asure Ossn compatibility before overwriting an older component release
+												$required_version = $ossn_theme_xml->requires->version;
+												$installed_version = ossn_site_settings('site_version');
+												if($installed_version < $required_version) {
+														OssnFile::DeleteDir($data_dir);
+														ossn_trigger_message(ossn_print('ossn:theme:installer:version:error', array($required_version)), 'error');
+														error_log('Theme Installer Error: Ossn version ' . $required_version . ' requirement not met');
+														return;
+												}			
+												// if the theme is already installed
+												// warn the admin to remove it first
+												if(is_dir(ossn_route()->themes .  $ossn_theme_xml->id . '/')) {
+														OssnFile::DeleteDir($data_dir);
+														ossn_trigger_message(ossn_print('ossn:theme:installer:remove:themedir:error'), 'error');
+														error_log('Theme Installer Error: Former theme is still in place');
+														return;
+												}												
 												//move to components directory
 												if((!is_dir(ossn_route()->themes . $ossn_theme_xml->id)) && (OssnFile::moveFiles($files, ossn_route()->themes . $ossn_theme_xml->id . '/'))) {
 														//why it shows success even if the component is not updated #510
 														OssnFile::DeleteDir($data_dir);
 														ossn_trigger_callback('theme', 'installed', array(
 																'theme' => $ossn_theme_xml->id
-														));														
+														));		
+														ossn_trigger_message(ossn_print('ossn:theme:installer:theme:installation:success'), 'success');
 														return true;
 												}
+												OssnFile::DeleteDir($data_dir);
+												ossn_trigger_message(ossn_print('ossn:theme:installer:create:themedir:error'), 'error');
+												error_log('Theme Installer Error: Cannot copy files to themes directory');
+												return;												
 										}
+										OssnFile::DeleteDir($data_dir);
+										ossn_trigger_message(ossn_print('ossn:theme:installer:xml:incomplete:error'), 'error');
+										error_log('Theme Installer Error: XML file missing or incomplete');
+										return;										
 								}
+								OssnFile::DeleteDir($data_dir);
+								ossn_trigger_message(ossn_print('ossn:theme:installer:zip:incomplete:error'), 'error');
+								error_log('Theme Installer Error: Zip-archive incomplete');
+								return;								
 						}
+						OssnFile::DeleteDir($data_dir);
+						ossn_trigger_message(ossn_print('ossn:theme:installer:open:zip:error'), 'error');
+						error_log('Theme Installer Error: Cannot open zip-archive');
+						return;						
 				}
-				return false;
+				OssnFile::DeleteDir($data_dir);
+				ossn_trigger_message(ossn_print('ossn:theme:installer:move:uploaded:file:error'), 'error');
+				error_log('Theme Installer Error: Cannot open zip-archive');
+				return;
 		}
 		
 		/**

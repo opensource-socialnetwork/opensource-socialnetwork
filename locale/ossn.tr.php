@@ -125,6 +125,7 @@ Bağlantı çalışmıyorsa kopyalayıp adres çubuğuna yapıştırarak deneyeb
 	'login:error' => 'Yanlış kullanıcı adı veya şifre!',
 	'login:error:sub' => "Giriş yapılamadı! Kullanıcı adı ve şifrenizi kontrol edin.",
 	'login:success' => 'Giriş yapıldı!',
+	
 	'ossn:com:installer:create:tmpdir:error' => 'Geçici veri dizini oluşturulamıyor', 
 	'ossn:com:installer:upload:error' => 'Yükleme sırasında bir hata oluştu: %s',
 	'ossn:com:installer:version:error' => 'Bu bileşen OSSN %s veya üstü gerektirir',
@@ -135,6 +136,19 @@ Bağlantı çalışmıyorsa kopyalayıp adres çubuğuna yapıştırarak deneyeb
 	'ossn:com:installer:open:zip:error' => 'Bileşen zip arşivi açılamıyor',
 	'ossn:com:installer:move:uploaded:file:error' => 'Geçersiz zip arşivi',
 	'ossn:com:installer:com:installation:success' => 'Bileşen, Bileşenler listesine yüklendi! Şimdi Bileşenler sayfasından etkinleştirebilirsiniz.',
+
+	'ossn:theme:installer:create:tmpdir:error' => 'Geçici veri dizini oluşturulamıyor', 
+	'ossn:theme:installer:upload:error' => 'Yükleme sırasında bir hata oluştu: %s',
+	'ossn:theme:installer:version:error' => 'Bu tema için Ossn %s veya üstü gerekir',
+	'ossn:theme:installer:remove:themedir:error' => 'Bu tema zaten yüklendi - lütfen önce temalar sayfasındaki listeden silin',
+	'ossn:theme:installer:create:themedir:error' => 'Dosyalar tema dizinine kopyalanamıyor',
+	'ossn:theme:installer:xml:incomplete:error' => 'Tema açıklama dosyası eksik veya eksik',
+	'ossn:theme:installer:zip:incomplete:error' => 'Tema zip arşivi eksik',
+	'ossn:theme:installer:open:zip:error' => 'Tema açılamıyor zip-archive',
+	'ossn:theme:installer:move:uploaded:file:error' => 'Geçersiz zip-archive',
+	'ossn:theme:installer:theme:installation:success' => 'Tema temalar listenize yüklendi, artık temalar sayfasından etkinleştirebilirsiniz.',
+	
+
 	'settings:saved' => 'Ayarlar kaydedildi!',
 	'com:deleted' => 'Bileşen silindi!',
 	'com:delete:error' => 'Bileşen silinemedi! Lütfen tekrar deneyin.',

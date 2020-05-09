@@ -135,6 +135,18 @@ $el = array(
 	'ossn:com:installer:open:zip:error' => 'Δεν είναι δυνατό το άνοιγμα αρχείου zip-archive',
 	'ossn:com:installer:move:uploaded:file:error' => 'Μη έγκυρο αρχείο αρχείων zip',
 	'ossn:com:installer:com:installation:success' => 'Το Εξάρτημα έχει μεταφορτωθεί στη λίστα εξαρτημάτων, μπορείτε να το ενεργοποιήσετε από τη σελίδα (Εξαρτήματα)',
+	
+	'ossn:theme:installer:create:tmpdir:error' => 'Δεν είναι δυνατή η δημιουργία προσωρινού καταλόγου δεδομένων', 
+	'ossn:theme:installer:upload:error' => 'Παρουσιάστηκε σφάλμα κατά τη μεταφόρτωση: %s',
+	'ossn:theme:installer:version:error' => 'Αυτό το θέμα απαιτεί Ossn %s ή υψηλότερο',
+	'ossn:theme:installer:remove:themedir:error' => 'Αυτό το θέμα έχει ήδη εγκατασταθεί - διαγράψτε το από τη λίστα στη σελίδα θεμάτων, πρώτα',
+	'ossn:theme:installer:create:themedir:error' => 'Δεν είναι δυνατή η αντιγραφή αρχείων στον κατάλογο θεμάτων',
+	'ossn:theme:installer:xml:incomplete:error' => 'Το αρχείο περιγραφής θέματος λείπει ή δεν είναι πλήρες',
+	'ossn:theme:installer:zip:incomplete:error' => 'Μη ολοκληρωμένο αρχείο με θέμα zip',
+	'ossn:theme:installer:open:zip:error' => 'Δεν είναι δυνατό το άνοιγμα του αρχείου zip zip',
+	'ossn:theme:installer:move:uploaded:file:error' => 'Μη έγκυρο αρχείο zip',
+	'ossn:theme:installer:theme:installation:success' => 'Το θέμα έχει μεταφορτωθεί στη λίστα θεμάτων σας, μπορείτε πλέον να το ενεργοποιήσετε από τη σελίδα θεμάτων.',
+	
 	'settings:saved' => 'Οι ρυθμίσεις αποθηκεύτηκαν',
 	'com:deleted' => 'Το Εξάρτημα έχει διαγραφεί!',
 	'com:delete:error' => 'Δεν είναι δυνατή η διαγραφή του εξαρτήματος! Παρακαλώ δοκιμάστε ξανά αργότερα.',

@@ -125,6 +125,7 @@ Poti sa copy si paste adresa in browser in caz in care nu merge.
 	'login:error' => 'Nume sau parola invalida!',
 	'login:error:sub' => "Nu v-am putut loga. Te rugam sa verifici numele utilizatorului si parola si incearca din nou.",
 	'login:success' => 'Esti logat in!',
+	
 	'ossn:com:installer:create:tmpdir:error' => 'Nu se poate crea directorul de date temporare', 
 	'ossn:com:installer:upload:error' => 'A apărut o eroare în timpul încărcării: %s',
 	'ossn:com:installer:version:error' => 'Această componentă necesită OSSN %s sau mai mare',
@@ -135,6 +136,19 @@ Poti sa copy si paste adresa in browser in caz in care nu merge.
 	'ossn:com:installer:open:zip:error' => 'Nu se poate deschide arhiva zip a componentelor',
 	'ossn:com:installer:move:uploaded:file:error' => 'Arhivă zip nevalidă',
 	'ossn:com:installer:com:installation:success' => 'Componentul a fost upladat in lista de componente, acum poti sa il activezi in lista de Componente.',
+
+	'ossn:theme:installer:create:tmpdir:error' => 'Nu se poate crea directorul de date temporare', 
+	'ossn:theme:installer:upload:error' => 'A apărut o eroare în timpul încărcării: %s',
+	'ossn:theme:installer:version:error' => 'Această temă necesită Ossn %s sau mai mare',
+	'ossn:theme:installer:remove:themedir:error' => 'Această temă a fost deja instalată - vă rugăm să o ștergeți din listă pe pagina temelor',
+	'ossn:theme:installer:create:themedir:error' => 'Nu se pot copia fișierele în directorul temei',
+	'ossn:theme:installer:xml:incomplete:error' => 'Fișierul cu descrierea temei lipsă sau incomplet',
+	'ossn:theme:installer:zip:incomplete:error' => 'Tema arhivă zip incompletă',
+	'ossn:theme:installer:open:zip:error' => 'Nu se poate deschide arhiva zip cu temă',
+	'ossn:theme:installer:move:uploaded:file:error' => 'Arhivă zip nevalidă',
+	'ossn:theme:installer:theme:installation:success' => 'Tema a fost încărcată în lista de teme, acum o puteți activa din pagina temelor.',
+	
+	
 	'settings:saved' => 'Setingurile au fost salvate',
 	'com:deleted' => 'Componentul a fost sters!',
 	'com:delete:error' => 'Nu putem sterge Componentul! Incearca mai tarziu.',
