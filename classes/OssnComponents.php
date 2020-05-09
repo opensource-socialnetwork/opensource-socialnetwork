@@ -458,8 +458,7 @@ class OssnComponents extends OssnDatabase {
 						 * @last edit: $arsalanshah
 						 * @Reason: Initial;
 						 */
-						$this->statement("SELECT * FROM ossn_components
-			    WHERE (com_id='$com');");
+						$this->statement("SELECT * FROM ossn_components WHERE (com_id='$com');");
 						$this->execute();
 						$CHECK = $this->fetch();
 						/*
@@ -468,14 +467,16 @@ class OssnComponents extends OssnDatabase {
 						 * @Reason: Initial;
 						 */
 						if(isset($CHECK->active) && $CHECK->active == 0) {
-								$this->statement("UPDATE ossn_components
-			    SET active='1'
-			    WHERE (com_id='$com');");
+								$this->statement("UPDATE ossn_components SET active='1' WHERE (com_id='$com');");
 								$this->execute();
 								//Trigger callback upon component deletion, enable, installation #1111
 								ossn_trigger_callback('component', 'enabled', array(
 										'component' => $com
 								));
+								//file is called before component is already enabled
+								if(file_exists(ossn_route()->com . $com.'/enabled.php')){
+									include_once(ossn_route()->com . $com.'/enabled.php');
+								}								
 								return true;
 						} elseif(!isset($CHECK->active)) {
 								/*
@@ -483,14 +484,16 @@ class OssnComponents extends OssnDatabase {
 								 * @last edit: $arsalanshah
 								 * @Reason: Initial;
 								 */
-								$this->statement("INSERT INTO `ossn_components`
-			  (`com_id`, `active`)
-		          VALUES ('$com', '1')");
+								$this->statement("INSERT INTO `ossn_components` (`com_id`, `active`) VALUES ('$com', '1')");
 								$this->execute();
 								//Trigger callback upon component deletion, enable, installation #1111
 								ossn_trigger_callback('component', 'enabled', array(
 										'component' => $com
 								));
+								//file is called after component is enabled
+								if(file_exists(ossn_route()->com . $com.'/enabled.php')){
+									include_once(ossn_route()->com . $com.'/enabled.php');
+								}												
 								return true;
 						}
 				}
@@ -509,7 +512,7 @@ class OssnComponents extends OssnDatabase {
 				if(in_array($com, $this->requiredComponents())) {
 						return false;
 				}
-				//file is called before component is deleted
+				//file is called before component deleted
 				if(file_exists(ossn_route()->com . $com.'/delete.php')){
 						include_once(ossn_route()->com . $com.'/delete.php');
 				}				
@@ -533,6 +536,10 @@ class OssnComponents extends OssnDatabase {
 						//Trigger callback upon component deletion, enable, installation #1111
 						$vars['component'] = $component;
 						ossn_trigger_callback('component', 'deleted', $vars);
+						//file is called after component is already deleted
+						if(file_exists(ossn_route()->com . $com.'/deleted.php')){
+							include_once(ossn_route()->com . $com.'/deleted.php');
+						}										
 						return true;
 				}
 				return false;
@@ -569,12 +576,15 @@ class OssnComponents extends OssnDatabase {
 						return false;
 				}
 				if(!empty($com)) {
-						$this->statement("UPDATE ossn_components
-			    SET active='0' WHERE (com_id='$com')");
+						$this->statement("UPDATE ossn_components SET active='0' WHERE (com_id='$com')");
 						$this->execute();
 						ossn_trigger_callback('component', 'disabled', array(
 								'component' => $com
 						));
+						//file is called after component is disabled
+						if(file_exists(ossn_route()->com . $com.'/disabled.php')){
+							include_once(ossn_route()->com . $com.'/disabled.php');
+						}								
 						return true;
 				}
 				return false;
