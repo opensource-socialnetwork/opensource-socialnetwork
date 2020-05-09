@@ -213,8 +213,8 @@ class OssnThemes extends OssnSite {
 		public function Enable($theme) {
 				if(!empty($theme)){
 						//file is called before theme is enabled
-						if(file_exists(ossn_route()->theme . $theme.'/enable.php')){
-							include_once(ossn_route()->theme . $theme.'/enable.php');
+						if(file_exists(ossn_route()->themes . $theme.'/enable.php')){
+							include_once(ossn_route()->themes . $theme.'/enable.php');
 						}									
 						if($this->UpdateSettings(array(
 								'value'
@@ -239,8 +239,8 @@ class OssnThemes extends OssnSite {
 							'theme' => $theme
 				));						
 				//file is called before theme is deleted
-				if(file_exists(ossn_route()->theme . $theme.'/delete.php')){
-						include_once(ossn_route()->theme . $theme.'/delete.php');
+				if(file_exists(ossn_route()->themes . $theme.'/delete.php')){
+						include_once(ossn_route()->themes . $theme.'/delete.php');
 				}						
 				if(OssnFile::DeleteDir(ossn_route()->themes . "{$theme}/")) {
 						ossn_trigger_callback('theme', 'deleted', array(
