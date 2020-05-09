@@ -38,6 +38,7 @@ OSSN - OPEN SOURCE SOCAIL NETWORK V5.3
 * [B] strangeness of class extending in input modules #1635
 * [E] callbacks for items before being deleted #1630
 * [E] Improve Error Reporting #1722
+* [E] improve OssnThemes->upload() #1694
 
 OSSN - OPEN SOURCE SOCIAL NETWORK V5.2 
 * Several fixes for handling of cover images #1488
