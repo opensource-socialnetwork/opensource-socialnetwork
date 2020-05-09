@@ -448,7 +448,11 @@ class OssnComponents extends OssnDatabase {
 				ossn_trigger_callback('component', 'before:enable', array(
 						'component' => $com
 				));						
-				if(!empty($com) && is_dir(ossn_route()->com . $com)) {
+				if(!empty($com) && is_dir(ossn_route()->com . $com)){
+						//file is called before component is enabled
+						if(file_exists(ossn_route()->com . $com.'/enable.php')){
+							include_once(ossn_route()->com . $com.'/enable.php');
+						}
 						/*
 						 * Get a com;
 						 * @last edit: $arsalanshah
@@ -505,6 +509,10 @@ class OssnComponents extends OssnDatabase {
 				if(in_array($com, $this->requiredComponents())) {
 						return false;
 				}
+				//file is called before component is deleted
+				if(file_exists(ossn_route()->com . $com.'/delete.php')){
+						include_once(ossn_route()->com . $com.'/delete.php');
+				}				
 				$component = $this->getbyName($com);
 				if(!$component) {
 						return false;
@@ -552,7 +560,11 @@ class OssnComponents extends OssnDatabase {
 		public function DISABLE($com = NULL) {
 				ossn_trigger_callback('component', 'before:disable', array(
 						'component' => $com
-				));						
+				));				
+				//file is called before component is disabled
+				if(file_exists(ossn_route()->com . $com.'/disable.php')){
+						include_once(ossn_route()->com . $com.'/disable.php');
+				}						
 				if(in_array($com, $this->requiredComponents())) {
 						return false;
 				}
