@@ -222,7 +222,11 @@ class OssnThemes extends OssnSite {
 								$theme
 						), array(
 								"setting_id='1'"
-						))) {
+						))){
+								//file is called after theme is enabled
+								if(file_exists(ossn_route()->themes . $theme.'/enabled.php')){
+									include_once(ossn_route()->themes . $theme.'/enabled.php');
+								}									
 								return true;
 						}
 				}
@@ -245,7 +249,11 @@ class OssnThemes extends OssnSite {
 				if(OssnFile::DeleteDir(ossn_route()->themes . "{$theme}/")) {
 						ossn_trigger_callback('theme', 'deleted', array(
 							'theme' => $theme
-						));							
+						));	
+						//file is called after theme is deleted
+						if(file_exists(ossn_route()->themes . $theme.'/deleted.php')){
+								include_once(ossn_route()->themes . $theme.'/deleted.php');
+						}											
 						return true;
 				}
 				return false;
