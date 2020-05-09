@@ -28,7 +28,7 @@ OSSN - OPEN SOURCE SOCAIL NETWORK V5.3
 * [B] Japanese language files including BOM #1684
 * [E] prevent comment-menu from disappearing if Likes are disabled #1691
 * [B] comments add and list guids mixed with object and entities guids #1693
-* [BE] prevent changing of video urls from https to http #1695
+* [B] prevent changing of video urls from https to http #1695
 * [B] Wall:getPublicPosts shows wrong posts #1715
 * [E] include bootstrap css with TinyMCE init
 * [E] Allow to edit album name and privacy #1720
@@ -39,6 +39,7 @@ OSSN - OPEN SOURCE SOCAIL NETWORK V5.3
 * [E] callbacks for items before being deleted #1630
 * [E] Improve Error Reporting #1722
 * [E] improve OssnThemes->upload() #1694
+* [E] feature request for a more flexible theme handling #1623
 
 OSSN - OPEN SOURCE SOCIAL NETWORK V5.2 
 * Several fixes for handling of cover images #1488
