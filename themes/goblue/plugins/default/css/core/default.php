@@ -2324,9 +2324,9 @@ footer .ossn-footer-menu a:last-child::after {
 	}
 	.ossn-wall-item .meta .user {
 		width: 155px;
-		white-space: nowrap;
+		/**white-space: nowrap;
 		overflow: hidden;
-		text-overflow: ellipsis;
+		text-overflow: ellipsis;**/
 	}
 	.ossn-list-users .uinfo .userlink {
 		text-overflow: ellipsis;
