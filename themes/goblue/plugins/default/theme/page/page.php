@@ -57,6 +57,7 @@ if (isset($params['contents'])) {
           </div>    
 		</div>
     </div>
+    <div id="theme-config" class="hidden" data-desktop-cover-height="200" data-minimum-cover-image-width="1040"></div>	
     <?php echo ossn_fetch_extend_views('ossn/page/footer'); ?>           
 </body>
 </html>
