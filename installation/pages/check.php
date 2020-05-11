@@ -20,30 +20,6 @@ if (OssnInstallation::isPhp()) {
     echo '<div class="ossn-installation-message ossn-installation-fail"> ' . ossn_installation_print('ossn:install:old:php') . '</div>';
     $error[] = 'php';
 }
-if (OssnInstallation::is_mysqli_enabled()) {
-    echo '<div class="ossn-installation-message ossn-installation-success">'.ossn_installation_print('ossn:install:mysqli').'</div>';
-} else {
-    echo '<div class="ossn-installation-message ossn-installation-fail">'.ossn_installation_print('ossn:install:mysqli:required').'</div>';
-    $error[] = 'mysqli';
-}
-if (OssnInstallation::isApache()) {
-    echo '<div class="ossn-installation-message ossn-installation-success">'.ossn_installation_print('ossn:install:apache').'</div>';
-} else {
-    echo '<div class="ossn-installation-message ossn-installation-fail">'.ossn_installation_print('ossn:install:apache:required').'</div>';
-    $error[] = 'apache';
-}
-if (OssnInstallation::is_mod_rewrite()) {
-    echo '<div class="ossn-installation-message ossn-installation-success">'.ossn_installation_print('ossn:install:modrewrite').'</div>';
-} else {
-    echo '<div class="ossn-installation-message ossn-installation-fail">'.ossn_installation_print('ossn:install:modrewrite:required').'</div>';
-    $error[] = 'mod_rewrite';
-}
-if (OssnInstallation::isCon_WRITEABLE()) {
-    echo '<div class="ossn-installation-message ossn-installation-success">'.ossn_installation_print('ossn:install:config').'</div>';
-} else {
-    echo '<div class="ossn-installation-message ossn-installation-fail">'.ossn_installation_print('ossn:install:config:error').'</div>';
-    $error[] = 'permission:configuration';
-}
 if(OssnInstallation::allowUrlFopen()){
     echo '<div class="ossn-installation-message ossn-installation-success">'.ossn_installation_print('ossn:install:allowfopenurl').'</div>';	
 } else {
@@ -104,6 +80,32 @@ if(extension_loaded('exif')){
 } else {
     echo '<div class="ossn-installation-message ossn-installation-fail">PHP exif</div>';
     $error[] = 'php:exif:error';		
+}
+if (OssnInstallation::is_mysqli_enabled()) {
+    echo '<div class="ossn-installation-message ossn-installation-success">'.ossn_installation_print('ossn:install:mysqli').'</div>';
+} else {
+    echo '<div class="ossn-installation-message ossn-installation-fail">'.ossn_installation_print('ossn:install:mysqli:required').'</div>';
+    $error[] = 'mysqli';
+}
+if (OssnInstallation::isApache()) {
+    echo '<div class="ossn-installation-message ossn-installation-success">'.ossn_installation_print('ossn:install:apache').'</div>';
+} else {
+    echo '<div class="ossn-installation-message ossn-installation-fail">'.ossn_installation_print('ossn:install:apache:required').'</div>';
+    $error[] = 'apache';
+}
+if (!in_array('php:curl', $error)) {
+	if (OssnInstallation::is_mod_rewrite()) {
+	    echo '<div class="ossn-installation-message ossn-installation-success">'.ossn_installation_print('ossn:install:modrewrite').'</div>';
+	} else {
+	    echo '<div class="ossn-installation-message ossn-installation-fail">'.ossn_installation_print('ossn:install:modrewrite:required').'</div>';
+	    $error[] = 'mod_rewrite';
+	}
+}	
+if (OssnInstallation::isCon_WRITEABLE()) {
+    echo '<div class="ossn-installation-message ossn-installation-success">'.ossn_installation_print('ossn:install:config').'</div>';
+} else {
+    echo '<div class="ossn-installation-message ossn-installation-fail">'.ossn_installation_print('ossn:install:config:error').'</div>';
+    $error[] = 'permission:configuration';
 }
 echo '<br />';
 if (!isset($error)) {
