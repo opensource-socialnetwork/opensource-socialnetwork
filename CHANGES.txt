@@ -41,6 +41,7 @@ OSSN - OPEN SOURCE SOCAIL NETWORK V5.3
 * [E] improve OssnThemes->upload() #1694
 * [E] feature request for a more flexible theme handling #1623
 * [E] check availability of CURL before checking mod_rewrite #1723
+* [E] Remove unsupported videos from embed #1724
 
 OSSN - OPEN SOURCE SOCIAL NETWORK V5.2 
 * Several fixes for handling of cover images #1488
