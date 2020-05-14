@@ -8,7 +8,7 @@ body {
 	font-family:"lucida grande",tahoma,verdana,arial,sans-serif;
  }
  .ossn-exception-handler {
-  width:800px;
+  width:850px;
   margin:0 auto;
  }
  .ossn-exception-topbar {
@@ -37,6 +37,7 @@ body {
   .ossn-exception-description pre {
 		margin:0;  
 		white-space: pre-wrap;
+	  word-break: break-word;
   }
  .ossn-exception-description {
 	background: #FFFFC5;
