@@ -9,4 +9,6 @@
  * @link      http://www.opensource-socialnetwork.com/licence
  */
 echo '<p>' . ossn_print('post:select:privacy') . '</p>';
-echo ossn_plugin_view('input/privacy');
+echo ossn_plugin_view('input/privacy', array(
+		'value' => OSSN_PUBLIC,											 
+));
