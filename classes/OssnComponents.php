@@ -669,14 +669,18 @@ class OssnComponents extends OssnDatabase {
 		/**
 		 * Get Component Settings
 		 *
-		 * @params string $component Component id
+		 * @param string $component Component id
 		 *
 		 * @return false|array;
 		 */
-		public function getSettings($component) {
+		public function getSettings($component){
+				$object	= $this->getbyName($component);
+				if(!$object){
+					return false;	
+				}
 				$entity             = new OssnEntities;
 				$entity->type       = 'component';
-				$entity->owner_guid = $this->getbyName($component)->getID();
+				$entity->owner_guid = $object->getID();
 				$settings           = $entity->get_entities();
 				if(is_array($settings) && !empty($settings)) {
 						foreach($settings as $setting) {
