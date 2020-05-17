@@ -10,23 +10,17 @@
  */
 ?>
 <div class="ossn-privacy">
-    <table border="0">
-        <tr>
-            <td style="vertical-align:top;">
-                <label><?php echo ossn_print('privacy'); ?></label>
-
-            </td>
-            <td>
-                <input type="radio" name="privacy" value="2" checked="checked"/>
-                <span><?php echo ossn_print('public'); ?></span>
-
-                <p> <?php echo ossn_print('privacy:public:note'); ?> </p>
-
-                <input type="radio" name="privacy" value="3"/>
-                <span><?php echo ossn_print('friends'); ?></span>
-
-                <p> <?php echo ossn_print('privacy:friends:note'); ?> </p>
-            </td>
-        </tr>
-    </table>
+	<div>
+    	<label><?php echo ossn_print('privacy'); ?></label>
+    </div>
+	<?php
+	echo ossn_plugin_view('input/radio', array(
+			'name' => 'privacy',
+			'value' => $params['value'],
+			'options' => array(
+			    OSSN_PUBLIC => 	 ossn_print('public') . ' ('. ossn_print('privacy:public:note').')',		   
+			    OSSN_FRIENDS =>  ossn_print('friends') . ' ('. ossn_print('privacy:friends:note').')',		   
+			 ),
+	));
+	?>
 </div>
