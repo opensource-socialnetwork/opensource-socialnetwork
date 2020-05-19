@@ -43,3 +43,7 @@
     border-radius: 20px;
     z-index: 1;
 }
+.ossn-profile-bottom .ossn-edit-form .radio-block {
+    margin-top: 0;
+    margin-bottom: 0;
+}
