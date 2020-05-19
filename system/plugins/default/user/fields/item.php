@@ -83,7 +83,7 @@ if(isset($params['items'])) {
 								$vars         = array();
 								$vars['name'] = $item['name'];
 								$args         = array_merge($vars, $item);
-								echo "<div class='radio-block'>";
+								echo "<div class='radio-block-container'>";
 								//[E]make the label arg assigned to any label of user/field #1646
 								if(isset($item['label']) && !is_bool($item['label'])){
 									echo "<label>".$item['label']."</label>";
