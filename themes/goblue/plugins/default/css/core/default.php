@@ -44,7 +44,9 @@ body {
 	display: block;
 	resize: vertical;
 }
-
+.radio-block-container {
+    margin-bottom: 20px;
+}
 .ossn-form input[type='submit'] {
 	margin-top: 5px;
 	margin-bottom: 5px;
