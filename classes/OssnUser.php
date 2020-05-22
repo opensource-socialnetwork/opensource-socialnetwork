@@ -744,8 +744,12 @@ class OssnUser extends OssnEntities {
 		 */
 		public function iconURL() {
 				$this->iconURLS = new stdClass;
-				foreach(ossn_user_image_sizes() as $size => $dimensions) {
-						$seo                   = md5($this->username . $size . $this->icon_time);
+				//[E] Default profile picture #1647
+				if(!isset($this->icon_guid) || isset($this->icon_guid) && empty($this->icon_guid)){
+						$this->icon_guid = false;
+				}
+				foreach(ossn_user_image_sizes() as $size => $dimensions){
+						$seo                   = md5($this->username . $size . $this->icon_time . $this->icon_guid);
 						$url                   = ossn_site_url("avatar/{$this->username}/{$size}/{$seo}.jpeg");
 						$this->iconURLS->$size = $url;
 				}
@@ -965,14 +969,24 @@ class OssnUser extends OssnEntities {
 		 * @return object|false
 		 */
 		public function getProfilePhoto() {
-				if(!empty($this->guid)) {
+				//[E] Default profile picture #1647
+				if(!empty($this->guid) && isset($this->icon_guid)){
+					  	return ossn_get_file($this->icon_guid);
+				}
+				//fallback to old picture selection solution
+				if(!empty($this->guid) && !isset($this->icon_guid)) {
 						$this->owner_guid = $this->guid;
 						$this->type       = 'user';
 						$this->subtype    = 'file:profile:photo';
 						$this->limit      = 1;
 						$this->order_by   = "guid DESC";
 						$entity           = $this->get_entities();
-						if(isset($entity[0])) {
+						if(isset($entity[0])){
+								//save the icon_guid and move to new procedure #1647
+								$user			= ossn_user_by_guid($this->guid);
+								$user->data->icon_guid  = $entity[0]->guid;
+								$user->save();
+								
 								return $entity[0];
 						}
 				}
