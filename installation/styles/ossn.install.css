@@ -16,7 +16,7 @@ body {
 	line-height: 1.5;
 	font-family: 'PT Sans', sans-serif;
 	color: #000;
-	background: #fff;
+	background: #f7f7f7;
 	font-size: 10pt;
 	margin: 0;
 }
@@ -36,10 +36,11 @@ form div {
 	margin: 0;
 	padding: 10px 0 0 0;
 	list-style: none;
-	background-color: #f8f8f8;
-	border-color: #e7e7e7;
-	border: 2px solid #eee;
-	border-radius: 5px;
+    background-color: #585858;
+    border-color: #6f6f6f;
+    color: #fff;
+    border: 0;
+    border-radius: 0;
 }
 
 #ossn-page-menubar li {
@@ -52,14 +53,14 @@ form div {
 	float: left;
 	height: 25px;
 	padding: 0 25px;
-	color: #000;
+	color: #fff;
 	text-transform: uppercase;
 	font: bold 12px/25px Arial, Helvetica;
 	text-decoration: none;
 }
 
 #ossn-page-menubar li:hover>a {
-	color: #2F4959;
+	color: #dedede;
 }
 
 * html #ossn-page-menubar li a:hover {
@@ -116,18 +117,28 @@ form div {
 }
 
 .layout-installation {
-	background-color: #F7F7F7;
+	background-color: #fff;
 	min-height: 300px;
 	width: 920px;
 	margin: 20px;
 	border-radius: 5px;
 	border: 2px solid #EEE;
 	padding: 20px;
+	padding-top:10px;
+	padding-bottom:0px;
 }
 
 .layout-installation h2 {
-	color: #2F4959;
-	font-size: 15px;
+    background-color: #f8f8f8;
+    border: 1px solid #e7e7e7;
+    padding: 10px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    font-size: 12px;
+    margin-left: 10px;
+    margin-right: 10px;	
 }
 
 .button-nav-default {
@@ -227,8 +238,16 @@ input[type=text] {
 	-o-transition: all 0.30s ease-in-out;
 	outline: none;
 	border: 1px solid #eee;
+	background: #f9f9f9;
 }
-
+form {
+	margin-left: 10px;
+    margin-right: 10px;	
+    margin-bottom: 20px;
+}
+.margin-top-10 {
+	margin-top:10px;	
+}
 input[type=password]:focus,
 input[type=text]:focus,
 textarea:focus {
@@ -246,7 +265,7 @@ input[type=text] {
 	padding: 3px 0px 3px 3px;
 	margin: 5px 1px 3px 0px;
 	border: 1px solid #eee;
-	width: 430px;
+	width: 425px;
 	height: 30px;
 	padding: 5px 10px;
 	font-weight: bold;
@@ -300,7 +319,13 @@ textarea:focus {
 	margin: 0 auto;
 	color: #fff;
 }
-
+#ossn-page-menubar .inner {
+	width: 965px;
+	margin: 0 auto;
+}
+#ossn-page-menubar li a:first-child{
+	padding-left:0px;	
+}
 .ossn-installation-topmenu {
 	background: #406479;
 	height: 40px;

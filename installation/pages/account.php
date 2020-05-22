@@ -29,13 +29,10 @@ require_once(dirname(dirname(dirname(__FILE__))) . '/system/start.php');
             <input type="text" name="username" placeholder="<?php echo ossn_print('username'); ?>" class="long-input"/>
             <input type="password" name="password" placeholder="<?php echo ossn_print('password'); ?>" class="long-input"/>
         </div>
-        <div>
+        <div class="margin-top-10">
             <label><?php echo ossn_print('birthdate'); ?> </label>
 
             <select name="birthday">
-                <?php if (!empty($birthdate)) { ?>
-                    <option value="<?php echo $birthdate[0]; ?>"> <?php echo $birthdate[0]; ?> </option>
-                <?php } ?>
                 <option value=""><?php echo ossn_print('day'); ?></option>
                 <?php for ($day = 1; $day <= 31; $day++) { ?>
                     <option
@@ -44,9 +41,6 @@ require_once(dirname(dirname(dirname(__FILE__))) . '/system/start.php');
             </select>
 
             <select name="birthm">
-                <?php if (!empty($birthdate)) { ?>
-                    <option value="<?php echo $birthdate[1]; ?>"> <?php echo $birthdate[1]; ?> </option>
-                <?php } ?>
                 <option value=""><?php echo ossn_print('month'); ?></option>
                 <?php for ($month = 1; $month <= 12; $month++) { ?>
                     <option
@@ -55,9 +49,6 @@ require_once(dirname(dirname(dirname(__FILE__))) . '/system/start.php');
             </select>
 
             <select name="birthy">
-                <?php if (!empty($birthdate)) { ?>
-                    <option value="<?php echo $birthdate[2]; ?>"> <?php echo $birthdate[2]; ?> </option>
-                <?php } ?>
                 <option value=""><?php echo ossn_print('year'); ?></option>
                 <?php for ($year = date('Y'); $year > date('Y') - 100; $year--) { ?>
                     <option value="<?php echo $year; ?>"><?php echo $year; ?></option>
@@ -67,13 +58,13 @@ require_once(dirname(dirname(dirname(__FILE__))) . '/system/start.php');
         </div>
         <br/>
 
-        <div>
+        <div class="margin-top-10">
             <label> <?php echo ossn_print('gender'); ?> </label>
             <span><input type="radio" name="gender" value="male"/> <?php echo ossn_print('male'); ?></span>
             <span><input type="radio" name="gender" value="female"/> <?php echo ossn_print('female'); ?></span>
         </div>
         <br/>
-        <input type="submit" value="<?php echo ossn_installation_print('ossn:install:create'); ?>" class="button-blue primary"/>
+        <input type="submit" value="<?php echo ossn_installation_print('ossn:install:create'); ?>" class="button-blue primary margin-top-10"/>
 
         </from>
     </form>

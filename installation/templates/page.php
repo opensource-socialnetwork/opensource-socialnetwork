@@ -14,6 +14,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title><?php echo $params['title']; ?></title>
     <link rel="stylesheet" href="./styles/ossn.install.css"/>
+    <link rel="icon" href="./styles/favicon.ico?ossn_cache" type="image/x-icon" />
 </head>
 
 <body>
@@ -21,6 +22,13 @@
     <div class="inner">
         <div class="logo-installation"></div>
         <img class="settings" src="./styles/settings.jpg" />
+    </div>
+</div>
+<div id="ossn-page-menubar">
+	<div class="inner">
+	    <li><a href="#"><?php echo ossn_installation_print("ossn:installation"); ?></a></li>
+   		<li><a href="#"> > </a></li>
+  	 	<li><a href="#"><?php echo $params['title']; ?></a></li>
     </div>
 </div>
 <div style="margin:0 auto; width:1000px;">
@@ -34,13 +42,6 @@
                     </td>
                 </tr>
             </table>
-
-        </div>
-        <div id="ossn-page-menubar">
-            <li><a href="#"><?php echo ossn_installation_print("ossn:installation"); ?></a></li>
-            <li><a href="#"> > </a></li>
-            <li><a href="#"><?php echo $params['title']; ?></a></li>
-            </li>
 
         </div>
     </div>

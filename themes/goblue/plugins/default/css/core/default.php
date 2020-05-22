@@ -37,12 +37,14 @@ body {
 .ossn-form textarea,
 .ossn-form input[type='text'] {
 	width: 100%;
-	border: 1px solid #eee;
+	background-color: #f2f3f5;
+    border: 1px solid #ccd0d5;
 	padding: 10px;
 	margin-bottom: 5px;
 	outline: none;
 	display: block;
 	resize: vertical;
+    border-radius: 5px;
 }
 .radio-block-container {
     margin-bottom: 20px;
@@ -451,6 +453,8 @@ a {
 	border-top: 0px;
 	resize: none;
 	outline: none;
+    background: #fff;
+    border-radius: 0;    
 }
 
 .ossn-wall-container .controls {
@@ -527,6 +531,7 @@ a {
 .ossn-wall-container input[type="file"] {
 	border-left: 1px solid #EEE;
 	border-right: 1px solid #EEE;
+    background:#fff;
 }
 
 .ossn-wall-container input[type="file"],
@@ -545,8 +550,13 @@ a {
 	padding: 7px;
 	margin-bottom: 5px;
 	margin-top: -5px;
+    background: #fff;
+    border: 0;    
 }
-
+#ossn-wall-location-input {
+    background: #fff;
+    border-radius: 0;
+}
 #ossn-wall-form .ossn-loading {
 	margin: 7px;
 }
@@ -1073,6 +1083,13 @@ a {
 }
 .ossn-privacy .radio-block span {
 	font-weight:normal;
+    width: 85%;
+}
+.group-add-privacy .radio-block span {
+    margin-top: 10px;
+}
+.group-add-privacy .radio-block  .ossn-radio-input {
+	float:left;
 }
 /***********************************
 	Ossn Notifications

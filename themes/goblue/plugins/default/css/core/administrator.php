@@ -43,6 +43,14 @@ body {
   font-size: 30px;
   padding-top: 5px;
 }
+form {
+	background: #fff;
+    padding: 10px;
+    border: 1px solid #eee;
+    border-radius: 5px;
+}
+input[type='number'],
+input[type='email'],
 select,
 input[type="password"],
 input[type="text"],
@@ -50,8 +58,8 @@ textarea {
     color: #333;
     font-size: 13px;
     border: 1px solid #eee;
-    border-radius: 2px;
-    -webkit-border-radius: 2px;
+	background: #f9f9f9;
+    border-radius: 5px;    
     display:block;
     -moz-border-radius: 2px;
     -o-border-radius: 2px;
@@ -143,14 +151,14 @@ label {
   float: right;
 }
 .page-title {
-    background-color: #f8f8f8;
-    border: 1px solid #e7e7e7;
+	background-color: #f5f5f5;
+    border: 1px solid #ddd;
     padding: 10px;
     font-weight: 700;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     text-transform: uppercase;
-    margin-bottom:10px;
+    margin-bottom: 10px;
 }
 .page-botton-notice {
   margin-top:10px;
@@ -201,13 +209,14 @@ label {
 	margin-top:10px;
 }
 .admin-dashboard-fixed-height {
-	height:230px;
+	height:200px;
 }
 .admin-dashboard-item canvas {
   padding: 14px;
 }
 .admin-dashboard-box {
 	min-height:200px;
+    background:#fff;
 }
 .admin-dashboard-title {
   background-color: #f8f8f8;
@@ -219,7 +228,7 @@ label {
 }
 .admin-dashboard-contents .text {
   font-size: 40px;
-  padding: 74px;
+  padding: 65px;
   color:#747474;
 }
 .admin-dashboard-contents {
@@ -302,6 +311,7 @@ footer a {
 }
 .admin-dashboard-box-small {
 		min-height:100px;
+        background:#fff;
 }
 .admin-dashboard-contents-small {
 	    max-height: 100px;
@@ -522,4 +532,10 @@ footer a {
 .ossn-box-loading {
 	margin-left: 216px;
 	margin-top: 37px;
+}
+
+#onlineusers-classified-graph,
+#users-classified-graph {
+	width:250px;
+    height:140px;
 }
