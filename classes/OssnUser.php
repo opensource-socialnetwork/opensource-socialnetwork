@@ -998,6 +998,10 @@ class OssnUser extends OssnEntities {
 		 * @return object|false
 		 */
 		public function getProfileCover() {
+				//[E] Default cover picture #1647
+				if(!empty($this->guid) && isset($this->icon_guid)){
+					  	return ossn_get_file($this->icon_guid);
+				}			
 				if(!empty($this->guid)) {
 						$this->owner_guid = $this->guid;
 						$this->type       = 'user';
@@ -1006,6 +1010,11 @@ class OssnUser extends OssnEntities {
 						$this->order_by   = "guid DESC";
 						$entity           = $this->get_entities();
 						if(isset($entity[0])) {
+								//save the icon_guid and move to new procedure #1647
+								$user			= ossn_user_by_guid($this->guid);
+								$user->data->icon_guid  = $entity[0]->guid;
+								$user->save();
+								
 								return $entity[0];
 						}
 				}
