@@ -27,7 +27,7 @@ if($fileguid = $file->addFile()) {
 		//update user cover time, this time has nothing to do with photo entity time
 		$user->data->cover_time = time();
 		//default cover photo #1647
-		$user->data->icon_guid  = $fileguid;
+		$user->data->cover_guid = $fileguid;
 		
 		$user->save();
 		
