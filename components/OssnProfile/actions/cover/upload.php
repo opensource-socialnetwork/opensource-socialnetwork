@@ -23,9 +23,12 @@ $file->setExtension(array(
 		'jpeg',
 		'gif'
 ));
-if($file->addFile()) {
+if($fileguid = $file->addFile()) {
 		//update user cover time, this time has nothing to do with photo entity time
 		$user->data->cover_time = time();
+		//default cover photo #1647
+		$user->data->icon_guid  = $fileguid;
+		
 		$user->save();
 		
 		$newcover    = $file->getFiles();
