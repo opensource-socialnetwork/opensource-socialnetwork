@@ -142,7 +142,8 @@ class OssnUser extends OssnEntities {
 		 */
 		public function isOssnUsername() {
 				$user = $this->getUser();
-				if(!empty($user->guid) && $this->username == $user->username) {
+				//[B] case insensitive emails and username issues during login or signup #1726
+				if(!empty($user->guid) && strtolower($this->username) == strtolower($user->username)) {
 						return true;
 				}
 				return false;
@@ -155,7 +156,8 @@ class OssnUser extends OssnEntities {
 		 */
 		public function isOssnEmail() {
 				$user = $this->getUser();
-				if(!empty($user->guid) && $this->email == $user->email) {
+				//[B] case insensitive emails and username issues during login or signup #1726
+				if(!empty($user->guid) && strtolower($this->email) == strtolower($user->email)) {
 						return true;
 				}
 				return false;
@@ -167,17 +169,18 @@ class OssnUser extends OssnEntities {
 		 * @return object
 		 */
 		public function getUser() {
+				//[B] case insensitive emails and username issues during login or signup #1726
 				if(!empty($this->email)) {
 						$params['from']   = 'ossn_users';
 						$params['wheres'] = array(
-								"email='{$this->email}'"
+								"LOWER(email) = LOWER('{$this->email}')"
 						);
 						$user             = $this->select($params);
 				}
 				if(empty($user) && !empty($this->username)) {
 						$params['from']   = 'ossn_users';
 						$params['wheres'] = array(
-								"username='{$this->username}'"
+								"LOWER(username) = LOWER('{$this->username}')"
 						);
 						$user             = $this->select($params);
 				}
