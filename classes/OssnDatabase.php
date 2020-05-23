@@ -75,7 +75,7 @@ class OssnDatabase extends OssnBase {
 		 *
 		 * @param  array  @param['names']  Names of columns
 		 * @param  array  @param['values'] Values that need to be inserted
-		 * @param  string @param['inro']   Table name
+		 * @param  string @param['into']   Table name
 		 *
 		 * @return boolean
 		 */
