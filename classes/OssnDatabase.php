@@ -1,13 +1,34 @@
 <?php
-
 /**
  * Open Source Social Network
- *
+ * 
  * @package   (softlab24.com).ossn
  * @author    OSSN Core Team <info@softlab24.com>
  * @copyright (C) SOFTLAB24 LIMITED
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
  * @link      https://www.opensource-socialnetwork.org/
+ *
+ *
+ * Database v5.3 #1525
+ * Improvements in v5.3, 
+ * You can use wheres based on array parameters
+ * Example
+ *  $db->select(array(
+ *		'from' => 'mysqli',
+ *		'wheres' => array(
+ *		array(
+ *			'name' => 'b', 
+ *			'comparator' => '=',
+ *			'value' => '10', 
+ *			'separator' => 'AND',
+ *		),
+ *		array(
+ *			'name' => 'c', 
+ *			'comparator' => '=',
+ *			'value' => '20', 
+ *		)		
+ *	),
+ * ));
  */
 class OssnDatabase extends OssnBase {
 		/**
@@ -15,57 +36,69 @@ class OssnDatabase extends OssnBase {
 		 *
 		 * return void
 		 */
-		public function __construct(){
+		public function __construct() {
 				global $Ossn;
-				//set the sql mode and avoid setting again and again for each request
-				if(!isset($Ossn->setSQLMode)){					
-					$this->statement("SET SESSION sql_mode=(SELECT REPLACE(@@SESSION.sql_mode, 'ONLY_FULL_GROUP_BY', ''));");
-					$this->execute();
-					$Ossn->setSQLMode = true;
+				//Avoid the multiple db connections #1001
+				if(!isset($Ossn->dbLINK) || isset($Ossn->dbLINK) && $Ossn->dbLINK == false) {
+						$Ossn->dbLINK = $this->Connect();
 				}
-		}	
+				//set the sql mode and avoid setting again and again for each request
+				if(!isset($Ossn->setSQLMode)) {
+						$this->statement("SET SESSION sql_mode=(SELECT REPLACE(@@SESSION.sql_mode, 'ONLY_FULL_GROUP_BY', ''));");
+						$this->execute();
+						$Ossn->setSQLMode = true;
+				}
+		}
 		/**
-		 * Connect to mysql database
+		 * Connect to database
 		 *
 		 * @return boolean
 		 */
 		public function Connect() {
 				$settings = ossn_database_settings();
-				$connect  = new mysqli($settings->host, $settings->user, $settings->password, $settings->database, $settings->port);
-				if(!$connect->connect_errno) {
+				$options  = array(
+						PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+						PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+						PDO::ATTR_EMULATE_PREPARES => false
+				);
+				$conector = "mysql:host={$settings->host};dbname={$settings->database};port={$settings->port};charset=utf8mb4";
+				try {
+						$connect = new PDO($conector, $settings->user, $settings->password, $options);
 						return $connect;
-				} else {
-						error_log('Database connection failed with error: ' . $connect->connect_errno . "\n", 3, ossn_route()->www . 'error_log');
-						exit('Database connection failed');
+				}
+				catch(PDOException $ex) {
+						throw new OssnDatabaseException($ex->getMessage());
 				}
 		}
 		/**
 		 * Prepare a query to insert data in database
 		 *
-		 * @param array array();
-		 * 			'names' Names of columns
-		 *          'values' Values that need to be inserted
-		 *          'into' Table name
+		 * @param  array  @param['names']  Names of columns
+		 * @param  array  @param['values'] Values that need to be inserted
+		 * @param  string @param['inro']   Table name
 		 *
 		 * @return boolean
 		 */
 		public function insert($params) {
+				global $Ossn;
 				if(is_array($params)) {
 						if(count($params['names']) == count($params['values'])) {
+								for($i = 1; $i <= count($params['values']); $i++) {
+										$values[] = '?';
+								}
 								$colums = "`" . implode("`, `", $params['names']) . '`';
-								$values = "'" . implode("', '", $params['values']) . "'";
-								$query  = "INSERT INTO {$params['into']} ($colums) VALUES ($values);";
-								$this->statement($query);
-								if($this->execute()) {
-										return true;
+								$values = implode(", ", $values);
+								$this->statement("INSERT INTO {$params['into']} ($colums) VALUES ($values);");
+								if($this->execute($params['values'])) {
+										$this->last_id = $this->database->lastInsertId();
+										return $this->last_id;
 								}
 						}
 				}
 				return false;
 		}
-		
 		/**
-		 * Prepare a mysqli query
+		 * Prepare a database query
 		 *
 		 * @return boolean
 		 */
@@ -76,28 +109,27 @@ class OssnDatabase extends OssnBase {
 				}
 				return false;
 		}
-		
 		/**
 		 * Execute a mysqli query and store result in memory
 		 *
+		 * @param array $values Values
+		 *
 		 * @return boolean
 		 */
-		public function execute() {
+		public function execute($values = array()) {
 				global $Ossn;
-				//Avoid the multiple db connections #1001
-				if(!isset($Ossn->dbLINK) || isset($Ossn->dbLINK) && $Ossn->dbLINK == false){
-					$Ossn->dbLINK = $this->Connect();
-				}
 				$this->database = $Ossn->dbLINK;
 				if(isset($this->query) && !empty($this->query)) {
-						$this->database->set_charset("utf8");
-						$this->exe = $this->database->query($this->query);
-						$exception = ossn_call_hook('database', 'execution:message', false, true);
-						if(!$this->exe && $exception) {
-								throw new OssnDatabaseException("{$this->database->error} \n {$this->query} ");
+						try {
+								if(empty($values)) {
+										$this->exe = $this->database->query($this->query);
+								} else {
+										$this->exe = $this->database->prepare($this->query);
+										$this->exe->execute($values);
+								}
 						}
-						if(isset($this->database->insert_id)) {
-								$this->last_id = $this->database->insert_id;
+						catch(PDOException $ex) {
+								throw new OssnDatabaseException("{$ex->getMessage()} \n {$this->query} ");
 						}
 						unset($this->query);
 						//Using mysqli_close() isn't usually necessary, as non-persistent open links are automatically closed at the end of the script's execution.
@@ -106,15 +138,13 @@ class OssnDatabase extends OssnBase {
 				}
 				return false;
 		}
-		
 		/**
 		 * Prepare a query to update data in database
 		 *
-		 * @param array array();
-		 *          'names' Names of columns
-		 *          'values' Values that need to be updated
-		 *          'table'	Table name
-		 *          'wheres' Specify a selection criteria to update required records
+		 * @param  string @param['names']  Names of columns
+		 * @param  array  @param['values'] Values that need to be updated
+		 * @param  string @param['table']  Table name
+		 * @param  array  @param['wheres'] Specify a selection criteria to update required records
 		 *
 		 * @return boolean
 		 */
@@ -128,32 +158,48 @@ class OssnDatabase extends OssnBase {
 								}
 								foreach($data as $keys => $vals) {
 										if($i == $valuec) {
-												$valyes[] = "`{$keys}` = '{$vals}'";
+												$valyes[] = "`{$keys}` = ?";
 										} else {
-												$valyes[] = "`{$keys}` = '{$vals}',";
+												$valyes[] = "`{$keys}` = ?,";
 										}
 										$i++;
 								}
-								$q                = implode('', $valyes);
-								$params['wheres'] = implode(' ', $params['wheres']);
-								$query            = "UPDATE {$params['table']} SET {$q} WHERE {$params['wheres']}";
-								$this->statement($query);
-								if($this->execute()) {
+								$q = implode('', $valyes);
+								//wheres rebuild
+								if(!isset($params['wheres'][0]['name'])) {
+										$params['wheres'] = implode(' ', $params['wheres']);
+										$this->statement("UPDATE {$params['table']} SET {$q} WHERE {$params['wheres']}");
+								} else {
+										$where_merge   = '';
+										$wheres_values = array();
+										foreach($params['wheres'] as $where_item) {
+												if(!isset($where_item['name']) || !isset($where_item['value'])) {
+														continue;
+												}
+												if(!isset($where_item['separator'])) {
+														$where_item['separator'] = '';
+												}
+												if(!isset($where_item['comparator'])) {
+														$where_item['comparator'] = '=';
+												}
+												$where_merge .= " `{$where_item['name']}` {$where_item['comparator']} ? {$where_item['separator']}";
+												$params['values'][] = $where_item['value'];
+										}
+										$this->statement("UPDATE {$params['table']} SET {$q} WHERE {$where_merge}");
+								}
+								if($this->execute($params['values'])) {
 										return true;
 								}
-								
 						}
 				}
 				return false;
 		}
-		
 		/**
 		 * Prepare a query to select data from database
 		 *
-		 * @param array array();
-		 *           'from' Names of table
-		 *           'params' Names of columns which you want to select
-		 *           'wheres' Specify a selection criteria to get required records
+		 * @param  string @param['from'] Names of table
+		 * @param  array  @param['params'] Names of columns which you want to select
+		 * @param  array  @param['wheres'] Specify a selection criteria to get required records
 		 *
 		 * @return boolean
 		 */
@@ -171,10 +217,29 @@ class OssnDatabase extends OssnBase {
 						$group_by = '';
 						if(!empty($params['group_by'])) {
 								$group_by = "GROUP by {$params['group_by']}";
-						}						
-						$where = '';
-						if(isset($params['wheres']) && is_array($params['wheres'])) {
+						}
+						$where         = '';
+						$wheres_values = false;
+						//wheres rebuild
+						if(isset($params['wheres']) && !isset($params['wheres'][0]['name']) && is_array($params['wheres'])) {
 								$where = implode(' ', $params['wheres']);
+						} elseif(isset($params['wheres'])) {
+								$where_merge   = '';
+								$wheres_values = array();
+								foreach($params['wheres'] as $where_item) {
+										if(!isset($where_item['name']) || !isset($where_item['value'])) {
+												continue;
+										}
+										if(!isset($where_item['separator'])) {
+												$where_item['separator'] = '';
+										}
+										if(!isset($where_item['comparator'])) {
+												$where_item['comparator'] = '=';
+										}
+										$where_merge .= " `{$where_item['name']}` {$where_item['comparator']} ? {$where_item['separator']}";
+										$wheres_values[] = $where_item['value'];
+								}
+								$where = $where_merge;
 						}
 						$wheres = '';
 						if(!empty($params['wheres'])) {
@@ -190,16 +255,13 @@ class OssnDatabase extends OssnBase {
 						} elseif(!empty($params['joins']) && is_array($params['joins'])) {
 								$joins = implode(' ', $params['joins']);
 						}
-						$query = "SELECT {$parameters} FROM {$params['from']} {$joins} {$wheres} {$group_by} {$order_by} {$limit};";
-						
-						$this->statement($query);
-						if($this->execute()) {
+						$this->statement("SELECT {$parameters} FROM {$params['from']} {$joins} {$wheres} {$group_by} {$order_by} {$limit};");
+						if($this->execute($wheres_values)) {
 								return $this->fetch($multi);
 						}
 				}
 				return false;
 		}
-		
 		/**
 		 * Fetch the data from memory that is stored during execution;
 		 *
@@ -212,36 +274,53 @@ class OssnDatabase extends OssnBase {
 						if($data !== true) {
 								if($fetch = $this->exe) {
 										self::destruct();
-										return arrayObject($fetch->fetch_assoc());
+										return arrayObject($fetch->fetch(PDO::FETCH_ASSOC));
 								}
 						}
 						if($data === true) {
 								if($fetch = $this->exe) {
-										while($all = $fetch->fetch_assoc()) {
-												$alldata[] = arrayObject($all);
+										$all = $fetch->fetchAll();
+										if($all) {
+												self::destruct();
+												return arrayObject($all);
 										}
-								}
-								if(isset($alldata) && !empty($alldata)) {
-										self::destruct();
-										return arrayObject($alldata);
 								}
 						}
 				}
 				return false;
 		}
-		
 		/**
 		 * Prepare a query to delete data from database
 		 *
-		 * @param array array();
-		 *           'from' Names of table
-		 *           'wheres' Specify a selection criteria to get required records
+		 * @param  string @param['from']  Names of table
+		 * @param  array  @param['wheres'] Specify a selection criteria to get required records
 		 *
 		 * @return boolean
 		 */
 		public function delete($params) {
 				if(is_array($params)) {
-						$where = implode(' ', $params['wheres']);
+						$wheres_values = false;
+						//wheres rebuild
+						if(isset($params['wheres']) && !isset($params['wheres'][0]['name']) && is_array($params['wheres'])) {
+								$where = implode(' ', $params['wheres']);
+						} elseif(isset($params['wheres'])) {
+								$where_merge   = '';
+								$wheres_values = array();
+								foreach($params['wheres'] as $where_item) {
+										if(!isset($where_item['name']) || !isset($where_item['value'])) {
+												continue;
+										}
+										if(!isset($where_item['separator'])) {
+												$where_item['separator'] = '';
+										}
+										if(!isset($where_item['comparator'])) {
+												$where_item['comparator'] = '=';
+										}
+										$where_merge .= " `{$where_item['name']}` {$where_item['comparator']} ? {$where_item['separator']}";
+										$wheres_values[] = $where_item['value'];
+								}
+								$where = $where_merge;
+						}
 						if(!empty($params['wheres'])) {
 								$wheres = "WHERE({$where})";
 						}
@@ -249,15 +328,13 @@ class OssnDatabase extends OssnBase {
 						if(empty($params['wheres'])) {
 								return false;
 						}
-						$query = "DELETE FROM `{$params['from']}` {$wheres};";
-						$this->statement($query);
-						if($this->execute()) {
+						$this->statement("DELETE FROM `{$params['from']}` {$wheres};");
+						if($this->execute($wheres_values)) {
 								return true;
 						}
 				}
 				return false;
 		}
-		
 		/**
 		 * Get a guid of newly create entry
 		 *
@@ -320,7 +397,7 @@ class OssnDatabase extends OssnBase {
 		 *
 		 * @return void
 		 */
-		public function destruct(){
+		public function destruct() {
 				unset($this->database);
 				unset($this->exe);
 		}
