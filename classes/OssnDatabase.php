@@ -86,10 +86,17 @@ class OssnDatabase extends OssnBase {
 								for($i = 1; $i <= count($params['values']); $i++) {
 										$values[] = '?';
 								}
-								$colums = "`" . implode("`, `", $params['names']) . '`';
-								$values = implode(", ", $values);
+								$colums         = "`" . implode("`, `", $params['names']) . '`';
+								$values         = implode(", ", $values);
+								$actual_values  = array();
+								foreach($params['values'] as $val){
+										if(!isset($val)){
+											$val = '';	
+										}
+										$actual_values[] = $val;	
+								}
 								$this->statement("INSERT INTO {$params['into']} ($colums) VALUES ($values);");
-								if($this->execute($params['values'])) {
+								if($this->execute($actual_values)) {
 										$this->last_id = $this->database->lastInsertId();
 										return $this->last_id;
 								}
