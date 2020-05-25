@@ -9,22 +9,28 @@
  * @link      https://www.opensource-socialnetwork.org/
  */
 ?>
+<div class="form-inline">
+	<div class="form-group ossn-form-group-half">
+	    <input type="text" class="form-control" name="firstname" placeholder="<?php echo ossn_print('first:name'); ?>"/>
+    </div>
+    <div class="form-group ossn-form-group-half"> 	   
+	    <input type="text" class="form-control" name="lastname" placeholder="<?php echo ossn_print('last:name'); ?>"/>
+    </div>
+</div>
+<div class="form-inline">
+	<div class="form-group ossn-form-group-half">
+    	<input type="text" class="form-control" name="email" placeholder="<?php echo ossn_print('email'); ?>"/>
+    </div>
+    <div class="form-group ossn-form-group-half"> 	   
+    	<input name="email_re" class="form-control" type="text" placeholder="<?php echo ossn_print('email:again'); ?>"/>
+    </div>
+</div>
 <div>
-    <input type="text" name="firstname" placeholder="<?php echo ossn_print('first:name'); ?>"/>
-    <input type="text" name="lastname" placeholder="<?php echo ossn_print('last:name'); ?>"/>
+    <input type="text" class="form-control" name="username" placeholder="<?php echo ossn_print('username'); ?>"/>
 </div>
 
 <div>
-    <input type="text" name="email" placeholder="<?php echo ossn_print('email'); ?>"/>
-    <input name="email_re" type="text" placeholder="<?php echo ossn_print('email:again'); ?>"/>
-</div>
-
-<div>
-    <input type="text" name="username" placeholder="<?php echo ossn_print('username'); ?>" class="long-input"/>
-</div>
-
-<div>
-    <input type="password" name="password" placeholder="<?php echo ossn_print('password'); ?>" class="long-input"/>
+    <input type="password"  class="form-control" name="password" placeholder="<?php echo ossn_print('password'); ?>" />
 </div>
 <?php
 $fields = ossn_default_user_fields();
