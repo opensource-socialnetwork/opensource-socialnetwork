@@ -492,8 +492,8 @@ class OssnUser extends OssnEntities {
 		 */
 		public function deleteFriend($from, $to) {
 				$this->statement("DELETE FROM ossn_relationships WHERE(
-						 relation_from='{$from}' AND relation_to='{$to}' OR
-						 relation_from='{$to}' AND relation_to='{$from}')");
+						 (relation_from='{$from}' AND relation_to='{$to}' AND type='friend:request') OR
+						 (relation_from='{$to}' AND relation_to='{$from}' AND type='friend:request'))");
 				if($this->execute()) {
 						return true;
 				}
