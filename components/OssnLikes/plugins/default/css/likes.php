@@ -905,16 +905,6 @@
 .ossn-reaction-title-wholiked {
 	 margin-left:10px;
 }
-.ossn-reaction-list li .emoji--like {
-	z-index:999;
-}
-.ossn-reaction-list li .emoji--love {
-	/*margin-left: -66px;*/
-	z-index:998;
-}
-.ossn-reaction-list li .emoji--haha {
-	/*margin-left: -77px;*/
-}
 .ossn-reaction-list .emoji__eyes:after,
 .ossn-reaction-list .emoji__tongue,
 .ossn-reaction-list .emoji__eyebrows,
