@@ -27,12 +27,6 @@ class OssnObject extends OssnEntities {
 								//OSSN DB exceptions must start with 1<exception code>
 								throw new Exception("Failed to load object using {$guid}", 1404);
 						}
-				}
-				if(!isset($this->description)){
-					$this->description = '';	
-				}
-				if(!isset($this->title)){
-					$this->title = '';	
 				}				
 				//part end for v5 added,  shouldn't used before v5 release in any component.
 		}
