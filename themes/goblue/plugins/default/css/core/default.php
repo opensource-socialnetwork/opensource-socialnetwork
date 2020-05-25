@@ -39,12 +39,21 @@ body {
 	width: 100%;
 	background-color: #f2f3f5;
     border: 1px solid #ccd0d5;
-	padding: 10px;
+	padding: 8px;
 	margin-bottom: 5px;
 	outline: none;
 	display: block;
 	resize: vertical;
     border-radius: 5px;
+}
+.form-control {
+	height: initial;
+}
+.ossn-form-group-half {
+    display: inline-block;
+    width: calc(50% - 2px);
+    float: left;
+    box-sizing: border-box;
 }
 .radio-block-container {
     margin-bottom: 20px;
@@ -1058,6 +1067,8 @@ a {
 	background-color: #fff;
 	border-top-left-radius: 5px;
 	border-top-right-radius: 5px;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;       
 }
 
 .ossn-widget .widget-heading {
@@ -1072,6 +1083,8 @@ a {
 .ossn-widget .widget-contents {
 	padding: 10px;
 	border-bottom: 1px solid #eee;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;    
 }
 
 .ossn-privacy  .radio-block {
@@ -2178,7 +2191,6 @@ footer .ossn-footer-menu a:last-child::after {
 ****************************/
 
 .home-left-contents {
-	margin-top: 3%;
 }
 
 .home-left-contents .logo {
@@ -2206,7 +2218,12 @@ footer .ossn-footer-menu a:last-child::after {
 	margin-top: 0;
     margin-bottom: 0;
 }
-
+#ossn-home-signup .ossn-form-group-half:last-child {
+	float:right;
+}
+#ossn-home-signup  .form-group {
+	margin-bottom:0px;
+}
 /**************************
 	System
 ***************************/
