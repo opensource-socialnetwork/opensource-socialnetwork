@@ -97,7 +97,7 @@ class OssnDatabase extends OssnBase {
 								}
 								$this->statement("INSERT INTO {$params['into']} ($colums) VALUES ($values);");
 								if($this->execute($actual_values)) {
-										$this->last_id = $this->database->lastInsertId();
+										$this->last_id = intval($this->database->lastInsertId());
 										return $this->last_id;
 								}
 						}
