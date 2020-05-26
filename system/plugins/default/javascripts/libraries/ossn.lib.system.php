@@ -263,7 +263,7 @@ Ossn.call_user_func_array = function(cb, parameters){
 	var func
 	var scope = null
 
-	var validJSFunctionNamePattern = /^[_$a-zA-Z\xA0-\uFFFF][_$a-zA-Z0-9\xA0-\uFFFF]*$/
+	var validJSFunctionNamePattern = /^[_$a-zA-Z\xA0-\uFFFF][_$a-zA-Z0-9\xA0-\uFFFF]*$/;
 
 	if(typeof cb === 'string'){
 		if(typeof $global[cb] === 'function'){
@@ -319,7 +319,7 @@ Ossn.call_user_func_array = function(cb, parameters){
 Ossn.is_callable = function(mixedVar, syntaxOnly, callableName){
 	var $global = (typeof window !== 'undefined' ? window : global)
 
-	var validJSFunctionNamePattern = /^[_$a-zA-Z\xA0-\uFFFF][_$a-zA-Z0-9\xA0-\uFFFF]*$/
+	var validJSFunctionNamePattern = /^[_$a-zA-Z\xA0-\uFFFF][_$a-zA-Z0-9\xA0-\uFFFF]*$/;
 
 	var name = ''
 	var obj = {}
