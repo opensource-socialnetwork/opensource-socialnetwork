@@ -21,6 +21,7 @@ if (ossn_add_friend(ossn_loggedin_user()->guid, input('user'))) {
                 'type' => 1,
                 'text' => ossn_print('ossn:notification:are:friends'),
             ));
+        exit;
     }
 } else {
     if (!ossn_is_xhr()) {
@@ -32,5 +33,6 @@ if (ossn_add_friend(ossn_loggedin_user()->guid, input('user'))) {
                 'type' => 1,
                 'text' => ossn_print('ossn:add:friend:error'),
             ));
+        exit;
     }
 }
