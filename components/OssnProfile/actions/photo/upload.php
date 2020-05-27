@@ -57,6 +57,8 @@ if($fileguid = $file->addFile()) {
 				
 		}
 		echo 1;
+		exit;
 } else {
 		echo 0;
+		exit;
 }
