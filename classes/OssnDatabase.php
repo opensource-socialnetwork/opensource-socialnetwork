@@ -280,7 +280,6 @@ class OssnDatabase extends OssnBase {
 				if(isset($this->exe)) {
 						if($data !== true) {
 								if($fetch = $this->exe) {
-										self::destruct();
 										return arrayObject($fetch->fetch(PDO::FETCH_ASSOC));
 								}
 						}
@@ -288,7 +287,6 @@ class OssnDatabase extends OssnBase {
 								if($fetch = $this->exe) {
 										$all = $fetch->fetchAll();
 										if($all) {
-												self::destruct();
 												return arrayObject($all);
 										}
 								}
@@ -400,12 +398,12 @@ class OssnDatabase extends OssnBase {
 				return false;
 		}
 		/**
-		 * Manual self destruct
+		 * Unset the stuff that is not need once op is finished
 		 *
 		 * @return void
 		 */
-		public function destruct() {
-				unset($this->database);
-				unset($this->exe);
+		public function __destruct(){
+		        unset($this->exe);
+		        unset($this->database);
 		}
 } //class
