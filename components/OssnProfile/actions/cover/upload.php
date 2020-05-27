@@ -36,6 +36,8 @@ if($fileguid = $file->addFile()) {
 		$ossnprofile->ResetCoverPostition($file->owner_guid);
 		$ossnprofile->addPhotoWallPost($file->owner_guid, $newcover->{0}->guid, 'cover:photo');
 		echo 1;
+		exit;
 } else {
 		echo 0;
+		exit;
 }
