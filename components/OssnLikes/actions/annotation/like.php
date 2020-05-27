@@ -24,6 +24,7 @@ if ($OssnLikes->Like($anotation, ossn_loggedin_user()->guid, 'annotation', $reac
                 'done' => 1,
 				'container' => $likes_container,
         ));
+	exit;
     }
 } else {
     if (!ossn_is_xhr()) {
@@ -37,5 +38,6 @@ if ($OssnLikes->Like($anotation, ossn_loggedin_user()->guid, 'annotation', $reac
                 'done' => 0,
 				'container' => $likes_container,
         ));
+	exit;
     }
 }
