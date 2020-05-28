@@ -38,13 +38,22 @@ body {
 .ossn-form input[type='text'] {
 	width: 100%;
 	background-color: #f2f3f5;
-    border: 1px solid #ccd0d5;
+        border: 1px solid #ccd0d5;
 	padding: 8px;
 	margin-bottom: 5px;
 	outline: none;
 	display: block;
 	resize: vertical;
-    border-radius: 5px;
+        border-radius: 5px;
+}
+.ossn-form input[type='number']:focus,
+.ossn-form input[type='email']:focus,
+.ossn-form input[type='password']:focus,
+.ossn-form text:focus,
+.ossn-form select:focus,
+.ossn-form textarea:focus,
+.ossn-form input[type='text']:focus {
+    outline-color: #e6e6e6;
 }
 .form-control {
 	height: initial;
