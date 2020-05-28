@@ -82,6 +82,12 @@ textarea:focus {
 	-moz-box-shadow: 0 0 3px #eee;
   	-webkit-box-shadow: 0 0 3px #eee;
 }
+	 
+.btn:focus,
+.btn:active {
+   outline:none;
+}
+	 
 input[type="submit"] {
 	display:inherit;
 }
