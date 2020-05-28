@@ -85,7 +85,7 @@ textarea:focus {
 	 
 .btn:focus,
 .btn:active {
-   outline:none;
+    outline:none !important;
 }
 	 
 input[type="submit"] {
