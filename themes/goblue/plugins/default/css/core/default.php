@@ -53,8 +53,14 @@ body {
 .ossn-form select:focus,
 .ossn-form textarea:focus,
 .ossn-form input[type='text']:focus {
-    outline-color: #e6e6e6;
+    outline:none;
 }
+
+.btn:focus,
+.btn:active {
+   outline:none;
+}
+
 .form-control {
 	height: initial;
 }
