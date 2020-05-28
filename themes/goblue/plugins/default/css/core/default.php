@@ -37,14 +37,17 @@ body {
 .ossn-form textarea,
 .ossn-form input[type='text'] {
 	width: 100%;
-	background-color: #f2f3f5;
-        border: 1px solid #ccd0d5;
+	background-color: #f9f9f9;
+	border: 1px solid #ccd0d5;
 	padding: 8px;
 	margin-bottom: 5px;
 	outline: none;
 	display: block;
 	resize: vertical;
-        border-radius: 5px;
+	border-radius: 5px;
+	border-radius: 5px;
+	box-shadow: none;
+	-webkit-box-shadow: none        
 }
 .ossn-form input[type='number']:focus,
 .ossn-form input[type='email']:focus,
@@ -244,6 +247,7 @@ a {
 
 .ossn-error-page {
 	text-align: center;
+
 	padding: 100px;
 }
 
