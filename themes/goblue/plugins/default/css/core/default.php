@@ -1959,9 +1959,9 @@ div.token-input-dropdown ul li.token-input-selected-dropdown-item {
      position: relative;
      background-color: #ececec;
      color: #666;
-     top: 10px;
-     height: 30px;
-     width: 30px;
+     top: 5px;
+     height: 20px;
+     width: 20px;
      border: 0;
      border-radius: 50px;
      cursor: pointer;     
@@ -1970,9 +1970,9 @@ div.token-input-dropdown ul li.token-input-selected-dropdown-item {
 }
 .ossn-form input[type=radio]:checked::before{
      position: absolute;
-     font: 13px/1 'Open Sans', sans-serif;
-     left: 11px;
-     top: 7px;
+    font: 10px/1 'Open Sans', sans-serif;
+    left: 8px;
+    top: 4px;
      content: '\02143';
      transform: rotate(40deg);
 }
