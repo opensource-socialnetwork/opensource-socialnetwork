@@ -61,7 +61,7 @@ body {
 
 .btn:focus,
 .btn:active {
-   outline:none;
+    outline:none !important;
 }
 
 .form-control {
