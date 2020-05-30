@@ -93,8 +93,15 @@ class OssnDatabase extends OssnBase {
 										if(!isset($val)){
 											$val = '';	
 										}
-										$actual_values[] = $val;	
+										$actual_values[] = $val;
 								}
+								// error_log('INSERT: ' . ossn_dump($actual_values));
+								// replace single \r\n by real linefeeds (as appearing in comments, sitepages, etc.
+								$actual_values = str_replace('\\r\\n', "\r\n", $actual_values);
+								// replace double \\r\\n by \r\n (as appearing in json encoded posts)
+								$actual_values = str_replace('\\\r\\\n', '\r\n', $actual_values);
+								// same replacements done in db-update
+								// error_log('INSERT_2: ' . ossn_dump($actual_values));
 								$this->statement("INSERT INTO {$params['into']} ($colums) VALUES ($values);");
 								if($this->execute($actual_values)) {
 										$this->last_id = intval($this->database->lastInsertId());
@@ -158,11 +165,16 @@ class OssnDatabase extends OssnBase {
 		public function update($params = array()) {
 				if(is_array($params)) {
 						if(count($params['names']) == count($params['values']) && !empty($params['table'])) {
+								// error_log('UPDATE: ' . ossn_dump($params['values']));
+								$params['values'] = str_replace('\\r\\n', "\r\n", $params['values']);
+								$params['values'] = str_replace('\\\r\\\n', '\r\n', $params['values']);
+								// error_log('UPDATE_2: ' . ossn_dump($params['values']));
 								$valuec = count($params['names']);
 								$i      = 1;
 								foreach($params['names'] as $key => $val) {
 										$data[$val] = $params['values'][$key];
 								}
+								
 								foreach($data as $keys => $vals) {
 										if($i == $valuec) {
 												$valyes[] = "`{$keys}` = ?";
@@ -402,8 +414,8 @@ class OssnDatabase extends OssnBase {
 		 *
 		 * @return void
 		 */
-		public function __destruct(){
-		        unset($this->exe);
-		        unset($this->database);
+		public function __destruct() {
+				unset($this->exe);
+				unset($this->database);
 		}
 } //class
