@@ -22,8 +22,10 @@ if($group->UploadCover()) {
 				'type' => 1,
 				'url' => $group->coverURL()
 		));
+		exit;
 } else {
 		echo json_encode(array(
 				'type' => 0
 		));
+		exit;
 }
