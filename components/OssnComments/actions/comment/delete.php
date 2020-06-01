@@ -29,6 +29,7 @@ if (($comment->owner_guid == $user->guid) || ($post->type == 'user' && $user->gu
     if ($delete->deleteComment($comment->getID())) {
         if (ossn_is_xhr()) {
             echo 1;
+            exit;
         } else {
             ossn_trigger_message(ossn_print('comment:deleted'), 'success');
             redirect(REF);
@@ -36,6 +37,7 @@ if (($comment->owner_guid == $user->guid) || ($post->type == 'user' && $user->gu
     } else {
         if (ossn_is_xhr()) {
             echo 0;
+            exit;
         } else {
             ossn_trigger_message(ossn_print('comment:delete:error'), 'error');
             redirect(REF);
