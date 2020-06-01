@@ -40,6 +40,7 @@ if ($post->type == 'group' && !ossn_isAdminLoggedin()) {
 if ($ossnwall->deletePost($id)) {
     if (ossn_is_xhr()) {
         echo 1;
+	exit;
     } else {
         ossn_trigger_message(ossn_print('post:delete:success'), 'success');
         redirect(REF);
@@ -47,6 +48,7 @@ if ($ossnwall->deletePost($id)) {
 } else {
     if (ossn_is_xhr()) {
         echo 0;
+	exit;
     } else {
         ossn_trigger_message(ossn_print('post:delete:fail'), 'error');
         redirect(REF);
