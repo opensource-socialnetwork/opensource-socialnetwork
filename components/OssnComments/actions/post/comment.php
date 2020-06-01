@@ -31,6 +31,7 @@ if($OssnComment->PostComment($post, ossn_loggedin_user()->guid, $comment)) {
 						'comment' => $data,
 						'process' => 1
 				));
+				exit;
 		}
 } else {
 		if(!ossn_is_xhr()) {
@@ -40,5 +41,6 @@ if($OssnComment->PostComment($post, ossn_loggedin_user()->guid, $comment)) {
 				echo json_encode(array(
 						'process' => 0
 				));
+				exit;
 		}
 }
