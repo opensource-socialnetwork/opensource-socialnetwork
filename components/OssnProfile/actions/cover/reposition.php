@@ -16,4 +16,5 @@ if ($pos->repositionCOVER(ossn_loggedin_user()->guid, input('top'), input('left'
             'top' => $params[0],
             'left' => $params[1]
         ));
+    exit;
 }
