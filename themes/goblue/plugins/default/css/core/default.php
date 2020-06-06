@@ -1109,6 +1109,7 @@ a {
 .ossn-privacy  .radio-block {
    margin-bottom:0;
    margin-top:0;
+   display:flex;
 }
 .ossn-privacy label {
 	margin-bottom:0px;
@@ -1116,6 +1117,7 @@ a {
 .ossn-privacy .radio-block span {
 	font-weight:normal;
     width: 85%;
+    margin-top:7px;
 }
 .group-add-privacy .radio-block span {
     margin-top: 10px;
