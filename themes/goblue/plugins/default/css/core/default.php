@@ -490,7 +490,7 @@ a {
 	border-bottom: 1px solid #E9EAED;
 	border-left: 1px solid #E9EAED;
 	border-right: 1px solid #E9EAED;
-	height: 40px;
+	min-height: 40px;
 	width: 100%;
 	margin-top: 3px;
 	margin-top: -5px;
