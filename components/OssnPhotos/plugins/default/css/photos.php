@@ -123,3 +123,6 @@
     cursor:pointer;
     margin-right:2px;
 }
+.ossn-photo-view {
+	margin-bottom:10px;
+}
