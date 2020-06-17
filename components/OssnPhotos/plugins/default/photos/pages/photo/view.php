@@ -28,8 +28,6 @@ $img = str_replace('album/photos/', '', $image->value);
     </table>
 
 </div>
-<br/>
-<br/>
 <?php
 	$vars['entity'] = $image;
 	echo ossn_plugin_view('entity/comment/like/share/view', $vars);
