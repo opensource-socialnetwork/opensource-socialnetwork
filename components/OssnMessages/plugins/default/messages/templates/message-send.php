@@ -16,10 +16,9 @@ if($user->guid == ossn_loggedin_user()->guid){
                     	<div class="row" id="message-item-<?php echo $message_id ?>">
                                 <div class="col-md-10">
                                 	<div class="message-box-sent text">
-						<span><?php echo ossn_call_hook('messages', 'message:smilify', null, ossn_message_print($message)); ?></span>
-                                        	<div class="time-created"><?php echo ossn_user_friendly_time(time());?>
-                                            		<a class="ossn-message-delete" href="<?php echo ossn_site_url("action/message/delete?id={$message_id}", true);?>"><i class="fa fa-times"></i></a>				
-						</div>
+                                	        <span><?php echo ossn_call_hook('messages', 'message:smilify', null, ossn_message_print($message)); ?></span>
+                                        	<div class="time-created"><?php echo ossn_user_friendly_time(time());?></div>
+                                                <a class="ossn-message-delete" href="<?php echo ossn_site_url("action/message/delete?id={$message_id}", true);?>"><i class="fa fa-times"></i></a>				
                                 	</div>
                                 </div>
                         	<div class="col-md-2">
