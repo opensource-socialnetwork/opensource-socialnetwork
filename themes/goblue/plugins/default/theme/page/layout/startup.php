@@ -22,3 +22,4 @@
 		<?php echo ossn_plugin_view('theme/page/elements/footer');?>
 	</div>
 </div>
+<script>$(window).ready(function(){$('body').addClass('ossn-layout-startup-background');}); </script>

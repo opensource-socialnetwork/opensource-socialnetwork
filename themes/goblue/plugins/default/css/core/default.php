@@ -166,10 +166,15 @@ a {
 
 .ossn-layout-startup {
 	min-height: 560px;
+}
+.ossn-layout-startup-background {
+	min-height: 560px;
 	background: url("<?php echo ossn_add_cache_to_url(ossn_theme_url('images/background.jpg'));?>") no-repeat;
 	background-size: cover;
 }
-
+.ossn-layout-startup .col-md-11 {
+	width:100%;
+}
 .ossn-layout-startup footer .ossn-footer-menu a {
 	color: #fff;
 }
@@ -1982,9 +1987,9 @@ div.token-input-dropdown ul li.token-input-selected-dropdown-item {
 }
 .ossn-form input[type=radio]:checked::before{
      position: absolute;
-    font: 10px/1 'Open Sans', sans-serif;
-    left: 8px;
-    top: 4px;
+     font: 9px/1 'Open Sans', sans-serif;
+	 left: 7px;
+     top: 5px;
      content: '\02143';
      transform: rotate(40deg);
 }
@@ -2292,7 +2297,7 @@ footer .ossn-footer-menu a:last-child::after {
 }
 
 .home-left-contents .some-icons i {
-	font-size: 50px;
+	font-size: 45px;
 }
 
 .home-left-contents .some-icons li {
@@ -2303,8 +2308,8 @@ footer .ossn-footer-menu a:last-child::after {
 	padding: 20px;
 	margin-right: 20px;
 	margin-bottom: 20px;
-	width: 100px;
-	height: 100px;
+	width: 90px;
+	height: 90px;
 }
 
 .home-left-contents .some-icons {
@@ -2719,4 +2724,9 @@ footer .ossn-footer-menu a:last-child::after {
 
 .menu-section-item-groups:before {
 	content: "\f07b" !important
+}
+@media screen and (min-width:1500px){
+	.ossn-wall-container .wall-tabs i {
+		margin-top: 3px;
+	}
 }
