@@ -44,6 +44,7 @@ OSSN - OPEN SOURCE SOCAIL NETWORK V5.3
 * [E] Remove unsupported videos from embed #1724
 * [B] case insensitive emails and username issues during login or signup #1726
 * [B] Delete message button doesn't work if posted same time #1743
+* [E] Default profile picture #1647
 
 OSSN - OPEN SOURCE SOCIAL NETWORK V5.2 
 * Several fixes for handling of cover images #1488
