@@ -41,7 +41,7 @@ class OssnInvite extends OssnMail {
 		
 		$site = ossn_site_settings('site_name');
 		$site = html_entity_decode($site, ENT_QUOTES, "UTF-8");
-		$url = ossn_site_url();
+		$url = ossn_site_url("?com_invite_friend={$user->guid}");
 		
 		if(empty($message)){
 			$params = array($url, $user->profileURL(), $user_fullname);
