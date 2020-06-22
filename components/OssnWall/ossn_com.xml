@@ -7,7 +7,7 @@
     <license>Open Source Social Network License (OSSN LICENSE)</license>
     <author_url>https://www.softlab24.com/</author_url>
     <license_url>http://www.opensource-socialnetwork.org/licence/</license_url>
-    <version>5.1</version>
+    <version>5.2</version>
 	<requires>
 		<type>ossn_version</type>
 		<version>5.0</version>
