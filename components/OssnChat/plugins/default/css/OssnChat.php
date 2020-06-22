@@ -424,6 +424,12 @@ and (min-width : 1280px) {
     }
 }
 
+@media only screen and (min-width : 1500px) {
+    .ossn-chat-base {
+        width: 1100px !important;
+    }
+}
+
 @media only screen
 and (min-width : 1360px) {
     .ossn-chat-bar {
