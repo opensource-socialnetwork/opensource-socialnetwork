@@ -239,7 +239,6 @@ a {
 .opensource-socalnetwork {
 	min-height: 500px;
 }
-
 .ossn-home-container .row {
 	margin-right: 10px;
 	margin-left: 10px;
@@ -438,7 +437,6 @@ a {
 .ossn-wall-item .meta {}
 
 .ossn-wall-item .meta .user {
-	display: inline-block;
 	margin-top: 3px;
 }
 
@@ -2360,7 +2358,6 @@ footer .ossn-footer-menu a:last-child::after {
 /**************************
 	Mobile Layout Settings
 ***************************/
-
 @media (max-width: 480px) {
 	.ossn-wall-privacy {
     	float:none;
@@ -2383,12 +2380,6 @@ footer .ossn-footer-menu a:last-child::after {
      ************************/
 	.ossn-wall-item-type {
 		display: block;
-	}
-	.ossn-wall-item .meta .user {
-		width: 155px;
-		white-space: nowrap;
-		overflow: hidden;
-		text-overflow: ellipsis;
 	}
 	.ossn-list-users .uinfo .userlink {
 		text-overflow: ellipsis;
@@ -2700,7 +2691,6 @@ footer .ossn-footer-menu a:last-child::after {
 		max-width: 640px;
 	}
 }
-
 @media only screen and (max-width: 767px) {
 	.ossn-profile .user-fullname {
 		max-width: 767px;
