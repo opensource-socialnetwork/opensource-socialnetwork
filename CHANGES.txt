@@ -48,6 +48,7 @@ OSSN - OPEN SOURCE SOCAIL NETWORK V5.3
 * [E] Add friends automatically when user joined using invitation email #1744
 * [E] Hide a success message when post is added #1745
 * [E] delete 'upload image' wall entries automatically if pic is deleted #1667
+* [B] Removed unnecessary high z-index from love and like emoji
 
 OSSN - OPEN SOURCE SOCIAL NETWORK V5.2 
 * Several fixes for handling of cover images #1488
