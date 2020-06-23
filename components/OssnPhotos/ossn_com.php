@@ -444,22 +444,22 @@ function ossn_album_page_handler($album) {
 						}
 						break;
 				case 'edit':
-					if(!ossn_isLoggedin() || !ossn_is_xhr()){
-						ossn_error_page();	
-					}
-					$album	  = ossn_get_object($album[1]);
-					if(isset($album->guid) && $album->subtype == 'ossn:album' && $album->owner_guid == ossn_loggedin_user()->guid){
-						echo ossn_plugin_view('output/ossnbox', array(
-								'title' => ossn_print('edit'),
-								'contents' => ossn_plugin_view('photos/pages/album/edit', array(
-										'album' => $album,																
-								)),
-								'callback' => '#ossn-album-edit-submit'
-						));
-					} else {
-						ossn_error_page();	
-					}
-					break;
+						if(!ossn_isLoggedin() || !ossn_is_xhr()) {
+								ossn_error_page();
+						}
+						$album = ossn_get_object($album[1]);
+						if(isset($album->guid) && $album->subtype == 'ossn:album' && $album->owner_guid == ossn_loggedin_user()->guid) {
+								echo ossn_plugin_view('output/ossnbox', array(
+										'title' => ossn_print('edit'),
+										'contents' => ossn_plugin_view('photos/pages/album/edit', array(
+												'album' => $album
+										)),
+										'callback' => '#ossn-album-edit-submit'
+								));
+						} else {
+								ossn_error_page();
+						}
+						break;
 				case 'view':
 						ossn_load_external_css('jquery.fancybox.min.css');
 						ossn_load_external_js('jquery.fancybox.min.js');
@@ -489,7 +489,7 @@ function ossn_album_page_handler($album) {
 								$control_gbutton = ossn_plugin_view('output/url', $gallery_button);
 								//shows add photos if owner is loggedin user
 								if(ossn_loggedin_user()->guid == $owner->owner_guid) {
-										$addphotos     = array(
+										$addphotos = array(
 												'text' => ossn_print('add:photos'),
 												'href' => 'javascript:void(0);',
 												'id' => 'ossn-add-photos',
@@ -497,11 +497,11 @@ function ossn_album_page_handler($album) {
 												'class' => 'button-grey'
 										);
 										
-										$edit_album  = array(
+										$edit_album = array(
 												'text' => ossn_print('edit'),
 												'class' => 'button-grey',
 												'data-guid' => $album[1],
-												'id' => 'ossn-photos-edit-album',
+												'id' => 'ossn-photos-edit-album'
 										);
 										
 										$delete_action = ossn_site_url("action/ossn/album/delete?guid={$album[1]}", true);
@@ -510,7 +510,7 @@ function ossn_album_page_handler($album) {
 												'href' => $delete_action,
 												'class' => 'button-grey ossn-make-sure'
 										);
-										$control  = ossn_plugin_view('output/url', $edit_album);
+										$control       = ossn_plugin_view('output/url', $edit_album);
 										$control .= ossn_plugin_view('output/url', $addphotos);
 										$control .= ossn_plugin_view('output/url', $delete_album);
 								} else {
@@ -688,6 +688,38 @@ function ossn_photos_likes_comments_delete($name, $type, $params) {
 				//[B] getting orphan like records from comments when deleting a post #1687
 				$comments->commentsDeleteAll($params['photo']['guid'], 'entity');
 		}
+		//[E] delete 'upload image' wall entries automatically if pic is deleted #1667
+		if(class_exists('OssnWall')) {
+				$photoguid                = $params['photo']['guid'];
+				$Wall                     = new OssnWall;
+				$vars['subtype']          = 'wall';
+				$vars['type']             = 'user';
+				$vars['entities_pairs'][] = array(
+						'name' => 'item_type',
+						'value' => 'album:photos:wall'
+				);
+				$vars['entities_pairs'][] = array(
+						'name' => 'photos_guids',
+						'value' => true,
+						'wheres' => "(FIND_IN_SET('{$photoguid}', emd1.value) > 0)"
+				);
+				
+				$List = $Wall->searchObject($vars);
+				if($List) {
+						$post  = $List[0];
+						$guids = explode(',', $post->photos_guids);
+						$key   = array_search($photoguid, $guids);
+						if(strlen($key) > 0){
+								unset($guids[$key]);
+						}
+						$total_photos = count($guids);
+						if($total_photos < 1) {
+								$post->deletePost($post->guid);
+						} else {
+								$post->data->photos_guids = implode(',', $guids);
+								$post->save();
+						}
+				}
+		}
 }
-
 ossn_register_callback('ossn', 'init', 'ossn_photos_initialize');
