@@ -30,6 +30,13 @@ function ossn_goblue_theme_init(){
 	ossn_extend_view('ossn/admin/head', 'ossn_goblue_admin_head');
 	ossn_extend_view('ossn/site/head', 'ossn_goblue_head');
     ossn_extend_view('js/opensource.socialnetwork', 'js/goblue');	
+	
+	ossn_register_admin_sidemenu('admin:theme:goblue', 'admin:theme:goblue', ossn_site_url('administrator/settings/goblue'), ossn_print('admin:sidemenu:themes'));
+	ossn_register_site_settings_page('goblue', 'settings/admin/goblue');
+	
+	if(ossn_isAdminLoggedin()) {
+		ossn_register_action('goblue/settings', __THEMEDIR__ . 'actions/settings.php');
+	}	
 }
 function ossn_goblue_head(){
 	$head	 = array();

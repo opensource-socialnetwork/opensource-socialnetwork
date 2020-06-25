@@ -92,9 +92,8 @@ input[type="submit"] {
 	display:inherit;
 }
 label {
-	font-size: 16px;
-	color: #000;
-	font-weight: 300;
+    font-weight:bold;
+	color: #333;
 	cursor: pointer;
     display:block;
 }
@@ -544,4 +543,14 @@ footer a {
 #users-classified-graph {
 	width:250px;
     height:140px;
+}
+.logo-container-goblue {
+
+}
+.logo-container-goblue img {
+    background: #eee;
+    border: 1px dashed #333;
+    margin: 10px 0;
+    padding: 10px;
+    max-width: 300px;
 }
