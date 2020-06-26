@@ -11,7 +11,6 @@
  
 $site  = new OssnFile;
 $site->setFile('logo_site');
-$site->setPath('profile/photo/');
 $site->setExtension(array(
 		'png',
 ));
@@ -39,7 +38,6 @@ if(isset($site->file['tmp_name']) && $site->typeAllowed()){
 }
 $admin  = new OssnFile;
 $admin->setFile('logo_admin');
-$admin->setPath('profile/photo/');
 $admin->setExtension(array(
 		'jpg',
 		'jpeg',
