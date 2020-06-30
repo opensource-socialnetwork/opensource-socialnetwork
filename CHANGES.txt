@@ -49,6 +49,9 @@ OSSN - OPEN SOURCE SOCAIL NETWORK V5.3
 * [E] Hide a success message when post is added #1745
 * [E] delete 'upload image' wall entries automatically if pic is deleted #1667
 * [B] Removed unnecessary high z-index from love and like emoji
+* [E] Improve Site Settings #1747
+* [E] Allow to override page handler existing pages #1746
+* [E] Add option to change logos from administrator panel #1748
 
 OSSN - OPEN SOURCE SOCIAL NETWORK V5.2 
 * Several fixes for handling of cover images #1488
