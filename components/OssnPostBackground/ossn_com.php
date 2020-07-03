@@ -12,57 +12,57 @@ define('PostBackground', ossn_route()->com . 'OssnPostBackground/');
 define('__PostBackground_List__', array(
 		array(
 				'name' => 'pbg1',
-				'url' => ossn_site_url('components/PostBackground/images/1.jpg'),
+				'url' => ossn_site_url('components/OssnPostBackground/images/1.jpg'),
 				'color_hex' => '#fff',
 		),
 		array(
 				'name' => 'pbg2',
-				'url' => ossn_site_url('components/PostBackground/images/2.jpg'),
+				'url' => ossn_site_url('components/OssnPostBackground/images/2.jpg'),
 				'color_hex' => '#fff',
 		),
 		array(
 				'name' => 'pbg3',
-				'url' => ossn_site_url('components/PostBackground/images/3.jpg'),
+				'url' => ossn_site_url('components/OssnPostBackground/images/3.jpg'),
 				'color_hex' => '#fff',
 		),
 		array(
 				'name' => 'pbg4',
-				'url' => ossn_site_url('components/PostBackground/images/4.jpg'),
+				'url' => ossn_site_url('components/OssnPostBackground/images/4.jpg'),
 				'color_hex' => '#fff',
 		),
 		array(
 				'name' => 'pbg5',
-				'url' => ossn_site_url('components/PostBackground/images/5.jpg'),
+				'url' => ossn_site_url('components/OssnPostBackground/images/5.jpg'),
 				'color_hex' => '#fff',
 		),
 		array(
 				'name' => 'pbg6',
-				'url' => ossn_site_url('components/PostBackground/images/6.jpg'),
+				'url' => ossn_site_url('components/OssnPostBackground/images/6.jpg'),
 				'color_hex' => '#fff',
 		),
 		array(
 				'name' => 'pbg7',
-				'url' => ossn_site_url('components/PostBackground/images/7.jpg'),
+				'url' => ossn_site_url('components/OssnPostBackground/images/7.jpg'),
 				'color_hex' => '#333',
 		),
 		array(
 				'name' => 'pbg8',
-				'url' => ossn_site_url('components/PostBackground/images/8.jpg'),
+				'url' => ossn_site_url('components/OssnPostBackground/images/8.jpg'),
 				'color_hex' => '#333',
 		),
 		array(
 				'name' => 'pbg9',
-				'url' => ossn_site_url('components/PostBackground/images/9.jpg'),
+				'url' => ossn_site_url('components/OssnPostBackground/images/9.jpg'),
 				'color_hex' => '#333',
 		),
 		array(
 				'name' => 'pbg10',
-				'url' => ossn_site_url('components/PostBackground/images/10.jpg'),
+				'url' => ossn_site_url('components/OssnPostBackground/images/10.jpg'),
 				'color_hex' => '#333',
 		),
 		array(
 				'name' => 'pbg11',
-				'url' => ossn_site_url('components/PostBackground/images/11.jpg'),
+				'url' => ossn_site_url('components/OssnPostBackground/images/11.jpg'),
 				'color_hex' => '#333',
 		)
 ));
