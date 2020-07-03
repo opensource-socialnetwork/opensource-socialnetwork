@@ -144,7 +144,7 @@ class OssnSite extends OssnDatabase {
 		 * @return boolean
 		 */
 		public function setSetting($name, $value = '') {
-				if(empty($name) || empty($value)) {
+				if(empty($name)) {
 						return false;
 				}
 				$name     = trim($name);
