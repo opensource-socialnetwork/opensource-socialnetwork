@@ -32,6 +32,9 @@ error_log
 !/components/OssnChat
 !/components/OssnSounds
 !/components/OssnAutoPagination
+!/components/OssnMessageTyping
+!/components/OssnRealTimeComments
+!/components/OssnPostBackground
 
 #do not ignore config files
 !/.scrutinizer.yml

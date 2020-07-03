@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component xmlns="http://www.opensource-socialnetwork.org/v/3.0">
+    <name>Message Typing</name>
+    <id>OssnMessageTyping</id>
+    <author>Core Team</author>
+    <description>A component that shows a status in chat when the person you chatting is typing a message.</description>
+    <license>OPEN SOURCE SOCIAL NETWORK LICENSE (OSSN LICENSE)</license>
+    <author_url>https://www.softlab24.com/</author_url>
+    <license_url>https://www.opensource-socialnetwork.org/licence/</license_url>
+    <version>1.1</version>
+	<requires>
+		<type>ossn_version</type>
+		<version>5.2</version>
+	</requires>
+</component>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component xmlns="http://www.opensource-socialnetwork.org/v/3.0">
+    <name>Post Background</name>
+    <id>OssnPostBackground</id>
+    <author>Core Team</author>
+    <description>Select a post background from pre-defined backgrounds.</description>
+    <license>Open Source Social Network License (OSSN LICENSE)</license>
+    <author_url>https://www.softlab24.com/</author_url>
+    <license_url>https://www.opensource-socialnetwork.org/licence/</license_url>
+    <version>1.4</version>
+	<requires>
+		<type>ossn_version</type>
+		<version>5.2</version>
+	</requires>
+</component>

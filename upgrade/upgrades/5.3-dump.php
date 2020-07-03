@@ -197,6 +197,28 @@ foreach($sql_statements as $statement) {
 						}
 				}
 }
+
+$new_components = array(
+		'OssnMessageTyping',
+		'OssnRealTimeComments',
+		'OssnPostBackground',
+);
+$todelete = array(
+		'MessageTyping',
+		'RealTimeComments',
+		'PostBackground',			  
+);
+$components = new OssnComponents;
+$systemcoms = $components->getComponents();
+
+foreach($new_components as $item) {
+		if(!in_array($item, $systemcoms)) {
+				$components->enable($item);
+		}
+		if(in_array($item, $todelete)){
+				$components->delete($item);
+		}
+}
 $factory = new OssnFactory(array(
 		'callback' => 'installation',
 		'website' => ossn_site_url(),
