@@ -1,7 +1,7 @@
 <?php 
 if(isset($params['post']->postbackground_type) && !empty($params['post']->postbackground_type) && strlen($params['text']) <= 125){
 		$id = str_replace('pbg', '', $params['post']->postbackground_type);
-		$url = ossn_site_url("components/PostBackground/images/{$id}.jpg");
+		$url = ossn_site_url("components/OssnPostBackground/images/{$id}.jpg");
 		
 		$item = PostBackground::getById($params['post']->postbackground_type);
 ?>
