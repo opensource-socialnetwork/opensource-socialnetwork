@@ -65,7 +65,11 @@ if (isset($params['contents'])) {
         
         	<div class="row">
 			<div class="col-md-6 col-sm-6 col-xs-6">
+            			<?php if(ossn_site_settings('cache') == true){?>
             			<img src="<?php echo ossn_theme_url(); ?>images/logo_admin.jpg"/>
+                        <?php } else { ?>
+            			<img src="<?php echo ossn_theme_url(); ?>images/logo_admin.jpg?ver=<?php echo time();?>"/>                        
+                        <?php } ?> 
             		</div>
                 <?php if(ossn_isAdminLoggedin()){ ?>
             	<div class="col-md-6 col-sm-6 col-xs-6 header-dropdown">

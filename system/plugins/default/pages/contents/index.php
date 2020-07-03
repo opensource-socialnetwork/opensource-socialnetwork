@@ -12,7 +12,11 @@
 <div class="row ossn-page-contents">
 		<div class="col-md-6 home-left-contents">
 			<div class="logo">
+            	<?php if(ossn_site_settings('cache') == true){?>
             	<img src="<?php echo ossn_theme_url();?>images/logo.png" />
+                <?php } else { ?>
+            	<img src="<?php echo ossn_theme_url();?>images/logo.png?v=<?php echo time();?>" />                
+                <?php } ?>
             </div>	
             <div class="description">
             	<?php echo ossn_print('home:top:heading', array(ossn_site_settings('site_name'))); ?>
