@@ -34,27 +34,34 @@ class OssnSite extends OssnDatabase {
 		 *
 		 * @return object
 		 */
-		public function getAllSettings() {
+		/**
+		 * Get all site settings
+		 *
+		 * @param boolean $reserved Load only reserved names 
+		 *
+		 * @return object
+		 */
+		public function getAllSettings($reserved = true) {
 				$params['from'] = 'ossn_site_settings as s';
-				//we only need all settings of reserved / required fields , other settings may not useful to us 
-				//as we loading all those in start, it may burden the site.
-				
-				$reserved       = $this->reservedNames();
-				array_walk($reserved, function(&$value) {
-						$value = "'$value'";
-				});
-				$needed           = implode(',', $reserved);
-				$params['wheres'] = array(
-						"(s.name IN ($needed))"
-				);
-				
+				//[E] thoughts regarding limited usage of ossn_site_settings() #1752
+				if($reserved){
+					//we only need all settings of reserved / required fields , other settings may not useful to us 
+					//as we loading all those in start, it may burden the site.
+					$reserved       = $this->reservedNames();
+					array_walk($reserved, function(&$value) {
+							$value = "'$value'";
+					});
+					$needed           = implode(',', $reserved);
+					$params['wheres'] = array(
+							"(s.name IN ($needed))"
+					);
+				}
 				$this->settings = $this->select($params, true);
 				foreach($this->settings as $setting) {
 						$result[$setting->name] = $setting->value;
 				}
 				return arrayObject($result, get_class($this));
 		}
-		
 		/**
 		 * Update site settings
 		 *
