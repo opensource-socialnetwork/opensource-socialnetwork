@@ -8,7 +8,7 @@
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
  * @link      https://www.opensource-socialnetwork.org/
  */
-ossn_register_languages('zh', rray(
+ossn_register_languages('zh', array(
 	'goblue:settings' => 'GoBlue',
 	'admin:theme:goblue' => 'GoBlue',
 	'theme:goblue:logo:site' => '網站徽標',
