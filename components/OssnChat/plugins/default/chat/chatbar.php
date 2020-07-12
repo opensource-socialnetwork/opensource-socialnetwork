@@ -50,8 +50,10 @@
         if ($active_sessions) {
             foreach ($active_sessions as $user) {
                 $user = ossn_user_by_guid($user);
-                $friend['user'] = $user;
-                echo ossn_plugin_view('chat/selectfriend', $friend);
+                if($user) {
+                    $friend['user'] = $user;
+                    echo ossn_plugin_view('chat/selectfriend', $friend);
+                }
             }
         }
         ?>
