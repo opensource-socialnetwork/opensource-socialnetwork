@@ -43,9 +43,13 @@ class OssnGroup extends OssnObject {
 				if($params['privacy'] == OSSN_PRIVATE || $params['privacy'] == OSSN_PUBLIC) {
 						$this->data->membership = $params['privacy'];
 				}
-				if($this->addObject()) {
+				if($guid = $this->addObject()) {
 						ossn_add_relation($params['owner_guid'], $this->getGuid(), 'group:join');
 						ossn_add_relation($this->getGuid(), $params['owner_guid'], 'group:join:approve');
+						
+						ossn_trigger_callback('group', 'add', array(
+								'group_guid' => $guid,											   
+						));
 						return true;
 				}
 				return false;
@@ -318,7 +322,11 @@ class OssnGroup extends OssnObject {
 										0,
 										time()
 								);
-								if($this->OssnDatabase->insert($params)) {
+								if($this->OssnDatabase->insert($params)){
+										ossn_trigger_callback('group', 'send:request', array(
+											'user_guid' => $from,						
+											'group_guid' => $group,
+										));
 										return true;
 								}
 						}
@@ -344,7 +352,7 @@ class OssnGroup extends OssnObject {
 					     );");
 				$this->execute();
 				$request = $this->fetch();
-				if(!empty($request->relation_id)) {
+				if(!empty($request->relation_id)){
 						return true;
 				}
 				return false;
@@ -360,7 +368,11 @@ class OssnGroup extends OssnObject {
 		 */
 		public function approveRequest($from, $group) {
 				if($this->requestExists($from, $group)) {
-						if(ossn_add_relation($group, $from, 'group:join:approve')) {
+						if(ossn_add_relation($group, $from, 'group:join:approve')){
+								ossn_trigger_callback('group', 'approve:request', array(
+									'user_guid' => $from,						
+									'group_guid' => $group,
+								));											
 								return true;
 						}
 				}
@@ -382,7 +394,11 @@ class OssnGroup extends OssnObject {
 				$this->statement("DELETE FROM ossn_relationships WHERE(
 						 relation_from='{$from}' AND relation_to='{$group}'  AND type='group:join' OR 
 						 relation_from='{$group}' AND relation_to='{$from}' AND type='group:join:approve')");
-				if($this->execute()) {
+				if($this->execute()){
+						ossn_trigger_callback('group', 'delete:member', array(
+								'user_guid' => $from,						
+								'group_guid' => $group,
+						));					
 						return true;
 				}
 				return false;
