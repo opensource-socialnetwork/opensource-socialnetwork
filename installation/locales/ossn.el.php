@@ -72,6 +72,7 @@ $greek = array(
 	
 	'ossn:install:ziparchive' => 'PHP ZipArchive ΕΝΕΡΓΟ',
 	'ossn:install:ziparchive:error' => 'PHP ZipArchive ΑΠΑΙΤΟΥΜΕΝΗ ΕΠΕΚΤΑΣΗ',
+	'ossn:install:cachedir:note:failed' => 'Βεβαιωθείτε ότι τα αρχεία και οι κατάλογοι σας ανήκουν σε σωστό χρήστη apache.',	
 );
 
 ossn_installation_register_languages($greek);

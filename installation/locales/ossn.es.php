@@ -74,6 +74,7 @@ $spanish = array(
 	
 	'ossn:install:ziparchive' => 'PHP ZipArchive HABILITADO',
 	'ossn:install:ziparchive:error' => 'PHP ZipArchive EXTENSIÓN REQUERIDA',
+	'ossn:install:cachedir:note:failed' => 'Asegúrese de que sus archivos y directorios sean propiedad del usuario correcto de apache.',	
 );
 
 ossn_installation_register_languages($spanish);

@@ -72,6 +72,7 @@ $romanian = array(
 	
 	'ossn:install:ziparchive' => 'PHP ZipArchive ENABLED',
 	'ossn:install:ziparchive:error' => 'PHP ZipArchive EXTENSION REQUIRED',
+	'ossn:install:cachedir:note:failed' => 'Asigurați-vă că fișierele și directoarele dvs. sunt deținute de un utilizator corect apache.',
 );
 
 ossn_installation_register_languages($romanian);

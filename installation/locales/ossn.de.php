@@ -71,6 +71,7 @@ $de = array(
 	
 	'ossn:install:ziparchive' => 'PHP ZipArchive VORHANDEN',
 	'ossn:install:ziparchive:error' => 'PHP ZipArchive ERWEITERUNG FEHLT',
+	'ossn:install:cachedir:note:failed' => 'Stellen Sie sicher, dass Ihre Dateien und Verzeichnisse dem richtigen Apache-Benutzer gehören.',	
 );
 
 ossn_installation_register_languages($de);

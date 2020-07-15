@@ -72,6 +72,7 @@ $indonesian = array(
 	
 	'ossn:install:ziparchive' => 'PHP ZipArchive ENABLED',
 	'ossn:install:ziparchive:error' => 'PHP ZipArchive EXTENSION DIBUTUHKAN',
+	'ossn:install:cachedir:note:failed' => 'Make sure yoPastikan file dan direktori Anda dimiliki oleh pengguna apache yang benar.',	
 );
 
 ossn_installation_register_languages($indonesian);

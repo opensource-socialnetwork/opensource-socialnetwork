@@ -354,3 +354,16 @@ textarea:focus {
 	margin-left:20px;
 	margin-right:20px;
 }
+
+.ossn-installation-success:before {
+    content: "\2713";
+    padding-right: 5px;
+    font-weight: bold;
+    color: green;
+}
+.ossn-installation-fail:before {
+    content: "\292B";
+    padding-right: 5px;
+    font-weight: bold;
+    color: red;
+}

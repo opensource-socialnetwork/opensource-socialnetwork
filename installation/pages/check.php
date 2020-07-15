@@ -14,11 +14,17 @@ echo '<div><div class="layout-installation"><h2>' . ossn_installation_print('oss
     echo '<div class="ossn-installation-message ossn-installation-fail">APACHE, PHP_SAPI ('.php_sapi_name().')</div>';
     $error[] = 'php_sapi_apache';	
 }*/
+$error = array();
 if (OssnInstallation::isPhp()) {
     echo '<div class="ossn-installation-message ossn-installation-success">'. ossn_installation_print('ossn:install:php') . PHP_VERSION . ' </div>';
 } else {
     echo '<div class="ossn-installation-message ossn-installation-fail"> ' . ossn_installation_print('ossn:install:old:php') . '</div>';
     $error[] = 'php';
+}
+//can not add if message as we have too much to translate already
+if(OssnInstallation::isCacheWriteable()){
+   echo '<div class="ossn-installation-message ossn-installation-fail">'. ossn_installation_print('ossn:install:cachedir:note:failed') . ' <a target="_blank" href="https://www.opensource-socialnetwork.org/wiki/view/4378/directories-and-files-permission">https://www.opensource-socialnetwork.org/wiki/view/4378/directories-and-files-permissiom</a></div>';	
+   $error[] = 'cache';
 }
 if(OssnInstallation::allowUrlFopen()){
     echo '<div class="ossn-installation-message ossn-installation-success">'.ossn_installation_print('ossn:install:allowfopenurl').'</div>';	
@@ -108,7 +114,7 @@ if (OssnInstallation::isCon_WRITEABLE()) {
     $error[] = 'permission:configuration';
 }
 echo '<br />';
-if (!isset($error)) {
+if (empty($error)) {
     echo '<a href="' . ossn_installation_paths()->url . '?page=license" class="button-blue primary">'.ossn_installation_print('ossn:install:next').'</a>';
 }
 

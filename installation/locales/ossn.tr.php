@@ -72,6 +72,7 @@ $turkish = array(
 	
 	'ossn:install:ziparchive' => 'PHP ZipArchive ENABLED',
 	'ossn:install:ziparchive:error' => 'PHP ZipArchive EXTENSION REQUIRED',
+	'ossn:install:cachedir:note:failed' => 'Dosyalarınızın ve dizinlerinizin doğru apache kullanıcısına ait olduğundan emin olun.',	
 );
 
 ossn_installation_register_languages($turkish);

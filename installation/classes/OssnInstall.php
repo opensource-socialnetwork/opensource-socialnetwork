@@ -132,7 +132,24 @@ class OssnInstallation {
 				}
 				return false;
 		}
-		
+		/**
+		 * Check if cache directory is writeable or not
+		 *
+		 * @return boolean
+		 */
+		 public static function isCacheWriteable(){
+					$path = str_replace('installation/', '', ossn_installation_paths()->root);
+					$path = $path . 'cache';	
+					if(!is_dir($path)){
+						if(mkdir($path, 0755, true)){
+								rmdir($path);
+								return true;	
+						} else {
+								return false;	
+						}
+					}
+					return false;
+		 }
 		/**
 		 * Check if mysqli class exist exist or not
 		 *
