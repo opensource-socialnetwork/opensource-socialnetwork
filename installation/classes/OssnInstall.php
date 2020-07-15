@@ -265,6 +265,18 @@ class OssnInstallation {
 						$this->error_mesg = ossn_installation_print('data:directory:invalid');
 						return false;
 				}			
+				if(!file_put_contents($this->datadir . 'writeable', 1)){
+						$this->error_mesg = ossn_installation_print('data:directory:invalid');
+						return false;						
+				} else {
+					$writeable  = file_get_contents($this->datadir . 'writeable');	
+					if(!$writeable || $writeable &&  $writeable != 1){
+						$this->error_mesg = ossn_installation_print('data:directory:invalid');
+						return false;							
+					}
+				}
+				unlink($this->datadir . 'writeable');
+				
 				if(!$this->dbconnect()) {
 						$this->error_mesg = $this->connect_err->connect_errn;
 						return false;
