@@ -53,6 +53,8 @@ OSSN - OPEN SOURCE SOCAIL NETWORK V5.3
 * [E] Allow to override page handler existing pages #1746
 * [E] Add option to change logos from administrator panel #1748
 * [E] Add a callback for Group::sendRequest #1754
+* [E] improve installer to check accessability of directories #1749
+* [B] don't display a tab of a friend who deleted his account
 
 OSSN - OPEN SOURCE SOCIAL NETWORK V5.2 
 * Several fixes for handling of cover images #1488
