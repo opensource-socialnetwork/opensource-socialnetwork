@@ -42,9 +42,17 @@
   height: inherit;
 }
 
+.emoji--dislike {
+    background: #999;
+    transform: scale(-0.325);
+}
+.ossn-reaction-list .emoji--dislike {
+    transform: scale(-0.133);
+}
 .emoji--like {
   background: #548DFF;
 }
+.emoji--dislike .emoji__hand,
 .emoji--like .emoji__hand {
   left: 25px;
   bottom: 30px;
@@ -56,6 +64,7 @@
   -webkit-animation: hands-up 2s linear infinite;
           animation: hands-up 2s linear infinite;
 }
+.emoji--dislike .emoji__hand:before,
 .emoji--like .emoji__hand:before {
   left: 25px;
   bottom: 5px;
@@ -65,6 +74,7 @@
   border-radius: 2px 10px 10px 2px;
   box-shadow: 1px -9px 0 1px #FFFFFF, 2px -19px 0 2px #FFFFFF, 3px -29px 0 3px #FFFFFF;
 }
+.emoji--dislike .emoji__thumb,
 .emoji--like .emoji__thumb {
   border-bottom: 20px solid #FFFFFF;
   border-left: 20px solid transparent;
@@ -78,6 +88,7 @@
   -webkit-animation: thumbs-up 2s linear infinite;
           animation: thumbs-up 2s linear infinite;
 }
+.emoji--dislike .emoji__thumb:before,
 .emoji--like .emoji__thumb:before {
   border-radius: 50% 50% 0 0;
   background: #FFFFFF;
@@ -865,7 +876,7 @@
 }
 .ossn-like-reactions-panel {
 	background: #ffffff;
-        width: 313px;
+        width: 355px;
     padding: 2px;
     position: absolute;
     height:50px;
@@ -892,6 +903,9 @@
     transform: scale(0.133);
     margin-left: -55px;
     margin-top: -50px;
+}
+.ossn-reaction-list .emoji--dislike {
+    transform: scale(-0.133);
 }
 .ossn-reaction-list {
 	float:left;
@@ -957,4 +971,7 @@
 .comment-metadata .ossn-reaction-list .emoji {
 	transform: scale(0.12);
     margin-top: -51px;
+}
+.comment-metadata .ossn-reaction-list .emoji--dislike {
+	transform: scale(-0.12);
 }

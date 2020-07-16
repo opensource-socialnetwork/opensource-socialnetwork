@@ -125,7 +125,7 @@ Ossn.EntityLike = function(entity, $reaction_type = '') {
 
 Ossn.RegisterStartupFunction(function() {								  
     $(document).ready(function(){
-	var $htmlreactions = '<div class="ossn-like-reactions-panel"> <li class="ossn-like-reaction-like"> <div class="emoji  emoji--like"> <div class="emoji__hand"> <div class="emoji__thumb"></div> </div> </div> </li> <li class="ossn-like-reaction-love"> <div class="emoji  emoji--love"> <div class="emoji__heart"></div> </div> </li> <li class="ossn-like-reaction-haha"> <div class="emoji  emoji--haha"> <div class="emoji__face"> <div class="emoji__eyes"></div> <div class="emoji__mouth"> <div class="emoji__tongue"></div> </div> </div> </div> </li> <li class="ossn-like-reaction-yay"> <div class="emoji  emoji--yay"> <div class="emoji__face"> <div class="emoji__eyebrows"></div> <div class="emoji__mouth"></div> </div> </div> </li> <li class="ossn-like-reaction-wow"> <div class="emoji  emoji--wow"> <div class="emoji__face"> <div class="emoji__eyebrows"></div> <div class="emoji__eyes"></div> <div class="emoji__mouth"></div> </div> </div> </li> <li class="ossn-like-reaction-sad"> <div class="emoji  emoji--sad"> <div class="emoji__face"> <div class="emoji__eyebrows"></div> <div class="emoji__eyes"></div> <div class="emoji__mouth"></div> </div> </div> </li> <li class="ossn-like-reaction-angry"> <div class="emoji  emoji--angry"> <div class="emoji__face"> <div class="emoji__eyebrows"></div> <div class="emoji__eyes"></div> <div class="emoji__mouth"></div> </div> </div> </li> </div>';					   
+	var $htmlreactions = '<div class="ossn-like-reactions-panel"> <li class="ossn-like-reaction-like"> <div class="emoji  emoji--like"> <div class="emoji__hand"> <div class="emoji__thumb"></div> </div> </div> </li> <li class="ossn-like-reaction-dislike"> <div class="emoji  emoji--dislike"> <div class="emoji__hand"> <div class="emoji__thumb"></div> </div> </div> </li> <li class="ossn-like-reaction-love"> <div class="emoji  emoji--love"> <div class="emoji__heart"></div> </div> </li> <li class="ossn-like-reaction-haha"> <div class="emoji  emoji--haha"> <div class="emoji__face"> <div class="emoji__eyes"></div> <div class="emoji__mouth"> <div class="emoji__tongue"></div> </div> </div> </div> </li> <li class="ossn-like-reaction-yay"> <div class="emoji  emoji--yay"> <div class="emoji__face"> <div class="emoji__eyebrows"></div> <div class="emoji__mouth"></div> </div> </div> </li> <li class="ossn-like-reaction-wow"> <div class="emoji  emoji--wow"> <div class="emoji__face"> <div class="emoji__eyebrows"></div> <div class="emoji__eyes"></div> <div class="emoji__mouth"></div> </div> </div> </li> <li class="ossn-like-reaction-sad"> <div class="emoji  emoji--sad"> <div class="emoji__face"> <div class="emoji__eyebrows"></div> <div class="emoji__eyes"></div> <div class="emoji__mouth"></div> </div> </div> </li> <li class="ossn-like-reaction-angry"> <div class="emoji  emoji--angry"> <div class="emoji__face"> <div class="emoji__eyebrows"></div> <div class="emoji__eyes"></div> <div class="emoji__mouth"></div> </div> </div> </li> </div>';					   
 	$('body').on('click',function(e){
 			$class = $(e.target).attr('class');
 			//console.log($class);
@@ -142,6 +142,7 @@ Ossn.RegisterStartupFunction(function() {
 			 }
 			 $parent.append($htmlreactions);			 
 			 $like	  = $onclick.replace("<<reaction_type>>", 'like');
+			 $dislike	  = $onclick.replace("<<reaction_type>>", 'dislike');
 			 $love	  = $onclick.replace("<<reaction_type>>", 'love');
 			 $haha	  = $onclick.replace("<<reaction_type>>", 'haha');
 			 $yay	  = $onclick.replace("<<reaction_type>>", 'yay');
@@ -150,6 +151,7 @@ Ossn.RegisterStartupFunction(function() {
 			 $angry	  = $onclick.replace("<<reaction_type>>", 'angry');
 			 
 			 $parent.find('.ossn-like-reaction-like').attr('onclick', $like);
+			 $parent.find('.ossn-like-reaction-dislike').attr('onclick', $dislike);
 			 $parent.find('.ossn-like-reaction-love').attr('onclick', $love);
 			 $parent.find('.ossn-like-reaction-haha').attr('onclick', $haha);
 			 $parent.find('.ossn-like-reaction-yay').attr('onclick', $yay);
@@ -174,7 +176,12 @@ Ossn.RegisterStartupFunction(function() {
 								.attr('data-id', $(this).attr('data-id'))
 								.attr('data-type', 'Like')
 								.attr('href', $(this).attr('href'));
-								
+			 $parent.find('.ossn-like-reaction-dislike')
+			 					.addClass('ossn-like-comment-react')
+								.attr('data-reaction', 'dislike')
+								.attr('data-id', $(this).attr('data-id'))
+								.attr('data-type', 'Like')
+								.attr('href', $(this).attr('href'));								
 			 $parent.find('.ossn-like-reaction-love')
 			 					.addClass('ossn-like-comment-react')
 								.attr('data-reaction', 'love')

@@ -16,7 +16,7 @@ if(ossn_is_hook('newsfeed', "sidebar:right")) {
 	$isempty = trim($sidebar);
 } 
 ?>
-<div class="container">
+<div class="container-fluid">
 	<div class="row">
 		<?php echo ossn_plugin_view('theme/page/elements/system_messages'); ?>    
 		<div class="ossn-layout-newsfeed">

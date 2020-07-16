@@ -43,7 +43,16 @@ if($datalikes  > 0){
 								</div>
 							</div>
 						</li>
-						<?php } ?>        
+						<?php } ?>  
+						<?php if(isset($last_three['dislike'])){ ?>
+						<li>
+							<div class="emoji  emoji--dislike">
+								<div class="emoji__hand">
+									<div class="emoji__thumb"></div>
+								</div>
+							</div>
+						</li>
+						<?php } ?>                                
 						<?php if(isset($last_three['love'])){ ?>
 						<li>
 							<div class="emoji emoji--love">
