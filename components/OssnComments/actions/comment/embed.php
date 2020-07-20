@@ -10,12 +10,14 @@
  */
 //Post on edit not returning JSON type callback #1506
 header('Content-Type: application/json'); 
-$data   = str_replace('\n', '<br/>', input('content'));
-$data	= str_replace("\\\\", "\\", $data);
+$data = str_replace('\n', '<br/>', input('content'));
+$data = str_replace("\\\\", "\\", $data);
+$comment_guid = input('guid');
 $return = ossn_call_hook('comment:view', 'template:params', NULL, array('comment' => array('comments:post' => $data)));
 $embed  = $return['comment']['comments:post'];
 echo json_encode(array(
             "data" => $embed,
-            "process" => 1
+            "process" => 1,
+            "item_guid" => 'id="comments-item-' . $comment_guid . '"'
 ));
 exit;
