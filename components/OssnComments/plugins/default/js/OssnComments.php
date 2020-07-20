@@ -240,7 +240,7 @@ function ossn_comment_edit(){
 							// params: 'content=' + $text,
 							// make '+' characters work
 							// see https://stackoverflow.com/questions/1373414/ajax-post-and-plus-sign-how-to-encode
-							params: 'content=' + encodeURIComponent($text),
+							params: 'content=' + encodeURIComponent($text) + '&guid=' + $guid,
 							callback: function(return_data){
 								$elem.append(return_data['data']);
 								Ossn.trigger_callback('comment', 'edit:callback', {
