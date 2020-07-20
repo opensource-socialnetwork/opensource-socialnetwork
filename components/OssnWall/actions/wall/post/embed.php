@@ -17,10 +17,10 @@ $text = str_replace("\\\\", "\\", $text);
 /* LinkPreview support --------------------------------- */
 $preview_state = 'unchanged';
 $preview_html  = '';
+$post_guid     = input('guid');
 
 if (com_is_active('LinkPreview')) {
 	$preview_url   = input('preview');
-	$post_guid     = input('guid');
 	// check whether a preview is already attached to the post 
 	if($len = strlen($preview_url)) {
 		// if yes, check whether this url is still included in the text
@@ -116,6 +116,7 @@ $embed  = $return['text'];
 echo json_encode(array(
 	"text" => $embed,
 	"preview_state" => $preview_state,
-	"preview" => $preview_html
+	"preview" => $preview_html,
+	"item_guid" => 'id="activity-item-' . $post_guid . '"'
 ));
 exit;
