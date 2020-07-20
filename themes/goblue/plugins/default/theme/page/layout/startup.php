@@ -10,7 +10,7 @@
  */
 ?>
 <div class="ossn-layout-startup">
-	<div class="container-fluid">
+	<div class="container">
 		<div class="row">
             <?php echo ossn_plugin_view('theme/page/elements/system_messages'); ?>        
 			<div class="ossn-home-container">
