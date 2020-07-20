@@ -55,6 +55,9 @@ OSSN - OPEN SOURCE SOCAIL NETWORK V5.3
 * [E] Add a callback for Group::sendRequest #1754
 * [E] improve installer to check accessability of directories #1749
 * [B] don't display a tab of a friend who deleted his account
+* [E] allow exact addressing of edited post nodes #1764
+* [E] allow exact addressing of edited comment nodes #1765
+* [E] pass comment guid to embed action #1766
 
 OSSN - OPEN SOURCE SOCIAL NETWORK V5.2 
 * Several fixes for handling of cover images #1488
