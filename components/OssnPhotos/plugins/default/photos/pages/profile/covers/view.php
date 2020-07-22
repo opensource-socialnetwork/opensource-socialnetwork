@@ -28,8 +28,8 @@ $img = str_replace('profile/cover/', '', $image->value);
 <br/>
 <?php
 	$vars['entity'] = $image;
-	$vars['full_view'] = true;
-	echo ossn_plugin_view('entity/comment/like/share/view', $params);
+	$vars['full_view'] = $params['full_view'];
+	echo ossn_plugin_view('entity/comment/like/share/view', $vars);
 ?>
 <div class="ossn-photo-view-controls">
     <?php
