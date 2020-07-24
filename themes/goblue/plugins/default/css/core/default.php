@@ -29,6 +29,7 @@ body {
 ::-webkit-scrollbar-thumb:hover {
 	background-color: #aaa;
 }
+
 .ossn-form input[type='number'],
 .ossn-form input[type='email'],
 .ossn-form input[type='password'],
@@ -47,8 +48,9 @@ body {
 	border-radius: 5px;
 	border-radius: 5px;
 	box-shadow: none;
-	-webkit-box-shadow: none        
+	-webkit-box-shadow: none
 }
+
 .ossn-form input[type='number']:focus,
 .ossn-form input[type='email']:focus,
 .ossn-form input[type='password']:focus,
@@ -56,26 +58,38 @@ body {
 .ossn-form select:focus,
 .ossn-form textarea:focus,
 .ossn-form input[type='text']:focus {
-    outline:none;
+	outline: none;
+}
+
+.ossn-form input[readonly],
+.ossn-form input[readonly],
+.ossn-form input[readonly],
+.ossn-form select[readonly],
+.ossn-form textarea[readonly],
+.ossn-form input[readonly] {
+	background: #dbdbdb;
 }
 
 .btn:focus,
 .btn:active {
-    outline:none !important;
+	outline: none !important;
 }
 
 .form-control {
 	height: initial;
 }
+
 .ossn-form-group-half {
-    display: inline-block;
-    width: calc(50% - 2px);
-    float: left;
-    box-sizing: border-box;
+	display: inline-block;
+	width: calc(50% - 2px);
+	float: left;
+	box-sizing: border-box;
 }
+
 .radio-block-container {
-    margin-bottom: 20px;
+	margin-bottom: 20px;
 }
+
 .ossn-form input[type='submit'] {
 	margin-top: 5px;
 	margin-bottom: 5px;
@@ -167,14 +181,17 @@ a {
 .ossn-layout-startup {
 	min-height: 560px;
 }
+
 .ossn-layout-startup-background {
 	min-height: 560px;
 	background: url("<?php echo ossn_add_cache_to_url(ossn_theme_url('images/background.jpg'));?>") no-repeat;
 	background-size: cover;
 }
+
 .ossn-layout-startup .col-md-11 {
-	width:100%;
+	width: 100%;
 }
+
 .ossn-layout-startup footer .ossn-footer-menu a {
 	color: #fff;
 }
@@ -183,9 +200,7 @@ a {
 	margin-top: 20px;
 }
 
-.ossn-layout-newsfeed .newsfeed-right {
-
-}
+.ossn-layout-newsfeed .newsfeed-right {}
 
 .ossn-page-container {
 	overflow-x: hidden;
@@ -239,6 +254,7 @@ a {
 .opensource-socalnetwork {
 	min-height: 500px;
 }
+
 .ossn-home-container .row {
 	margin-right: 10px;
 	margin-left: 10px;
@@ -251,7 +267,6 @@ a {
 
 .ossn-error-page {
 	text-align: center;
-
 	padding: 100px;
 }
 
@@ -298,6 +313,7 @@ a {
 	padding: 9px;
 }
 
+
 /*******************************
 	Topbar	
 ********************************/
@@ -307,7 +323,7 @@ a {
 	color: #fff;
 	z-index: 1;
 	position: relative;
-    height: 48px;
+	height: 48px;
 }
 
 .topbar .fa {
@@ -410,7 +426,7 @@ a {
 	margin-top: 20px;
 	background-color: #fff;
 	padding-bottom: 0px;
-    border-radius: 4px;
+	border-radius: 4px;
 }
 
 .ossn-wall-item:first-child {
@@ -470,9 +486,9 @@ a {
 }
 
 .ossn-wall-container {
-    border-radius: 2px;
-    margin-top: -5px;
-    margin-bottom: 10px;
+	border-radius: 2px;
+	margin-top: -5px;
+	margin-bottom: 10px;
 }
 
 .ossn-wall-container textarea {
@@ -484,8 +500,8 @@ a {
 	border-top: 0px;
 	resize: none;
 	outline: none;
-    background: #fff;
-    border-radius: 0;    
+	background: #fff;
+	border-radius: 0;
 }
 
 .ossn-wall-container .controls {
@@ -562,7 +578,7 @@ a {
 .ossn-wall-container input[type="file"] {
 	border-left: 1px solid #EEE;
 	border-right: 1px solid #EEE;
-    background:#fff;
+	background: #fff;
 }
 
 .ossn-wall-container input[type="file"],
@@ -581,13 +597,15 @@ a {
 	padding: 7px;
 	margin-bottom: 5px;
 	margin-top: -5px;
-    background: #fff;
-    border: 0;    
+	background: #fff;
+	border: 0;
 }
+
 #ossn-wall-location-input {
-    background: #fff;
-    border-radius: 0;
+	background: #fff;
+	border-radius: 0;
 }
+
 #ossn-wall-form .ossn-loading {
 	margin: 7px;
 }
@@ -607,12 +625,12 @@ a {
 
 .ossn-comment-menu {
 	float: right;
-    margin-left: 10px;
+	margin-left: 10px;
 }
 
 .comments-item:hover .ossn-comment-menu {
 	display: block;
-    margin-left: 10px;
+	margin-left: 10px;
 }
 
 .comments-likes {
@@ -665,15 +683,18 @@ a {
 	display: inline-block;
 	border-radius: 32px;
 }
+
+
 /** UI improvements comments #1524 **/
+
 .comments-list .comments-item .comment-contents {
-    display: inline-block;
-    margin-top: -3px;
-    background-color: #ebedf0;
-    border-radius: 18px;
-    width: auto;
-    line-height: 16px;
-    padding: 6px 12px 7px 12px;
+	display: inline-block;
+	margin-top: -3px;
+	background-color: #ebedf0;
+	border-radius: 18px;
+	width: auto;
+	line-height: 16px;
+	padding: 6px 12px 7px 12px;
 }
 
 .comment-container {
@@ -728,11 +749,11 @@ a {
 	display: block;
 	resize: vertical;
 	min-height: 32px;
-    background-color: #f2f3f5;
-    border: 1px solid #ccd0d5;
-    border-radius: 15px; 
- 	word-break: break-word;
-	text-align: left;      
+	background-color: #f2f3f5;
+	border: 1px solid #ccd0d5;
+	border-radius: 15px;
+	word-break: break-word;
+	text-align: left;
 }
 
 [contentEditable=true]:empty:not(:focus)::before {
@@ -1089,8 +1110,8 @@ a {
 	background-color: #fff;
 	border-top-left-radius: 5px;
 	border-top-right-radius: 5px;
-    border-bottom-left-radius: 3px;
-    border-bottom-right-radius: 3px;       
+	border-bottom-left-radius: 3px;
+	border-bottom-right-radius: 3px;
 }
 
 .ossn-widget .widget-heading {
@@ -1105,29 +1126,35 @@ a {
 .ossn-widget .widget-contents {
 	padding: 10px;
 	border-bottom: 1px solid #eee;
-    border-bottom-left-radius: 3px;
-    border-bottom-right-radius: 3px;    
+	border-bottom-left-radius: 3px;
+	border-bottom-right-radius: 3px;
 }
 
-.ossn-privacy  .radio-block {
-   margin-bottom:0;
-   margin-top:0;
-   display:flex;
+.ossn-privacy .radio-block {
+	margin-bottom: 0;
+	margin-top: 0;
+	display: flex;
 }
+
 .ossn-privacy label {
-	margin-bottom:0px;
+	margin-bottom: 0px;
 }
+
 .ossn-privacy .radio-block span {
-	font-weight:normal;
-    width: 85%;
-    margin-top:7px;
+	font-weight: normal;
+	width: 85%;
+	margin-top: 7px;
 }
+
 .group-add-privacy .radio-block span {
-    margin-top: 10px;
+	margin-top: 10px;
 }
-.group-add-privacy .radio-block  .ossn-radio-input {
-	float:left;
+
+.group-add-privacy .radio-block .ossn-radio-input {
+	float: left;
 }
+
+
 /***********************************
 	Ossn Notifications
 ***************************************/
@@ -1254,7 +1281,6 @@ a {
 }
 
 .ossn-notification-container {
-
 	background-color: #dc0d17;
 	background-image: -webkit-linear-gradient(#fa3c45, #dc0d17);
 	color: #fff;
@@ -1371,9 +1397,11 @@ a {
 	font-weight: bold;
 	border-right: 1px solid #eee;
 }
+
 .profile-hr-menu .dropdown-menu {
-    margin-left: 0px;
+	margin-left: 0px;
 }
+
 .profile-hr-menu .dropdown-menu li {
 	display: block;
 }
@@ -1543,8 +1571,7 @@ a {
 }
 
 .page-sidebar,
-.ossn-profile-sidebar {
-}
+.ossn-profile-sidebar {}
 
 .ossn-layout-media .content {
 	margin-right: 10px;
@@ -1555,6 +1582,7 @@ a {
 	display: inline-block;
 }
 
+
 /*****************************
     Groups
 *****************************/
@@ -1562,6 +1590,7 @@ a {
 .ossn-group-cover img {
 	width: auto;
 }
+
 
 /*****************************
 	Side Menu icons
@@ -1790,8 +1819,8 @@ div.token-input-dropdown ul li.token-input-selected-dropdown-item {
 	margin-top: 20px;
 	margin-bottom: 20px;
 	display: none;
-	padding-left:15px;
-	padding-right:15px;
+	padding-left: 15px;
+	padding-right: 15px;
 }
 
 .ossn-system-messages .ossn-system-messages-inner .alert {
@@ -1904,7 +1933,6 @@ div.token-input-dropdown ul li.token-input-selected-dropdown-item {
 	margin-top: 100px;
 	border-radius: 3px;
 	display: none;
-
 	box-shadow: 0 2px 26px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(0, 0, 0, 0.1);
 }
 
@@ -1966,39 +1994,45 @@ div.token-input-dropdown ul li.token-input-selected-dropdown-item {
 	font-weight: bold;
 	margin-right: 13px;
 }
-.ossn-form input[type=radio]{
-     -webkit-appearance: none;
-     -moz-appearance: none;
-     appearance: none;
-     display: inline-block;
-     position: relative;
-     background-color: #ececec;
-     color: #666;
-     top: 5px;
-     height: 20px;
-     width: 20px;
-     border: 0;
-     border-radius: 50px;
-     cursor: pointer;     
-     margin-right: 7px;
-     outline: none;
+
+.ossn-form input[type=radio] {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	display: inline-block;
+	position: relative;
+	background-color: #ececec;
+	color: #666;
+	top: 5px;
+	height: 20px;
+	width: 20px;
+	border: 0;
+	border-radius: 50px;
+	cursor: pointer;
+	margin-right: 7px;
+	outline: none;
 }
-.ossn-form input[type=radio]:checked::before{
-     position: absolute;
-     font: 9px/1 'Open Sans', sans-serif;
-	 left: 7px;
-     top: 5px;
-     content: '\02143';
-     transform: rotate(40deg);
+
+.ossn-form input[type=radio]:checked::before {
+	position: absolute;
+	font: 9px/1 'Open Sans', sans-serif;
+	left: 7px;
+	top: 5px;
+	content: '\02143';
+	transform: rotate(40deg);
 }
-.ossn-form input[type=radio]:hover{
-     background-color: #f7f7f7;
+
+.ossn-form input[type=radio]:hover {
+	background-color: #f7f7f7;
 }
+
 .ossn-form input[type=radio]:checked {
-    background-color: #0b769c;
-    color: #fff;
-    font-weight: bold;
+	background-color: #0b769c;
+	color: #fff;
+	font-weight: bold;
 }
+
+
 /*******************************
 	Ossn Blocked
 *********************************/
@@ -2214,8 +2248,7 @@ footer .ossn-footer-menu a:last-child::after {
 	Home
 ****************************/
 
-.home-left-contents {
-}
+.home-left-contents {}
 
 .home-left-contents .logo {
 	text-align: center;
@@ -2238,16 +2271,21 @@ footer .ossn-footer-menu a:last-child::after {
 #ossn-home-signup p {
 	margin-top: 10px;
 }
+
 #ossn-home-signup .radio-block {
 	margin-top: 0;
-    margin-bottom: 0;
+	margin-bottom: 0;
 }
+
 #ossn-home-signup .ossn-form-group-half:last-child {
-	float:right;
+	float: right;
 }
-#ossn-home-signup  .form-group {
-	margin-bottom:0px;
+
+#ossn-home-signup .form-group {
+	margin-bottom: 0px;
 }
+
+
 /**************************
 	System
 ***************************/
@@ -2350,6 +2388,7 @@ footer .ossn-footer-menu a:last-child::after {
 .ossn-photo-viewer {
 	max-width: 100% !important;
 }
+
 .ui-draggable {
 	opacity: 0.7;
 }
@@ -2358,14 +2397,15 @@ footer .ossn-footer-menu a:last-child::after {
 /**************************
 	Mobile Layout Settings
 ***************************/
+
 @media (max-width: 480px) {
 	.ossn-wall-privacy {
-    	float:none;
-      	 margin-right:0;
-    }
-    .ossn-wall-container .controls {
-    	height:auto;
-    }
+		float: none;
+		margin-right: 0;
+	}
+	.ossn-wall-container .controls {
+		height: auto;
+	}
 	/***********************
     	Comments
      ***********************/
@@ -2444,7 +2484,7 @@ footer .ossn-footer-menu a:last-child::after {
 	}
 	.profile-menu {
 		float: right;
-    		margin-right: 10px;
+		margin-right: 10px;
 	}
 	.ossn-profile .top-container .profile-cover img {
 		width: auto;
@@ -2463,7 +2503,7 @@ footer .ossn-footer-menu a:last-child::after {
 	}
 	.profile-hr-menu ul li a {
 		margin-right: 0px;
-        padding: 10px;
+		padding: 10px;
 	}
 	.ossn-profile-role {
 		display: none;
@@ -2571,7 +2611,6 @@ footer .ossn-footer-menu a:last-child::after {
 		display: block;
 	}
 	.sidebar-hide-contents-xs {
-
 		display: none;
 	}
 	.home-left-contents .some-icons {
@@ -2691,6 +2730,7 @@ footer .ossn-footer-menu a:last-child::after {
 		max-width: 640px;
 	}
 }
+
 @media only screen and (max-width: 767px) {
 	.ossn-profile .user-fullname {
 		max-width: 767px;
@@ -2699,6 +2739,7 @@ footer .ossn-footer-menu a:last-child::after {
 		margin-left: 0;
 	}
 }
+
 
 /*****************************************************
 		Adding icons for some 3rd party components
@@ -2715,7 +2756,8 @@ footer .ossn-footer-menu a:last-child::after {
 .menu-section-item-groups:before {
 	content: "\f07b" !important
 }
-@media screen and (min-width:1500px){
+
+@media screen and (min-width:1500px) {
 	.ossn-wall-container .wall-tabs i {
 		margin-top: 3px;
 	}
