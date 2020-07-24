@@ -2,12 +2,12 @@
 /**
  * Open Source Social Network
  *
- * OssnKernal this file is provided in core on softlab24.com request
+ * OssnKernal 5.3 this file is provided in core on softlab24.com request
  * This file is created for the customers using softlab24.com apis,
  * For more information about the usage of this please contact softlab24.com/contact
  * 
  * @package   Open Source Social Network
- * @author    Open Social Website Core Team <info@softlab24.com>
+ * @author    SOFTLAB24 LIMITED <info@softlab24.com>
  * @copyright (C) SOFTLAB24 LIMITED
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
  * @link      https://www.opensource-socialnetwork.org/
@@ -57,6 +57,27 @@ class OssnKernel extends OssnSystem {
 				return false;
 		}
 		/**
+		 * Cache Path
+		 * 
+		 * @return string
+		 */
+		private static function storagePath(){
+				$kernel_storage = hash('md5', 'kernel_storage');
+				$kernel_storage = "ks_".$kernel_storage;
+				return ossn_get_userdata($kernel_storage.'/');			
+		}
+		/**
+		 * Clear Storage
+		 * 
+		 * @return string
+		 */
+		static function clearStorage(){
+				$kernel_storage = hash('md5', 'kernel_storage');
+				$kernel_storage = "ks_".$kernel_storage;
+				$storage 		= ossn_get_userdata($kernel_storage.'/');			
+				OssnFile::DeleteDir($storage);
+		}		
+		/**
 		 * Set cache data
 		 *
 		 * @param string $pci  A PCI name
@@ -67,8 +88,19 @@ class OssnKernel extends OssnSystem {
 		 * @return void
 		 */				
 		public function setCacheData($pci, $pci_avc, $pci_type, $data) {
-				$_SESSION['__kernel_session__private'][$pci][$pci_avc][$pci_type] = $data;
-		}
+				$_SESSION['__kernel_session__private'] = true;
+				$kernel_storage = self::storagePath();
+				
+				if(!is_dir($kernel_storage)){
+						mkdir($kernel_storage, 0755, true);		
+				}
+				
+				$kernel_id = hash('md5', $pci.$pci_avc.$pci_type);
+				$kernel_temp_path = $kernel_storage . $kernel_id;
+				if(!is_file($kernel_temp_path)){
+					file_put_contents($kernel_temp_path, $data);	
+				}
+		}	
 		/**
 		 * is cache avaialble?
 		 *
@@ -79,7 +111,12 @@ class OssnKernel extends OssnSystem {
 		 * @return boolean
 		 */			
 		public function isCache($pci, $pci_avc, $pci_type) {
-				if(isset($_SESSION['__kernel_session__private'][$pci][$pci_avc][$pci_type]) && !empty($_SESSION['__kernel_session__private'][$pci][$pci_avc][$pci_type])) {
+				$kernel_storage = self::storagePath();
+				
+				$kernel_id = hash('md5', $pci.$pci_avc.$pci_type);
+				$kernel_temp_path = $kernel_storage . $kernel_id;
+				
+				if(is_file($kernel_temp_path)){
 						return true;
 				}
 				return false;
@@ -94,10 +131,23 @@ class OssnKernel extends OssnSystem {
 		 * @return boolean
 		 */				
 		public function loadCache($pci, $pci_avc, $pci_type) {
-				if(isset($_SESSION['__kernel_session__private'][$pci][$pci_avc][$pci_type])) {
-						return base64_decode($_SESSION['__kernel_session__private'][$pci][$pci_avc][$pci_type]);
+				$kernel_storage = self::storagePath();
+				
+				$kernel_id = hash('md5', $pci.$pci_avc.$pci_type);
+				$kernel_temp_path = $kernel_storage . $kernel_id;
+				
+				if(is_file($kernel_temp_path)){
+						return base64_decode(file_get_contents($kernel_temp_path));
 				}
 				return false;
+		}
+		/**
+		 * Set cache status
+		 *
+		 * @return boolean
+		 */			
+		public static function setStatus($status = true){
+				$_SESSION['__kernel_session__private'] = $status;
 		}
 		/**
 		 * Is cache available
