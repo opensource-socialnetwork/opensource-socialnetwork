@@ -24,3 +24,11 @@
 .ossn-wall-post-time:hover {
 	    text-decoration: underline;
 }
+.wall-tabs .item span {
+	padding-left: 5px;
+    font-weight: bold;
+    font-family: 'PT Sans', sans-serif;
+    font-weight: bold;
+    font-size: 13px;
+    bottom: 0;
+}
