@@ -65,7 +65,7 @@ function ossn_wall() {
 		
 		$menupost = array(
 				'name' => 'post',
-				'text' => '<i class="fa fa-bullhorn"></i>'.ossn_print('post'),
+				'text' => '<i class="fa fa-bullhorn"><span>'.ossn_print('post').'</span></i>',
 				'href' => ossn_site_url()
 		);
 		$container_controls = array(
