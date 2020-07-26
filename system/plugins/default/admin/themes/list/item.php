@@ -69,7 +69,7 @@
                     	<table class="table">
                         	<tr class="table-titles">
                             	<th><?php echo ossn_print('name');?></th>
-                            	<th><?php echo ossn_print('admin:com:version');?></th>
+                            	<th><?php echo ossn_print('admin:com:requirement');?></th>
                                 <th><?php echo ossn_print('admin:com:fulfilled');?></th>
                             </tr>
                             <?php
