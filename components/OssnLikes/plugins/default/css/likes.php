@@ -1049,7 +1049,6 @@
 	position: absolute;
 	height: 50px;
 	top: auto;
-	z-index: 999;
 	margin-top: -75px;
 	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
 	border-radius: 2em;
