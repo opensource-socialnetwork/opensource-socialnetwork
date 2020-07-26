@@ -304,24 +304,23 @@ class OssnThemes extends OssnSite {
 										$requirments = array();
 										//version checks
 										if($item->type == 'ossn_version') {
-												
-												$requirments['type']         = ossn_print('ossn:version');
-												$requirments['value']        = (string) $item->version;
-												$requirments['availability'] = 0;
-												$site_version                = ossn_site_settings('site_version');
-												
 												//Ossn Version checking not strict enough when installing components #1000
 												$comparator = '>=';
 												if(isset($item->comparator) && !empty($item->comparator)) {
 														$comparator = $item->comparator;
 												}
+
+												$requirments['type']         = ossn_print('ossn:version');
+												$requirments['value']        = $comparator . ' ' . (string) $item->version;
+												$requirments['availability'] = 0;
+												$site_version                = ossn_site_settings('site_version');
+												
 												if(version_compare($site_version, (string) $item->version, $comparator)) {
 														$requirments['availability'] = 1;
 												}
-									}
+										}
 										//check php extension
 										if($item->type == 'php_extension') {
-												
 												$requirments['type']         = ossn_print('php:extension');
 												$requirments['value']        = (string) $item->name;
 												$requirments['availability'] = 0;
@@ -332,40 +331,46 @@ class OssnThemes extends OssnSite {
 										}
 										//check php version
 										if($item->type == 'php_version') {
-												
+												$comparator = '>=';
+												if(isset($item->comparator) && !empty($item->comparator)) {
+														$comparator = $item->comparator;
+												}
 												$requirments['type']         = ossn_print('php:version');
-												$requirments['value']        = (string) $item->version;
+												$requirments['value']        = $comparator . ' ' . (string) $item->version;
 												$requirments['availability'] = 0;
 												
 												$phpversion = substr(PHP_VERSION, 0, 6);
-												if($phpversion >= $item->version) {
+												if(version_compare($phpversion, (string) $item->version, $comparator)) {
 														$requirments['availability'] = 1;
 												}
 										}
 										//check php function
 										if($item->type == 'php_function') {
+												$comparator = 'available';
+												if(isset($item->comparator) && !empty($item->comparator)) {
+														$comparator = $item->comparator;
+												}
 												
-												$requirments['type']         = ossn_print('php:function');
-												$requirments['value']        = (string) $item->name;
+												$requirments['type']         = ossn_print('php:function') . ' ' . (string) $item->name;
+												$requirments['value']        = $comparator;
 												$requirments['availability'] = 0;
 												
-												if(function_exists($item->name)) {
+												if((function_exists($item->name) && $comparator == 'available') || (!function_exists($item->name) && $comparator == 'not available')) {
 														$requirments['availability'] = 1;
 												}
 										}
 										if($item->type == 'ossn_component') {
-												$requirments['type']         = ossn_print('components');
-												$requirments['value']        = (string) $item->name;
+												$comparator = '>=';
+												if(isset($item->comparator) && !empty($item->comparator)) {
+														$comparator = $item->comparator;
+												}
+												$requirments['type']         = (string) $item->name . ' ' . ossn_print('component');
+												$requirments['value']        = $comparator . ' ' . (string) $item->version;
 												$requirments['availability'] = 0;
 												
 												$OssnComponent = new OssnComponents();
 												if($OssnComponent->isActive($item->name)) {
 														$requirments['availability'] = 1;
-														
-														$comparator = '>=';
-														if(isset($item->comparator) && !empty($item->comparator)) {
-																$comparator = $item->comparator;
-														}
 														if(isset($item->version)) {
 																$com_load = $OssnComponent->getCom($item->name);
 																if($com_load && version_compare($com_load->version, (string) $item->version, $comparator)) {
@@ -374,8 +379,14 @@ class OssnThemes extends OssnSite {
 																		$requirments['availability'] = 0;
 																}
 														}
+														if($comparator == 'disabled') {
+																$requirments['availability'] = 0;
+														}
+												} else {
+														if($comparator == 'disabled') {
+																$requirments['availability'] = 1;
+														}
 												}
-												
 										}									
 										$result[] = $requirments;
 								} //loop
