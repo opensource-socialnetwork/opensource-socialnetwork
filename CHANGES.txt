@@ -59,6 +59,8 @@ OSSN - OPEN SOURCE SOCAIL NETWORK V5.3
 * [E] allow exact addressing of edited comment nodes #1765
 * [E] pass comment guid to embed action #1766
 * [E] make all-comments link work #1772
+* [E] adapt requirements table to components #1779
+* [B] stop like emojis from overlapping topbar #1778
 
 OSSN - OPEN SOURCE SOCIAL NETWORK V5.2 
 * Several fixes for handling of cover images #1488
