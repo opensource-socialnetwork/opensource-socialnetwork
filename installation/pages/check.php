@@ -22,7 +22,7 @@ if (OssnInstallation::isPhp()) {
     $error[] = 'php';
 }
 //can not add if message as we have too much to translate already
-if(OssnInstallation::isCacheWriteable()){
+if(!OssnInstallation::isCacheWriteable()){
    echo '<div class="ossn-installation-message ossn-installation-fail">'. ossn_installation_print('ossn:install:cachedir:note:failed') . ' <a target="_blank" href="https://www.opensource-socialnetwork.org/wiki/view/4378/directories-and-files-permission">https://www.opensource-socialnetwork.org/wiki/view/4378/directories-and-files-permissiom</a></div>';	
    $error[] = 'cache';
 }
