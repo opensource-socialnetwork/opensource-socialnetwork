@@ -2,11 +2,11 @@ $(document).ready(function() {
 		
 	$('body').append('<div id="sounds"></div>');
 		
-	if (/android|ipod|iphone|ipad|blackberry|kindle/i.test(navigator.userAgent)) {
+	if (/android|ipod|iphone|ipad|blackberry|kindle/i.test(navigator.userAgent) && !window.matchMedia('(display-mode: standalone)').matches) {
 		// android, iphones and other mobile devices need a least 1 initial click to enable sound
 		// thus using cookies to remember a sound state='on' makes no sense
 		// because with every new page load a new manual init from off -> on is necessary
-		// so we have to start with 'off' in any case
+		// so we have to start with 'off' in any case, except Ossn is running as PWA 
 		if ($('.ossn-chat-windows-long').length) {
 			$('#sounds').append('<audio id="ossn-chat-sound" src="" preload="auto"></audio>');
 			$('<div class="ossn-chat-pling"><i class="fa fa-bell-slash-o"></i></div>').prependTo('.ossn-chat-windows-long .inner');
