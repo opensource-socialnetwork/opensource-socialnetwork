@@ -306,6 +306,7 @@ $he = array(
 	'admin:com:requirements' => 'דרישות',
 	'admin:com:requirement' => 'דרישה',
 	'admin:com:fulfilled' => 'הושלם',
+	'admin:com:used:by' => 'בשימוש על ידי',
 	'ossn:exception:make:sure' => 'האם אתה בטוח?',
 	'ossn:premium' => 'גרסה בתשלום',
 	'datepicker:days' => "א, ב, ג, ד, ה, ו, ש",
