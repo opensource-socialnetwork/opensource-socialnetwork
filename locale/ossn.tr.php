@@ -309,6 +309,7 @@ Bağlantı çalışmıyorsa kopyalayıp adres çubuğuna yapıştırarak deneyeb
 	'admin:com:requirements' => 'Gereksinim',
 	'admin:com:requirement' => 'gereklilik',
 	'admin:com:fulfilled' => 'Yerine getirilmiştir',
+	'admin:com:used:by' => 'Tarafından kullanılan',
 	'ossn:exception:make:sure' => 'Emin misiniz?',
 	'ossn:premium' => 'Ücretli Sürüm',
 	'datepicker:days' => "Pazar, Pazartesi, Salı, Çarşamba, Perşembe, Cuma, Cumartesi",
