@@ -305,6 +305,7 @@ $el = array(
 	'admin:com:requirements' => 'Απαιτήσεις',
 	'admin:com:requirement' => 'Απαίτηση',
 	'admin:com:fulfilled' => 'Εκπληρώθηκε',
+	'admin:com:used:by' => 'Χρησιμοποιηθηκε απο',
 	'ossn:exception:make:sure' => 'Είστε σίγουροι?',
 	'ossn:premium' => 'Προνομιακή έκδοση',
 	'datepicker:days' => "Δε, Τρ, Τε, Πε, Πα, Σα, Κυ",
