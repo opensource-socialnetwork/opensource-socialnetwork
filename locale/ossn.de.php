@@ -306,6 +306,7 @@ Um Dein Passwort zurückzusetzen klicke bitte auf den folgenden Link oder kopier
 	'admin:com:requirements' => 'Voraussetzungen',
 	'admin:com:requirement' => 'Anforderung',
 	'admin:com:fulfilled' => 'Erfüllt',
+	'admin:com:used:by' => 'Benutzt von',
 	'ossn:exception:make:sure' => 'Bist Du sicher?',
 	'ossn:premium' => 'Premium Version',
 	'datepicker:days' => "So, Mo, Di, Mi, Do, Fr, Sa",
