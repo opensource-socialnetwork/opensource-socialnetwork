@@ -305,6 +305,7 @@ Por favor, clique no link abaixo para redefinir a senha ou copie o link e cole n
 	'admin:com:requirements' => 'Requisitos',
 	'admin:com:requirement' => 'Requerimento',
 	'admin:com:fulfilled' => 'Realizada',
+	'admin:com:used:by' => 'Usado por',
 	'ossn:exception:make:sure' => 'Você tem certeza?',
 	'ossn:premium' => 'Versão premium',
 	'datepicker:days' => "Su, Mo, Tu, We, Th, Fr, Sa",
