@@ -294,6 +294,39 @@ class OssnComponents extends OssnDatabase {
 				return false;
 		}
 		/**
+		 * Check if $comId is defined as required in XML of other active component
+		 *
+		 * @params string $comId Component id;
+		 *
+		 * @return array
+		 */
+		public function inUseBy($comId) {
+				$list = $this->getActive();
+				$result = array();
+				if($list){
+						foreach($list as $component) {
+								$element = $this->getCom($component->com_id);
+								if($element->name == 'OssnProfile' && $comId == 'OssnProfile') {
+										// special case: not defined in xml, but used and needed by Ossn
+										$result[] = 'Ossn';
+										break;
+								}
+								if(isset($element->requires)) {
+										$requires = $element->requires;
+										foreach($requires as $item) {
+												if($item->type != 'ossn_component') {
+														continue;
+												}
+												if($item->name == $comId) {
+														$result[] = $element->name;
+												}
+										}
+								}
+						}
+				}
+				return $result;
+		}
+		/**
 		 * Check component requirments 
 		 *
 		 * @param string $element A valid component xml file
