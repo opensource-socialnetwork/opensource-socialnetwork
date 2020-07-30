@@ -293,6 +293,7 @@ $ja = array(
 	'admin:com:requirements' => 'Requirements',
 	'admin:com:requirement' => '要件',
 	'admin:com:fulfilled' => '充実した',
+	'admin:com:used:by' => 'によって使われた',
 	'ossn:exception:make:sure' => 'Are you sure?',
 	'ossn:premium' => 'Premium Version',
 	'datepicker:days' => "Su, Mo, Tu, We, Th, Fr, Sa",
