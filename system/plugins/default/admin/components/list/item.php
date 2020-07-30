@@ -30,7 +30,15 @@
  if (!in_array($params['name'], $params['OssnCom']->requiredComponents())) {
   	$delete = ossn_site_url("action/component/delete?component={$params['name']}", true);
   	$delete = "<a href='{$delete}' class='btn btn-danger ossn-com-delete-button'><i class='fa fa-close'></i>" . ossn_print('admin:button:delete') ."</a>";
- }		 
+ }
+ // find active usage of a required component
+ if (in_array($params['name'], $params['OssnCom']->requiredComponents())) {
+		$in_use = false;
+		if($active_usage = $OssnComs->inUseBy($params['name'])) {
+			$active_usage_list = implode(", ", $active_usage);
+			$in_use = true;
+		}
+ }
 ?>    
     
     <div class="panel panel-default margin-top-10">
@@ -105,7 +113,17 @@
                     
                     </td>
  			 	</tr>                                                      
-			</table>
+				<?php
+				if($in_use) {
+				?>
+					<tr>
+						<th scope="row"><?php echo ossn_print('admin:com:used:by');?></th>
+						<td><?php echo $active_usage_list?></td>
+					</tr>
+				<?php
+				}
+				?>
+		</table>
             <div class="margin-top-10 components-list-buttons">
             	<?php
 					if($check){
