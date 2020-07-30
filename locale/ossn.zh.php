@@ -289,6 +289,7 @@ Please click the link below to reset password or copy the link and paste into yo
 	'admin:com:requirements' => 'Requirements',
 	'admin:com:requirement' => '需求',
 	'admin:com:fulfilled' => '已完成',
+	'admin:com:used:by' => '使用者',
 	'ossn:exception:make:sure' => '你確定嗎?',
 	'ossn:premium' => 'Premium Version',
 	'datepicker:days' => "星期日, 星期一, 星期二, 星期三, 星期四, 星期五, 星期六",
