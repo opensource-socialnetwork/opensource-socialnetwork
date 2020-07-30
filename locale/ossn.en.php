@@ -306,6 +306,7 @@ Please click the link below to reset password or copy the link and paste into yo
 	'admin:com:requirements' => 'Requirements',
 	'admin:com:requirement' => 'Requirement',
 	'admin:com:fulfilled' => 'Fulfilled',
+	'admin:com:used:by' => 'Used by',
 	'ossn:exception:make:sure' => 'Are you sure?',
 	'ossn:premium' => 'Premium Version',
 	'datepicker:days' => "Su, Mo, Tu, We, Th, Fr, Sa",
