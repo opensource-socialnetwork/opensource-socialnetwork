@@ -212,6 +212,10 @@ class OssnThemes extends OssnSite {
 		 */
 		public function Enable($theme) {
 				if(!empty($theme)){
+						$former_theme = ossn_route()->themes . $this->getSettings('theme');
+						if(file_exists($former_theme.'/disable.php')){
+							include_once($former_theme.'/disable.php');
+						}									
 						//file is called before theme is enabled
 						if(file_exists(ossn_route()->themes . $theme.'/enable.php')){
 							include_once(ossn_route()->themes . $theme.'/enable.php');
