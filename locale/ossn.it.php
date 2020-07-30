@@ -306,6 +306,7 @@ Per favore premi sul collegamento sottostante per reimpostare la tua password op
 	'admin:com:requirements' => 'Requirements',
 	'admin:com:requirement' => 'Requisiti',
 	'admin:com:fulfilled' => 'Soddisfatto',
+	'admin:com:used:by' => 'Usato da',
 	'ossn:exception:make:sure' => 'Are you sure?',
 	'ossn:premium' => 'Premium Version',
 	'datepicker:days' => "Su, Mo, Tu, We, Th, Fr, Sa",
