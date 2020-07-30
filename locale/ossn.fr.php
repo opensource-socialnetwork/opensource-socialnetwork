@@ -306,6 +306,7 @@ S'il vous plaît cliquez sur le lien ci-dessous pour réinitialiser le mot de pa
 	'admin:com:requirements' => 'Requis',
 	'admin:com:requirement' => 'Exigence',
 	'admin:com:fulfilled' => 'Accompli',
+	'admin:com:used:by' => 'Utilisé par',
 	'ossn:exception:make:sure' => "Etes-vous sûr ?",
 	'ossn:premium' => 'Version Premium',
 	'datepicker:days' => "Di, Lu, Ma, Me, Je, Ve, Sa",
