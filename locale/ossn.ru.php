@@ -307,6 +307,7 @@ $ru = array(
 	'admin:com:requirements' => 'Зависимости',
 	'admin:com:requirement' => 'требование',
 	'admin:com:fulfilled' => 'Исполненная',
+	'admin:com:used:by' => 'Использован',
 	'ossn:exception:make:sure' => 'Вы уверены?',
 	'ossn:premium' => 'Премиальная версия',
 	'datepicker:days' => "Вс, Пн, Вт, Ср, Чт, Пт, Сб",
