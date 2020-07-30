@@ -285,6 +285,7 @@ Silakan klik tautan di bawah untuk mengatur ulang kata sandi atau salin tautan d
 	'admin:com:requirements' => 'Persyaratan',
 	'admin:com:requirement' => 'Kebutuhan',
 	'admin:com:fulfilled' => 'Terpenuhi',
+	'admin:com:used:by' => 'Digunakan oleh',
 	'ossn:exception:make:sure' => 'Apakah kamu yakin',
 	'ossn:premium' => 'Premium Version',
 	'datepicker:days' => "Minggu, Senin, Selasa, Rabu, Kamis, Jumat, Sabtu",
