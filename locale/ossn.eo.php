@@ -313,6 +313,7 @@ Bonvolu alklaki la ligilon suben por novigi vian pasvorton aŭ kopii kaj alglui 
 	'admin:com:requirements' => 'Postuloj',
 	'admin:com:requirement' => 'Postulo',
 	'admin:com:fulfilled' => 'Plenumita',
+	'admin:com:used:by' => 'Uzata de',
 	'ossn:exception:make:sure' => 'Ĉŭ vi certas?',
 	'ossn:premium' => 'Ora versio',
 	'datepicker:days' => "Di, Lu, Ma, Me, Ĵa, Ve, Sa",
