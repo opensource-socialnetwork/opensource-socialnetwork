@@ -314,6 +314,7 @@ Klik op de link hieronder om je wachtwoord te resetten:
 	'admin:com:requirements' => 'Vereisten',
 	'admin:com:requirement' => 'Vereiste',
 	'admin:com:fulfilled' => 'Vervuld',
+	'admin:com:used:by' => 'Gebruikt door',
 	'ossn:exception:make:sure' => 'Weet je het zeker?',
 	 /*Datepicker*/
 	'datepicker:days' => "Zo, Ma, Di, Wo, Do, Vr, Za",
