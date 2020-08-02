@@ -113,6 +113,7 @@ class OssnEntities extends OssnDatabase {
 								);
 								$this->insert($this->params);
 								
+								$args['guid']	      = $this->inserted_entity_guid;
 								$args['owner_guid']   = $this->params['values'][0];
 								$args['type']         = $this->params['values'][1];
 								$args['subtype']      = $this->params['values'][2];
