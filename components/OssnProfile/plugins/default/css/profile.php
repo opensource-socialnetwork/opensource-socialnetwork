@@ -47,3 +47,40 @@
     margin-top: 0;
     margin-bottom: 0;
 }
+/** profile edit layout **/
+.ossn-profile-edit-layout {
+	background: #fff;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;    
+}
+
+.profile-edit-tabs {}
+
+.profile-edit-tabs a {
+	padding: 12px 4px 12px 16px;
+	display: block;
+	border-left: 2px solid #fff;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+.profile-edit-tab-item-active {
+	border-left: 3px solid #5088a3 !important;
+	font-weight: bold;
+}
+
+.profile-edit-tabs a {}
+
+.profile-edit-layout-right {
+	padding: 10px;
+	border-left: 1px solid #eee;
+}
+
+.profile-edit-layout-title {
+	background: #F9F7F7;
+	border: 1px solid #eee;
+	padding: 12px 20px;
+	font-weight: bold;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;    
+}

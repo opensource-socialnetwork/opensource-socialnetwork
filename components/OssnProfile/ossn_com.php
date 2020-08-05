@@ -74,6 +74,12 @@ function ossn_profile() {
 						'parent' => 'links',
 						'icon' => $icon
 				));
+				
+				ossn_register_menu_item('profile/edit/tabs', array(
+							'name' => 'basic',
+							'href' => '?section=basic',
+							'text' => ossn_print('basic:settings'),
+				));									
 		}
 }
 /**
@@ -150,6 +156,7 @@ function profile_user_friends($hook, $type, $return, $params) {
 function profile_edit_page($hook, $type, $return, $params) {
 		$page = $params['subpage'];
 		if($page == 'edit') {
+				$section 	  = input('section', '', 'basic');
 				$user['user'] = $params['user'];
 				if($user['user']->guid !== ossn_loggedin_user()->guid) {
 						redirect(REF);
@@ -161,10 +168,12 @@ function profile_edit_page($hook, $type, $return, $params) {
 						'params' => $user
 				);
 				$form   = ossn_view_form('edit', $params, false);
-				echo ossn_set_page_layout('module', array(
-						'title' => ossn_print('edit'),
-						'content' => $form
-				));
+				$params['section']  = $section;
+				
+				$args['user']    = $user['user'];
+				$args['section'] = $section;
+				$params['contents'] = ossn_call_hook('profile', 'edit:section', $args, $form);
+				echo ossn_plugin_view('profile/edit', $params);
 		}
 }
 /**
