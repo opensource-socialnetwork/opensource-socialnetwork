@@ -544,6 +544,7 @@ class OssnEntities extends OssnDatabase {
 		 * @return void
 		 */
 		public function destruct() {
+				unset($this->datavars);
 				unset($this->types);
 				unset($this->entity_types);
 				unset($this->page_limit);
