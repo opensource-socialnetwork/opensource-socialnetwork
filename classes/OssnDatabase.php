@@ -292,13 +292,15 @@ class OssnDatabase extends OssnBase {
 				if(isset($this->exe)) {
 						if($data !== true) {
 								if($fetch = $this->exe) {
+										$this->clearVars();
 										return arrayObject($fetch->fetch(PDO::FETCH_ASSOC));
 								}
 						}
 						if($data === true) {
 								if($fetch = $this->exe) {
 										$all = $fetch->fetchAll();
-										if($all) {
+										if($all){
+												$this->clearVars();
 												return arrayObject($all);
 										}
 								}
@@ -410,12 +412,20 @@ class OssnDatabase extends OssnBase {
 				return false;
 		}
 		/**
+		 * Clear variables to avoid passing then in other objects
+		 *
+		 * @return void
+		 */		
+		public function clearVars(){
+				unset($this->exe);
+				unset($this->database);			
+		}
+		/**
 		 * Unset the stuff that is not need once op is finished
 		 *
 		 * @return void
 		 */
-		public function __destruct() {
-				unset($this->exe);
-				unset($this->database);
+		public function __destruct(){
+				$this->clearVars();
 		}
 } //class
