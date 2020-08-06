@@ -62,6 +62,7 @@ OSSN - OPEN SOURCE SOCAIL NETWORK V5.3
 * [E] adapt requirements table to components #1779
 * [B] stop like emojis from overlapping topbar #1778
 * [E] adapt requirements table to component requirements table #1780
+* [E] Allow to delete a message entry from specific side #1801
 
 OSSN - OPEN SOURCE SOCIAL NETWORK V5.2 
 * Several fixes for handling of cover images #1488
