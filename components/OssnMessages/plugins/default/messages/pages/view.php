@@ -23,6 +23,8 @@
             	      <?php
 	  					echo ossn_plugin_view('widget/view', array(
 							'title' => $params['user']->fullname,
+							'id' => 'message-with-user-widget',
+							'data-guid' => $params['user']->guid,
 							'contents' => ossn_plugin_view('messages/pages/view/with', $params),
 							'class' => 'messages-with',
 						));
