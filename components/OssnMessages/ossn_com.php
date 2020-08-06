@@ -97,6 +97,26 @@ function ossn_messages_page($pages) {
 								ossn_error_page();
 						}
 						break;
+				case 'delete':
+						$id = input('id');
+						$message = ossn_get_message($id);
+						$user	=	ossn_loggedin_user()->guid;
+						if($message && ($message->message_from == $user || $message->message_to == $user)){
+								$params = array(
+										'title' => ossn_print('delete'),
+										'contents' => ossn_view_form('OssnMessages/delete', array(
+												'action' => ossn_site_url('action/message/delete'),
+												'id' => 'ossn-message-delete-form',
+												'params' => array(
+														'message' => $message,
+												)
+										)),
+										'button' => ossn_print('delete'),
+										'callback' => '#ossn-md-edit-save'
+								);
+								echo ossn_plugin_view('output/ossnbox', $params);
+						}
+					break;
 				case 'xhr':
 						switch($pages[1]) {
 								case 'recent':

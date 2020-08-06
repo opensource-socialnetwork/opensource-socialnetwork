@@ -16,21 +16,38 @@ $params['count'] =  $OssnMessages->recentChat(ossn_loggedin_user()->guid, true);
     <div class="ossn-notification-messages">
         <?php
         if ($params['recent']) {
+			$loggedin_guid = ossn_loggedin_user()->guid;
             foreach ($params['recent'] as $message) {
-                if ($message->answered) {
-                    $user = ossn_user_by_guid($message->message_from);
-                    $text = ossn_call_hook('messages', 'message:smilify', null, $message->message);
-                    $replied = "<i class='fa fa-reply'></i><div class='reply-text'>{$text}</div>";
-                } else {
-                    $user = ossn_user_by_guid($message->message_from);
-                    $text = ossn_call_hook('messages', 'message:smilify', null, $message->message);
-                    $replied = "<div class='reply-text-from'>{$text}</div>";
-                }
-                if ($message->viewed == 0 && $message->message_from !== ossn_loggedin_user()->guid) {
-                    $new = 'message-new';
-                } else {
-                    $new = '';
-                }
+						$yes_replied = false;
+						
+						$actual_to = $message->message_to;
+						$actual_from = $message->message_from;
+
+						if($message->message_from == $loggedin_guid){
+								$message->message_from = $actual_to;
+								$yes_replied = true;
+						}
+                        if ($message->answered || $yes_replied) {
+                            $user = ossn_user_by_guid($message->message_from);
+                            $text = ossn_call_hook('messages', 'message:smilify', null, strl($message->message, 32));
+							$replied = ossn_print('ossnmessages:replied:you', array($text));
+							if($message->is_deleted == true){
+								$replied = ossn_print('ossnmessages:deleted');	
+							}
+                            $replied = "<i class='fa fa-reply'></i><div class='reply-text'>{$replied}</div>";
+                        } else {
+                            $user = ossn_user_by_guid($message->message_from);
+                            $text = ossn_call_hook('messages', 'message:smilify', null, strl($message->message, 32));
+							if($message->is_deleted == true){
+								$text = ossn_print('ossnmessages:deleted');	
+							}							
+                            $replied = "<div class='reply-text-from'>{$text}</div>";
+                        }
+                        if ($message->viewed == 0 && $actual_from !== ossn_loggedin_user()->guid) {
+                            $new = 'message-new';
+                        } else {
+                            $new = '';
+                        }
                 ?>
                 <div class="user-item <?php echo $new; ?>"
                      onclick="Ossn.redirect('messages/message/<?php echo $user->username; ?>');">

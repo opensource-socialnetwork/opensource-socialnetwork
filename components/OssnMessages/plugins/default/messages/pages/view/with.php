@@ -29,35 +29,35 @@
 								if($user->guid == ossn_loggedin_user()->guid){
 								?>
 		<div class="row" id="message-item-<?php echo $message->id ?>">
-			<div class="col-md-10">
+			<div class="col-md-10 pull-right">
 				<div class="message-box-sent text<?php echo $class;?>">
 					<?php if($deleted){ ?>
 					<span><i class="fa fa-times-circle"></i><?php echo ossn_print('ossnmessages:deleted');?></span>
+					<a class="ossn-message-delete" data-id= '<?php echo $message->id;?>' data-href="<?php echo ossn_site_url("action/message/delete?id={$message->id}", true);?>"><i class="fa fa-ellipsis-h"></i></a>				                    
 					<?php } else { ?>
 					<span><?php echo ossn_call_hook('messages', 'message:smilify', null, ossn_message_print($message->message)); ?></span>
 					<div class="time-created"><?php echo ossn_user_friendly_time($message->time);?></div>
-					<a class="ossn-message-delete" href="<?php echo ossn_site_url("action/message/delete?id={$message->id}", true);?>"><i class="fa fa-times"></i></a>				
+					<a class="ossn-message-delete" data-id= '<?php echo $message->id;?>' data-href="<?php echo ossn_site_url("action/message/delete?id={$message->id}", true);?>"><i class="fa fa-ellipsis-h"></i></a>				
 					<?php } ?>                                            
 				</div>
-			</div>
-			<div class="col-md-2">
-				<img  class="user-icon" src="<?php echo $user->iconURL()->small;?>" />
 			</div>
 		</div>
 		<?php	
 			} else {
 				?>
 		<div class="row" id="message-item-<?php echo $message->id ?>">
-			<div class="col-md-2">
-				<img  class="user-icon" src="<?php echo $user->iconURL()->small;?>" />
+			<div class="col-md-1">
+				<img  class="user-icon" src="<?php echo $user->iconURL()->smaller;?>" />
 			</div>
-			<div class="col-md-10">
+			<div class="col-md-11 pull-left">
 				<div class="message-box-recieved text <?php echo $class;?>">
 					<?php if($deleted){ ?>
 						<span><i class="fa fa-times-circle"></i><?php echo ossn_print('ossnmessages:deleted');?></span>
+					<a class="ossn-message-delete" data-id= '<?php echo $message->id;?>' data-href="<?php echo ossn_site_url("action/message/delete?id={$message->id}", true);?>"><i class="fa fa-ellipsis-h"></i></a>				                                            
 						<?php } else { ?>
 						<span><?php echo ossn_call_hook('messages', 'message:smilify', null, ossn_message_print($message->message)); ?></span>
 						<div class="time-created"><?php echo ossn_user_friendly_time($message->time);?></div>
+					<a class="ossn-message-delete" data-id= '<?php echo $message->id;?>' data-href="<?php echo ossn_site_url("action/message/delete?id={$message->id}", true);?>"><i class="fa fa-ellipsis-h"></i></a>				                                            
 					<?php } ?>
 				</div>
 			</div>

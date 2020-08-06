@@ -17,5 +17,12 @@ $ru = array(
     'message:placeholder' => 'Введите текст здесь',
     'no:messages' => 'Вам никто не пишет',
 	'ossnmessages:deleted' => 'Сообщение удалено',
+	
+	'ossnmessages:delete:all' => 'Удалить для всех',
+	'ossnmessages:delete:all:note' => "Вы навсегда удалите это сообщение для другого члена. Другой член сможет увидеть, что вы удалили сообщение.",
+	
+	'ossnmessages:delete:me' => 'Удалить для вас',
+	'ossnmessages:delete:me:note' => 'Это сообщение будет удалено для вас. Другой пользователь все равно сможет его увидеть.',
+	'ossnmessages:replied:you' => 'Вы: %',	
 );
 ossn_register_languages('ru', $ru); 

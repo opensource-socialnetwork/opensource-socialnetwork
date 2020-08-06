@@ -17,5 +17,12 @@ $id = array(
     'message:placeholder' => 'Ketik pesan...',
     'no:messages' => 'Anda tidak memiliki pesan.',
 	'ossnmessages:deleted' => 'Pesan telah dihapus',
+	
+	'ossnmessages:delete:all' => 'Hapus untuk semua orang',
+	'ossnmessages:delete:all:note' => "Anda akan menghapus pesan ini secara permanen untuk anggota lain. Anggota lain akan dapat melihat bahwa Anda telah menghapus pesan.",
+	
+	'ossnmessages:delete:me' => 'Hapus untuk Anda',
+	'ossnmessages:delete:me:note' => 'Pesan ini akan dihapus untuk Anda. Anggota lain masih dapat melihatnya.',
+	'ossnmessages:replied:you' => 'Anda: %s',	
 );
 ossn_register_languages('id', $id); 

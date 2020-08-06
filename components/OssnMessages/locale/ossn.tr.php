@@ -17,5 +17,12 @@ $tr = array(
     'message:placeholder' => 'Metninizi girin',
     'no:messages' => 'Mesajınız yok.',
 	'ossnmessages:deleted' => 'İleti silindi',
+	
+	'ossnmessages:delete:all' => 'Herkes için kaldır',
+	'ossnmessages:delete:all:note' => "Diğer üye için bu mesajı kalıcı olarak kaldıracaksınız. Diğer üye, bir mesajı kaldırdığınızı görebilir.",
+	
+	'ossnmessages:delete:me' => 'Sizin için kaldır',
+	'ossnmessages:delete:me:note' => 'Bu mesaj sizin için kaldırılacaktır. Diğer üye yine de görebilecek.',
+	'ossnmessages:replied:you' => 'Siz: %s',	
 );
 ossn_register_languages('tr', $tr); 

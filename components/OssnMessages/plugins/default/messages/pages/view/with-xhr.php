@@ -26,7 +26,7 @@ if ($params['data']) {
 				$user = $logged_in_user;
 			?>
                     	<div class="row" id="message-item-<?php echo $message->id ?>">
-                                <div class="col-md-10">
+                                <div class="col-md-10 pull-right">
                                 	<div class="message-box-sent text<?php echo $class;?>">
                                     		<?php if($deleted){ ?>
                                             <span><i class="fa fa-times-circle"></i><?php echo ossn_print('ossnmessages:deleted');?></span>
@@ -38,20 +38,17 @@ if ($params['data']) {
                                             		<a class="ossn-message-delete" href="<?php echo ossn_site_url("action/message/delete?id={$message->id}", true);?>"><i class="fa fa-times"></i></a>				
                                             	<?php } ?>                                            
                                         </div>
-                                </div>
-                        	<div class="col-md-2">
-                                	<img  class="user-icon" src="<?php echo $user->iconURL()->small;?>" />
-                                </div>                                
+                                </div>                        
                         </div>
                     <?php	
 			} else {
 				$user = $other_user;
 			?>
                     	<div class="row" id="message-item-<?php echo $message->id ?>">
-                        	<div class="col-md-2">
+                        	<div class="col-md-1">
                                 	<img  class="user-icon" src="<?php echo $user->iconURL()->small;?>" />
                                 </div>                                
-                                <div class="col-md-10">
+                                <div class="col-md-11 pull-left">
                                 	<div class="message-box-recieved text<?php echo $class;?>">
                                             <?php if($deleted){ ?>
                                             <span><i class="fa fa-times-circle"></i><?php echo ossn_print('ossnmessages:deleted');?></span>

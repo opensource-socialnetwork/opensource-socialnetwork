@@ -19,5 +19,9 @@ $es = array(
     'message:placeholder' => 'Introduzca el texto aquí',
     'no:messages' => 'Usted no tiene ningún mensaje.',
 	'ossnmessages:deleted' => 'El mensaje fue borrado',		
+	
+	'ossnmessages:delete:me' => 'Quitar para usted',
+	'ossnmessages:delete:me:note' => 'Este mensaje será eliminado para usted. Otro miembro podrá seguir viéndolo.',
+	'ossnmessages:replied:you' => 'Tú: %s',	
 );
 ossn_register_languages('es', $es); 

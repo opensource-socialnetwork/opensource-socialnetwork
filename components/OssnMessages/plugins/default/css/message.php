@@ -49,7 +49,7 @@
     float: right;
 }
 .ossn-messages .message-with  .user-icon {
-    margin-top: 15px;
+    margin-top: 9px;
 	border-radius: 25px;
 }
 .ossn-messages. message-form-form .textarea {
@@ -139,7 +139,7 @@
     border-radius: 5px;
     box-shadow: 0 0 6px #B2B2B2;
     display: inline-block;
-    padding: 10px 18px;
+    padding: 5px 18px;
     position: relative;
     vertical-align: top;
     float: left;
@@ -148,28 +148,12 @@
     word-break: break-word;
     text-align: justify;
 }
-.message-box-recieved::before {
-    background-color: #F2F2F2;
-    content: "\00a0";
-    display: block;
-    height: 16px;
-    position: absolute;
-    top: 11px;
-    transform: rotate( 29deg) skew( -35deg);
-    -moz-transform: rotate( 29deg) skew( -35deg);
-    -ms-transform: rotate( 29deg) skew( -35deg);
-    -o-transform: rotate( 29deg) skew( -35deg);
-    -webkit-transform: rotate( 29deg) skew( -35deg);
-    width: 20px;
-    box-shadow: -2px 2px 2px 0 rgba( 178, 178, 178, .4);
-    left: -9px;
-}
 .message-box-sent {
     background-color: #dfeecf;
     border-radius: 5px;
     box-shadow: 0 0 6px #B2B2B2;
     display: inline-block;
-    padding: 10px 18px;
+    padding: 5px 18px;
     position: relative;
     vertical-align: top;
     float: left;
@@ -178,30 +162,13 @@
     word-break: break-word;
     text-align: justify;
 }
-.message-box-sent::before {
-    float: right;
-    background-color: #dfeecf;
-    content: "\00a0";
-    display: block;
-    height: 19px;
-    position: relative;
-    left: 26px;
-    top: 0px;
-    transform: rotate( 205deg) skew( -35deg);
-    -moz-transform: rotate( 205deg) skew( -35deg);
-    -ms-transform: rotate( 205deg) skew( -35deg);
-    -o-transform: rotate( 205deg) skew( -35deg);
-    -webkit-transform: rotate( 205deg) skew( -35deg);
-    width: 20px;
-    box-shadow: -2px 2px 2px 0 rgba( 178, 178, 178, .4);
-}
 .message-box-sent {
     float: right;
     background-color: #dfeecf;
     border-radius: 5px;
     box-shadow: 0 0 6px #B2B2B2;
     display: inline-block;
-    padding: 10px 18px;
+    padding: 5px 18px;
     position: relative;
     vertical-align: top;
     margin: 10px 0px;
@@ -248,10 +215,14 @@
     color: #c77878 !important;
     visibility:hidden; 
 }
+.message-box-recieved:hover .ossn-message-delete,
 .message-box-sent:hover .ossn-message-delete {
 		visibility:visible;
 }
 .ossn-message-deleted span {
     font-style: italic;
     color: #d27a7a;
+}
+#ossn-message-delete-form .ossn-loading {
+	margin:40px auto;
 }

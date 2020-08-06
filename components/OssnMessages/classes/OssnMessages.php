@@ -31,6 +31,10 @@ class OssnMessages extends OssnEntities {
 				if(!strlen($message) || empty($from) || empty($to)) {
 						return false;
 				}
+				
+				$this->data->is_deleted_from = false;
+				$this->data->is_deleted_to	 = false;
+				
 				$message = strip_tags($message);
 				$message = ossn_restore_new_lines($message);
 				$message = ossn_input_escape($message, false);
@@ -122,18 +126,43 @@ class OssnMessages extends OssnEntities {
 		 * @return object
 		 */
 		public function recentChat($to, $count = false) {
+				if(empty($to)){
+					return false;	
+				}
 				// return the most recent message of each corresponding partner 
 				// exclude deleted ones
+				//include deleted once and show deleted text %arsalanshah
+				$subquery = "SELECT MAX(m2.id) FROM ossn_messages as m2
+							
+							INNER JOIN ossn_entities AS e0 ON e0.owner_guid = m2.id
+							INNER JOIN ossn_entities_metadata AS emd0 ON e0.guid = emd0.guid
+       
+ 						    INNER JOIN ossn_entities AS e1 ON e1.owner_guid = m2.id
+					        INNER JOIN ossn_entities_metadata AS emd1 ON e1.guid = emd1.guid
+        
+					        WHERE 
+					        	(e0.type = 'message' AND e0.subtype = 'is_deleted_from') AND 
+								(e1.type = 'message' AND e1.subtype = 'is_deleted_to') 
+								
+								AND ( 
+	 				                (m2.message_to={$to} AND emd1.value ='') OR 
+					 	    		(m2.message_from={$to} AND emd0.value ='')
+ 					            )
+ 								GROUP BY IF (`message_from`={$to}, `message_to`,`message_from`)";
+		
 				$chats = $this->searchMessages(array(
 						'wheres' => array(
-								"m2.id IS NULL AND m.message_to = '{$to}' AND m.message != ''"
+								"(
+								  m.id IN(
+										{$subquery}	  
+									)
+								  )"
 						),
-						'joins' => array(
-								"LEFT JOIN ossn_messages m2 ON m.message_from = m2.message_from AND m.message_to = m2.message_to AND m.id < m2.id"
-						),
+						'order_by' => 'm.time DESC',
 						'offset' => input('offset_message_xhr_recent', '', 1),
-						'count' => $count
+						'count' => $count,
 				));
+		
 				if($count == true && $chats) {
 						return $chats;
 				}
@@ -169,11 +198,23 @@ class OssnMessages extends OssnEntities {
 		public function getWith($from, $to, $count = false) {
 				$messages = $this->searchMessages(array(
 						'wheres' => array(
-								"message_from='{$from}' AND message_to='{$to}' OR message_from='{$to}' AND message_to='{$from}'"
+								"((message_from='{$from}' AND message_to='{$to}' AND emd0.value='') OR (message_from='{$to}' AND message_to='{$from}' AND emd1.value=''))"
 						),
 						'order_by' => 'm.id DESC',
 						'offset' => input('offset_message_xhr_with', '', 1),
-						'count' => $count
+						'count' => $count,
+						'entities_pairs' => array(
+								array(
+									'name' => 'is_deleted_from', //we don't wanted to show messages which user have expunged from record
+									'value' => false,
+									'wheres' =>  '(emd0.value IS NOT NULL)',
+								),	
+								array(
+									'name' => 'is_deleted_to', //we don't wanted to show messages which user have expunged from record
+									'value' => false,
+									'wheres' =>  '(emd1.value IS NOT NULL)',
+								),									
+						),
 				));
 				if($messages && !$count) {
 						return array_reverse($messages);

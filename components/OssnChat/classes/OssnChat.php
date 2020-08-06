@@ -189,26 +189,4 @@ class OssnChat extends OssnMessages {
 				$friends          = $this->select($params, true);
 				return $friends;
 		}
-		/**
-		 * Get messages between two users
-		 *
-		 * @params $from: User 1 guid
-		 *         $to User 2 guid
-		 *
-		 * @return object
-		 */
-		public function getWith($from, $to, $count = false) {
-				$messages = $this->searchMessages(array(
-						'wheres' => array(
-								"message_from='{$from}' AND message_to='{$to}' OR message_from='{$to}' AND message_to='{$from}'"
-						),
-						'order_by' => 'm.id DESC',
-						'offset' => input("offset_message_xhr_with_{$to}", '', 1),
-						'count' => $count
-				));
-				if($messages && !$count) {
-						return array_reverse($messages);
-				}
-				return $messages;
-		}		
 } //class

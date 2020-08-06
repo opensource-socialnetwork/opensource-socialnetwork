@@ -17,5 +17,12 @@ $eo = array(
     'message:placeholder' => 'Enskribu tekston ĉi tie',
     'no:messages' => 'Vi ne havas mesaĝojn.',
 	'ossnmessages:deleted' => 'Mesaĝo estas forigita',
+
+	'ossnmessages:delete:all' => 'Forigu por ĉiuj',
+	'ossnmessages:delete:all:note' => "Vi permanente forigos ĉi tiun mesaĝon por alia membro. Aliaj membroj povos vidi ke vi forigis mesaĝon.",
+	
+	'ossnmessages:delete:me' => 'Forigu por vi',
+	'ossnmessages:delete:me:note' => 'Ĉi tiu mesaĝo estos forigita por vi. Aliaj membroj ankoraŭ povos vidi ĝin.',
+	'ossnmessages:replied:you' => 'Vi: %s',
 );
 ossn_register_languages('eo', $eo); 

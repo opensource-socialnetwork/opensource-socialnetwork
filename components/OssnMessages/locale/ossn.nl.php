@@ -17,5 +17,12 @@ $nl = array(
     'message:placeholder' => 'Typ hier je bericht',
 	'no:messages' => 'Er zijn geen berichten.',
 	'ossnmessages:deleted' => 'Bericht is verwijderd',
+	
+	'ossnmessages:delete:all' => 'Verwijderen voor iedereen',
+	'ossnmessages:delete:all:note' => "Je verwijdert dit bericht definitief voor een ander lid. Een ander lid kan zien dat je een bericht hebt verwijderd.",
+	
+	'ossnmessages:delete:me' => 'Verwijder voor je',
+	'ossnmessages:delete:me:note' => 'Dit bericht wordt voor u verwijderd. Een ander lid kan het nog steeds zien.',
+	'ossnmessages:replied:you' => 'Jij: %s',	
 );
 ossn_register_languages('nl', $nl); 

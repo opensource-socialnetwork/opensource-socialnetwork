@@ -17,5 +17,12 @@ $zh = array(
     'message:placeholder' => '在這裡輸入文字',
     'no:messages' => '你沒有訊息.',
 	'ossnmessages:deleted' => '訊息已經被刪除了',
+	
+	'ossnmessages:delete:all' => '所有人刪除',
+	'ossnmessages:delete:all:note' => "您將永久刪除此消息給其他成員。 其他成員將能夠看到您已刪除一條消息。",
+	
+	'ossnmessages:delete:me' => '為您移除',
+	'ossnmessages:delete:me:note' => '此消息將為您刪除。 其他成員仍然可以看到它。',
+	'ossnmessages:replied:you' => '您：%s',	
 );
 ossn_register_languages('zh', $zh); 

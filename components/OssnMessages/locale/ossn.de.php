@@ -17,5 +17,12 @@ $de = array(
     'message:placeholder' => 'Schreib was ...',
     'no:messages' => 'keine Nachrichten vorhanden',
 	'ossnmessages:deleted' => 'Die Nachricht wurde gelöscht',	
+	
+	'ossnmessages:delete:all' => 'Für alle entfernen',
+	'ossnmessages:delete:all:note' => "Sie werden diese Nachricht für andere Mitglieder dauerhaft entfernen. Andere Mitglieder werden sehen können, dass Sie eine Nachricht entfernt haben.",
+	
+	'ossnmessages:delete:me' => 'Für Sie entfernen',
+	'ossnmessages:delete:me:note' => 'Diese Nachricht wird für Sie entfernt. Andere Mitglieder werden sie weiterhin sehen können.',
+	'ossnmessages:replied:you' => 'Sie: %s',	
 );
 ossn_register_languages('de', $de); 

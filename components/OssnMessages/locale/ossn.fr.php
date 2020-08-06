@@ -17,5 +17,12 @@ $fr = array(
     'message:placeholder' => 'Entrer votre texte ici',
 	'no:messages' => "Vous n'avez pas de messages.",
 	'ossnmessages:deleted' => 'Le message a été supprimé',		
+
+	'ossnmessages:delete:all' => 'Forigu por ĉiuj',
+	'ossnmessages:delete:all:note' => "Vi permanente forigos ĉi tiun mesaĝon por alia membro. Aliaj membroj povos vidi ke vi forigis mesaĝon.",
+	
+	'ossnmessages:delete:me' => 'Enlever pour vous',
+	'ossnmessages:delete:me:note' => 'Ce message sera supprimé pour vous. Les autres membres pourront toujours le voir.',
+	'ossnmessages:replied:you' => 'Vous : %s',
 );
 ossn_register_languages('fr', $fr); 

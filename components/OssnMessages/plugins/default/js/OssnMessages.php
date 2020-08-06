@@ -350,7 +350,41 @@ $(document).ready(function(e) {
 });
 Ossn.RegisterStartupFunction(function() {
     $(document).ready(function() {
-        $('body').on('click', '.ossn-message-delete', function(e) {
+		$('body').on('click', '.ossn-message-delete', function(e){
+				var id = $(this).attr('data-id');
+				Ossn.MessageBox('messages/delete?id=' + id);
+		});
+		Ossn.ajaxRequest({
+                    form: '#ossn-message-delete-form',
+					url: Ossn.site_url+'action/message/delete',
+					beforeSend: function(){
+							$('#ossn-message-delete-form').html('<div class="ossn-loading"></div>');	
+					},
+                    callback: function(callback) {
+                        if (callback['status'] == true){
+							var $parent = $('#message-item-'+callback['id']);
+                            
+							if(callback['type'] == 'all'){
+								$parent = $parent.find('.message-box-sent');
+								$text = "<i class='fa fa-times-circle'></i>" + Ossn.Print('ossnmessages:deleted');
+                                $parent.find('span').html($text);
+								$parent.find('.time-created').hide();
+                                $parent.addClass('ossn-message-deleted');
+                                Ossn.MessageBoxClose();
+                            }
+							if(callback['type'] == 'me'){
+								Ossn.MessageBoxClose();
+								$parent.css({'opacity': 0.5});
+								setTimeout(function(){
+									$parent.fadeOut('slow').remove();					
+								}, 1000);
+							}
+                        } else {
+							Ossn.MessageBoxClose();	
+						}
+				}
+        });		
+        $('body').on('click', '.ossn-message-deletes', function(e) {
             e.preventDefault();
             $text = "<i class='fa fa-times-circle'></i>" + Ossn.Print('ossnmessages:deleted');
             $self   = $(this);

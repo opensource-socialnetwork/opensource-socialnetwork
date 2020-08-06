@@ -17,5 +17,12 @@ $pt = array(
     'message:placeholder' => 'Digite seu texto aqui',
     'no:messages' => 'Você não possui mensagens.',
 	'ossnmessages:deleted' => 'Mensagem foi excluída',
+	
+	'ossnmessages:delete:all' => 'Retirar para todos',
+	'ossnmessages:delete:all:note' => "Irá remover permanentemente esta mensagem para outro membro. O outro membro poderá ver que removeu uma mensagem.",
+	
+	'ossnmessages:delete:me' => 'Remover para si',
+	'ossnmessages:delete:me:note' => 'Esta mensagem será retirada para si. Outro membro ainda poderá vê-la.',
+	'ossnmessages:replied:you' => 'Você: %s',	
 );
 ossn_register_languages('pt', $pt); 

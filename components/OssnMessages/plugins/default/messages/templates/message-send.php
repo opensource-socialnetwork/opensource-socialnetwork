@@ -14,27 +14,24 @@ $message_id = $params['message_id'];
 if($user->guid == ossn_loggedin_user()->guid){
 					?>
                     	<div class="row" id="message-item-<?php echo $message_id ?>">
-                                <div class="col-md-10">
+                                <div class="col-md-10 pull-right">
                                 	<div class="message-box-sent text">
 											<span><?php echo ossn_call_hook('messages', 'message:smilify', null, ossn_message_print($message)); ?></span>
                                         	<div class="time-created"><?php echo ossn_user_friendly_time(time());?></div>
-                                            <a class="ossn-message-delete" href="<?php echo ossn_site_url("action/message/delete?id={$message_id}", true);?>"><i class="fa fa-times"></i></a>				
+                                            <a class="ossn-message-delete" data-id="<?php echo $message_id;?>"><i class="fa fa-ellipsis-h"></i></a>				
                                 	</div>
-                                </div>
-                        	<div class="col-md-2">
-                                	<a href="<?php echo $user->profileURL();?>"><img  class="user-icon" src="<?php echo $user->iconURL()->small;?>" /></a>
-                                </div>                                
+                                </div>                            
                         </div>
                     <?php	
 					} else {
 						?>
                     	<div class="row" id="message-item-<?php echo $message_id ?>">
-                        	<div class="col-md-2">
-                                	<a href="<?php echo $user->profileURL();?>"><img  class="user-icon" src="<?php echo $user->iconURL()->small;?>" /></a>
+                        	<div class="col-md-1">
+                                	<a href="<?php echo $user->profileURL();?>"><img  class="user-icon" src="<?php echo $user->iconURL()->smaller;?>" /></a>
                                 </div>                                
-                                <div class="col-md-10">
+                                <div class="col-md-11 pull-left">
                                 	<div class="message-box-recieved text">
-						<?php echo ossn_call_hook('messages', 'message:smilify', null, ossn_message_print($message)); ?>
+											<?php echo ossn_call_hook('messages', 'message:smilify', null, ossn_message_print($message)); ?>
                                         	<div class="time-created"><?php echo ossn_user_friendly_time(time());?></div>    
                                         </div>
                                 </div>
