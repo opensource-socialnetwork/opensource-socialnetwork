@@ -16,18 +16,20 @@ $params['count'] =  $OssnMessages->recentChat(ossn_loggedin_user()->guid, true);
     <div class="ossn-notification-messages">
         <?php
         if ($params['recent']) {
-			$loggedin_guid = ossn_loggedin_user()->guid;
+	$loggedin_guid = ossn_loggedin_user()->guid;
             foreach ($params['recent'] as $message) {
-						$yes_replied = false;
+			$yes_replied = false;
 						
-						$actual_to = $message->message_to;
-						$actual_from = $message->message_from;
+			$actual_to = $message->message_to;
+			$actual_from = $message->message_from;
 
-						if($message->message_from == $loggedin_guid){
-								$message->message_from = $actual_to;
-								$yes_replied = true;
-						}
-                        if ($message->answered || $yes_replied) {
+			if($message->message_from == $loggedin_guid){
+				$message->message_from = $actual_to;
+				$yes_replied = true;
+			}
+			//if answered and is message from loggedin user 
+			//as of 5.3 it shows message form owner too so old logic need to be changed
+                        if ($message->answered && $message->message_from == $loggedin_guid || $yes_replied) {
                             $user = ossn_user_by_guid($message->message_from);
                             $text = ossn_call_hook('messages', 'message:smilify', null, strl($message->message, 32));
 							$replied = ossn_print('ossnmessages:replied:you', array($text));
@@ -67,9 +69,9 @@ $params['count'] =  $OssnMessages->recentChat(ossn_loggedin_user()->guid, true);
             }
 
         }
-		echo ossn_view_pagination($params['count'],10, array(
-							'offset_name' => 'offset_message_xhr_recent',															 
-		));
+	echo ossn_view_pagination($params['count'],10, array(
+			'offset_name' => 'offset_message_xhr_recent',															 
+	));
 		?>
 
     </div>
