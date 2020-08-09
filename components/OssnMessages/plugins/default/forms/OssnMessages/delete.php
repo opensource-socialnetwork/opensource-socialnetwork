@@ -7,6 +7,9 @@
 	if($params['message']->message_to == ossn_loggedin_user()->guid){
 			unset($options['all']);
 	}
+	if(isset($params['message']->is_deleted) && $params['message']->is_deleted == true){
+			unset($options['all']);
+	}
 	echo ossn_plugin_view('input/radio', array(
 			'name' => 'type',
 			'value' => 'me',
