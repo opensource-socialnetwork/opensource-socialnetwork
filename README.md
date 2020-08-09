@@ -79,6 +79,9 @@ Front-End Features
 * Mobile Friendly
 * A photo gallery view.
 * Emojii Support
+* Post Background
+* Realtime messages status
+* Realtime comments status
 
 Backend Features
 =================
