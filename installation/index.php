@@ -12,8 +12,9 @@ global $OssnInstall;
 if (!isset($OssnInstall)) {
     $OssnInstall = new stdClass;
 }
-session_start();
-
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 if (is_file('DISPLAY_ERRORS')) {
     error_reporting(E_NOTICE ^ ~E_WARNING);
 } else {
