@@ -220,6 +220,21 @@ foreach($new_components as $item) {
 				$components->delete($item);
 		}
 }
+if(class_exists('OssnMessages')){
+	$messages = new OssnMessages;
+	$list     = $messages->searchMessages(array(
+				'wheres' => array("m.id IS NOT NULL"),		
+				'page_limit' => false,
+	));
+	if($list){
+		foreach($list as $item){
+				$item->data->is_deleted_from = false;
+				$item->data->is_deleted_to   = false;
+				$item->save();
+		}
+	}
+
+}
 $factory = new OssnFactory(array(
 		'callback' => 'installation',
 		'website' => ossn_site_url(),
