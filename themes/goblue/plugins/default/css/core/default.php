@@ -1147,7 +1147,7 @@ a {
 }
 
 .group-add-privacy .radio-block span {
-	margin-top: 10px;
+	margin-top: 5px;
 }
 
 .group-add-privacy .radio-block .ossn-radio-input {
