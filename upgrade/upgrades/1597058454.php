@@ -216,7 +216,9 @@ foreach($new_components as $item) {
 		if(!in_array($item, $systemcoms)) {
 				$components->enable($item);
 		}
-		if(in_array($item, $todelete)){
+}
+foreach($todelete as $item) {
+		if(in_array($item,  $systemcoms)){
 				$components->delete($item);
 		}
 }
