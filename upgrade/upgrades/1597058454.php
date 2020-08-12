@@ -239,7 +239,7 @@ if(class_exists('OssnMessages')){
 }
 //re-login as old database returns strings results so it might create issues.
 $guid = ossn_loggedin_user()->guid;
-OssnUser::setLogin(intVal($guid));
+OssnUser::setLogin(intval($guid));
 
 $factory = new OssnFactory(array(
 		'callback' => 'installation',
