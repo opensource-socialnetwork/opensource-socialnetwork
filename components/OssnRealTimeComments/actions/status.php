@@ -52,3 +52,4 @@ if($RealTimeComments->isTyping($guid, $type)) {
 				'status' => 'nottyping'
 		));
 }
+exit;
