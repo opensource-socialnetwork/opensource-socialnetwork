@@ -100,6 +100,8 @@ class OssnDatabase extends OssnBase {
 								$actual_values = str_replace('\\r\\n', "\r\n", $actual_values);
 								// replace double \\r\\n by \r\n (as appearing in json encoded posts)
 								$actual_values = str_replace('\\\r\\\n', '\r\n', $actual_values);
+								// handle single backslash correctly
+								$actual_values = str_replace('\\\\', '\\', $actual_values);
 								// same replacements done in db-update
 								// error_log('INSERT_2: ' . ossn_dump($actual_values));
 								$this->statement("INSERT INTO {$params['into']} ($colums) VALUES ($values);");
@@ -168,6 +170,7 @@ class OssnDatabase extends OssnBase {
 								// error_log('UPDATE: ' . ossn_dump($params['values']));
 								$params['values'] = str_replace('\\r\\n', "\r\n", $params['values']);
 								$params['values'] = str_replace('\\\r\\\n', '\r\n', $params['values']);
+								$params['values'] = str_replace('\\\\', '\\', $params['values']);
 								// error_log('UPDATE_2: ' . ossn_dump($params['values']));
 								$valuec = count($params['names']);
 								$i      = 1;
