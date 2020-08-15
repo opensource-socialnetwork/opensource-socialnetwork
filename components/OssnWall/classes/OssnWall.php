@@ -37,9 +37,13 @@ class OssnWall extends OssnObject {
 				}
 				if(isset($this->item_type) && !empty($this->item_type)) {
 						$this->data->item_type = $this->item_type;
+				} else {
+						$this->data->item_type = false;
 				}
 				if(isset($this->item_guid) && !empty($this->item_guid)) {
 						$this->data->item_guid = $this->item_guid;
+				} else {
+						$this->data->item_guid = false;	
 				}
 				$this->data->poster_guid  = $this->poster_guid;
 				$this->data->access       = $access;
