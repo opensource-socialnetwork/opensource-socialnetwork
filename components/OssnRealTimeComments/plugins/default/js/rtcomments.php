@@ -82,7 +82,13 @@ Ossn.commentTyping = function($guid, $type) {
 				$elem.find('.ctyping-c-item').fadeOut('slow');
 			}
 			if (callback['lists'] != '') {
-				$(".ossn-comments-list-" + $type.charAt(0) + "" + $guid).append(callback['lists']).fadeIn();
+				for(i=0;i < callback['lists'].length;i++){
+					$id = $($.parseHTML(callback['lists'][i])).attr('id');
+					$id = $id.replace(/[^0-9]/g, "");
+					if($id && $('#comments-item-'+$id).length == 0){
+						$(".ossn-comments-list-" + $type.charAt(0) + "" + $guid).append(callback['lists'][i]).fadeIn();	
+					}
+				}
 			}
 		}
 	};
@@ -93,7 +99,7 @@ Ossn.commentTyping = function($guid, $type) {
 				$($(".ossn-comments-list-" + $type.charAt(0) + "" + $guid).find('.comments-item')).each(function() {
 					$ids.push($(this).attr('id').replace('comments-item-', ''));
 				});
-				console.log($ids.join(','));
+				//console.log($ids.join(','));
 				$status['params'] = '&comments_ids=' + $ids.join(',') + '&timestamp=' + $timestamp;
 			}
 			Ossn.PostRequest($status);
