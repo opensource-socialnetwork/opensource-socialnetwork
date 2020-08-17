@@ -31,7 +31,7 @@ Ossn.NotificationBox = function($title, $meta, $type, height, $extra) {
 Ossn.NotificationBoxClose = function() {
     $('.ossn-notifications-box').hide()
     $('.ossn-notifications-box').find('.type-name').html('');
-    $('.ossn-notifications-box').find('.metadata').html('<div><div class="ossn-loading ossn-notification-box-loading"></div></div><div class="bottom-all"><a href="#">'+Ossn.Print('see:all')+'</a></div>');
+    $('.ossn-notifications-box').find('.metadata').html('<div><div class="ossn-loading ossn-notification-box-loading"></div></div><div class="bottom-all">---</div>');
     //$('.ossn-notifications-box').css('height', '140px');
     $('.selected').attr('class', 'selected');
 
@@ -161,7 +161,7 @@ Ossn.NotificationMessagesShow = function($div) {
             Ossn.NotificationBoxClose();
             $('.ossn-notifications-notification').attr('onClick', 'Ossn.NotificationShow(this)');
             $('.ossn-notifications-friends').attr('onClick', 'Ossn.NotificationFriendsShow(this)');
-
+	    Ossn.NotificationBox(Ossn.Print('messages'), false, 'messages');
         },
         callback: function(callback) {
             var data = '';
