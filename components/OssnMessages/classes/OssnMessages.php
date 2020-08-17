@@ -132,23 +132,24 @@ class OssnMessages extends OssnEntities {
 				// return the most recent message of each corresponding partner 
 				// exclude deleted ones
 				//include deleted once and show deleted text %arsalanshah
-				$subquery = "SELECT MAX(m2.id) FROM ossn_messages as m2
+				$subquery = "SELECT sorted.id FROM (
+				SELECT MAX(m2.id) as id FROM ossn_messages as m2
 							
-							INNER JOIN ossn_entities AS e0 ON e0.owner_guid = m2.id
-							INNER JOIN ossn_entities_metadata AS emd0 ON e0.guid = emd0.guid
+				INNER JOIN ossn_entities AS e0 ON e0.owner_guid = m2.id
+				INNER JOIN ossn_entities_metadata AS emd0 ON e0.guid = emd0.guid
        
- 						    INNER JOIN ossn_entities AS e1 ON e1.owner_guid = m2.id
-					        INNER JOIN ossn_entities_metadata AS emd1 ON e1.guid = emd1.guid
+				INNER JOIN ossn_entities AS e1 ON e1.owner_guid = m2.id
+				INNER JOIN ossn_entities_metadata AS emd1 ON e1.guid = emd1.guid
         
-					        WHERE 
-					        	(e0.type = 'message' AND e0.subtype = 'is_deleted_from') AND 
-								(e1.type = 'message' AND e1.subtype = 'is_deleted_to') 
-								
-								AND ( 
-	 				                (m2.message_to={$to} AND emd1.value ='') OR 
-					 	    		(m2.message_from={$to} AND emd0.value ='')
- 					            )
- 								GROUP BY IF (`message_from`={$to}, `message_to`,`message_from`)";
+				WHERE 
+					  (e0.type = 'message' AND e0.subtype = 'is_deleted_from') AND 
+					  (e1.type = 'message' AND e1.subtype = 'is_deleted_to') 
+					  AND ( 
+	 					 (m2.message_to={$to} AND emd1.value ='') OR 
+						 (m2.message_from={$to} AND emd0.value ='')
+ 					)
+ 				GROUP BY IF (`message_from`={$to}, `message_to`,`message_from`)
+            			) AS sorted";
 		
 				$chats = $this->searchMessages(array(
 						'wheres' => array(
