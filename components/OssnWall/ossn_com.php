@@ -466,7 +466,7 @@ function ossn_wall_view_template(array $params = array()) {
 			return false;
 		}
 		$type = $params['post']->type;
-		if(isset($params['post']->item_type)) {
+		if(isset($params['post']->item_type) && !empty($params['post']->item_type)) {
 				$type = $params['post']->item_type;
 		}
 		if(ossn_is_hook('wall:template', $type)) {
