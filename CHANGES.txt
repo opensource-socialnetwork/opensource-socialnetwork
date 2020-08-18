@@ -4,6 +4,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK V5.3
 * [B] Fix notification loading box not showing.
 * [B] Messages loading taking time.
 * [B] If RealTimeComments is enabled your new comment appears twice.
+* [B] Unable to edit posts.
 
 OSSN - OPEN SOURCE SOCIAL NETWORK V5.3
 * [B] notification, add callback isn't working #1634 (already patched Ossn v5.2 LTS).
