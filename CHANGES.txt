@@ -1,4 +1,4 @@
-OSSN - OPEN SOURCE SOCIAL NETWORK V5.3
+OSSN - OPEN SOURCE SOCIAL NETWORK V5.4
 * [B] Fix bug for new posts not showing.
 * [B] Fix bug with 5.3 upgrade
 * [B] Fix notification loading box not showing.
