@@ -368,7 +368,7 @@ function ossn_wall_post_menu($hook, $type, $return, $params) {
 		} else {
 				ossn_unregister_menu("delete", 'wallpost');
 		}
-		if(($params['post']->poster_guid == ossn_loggedin_user()->guid || ossn_isAdminLoggedin()) && !isset($params['post']->item_guid)) {
+		if(($params['post']->poster_guid == ossn_loggedin_user()->guid || ossn_isAdminLoggedin()) && empty($params['post']->item_guid)) {
 				ossn_unregister_menu('edit', 'wallpost');
 				ossn_register_menu_item("wallpost", array(
 						'name' => 'edit',
