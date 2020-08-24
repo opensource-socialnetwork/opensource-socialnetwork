@@ -4,6 +4,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v5.5
 * [B] Messages new lines showing \n #1808
 * [E] Add more support for components in block #1810
 * [B] Revert code added in wall during push #1809
+* [B] Fix utf8 issue with messages german translation #1811
 
 OSSN - OPEN SOURCE SOCIAL NETWORK V5.4
 * [B] Fix bug for new posts not showing.
