@@ -35,7 +35,7 @@ class OssnMessages extends OssnEntities {
 				$this->data->is_deleted_from = false;
 				$this->data->is_deleted_to	 = false;
 				
-				$message = strip_tags($message);
+				$message = trim(strip_tags($message));
 				
 				$params['into']   = 'ossn_messages';
 				$params['names']  = array(
