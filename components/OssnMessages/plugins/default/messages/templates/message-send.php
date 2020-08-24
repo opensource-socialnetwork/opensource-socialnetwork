@@ -9,7 +9,7 @@
  * @link      https://www.opensource-socialnetwork.org/
  */
 $user = $params['user'];
-$message = ossn_message_print($params['message']);
+$message = $params['message'];
 $message_id = $params['message_id'];
 if($user->guid == ossn_loggedin_user()->guid){
 					?>
