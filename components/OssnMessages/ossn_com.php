@@ -218,6 +218,7 @@ function ossn_messages_page($pages) {
  * @return string
  */
 function ossn_message_print($message) {
+		$message = ossn_call_hook('message', 'print', false, $message);
 		return nl2br($message);
 }
 /**
