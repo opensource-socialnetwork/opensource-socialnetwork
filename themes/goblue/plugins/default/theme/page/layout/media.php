@@ -9,7 +9,7 @@
  * @link      https://www.opensource-socialnetwork.org/
  */
 ?>
-<div class="container-fluid">
+<div class="container">
 	<div class="row">
        <?php echo ossn_plugin_view('theme/page/elements/system_messages'); ?>    
 		<div class="ossn-layout-media">
