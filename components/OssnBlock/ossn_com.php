@@ -33,8 +33,8 @@ function ossn_block() {
 		if(ossn_isLoggedin()) {
 				ossn_register_action('block/user', __OSSN_BLOCK__ . 'actions/user/block.php');
 				ossn_register_action('unblock/user', __OSSN_BLOCK__ . 'actions/user/unblock.php');
+				ossn_register_page('blocked', 'ossn_block_page_handler');
 		}
-		ossn_register_page('blocked', 'ossn_block_page_handler');
 }
 
 /**
@@ -205,11 +205,16 @@ function ossn_user_block($name, $type, $return, $params) {
  * @return void
  */
 function ossn_block_page_handler() {
-		$title                  = ossn_print('ossn:blocked:error');
-		$contents['content']    = ossn_plugin_view('block/error');
-		$contents['background'] = false;
-		$content                = ossn_set_page_layout('contents', $contents);
-		echo ossn_view_page($title, $content);
+		if(isset($_SESSION['__is_sent_blocked']) && $_SESSION['__is_sent_blocked'] == true){
+			$_SESSION['__is_sent_blocked'] = false;
+			$title                  = ossn_print('ossn:blocked:error');
+			$contents['content']    = ossn_plugin_view('block/error');
+			$contents['background'] = false;
+			$content                = ossn_set_page_layout('contents', $contents);
+			echo ossn_view_page($title, $content);
+		} else {
+			ossn_error_page();
+		}
 }
 /**
  * Ossn block page
@@ -220,6 +225,8 @@ function ossn_block_page() {
 		if(ossn_is_xhr()) {
 				header("HTTP/1.0 404 Not Found");
 		} else {
+				//show blocked page only if user is sent to it.
+				$_SESSION['__is_sent_blocked'] = true;
 				redirect('blocked');
 		}
 }
