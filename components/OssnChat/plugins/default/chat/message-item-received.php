@@ -20,7 +20,7 @@
             	<?php if($params['deleted']){ ?>
                 	<span><i class="fa fa-times-circle"></i><?php echo ossn_print('ossnmessages:deleted');?></span>
                 <?php } else { ?>
-	                <span><?php echo ossn_call_hook('chat', 'message:smilify', null, linkify_chat($params['message'])); ?></span>
+	                <span><?php echo ossn_call_hook('chat', 'message:smilify', null, ossn_message_print($params['message'])); ?></span>
                 <?php } ?>                  
             </div>
         </div>

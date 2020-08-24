@@ -75,7 +75,7 @@ function ossn_js_page_handler($pages) {
 								$deleted = true;
 								$class = ' ossn-message-deleted';
 					}							
-                    $vars['message'] = linkify_chat($message->message);
+                    $vars['message'] = ossn_message_print($message->message);
                     $vars['time'] = $message->time;
                     $vars['id'] = $message->id;
 					$vars['deleted'] = $deleted;
