@@ -96,7 +96,6 @@ function ossn_wall() {
 				ossn_register_menu_item('wall/container/controls/group', $container_control);		
 			}
 		}
-ossn_unregister_menu_item('support', 'support', 'topbar_admin');
 }
 /**
  * Friends Picker
