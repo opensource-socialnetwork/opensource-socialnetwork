@@ -1,5 +1,6 @@
 OSSN - OPEN SOURCE SOCIAL NETWORK v5.5
 * [B] Messages above 10 are not being deleted #1807
+* [E] Add hook to modify message printing 
 
 OSSN - OPEN SOURCE SOCIAL NETWORK V5.4
 * [B] Fix bug for new posts not showing.
