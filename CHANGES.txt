@@ -1,3 +1,6 @@
+OSSN - OPEN SOURCE SOCIAL NETWORK v5.5
+* [B] Messages above 10 are not being deleted #1807
+
 OSSN - OPEN SOURCE SOCIAL NETWORK V5.4
 * [B] Fix bug for new posts not showing.
 * [B] Fix bug with 5.3 upgrade
