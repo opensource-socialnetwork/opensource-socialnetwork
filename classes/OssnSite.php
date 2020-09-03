@@ -149,7 +149,7 @@ class OssnSite extends OssnDatabase {
 				}
 				$name     = trim($name);
 				$settings = $this->getSettings($name);
-				if($settings && isset($this->settings->setting_id) && !empty($this->settings->setting_id)) {
+				if($settings !== false && isset($this->settings->setting_id) && !empty($this->settings->setting_id)) {
 						$params['table']  = 'ossn_site_settings as s';
 						$params['names']  = array(
 								'value'
