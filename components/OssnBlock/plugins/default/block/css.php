@@ -6,6 +6,7 @@
 
 .ossn-block-lists li {
 	list-style-type: square;
+    margin-left: 10px;
 }
 
 .ossn-block-lists li a {
