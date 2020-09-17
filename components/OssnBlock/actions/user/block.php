@@ -22,7 +22,8 @@ if ($block->addBlock(ossn_loggedin_user()->guid, $user->guid)) {
     ossn_remove_friend(ossn_loggedin_user()->guid, $user->guid);
 														 
     ossn_trigger_message(ossn_print('user:blocked'), 'success');
-    redirect(REF);
+    $loggedin_user = ossn_loggedin_user();
+	redirect("u/{$loggedin_user->username}/edit?section=blocking");
 } else {
     ossn_trigger_message(ossn_print('user:block:error'), 'error');
     redirect(REF);

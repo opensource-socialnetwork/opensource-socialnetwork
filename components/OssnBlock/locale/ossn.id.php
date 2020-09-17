@@ -17,5 +17,8 @@ $id = array(
     'user:unblock:error' => 'Tidak dapat melepas Blokir',
     'ossn:blocked:error' => 'Blokir',
     'ossn:blocked:error:note' => 'Anda tidak dapat melihat halaman ini karena Anda telah diblokir oleh pengguna.',
+
+	'ossn:profile:edit:tab' => 'Pemblokiran',
+	'ossn:profile:list:text' => 'Halaman ini berisi daftar orang yang Anda blokir.',
 );
 ossn_register_languages('id', $id); 

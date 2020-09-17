@@ -19,5 +19,8 @@ $es = array(
     'user:unblock:error' => 'No se puede desbloquear el usuario',
     'ossn:blocked:error' => 'Bloqueado',
     'ossn:blocked:error:note' => 'No puede ver esta página porque ha sido bloqueada por el usuario.',
+	
+	'ossn:profile:edit:tab' => 'Bloqueo',
+	'ossn:profile:list:text' => 'Esta página contiene la lista de las personas que has bloqueado.',	
 );
 ossn_register_languages('es', $es); 

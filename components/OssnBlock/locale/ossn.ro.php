@@ -17,5 +17,8 @@ $ro = array(
     'user:unblock:error' => 'Nu putem debloca utilizatorul',
     'ossn:blocked:error' => 'Blocat',
     'ossn:blocked:error:note' => 'Nu puteti vedea pagina pentru ca ati fost blocat de utilizator.',
+	
+	'ossn:profile:edit:tab' => 'Blocare',
+	'ossn:profile:list:text' => "Această pagină conține lista persoanelor pe care le-ați blocat.",	
 );
 ossn_register_languages('ro', $ro); 

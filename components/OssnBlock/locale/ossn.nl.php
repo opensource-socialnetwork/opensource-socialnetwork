@@ -17,5 +17,8 @@ $nl = array(
 	'user:unblock:error' => 'Kan deze gebruiker niet deblokkeren',
 	'ossn:blocked:error' => 'Geblokkeerd',
 	'ossn:blocked:error:note' => 'Je kan deze pagina niet bekijken omdat je door deze gebruiker geblokkeerd bent',
+
+	'ossn:profile:edit:tab' => 'Het blokkeren van',
+	'ossn:profile:list:text' => 'Deze pagina bevat de lijst met mensen die je hebt geblokkeerd.',
 );
 ossn_register_languages('nl', $nl); 

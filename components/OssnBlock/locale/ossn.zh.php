@@ -17,5 +17,8 @@ $zh = array(
     'user:unblock:error' => '無法解除封鎖使用者.',
     'ossn:blocked:error' => '已封鎖',
     'ossn:blocked:error:note' => '你無法檢視這個頁面,因為你這個使用者封鎖了.',
+
+	'ossn:profile:edit:tab' => '封鎖',
+	'ossn:profile:list:text' => '此頁麵包含您阻止的人員列表。',
 );
 ossn_register_languages('zh', $zh); 

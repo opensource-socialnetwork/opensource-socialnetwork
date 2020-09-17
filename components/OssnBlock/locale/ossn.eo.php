@@ -17,5 +17,8 @@ $eo = array(
     'user:unblock:error' => 'Ne povas malbari uzanton',
     'ossn:blocked:error' => 'Barita',
     'ossn:blocked:error:note' => 'Vi ne povas vidi ĉi tiun paĝon, ĉar vi estas blokita de la uzanto.',
+
+	'ossn:profile:edit:tab' => 'Blokado',
+	'ossn:profile:list:text' => 'Ĉi tiu paĝo enhavas la liston de homoj, kiujn vi blokis.',
 );
 ossn_register_languages('eo', $eo); 

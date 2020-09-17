@@ -26,6 +26,7 @@ function ossn_block() {
 		ossn_register_callback('page', 'load:profile', 'ossn_user_block_menu', 100);
 		ossn_register_callback('action', 'load', 'ossn_user_block_action');
 		
+		ossn_extend_view('css/ossn.default', 'block/css');
 		//hooks
 		ossn_add_hook('page', 'load', 'ossn_user_block');
 		
@@ -34,9 +35,47 @@ function ossn_block() {
 				ossn_register_action('block/user', __OSSN_BLOCK__ . 'actions/user/block.php');
 				ossn_register_action('unblock/user', __OSSN_BLOCK__ . 'actions/user/unblock.php');
 				ossn_register_page('blocked', 'ossn_block_page_handler');
+				
+				ossn_add_hook('profile', 'edit:section', 'ossn_blocking_list_page');	
+				ossn_register_menu_item('profile/edit/tabs', array(
+							'name' => 'blocking',
+							'href' => '?section=blocking',
+							'text' => ossn_print('ossn:profile:edit:tab'),
+				));	
+				if(!ossn_isAdminLoggedin()){
+					ossn_add_hook('wall', 'getPublicPosts', 'ossn_block_strip_posts');
+					ossn_add_hook('wall', 'GetPostByOwner', 'ossn_block_strip_group_posts');
+				}
 		}
 }
-
+function ossn_block_strip_group_posts($hook, $type, $return, $params){
+			$user = ossn_loggedin_user();
+			if(isset($user->guid)){
+				$return['entities_pairs'][] = array(
+							'name' => 'poster_guid',
+							'value' => true,
+							'wheres' => "([this].value NOT IN (SELECT DISTINCT relation_to FROM `ossn_relationships` WHERE relation_from={$user->guid} AND type='userblock') AND [this].value NOT IN (SELECT 	DISTINCT relation_from FROM `ossn_relationships` WHERE relation_to={$user->guid} AND type='userblock'))"
+ 				 );
+			}
+			return $return;	
+}
+function ossn_block_strip_posts($hook, $type, $return, $params){
+			//here posts belongs to owner_guid so we can use owner_guid instea of poster_guid using joins.
+			if(isset($params['user']->guid) && $params['user']->guid == ossn_loggedin_user()->guid){
+				$return['wheres'][] = "(o.owner_guid NOT IN (SELECT DISTINCT relation_to FROM `ossn_relationships` WHERE relation_from={$params['user']->guid} AND type='userblock') AND o.owner_guid NOT IN (SELECT 	DISTINCT relation_from FROM `ossn_relationships` WHERE relation_to={$params['user']->guid} AND type='userblock'))";			
+			}
+			return $return;
+}
+/**
+ * Register a page that shows a list of users that blocked
+ *
+ * @return string|void
+ */
+function ossn_blocking_list_page($hook, $type, $return, $params){
+		if($params['section'] == 'blocking'){
+			return ossn_plugin_view('block/list');
+		}
+}
 /**
  * User block menu item in profile.
  *
@@ -118,9 +157,10 @@ function ossn_user_block($name, $type, $return, $params) {
 		/*
 		 * Deny from visiting profile
 		 */
-		if($params['handler'] == 'u') {
+		if($params['handler'] == 'u' && !ossn_isAdminLoggedin()) {
 				$user = ossn_user_by_username($params['page'][0]);
-				if($user && OssnBlock::UserBlockCheck($user)) {
+				//in case blocked but make user user viewing user is not admin
+				if($user && OssnBlock::UserBlockCheck($user)  || OssnBlock::selfBlocked($user)) {
 						ossn_block_page();
 				}
 		}
@@ -136,7 +176,7 @@ function ossn_user_block($name, $type, $return, $params) {
 		/*
 		 * Deny from viewing user wall posts
 		 */
-		if($params['handler'] == 'post' && $params['page'][0] == 'view' && com_is_active('OssnWall')) {
+		if($params['handler'] == 'post' && $params['page'][0] == 'view' && com_is_active('OssnWall') && !ossn_isAdminLoggedin()) {
 				$post = new OssnWall;
 				$post = $post->GetPost($params['page'][1]);
 				$user = ossn_user_by_guid($post->owner_guid);
@@ -145,35 +185,35 @@ function ossn_user_block($name, $type, $return, $params) {
 				}
 		}
 		//add support for some components
-		if($params['handler'] == 'video' && com_is_active('Videos') && function_exists('ossn_get_video') && $params['page'][0] == 'view') {
+		if($params['handler'] == 'video' && com_is_active('Videos') && function_exists('ossn_get_video') && $params['page'][0] == 'view' && !ossn_isAdminLoggedin()) {
 				$video = ossn_get_video($params['page'][1]);
 				$user  = ossn_user_by_guid($video->owner_guid);
 				if($user && (OssnBlock::UserBlockCheck($user) || OssnBlock::selfBlocked($user))) {
 						ossn_block_page();
 				}
 		}
-		if($params['handler'] == 'event' && com_is_active('Events') && function_exists('ossn_get_event') && $params['page'][0] == 'view') {
+		if($params['handler'] == 'event' && com_is_active('Events') && function_exists('ossn_get_event') && $params['page'][0] == 'view' && !ossn_isAdminLoggedin()) {
 				$video = ossn_get_event($params['page'][1]);
 				$user  = ossn_user_by_guid($video->owner_guid);
 				if($user && (OssnBlock::UserBlockCheck($user) || OssnBlock::selfBlocked($user))) {
 						ossn_block_page();
 				}
 		}
-		if($params['handler'] == 'polls' && com_is_active('Polls') && function_exists('ossn_poll_get') && $params['page'][0] == 'view') {
+		if($params['handler'] == 'polls' && com_is_active('Polls') && function_exists('ossn_poll_get') && $params['page'][0] == 'view' && !ossn_isAdminLoggedin()) {
 				$video = ossn_poll_get($params['page'][1]);
 				$user  = ossn_user_by_guid($video->owner_guid);
 				if($user && (OssnBlock::UserBlockCheck($user) || OssnBlock::selfBlocked($user))) {
 						ossn_block_page();
 				}
 		}
-		if($params['handler'] == 'files' && com_is_active('Files') && function_exists('ossn_file_get') && $params['page'][0] == 'view') {
+		if($params['handler'] == 'files' && com_is_active('Files') && function_exists('ossn_file_get') && $params['page'][0] == 'view' && !ossn_isAdminLoggedin()) {
 				$video = ossn_file_get($params['page'][1]);
 				$user  = ossn_user_by_guid($video->owner_guid);
 				if($user && (OssnBlock::UserBlockCheck($user) || OssnBlock::selfBlocked($user))) {
 						ossn_block_page();
 				}
 		}
-		if($params['handler'] == 'blog' && com_is_active('Blog') && function_exists('ossn_file_get') && $params['page'][0] == 'view') {
+		if($params['handler'] == 'blog' && com_is_active('Blog') && function_exists('ossn_file_get') && $params['page'][0] == 'view' && !ossn_isAdminLoggedin()) {
 				$video = com_blog_get_blog($params['page'][1]);
 				$user  = ossn_user_by_guid($video->owner_guid);
 				if($user && (OssnBlock::UserBlockCheck($user) || OssnBlock::selfBlocked($user))) {
@@ -183,7 +223,7 @@ function ossn_user_block($name, $type, $return, $params) {
 		/*
 		 * Deny from viewing profile photos album and albums
 		 */
-		if($params['handler'] == 'album') {
+		if($params['handler'] == 'album' && !ossn_isAdminLoggedin()) {
 				//check if album is profile photos
 				if($params['page'][0] == 'profile') {
 						$user = ossn_user_by_guid($params['page'][1]);

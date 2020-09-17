@@ -17,5 +17,8 @@ $he = array(
     'user:unblock:error' => 'לא ניתן לשחרר משתמש מחסימה',
     'ossn:blocked:error' => 'חסום',
     'ossn:blocked:error:note' => 'לא ניתן לראות דף זה מאחר שנחזמת על ידי המשתמש.',
+
+	'ossn:profile:edit:tab' => 'חסימה',
+	'ossn:profile:list:text' => 'דף זה מכיל את רשימת האנשים שחסמת.',
 );
 ossn_register_languages('he', $he); 

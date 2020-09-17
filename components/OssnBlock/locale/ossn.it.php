@@ -17,5 +17,8 @@ $en = array(
     'user:unblock:error' => 'Impossibile bloccare l\'utente!',
     'ossn:blocked:error' => 'Bloccato',
     'ossn:blocked:error:note' => 'Non puoi vedere questa pagina perché sei stato bloccato dall\'utente.',
+	
+	'ossn:profile:edit:tab' => 'Blocco',
+	'ossn:profile:list:text' => "Questa pagina contiene l'elenco delle persone che avete bloccato.",	
 );
 ossn_register_languages('it', $en); 

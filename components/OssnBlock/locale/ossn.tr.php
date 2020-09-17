@@ -17,5 +17,7 @@ $tr = array(
     'user:unblock:error' => 'Engel kaldırılamadı! Lütfen daha sonra tekrar deneyiniz.',
     'ossn:blocked:error' => 'Engelli',
     'ossn:blocked:error:note' => 'Engellendiğiniz için bu sayfayı göremezsiniz.',
+	'ossn:profile:edit:tab' => 'Engelleme',
+	'ossn:profile:list:text' => 'Bu sayfa engellediğiniz kişilerin listesini içerir.',	
 );
 ossn_register_languages('tr', $tr); 

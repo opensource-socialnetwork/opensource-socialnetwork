@@ -17,5 +17,8 @@ $ja = array(
     'user:unblock:error' => 'ユーザーのブロックを解除できません',
     'ossn:blocked:error' => 'ブロックされました',
     'ossn:blocked:error:note' => '他のユーザーによってブロックされているため、このページを表示できません。',
+	
+	'ossn:profile:edit:tab' => 'ブロッキング',
+	'ossn:profile:list:text' => 'このページでは、ブロックした人の一覧を掲載しています。',	
 );
 ossn_register_languages('ja', $ja); 

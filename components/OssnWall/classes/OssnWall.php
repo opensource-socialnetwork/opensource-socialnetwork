@@ -138,7 +138,13 @@ class OssnWall extends OssnObject {
 						'owner_guid' => $owner,
 						'count' => $count
 				);
-				return $this->searchObject($vars);
+				$extra_param = array(
+						'owner' => $owner,
+						'type' => $type,
+						'count' => $count,
+				);
+				$attrs   = ossn_call_hook('wall', 'GetPostByOwner', $extra_param , $vars);
+				return $this->searchObject($attrs);
 		}
 		
 		/**
@@ -295,8 +301,13 @@ class OssnWall extends OssnObject {
 								)
 						);
 						
+						$extra_param = array(
+								'friends_guids' => $friend_guids,
+								'user' => $user,
+						);
 						$options = array_merge($default, $params);
-						return $this->searchObject($options);
+						$attrs   = ossn_call_hook('wall', 'getFriendsPosts', $extra_param , $options);
+						return $this->searchObject($attrs);
 				}
 				return false;
 		}
@@ -341,9 +352,13 @@ class OssnWall extends OssnObject {
 												  )
 								)
 						);
-						
+						$extra_param = array(
+								'friends_guids' => $friend_guids,
+								'user' => $user,
+						);
 						$options = array_merge($default, $params);
-						return $this->searchObject($options);
+						$attrs   = ossn_call_hook('wall', 'getPublicPosts', $extra_param , $options);
+						return $this->searchObject($attrs);
 				}
 				return false;
 		}

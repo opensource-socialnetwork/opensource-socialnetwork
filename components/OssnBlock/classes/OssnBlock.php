@@ -24,10 +24,10 @@ class OssnBlock extends OssnEntities {
 		/**
 		 * Check if loggedin user is block UserB.
 		 *
-		 * @params $user entity of user B
+		 * @param $user entity of user B
 		 *
-		 * @return bool;
-		 * @access public;
+		 * @return boolean
+		 * @access public
 		 */		
 		public static function selfBlocked($user){
 			return self::isBlocked(ossn_loggedin_user(), $user);
@@ -35,19 +35,15 @@ class OssnBlock extends OssnEntities {
 		/**
 		 * Check if loggedin user is blocked by $user.
 		 *
-		 * @params $user entity of usera
-		 *         $userb entity of userb
+		 * @param  object $usera From object
+		 * @param  object $userb To object
 		 *
-		 * @return bool;
-		 * @access public;
+		 * @return boolean
+		 * @access public
 		 */
 		public static function isBlocked($usera, $userb) {
-				if(isset($usera->blockedusers) && $usera->guid != $userb->guid){
-						$owner = json_decode($usera->blockedusers);
-						$userb = $userb->guid;
-						if(isset($owner) && in_array($userb, $owner)) {
-								return true;
-						}
+				if(isset($usera->guid) && $usera->guid != $userb->guid){
+						return ossn_relation_exists($usera->guid, $userb->guid, 'userblock');
 				}
 				return false;
 		}
@@ -58,40 +54,17 @@ class OssnBlock extends OssnEntities {
 		 * @params $from Guid of user, who is blocking
 		 *         $to Guid of user which is going to be blocked
 		 *
-		 * @return bool;
-		 * @access public;
+		 * @return boolean
+		 * @access public
 		 */
 		public function addBlock($from, $to) {
 				if($from == $to) {
 						return false;
 				}
-				$user = ossn_user_by_guid($from);
-				if(isset($user->blockedusers)) {
-						$blocked = json_decode($user->blockedusers);
+				if($this->isBlocked($from, $to)){
+						return true;	
 				}
-				if(isset($blocked) && is_array($blocked) && in_array($to, $blocked)) {
-						return false;
-				}
-				
-				if(!empty($blocked)) {
-						$blocked = array_merge($blocked, array(
-								$to
-						));
-				} else {
-						$blocked = array(
-								$to
-						);
-				}
-				
-				$save                     = json_encode($blocked);
-				$user->data->blockedusers = $save;
-				
-				if($user->save()) {
-						$user = ossn_loggedin_user();
-						unset($user->blockedusers);
-						$user->blockedusers    = $save;
-						$_SESSION['OSSN_USER'] = $user;
-						
+				if(ossn_add_relation($from, $to, 'userblock')) {
 						return true;
 				}
 				return false;
@@ -100,39 +73,32 @@ class OssnBlock extends OssnEntities {
 		/**
 		 * Remove user block
 		 *
-		 * @params $from guid of user, who blocked other
-		 *         $to Guid of user which is going to be unblocked
+		 * @param int $from guid of user, who blocked other
+		 * @param int $to guid of user which is going to be unblocked
 		 *
-		 * @return bool;
-		 * @access public;
+		 * @return boolean
+		 * @access public
 		 */
 		public function removeBlock($from, $to) {
-				if($from == $to) {
+				if($from == $to || empty($from) || empty($to)) {
 						return false;
 				}
-				$user = ossn_user_by_guid($from);
-				if(isset($user->blockedusers)) {
-						$blocked = json_decode($user->blockedusers);
-				}
-				if(isset($blocked) && is_array($blocked) && !in_array($to, $blocked)) {
-						return false;
-				}
-				
-				$key = array_search($to, $blocked);
-				unset($blocked[$key]);
-				
-				$save                     = json_encode($blocked);
-				$user->data->blockedusers = $save;
-				
-				if($user->save()) {
-						$user = ossn_loggedin_user();
-						unset($user->blockedusers);
-						$user->blockedusers    = $save;
-						$_SESSION['OSSN_USER'] = $user;
-						
-						return true;
-				}
-				return false;
+				return ossn_delete_relationship(array(
+						'from' => $from,
+						'to' => $to,
+						'type' => 'userblock',
+				));
 		}
-		
+		/**
+		 * Get list of all blocked users
+		 *
+		 * @return object|boolean
+		 */
+		public static function getBlocking(){
+				return ossn_get_relationships(array(
+						'from' => ossn_loggedin_user()->guid,
+						'type' => 'userblock',
+						'page_limit' => false,
+				));
+		}
 } //class

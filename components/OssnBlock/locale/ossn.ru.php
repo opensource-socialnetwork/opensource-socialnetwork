@@ -17,5 +17,7 @@ $ru = array(
     'user:unblock:error' => 'Не получилось репатриировать',
     'ossn:blocked:error' => 'Сослан в гулаг',
     'ossn:blocked:error:note' => 'Вы не можете смотреть эту страницу, т.к. пользователь счёл вас врагом народа.',
+	'ossn:profile:edit:tab' => 'Блокировка',
+	'ossn:profile:list:text' => 'Эта страница содержит список людей, которых вы заблокировали.',	
 );
 ossn_register_languages('ru', $ru); 
