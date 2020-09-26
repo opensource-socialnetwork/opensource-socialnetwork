@@ -39,7 +39,17 @@ function ossn_photos_initialize() {
 		ossn_add_hook('photo:view', 'album:controls', 'ossn_album_photo_menu');
 		ossn_add_hook('cover:view', 'profile:controls', 'ossn_album_cover_photo_menu');
 		ossn_add_hook('wall:template', 'album:photos:wall', 'ossn_photos_wall');
-		
+	
+		//[B] Wrong Notifications because of 'notification:participants' #1822
+		ossn_add_hook('notification:participants', 'like:entity:file:profile:photo', 'ossn_profile_photo_cover_like_participants_deny');		
+		ossn_add_hook('notification:participants', 'like:entity:file:profile:cover', 'ossn_profile_photo_cover_like_participants_deny');
+	
+		ossn_add_hook('notification:participants', 'comments:entity:file:profile:photo', 'ossn_profile_photo_cover_like_participants_deny');		
+		ossn_add_hook('notification:participants', 'comments:entity:file:profile:cover', 'ossn_profile_photo_cover_like_participants_deny');	
+	
+		ossn_add_hook('notification:participants', 'like:entity:file:ossn:aphoto', 'ossn_profile_photo_cover_like_participants_deny');		
+		ossn_add_hook('notification:participants', 'comments:entity:file:ossn:aphoto', 'ossn_profile_photo_cover_like_participants_deny');	
+	
 		//actions
 		if(ossn_isLoggedin()) {
 				ossn_register_action('ossn/album/add', __OSSN_PHOTOS__ . 'actions/album/add.php');
@@ -724,5 +734,8 @@ function ossn_photos_likes_comments_delete($name, $type, $params) {
 						}
 				}
 		}
+}
+function ossn_profile_photo_cover_like_participants_deny(){
+	return false;	
 }
 ossn_register_callback('ossn', 'init', 'ossn_photos_initialize');
