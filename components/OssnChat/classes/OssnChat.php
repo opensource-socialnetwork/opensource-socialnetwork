@@ -189,4 +189,40 @@ class OssnChat extends OssnMessages {
 				$friends          = $this->select($params, true);
 				return $friends;
 		}
+		/**
+		 * Get messages between two users
+		 * 
+		 * @note this copied from OssnMessages and edited offest beacuse of #1832
+		 * 
+		 * @param int $from User 1 guid
+		 * @param int $to User 2 guid
+		 *
+		 * @return object
+		 */
+		public function getWith($from, $to, $count = false) {
+				$messages = $this->searchMessages(array(
+						'wheres' => array(
+								"((message_from='{$from}' AND message_to='{$to}' AND emd0.value='') OR (message_from='{$to}' AND message_to='{$from}' AND emd1.value=''))"
+						),
+						'order_by' => 'm.id DESC',
+						'offset' => input("offset_message_xhr_with_{$to}", '', 1),
+						'count' => $count,
+						'entities_pairs' => array(
+								array(
+									'name' => 'is_deleted_from', //we don't wanted to show messages which user have expunged from record
+									'value' => false,
+									'wheres' =>  '(emd0.value IS NOT NULL)',
+								),	
+								array(
+									'name' => 'is_deleted_to', //we don't wanted to show messages which user have expunged from record
+									'value' => false,
+									'wheres' =>  '(emd1.value IS NOT NULL)',
+								),									
+						),
+				));
+				if($messages && !$count) {
+						return array_reverse($messages);
+				}
+				return $messages;
+		}		
 } //class
