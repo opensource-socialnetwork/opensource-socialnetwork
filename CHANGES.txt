@@ -1,4 +1,4 @@
-OSSN - OPEN SOURCE SOCIAL NETWORK vX.X
+OSSN - OPEN SOURCE SOCIAL NETWORK v5.6
 * [B] prevent creating of new records if setting value is 0 #1815
 * [E] Integrate BanUser inside wall loading #1817
 * [B] OssnChat offset didn't work #1832
