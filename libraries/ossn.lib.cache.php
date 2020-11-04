@@ -148,6 +148,10 @@ function ossn_create_cache() {
 		$params['wheres'] = array(
 				"setting_id='4'"
 		);
+		$time = time();
+		ossn_trigger_callback('cache', 'before:create', array(
+				'time' => $time,
+		));					
 		if($database->update($params)) {
 				global $Ossn;
 				$cache = ossn_update_last_cache();
@@ -156,6 +160,10 @@ function ossn_create_cache() {
 						$Ossn->siteSettings->cache = 1;						
 						$Ossn->siteSettings->last_cache = $cache;
 						ossn_link_cache_files($cache);
+						
+						ossn_trigger_callback('cache', 'created', array(
+								'time' => $time,
+						));						
 				}
 				return true;
 		}
