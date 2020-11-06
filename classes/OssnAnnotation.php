@@ -220,7 +220,7 @@ class OssnAnnotation extends OssnEntities {
 		 *
 		 * @return boolean;
 		 */
-		public function deleteAnnotation($annotation) {
+		public function deleteAnnotation($annotation = 0) {
 				self::initAttributes();
 				if(isset($this->id)) {
 						$annotation = $this->id;
