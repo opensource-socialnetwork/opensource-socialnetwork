@@ -69,7 +69,8 @@ if ($total > 0) {
 			$vars['time'] = $message->time;
 			$vars['id'] = $message->id;
 			$vars['deleted'] = $deleted;
-			$vars['class'] = $class;					
+			$vars['class'] = $class;	
+			$vars['instance'] = (clone $message);
                     	if (ossn_loggedin_user()->guid == $message->message_from) {
                       	  	echo ossn_plugin_view('chat/message-item-send', $vars);
                    	 } else {

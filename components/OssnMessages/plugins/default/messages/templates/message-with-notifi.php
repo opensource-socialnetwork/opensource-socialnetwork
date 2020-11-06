@@ -18,6 +18,10 @@ $params['count'] =  $OssnMessages->recentChat(ossn_loggedin_user()->guid, true);
         if ($params['recent']) {
 	$loggedin_guid = ossn_loggedin_user()->guid;
             foreach ($params['recent'] as $message) {
+			$args = array(
+					'instance' => (clone $message),
+					'view_type' => 'messages/templates/message-with-notifi',
+			);			
 			$yes_replied = false;
 						
 			$actual_to = $message->message_to;
@@ -26,12 +30,12 @@ $params['count'] =  $OssnMessages->recentChat(ossn_loggedin_user()->guid, true);
 			if($message->message_from == $loggedin_guid){
 				$message->message_from = $actual_to;
 				$yes_replied = true;
-			}
+			}					
 			//if answered and is message from loggedin user 
 			//as of 5.3 it shows message form owner too so old logic need to be changed
                         if ($message->answered && $message->message_from == $loggedin_guid || $yes_replied) {
                             $user = ossn_user_by_guid($message->message_from);
-                            $text = ossn_call_hook('messages', 'message:smilify', null, strl($message->message, 32));
+                            $text = ossn_call_hook('messages', 'message:smilify', $args, strl($message->message, 32));
 							$replied = ossn_print('ossnmessages:replied:you', array($text));
 							if($message->is_deleted == true){
 								$replied = ossn_print('ossnmessages:deleted');	
@@ -39,7 +43,7 @@ $params['count'] =  $OssnMessages->recentChat(ossn_loggedin_user()->guid, true);
                             $replied = "<i class='fa fa-reply'></i><div class='reply-text'>{$replied}</div>";
                         } else {
                             $user = ossn_user_by_guid($message->message_from);
-                            $text = ossn_call_hook('messages', 'message:smilify', null, strl($message->message, 32));
+                            $text = ossn_call_hook('messages', 'message:smilify', $args, strl($message->message, 32));
 							if($message->is_deleted == true){
 								$text = ossn_print('ossnmessages:deleted');	
 							}							

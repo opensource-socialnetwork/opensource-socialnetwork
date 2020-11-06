@@ -18,11 +18,15 @@ if(trim(ossn_restore_new_lines($message)) == ''){
 $to = input('to');
 if ($message_id = $send->send(ossn_loggedin_user()->guid, $to, $message)) {
 	$user = ossn_user_by_guid(ossn_loggedin_user()->guid);
-	$message = ossn_get_message($message_id)->message;
+	
+	$instance = ossn_get_message($message_id);
+	$message = $instance->message;
 	
 	$params['message_id'] = $message_id;
 	$params['user'] = $user;
 	$params['message'] = $message;
+	$params['instance'] = $instance;
+	$params['view_type'] = 'actions/send';
 	echo ossn_plugin_view('messages/templates/message-send', $params);
 } else {
 	echo 0;
