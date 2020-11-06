@@ -18,6 +18,11 @@ $value = (isset($params['value'])) ? $params['value'] : '';
 $values = (isset($params['options'])) ? $params['options'] : array();
 
 $options = array();
+//[E] placeholder for input/dropdown #1813
+if(isset($params['placeholder']) && !empty($params['placeholder'])){
+		$options[] = "<option  disabled selected hidden>{$params['placeholder']}</options>";
+}
+unset($params['placeholder']);
 foreach($values as $item => $val){
 	$vars			= array();
 	$vars['value'] 	= $item;
