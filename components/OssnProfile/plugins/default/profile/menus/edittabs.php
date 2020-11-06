@@ -15,7 +15,8 @@ foreach($params['menu'] as $item){
 				if($selected == $args['name']){
 						$active = ' profile-edit-tab-item-active';	
 				}
-				$class = "profile-edit-tab-item profile-edit-tab-item-{$params['name']}";
+				//issue with account setting profile tabs #1812
+				$class = "profile-edit-tab-item profile-edit-tab-item-{$args['name']}";
 				if(isset($params['class'])){
 					$class = $class .' '. $params['class'];
 				}
