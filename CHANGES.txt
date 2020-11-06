@@ -5,7 +5,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v5.6
 * [E] Callback for cache create #1834
 * [E] allow a message instance in 'messages', 'message:smilify' hook #1829
 * [B] Wrong Notifications because of 'notification:participants' #1822
-
+* [B] delete annotation should have default parameter id 0 #1819
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v5.5
 * [B] Messages above 10 are not being deleted #1807
