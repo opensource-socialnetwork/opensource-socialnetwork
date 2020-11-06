@@ -7,6 +7,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v5.6
 * [B] Wrong Notifications because of 'notification:participants' #1822
 * [B] delete annotation should have default parameter id 0 #1819
 * [E] placeholder for input/dropdown #1813
+* [B] issue with account setting profile tabs #1812
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v5.5
 * [B] Messages above 10 are not being deleted #1807
