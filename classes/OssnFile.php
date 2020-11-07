@@ -210,7 +210,7 @@ class OssnFile extends OssnEntities {
 								$this->subtype = "file:{$this->subtype}";
 								$this->value   = $this->newfile;
 								
-								if($this->add()) {
+								if($fileguid = $this->add()) {
 										$filecontents = file_get_contents($this->file['tmp_name']);
 										if(preg_match('/image/i', $this->file['type'])) {
 												//fix rotation #918
@@ -227,7 +227,7 @@ class OssnFile extends OssnEntities {
 												$filecontents = ossn_resize_image($this->file['tmp_name'], $image_res['width'], $image_res['height']);
 										}
 										file_put_contents("{$this->dir}{$this->newfilename}", $filecontents);
-										return $this->AddedEntityGuid();
+										return $fileguid;
 								}
 						}
 				}
