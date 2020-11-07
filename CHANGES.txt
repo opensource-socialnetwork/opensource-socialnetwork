@@ -9,6 +9,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v5.6
 * [E] placeholder for input/dropdown #1813
 * [B] issue with account setting profile tabs #1812
 * [E] phpmailer updated to 6.x
+* [B] Get correct fileguid instead of metadata id #1835
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v5.5
 * [B] Messages above 10 are not being deleted #1807
