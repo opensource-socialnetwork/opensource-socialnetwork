@@ -47,6 +47,7 @@ function ossn_block() {
 					ossn_add_hook('wall', 'GetPostByOwner', 'ossn_block_strip_group_posts');
 				}
 		}
+		ossn_register_callback('user', 'delete', 'ossn_user_block_relations_delete');		
 }
 function ossn_block_strip_group_posts($hook, $type, $return, $params){
 			$user = ossn_loggedin_user();
@@ -269,5 +270,39 @@ function ossn_block_page() {
 				$_SESSION['__is_sent_blocked'] = true;
 				redirect('blocked');
 		}
+}
+/**
+ * Delete block user relationships entries
+ *
+ * @param string $callback Name of callback
+ * @param string $type Callback type
+ * @param array $params Arrays or Objects
+ *
+ * @return void
+ * @access private
+ */
+function ossn_user_block_relations_delete($callback, $type, $params) {
+		$guid  = $params['entity']->guid;
+		$from  = ossn_get_relationships(array(
+						'from' =>  $guid,
+						'type' => 'userblock',
+						'page_limit' => false,
+		));
+		if($from){
+				foreach($from as $item){
+						ossn_delete_relationship_by_id($item->relation_id);
+				}
+		}
+		
+		$to  = ossn_get_relationships(array(
+						'to' =>  $guid,
+						'type' => 'userblock',
+						'page_limit' => false,
+		));
+		if($to){
+				foreach($to as $item){
+						ossn_delete_relationship_by_id($item->relation_id);
+				}
+		}		
 }
 ossn_register_callback('ossn', 'init', 'ossn_block');
