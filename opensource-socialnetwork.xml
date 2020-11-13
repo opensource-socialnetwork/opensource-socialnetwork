@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <opensource_socialnework xmlns="http:/opensource-socialnetwork.org/v/1.0">
-    <version>6.0 - DEV</version>
-    <stable_version>5.5</stable_version>
-    <release>1598389337</release>
-    <build>1598389337</build>
+    <version>6.0</version>
+    <stable_version>5.6</stable_version>
+    <release>1605286634</release>
+    <build>1605286634</build>
     <licence>Open Source Social Network License (OSSN LICENSE)</licence>
     <author_url>http://www.opensource-socialnetwork.org</author_url>
     <copyright>(C) 2014-2015 Informatikon Technologies, 2015-2020 SOFTLAB24 LTD, 2014-2020 Open Source Social Network. All rights reserved</copyright>
