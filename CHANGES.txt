@@ -12,6 +12,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v5.6
 * [B] Get correct fileguid instead of metadata id #1835
 * [E] New lines didn't appears on post/view/.. #1821 (fixed v5.5)
 * [E] Stop user sending message to himself #1836
+* [E] we should get rid of hardcoded styles #1816
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v5.5
 * [B] Messages above 10 are not being deleted #1807
