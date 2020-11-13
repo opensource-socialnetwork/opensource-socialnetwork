@@ -8,7 +8,7 @@
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
  * @link      https://www.opensource-socialnetwork.org/
  */
-echo '<div style="margin-left:3px;">';
+echo '<div>';
 $users['users'] = $params['user']->getFriends(false, array(
 		'page_limit' => 10
 ));
