@@ -77,6 +77,10 @@ function ossn_messages_page($pages) {
 								if(empty($user->guid)) {
 										ossn_error_page();
 								}
+								//[E] Stop user sending message to himself #1836
+								if($user->username == ossn_loggedin_user()->username){
+										redirect("messages/all");
+								}							
 								$title = ossn_print('ossn:message:between', array(
 										$user->fullname
 								));
