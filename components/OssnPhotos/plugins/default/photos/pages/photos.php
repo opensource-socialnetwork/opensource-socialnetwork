@@ -11,7 +11,14 @@
 echo '<div class="ossn-photos">';
 $albums = new OssnAlbums;
 $profile = new OssnProfile;
+$offset = input('offset', '', 1);
 
+$albums->offset = $offset;
+if($offset == 1) {
+	$albums->page_limit = 8; // 8 regular albums + uncounted profile and cover album = 10
+} else {
+	$albums->page_limit = 10;
+}
 $photos = $albums->GetAlbums($params['user']->guid);
 
 $albums->count = true;
@@ -21,16 +28,18 @@ $pphotos_album = ossn_site_url("album/profile/{$params['user']->guid}");
 
 $profile_covers_url = ossn_site_url("album/covers/profile/{$params['user']->guid}");
 $profile_cover = $profile->getCoverURL($params['user']);
-//show profile pictures album
-echo "<li>
-	<a href='{$pphotos_album}'><img src='{$profiel_photo}' class='pthumb' />
-	 <div class='ossn-album-name'>" . ossn_print('profile:photos') . "</div></a>
-	</li>";
-//show profile cover photos	
-echo "<li>
-	<a href='{$profile_covers_url}'><img src='{$profile_cover}' class='pthumb' />
-	 <div class='ossn-album-name'>" . ossn_print('profile:covers') . "</div></a>
-	</li>";	
+if($offset == 1) {
+	//show profile pictures album only on page
+	echo "<li>
+		<a href='{$pphotos_album}'><img src='{$profiel_photo}' class='pthumb' />
+		 <div class='ossn-album-name'>" . ossn_print('profile:photos') . "</div></a>
+		</li>";
+	//show profile cover photos only on page	
+	echo "<li>
+		<a href='{$profile_covers_url}'><img src='{$profile_cover}' class='pthumb' />
+		 <div class='ossn-album-name'>" . ossn_print('profile:covers') . "</div></a>
+		</li>";
+}
 if ($photos) {
     foreach ($photos as $photo) {
         if (ossn_access_validate($photo->access, $photo->owner_guid)) {
