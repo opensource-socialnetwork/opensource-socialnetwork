@@ -1,3 +1,6 @@
+OSSN - OPEN SOURCE SOCIAL NETWORK v6.x
+* [B] Make pagination work on photo album overview page #1838 #1840
+
 OSSN - OPEN SOURCE SOCIAL NETWORK v5.6
 * [B] prevent creating of new records if setting value is 0 #1815
 * [E] Integrate BanUser inside wall loading #1817
