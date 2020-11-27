@@ -101,10 +101,11 @@ function ossn_photos_initialize() {
  * @access private
  */
 function ossn_user_photos_delete($callback, $type, $params) {
-		$guid              = $params['entity']->guid;
-		$album             = new OssnAlbums;
-		$album->page_limit = false;
-		$albums            = $album->GetAlbums($guid);
+		$guid    = $params['entity']->guid;
+		$album   = new OssnAlbums;
+		$albums  = $album->GetAlbums($guid, array(
+						'page_limit' =>  false,										
+		));
 		if($albums) {
 				foreach($albums as $item) {
 						$album->deleteAlbum($item->guid);

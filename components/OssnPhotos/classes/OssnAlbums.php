@@ -57,17 +57,21 @@ class OssnAlbums extends OssnObject {
 		 * Get albums by owner id and owner type
 		 *
 		 * @param integer $owner_id User guid who is creating album
-		 * @param string $type Album type (user, group, page etc)
+		 * @param array   $params Extra options,
 		 *
 		 * @return object
 		 */
-		public function GetAlbums($owner_id, $type = 'user') {
+		public function GetAlbums($owner_id, $params = array()) {
 				if(!empty($owner_id)) {
-						$this->owner_guid = $owner_id;
-						$this->type       = $type;
-						$this->subtype    = 'ossn:album';
-						return $this->getObjectByOwner();
+						$args = array(
+							'type' => 'user',
+							'subtype' => 'ossn:album',
+							'owner_guid' => $owner_id,
+						);
+						$vars = array_merge($args, $params);
+						return $this->searchObject($vars);
 				}
+				return false;
 		}
 		
 		/**

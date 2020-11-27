@@ -10,7 +10,10 @@
  */
 echo '<div class="ossn-profile-module-albums">';
 $albums = new OssnAlbums;
-$photos = $albums->GetAlbums($params['user']->guid);
+$photos = $albums->GetAlbums($params['user']->guid, array(
+		'page_limit' => 9,			
+		'offset' => 1, //avoid it effecting by offset URL param,
+));
 if ($photos) {
     foreach ($photos as $photo) {
         $images = new OssnPhotos;
