@@ -78,9 +78,9 @@ function ossn_messages_page($pages) {
 										ossn_error_page();
 								}
 								//[E] Stop user sending message to himself #1836
-								if($user->username == ossn_loggedin_user()->username){
+								if($user->username == ossn_loggedin_user()->username) {
 										redirect("messages/all");
-								}							
+								}
 								$title = ossn_print('ossn:message:between', array(
 										$user->fullname
 								));
@@ -89,9 +89,9 @@ function ossn_messages_page($pages) {
 								$params['count'] = $OssnMessages->getWith(ossn_loggedin_user()->guid, $user->guid, true);
 								$params['user']  = $user;
 								
-								$loggedin_guid    = ossn_loggedin_user()->guid;
-								$params['recent'] = $OssnMessages->recentChat($loggedin_guid);
-								$params['count_recent']  = $OssnMessages->recentChat($loggedin_guid, true);
+								$loggedin_guid          = ossn_loggedin_user()->guid;
+								$params['recent']       = $OssnMessages->recentChat($loggedin_guid);
+								$params['count_recent'] = $OssnMessages->recentChat($loggedin_guid, true);
 								
 								$contents = array(
 										'content' => ossn_plugin_view('messages/pages/view', $params)
@@ -104,17 +104,17 @@ function ossn_messages_page($pages) {
 						}
 						break;
 				case 'delete':
-						$id = input('id');
+						$id      = input('id');
 						$message = ossn_get_message($id);
-						$user	=	ossn_loggedin_user()->guid;
-						if($message && ($message->message_from == $user || $message->message_to == $user)){
+						$user    = ossn_loggedin_user()->guid;
+						if($message && ($message->message_from == $user || $message->message_to == $user)) {
 								$params = array(
 										'title' => ossn_print('delete'),
 										'contents' => ossn_view_form('OssnMessages/delete', array(
 												'action' => ossn_site_url('action/message/delete'),
 												'id' => 'ossn-message-delete-form',
 												'params' => array(
-														'message' => $message,
+														'message' => $message
 												)
 										)),
 										'button' => ossn_print('delete'),
@@ -122,7 +122,7 @@ function ossn_messages_page($pages) {
 								);
 								echo ossn_plugin_view('output/ossnbox', $params);
 						}
-					break;
+						break;
 				case 'xhr':
 						switch($pages[1]) {
 								case 'recent':
@@ -159,10 +159,10 @@ function ossn_messages_page($pages) {
 						}
 						break;
 				case 'all':
-						$loggedin_guid    = ossn_loggedin_user()->guid;
-						$params['recent'] = $OssnMessages->recentChat($loggedin_guid);
-						$params['count_recent']  = $OssnMessages->recentChat($loggedin_guid, true);
-						$active           = $params['recent'][0];
+						$loggedin_guid          = ossn_loggedin_user()->guid;
+						$params['recent']       = $OssnMessages->recentChat($loggedin_guid);
+						$params['count_recent'] = $OssnMessages->recentChat($loggedin_guid, true);
+						$active                 = $params['recent'][0];
 						if(isset($active->message_to) && $active->message_to == ossn_loggedin_user()->guid) {
 								$getuser = $active->message_from;
 						}
@@ -193,11 +193,12 @@ function ossn_messages_page($pages) {
 						$guid     = ossn_user_by_username($username)->guid;
 						$messages = $OssnMessages->getNew($guid, ossn_loggedin_user()->guid);
 						if($messages) {
-								foreach($messages as $message){
-										$params['instance'] = (clone $message);									
+								foreach($messages as $message) {
+										$message              = ossn_get_message($message->id);
+										$params['instance']   = (clone $message);
 										$params['message_id'] = $message->id;
-										$params['view_type'] = 'messages/pages/view/with-xhr';
-																				
+										$params['view_type']  = 'messages/pages/view/with-xhr';
+										
 										$user              = ossn_user_by_guid($message->message_from);
 										$params['user']    = $user;
 										$message           = $message->message;
@@ -275,7 +276,7 @@ function ossn_get_message($id = false) {
  * @access private
  * @return array
  */
-function ossn_linkify_messages_print($hook, $type, $return, $params){
+function ossn_linkify_messages_print($hook, $type, $return, $params) {
 		return linkify_chat($return);
 }
 /**
@@ -288,9 +289,9 @@ function ossn_linkify_messages_print($hook, $type, $return, $params){
  * @access private
  * @return array
  */
-function ossn_messages_entity_type($hook, $type, $return, $params){
-			$return['message'] = 'OssnMessages';
-			return $return;
+function ossn_messages_entity_type($hook, $type, $return, $params) {
+		$return['message'] = 'OssnMessages';
+		return $return;
 }
 /* File:        linkify.php
  * Version:     20101010_1000
@@ -302,9 +303,9 @@ function ossn_messages_entity_type($hook, $type, $return, $params){
  * Usage:   See example page: linkify.html
  */
 function linkify_chat($text) {
-    $url_pattern = '/# Rev:20100913_0900 github.com\/jmrware\/LinkifyURL
-    # Match http & ftp URL that is not already linkified.
-      # Alternative 1: URL delimited by (parentheses).
+		$url_pattern =       # Allow a "&" char only if not start of an...
+            &(?:gt|\#0*62|\#x0*3e);                  # HTML ">" entity, or
+          | &(?:amp|apos|quot|\#eses).
       (\()                     # $1  "(" start delimiter.
       ((?:ht|f)tps?:\/\/[a-z0-9\-._~!$&\'()*+,;=:\/?#[\]@%]+)  # $2: URL.
       (\))                     # $3: ")" end delimiter.
@@ -342,8 +343,8 @@ function linkify_chat($text) {
         [a-z0-9\-_~$()*+=\/#[\]@%]  # Last char can\'t be [.!&\',;:?]
       )                        # End $14. Other non-delimited URL.
     /imx';
-	//Open link in new tab (enhancement) #518
-    $url_replace = '$1$4$7$10$13<a href="$2$5$8$11$14" \\1 target="_blank">$2$5$8$11$14</a>$3$6$9$12';
-    return preg_replace($url_pattern, $url_replace, $text);
+		//Open link in new tab (enhancement) #518
+		$url_replace = '$1$4$7$10$13<a href="$2$5$8$11$14" \\1 target="_blank">$2$5$8$11$14</a>$3$6$9$12';
+		return preg_replace($url_pattern, $url_replace, $text);
 }
 ossn_register_callback('ossn', 'init', 'ossn_messages');
