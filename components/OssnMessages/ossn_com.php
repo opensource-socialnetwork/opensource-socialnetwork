@@ -193,10 +193,14 @@ function ossn_messages_page($pages) {
 						$guid     = ossn_user_by_username($username)->guid;
 						$messages = $OssnMessages->getNew($guid, ossn_loggedin_user()->guid);
 						if($messages) {
-								foreach($messages as $message) {
+								foreach($messages as $message){
+										$params['instance'] = (clone $message);									
+										$params['message_id'] = $message->id;
+										$params['view_type'] = 'messages/pages/view/with-xhr';
+																				
 										$user              = ossn_user_by_guid($message->message_from);
-										$message           = $message->message;
 										$params['user']    = $user;
+										$message           = $message->message;
 										$params['message'] = $message;
 										echo ossn_plugin_view('messages/templates/message-send', $params);
 								}
