@@ -54,6 +54,9 @@ class MessageTyping extends OssnAnnotation {
 						return $this->addAnnotation();
 				} else {
 						if(isset($status->id)) {
+								if(!isset($status->data)){
+									$status->data = new stdClass();	
+								}
 								$status->data->messagetypingstatus = $value;
 								$status->data->status_time_updated = time();
 								return $status->save();
