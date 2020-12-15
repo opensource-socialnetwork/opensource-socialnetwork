@@ -184,7 +184,7 @@ class OssnComponents extends OssnDatabase {
 						 * @Reason: Initial;
 						 */
 						$this->statement("SELECT * FROM ossn_components
-			    						  WHERE (com_id='$com');");
+			    						  WHERE (com_id= BINARY '$com');");
 						$this->execute();
 						$CHECK = $this->fetch();
 						if(!isset($CHECK->active)) {
