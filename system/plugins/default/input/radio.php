@@ -35,7 +35,8 @@ if(empty($values)){
 foreach($values as $item => $label){
 	$vars			= array();
 	$vars['value'] 	  = $item;
-	if(!empty($value) && $value === $item){
+	//[B] input/radio didn't accept 0 as value #1848
+	if(strlen($value) > 0 && $value === $item){
 		$vars['checked'] = 'checked';
 	}
 	
