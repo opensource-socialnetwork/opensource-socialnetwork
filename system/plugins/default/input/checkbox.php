@@ -15,6 +15,9 @@ if(isset($params['class'])){
 	$class = $class .' '. $params['class'];
 }
 $value = (isset($params['value'])) ? $params['value'] : '';
+//[B] input/checkbox not getting any label #1849
+$label = (isset($params['label'])) ? $params['label'] : '';
+
 $vars  = array();
 
 $defaults = array(
