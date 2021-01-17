@@ -16,3 +16,4 @@ The following developers contributed to this project:
 * Kevin Breen (https://github.com/kevthehermit)
 * Muh Arief Ikhsan Yafi (https://web.facebook.com/muharief.iy)
 * James Chang(https://www.opensource-socialnetwork.org/u/zuyan)
+* Alexander 손은석 
