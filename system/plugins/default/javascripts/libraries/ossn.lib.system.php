@@ -380,7 +380,7 @@ Ossn.is_callable = function(mixedVar, syntaxOnly, callableName){
  * @return boolean
  */
 Ossn.is_hook = function($hook, $type){
-	if(Ossn.isset(Ossn.hooks[$hook][$type])){
+	if(Ossn.hooks[$hook] && Ossn.hooks[$hook][$type]){
 		return true;
 	}
 	return false;
