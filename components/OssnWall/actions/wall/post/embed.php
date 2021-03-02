@@ -11,7 +11,7 @@
 //Post on edit not returning JSON type callback #1506
 header('Content-Type: application/json'); 
 // restore html linebreaks and remove double backslashes
-$text = str_replace('\n', '<br/>', input('text'));
+$text = str_replace('\n', "<br/>\n", input('text'));
 $text = str_replace("\\\\", "\\", $text);
 
 /* LinkPreview support --------------------------------- */
