@@ -10,7 +10,7 @@
  */
 //Post on edit not returning JSON type callback #1506
 header('Content-Type: application/json'); 
-$data = str_replace('\n', '<br/>', input('content'));
+$data = str_replace('\n', "<br/>\n", input('content'));
 $data = str_replace("\\\\", "\\", $data);
 $comment_guid = input('guid');
 $return = ossn_call_hook('comment:view', 'template:params', NULL, array('comment' => array('comments:post' => $data)));
