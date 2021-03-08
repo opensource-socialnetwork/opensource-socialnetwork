@@ -8,9 +8,9 @@
     <author_url>https://www.softlab24.com/</author_url>
     <license_url>http://www.opensource-socialnetwork.org/licence/</license_url>
     <author_url>http://informatikon.com</author_url>
-    <version>3.0</version>
+    <version>3.1</version>
 	<requires>
 		<type>ossn_version</type>
-		<version>4.0</version>
+		<version>5.6</version>
 	</requires>
 </component>

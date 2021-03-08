@@ -96,8 +96,10 @@ if ($params['user']->guid !== $params['post']->owner_guid) {
       		  ?>           
 			<div class="comments-list">
               <?php
-          			  if (ossn_is_hook('post', 'comments')) {
-                			echo ossn_call_hook('post', 'comments', $params['post']);
+          			  if (ossn_is_hook('post', 'comments')){
+                			$vars = array();
+                			$vars['post'] =  $params['post'];						  
+                			echo ossn_call_hook('post', 'comments', $vars);
            			   }
             		?>            				
 			</div>

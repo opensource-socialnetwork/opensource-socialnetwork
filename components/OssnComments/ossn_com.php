@@ -84,7 +84,10 @@ function ossn_comment_notifications_delete($callback, $type, $vars) {
 function ossn_entity_comment_link($callback, $type, $params) {
 		$guid = $params['entity']->guid;
 		ossn_unregister_menu('comment', 'entityextra');
-		
+		if(isset($params['allow_comment']) && $params['allow_comment'] == false){
+			$guid = false;
+			//false will just not execute the likes menu
+		}		
 		if(!empty($guid) && ossn_isLoggedIn()) {
 				ossn_register_menu_item('entityextra', array(
 						'name' => 'comment',

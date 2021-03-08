@@ -9,6 +9,9 @@
  * @link      https://www.opensource-socialnetwork.org/
  */
 
+$vars = $params;
+$params = $params['post'];	
+
 $object = $params->guid;
 
 $comments = new OssnComments;
@@ -20,18 +23,28 @@ if($params->full_view == true){
 	$comments->limit = false;
 	$comments->page_limit = false;
 }
+#[E] Show a group comments to non-member user #1861
+//by default allow it!
+$allow_post_comment = true;
+if(isset($vars['allow_comment']) && $vars['allow_comment'] == false){
+	$allow_post_comment = false;
+}
 $comments = $comments->GetComments($object);
 
 echo "<div class='ossn-comments-list-p{$object}'>";
 if ($comments) {
     foreach ($comments as $comment) {
+            //if $allow_post_comment is not allowed then we should not allow to like posts comments also
+            $comment->allow_comment_like = true;
+            if($allow_post_comment == false){
+                $comment->allow_comment_like = false;
+            }
             $data['comment'] = get_object_vars($comment);
             echo ossn_comment_view($data);
     }
 }
 echo '</div>';
-if (ossn_isLoggedIn()) {
-	
+if (ossn_isLoggedIn() && $allow_post_comment){
 	$user = ossn_loggedin_user();
 	$iconurl = $user->iconURL()->smaller;
     $inputs = ossn_view_form('post/comment_add', array(

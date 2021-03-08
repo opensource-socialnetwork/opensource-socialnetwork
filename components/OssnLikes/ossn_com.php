@@ -84,7 +84,10 @@ function ossn_entity_like_link($callback, $type, $params) {
 		$guid = $params['entity']->guid;
 		
 		ossn_unregister_menu('like', 'entityextra');
-		
+		if(isset($params['allow_like']) && $params['allow_like'] == false){
+			$guid = false;
+			//false will just not execute the likes menu
+		}
 		if(!empty($guid)) {
 				$likes = new OssnLikes;
 				if(!$likes->isLiked($guid, ossn_loggedin_user()->guid, 'entity')) {

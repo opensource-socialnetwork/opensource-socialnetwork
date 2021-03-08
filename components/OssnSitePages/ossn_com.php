@@ -19,10 +19,11 @@ function ossn_sitepages() {
     //register admin panel page
     ossn_register_com_panel('OssnSitePages', 'settings');
     //actions
-    ossn_register_action('sitepage/edit/terms', __OSSN_SITE_PAGES__ . 'actions/edit/terms.php');
-    ossn_register_action('sitepage/edit/about', __OSSN_SITE_PAGES__ . 'actions/edit/about.php');
-    ossn_register_action('sitepage/edit/privacy', __OSSN_SITE_PAGES__ . 'actions/edit/privacy.php');
-
+	if(ossn_isAdminLoggedin()){
+		ossn_register_action('sitepage/edit/terms', __OSSN_SITE_PAGES__ . 'actions/edit/terms.php');
+		ossn_register_action('sitepage/edit/about', __OSSN_SITE_PAGES__ . 'actions/edit/about.php');
+		ossn_register_action('sitepage/edit/privacy', __OSSN_SITE_PAGES__ . 'actions/edit/privacy.php');
+	}
     //register menu links in footer
     ossn_register_menu_link('about', ossn_print('site:about'), ossn_site_url('site/about'), 'footer');
     ossn_register_menu_link('site', ossn_print('site:terms'), ossn_site_url('site/terms'), 'footer');

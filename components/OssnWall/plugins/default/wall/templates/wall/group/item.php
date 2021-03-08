@@ -75,11 +75,13 @@ if(!$params['user']){
             <?php } ?>
          
 		</div>
-        <?php if($params['ismember'] === 1){  ?>
+        
 		<div class="comments-likes">
-			<div class="menu-likes-comments-share">
-				<?php echo ossn_view_menu('postextra', 'wall/menus/postextra');?>
-			</div>
+			<?php if($params['ismember'] === 1){  ?>
+				<div class="menu-likes-comments-share">
+					<?php echo ossn_view_menu('postextra', 'wall/menus/postextra');?>
+				</div>
+            <?php } ?>
          	<?php
       		  if (ossn_is_hook('post', 'likes')) {
           			  echo ossn_call_hook('post', 'likes', $params['post']);
@@ -87,13 +89,17 @@ if(!$params['user']){
       		  ?>           
 			<div class="comments-list">
               <?php
-          			  if (ossn_is_hook('post', 'comments')) {
-                			echo ossn_call_hook('post', 'comments', $params['post']);
-           			   }
-            		?>            				
+          		if(ossn_is_hook('post', 'comments')) {
+						$vars = array();
+						$vars['post'] =  $params['post'];
+						if($params['ismember'] != 1){
+								$vars['allow_comment'] = false;
+						}
+                		echo ossn_call_hook('post', 'comments', $vars);
+           		}
+            	?>            				
 			</div>
 		</div>
-        <?php } ?>
 	</div>
 </div>
 <!-- ./ wall item -->

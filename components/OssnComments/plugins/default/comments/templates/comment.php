@@ -29,6 +29,10 @@ if($datalikes  > 0){
 	}
 	$last_three = array_slice($last_three_icons, -3);
 }
+$allow_comment_like = true;
+if(isset($comment->allow_comment_like) && $comment->allow_comment_like == false){
+	$allow_comment_like = false;
+}
 ?>
 <div class="comments-item" id="comments-item-<?php echo $comment->id; ?>">
 	<div class="row">
@@ -62,7 +66,7 @@ if($datalikes  > 0){
 				<div class="comment-metadata">
 					<div class="time-created"><?php echo ossn_user_friendly_time($comment->time_created); ?></div>
 					<?php
-						if (class_exists('OssnLikes')) {
+						if (class_exists('OssnLikes') && $allow_comment_like) {
 							if (ossn_isLoggedIn()) {
 						             	 if (!$OssnLikes->isLiked($comment->id, ossn_loggedin_user()->guid, $type)) {
 												echo ossn_plugin_view('output/url', array(

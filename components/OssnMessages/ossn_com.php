@@ -302,10 +302,10 @@ function ossn_messages_entity_type($hook, $type, $return, $params) {
  *
  * Usage:   See example page: linkify.html
  */
-function linkify_chat($text) {
-		$url_pattern =       # Allow a "&" char only if not start of an...
-            &(?:gt|\#0*62|\#x0*3e);                  # HTML ">" entity, or
-          | &(?:amp|apos|quot|\#eses).
+function linkify_chat($text){
+    $url_pattern = '/# Rev:20100913_0900 github.com\/jmrware\/LinkifyURL
+    # Match http & ftp URL that is not already linkified.
+      # Alternative 1: URL delimited by (parentheses).
       (\()                     # $1  "(" start delimiter.
       ((?:ht|f)tps?:\/\/[a-z0-9\-._~!$&\'()*+,;=:\/?#[\]@%]+)  # $2: URL.
       (\))                     # $3: ")" end delimiter.
@@ -343,8 +343,8 @@ function linkify_chat($text) {
         [a-z0-9\-_~$()*+=\/#[\]@%]  # Last char can\'t be [.!&\',;:?]
       )                        # End $14. Other non-delimited URL.
     /imx';
-		//Open link in new tab (enhancement) #518
-		$url_replace = '$1$4$7$10$13<a href="$2$5$8$11$14" \\1 target="_blank">$2$5$8$11$14</a>$3$6$9$12';
-		return preg_replace($url_pattern, $url_replace, $text);
+	//Open link in new tab (enhancement) #518
+    $url_replace = '$1$4$7$10$13<a href="$2$5$8$11$14" \\1 target="_blank">$2$5$8$11$14</a>$3$6$9$12';
+    return preg_replace($url_pattern, $url_replace, $text);
 }
 ossn_register_callback('ossn', 'init', 'ossn_messages');
