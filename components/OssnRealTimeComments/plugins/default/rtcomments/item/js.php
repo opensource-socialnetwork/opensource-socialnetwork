@@ -8,7 +8,7 @@ if(isset($params['post']) && !empty($params['post']->guid)){
 }
 ?>
 <script>$(document).ready(function(){Ossn.commentTyping(<?php echo $guid?>, 'post');});</script>
-<div class="comments-realtime-status ctyping-post-<?php echo $guid;?>" data-type="post" data-guid="<?php echo $params->guid;?>" data-time="<?php echo time();?>">
+<div class="comments-realtime-status ctyping-post-<?php echo $guid;?>" data-type="post" data-guid="<?php echo $guid;?>" data-time="<?php echo time();?>">
 	<div class="comments-item ctyping-c-item ctyping-hide">
     	<div class="ctyping-c-item-container">
     	<div class="row">
