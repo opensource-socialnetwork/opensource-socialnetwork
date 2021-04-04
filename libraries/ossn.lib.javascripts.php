@@ -26,18 +26,24 @@ function ossn_javascript() {
 
     ossn_new_js('opensource.socialnetwork', 'javascripts/libraries/core');
 	
-    ossn_load_js('opensource.socialnetwork');
+    ossn_new_js('ossn.admin', 'javascripts/libraries/ossn.lib.admin');
+    ossn_new_js('ossn.site', 'javascripts/libraries/ossn.lib.site');
+	
+	//core must be loaded to both site and admin (frontend/backend)
+    ossn_load_js('opensource.socialnetwork');	
     ossn_load_js('opensource.socialnetwork', 'admin');
+    ossn_load_js('ossn.site');
 	
 	//some internal and external js
 	ossn_new_external_js('chart.js', 'vendors/Chartjs/Chart.min.js');
 	ossn_new_external_js('chart.legend.js', 'vendors/Chartjs/chart.legend.js');
-	ossn_new_external_js('jquery-1.11.1.min.js', 'vendors/jquery/jquery-1.11.1.min.js');
-	ossn_new_external_js('tinymce.min', 'vendors/tinymce/tinymce.min.js');
-	ossn_new_external_js('jquery-ui.min.js', '//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js', false);
+	ossn_new_external_js('jquery-2.2.4.min.js', 'vendors/jquery/jquery-2.2.4.min.js');
 	
-	ossn_load_external_js('jquery-1.11.1.min.js');
-	ossn_load_external_js('jquery-1.11.1.min.js', 'admin');
+	ossn_new_external_js('tinymce.min', 'vendors/tinymce/tinymce.min.js');
+	ossn_new_external_js('jquery-ui.min.js', '//ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js', false);
+	
+	ossn_load_external_js('jquery-2.2.4.min.js');
+	ossn_load_external_js('jquery-2.2.4.min.js', 'admin');
 
 	ossn_load_external_js('jquery-ui.min.js');
 	ossn_load_external_js('jquery-ui.min.js', 'admin');

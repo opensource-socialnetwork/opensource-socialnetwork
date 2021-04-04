@@ -29,7 +29,7 @@ function OssnMessages() {
 function ossn_messages() {
 		ossn_extend_view('css/ossn.default', 'css/message');
 		ossn_register_page('messages', 'ossn_messages_page');
-		ossn_extend_view('js/opensource.socialnetwork', 'js/OssnMessages');
+		ossn_extend_view('js/ossn.site', 'js/OssnMessages');
 		
 		if(ossn_isLoggedin()) {
 				ossn_register_action('message/send', __OSSN_MESSAGES__ . 'actions/message/send.php');

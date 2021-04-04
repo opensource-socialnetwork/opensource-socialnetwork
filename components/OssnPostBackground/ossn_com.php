@@ -70,7 +70,7 @@ ossn_register_class(array(
 		'PostBackground' => PostBackground . 'classes/PostBackground.php'
 ));
 function postbg_init() {
-		ossn_extend_view('js/opensource.socialnetwork', 'postbg/js');
+		ossn_extend_view('js/ossn.site', 'postbg/js');
 		ossn_extend_view('css/ossn.default', 'postbg/css');
 		
 		$post_background = array(

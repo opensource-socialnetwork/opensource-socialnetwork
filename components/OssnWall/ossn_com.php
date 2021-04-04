@@ -33,7 +33,7 @@ function ossn_wall() {
 		}
 		//css and js
 		ossn_extend_view('css/ossn.default', 'css/wall');
-		ossn_extend_view('js/opensource.socialnetwork', 'js/ossn_wall');
+		ossn_extend_view('js/ossn.site', 'js/ossn_wall');
 		
 		ossn_new_external_js('jquery.tokeninput', 'vendors/jquery/jquery.tokeninput.js');
 		

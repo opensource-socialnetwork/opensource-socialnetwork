@@ -23,7 +23,7 @@ function ossn_profile() {
 		ossn_register_page('cover', 'cover_page_handler');
 		//css and js
 		ossn_extend_view('css/ossn.default', 'css/profile');
-		ossn_extend_view('js/opensource.socialnetwork', 'js/OssnProfile');
+		ossn_extend_view('js/ossn.site', 'js/OssnProfile');
 		//actions
 		if(ossn_isLoggedin()) {
 				ossn_register_action('profile/photo/upload', __OSSN_PROFILE__ . 'actions/photo/upload.php');

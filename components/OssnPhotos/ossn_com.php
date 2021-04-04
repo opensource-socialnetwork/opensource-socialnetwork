@@ -28,7 +28,7 @@ function ossn_photos_initialize() {
 		//css
 		ossn_extend_view('css/ossn.default', 'css/photos');
 		//js
-		ossn_extend_view('js/opensource.socialnetwork', 'js/OssnPhotos');
+		ossn_extend_view('js/ossn.site', 'js/OssnPhotos');
 		
 		//hooks
 		ossn_add_hook('profile', 'subpage', 'ossn_profile_photos_page');

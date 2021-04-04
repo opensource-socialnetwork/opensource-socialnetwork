@@ -15,6 +15,6 @@ function auto_pagination() {
 		ossn_load_external_js('ossn.autopagination');
 		ossn_load_external_js('ossn.autopagination', 'admin');
 		
-		ossn_extend_view('js/opensource.socialnetwork', 'AutoPagination/js');
+		ossn_extend_view('js/ossn.site', 'AutoPagination/js');
 }
 ossn_register_callback('ossn', 'init', 'auto_pagination');

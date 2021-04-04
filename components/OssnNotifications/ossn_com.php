@@ -21,7 +21,7 @@ function ossn_notifications() {
 		//css
 		ossn_extend_view('css/ossn.default', 'css/notifications');
 		//js
-		ossn_extend_view('js/opensource.socialnetwork', 'js/OssnNotifications');
+		ossn_extend_view('js/ossn.site', 'js/OssnNotifications');
 		ossn_extend_view('ossn/site/head', 'js/notifications-settings');
 		
 		//pages

@@ -11,6 +11,6 @@
 define('__OSSN_SOUNDS__', ossn_route()->com . 'OssnSounds/');
 function ossn_sounds_init() {
 	ossn_extend_view('css/ossn.default', 'css/sounds');
-	ossn_extend_view('js/opensource.socialnetwork', 'js/sounds');
+	ossn_extend_view('js/ossn.site', 'js/sounds');
 }
 ossn_register_callback('ossn', 'init', 'ossn_sounds_init');

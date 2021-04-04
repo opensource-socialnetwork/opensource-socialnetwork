@@ -26,7 +26,7 @@ function ossn_likes() {
 				ossn_register_action('annotation/unlike', __OSSN_LIKES__ . 'actions/annotation/unlike.php');
 				
 		}
-		ossn_extend_view('js/opensource.socialnetwork', 'js/OssnLikes');
+		ossn_extend_view('js/ossn.site', 'js/OssnLikes');
 		ossn_extend_view('css/ossn.default', 'css/likes');
 		
 		ossn_register_callback('post', 'delete', 'ossn_post_like_delete');

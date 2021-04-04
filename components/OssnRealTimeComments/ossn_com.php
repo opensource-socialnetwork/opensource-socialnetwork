@@ -13,7 +13,7 @@ ossn_register_class(array(
 		'RealTimeComments' => RealTimeComments . 'classes/RealTimeComments.php'
 ));
 function rtcomments_init() {		
-		ossn_extend_view('js/opensource.socialnetwork', 'js/rtcomments');
+		ossn_extend_view('js/ossn.site', 'js/rtcomments');
 		ossn_extend_view('css/ossn.default', 'css/rtcomments');
 		
 		if(ossn_isLoggedin()){

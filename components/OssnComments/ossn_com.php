@@ -32,7 +32,7 @@ function ossn_comments() {
 		ossn_add_hook('post', 'comments', 'ossn_post_comments');
 		ossn_add_hook('post', 'comments:entity', 'ossn_post_comments_entity');
 		
-		ossn_extend_view('js/opensource.socialnetwork', 'js/OssnComments');
+		ossn_extend_view('js/ossn.site', 'js/OssnComments');
 		ossn_extend_view('css/ossn.default', 'css/comments');
 		
 		ossn_register_page('comment', 'ossn_comment_page');

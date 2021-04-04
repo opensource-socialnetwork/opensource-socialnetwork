@@ -25,7 +25,7 @@ function ossn_groups() {
 		ossn_extend_view('css/ossn.default', 'css/groups');
 		
 		//group js
-		ossn_extend_view('js/opensource.socialnetwork', 'js/groups');
+		ossn_extend_view('js/ossn.site', 'js/groups');
 		
 		//group pages
 		ossn_register_page('group', 'ossn_group_page');

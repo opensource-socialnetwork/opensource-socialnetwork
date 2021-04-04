@@ -14,7 +14,7 @@ ossn_register_class(array(
 ));
 function message_typing_init() {
 		ossn_extend_view('css/ossn.default', 'messagetyping/css');
-		ossn_extend_view('js/opensource.socialnetwork', 'messagetyping/js');
+		ossn_extend_view('js/ossn.site', 'messagetyping/js');
 		
 		ossn_extend_view('js/OssnChat.Boot', 'messagetyping/check_status');
 		if(ossn_isLoggedin()) {
