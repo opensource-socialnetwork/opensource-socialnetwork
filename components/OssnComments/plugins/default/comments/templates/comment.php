@@ -11,7 +11,7 @@
 ossn_trigger_callback('comment', 'load', $params['comment']);
 $comment = arrayObject($params['comment'], 'OssnWall');
 $user = ossn_user_by_guid($comment->owner_guid);
-if ($comment->type == 'comments:post' || $comment->type == 'comments:entity') {
+if ($comment->type == 'comments:post' || $comment->type == 'comments:entity' || $comment->type == 'comments:object') {
     $type = 'annotation';
 }
 $datalikes = '';
@@ -51,6 +51,8 @@ if(isset($comment->allow_comment_like) && $comment->allow_comment_like == false)
 						echo "<span class='comment-text'>";
 						        if ($comment->type == 'comments:entity') {
 						            echo ' '.nl2br($comment->getParam('comments:entity'));
+						        } elseif ($comment->type == 'comments:object') {
+						            echo ' '.nl2br($comment->getParam('comments:object'));
 						        } elseif ($comment->type == 'comments:post') {
 						            echo ' '.nl2br($comment->getParam('comments:post'));
 						        }

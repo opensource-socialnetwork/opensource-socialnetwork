@@ -20,12 +20,16 @@ if ($comment->type == 'comments:post') {
         $group = ossn_get_group_by_guid($post->owner_guid);
     }
 }
+if ($comment->type == 'comments:object') {
+    $object = ossn_get_object($comment->subject_guid);
+}
+
 $user = ossn_loggedin_user();
 if ($comment->type == 'comments:entity') {
     $entity = ossn_get_entity($comment->subject_guid);
 }
 //Post owner can not delete others comments #607
-if (($comment->owner_guid == $user->guid) || ($post->type == 'user' && $user->guid == $post->owner_guid) || ($group->owner_guid == $user->guid) || ($entity->owner_guid == $user->guid) || ossn_isAdminLoggedin()) {
+if (($comment->owner_guid == $user->guid) ||($object && $object->type == 'user' && $user->guid == $object->owner_guid) || ($post->type == 'user' && $user->guid == $post->owner_guid) || ($group->owner_guid == $user->guid) || ($entity->owner_guid == $user->guid) || ossn_isAdminLoggedin()) {
     if ($delete->deleteComment($comment->getID())) {
         if (ossn_is_xhr()) {
             echo 1;

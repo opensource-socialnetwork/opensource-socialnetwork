@@ -355,6 +355,8 @@ function ossn_notificaiton_like_annotation_hook($hook, $type, $return, $params) 
 		
 		$annotation = $annotation->getAnnotationById();
 		if($annotation) {
+				//[E] refine the like:annotation notification type: #1868
+				$params['type'] = "like:annotation:{$annotation->type}";
 				$params['owner_guid']   = $annotation->owner_guid;
 				$params['subject_guid'] = $annotation->subject_guid;
 				return $params;

@@ -16,8 +16,9 @@ class OssnComments extends OssnAnnotation {
 		 */
 		public static function getType($object) {
 				$type = array(
-						"comments:post" => 'post',
-						"comments:entity" => 'entity'
+						"comments:post" => 'post', // <- this is actually object
+						"comments:entity" => 'entity',
+						"comments:object" => 'object',
 				);
 				return $type[$object];
 		}
@@ -37,7 +38,8 @@ class OssnComments extends OssnAnnotation {
 						return false;
 				}
 				//[B]comment is added if the post/entity has been deleted already #1645
-				if($type == 'post') {
+				//renewed for objects also
+				if($type == 'post' || $type == 'object') {
 						$postc = ossn_get_object($subject_id);
 						if(!$postc) {
 								return false;

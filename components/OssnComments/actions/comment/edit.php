@@ -17,6 +17,8 @@ if($comment && (strlen($text) || $comment->{'file:comment:photo'})) {
 		$comment->data	= new stdClass;
 		if($comment->type == 'comments:entity') {
 				$comment->data->{'comments:entity'} = $text;
+		} elseif($comment->type == 'comments:object') {
+				$comment->data->{'comments:object'} = $text;
 		} elseif($comment->type == 'comments:post') {
 				$comment->data->{'comments:post'} = $text;
 		}
