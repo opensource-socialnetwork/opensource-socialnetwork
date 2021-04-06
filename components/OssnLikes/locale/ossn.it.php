@@ -10,12 +10,12 @@
  */
 $en = array(
 	'people:like:this' => 'Persone a cui piace questo elemento',
-	'ossn:like:this' => 'A %s è piaciuto',
+	'ossn:like:this' => 'A %s Ã¨ piaciuto',
 	'ossn:like:you:and:this' => 'A te e %s piace questo',
 	'ossn:like:people' => '%s Persone',
 	'ossn:like:person' => '%s Persona',
-	'ossn:liked:you' => 'Ti è piaciuto questo',
-	'ossn:unlike' => 'Non mi piace più',
+	'ossn:liked:you' => 'Ti Ã¨ piaciuto questo',
+	'ossn:unlike' => 'Non mi piace piÃ¹',
 	'ossn:like' => 'Mi piace',		
 );
-ossn_register_languages('it', $en); 
+ossn_register_languages('it', $en);
