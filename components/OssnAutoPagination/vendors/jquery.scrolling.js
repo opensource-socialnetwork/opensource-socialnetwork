@@ -40,7 +40,18 @@
   }
   var $window;
   var $wasInView;
-
+  
+  //https://stackoverflow.com/a/46078814
+  //JQuery 3.x didn't send selector 
+  //$arsalanshah
+  
+   $.fn._init = $.fn.init
+   $.fn.init = function( selector, context, root ) {
+        return (typeof selector === 'string') ? new $.fn._init(selector, context, root).data('selector', selector) : new $.fn._init( selector, context, root );
+    };
+    $.fn.getSelector = function() {
+        return $(this).data('selector');
+    };
   function process() {
     checkLock = false;
     for (var index in selectors) {
@@ -91,7 +102,13 @@
     // watching for element's presence in browser viewport
     scrolling: function(options) {
       var opts = $.extend({}, defaults, options || {});
-      var selector = this.selector || this;
+	
+	 //Jquery < 3.0 shows a string as of $(<selector>) in 3.x it return JQuery object
+	 //so to get a selector as of 2.x 
+	 //https://stackoverflow.com/a/46078814
+     // var selector = this.selector || this;
+      var selector = this.getSelector() || this;
+	  
       if (!checkBound) {
         checkBound = true;
         var onCheck = function() {
