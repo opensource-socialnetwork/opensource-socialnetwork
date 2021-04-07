@@ -42,7 +42,7 @@ $(document).ready(function() {
 	if($chatsidebar.length){
 		$chatsidebar.css('height', $(window).height() - 45);
 	}
-	$(document).scroll(function() {
+	$(document).on("scroll", function() {
 		$document_height = $(document).height();						
 		$(".sidebar").height($document_height);
 		
@@ -57,7 +57,7 @@ $(document).ready(function() {
 		}
 	});
 	if($(document).innerWidth() >= 1300){
-		$('#sidebar-toggle').click();
+		$('#sidebar-toggle').trigger('click');
 	}
 });
 //https://www.opensource-socialnetwork.org/component/view/3657/optimize-pre-loader

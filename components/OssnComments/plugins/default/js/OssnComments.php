@@ -12,7 +12,7 @@ Ossn.register_callback('ossn', 'init', 'ossn_comment_init');
 Ossn.register_callback('ossn', 'init', 'ossn_comment_delete_handler');
 Ossn.register_callback('ossn', 'init', 'ossn_comment_edit');
 Ossn.PostComment = function($container){
-	$('#comment-box-p' + $container).keypress(function(e){
+	$('#comment-box-p' + $container).on('keypress', function(e){
 		if(e.which == 13){
 			if(e.shiftKey === false){
 				//Postings and comments with same behaviour #924
@@ -68,7 +68,7 @@ Ossn.PostComment = function($container){
 	});
 };
 Ossn.ObjectComment = function($container){
-	$('#comment-box-o' + $container).keypress(function(e){
+	$('#comment-box-o' + $container).on('keypress', function(e){
 		if(e.which == 13){
 			if(e.shiftKey === false){
 				//Postings and comments with same behaviour #924
@@ -124,7 +124,7 @@ Ossn.ObjectComment = function($container){
 	});
 };
 Ossn.EntityComment = function($container){
-	$('#comment-box-e' + $container).keypress(function(e){
+	$('#comment-box-e' + $container).on('keypress', function(e){
 		if(e.which == 13){
 			if(e.shiftKey === false){
 				//Postings and comments with same behaviour #924
@@ -193,7 +193,7 @@ Ossn.CommentMenu = function($id){
 
 function ossn_comment_delete_handler(){
 	$(document).ready(function(){
-		$(document).delegate('.ossn-delete-comment', 'click', function(e){
+		$('body').on('click', '.ossn-delete-comment', function(e){
 			e.preventDefault();
 			$comment = $(this);
 			$url = $comment.attr('href');
@@ -271,7 +271,7 @@ Ossn.CommentImage = function($container, $ftype){
 };
 function ossn_comment_edit(){
 	$(document).ready(function(){
-		$('body').delegate('.ossn-edit-comment', 'click', function(){
+		$('body').on('click', '.ossn-edit-comment', function(){
 			var $dataguid = $(this).attr('data-guid');
 			Ossn.MessageBox('comment/edit/' + $dataguid);
 		});
@@ -319,19 +319,19 @@ function ossn_comment_edit(){
 }
 function ossn_comment_init(){
 	$(document).ready(function(){
-		$('body').delegate('.comment-post', 'click', function(){
+		$('body').on('click', '.comment-post', function(){
 			var $guid = $(this).attr('data-guid');
 			if($guid){
 				$("#comment-box-p" + $guid).focus();
 			}
 		});
-		$('body').delegate('.comment-entity', 'click', function(){
+		$('body').on('click', '.comment-entity', function(){
 			var $guid = $(this).attr('data-guid');
 			if($guid){
 				$("#comment-box-e" + $guid).focus();
 			}
 		});
-		$('body').delegate('.comment-object', 'click', function(){
+		$('body').on('click', '.comment-object', function(){
 			var $guid = $(this).attr('data-guid');
 			if($guid){
 				$("#comment-box-o" + $guid).focus();

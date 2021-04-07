@@ -10,32 +10,32 @@
 //<script>
 Ossn.RegisterStartupFunction(function() {
     $(document).ready(function() {
-        $('#ossn-add-album').click(function() {
+        $('#ossn-add-album').on('click', function() {
             Ossn.MessageBox('album/add');
         });
-        $('#album-add').click(function() {
+        $('#album-add').on('click', function() {
             Ossn.MessageBox('album/add');
         });
         $('body').on('click', '#ossn-photos-edit-album', function(){
 			$guid = $(this).attr('data-guid');
             Ossn.MessageBox("album/edit/"+$guid);
         });		
-        $('#ossn-add-photos').click(function() {
+        $('#ossn-add-photos').on('click', function() {
             $dataurl = $(this).attr('data-url');
             Ossn.MessageBox('photos/add' + $dataurl);
         });
-        $("#ossn-photos-show-gallery").click(function(e) {
+        $("#ossn-photos-show-gallery").on('click', function(e) {
             	e.preventDefault();
             	$(".ossn-gallery").eq(0).trigger("click");
         })
         if($('.ossn-gallery').length){
 	        $(".ossn-gallery").fancybox();
         }
-        $('body').delegate('#ossn-photos-add-button-inner', 'click', function(e){
+        $('body').on('click', '#ossn-photos-add-button-inner', function(e){
         	e.preventDefault();
 		$('.ossn-photos-add-button').find('input').click();
         });
-	$('body').delegate('.ossn-photos-add-button input', 'change', function(e){
+	$('body').on('change', '.ossn-photos-add-button input', function(e){
 		$length = $(this)[0].files.length;
 		$('.ossn-photos-add-button').find('.images').show();
 		$('.ossn-photos-add-button').find('.images .count').html($length);

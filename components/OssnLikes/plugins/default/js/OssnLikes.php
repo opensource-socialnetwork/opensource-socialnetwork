@@ -282,7 +282,7 @@ Ossn.RegisterStartupFunction(function() {
 								.attr('data-type', 'Like')
 								.attr('href', $(this).attr('href'));
 	});			
-    $(document).delegate('.ossn-like-comment-react, .ossn-like-comment', 'click', function(e) {
+    $('body').on('click', '.ossn-like-comment-react, .ossn-like-comment', function(e) {
             e.preventDefault();
             var $item = $(this);
             var $type = $.trim($item.attr('data-type'));

@@ -5,7 +5,7 @@ $settings = $component->getComSettings('OssnNotifications');
 if($settings && $settings->close_anywhere == 'on'){
 ?>
 $(document).ready(function() {
-	$('body').click(function(e){
+	$('body').on('click', function(e){
 		var clicked_target = e.target.className.substring(0, 6);
 		if (clicked_target != 'btn bt' && clicked_target != 'ossn-n' && clicked_target != 'ossn-i' && clicked_target != 'fa fa-') {
 			Ossn.NotificationBoxClose();

@@ -1,14 +1,14 @@
 //<script>
 Ossn.RegisterStartupFunction(function() {
 	$(document).ready(function() {
-		$('#ossn-group-add').click(function() {
+		$('#ossn-group-add').on('click', function() {
 			Ossn.MessageBox('groups/add');
 		});
 	});
 });
 Ossn.RegisterStartupFunction(function() {
 	$(document).ready(function() {
-		$("#group-upload-cover").submit(function(event) {
+		$("#group-upload-cover").on('submit', function(event) {
 			event.preventDefault();
 			var formData = new FormData($(this)[0]);
 			var $url = Ossn.site_url + 'action/group/cover/upload';
@@ -70,7 +70,7 @@ Ossn.RegisterStartupFunction(function() {
 			return false;
 		});
 
-		$('#add-cover-group').click(function(e) {
+		$('#add-cover-group').on('click', function(e) {
 			e.preventDefault();
 			$('#group-upload-cover').find('.coverfile').click();
 		});
@@ -79,7 +79,7 @@ Ossn.RegisterStartupFunction(function() {
 
 Ossn.RegisterStartupFunction(function() {
 	$(document).ready(function() {
-		$('#reposition-group-cover').click(function() {
+		$('#reposition-group-cover').on('click', function() {
 			$('.group-c-position').attr('style', 'display:inline-block !important;');
 			$('.ossn-group-cover-button').hide();
 			$('.ossn-group-cover').unbind('mouseenter').unbind('mouseleave');
@@ -90,11 +90,12 @@ Ossn.RegisterStartupFunction(function() {
 
 Ossn.RegisterStartupFunction(function() {
 	$(document).ready(function() {
-		$('.ossn-group-cover').hover(function() {
+		$('.ossn-group-cover').on('mouseenter', function(){
 			$('.ossn-group-cover-button').show();
-		}, function() {
-			$('.ossn-group-cover-button').hide();
 		});
+		$('.ossn-group-cover').on('mouseleave', function(){
+			$('.ossn-group-cover-button').hide();
+		});			
 	});
 });
 
@@ -121,7 +122,7 @@ Ossn.repositionGroupCOVER = function($group) {
 							
 Ossn.RegisterStartupFunction(function() {
 	$(document).ready(function() {
-		$('.ossn-group-change-owner').click(function(e) {
+		$('.ossn-group-change-owner').on('click', function(e) {
 			e.preventDefault();
 			var new_owner = $(this).attr('data-new-owner');
 			var is_admin  = $(this).attr('data-is-admin');

@@ -34,14 +34,14 @@ Ossn.RegisterStartupFunction(function() {
 		/**
 		 * Reposition cover
 		 */
-		$('#reposition-profile-cover').click(function() {
+		$('#reposition-profile-cover').on('click', function() {
 			$('#profile-menu').hide();
 			$('#cover-menu').show();
 			$('.profile-cover-controls').hide();
 			$('.profile-cover').unbind('mouseenter').unbind('mouseleave');
 			Ossn.Drag();
 		});
-		$("#upload-photo").submit(function(event) {
+		$("#upload-photo").on('submit', function(event) {
 			event.preventDefault();
 			var formData = new FormData($(this)[0]);
 			var $url = Ossn.site_url + 'action/profile/photo/upload';
@@ -74,7 +74,7 @@ Ossn.RegisterStartupFunction(function() {
 			return false;
 		});
 
-		$("#upload-cover").submit(function(event) {
+		$("#upload-cover").on('submit', function(event) {
 			event.preventDefault();
 			//console.log('no');
 			var formData = new FormData($(this)[0]);
@@ -151,11 +151,13 @@ Ossn.repositionCOVER = function() {
 			$("#draggable").draggable('destroy');
 			$('#profile-menu').show();
 			$('#cover-menu').hide();
-			$('.profile-cover').hover(function() {
+			
+			$('.profile-cover').on('mouseenter', function(){
 				$('.profile-cover-controls').show();
-			}, function() {
-				$('.profile-cover-controls').hide();
 			});
+			$('.profile-cover').on('mouseleave', function(){
+				$('.profile-cover-controls').hide();
+			});					
 		},
 	});
 };
@@ -166,11 +168,12 @@ Ossn.repositionCOVER = function() {
  */
 Ossn.RegisterStartupFunction(function() {
 	$(document).ready(function() {
-		$('.profile-photo').hover(function() {
-			$('.upload-photo').slideDown();
-		}, function() {
-			$('.upload-photo').slideUp();
+		$('.profile-photo').on('mouseenter', function(){
+				$('.upload-photo').slideDown();
 		});
+		$('.profile-photo').on('mouseleave', function(){
+			$('.upload-photo').slideUp();
+		});		
 	});
 });
 /**
@@ -180,10 +183,11 @@ Ossn.RegisterStartupFunction(function() {
  */
 Ossn.RegisterStartupFunction(function() {
 	$(document).ready(function() {
-		$('.profile-cover').hover(function() {
-			$('.profile-cover-controls').show();
-		}, function() {
-			$('.profile-cover-controls').hide();
-		});
+			$('.profile-cover').on('mouseenter', function(){
+				$('.profile-cover-controls').show();
+			});
+			$('.profile-cover').on('mouseleave', function(){
+				$('.profile-cover-controls').hide();
+			});		
 	});
 });

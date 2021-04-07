@@ -90,7 +90,7 @@ function ossn_system_messages(){
  */
 function ossn_topbar_dropdown(){
 	$(document).ready(function(){
-		$('.ossn-topbar-dropdown-menu-button').click(function(){
+		$('.ossn-topbar-dropdown-menu-button').on('click', function(){
 			if($('.ossn-topbar-dropdown-menu-content').is(":not(:visible)")){
 				$('.ossn-topbar-dropdown-menu-content').show();
 			} else {
@@ -108,7 +108,7 @@ function ossn_topbar_dropdown(){
 function ossn_component_delelte_confirmation(){
 	$(document).ready(function(){
 		//show a confirmation mssage before delete component #444
-		$('.ossn-com-delete-button').click(function(e){
+		$('.ossn-com-delete-button').on('click', function(e){
 			e.preventDefault();
 			var del = confirm(Ossn.Print('ossn:component:delete:exception'));
 			if(del == true){
@@ -125,7 +125,7 @@ function ossn_component_delelte_confirmation(){
  */
 function ossn_makesure_confirmation(){
 	$(document).ready(function(){
-		$('.ossn-make-sure').click(function(e){
+		$('.ossn-make-sure').on('click', function(e){
 			e.preventDefault();
 			var del = confirm(Ossn.Print('ossn:exception:make:sure'));
 			if(del == true){
@@ -142,7 +142,7 @@ function ossn_makesure_confirmation(){
  */
 function ossn_administrator_user_delete(){
 	$(document).ready(function(){
-		$('.userdelete').click(function(e){
+		$('.userdelete').on('click', function(e){
 			e.preventDefault();
 			var del = confirm(Ossn.Print('ossn:user:delete:exception'));
 			if(del == true){

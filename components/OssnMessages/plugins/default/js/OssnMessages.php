@@ -128,7 +128,7 @@ Ossn.message_scrollMove = function(fid) {
 /**<script>*/
 $(document).ready(function() {
 	$calledOnce = [];
-	$('.ossn-messages .messages-recent .messages-from').scroll(function() {
+	$('.ossn-messages .messages-recent .messages-from').on('scroll', function() {
 		if ($('.ossn-pagination').visibleInScroll().isVisible) {
 			$element = $('.ossn-messages .messages-recent .messages-from .inner .container-table-pagination');
 			$next = $element.find('.ossn-pagination .active').next();

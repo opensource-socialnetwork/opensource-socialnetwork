@@ -123,17 +123,17 @@ function ossn_wall_postform(){
 
 function ossn_wall_init(){
 	$(document).ready(function(){
-		$('.ossn-wall-container').find('.ossn-wall-friend').click(function(){
+		$('.ossn-wall-container').find('.ossn-wall-friend').on('click', function(){
 			$('#ossn-wall-location').hide();
 			$('#ossn-wall-photo').hide();
 			$('#ossn-wall-friend').show();
 		});
-		$('.ossn-wall-container').find('.ossn-wall-location').click(function(){
+		$('.ossn-wall-container').find('.ossn-wall-location').on('click', function(){
 			$('#ossn-wall-friend').hide();
 			$('#ossn-wall-photo').hide();
 			$('#ossn-wall-location').show();
 		});
-		$('.ossn-wall-container').find('.ossn-wall-photo').click(function(){
+		$('.ossn-wall-container').find('.ossn-wall-photo').on('click', function(){
 			$('#ossn-wall-friend').hide();
 			$('#ossn-wall-location').hide();
 			$('#ossn-wall-photo').show();
@@ -355,7 +355,7 @@ function ossn_wall_init(){
 				<?php } ?>
 		});
 
-		$('body').delegate('.ossn-wall-post-edit', 'click', function(){
+		$('body').on('click', '.ossn-wall-post-edit', function(){
 			var $dataguid = $(this).attr('data-guid');
 			Ossn.MessageBox('post/edit/' + $dataguid);
 		});
@@ -384,7 +384,7 @@ function ossn_wall_init(){
 
 function ossn_wall_select_friends(){
 	$(document).ready(function(){
-		if($.isFunction($.fn.tokenInput)){
+		if(typeof $.fn.tokenInput === 'function'){
 			$("#ossn-wall-friend-input").tokenInput(Ossn.site_url + "friendpicker", {
 				placeholder: Ossn.Print('tag:friends'),
 				hintText: false,
@@ -436,7 +436,7 @@ function ossn_wall_location(){
 			var placesAutocomplete = places({
 				container: document.querySelector('#ossn-wall-location-input')
 			});
-			$('#ossn-wall-location-input').keypress(function(event){
+			$('#ossn-wall-location-input').on('keypress', function(event){
 				if(event.keyCode == 13){
 					event.preventDefault();
 					return false;

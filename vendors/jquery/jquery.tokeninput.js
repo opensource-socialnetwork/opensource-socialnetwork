@@ -256,7 +256,7 @@
                 outline: "none"
             })
             .attr("id", $(input).data("settings").idPrefix + input.id)
-            .focus(function () {
+            .on('focus', function () {
                 if ($(input).data("settings").disabled) {
                     return false;
                 } else if ($(input).data("settings").tokenLimit === null || $(input).data("settings").tokenLimit !== token_count) {
@@ -264,7 +264,7 @@
                 }
                 token_list.addClass($(input).data("settings").classes.focused);
             })
-            .blur(function () {
+            .on('blur', function () {
                 hide_dropdown();
 
                 if ($(input).data("settings").allowFreeTagging) {
@@ -274,8 +274,8 @@
                 $(this).val("");
                 token_list.removeClass($(input).data("settings").classes.focused);
             })
-            .bind("keyup keydown blur update", resize_input)
-            .keydown(function (event) {
+            .on("keyup keydown blur update", resize_input)
+            .on('keydown', function (event) {
                 var previous_token;
                 var next_token;
 
@@ -395,11 +395,11 @@
         var hidden_input = $(input)
                 .hide()
                 .val("")
-                .focus(function () {
+                .on('focus', function () {
                     focus_with_timeout(input_box);
                 })
-                .blur(function () {
-                    input_box.blur();
+                .on('blur', function () {
+                    input_box.trigger('blur');
 
                     //return the object to this can be referenced in the callback functions.
                     return hidden_input;
@@ -414,7 +414,7 @@
         // The list to store the token items in
         var token_list = $("<ul />")
             .addClass($(input).data("settings").classes.tokenList)
-            .click(function (event) {
+            .on('click', function (event) {
                 var li = $(event.target).closest("li");
                 if (li && li.get(0) && $.data(li.get(0), "tokeninput")) {
                     toggle_select_token(li);
@@ -428,13 +428,13 @@
                     focus_with_timeout(input_box);
                 }
             })
-            .mouseover(function (event) {
+            .on('mouseover', function (event) {
                 var li = $(event.target).closest("li");
                 if (li && selected_token !== this) {
                     li.addClass($(input).data("settings").classes.highlightedToken);
                 }
             })
-            .mouseout(function (event) {
+            .on('mouseout', function (event) {
                 var li = $(event.target).closest("li");
                 if (li && selected_token !== this) {
                     li.removeClass($(input).data("settings").classes.highlightedToken);
