@@ -198,7 +198,9 @@ function ossn_administrator_pagehandler($pages) {
 				$page = 'dashboard';
 		}
 		//admin only JS lib to avoid a load of unused/unrequired code
-		ossn_load_js('ossn.admin', 'admin');
+		if(ossn_isAdminLoggedin()){
+			ossn_load_js('ossn.admin', 'admin');
+		}
 		switch($page) {
 				case 'dashboard':
 						$title                = ossn_print('admin:dashboard');

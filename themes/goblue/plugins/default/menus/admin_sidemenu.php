@@ -9,12 +9,13 @@
  * @link      https://www.opensource-socialnetwork.org/
  */
 foreach ($params['menu'] as $key => $value) {
-        echo "<li><a href='javascript:void(0);' class='dropdown-toggle' data-toggle='dropdown'>" . $key . "<i class='fa fa-sort-desc'></i></a>";
+        echo "<li class='nav-item dropdown'><a href='javascript:void(0);' class='nav-link dropdown-toggle' data-bs-toggle='dropdown'>" . $key . "</a>";
         echo '<ul class="dropdown-menu multi-level">';
         foreach ($value as $link) {
 			unset($link['parent']);
 			unset($link['name']);
             $link['text'] = ossn_print($link['text']);
+			$link['class'] = 'dropdown-item '.$link['class'];
 			$link = ossn_plugin_view('output/url', $link);
             echo "<li>{$link}</li>";
         }

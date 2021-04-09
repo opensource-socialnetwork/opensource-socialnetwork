@@ -41,10 +41,9 @@
  }
 ?>    
     
-    <div class="panel panel-default margin-top-10">
-      <div class="panel-heading">
-        <h4 class="panel-title">
-          <a data-parent="#accordion" href="#collapse-<?php echo $translit;?>" data-toggle="collapse">
+    <div class="card card-spacing">
+      <div class="card-header">
+          <a data-parent="#accordion" href="#collapse-<?php echo $translit;?>" data-bs-toggle="collapse">
 		  	<?php echo $params['component']->name;?> <?php echo $params['component']->version;?> <i class="fa fa-sort-desc"></i>
           </a>
           <div class="right">
@@ -54,10 +53,10 @@
            	<i title="<?php echo ossn_print('admin:button:enabled');?>" class="component-title-icon component-title-check fa fa-check-circle"></i>           
 		  <?php } ?>
           </div>
-        </h4>
+        </h2>
       </div>
-      <div id="collapse-<?php echo $translit;?>" class="panel-collapse collapse">
-        <div class="panel-body">
+      <div id="collapse-<?php echo $translit;?>" class="collapse">
+        <div class="card-body">
 			<p><?php echo $params['component']->description;?></p>
             <?php 
 			if(!$OssnComs->isOld($params['component'])){

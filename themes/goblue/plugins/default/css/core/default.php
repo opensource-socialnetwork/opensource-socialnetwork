@@ -74,7 +74,10 @@ body {
 .btn:active {
 	outline: none !important;
 }
-
+.btn-link {
+    font-weight: 400;
+    color: #337ab7;
+}
 .form-control {
 	height: initial;
 }
@@ -138,21 +141,9 @@ p {
 	font-weight: bold;
 	margin-left: 10px;
 }
-
-.btn {
-	border-radius: 2px;
-	padding: 4px 8px;
-}
-
-.btn-primary {
-	background-color: #2a87a7;
-}
-
 a {
 	color: #0f3b4a;
 }
-
-
 /************************************
 	Layouts
 ************************************/
@@ -354,7 +345,7 @@ a {
 	display: inline-block;
 }
 
-.topbar-menu-right li a,
+.topbar-menu-right li a:not(.topbar-menu-right li .dropdown-item),
 .topbar-menu-left li a {
 	padding: 10px;
 	display: block;
@@ -420,7 +411,7 @@ a {
 .ossn-wall-items {}
 
 .ossn-wall-item {
-	padding: 30px;
+	padding: 15px;
 	padding-top: 10px;
 	border: 1px solid #eee;
 	margin-top: 20px;
@@ -484,7 +475,9 @@ a {
 .ossn-wall-item .meta .post-menu {
 	float: right;
 }
-
+.ossn-wall-item .meta .post-menu .btn-link {
+	font-size:14px;
+}
 .ossn-wall-container {
 	border-radius: 2px;
 	margin-top: -5px;
@@ -566,7 +559,7 @@ a {
 }
 
 .ossn-wall-container input[type='submit'] {
-	padding: 3px 20px;
+	padding: 1px 20px;
 	display: block;
 	margin-top: 6px;
 }
@@ -1158,10 +1151,35 @@ a {
 /***********************************
 	Ossn Notifications
 ***************************************/
-
+.ossn-notifications-box .collapsing {
+    -webkit-transition: none;
+    transition: none;
+    display: none;
+}
 .ossn-notifications-box {
 	width: 430px;
 	color: #000;
+
+	position: absolute;
+    top: 100%;
+    right:20px;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 160px;
+    padding: 5px 0;
+    margin: 2px 0 0;
+    font-size: 14px;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: 4px;
+    -webkit-box-shadow: 0 6px 12px rgb(0 0 0 / 18%);
+    box-shadow: 0 6px 12px rgb(0 0 0 / 18%);    
 }
 
 .ossn-notifications-box .notificaton-item {
@@ -1390,7 +1408,7 @@ a {
 	display: inline-block;
 }
 
-.profile-hr-menu ul li a {
+.profile-hr-menu ul li a:not(.dropdown a) {
 	display: block;
 	padding: 15px;
 	margin-right: 5px;

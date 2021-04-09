@@ -107,8 +107,10 @@
 	 //so to get a selector as of 2.x 
 	 //https://stackoverflow.com/a/46078814
      // var selector = this.selector || this;
-      var selector = this.getSelector() || this;
-	  
+      var selector = this.getSelector();
+	  if(!selector){
+			return;  
+	  }
       if (!checkBound) {
         checkBound = true;
         var onCheck = function() {

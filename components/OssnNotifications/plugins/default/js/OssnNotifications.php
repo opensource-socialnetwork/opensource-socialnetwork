@@ -29,7 +29,7 @@ Ossn.NotificationBox = function($title, $meta, $type, height, $extra) {
     }
 };
 Ossn.NotificationBoxClose = function() {
-    $('.ossn-notifications-box').hide()
+   $('.ossn-notifications-box').hide()
     $('.ossn-notifications-box').find('.type-name').html('');
     $('.ossn-notifications-box').find('.metadata').html('<div><div class="ossn-loading ossn-notification-box-loading"></div></div><div class="bottom-all">---</div>');
     //$('.ossn-notifications-box').css('height', '140px');
@@ -37,6 +37,7 @@ Ossn.NotificationBoxClose = function() {
 
 };
 Ossn.NotificationShow = function($div) {
+	$('.ossn-notifications-box').show();
     $($div).attr('onClick', 'Ossn.NotificationClose(this)');
     Ossn.PostRequest({
         url: Ossn.site_url + "notification/notification",
@@ -70,6 +71,7 @@ Ossn.NotificationClose = function($div) {
 };
 
 Ossn.NotificationFriendsShow = function($div) {
+	$('.ossn-notifications-box').show();
     $($div).attr('onClick', 'Ossn.NotificationFriendsClose(this)');
     Ossn.PostRequest({
         url: Ossn.site_url + "notification/friends",
@@ -153,6 +155,7 @@ Ossn.removeFriendRequset = function($guid) {
 };
 
 Ossn.NotificationMessagesShow = function($div) {
+	$('.ossn-notifications-box').show();
     $($div).attr('onClick', 'Ossn.NotificationMessagesClose(this)');
     Ossn.PostRequest({
         url: Ossn.site_url + "notification/messages",

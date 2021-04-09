@@ -43,17 +43,17 @@ foreach($params['menu'] as $menu) {
 				if(!$dropdown) {
 						if($menu_width == 1) {
 								// special case for mobile devices
-								echo "<li class='dropdown'><a href='javascript:void(0);' data-toggle='dropdown' class='dropdown-toggle'>" . "<i class='fa fa-bars fa-2x'></i></a>
+								echo "<li class='dropdown'><a href='javascript:void(0);' data-bs-toggle='dropdown' class='dropdown-toggle'>" . "<i class='fa fa-bars fa-2x'></i></a>
 								<ul class='dropdown-menu'>";
 						}
 						else {
-								echo "<li class='dropdown'><a href='javascript:void(0);' data-toggle='dropdown' class='dropdown-toggle'>" . ossn_print('more') . "<i class='fa fa-caret-down'></i></a>
+								echo "<li class='dropdown'><a href='javascript:void(0);' data-bs-toggle='dropdown' class='dropdown-toggle'>" . ossn_print('more') . "<i class='fa fa-caret-down'></i></a>
 								<ul class='dropdown-menu'>";
 						}
 						$dropdown = true;
 				}
 				foreach($menu as $name => $link) {
-						$class = "menu-user-timeline-" . $link['name'];
+						$class = "dropdown-item menu-user-timeline-" . $link['name'];
 						if(isset($link['class'])) {
 								$link['class'] = $class . ' ' . $link['class'];
 						} else {

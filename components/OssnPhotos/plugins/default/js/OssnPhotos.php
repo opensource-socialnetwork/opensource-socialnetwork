@@ -24,13 +24,6 @@ Ossn.RegisterStartupFunction(function() {
             $dataurl = $(this).attr('data-url');
             Ossn.MessageBox('photos/add' + $dataurl);
         });
-        $("#ossn-photos-show-gallery").on('click', function(e) {
-            	e.preventDefault();
-            	$(".ossn-gallery").eq(0).trigger("click");
-        })
-        if($('.ossn-gallery').length){
-	        $(".ossn-gallery").fancybox();
-        }
         $('body').on('click', '#ossn-photos-add-button-inner', function(e){
         	e.preventDefault();
 		$('.ossn-photos-add-button').find('input').click();

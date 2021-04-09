@@ -20,6 +20,7 @@
 */
 body {
 	font-family: 'Roboto Slab', serif;
+        font-size: 14px;
 }
 .logo {
 
@@ -553,4 +554,32 @@ footer a {
     margin: 10px 0;
     padding: 10px;
     max-width: 300px;
+}
+/*****************
+ BS 5
+***************/
+.card-spacing {
+	margin-top:5px;
+}	
+.card {
+-webkit-box-shadow: 0 1px 1px rgb(0 0 0 / 5%);
+ box-shadow: 0 1px 1px rgb(0 0 0 / 5%);
+}
+.card-header a {
+	color: inherit;
+    font-size: 16px;         
+}
+.card-header {
+    color: #333;
+    background-color: #f5f5f5;
+    border-color: #ddd;   
+}
+.card-body p {
+    margin: 0 0 10px;
+}
+thead, tbody, tfoot, tr, td, th {
+    border-top: 1px solid #ddd;
+}
+.table > :not(caption) > * > * {
+    border-bottom-width: 0;
 }

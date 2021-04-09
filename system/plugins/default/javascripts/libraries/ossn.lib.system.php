@@ -28,7 +28,7 @@ Ossn.RegisterStartupFunction = function($func) {
  * @return void
  */
 Ossn.Clk = function($elem) {
-	$($elem).click();
+	$($elem).trigger('click');
 };
 /**
  * Ossn.str_replace

@@ -11,7 +11,7 @@
 				<?php if(ossn_isLoggedin()){ ?>
 				<div class="topbar-menu-left">
 					<li id="sidebar-toggle" data-toggle='0'>
-						<a role="button" data-target="#"> <i class="fa fa-th-list"></i></a>
+						<a role="button" data-bs-target="#"> <i class="fa fa-th-list"></i></a>
 					</li>
 				</div>
 				<?php } ?>
@@ -28,8 +28,8 @@
 							if(ossn_isLoggedin()){						
 								echo ossn_plugin_view('output/url', array(
 									'role' => 'button',
-									'data-toggle' => 'dropdown',
-									'data-target' => '#',
+									'data-bs-toggle' => 'dropdown',
+									'data-bs-target' => '#',
 									'text' => '<i class="fa fa-sort-desc"></i>',
 								));									
 								echo ossn_view_menu('topbar_dropdown'); 

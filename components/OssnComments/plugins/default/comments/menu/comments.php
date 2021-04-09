@@ -11,7 +11,7 @@
 $commentmenu = $params['menu'];
 if($commentmenu){
 ?>
-<a id="dLabel" role="button" data-toggle="dropdown" data-target="#">
+<a id="dLabel" role="button" data-bs-toggle="dropdown" data-bs-target="#">
 	<i class="fa fa-sort-desc"></i>
 </a>
 <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">

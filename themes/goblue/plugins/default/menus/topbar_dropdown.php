@@ -13,7 +13,7 @@ if($menus){
     echo '<ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">';
 	foreach($menus as $menu) {
 			foreach($menu as $link) {
-					$class = "menu-topbar-dropdown-" . $link['name'];
+					$class = "dropdown-item menu-topbar-dropdown-" . $link['name'];
 					if(isset($link['class'])) {
 						$link['class'] = $class . ' ' . $link['class'];
 					} else {

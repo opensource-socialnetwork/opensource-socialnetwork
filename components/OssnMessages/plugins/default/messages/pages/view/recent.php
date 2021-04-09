@@ -42,8 +42,7 @@
                             $new = '';
                         }
                         ?>
-                        <div class="row user-item <?php echo $new; ?>">
-                        	<div onclick="Ossn.redirect('messages/message/<?php echo $user->username; ?>');">
+                        <div class="row user-item <?php echo $new; ?>" onclick="Ossn.redirect('messages/message/<?php echo $user->username; ?>');">
 								<div class="col-md-2">
  		                               <img class="image" src="<?php echo $user->iconURL()->smaller; ?>"/>
                          	   </div>    
@@ -52,7 +51,6 @@
                          	       <div class="time time-created"><?php echo ossn_user_friendly_time($message->time); ?> </div>
                          	       <div class="reply"><?php echo $replied; ?></div>
                             	</div>
-                            </div>    
                         </div>
                     <?php
                     }

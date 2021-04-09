@@ -11,14 +11,14 @@
 $postcontrols = $params['menu'];
 if($postcontrols){
 ?>
-<a id="dLabel" role="button" data-toggle="dropdown" class="btn btn-link" data-target="#">
+<a id="dLabel" role="button" data-bs-toggle="dropdown" class="btn btn-link" data-bs-target="#">
 	<i class="fa fa-sort-desc"></i>
 </a>
 <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
             <?php
                 foreach ($postcontrols as $menu) {
                     foreach ($menu as $link) {
-					 	$class = "post-control-".$link['name'];
+					 	$class = "dropdown-item post-control-".$link['name'];
 					 	if(isset($link['class'])){
 							$link['class'] = $class.' '.$link['class'];	
 						} else {
