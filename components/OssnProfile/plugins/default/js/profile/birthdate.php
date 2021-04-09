@@ -21,7 +21,7 @@ function ossn_profile_birthdate_picker(){
 		if (Ossn.isLangString('datepicker:months')) {
 			datepick_args['monthNamesShort'] = shortmonths;
 		}
-		var args = Ossn.call_hook('ajax', 'request:settings', null, datepick_args);	
+		var args = Ossn.call_hook('profile', 'birthdate:input', null, datepick_args);	
 		$("input[name='birthdate']").datepicker(args);						   
 	});
 }
