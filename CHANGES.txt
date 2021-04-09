@@ -6,6 +6,9 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v6.x
 * [E] Move to JQuery 3.x #1874
 * [E] Move to JQuery UI latest version #1873
 * [E] Move to latest boostrap  #1872
+* [E] There should be callback to delete entity likes, comments by default #1877
+* [E] Like Comment on object #1868
+* [E] Separate frontend/backend JS #1867
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v5.6
 * [B] prevent creating of new records if setting value is 0 #1815
