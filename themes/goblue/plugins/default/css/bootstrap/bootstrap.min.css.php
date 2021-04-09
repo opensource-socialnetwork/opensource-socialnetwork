@@ -558,7 +558,7 @@ progress {
   color: #6c757d;
 }
 .blockquote-footer::before {
-  content: "— ";
+  content: "â€” ";
 }
 
 .img-fluid {
@@ -11061,4 +11061,10 @@ a {
     color: #23527c;
     background-color: #eee;
     border-color: #ddd;
+}
+label {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: 700;
 }
