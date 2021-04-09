@@ -3,6 +3,9 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v6.x
 * [B] input/radio didn't accept 0 as value #1848
 * [B] input/checkbox not getting any label #1849
 * [E] prevent script error if hook doesn't exist
+* [E] Move to JQuery 3.x #1874
+* [E] Move to JQuery UI latest version #1873
+* [E] Move to latest boostrap  #1872
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v5.6
 * [B] prevent creating of new records if setting value is 0 #1815
