@@ -9,6 +9,12 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v6.x
 * [E] There should be callback to delete entity likes, comments by default #1877
 * [E] Like Comment on object #1868
 * [E] Separate frontend/backend JS #1867
+* [B] changed encoding to utf-8 #1880
+* [B] changed encoding to utf-8 #1879
+* [B] changed encoding to utf-8 #1878
+* [B] preserve exact <br>\n sequence after editing #1860
+* [B] preserve exact <br>\n sequence after editing #1859
+* [E] ossn.en.php Improve and correct grammar mistakes #1862
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v5.6
 * [B] prevent creating of new records if setting value is 0 #1815
