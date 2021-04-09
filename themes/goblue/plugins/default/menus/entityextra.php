@@ -13,7 +13,7 @@ if($entityextra && ossn_isLoggedin()) {
 		if(!empty($entityextra)) {
 				foreach($entityextra as $menu) {
 						foreach($menu as $link) {
-								$class = "dropdown-item entity-menu-extra-" . $link['name'];
+								$class = "entity-menu-extra-" . $link['name'];
 								if(isset($link['class'])) {
 										$link['class'] = $class . ' ' . $link['class'];
 								} else {

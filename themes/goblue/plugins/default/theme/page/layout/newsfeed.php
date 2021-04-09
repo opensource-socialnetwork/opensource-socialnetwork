@@ -23,9 +23,9 @@ if(ossn_is_hook('newsfeed', "center:top")) {
 }
 ?>
 <div class="container-fluid">
-	<div class="row">
+	<div class="ossn-layout-newsfeed">
        	<?php echo ossn_plugin_view('theme/page/elements/system_messages'); ?>    
-		<div class="ossn-layout-newsfeed">
+		<div class="row">
 			<div class="col-md-7">
 				<?php if(!empty($isempty_top)){ ?>
 				<div class="newsfeed-middle-top">
