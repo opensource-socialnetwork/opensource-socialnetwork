@@ -802,7 +802,7 @@ function ossn_errros() {
  * @throws Exception
  * @access private
  */
-function _ossn_php_error_handler($errno, $errmsg, $filename, $linenum, $vars) {
+function _ossn_php_error_handler($errno, $errmsg, $filename, $linenum) {
 	$error = date("Y-m-d H:i:s (T)") . ": \"$errmsg\" in file $filename (line $linenum)";
 	switch ($errno) {
 		case E_USER_ERROR:

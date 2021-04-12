@@ -382,6 +382,7 @@ class OssnMessages extends OssnEntities {
 				//prepare default attributes
 				$default      = array(
 						'id' => false,
+						'distinct' => false,
 						'message_from' => false,
 						'message_to' => false,
 						'viewed' => false,

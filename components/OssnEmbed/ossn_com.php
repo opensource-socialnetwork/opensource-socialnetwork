@@ -75,7 +75,9 @@ function ossn_embed_wall_template_item($hook, $type, $return){
  * @access private
  */
 function ossn_embed_comments_template_params($hook, $type, $return, $params){
-	$return['comment']['comments:post'] = linkify($return['comment']['comments:post']);
+	if(isset($return['comment']['comments:post'])){
+		$return['comment']['comments:post'] = linkify($return['comment']['comments:post']);
+	}
 	return $return;
 }
 //initilize ossn wall

@@ -52,6 +52,7 @@ $image = ossn_profile_photo_wall_url($image);
     	</div>
 	<?php
 		$vars['entity'] = ossn_get_entity($params['post']->item_guid);
+		$vars['full_view'] = false;
 		echo ossn_plugin_view('entity/comment/like/share/view', $vars);
 	?>    
 	</div>

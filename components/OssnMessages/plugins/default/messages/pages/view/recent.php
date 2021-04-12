@@ -24,14 +24,14 @@
                             $user = ossn_user_by_guid($message->message_from);
                             $text = ossn_call_hook('messages', 'message:smilify', $args, strl($message->message, 32));
 							$replied = ossn_print('ossnmessages:replied:you', array($text));
-							if($message->is_deleted == true){
+							if(isset($message->is_deleted) && $message->is_deleted == true){
 								$replied = ossn_print('ossnmessages:deleted');	
 							}
                             $replied = "<i class='fa fa-reply'></i><div class='reply-text'>{$replied}</div>";
                         } else {
                             $user = ossn_user_by_guid($message->message_from);
                             $text = ossn_call_hook('messages', 'message:smilify', $args, strl($message->message, 32));
-							if($message->is_deleted == true){
+							if(isset($message->is_deleted) && $message->is_deleted == true){
 								$text = ossn_print('ossnmessages:deleted');	
 							}							
                             $replied = "<div class='reply-text-from'>{$text}</div>";

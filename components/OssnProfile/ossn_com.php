@@ -547,13 +547,13 @@ function ossn_profile_images_allcomments($callback, $type, $params) {
 				ossn_unregister_menu('commentall', 'entityextra');
 				switch($params['entity']->subtype) {
 						case 'file:profile:photo':
-								$url = ossn_site_url("photos/user/view/{$params['entity']->guid}/all_comments");
+								$url = ossn_site_url("photos/user/view/{$params['entity']->guid}");
 								break;
 						case 'file:profile:cover':
-								$url = ossn_site_url("photos/cover/view/{$params['entity']->guid}/all_comments");
+								$url = ossn_site_url("photos/cover/view/{$params['entity']->guid}");
 								break;
 						case 'file:ossn:aphoto':
-								$url = ossn_site_url("photos/view/{$params['entity']->guid}/all_comments");
+								$url = ossn_site_url("photos/view/{$params['entity']->guid}");
 								break;
 				}
 				$comment = new OssnComments;

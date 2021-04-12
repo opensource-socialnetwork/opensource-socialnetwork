@@ -59,7 +59,9 @@ class OssnMenu {
 						$list = array();
 						foreach($Ossn->menu[$menutype] as $items) {
 								foreach($items as $item) {
-										$list[] = $item['priority'];
+										if(isset($item['priority'])){
+											$list[] = $item['priority'];
+										}
 								}
 						}
 						return array_unique($list);
@@ -104,6 +106,9 @@ class OssnMenu {
 				}
 				foreach($Ossn->menu[$menutype] as $name => $items) {
 						foreach($items as $item) {
+								if(!isset($item['priority'])){
+									$item['priority'] = null;	
+								}
 								$custom[$menutype][$item['priority']][$name] = $item;
 						}
 				}

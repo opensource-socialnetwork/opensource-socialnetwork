@@ -16,14 +16,14 @@ $object = $params->guid;
 
 $comments = new OssnComments;
 
-if($params->full_view !== true){
+if(isset($params->full_view) && $params->full_view !== true){
 	$comments->limit = 5;
 }
-if($params->full_view == true){
+if(isset($params->full_view) && $params->full_view == true){
 	$comments->limit = false;
 	$comments->page_limit = false;
 }
-#[E] Show a group comments to non-member user #1861
+//[E] Show a group comments to non-member user #1861
 //by default allow it!
 $allow_post_comment = true;
 if(isset($vars['allow_comment']) && $vars['allow_comment'] == false){

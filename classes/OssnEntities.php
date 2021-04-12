@@ -47,6 +47,9 @@ class OssnEntities extends OssnDatabase {
 				if(empty($this->type)) {
 						$this->type = 'entity';
 				}
+				if(!isset($this->subtype)){
+						$this->subtype = false;	
+				}
 				$this->data = new stdClass;
 				
 				if(!isset($this->offset)) {
@@ -95,6 +98,11 @@ class OssnEntities extends OssnDatabase {
 								$this->permission,
 								$this->active
 						);
+						$owner_guid  = $this->owner_guid;
+						$type	     = $this->type;
+						$subtype     = $this->subtype;
+						$timecreated = $this->time_created;
+						
 						if($this->insert($this->params)) {
 								//[B] Entities added via single DB connection may result in wrong last_id #1668
 								//As this supposed to be return a actual entity ID rather metadata guid
@@ -114,10 +122,10 @@ class OssnEntities extends OssnDatabase {
 								$this->insert($this->params);
 								
 								$args['guid']	      = $this->inserted_entity_guid;
-								$args['owner_guid']   = $this->params['values'][0];
-								$args['type']         = $this->params['values'][1];
-								$args['subtype']      = $this->params['values'][2];
-								$args['time_created'] = $this->params['values'][3];
+								$args['owner_guid']   = $owner_guid;
+								$args['type']         = $type;
+								$args['subtype']      = $subtype;
+								$args['time_created'] = $timecreated;
 								ossn_trigger_callback('entity', 'created', $args);
 								return $this->inserted_entity_guid;
 						}
@@ -233,8 +241,12 @@ class OssnEntities extends OssnDatabase {
 				if(!$this->data) {
 						return false;
 				}
+				$vars = array();
 				foreach($this->data as $name => $value) {
 						$vars[$name] = $value;
+				}
+				if(empty($vars)){
+					return false;	
 				}
 				return $vars;
 		}

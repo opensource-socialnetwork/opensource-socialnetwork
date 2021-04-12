@@ -433,6 +433,9 @@ class OssnUser extends OssnEntities {
 						'limit' => false,
 						'count' => false
 				);
+				if(!isset($options['order_by'])){
+						$options['order_by'] = '';
+				}
 				$args          = array_merge($default, $options);
 				$relationships = ossn_get_relationships(array(
 						'to' => $user,
@@ -597,6 +600,7 @@ class OssnUser extends OssnEntities {
 				$default = array(
 						'keyword' => false,
 						'order_by' => false,
+						'distinct' => false,
 						'offset' => input('offset', '', 1),
 						'page_limit' => ossn_call_hook('pagination', 'page_limit', false, 10), //call hook for page limit
 						'count' => false,

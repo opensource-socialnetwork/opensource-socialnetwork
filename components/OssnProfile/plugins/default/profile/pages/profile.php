@@ -15,9 +15,17 @@ $cover = new OssnProfile;
 $coverp = $cover->coverParameters($user->guid);
 $cover = $cover->getCoverURL($user);
 
+if(!isset($coverp[0])){
+	$coverp[0] = '';
+}	
+if(!isset($coverp[1])){
+	$coverp[1] = '';
+}	
+$cover_top = '';
 if(!empty($coverp[0])){
 	$cover_top = "top:{$coverp[0]};";
 }
+$cover_left = '';
 if(!empty($coverp[1])){
 	$cover_left = "left:{$coverp[1]};";
 }

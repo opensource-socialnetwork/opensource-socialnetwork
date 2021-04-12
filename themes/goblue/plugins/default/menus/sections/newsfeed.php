@@ -17,7 +17,6 @@ $menus = $params['menu'];
 foreach ($menus as $name => $menu) {
 	$section = 'menu-section-'.OssnTranslit::urlize($name).' ';
 	$items = 'menu-section-items-'.OssnTranslit::urlize($name).' ';
-	$item = 'menu-section-item-'.OssnTranslit::urlize($menu['text']).' ';
 	
 	$expend = '';
 	$icon = "fa-angle-right";
@@ -31,21 +30,30 @@ foreach ($menus as $name => $menu) {
 	$hash = 'nm'.md5($name);
     ?>
      <li data-bs-toggle="collapse" data-bs-target="#<?php echo $hash;?>" class="<?php echo $section;?>collapsed active <?php echo $expend;?>">
-        	<a class="<?php $item;?>" href="javascript:void(0);"><i class="fa <?php echo $icon;?> fa-lg"></i><?php echo ossn_print($name);?><span class="arrow"></span></a>
+        	<a href="javascript:void(0);"><i class="fa <?php echo $icon;?> fa-lg"></i><?php echo ossn_print($name);?><span class="arrow"></span></a>
      </li>
     <ul class="sub-menu collapse <?php echo $expend;?>" id="<?php echo $hash;?>" class="<?php echo $items;?>"> 
     <?php
 	if(is_array($menu)){
 	    foreach ($menu as $data) {
-		    	$data['li_class'] = 'menu-section-item-'.OssnTranslit::urlize($data['name']);
+		    $data['li_class'] = 'menu-section-item-'.OssnTranslit::urlize($data['name']);
 			$data['class'] = 'menu-section-item-a-'.OssnTranslit::urlize($data['name']);
-			unset($data['name']);
-			unset($data['icon']);
+			unset($data['name']);			
+			if(isset($data['icon'])){
+				unset($data['icon']);
+			}
 			unset($data['section']);
-			unset($data['parent']);
-		    	echo ossn_plugin_view('output/section_submenu_url', $data);
-		    	unset($data['li_class']);
-		    	unset($data['class']);
+			
+			if(isset($data['parent'])){
+				unset($data['parent']);
+			}
+		    echo ossn_plugin_view('output/section_submenu_url', $data);
+			if(isset($data['li_class'])){
+			    unset($data['li_class']);
+			}
+			if(isset($data['class'])){
+			    unset($data['class']);
+			}
     	}
 	}
 	echo "</ul>";

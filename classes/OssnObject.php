@@ -334,6 +334,7 @@ class OssnObject extends OssnEntities {
 				$default = array(
 						'params' => false,
 						'search_type' => true,
+						'distinct' => false,
 						'subtype' => false,
 						'type' => false,
 						'owner_guid' => false,

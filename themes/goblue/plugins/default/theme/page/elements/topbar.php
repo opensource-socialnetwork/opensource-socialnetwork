@@ -1,4 +1,5 @@
 <?php
+	$hide_loggedin = '';
 	if(ossn_isLoggedin()){		
 		$hide_loggedin = "hidden-xs hidden-sm";
 	}

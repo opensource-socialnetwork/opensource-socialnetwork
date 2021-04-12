@@ -564,6 +564,9 @@ function ossn_wallpost_to_item($post) {
 				}
 				
 				$user = ossn_user_by_guid($post->poster_guid);
+				if(!isset($data->friend)){
+					$data->friend = "";	
+				}
 				return array(
 						'post' => $post,
 						'friends' => explode(',', $data->friend),

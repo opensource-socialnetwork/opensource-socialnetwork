@@ -158,7 +158,9 @@ class OssnComments extends OssnAnnotation {
 				$vars['subject_guid'] = $subject;
 				$vars['type']         = "comments:{$type}";
 				$vars['order_by']     = 'a.id DESC';
-				$vars['limit']        = $this->limit;
+				if(isset($this->limit)){
+					$vars['limit']        = $this->limit;
+				}
 				if(!isset($this->page_limit) || $this->page_limit === false) {
 						$vars['page_limit'] = false;
 				} else {

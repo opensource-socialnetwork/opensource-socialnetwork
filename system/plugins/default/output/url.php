@@ -29,8 +29,9 @@
 	unset($params['text']);
 	unset($params['action']);
     unset($params['href']);
-	
-	$params['href'] = $url;
+	if(isset($url)){
+		$params['href'] = $url;
+	}
 	$attributes = ossn_args($params);
 		
 	echo "<a {$attributes}>{$text}</a>";

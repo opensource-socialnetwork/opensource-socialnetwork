@@ -20,8 +20,13 @@ function ossn_generate_action_token($timestamp){
 	}
 	$site_secret = ossn_site_settings('site_key');
 	$session_id = session_id();
-	$user_guid  = ossn_loggedin_user()->guid;
-	return md5($timestamp . $site_secret . $session_id . $user_guid);
+	//PHP8 "Attempt to read property "guid" on bool" in file
+	$user       = ossn_loggedin_user();
+	$user_guid  = false;
+	if($user){
+		$user_guid  = $user->guid;
+	}
+	return hash('sha256', $timestamp . $site_secret . $session_id . $user_guid);
 }
 /**
  * Build url from parts

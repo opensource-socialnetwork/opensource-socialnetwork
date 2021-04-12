@@ -242,7 +242,6 @@ function ossn_photos_page_handler($album) {
 								
 								$title          = ossn_print('photos');
 								$photo['photo'] = $album[1];
-								$photo['full_view'] = $album[2];
 								
 								$view            = new OssnPhotos;
 								$image           = $view->GetPhoto($photo['photo']);
@@ -274,7 +273,6 @@ function ossn_photos_page_handler($album) {
 								
 								$title          = ossn_print('photos');
 								$photo['photo'] = $album[2];
-								$photo['full_view'] = $album[3];
 								$type           = input('type');
 								
 								$view            = new OssnPhotos;
@@ -299,7 +297,6 @@ function ossn_photos_page_handler($album) {
 								
 								$title          = ossn_print('cover:view');
 								$photo['photo'] = $album[2];
-								$photo['full_view'] = $album[3];
 								$type           = input('type');
 								
 								$image           = ossn_get_entity($photo['photo']);

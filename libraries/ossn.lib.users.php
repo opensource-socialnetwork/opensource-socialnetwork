@@ -283,7 +283,7 @@ function ossn_user_friendly_time($tm, $rcs = 0) {
 		$x = $no . ' ' . $pds[$v];
 		if(($rcs > 0) && ($v >= 1))
 				$x .= ' ' . ossn_user_friendly_time($_tm, $rcs - 1);
-		return ossn_print('site:timepassed:text', $x);
+		return ossn_print('site:timepassed:text', array($x));
 }
 
 /**
@@ -382,7 +382,10 @@ function ossn_user_fields_set_nonrequired($hook, $type, $fields, $params){
 		if(isset($fields['non_required'])){
 				foreach($fields['non_required'] as $ftype => $types){
 						foreach($types as $key => $field){
-								$class = $fields['non_required'][$ftype][$key]['class'];
+								$class = '';
+								if(isset($fields['non_required'][$ftype][$key]['class'])){
+									$class = $fields['non_required'][$ftype][$key]['class'];
+								}
 								$fields['non_required'][$ftype][$key]['class'] = trim($class.' ossn-field-not-required');
 						}
 				}
@@ -390,7 +393,10 @@ function ossn_user_fields_set_nonrequired($hook, $type, $fields, $params){
 		if(isset($fields['required'])){
 				foreach($fields['required'] as $ftype => $types){
 						foreach($types as $key => $field){
-								$class = $fields['required'][$ftype][$key]['class'];
+								$class = '';
+								if(isset($fields['required'][$ftype][$key]['class'])){
+									$class = $fields['required'][$ftype][$key]['class'];
+								}
 								$fields['required'][$ftype][$key]['class'] = trim($class.' ossn-field-required');
 						}
 				}

@@ -10,7 +10,9 @@
  */
 $pages = range(1, $params['total']);
 $args  = $params['options'];
-
+if(!isset($args['href'])){
+	$args['href'] = '';
+}
 //unset non-required vars
 unset($_GET['h']);
 unset($_GET['p']);

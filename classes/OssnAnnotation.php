@@ -299,6 +299,7 @@ class OssnAnnotation extends OssnEntities {
 				$default      = array(
 						'search_type' => true,
 						'type' => false,
+						'distinct' => false,
 						'owner_guid' => false,
 						'annotation_id' => false,
 						'subject_guid' => false,

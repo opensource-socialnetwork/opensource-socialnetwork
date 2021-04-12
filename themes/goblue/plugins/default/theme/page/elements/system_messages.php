@@ -9,7 +9,7 @@
  * @link      https://www.opensource-socialnetwork.org/
  */
 $col = "col-md-11";
-if($params['admin'] === true){
+if(isset($params['admin']) && $params['admin'] === true){
 	$col = "col-md-12";
 }
  ?>

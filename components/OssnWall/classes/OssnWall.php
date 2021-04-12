@@ -91,7 +91,9 @@ class OssnWall extends OssnObject {
 						$params['guid']		   = $this->wallguid; //object_guid should be removed
 						$params['type']		   = $this->type;
 						$params['poster_guid'] = $this->poster_guid;
-						$params['location']    = $wallpost['location'];
+						if(isset($wallpost['location'])){
+							$params['location']    = $wallpost['location'];
+						}
 						
 						if(isset($wallpost['friend'])) {
 								$params['friends'] = explode(',', $wallpost['friend']);
