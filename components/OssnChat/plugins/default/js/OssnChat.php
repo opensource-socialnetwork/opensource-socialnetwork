@@ -112,7 +112,7 @@ Ossn.ChatnewTab = function($user) {
         action: false,
         callback: function(callback) {
             if ($('#ftab-i' + $user).length == 0) {
-                if ($(".ossn-chat-containers").children(".friend-tab-item").size() < 4) {
+                if ($(".ossn-chat-containers").children(".friend-tab-item").length < 4) {
                     $('.ossn-chat-containers').append(callback);
                 }
             }
