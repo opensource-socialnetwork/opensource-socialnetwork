@@ -11,11 +11,28 @@
 $send = new OssnMessages;
 $message = input('message');
 
+// If the message is array, just split the array by space.
+if (is_array($message)) {
+    $message = implode(" ", $message);
+}
+
 if(trim(ossn_restore_new_lines($message)) == ''){
 	echo 0;
 	exit;
 }
-$to = input('to');
+$to = intval(input('to')); // it's a BIGINT and causes PHP error if we don't treat it as INT
+
+// Convert negative number "to" to a positive
+if (0 > $to) {
+    $to = -$to;
+}
+
+// Return 0 if the user with guid equal to the value of "to" doesn't exist
+if (!ossn_user_by_guid($to)) {
+    echo 0;
+    exit;
+}
+
 if ($message_id = $send->send(ossn_loggedin_user()->guid, $to, $message)) {
 	$user = ossn_user_by_guid(ossn_loggedin_user()->guid);
 	
