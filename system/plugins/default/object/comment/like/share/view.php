@@ -16,7 +16,7 @@
 	</div>     
  	<?php
     if (ossn_is_hook('post', 'likes:object')) {
-		$object['params'] = $params;
+        $object['params'] = $params;
         $object['object_guid'] = $params['object']->guid;
         echo ossn_call_hook('post', 'likes:object', $object);
     }
@@ -24,9 +24,9 @@
     <div class="comments-list">
     <?php
     if (ossn_is_hook('post', 'comments:object')) {
-		$object['params'] = $params;
+        $object['params'] = $params;
         $object['object_guid'] =  $params['object']->guid;
-        echo ossn_call_hook('post', 'comments:entity', $object);
+        echo ossn_call_hook('post', 'comments:object', $object);
     }
     ?>
     </div>
