@@ -17,7 +17,10 @@ if(isset($params['items'])) {
 								}
 								$args                = array();
 								$args['name']        = $item['name'];
-								$args['value']		 = $item['value'];
+								$args['value']		 = '';
+								if(isset($item['value'])){
+									$args['value']		 = $item['value'];
+								}
 								$args['placeholder'] = ossn_print("{$item['name']}");
 								if(isset($item['class'])){
 										$args['class']  = 'form-control '.$item['class'];	
@@ -29,7 +32,7 @@ if(isset($params['items'])) {
 								//[E]make the label arg assigned to any label of user/field #1646
 								if(isset($item['label']) && !is_bool($item['label'])){
 									echo "<label>".$item['label']."</label>";
-								} elseif(isset($item['label']) && $item['label'] === true || $params['label'] === true){
+								} elseif((isset($item['label']) && $item['label'] === true) || (isset($params['label']) && $params['label'] === true)){
 									echo "<label>".ossn_print("{$item['name']}")."</label>";
 								}
 								echo ossn_plugin_view('input/text', $vars);
@@ -43,7 +46,10 @@ if(isset($params['items'])) {
 								}
 								$args                = array();
 								$args['name']        = $item['name'];
-								$args['value']		 = $item['value'];
+								$args['value']		 = '';
+								if(isset($item['value'])){
+									$args['value']		 = $item['value'];
+								}								
 								$args['placeholder'] = ossn_print("{$item['name']}");
 								if(isset($item['class'])){
 										$args['class']  = 'form-control '.$item['class'];	
@@ -55,7 +61,7 @@ if(isset($params['items'])) {
 								//[E]make the label arg assigned to any label of user/field #1646
 								if(isset($item['label']) && !is_bool($item['label'])){
 									echo "<label>".$item['label']."</label>";
-								} elseif(isset($item['label']) && $item['label'] === true || $params['label'] === true){
+								} elseif((isset($item['label']) && $item['label'] === true) || (isset($params['label']) && $params['label'] === true)){
 									echo "<label>".ossn_print("{$item['name']}")."</label>";
 								}
 								echo ossn_plugin_view('input/textarea', $vars);
@@ -71,7 +77,7 @@ if(isset($params['items'])) {
 								//[E]make the label arg assigned to any label of user/field #1646
 								if(isset($item['label']) && !is_bool($item['label'])){
 									echo "<label>".$item['label']."</label>";
-								} elseif(isset($item['label']) && $item['label'] === true || $params['label'] === true){
+								} elseif((isset($item['label']) && $item['label'] === true) || (isset($params['label']) && $params['label'] === true)){
 									echo "<label>".ossn_print("{$item['name']}")."</label>";
 								}
 								echo ossn_plugin_view('input/dropdown', $args);
