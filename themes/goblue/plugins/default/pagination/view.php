@@ -72,7 +72,7 @@ if (count($pages) !== 1) {
             echo "<li {$selected}><a class='page-link' href='{$url}'>{$page}</a></li>";
         } else {
             $url = "{$args['href']}?{$args['offset_name']}={$page}{$args_url}";
-            echo "<li class='page-link'><a class='page-item' href='{$url}'>{$page}</a></li>";
+            echo "<li class='page-item'><a class='page-link' href='{$url}'>{$page}</a></li>";
         }
     }
 	//disply last page if it exist
