@@ -272,7 +272,7 @@ function ossn_comment_menu($name, $type, $params) {
 								ossn_register_menu_item('comments', array(
 										'name' => 'delete',
 										'href' => ossn_site_url("action/delete/comment?comment={$params['id']}", true),
-										'class' => 'ossn-delete-comment',
+										'class' => 'dropdown-item ossn-delete-comment',
 										'text' => ossn_print('comment:delete'),
 										'priority' => 200
 								));
@@ -288,7 +288,7 @@ function ossn_comment_menu($name, $type, $params) {
 								ossn_register_menu_item('comments', array(
 										'name' => 'delete',
 										'href' => ossn_site_url("action/delete/comment?comment={$params['id']}", true),
-										'class' => 'ossn-delete-comment',
+										'class' => 'dropdown-item ossn-delete-comment',
 										'text' => ossn_print('comment:delete'),
 										'priority' => 200
 								));
@@ -303,7 +303,7 @@ function ossn_comment_menu($name, $type, $params) {
 						ossn_register_menu_item('comments', array(
 								'name' => 'delete',
 								'href' => ossn_site_url("action/delete/comment?comment={$params['id']}", true),
-								'class' => 'ossn-delete-comment',
+								'class' => 'dropdown-item ossn-delete-comment',
 								'text' => ossn_print('comment:delete'),
 								'priority' => 200
 						));
@@ -331,7 +331,7 @@ function ossn_comment_edit_menu($name, $type, $comment) {
 										'name' => 'edit',
 										'href' => 'javascript:void(0);',
 										'data-guid' => $comment->id,
-										'class' => 'ossn-edit-comment',
+										'class' => 'dropdown-item ossn-edit-comment',
 										'text' => ossn_print('edit')
 								));
 						}
