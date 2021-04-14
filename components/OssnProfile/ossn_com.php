@@ -24,7 +24,10 @@ function ossn_profile() {
 		//css and js
 		ossn_extend_view('css/ossn.default', 'css/profile');
 		ossn_extend_view('js/ossn.site', 'js/OssnProfile');
+		//birthdays JS for both admin and site
+		//[B] datepicker missing on admin backed OSSN 6.0 dev $githubertus
 		ossn_extend_view('js/ossn.site.public', 'js/profile/birthdate');
+		ossn_extend_view('js/ossn.admin', 'js/profile/birthdate');
 		
 		//actions
 		if(ossn_isLoggedin()) {
