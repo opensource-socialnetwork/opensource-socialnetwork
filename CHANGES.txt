@@ -15,6 +15,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v6.x
 * [B] preserve exact <br>\n sequence after editing #1860
 * [B] preserve exact <br>\n sequence after editing #1859
 * [E] ossn.en.php Improve and correct grammar mistakes #1862
+* [B] New Message missing message id in div ... id='message-item-'
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v5.6
 * [B] prevent creating of new records if setting value is 0 #1815
