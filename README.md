@@ -12,9 +12,9 @@ OSSN Licensed under the ***Open Source Social Network License (4.0) / Cryptograp
 
 Kernighan & Ritchie (K&R Variant 1TBS) indentation standard is used for the OSSN.
 
-- Copyright (C) 2014-2020 ENGR. SYED ARSALAN HUSSAIN SHAH <arsalan@buddyexpress.net>,
-- Copyright (C) 2014-2020 OPEN SOURCE SOCIAL NETWORK <https://www.opensource-socialnetwork.org>,
-- Copyright (C) 2015-2020 SOFTLAB24 LTD <https://www.softlab24.com>
+- Copyright (C) 2014-2021 ENGR. SYED ARSALAN HUSSAIN SHAH <arsalan@buddyexpress.net>,
+- Copyright (C) 2014-2021 OPEN SOURCE SOCIAL NETWORK <https://www.opensource-socialnetwork.org>,
+- Copyright (C) 2015-2021 SOFTLAB24 LTD <https://www.softlab24.com>
 - Copyright (C) 2014-2015 INFORMATIKON TECHNOLOGIES <https://www.informatikon.com>
 
 | Landing Page | Newsfeed | Profile Page |
@@ -136,4 +136,3 @@ http://demo.opensource-socialnetwork.org/
 UPGRADE
 ========
 https://www.opensource-socialnetwork.org/wiki/view/708/how-to-upgrade-ossn
-
