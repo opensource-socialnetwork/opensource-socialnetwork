@@ -298,8 +298,9 @@ function get_profile_photo($user, $size) {
 		}
 		
 		$photo = $user->getProfilePhoto();
-		$etag  = $photo->guid . $photo->time_created;
-		
+		if($photo){
+			$etag  = $photo->guid . $photo->time_created;
+		}
 		if(isset($photo->time_created)) {
 				header("Last-Modified: " . gmdate('D, d M Y H:i:s \G\M\T', $photo->time_created));
 		}
@@ -310,7 +311,7 @@ function get_profile_photo($user, $size) {
 				exit;
 		}
 		
-		if(isset($photo->value) && !empty($photo->value)) {
+		if($photo && isset($photo->value) && !empty($photo->value)) {
 				$datadir = ossn_get_userdata("user/{$user->guid}/{$photo->value}");
 				if(!empty($size)) {
 						$image   = str_replace('profile/photo/', '', $photo->value);
