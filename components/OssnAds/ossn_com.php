@@ -103,7 +103,8 @@ function ossn_ads_handler($pages) {
  */
 function ossn_ads_image_url($guid) {
 		$image = md5($guid);
-		return ossn_site_url("ossnads/photo/{$guid}/{$image}.jpg");
+		$image = ossn_site_url("ossnads/photo/{$guid}/{$image}.jpg");
+		return ossn_add_cache_to_url($image);
 }
 /**
  * Get ad entity

@@ -17,6 +17,8 @@ if ($photos->photos) {
     foreach ($photos->photos as $photo) {
         $image = str_replace('album/photos/', '', $photo->value);
         $image = ossn_site_url() . "album/getphoto/{$params['album']}/{$image}?size=album";
+		//[B] img js ossn_cache cause duplicate requests #1886
+		$image = ossn_add_cache_to_url($image);
         $view_url = ossn_site_url() . 'photos/view/' . $photo->guid;
         echo "<li><a href='{$view_url}'><img src='{$image}'  class='pthumb'/></a></li>";
     }

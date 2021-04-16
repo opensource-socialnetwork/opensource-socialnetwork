@@ -604,6 +604,7 @@ class OssnUser extends OssnEntities {
 						'offset' => input('offset', '', 1),
 						'page_limit' => ossn_call_hook('pagination', 'page_limit', false, 10), //call hook for page limit
 						'count' => false,
+						'limit' => false,
 						'entities_pairs' => false
 				);
 				
@@ -752,10 +753,14 @@ class OssnUser extends OssnEntities {
 				if(!isset($this->icon_guid) || isset($this->icon_guid) && empty($this->icon_guid)){
 						$this->icon_guid = false;
 				}
+				if(!isset($this->icon_time)){
+					$this->icon_time = false;		
+				}
 				foreach(ossn_user_image_sizes() as $size => $dimensions){
 						$seo                   = md5($this->username . $size . $this->icon_time . $this->icon_guid);
 						$url                   = ossn_site_url("avatar/{$this->username}/{$size}/{$seo}.jpeg");
-						$this->iconURLS->$size = $url;
+						//[B] img js ossn_cache cause duplicate requests #1886
+						$this->iconURLS->$size = ossn_add_cache_to_url($url);
 				}
 				return ossn_call_hook('user', 'icon:urls', $this, $this->iconURLS);
 		}
@@ -1078,8 +1083,9 @@ class OssnUser extends OssnEntities {
 				$params['joins']    = array(
 						"JOIN ossn_entities_metadata AS emd ON e.guid = emd.guid"
 				);
+				//[E] don't show empty value genders in graphs #1887
 				$params["wheres"]   = array(
-						"e.type = 'user' AND e.subtype = 'gender'"
+						"e.type = 'user' AND e.subtype = 'gender' AND emd.value <> ''"
 				);
 				$params['group_by'] = 'gender';
 				$genders            = $this->select($params, true);

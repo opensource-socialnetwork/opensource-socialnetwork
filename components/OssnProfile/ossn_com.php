@@ -505,7 +505,7 @@ function ossn_profile_photo_wall_url($photo) {
 						'profile/photo/'
 				), '', $photo->value);
 				$image     = ossn_site_url("album/getphoto/{$photo->owner_guid}/{$imagefile}?type=1");
-				return $image;
+				return ossn_add_cache_to_url($image);
 		}
 		return false;
 }
@@ -520,7 +520,7 @@ function ossn_profile_coverphoto_wall_url($photo) {
 						'profile/cover/'
 				), '', $photo->value);
 				$image     = ossn_site_url("album/getcover/{$photo->owner_guid}/{$imagefile}");
-				return $image;
+				return ossn_add_cache_to_url($image);
 		}
 		return false;
 }
