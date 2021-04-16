@@ -16,6 +16,9 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v6.x
 * [B] preserve exact <br>\n sequence after editing #1859
 * [E] ossn.en.php Improve and correct grammar mistakes #1862
 * [B] New Message missing message id in div ... id='message-item-'
+* [E] OssnPhotos -> Fancybox issue and feature request #1858
+* [B] img js ossn_cache cause duplicate requests #1886
+* [E] don't show empty value genders in graphs #1887
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v5.6
 * [B] prevent creating of new records if setting value is 0 #1815
