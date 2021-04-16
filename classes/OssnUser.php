@@ -40,6 +40,8 @@ class OssnUser extends OssnEntities {
 						$this->setPassAlgo($password_encryption_alog);
 						
 						$this->salt            = $this->generateSalt();
+						//[E] make user email lowercase when adding to db #1864
+						$this->email           = strtolower($this->email);	
 						$password              = $this->generate_password($this->password, $this->salt);
 						$activation            = md5($this->password . time() . rand());
 						$this->sendactiviation = ossn_call_hook('user', 'send:activation', false, $this->sendactiviation);
