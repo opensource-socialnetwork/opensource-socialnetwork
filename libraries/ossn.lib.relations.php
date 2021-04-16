@@ -148,6 +148,7 @@ function ossn_get_relationships(array $params = array()) {
 		$default = array(
 				'page_limit' => 10,
 				'limit' => false,
+				'order_by' => false,
 				'offset' => input('offset', '', 1)
 		);
 		$options = array_merge($default, $params);
@@ -180,7 +181,6 @@ function ossn_get_relationships(array $params = array()) {
 				$count           = array_merge($vars, $count);
 				return $database->select($count)->total;
 		}
-
 		$vars['order_by'] = $options['order_by'];
 		$data = $database->select($vars, true);
 		if($data) {

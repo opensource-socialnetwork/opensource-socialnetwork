@@ -138,7 +138,7 @@ function ossn_css_site() {
 		global $Ossn;
 		$url      = ossn_site_url();
 		//load external css
-		if(isset($Ossn->cssheadExternal['site']) && !empty($external)) {
+		if(isset($Ossn->cssheadExternal['site']) && !empty($Ossn->cssheadExternal['site'])) {
 				$external = $Ossn->cssheadExternal['site'];
 				foreach($external as $item) {
 						echo ossn_html_css(array(

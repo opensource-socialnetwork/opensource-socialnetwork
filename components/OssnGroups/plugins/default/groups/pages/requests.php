@@ -14,10 +14,10 @@ if (empty($requests)) {
 } else {
     foreach ($requests as $user) {
         ?>
-		<div class="row">
-	        <div class="ossn-group-members">
-            	<div class="col-md-2 col-sm-2 hidden-xs">
-    	        		<img src="<?php echo $user->iconURL()->large; ?>" width="100" height="100"/>
+	      <div class="ossn-group-members">
+			<div class="row">
+            	<div class="col-md-2 col-sm-2 col-xs-12">
+    	        		<img src="<?php echo $user->iconURL()->large; ?>" class="img-responsive"/>
 				</div>
                 <div class="col-md-10 col-sm-10 col-xs-12">
 	    	        <div class="uinfo">

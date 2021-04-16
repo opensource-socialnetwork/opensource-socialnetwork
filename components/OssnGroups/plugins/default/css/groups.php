@@ -120,7 +120,6 @@
     width: 995px;
 }
 .ossn-group-members {
-    height: 102px;
     border: 1px solid #E9EAED;
     margin-left: 5px;
     margin-bottom: 10px;

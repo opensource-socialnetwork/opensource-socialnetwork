@@ -964,8 +964,15 @@ a {
 		margin-bottom: 10px;
 	}
 	.ossn-group-members {
-		height: 75px !important;
+		text-align:center;
 	}
+   .ossn-group-members .request-controls {
+   		float:none;
+    	padding-bottom: 10px;
+   }
+   .ossn-group-members .uinfo .userlink {
+   		float:none !important;
+   }
 }
 
 
@@ -2615,10 +2622,10 @@ footer .ossn-footer-menu a:last-child::after {
 	}
 	.ossn-group-members .request-controls,
 	.ossn-group-members .uinfo {
-		display: inline-block;
+		display: block;
 	}
 	.ossn-group-members .uinfo .userlink {
-		width: 130px;
+        margin-left:10px;
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;

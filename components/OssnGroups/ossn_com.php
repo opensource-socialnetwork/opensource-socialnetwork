@@ -262,8 +262,7 @@ function ossn_group_page($pages) {
 				$params['group']     = $group;
 				$title               = $group->title;
 				$view                = ossn_plugin_view('groups/pages/profile', $params);
-				$contents['content'] = ossn_group_layout($view);
-				$content             = ossn_set_page_layout('contents', $contents);
+				$content             = ossn_group_layout($view);
 				echo ossn_view_page($title, $content);
 		}
 }

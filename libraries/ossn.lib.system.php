@@ -335,6 +335,7 @@ function ossn_unset_callback($event, $type, $callback) {
  * Get a site settings
  *
 
+
  * @param string $setting Settings Name like (site_name, language)
  *
  * @return string or null
@@ -557,9 +558,10 @@ function ossn_system_message_add($message = null, $register = "success", $count 
 function ossn_trigger_message($message, $type = 'success') {
 	if ($type == 'error') {
 		ossn_system_message_add($message, 'danger');
-	}
-	if ($type == 'success') {
+	} elseif($type == 'success'){
 		ossn_system_message_add($message, 'success');
+	} else {
+		ossn_system_message_add($message, $type);
 	}
 }
 /**
@@ -592,11 +594,10 @@ function ossn_display_system_messages() {
 			if (isset($dermessage) && is_array($dermessage) && sizeof($dermessage) > 0) {
 				foreach ($dermessage as $type => $list) {
 					foreach ($list as $message) {
-						$m = "<div class='alert alert-$type'>";
-						$m .= '<a href="#" class="close" data-dismiss="alert">&times;</a>';
-						$m .= $message;
-						$m .= '</div>';
-						$ms[] = $m;
+						$ms[] = ossn_plugin_view('output/alert', array(
+								'message' => $message,
+								'type' => $type,
+						));
 						unset($_SESSION['ossn_messages'][$type]);
 					}
 				}
@@ -849,9 +850,9 @@ function ossn_check_update() {
 	$file    = simplexml_load_string(base64_decode($data->content));
 	if (!empty($file->stable_version)) {
 		if(ossn_site_settings('site_version') < $file->stable_version) {
-			return ossn_print('ossn:version:avaialbe', $file->stable_version);
+			return ossn_print('ossn:version:avaialbe', array($file->stable_version));
 		} else {
-			return ossn_print('ossn:version:avaialbe', '---');
+			return ossn_print('ossn:version:avaialbe', array('---'));
 		}
 	}
 	return ossn_print('ossn:update:check:error');

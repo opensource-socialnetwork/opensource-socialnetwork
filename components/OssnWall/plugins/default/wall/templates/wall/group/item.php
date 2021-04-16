@@ -45,7 +45,7 @@ if(!$params['user']){
 			</div>
 			<div class="user">
             <a class="owner-link" href="<?php echo $params['user']->profileURL(); ?>"> <?php echo $params['user']->fullname; ?> </a>
-            <?php if ($params['show_group'] == true) {
+            <?php if (isset($params['show_group']) && $params['show_group'] == true) {
                 $group = ossn_get_group_by_guid($params['post']->owner_guid);
                 ?>
                <i class="fa fa-angle-right fa-lg"></i>

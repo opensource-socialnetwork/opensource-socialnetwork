@@ -15,6 +15,9 @@ foreach ($params['menu'] as $key => $value) {
 			unset($link['parent']);
 			unset($link['name']);
             $link['text'] = ossn_print($link['text']);
+			if(!isset($link['class'])){
+				$link['class'] = '';
+			}
 			$link['class'] = 'dropdown-item '.$link['class'];
 			$link = ossn_plugin_view('output/url', $link);
             echo "<li>{$link}</li>";

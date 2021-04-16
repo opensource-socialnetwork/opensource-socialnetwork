@@ -188,8 +188,9 @@ function ossn_get_context() {
  */
 function ossn_set_page_layout($layout, $params = array()) {
     if (!empty($layout)) {
-        $theme = new OssnThemes;
-        $active_theme = $theme->getActive();
+        //unused variabled removed below $arsalanshah
+		//$theme = new OssnThemes;
+        //$active_theme = $theme->getActive();
         return ossn_plugin_view("theme/page/layout/{$layout}", $params);
     }
 }

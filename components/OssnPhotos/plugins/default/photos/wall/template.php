@@ -44,7 +44,7 @@ if($total == 1) {
 			<div class="user">
            <?php if ($params['user']->guid == $params['post']->owner_guid) { ?>
                 <a class="owner-link" href="<?php echo $params['user']->profileURL(); ?>"> <?php echo $params['user']->fullname; ?> </a>
-                <div class="ossn-wall-item-type ossn-photos-wall-title"><a target="_blank" href="<?php echo ossn_site_url("album/view/{$album->guid}");?>"><?php echo $album->title;?></a></div>
+                <div class="ossn-wall-item-type ossn-photos-wall-title"><a target="_blank" href="<?php echo ossn_site_url("album/view/{$album->guid}");?>"><i class="fa fa-camera"></i><?php echo $album->title;?></a></div>
             <?php } ?>
 			</div>
 			<div class="post-meta">
@@ -64,7 +64,8 @@ if($total == 1) {
 					if($photos > 0){
 							foreach($photos as $photo){
 									$file = str_replace('album/photos/', '', $photo->value);
-									$url  = ossn_site_url("album/getphoto/{$album->guid}/{$file}?size=album");			
+									$url  = ossn_site_url("album/getphoto/{$album->guid}/{$file}?size=album");		
+									$url  = ossn_add_cache_to_url($url);
 									if($total > 2){
 											$class = 'ossn-photo-wall-item-small';	
 									} else {
@@ -73,18 +74,21 @@ if($total == 1) {
 									$view = "<a target='_blank' href='".ossn_site_url("photos/view/{$photo->guid}")."'><img class='img-thumbnail ossn-photos-wall-item {$class}' src='{$url}' /></a>";
 									
 									if($total == 1){
-										$url  = ossn_site_url("album/getphoto/{$album->guid}/{$file}?size=view");									
+										$url  = ossn_site_url("album/getphoto/{$album->guid}/{$file}?size=view");
+										$url  = ossn_add_cache_to_url($url);
 										$view = "<a target='_blank' href='".ossn_site_url("photos/view/{$photo->guid}")."'><img class='img-thumbnail' src='{$url}' /></a>";
 									}
 									echo $view;
 							}
 							if($count > 17){
-										$url  = ossn_site_url("/components/OssnPhotos/images/more.jpg");									
+										$url  = ossn_site_url("/components/OssnPhotos/images/more.jpg");	
+										$url  = ossn_add_cache_to_url($url);
 										echo "<a target='_blank' href='".ossn_site_url("album/view/{$album->guid}")."'><img class='img-thumbnail ossn-photos-wall-item ossn-photo-wall-item-small' src='{$url}' /></a>";								
 							}
 					}
 					if(!$photos){
-								$url  = ossn_site_url("/components/OssnPhotos/images/nophoto-album.png");									
+								$url  = ossn_site_url("/components/OssnPhotos/images/nophoto-album.png");	
+								$url  = ossn_add_cache_to_url($url);
 								$view = "<img class='img-thumbnail' src='{$url}' />";		
 								echo $view;
 					}
