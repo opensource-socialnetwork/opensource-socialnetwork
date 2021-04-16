@@ -63,20 +63,23 @@ if ($params['user']->guid !== $params['post']->owner_guid) {
 		<div class="post-contents">
 			<p><?php echo $params['text']; ?></p>
 			 <?php
-						if(!empty($params['friends'])){
-	                        foreach ($params['friends'] as $friend) {
-								if(!empty($friend)){
-	    	                        $user = ossn_user_by_guid($friend);
-    	    	                    $url = $user->profileURL();
-        	    	                $friends[] = "<a href='{$url}'>{$user->fullname}</a>";
-								}
-                	        }
-							if(!empty($friends)){
-								echo '<div class="friends">';
-								echo implode(', ', $friends);
-								echo '</div>';
+				if(!empty($params['friends'])){
+					foreach ($params['friends'] as $friend) {
+						if(!empty($friend)){
+							$user = ossn_user_by_guid($friend);
+							//[B] Wall site crash when mentioning members under certain conditions. #1865
+							if($user){
+								$url = $user->profileURL();
+								$friends[] = "<a href='{$url}'>{$user->fullname}</a>";
 							}
 						}
+					}
+					if(!empty($friends)){
+						echo '<div class="friends">';
+						echo implode(', ', $friends);
+						echo '</div>';
+					}
+				}
               ?>
             <?php
             if (!empty($image)) {
