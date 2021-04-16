@@ -14,7 +14,8 @@ if(!$entity){
 }
 $user['firstname'] = input('firstname');
 $user['lastname'] = input('lastname');
-$user['email'] = input('email');
+//[E] make user email lowercase when adding to db #186
+$user['email'] = strtolower(input('email'));
 $user['type'] = input('type');
 $user['username'] = input('username');
 
