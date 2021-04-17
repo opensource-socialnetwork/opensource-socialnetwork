@@ -298,6 +298,7 @@ function get_profile_photo($user, $size) {
 		}
 		
 		$photo = $user->getProfilePhoto();
+		$etag  = time();
 		if($photo){
 			$etag  = $photo->guid . $photo->time_created;
 		}
