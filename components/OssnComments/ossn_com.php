@@ -267,7 +267,7 @@ function ossn_comment_menu($name, $type, $params) {
 						}
 						//group admins must be able to delete ANY comment in their own group #170
 						//just show menu if group owner is loggedin 
-						if(ossn_isAdminLoggedin() || (ossn_loggedin_user()->guid == $post->owner_guid) || $user->guid == $comment->owner_guid || (ossn_loggedin_user()->guid == $group->owner_guid)) {
+						if(ossn_isAdminLoggedin() || (ossn_loggedin_user()->guid == $post->owner_guid) || ($comment && $user->guid == $comment->owner_guid) || ($group && ossn_loggedin_user()->guid == $group->owner_guid)) {
 								ossn_unregister_menu('delete', 'comments');
 								ossn_register_menu_item('comments', array(
 										'name' => 'delete',
