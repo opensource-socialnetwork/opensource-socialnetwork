@@ -20,8 +20,8 @@ function ossn_trigger_css_cache($cache = '') {
 		}
 		global $Ossn;
 		
+		require_once(ossn_route()->libs . 'minify/Minify.php');
 		require_once(ossn_route()->libs . 'minify/CSSmin.php');
-		$minify = new CSSmin;
 		
 		$dir = ossn_route()->cache;
 		if(!is_dir("{$dir}css/{$cache}/view/")) {
@@ -32,9 +32,10 @@ function ossn_trigger_css_cache($cache = '') {
 		}
 		foreach($Ossn->css as $name => $file) {
 				$cache_file = "{$dir}css/{$cache}/view/{$name}.css";
-				$css        = $minify->run(ossn_plugin_view($file));
-				$css .= $minify->run(ossn_fetch_extend_views("css/{$name}"));
-				file_put_contents($cache_file, $css);
+				$minify = new CSSmin;
+				$minify->add(ossn_plugin_view($file));
+				$minify->add(ossn_fetch_extend_views("css/{$name}"));
+				$minify->minify($cache_file);
 		}
 }
 
