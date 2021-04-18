@@ -208,6 +208,9 @@ function ossn_unload_external_js($name, $type = 'site') {
 	$js = array_search($name, $Ossn->jsheadExternal[$type]);
     if($js !== false){
 		unset($Ossn->jsheadExternal[$type][$js]);
+		if(isset($Ossn->jsheadExternalLoaded[$type]) && isset($Ossn->jsheadExternalLoaded[$type][$name])){
+				unset($Ossn->jsheadExternalLoaded[$type][$name]);
+		}		
 	}
 }
 
@@ -218,13 +221,19 @@ function ossn_unload_external_js($name, $type = 'site') {
  */
 function ossn_site_js() {
     global $Ossn;
+	$Ossn->jsheadExternalLoaded = array();
+	$Ossn->jsheadExternalLoaded['site'] = array();
+	
     $url = ossn_site_url();
 	
 	//load external js	
-	$external = $Ossn->jsheadExternal['site'];
-	if(!empty($external)){
+	if(isset($Ossn->jsheadExternal['site']) && !empty($Ossn->jsheadExternal['site'])){
+		$external = $Ossn->jsheadExternal['site'];
 		foreach($external as $item){
-			echo ossn_html_js(array('src' =>  $Ossn->jsExternal[$item]));
+			if(!isset($Ossn->jsheadExternalLoaded['site'][$item])){ 
+				$Ossn->jsheadExternalLoaded['site'][$item] = true;
+				echo ossn_html_js(array('src' =>  $Ossn->jsExternal[$item]));
+			}
 		}
 	}
 	
@@ -250,8 +259,8 @@ function ossn_admin_js() {
     $url = ossn_site_url();
 	
 	//load external js	
-	$external = $Ossn->jsheadExternal['admin'];
-	if(!empty($external)){
+	if(isset($Ossn->jsheadExternal['admin']) && !empty($Ossn->jsheadExternal['admin'])){
+		$external = $Ossn->jsheadExternal['admin'];
 		foreach($external as $item){
 			echo ossn_html_js(array('src' =>  $Ossn->jsExternal[$item]));
 		}
