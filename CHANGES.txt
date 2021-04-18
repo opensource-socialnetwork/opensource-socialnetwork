@@ -22,6 +22,10 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v6.x
 * [B] Wall site crash when mentioning members under certain conditions. #1865
 * [E] Check user existence before sending message #1883
 * [E] Made it compitable with php 8
+* [E] Make user external CSS/JS loaded once if load func used twice #1890
+* [E] Avoid ossn_cache to append on already ossn_cache imgs #1891
+* [B] CSSMin didn't minify data:image type svg #1889
+* [E] Remove unused CSS minify code from older OSSN #1892
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v5.6
 * [B] prevent creating of new records if setting value is 0 #1815
