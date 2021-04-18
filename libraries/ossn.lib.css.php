@@ -18,7 +18,7 @@ function ossn_css() {
 		ossn_register_page('css', 'ossn_css_pagehandler');
 		ossn_add_hook('css', 'register', 'ossn_css_trigger');
 		ossn_extend_view('ossn/site/head', 'ossn_css_site');
-		ossn_extend_view('ossn/admin/head', 'ossn_css_admin');
+		ossn_extend_view('ossn/admin/head', 'ossn_css_admin');			
 }
 
 /**
@@ -136,14 +136,20 @@ function ossn_unload_css($name, $type = 'site') {
  */
 function ossn_css_site() {
 		global $Ossn;
+		$Ossn->cssheadExternalLoaded = array();
+		$Ossn->cssheadExternalLoaded['site'] = array();	
+		
 		$url      = ossn_site_url();
 		//load external css
 		if(isset($Ossn->cssheadExternal['site']) && !empty($Ossn->cssheadExternal['site'])) {
 				$external = $Ossn->cssheadExternal['site'];
 				foreach($external as $item) {
+					if(!isset($Ossn->cssheadExternalLoaded['site'][$item])){ 
+						$Ossn->cssheadExternalLoaded['site'][$item] = true;
 						echo ossn_html_css(array(
 								'href' => $Ossn->cssExternal[$item]
 						));
+					}
 				}
 		}
 		
@@ -172,8 +178,8 @@ function ossn_css_admin() {
 		global $Ossn;
 		$url      = ossn_site_url();
 		//load external css
+		if(isset($Ossn->cssheadExternal['admin']) && !empty($Ossn->cssheadExternal['admin'])){
 		$external = $Ossn->cssheadExternal['admin'];
-		if(!empty($external)) {
 				foreach($external as $item) {
 						echo ossn_html_css(array(
 								'href' => $Ossn->cssExternal[$item]
@@ -266,5 +272,8 @@ function ossn_unload_external_css($name, $type = 'site') {
 		$css = array_search($name, $Ossn->cssheadExternal[$type]);
 		if($css !== false) {
 				unset($Ossn->cssheadExternal[$type][$css]);
+				if(isset($Ossn->cssheadExternalLoaded[$type]) && isset($Ossn->cssheadExternalLoaded[$type][$name])){			
+					unset($Ossn->cssheadExternalLoaded[$type][$name]);
+				}
 		}
 }
