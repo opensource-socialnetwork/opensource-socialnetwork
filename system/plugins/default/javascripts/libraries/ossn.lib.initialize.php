@@ -208,8 +208,10 @@ function ossn_image_url_cache($callback, $type, $params){
 						var split = data.split('?');
 						base = split[0] + '?';
 					}
-					args["ossn_cache"] = Ossn.Config.cache.last_cache;
-					$(this).attr('src', base + jQuery.param(args));
+					if(!args['ossn_cache']){
+						args["ossn_cache"] = Ossn.Config.cache.last_cache;
+						$(this).attr('src', base + jQuery.param(args));
+					}
 				}
 			});
 		}
