@@ -362,7 +362,7 @@ footer a {
 }
 
 .ossn-light {
-	opacity: 0.4;
+	opacity: 0.4 !important;
 }
 .ossn-halt {
 	position: absolute;

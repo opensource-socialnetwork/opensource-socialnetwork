@@ -3,7 +3,8 @@
     background: #fff;
     padding: 10px;
     height: 45px;
-    margin-top: -5px;
+    margin-top: 10px;
+    border-radius:10px;
 }
 .postbg-container {
     min-height: 320px;

@@ -14,6 +14,8 @@ Ossn.register_callback('ossn', 'init', 'ossn_wall_post_edit');
 Ossn.register_callback('ossn', 'init', 'ossn_wall_select_friends');
 Ossn.register_callback('ossn', 'init', 'ossn_wall_location');
 Ossn.register_callback('ossn', 'init', 'ossn_wall_privacy');
+Ossn.register_callback('ossn', 'init', 'ossn_wall_container_active');
+
 function ossn_wall_post_edit(){
 	$(document).ready(function(){
 		//post edit
@@ -67,7 +69,30 @@ function ossn_wall_post_edit(){
 		//post-edit />	
 	});
 }
+function ossn_wall_clear_form(){
+				var $file = $("#ossn-wall-form").find("input[type='file']");
+				$file.replaceWith($file.val('').clone(true));
+				$('#ossn-wall-photo').hide();
 
+				//Tagged friend(s) and location should be cleared, too - after posting #641
+				$("#ossn-wall-location-input").val('');
+				$('#ossn-wall-location').hide();
+
+				$('#ossn-wall-friend-input').val('');
+				if($('#ossn-wall-friend-input').length){
+					$("#ossn-wall-friend-input").tokenInput("clear");
+					$('#ossn-wall-friend').hide();
+				}
+
+				$('#ossn-wall-form').find('input[type=submit]').show();
+				$('#ossn-wall-form').find('.ossn-loading').addClass('ossn-hidden');
+				$('#ossn-wall-form').find('textarea').val("");
+				
+				$('.ossn-wall-container-data textarea').removeClass('postbg-container');
+				$('.ossn-wall-container-data textarea').attr('style', '');
+				$('#ossn-wall-postbg').attr('data-toggle', 0);
+				$('#ossn-wall-postbg').hide();				
+}
 function ossn_wall_postform(){
 	$(document).ready(function(){
 		//ajax post
@@ -99,23 +124,7 @@ function ossn_wall_postform(){
 				}
 
 				//need to clear file path after uploading the file #626
-				var $file = $("#ossn-wall-form").find("input[type='file']");
-				$file.replaceWith($file.val('').clone(true));
-				$('#ossn-wall-photo').hide();
-
-				//Tagged friend(s) and location should be cleared, too - after posting #641
-				$("#ossn-wall-location-input").val('');
-				$('#ossn-wall-location').hide();
-
-				$('#ossn-wall-friend-input').val('');
-				if($('#ossn-wall-friend-input').length){
-					$("#ossn-wall-friend-input").tokenInput("clear");
-					$('#ossn-wall-friend').hide();
-				}
-
-				$('#ossn-wall-form').find('input[type=submit]').show();
-				$('#ossn-wall-form').find('.ossn-loading').addClass('ossn-hidden');
-				$('#ossn-wall-form').find('textarea').val("");
+				ossn_wall_clear_form();
 			}
 		});
 	});
@@ -443,5 +452,20 @@ function ossn_wall_location(){
 				}
 			});
 		}
+	});
+}
+function ossn_wall_container_active(){
+	$(document).ready(function(){
+			$('body').on('click', '.ossn-wall-container textarea', function(){
+							$('.ossn-wall-container').addClass('wall-container-active');	
+			 })
+			$('#ossn-wall-form').on('submit', function(){
+				$('.ossn-wall-container textarea').height(40);
+			});
+	
+			$('.ossn-wall-container textarea:not(.postbg-container)').keyup(function(e) {
+				$(this).height(0);
+				$(this).height(this.scrollHeight + parseFloat($(this).css('borderTopWidth')) + parseFloat($(this).css('borderBottomWidth')));
+			});			
 	});
 }

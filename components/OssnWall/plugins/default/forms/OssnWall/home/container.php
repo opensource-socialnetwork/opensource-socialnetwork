@@ -23,6 +23,10 @@ if (!isset($params['user']->guid)) {
     </div>
 </div>
 <div class="ossn-wall-container-data ossn-wall-container-data-post" data-type="post">
+    <div class="before-post-user-image">
+    		<img src="<?php echo ossn_loggedin_user()->iconURL()->small;?>" />
+            <strong><?php echo ossn_loggedin_user()->fullname;?></strong>
+    </div>
     <textarea placeholder="<?php echo ossn_print('wall:post:container'); ?>" name="post"></textarea>
     <div id="ossn-wall-friend" style="display:none;">
         <input type="text" placeholder="<?php echo ossn_print('tag:friends'); ?>" name="friends" id="ossn-wall-friend-input" />
@@ -36,14 +40,14 @@ if (!isset($params['user']->guid)) {
     <div class="controls">
         <?php
 			echo ossn_view_menu('wall/container/controls/home', 'wall/menus/container_controls'); 
-		?>        
-        <div style="float:right;">
+		?>            
+    </div>
+   <div class="ossn-wall-privacy">
+            <span><i class="ossn-wall-privacy-lock fa fa-lock"></i><span class=""><?php echo ossn_print('privacy'); ?></span></span>
+    </div>           
+    <div class='ossn-wall-post-button-container'>
             <div class="ossn-loading ossn-hidden"></div>
             <input class="btn btn-primary ossn-wall-post" type="submit" value="<?php echo ossn_print('post'); ?>" />
-        </div>
-        <li class="ossn-wall-privacy">
-            <span><i class="ossn-wall-privacy-lock fa fa-lock"></i><span class="hidden-xs"><?php echo ossn_print('privacy'); ?></span></span>
-        </li>
     </div>
     <input type="hidden" value="<?php echo $params['user']->guid; ?>" name="wallowner" />
     <input type="hidden" name="privacy" id="ossn-wall-privacy" value="<?php echo OSSN_PUBLIC; ?>" />
