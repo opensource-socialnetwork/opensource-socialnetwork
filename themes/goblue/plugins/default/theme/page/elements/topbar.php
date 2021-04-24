@@ -8,7 +8,7 @@
 <div class="topbar">
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-3 col-md-2 left-side left">
+			<div class="col col-md-2 left-side left">
 				<?php if(ossn_isLoggedin()){ ?>
 				<div class="topbar-menu-left">
 					<li id="sidebar-toggle" data-toggle='0'>
