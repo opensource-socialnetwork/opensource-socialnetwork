@@ -202,13 +202,15 @@ a {
 	margin-top: 10px;
 	background: #fff;
 	border: 1px solid #eee;
-	padding: 10px;
+    border-radius: 10px;
 }
 
 .ossn-layout-module .module-title {
 	background: #F9F7F7;
 	border: 1px solid #eee;
 	padding: 10px;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
 }
 
 .ossn-layout-module .module-contents {
@@ -2587,9 +2589,6 @@ footer .ossn-footer-menu a:last-child::after {
 	.ossn-group-cover {
 		height: 100px !important;
 	}
-	.groups-buttons {
-		float: none !important;
-	}
 	.ossn-group-cover-header,
 	.ossn-group-profile .profile-header,
 	.ossn-group-profile .profile-header .header-bottom {
@@ -2598,24 +2597,16 @@ footer .ossn-footer-menu a:last-child::after {
 	.ossn-group-profile .profile-header {
 		max-height: inherit !important;
 	}
-	.groups-buttons {
-		margin-top: 50px;
-	}
 	.ossn-group-profile .profile-header .group-name {
 		float: none !important;
 	}
-	#group-header-menu li,
-	#group-header-menu {
-		width: 100% !important;
-	}
-	#group-header-menu li {
-		border-bottom: 1px solid #EEE !important;
-	}
 	.group-name {
-		text-align: center;
 		width: 100%;
-		border-bottom: 1px solid #eee;
 	}
+    .group-header-sep {
+    	height:auto !important;
+        text-align:center;
+    }
 	.ossn-group-members {
 		margin-left: 15px;
 		margin-right: 15px;

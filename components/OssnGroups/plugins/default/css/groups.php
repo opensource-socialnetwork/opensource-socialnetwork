@@ -1,93 +1,59 @@
 
 .group-header-menu {
-    float: left;
 }
 .group-header-menu .first-item {
     border-left: 1px solid #EEE;
 }
 #group-header-menu {
     border: 0px;
-    padding: 0px;
+    padding: 0 10px;
     font-size: 14px;
     font-weight: bold;
-    width: auto;
+    width: 100%;
 }
 #group-header-menu ul {
-    background: #fff;
-    height: 35px;
     list-style: none;
     margin: 0;
     padding: 0;
+    border-top: 1px solid #ddd;
+}
+#group-header-menu .dropdown-toggle::after {
+	display:none;
 }
 #group-header-menu li:first-child {
-    border-left: 1px solid #EEE;
+}
+.group-header-sep {
+	height:60px;
 }
 #group-header-menu li {
-    float: left;
     padding: 0px;
-    border-right: 1px solid #EEE;
+    display:inline-block;
 }
-#group-header-menu li a {
+#group-header-menu > ul > li > a:not(.group-header-more) {
     background: #fff;
     display: block;
     line-height: 42px;
-    margin: 0px;
+    margin: 5px 0;
     padding: 0px 20px;
-    text-align: center;
     text-decoration: none;
     font-weight: bold;
 }
+.group-header-more {
+    background: #F6F7F8;
+    border-radius: 10px;
+    padding: 10px 20px;
+    margin-left:10px;
+}
 #group-header-menu > ul > li > a {
-    color: #2F4979;
+    color: #333;
     font-weight: bold;
     height: 44px;
 }
-
-#group-header-menu li > a:hover,
-#group-header-menu ul li:hover > a {
+#group-header-menu > li > a:hover,
+#group-header-menu > ul > li:hover > a {
     background: #F6F7F8;
     text-decoration: none;
-}
-#group-header-menu li ul {
-    background: #fff;
-    display: none;
-    height: auto;
-    padding: 0px;
-    margin: 0px;
-    position: absolute;
-    width: 120px;
-    z-index: 200;
-    border-left: 1px solid #EEE;
-    border-bottom: 1px solid #EEE;
-    border-right: 1px solid #EEE;
-}
-#group-header-menu li:hover ul {
-    display: block;
-}
-#group-header-menu li li {
-    display: block;
-    float: none;
-    margin: 0px;
-    padding: 0px;
-    width: 120px;
-}
-#group-header-menu li:hover li a {
-    background: none;
-}
-#group-header-menu li ul a {
-    display: block;
-    height: 35px;
-    font-size: 12px;
-    font-style: normal;
-    margin: 0px;
-    padding: 0px 10px 0px 15px;
-    text-align: left;
-}
-#group-header-menu li ul a:hover,
-#group-header-menu li ul li:hover > a {
-    background: #F6F7F8;
-    border: 0px;
-    text-decoration: none;
+    border-radius:10px;
 }
 #group-header-menu p {
     clear: left;
@@ -135,24 +101,30 @@
 }
 .ossn-group-profile {}
 .ossn-group-profile .profile-header {
-    border: 1px solid #C4CDE0;
-    border-width: 1px 1px 0px;
+	border: 1px solid #ccc;
+    border-width: 1px 1px 2px 0px;
     position: relative;
-    max-height: 245px;
     width: 100%;
     opacity:  .99;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;    
 }
 .ossn-group-profile .profile-header .header-bottom {
     background: #fff;
-    height: 45px;
-    border-bottom: 2px solid #C4CDE0;    
+    height:115px;
+border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;    
 }
 .ossn-group-profile .profile-header .group-name {
-    font-size: 14px;
+    font-size: 20px;
     font-weight: bold;
-    padding: 20px;
-    padding-top: 10px;
+    padding: 0 20px;
+    padding-top: 5px;
     float: left;
+}
+.ossn-group-profile .profile-header .group-name a {
+    color: #333;
+
 }
 .groups-buttons {
     float: right;
@@ -183,9 +155,6 @@
 .group-closed-container p {
     padding: 3px 6px;
 }
-.ossn-group-cover-header {
-    height: 290px !important;
-}
 .ossn-group-cover {
     overflow: hidden;
     height: 200px;
@@ -214,6 +183,7 @@
 .groups-buttons a {
     display: inline-block;
 }
+
 .ossn-groups-notification-icon,
 .ossn-groups-notification-icon:before {
     display: inline-block;
@@ -284,4 +254,17 @@
 		font-size:90%;
 		line-height: 1.2;
 	}
+}
+.group-header-menu .dropdown-menu a:first-child:hover{
+}
+.group-header-menu .dropdown-menu li {
+	width:100%;
+}
+.group-header-more i{
+	margin-right:0px;
+}
+.group-total-members {
+    font-size: 14px;
+    color: #999;
+    margin-bottom:0;
 }

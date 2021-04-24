@@ -57,15 +57,12 @@ $members = $params['group']->getMembers();
 					</div>
 					<?php } ?>
 					<div class="header-bottom">
-						<div class="group-name">
-							<a href="<?php echo ossn_group_url($params['group']->guid); ?>"><?php echo $params['group']->title; ?></a>
-						</div>
-						<div id="group-header-menu" class="group-header-menu">
-							<ul>
-								<?php echo ossn_view_menu('groupheader'); ?>
-							</ul>
-						</div>
-						<div class="groups-buttons">
+						<div class='group-header-sep'>
+                     		   <div class="group-name">
+									<a href="<?php echo ossn_group_url($params['group']->guid); ?>"><?php echo $params['group']->title; ?></a>
+                                    <p class="group-total-members"><i class="fa fa-users"></i><?php echo $params['group']->getMembers(true);?></p>
+								</div>
+								<div class="groups-buttons">
 							
 							<?php if(ossn_isLoggedin() && $params['group']->owner_guid !== ossn_loggedin_user()->guid) {
 									if($params['group']->isMember(NULL, ossn_loggedin_user()->guid)) {
@@ -102,6 +99,19 @@ $members = $params['group']->getMembers();
 									</a>
 								<?php } ?>
 							<?php } ?>
+								</div>   
+                         </div>  <!-- ./div -->                   
+						<div id='group-header-menu' class="group-header-menu visible-lg">
+						<?php echo ossn_plugin_view('menus/groupheader', array('menu_width' => 60)); ?>
+						</div>
+						<div id='group-header-menu' class="group-header-menu visible-md">
+							<?php echo ossn_plugin_view('menus/groupheader', array('menu_width' => 40)); ?>
+						</div>
+						<div id='group-header-menu' class="group-header-menu visible-sm">
+							<?php echo ossn_plugin_view('menus/groupheader', array('menu_width' => 25)); ?>
+						</div>
+						<div id='group-header-menu' class="group-header-menu visible-xs">
+							<?php echo ossn_plugin_view('menus/groupheader', array('menu_width' => 1)); ?>
 						</div>
 					</div> <!-- .header-bottom/ -->            
 				</div> <!-- ./ossn-group-top-row -->
