@@ -492,13 +492,14 @@ a {
 }
 
 .ossn-wall-container textarea {
-	background: #eeeeee7d;
-    border-radius: 50px;
+background: #ebedf0;
+    border-radius: 40px;
+    border: 0;
     margin-left: 60px;
     width: 90%;
     padding: 13px 20px;
-    height: 50px;    
-    resize:none;
+    height: 50px;
+    resize: none;
 }
 
 .ossn-wall-container .controls {
