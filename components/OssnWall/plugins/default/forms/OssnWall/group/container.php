@@ -19,10 +19,6 @@
     </div>
 </div>
 <div class="ossn-wall-container-data ossn-wall-container-data-post" data-type="post">
-    <div class="before-post-user-image">
-    		<img src="<?php echo ossn_loggedin_user()->iconURL()->small;?>" />
-            <strong><?php echo ossn_loggedin_user()->fullname;?></strong>
-    </div>
     <textarea placeholder="<?php echo ossn_print('wall:post:container'); ?>" name="post"></textarea>
     <div id="ossn-wall-location" style="display:none;">
         <input type="text" placeholder="<?php echo ossn_print('enter:location'); ?>" name="location" id="ossn-wall-location-input" />

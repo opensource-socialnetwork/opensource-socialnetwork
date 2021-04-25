@@ -14,7 +14,7 @@ Ossn.register_callback('ossn', 'init', 'ossn_wall_post_edit');
 Ossn.register_callback('ossn', 'init', 'ossn_wall_select_friends');
 Ossn.register_callback('ossn', 'init', 'ossn_wall_location');
 Ossn.register_callback('ossn', 'init', 'ossn_wall_privacy');
-Ossn.register_callback('ossn', 'init', 'ossn_wall_container_active');
+Ossn.register_callback('ossn', 'init', 'ossn_wall_container_expend');
 
 function ossn_wall_post_edit(){
 	$(document).ready(function(){
@@ -454,15 +454,11 @@ function ossn_wall_location(){
 		}
 	});
 }
-function ossn_wall_container_active(){
+function ossn_wall_container_expend(){
 	$(document).ready(function(){
-			$('body').on('click', '.ossn-wall-container textarea', function(){
-							$('.ossn-wall-container').addClass('wall-container-active');	
-			 })
 			$('#ossn-wall-form').on('submit', function(){
 				$('.ossn-wall-container textarea').height(40);
 			});
-	
 			$('.ossn-wall-container textarea:not(.postbg-container)').keyup(function(e) {
 				$(this).height(0);
 				$(this).height(this.scrollHeight + parseFloat($(this).css('borderTopWidth')) + parseFloat($(this).css('borderBottomWidth')));

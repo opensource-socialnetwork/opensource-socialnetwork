@@ -23,10 +23,6 @@ if (!isset($params['user']->guid)) {
     </div>
 </div>
 <div class="ossn-wall-container-data ossn-wall-container-data-post" data-type="post">
-    <div class="before-post-user-image">
-    		<img src="<?php echo ossn_loggedin_user()->iconURL()->small;?>" />
-            <strong><?php echo ossn_loggedin_user()->fullname;?></strong>
-    </div>
     <textarea placeholder="<?php echo ossn_print('wall:post:container'); ?>" name="post"></textarea>
     <div id="ossn-wall-friend" style="display:none;">
         <input type="text" placeholder="<?php echo ossn_print('tag:friends'); ?>" name="friends" id="ossn-wall-friend-input" />

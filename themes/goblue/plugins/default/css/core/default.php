@@ -74,10 +74,12 @@ body {
 .btn:active {
 	outline: none !important;
 }
+
 .btn-link {
-    font-weight: 400;
-    color: #337ab7;
+	font-weight: 400;
+	color: #337ab7;
 }
+
 .form-control {
 	height: initial;
 }
@@ -141,9 +143,12 @@ p {
 	font-weight: bold;
 	margin-left: 10px;
 }
+
 a {
 	color: #0f3b4a;
 }
+
+
 /************************************
 	Layouts
 ************************************/
@@ -202,15 +207,15 @@ a {
 	margin-top: 10px;
 	background: #fff;
 	border: 1px solid #eee;
-    border-radius: 10px;
+	border-radius: 10px;
 }
 
 .ossn-layout-module .module-title {
 	background: #F9F7F7;
 	border: 1px solid #eee;
 	padding: 10px;
-    border-top-right-radius: 10px;
-    border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	border-top-left-radius: 10px;
 }
 
 .ossn-layout-module .module-contents {
@@ -419,8 +424,8 @@ a {
 	margin-top: 20px;
 	background-color: #fff;
 	padding-bottom: 0px;
-	border-top-left-radius: 10px;    
-    border-top-right-radius: 10px;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
 }
 
 .ossn-wall-item:first-child {
@@ -466,7 +471,6 @@ a {
 	/** Incorrect Hyphenation in the theme GoBlue 3.0 #824 **/
 	word-break: break-word;
 	text-align: justify;
-
 }
 
 .ossn-wall-item .post-contents img {
@@ -479,44 +483,52 @@ a {
 .ossn-wall-item .meta .post-menu {
 	float: right;
 }
+
 .ossn-wall-item .meta .post-menu .btn-link {
-	font-size:14px;
+	font-size: 14px;
 }
+
 .ossn-wall-container {
 	border-radius: 2px;
 	margin-top: -5px;
 	margin-bottom: 10px;
-
-    border-top-right-radius: 10px;
-    border-top-left-radius: 10px;    
+	border-top-right-radius: 10px;
+	border-top-left-radius: 10px;
 }
 
 .ossn-wall-container textarea {
-background: #ebedf0;
-    border-radius: 40px;
-    border: 0;
-    margin-left: 60px;
-    width: 90%;
-    padding: 13px 20px;
-    height: 50px;
-    resize: none;
+	padding: 10px;
+	width: 100%;
+	border: 1px solid;
+	border: 0;
+	border-top: 0px;
+	resize: none;
+	outline: none;
+	background: #fff;
+	border-radius: 0;
+	font-size: 15px;
+	resize: vertical;
+	margin-left: 0;
 }
 
 .ossn-wall-container .controls {
-    background-color: #fff;
-    margin-top: 5px;
-    border: 1px solid #E9EAED;
-    padding: 5px;
-    border-radius: 10px;
+	background-color: #fff;
+	margin-top: 5px;
+	border: 1px solid #E9EAED;
+	padding: 5px 10px;
+	margin-left: -10px;
+	margin-right: -10px;
+	border-left: 0;
+	border-right: 0;
 }
+
 .ossn-wall-container .wall-tabs {
 	border-bottom: 1px solid #E5E5E5;
 	background-color: #F6F7F8;
 	border: 1px solid #E9EAED;
 	margin-top: 5px;
-    
-    border-top-right-radius: 10px;
-    border-top-left-radius: 10px;       
+	border-top-right-radius: 10px;
+	border-top-left-radius: 10px;
 }
 
 .ossn-wall-container .wall-tabs .item {
@@ -547,63 +559,71 @@ background: #ebedf0;
 .ossn-wall-container .tabs-input {}
 
 .ossn-wall-container .controls li {
-    padding: 10px;
-    background: #eeeeee7d;
-    display: inline-block;
-    border-radius: 50%;
-    cursor: pointer;
-    width: 40px;
-    height: 40px;
-    text-align: center;
+	padding: 7px;
+	background: #eeeeee7d;
+	display: inline-block;
+	border-radius: 50%;
+	cursor: pointer;
+	width: 35px;
+	height: 35px;
+	text-align: center;
 }
+
 .ossn-wall-container .controls .ossn-wall-friend,
 .ossn-wall-container .controls .ossn-wall-location,
 .ossn-wall-container .controls .ossn-wall-photo,
 .ossn-wall-container-control-menu-emojii-selector {
-	    color: #5d5d5d;
+	color: #5d5d5d;
 }
+
 .ossn-wall-container .controls li:hover {
 	background: #eee;
 }
+
 .ossn-wall-post-button-container {
-    display: inline-table;
-    float: right;
+	display: inline-table;
+	float: right;
 }
+
 .ossn-wall-privacy {
-    margin-right: 5px;
-    padding: 10px;
-    background: #eeeeee7d;
-    border-radius: 10px;
-    cursor: pointer;
-    display: inline-block;
-    margin-top: 10px;
+	margin-right: 5px;
+	padding: 10px;
+	background: #eeeeee7d;
+	border-radius: 10px;
+	cursor: pointer;
+	display: inline-block;
+	margin-top: 10px;
 }
+
 .ossn-wall-privacy:hover {
-	background:#eee;
+	background: #eee;
 }
-.ossn-wall-privacy span > span {
-    margin-left: 10px;
-    float: right;
-    margin-top: -2px;
+
+.ossn-wall-privacy span>span {
+	margin-left: 5px;
+	float: right;
 }
 
 .ossn-wall-container input[type='submit'] {
-padding: 8px 50px;
-    margin-top: 6px;
-    margin: 10px auto;
-    border-radius: 5px;  
+	padding: 8px 35px;
+	margin-top: 6px;
+	margin: 10px auto;
+	border-radius: 5px;
 }
 
 .ossn-wall-container i {
-	font-size: 18px;
-    margin-right:0;
+	font-size: 15px;
+	margin-right: 0;
 }
-.ossn-wall-container-data {
-	background:#fff;
-    padding:10px;
 
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;    
+.ossn-wall-container-data {
+	background: #fff;
+	padding: 10px;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+	border: 1px solid #E5E5E5;
+	border-bottom-color: #ccc;
+	border-width: 0 1px 2px 1px;
 }
 
 .ossn-wall-container input[type="file"],
@@ -615,9 +635,10 @@ padding: 8px 50px;
 	margin-top: -5px;
 	outline: none;
 }
+
 .ossn-wall-container input[type="file"] {
-	border:1px solid #E9EAED;
-    border-radius:10px;
+	border: 1px solid #E9EAED;
+	border-radius: 10px;
 	background: #fff;
 }
 
@@ -631,13 +652,15 @@ padding: 8px 50px;
 }
 
 #ossn-wall-location-input {
-    background: #fff;
-    border: 1px solid #E9EAED;
-    border-radius: 10px;
+	background: #fff;
+	border: 1px solid #E9EAED;
+	border-radius: 10px;
 }
+
 #ossn-wall-location .ap-input-icon svg {
-	top:15px
+	top: 15px
 }
+
 #ossn-wall-form .ossn-loading {
 	margin: 7px;
 }
@@ -771,9 +794,11 @@ padding: 8px 50px;
 .comment-container input[readonly='readonly'] {
 	background: #eee;
 }
+
 .comments-item .comment-metadata {
-	margin-top:5px;
+	margin-top: 5px;
 }
+
 .comment-box {
 	width: 100%;
 	border: 1px solid #eee;
@@ -1005,15 +1030,15 @@ padding: 8px 50px;
 		margin-bottom: 10px;
 	}
 	.ossn-group-members {
-		text-align:center;
+		text-align: center;
 	}
-   .ossn-group-members .request-controls {
-   		float:none;
-    	padding-bottom: 10px;
-   }
-   .ossn-group-members .uinfo .userlink {
-   		float:none !important;
-   }
+	.ossn-group-members .request-controls {
+		float: none;
+		padding-bottom: 10px;
+	}
+	.ossn-group-members .uinfo .userlink {
+		float: none !important;
+	}
 }
 
 
@@ -1199,35 +1224,36 @@ padding: 8px 50px;
 /***********************************
 	Ossn Notifications
 ***************************************/
+
 .ossn-notifications-box .collapsing {
-    -webkit-transition: none;
-    transition: none;
-    display: none;
+	-webkit-transition: none;
+	transition: none;
+	display: none;
 }
+
 .ossn-notifications-box {
 	width: 430px;
 	color: #000;
-
 	position: absolute;
-    top: 100%;
-    right:20px;
-    z-index: 1000;
-    display: none;
-    float: left;
-    min-width: 160px;
-    padding: 5px 0;
-    margin: 2px 0 0;
-    font-size: 14px;
-    text-align: left;
-    list-style: none;
-    background-color: #fff;
-    -webkit-background-clip: padding-box;
-    background-clip: padding-box;
-    border: 1px solid #ccc;
-    border: 1px solid rgba(0,0,0,.15);
-    border-radius: 4px;
-    -webkit-box-shadow: 0 6px 12px rgb(0 0 0 / 18%);
-    box-shadow: 0 6px 12px rgb(0 0 0 / 18%);    
+	top: 100%;
+	right: 20px;
+	z-index: 1000;
+	display: none;
+	float: left;
+	min-width: 160px;
+	padding: 5px 0;
+	margin: 2px 0 0;
+	font-size: 14px;
+	text-align: left;
+	list-style: none;
+	background-color: #fff;
+	-webkit-background-clip: padding-box;
+	background-clip: padding-box;
+	border: 1px solid #ccc;
+	border: 1px solid rgba(0, 0, 0, .15);
+	border-radius: 4px;
+	-webkit-box-shadow: 0 6px 12px rgb(0 0 0 / 18%);
+	box-shadow: 0 6px 12px rgb(0 0 0 / 18%);
 }
 
 .ossn-notifications-box .notificaton-item {
@@ -1537,7 +1563,6 @@ padding: 8px 50px;
 	padding: 5px 6px;
 	cursor: pointer;
 	outline: none;
-
 	text-align: center;
 	white-space: nowrap;
 	-webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 #FFF;
@@ -1759,25 +1784,25 @@ li[class^="menu-section-item-"] {
 *******************************/
 
 ul.token-input-list {
-    overflow: hidden;
-    height: auto !important;
-    width: 100%;
-    cursor: text;
-    font-size: 12px;
-    font-family: Verdana;
-    min-height: 1px;
-    margin: 0;
-    z-index: 999;
-    background-color: #fff;
-    list-style-type: none;
-    clear: left;
-    color: #2B5470;
-    border-top: 1px dashed #EEE;
-    border-right: 1px solid #EEE;
-    border-left: 1px solid #EEE;
-    border-bottom: 1px solid #eee;
-    padding: 5px 0 0;
-    border-radius: 10px;
+	overflow: hidden;
+	height: auto !important;
+	width: 100%;
+	cursor: text;
+	font-size: 12px;
+	font-family: Verdana;
+	min-height: 1px;
+	margin: 0;
+	z-index: 999;
+	background-color: #fff;
+	list-style-type: none;
+	clear: left;
+	color: #2B5470;
+	border-top: 1px dashed #EEE;
+	border-right: 1px solid #EEE;
+	border-left: 1px solid #EEE;
+	border-bottom: 1px solid #eee;
+	padding: 5px 0 0;
+	border-radius: 10px;
 }
 
 li.token-input-token {
@@ -2471,13 +2496,10 @@ footer .ossn-footer-menu a:last-child::after {
 	.ossn-wall-container .controls {
 		height: auto;
 	}
-    .before-post-user-image {
-    	display:none;
-    }
-    .ossn-wall-container textarea {
-	    margin-left: 0px;
-        width:100%; 
-     }
+	.ossn-wall-container textarea {
+		margin-left: 0px;
+		width: 100%;
+	}
 	/***********************
     	Comments
      ***********************/
@@ -2650,10 +2672,10 @@ footer .ossn-footer-menu a:last-child::after {
 	.group-name {
 		width: 100%;
 	}
-    .group-header-sep {
-    	height:auto !important;
-        text-align:center;
-    }
+	.group-header-sep {
+		height: auto !important;
+		text-align: center;
+	}
 	.ossn-group-members {
 		margin-left: 15px;
 		margin-right: 15px;
@@ -2663,7 +2685,7 @@ footer .ossn-footer-menu a:last-child::after {
 		display: block;
 	}
 	.ossn-group-members .uinfo .userlink {
-        margin-left:10px;
+		margin-left: 10px;
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;
