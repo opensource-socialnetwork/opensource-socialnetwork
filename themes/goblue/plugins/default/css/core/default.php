@@ -512,7 +512,7 @@ a {
 }
 
 .ossn-wall-container .controls {
-	background-color: #fff;
+	background-color: #F6F7F8;
 	margin-top: 5px;
 	border: 1px solid #E9EAED;
 	padding: 5px 10px;
@@ -560,7 +560,7 @@ a {
 
 .ossn-wall-container .controls li {
 	padding: 7px;
-	background: #eeeeee7d;
+	background: #e5e5e5e0;
 	display: inline-block;
 	border-radius: 50%;
 	cursor: pointer;
@@ -577,7 +577,7 @@ a {
 }
 
 .ossn-wall-container .controls li:hover {
-	background: #eee;
+	background: #fff;
 }
 
 .ossn-wall-post-button-container {
@@ -588,7 +588,7 @@ a {
 .ossn-wall-privacy {
 	margin-right: 5px;
 	padding: 10px;
-	background: #eeeeee7d;
+	background: #e5e5e5e0;
 	border-radius: 10px;
 	cursor: pointer;
 	display: inline-block;
@@ -596,7 +596,7 @@ a {
 }
 
 .ossn-wall-privacy:hover {
-	background: #eee;
+	background: #eeeeee8c;
 }
 
 .ossn-wall-privacy span>span {
