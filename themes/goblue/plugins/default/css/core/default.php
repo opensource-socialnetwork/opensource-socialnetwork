@@ -626,6 +626,10 @@ a {
 	border-width: 0 1px 2px 1px;
 }
 
+#ossn-wall-photo {
+	margin-top: 10px;
+}
+
 .ossn-wall-container input[type="file"],
 .ossn-wall-container input[type="text"] {
 	width: 100%;
