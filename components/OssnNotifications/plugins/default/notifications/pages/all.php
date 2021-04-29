@@ -19,13 +19,13 @@ $count = $get->searchNotifications(array(
 					'owner_guid' => ossn_loggedin_user()->guid,
 					'count' => true,
 ));
+$list = '<div class="ossn-notifications-all ossn-notification-page">';
 if($notifications){
-	$list = '<div class="ossn-notifications-all ossn-notification-page">';
 	foreach($notifications as $item){
 			$list .= $item->toTemplate();	
 	}
-	$list .= "</div>";
 }
+$list .= "</div>";
 $pagination = ossn_view_pagination($count);
 echo ossn_plugin_view('widget/view', array(
 				'title' => ossn_print('notifications'),
