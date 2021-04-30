@@ -79,7 +79,7 @@ Ossn.trigger_message = function($message, $type) {
 	if ($message == '') {
 		return false;
 	}
-	$html = "<div class='alert alert-" + $type + "'><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a>" + $message + "</div>";
+	$html = "<div class='alert alert-dismissible alert-" + $type + "'><button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>" + $message + "</div>";
 	$('.ossn-system-messages').find('.ossn-system-messages-inner').append($html);
 	if ($('.ossn-system-messages').find('.ossn-system-messages-inner').is(":not(:visible)")) {
 		$('.ossn-system-messages').find('.ossn-system-messages-inner').slideDown('slow');
