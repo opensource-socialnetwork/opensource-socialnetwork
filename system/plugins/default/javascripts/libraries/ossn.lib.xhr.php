@@ -98,8 +98,8 @@ Ossn.ajaxRequest = function($datap){
                     success: callback,
                 };
             }
-
-            $.ajax($vars);
+			//[E] Return xhr object on post and ajaxrequest #1909
+            return $.ajax($vars);
         });
     });
 };
@@ -148,7 +148,8 @@ Ossn.PostRequest = function($datap){
 			return xhr;
 		};
 	}
-	$.ajax({
+	//[E] Return xhr object on post and ajaxrequest #1909
+	return $.ajax({
 		xhr: $xhr,
 		async: async,
 		type: 'post',
