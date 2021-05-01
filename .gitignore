@@ -35,6 +35,7 @@ error_log
 !/components/OssnMessageTyping
 !/components/OssnRealTimeComments
 !/components/OssnPostBackground
+!/components/OssnGiphy
 
 #do not ignore config files
 !/.scrutinizer.yml
