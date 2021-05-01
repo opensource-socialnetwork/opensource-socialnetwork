@@ -6,11 +6,13 @@
     float: right;
     position: relative;
     margin-right: 5px;
-    margin-top: 5px;
+    margin-top: 4px;
     width: 25px;
     height: 25px;
     padding: 5px;
+    font-size:16px;
     cursor:pointer;
+    color:#999;
 }
 .ossn-comment-attachment {
     width: 115px;
