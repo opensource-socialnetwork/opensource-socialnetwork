@@ -216,6 +216,10 @@ class OssnEntities extends OssnDatabase {
 						//code re arrange 1st July 2015 $arsalanshah
 						if(!empty($this->datavars)) {
 								$data_dbvars = $this->get_data_dbvars();
+								//PHP8 migration
+								if($data_dbvars === false){
+									$data_dbvars = array();	
+								}
 								foreach($this->datavars as $vars => $value) {
 										if(!in_array($vars, $data_dbvars)) {
 												$this->subtype = $vars;
