@@ -68,7 +68,7 @@ function ossn_user_signup_form(){
  */
 function ossn_system_messages(){
 	$(document).ready(function(){
-		if($('.ossn-system-messages').find('a').length){
+		if($('.ossn-system-messages').find('button').length){
 			$('.ossn-system-messages').find('.ossn-system-messages-inner').show();
 
 			setTimeout(function(){
