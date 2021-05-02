@@ -466,7 +466,7 @@ class OssnComponents extends OssnDatabase {
 						"com_id='{$id}'"
 				);
 				$this->settings   = $this->select($params);
-				if($this->settings->active == 1) {
+				if($this->settings && $this->settings->active == 1) {
 						return true;
 				}
 				return false;
