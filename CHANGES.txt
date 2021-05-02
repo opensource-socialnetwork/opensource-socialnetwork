@@ -27,6 +27,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v6.x
 * [B] CSSMin didn't minify data:image type svg #1889
 * [E] Remove unused CSS minify code from older OSSN #1892
 * [E] Return xhr object on post and ajaxrequest #1909
+* [B] Group header menu shows multiple more #1888
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v5.6
 * [B] prevent creating of new records if setting value is 0 #1815
