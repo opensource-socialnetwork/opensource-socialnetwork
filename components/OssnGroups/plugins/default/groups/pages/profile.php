@@ -10,6 +10,7 @@
  */
 $cover = $params['group']->haveCover();
 $iscover = '';
+$ismember = false;
 if ($cover) {
     $iscover = 'ossn-group-cover-header';
     $coverp = $params['group']->coverParameters($params['group']->guid);
@@ -34,7 +35,7 @@ $members = $params['group']->getMembers();
 		<div class="row">
 			<div class="col-md-11">
 				<div class="profile-header <?php echo $iscover; ?>">
-					<?php if ($params['group']->owner_guid == ossn_loggedin_user()->guid || ossn_isAdminLoggedin()) { ?>
+					<?php if (ossn_loggedin_user() && ($params['group']->owner_guid == ossn_loggedin_user()->guid || ossn_isAdminLoggedin())) { ?>
 					<form id="group-upload-cover" style="display:none;" method="post" enctype="multipart/form-data">
 						<input type="file" name="coverphoto" class="coverfile"
 							onchange="Ossn.Clk('#group-upload-cover .upload');"/>
@@ -84,7 +85,7 @@ $members = $params['group']->getMembers();
                                 
 							<?php } // if(ossn_isLoggedin() && $params['group']->owner_guid !== ossn_loggedin_user()->guid) {?>
                             
-							<?php if($params['group']->owner_guid == ossn_loggedin_user()->guid || ossn_isAdminLoggedin()) {
+							<?php if(ossn_loggedin_user() && ($params['group']->owner_guid == ossn_loggedin_user()->guid || ossn_isAdminLoggedin())) {
 										$ismember = 1;
 							?>
 									<a href="<?php echo ossn_group_url($params['group']->guid); ?>edit" class='button-grey'>
@@ -177,7 +178,7 @@ $members = $params['group']->getMembers();
 						'contents' => nl2br($params['group']->description),
 						'class' => 'widget-description',
 				));					
-				if($params['group']->owner_guid == ossn_loggedin_user()->guid || ossn_isAdminLoggedin()) {
+				if(ossn_loggedin_user() && ($params['group']->owner_guid == ossn_loggedin_user()->guid || ossn_isAdminLoggedin())) {
 					$member_requests = ossn_plugin_view('output/url', array(
 							'text' => ossn_print('view:all'),
 							'href' => ossn_group_url($params['group']->guid).'requests'
