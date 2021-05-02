@@ -22,6 +22,7 @@ if($params['ismember'] === 1) {
 }
 echo '<div class="user-activity">';
 $posts = new OssnWall;
+$count = 0;
 if($params['ismember'] === 1 || $params['membership'] == OSSN_PUBLIC) {
 		$count = $posts->GetPostByOwner($params['group']['group']->guid, 'group', true);
 		$posts = $posts->GetPostByOwner($params['group']['group']->guid, 'group');
