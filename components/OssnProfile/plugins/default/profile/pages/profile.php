@@ -41,7 +41,7 @@ if (ossn_isLoggedIn()) {
 			<div class="<?php echo $class; ?>">
 				<div class="top-container">
 					<div id="container" class="profile-cover">
-						<?php if (ossn_loggedin_user()->guid == $user->guid) { ?>
+						<?php if (ossn_loggedin_user() && ossn_loggedin_user()->guid == $user->guid) { ?>
 						<div class="profile-cover-controls" style="display:none;cursor:pointer;">
 							<a href="javascript:void(0);" onclick="Ossn.Clk('.coverfile');" class='btn-action change-cover'>
 								<?php echo ossn_print( 'change:cover'); ?>
@@ -59,7 +59,7 @@ if (ossn_isLoggedIn()) {
 						<img id="draggable" class="profile-cover-img" src="<?php echo $cover; ?>" style='<?php echo $cover_top; ?><?php echo $cover_left; ?>' data-top='<?php echo $coverp[0]; ?>' data-left='<?php echo $coverp[1]; ?>'/>
 					</div>
 					<div class="profile-photo">
-						<?php if (ossn_loggedin_user()->guid == $user->guid) { ?>
+						<?php if (ossn_loggedin_user() && ossn_loggedin_user()->guid == $user->guid) { ?>
 						<div class="upload-photo" style="display:none;cursor:pointer;">
 							<span onclick="Ossn.Clk('.pfile');"><?php echo ossn_print('change:photo'); ?></span>
 
