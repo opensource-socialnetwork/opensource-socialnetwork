@@ -13,7 +13,7 @@ $count = $posts->GetUserPosts($params['user']->guid, true);
 $posts = $posts->GetUserPosts($params['user']->guid);
 
 //lastchage: site admins are unable to access member profile threads without friendship #176 
-if(ossn_user_is_friend(ossn_loggedin_user()->guid, $params['user']->guid) || ossn_loggedin_user()->guid == $params['user']->guid || ossn_isAdminLoggedin()) {
+if(ossn_loggedin_user() && (ossn_user_is_friend(ossn_loggedin_user()->guid, $params['user']->guid) || ossn_loggedin_user()->guid == $params['user']->guid || ossn_isAdminLoggedin())) {
 		echo '<div class="ossn-wall-container">';
 		echo ossn_view_form('user/container', array(
 				'action' => ossn_site_url() . 'action/wall/post/u',
@@ -48,7 +48,7 @@ if($posts) {
 				$user = ossn_user_by_guid($post->poster_guid);
 				if($post->access == OSSN_FRIENDS) {
 						//lastchage: site admins are unable to access member profile threads without friendship #176 
-						if(ossn_user_is_friend($post->owner_guid, ossn_loggedin_user()->guid) || ossn_loggedin_user()->guid == $post->owner_guid || ossn_isAdminLoggedin()) {
+						if(ossn_loggedin_user() && (ossn_user_is_friend($post->owner_guid, ossn_loggedin_user()->guid) || ossn_loggedin_user()->guid == $post->owner_guid || ossn_isAdminLoggedin())) {
 								echo ossn_plugin_view('wall/templates/activity-item', array(
 										'post' => $post,
 										'friends' => explode(',', $data->friend),
