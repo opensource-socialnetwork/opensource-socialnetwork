@@ -60,7 +60,7 @@ if (!empty($search)) {
             <td>
                 <a href="<?php echo ossn_site_url("administrator/edituser/{$user->username}"); ?>"><?php echo ossn_print('edit'); ?></a>
             </td>
-            <td><a href="<?php echo ossn_site_url("action/admin/delete/user?guid={$user->guid}", true); ?>" class="userdelete"><?php echo ossn_print('delete'); ?></a></td>
+            <td><a href="<?php echo ossn_site_url("action/admin/delete/user?guid={$user->guid}", true); ?>" class="ossn-make-sure" data-ossn-msg="ossn:user:delete:exception"><?php echo ossn_print('delete'); ?></a></td>
 
         </tr>
     <?php 
