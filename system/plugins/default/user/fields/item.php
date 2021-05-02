@@ -93,7 +93,7 @@ if(isset($params['items'])) {
 								//[E]make the label arg assigned to any label of user/field #1646
 								if(isset($item['label']) && !is_bool($item['label'])){
 									echo "<label>".$item['label']."</label>";
-								} elseif(isset($item['label']) && $item['label'] === true || $params['label'] === true){
+								} elseif((isset($item['label']) && $item['label'] === true) || (isset($params['label']) && $params['label'] === true)){
 									echo "<label>".ossn_print("{$item['name']}")."</label>";
 								}
 								echo ossn_plugin_view('input/radio', $args);
