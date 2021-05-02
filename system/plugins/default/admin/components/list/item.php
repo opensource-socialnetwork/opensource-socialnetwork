@@ -19,25 +19,30 @@
  if (!$params['OssnCom']->isActive($params['name'])) {
   	$enable = ossn_site_url("action/component/enable?com={$params['name']}", true);
   	$enable = "<a href='{$enable}' class='btn btn-success'><i class='fa fa-check'></i>" . ossn_print('admin:button:enable') ."</a>";
+	$disable = '';
  } elseif (!in_array($params['name'], $params['OssnCom']->requiredComponents())) {
   	$disable = ossn_site_url("action/component/disable?com={$params['name']}", true);
   	$disable = "<a href='{$disable}' class='btn btn-warning'><i class='fa fa-minus'></i>" . ossn_print('admin:button:disable') ."</a>";
+	$enable = '';
  }
  if (in_array($params['name'], ossn_registered_com_panel())) {
   	$configure = ossn_site_url("administrator/component/{$params['name']}");
   	$configure = "<a href='{$configure}' class='btn btn-primary'><i class='fa fa-cogs'></i>" . ossn_print('admin:button:configure') ."</a>";
  }
+ $delete = '';
  if (!in_array($params['name'], $params['OssnCom']->requiredComponents())) {
   	$delete = ossn_site_url("action/component/delete?component={$params['name']}", true);
-  	$delete = "<a href='{$delete}' class='btn btn-danger ossn-com-delete-button'><i class='fa fa-close'></i>" . ossn_print('admin:button:delete') ."</a>";
+  	$delete = "<a href='{$delete}' class='btn btn-danger ossn-make-sure' data-ossn-msg='ossn:component:delete:exception'><i class='fa fa-close'></i>" . ossn_print('admin:button:delete') ."</a>";
  }
  // find active usage of a required component
+ $in_use = false;
  if (in_array($params['name'], $params['OssnCom']->requiredComponents())) {
-		$in_use = false;
-		if($active_usage = $OssnComs->inUseBy($params['name'])) {
-			$active_usage_list = implode(", ", $active_usage);
-			$in_use = true;
-		}
+	$enable = '';
+	$disable = '';
+	if($active_usage = $OssnComs->inUseBy($params['name'])) {
+		$active_usage_list = implode(", ", $active_usage);
+		$in_use = true;
+	}
  }
 ?>    
     
