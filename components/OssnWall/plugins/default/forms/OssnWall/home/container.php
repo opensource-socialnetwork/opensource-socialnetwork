@@ -38,13 +38,13 @@ if (!isset($params['user']->guid)) {
 			echo ossn_view_menu('wall/container/controls/home', 'wall/menus/container_controls'); 
 		?>            
     </div>
-   <div class="ossn-wall-privacy">
-            <span><i class="ossn-wall-privacy-lock fa fa-lock"></i><span class=""><?php echo ossn_print('privacy'); ?></span></span>
-    </div>           
     <div class='ossn-wall-post-button-container'>
             <div class="ossn-loading ossn-hidden"></div>
             <input class="btn btn-primary ossn-wall-post" type="submit" value="<?php echo ossn_print('post'); ?>" />
     </div>
+    <div class="ossn-wall-privacy">
+            <span><i class="ossn-wall-privacy-lock fa fa-lock"></i><span class=""><?php echo ossn_print('privacy'); ?></span></span>
+    </div>           
     <input type="hidden" value="<?php echo $params['user']->guid; ?>" name="wallowner" />
     <input type="hidden" name="privacy" id="ossn-wall-privacy" value="<?php echo OSSN_PUBLIC; ?>" />
 </div>
