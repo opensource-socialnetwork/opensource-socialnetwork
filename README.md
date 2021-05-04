@@ -49,13 +49,14 @@ Front-End Features
 | Wall Posts | Albums | Photos | Ads | 
 | Groups | Friends Tagging | Block System | 
 | Poke System | Comments | Likes and Reactions |
-| Comment Photos | Giphy Integeration in Comments |  Invite Friends | 
+| Expense Mangement | Giphy Integeration in Comments |  Invite Friends | 
 | Embed Videos | Smiles & Emojis | Site Pages (Terms, about, privacy) |
 | Mobile Responsive |  Notifications | Search | 
 | Gallery | Post Background | Realtime Comments | 
 | Realtime Messages | Blogs | Themes on community |
 | Mentions in comments | Custom Pages | Custom Menu Items |
-| Captcha | Progressive Web App | Many free components of community website | 
+| Captcha | Site Announcements | Greetings | 
+| Login as | Progressive Web App | Many free components of community website | 
 
 Backend Features
 =================
