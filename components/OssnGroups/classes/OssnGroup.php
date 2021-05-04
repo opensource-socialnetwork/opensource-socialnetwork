@@ -34,15 +34,13 @@ class OssnGroup extends OssnObject {
 				self::initAttributes();
 				$this->title       = trim($params['name']);
 				$this->description = trim($params['description']);
-				if(empty($this->title)) {
+				if(empty($this->title) || ($params['privacy'] != OSSN_PRIVATE && $params['privacy'] != OSSN_PUBLIC)) {
 						return false;
 				}
 				$this->owner_guid = $params['owner_guid'];
 				$this->type       = 'user';
 				$this->subtype    = 'ossngroup';
-				if($params['privacy'] == OSSN_PRIVATE || $params['privacy'] == OSSN_PUBLIC) {
-						$this->data->membership = $params['privacy'];
-				}
+				$this->data->membership = $params['privacy'];
 				if($guid = $this->addObject()) {
 						ossn_add_relation($params['owner_guid'], $this->getGuid(), 'group:join');
 						ossn_add_relation($this->getGuid(), $params['owner_guid'], 'group:join:approve');
@@ -418,6 +416,7 @@ class OssnGroup extends OssnObject {
 				$params['wheres']  = array(
 						"(title LIKE '%{$q}%' OR description LIKE '%{$q}%')"
 				);
+				$params['count']   = false;
 				$vars              = array_merge($params, $args);
 				$search            = $this->searchObject($vars, true);
 				if(!$search) {
