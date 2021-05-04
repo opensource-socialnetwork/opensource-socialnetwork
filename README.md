@@ -25,65 +25,37 @@ Kernighan & Ritchie (K&R Variant 1TBS) indentation standard is used for the OSSN
 
 Visit https://www.opensource-socialnetwork.org/ for more details 
 
+
 Languages
 ==========
-* English
-* German
-* French
-* Romanian
-* Portuguese
-* Turkish
-* Spanish
-* Italian
-* Russian
-* Dutch
-* Hebrew
-* Greek
-* Esperanto 
-* Japanese
-* Indonesian
-* Traditional Chinese
+
+|  |  |  |
+|:-------------------------:|:-------------------------:|:-------------------------:|
+| English |German | Romanian | 
+| French | Portuguese | Turkish |
+| Spanish | Italian | Russian | 
+| Dutch | Hebrew | Greek |
+| Esperanto | Japanese | Indonesian |
+| Traditional Chinese | | 
 
 Front-End Features
 ===================
-* User Registration
-* User Login
-* Profile 
-* Profile Photo
-* Profile Cover
-* Add/Remove Friends
-* Live Chat
-* Wall posts
-* Photos
-* Ads
-* Groups
-* Tag friends in posts
-* User block system
-* User poke system
-* Comments
-* Likes
-* Reactions
-* Photos in comments.
-* Group cover photos
-* Repostion Profile/Group cover
-* Notifications
-* Friend Requests
-* Chat Bar
-* Invite Friends
-* Embed Videos
-* Smilies
-* SitePages (terms, privacy, about)
-* Site Search
-* Reset Password
-* Newsfeed page
-* Post Edit
-* Comment Edit
-* Mobile Friendly
-* A photo gallery view.
-* Emojii Support
-* Post Background
-* Realtime messages status
-* Realtime comments status
+
+| Feature | Feature |  Feature |  
+|:-------------------------:|:-------------------------:|:-------------------------:|
+| User Registration  | User Login | Profile |
+| Profile Cover | Profile Photo | Profile Friends | 
+| Friends Management | Live Chat | Messaging | 
+| Wall Posts | Albums | Photos | Ads | 
+| Groups | Friends Tagging | Block System | 
+| Poke System | Comments | Likes and Reactions |
+| Comment Photos | Giphy Integeration in Comments |  Invite Friends | 
+| Embed Videos | Smiles & Emojis | Site Pages (Terms, about, privacy) |
+| Mobile Responsive |  Notifications | Search | 
+| Gallery | Post Background | Realtime Comments | 
+| Realtime Messages | Blogs | Themes on community |
+| Mentions in comments | Custom Pages | Custom Menu Items |
+| Captcha | Progressive Web App | Many free components of community website | 
 
 Backend Features
 =================
