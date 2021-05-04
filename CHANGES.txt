@@ -28,6 +28,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v6.x
 * [E] Remove unused CSS minify code from older OSSN #1892
 * [E] Return xhr object on post and ajaxrequest #1909
 * [B] Group header menu shows multiple more #1888
+* [E] prevent creating groups with undefined membership #1916
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v5.6
 * [B] prevent creating of new records if setting value is 0 #1815
