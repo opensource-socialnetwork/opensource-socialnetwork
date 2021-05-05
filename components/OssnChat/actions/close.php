@@ -6,3 +6,4 @@ if (OssnChat::removeChatTab($chat)) {
 } else {
     echo 0;
 }
+exit;
