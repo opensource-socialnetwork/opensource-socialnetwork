@@ -9,9 +9,12 @@
  * @link      https://www.opensource-socialnetwork.org/
  */
  $args = array(
-		'instance' => $params['instance'],
+		'instance' => (isset($params['instance']) ? $params['instance'] : ''),
 		'view' => 'chat/message-item-send',
-  ); 
+ );
+ if(!isset($params['class'])){
+		$params['class'] = ''; 
+ }
 ?>
 <div class="message-reciever" id="ossn-message-item-<?php echo $params['id'];?>">
     <div class="user-icon">
