@@ -129,31 +129,6 @@ class OssnObject extends OssnEntities {
 		}
 		
 		/**
-		 * Get object by types;
-		 *
-		 * Requires : $object->(type , subtype(optional))
-		 *            $object->order_by To sort the data in a recordset
-		 *
-		 * @return object
-		 */
-		public function getObjectsByTypes() {
-				$params               = array();
-				$params['type']       = $this->type;
-				$params['subtype']    = $this->subtype;
-				$params['owner_guid'] = $this->owner_guid;
-				$params['limit']      = $this->limit;
-				$params['order_by']   = $this->order_by;
-				$params['count']      = $this->count;
-				$params['page_limit'] = $this->page_limit;
-				$params['offset']     = $this->offset;
-				$objects              = $this->searchObject($params);
-				if($objects) {
-						return $objects;
-				}
-				return false;
-		}
-		
-		/**
 		 * Get object by object guid;
 		 *
 		 * Requires : $object->object_guid
