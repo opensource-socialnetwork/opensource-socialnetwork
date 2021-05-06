@@ -78,18 +78,6 @@ class OssnGroup extends OssnObject {
 		}
 		
 		/**
-		 * Get site group
-		 *
-		 * @return object;
-		 */
-		public function getGroups() {
-				$this->type    = 'user';
-				//fixes #154
-				$this->subtype = 'ossngroup';
-				return $this->getObjectsByTypes();
-		}
-		
-		/**
 		 * Get group by guid
 		 *
 		 * @params $guid group guid
