@@ -12,11 +12,15 @@
 $OssnSitePages = new OssnSitePages;
 $OssnSitePages->pagename = 'terms';
 $OssnSitePages = $OssnSitePages->getPage();
-
+if($OssnSitePages) {
+	$description = html_entity_decode($OssnSitePages->description);
+} else {
+	$description = '';
+}
 ?>
 <div>
 	<label> <?php echo ossn_print('site:terms'); ?> </label>
-	<textarea name="pagebody" class="ossn-editor"><?php echo html_entity_decode($OssnSitePages->description); ?></textarea>
+	<textarea name="pagebody" class="ossn-editor"><?php echo $description; ?></textarea>
 <div>
 <div class="margin-top-10">
 	<input type="submit" class="btn btn-success btn-sm" value="<?php echo ossn_print('save'); ?>"/>
