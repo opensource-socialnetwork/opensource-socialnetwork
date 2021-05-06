@@ -25,15 +25,14 @@ class OssnSitePages extends OssnObject {
         $this->type = 'site';
         $this->subtype = "sitepage:{$this->pagename}";
         //check if page exists of not
-        $this->pageget = $this->getObjectsByTypes();
-        if (!is_array($this->pageget)) {
+        if (!$this->getPage()) {
             if ($this->addObject()) {
                 return true;
             }
         } else {
             $data = array('description');
             $values = array($this->description);
-            if ($this->updateObject($data, $values, $this->pageget[0]->guid)) {
+            if ($this->updateObject($data, $values, $this->getPage()->guid)) {
                 return true;
             }
         }
@@ -46,11 +45,13 @@ class OssnSitePages extends OssnObject {
      * @return object;
      */
     public function getPage() {
-        $this->type = 'site';
-        $this->subtype = "sitepage:{$this->pagename}";
-        $this->pageget = $this->getObjectsByTypes();
-        if ($this->pageget) {
-            return $this->pageget[0];
+		$params = array(
+			'type' => 'site',
+			'subtype' => "sitepage:{$this->pagename}"
+		);
+		$sitepage = $this->searchObject($params);
+        if($sitepage) {
+			return $sitepage[0];
         }
         return false;
     }
