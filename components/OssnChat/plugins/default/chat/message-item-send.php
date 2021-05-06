@@ -9,9 +9,9 @@
  * @link      https://www.opensource-socialnetwork.org/
  */
  $args = array(
-		'instance' => $params['instance'],
+		'instance' => (isset($params['instance']) ? $params['instance'] : ''),
 		'view' => 'chat/message-item-send',
-  );
+ );
  if(!isset($params['class'])){
 		$params['class'] = ''; 
  }
