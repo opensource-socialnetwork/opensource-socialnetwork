@@ -419,6 +419,7 @@ function ossn_album_page_handler($album) {
 						$guid    = $album[1];
 						$picture = $album[2];
 						$type    = input('type');
+						$size    = input('size');
 						
 						$name = str_replace(array(
 								'.jpg',
