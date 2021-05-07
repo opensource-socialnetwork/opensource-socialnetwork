@@ -1,5 +1,5 @@
+//<script>
 $(document).ready(function() {
-		
 	$('body').append('<div id="sounds"></div>');
 		
 	if (/android|ipod|iphone|ipad|blackberry|kindle/i.test(navigator.userAgent) && !window.matchMedia('(display-mode: standalone)').matches) {
@@ -19,7 +19,7 @@ $(document).ready(function() {
 	}
 	else {
 		if ($('.ossn-chat-windows-long').length) {
-			if (getCookie("ossn_chat_bell") == 'on') {
+			if (Ossn.getCookie("ossn_chat_bell") == 'on') {
 				$('#sounds').append('<audio id="ossn-chat-sound" src="<?php echo ossn_site_url("components/OssnSounds/audios/pling.mp3"); ?>" preload="auto"></audio>');
 				$('<div class="ossn-chat-pling"><i class="fa fa-bell-o"></i></div>').prependTo('.ossn-chat-windows-long .inner');
 				$('<div class="ossn-chat-pling"><i class="fa fa-bell-o"></i></div>').prependTo('.ossn-chat-icon .ossn-chat-inner-text');
@@ -29,18 +29,18 @@ $(document).ready(function() {
 				$('<div class="ossn-chat-pling"><i class="fa fa-bell-slash-o"></i></div>').prependTo('.ossn-chat-windows-long .inner');
 				$('<div class="ossn-chat-pling"><i class="fa fa-bell-slash-o"></i></div>').prependTo('.ossn-chat-icon .ossn-chat-inner-text');
 				/* first time usage defaults to off */
-				setCookie('ossn_chat_bell', 'off', 30);
+				chatSetCookie('ossn_chat_bell', 'off', 30);
 			}
 		}
 		if ($('.message-form-form').length) {
-			if (getCookie("ossn_message_bell") == 'on') {
+			if (Ossn.getCookie("ossn_message_bell") == 'on') {
 				$('#sounds').append('<audio id="ossn-message-sound" src="<?php echo ossn_site_url("components/OssnSounds/audios/pling.mp3"); ?>" preload="auto"></audio>');
 				$('<div class="ossn-message-pling"><i class="fa fa-bell-o"></i></div>').appendTo('.message-form-form .controls');
 			}
 			else {
 				$('#sounds').append('<audio id="ossn-message-sound" src="" preload="auto"></audio>');
 				$('<div class="ossn-message-pling"><i class="fa fa-bell-slash-o"></i></div>').appendTo('.message-form-form .controls');
-				setCookie('ossn_message_bell', 'off', 30);
+				chatSetCookie('ossn_message_bell', 'off', 30);
 			}	
 		}
 	}
@@ -56,14 +56,14 @@ $(document).ready(function() {
 			player.src = pling;
 			player.play();
 			bell.addClass('fa fa-bell-o');
-			setCookie('ossn_chat_bell', 'on', 30);
+			chatSetCookie('ossn_chat_bell', 'on', 30);
 		}
 		// sound is on - turn it off
 		else {
 			player.src = '';
 			bell.removeClass('fa fa-bell-o');
 			bell.addClass('fa fa-bell-slash-o');
-			setCookie('ossn_chat_bell', 'off', 30);
+			chatSetCookie('ossn_chat_bell', 'off', 30);
 		}
 	});
 
@@ -77,20 +77,18 @@ $(document).ready(function() {
 			player.src = pling;
 			player.play();
 			bell.addClass('fa fa-bell-o');
-			setCookie('ossn_message_bell', 'on', 30);
+			chatSetCookie('ossn_message_bell', 'on', 30);
 		}
 		// sound is on - turn it off
 		else {
 			player.src = '';
 			bell.removeClass('fa fa-bell-o');
 			bell.addClass('fa fa-bell-slash-o');
-			setCookie('ossn_message_bell', 'off', 30);
+			chatSetCookie('ossn_message_bell', 'off', 30);
 		}
 	});
 	
 });
-
-
 Ossn.ChatplaySound = function() {
 	var bell = document.getElementById('ossn-chat-sound');
 	if(bell.readyState) {
@@ -104,20 +102,8 @@ Ossn.MessageplaySound = function() {
 	}
 };
 
-function setCookie(cname, cvalue, exdays) {
+function chatSetCookie(cname, cvalue, exdays) {
     var d = new Date();
     d.setTime(d.getTime() + (exdays*24*60*60*1000));
-    var expires = "expires="+d.toUTCString();
-    document.cookie = cname + "=" + cvalue + "; " + expires + "; path=/";
-} 
-
-function getCookie(cname) {
-    var name = cname + "=";
-    var ca = document.cookie.split(';');
-    for(var i=0; i<ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0)==' ') c = c.substring(1);
-        if (c.indexOf(name) == 0) return c.substring(name.length,c.length);
-    }
-    return "";
-} 
+    Ossn.setCookie(cname, cvalue, d);
+}

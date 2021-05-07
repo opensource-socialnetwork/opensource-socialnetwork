@@ -10,6 +10,7 @@
  */
 
 echo ossn_plugin_view('javascripts/libraries/ossn.lib.system');
+echo ossn_plugin_view('javascripts/libraries/ossn.lib.cookie');
 echo ossn_plugin_view('javascripts/libraries/ossn.lib.xhr');
 echo ossn_plugin_view('javascripts/libraries/ossn.lib.securitytoken');
 echo ossn_plugin_view('javascripts/libraries/ossn.lib.languages');
