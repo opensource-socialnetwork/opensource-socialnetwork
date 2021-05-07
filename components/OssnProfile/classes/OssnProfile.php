@@ -75,22 +75,24 @@ class OssnProfile extends OssnDatabase {
 				             subtype='cover_position');");
         $this->execute();
         $entity = $this->fetch();
-        $position = array(
-            '',
-            ''
-        );
+	if($entity){
+        	$position = array(
+        	    '',
+        	    ''
+        	);
 
-        $fields = new OssnEntities;
-        $fields->owner_id = $guid;
-        $fields->guid = $entity->guid;
-        $fields->type = 'user';
+        	$fields = new OssnEntities;
+        	$fields->owner_id = $guid;
+        	$fields->guid = $entity->guid;
+        	$fields->type = 'user';
 
-        $fields->subtype = 'cover_position';
-        $fields->value = json_encode($position);
-        if ($fields->updateEntity()) {
-            return true;
-        }
-        return false;
+        	$fields->subtype = 'cover_position';
+        	$fields->value = json_encode($position);
+        	if ($fields->updateEntity()) {
+        	    return true;
+        	}
+        	return false;
+	}
     }
 
     /**
