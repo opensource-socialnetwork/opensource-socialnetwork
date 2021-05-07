@@ -264,6 +264,8 @@ function ossn_comment_menu($name, $type, $params) {
 						//check if type is group
 						if($post->type == 'group') {
 								$group = ossn_get_group_by_guid($post->owner_guid);
+						} else {
+								$group = false;
 						}
 						//group admins must be able to delete ANY comment in their own group #170
 						//just show menu if group owner is loggedin 
