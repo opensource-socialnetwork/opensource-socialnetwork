@@ -12,3 +12,8 @@ echo '<p>' . ossn_print('post:select:privacy') . '</p>';
 echo ossn_plugin_view('input/privacy', array(
 		'value' => OSSN_PUBLIC,											 
 ));
+?>
+<script>
+$('#ossn-wall-privacy-container input[name="privacy"]').attr('checked', false);
+$('#ossn-wall-privacy-container input[value=' + $('#ossn-wall-privacy').val() + ']').attr('checked', true);
+</script>
