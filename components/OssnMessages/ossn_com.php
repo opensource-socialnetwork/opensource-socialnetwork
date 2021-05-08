@@ -161,25 +161,24 @@ function ossn_messages_page($pages) {
 				case 'all':
 						$loggedin_guid          = ossn_loggedin_user()->guid;
 						$params['recent']       = $OssnMessages->recentChat($loggedin_guid);
-						$params['count_recent'] = $OssnMessages->recentChat($loggedin_guid, true);
-						$active                 = $params['recent'][0];
-						if(isset($active->message_to) && $active->message_to == ossn_loggedin_user()->guid) {
-								$getuser = $active->message_from;
-						}
-						if(isset($active->message_from) && $active->message_from == ossn_loggedin_user()->guid) {
-								$getuser = $active->message_to;
-						}
-						if(isset($getuser)) {
+						if($params['recent']) {
+								$params['count_recent'] = $OssnMessages->recentChat($loggedin_guid, true);
+								$active                 = $params['recent'][0];
+								if(isset($active->message_to) && $active->message_to == $loggedin_guid) {
+										$getuser = $active->message_from;
+								}
+								if(isset($active->message_from) && $active->message_from == $loggedin_guid) {
+										$getuser = $active->message_to;
+								}
 								$user = ossn_user_by_guid($getuser);
-								$OssnMessages->markViewed($getuser, ossn_loggedin_user()->guid);
-								$params['data']   = $OssnMessages->getWith(ossn_loggedin_user()->guid, $getuser);
-								$params['countm'] = $OssnMessages->getWith(ossn_loggedin_user()->guid, $getuser, true);
+								$OssnMessages->markViewed($getuser, $loggedin_guid);
+								$params['data']   = $OssnMessages->getWith($loggedin_guid, $getuser);
+								$params['countm'] = $OssnMessages->getWith($loggedin_guid, $getuser, true);
 								$params['user']   = $user;
-						}
-						$contents = array(
-								'content' => ossn_plugin_view('messages/pages/messages', $params)
-						);
-						if(!isset($getuser)) {
+								$contents = array(
+										'content' => ossn_plugin_view('messages/pages/messages', $params)
+								);
+						} else {
 								$contents = array(
 										'content' => ossn_plugin_view('messages/pages/messages-none')
 								);
