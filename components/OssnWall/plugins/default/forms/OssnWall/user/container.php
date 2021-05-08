@@ -8,6 +8,11 @@
  * @license   General Public Licence http://opensource-socialnetwork.com/licence
  * @link      http://www.opensource-socialnetwork.com/licence
  */
+if (isset($_COOKIE['ossn_user_wall_privacy'])) {
+	$privacy = $_COOKIE['ossn_user_wall_privacy'];
+} else {
+	$privacy = OSSN_FRIENDS;
+}
   ossn_load_external_js('places.min');
   ossn_load_external_js('jquery.tokeninput');  
 ?>
@@ -42,5 +47,5 @@
             <span><i class="ossn-wall-privacy-lock fa fa-lock"></i><span class=""><?php echo ossn_print('privacy'); ?></span></span>
     </div>    
 	<input type="hidden" value="<?php echo $params['user']->guid; ?>" name="wallowner"/>
-	<input type="hidden" name="privacy" id="ossn-wall-privacy" value="<?php echo OSSN_FRIENDS; ?>"/>
+	<input type="hidden" name="privacy" id="ossn-wall-privacy" value="<?php echo $privacy; ?>"/>
 </div>
