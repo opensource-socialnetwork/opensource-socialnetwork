@@ -426,6 +426,12 @@ function ossn_wall_privacy(){
 			$('#ossn-wall-privacy').val(wallprivacy);
 			$('#ossn-wall-privacy').trigger("input");
 			Ossn.MessageBoxClose();
+			var $url = window.location.href;
+			if($url.match(Ossn.site_url + 'home')){
+				wallSetCookie('ossn_home_wall_privacy', wallprivacy, 365);
+			} else if($url.match(Ossn.site_url + 'u/')){
+				wallSetCookie('ossn_user_wall_privacy', wallprivacy, 365);
+			}
 		});
 	});
 
@@ -464,4 +470,9 @@ function ossn_wall_container_expend(){
 				$(this).height(this.scrollHeight + parseFloat($(this).css('borderTopWidth')) + parseFloat($(this).css('borderBottomWidth')));
 			});			
 	});
+}
+function wallSetCookie(cname, cvalue, exdays) {
+	var d = new Date();
+	d.setTime(d.getTime() + (exdays*24*60*60*1000));
+	Ossn.setCookie(cname, cvalue, d, '/');
 }
