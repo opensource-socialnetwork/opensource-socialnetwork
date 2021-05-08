@@ -65,7 +65,7 @@ function ossn_wall_like_menu($callback, $type, $params){
 
 		ossn_unregister_menu('like', 'postextra');
 
-		if(!empty($guid)){
+		if(ossn_loggedin_user() && !empty($guid)){
 				$likes = new OssnLikes();
 				if(!$likes->isLiked($guid, ossn_loggedin_user()->guid)){
 						ossn_register_menu_item('postextra', array(
@@ -99,7 +99,7 @@ function ossn_entity_like_link($callback, $type, $params){
 				$guid = false;
 				//false will just not execute the likes menu
 		}
-		if(!empty($guid)){
+		if(ossn_loggedin_user() && !empty($guid)){
 				$likes = new OssnLikes();
 				if(!$likes->isLiked($guid, ossn_loggedin_user()->guid, 'entity')){
 						ossn_register_menu_item('entityextra', array(
