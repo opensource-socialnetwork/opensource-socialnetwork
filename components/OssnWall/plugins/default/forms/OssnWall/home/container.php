@@ -12,6 +12,11 @@ if (!isset($params['user']->guid)) {
     $params['user'] = new stdClass;
     $params['user']->guid = '';
 }
+if (isset($_COOKIE['ossn_home_wall_privacy'])) {
+    $privacy = $_COOKIE['ossn_home_wall_privacy'];
+} else {
+    $privacy = OSSN_PUBLIC;
+}
  ossn_load_external_js('places.min');
  ossn_load_external_js('jquery.tokeninput'); 
 ?>
@@ -46,5 +51,5 @@ if (!isset($params['user']->guid)) {
             <span><i class="ossn-wall-privacy-lock fa fa-lock"></i><span class=""><?php echo ossn_print('privacy'); ?></span></span>
     </div>           
     <input type="hidden" value="<?php echo $params['user']->guid; ?>" name="wallowner" />
-    <input type="hidden" name="privacy" id="ossn-wall-privacy" value="<?php echo OSSN_PUBLIC; ?>" />
+    <input type="hidden" name="privacy" id="ossn-wall-privacy" value="<?php echo $privacy; ?>" />
 </div>
