@@ -347,6 +347,10 @@ a {
 	z-index: 1;
 }
 
+.topbar-menu-right ul {
+	margin-bottom: 0px;
+}
+
 .topbar-menu-right li,
 .topbar-menu-left li {
 	display: inline-block;
@@ -806,7 +810,7 @@ a {
 .comment-box {
 	width: 100%;
 	border: 1px solid #eee;
-	padding: 6px 65px 6px 12px !important;
+	padding: 6px 65px 6px 12px;
 	margin-bottom: 5px;
 	outline: none;
 	display: block;
