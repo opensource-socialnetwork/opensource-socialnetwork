@@ -29,7 +29,7 @@ $(document).ready(function() {
 				$('<div class="ossn-chat-pling"><i class="fa fa-bell-slash-o"></i></div>').prependTo('.ossn-chat-windows-long .inner');
 				$('<div class="ossn-chat-pling"><i class="fa fa-bell-slash-o"></i></div>').prependTo('.ossn-chat-icon .ossn-chat-inner-text');
 				/* first time usage defaults to off */
-				chatSetCookie('ossn_chat_bell', 'off', 30);
+				chatSetCookie('ossn_chat_bell', 'off', 365);
 			}
 		}
 		if ($('.message-form-form').length) {
@@ -40,7 +40,7 @@ $(document).ready(function() {
 			else {
 				$('#sounds').append('<audio id="ossn-message-sound" src="" preload="auto"></audio>');
 				$('<div class="ossn-message-pling"><i class="fa fa-bell-slash-o"></i></div>').appendTo('.message-form-form .controls');
-				chatSetCookie('ossn_message_bell', 'off', 30);
+				chatSetCookie('ossn_message_bell', 'off', 365);
 			}	
 		}
 	}
@@ -56,14 +56,14 @@ $(document).ready(function() {
 			player.src = pling;
 			player.play();
 			bell.addClass('fa fa-bell-o');
-			chatSetCookie('ossn_chat_bell', 'on', 30);
+			chatSetCookie('ossn_chat_bell', 'on', 365);
 		}
 		// sound is on - turn it off
 		else {
 			player.src = '';
 			bell.removeClass('fa fa-bell-o');
 			bell.addClass('fa fa-bell-slash-o');
-			chatSetCookie('ossn_chat_bell', 'off', 30);
+			chatSetCookie('ossn_chat_bell', 'off', 365);
 		}
 	});
 
@@ -77,14 +77,14 @@ $(document).ready(function() {
 			player.src = pling;
 			player.play();
 			bell.addClass('fa fa-bell-o');
-			chatSetCookie('ossn_message_bell', 'on', 30);
+			chatSetCookie('ossn_message_bell', 'on', 365);
 		}
 		// sound is on - turn it off
 		else {
 			player.src = '';
 			bell.removeClass('fa fa-bell-o');
 			bell.addClass('fa fa-bell-slash-o');
-			chatSetCookie('ossn_message_bell', 'off', 30);
+			chatSetCookie('ossn_message_bell', 'off', 365);
 		}
 	});
 	
@@ -105,5 +105,5 @@ Ossn.MessageplaySound = function() {
 function chatSetCookie(cname, cvalue, exdays) {
     var d = new Date();
     d.setTime(d.getTime() + (exdays*24*60*60*1000));
-    Ossn.setCookie(cname, cvalue, d);
+    Ossn.setCookie(cname, cvalue, d, '/');
 }
