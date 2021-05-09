@@ -87,15 +87,6 @@
 	top: 105px;
 }
 
-
-/***************************************
-	Override the comment box width
-****************************************/
-
-.comment-box {
-	padding: 6px 65px 6px 12px !important;
-}
-
 .comment-container {
 	z-index: initial;
 }
