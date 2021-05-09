@@ -347,6 +347,10 @@ a {
 	z-index: 1;
 }
 
+.topbar-menu-right ul {
+	margin-bottom: 0px;
+}
+
 .topbar-menu-right li,
 .topbar-menu-left li {
 	display: inline-block;
