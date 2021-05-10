@@ -379,7 +379,7 @@ function group_requests_page($hook, $type, $return, $params) {
  */
 function ossn_user_groups_delete($callback, $type, $params) {
 		$deleteGroup = new OssnGroup;
-		$groups      = $deleteGroup->getUserGroups($params['entity']->guid);
+		$groups      = $deleteGroup->getUserGroups($params['entity']->guid, array('page_limit' => false));
 		if($groups) {
 				foreach($groups as $group) {
 						$deleteGroup->deleteGroup($group->guid);
