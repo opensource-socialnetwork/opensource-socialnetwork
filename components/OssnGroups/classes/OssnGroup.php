@@ -66,15 +66,22 @@ class OssnGroup extends OssnObject {
 		/**
 		 * Get User groups
 		 *
-		 * @params $owner_guid Guid of owner creating group
+		 * @param integer $owner_guid Guid of owner creating group
+		 * @param array   $params Extra options
 		 *
 		 * @return object;
 		 */
-		public function getUserGroups($owner_guid) {
-				$this->owner_guid = $owner_guid;
-				$this->type       = 'user';
-				$this->subtype    = 'ossngroup';
-				return $this->getObjectByOwner();
+		public function getUserGroups($owner_guid, $params = array()) {
+				if(!empty($owner_guid)) {
+						$args = array(
+							'type' => 'user',
+							'subtype' => 'ossngroup',
+							'owner_guid' => $owner_guid
+						);
+						$vars = array_merge($args, $params);
+						return $this->searchObject($vars);
+				}
+				return false;
 		}
 		
 		/**
