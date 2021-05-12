@@ -62,6 +62,8 @@ if($posts) {
 										'user' => $user,
 										'image' => $image
 								));
+						} else {
+							$count--;
 						}
 				}
 				if($post->access == OSSN_PUBLIC) {
