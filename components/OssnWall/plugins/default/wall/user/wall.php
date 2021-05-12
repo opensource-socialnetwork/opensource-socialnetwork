@@ -8,10 +8,15 @@
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
  * @link      https://www.opensource-socialnetwork.org/
  */
-$posts = new OssnWall;
-$count = $posts->GetUserPosts($params['user']->guid, true);
-$posts = $posts->GetUserPosts($params['user']->guid);
-
+$accesstype = ossn_get_homepage_wall_access();
+if($accesstype == 'public' || (ossn_loggedin_user() && (ossn_user_is_friend(ossn_loggedin_user()->guid, $params['user']->guid) || ossn_loggedin_user()->guid == $params['user']->guid || ossn_isAdminLoggedin()))) {
+	$posts = new OssnWall;
+	$count = $posts->GetUserPosts($params['user']->guid, true);
+	$posts = $posts->GetUserPosts($params['user']->guid);
+} else {
+	$posts = false;
+	$count = 0;
+}
 //lastchage: site admins are unable to access member profile threads without friendship #176 
 if(ossn_loggedin_user() && (ossn_user_is_friend(ossn_loggedin_user()->guid, $params['user']->guid) || ossn_loggedin_user()->guid == $params['user']->guid || ossn_isAdminLoggedin())) {
 		echo '<div class="ossn-wall-container">';
