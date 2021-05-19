@@ -22,11 +22,11 @@ function ossn_giphy_init(){
 		if(ossn_giphy_api_key()){
 				ossn_extend_view('js/ossn.site', 'giphy/js');
 				ossn_extend_view('css/ossn.default', 'giphy/css');
+				ossn_add_hook('comment:view', 'template:params', 'ossn_giphy_in_comments', 1);
 
 				if(ossn_isLoggedin()){
 						ossn_register_action('giphy/search', OssnGiphy . 'actions/search.php');
 
-						ossn_add_hook('comment:view', 'template:params', 'ossn_giphy_in_comments', 1);
 						ossn_extend_view('ossn/page/footer', 'giphy/modal');
 						ossn_extend_view('comments/attachment/buttons', 'giphy/comment/button');
 				}
