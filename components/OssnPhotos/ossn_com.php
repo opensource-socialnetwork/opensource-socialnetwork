@@ -633,7 +633,7 @@ function ossn_profile_photos_page($hook, $type, $return, $params) {
 				$user['user'] = $params['user'];
 				$control      = false;
 				//show add album if loggedin user is owner
-				if(ossn_loggedin_user()->guid == $user['user']->guid) {
+				if(isset(ossn_loggedin_user()->guid) && ossn_loggedin_user()->guid == $user['user']->guid) {
 						$addalbum = array(
 								'text' => ossn_print('add:album'),
 								'href' => 'javascript:void(0);',
@@ -658,7 +658,7 @@ function ossn_profile_photos_page($hook, $type, $return, $params) {
  * @access private;
  */
 function ossn_profile_photo_menu($hook, $type, $return, $params) {
-		if($params->owner_guid == ossn_loggedin_user()->guid || ossn_isAdminLoggedin()) {
+		if(isset(ossn_loggedin_user()->guid) && ($params->owner_guid == ossn_loggedin_user()->guid || ossn_isAdminLoggedin())) {
 				return ossn_plugin_view('photos/views/profilephoto/menu', $params);
 		}
 }
@@ -671,7 +671,7 @@ function ossn_profile_photo_menu($hook, $type, $return, $params) {
  */
 function ossn_album_photo_menu($hook, $type, $return, $params) {
 		$album = ossn_albums()->getAlbum($params->owner_guid);
-		if($album->album->owner_guid == ossn_loggedin_user()->guid || ossn_isAdminLoggedin()) {
+		if(isset(ossn_loggedin_user()->guid) && ($album->album->owner_guid == ossn_loggedin_user()->guid || ossn_isAdminLoggedin())) {
 				return ossn_plugin_view('photos/views/albumphoto/menu', $params);
 		}
 }
@@ -682,7 +682,7 @@ function ossn_album_photo_menu($hook, $type, $return, $params) {
  * @access private;
  */
 function ossn_album_cover_photo_menu($hook, $type, $return, $params) {
-		if($params->owner_guid == ossn_loggedin_user()->guid || ossn_isAdminLoggedin()) {
+		if(isset(ossn_loggedin_user()->guid) && ($params->owner_guid == ossn_loggedin_user()->guid || ossn_isAdminLoggedin())) {
 				return ossn_plugin_view('photos/views/coverphoto/menu', $params);
 		}
 }
