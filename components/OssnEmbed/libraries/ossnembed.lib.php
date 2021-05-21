@@ -26,7 +26,6 @@
  * vimeo
  * metacafe
  * dailymotion
- * hulu
  */
 
 
@@ -57,8 +56,6 @@ function ossn_embed_create_embed_object($url, $guid, $videowidth=0) {
 		return ossn_embed_metacafe_handler($url, $guid, $videowidth);
 	} else if (strpos($url, 'dailymotion.com') != false) {
 		return ossn_embed_dm_handler($url, $guid, $videowidth);
-	} else if (strpos($url, 'hulu.com') != false) {
-		return ossn_embed_hulu_handler($url, $guid, $videowidth);
 	} else {
 		return false;
 	}
@@ -95,7 +92,7 @@ function ossn_embed_add_css($guid, $width, $height) {
  * @return string <object> code
  */
 function ossn_embed_add_object($type, $url, $guid, $width, $height) {
-	$videodiv = "<span id=\"ossnembed{$guid}\" class=\"ossn_embed_video embed-responsive embed-responsive-16by9\">";
+	$videodiv = "<div id=\"ossnembed{$guid}\" class=\"ossn_embed_video ratio ratio-16x9 embed-responsive embed-responsive-16by9\">";
 
 	// could move these into an array and use sprintf
 	switch ($type) {
@@ -107,17 +104,14 @@ function ossn_embed_add_object($type, $url, $guid, $width, $height) {
 			$videodiv .= "<iframe src=\"https://player.vimeo.com/video/{$url}\" allowfullscreen></iframe>";
 			break;
 		case 'metacafe':
-			$videodiv .= "<iframe class='embed-responsive-item' src=\"http://www.metacafe.com/embed/{$url}\" width=\"$width\" height=\"$height\" wmode=\"transparent\" pluginspage=\"http://www.macromedia.com/go/getflashplayer\"></iframe>";
+			$videodiv .= "<iframe class='embed-responsive-item' src=\"//www.metacafe.com/embed/{$url}\" width=\"$width\" height=\"$height\" wmode=\"transparent\" pluginspage=\"http://www.macromedia.com/go/getflashplayer\"></iframe>";
 			break;
 		case 'dm':
 			$videodiv .= "<iframe src=\"//www.dailymotion.com/embed/video/{$url}\" width=\"$width\" height=\"$height\" allowFullScreen></iframe>"; 
 			break;
-		case 'hulu':
-			$videodiv .= "<object class='embed-responsive-item' width=\"{$width}\" height=\"{$height}\"><param name=\"movie\" value=\"http://www.hulu.com/embed/{$url}\"></param><param name=\"allowFullScreen\" value=\"true\"></param><embed src=\"http://www.hulu.com/embed/{$url}\" type=\"application/x-shockwave-flash\" allowFullScreen=\"true\"  width=\"{$width}\" height=\"{$height}\"></embed></object>";
-			break;
 	}
 
-	$videodiv .= "</span>";
+	$videodiv .= "</div>";
 	// re-open post-text again (last closing </div> comes with wall code as before )
 	// hmm no need for div post-text without ending tag , removed it from here and removed ending tag from ossn_embed_add_css() 
 	// $arsalanshah 12/4/2015
@@ -391,53 +385,6 @@ function ossn_embed_dm_parse_url($url) {
 	}
 
 	$hash = $matches[3];
-
-	//echo $hash;
-
-	return $hash;
-}
-/**
- * main hulu interface
- *
- * @param string $url
- * @param integer $guid unique identifier of the widget
- * @param integer $videowidth  optional override of admin set width
- * @return string css style, video div, and flash <object>
- */
-function ossn_embed_hulu_handler($url, $guid, $videowidth) {
-	// this extracts the core part of the url needed for embeding
-	$videourl = ossn_embed_hulu_parse_url($url);
-	if (is_numeric($videourl)) {
-		return false;
-	}
-
-	ossn_embed_calc_size($videowidth, $videoheight, 512/296, 0);
-
-	$embed_object = ossn_embed_add_css($guid, $videowidth, $videoheight);
-
-	$embed_object .= ossn_embed_add_object('hulu', $videourl, $guid, $videowidth, $videoheight);
-
-	return $embed_object;
-}
-
-/**
- * parse hulu url
- *
- * @param string $url
- * @return string hash
- */
-function ossn_embed_hulu_parse_url($url) {
-	// separate parsing embed url
-	if (strpos($url, 'embed') === false) {
-		return 1;
-	}
-
-	if (!preg_match('/(value="https?:\/\/www\.hulu\.com\/embed\/)([a-zA-Z0-9_-]*)"(.*)/', $url, $matches)) {
-		//echo "malformed blip.tv url";
-		return 2;
-	}
-
-	$hash = $matches[2];
 
 	//echo $hash;
 
