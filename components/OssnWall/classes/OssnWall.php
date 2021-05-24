@@ -183,10 +183,6 @@ class OssnWall extends OssnObject {
 								'value'  => true,
 								'wheres' => '(1=1)',
 						);
-						$user_posts = array(
-								'name'  => 'poster_guid',
-								'value' => true,
-						);
 						if(ossn_isLoggedin() && (ossn_user_is_friend(ossn_loggedin_user()->guid, $user->guid) || ossn_loggedin_user()->guid == $user->guid || ossn_isAdminLoggedin())){
 								$users_posts['wheres']       = "((emd0.value=2 OR emd0.value=3) AND [this].value IN({$friend_guids}))";
 								$default['entities_pairs'][] = $users_posts;
