@@ -30,7 +30,7 @@ if(!empty($user)){
 				}
 		}
 }
-if($fields['non_required']){
+if(isset($fields['non_required'])){
 		foreach ($fields['non_required'] as $field){
 				$user[$field] = input($field);
 		}
