@@ -218,8 +218,8 @@ class OssnFile extends OssnEntities {
 												
 												//allow devs to change default size , see #528
 												$image_res = array(
-														'width' => 2048,
-														'height' => 2048
+														'width' => 1024,
+														'height' => 1024
 												);
 												$image_res = ossn_call_hook('file', 'image:resolution', $this, $image_res);
 												
