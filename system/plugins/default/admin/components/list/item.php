@@ -58,7 +58,6 @@
            	<i title="<?php echo ossn_print('admin:button:enabled');?>" class="component-title-icon component-title-check fa fa-check-circle"></i>           
 		  <?php } ?>
           </div>
-        </h2>
       </div>
       <div id="collapse-<?php echo $translit;?>" class="collapse">
         <div class="card-body">
