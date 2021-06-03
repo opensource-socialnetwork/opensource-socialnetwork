@@ -19,58 +19,58 @@
  *
  * @return false|string The contents of the resized image, or false on failure
  */
-function ossn_resize_image($input_name, $maxwidth, $maxheight, $square = FALSE) {
-    // Get the size information from the image
-    $imgsizearray = getimagesize($input_name);
-    if ($imgsizearray == false) {
-        return false;
-    }
-	$image = new OssnImage($input_name);
+function ossn_resize_image($input_name, $maxwidth, $maxheight, $square = false){
+		// Get the size information from the image
+		$imgsizearray = getimagesize($input_name);
+		if($imgsizearray == false){
+				return false;
+		}
+		$image = new OssnImage($input_name);
 
-    $accepted_formats = array(
-        'image/jpeg' => 'jpeg',
-        'image/pjpeg' => 'jpeg',
-        'image/png' => 'png',
-        'image/x-png' => 'png',
-        'image/gif' => 'gif'
-    );
+		$accepted_formats = array(
+				'image/jpeg'  => 'jpeg',
+				'image/pjpeg' => 'jpeg',
+				'image/png'   => 'png',
+				'image/x-png' => 'png',
+				'image/gif'   => 'gif',
+		);
 
-    // make sure the function is available
-    $load_function = "imagecreatefrom" . $accepted_formats[$imgsizearray['mime']];
-    if (!is_callable($load_function)) {
-        return false;
-    }
-	//OssnFile to support animated gif photos #1473
-	if ($load_function == 'imagecreatefromgif' && ossn_is_hook('ossn','image:resize:gif')) {
-			$image_resize_options = array(
-					'max_width' => $maxwidth,
-					'max_height' => $maxheight,
-					'file_path' => $input_name,
-			);
-			return ossn_call_hook('ossn', 'image:resize:gif', $image_resize_options, false);
-	}
-    //quality set 
-    $imagejpeg_quality = ossn_call_hook('ossn', 'image:resize:quality', false, 50);
-	if($square === true){
-		$image->crop($maxwidth, $maxheight);
-	} else {
-		$image->resize($maxwidth, $maxheight);
-	}
-    return $image->getImageAsString(IMAGETYPE_JPEG, $imagejpeg_quality);
+		// make sure the function is available
+		$load_function = 'imagecreatefrom' . $accepted_formats[$imgsizearray['mime']];
+		if(!is_callable($load_function)){
+				return false;
+		}
+		//OssnFile to support animated gif photos #1473
+		if($load_function == 'imagecreatefromgif' && ossn_is_hook('ossn', 'image:resize:gif')){
+				$image_resize_options = array(
+						'max_width'  => $maxwidth,
+						'max_height' => $maxheight,
+						'file_path'  => $input_name,
+				);
+				return ossn_call_hook('ossn', 'image:resize:gif', $image_resize_options, false);
+		}
+		//quality set
+		$imagejpeg_quality = ossn_call_hook('ossn', 'image:resize:quality', false, 50);
+		if($square === true){
+				$image->crop($maxwidth, $maxheight);
+		} else {
+				$image->resize($maxwidth, $maxheight);
+		}
+		return $image->getImageAsString(IMAGETYPE_JPEG, $imagejpeg_quality);
 }
 /**
  * Get image crop sizes for profile picture
  *
  * @return The contents of generate image
  */
-function ossn_user_image_sizes() {
-    return array(
-        'topbar' => '20x20',
-        'small' => ' 50x50',
-        'smaller' => '32x32',
-        'large' => '100x100',
-        'larger' => '170x170',
-    );
+function ossn_user_image_sizes(){
+		return array(
+				'topbar'  => '20x20',
+				'small'   => ' 50x50',
+				'smaller' => '32x32',
+				'large'   => '100x100',
+				'larger'  => '170x170',
+		);
 }
 /**
  * Conver multiple images into normalized array
@@ -78,16 +78,16 @@ function ossn_user_image_sizes() {
  * @param array $files An array of files
  * @return boolean|array
  */
-function ossn_input_images($name) {
+function ossn_input_images($name){
 		$files = $_FILES[$name];
-		if(!isset($files)) {
+		if(!isset($files)){
 				return false;
 		}
 		$_files       = array();
 		$_files_count = count($files['name']);
 		$_files_keys  = array_keys($files);
-		for($i = 0; $i < $_files_count; $i++) {
-				foreach($_files_keys as $key) {
+		for($i = 0; $i < $_files_count; $i++){
+				foreach ($_files_keys as $key){
 						$_files[$i][$key] = $files[$key][$i];
 				}
 		}
