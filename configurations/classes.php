@@ -29,6 +29,7 @@ $OssnClasses = array(
 		'Menu',
 		'System',
 		'Kernel',
+		'Image',
 );
 foreach($OssnClasses as $class){
 		$loadClass['Ossn'.$class] = ossn_route()->classes . "Ossn{$class}.php";
