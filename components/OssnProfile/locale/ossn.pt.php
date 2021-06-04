@@ -23,6 +23,6 @@ $pt = array(
 		'profile:photos' => 'Fotos de perfil',
 		
 		'profile:cover:err1' => 'Foto da capa muito pequena',
-		'profile:cover:err1:detail' => 'A foto da capa deve ser de, pelo menos, 850px por 300px ou superior.'
+		'profile:cover:err1:detail' => 'A foto da capa deve ser de, pelo menos, 1040px por 300px ou superior.'
 );
 ossn_register_languages('pt', $pt);
