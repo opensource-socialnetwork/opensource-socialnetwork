@@ -23,6 +23,6 @@ $eo = array(
 		'profile:photos' => 'Profilaj fotoj',
 		
 		'profile:cover:err1' => 'Kovrila bildo estas tro malgranda',
-		'profile:cover:err1:detail' => 'La kovrila bildo devas esti almenaŭ 850 x 300 aŭ pli granda.'
+		'profile:cover:err1:detail' => 'La kovrila bildo devas esti almenaŭ 1040 x 300 aŭ pli granda.'
 );
 ossn_register_languages('eo', $eo);
