@@ -23,6 +23,6 @@ $ja = array(
 		'profile:photos' => 'プロフィール写真',
 		
 		'profile:cover:err1' => 'カバー画像が小さすぎます',
-		'profile:cover:err1:detail' => 'カバー画像は、少なくとも850 x 300以上でなければなりません。'
+		'profile:cover:err1:detail' => 'カバー画像は、少なくとも1040 x 300以上でなければなりません。'
 );
 ossn_register_languages('ja', $ja);
