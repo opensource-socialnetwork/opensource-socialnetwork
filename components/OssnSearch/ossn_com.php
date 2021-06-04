@@ -41,6 +41,7 @@ function ossn_search_page($pages) {
                 $params['type'] = $type;
             }
             $type = $params['type'];
+            $contents['contents'] = '';
             if (ossn_is_hook('search', "type:{$type}")) {
                 $contents['contents'] = ossn_call_hook('search', "type:{$type}", array('q' => input('q')));
             }
