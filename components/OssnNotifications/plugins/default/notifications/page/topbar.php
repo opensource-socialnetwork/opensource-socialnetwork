@@ -18,6 +18,8 @@ $count_notif = $notification->countNotification(ossn_loggedin_user()->guid);
 if(class_exists('OssnMessages')){
 	$messages = new OssnMessages;
 	$count_messages = $messages->countUNREAD(ossn_loggedin_user()->guid);
+} else {
+	$messages = false;
 }
 
 $friends = ossn_loggedin_user()->getFriendRequests();
