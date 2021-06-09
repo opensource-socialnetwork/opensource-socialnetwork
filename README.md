@@ -57,7 +57,8 @@ Front-End Features
 | Realtime Messages | Blogs | Themes on community |
 | Mentions in comments | Custom Pages | Custom Menu Items |
 | Captcha | Site Announcements | Greetings | 
-| Login as | Progressive Web App | Many free components of community website | 
+| Login as | Progressive Web App | Microsoft Active Directory Login |
+| Many free components of community website | 
 
 Backend Features
 =================
