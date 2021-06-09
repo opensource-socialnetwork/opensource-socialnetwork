@@ -167,6 +167,8 @@ function ossn_notification_page($pages) {
 						if(class_exists('OssnMessages')) {
 								$messages       = new OssnMessages;
 								$count_messages = $messages->countUNREAD(ossn_loggedin_user()->guid);
+						} else {
+								$count_messages = 0;
 						}
 						if(!$count_notif) {
 								$count_notif = 0;
