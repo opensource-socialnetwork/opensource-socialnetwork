@@ -11092,3 +11092,6 @@ label {
     display: none !important;
   }
 }
+.btn-close {
+    background-size: .7em;
+}
