@@ -32,6 +32,6 @@ if($posts) {
 				$item = ossn_wallpost_to_item($post);
 				echo ossn_wall_view_template($item);
 		}
+		echo ossn_view_pagination($count);
 }
-echo ossn_view_pagination($count);
 echo '</div>';
