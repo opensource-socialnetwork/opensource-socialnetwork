@@ -11095,3 +11095,8 @@ label {
 .btn-close {
     background-size: .7em;
 }
+.img-responsive {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
