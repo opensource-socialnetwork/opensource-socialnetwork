@@ -613,8 +613,12 @@ class OssnGroup extends OssnObject {
 		 * @access public;
 		 */
 		public function coverParameters($guid) {
-				$parameters = ossn_get_group_by_guid($guid)->cover;
-				return json_decode($parameters);
+				$group = ossn_get_group_by_guid($guid);
+				if(isset($group->cover)){
+					$parameters = $group->cover;
+					return json_decode($parameters);
+				}
+				return false;
 		}
 		/**
 		 * Get user groups (owned groups and groups user member of)
