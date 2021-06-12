@@ -346,8 +346,11 @@ function get_cover_photo($user, $params = array()) {
 				return false;
 		}
 		$photo = $user->getProfileCover();
-		$etag  = $photo->guid . $photo->time_created;
-		
+		$etag  = time();
+		if($photo){
+			$etag  = $photo->guid . $photo->time_created;
+		}
+			
 		if(isset($_SERVER['HTTP_IF_NONE_MATCH']) && trim($_SERVER['HTTP_IF_NONE_MATCH']) == "\"$etag\"") {
 				header("HTTP/1.1 304 Not Modified");
 				exit;
