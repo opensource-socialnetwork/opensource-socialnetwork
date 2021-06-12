@@ -2,7 +2,7 @@
 /**
  * Open Source Social Network
  *
- * OssnKernal 5.3 this file is provided in core on softlab24.com request
+ * OssnKernal 5.6 this file is provided in core on softlab24.com request
  * This file is created for the customers using softlab24.com apis,
  * For more information about the usage of this please contact softlab24.com/contact
  *
@@ -40,6 +40,7 @@ class OssnKernel extends OssnSystem {
 										unset($args[$key]);
 								}
 						}
+						$requests = false;
 						if(!empty($args)){
 								$requests = $this->sendRequest($method, $args);
 						}
@@ -204,11 +205,13 @@ class OssnKernel extends OssnSystem {
 				if($item){
 						$valid = json_decode($item);
 						if($valid && $valid->ack == true){
-								$resp           = new stdClass();
-								$resp->data     = $valid->data;
-								$resp->pci      = $item['pci'];
-								$resp->pci_avc  = $item['pci_avc'];
-								$resp->pci_type = $item['pci_type'];
+								$resp           	= new stdClass();
+								if(isset($item['pci'])){
+									$resp->data     = $valid->data;
+									$resp->pci      = $item['pci'];
+									$resp->pci_avc  = $item['pci_avc'];
+									$resp->pci_type = $item['pci_type'];
+								}
 						}
 						return $resp;
 				}
