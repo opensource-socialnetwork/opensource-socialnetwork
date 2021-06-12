@@ -14,18 +14,24 @@ $ismember = false;
 if ($cover) {
     $iscover = 'ossn-group-cover-header';
     $coverp = $params['group']->coverParameters($params['group']->guid);
-    if(isset($coverp[0]) && strlen($coverp[0])){
+    if(strlen($coverp[0])){
 		$cover_top = "top:{$coverp[0]}px;";
 	}
 	else {
 		$cover_top = 'top:0px;';
 	}
-	if(isset($coverp[1]) && strlen($coverp[1])){
+	if(strlen($coverp[1])){
 	    $cover_left = "left:{$coverp[1]}px;";
 	}
 	else {
 		$cover_left = 'left:0px;';
 	}
+	if(!isset($coverp[0])){
+		$coverp[0] = '';
+	}
+	if(!isset($coverp[1])){
+		$coverp[1] = '';
+	}	
 }
 //group members total count becomes 0 when group cover is set #156 $dev.githubertus 
 $members = $params['group']->getMembers();
