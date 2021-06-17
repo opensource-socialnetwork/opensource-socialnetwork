@@ -259,6 +259,9 @@ function ossn_site_js(){
  */
 function ossn_admin_js(){
 		global $Ossn;
+		$Ossn->jsheadExternalLoaded         = array();
+		$Ossn->jsheadExternalLoaded['admin'] = array();
+	
 		$url = ossn_site_url();
 
 		//load external js
