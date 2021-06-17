@@ -229,7 +229,7 @@ function ossn_site_js(){
 		if(isset($Ossn->jsheadExternal['site']) && !empty($Ossn->jsheadExternal['site'])){
 				$external = $Ossn->jsheadExternal['site'];
 				foreach ($external as $item){
-						if(isset($Ossn->jsExternal[$item])){
+						if(!isset($Ossn->jsheadExternalLoaded['site'][$item]) && isset($Ossn->jsExternal[$item])){
 								$Ossn->jsheadExternalLoaded['site'][$item] = true;
 								echo ossn_html_js(array(
 										'src' => $Ossn->jsExternal[$item],
@@ -265,7 +265,7 @@ function ossn_admin_js(){
 		if(isset($Ossn->jsheadExternal['admin']) && !empty($Ossn->jsheadExternal['admin'])){
 				$external = $Ossn->jsheadExternal['admin'];
 				foreach ($external as $item){
-						if(isset($Ossn->jsExternal[$item])){
+						if(!isset($Ossn->jsheadExternalLoaded['site'][$item]) && isset($Ossn->jsExternal[$item])){
 								$Ossn->jsheadExternalLoaded['site'][$item] = true;
 								echo ossn_html_js(array(
 										'src' => $Ossn->jsExternal[$item],
@@ -387,3 +387,4 @@ function ossn_redirect_absolute_url(){
 ossn_register_callback('ossn', 'init', 'ossn_languages_js');
 ossn_register_callback('ossn', 'init', 'ossn_javascript');
 ossn_register_callback('ossn', 'init', 'ossn_redirect_absolute_url');
+\
