@@ -265,8 +265,8 @@ function ossn_admin_js(){
 		if(isset($Ossn->jsheadExternal['admin']) && !empty($Ossn->jsheadExternal['admin'])){
 				$external = $Ossn->jsheadExternal['admin'];
 				foreach ($external as $item){
-						if(!isset($Ossn->jsheadExternalLoaded['site'][$item]) && isset($Ossn->jsExternal[$item])){
-								$Ossn->jsheadExternalLoaded['site'][$item] = true;
+						if(!isset($Ossn->jsheadExternalLoaded['admin'][$item]) && isset($Ossn->jsExternal[$item])){
+								$Ossn->jsheadExternalLoaded['admin'][$item] = true;
 								echo ossn_html_js(array(
 										'src' => $Ossn->jsExternal[$item],
 								));
