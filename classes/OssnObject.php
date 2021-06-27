@@ -43,6 +43,12 @@ class OssnObject extends OssnEntities {
 				if(empty($this->order_by)) {
 						$this->order_by = '';
 				}
+				if(!isset($this->description)){
+						$this->description = '';	
+				}
+				if(!isset($this->title)){
+						$this->title = '';
+				}
 		}
 		
 		/** requires $object->(owner_guid, type, subtype, title, description)
