@@ -37,11 +37,11 @@ class OssnPagination {
 				if(count($_GET)) {
 						$args_url = '';
 						foreach($_GET as $key => $value) {
-								if(!preg_match('/^[a-zA-Z0-9 _\p{L}]+$/u', $value) || in_array($key, $unset)) {
+								//validate input again
+								$value = input($key);							
+								if(in_array($key, $unset)) {
 										continue;
 								}
-								//validate input again
-								$value = input($key);
 								if($key != 'page') {
 										$value = input($key);
 										$args_url .= '&' . $key . '=' . $value;
