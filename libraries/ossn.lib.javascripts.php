@@ -390,4 +390,3 @@ function ossn_redirect_absolute_url(){
 ossn_register_callback('ossn', 'init', 'ossn_languages_js');
 ossn_register_callback('ossn', 'init', 'ossn_javascript');
 ossn_register_callback('ossn', 'init', 'ossn_redirect_absolute_url');
-\
