@@ -183,14 +183,7 @@ class OssnWall extends OssnObject {
 								'value'  => true,
 								'wheres' => '(1=1)',
 						);
-						$user_posts = array(
-								'name'  => 'poster_guid',
-								'value' => true,
-						);
-						if(ossn_isLoggedin() && (ossn_user_is_friend(ossn_loggedin_user()->guid, $user->guid) || ossn_loggedin_user()->guid == $user->guid || ossn_isAdminLoggedin())){
-								$users_posts['wheres']       = "((emd0.value=2 OR emd0.value=3) AND [this].value IN({$friend_guids}))";
-								$default['entities_pairs'][] = $users_posts;
-						} else {
+						if(ossn_isLoggedin() && !ossn_user_is_friend(ossn_loggedin_user()->guid, $user->guid) && ossn_loggedin_user()->guid != $user->guid && !ossn_isAdminLoggedin()){
 								$default['wheres'][] = '(emd0.value=2)';
 						}
 						$extra_param = array(
@@ -199,7 +192,6 @@ class OssnWall extends OssnObject {
 						);
 						$options = array_merge($default, $params);
 						$attrs   = ossn_call_hook('wall', 'GetUserPosts', $extra_param, $options);
-						//echo ossn_dump($attrs);
 						return $this->searchObject($attrs);
 				}
 				return false;
