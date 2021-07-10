@@ -45,9 +45,25 @@ function ossn_block() {
 				if(!ossn_isAdminLoggedin()){
 					ossn_add_hook('wall', 'getPublicPosts', 'ossn_block_strip_posts');
 					ossn_add_hook('wall', 'GetPostByOwner', 'ossn_block_strip_group_posts');
+					ossn_add_hook('wall', 'GetUserPosts', 'ossn_block_strip_users_profile_posts');
 				}
 		}
 		ossn_register_callback('user', 'delete', 'ossn_user_block_relations_delete');		
+}
+function ossn_block_strip_users_profile_posts($hook, $type, $return, $params){
+			$user = ossn_loggedin_user();
+			//we need to further make sure that if someone blocked wall owner he should be able to see posts to delete them.
+			//otherwise we could use ossn_block_strip_group_posts but we needed extra condition
+			//we need to see here if poster_guid is not blocked by loggedin user and vice versa then strip posts but not for profile owner where
+			//post is created
+			if(isset($user->guid) && $params['user']->guid != $user->guid){
+				$return['entities_pairs'][] = array(
+							'name' => 'poster_guid',
+							'value' => true,
+							'wheres' => "([this].value NOT IN (SELECT DISTINCT relation_to FROM `ossn_relationships` WHERE relation_from={$user->guid} AND type='userblock') AND [this].value NOT IN (SELECT 	DISTINCT relation_from FROM `ossn_relationships` WHERE relation_to={$user->guid} AND type='userblock'))"
+ 				 );
+			}
+			return $return;	
 }
 function ossn_block_strip_group_posts($hook, $type, $return, $params){
 			$user = ossn_loggedin_user();
