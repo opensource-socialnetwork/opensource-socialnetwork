@@ -211,7 +211,13 @@ class OssnFile extends OssnEntities {
 								$this->value   = $this->newfile;
 								
 								if($fileguid = $this->add()) {
-										$filecontents = file_get_contents($this->file['tmp_name']);
+										$sizecheck = filesize($this->file['tmp_name']);
+										//[E] Disallow to upload empty files #1976
+										//https://www.php.net/manual/en/function.is-uploaded-file.php
+										if(!$sizecheck || $sizecheck && empty($sizecheck) || !is_uploaded_file($this->file['tmp_name'])){
+												 $this->deleteEntity($fileguid);	
+												 return false;
+										}
 										if(preg_match('/image/i', $this->file['type'])) {
 												//fix rotation #918
 												$this->resetRotation($this->file['tmp_name']);
@@ -225,9 +231,11 @@ class OssnFile extends OssnEntities {
 												
 												//compress image before save
 												$filecontents = ossn_resize_image($this->file['tmp_name'], $image_res['width'], $image_res['height']);
+												file_put_contents("{$this->dir}{$this->newfilename}", $filecontents);
+												return $fileguid; 	
+										} elseif(move_uploaded_file($this->file['tmp_name'], "{$this->dir}{$this->newfilename}")){
+												return $fileguid; 	
 										}
-										file_put_contents("{$this->dir}{$this->newfilename}", $filecontents);
-										return $fileguid;
 								}
 						}
 				}
