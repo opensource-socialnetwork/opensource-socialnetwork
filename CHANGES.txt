@@ -33,6 +33,8 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v6.x
 * [E] removal of obsolete getObjectsByTypes() #1926
 * [E] removal of unused getGroups() #1925
 * [E] removed dominant comment-box padding #1944
+* [B] OssnPagination::constructUrlArgs() not taking non alphanumeric chars #1974
+* [E] Check the OssnEmbed for videos links issues #1957
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v5.6
 * [B] prevent creating of new records if setting value is 0 #1815
