@@ -54,7 +54,7 @@ function ossn_resize_image($input_name, $maxwidth, $maxheight, $square = false){
 		if($square === true){
 				$image->crop($maxwidth, $maxheight);
 		} else {
-				$image->resize($maxwidth, $maxheight);
+				$image->resizeToBestFit($maxwidth, $maxheight);
 		}
 		return $image->getImageAsString(IMAGETYPE_JPEG, $imagejpeg_quality);
 }
