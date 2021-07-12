@@ -442,9 +442,13 @@ class OssnWall extends OssnObject {
 										),
 								),
 						);
-
+						$extra_param = array(
+								'friends_guids' => $friend_guids,
+								'user'          => $user,
+						);
 						$options = array_merge($default, $params);
-						return $this->searchObject($options);
+						$attrs   = ossn_call_hook('wall', 'getAllPosts', $extra_param, $options);
+						return $this->searchObject($attrs);
 				}
 				return false;
 		}
