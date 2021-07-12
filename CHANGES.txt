@@ -35,6 +35,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v6.x
 * [E] removed dominant comment-box padding #1944
 * [B] OssnPagination::constructUrlArgs() not taking non alphanumeric chars #1974
 * [E] Check the OssnEmbed for videos links issues #1957
+* [E] Add hook for wall, getAllPosts
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v5.6
 * [B] prevent creating of new records if setting value is 0 #1815
