@@ -10,7 +10,7 @@
  */
 
 $zh = array(
-	'home' => 'Home',
+	'home' => '首頁',
 	'site:index' => '歡迎',
 	'news:feed' => '貼文串',
 	'new:feed' => '貼文串',
@@ -21,7 +21,7 @@ $zh = array(
 	'create:account' => '建立帳號',
 	'its:free' => "永遠免費",
 	
-	'register:ok:message' => "你己經註冊了.系統已寄啟用信到您的信箱,如果你沒收到請查看您的垃圾郵件資料夾.",
+	'register:ok:message' => "您己經註冊了.系統已寄啟用信到您的信箱,如果您沒收到請查看您的垃圾郵件資料夾.",
 	
 	'copyright' => '&copy; 版權擁有',
 	'powered' => 'Powered by the Open Source Social Network.',
@@ -57,7 +57,7 @@ $zh = array(
 	'admin:themes' => '佈景主題',
 	'admin:basic' => '基本',
 	'admin:cache' => '快取',
-	'admin:mode' => 'Mode',
+	'admin:mode' => '模組',
 	'configure' => '設定',
 	'admin:help' => '幫助',
 	'admin:support' => '支援',
@@ -96,18 +96,14 @@ $zh = array(
 	'photos' => '相片',
 	'friends' => '朋友',
 	'links' => '連結',
-	'ossn:add:user:mail:subject' => "%s 請確認你的電子郵件 %s!",
-	'ossn:add:user:mail:body' => "在你使用之前必須先驗證你的電子郵件.	
+	'ossn:add:user:mail:subject' => "%s 請確認您的電子郵件 %s!",
+	'ossn:add:user:mail:body' => "在您使用之前必須先驗證您的電子郵件.	
 Before you can start using %s, you must confirm your email address.
-
-點擊下方的連結以便系統確認你的電子郵件地址:
+點擊下方的連結以便系統確認您的電子郵件地址:
 Please confirm your email address by clicking on the link below:
-
 %s
-
-如果你點擊連結無效,你可以複製這個連結到你的瀏覽器網址列上.
+如果您點擊連結無效,您可以複製這個連結到您的瀏覽器網址列上.
 You may copy and paste the address to your browser manually in case the link does not work.
-
 %s",
 	'user:friends' => '朋友',
 	'user:account:validated' => '帳號已通過驗證!',
@@ -126,10 +122,10 @@ You may copy and paste the address to your browser manually in case the link doe
 	'com:install:notice' => '上傳已驗證 .zip 元件檔案.',
 	
 	'login:error' => '帳號或密碼錯誤!',
-	'login:error:sub' => '無法登入,請檢查你的帳號或是密碼是否無誤後再試一次.',
-	'login:success' => '你已登入!',
-	'com:installed' => '元件已上傳成功,你現在可以到元件的頁面啟用了.',
-	'com:install:error' => '無法上傳元件檔案, 請確認你的檔案是否正確.',
+	'login:error:sub' => '無法登入,請檢查您的帳號或是密碼是否無誤後再試一次.',
+	'login:success' => '您已登入!',
+	'com:installed' => '元件已上傳成功,您現在可以到元件的頁面啟用了.',
+	'com:install:error' => '無法上傳元件檔案, 請確認您的檔案是否正確.',
 	'settings:saved' => '儲存設定',
 	'com:deleted' => '已刪除元件!',
 	'com:delete:error' => '無法刪除元件, 請稍後再試一次.',
@@ -141,30 +137,30 @@ You may copy and paste the address to your browser manually in case the link doe
 	'theme:delete:error' => '無法刪除佈景主題! 請稍後再試一次.',
 	'theme:enabled' => '佈景主題已啟用!',
 	'theme:installed' => '佈景主題已安裝成功!',
-	'theme:install:error' => '無法安裝佈景主題. 請確認這個檔案是否相容你的 OSSN 版本.',
+	'theme:install:error' => '無法安裝佈景主題. 請確認這個檔案是否相容您的 OSSN 版本.',
 	
 	'fields:require' => '所有欄位都必需填寫!',
 	'username:error' => '帳號被使用.',
 	'password:error' => '密碼必須5個字元以上.',
-	'account:created' => '你的帳號已經建立.',
+	'account:created' => '您的帳號已經建立.',
 	'account:create:error:admin' => '無法建立帳號! 請稍後再試一次.',
 	'user:updated' => '帳號已更新!',
-	'logged:out' => '你現在已經登出了!',
+	'logged:out' => '您現在已經登出了!',
 	'username:inuse' => '這個帳號已被使用.請使用其他不同的帳號.',
 	'email:inuse' => '這個電子郵件已註冊使用了.請使用其他不同的電子郵件註冊.',
 	'email:invalid' => '電子郵件錯誤! 請輸入正確的電子郵件.',
 	'email:error:matching' => "電子郵件不相同.",
-	'account:created:email' => "你的帳號已經註冊! 我們寄發了一封啟用電子郵件到你的信箱. 如果你未收到請查看您的垃圾郵件資料夾",
+	'account:created:email' => "您的帳號已經註冊! 我們寄發了一封啟用電子郵件到您的信箱. 如果您未收到請查看您的垃圾郵件資料夾",
 	
-	'administration' => 'Administration',
+	'administration' => '管理',
 	
 	'privacy' => '觀看權限',
 	'close' => '私密',
 	'open' => '開啟',
 	'public' => '公開',
 	'friends' => '朋友',
-	'privacy:public:note' => '所有人都可以看到你的文章.',
-	'privacy:friends:note' => '只有你的朋友能看到文章.',
+	'privacy:public:note' => '所有人都可以看到您的文章.',
+	'privacy:friends:note' => '只有您的朋友能看到文章.',
 	
 	'add:friend' => '加朋友',
 	'cancel:request' => '取消請求',
@@ -172,12 +168,12 @@ You may copy and paste the address to your browser manually in case the link doe
 	'no:friends' => '沒有朋友',
 	'settings' => '設定',
 	'ossn:add:friend:error' => '無法新增朋友!',
-	'ossn:friend:request:submitted' => '已送出你的交友邀請!',
+	'ossn:friend:request:submitted' => '已送出您的交友邀請!',
 	
 	/* Upgrades */
 	'upgrade:file:load:error' => '無法載入升級檔案!',
-	'upgrade:success' => "你的網站已經升級為 %s.",
-	'upgrade:failed' => "網站無法升級你的版本 %s.",
+	'upgrade:success' => "您的網站已經升級為 %s.",
+	'upgrade:failed' => "網站無法升級您的版本 %s.",
 	'upgrade:not:available' => '沒有可以更新的!',
 	
 	'site:login' => '登入',
@@ -187,22 +183,20 @@ You may copy and paste the address to your browser manually in case the link doe
 	
 	/* Password Reset */
 	'reset:login' => '忘記密碼',
-	'reset:password' => '重設你的密碼',
-	'enter:new:password' => '輸入你的密碼並點擊重設.',
+	'reset:password' => '重設您的密碼',
+	'enter:new:password' => '輸入您的密碼並點擊重設.',
 	'reset' => '重設密碼',
-	'enter:emai:reset:pwd' => '輸入你註冊的電子郵件,系統會寄發重設密碼郵件到你的信箱.',
-	'ossn:reset:password:subject' => '重設你的密碼',
-	'ossn:reset:password:body' => "你好 %s,
-請點擊下面重設密碼的連結,並在瀏覽器中重設你的密碼:
+	'enter:emai:reset:pwd' => '輸入您註冊的電子郵件,系統會寄發重設密碼郵件到您的信箱.',
+	'ossn:reset:password:subject' => '重設您的密碼',
+	'ossn:reset:password:body' => "您好 %s,
+請點擊下面重設密碼的連結,並在瀏覽器中重設您的密碼:
 Please click the link below to reset password or copy the link and paste into your browser's address bar:
-
 %s
-
 %s",
 	'passord:reset:success' => '密碼已更改!',
-	'passord:reset:fail' => '無法重設你的密碼! 請稍後再試一次.',
+	'passord:reset:fail' => '無法重設您的密碼! 請稍後再試一次.',
 	'password:reset:email:required' => '請填入註冊時的電子郵件!',
-	'passord:reset:email:success' => '密碼重設說明已經寄到你的電子郵件信箱了.',
+	'passord:reset:email:success' => '密碼重設說明已經寄到您的電子郵件信箱了.',
 	
 	'erros:reporting' => '錯誤報告',
 	'erros:off' => '關',
@@ -212,18 +206,18 @@ Please click the link below to reset password or copy the link and paste into yo
 	'ossn:new:version:error' => '未知',
 	'ossn:version:avaialbe' => "%s",
 	
-	'ossn:exception:title' => '發生了一個系統錯誤. 請稍後再試試. 你可以透過電子郵件將詳細的資料寄給網站管理員,請寄到 %s.',
-	'ossn:securitytoken:failed' => '你無法執行這個動作.',
-	'ossn:component:delete:exception' => '你確定要刪除這個元件嗎?',
-	'ossn:user:delete:exception' => '你確定要刪掉這個使用者嗎?',
+	'ossn:exception:title' => '發生了一個系統錯誤. 請稍後再試試. 您可以透過電子郵件將詳細的資料寄給網站管理員,請寄到 %s.',
+	'ossn:securitytoken:failed' => '您無法執行這個動作.',
+	'ossn:component:delete:exception' => '您確定要刪除這個元件嗎?',
+	'ossn:user:delete:exception' => '您確定要刪掉這個使用者嗎?',
 	
 	//access
 	'title:access:1' => '私人',
 	'title:access:2' => '公開',
 	'title:access:3' => '朋友',
 	
-	'upload:file:error:ini_size' => '你上傳的檔案太大了.',
-	'upload:file:error:form_size' => '你上傳的檔案太大了.',
+	'upload:file:error:ini_size' => '您上傳的檔案太大了.',
+	'upload:file:error:form_size' => '您上傳的檔案太大了.',
 	'upload:file:error:partial' => '檔案沒有上傳成功.',
 	'upload:file:error:no_file' => '沒有選擇任何檔案.',
 	'upload:file:error:no_tmp_dir' => '無法儲存上傳的檔案.',
@@ -231,7 +225,7 @@ Please click the link below to reset password or copy the link and paste into yo
 	'upload:file:error:extension' => '無法儲存上傳的檔案.',
 	'upload:file:error:unknown' => '上傳檔案失敗.',
 	
-	'ossn:post:size:exceed' => '你的動作超出了檔案大小限制The action you requested exceeds the size limit.',
+	'ossn:post:size:exceed' => '您的動作超出了檔案大小限制The action you requested exceeds the size limit.',
 	
 	'admin:com:installer' => '元件安裝',
 	'admin:theme:installer' => '佈景主題安裝',
@@ -242,8 +236,8 @@ Please click the link below to reset password or copy the link and paste into yo
 	'admin:notification:email' => '網站通知郵件',
 	'notification_email' => '網站通知郵件 (noreply@domain.com)',
 	'owner_email' => '擁有者郵件 (mysite@domain.com)',
-	'ossn:websitename' => '你的網站名稱',
-	'ossn:user:validation:resend' => '你的帳號尚未驗證無法登入! 認證信已寄到你的電子郵件信箱.',
+	'ossn:websitename' => '您的網站名稱',
+	'ossn:user:validation:resend' => '您的帳號尚未驗證無法登入! 認證信已寄到您的電子郵件信箱.',
 	'site:timepassed:text' => '%s前',
 	// localization of passed time: 16 time elements (even = singular / odd = plural)
 //	'site:timepassed:data' => 'second|seconds|minute|minutes|hour|hours|day|days|week|weeks|month|months|year|years|decade|decades',	
@@ -272,25 +266,25 @@ Please click the link below to reset password or copy the link and paste into yo
 	//v3.0
 	//admin
 	'my:files:version' => '我的 OSSN 版本',
-	'cache:flush:error' => '無法清除快取, 請檢查你的快取設定是否是啟用的',
+	'cache:flush:error' => '無法清除快取, 請檢查您的快取設定是否是啟用的',
 	'cache:flushed' => '已清除快取',
 	'ossn:version' => 'OSSN 版本', 
 	'php:extension' => 'PHP 延伸外掛',
 	'php:version' => 'PHP 版本',
 	'php:function' => 'PHP 函數',
-	'admin:old:com' => "你的 ossn_com.xml 檔案是舊版的. 請更新 '%s' 元件.",
-	'admin:old:theme' => "你的 ossn_theme.xml 檔案是舊版的. 請更新 '%s' 佈景主題.",
+	'admin:old:com' => "您的 ossn_com.xml 檔案是舊版的. 請更新 '%s' 元件.",
+	'admin:old:theme' => "您的 ossn_theme.xml 檔案是舊版的. 請更新 '%s' 佈景主題.",
 	'admin:button:disabled' => '關閉',
 	'admin:flush:cache' => '清除快取',
 	'admin:com:version' => '版本',
 	'admin:com:author' => '作者',
 	'admin:com:author:url' => '作者網站',
-	'admin:com:license' => 'License',
-	'admin:com:requirements' => 'Requirements',
+	'admin:com:license' => '許可證',
+	'admin:com:requirements' => '需求',
 	'admin:com:requirement' => '需求',
 	'admin:com:fulfilled' => '已完成',
 	'admin:com:used:by' => '使用者',
-	'ossn:exception:make:sure' => '你確定嗎?',
+	'ossn:exception:make:sure' => '您確定嗎?',
 	'ossn:premium' => 'Premium Version',
 	'datepicker:days' => "星期日, 星期一, 星期二, 星期三, 星期四, 星期五, 星期六",
 	'datepicker:months' => "一月, 二月, 三月, 四月, 五月, 六月, 七月, 八月, 九月, 十月, 十一月, 十二月",
@@ -310,7 +304,7 @@ Please click the link below to reset password or copy the link and paste into yo
 	'ossn:com:installer:zip:incomplete:error' => '無法完成元件壓縮存檔.',
 	'ossn:com:installer:open:zip:error' => '無法解壓縮元件檔案',
 	'ossn:com:installer:move:uploaded:file:error' => '不正確的壓縮檔',
-	'ossn:com:installer:com:installation:success' => '元件檔案已上傳, 你可以在元件清單頁面內啟用它.',
+	'ossn:com:installer:com:installation:success' => '元件檔案已上傳, 您可以在元件清單頁面內啟用它.',
 	
 	'ossn:theme:installer:create:tmpdir:error' => '無法創建臨時數據目錄', 
 	'ossn:theme:installer:upload:error' => '上載期間發生錯誤： %s',
