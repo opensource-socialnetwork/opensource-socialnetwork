@@ -44,6 +44,10 @@ class OssnComments extends OssnAnnotation {
 						if(!$postc) {
 								return false;
 						}
+						ossn_trigger_callback('comment', 'before:created', array(
+									'type' => $type,
+									'object' => $postc,
+						));						
 				}
 				
 				if($type == 'entity') {
@@ -51,6 +55,10 @@ class OssnComments extends OssnAnnotation {
 						if(!$entityc) {
 								return false;
 						}
+						ossn_trigger_callback('comment', 'before:created', array(
+									'type' => 'entity',
+									'entity' => $entityc,
+						));
 				}
 				
 				$cancomment = false;
