@@ -27,21 +27,35 @@ class OssnLikes extends OssnDatabase {
 					$reaction_type = 'like';	
 				}
 				if($type == 'annotation') {
-						$annotation                = new OssnAnnotation;
-						$annotation->annotation_id = $subject_id;
-						$annotation                = $annotation->getAnnotationById();
-						if(empty($annotation->id)) {
+						$annotation = ossn_get_annotation($subject_id);
+						if(!$annotation) {
 								return false;
 						}
+						ossn_trigger_callback('like', 'before:created', array(
+									'type' => 'annotation',
+									'annotation' => $annotation,
+						));							
 				}
-				if($type == 'post') {
-						$post              = new OssnObject;
-						$post->object_guid = $subject_id;
-						$post              = $post->getObjectById();
-						if(empty($post->time_created)) {
+				if($type == 'post' || $type == 'object') {
+						$object = ossn_get_object($subject_id);
+						if(!$object) {
 								return false;
 						}
+						ossn_trigger_callback('like', 'before:created', array(
+									'type' => 'object',
+									'object' => $object,
+						));							
 				}
+				if($type == 'entity') {
+						$entity = ossn_get_entity($subject_id);
+						if(!$entity) {
+								return false;
+						}
+						ossn_trigger_callback('like', 'before:created', array(
+									'type' => 'entity',
+									'entity' => $entity,
+						));	
+				}				
 				if(!$this->isLiked($subject_id, $guid, $type)) {
 						$this->statement("INSERT INTO ossn_likes (`subject_id`, `guid`, `type`, `subtype`)
 					           VALUES('{$subject_id}', '{$guid}', '{$type}', '{$reaction_type}');");
