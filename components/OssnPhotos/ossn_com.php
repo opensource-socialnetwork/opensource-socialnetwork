@@ -84,10 +84,43 @@ function ossn_photos_initialize(){
 						'parent' => 'links',
 						'icon'   => $icon,
 				));
+				//Non friend may able to add comment to friend photo only [huntr.dev] #1979
+				ossn_register_callback('comment', 'before:created', 'ossn_photos_comment_permission_check');
 		}
 		//gallery plugin dist include
 		ossn_new_external_js('jquery.fancybox.min.js', '//cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js', false);
 		ossn_new_external_css('jquery.fancybox.min.css', '//cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css', false);
+}
+/**
+ * Comment photos check before comment
+ *
+ * @param string $callback comment
+ * @param string $type  before:created
+ * @param array  $params option values
+ *
+ * @access private
+ */
+function ossn_photos_comment_permission_check($callback, $type, $params){
+		if(isset($params['type']) && $params['type'] == 'entity'){
+				if(isset($params['entity']) && isset($params['entity']->subtype) && $params['entity']->subtype == 'file:ossn:aphoto'){
+						$album = ossn_get_object($params['entity']->owner_guid);
+						if($album && $album->subtype == 'ossn:album'){
+								$user          = new OssnUser();
+								$loggedin_guid = ossn_loggedin_user()->guid;
+								if($album->access == OSSN_FRIENDS && !$user->isFriend($album->owner_guid, $loggedin_guid)){
+										if(!ossn_is_xhr()){
+												redirect(REF);
+										} else {
+												header('Content-Type: application/json');
+												echo json_encode(array(
+														'process' => 0,
+												));
+												exit();
+										}
+								}
+						}
+				}
+		}
 }
 /**
  * Delete user photos
