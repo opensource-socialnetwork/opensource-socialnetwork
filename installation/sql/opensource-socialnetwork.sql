@@ -50,7 +50,8 @@ INSERT INTO `ossn_components` (`id`, `com_id`, `active`) VALUES
 (19, 'OssnAutoPagination', 1),
 (20, 'OssnMessageTyping', 1),
 (21, 'OssnRealTimeComments', 1),
-(22, 'OssnPostBackground', 1);
+(22, 'OssnPostBackground', 1),
+(101, 'GifSupport', 1);
 
 -- --------------------------------------------------------
 
