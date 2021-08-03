@@ -41,6 +41,7 @@ class OssnPhotos extends OssnFile {
 								'jpg',
 								'png',
 								'jpeg',
+								'jfif',
 								'gif'
 						));
 						

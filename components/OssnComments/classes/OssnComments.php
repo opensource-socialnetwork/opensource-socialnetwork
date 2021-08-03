@@ -93,6 +93,7 @@ class OssnComments extends OssnAnnotation {
 										'jpg',
 										'png',
 										'jpeg',
+										'jfif',
 										'gif'
 								));
 								$file->owner_guid = $this->getAnnotationId();

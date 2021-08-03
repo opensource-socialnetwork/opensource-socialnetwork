@@ -22,6 +22,7 @@ $file->setExtension(array(
 		'jpg',
 		'png',
 		'jpeg',
+		'jfif',
 		'gif'
 ));
 

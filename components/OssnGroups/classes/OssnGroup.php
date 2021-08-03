@@ -446,6 +446,7 @@ class OssnGroup extends OssnObject {
 						'jpg',
 						'png',
 						'jpeg',
+						'jfif',
 						'gif'
 				));
 				$this->OssnFile->setPath('cover/');
