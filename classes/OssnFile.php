@@ -353,7 +353,11 @@ class OssnFile extends OssnEntities {
 				$files = scandir($from);
 				foreach($files as $fname) {
 						if($fname != '.' && $fname != '..') {
-								rename($from . $fname, $to . $fname);
+								if(is_dir($from . $fname)){
+										self::moveFiles($from . $fname . DIRECTORY_SEPARATOR, $to . $fname . DIRECTORY_SEPARATOR);
+								}else if(is_file($from . $fname)){
+										rename($from . $fname, $to . $fname);
+								}
 						}
 				}
 				self::DeleteDir($from);
