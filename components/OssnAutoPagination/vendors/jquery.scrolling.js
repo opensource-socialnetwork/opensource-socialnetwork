@@ -16,6 +16,8 @@
  * Project Home Page on Ryadel.com:
  * http://www.ryadel.com/
  *
+ * Modified by Engr. Syed Arsalan Hussain Shah $arsalanshah OSSN
+ *
  */
 (function ($) {
   var selectors = [];
@@ -130,7 +132,8 @@
             }
         }
 		
-        $window.scroll(onCheck).resize(onCheck);
+        $window.on('scroll', onCheck);
+        $window.on('resize', onCheck);
       }
 
 	  var $el = $(selector);
