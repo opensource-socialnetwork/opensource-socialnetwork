@@ -35,6 +35,7 @@ class CSSmin extends Minify {
         'jpe' => 'data:image/jpeg',
         'jpg' => 'data:image/jpeg',
         'jpeg' => 'data:image/jpeg',
+        'jfif' => 'data:image/jpeg',
         'svg' => 'data:image/svg+xml',
         'woff' => 'data:application/x-font-woff',
         'tif' => 'image/tiff',

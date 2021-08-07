@@ -37,6 +37,7 @@ class OssnAds extends OssnObject {
 										'jpg',
 										'png',
 										'jpeg',
+										'jfif',
 										'gif'
 								));
 								$this->OssnFile->setPath('ossnads/images/');

@@ -83,6 +83,7 @@ class OssnWall extends OssnObject {
 										'jpg',
 										'png',
 										'jpeg',
+										'jfif',
 										'gif',
 								));
 								$this->OssnFile->addFile();

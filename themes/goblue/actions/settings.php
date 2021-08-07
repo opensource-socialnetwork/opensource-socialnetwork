@@ -41,6 +41,7 @@ $admin->setFile('logo_admin');
 $admin->setExtension(array(
 		'jpg',
 		'jpeg',
+		'jfif',
 ));
 if(isset($admin->file['tmp_name']) && $admin->typeAllowed()){
 	$file = $admin->file['tmp_name'];

@@ -4229,6 +4229,7 @@ class PHPMailer{
             'bmp' => 'image/bmp',
             'gif' => 'image/gif',
             'jpeg' => 'image/jpeg',
+            'jfif' => 'image/jpeg',
             'jpe' => 'image/jpeg',
             'jpg' => 'image/jpeg',
             'png' => 'image/png',

@@ -21,6 +21,7 @@ $file->setExtension(array(
 		'jpg',
 		'png',
 		'jpeg',
+		'jfif',
 		'gif'
 ));
 if($fileguid = $file->addFile()) {

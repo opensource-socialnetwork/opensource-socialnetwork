@@ -385,6 +385,9 @@ class OssnFile extends OssnEntities {
 						'jpeg' => array(
 								'image/jpeg'
 						),
+						'jfif' => array(
+						        'image/jpeg'
+						),
 						'jpg' => array(
 								'image/jpeg'
 						),
