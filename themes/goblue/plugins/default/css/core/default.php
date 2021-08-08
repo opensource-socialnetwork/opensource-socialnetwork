@@ -69,7 +69,9 @@ body {
 .ossn-form input[readonly] {
 	background: #dbdbdb;
 }
-
+.ossn-form input[type="file"] {
+	display:block;
+}
 .btn:focus,
 .btn:active {
 	outline: none !important;
