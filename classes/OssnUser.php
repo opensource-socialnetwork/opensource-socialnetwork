@@ -1199,7 +1199,8 @@ class OssnUser extends OssnEntities {
 				$this->type       = 'user';
 				if(parent::save()) {
 						//check if owner is loggedin user guid , if so update session
-						if(ossn_loggedin_user()->guid == $this->guid) {
+						$loggedin_user = ossn_loggedin_user();
+						if($loggedin_user && $loggedin_user->guid == $this->guid) {
 								$_SESSION['OSSN_USER'] = ossn_user_by_guid($this->guid);
 						}
 						return true;
