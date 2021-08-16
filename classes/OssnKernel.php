@@ -19,7 +19,7 @@ class OssnKernel extends OssnSystem {
 		 * @return void
 		 */
 		public function __construct(){
-				$this->end_point = 'https://api.softlab24.com/premium/v1/';
+				$this->end_point = 'https://api.openteknik.com/premium/v1/';
 		}
 		/**
 		 * Trigger
