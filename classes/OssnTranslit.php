@@ -2,8 +2,8 @@
 /**
  * Open Source Social Network
  *
- * @package   (softlab24.com).ossn
- * @author    OSSN Core Team <info@softlab24.com>
+ * @package   (openteknik.com).ossn
+ * @author    OSSN Core Team <info@openteknik.com>
  *
  * For creating "friendly titles" for URLs
  *

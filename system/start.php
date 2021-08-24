@@ -3,8 +3,8 @@
  * Open Source Social Network
  *
  * @package   Open Source Social Network
- * @author    Informatikon Core Team <info@softlab24.com>
- * @copyright (C) SOFTLAB24 LIMITED
+ * @author    Informatikon Core Team <info@openteknik.com>
+ * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
  * @link      http://www.informatikon.com/
  */

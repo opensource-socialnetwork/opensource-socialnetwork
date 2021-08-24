@@ -5,7 +5,7 @@
     <author>Core Team</author>
     <description>Shows if someone typing comments and will load latest comments. It will not load previous comments but the comments that created after the time you loaded the page.</description>
     <license>Open Source Social Network License (OSSN LICENSE)</license>
-    <author_url>https://www.softlab24.com/</author_url>
+    <author_url>https://www.openteknik.com/</author_url>
     <license_url>https://www.opensource-socialnetwork.org/licence/</license_url>
     <version>1.5</version>
 	<requires>

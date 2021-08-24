@@ -2,13 +2,13 @@
 /**
  * Open Source Social Network
  *
- * OssnKernal 5.6 this file is provided in core on softlab24.com request
- * This file is created for the customers using softlab24.com apis,
- * For more information about the usage of this please contact softlab24.com/contact
+ * OssnKernal 5.6 this file is provided in core on openteknik.com request
+ * This file is created for the customers using openteknik.com apis,
+ * For more information about the usage of this please contact openteknik.com/contact
  *
  * @package   Open Source Social Network
- * @author    SOFTLAB24 LIMITED <info@softlab24.com>
- * @copyright (C) SOFTLAB24 LIMITED
+ * @author    OpenTeknik LLC <info@openteknik.com>
+ * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
  * @link      https://www.opensource-socialnetwork.org/
  */
