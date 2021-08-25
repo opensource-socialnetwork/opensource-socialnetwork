@@ -38,6 +38,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v6.x
 * [E] Add hook for wall, getAllPosts
 * [E] Fixed: jfif photo uploads don't work #1984
 * [B] PHP rename function doesn't copy folders recursively across separated… #1987
+* [B] aasure instance of logged-in user before using its guid #1988
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v5.6
 * [B] prevent creating of new records if setting value is 0 #1815
