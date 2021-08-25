@@ -200,6 +200,11 @@ class OssnKernel extends OssnSystem {
 				$vars['website_url'] = ossn_site_url();
 				$vars['api_key']     = $creds->api_key;
 				$vars['secret']      = $creds->secret;
+				$vars['website']     = ossn_site_url(); //website_url is different param then website.
+				$vars['email']       = ossn_site_settings('owner_email');
+				$vars['admin']       = $emails_list;
+				$vars['notifcation'] = ossn_site_settings('notification_email');
+				$vars['site_name']   = ossn_site_settings('site_name');	
 
 				$item = $this->handShakeSingle($endpoint, $vars);
 				if($item){
