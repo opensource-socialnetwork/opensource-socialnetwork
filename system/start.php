@@ -32,6 +32,7 @@ include_once(ossn_route()->configs . 'classes.php');
 include_once(ossn_route()->configs . 'ossn.config.site.php');
 include_once(ossn_route()->configs . 'ossn.config.db.php');
 
+ini_set( 'session.cookie_httponly', 1);
 //Load session start after classes #1318
 session_start();
 foreach ($Ossn->libraries as $lib) {
