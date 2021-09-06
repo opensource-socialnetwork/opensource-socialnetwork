@@ -131,7 +131,8 @@ class OssnProfile extends OssnDatabase {
 		$this->wall->poster_guid = $ownerguid;
 		$this->wall->item_guid = $itemguid;
 		
-		if($this->wall->Post('null:data')){
+		//[E] Check if profile and cover posted on newsfeed as public #1991
+		if($this->wall->Post('null:data', '', '', OSSN_FRIENDS)){
 			return true;
 		}
 	}
