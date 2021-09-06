@@ -590,28 +590,32 @@ a {
 	display: inline-table;
 	float: right;
 }
-
+.ossn-wall-privacy-dummy,
 .ossn-wall-privacy {
 	margin-right: 5px;
-	padding: 10px;
+	padding: 5px 10px;
 	background: #e5e5e5e0;
 	border-radius: 10px;
 	cursor: pointer;
 	display: inline-block;
 	margin-top: 10px;
 }
-
+.ossn-wall-privacy-dummy {
+    background: #e5e5e5e0;
+    cursor:initial;
+    opacity: 0.5;
+}
 .ossn-wall-privacy:hover {
 	background: #eeeeee8c;
 }
-
+.ossn-wall-privacy-dummy span > span,
 .ossn-wall-privacy span>span {
 	margin-left: 5px;
 	float: right;
 }
 
 .ossn-wall-container input[type='submit'] {
-	padding: 8px 35px;
+	padding: 3px 20px;
 	margin-top: 6px;
 	margin: 10px auto;
 	border-radius: 5px;
@@ -2031,7 +2035,7 @@ div.token-input-dropdown ul li.token-input-selected-dropdown-item {
 	margin-right: auto;
 	z-index: 60000;
 	margin-top: 100px;
-	border-radius: 3px;
+	border-radius: 10px;
 	display: none;
 	box-shadow: 0 2px 26px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(0, 0, 0, 0.1);
 }
@@ -2045,7 +2049,8 @@ div.token-input-dropdown ul li.token-input-selected-dropdown-item {
 .ossn-message-box .title {
 	background: #F5F6F7;
 	padding: 11px;
-	border-radius: 3px;
+	border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
 	border-bottom: 1px solid #E5E5E5;
 	color: #5E5656;
 	font-size: 14px;
@@ -2075,7 +2080,7 @@ div.token-input-dropdown ul li.token-input-selected-dropdown-item {
 
 .ossn-message-box .control .controls .btn {
 	padding: 2px 13px;
-	border-radius: 2px;
+	border-radius: 5px;
 }
 
 .ossn-message-box .contents input[type='text'] {
@@ -2499,6 +2504,7 @@ footer .ossn-footer-menu a:last-child::after {
 ***************************/
 
 @media (max-width: 480px) {
+	.ossn-wall-privacy-dummy,
 	.ossn-wall-privacy {
 		float: none;
 		margin-right: 0;
