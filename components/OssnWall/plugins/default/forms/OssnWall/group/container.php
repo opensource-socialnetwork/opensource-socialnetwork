@@ -34,6 +34,13 @@
     <div class='ossn-wall-post-button-container'>
             <div class="ossn-loading ossn-hidden"></div>
             <input class="btn btn-primary ossn-wall-post" type="submit" value="<?php echo ossn_print('post'); ?>" />
-    </div>    
+    </div>  
+    <div class="ossn-wall-privacy-dummy">
+    		<?php if($params['group']['group']->membership == OSSN_PUBLIC){ ?>
+            <span title="<?php echo ossn_print('privacy:group:public');?>"><i class="ossn-wall-privacy-lock fa fa-lock"></i><span class=""><?php echo ossn_print('public'); ?></span></span>
+            <?php } else {?>
+            <span title="<?php echo ossn_print('privacy:group:close');?>"><i class="ossn-wall-privacy-lock fa fa-lock"></i><span class=""><?php echo ossn_print('close'); ?></span></span>            
+            <?php } ?> 
+    </div>          
 	 <input type="hidden" value="<?php echo $params['group']['group']->guid; ?>" name="wallowner"/>
 </div>
