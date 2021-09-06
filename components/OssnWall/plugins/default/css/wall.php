@@ -40,14 +40,9 @@
 	font-size: 13px;
 	bottom: 0;
 }
-
-.group-wall .ossn-wall-post-button-container {
-	float: initial;
-}
-
 .group-wall .ossn-wall-post-button-container {
 	height: 50px;
-	display: block;
+	display: inline-block;
 }
 
 .group-wall .ossn-wall-post {

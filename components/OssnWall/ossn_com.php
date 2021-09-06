@@ -351,9 +351,9 @@ function ossn_post_page($pages) {
 function ossn_wall_post_menu($hook, $type, $return, $params) {
 		$user = ossn_loggedin_user();
 		if($params['post']->type == 'group') {
-				$group = ossn_get_object($params['post']->owner_guid);
+				$group = ossn_get_group_by_guid($params['post']->owner_guid);
 		}
-		if($params['post']->poster_guid == ossn_loggedin_user()->guid || $params['post']->owner_guid == $user->guid || (isset($group) && $group->owner_guid == $user->guid) || $user->canModerate()) {
+		if($params['post']->poster_guid == ossn_loggedin_user()->guid || $params['post']->owner_guid == $user->guid || (isset($group) && ($group->owner_guid == $user->guid || $group->isModerator($user->guid))) || $user->canModerate()) {
 				
 				$deleteurl = ossn_site_url("action/wall/post/delete?post={$params['post']->guid}", true);
 				
