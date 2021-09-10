@@ -16,7 +16,7 @@ if ($group->owner_guid !== ossn_loggedin_user()->guid && !ossn_isAdminLoggedin()
     ossn_trigger_message(ossn_print('member:add:error'), 'error');
     redirect(REF);
 }
-if ($add->approveRequest($user, $group)) {
+if ($add->approveRequest($user, $group->guid)) {
     ossn_trigger_message(ossn_print('member:added'), 'success');
     redirect(REF);
 } else {

@@ -16,7 +16,7 @@ if ($group->owner_guid !== ossn_loggedin_user()->guid && !ossn_isAdminLoggedin()
     ossn_trigger_message(ossn_print('member:add:error'), 'error');
     redirect(REF);
 }
-if ($add->deleteMember($user, $group)) {
+if ($add->deleteMember($user, $group->guid)) {
     ossn_trigger_message(ossn_print('member:request:deleted'), 'success');
     redirect(REF);
 } else {
