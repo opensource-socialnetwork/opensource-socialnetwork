@@ -39,6 +39,13 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v6.x
 * [E] Fixed: jfif photo uploads don't work #1984
 * [B] PHP rename function doesn't copy folders recursively across separated… #1987
 * [B] aasure instance of logged-in user before using its guid #1988
+* [B] Non friend may able to add like & comment to friend photo only [huntr.dev] #1979
+* [E] Disallow to upload empty files and improve files function #1976
+* [E] Check if profile and cover posted on newsfeed as public #1991
+* [E] show deactivated privacy label on group wall with opacity 0.5 #1993
+* [B] Unset properties on Group update #1994
+* [E] Allow to use metatags in head #1996
+* [B] Close group post is accessible when not loggedin #1997
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v5.6
 * [B] prevent creating of new records if setting value is 0 #1815
