@@ -251,7 +251,16 @@ function ossn_post_page($pages) {
 						//re-opened on 27-06-2021 thanks to Haydar Alkaduhimi for reporting it.
 						if( ($post->access == OSSN_FRIENDS && !ossn_isLoggedin()) || ($post->access == OSSN_FRIENDS && ossn_isLoggedin() && !ossn_user_is_friend($loggedin->guid, $post->poster_guid)) ){
 								ossn_error_page();	
-						}						
+						}			
+						//[B] Close group post is accessible when not loggedin #1997
+						if($post->type == 'group' && com_is_active('OssnGroups')){
+								$group = ossn_get_group_by_guid($post->owner_guid);
+								if($group && $group->membership == OSSN_PRIVATE){
+										if(ossn_isLoggedin() && !$group->isMember($group->guid, $loggedin->guid) || !ossn_isLoggedin()){
+												ossn_error_page();	
+										}
+								}
+						}
 						$params['post'] = $post;
 						
 						$contents = array(
