@@ -14,13 +14,13 @@ $ismember = false;
 if ($cover) {
     $iscover = 'ossn-group-cover-header';
     $coverp = $params['group']->coverParameters($params['group']->guid);
-    if(strlen($coverp[0])){
+    if(isset($coverp[0]) && strlen($coverp[0])){
 		$cover_top = "top:{$coverp[0]}px;";
 	}
 	else {
 		$cover_top = 'top:0px;';
 	}
-	if(strlen($coverp[1])){
+	if(isset($coverp[1]) && strlen($coverp[1])){
 	    $cover_left = "left:{$coverp[1]}px;";
 	}
 	else {
