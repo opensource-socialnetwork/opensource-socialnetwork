@@ -22,12 +22,13 @@ function ossn_notifications() {
 		ossn_extend_view('css/ossn.default', 'css/notifications');
 		//js
 		ossn_extend_view('js/ossn.site', 'js/OssnNotifications');
-		ossn_extend_view('ossn/site/head', 'js/notifications-settings');
 		
-		//pages
-		ossn_register_page('notification', 'ossn_notification_page');
-		ossn_register_page('notifications', 'ossn_notifications_page');
-		
+		if(ossn_isLoggedin()){
+			ossn_extend_view('ossn/site/head', 'js/notifications-settings');
+			//pages
+			ossn_register_page('notification', 'ossn_notification_page');
+			ossn_register_page('notifications', 'ossn_notifications_page');
+		}
 		//callbacks
 		ossn_register_callback('like', 'created', 'ossn_notification_like');
 		ossn_register_callback('wall', 'post:created', 'ossn_notification_walltag');
@@ -54,13 +55,13 @@ function ossn_notifications() {
 						ossn_register_action('notifications/admin/settings', __OSSN_NOTIF__ . 'actions/notifications/admin/settings.php');
 						ossn_register_com_panel('OssnNotifications', 'settings');
 				}
+				ossn_register_sections_menu('newsfeed', array(
+					'name' => 'notifications',
+					'text' => ossn_print('notifications'),
+					'url' => ossn_site_url('notifications/all'),
+					'parent' => 'links',
+				));		
 		}
-		ossn_register_sections_menu('newsfeed', array(
-				'name' => 'notifications',
-				'text' => ossn_print('notifications'),
-				'url' => ossn_site_url('notifications/all'),
-				'parent' => 'links',
-		));		
 }
 /**
  * Create a notification for annotation like
