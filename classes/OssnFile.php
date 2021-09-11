@@ -220,8 +220,10 @@ class OssnFile extends OssnEntities {
 										}
 										if(preg_match('/image/i', $this->file['type'])) {
 												//fix rotation #918
-												$this->resetRotation($this->file['tmp_name']);
-												
+												//[E] exif_read_data only for jpeg #1999
+												if($this->file['type'] == 'image/jpeg'){
+													$this->resetRotation($this->file['tmp_name']);
+												}
 												//allow devs to change default size , see #528
 												$image_res = array(
 														'width' => 1500,
