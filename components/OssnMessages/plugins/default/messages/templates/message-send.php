@@ -14,7 +14,7 @@ $message_id = $params['message_id'];
 if($user->guid == ossn_loggedin_user()->guid){
 					?>
                     	<div class="row" id="message-item-<?php echo $message_id ?>">
-                                <div class="col-md-10 pull-right">
+                                <div class="col-md-12 pull-right">
                                 	<div class="message-box-sent text">
 											<span><?php echo ossn_call_hook('messages', 'message:smilify', (array)$params, ossn_message_print($message)); ?></span>
                                         	<div class="time-created"><?php echo ossn_user_friendly_time(time());?></div>

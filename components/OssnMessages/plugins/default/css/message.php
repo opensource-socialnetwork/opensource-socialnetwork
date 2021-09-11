@@ -62,7 +62,7 @@
     overflow-x: hidden;
 }
 .ossn-messages .message-inner .row {
-    margin-left: -10px;
+    /*margin-left: -10px;*/
 }
 .message-form-form {
     margin-top: 10px;
@@ -214,6 +214,7 @@
 	margin-left: 10px;
     color: #c77878 !important;
     visibility:hidden; 
+    cursor:pointer;
 }
 .message-box-recieved:hover .ossn-message-delete,
 .message-box-sent:hover .ossn-message-delete {
