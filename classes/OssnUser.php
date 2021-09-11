@@ -171,6 +171,7 @@ class OssnUser extends OssnEntities {
 		 * @return object
 		 */
 		public function getUser() {
+				$user = false;
 				//[B] case insensitive emails and username issues during login or signup #1726
 				if(!empty($this->email)) {
 						$params['from']   = 'ossn_users';
