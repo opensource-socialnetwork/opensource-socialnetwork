@@ -190,9 +190,9 @@ border-bottom-left-radius: 10px;
 }	
 .ossn-groups-notification-icon:before {
 	content: "\f0c0";
-    font-family: FontAwesome;
+    font-family: 'Font Awesome 5 Free';
     font-style: normal;
-    font-weight: normal;
+    font-weight: 900;
     font-size: 18px;
 }
 .ossn-group-notification-item .data {

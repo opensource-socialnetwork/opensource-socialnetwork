@@ -22,7 +22,7 @@ foreach ($menus as $name => $menu) {
 	$icon = "fa-angle-right";
 	if($name == 'links'){
 		$expend = 'show';
-		$icon = "fa-newspaper-o";
+		$icon = "fa-newspaper";
 	}
 	if($name  == 'groups'){
 		$icon = "fa-users";

@@ -29,14 +29,14 @@
     <div class="card card-spacing">
       <div class="card-header">
           <a data-parent="#accordion" href="#collapse-<?php echo $translit;?>" data-bs-toggle="collapse">
-		  	<?php echo $params['theme']->name;?> <?php echo $params['theme']->version;?> <i class="fa fa-sort-desc"></i>
+		  	<?php echo $params['theme']->name;?> <?php echo $params['theme']->version;?> <i class="fa fa-sort-down"></i>
           </a>
           <div class="right">
           
           <?php if (ossn_site_settings('theme') == $id){ ?>
            		<i title="<?php echo ossn_print('admin:button:enabled');?>" class="component-title-icon component-title-check fa fa-check-circle"></i>           
           <?php } else {?>
-           		<i title="<?php echo ossn_print('admin:button:disabled');?>" class="component-title-icon component-title-delete fa fa-times-circle-o"></i>         
+           		<i title="<?php echo ossn_print('admin:button:disabled');?>" class="component-title-icon component-title-delete fa fa-times-circle"></i>         
 		  <?php } ?>
           </div>
       </div>
@@ -79,7 +79,7 @@
 									if($item['availability'] == 0){
 										$check = false;
 									}
-									$icon = 'component-title-delete fa fa-times-circle-o';
+									$icon = 'component-title-delete fa fa-times-circle';
 									if($item['availability'] == 1){
 											$icon = 'component-title-check fa fa-check-circle';
 									}

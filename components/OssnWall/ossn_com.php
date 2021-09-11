@@ -77,12 +77,12 @@ function ossn_wall() {
 			array(
 				'name' => 'location',
 				'class' => 'ossn-wall-location',
-				'text' => '<i class="fa fa-map-marker"></i>',
+				'text' => '<i class="fa fa-map-marker-alt"></i>',
 			),
 			array(
 				'name' => 'photo',
 				'class' => 'ossn-wall-photo',
-				'text' => '<i class="fa fa-picture-o"></i>',
+				'text' => '<i class="fa fa-image"></i>',
 			),			
 		);		
 		ossn_register_menu_item('wall/container/home', $menupost);		

@@ -37,7 +37,7 @@
        <i class="fa fa-map-marker"></i>
     </li>
     <li class="ossn-wall-photo">
-       <i class="fa fa-picture-o"></i>
+       <i class="fa fa-image"></i>
     </li>
 	<div style="float:right;">
     	<div class="ossn-loading ossn-hidden"></div>

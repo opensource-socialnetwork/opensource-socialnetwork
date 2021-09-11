@@ -975,7 +975,7 @@ a {
 
 .sidebar-menu-nav ul:not(collapsed) .arrow:before,
 .sidebar-menu-nav li:not(collapsed) .arrow:before {
-	font-family: FontAwesome;
+	font-family: 'Font Awesome 5 Free';
 	content: "\f078";
 	display: inline-block;
 	padding-left: 10px;
@@ -1003,12 +1003,13 @@ a {
 
 .sidebar-menu-nav ul .sub-menu li:before,
 .sidebar-menu-nav li .sub-menu li:before {
-	font-family: FontAwesome;
+	font-family: 'Font Awesome 5 Free';
 	content: "\f105";
 	display: inline-block;
 	padding-left: 10px;
 	padding-right: 10px;
 	vertical-align: middle;
+    font-weight:900;
 }
 
 .sidebar-menu-nav li {
@@ -1775,7 +1776,7 @@ li[class^="menu-section-item-"] {
 }
 
 .ossn-menu-search-users .text:before {
-	font-family: FontAwesome;
+	font-family: 'Font Awesome 5 Free';
 	content: "\f007";
 	display: absolute;
 	padding-right: 10px;
@@ -1784,7 +1785,7 @@ li[class^="menu-section-item-"] {
 }
 
 .ossn-menu-search-groups .text:before {
-	font-family: FontAwesome;
+	font-family: 'Font Awesome 5 Free';
 	content: "\f0c0";
 	display: absolute;
 	padding-right: 10px;
@@ -2845,7 +2846,7 @@ footer .ossn-footer-menu a:last-child::after {
 ******************************************************/
 
 .sidebar-menu-nav ul .sub-menu li:before {
-	font-family: FontAwesome;
+	font-family: 'Font Awesome 5 Free';
 	display: inline-block;
 	padding-left: 10px;
 	padding-right: 10px;

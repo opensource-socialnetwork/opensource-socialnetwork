@@ -18,7 +18,7 @@
 	   $inner_text = $params['text'].' ';
    }
   if($params['privacy'] == OSSN_PUBLIC){
-	echo "<span {$class} title='{$text}'>{$inner_text}<i class='fa fa-globe'></i></span>";  
+	echo "<span {$class} title='{$text}'>{$inner_text}<i class='fa fa-globe-americas'></i></span>";  
   } elseif($params['privacy'] == OSSN_FRIENDS){
 	echo "<span {$class} title='{$text}'>{$inner_text}<i class='fa fa-users'></i></span>";  	  
   } elseif($params['privacy'] == OSSN_PRIVATE){

@@ -373,15 +373,15 @@ function ossn_wall_init(){
 			switch (parseInt($(this).val())){
 				case 3:
 					$('.ossn-wall-privacy-lock').removeClass('fa-lock');
-					$('.ossn-wall-privacy-lock').removeClass('fa-globe');
+					$('.ossn-wall-privacy-lock').removeClass('fa-globe-americas');
 					$('.ossn-wall-privacy-lock').removeClass('fa-users');
 					$('.ossn-wall-privacy-lock').addClass('fa-users');
 					break;
 				case 2:
 					$('.ossn-wall-privacy-lock').removeClass('fa-lock');
-					$('.ossn-wall-privacy-lock').removeClass('fa-globe');
+					$('.ossn-wall-privacy-lock').removeClass('fa-globe-americas');
 					$('.ossn-wall-privacy-lock').removeClass('fa-users');
-					$('.ossn-wall-privacy-lock').addClass('fa-globe');
+					$('.ossn-wall-privacy-lock').addClass('fa-globe-americas');
 					break;
 			}
 		});

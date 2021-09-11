@@ -46,7 +46,7 @@ Ossn.RegisterStartupFunction(function() {
 
 		// 3. messages page:
 		if ($('.message-form-form').length) {
-			$('<div class="ossn-message-attach-photo"><i class="fa fa-smile-o"></i></div>').prependTo('.message-form-form .controls');
+			$('<div class="ossn-message-attach-photo"><i class="fa fa-smile"></i></div>').prependTo('.message-form-form .controls');
 		}
 
 		// 4. chatbox
@@ -63,7 +63,7 @@ Ossn.RegisterStartupFunction(function() {
 		// *********************************************
 
 		// 1. comment
-		$('body').on('click', '.ossn-comment-attach-photo .fa-smile-o', function(e) {
+		$('body').on('click', '.ossn-comment-attach-photo .fa-smile', function(e) {
 			$parent = $(this).parent().parent().parent();
 			Ossn.OpenEmojiBox('#' + $parent.find('.comment-box').attr('id'));
 		});
@@ -74,7 +74,7 @@ Ossn.RegisterStartupFunction(function() {
 		});
 
 		// 3. message
-		$('body').on('click', '.ossn-message-attach-photo .fa-smile-o', function(e) {
+		$('body').on('click', '.ossn-message-attach-photo .fa-smile', function(e) {
 			Ossn.OpenEmojiBox('.message-form-form textarea');
 		});
 

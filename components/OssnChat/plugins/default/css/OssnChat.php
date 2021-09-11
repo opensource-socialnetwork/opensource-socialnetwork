@@ -369,9 +369,9 @@ img.ustatus.ossn-chat-icon-online {
 .ossn-chat-icon {}
 .ossn-chat-icon-online:before {
 	content: "\f111 ";
-    font-family: FontAwesome;
+    font-family: 'Font Awesome 5 Free';
     font-style: normal;
-    font-weight: normal;
+    font-weight: 900;
     color: #57B540;
     font-size: 12px;
     float: left;
@@ -379,18 +379,18 @@ img.ustatus.ossn-chat-icon-online {
 
 .ossn-chat-icon-offline:before {
 	content: "\f111 ";
-    font-family: FontAwesome;
+    font-family: 'Font Awesome 5 Free';
     font-style: normal;
-    font-weight: normal;
+    font-weight: 900;
     color: #D23636;
     font-size: 12px;
     float: left;
 }
 .ossn-chat-icon-expend:before {
     content: "\f0b2";
-    font-family: FontAwesome;
+    font-family: 'Font Awesome 5 Free';
     font-style: normal;
-    font-weight: normal;
+    font-weight: 900;
     color: #fff;
     font-size: 12px;
 }
@@ -401,9 +401,9 @@ img.ustatus.ossn-chat-icon-online {
 
 .ossn-chat-icon-smile:before {
     content: "\f118";
-    font-family: FontAwesome;
+    font-family: 'Font Awesome 5 Free';
     font-style: normal;
-    font-weight: normal;
+    font-weight: 400;
     font-size: 16px;
     margin-left: 10px;
 }
@@ -496,9 +496,9 @@ and (min-width : 1360px) {
  	margin-right:4px;
     	margin-top: -17px;
  	content: "\f111 ";
-    	font-family: FontAwesome;
+    	font-family: 'Font Awesome 5 Free';
     	font-style: normal;
-    	font-weight: normal;
+    	font-weight: 900;
     	color: #57B540;
     	font-size: 12px;
     }

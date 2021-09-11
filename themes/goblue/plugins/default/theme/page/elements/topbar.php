@@ -31,7 +31,7 @@
 									'role' => 'button',
 									'data-bs-toggle' => 'dropdown',
 									'data-bs-target' => '#',
-									'text' => '<i class="fa fa-sort-desc"></i>',
+									'text' => '<i class="fa fa-sort-down"></i>',
 								));									
 								echo ossn_view_menu('topbar_dropdown'); 
 							}

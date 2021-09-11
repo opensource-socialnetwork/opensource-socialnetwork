@@ -40,7 +40,7 @@ function ossn_smiley_embed_init() {
 
 		$emojii_button = array(
 				'name' => 'emojii_selector',
-				'text' => '<i class="fa fa-smile-o"></i>',
+				'text' => '<i class="fa fa-smile"></i>',
 				'href' => 'javascript:void(0);',
 		);
 	

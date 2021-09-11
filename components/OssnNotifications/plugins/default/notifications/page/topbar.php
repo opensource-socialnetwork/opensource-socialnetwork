@@ -60,10 +60,10 @@ if ($friends) {
                        <span>
                        <?php if ($count_notif > 0) { ?>
                            <span class="ossn-notification-container"><?php echo $count_notif; ?></span>
-                           <div class="ossn-icon ossn-icons-topbar-notifications-new"><i class="fa fa-globe"></i></div>
+                           <div class="ossn-icon ossn-icons-topbar-notifications-new"><i class="fa fa-globe-americas"></i></div>
                        <?php } else { ?>
                            <span class="ossn-notification-container hidden"></span>
-                           <div class="ossn-icon ossn-icons-topbar-notification"><i class="fa fa-globe"></i></div>
+                           <div class="ossn-icon ossn-icons-topbar-notification"><i class="fa fa-globe-americas"></i></div>
                        <?php } ?>
                        </span>
     </a>

@@ -47,7 +47,7 @@
 }
 
 .ossn-wall-container-control-menu-emojii-selector i {
-	font-weight: bold;
+	    font-weight: initial;
 }
 
 .emojii-container-main {
@@ -59,8 +59,8 @@
 	font-size: 20px;
 }
 
-.ossn-comment-attach-photo .fa-smile-o,
-.ossn-message-attach-photo .fa-smile-o {
+.ossn-comment-attach-photo .fa-smile,
+.ossn-message-attach-photo .fa-smile {
 	float: right;
 	position: relative;
 	margin-right: 5px;
@@ -69,9 +69,9 @@
 	height: 25px;
 	padding: 5px;
 	cursor: pointer;
-	font-weight: bold;
+	font-weight: 400;
 }
-.ossn-comment-attach-photo .fa-smile-o {
+.ossn-comment-attach-photo .fa-smile {
 	margin-top: 3px;
     font-size: 18px;
     color:#999;

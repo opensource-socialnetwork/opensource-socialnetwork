@@ -33,7 +33,7 @@
        <i class="fa fa-map-marker"></i>
     </li>
     <li class="ossn-wall-photo">
-       <i class="fa fa-picture-o"></i>
+       <i class="fa fa-image"></i>
     </li>
     <div style="float:right;">
         <input type="hidden" value="<?php echo $params['group']['group']->guid; ?>" name="wallowner"/>

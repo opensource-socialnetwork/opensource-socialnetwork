@@ -4,7 +4,7 @@
 }
 .ossn-notification-icon-poke:before {
 	content: "\f0a4";
-    font-family: FontAwesome;
+    font-family: 'Font Awesome 5 Free';
     font-style: normal;
     font-weight: normal;
     font-size: 18px;
