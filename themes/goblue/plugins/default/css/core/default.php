@@ -1464,6 +1464,8 @@ a {
 	background: #fff;
 	border: 1px solid #C4CDE0;
 	border-width: 1px 1px 2px;
+	border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;    
 }
 
 .ossn-profile .top-container .profile-cover {
@@ -1526,6 +1528,8 @@ a {
 
 .profile-hr-menu {
 	border-bottom: 1px solid #eee;
+	border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;    
 }
 
 .profile-hr-menu ul li:last-child {
