@@ -11,6 +11,9 @@
     font-weight: bold;
     width: 100%;
 }
+#group-header-menu .dropdown a:hover {
+	background:none;
+}
 #group-header-menu ul {
     list-style: none;
     margin: 0;
