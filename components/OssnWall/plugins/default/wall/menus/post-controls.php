@@ -11,7 +11,7 @@
 $postcontrols = $params['menu'];
 if($postcontrols){
 ?>
-<a id="dLabel" role="button" data-bs-toggle="dropdown" class="btn btn-link" data-bs-target="#">
+<a role="button" data-bs-toggle="dropdown" class="btn btn-link" data-bs-target="#">
 	<i class="fa fa fa-ellipsis-h"></i>
 </a>
 <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
