@@ -54,6 +54,7 @@ function ossn_likes(){
 
 		ossn_add_hook('notification:participants', 'like:post', 'ossn_likes_suppress_participants_notifications');
 		ossn_add_hook('notification:participants', 'like:annotation', 'ossn_likes_suppress_participants_notifications');
+		ossn_add_hook('notification:participants', 'like:post:group:wall', 'ossn_likes_suppress_participants_notifications');
 }
 /**
  * Add a like menu item in post
