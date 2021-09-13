@@ -234,7 +234,7 @@ class OssnFile extends OssnEntities {
 												$filecontents = ossn_resize_image($this->file['tmp_name'], $image_res['width'], $image_res['height']);
 												file_put_contents("{$this->dir}{$this->newfilename}", $filecontents);
 												return $fileguid; 	
-										} elseif(move_uploaded_file($this->file['tmp_name'], "{$this->dir}{$this->newfilename}")){
+										} elseif(copy($this->file['tmp_name'], "{$this->dir}{$this->newfilename}")){
 												return $fileguid; 	
 										}
 								}
