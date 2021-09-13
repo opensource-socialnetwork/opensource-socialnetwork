@@ -213,8 +213,7 @@ class OssnFile extends OssnEntities {
 								if($fileguid = $this->add()) {
 										$sizecheck = filesize($this->file['tmp_name']);
 										//[E] Disallow to upload empty files #1976
-										//https://www.php.net/manual/en/function.is-uploaded-file.php
-										if(!$sizecheck || $sizecheck && empty($sizecheck) || !is_uploaded_file($this->file['tmp_name'])){
+										if(!$sizecheck || $sizecheck && empty($sizecheck)){
 												 $this->deleteEntity($fileguid);	
 												 return false;
 										}
