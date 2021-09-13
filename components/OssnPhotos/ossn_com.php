@@ -539,7 +539,7 @@ function ossn_album_page_handler($album){
 								}
 						}
 						$gallery_button = array(
-								'text'  => "<i class='fa fa-caret-square-o-right'></i>",
+								'text'  => "<i class='fa fa-caret-square-right'></i>",
 								'href'  => 'javascript:void(0);',
 								'class' => 'button-grey',
 								'id'    => 'ossn-photos-show-gallery',
