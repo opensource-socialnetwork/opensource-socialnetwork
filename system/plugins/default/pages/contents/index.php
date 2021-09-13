@@ -27,11 +27,11 @@
             </div>
            	 <ul  class="some-icons">
                 	<li><i class="fa fa-users"></i></li>
-                	<li><i class="fa fa-comments-o"></i></li>
+                	<li><i class="fa fa-comments"></i></li>
                 	<li><i class="fa fa-envelope"></i></li>
                 	<li><i class="fa fa-globe-americas"></i></li>
                 	<li><i class="fa fa-image"></i></li>
-                	<li><i class="fa fa-video-camera"></i></li>
+                	<li><i class="fa fa-video"></i></li>
                 	<li><i class="fa fa-map-marker"></i></li>
                 	<li><i class="fa fa-calendar"></i></li>
              </ul>
