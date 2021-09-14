@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS `ossn_components` (
   `com_id` varchar(50) NOT NULL,
   `active` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=23 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=24 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ossn_components`
@@ -50,7 +50,8 @@ INSERT INTO `ossn_components` (`id`, `com_id`, `active`) VALUES
 (19, 'OssnAutoPagination', 1),
 (20, 'OssnMessageTyping', 1),
 (21, 'OssnRealTimeComments', 1),
-(22, 'OssnPostBackground', 1);
+(22, 'OssnPostBackground', 1),
+(23, 'OssnGiphy', 1);
 
 -- --------------------------------------------------------
 
@@ -192,7 +193,7 @@ INSERT INTO `ossn_site_settings` (`setting_id`, `name`, `value`) VALUES
 (9, 'display_errors', 'off'),
 (10, 'site_key', '<<secret>>'),
 (11, 'last_cache', ''),
-(12, 'site_version', '5.6');
+(12, 'site_version', '6.0');
 
 
 -- --------------------------------------------------------
@@ -293,3 +294,14 @@ ALTER TABLE `ossn_likes`
 ALTER TABLE `ossn_messages` 
 	ADD KEY `message_to` (`message_to`),
 	ADD KEY `message_from` (`message_from`);
+	
+	
+ALTER TABLE ossn_users MODIFY username VARCHAR(50);
+ALTER TABLE ossn_users MODIFY password VARCHAR(65);
+ALTER TABLE ossn_users ADD INDEX index_username (username);
+
+ALTER TABLE ossn_components ADD INDEX index_com_id (com_id);
+ALTER TABLE ossn_components ADD INDEX index_active (active);
+
+ALTER TABLE ossn_likes ADD INDEX index_subject_id_guid_type (subject_id,guid,type);
+ALTER TABLE ossn_likes ADD INDEX index_subject_id_type (subject_id,type);	
