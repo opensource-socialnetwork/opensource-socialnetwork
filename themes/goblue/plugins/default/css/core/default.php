@@ -767,7 +767,6 @@ a {
 }
 
 .comment-container {
-	padding-bottom: 10px;
 	position: relative;
 	z-index: 0;
 }
