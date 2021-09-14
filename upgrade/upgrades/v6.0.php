@@ -13,8 +13,8 @@ ossn_generate_server_config('apache');
 ossn_version_upgrade($upgrade, '6.0');
 
 //Thanks to Benjamin Oldenburg https://github.com/ordisbold
-$v60update	  = "ALTER TABLE ossn_users MODIFY username VARCHAR(32);
-ALTER TABLE ossn_users MODIFY password VARCHAR(64);
+$v60update	  = "ALTER TABLE ossn_users MODIFY username VARCHAR(50);
+ALTER TABLE ossn_users MODIFY password VARCHAR(65);
 ALTER TABLE ossn_users ADD INDEX index_username (username);
 
 ALTER TABLE ossn_components ADD INDEX index_com_id (com_id);
