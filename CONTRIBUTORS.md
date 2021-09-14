@@ -21,3 +21,4 @@ The following developers contributed to this project:
 * Haydar Alkaduhimi (https://www.opensource-socialnetwork.org/u/haydar)
 * ystartgo (https://github.com/ystartgo)
 * AntzCode (https://github.com/AntzCode)
+* Benjamin Oldenburg (https://github.com/ordisbold)
