@@ -241,32 +241,6 @@ function ossn_view_form($name, $args = array(), $type = 'core') {
     $args['type'] = $type;
     return ossn_plugin_view("output/form", $args);
 }
-
-/**
- * Ossn view widget
- *
- * @param array $params A options
- *
- * @return string
- */
-function ossn_view_widget(array $params = array()) {
-    return ossn_plugin_view("widget/view", $params);
-}
-/**
- * View a template
- *
- * Use a templates from core (image view, url view etc)
- * 
- * @param string $template A name of template
- * @param array $params
- * 
- * @return mix data
- */
-function ossn_view_template($template = '', array $params){
-	if(!empty($template)){
-		return ossn_plugin_view("{$template}", $params);
-	}
-}
 /**
  * Create a pagiantion using count and page limit
  *
