@@ -70,3 +70,8 @@
 .ossn-delete-comment {
     color: #EC2020 !important;
 }
+.comment-post-btn {
+    float: right;
+    border-radius: 10px;
+    padding: 2px 20px;
+}
