@@ -19,7 +19,7 @@
 </div>
 <div>
 	<label> <?php echo ossn_print('username'); ?> </label>
-	<input type='text' name="username" placeholder=''/>
+	<input type='text' name="username" maxlength="50" placeholder=''/>
 </div>
 <div>
 	<label> <?php echo ossn_print('email'); ?> </label>
