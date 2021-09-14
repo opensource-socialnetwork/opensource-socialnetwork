@@ -26,7 +26,7 @@
     </div>
 </div>
 <div>
-    <input type="text" class="form-control" name="username" placeholder="<?php echo ossn_print('username'); ?>"/>
+    <input type="text" class="form-control" name="username" maxlength="50" placeholder="<?php echo ossn_print('username'); ?>"/>
 </div>
 
 <div>
