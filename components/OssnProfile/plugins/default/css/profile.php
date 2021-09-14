@@ -84,3 +84,6 @@
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;    
 }
+.profile-hr-menu .dropdown-toggle::after {
+	display:none;
+}

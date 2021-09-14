@@ -1410,9 +1410,12 @@ a {
 	display: inline-table;
 	float: left;
 }
-
+.ossn-notifications-friends-inner a {
+    color: #0f3b4a !important;
+    display: inline-block !important;
+}
 .ossn-notifications-friends-inner {
-	padding: 6px;
+	padding: 0px 5px;
 }
 
 .ossn-notifications-friends-inner form {
@@ -1424,7 +1427,6 @@ a {
 }
 
 .notification-friends li {
-	margin-bottom: 5px;
 	width: 100%;
 	border-bottom: 1px solid #eee;
 }
@@ -1444,7 +1446,13 @@ a {
 	margin-top: 6px;
 	display: inline-block;
 }
-
+.friends-added-text {
+    float: left !important;
+    margin-top: -18px !important;
+    display: block !important;
+    margin-left: 10px;
+    font-size: 13px;
+}
 .ossn-notifications-friends-inner .btn {
 	padding: 3px 9px;
 	border-radius: 1px;
@@ -1496,6 +1504,7 @@ a {
 
 .profile-hr-menu ul li {
 	display: inline-block;
+    padding:10px 0;
 }
 
 .profile-hr-menu ul li a:not(.dropdown a) {
@@ -1511,7 +1520,10 @@ a {
 }
 
 .profile-hr-menu .dropdown-menu li {
-	display: block;
+    display: block;
+    border-bottom: 0;
+    padding: initial;
+    margin: auto;
 }
 
 .profile-hr-menu .dropdown a i {
@@ -2614,8 +2626,9 @@ footer .ossn-footer-menu a:last-child::after {
 		display: block;
 		border-bottom: 1px solid rgb(238, 238, 238);
 		margin-right: 0px;
+        margin-left:10px;
 	}
-	.profile-hr-menu ul li a {
+	.profile-hr-menu ul li a:not(.dropdown a) {
 		margin-right: 0px;
 		padding: 10px;
 	}

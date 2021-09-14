@@ -184,7 +184,7 @@ $members = $params['group']->getMembers();
 						'contents' => nl2br($params['group']->description),
 						'class' => 'widget-description',
 				));					
-				if(ossn_loggedin_user() && ($params['group']->owner_guid == ossn_loggedin_user()->guid || ossn_isAdminLoggedin())) {
+				if(ossn_loggedin_user() && ($params['group']->owner_guid == ossn_loggedin_user()->guid || ossn_isAdminLoggedin() || $params['group']->isModerator(ossn_loggedin_user()->guid) )) {
 					$member_requests = ossn_plugin_view('output/url', array(
 							'text' => ossn_print('view:all'),
 							'href' => ossn_group_url($params['group']->guid).'requests'

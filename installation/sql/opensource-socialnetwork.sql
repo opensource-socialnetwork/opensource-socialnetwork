@@ -189,7 +189,7 @@ INSERT INTO `ossn_site_settings` (`setting_id`, `name`, `value`) VALUES
 (4, 'cache', '0'),
 (5, 'owner_email', '<<owner_email>>'),
 (6, 'notification_email', '<<notification_email>>'),
-(7, 'upgrades', '["1410545706.php","1411396351.php", "1412353569.php","1415553653.php","1415819862.php", "1423419053.php", "1423419054.php", "1439295894.php", "1440716428.php", "1440867331.php", "1440603377.php", "1443202118.php", "1443211017.php", "1443545762.php", "1443617470.php", "1446311454.php", "1448807613.php", "1453676400.php", "1459411815.php", "1468010638.php", "1470127853.php", "1480759958.php", "1495366993.php", "1513524535.php", "1513603766.php", "1513783390.php", "1542223614.php", "1564080285.php", "1577836800.php", "1597058454.php", "1597734806.php", "1598389337.php", "1605286634.php"]'),
+(7, 'upgrades', '["1410545706.php","1411396351.php", "1412353569.php","1415553653.php","1415819862.php", "1423419053.php", "1423419054.php", "1439295894.php", "1440716428.php", "1440867331.php", "1440603377.php", "1443202118.php", "1443211017.php", "1443545762.php", "1443617470.php", "1446311454.php", "1448807613.php", "1453676400.php", "1459411815.php", "1468010638.php", "1470127853.php", "1480759958.php", "1495366993.php", "1513524535.php", "1513603766.php", "1513783390.php", "1542223614.php", "1564080285.php", "1577836800.php", "1597058454.php", "1597734806.php", "1598389337.php", "1605286634.php", "1632168576.php"]'),
 (9, 'display_errors', 'off'),
 (10, 'site_key', '<<secret>>'),
 (11, 'last_cache', ''),
@@ -205,9 +205,9 @@ INSERT INTO `ossn_site_settings` (`setting_id`, `name`, `value`) VALUES
 CREATE TABLE IF NOT EXISTS `ossn_users` (
   `guid` bigint NOT NULL AUTO_INCREMENT,
   `type` text NOT NULL,
-  `username` text NOT NULL,
+  `username` varchar(50) NOT NULL,
   `email` text NOT NULL,
-  `password` text NOT NULL,
+  `password` varchar(65) NOT NULL,
   `salt` varchar(8) NOT NULL,
   `first_name` text NOT NULL,
   `last_name` text NOT NULL,
@@ -296,8 +296,6 @@ ALTER TABLE `ossn_messages`
 	ADD KEY `message_from` (`message_from`);
 	
 	
-ALTER TABLE ossn_users MODIFY username VARCHAR(50);
-ALTER TABLE ossn_users MODIFY password VARCHAR(65);
 ALTER TABLE ossn_users ADD INDEX index_username (username);
 
 ALTER TABLE ossn_components ADD INDEX index_com_id (com_id);

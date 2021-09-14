@@ -660,7 +660,7 @@ class OssnGroup extends OssnObject {
 		 */
 		public function isModerator($user_guid){
 				$group_guid = $this->guid;
-				if(empty($user_guid)){
+				if(empty($user_guid) || empty($group_guid)){
 						return false;
 				}
 				$params = array(

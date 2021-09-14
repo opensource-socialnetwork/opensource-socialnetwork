@@ -145,7 +145,7 @@ function ossn_group_load_event($event, $type, $params) {
 		ossn_register_menu_link('members', 'members', ossn_group_url($owner) . 'members', 'groupheader');
 		// show 'Requests' menu tab only on pending requests
 		$group = ossn_get_group_by_guid($owner);
-		if ($group && $group->countRequests() && ($group->owner_guid == ossn_loggedin_user()->guid || ossn_isAdminLoggedin())) {
+		if ($group && $group->countRequests() && ($group->owner_guid == ossn_loggedin_user()->guid || ossn_isAdminLoggedin() || $group->isModerator(ossn_loggedin_user()->guid))) {
 			ossn_register_menu_link('requests', 'requests', ossn_group_url($owner) . 'requests', 'groupheader');
 		}
 }
@@ -354,7 +354,7 @@ function group_requests_page($hook, $type, $return, $params) {
 		$page  = $params['subpage'];
 		$group = ossn_get_group_by_guid(ossn_get_page_owner_guid());
 		if($page == 'requests') {
-				if($group->owner_guid !== ossn_loggedin_user()->guid && !ossn_isAdminLoggedin()) {
+				if($group->owner_guid !== ossn_loggedin_user()->guid && !$group->isModerator(ossn_loggedin_user()->guid) && !ossn_isAdminLoggedin()) {
 						redirect("group/{$group->guid}");
 				}
 				$mod_content = ossn_plugin_view('groups/pages/requests', array(

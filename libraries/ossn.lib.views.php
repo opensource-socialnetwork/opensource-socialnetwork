@@ -241,6 +241,17 @@ function ossn_view_form($name, $args = array(), $type = 'core') {
     $args['type'] = $type;
     return ossn_plugin_view("output/form", $args);
 }
+
+/**
+ * Ossn view widget
+ *
+ * @param array $params A options
+ *
+ * @return string
+ */
+function ossn_view_widget(array $params = array()) {
+    return ossn_plugin_view("widget/view", $params);
+}
 /**
  * Create a pagiantion using count and page limit
  *
