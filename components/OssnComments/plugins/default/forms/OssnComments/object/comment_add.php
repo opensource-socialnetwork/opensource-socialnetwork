@@ -14,6 +14,7 @@ $object = $params['object'];
 <?php echo ossn_fetch_extend_views('comments/attachment/buttons'); ?>
 <span type="text" name="comment" id="comment-box-o<?php echo $object; ?>" class="comment-box"
        placeholder="<?php echo ossn_print('write:comment'); ?>" contenteditable="true"></span>
+<a href="javascript:void(0);" class="btn btn-primary btn-sm comment-post-btn d-sm-block d-md-none" data-type='o' data-guid='<?php echo $object; ?>'><?php echo ossn_print('post');?></a>             
 <input type="hidden" name="object_guid" value="<?php echo $object; ?>"/>
 <input type="hidden" name="comment-attachment"/>
  
