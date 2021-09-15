@@ -106,7 +106,12 @@ body {
 	border: 1px solid #a94442 !important;
 }
 
-.fa {
+.fa,
+.fas,
+.far,
+.fal,
+.fad,
+.fab {
 	margin-right: 5px;
 }
 
