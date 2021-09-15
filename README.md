@@ -64,16 +64,21 @@ Backend Features
 =================
 
 * Admin Dashboard for site overview
-* Online users count (male/female) graph
+* Online users count, gender based graph
 * Total site users count (by months) graph
-* Update Notification
+* Component configurations 
 * Add User
 * Remove User
 * Edit User
 * Ads Manager
-* Site Cache Settings
-* Site Basic Settings
+* Cache Settings
+* Basic Settings
 * Unvalidated users
+* Custom pages
+* Menu Builder
+* Themes management
+* Components Management
+* WebServices API
 * Manually validate unvalidated users
 * and much more components settings
 
