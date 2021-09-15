@@ -31,7 +31,7 @@ $(document).ready(function(){
 				}
 		});
  		$('.ossn-wall-container-data textarea').on('keyup', function(){
-   				var length = $.trim(this.value).length;
+   				var length = String.prototype.trim(this.value).length;
 				if(length > 125) {
 					$('.ossn-wall-container-data .postbg-container').attr('style', '');
      				$('.ossn-wall-container-data textarea').removeClass('postbg-container');
