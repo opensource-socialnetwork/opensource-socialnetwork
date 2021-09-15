@@ -108,6 +108,7 @@ function ossn_friend_picker() {
 		if(!ossn_isLoggedin()) {
 				exit;
 		}
+		$usera = array();
 		$user    = new OssnUser;
 		$friends = $user->getFriends(ossn_loggedin_user()->guid);
 		if(!$friends) {
