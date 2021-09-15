@@ -37,7 +37,7 @@
     display: block;
     line-height: 42px;
     margin: 5px 0;
-    padding: 5px 0px;
+    padding: 0px 10px;
     text-decoration: none;
     font-weight: bold;
 }
