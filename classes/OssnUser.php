@@ -21,6 +21,9 @@ class OssnUser extends OssnEntities {
 				if(!isset($this->sendactiviation)) {
 						$this->sendactiviation = false;
 				}
+				if(!isset($this->validated)){
+						$this->validated = false;	
+				}
 				$this->data = new stdClass;
 		}
 		/**
