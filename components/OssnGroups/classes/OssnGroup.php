@@ -93,7 +93,7 @@ class OssnGroup extends OssnObject {
 		public function getGroup($guid){
 				$this->object_guid = $guid;
 				$group             = $this->getObjectById();
-				if($group->subtype == 'ossngroup'){
+				if($group && isset($group->subtype) && $group->subtype == 'ossngroup'){
 						return $group;
 				}
 				return false;
