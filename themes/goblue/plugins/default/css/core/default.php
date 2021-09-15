@@ -1510,9 +1510,7 @@ a {
 
 .profile-hr-menu ul li {
 	display: inline-block;
-    padding:10px 0;
-}
-
+} 
 .profile-hr-menu ul li a:not(.dropdown a) {
 	display: block;
 	padding: 15px;
@@ -2526,7 +2524,10 @@ footer .ossn-footer-menu a:last-child::after {
 ***************************/
 
 @media (max-width: 480px) {
-	.ossn-wall-privacy-dummy,
+	.profile-hr-menu ul li {
+  	 	padding:10px 0;
+	}	
+    .ossn-wall-privacy-dummy,
 	.ossn-wall-privacy {
 		float: none;
 		margin-right: 0;
