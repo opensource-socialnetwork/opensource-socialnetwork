@@ -979,6 +979,7 @@ a {
 	display: inline-block;
 	padding-left: 10px;
 	padding-right: 10px;
+	font-weight:900;
 	vertical-align: middle;
 	float: right;
 }
