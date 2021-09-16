@@ -54,6 +54,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v6.x
 * [E] Load ossn notifications only when loggedin #1998
 * [E] Improve the comment add #1990
 * [E] Inefficient table design and query #1864
+* [E] Blocked user showing in search and people can add friends #2008
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v5.6
 * [B] prevent creating of new records if setting value is 0 #1815
