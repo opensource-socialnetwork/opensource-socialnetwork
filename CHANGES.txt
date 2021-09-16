@@ -55,6 +55,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v6.x
 * [E] Improve the comment add #1990
 * [E] Inefficient table design and query #1864
 * [E] Blocked user showing in search and people can add friends #2008
+* [E] Strip comments for blocked users, for each of them #2009
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v5.6
 * [B] prevent creating of new records if setting value is 0 #1815
