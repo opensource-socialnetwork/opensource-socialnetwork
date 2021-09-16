@@ -156,10 +156,11 @@ class OssnComments extends OssnAnnotation {
 		 *
 		 * @param integer $subject_id Id of item on which users comment
 		 * @param integer $type Post or Entity
+		 * @param integer $filter Show filterd comments (blocked users don't see each other)
 		 *
 		 * @return boolean|array
 		 */
-		public function GetComments($subject, $type = 'post'){
+		public function GetComments($subject, $type = 'post', $filter = true){
 				if(empty($subject)){
 					return false;	
 				}
@@ -175,7 +176,15 @@ class OssnComments extends OssnAnnotation {
 				} else {
 						$vars['page_limit'] = $this->page_limit;
 				}
-				$comments = $this->searchAnnotation($vars);
+				$extra_param = array(
+						'type' => $type,
+				);
+				if($filter === true){
+					$attrs   = ossn_call_hook('comments', 'GetComments', $extra_param, $vars);
+					$comments = $this->searchAnnotation($attrs);
+				} else {
+					$comments = $this->searchAnnotation($vars);
+				}
 				if(!empty($comments)) {
 						return array_reverse($comments);
 				}
@@ -197,7 +206,7 @@ class OssnComments extends OssnAnnotation {
 						return false;
 				}
 				//[B]No callback triggered for OssnComments::commentsDeleteAll
-				$list = $this->GetComments($subject, $type);
+				$list = $this->GetComments($subject, $type, false);
 				if($list) {
 						foreach($list as $comment) {
 								$this->deleteComment($comment->id);
