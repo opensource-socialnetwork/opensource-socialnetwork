@@ -189,13 +189,27 @@ function profile_edit_page($hook, $type, $return, $params) {
 function profile_search_handler($hook, $type, $return, $params) {
 		$Pagination    = new OssnPagination;
 		$users         = new OssnUser;
-		$data          = $users->searchUsers(array(
-				'wheres' => "CONCAT(u.first_name, ' ', u.last_name) LIKE '%{$params['q']}%'"
-		));
-		$count         = $users->searchUsers(array(
-				'wheres' => "CONCAT(u.first_name, ' ', u.last_name) LIKE '%{$params['q']}%'",
-				'count' => true
-		));
+		//[E] Blocked user showing in search and people can add friends #2008
+		if(ossn_isLoggedin() && com_is_active('OssnBlock')){
+			$loggedin      = ossn_loggedin_user();
+			$blocked       = "(u.guid NOT IN (SELECT DISTINCT relation_to FROM `ossn_relationships` WHERE relation_from={$loggedin->guid} AND type='userblock') AND u.guid NOT IN (SELECT 	DISTINCT relation_from FROM `ossn_relationships` WHERE relation_to={$loggedin->guid} AND type='userblock'))";
+			
+			$data          = $users->searchUsers(array(
+					'wheres' => "(CONCAT(u.first_name, ' ', u.last_name) LIKE '%{$params['q']}%') AND {$blocked}"
+			));
+			$count         = $users->searchUsers(array(
+					'wheres' => "(CONCAT(u.first_name, ' ', u.last_name) LIKE '%{$params['q']}%') AND {$blocked}",
+					'count' => true
+			));
+		} else {
+			$data          = $users->searchUsers(array(
+					'wheres' => "CONCAT(u.first_name, ' ', u.last_name) LIKE '%{$params['q']}%'"
+			));
+			$count         = $users->searchUsers(array(
+					'wheres' => "CONCAT(u.first_name, ' ', u.last_name) LIKE '%{$params['q']}%'",
+					'count' => true
+			));			
+		}
 		$user['users'] = $data;
 		$search        = ossn_plugin_view('output/users', $user);
 		$search .= ossn_view_pagination($count);
