@@ -10971,7 +10971,9 @@ a {
 /*************************
 	3.x buttons styles
 ***************************/
-
+.btn-close:focus {
+	box-shadow:none;
+}
 .btn {
 	border-radius: 2px;
 	padding: 4px 8px;
