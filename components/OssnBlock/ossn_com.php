@@ -46,10 +46,35 @@ function ossn_block() {
 						ossn_add_hook('wall', 'getPublicPosts', 'ossn_block_strip_posts');
 						ossn_add_hook('wall', 'GetPostByOwner', 'ossn_block_strip_group_posts');
 						ossn_add_hook('wall', 'GetUserPosts', 'ossn_block_strip_users_profile_posts');
+						ossn_add_hook('comments', 'GetComments', 'ossn_block_strip_comments');
 				}
 		}
 		ossn_register_callback('user', 'delete', 'ossn_user_block_relations_delete');
 }
+/**
+ * Block comments showing
+ * [E] Strip comments for blocked users, for each of them #2009
+ * 
+ * @param string $hook comments
+ * @param string $type GetComments
+ * @param array  $return Option values
+ * 
+ * @return array
+ */
+function ossn_block_strip_comments($hook, $type, $return, $params){
+		$user = ossn_loggedin_user();
+		$return['wheres'] = array("(a.owner_guid NOT IN (SELECT DISTINCT relation_to FROM `ossn_relationships` WHERE relation_from={$user->guid} AND type='userblock') AND a.owner_guid NOT IN (SELECT 	DISTINCT relation_from FROM `ossn_relationships` WHERE relation_to={$user->guid} AND type='userblock'))");		
+		return $return;
+}
+/**
+ * Block user profile posts
+ * 
+ * @param string $hook hook
+ * @param string $type type
+ * @param array  $return Option values
+ * 
+ * @return array
+ */
 function ossn_block_strip_users_profile_posts($hook, $type, $return, $params) {
 		$user = ossn_loggedin_user();
 		//we need to further make sure that if someone blocked wall owner he should be able to see posts to delete them.
@@ -65,6 +90,15 @@ function ossn_block_strip_users_profile_posts($hook, $type, $return, $params) {
 		}
 		return $return;
 }
+/**
+ * Block user group posts
+ * 
+ * @param string $hook hook
+ * @param string $type type
+ * @param array  $return Option values
+ * 
+ * @return array
+ */
 function ossn_block_strip_group_posts($hook, $type, $return, $params) {
 		$user = ossn_loggedin_user();
 		if(isset($user->guid)) {
@@ -76,6 +110,15 @@ function ossn_block_strip_group_posts($hook, $type, $return, $params) {
 		}
 		return $return;
 }
+/**
+ * Block user posts
+ * 
+ * @param string $hook hook
+ * @param string $type type
+ * @param array  $return Option values
+ * 
+ * @return array
+ */
 function ossn_block_strip_posts($hook, $type, $return, $params) {
 		//here posts belongs to owner_guid so we can use owner_guid instea of poster_guid using joins.
 		if(isset($params['user']->guid) && $params['user']->guid == ossn_loggedin_user()->guid) {
@@ -191,7 +234,7 @@ function ossn_user_block_action($callback, $type, $params) {
  * @access private;
  */
 function ossn_user_block($name, $type, $return, $params) {
-		// Deny from visiting profile
+		//Deny from visiting profile
 		if($params['handler'] == 'u' && !ossn_isAdminLoggedin()) {
 				$user = ossn_user_by_username($params['page'][0]);
 				//in case blocked but make user user viewing user is not admin
@@ -251,7 +294,9 @@ function ossn_user_block($name, $type, $return, $params) {
 						ossn_block_page();
 				}
 		}
-		//Deny from viewing profile photos album and albums
+		/*
+						     * Deny from viewing profile photos album and albums
+				*/
 		if($params['handler'] == 'album' && !ossn_isAdminLoggedin()) {
 				//check if album is profile photos
 				if($params['page'][0] == 'profile') {
