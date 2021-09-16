@@ -1156,11 +1156,15 @@ a {
 /******************************************
 	Ossn Ads
 *******************************************/
-
+.ad-image-container {
+    background: #f6f7f8;
+    padding: 5px;
+    border: 1px solid #ebebeb;
+}
 .ossn-ad-item {}
 
 .ossn-ad-item .ad-image {
-	max-width: 100%;
+	max-width: 200px;
 	margin: 0 auto;
 	display: block;
 }
