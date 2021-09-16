@@ -1797,7 +1797,7 @@ li[class^="menu-section-item-"] {
 .ossn-menu-search-users .text:before {
 	font-family: 'Font Awesome 5 Free';
 	content: "\f007";
-	display: absolute;
+	font-weight: 900;
 	padding-right: 10px;
 	vertical-align: middle;
 	float: left;
@@ -1806,7 +1806,7 @@ li[class^="menu-section-item-"] {
 .ossn-menu-search-groups .text:before {
 	font-family: 'Font Awesome 5 Free';
 	content: "\f0c0";
-	display: absolute;
+	font-weight: 900;
 	padding-right: 10px;
 	vertical-align: middle;
 	float: left;
