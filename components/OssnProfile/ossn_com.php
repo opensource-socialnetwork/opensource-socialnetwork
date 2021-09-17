@@ -577,14 +577,18 @@ function ossn_profile_images_allcomments($callback, $type, $params) {
 						case 'file:ossn:aphoto':
 								$url = ossn_site_url("photos/view/{$params['entity']->guid}");
 								break;
+						default:
+								$url = false;
 				}
-				$comment = new OssnComments;
-				if($comment->countComments($params['entity']->guid, 'entity') > 5 && !$params['full_view']) {
-						ossn_register_menu_item('entityextra', array(
-								'name' => 'commentall',
-								'href' => $url,
-								'text' => ossn_print('comment:view:all')
-						));
+				if($url) {
+						$comment = new OssnComments;
+						if($comment->countComments($params['entity']->guid, 'entity') > 5 && !$params['full_view']) {
+								ossn_register_menu_item('entityextra', array(
+										'name' => 'commentall',
+										'href' => $url,
+										'text' => ossn_print('comment:view:all')
+								));
+						}
 				}
 		}
 }
