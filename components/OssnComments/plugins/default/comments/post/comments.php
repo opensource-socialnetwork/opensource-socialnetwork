@@ -16,7 +16,7 @@ $object = $params->guid;
 
 $comments = new OssnComments;
 
-if(isset($params->full_view) && $params->full_view !== true){
+if(!isset($params->full_view) || (isset($params->full_view) && $params->full_view !== true)){
 	$comments->limit = 5;
 }
 if(isset($params->full_view) && $params->full_view == true){
