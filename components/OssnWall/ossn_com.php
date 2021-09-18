@@ -250,7 +250,8 @@ function ossn_post_page($pages) {
 						$loggedin =  ossn_loggedin_user();
 						//Posts having friends privacy are visible to public using direct URL #1484
 						//re-opened on 27-06-2021 thanks to Haydar Alkaduhimi for reporting it.
-						if( ($post->access == OSSN_FRIENDS && !ossn_isLoggedin()) || ($post->access == OSSN_FRIENDS && ossn_isLoggedin() && !ossn_user_is_friend($loggedin->guid, $post->poster_guid)) ){
+						//fixing again on 18-09-2021 user can not view own post.
+						if( (isset($post->access) && $post->access == OSSN_FRIENDS && !ossn_isLoggedin()) || (ossn_isLoggedin() && $loggedin->guid != $post->poster_guid && $post->access == OSSN_FRIENDS && ossn_isLoggedin() && !ossn_user_is_friend($loggedin->guid, $post->poster_guid)) ){
 								ossn_error_page();	
 						}			
 						//[B] Close group post is accessible when not loggedin #1997
