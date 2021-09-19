@@ -108,7 +108,6 @@ function ossn_friend_picker() {
 		if(!ossn_isLoggedin()) {
 				exit;
 		}
-		$usera = array();
 		$user    = new OssnUser;
 		$friends = $user->getFriends(ossn_loggedin_user()->guid);
 		if(!$friends) {
@@ -125,13 +124,15 @@ function ossn_friend_picker() {
 		}
 		$search_len = mb_strlen($search_for,'UTF-8');
 		foreach($friends as $users) {
-			$first_name_start = mb_substr($users->first_name, 0, $search_len, 'UTF-8');
-			if($first_name_start == $search_for || $first_name_start == $search_For) {
-				$p['first_name'] = $users->first_name;
-				$p['last_name']  = $users->last_name;
-				$p['imageurl']   = ossn_site_url("avatar/{$users->username}/smaller");
-				$p['id']         = $users->guid;
-				$usera[]         = $p;
+			if(isset($users->guid) && !empty($users->guid)){
+				$first_name_start = mb_substr($users->first_name, 0, $search_len, 'UTF-8');
+				if($first_name_start == $search_for || $first_name_start == $search_For) {
+					$p['first_name'] = $users->first_name;
+					$p['last_name']  = $users->last_name;
+					$p['imageurl']   = ossn_site_url("avatar/{$users->username}/smaller");
+					$p['id']         = $users->guid;
+					$usera[]         = $p;
+				}
 			}
 		}
 		echo json_encode($usera);
