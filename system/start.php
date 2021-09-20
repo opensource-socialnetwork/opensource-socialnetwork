@@ -6,7 +6,7 @@
  * @author    Informatikon Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
- * @link      http://www.informatikon.com/
+ * @link      https://www.openteknik.com/
  */
 //Restrict calling start.php directly from browser #1315
 if(!defined("OSSN_ALLOW_SYSTEM_START")){
