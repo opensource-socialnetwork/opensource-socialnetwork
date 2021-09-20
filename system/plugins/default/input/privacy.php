@@ -19,7 +19,7 @@
 	<?php
 	$default = array(
 			'name' => 'privacy',
-			'value' => $params['value'],
+			'value' => (isset($params['value'])) ? $params['value'] : OSSN_PUBLIC,
 			'options' => array(
 			    OSSN_PUBLIC => 	 ossn_print('public') . ' ('. ossn_print('privacy:public:note').')',		   
 			    OSSN_FRIENDS =>  ossn_print('friends') . ' ('. ossn_print('privacy:friends:note').')',		   
