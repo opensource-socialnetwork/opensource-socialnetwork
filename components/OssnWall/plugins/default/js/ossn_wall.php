@@ -466,8 +466,10 @@ function ossn_wall_container_expend(){
 				$('.ossn-wall-container textarea').height(40);
 			});
 			$('.ossn-wall-container textarea:not(.postbg-container)').on('keyup', function(e) {
-				$(this).height(0);
-				$(this).height(this.scrollHeight + parseFloat($(this).css('borderTopWidth')) + parseFloat($(this).css('borderBottomWidth')));
+				if(!$(this).hasClass('postbg-container')){	
+					$(this).height(0);
+					$(this).height(this.scrollHeight + parseFloat($(this).css('borderTopWidth')) + parseFloat($(this).css('borderBottomWidth')));
+				}
 			});			
 	});
 }
