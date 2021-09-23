@@ -126,3 +126,6 @@
 .ossn-photo-view {
 	margin-bottom:10px;
 }
+#ossn-photos-show-gallery i {
+	margin-right:0;
+}
