@@ -1,4 +1,6 @@
-OSSN - OPEN SOURCE SOCIAL NETWORK v6.x
+OSSN - OPEN SOURCE SOCIAL NETWORK v6.1
+
+OSSN - OPEN SOURCE SOCIAL NETWORK v6.0
 * [B] Make pagination work on photo album overview page #1838 #1840
 * [B] input/radio didn't accept 0 as value #1848
 * [B] input/checkbox not getting any label #1849
