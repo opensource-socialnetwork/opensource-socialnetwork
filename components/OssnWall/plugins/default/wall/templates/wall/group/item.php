@@ -77,7 +77,7 @@ if(!$params['user']){
 		</div>
         
 		<div class="comments-likes">
-			<?php if($params['ismember'] === 1){  ?>
+			<?php if(isset($params['ismember']) && $params['ismember'] === 1){  ?>
 				<div class="menu-likes-comments-share">
 					<?php echo ossn_view_menu('postextra', 'wall/menus/postextra');?>
 				</div>
@@ -92,7 +92,7 @@ if(!$params['user']){
           		if(ossn_is_hook('post', 'comments')) {
 						$vars = array();
 						$vars['post'] =  $params['post'];
-						if($params['ismember'] != 1){
+						if(isset($params['ismember']) && $params['ismember'] != 1){
 								$vars['allow_comment'] = false;
 						}
                 		echo ossn_call_hook('post', 'comments', $vars);
