@@ -12,7 +12,7 @@
 $image = $params['image'];
 $group = ossn_get_group_by_guid($params['post']->owner_guid);
 if(!isset($params['ismember'])){
-    if ($group){
+    if ($group && ossn_isLoggedin()){
     	if ($group->isMember(NULL, ossn_loggedin_user()->guid)){
       		$params['ismember'] = 1;
     	}
