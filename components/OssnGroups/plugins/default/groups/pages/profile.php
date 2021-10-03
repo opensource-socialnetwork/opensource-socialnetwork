@@ -49,7 +49,7 @@ $members = $params['group']->getMembers();
 						<input type="submit" class="upload"/>
 					</form>
 					<?php }  ?>
-					<?php if ($cover) {?>
+					<?php if ($cover && ossn_isLoggedin()) {?>
 					<div class="ossn-group-cover" id="container">
 						<?php if ($params['group']->owner_guid == ossn_loggedin_user()->guid || ossn_isAdminLoggedin()) { ?>
 						<div class="ossn-group-cover-button">
