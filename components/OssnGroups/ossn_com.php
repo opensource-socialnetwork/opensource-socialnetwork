@@ -323,8 +323,10 @@ function group_members_page($hook, $type, $return, $params) {
 function group_edit_page($hook, $type, $return, $params) {
 		$page  = $params['subpage'];
 		$group = ossn_get_group_by_guid(ossn_get_page_owner_guid());
-		if($group->owner_guid !== ossn_loggedin_user()->guid && !ossn_isAdminLoggedin()) {
+		if(ossn_isLoggedin()){
+			if($group->owner_guid !== ossn_loggedin_user()->guid && !ossn_isAdminLoggedin()) {
 				return false;
+			}
 		}
 		if($page == 'edit') {
 				$params = array(
