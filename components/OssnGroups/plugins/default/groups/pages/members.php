@@ -35,8 +35,9 @@ if ($members) {
 	    					?>
              	   		</div>
                     	 <div class="right request-controls">
-	                        <?php
-	    						if ((ossn_isAdminLoggedin() || $loggedin_moderator || ossn_loggedin_user()->guid == $params['group']->owner_guid) && $user->guid !== $params['group']->owner_guid && $params['group']->isMember($params['group']->guid, $user->guid)) {
+				<?php
+					if(ossn_isLoggedin()){
+						if ((ossn_isAdminLoggedin() || $loggedin_moderator || ossn_loggedin_user()->guid == $params['group']->owner_guid) && $user->guid !== $params['group']->owner_guid && $params['group']->isMember($params['group']->guid, $user->guid)) {
 	    								echo ossn_plugin_view('output/url', array(
 	    									'text' => ossn_print('group:memb:remove'),
 	    									'href' =>  ossn_site_url("action/group/member/decline?group={$params['group']->guid}&user={$user->guid}", true),
@@ -52,8 +53,9 @@ if ($members) {
 							    				'class' => 'btn btn-danger btn-responsive ossn-group-change-owner'
 							    			));
 										}
-		    					}
-		    				?>		
+		    						}
+					}
+				?>		
                     	</div>
             		</div>           
        			</div>
@@ -61,4 +63,4 @@ if ($members) {
     <?php
     }
 	echo ossn_view_pagination($count);
-}?>
+}
