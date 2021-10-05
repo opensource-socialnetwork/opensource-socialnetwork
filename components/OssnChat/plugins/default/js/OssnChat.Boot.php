@@ -197,7 +197,7 @@ $.each(OssnChat['newmessages'], function(key, data){
                            
                            //chat linefeed problem #278.
                            // move scroll once again when div is loaded fully
-                           $("#ossn-chat-messages-data-"+data['fid']).load(function() {
+                           $("#ossn-chat-messages-data-"+data['fid']).on('load', function() {
                            		Ossn.ChatScrollMove(data['fid']);
                            });
 
@@ -216,7 +216,7 @@ $.each(OssnChat['all_new'], function(key, data){
      if($(".ossn-chat-containers").children(".friend-tab-item").length < 4){   						   
          var $friend = data['message_from'];
          Ossn.ChatnewTab($friend);         
-           if(!$('#ftab-i'+$user)){   						     
+           if(!$('#ftab-i'+$friend)){   						     
               Ossn.ChatplaySound();
               Ossn.ChatScrollMove(data['message_from']);
            }
