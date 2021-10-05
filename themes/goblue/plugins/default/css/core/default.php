@@ -708,7 +708,6 @@ a {
 }
 
 .comments-likes {
-	min-height: 50px;
 	width: 100%;
 }
 
