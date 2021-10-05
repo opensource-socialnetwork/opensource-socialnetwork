@@ -2,6 +2,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v6.1
 * [B] Undefined array key "HTTP_HOST #2012
 * [B] Admin menus issues not appearing on mobile phone #2015
 * [B] PHP 8 Warnings #2014
+* [B] BS5 js file cached during upgrade #2016
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v6.0
 * [B] Make pagination work on photo album overview page #1838 #1840
