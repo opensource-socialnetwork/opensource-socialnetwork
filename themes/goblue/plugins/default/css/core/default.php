@@ -435,8 +435,7 @@ a {
 	margin-top: 20px;
 	background-color: #fff;
 	padding-bottom: 0px;
-	border-top-left-radius: 10px;
-	border-top-right-radius: 10px;
+    	border-radius: 10px;
 }
 
 .ossn-wall-item:first-child {
@@ -736,6 +735,8 @@ a {
 	margin-right: -15px;
 	padding-left: 10px;
 	padding-right: 10px;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
 }
 
 .comments-list .comments-item {
