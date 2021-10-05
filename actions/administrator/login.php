@@ -21,7 +21,7 @@ if (strpos($username, '@') !== false){
 	$username = $user->username;
 }
 
-if (ossn_user_by_username($username)->type !== 'admin') {
+if ($user && $user->type !== 'admin') {
     ossn_trigger_message(ossn_print('login:error'), 'error');
     redirect(REF);
 }
