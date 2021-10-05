@@ -213,7 +213,7 @@ $.each(OssnChat['newmessages'], function(key, data){
  */	
 if(OssnChat['all_new']){
 $.each(OssnChat['all_new'], function(key, data){
-     if($(".ossn-chat-containers").children(".friend-tab-item").size() < 4){   						   
+     if($(".ossn-chat-containers").children(".friend-tab-item").length < 4){   						   
          var $friend = data['message_from'];
          Ossn.ChatnewTab($friend);         
            if(!$('#ftab-i'+$user)){   						     
