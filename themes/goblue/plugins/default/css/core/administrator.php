@@ -655,3 +655,11 @@ th {
 .table> :not(caption)>*>* {
 	border-bottom-width: 0;
 }
+	 
+.navbar-toggler {
+	color: #fff;
+}
+
+.navbar-toggler:focus {
+	box-shadow: none;
+}	 
