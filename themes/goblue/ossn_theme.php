@@ -48,7 +48,7 @@ function ossn_goblue_head(){
 					'href' =>  'https://fonts.googleapis.com/css?family=PT+Sans:400italic,700,400'
 			  ));		
 	$head[]  = ossn_html_js(array(
-					'src' => ossn_theme_url() . 'vendors/bootstrap/js/bootstrap.min.js'
+					'src' => ossn_theme_url() . 'vendors/bootstrap/js/bootstrap.min.js?v5'
 			  ));
 	$head[]  = ossn_html_css(array(
 					'href' => '//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.4/css/jquery-ui.css'
@@ -64,7 +64,7 @@ function ossn_goblue_admin_head(){
 					'href' =>  '//fonts.googleapis.com/css?family=Roboto+Slab:300,700,400'
 			  ));		
 	$head[]  = ossn_html_js(array(
-					'src' => ossn_theme_url() . 'vendors/bootstrap/js/bootstrap.min.js'
+					'src' => ossn_theme_url() . 'vendors/bootstrap/js/bootstrap.min.js?v5'
 			  ));
 	$head[]  = ossn_html_css(array(
 					'href' => '//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.4/css/jquery-ui.css'
