@@ -228,7 +228,7 @@ function ossn_site_js(){
 		//load external js
 		if(isset($Ossn->jsheadExternal['site']) && !empty($Ossn->jsheadExternal['site'])){
 				$external = $Ossn->jsheadExternal['site'];
-				foreach ($external as $item){
+				foreach($external as $item){
 						if(!isset($Ossn->jsheadExternalLoaded['site'][$item]) && isset($Ossn->jsExternal[$item])){
 								$Ossn->jsheadExternalLoaded['site'][$item] = true;
 								echo ossn_html_js(array(
@@ -240,7 +240,7 @@ function ossn_site_js(){
 
 		//load internal js
 		if(isset($Ossn->jshead['site'])){
-				foreach ($Ossn->jshead['site'] as $js){
+				foreach($Ossn->jshead['site'] as $js){
 						$src = "{$url}js/view/{$js}.js";
 						if(ossn_site_settings('cache') == 1){
 								$cache = ossn_site_settings('last_cache');
@@ -259,15 +259,15 @@ function ossn_site_js(){
  */
 function ossn_admin_js(){
 		global $Ossn;
-		$Ossn->jsheadExternalLoaded         = array();
+		$Ossn->jsheadExternalLoaded          = array();
 		$Ossn->jsheadExternalLoaded['admin'] = array();
-	
+
 		$url = ossn_site_url();
 
 		//load external js
 		if(isset($Ossn->jsheadExternal['admin']) && !empty($Ossn->jsheadExternal['admin'])){
 				$external = $Ossn->jsheadExternal['admin'];
-				foreach ($external as $item){
+				foreach($external as $item){
 						if(!isset($Ossn->jsheadExternalLoaded['admin'][$item]) && isset($Ossn->jsExternal[$item])){
 								$Ossn->jsheadExternalLoaded['admin'][$item] = true;
 								echo ossn_html_js(array(
@@ -279,7 +279,7 @@ function ossn_admin_js(){
 
 		//load internal js
 		if(isset($Ossn->jshead['admin'])){
-				foreach ($Ossn->jshead['admin'] as $js){
+				foreach($Ossn->jshead['admin'] as $js){
 						$src = "{$url}js/view/{$js}.js";
 						if(ossn_site_settings('cache') == 1){
 								$cache = ossn_site_settings('last_cache');
@@ -351,40 +351,42 @@ function ossn_languages_js(){
  * @return void;
  */
 function ossn_redirect_absolute_url(){
-		$baseurl  = ossn_site_url();
-		$parts    = parse_url($baseurl);
-		$iswww    = preg_match('/www./i', $parts['host']);
-		$host     = parse_url($_SERVER['HTTP_HOST']);
-		$redirect = false;
-		$port     = '';
-		if(!isset($host['host'])){
-				$host         = array();
-				$host['host'] = $_SERVER['HTTP_HOST'];
-		}
-
-		if(isset($parts['port']) && !empty($parts['port'])){
-				$port = ":{$parts['port']}";
-				if($parts['port'] == ':80' || $parts['port'] == ':443'){
-						$port = '';
+		if(php_sapi_name() !== 'cli'){
+				$baseurl  = ossn_site_url();
+				$parts    = parse_url($baseurl);
+				$iswww    = preg_match('/www./i', $parts['host']);
+				$host     = parse_url($_SERVER['HTTP_HOST']);
+				$redirect = false;
+				$port     = '';
+				if(!isset($host['host'])){
+						$host         = array();
+						$host['host'] = $_SERVER['HTTP_HOST'];
 				}
-				if($parts['port'] !== (int) $_SERVER['SERVER_PORT']){
+
+				if(isset($parts['port']) && !empty($parts['port'])){
+						$port = ":{$parts['port']}";
+						if($parts['port'] == ':80' || $parts['port'] == ':443'){
+								$port = '';
+						}
+						if($parts['port'] !== (int) $_SERVER['SERVER_PORT']){
+								$redirect = true;
+						}
+				}
+				if(isset($_SERVER['HTTP_CF_VISITOR']) && strpos($_SERVER['HTTP_CF_VISITOR'], 'https') !== false){
+						$_SERVER['HTTPS'] = 'on';
+				}
+				if(empty($parts['port']) && isset($_SERVER['SERVER_PORT']) && !empty($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] !== '80' && $_SERVER['SERVER_PORT'] !== '443'){
 						$redirect = true;
 				}
-		}
-		if(isset($_SERVER['HTTP_CF_VISITOR']) && strpos($_SERVER['HTTP_CF_VISITOR'], 'https') !== false){
-				$_SERVER['HTTPS'] = 'on';
-		}
-		if(empty($parts['port']) && isset($_SERVER['SERVER_PORT']) && !empty($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] !== '80' && $_SERVER['SERVER_PORT'] !== '443'){
-				$redirect = true;
-		}
-		if(($parts['scheme'] == 'https' && empty($_SERVER['HTTPS'])) || (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on' && $parts['scheme'] == 'http')){
-				$redirect = true;
-		}
+				if(($parts['scheme'] == 'https' && empty($_SERVER['HTTPS'])) || (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on' && $parts['scheme'] == 'http')){
+						$redirect = true;
+				}
 
-		if($host['host'] !== $parts['host'] || $redirect){
-				header('HTTP/1.1 301 Moved Permanently');
-				$url = "{$parts['scheme']}://{$parts['host']}{$port}{$_SERVER['REQUEST_URI']}";
-				header("Location: {$url}");
+				if($host['host'] !== $parts['host'] || $redirect){
+						header('HTTP/1.1 301 Moved Permanently');
+						$url = "{$parts['scheme']}://{$parts['host']}{$port}{$_SERVER['REQUEST_URI']}";
+						header("Location: {$url}");
+				}
 		}
 }
 ossn_register_callback('ossn', 'init', 'ossn_languages_js');
