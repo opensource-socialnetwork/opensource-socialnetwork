@@ -20,8 +20,8 @@ if (strpos($username, '@') !== false){
 	$user = ossn_user_by_email($username);
 	$username = $user->username;
 }
-
-if ($user && $user->type !== 'admin') {
+$checktype = ossn_user_by_username($username);
+if ($checktype && $checktype->type !== 'admin') {
     ossn_trigger_message(ossn_print('login:error'), 'error');
     redirect(REF);
 }
