@@ -16,7 +16,7 @@ if ($users) {
             	<div class="col-md-2 col-sm-2 hidden-xs">
     	        		<img src="<?php echo $user->iconURL()->large; ?>" width="100" height="100"/>
 				</div>
-                <div class="col-md-10 col-sm-10 col-xs-12">
+                <div class="col-md-10 col-sm-10 col-12">
 	    	        <div class="uinfo">
                         <?php
 							echo ossn_plugin_view('output/url', array(
