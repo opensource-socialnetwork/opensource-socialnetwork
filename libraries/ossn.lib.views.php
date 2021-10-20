@@ -81,7 +81,7 @@ function ossn_args(array $attrs) {
  * Register a view;
  *
  * @param string $view Path of view;
- * @param  stringn $file File name for view;
+ * @param string|callable $file File name for view;
  * @last edit: $arsalanshah
  *
  * @reason: Initial;
@@ -107,7 +107,7 @@ function ossn_fetch_extend_views($layout, $params = array()) {
     global $VIEW;
     if (isset($VIEW->register[$layout]) && !empty($VIEW->register[$layout])) {
         foreach ($VIEW->register[$layout] as $file) {
-            if (!function_exists($file)) {
+            if (!is_callable($file)) {
                 $fetch[] = ossn_plugin_view($file, $params);
             } else {
                 $fetch[] = call_user_func($file, ossn_get_context(), $params, current_url());
