@@ -22,3 +22,4 @@ The following developers contributed to this project:
 * ystartgo (https://github.com/ystartgo)
 * AntzCode (https://github.com/AntzCode)
 * Benjamin Oldenburg (https://github.com/ordisbold)
+* Zaxxo https://github.com/zaxxo  https://www.zaxxo.de
