@@ -1,3 +1,6 @@
+OSSN - OPEN SOURCE SOCIAL NETWORK v6.2
+* [E] Allow all callables for extend view #2024
+
 OSSN - OPEN SOURCE SOCIAL NETWORK v6.1
 * [B] Undefined array key "HTTP_HOST #2012
 * [B] Admin menus issues not appearing on mobile phone #2015
