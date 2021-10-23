@@ -1,4 +1,4 @@
-Open Source Social Network [6.1 LTS]
+Open Source Social Network [6.2 LTS -DEV]
 ======================================
 [![Open Source Love](https://badges.frapsoft.com/os/v2/open-source.svg?v=102)](https://www.opensource-socialnetwork.org/)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://www.opensource-socialnetwork.org/)
@@ -105,7 +105,7 @@ https://www.opensource-socialnetwork.org/wiki/view/706/how-to-install-open-sourc
 - Web Installer https://www.opensource-socialnetwork.org/download
 - VM Image - https://www.opensource-socialnetwork.org/download-vm-image
 
-Installation on Ubuntu x64 18.04 LTS (Experimental) 
+Installation on Ubuntu x64 18.04/20.04/21.04 LTS (Experimental) 
 ```
 sudo add-apt-repository ppa:arsalanshah/opensource-socialnetwork
 sudo apt-get update
