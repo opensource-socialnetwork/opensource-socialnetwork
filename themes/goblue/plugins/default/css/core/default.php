@@ -1457,10 +1457,10 @@ a {
 	display: inline-block;
 }
 .friends-added-text {
-    float: left !important;
+    /**float: left !important;
     margin-top: -18px !important;
     display: block !important;
-    margin-left: 10px;
+    margin-left: 10px; **/
     font-size: 13px;
 }
 .ossn-notifications-friends-inner .btn {
