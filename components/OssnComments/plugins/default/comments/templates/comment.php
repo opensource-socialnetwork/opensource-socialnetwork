@@ -50,11 +50,11 @@ if(isset($comment->allow_comment_like) && $comment->allow_comment_like == false)
 						 ));
 						echo "<span class='comment-text'>";
 						        if ($comment->type == 'comments:entity') {
-						            echo ' '.nl2br($comment->getParam('comments:entity'));
+						            echo nl2br($comment->getParam('comments:entity'));
 						        } elseif ($comment->type == 'comments:object') {
-						            echo ' '.nl2br($comment->getParam('comments:object'));
+						            echo nl2br($comment->getParam('comments:object'));
 						        } elseif ($comment->type == 'comments:post') {
-						            echo ' '.nl2br($comment->getParam('comments:post'));
+						            echo nl2br($comment->getParam('comments:post'));
 						        }
 						echo "</span>";
 						        $image = $comment->getParam('file:comment:photo');
