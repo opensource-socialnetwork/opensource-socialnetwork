@@ -1,5 +1,6 @@
 OSSN - OPEN SOURCE SOCIAL NETWORK v6.2
 * [E] Allow all callables for extend view #2024
+* [E] avoiding unnecessary handling of extra space at comment start #2029
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v6.1
 * [B] Undefined array key "HTTP_HOST #2012
