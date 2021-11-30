@@ -7,7 +7,7 @@
     <license>Open Source Social Network License (OSSN LICENSE)</license>
     <author_url>http://www.opensource-socialnetwork.org</author_url>
     <license_url>http://www.opensource-socialnetwork.org/licence/</license_url>
-    <version>2.0</version>
+    <version>2.1</version>
 	<requires>
 		<type>ossn_version</type>
 		<version>6.0</version>

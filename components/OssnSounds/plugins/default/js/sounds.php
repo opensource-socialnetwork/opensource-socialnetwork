@@ -9,25 +9,25 @@ $(document).ready(function() {
 		// so we have to start with 'off' in any case, except Ossn is running as PWA 
 		if ($('.ossn-chat-windows-long').length) {
 			$('#sounds').append('<audio id="ossn-chat-sound" src="" preload="auto"></audio>');
-			$('<div class="ossn-chat-pling"><i class="fa fa-bell-slash-o"></i></div>').prependTo('.ossn-chat-windows-long .inner');
-			$('<div class="ossn-chat-pling"><i class="fa fa-bell-slash-o"></i></div>').prependTo('.ossn-chat-icon .ossn-chat-inner-text');
+			$('<div class="ossn-chat-pling"><i class="fa fa-bell-slash"></i></div>').prependTo('.ossn-chat-windows-long .inner');
+			$('<div class="ossn-chat-pling"><i class="fa fa-bell-slash"></i></div>').prependTo('.ossn-chat-icon .ossn-chat-inner-text');
 		}
 		if ($('.message-form-form').length) {
 			$('#sounds').append('<audio id="ossn-message-sound" src="" preload="auto"></audio>');
-			$('<div class="ossn-message-pling"><i class="fa fa-bell-slash-o"></i></div>').appendTo('.message-form-form .controls');
+			$('<div class="ossn-message-pling"><i class="fa fa-bell-slash"></i></div>').appendTo('.message-form-form .controls');
 		}
 	}
 	else {
 		if ($('.ossn-chat-windows-long').length) {
 			if (Ossn.getCookie("ossn_chat_bell") == 'on') {
 				$('#sounds').append('<audio id="ossn-chat-sound" src="<?php echo ossn_site_url("components/OssnSounds/audios/pling.mp3"); ?>" preload="auto"></audio>');
-				$('<div class="ossn-chat-pling"><i class="fa fa-bell-o"></i></div>').prependTo('.ossn-chat-windows-long .inner');
-				$('<div class="ossn-chat-pling"><i class="fa fa-bell-o"></i></div>').prependTo('.ossn-chat-icon .ossn-chat-inner-text');
+				$('<div class="ossn-chat-pling"><i class="fa fa-bell"></i></div>').prependTo('.ossn-chat-windows-long .inner');
+				$('<div class="ossn-chat-pling"><i class="fa fa-bell"></i></div>').prependTo('.ossn-chat-icon .ossn-chat-inner-text');
 			}
 			else {
 				$('#sounds').append('<audio id="ossn-chat-sound" src="" preload="auto"></audio>');
-				$('<div class="ossn-chat-pling"><i class="fa fa-bell-slash-o"></i></div>').prependTo('.ossn-chat-windows-long .inner');
-				$('<div class="ossn-chat-pling"><i class="fa fa-bell-slash-o"></i></div>').prependTo('.ossn-chat-icon .ossn-chat-inner-text');
+				$('<div class="ossn-chat-pling"><i class="fa fa-bell-slash"></i></div>').prependTo('.ossn-chat-windows-long .inner');
+				$('<div class="ossn-chat-pling"><i class="fa fa-bell-slash"></i></div>').prependTo('.ossn-chat-icon .ossn-chat-inner-text');
 				/* first time usage defaults to off */
 				chatSetCookie('ossn_chat_bell', 'off', 365);
 			}
@@ -35,11 +35,11 @@ $(document).ready(function() {
 		if ($('.message-form-form').length) {
 			if (Ossn.getCookie("ossn_message_bell") == 'on') {
 				$('#sounds').append('<audio id="ossn-message-sound" src="<?php echo ossn_site_url("components/OssnSounds/audios/pling.mp3"); ?>" preload="auto"></audio>');
-				$('<div class="ossn-message-pling"><i class="fa fa-bell-o"></i></div>').appendTo('.message-form-form .controls');
+				$('<div class="ossn-message-pling"><i class="fa fa-bell"></i></div>').appendTo('.message-form-form .controls');
 			}
 			else {
 				$('#sounds').append('<audio id="ossn-message-sound" src="" preload="auto"></audio>');
-				$('<div class="ossn-message-pling"><i class="fa fa-bell-slash-o"></i></div>').appendTo('.message-form-form .controls');
+				$('<div class="ossn-message-pling"><i class="fa fa-bell-slash"></i></div>').appendTo('.message-form-form .controls');
 				chatSetCookie('ossn_message_bell', 'off', 365);
 			}	
 		}
@@ -51,18 +51,18 @@ $(document).ready(function() {
 		pling  = '<?php echo ossn_site_url("components/OssnSounds/audios/pling.mp3"); ?>';
 		bell   = $('.ossn-chat-pling').find('i');
 		// sound is off - turn it on
-		if (bell.hasClass('fa fa-bell-slash-o')) {
-			bell.removeClass('fa fa-bell-slash-o');
+		if (bell.hasClass('fa fa-bell-slash')) {
+			bell.removeClass('fa fa-bell-slash');
 			player.src = pling;
 			player.play();
-			bell.addClass('fa fa-bell-o');
+			bell.addClass('fa fa-bell');
 			chatSetCookie('ossn_chat_bell', 'on', 365);
 		}
 		// sound is on - turn it off
 		else {
 			player.src = '';
-			bell.removeClass('fa fa-bell-o');
-			bell.addClass('fa fa-bell-slash-o');
+			bell.removeClass('fa fa-bell');
+			bell.addClass('fa fa-bell-slash');
 			chatSetCookie('ossn_chat_bell', 'off', 365);
 		}
 	});
@@ -72,18 +72,18 @@ $(document).ready(function() {
 		pling  = '<?php echo ossn_site_url("components/OssnSounds/audios/pling.mp3"); ?>';
 		bell   = $('.ossn-message-pling').find('i');
 		// sound is off - turn it on
-		if (bell.hasClass('fa fa-bell-slash-o')) {
-			bell.removeClass('fa fa-bell-slash-o');
+		if (bell.hasClass('fa fa-bell-slash')) {
+			bell.removeClass('fa fa-bell-slash');
 			player.src = pling;
 			player.play();
-			bell.addClass('fa fa-bell-o');
+			bell.addClass('fa fa-bell');
 			chatSetCookie('ossn_message_bell', 'on', 365);
 		}
 		// sound is on - turn it off
 		else {
 			player.src = '';
-			bell.removeClass('fa fa-bell-o');
-			bell.addClass('fa fa-bell-slash-o');
+			bell.removeClass('fa fa-bell');
+			bell.addClass('fa fa-bell-slash');
 			chatSetCookie('ossn_message_bell', 'off', 365);
 		}
 	});
