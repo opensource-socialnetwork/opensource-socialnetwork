@@ -411,7 +411,7 @@ function ossn_access_types() {
  * @return bool
  */
 function ossn_access_validate($access, $owner) {
-	if ($access == OSSN_FRIENDS) {
+	if (ossn_loggedin_user() && $access == OSSN_FRIENDS) {
 		if (ossn_user_is_friend($owner, ossn_loggedin_user()->guid) || ossn_loggedin_user()->guid == $owner) {
 			return true;
 		}
