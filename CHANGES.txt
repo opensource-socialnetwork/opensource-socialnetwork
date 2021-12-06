@@ -1,6 +1,9 @@
 OSSN - OPEN SOURCE SOCIAL NETWORK v6.2
 * [E] Allow all callables for extend view #2024
 * [E] avoiding unnecessary handling of extra space at comment start #2029
+* [B] skip friend access check if page visitor is not logged in #2037
+* [B] User can not comment on friend only, own album photo #2039
+* [B] OssnSounds missing the button for sound on/off #2032
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v6.1
 * [B] Undefined array key "HTTP_HOST #2012
