@@ -108,7 +108,8 @@ function ossn_photos_like_comment_permission_check($callback, $type, $params){
 						if($album && $album->subtype == 'ossn:album'){
 								$user          = new OssnUser();
 								$loggedin_guid = ossn_loggedin_user()->guid;
-								if($album->access == OSSN_FRIENDS && !$user->isFriend($album->owner_guid, $loggedin_guid)){
+								//[B] User can not comment on friend only, own album photo #2039
+								if($album->access == OSSN_FRIENDS && $loggedin_guid != $album->owner_guid && !$user->isFriend($album->owner_guid, $loggedin_guid)){
 										if(!ossn_is_xhr()){
 												redirect(REF);
 										} else {
