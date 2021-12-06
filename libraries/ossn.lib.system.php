@@ -412,7 +412,7 @@ function ossn_access_types() {
  */
 function ossn_access_validate($access, $owner) {
 	if (ossn_loggedin_user() && $access == OSSN_FRIENDS) {
-		if (ossn_user_is_friend($owner, ossn_loggedin_user()->guid) || ossn_loggedin_user()->guid == $owner) {
+		if (ossn_user_is_friend($owner, ossn_loggedin_user()->guid) || ossn_loggedin_user()->guid == $owner || ossn_isAdminLoggedin()) {
 			return true;
 		}
 	}
