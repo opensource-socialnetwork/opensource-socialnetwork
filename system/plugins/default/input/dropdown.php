@@ -26,9 +26,14 @@ unset($params['placeholder']);
 foreach($values as $item => $val){
 	$vars			= array();
 	$vars['value'] 	= $item;
-	
-	if(!empty($value) && $value === $item){
+	//[E] Multiple select (html) handler #2040
+	if(!empty($value) && !is_array($item) && $value === $item){
 		$vars['selected'] = 'selected';
+	}
+	if(!empty($value) && is_array($value)){
+			if(in_array($item, $value)){
+				$vars['selected'] = 'selected';	
+			}
 	}
 	$options[] = "<option ".ossn_args($vars).">{$val}</option>";
 }
