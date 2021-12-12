@@ -258,15 +258,16 @@ function ossn_delete_relationship(array $vars = array()) {
 				return false;
 		}
 		$wheres = array();
-		$delete = new OssnDatabase;
+		$delete = new OssnDatabase();
 		
-		$wheres[] = "relation_from='{$vars['from']}' AND relation_to='{$vars['to']}' AND type='{$vars['type']}'";
-		if(isset($vars['recursive'])) {
-				$wheres[] = "relation_to='{$vars['from']}' AND relation_from='{$vars['to']}' AND type='{$vars['type']}'";
+		//[B] ossn_delete_relationship recursive not working #2035
+		$wheres[] = "(relation_from='{$vars['from']}' AND relation_to='{$vars['to']}' AND type='{$vars['type']}')";
+		if(isset($vars['recursive']) && $vars['recursive'] === true) {
+				$wheres[] = "(relation_to='{$vars['from']}' AND relation_from='{$vars['to']}' AND type='{$vars['type']}')";
 		}
 		$params['from']   = 'ossn_relationships';
 		$params['wheres'] = array(
-				$delete->constructWheres($wheres)
+				$delete->constructWheres($wheres, 'OR')
 		);
 		if($delete->delete($params)) {
 				return true;
