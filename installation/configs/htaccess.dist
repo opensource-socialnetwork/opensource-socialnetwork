@@ -60,3 +60,13 @@ RewriteRule ^([A-Za-z0-9\_\-]+)\/(.*)$ index.php?h=$1&p=$2 [QSA,L]
 	php_value default_charset "UTF-8"
 	php_flag session.cookie_httponly on
 </IfModule>
+
+#https://github.com/nextcloud/server/issues/26569
+<IfModule mod_php.c>
+	php_value memory_limit 256M
+	php_value register_globals 0
+	php_value post_max_size 50M
+	php_value upload_max_filesize 40M
+	php_value default_charset "UTF-8"
+	php_flag session.cookie_httponly on
+</IfModule>
