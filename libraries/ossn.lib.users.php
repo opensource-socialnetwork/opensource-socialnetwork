@@ -354,6 +354,7 @@ function ossn_default_user_fields() {
 				'text' => array(
 						array(
 								'name' => 'birthdate',
+								'class' => 'notranslate',
 								'params' => array(
 										'readonly' => true
 								)
