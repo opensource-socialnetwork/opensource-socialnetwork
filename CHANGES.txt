@@ -4,6 +4,12 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v6.2
 * [B] skip friend access check if page visitor is not logged in #2037
 * [B] User can not comment on friend only, own album photo #2039
 * [B] OssnSounds missing the button for sound on/off #2032
+* [E] Make sure addUser also run isEmail validation #2022
+* [E] Multiple select (html) handler #2040
+* [B] jqueryui-datepicker fails on Google translated pages #2036
+* [B] ossn_delete_relationship recursive not working #2035
+* [E] add a new function ossn_get_relation_by_id() #2034
+* [B] UI add friend success text goes wrong position #2027
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v6.1
 * [B] Undefined array key "HTTP_HOST #2012
