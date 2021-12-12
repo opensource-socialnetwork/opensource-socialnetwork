@@ -319,3 +319,22 @@ function ossn_delete_group_relations($group) {
 		}
 		return false;
 }
+/**
+ * Relationship by ID
+ *
+ * @param integer $id ID of the relationship
+ * [E] add a new function ossn_get_relation_by_id() #2034
+ *
+ * @return boolean|object
+ */
+function ossn_get_relationship_by_id($id){
+		if(!empty($id)) {
+				$select           = new OssnDatabase();
+				$params['from']   = 'ossn_relationships';
+				$params['wheres'] = array(
+						"relation_id='{$id}'"
+				);
+				return $select->select($params);
+		}
+		return false;
+}
