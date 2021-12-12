@@ -22,6 +22,7 @@ function ossn_profile_birthdate_picker(){
 			datepick_args['monthNamesShort'] = shortmonths;
 		}
 		var args = Ossn.call_hook('profile', 'birthdate:input', null, datepick_args);	
-		$("input[name='birthdate']").datepicker(args);						   
+		$("input[name='birthdate']").datepicker(args);
+		$('.ui-datepicker').addClass('notranslate');
 	});
 }
