@@ -10,6 +10,8 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v6.2
 * [B] ossn_delete_relationship recursive not working #2035
 * [E] add a new function ossn_get_relation_by_id() #2034
 * [B] UI add friend success text goes wrong position #2027
+* [E] update version and pre-requisite OssnEmbed #2045
+* [B] fixed unallowed <div> inside paragraph again #2044
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v6.1
 * [B] Undefined array key "HTTP_HOST #2012
