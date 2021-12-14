@@ -24,6 +24,7 @@ require_once(__OSSN_EMBED__ . 'vendors/linkify/linkify.php');
 function ossn_embed_init() {	
  	ossn_add_hook('wall', 'templates:item', 'ossn_embed_wall_template_item');
 	ossn_add_hook('comment:view', 'template:params', 'ossn_embed_comments_template_params');
+	ossn_extend_view('css/ossn.default', 'css/embed');
 }
 /**https://player.vimeo.com/video/15371813
  * Replace videos links and simple url to html url.
