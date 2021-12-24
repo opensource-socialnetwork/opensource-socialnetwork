@@ -12,6 +12,8 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v6.2
 * [B] UI add friend success text goes wrong position #2027
 * [E] update version and pre-requisite OssnEmbed #2045
 * [B] fixed unallowed <div> inside paragraph again #2044
+* [E] load css for video in <span> #2043
+* [E] make video visible in <span> #2042
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v6.1
 * [B] Undefined array key "HTTP_HOST #2012
