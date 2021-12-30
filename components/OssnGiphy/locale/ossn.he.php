@@ -10,5 +10,6 @@
  */
 $he = array(
 		'ossngiphy' => 'Giphy',
+		'ossngiphy:powered' => 'Powered by GIPHY',		
 );
 ossn_register_languages('he', $he);

@@ -2,7 +2,7 @@
 .giphy-container {
 	display: none;
 	background: #fff;
-	padding: 10px;
+	padding: 10px 10px 20px;
 	width: 250px;
 	z-index: 1;
 	border-radius: 5px;
@@ -74,4 +74,13 @@
 
 .giphy-list img {
 	cursor: pointer
+}
+
+.giphy-powerd-text {
+    font-size: 12px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    display: block;
+    bottom: 0;
+    position: absolute;
 }
