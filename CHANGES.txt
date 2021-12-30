@@ -15,6 +15,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v6.2
 * [E] load css for video in <span> #2043
 * [E] make video visible in <span> #2042
 * [E] Add provided by giphy footer or banner #2049
+* [E] Correction of term 'miinutos' to 'minutos' #2048
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v6.1
 * [B] Undefined array key "HTTP_HOST #2012
