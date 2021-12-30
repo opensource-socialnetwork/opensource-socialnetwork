@@ -263,7 +263,7 @@ Por favor, clique no link abaixo para redefinir a senha ou copie o link e cole n
 	'ossn:user:validation:resend' => 'Sua conta não é válida! Você deve validar a sua conta antes de fazer login. Outro e-mail de validação foi enviado para seu endereço de e-mail.',
 	'site:timepassed:text' => '%s atrás',
 	// localization of passed time: 16 time elements (even = singular / odd = plural)
-	'site:timepassed:data' => 'segundo|segundos|minuto|miinutos|hora|horas|dia|dias|semana|semanas|mês|meses|ano|anos|década|décadas',
+	 'site:timepassed:data' => 'segundo|segundos|minuto|minutos|hora|horas|dia|dias|semana|semanas|mês|meses|ano|anos|década|décadas', 
 	'ossn:notification:no:notification' => 'Nada para exibir',
 	'admin:button:enable' => 'Ativar',
 	'admin:button:enabled' => 'Ativado',
