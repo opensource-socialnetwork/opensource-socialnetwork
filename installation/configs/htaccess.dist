@@ -20,6 +20,9 @@ DirectoryIndex index.php
 	deny from all
 </FilesMatch>
 
+#Disallow CLI from browser
+RedirectMatch 404 ^/system/handlers/cli$
+
 <IfModule mod_mime.c>
     AddType image/vnd.microsoft.icon .ico
 </IfModule>
@@ -35,7 +38,6 @@ DirectoryIndex index.php
 
 <IfModule mod_rewrite.c>
 #SetEnv HTTP_MOD_REWRITE 1
-
 RewriteEngine on
 
 RewriteRule ^rewrite.php$ installation/tests/apache_rewrite.php [L]
