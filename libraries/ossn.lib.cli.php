@@ -29,8 +29,24 @@ function ossn_is_from_cli() {
  *
  * @return void
  */
-function ossn_cli_output($text) {
-		echo $text . PHP_EOL;
+function ossn_cli_output($text, $type = 'default') {
+		if(empty($text)) {
+				return;
+		}
+		switch($type) {
+			case 'default':
+				echo $text . PHP_EOL;
+				break;
+			case 'success':
+				echo "\033[32m{$text} \033[0m\n";
+				break;
+			case 'error':
+				echo "\033[31m{$text} \033[0m\n";
+				break;
+			case 'warning':
+				echo "\033[33m{$text} \033[0m\n";
+				break;
+		}
 }
 /**
  * Input
