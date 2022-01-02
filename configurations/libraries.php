@@ -10,6 +10,7 @@
  */
 
 $Ossn->libraries = array(
+	'cli',
 	'actions',
 	'input',
 	'languages',
