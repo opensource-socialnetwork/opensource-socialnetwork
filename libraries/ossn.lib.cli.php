@@ -2,7 +2,7 @@
 /**
  * Open Source Social Network
  *
- * @package   (openteknik.com).ossn
+ * @package   OSSN.CLI
  * @author    OSSN Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
@@ -86,12 +86,73 @@ function ossn_cli_handler() {
 				exit();
 		}
 		$handler = $args['handler'];
-		$args    = array(
+		if(!ctype_alnum($handler)) {
+				return false;
+		}
+		$args = array(
 				'handler' => $handler,
 		);
+		//save time when cli is loaded last time
+		$time     = time();
+		$cli_temp = ossn_get_userdata('cli/');
+		if(!is_dir($cli_temp)) {
+				mkdir($cli_temp, 0755, true);
+		}
+		//overall loaded time
+		file_put_contents($cli_temp . 'last_activty', $time);
 		ossn_trigger_callback('cli', 'loaded', $args);
 }
-
+/**
+ * Set a last acitivty for a specific handler
+ *
+ * @param string $handler Name of handler
+ *
+ * @return boolean|integer
+ */
+function ossn_cli_set_handler_last_activity($handler = false) {
+		if(empty($handler) || !ctype_alnum($handler)) {
+				return false;
+		}
+		$cli_temp_method = ossn_get_userdata("cli/{$handler}/");
+		if(!is_dir($cli_temp_method)) {
+				mkdir($cli_temp_method, 0755, true);
+		}
+		$time = time();
+		return file_put_contents($cli_temp_method . 'last_activty', $time);
+}
+/**
+ * Get last activity for CLI handler in seconds
+ *
+ * @param string $handler Name of handler
+ *
+ * @return boolean|integer
+ */
+function ossn_cli_handler_last_activity($handler = false) {
+		if(empty($handler) || !ctype_alnum($handler)) {
+				return false;
+		}
+		$cli_temp_method = ossn_get_userdata("cli/{$handler}/");
+		if(!file_exists($cli_temp_method . 'last_activty')) {
+				return false;
+		}
+		$current = time();
+		$actual  = file_get_contents($cli_temp_method . 'last_activty');
+		return intval($current) - intval($actual);
+}
+/**
+ * Get last activity for CLI in seconds
+ *
+ * @return boolean|integer
+ */
+function ossn_cli_last_activity() {
+		$current  = time();
+		$cli_temp = ossn_get_userdata('cli/');
+		if(!file_exists($cli_temp . 'last_activty')) {
+				return false;
+		}
+		$actual = file_get_contents($cli_temp . 'last_activty');
+		return intval($current) - intval($actual);
+}
 /****************************************************************
  * Usage Example
  *
