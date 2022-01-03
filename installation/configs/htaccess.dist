@@ -20,8 +20,9 @@ DirectoryIndex index.php
 	deny from all
 </FilesMatch>
 
-#Disallow CLI from browser
+#Disallow CLI and CRON script from browser
 RedirectMatch 404 ^/system/handlers/cli$
+RedirectMatch 404 ^/system/handlers/cron$
 
 <IfModule mod_mime.c>
     AddType image/vnd.microsoft.icon .ico
