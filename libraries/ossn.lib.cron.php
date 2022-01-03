@@ -95,3 +95,19 @@ function ossn_cron_handler_last_activity($handler = false) {
 		$actual  = file_get_contents($cron_temp_method . 'last_activty');
 		return intval($current) - intval($actual);
 }
+/** 
+Example usage
+function cron_init(){
+		ossn_register_callback('cron', "loaded", 'cron');	
+}
+function cron($cb, $type, $args){
+			echo ossn_dump($args);
+			ossn_cron_set_handler_last_activity('videos');
+					 
+			ossn_cli_output("Process started", 'success');
+			ossn_cli_output("Process issue", 'warning');
+					 /// your stuff here
+			ossn_cli_output('Process error', "error");
+}
+ossn_register_callback('ossn', 'init', 'cron_init');
+*/
