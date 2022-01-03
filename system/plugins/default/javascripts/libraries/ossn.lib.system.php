@@ -214,7 +214,7 @@ Ossn.ParseUrl = function(url, component, expand) {
 	}
 
 	if (expand && typeof(results['query']) != 'undefined') {
-		results['query'] = ParseStr(results['query']);
+		results['query'] = Ossn.ParseStr(results['query']);
 	}
 
 	if (component) {
