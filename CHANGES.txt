@@ -16,6 +16,8 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v6.2
 * [E] make video visible in <span> #2042
 * [E] Add provided by giphy footer or banner #2049
 * [E] Correction of term 'miinutos' to 'minutos' #2048
+* [E] CLI + cron library and documentation on community #2050
+* [B] fixed calling unavailable/mistyped function #2051
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v6.1
 * [B] Undefined array key "HTTP_HOST #2012
