@@ -40,14 +40,14 @@ class OssnMail extends PHPMailer {
 				$mail->CharSet = "UTF-8";
 				$mail->XMailer = " "; //disable the exposure of x-mailer
 				try {	
-						$send = ossn_call_hook('email', 'send:policy', true, $mail);
+						$send = ossn_call_hook('email', 'send:policy', null, $mail);
 						if($send) {
 								if($mail->send()){
 									return true;
 								}
 						} else {
 							//allow system to intract with mail
-							return ossn_call_hook('email', 'send', false, $mail);
+							return ossn_call_hook('email', 'send', null, $mail);
 						}
 				}
 				catch(phpmailerException $e) {
