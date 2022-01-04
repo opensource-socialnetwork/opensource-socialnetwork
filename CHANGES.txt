@@ -18,6 +18,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v6.2
 * [E] Correction of term 'miinutos' to 'minutos' #2048
 * [E] CLI + cron library and documentation on community #2050
 * [B] fixed calling unavailable/mistyped function #2051
+* [E] OssnMail 'email', 'send:policy' 3rd parameter #2052
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v6.1
 * [B] Undefined array key "HTTP_HOST #2012
