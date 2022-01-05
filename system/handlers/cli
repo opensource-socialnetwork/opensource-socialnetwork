@@ -9,7 +9,7 @@
  * @link      https://www.opensource-socialnetwork.org/
  */
 define('OSSN_ALLOW_SYSTEM_START', true);
-require_once 'system/start.php';
+require_once(dirname(dirname(__FILE__)) . '/start.php');
 if(ossn_is_from_cli()) {
 		ossn_cli_handler();
 } else {
