@@ -39,5 +39,8 @@ $he = array(
     'ossn:notifications:mark:as:read' => 'סמן כנקראו',
 	'ossn:notifications:admin:settings:close_anywhere:title' => 'סגור את חלונות ההתראות על ידי לחיצה בכל מקום',
 	'ossn:notifications:admin:settings:close_anywhere:note' => '<i class="fa fa-info-circle"></i> סוגר חלון התראה על ידי לחיצה על מקום כלשהו בדף<br><br>',
+	
+	'ossn:notifications:comments:entity:file:profile:photo:someone' => "%s הגיב על תמונת הפרופיל.",	
+    'ossn:notifications:comments:entity:file:profile:cover:someone' => "%s הגיב על עטיפת הפרופיל.",	
 );
 ossn_register_languages('he', $he); 

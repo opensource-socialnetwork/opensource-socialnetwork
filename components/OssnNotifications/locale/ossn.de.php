@@ -40,5 +40,8 @@ $de = array(
     'ossn:notifications:mark:as:read' => 'Alles als gelesen markieren',
 	'ossn:notifications:admin:settings:close_anywhere:title' => 'Benachrichtigungs-Fenster schließen durch Klicken auf eine beliebige Stelle',
 	'ossn:notifications:admin:settings:close_anywhere:note' => '<i class="fa fa-info-circle"></i> schließt alle Benachrichtigungsfenster, wenn man auf eine beliebige Stelle auf der Seite klickt<br><br>',
+	
+	'ossn:notifications:comments:entity:file:profile:photo:someone' => "%s hat das Profilfoto kommentiert.",	
+    'ossn:notifications:comments:entity:file:profile:cover:someone' => "%s hat das Profil-Cover kommentiert.",	
 );
 ossn_register_languages('de', $de); 

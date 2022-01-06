@@ -39,5 +39,8 @@ $ru = array(
     'ossn:notifications:mark:as:read' => 'Отметить всё как прочитаные',
 	'ossn:notifications:admin:settings:close_anywhere:title' => 'Закройте окна уведомлений, щелкнув в любом месте',
 	'ossn:notifications:admin:settings:close_anywhere:note' => '<i class="fa fa-info-circle"></i> закрывает любое окно уведомлений, нажимая в любом месте на странице<br><br>',
+	
+	'ossn:notifications:comments:entity:file:profile:photo:someone' => "%s прокомментировал фото профиля.",	
+    'ossn:notifications:comments:entity:file:profile:cover:someone' => "%s прокомментировал обложку профиля.",	
 );
 ossn_register_languages('ru', $ru); 

@@ -54,6 +54,7 @@ function ossn_comments() {
 				ossn_register_callback('entity', 'load:comment:share:like', 'ossn_entity_comment_link');
 				ossn_register_callback('object', 'load:comment:share:like', 'ossn_object_comment_link');
 
+				//[B] OssnNotification if poster and owner is same participants hook never run #2053
 				ossn_register_callback('notification', 'owner:poster:match', 'ossn_comments_notify_participant');
 				ossn_register_callback('notification', 'add', 'ossn_comments_notify_participant');
 

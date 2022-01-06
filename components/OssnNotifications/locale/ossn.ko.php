@@ -39,5 +39,8 @@ $ko = array(
     'ossn:notifications:mark:as:read' => '모두 읽음으로 표시',
 	'ossn:notifications:admin:settings:close_anywhere:title' => '아무데나 눌러서 알림창 닫기',
 	'ossn:notifications:admin:settings:close_anywhere:note' => '<i class="fa fa-info-circle"></i> 화면에 있는 어디를 누르든 어떤 알림 창이라도 닫음<br><br>',
+	
+	'ossn:notifications:comments:entity:file:profile:photo:someone' => "%s 님이 프로필 사진에 댓글을 달았습니다.",	
+    'ossn:notifications:comments:entity:file:profile:cover:someone' => "%s 님이 프로필 표지에 댓글을 달았습니다.",	
 );
 ossn_register_languages('ko', $ko); 

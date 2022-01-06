@@ -39,6 +39,9 @@ $eo = array(
 	
 	'ossnnotifications' => 'Sciigoj',
 	'ossn:notifications:admin:settings:close_anywhere:title' => 'Fermu sciigon per alklaki kie ajn',
-	'ossn:notifications:admin:settings:close_anywhere:note' => ' fermos sciigon per alklaki kie ajn en la paĝo',	
+	'ossn:notifications:admin:settings:close_anywhere:note' => ' fermos sciigon per alklaki kie ajn en la paĝo',
+	
+	'ossn:notifications:comments:entity:file:profile:photo:someone' => "%s komentis la profilfoton.",	
+    'ossn:notifications:comments:entity:file:profile:cover:someone' => "%s komentis profilkovron.",
 );
 ossn_register_languages('eo', $eo); 

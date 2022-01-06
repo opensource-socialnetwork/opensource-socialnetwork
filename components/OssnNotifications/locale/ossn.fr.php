@@ -39,5 +39,8 @@ $fr = array(
     'ossn:notifications:mark:as:read' => 'Marquer toutes lues',		
 	'ossn:notifications:admin:settings:close_anywhere:title' => "Fermez les fenêtres de notification en cliquant n'importe où",
 	'ossn:notifications:admin:settings:close_anywhere:note' => "<i class='fa fa-info-circle'></i> ferme toute fenêtre de notification en cliquant n'importe où sur la page<br><br>",
+
+	'ossn:notifications:comments:entity:file:profile:photo:someone' => "%s a commenté la photo de profil.",	
+    'ossn:notifications:comments:entity:file:profile:cover:someone' => "%s a commenté la couverture du profil.",
 );
 ossn_register_languages('fr', $fr);

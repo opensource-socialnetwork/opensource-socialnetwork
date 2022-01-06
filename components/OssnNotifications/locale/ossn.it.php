@@ -39,5 +39,8 @@ $en = array(
     'ossn:notifications:mark:as:read' => 'Segna tutti come da leggere',
 	'ossn:notifications:admin:settings:close_anywhere:title' => 'Chiudi le finestre di notifica facendo clic ovunque',
 	'ossn:notifications:admin:settings:close_anywhere:note' => '<i class="fa fa-info-circle"></i> chiude qualsiasi finestra di notifica facendo clic in qualsiasi punto della pagina<br><br>',
+	
+	'ossn:notifications:comments:entity:file:profile:photo:someone' => "%s ha commentato la foto del profilo.",	
+    'ossn:notifications:comments:entity:file:profile:cover:someone' => "%s ha commentato la copertina del profilo.",	
 );
 ossn_register_languages('it', $en); 

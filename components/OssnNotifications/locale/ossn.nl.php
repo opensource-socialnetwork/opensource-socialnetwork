@@ -37,5 +37,8 @@ $nl = array(
     'ossn:notifications:mark:as:read' => 'Markeer alle als gelezen',
 	'ossn:notifications:admin:settings:close_anywhere:title' => 'Sluit meldingsvensters door ergens te klikken',
 	'ossn:notifications:admin:settings:close_anywhere:note' => '<i class="fa fa-info-circle"></i> sluit elk meldingsvenster door ergens op de pagina te klikken<br><br>',
+	
+	'ossn:notifications:comments:entity:file:profile:photo:someone' => "%s heeft gereageerd op de profielfoto.",	
+    'ossn:notifications:comments:entity:file:profile:cover:someone' => "%s heeft gereageerd op profielomslag.",	
 );
 ossn_register_languages('nl', $nl); 

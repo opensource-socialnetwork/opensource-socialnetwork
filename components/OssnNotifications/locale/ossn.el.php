@@ -39,5 +39,8 @@ $el = array(
     'ossn:notifications:mark:as:read' => 'Σημειώστε όλα ως αναγνωσμένα',
 	'ossn:notifications:admin:settings:close_anywhere:title' => 'Κλείστε τα παράθυρα ειδοποιήσεων κάνοντας κλικ οπουδήποτε',
 	'ossn:notifications:admin:settings:close_anywhere:note' => '<i class="fa fa-info-circle"></i> κλείνει οποιοδήποτε παράθυρο ειδοποίησης κάνοντας κλικ οπουδήποτε στη σελίδα<br><br>',
+	
+	'ossn:notifications:comments:entity:file:profile:photo:someone' => "%s σχολίασε τη φωτογραφία προφίλ.",	
+    'ossn:notifications:comments:entity:file:profile:cover:someone' => "%s σχολίασε το εξώφυλλο του προφίλ.",	
 );
 ossn_register_languages('el', $el); 

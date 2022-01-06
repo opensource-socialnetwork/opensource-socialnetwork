@@ -38,5 +38,8 @@ $ro = array(
     'ossn:notifications:mark:as:read' => 'Marcheaza mesajele ca fiind citite',
 	'ossn:notifications:admin:settings:close_anywhere:title' => 'Închideți ferestrele de notificare făcând clic oriunde',
 	'ossn:notifications:admin:settings:close_anywhere:note' => '<i class="fa fa-info-circle"></i> închide orice fereastră de notificare făcând clic oriunde pe pagină<br><br>',
+
+	'ossn:notifications:comments:entity:file:profile:photo:someone' => "%s a comentat fotografia de profil.",	
+    'ossn:notifications:comments:entity:file:profile:cover:someone' => "%s a comentat pe coperta profilului.",
 );
 ossn_register_languages('ro', $ro); 

@@ -16,13 +16,13 @@ class OssnComments extends OssnAnnotation {
 		 */
 		public static function getType($object) {
 				$type = array(
-						"comments:post" => 'post', // <- this is actually object
-						"comments:entity" => 'entity',
-						"comments:object" => 'object',
+						'comments:post'   => 'post', // <- this is actually object
+						'comments:entity' => 'entity',
+						'comments:object' => 'object',
 				);
 				return $type[$object];
 		}
-		
+
 		/**
 		 * Post Comment
 		 *
@@ -45,22 +45,22 @@ class OssnComments extends OssnAnnotation {
 								return false;
 						}
 						ossn_trigger_callback('comment', 'before:created', array(
-									'type' => $type,
-									'object' => $postc,
-						));						
+								'type'   => $type,
+								'object' => $postc,
+						));
 				}
-				
+
 				if($type == 'entity') {
 						$entityc = ossn_get_entity($subject_id);
 						if(!$entityc) {
 								return false;
 						}
 						ossn_trigger_callback('comment', 'before:created', array(
-									'type' => 'entity',
-									'entity' => $entityc,
+								'type'   => 'entity',
+								'entity' => $entityc,
 						));
 				}
-				
+
 				$cancomment = false;
 				if(strlen($comment)) {
 						$cancomment = true;
@@ -78,15 +78,15 @@ class OssnComments extends OssnAnnotation {
 								$file                 = ossn_string_decrypt(base64_decode($image));
 								$file_path            = rtrim(ossn_validate_filepath($file), '/');
 								$_FILES['attachment'] = array(
-										'name' => $file_path,
+										'name'     => $file_path,
 										'tmp_name' => $file_path,
-										'type' => 'image/jpeg',
-										'size' => filesize($file_path),
-										'error' => UPLOAD_ERR_OK
+										'type'     => 'image/jpeg',
+										'size'     => filesize($file_path),
+										'error'    => UPLOAD_ERR_OK,
 								);
-								$file                 = new OssnFile;
-								$file->type           = 'annotation';
-								$file->subtype        = 'comment:photo';
+								$file          = new OssnFile();
+								$file->type    = 'annotation';
+								$file->subtype = 'comment:photo';
 								$file->setFile('attachment');
 								$file->setPath('comment/photo/');
 								$file->setExtension(array(
@@ -94,7 +94,7 @@ class OssnComments extends OssnAnnotation {
 										'png',
 										'jpeg',
 										'jfif',
-										'gif'
+										'gif',
 								));
 								$file->owner_guid = $this->getAnnotationId();
 								if($file->owner_guid !== 0) {
@@ -113,7 +113,7 @@ class OssnComments extends OssnAnnotation {
 				}
 				return false;
 		}
-		
+
 		/**
 		 * Get Comment
 		 *
@@ -122,16 +122,16 @@ class OssnComments extends OssnAnnotation {
 		 * @return boolean|object
 		 */
 		public function GetComment($id) {
-				if(empty($id)){
+				if(empty($id)) {
 						return false;
 				}
 				$res_array = $this->searchAnnotation(array(
 						'annotation_id' => $id,
-						'offset' => input('comments_offset', '', 1)
+						'offset'        => input('comments_offset', '', 1),
 				));
 				return $res_array[0];
 		}
-		
+
 		/**
 		 * Count Total Comments on Subject
 		 *
@@ -150,7 +150,7 @@ class OssnComments extends OssnAnnotation {
 						return $comments;
 				}
 		}
-		
+
 		/**
 		 * Get Comments
 		 *
@@ -160,16 +160,16 @@ class OssnComments extends OssnAnnotation {
 		 *
 		 * @return boolean|array
 		 */
-		public function GetComments($subject, $type = 'post', $filter = true){
-				if(empty($subject)){
-					return false;	
+		public function GetComments($subject, $type = 'post', $filter = true) {
+				if(empty($subject)) {
+						return false;
 				}
 				$vars                 = array();
 				$vars['subject_guid'] = $subject;
 				$vars['type']         = "comments:{$type}";
 				$vars['order_by']     = 'a.id DESC';
-				if(isset($this->limit)){
-					$vars['limit']        = $this->limit;
+				if(isset($this->limit)) {
+						$vars['limit'] = $this->limit;
 				}
 				if(!isset($this->page_limit) || $this->page_limit === false) {
 						$vars['page_limit'] = false;
@@ -179,17 +179,17 @@ class OssnComments extends OssnAnnotation {
 				$extra_param = array(
 						'type' => $type,
 				);
-				if($filter === true){
-					$attrs   = ossn_call_hook('comments', 'GetComments', $extra_param, $vars);
-					$comments = $this->searchAnnotation($attrs);
+				if($filter === true) {
+						$attrs    = ossn_call_hook('comments', 'GetComments', $extra_param, $vars);
+						$comments = $this->searchAnnotation($attrs);
 				} else {
-					$comments = $this->searchAnnotation($vars);
+						$comments = $this->searchAnnotation($vars);
 				}
 				if(!empty($comments)) {
 						return array_reverse($comments);
 				}
 		}
-		
+
 		/**
 		 * Delete All Comments by Subject id
 		 *
@@ -197,7 +197,7 @@ class OssnComments extends OssnAnnotation {
 		 *
 		 * @note [B]getting orphan like records from comments when deleting a post #1687
 		 * @note fixed $type as getComments appends comment: itself
-		 * 
+		 *
 		 * @return bool
 		 */
 		public function commentsDeleteAll($subject, $type = 'post') {
@@ -215,7 +215,7 @@ class OssnComments extends OssnAnnotation {
 				}
 				return false;
 		}
-		
+
 		/**
 		 * Delete Comment
 		 *
@@ -237,16 +237,28 @@ class OssnComments extends OssnAnnotation {
 				}
 				return false;
 		}
-		public function getParticipant($subject_id, $type = 'post'){
-					if(!empty($subject_id) && !empty($type)){
-							$args = array(
-									'params' => array('DISTINCT a.owner_guid'),
-									'from' => 'ossn_annotations as a',
-									'wheres' => array("a.type='comments:{$type}' AND a.subject_guid={$subject_id}"),
-							);
-							return $this->select($args, true);
-					}
-					return false;
+		/**
+		 * Get participants for subject
+		 *
+		 * @param integer $subject_id Subject GUID
+		 * @param string  $type post/object/entity
+		 *
+		 * @return boolean|array
+		 */
+		public function getParticipant($subject_id, $type = 'post') {
+				if(!empty($subject_id) && !empty($type)) {
+						$args = array(
+								'params' => array(
+										'DISTINCT a.owner_guid',
+								),
+								'from'   => 'ossn_annotations as a',
+								'wheres' => array(
+										"a.type='comments:{$type}' AND a.subject_guid={$subject_id}",
+								),
+						);
+						return $this->select($args, true);
+				}
+				return false;
 		}
 		/**
 		 * Get newly created comment id
@@ -256,5 +268,4 @@ class OssnComments extends OssnAnnotation {
 		public function getCommentId() {
 				return $this->getAnnotationId();
 		}
-		
 } //class

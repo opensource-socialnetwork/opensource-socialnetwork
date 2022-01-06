@@ -39,5 +39,8 @@ $id = array(
     'ossn:notifications:mark:as:read' => 'Tandai Semua Telah Dibaca',
 	'ossn:notifications:admin:settings:close_anywhere:title' => 'Tutup jendela Notifikasi dengan mengklik dimana saja',
 	'ossn:notifications:admin:settings:close_anywhere:note' => '<i class="fa fa-info-circle"></i> menutup jendela pemberitahuan dengan mengklik dimana saja pada halaman<br><br>',
+	
+	'ossn:notifications:comments:entity:file:profile:photo:someone' => "%s mengomentari foto profil.",	
+    'ossn:notifications:comments:entity:file:profile:cover:someone' => "%s mengomentari sampul profil.",	
 );
 ossn_register_languages('id', $id); 

@@ -40,5 +40,8 @@ $ja = array(
 
 	'ossn:notifications:admin:settings:close_anywhere:title' => 'Close notification windows by clicking anywhere',
 	'ossn:notifications:admin:settings:close_anywhere:note' => '<i class="fa fa-info-circle"></i> closes any notification window by clicking anywhere on the page<br><br>',
+	
+	'ossn:notifications:comments:entity:file:profile:photo:someone' => "%s プロフィール写真にコメントしました。",	
+    'ossn:notifications:comments:entity:file:profile:cover:someone' => "%s プロフィールカバーにコメントしました。",	
 );
 ossn_register_languages('ja', $ja); 

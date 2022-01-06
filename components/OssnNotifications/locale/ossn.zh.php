@@ -39,5 +39,8 @@ $zh = array(
     'ossn:notifications:mark:as:read' => '全部標記已讀',
 	'ossn:notifications:admin:settings:close_anywhere:title' => '點擊任意處關閉訊息視窗',
 	'ossn:notifications:admin:settings:close_anywhere:note' => '<i class="fa fa-info-circle"></i> 點擊畫面任一處關閉訊息視窗.<br><br>',
+	
+	'ossn:notifications:comments:entity:file:profile:photo:someone' => "%s 评论了个人资料照片。",	
+    'ossn:notifications:comments:entity:file:profile:cover:someone' => "%s 评论了个人资料封面。",	
 );
 ossn_register_languages('zh', $zh); 
