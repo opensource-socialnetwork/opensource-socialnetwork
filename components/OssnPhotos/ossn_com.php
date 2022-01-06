@@ -196,10 +196,10 @@ function ossn_notification_like_photo($hook, $type, $return, $notification){
 				$notification->type = $notification->type.':someone';
 		}
 		if(preg_match('/like/i', $notification->type)) {
-				$type = 'like';
+				$iconType = 'like';
 		}
 		if(preg_match('/comments/i', $notification->type)) {
-				$type = 'comment';
+				$iconType = 'comment';
 		}
 		$url               = ossn_site_url("photos/view/{$notif->subject_guid}");
 		return ossn_plugin_view('notifications/template/view', array(
@@ -208,7 +208,7 @@ function ossn_notification_like_photo($hook, $type, $return, $notification){
 				'type'      => $notification->type,
 				'viewed'    => $notification->viewed,
 				'url'       => $url,
-				'icon_type' => 'like',
+				'icon_type' => $iconType,
 				'fullname'  => $user->fullname,
 		));	
 }
