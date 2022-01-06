@@ -42,5 +42,6 @@ $ru = array(
 	
 	'ossn:notifications:comments:entity:file:profile:photo:someone' => "%s прокомментировал фото профиля.",	
     'ossn:notifications:comments:entity:file:profile:cover:someone' => "%s прокомментировал обложку профиля.",	
+	'ossn:notifications:comments:entity:file:ossn:aphoto:someone' => '%s прокомментировал фото.',		
 );
 ossn_register_languages('ru', $ru); 

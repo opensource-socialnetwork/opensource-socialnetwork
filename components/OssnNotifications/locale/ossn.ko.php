@@ -42,5 +42,6 @@ $ko = array(
 	
 	'ossn:notifications:comments:entity:file:profile:photo:someone' => "%s 님이 프로필 사진에 댓글을 달았습니다.",	
     'ossn:notifications:comments:entity:file:profile:cover:someone' => "%s 님이 프로필 표지에 댓글을 달았습니다.",	
+	'ossn:notifications:comments:entity:file:ossn:aphoto:someone' => '%s 님이 사진에 댓글을 달았습니다.',		
 );
 ossn_register_languages('ko', $ko); 

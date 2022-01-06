@@ -34,8 +34,10 @@ function ossn_photos_initialize(){
 		//hooks
 		ossn_add_hook('profile', 'subpage', 'ossn_profile_photos_page');
 		ossn_add_hook('profile', 'modules', 'profile_modules_albums');
+		
 		ossn_add_hook('notification:view', 'like:entity:file:ossn:aphoto', 'ossn_notification_like_photo');
 		ossn_add_hook('notification:view', 'comments:entity:file:ossn:aphoto', 'ossn_notification_like_photo');
+		
 		ossn_add_hook('photo:view', 'profile:controls', 'ossn_profile_photo_menu');
 		ossn_add_hook('photo:view', 'album:controls', 'ossn_album_photo_menu');
 		ossn_add_hook('cover:view', 'profile:controls', 'ossn_album_cover_photo_menu');
@@ -185,37 +187,30 @@ function ossn_photos_wall($hook, $type, $return, $params){
  * @return html;
  * @access private;
  */
-function ossn_notification_like_photo($hook, $type, $return, $params){
-		$notif          = $params;
-		$baseurl        = ossn_site_url();
-		$user           = ossn_user_by_guid($notif->poster_guid);
-		$user->fullname = "<strong>{$user->fullname}</strong>";
-		$iconURL        = $user->iconURL()->small;
-
-		$img = "<div class='notification-image'><img src='{$iconURL}' /></div>";
-		if(preg_match('/like/i', $notif->type)){
+function ossn_notification_like_photo($hook, $type, $return, $notification){
+		$user           = ossn_user_by_guid($notification->poster_guid);
+		//change your/someone photo string
+		$entity = ossn_get_entity($notification->subject_guid);
+		$album  = ossn_get_object($entity->owner_guid);
+		if($album && $album->subtype == 'ossn:album' && ossn_loggedin_user()->guid != $album->owner_guid){
+				$notification->type = $notification->type.':someone';
+		}
+		if(preg_match('/like/i', $notification->type)) {
 				$type = 'like';
 		}
-		if(preg_match('/comments/i', $notif->type)){
+		if(preg_match('/comments/i', $notification->type)) {
 				$type = 'comment';
 		}
-		$type = "<div class='ossn-notification-icon-{$type}'></div>";
-		if($notif->viewed !== null){
-				$viewed = '';
-		} elseif($notif->viewed == null){
-				$viewed = 'class="ossn-notification-unviewed"';
-		}
 		$url               = ossn_site_url("photos/view/{$notif->subject_guid}");
-		$notification_read = "{$baseurl}notification/read/{$notif->guid}?notification=" . urlencode($url);
-		return "<a href='{$notification_read}'>
-	       <li {$viewed}> {$img}
-		   <div class='notfi-meta'> {$type}
-		   <div class='data'>" .
-		ossn_print("ossn:notifications:{$notif->type}", array(
-				$user->fullname,
-		)) .
-				'</div>
-		   </div></li></a>';
+		return ossn_plugin_view('notifications/template/view', array(
+				'iconURL'   => $user->iconURL()->small,
+				'guid'      => $notification->guid,
+				'type'      => $notification->type,
+				'viewed'    => $notification->viewed,
+				'url'       => $url,
+				'icon_type' => 'like',
+				'fullname'  => $user->fullname,
+		));	
 }
 
 /**

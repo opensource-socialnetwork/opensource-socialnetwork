@@ -42,5 +42,6 @@ $id = array(
 	
 	'ossn:notifications:comments:entity:file:profile:photo:someone' => "%s mengomentari foto profil.",	
     'ossn:notifications:comments:entity:file:profile:cover:someone' => "%s mengomentari sampul profil.",	
+	'ossn:notifications:comments:entity:file:ossn:aphoto:someone' => '%s mengomentari foto.',		
 );
 ossn_register_languages('id', $id); 

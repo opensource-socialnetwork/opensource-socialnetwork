@@ -42,5 +42,6 @@ $fr = array(
 
 	'ossn:notifications:comments:entity:file:profile:photo:someone' => "%s a commenté la photo de profil.",	
     'ossn:notifications:comments:entity:file:profile:cover:someone' => "%s a commenté la couverture du profil.",
+	'ossn:notifications:comments:entity:file:ossn:aphoto:someone' => '%s a commenté la photo.',		
 );
 ossn_register_languages('fr', $fr);

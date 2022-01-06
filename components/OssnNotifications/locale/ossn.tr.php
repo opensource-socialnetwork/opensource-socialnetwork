@@ -41,6 +41,7 @@ $tr = array(
 	'ossn:notifications:admin:settings:close_anywhere:note' => '<i class="fa fa-info-circle"></i> sayfada herhangi bir yeri tıklatarak herhangi bir bildirim penceresini kapatır<br><br>',
 	
 	'ossn:notifications:comments:entity:file:profile:photo:someone' => "%s profil fotoğrafına yorum yaptı.",	
-    'ossn:notifications:comments:entity:file:profile:cover:someone' => "%s profil kapağına yorum yaptı.",	
+    'ossn:notifications:comments:entity:file:profile:cover:someone' => "%s profil kapağına yorum yaptı.",
+	'ossn:notifications:comments:entity:file:ossn:aphoto:someone' => '%s fotoğrafa yorum yaptı.',		
 );
 ossn_register_languages('tr', $tr); 

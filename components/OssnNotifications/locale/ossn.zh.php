@@ -42,5 +42,6 @@ $zh = array(
 	
 	'ossn:notifications:comments:entity:file:profile:photo:someone' => "%s 评论了个人资料照片。",	
     'ossn:notifications:comments:entity:file:profile:cover:someone' => "%s 评论了个人资料封面。",	
+	'ossn:notifications:comments:entity:file:ossn:aphoto:someone' => '%s 对照片发表了评论。',		
 );
 ossn_register_languages('zh', $zh); 

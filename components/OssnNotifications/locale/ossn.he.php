@@ -42,5 +42,6 @@ $he = array(
 	
 	'ossn:notifications:comments:entity:file:profile:photo:someone' => "%s הגיב על תמונת הפרופיל.",	
     'ossn:notifications:comments:entity:file:profile:cover:someone' => "%s הגיב על עטיפת הפרופיל.",	
+	'ossn:notifications:comments:entity:file:ossn:aphoto:someone' => '%s הגיב על התמונה.',		
 );
 ossn_register_languages('he', $he); 

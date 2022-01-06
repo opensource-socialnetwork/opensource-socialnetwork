@@ -40,5 +40,6 @@ $nl = array(
 	
 	'ossn:notifications:comments:entity:file:profile:photo:someone' => "%s heeft gereageerd op de profielfoto.",	
     'ossn:notifications:comments:entity:file:profile:cover:someone' => "%s heeft gereageerd op profielomslag.",	
+	'ossn:notifications:comments:entity:file:ossn:aphoto:someone' => '%s heeft gereageerd op de foto.',		
 );
 ossn_register_languages('nl', $nl); 
