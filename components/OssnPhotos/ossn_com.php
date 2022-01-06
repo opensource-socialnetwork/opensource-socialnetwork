@@ -44,12 +44,11 @@ function ossn_photos_initialize(){
 		//[B] Wrong Notifications because of 'notification:participants' #1822
 		ossn_add_hook('notification:participants', 'like:entity:file:profile:photo', 'ossn_profile_photo_cover_like_participants_deny');
 		ossn_add_hook('notification:participants', 'like:entity:file:profile:cover', 'ossn_profile_photo_cover_like_participants_deny');
-
-		ossn_add_hook('notification:participants', 'comments:entity:file:profile:photo', 'ossn_profile_photo_cover_like_participants_deny');
-		ossn_add_hook('notification:participants', 'comments:entity:file:profile:cover', 'ossn_profile_photo_cover_like_participants_deny');
-
 		ossn_add_hook('notification:participants', 'like:entity:file:ossn:aphoto', 'ossn_profile_photo_cover_like_participants_deny');
-		ossn_add_hook('notification:participants', 'comments:entity:file:ossn:aphoto', 'ossn_profile_photo_cover_like_participants_deny');
+
+		//ossn_add_hook('notification:participants', 'comments:entity:file:profile:photo', 'ossn_profile_photo_cover_like_participants_deny');
+		//ossn_add_hook('notification:participants', 'comments:entity:file:profile:cover', 'ossn_profile_photo_cover_like_participants_deny');
+		//ossn_add_hook('notification:participants', 'comments:entity:file:ossn:aphoto', 'ossn_profile_photo_cover_like_participants_deny');
 
 		//actions
 		if(ossn_isLoggedin()){

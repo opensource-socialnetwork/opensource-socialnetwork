@@ -237,7 +237,17 @@ class OssnComments extends OssnAnnotation {
 				}
 				return false;
 		}
-		
+		public function getParticipant($subject_id, $type = 'post'){
+					if(!empty($subject_id) && !empty($type)){
+							$args = array(
+									'params' => array('DISTINCT a.owner_guid'),
+									'from' => 'ossn_annotations as a',
+									'wheres' => array("a.type='comments:{$type}' AND a.subject_guid={$subject_id}"),
+							);
+							return $this->select($args, true);
+					}
+					return false;
+		}
 		/**
 		 * Get newly created comment id
 		 *

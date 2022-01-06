@@ -20,9 +20,13 @@ $en = array(
     'ossn:notification:are:friends' => 'You are now friends!',
     'ossn:notifications:comments:post:group:wall' => "%s commented on the group post.",
     'ossn:notifications:like:entity:file:profile:photo' => "%s liked your profile photo.",
-    'ossn:notifications:comments:entity:file:profile:photo' => "%s commented your the profile photo.",
+    
+	'ossn:notifications:comments:entity:file:profile:photo' => "%s commented your profile photo.",
+	'ossn:notifications:comments:entity:file:profile:photo:someone' => "%s commented on the profile photo.",
+
     'ossn:notifications:like:entity:file:profile:cover' => "%s liked your profile cover.",
     'ossn:notifications:comments:entity:file:profile:cover' => "%s commented on your profile cover.",
+    'ossn:notifications:comments:entity:file:profile:cover:someone' => "%s commented on profile cover.",
 
     'ossn:notifications:like:post:group:wall' => '%s liked your post.',
 	
