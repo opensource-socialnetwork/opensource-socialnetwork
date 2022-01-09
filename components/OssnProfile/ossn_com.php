@@ -270,7 +270,7 @@ function profile_page_handler($page) {
 				$params['subpage'] = '';
 		}
 		if(!ossn_is_profile_subapge($params['subpage']) && !empty($params['subpage'])) {
-				return false;
+				ossn_error_page();
 		}
 		$title               = $user->fullname;
 		$vars                = array(
