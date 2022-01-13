@@ -129,7 +129,11 @@ class OssnComments extends OssnAnnotation {
 						'annotation_id' => $id,
 						'offset'        => input('comments_offset', '', 1),
 				));
-				return $res_array[0];
+				//[B] PHP8 If deleted comments tried to be deleted again #2057
+				if($res_array){
+					return $res_array[0];
+				}
+				return false;
 		}
 
 		/**
