@@ -124,7 +124,10 @@ function ossn_comments_notify_participant($callback, $type, $vars) {
 										$postguid = $subject_guid;
 										$post     = $wall->GetPost($postguid);
 										if($post) {
-												$owner_type_guid = $post->poster_guid;
+												$owner_type_guid = $post->owner_guid;	// user wall
+												if ($post->type == 'group') {		// group wall
+													$owner_type_guid = $post->poster_guid;
+												}
 												if($type == 'owner:poster:match'){
 														//means posted on different user	
 														//and no one commented then
