@@ -125,16 +125,25 @@ function ossn_comments_notify_participant($callback, $type, $vars) {
 										$post     = $wall->GetPost($postguid);
 										if($post) {
 												$owner_type_guid = $post->owner_guid;
-											
 												//group wall
 												if ($post->type == 'group') { 
 													$owner_type_guid = $post->poster_guid;
-												}											
-												if($type == 'owner:poster:match'){
+												}	
+												//not for groups poster, owner match.
+												if($post->type == 'user' && $type == 'owner:poster:match'){
 														//means posted on different user	
 														//and no one commented then
 														if(!in_array($post->poster_guid, $guids)){
 															array_push($guids, $post->poster_guid);
+														}
+												}
+												//posted on someone else wall
+												//someone commenting on post 
+												if($post->type == 'user' && $post->owner_guid != $post->poster_guid){
+														//now we need to check again notification poster guid not post poster guid
+														//now add to notificaiton list to wall poster guid (not owner) if they are not same
+														if($vars['notification']['poster_guid'] != $post->poster_guid && !in_array($post->poster_guid, $guids)){
+																array_push($guids, $post->poster_guid);	
 														}
 												}
 										}
