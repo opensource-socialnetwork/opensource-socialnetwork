@@ -237,14 +237,7 @@ class OssnGroup extends OssnObject {
 					     );");
 				$this->execute();
 				$from = $this->fetch();
-				$this->statement("SELECT * FROM ossn_relationships WHERE(
-					     relation_from='{$user}' AND
-					     relation_to='{$group}' AND
-				 	     type='group:join'
-					     );");
-				$this->execute();
-				$to = $this->fetch();
-				if(isset($from->relation_id) && isset($to->relation_id)){
+				if(isset($from->relation_id)){
 						return true;
 				}
 				return false;
