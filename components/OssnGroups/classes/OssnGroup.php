@@ -198,21 +198,20 @@ class OssnGroup extends OssnObject {
 		 */
 		public function getMembersRequests(){
 				$group = $this->guid;
-				$this->statement("SELECT * FROM ossn_relationships WHERE(
-					     relation_to='{$group}' AND
-					     type='group:join'
-					     );");
+				$this->statement("SELECT relation_from FROM ossn_relationships WHERE
+						relation_to = '{$group}' AND
+						type = 'group:join' AND
+						relation_from NOT IN (SELECT relation_to FROM ossn_relationships WHERE
+						relation_from = '{$group}' AND
+						type ='group:join:approve')
+				;");
 				$this->execute();
-				$from = $this->fetch(true);
-				if(!is_object($from)){
-						return false;
-				}
-				foreach ($from as $fr){
-						if(!$this->isMember($group, $fr->relation_from)){
-								$users[] = ossn_user_by_guid($fr->relation_from);
+				$requests = $this->fetch(true);
+				if ($requests) {
+						$users = array();
+						foreach ($requests as $request) {
+								$users[] = ossn_user_by_guid($request->relation_from);
 						}
-				}
-				if(isset($users)){
 						return $users;
 				}
 				return false;
