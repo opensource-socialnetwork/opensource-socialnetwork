@@ -19,6 +19,13 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v6.2
 * [E] CLI + cron library and documentation on community #2050
 * [B] fixed calling unavailable/mistyped function #2051
 * [E] OssnMail 'email', 'send:policy' 3rd parameter #2052
+* [E] [E] optimized getMyGroups() #2071
+* [E] optimized OssnGroup::isMember() #2070
+* [E] optimized OssnGroup::getMembersRequests() #2069
+* [E] optimized group join-requests counter #2067
+* [E] PHP8 prevent bool->guid warnings #2058
+* [B] fixed missing error handler for not existing subpages #2055
+
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v6.1
 * [B] Undefined array key "HTTP_HOST #2012
