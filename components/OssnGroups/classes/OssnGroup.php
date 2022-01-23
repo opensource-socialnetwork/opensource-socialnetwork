@@ -178,15 +178,25 @@ class OssnGroup extends OssnObject {
 		 * @return int;
 		 */
 		public function countRequests(){
-				$count = $this->getMembersRequests();
-				if(!$count){
-						return false;
-				}
-				$cc = 0;
-				foreach ($count as $c){
-						$cc++;
-				}
-				return $cc;
+				$group = $this->guid;
+
+				$this->statement("SELECT COUNT(*) as join_requests FROM ossn_relationships  WHERE(
+					relation_to='{$group}' AND
+					type='group:join'
+				);");
+				$this->execute();
+				$from = $this->fetch(false);
+				$join_requests = $from->join_requests;
+
+				$this->statement("SELECT COUNT(*) as approved_members FROM ossn_relationships WHERE(
+					relation_from='{$group}' AND
+					type='group:join:approve'
+				);");
+				$this->execute();
+				$from = $this->fetch(false);
+				$approved_members = $from->approved_members;
+
+				return $join_requests - $approved_members;
 		}
 
 		/**
