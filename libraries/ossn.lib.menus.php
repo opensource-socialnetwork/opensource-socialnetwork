@@ -18,11 +18,11 @@
  * @return void
  */
 function ossn_register_menu_link($name, $text, $link, $menutype = 'site') {
-				ossn_register_menu_item($menutype, array(
-								'name' => $name,
-								'text' => $text,
-								'href' => $link
-				));
+		ossn_register_menu_item($menutype, array(
+				'name' => $name,
+				'text' => $text,
+				'href' => $link,
+		));
 }
 /**
  * Register a menu item
@@ -34,8 +34,8 @@ function ossn_register_menu_link($name, $text, $link, $menutype = 'site') {
  * @return void
  */
 function ossn_register_menu_item($menutype, array $options = array()) {
-				$menu = new OssnMenu($menutype, $options);
-				$menu->register();
+		$menu = new OssnMenu($menutype, $options);
+		$menu->register();
 }
 
 /**
@@ -47,8 +47,8 @@ function ossn_register_menu_item($menutype, array $options = array()) {
  *
  */
 function ossn_unregister_menu($menu, $menutype = 'site') {
-				global $Ossn;
-				unset($Ossn->menu[$menutype][$menu]);
+		global $Ossn;
+		unset($Ossn->menu[$menutype][$menu]);
 }
 /**
  * Unregister Type -> Menu -> Menu Item
@@ -56,18 +56,18 @@ function ossn_unregister_menu($menu, $menutype = 'site') {
  * @param string $name Name of Menu Item
  * @param string $menu Name of Menu
  * @param string $menutype The name of menutype
- * 
+ *
  * @return void
  */
 function ossn_unregister_menu_item($name, $menu, $menutype = 'site') {
-				global $Ossn;
-				if(isset($Ossn->menu[$menutype][$menu])) {
-								foreach($Ossn->menu[$menutype][$menu] as $key => $item) {
-												if($item['name'] == $name) {
-																unset($Ossn->menu[$menutype][$menu][$key]);
-												}
-								}
+		global $Ossn;
+		if(isset($Ossn->menu[$menutype][$menu])) {
+				foreach($Ossn->menu[$menutype][$menu] as $key => $item) {
+						if($item['name'] == $name) {
+								unset($Ossn->menu[$menutype][$menu][$key]);
+						}
 				}
+		}
 }
 /**
  * View a menu
@@ -80,21 +80,21 @@ function ossn_unregister_menu_item($name, $menu, $menutype = 'site') {
  * @return string
  */
 function ossn_view_menu($menu, $custom = false) {
-				global $Ossn;
-				if(!isset($Ossn->menu[$menu])) {
-								return false;
-				}
-				$ossnmenu = new OssnMenu;
-				$ossnmenu->sortMenu($menu);
-				
-				$params['menu'] = $Ossn->menu[$menu];
-				if($custom == false) {
-								$params['menuname'] = $menu;
-								return ossn_plugin_view("menus/{$menu}", $params);
-				} elseif($custom !== false) {
-								$params['menuname'] = $menu;
-								return ossn_plugin_view($custom, $params);
-				}
+		global $Ossn;
+		if(!isset($Ossn->menu[$menu])) {
+				return false;
+		}
+		$ossnmenu = new OssnMenu();
+		$ossnmenu->sortMenu($menu);
+
+		$params['menu'] = $Ossn->menu[$menu];
+		if($custom == false) {
+				$params['menuname'] = $menu;
+				return ossn_plugin_view("menus/{$menu}", $params);
+		} elseif($custom !== false) {
+				$params['menuname'] = $menu;
+				return ossn_plugin_view($custom, $params);
+		}
 }
 
 /**
@@ -106,19 +106,19 @@ function ossn_view_menu($menu, $custom = false) {
  * @return false|null
  */
 function ossn_register_sections_menu($menu = '', array $params = array()) {
-				if(!isset($params['name'])){
-						//If not set section menu name #1479
-						$params['name'] = md5($params['url']);	
-				}
-				if(isset($params['url'])){
-					$params['href'] = $params['url'];
-					unset($params['url']);
-				}
-				if(isset($params['section'])){
-					$params['parent'] = $params['section'];
-					unset($params['section']);					
-				}
-				ossn_register_menu_item($menu,  $params);				
+		if(!isset($params['name'])) {
+				//If not set section menu name #1479
+				$params['name'] = md5($params['url']);
+		}
+		if(isset($params['url'])) {
+				$params['href'] = $params['url'];
+				unset($params['url']);
+		}
+		if(isset($params['section'])) {
+				$params['parent'] = $params['section'];
+				unset($params['section']);
+		}
+		ossn_register_menu_item($menu, $params);
 }
 
 /**
@@ -133,5 +133,9 @@ function ossn_register_sections_menu($menu = '', array $params = array()) {
  *
  */
 function ossn_view_sections_menu($menu, $type = 'frontend') {
-		return ossn_view_menu($menu, "menus/sections/{$menu}");		
+		ossn_trigger_callback('menu', 'section:before:view', array(
+				'menu' => $menu,
+				'type' => $type,
+		));
+		return ossn_view_menu($menu, "menus/sections/{$menu}");
 }
