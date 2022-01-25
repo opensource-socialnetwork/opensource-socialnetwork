@@ -10,6 +10,12 @@
  */
 
 $zh = array(
+    
+    'jquery:tokeninput:hinttext' => 'Type in a search term',
+    'jquery:tokeninput:notesultstext' => 'No results',
+    'jquery:tokenonput:searchingText' => 'Searching...',
+    'jquery:tokenonput:deletetext' => '&#215;',
+
 	'home' => '首頁',
 	'site:index' => '歡迎',
 	'news:feed' => '貼文串',

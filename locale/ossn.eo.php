@@ -10,6 +10,12 @@
  */
 
 $eo = array(
+    
+    'jquery:tokeninput:hinttext' => 'Type in a search term',
+    'jquery:tokeninput:notesultstext' => 'No results',
+    'jquery:tokenonput:searchingText' => 'Searching...',
+    'jquery:tokenonput:deletetext' => '&#215;',
+
 	'home' => 'Hejmo',
 	'site:index' => 'Bonvenon',
 	'news:feed' => 'Novaĵlisto',

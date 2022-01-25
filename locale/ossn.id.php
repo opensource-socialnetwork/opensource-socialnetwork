@@ -10,6 +10,12 @@
  */
 
 $id = array(
+    
+    'jquery:tokeninput:hinttext' => 'Type in a search term',
+    'jquery:tokeninput:notesultstext' => 'No results',
+    'jquery:tokenonput:searchingText' => 'Searching...',
+    'jquery:tokenonput:deletetext' => '&#215;',
+
 	'home' => 'Beranda',
 	'site:index' => 'Selamat Datang',
 	'news:feed' => 'Beranda',

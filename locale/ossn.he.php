@@ -10,6 +10,12 @@
  */
 
 $he = array(
+    
+    'jquery:tokeninput:hinttext' => 'Type in a search term',
+    'jquery:tokeninput:notesultstext' => 'No results',
+    'jquery:tokenonput:searchingText' => 'Searching...',
+    'jquery:tokenonput:deletetext' => '&#215;',
+
 	'home' => 'בית',
 	'site:index' => 'ברוכים הבאים',
 	'news:feed' => 'חדשות',

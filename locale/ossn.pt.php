@@ -10,6 +10,12 @@
  */
 
 $pt = array(
+
+	'jquery:tokeninput:hinttext' => 'Informe um termo para a pesquisa',
+	'jquery:tokeninput:notesultstext' => 'Nenhum resultado encontrado',
+	'jquery:tokenonput:searchingText' => 'Pesquisando...',
+	'jquery:tokenonput:deletetext' => '&#215;',
+
 	'home' => 'Início',
 	'site:index' => 'Bem Vindo!',
 	'news:feed' => 'Últimas Notícias',

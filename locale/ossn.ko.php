@@ -10,6 +10,12 @@
  */
 
 $ko = array(
+    
+    'jquery:tokeninput:hinttext' => 'Type in a search term',
+    'jquery:tokeninput:notesultstext' => 'No results',
+    'jquery:tokenonput:searchingText' => 'Searching...',
+    'jquery:tokenonput:deletetext' => '&#215;',
+
 	'home' => '처음',
 	'site:index' => '환영합니다!',
 	'news:feed' => '소식 보기',

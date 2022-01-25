@@ -10,6 +10,12 @@
  */
 
 $fr = array(
+    
+    'jquery:tokeninput:hinttext' => 'Type in a search term',
+    'jquery:tokeninput:notesultstext' => 'No results',
+    'jquery:tokenonput:searchingText' => 'Searching...',
+    'jquery:tokenonput:deletetext' => '&#215;',
+
     'home' => 'Accueil',
     'site:index' => 'Bienvenue sur le site web',
     'news:feed' => 'Actualités',
