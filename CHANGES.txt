@@ -25,6 +25,10 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v6.2
 * [E] optimized group join-requests counter #2067
 * [E] PHP8 prevent bool->guid warnings #2058
 * [B] fixed missing error handler for not existing subpages #2055
+* [E] Add confirmation before deleting photos #2073
+* [E] Enhance group menu entries in sidebar #2072
+* [B] PHP8 If deleted comments tried to be deleted again #2057
+* [B] OssnNotification if poster and owner is same participants hook never run #2053
 
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v6.1
