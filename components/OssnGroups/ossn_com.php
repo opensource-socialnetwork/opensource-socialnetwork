@@ -152,7 +152,7 @@ function ossn_group_load_event($event, $type, $params) {
 		// show 'Requests' menu tab only on pending requests
 		$group = ossn_get_group_by_guid($owner);
 		// removed && $group->countRequests()
-		if($group) {
+		if(ossn_isLoggedin() && $group) {
 				if($group->owner_guid == ossn_loggedin_user()->guid || ossn_isAdminLoggedin() || $group->isModerator(ossn_loggedin_user()->guid)) {
 						ossn_register_menu_link('requests', 'requests', ossn_group_url($owner) . 'requests', 'groupheader');
 				}
