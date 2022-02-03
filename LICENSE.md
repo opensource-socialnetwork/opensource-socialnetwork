@@ -1,8 +1,10 @@
 # OPEN SOURCE SOCIAL NETWORK LICENSE (OSSNL) 4.0
 
-- Copyright (C) 2014-2020 SYED ARSALAN HUSSAIN SHAH <arsalan@buddyexpress.net>,
-- Copyright (C) 2014-2020 OPEN SOURCE SOCIAL NETWORK <https://www.opensource-socialnetwork.org>,
-- Copyright (C) 2015-2020 SOFTLAB24 LTD <https://www.softlab24.com>
+- Copyright (C) 2014-2022 ENGR. SYED ARSALAN HUSSAIN SHAH <arsalan@buddyexpress.net>,
+- Copyright (C) 2014-2022 OPEN SOURCE SOCIAL NETWORK <https://www.opensource-socialnetwork.org>,
+- Copyright (C) 2021-2022 OPEN TEKNIK LLC <https://www.openteknik.com>,
+- Copyright (C) 2021-2022 OPENHOST247 LLC <https://www.openhost247.com>,
+- Copyright (C) 2015-2021 SOFTLAB24 LTD <https://www.softlab24.com>
 - Copyright (C) 2014-2015 INFORMATIKON TECHNOLOGIES <https://www.informatikon.com>
 
 Open Source Social Network (Ossn) Licensed under the Cryptographic Autonomy License version 1.0
