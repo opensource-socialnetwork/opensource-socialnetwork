@@ -100,11 +100,15 @@ if (OssnInstallation::isApache()) {
     $error[] = 'apache';
 }
 if (!in_array('php:curl', $error)) {
-	if (OssnInstallation::is_mod_rewrite()) {
+	$modrewrite_check = OssnInstallation::is_mod_rewrite();
+	if ($modrewrite_check && is_int($modrewrite_check) && $modrewrite_check === 1) {
 	    echo '<div class="ossn-installation-message ossn-installation-success">'.ossn_installation_print('ossn:install:modrewrite').'</div>';
+	} elseif(is_array($modrewrite_check)){
+	    echo '<div class="ossn-installation-message ossn-installation-fail">'.$modrewrite_check[0].'</div>';
+	    $error[] = 'mod_rewrite';
 	} else {
 	    echo '<div class="ossn-installation-message ossn-installation-fail">'.ossn_installation_print('ossn:install:modrewrite:required').'</div>';
-	    $error[] = 'mod_rewrite';
+	    $error[] = 'mod_rewrite';		
 	}
 }	
 if (OssnInstallation::isCon_WRITEABLE()) {
