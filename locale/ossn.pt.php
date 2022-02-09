@@ -276,7 +276,7 @@ Por favor, clique no link abaixo para redefinir a senha ou copie o link e cole n
 	'admin:sidemenu:themes' => 'Temas',
 	'admin:sidemenu:settings' => 'Configurações do site',
 	'admin:sidemenu:usermanager' => 'Gerenciador de usuário',
-	'cancel' => 'Cancel',
+	'cancel' => 'Cancelar',
 	'ossn:language:complete' => 'Completar',
 	'ossn:pagination:first' => 'Primeiro',
 	'ossn:pagination:last' => 'Último',
