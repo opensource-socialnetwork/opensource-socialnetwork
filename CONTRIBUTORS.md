@@ -23,3 +23,4 @@ The following developers contributed to this project:
 * AntzCode (https://github.com/AntzCode)
 * Benjamin Oldenburg (https://github.com/ordisbold)
 * Zaxxo https://github.com/zaxxo  https://www.zaxxo.de
+* Rafael Amorim https://github.com/rafaelmamorim
