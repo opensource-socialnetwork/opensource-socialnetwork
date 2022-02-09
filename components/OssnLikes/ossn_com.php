@@ -129,7 +129,7 @@ function ossn_entity_like_link($callback, $type, $params){
 function ossn_object_like_link($callback, $type, $params){
 		$guid = $params['object']->guid;
 
-		ossn_unregister_menu('like', 'object_comment_like');
+		ossn_unregister_menu('like', 'object_extra');
 		if(isset($params['allow_like']) && $params['allow_like'] == false){
 				$guid = false;
 				//false will just not execute the likes menu
@@ -137,7 +137,7 @@ function ossn_object_like_link($callback, $type, $params){
 		if(!empty($guid)){
 				$likes = new OssnLikes();
 				if(!$likes->isLiked($guid, ossn_loggedin_user()->guid, 'object')){
-						ossn_register_menu_item('object_comment_like', array(
+						ossn_register_menu_item('object_extra', array(
 								'name'          => 'like',
 								'href'          => 'javascript:void(0);',
 								'id'            => 'ossn-olike-' . $guid,
@@ -145,7 +145,7 @@ function ossn_object_like_link($callback, $type, $params){
 								'text'          => ossn_print('ossn:like'),
 						));
 				} else {
-						ossn_register_menu_item('object_comment_like', array(
+						ossn_register_menu_item('object_extra', array(
 								'name'    => 'like',
 								'href'    => 'javascript:void(0);',
 								'id'      => 'ossn-olike-' . $guid,
