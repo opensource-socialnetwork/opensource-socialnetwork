@@ -82,7 +82,7 @@ class OssnInstallation {
 				return ini_get('allow_url_fopen');
 		}
 		/**
-		 * Check if php is > than 5.4
+		 * Check if php is > than 8.0
 		 * @last edit: $arsalanshah
 		 * @Reason: Initial;
 		 *
@@ -92,7 +92,8 @@ class OssnInstallation {
 				//$phpversion >= 5.6 , works fine with php 5.6
 			        //Support php 5.6 or larger remove support for < 5.6 #1287
 				//8tH April 2020, remove support for outdated PHP version
-				if($phpversion >= 7.0) {
+				//9th Feb 2022 remove support for php 7.x
+				if($phpversion >= 8.0) {
 						return true;
 				}
 				return false;
