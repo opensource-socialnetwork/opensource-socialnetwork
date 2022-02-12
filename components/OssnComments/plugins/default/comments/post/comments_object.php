@@ -72,10 +72,10 @@ $form .= '<script>  Ossn.ObjectComment(' . $object_guid . '); </script>';
 $form .= '<div class="ossn-comment-attachment" id="comment-attachment-container-o' . $object_guid . '">';
 $form .= '<script>Ossn.CommentImage(' . $object_guid . ',  "object");</script>';
 $form .= ossn_view_form('comment_image', array(
-        'id' => "ossn-comment-attachment-o{$object}",
+        'id' => "ossn-comment-attachment-o{$object_guid}",
         'component' => 'OssnComments',
         'params' => array(
-			'object' => $object,
+			'object' => $object_guid,
 			'type' => 'o',
 		)    
 	), false);
