@@ -32,6 +32,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v6.2
 * [B] Fix the like:object view menu type introduced in #1868 #2081
 * [E] Replace translation PT #2079 #2075
 * [E] Improve mod_rewrite CURL functionality #2078
+* [B] fixed use of undefined variable $object #2084
 
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v6.1
