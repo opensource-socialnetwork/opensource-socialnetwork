@@ -29,6 +29,9 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v6.2
 * [E] Enhance group menu entries in sidebar #2072
 * [B] PHP8 If deleted comments tried to be deleted again #2057
 * [B] OssnNotification if poster and owner is same participants hook never run #2053
+* [B] Fix the like:object view menu type introduced in #1868 #2081
+* [E] Replace translation PT #2079 #2075
+* [E] Improve mod_rewrite CURL functionality #2078
 
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v6.1
