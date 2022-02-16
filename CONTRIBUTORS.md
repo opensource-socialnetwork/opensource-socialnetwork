@@ -24,3 +24,4 @@ The following developers contributed to this project:
 * Benjamin Oldenburg (https://github.com/ordisbold)
 * Zaxxo https://github.com/zaxxo  https://www.zaxxo.de
 * Rafael Amorim https://github.com/rafaelmamorim
+* Caleb Mazalevskis https://github.com/Maikuolan
