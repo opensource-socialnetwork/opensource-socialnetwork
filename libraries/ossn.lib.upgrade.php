@@ -109,15 +109,6 @@ function ossn_trigger_upgrades() {
 		
 		return true;
 }
-
-/**
- * Generate site secret key
- *
- * @return str;
- */
-function ossn_generate_site_secret() {
-		return substr(md5('ossn' . rand()), 3, 8);
-}
 /**
  * Get update status
  *
