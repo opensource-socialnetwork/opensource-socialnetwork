@@ -322,7 +322,7 @@ Haga clic en el enlace de abajo para restablecer la contraseña o copie y pegue 
 	'php:upload_err_ini_size' => 'El archivo cargado supera la directiva UPLOAD_MAX_FILESIZE en PHP.INI',
 	'php:upload_err_form_size' => 'El archivo cargado supera la directiva MAX_FILE_SIZE que se especificó en el formulario HTML',
 	'php:upload_err_partial' => 'El archivo cargado solo se cargó parcialmente',
-	'php:upload_err_no_file' => 'Ningun archivo fue subido',
+	'php:upload_err_no_file' => 'Ningún archivo fue subido',
 	'php:upload_err_no_tmp_dir' => 'Falta una carpeta temporal',
 	'php:upload_err_cant_write' => 'Error al escribir el archivo en el disco',
 	'php:upload_err_extension' => 'Una extensión PHP detuvo la carga del archivo',

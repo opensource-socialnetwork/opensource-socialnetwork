@@ -19,7 +19,7 @@ $de = array(
 
     'home:top:heading' => "Willkommen bei %s!<br>Egal, ob Du neue Freunde oder alte Bekannte suchst: Hier bist Du richtig.",
     'create:account' => 'Mitmachen!',
-    'its:free' => 'es ist umsonst und kostet nix.',
+    'its:free' => 'Es ist umsonst und kostet nichts.',
 
     'register:ok:message' => "Dein Benutzer-Konto wurde nun eingerichtet, und Du hast eine Aktivierungs-Email erhalten. Sieh in Deinem Spam-Ordner nach, wenn Du die Nachricht im Posteingang nicht findest.",
 
