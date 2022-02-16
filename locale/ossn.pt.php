@@ -165,7 +165,7 @@ Caso tenha problemas, copie o endereço e cole manualmente em seu navegador.
 	'password:error' => 'Sua senha deve conter mais de 5 caracteres.',
 	'account:created' => 'Conta criada com sucesso.',
 	'account:create:error:admin' => 'Erro ao cadastrar! Tente novamente mais tarde.',
-	'user:updated' => 'Usuário atualizado com suceso!',
+	'user:updated' => 'Usuário atualizado com sucesso!',
 	'logged:out' => 'Você acabou de sair!',
 	'username:inuse' => 'O seguinte nome de usuário já está em uso. Por favor, escolha um diferente.',
 	'email:inuse' => 'Este e-mail já está cadastrado em nosso banco de dados. Por favor, tente outro e-mail.',
