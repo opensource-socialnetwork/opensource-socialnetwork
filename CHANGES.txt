@@ -33,7 +33,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v6.2
 * [E] Replace translation PT #2079 #2075
 * [E] Improve mod_rewrite CURL functionality #2078
 * [B] fixed use of undefined variable $object #2084
-
+* [E] Some small locale fixes. #2087
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v6.1
 * [B] Undefined array key "HTTP_HOST #2012
