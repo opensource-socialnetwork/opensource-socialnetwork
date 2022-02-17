@@ -14,6 +14,7 @@ $add        = new OssnPhotos;
 $album_guid = input('album');
 
 if($files) {
+		$files_added = array();
 		foreach($files as $item) {
 				$_FILES['ossnphoto'] = $item;
 				if($guid = $add->AddPhoto($album_guid, 'ossnphoto', input('privacy'))) {
