@@ -23,7 +23,9 @@ if($files) {
 		}
 		$args['photo_guids'] = $files_added;
 		$args['album']       = $album_guid;
-		ossn_trigger_callback('ossn:photo', 'add:multiple', $args);
+		if($album_guid && count($files_added)) {
+				ossn_trigger_callback('ossn:photo', 'add:multiple', $args);
+		}
 		redirect(REF);
 } else {
 		redirect(REF);
