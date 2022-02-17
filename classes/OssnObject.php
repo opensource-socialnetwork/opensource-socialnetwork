@@ -153,25 +153,25 @@ class OssnObject extends OssnEntities {
 				unset($this->order_by);
 
 				$object = $this->select($params);
+				if($object) {
+						$this->owner_guid = $object->guid;
+						$this->subtype    = '';
+						$this->type       = 'object';
+						$entities         = $this->get_entities();
 
-				$this->owner_guid = $object->guid;
-				$this->subtype    = '';
-				$this->type       = 'object';
-				$this->entities   = $this->get_entities();
-
-				if($this->entities && $object) {
-						foreach($this->entities as $entity) {
-								$fields[$entity->subtype] = $entity->value;
+						if($entities) {
+								$fileds = array();
+								foreach($entities as $entity) {
+										$fields[$entity->subtype] = $entity->value;
+								}
+								$object_array = get_object_vars($object);
+								if(is_array($object_array)) {
+										$data = array_merge($object_array, $fields);
+								}
+								if(!empty($fields)) {
+										return arrayObject($data, get_class($this));
+								}
 						}
-						$object_array = get_object_vars($object);
-						if(is_array($object_array)) {
-								$data = array_merge($object_array, $fields);
-						}
-						if(!empty($fields)) {
-								return arrayObject($data, get_class($this));
-						}
-				}
-				if(empty($fields)) {
 						return arrayObject($object, get_class($this));
 				}
 				return false;
