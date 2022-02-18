@@ -14,6 +14,7 @@ $add        = new OssnPhotos;
 $album_guid = input('album');
 
 if($files) {
+		$files_added = array();
 		foreach($files as $item) {
 				$_FILES['ossnphoto'] = $item;
 				if($guid = $add->AddPhoto($album_guid, 'ossnphoto', input('privacy'))) {
@@ -22,7 +23,9 @@ if($files) {
 		}
 		$args['photo_guids'] = $files_added;
 		$args['album']       = $album_guid;
-		ossn_trigger_callback('ossn:photo', 'add:multiple', $args);
+		if($album_guid && count($files_added)) {
+				ossn_trigger_callback('ossn:photo', 'add:multiple', $args);
+		}
 		redirect(REF);
 } else {
 		redirect(REF);
