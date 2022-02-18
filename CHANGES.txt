@@ -35,6 +35,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v6.2
 * [B] fixed use of undefined variable $object #2084
 * [E] Some small locale fixes. #2087
 * [B] PHP Warning: preg_match(): Compilation failed (#2018). #2086
+* [B] fix creating incomplete wall entities if addPhoto() fails #2088
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v6.1
 * [B] Undefined array key "HTTP_HOST #2012
