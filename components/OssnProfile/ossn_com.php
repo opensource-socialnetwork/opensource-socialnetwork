@@ -456,11 +456,15 @@ function ossn_wall_profile_cover_photo($hook, $type, $return, $params) {
  */
 function ossn_profile_photo_wall_url($photo) {
 		if($photo) {
-				$imagefile = str_replace(array(
-						'profile/photo/'
-				), '', $photo->value);
-				$image     = ossn_site_url("album/getphoto/{$photo->owner_guid}/{$imagefile}?type=1");
-				return ossn_add_cache_to_url($image);
+				if($photo->subtype == 'file:profile:photo') {
+						$image = str_replace('album/photos/', '', $photo->value);
+						if($photo->isCDN()) {
+								$manifest = $photo->getManifest();
+								$image    = $manifest['filename'];
+						}
+						$usertype = false;
+						return ossn_site_url("album/getphoto/{$photo->guid}/{$image}?type=1");
+				}
 		}
 		return false;
 }
@@ -471,12 +475,16 @@ function ossn_profile_photo_wall_url($photo) {
  */
 function ossn_profile_coverphoto_wall_url($photo) {
 		if($photo) {
-				$imagefile = str_replace(array(
-						'profile/cover/'
-				), '', $photo->value);
-				$image     = ossn_site_url("album/getcover/{$photo->owner_guid}/{$imagefile}");
-				return ossn_add_cache_to_url($image);
-		}
+				if($photo->subtype == 'file:profile:cover') {
+						$image = str_replace('profile/cover/', '', $photo->value);
+						if($photo->isCDN()) {
+								$manifest = $photo->getManifest();
+								$image    = $manifest['filename'];
+						}
+						$usertype = false;
+						return ossn_site_url("album/getcover/{$photo->guid}/{$image}");
+				}
+		}		
 		return false;
 }
 /**

@@ -9,7 +9,7 @@
  * @link      https://www.opensource-socialnetwork.org/
  */
 
-$image = ossn_get_entity($params['post']->item_guid);
+$image = ossn_get_file($params['post']->item_guid);
 $image = ossn_profile_photo_wall_url($image);
 ?>
 <div class="ossn-wall-item" id="activity-item-<?php echo $params['post']->guid; ?>">
