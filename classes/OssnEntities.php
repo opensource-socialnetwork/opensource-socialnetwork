@@ -429,6 +429,7 @@ class OssnEntities extends OssnDatabase {
 				$default = array(
 						'search_type' => true,
 						'subtype' => false,
+						'guid' => false,
 						'type' => false,
 						'value' => false,
 						'owner_guid' => false,
@@ -459,6 +460,9 @@ class OssnEntities extends OssnDatabase {
 				}
 				
 				//search entities
+				if(!empty($options['guid'])){
+						$wheres[] = "e.guid='{$options['guid']}'";					
+				}				
 				if(!empty($options['subtype'])) {
 						$wheres[] = "e.subtype='{$options['subtype']}'";
 				}
