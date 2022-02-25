@@ -466,28 +466,13 @@ function ossn_comment_page($pages) {
 		$page = $pages[0];
 		switch($page) {
 			case 'image':
-				if(!empty($pages[1]) && !empty($pages[2])) {
-						$file = ossn_get_userdata("annotation/{$pages[1]}/comment/photo/{$pages[2]}");
-						if(is_file($file)) {
-								$etag = md5($pages[2]);
-								header("Etag: $etag");
-
-								if(isset($_SERVER['HTTP_IF_NONE_MATCH']) && trim($_SERVER['HTTP_IF_NONE_MATCH']) == "\"$etag\"") {
-										header('HTTP/1.1 304 Not Modified');
-										exit();
-								}
-								$image    = ossn_resize_image($file, 300, 300);
-								$filesize = strlen($image);
-								header('Content-type: image/jpeg');
-								header('Expires: ' . gmdate('D, d M Y H:i:s \G\M\T', strtotime('+6 months')), true);
-								header('Pragma: public');
-								header('Cache-Control: public');
-								header("Content-Length: $filesize");
-								header("ETag: \"$etag\"");
-								echo $image;
-						} else {
-								ossn_error_page();
+				$comment = ossn_get_comment($pages[1]);
+				if(!empty($pages[1]) && !empty($pages[2])  && $comment) {		
+						$file = $comment->getPhotoFile();
+						if(!$file){
+							ossn_error_page();	
 						}
+						$file->output();
 				} else {
 						ossn_error_page();
 				}
@@ -508,7 +493,8 @@ function ossn_comment_page($pages) {
 										mkdir($dir, 0755, true);
 								}
 								if(move_uploaded_file($file, $newfile)) {
-										$file = base64_encode(ossn_string_encrypt($newfile));
+										//[B] Comment Static photo should have only filename no fullpath #2090
+										$file = base64_encode(ossn_string_encrypt($unique));
 										echo json_encode(array(
 												'file' => base64_encode($file),
 												'type' => 1,
@@ -525,12 +511,11 @@ function ossn_comment_page($pages) {
 				$image = base64_decode(input('image'));
 				if(!empty($image)) {
 						$file = ossn_string_decrypt(base64_decode($image));
-						header('content-type: image/jpeg');
+						//header('content-type: image/jpeg');
 						$file = rtrim(ossn_validate_filepath($file), '/');
-
 						$tmpphotos = ossn_get_userdata('tmp/photos/');
 						$filename  = str_replace($tmpphotos, '', $file);
-						$file      = $tmpphotos . $filename;
+						$file      = $tmpphotos . $file;
 						//avoid slashes in the file.
 						if(strpos($filename, '\\') !== false || strpos($filename, '/') !== false) {
 								redirect();
