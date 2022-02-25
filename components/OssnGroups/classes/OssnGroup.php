@@ -553,7 +553,7 @@ class OssnGroup extends OssnObject {
 				}
 				$this->latestcover = $covers->getParam(0);
 				$file              = md5($this->latestcover->guid);
-				$this->coverurl    = ossn_site_url("groups/cover/{$this->latestcover->guid}/{$file}.jpg");
+				$this->coverurl    = ossn_add_cache_to_url(ossn_site_url("groups/cover/{$this->latestcover->guid}/{$file}.jpg"));
 				return ossn_call_hook('group', 'cover:url', $this, $this->coverurl);
 		}
 

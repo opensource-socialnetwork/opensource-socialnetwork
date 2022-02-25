@@ -463,7 +463,7 @@ function ossn_profile_photo_wall_url($photo) {
 								$image    = $manifest['filename'];
 						}
 						$usertype = false;
-						return ossn_site_url("album/getphoto/{$photo->guid}/{$image}?type=1");
+						return ossn_add_cache_to_url(ossn_site_url("album/getphoto/{$photo->guid}/{$image}?type=1"));
 				}
 		}
 		return false;
@@ -482,7 +482,7 @@ function ossn_profile_coverphoto_wall_url($photo) {
 								$image    = $manifest['filename'];
 						}
 						$usertype = false;
-						return ossn_site_url("album/getcover/{$photo->guid}/{$image}");
+						return ossn_add_cache_to_url(ossn_site_url("album/getcover/{$photo->guid}/{$image}"));
 				}
 		}		
 		return false;

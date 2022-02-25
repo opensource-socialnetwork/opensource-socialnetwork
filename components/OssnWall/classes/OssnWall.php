@@ -490,7 +490,7 @@ class OssnWall extends OssnObject {
 		 public function getPhotoURL(){
 			 	if(isset($this->{'file:wallphoto'})) {
 					$image = md5($this->guid).'.jpg';
-					return ossn_site_url("post/photo/{$this->guid}/{$image}");
+					return ossn_add_cache_to_url(ossn_site_url("post/photo/{$this->guid}/{$image}"));
 				}
 				return false;
 		 }

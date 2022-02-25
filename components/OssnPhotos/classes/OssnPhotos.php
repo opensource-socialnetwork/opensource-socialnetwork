@@ -248,7 +248,7 @@ class OssnPhotos extends OssnFile {
 								$image    = $manifest['filename'];
 						}
 						$usertype = false;
-						return ossn_site_url("album/getphoto/{$this->guid}/{$image}");
+						return ossn_add_cache_to_url(ossn_site_url("album/getphoto/{$this->guid}/{$image}"));
 				}
 				return false;
 		}
