@@ -28,6 +28,7 @@ $file->setExtension(array(
 		'jpeg',
 		'jfif',
 		'gif',
+		'webp',
 ));
 
 if($fileguid = $file->addFile()) {

@@ -26,6 +26,7 @@ $file->setExtension(array(
 		'jpeg',
 		'jfif',
 		'gif',
+		'webp',
 ));
 if($fileguid = $file->addFile()) {
 		//update user cover time, this time has nothing to do with photo entity time

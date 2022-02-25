@@ -33,6 +33,7 @@ function ossn_resize_image($input_name, $maxwidth, $maxheight, $square = false){
 				'image/png'   => 'png',
 				'image/x-png' => 'png',
 				'image/gif'   => 'gif',
+				'image/webp'  => 'webp',
 		);
 
 		// make sure the function is available

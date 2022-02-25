@@ -96,6 +96,7 @@ class OssnComments extends OssnAnnotation {
 										'jpeg',
 										'jfif',
 										'gif',
+										'webp',
 								));
 								if(ossn_file_is_cdn_storage_enabled()) {
 										$file->setStore('cdn');

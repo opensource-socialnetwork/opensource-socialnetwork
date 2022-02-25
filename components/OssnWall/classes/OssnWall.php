@@ -85,6 +85,7 @@ class OssnWall extends OssnObject {
 										'jpeg',
 										'jfif',
 										'gif',
+										'webp',
 								));
 								if(ossn_file_is_cdn_storage_enabled()) {
 									$this->OssnFile->setStore('cdn');

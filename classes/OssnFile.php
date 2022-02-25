@@ -100,7 +100,7 @@ class OssnFile extends OssnEntities {
 		 *
 		 * @return array|null
 		 */
-		public function allowedFileExtensions(): array | null {
+		public function allowedFileExtensions(): array | null{
 				$types = array(
 						'zip',
 						'doc',
@@ -113,6 +113,7 @@ class OssnFile extends OssnEntities {
 						'png',
 						'gif',
 						'jpeg',
+						'webp',
 				);
 				return ossn_call_hook('file', 'allowed:extensions', null, $types);
 		}
@@ -179,12 +180,12 @@ class OssnFile extends OssnEntities {
 				}
 		}
 		/**
-		 * Set upload type 
+		 * Set upload type
 		 *
 		 * @param string $type Type local/cdn
-		 * 
+		 *
 		 * @return void
-		 */		
+		 */
 		public function setStore(string $type = 'local'): void {
 				if(($type != 'local' && $type != 'cdn') || empty($type)) {
 						$type = 'local';
@@ -195,7 +196,7 @@ class OssnFile extends OssnEntities {
 		 * Get store type
 		 *
 		 * @return string|bool
-		 */		
+		 */
 		public function getStore(): string | bool {
 				if(isset($this->file_store_type)) {
 						return $this->file_store_type;
@@ -237,7 +238,7 @@ class OssnFile extends OssnEntities {
 		 * @param string $directory Directory Name
 		 * @param string $filename File name
 		 * @param array  $addedToCDN A data that need to be added to file
-		 * 
+		 *
 		 * @return boolean
 		 */
 		public function writeManifest($directory, $filename, array $addedToCDN): bool {
@@ -289,13 +290,13 @@ class OssnFile extends OssnEntities {
 										//cdn exists but no hook
 										return false;
 								}
-								$sizecheck    = filesize($this->file['tmp_name']);
+								$sizecheck = filesize($this->file['tmp_name']);
 								//[E] Disallow to upload empty files #1976
 								//Simpy check before adding
-								if(!$sizecheck || $sizecheck && empty($sizecheck)){
-												 return false;
-								}									
-								if($fileguid = $this->add()) {									
+								if(!$sizecheck || ($sizecheck && empty($sizecheck))) {
+										return false;
+								}
+								if($fileguid = $this->add()) {
 										if($storeType == 'cdn') {
 												$cdnOptions = array(
 														'file'           => $this->file,
@@ -314,16 +315,16 @@ class OssnFile extends OssnEntities {
 														$this->writeManifest($this->dir . '/', $this->newfilename, $addedToCDN);
 														return $fileguid;
 												}
-										}	
-								if(preg_match('/image/i', $this->file['type'])) {		
-										$filecontents = $this->imageResize();
-										file_put_contents("{$this->dir}{$this->newfilename}", $filecontents);
-										return $fileguid;
-								} elseif(copy($this->file['tmp_name'], "{$this->dir}{$this->newfilename}")) {
-										return $fileguid;
+										}
+										if(preg_match('/image/i', $this->file['type'])) {
+												$filecontents = $this->imageResize();
+												file_put_contents("{$this->dir}{$this->newfilename}", $filecontents);
+												return $fileguid;
+										} elseif(copy($this->file['tmp_name'], "{$this->dir}{$this->newfilename}")) {
+												return $fileguid;
+										}
 								}
 						}
-				}
 				}
 				return false;
 		}
@@ -332,7 +333,7 @@ class OssnFile extends OssnEntities {
 		 *
 		 * @return mixed
 		 */
-		private function imageResize() : mixed {
+		private function imageResize(): mixed {
 				if(preg_match('/image/i', $this->file['type'])) {
 						//fix rotation #918
 						//[E] exif_read_data only for jpeg #1999
@@ -403,8 +404,8 @@ class OssnFile extends OssnEntities {
 								return false;
 						}
 				}
-				if(isset($params['subtype'])){
-							$params['subtype'] = "file:{$params['subtype']}";	
+				if(isset($params['subtype'])) {
+						$params['subtype'] = "file:{$params['subtype']}";
 				}
 				$files = $this->searchEntities($params);
 				if(isset($params['count']) && $params['count'] == true) {
@@ -509,7 +510,7 @@ class OssnFile extends OssnEntities {
 		 *
 		 * @return array|null
 		 */
-		public static function mimeTypes(): array | null {
+		public static function mimeTypes(): array | null{
 				$mimetypes = array(
 						'doc'  => array(
 								'application/msword',
@@ -544,6 +545,9 @@ class OssnFile extends OssnEntities {
 						'zip'  => array(
 								'application/zip',
 						),
+						'webp' => array(
+								'image/webp',				
+						),
 				);
 				return ossn_call_hook('file', 'mimetypes', false, $mimetypes);
 		}
@@ -565,9 +569,9 @@ class OssnFile extends OssnEntities {
 		}
 		/**
 		 * Check if the file is CDN
-		 * 
+		 *
 		 * @return bool
-		 */				
+		 */
 		public function isCDN(): bool {
 				if(str_ends_with($this->value, 'cdn.manifest')) {
 						return true;
@@ -576,10 +580,10 @@ class OssnFile extends OssnEntities {
 		}
 		/**
 		 * Get Manifest for CDN file
-		 * 
+		 *
 		 * @return array|bool
-		 */		
-		public function getManifest() : array | bool {
+		 */
+		public function getManifest(): array | bool {
 				$path = $this->getPath();
 				if(is_file($path)) {
 						$file = file_get_contents($path);
@@ -623,7 +627,7 @@ class OssnFile extends OssnEntities {
 								'file' => $this,
 						);
 						ossn_trigger_callback('file', 'before:delete', $callback);
-						
+
 						if($this->deleteEntity() && $this->isFile()) {
 								if(unlink($path)) {
 										ossn_trigger_callback('file', 'deleted', $args);
@@ -672,18 +676,20 @@ class OssnFile extends OssnEntities {
 		 * Output the file to the browser
 		 *
 		 * @param string $Mime Mime type
-		 * 
+		 *
 		 * @return void
 		 */
-		public function output(string $Mime = '') : void {
+		public function output(string $Mime = ''): void {
 				if($this->isFile()) {
 						if($this->isCDN()) {
 								$manifest = $this->getManifest();
 								ob_flush();
+								header('Cache-Control: max-age=86400'); //24 hours
+								header('HTTP/1.1 301 Moved Permanently');
 								header("Location: {$manifest['fullurl']}");
 								exit();
 						}
-						$etag = $file->guid . $file->time_created;
+						$etag = $this->guid . $this->time_created;
 
 						if(isset($_SERVER['HTTP_IF_NONE_MATCH']) && trim($_SERVER['HTTP_IF_NONE_MATCH']) == "\"$etag\"") {
 								header('HTTP/1.1 304 Not Modified');
@@ -693,8 +699,8 @@ class OssnFile extends OssnEntities {
 						$file      = $this->getPath();
 						$filesize  = filesize($file);
 						$type      = $this->getFileExtension($file);
-						$MimeTypes = $this->mimeTypes();	
-						
+						$MimeTypes = $this->mimeTypes();
+
 						//not getting actual mimetype getting by extension type to avoid any vulnerability.
 						if(isset($MimeTypes[$type][0])) {
 								$MimeType = $MimeTypes[$type][0];
@@ -707,7 +713,7 @@ class OssnFile extends OssnEntities {
 								header('Pragma: public');
 								header('Cache-Control: public');
 								header("Content-Length: {$filesize}");
-								header('Last-Modified: ' . gmdate('D, d M Y H:i:s \G\M\T', $photo->time_created));
+								header('Last-Modified: ' . gmdate('D, d M Y H:i:s \G\M\T', $this->time_created));
 								header("ETag: \"$etag\"");
 								readfile($file);
 						}
