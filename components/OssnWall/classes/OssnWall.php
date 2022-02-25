@@ -86,6 +86,9 @@ class OssnWall extends OssnObject {
 										'jfif',
 										'gif',
 								));
+								if(ossn_file_is_cdn_storage_enabled()) {
+									$this->OssnFile->setStore('cdn');
+								}
 								$this->OssnFile->addFile();
 						}
 						$params['object_guid'] = $this->wallguid;
@@ -479,4 +482,34 @@ class OssnWall extends OssnObject {
 				}
 				return false;
 		}
+		/**
+		 * Get wall photo URL
+		 * 
+		 * @return string|bool
+		 */
+		 public function getPhotoURL(){
+			 	if(isset($this->{'file:wallphoto'})) {
+					$image = md5($this->guid).'.jpg';
+					return ossn_site_url("post/photo/{$this->guid}/{$image}");
+				}
+				return false;
+		 }
+		/**
+		 * Get wall photo file
+		 * 
+		 * @return string|object
+		 */		 
+		 public function getPhotoFile(){
+					$file = new OssnFile();
+					$search = $file->searchFiles(array(
+								'limit' => 1,
+								'owner_guid' => $this->guid,
+								'type' => 'object',
+								'subtype' => 'wallphoto',
+					));
+					if($search){
+						return $search[0];	
+					}
+					return false;
+		 }		 
 } //class

@@ -9,7 +9,7 @@
  * @link      https://www.opensource-socialnetwork.org/
  */
 ossn_trigger_callback('comment', 'load', $params['comment']);
-$comment = arrayObject($params['comment'], 'OssnWall');
+$comment = arrayObject($params['comment'], 'OssnComments');
 $user = ossn_user_by_guid($comment->owner_guid);
 if ($comment->type == 'comments:post' || $comment->type == 'comments:entity' || $comment->type == 'comments:object') {
     $type = 'annotation';
@@ -57,10 +57,8 @@ if(isset($comment->allow_comment_like) && $comment->allow_comment_like == false)
 						            echo nl2br($comment->getParam('comments:post'));
 						        }
 						echo "</span>";
-						        $image = $comment->getParam('file:comment:photo');
+						        $image = $comment->photoURL();
 						        if (!empty($image)) {
-						            $image = str_replace('comment/photo/', '', $image);
-						            $image = ossn_site_url("comment/image/{$comment->id}/{$image}");
 						            echo "<img src='{$image}' />";
 						        }
 						        ?>

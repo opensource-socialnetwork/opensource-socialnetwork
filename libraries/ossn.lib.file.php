@@ -25,3 +25,16 @@ function ossn_get_file($guid) {
 		}
 		return false;
 }
+/**
+ * Check storage type
+ *
+ * @return boolean
+ */
+function ossn_file_is_cdn_storage_enabled(): bool {
+		 $site = new \OssnSite();
+		 $settings = $site->getSettings('cdnstorage.status');
+		 if($settings && $settings == 'enabled'){
+			 	return true;
+		 }
+		 return false;
+}

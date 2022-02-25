@@ -16,11 +16,11 @@ class OssnAds extends OssnObject {
 		 */
 		public function addNewAd($params) {
 				self::initAttributes();
-				
+
 				$this->title          = $params['title'];
 				$this->description    = $params['description'];
 				$this->data->site_url = $params['siteurl'];
-				
+
 				$this->owner_guid = 1;
 				$this->type       = 'site';
 				$this->subtype    = 'ossnads';
@@ -38,27 +38,30 @@ class OssnAds extends OssnObject {
 										'png',
 										'jpeg',
 										'jfif',
-										'gif'
+										'gif',
 								));
 								$this->OssnFile->setPath('ossnads/images/');
+								if(ossn_file_is_cdn_storage_enabled()) {
+										$this->OssnFile->setStore('cdn');
+								}
 								$this->OssnFile->addFile();
 						}
 						return true;
 				}
 				return false;
 		}
-		
+
 		/**
 		 * Initialize the objects.
 		 *
 		 * @return void;
 		 */
 		public function initAttributes() {
-				$this->OssnDatabase = new OssnDatabase;
-				$this->OssnFile     = new OssnFile;
-				$this->data         = new stdClass;
+				$this->OssnDatabase = new OssnDatabase();
+				$this->OssnFile     = new OssnFile();
+				$this->data         = new stdClass();
 		}
-		
+
 		/**
 		 * Get site ads.
 		 *
@@ -67,22 +70,22 @@ class OssnAds extends OssnObject {
 		 *
 		 * @return array|boolean|integer
 		 */
-		public function getAds(array $params = array(),  $random = true) {
+		public function getAds(array $params = array(), $random = true) {
 				$options = array(
 						'owner_guid' => 1,
-						'type' => 'site',
-						'subtype' => 'ossnads',
-						'order_by' => 'rand()'
+						'type'       => 'site',
+						'subtype'    => 'ossnads',
+						'order_by'   => 'rand()',
 				);
-				if(!$random){
-						unset($options['order_by']);			
+				if(!$random) {
+						unset($options['order_by']);
 				}
-				$args    = array_merge($options, $params);
+				$args = array_merge($options, $params);
 				return $this->searchObject($args);
 		}
 		/**
 		 * Get ad entity
-		 * 
+		 *
 		 * @param (int) $guid ad guid
 		 *
 		 * @return object;
@@ -93,7 +96,7 @@ class OssnAds extends OssnObject {
 		}
 		/**
 		 * Delete ad
-		 * 
+		 *
 		 * @param (int) $ad ad guid
 		 *
 		 * @return bool;
@@ -106,7 +109,7 @@ class OssnAds extends OssnObject {
 		}
 		/**
 		 * Edit
-		 * 
+		 *
 		 * @param (array) $params Contain title , description and guid of ad
 		 *
 		 * @return bool;
@@ -114,29 +117,71 @@ class OssnAds extends OssnObject {
 		public function EditAd($params) {
 				self::initAttributes();
 				if(!empty($params['guid']) && !empty($params['title']) && !empty($params['description']) && !empty($params['siteurl'])) {
-						$entity               = get_ad_entity($params['guid']);
-						$fields               = array(
+						$entity = get_ad_entity($params['guid']);
+						$fields = array(
 								'title',
-								'description'
+								'description',
 						);
-						$data                 = array(
+						$data = array(
 								$params['title'],
-								$params['description']
+								$params['description'],
 						);
 						$this->data->site_url = $params['siteurl'];
 						if($this->updateObject($fields, $data, $entity->guid)) {
 								if(isset($_FILES['ossn_ads']) && $_FILES['ossn_ads']['size'] !== 0) {
-										$path         = $entity->getParam('file:ossnads');
-										$replace_file = ossn_get_userdata("object/{$entity->guid}/{$path}");
-										if(!empty($path)) {
-												$regen_image = ossn_resize_image($_FILES['ossn_ads']['tmp_name'], 2048, 2048);
-												file_put_contents($replace_file, $regen_image);
+										if($file = $entity->getPhotoFile()) {
+												$file->deleteFile();
 										}
+										$this->OssnFile->owner_guid = $entity->guid;
+										$this->OssnFile->type       = 'object';
+										$this->OssnFile->subtype    = 'ossnads';
+										$this->OssnFile->setFile('ossn_ads');
+										$this->OssnFile->setExtension(array(
+												'jpg',
+												'png',
+												'jpeg',
+												'jfif',
+												'gif',
+										));
+										$this->OssnFile->setPath('ossnads/images/');
+										if(ossn_file_is_cdn_storage_enabled()) {
+												$this->OssnFile->setStore('cdn');
+										}
+										$this->OssnFile->addFile();
 								}
 								return true;
 						}
 				}
 				return false;
 		}
-		
+		/**
+		 * Get ads photo URL
+		 *
+		 * @return string|bool
+		 */
+		public function getPhotoURL() {
+				if(isset($this->{'file:ossnads'})) {
+						$image = md5($this->guid) . '.jpg';
+						return ossn_site_url("post/photo/{$this->guid}/{$image}");
+				}
+				return false;
+		}
+		/**
+		 * Get ads photo file
+		 *
+		 * @return string|object
+		 */
+		public function getPhotoFile() {
+				$file   = new OssnFile();
+				$search = $file->searchFiles(array(
+						'limit'      => 1,
+						'owner_guid' => $this->guid,
+						'type'       => 'object',
+						'subtype'    => 'ossnads',
+				));
+				if($search) {
+						return $search[0];
+				}
+				return false;
+		}
 } //class

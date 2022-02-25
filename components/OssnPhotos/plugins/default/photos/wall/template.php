@@ -16,7 +16,8 @@ if(!$album) {
 $photos_guid = $params['post']->photos_guids;
 $count  	 = count(explode(',', $photos_guid));
 
-$photos      = ossn_get_entities(array(
+$photos		 = new \OssnPhotos();
+$photos      = $photos->searchPhotos(array(
 		'wheres' => "e.guid IN({$photos_guid})",
 		'page_limit' => 17,
 ));
@@ -63,8 +64,7 @@ if($total == 1) {
 				<?php
 					if($photos > 0){
 							foreach($photos as $photo){
-									$file = str_replace('album/photos/', '', $photo->value);
-									$url  = ossn_site_url("album/getphoto/{$album->guid}/{$file}?size=album");		
+									$url  = $photo->getURL().'?size=album';		
 									$url  = ossn_add_cache_to_url($url);
 									if($total > 2){
 											$class = 'ossn-photo-wall-item-small';	
@@ -74,7 +74,7 @@ if($total == 1) {
 									$view = "<a target='_blank' href='".ossn_site_url("photos/view/{$photo->guid}")."'><img class='img-thumbnail ossn-photos-wall-item {$class}' src='{$url}' /></a>";
 									
 									if($total == 1){
-										$url  = ossn_site_url("album/getphoto/{$album->guid}/{$file}?size=view");
+										$url  = $photo->getURL().'?size=view';
 										$url  = ossn_add_cache_to_url($url);
 										$view = "<a target='_blank' href='".ossn_site_url("photos/view/{$photo->guid}")."'><img class='img-thumbnail' src='{$url}' /></a>";
 									}

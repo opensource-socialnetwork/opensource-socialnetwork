@@ -405,96 +405,29 @@ function ossn_album_page_handler($album){
 				$picture = $album[2];
 				$size    = input('size');
 
-				$name = str_replace(
-						array(
-								'.jpg',
-								'.jpeg',
-								'gif',
-						),
-						'',
-						$picture
-				);
-				$etag = $size . $name . $guid;
-
-				if(isset($_SERVER['HTTP_IF_NONE_MATCH']) && trim($_SERVER['HTTP_IF_NONE_MATCH']) == "\"$etag\""){
-						header('HTTP/1.1 304 Not Modified');
-						exit();
-				}
-
-				// get image size
-				if(empty($size)){
-						$datadir = ossn_get_userdata("object/{$guid}/album/photos/{$picture}");
-				} else {
-						$datadir = ossn_get_userdata("object/{$guid}/album/photos/{$size}_{$picture}");
-				}
-				//get image type
-				$type = input('type');
-
-				if($type == '1'){
-						if(empty($size)){
-								$datadir = ossn_get_userdata("user/{$guid}/profile/photo/{$picture}");
-						} else {
-								$datadir = ossn_get_userdata("user/{$guid}/profile/photo/{$size}_{$picture}");
+				$file	 = ossn_get_file($guid);
+				if($file){
+						if(!$size){
+							$file->output();
 						}
-				}
-				if(is_file($datadir)){
-						$filesize = filesize($datadir);
-						header('Content-type: image/jpeg');
-						header('Expires: ' . gmdate('D, d M Y H:i:s \G\M\T', strtotime('+6 months')), true);
-						header('Pragma: public');
-						header('Cache-Control: public');
-						header("Content-Length: $filesize");
-						header("ETag: \"$etag\"");
-						readfile($datadir);
-						return;
-				} else {
-						ossn_error_page();
-				}
+						if($file->isCDN()){
+								$manifest = $file->getManifest();
+								$url = $manifest['url']."{$manifest['path']}{$size}_".$manifest['filename'];
+								ob_flush();
+								header("Location:{$url}");
+								exit;							
+						}
+				}	
 				break;
 			case 'getcover':
 				$guid    = $album[1];
 				$picture = $album[2];
-				$type    = input('type');
 				$size    = input('size');
 
-				$name = str_replace(
-						array(
-								'.jpg',
-								'.jpeg',
-								'gif',
-						),
-						'',
-						$picture
-				);
-				$etag = $size . $name . $guid;
-
-				if(isset($_SERVER['HTTP_IF_NONE_MATCH']) && trim($_SERVER['HTTP_IF_NONE_MATCH']) == "\"$etag\""){
-						header('HTTP/1.1 304 Not Modified');
-						exit();
-				}
-
-				// get image size
-				$datadir = ossn_get_userdata("user/{$guid}/profile/cover/{$picture}");
-				if(empty($type)){
-						$image = file_get_contents($datadir);
-				} elseif($type == 1){
-						$image = ossn_resize_image($datadir, 170, 170, true);
-				}
-				//get image file else show error page
-				if(is_file($datadir)){
-						$filesize = strlen($image);
-						header('Content-type: image/jpeg');
-						header('Expires: ' . gmdate('D, d M Y H:i:s \G\M\T', strtotime('+6 months')), true);
-						header('Pragma: public');
-						header('Cache-Control: public');
-						header("Content-Length: $filesize");
-						header("ETag: \"$etag\"");
-						//ossnphotos get cover type 1 not working #943
-						echo $image;
-						return;
-				} else {
-						ossn_error_page();
-				}
+				$file	 = ossn_get_file($guid);
+				if($file){
+						$file->output();
+				}	
 				break;
 			case 'edit':
 				if(!ossn_isLoggedin() || !ossn_is_xhr()){

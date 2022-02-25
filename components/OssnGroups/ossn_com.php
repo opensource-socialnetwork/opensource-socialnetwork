@@ -206,23 +206,8 @@ function ossn_groups_page($pages) {
 						$File->file_id = $pages[1];
 						$File          = $File->fetchFile();
 
-						$etag = $File->guid . $File->time_created;
-
-						if(isset($_SERVER['HTTP_IF_NONE_MATCH']) && trim($_SERVER['HTTP_IF_NONE_MATCH']) == "\"$etag\"") {
-								header('HTTP/1.1 304 Not Modified');
-								exit();
-						}
-						if(isset($File->guid)) {
-								$Cover    = ossn_get_userdata("object/{$File->owner_guid}/{$File->value}");
-								$filesize = filesize($Cover);
-								header('Content-type: image/jpeg');
-								header('Expires: ' . gmdate('D, d M Y H:i:s \G\M\T', strtotime('+6 months')), true);
-								header('Pragma: public');
-								header('Cache-Control: public');
-								header("Content-Length: $filesize");
-								header("ETag: \"$etag\"");
-								readfile($Cover);
-								return;
+						if($File && $File->type == 'object' && $File->subtype == 'file:cover') {
+								$File->output();
 						} else {
 								ossn_error_page();
 						}

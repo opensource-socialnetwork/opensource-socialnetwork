@@ -9,7 +9,7 @@
  * @link      https://www.opensource-socialnetwork.org/
  */
 $image = $params['entity'];
-$img = str_replace('profile/photo/', '', $image->value);
+$img = $image->getURL();
 ?>
 <div class="ossn-photo-view">
     <a class="button-grey" href="<?php echo ossn_site_url("album/profile/{$image->owner_guid}"); ?>"> <?php echo ossn_print('back:to:album'); ?>  </a>
@@ -17,8 +17,7 @@ $img = str_replace('profile/photo/', '', $image->value);
     <table border="0" class="ossn-photo-viewer">
         <tr>
             <td class="image-block">
-                <img
-                    src="<?php echo ossn_site_url("album/getphoto/") . $image->owner_guid; ?>/<?php echo $img; ?>?type=1"/>
+                <img src="<?php echo $img; ?>"/>
             </td>
         </tr>
     </table>

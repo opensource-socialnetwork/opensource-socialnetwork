@@ -77,9 +77,10 @@ class OssnComments extends OssnAnnotation {
 								$image                = base64_decode($this->comment_image);
 								$file                 = ossn_string_decrypt(base64_decode($image));
 								$file_path            = rtrim(ossn_validate_filepath($file), '/');
+								//[B] Comment Static photo should have only filename no fullpath #2090
 								$_FILES['attachment'] = array(
 										'name'     => $file_path,
-										'tmp_name' => $file_path,
+										'tmp_name' => ossn_get_userdata("tmp/photos/{$file_path}"),
 										'type'     => 'image/jpeg',
 										'size'     => filesize($file_path),
 										'error'    => UPLOAD_ERR_OK,
@@ -96,6 +97,9 @@ class OssnComments extends OssnAnnotation {
 										'jfif',
 										'gif',
 								));
+								if(ossn_file_is_cdn_storage_enabled()) {
+										$file->setStore('cdn');
+								}
 								$file->owner_guid = $this->getAnnotationId();
 								if($file->owner_guid !== 0) {
 										$file->addFile();
@@ -130,8 +134,8 @@ class OssnComments extends OssnAnnotation {
 						'offset'        => input('comments_offset', '', 1),
 				));
 				//[B] PHP8 If deleted comments tried to be deleted again #2057
-				if($res_array){
-					return $res_array[0];
+				if($res_array) {
+						return $res_array[0];
 				}
 				return false;
 		}
@@ -272,4 +276,38 @@ class OssnComments extends OssnAnnotation {
 		public function getCommentId() {
 				return $this->getAnnotationId();
 		}
+		/**
+		 * Get comment photo
+		 *
+		 * @return string|boolean
+		 */
+		 public function photoURL(){
+			 		if(isset($this->id)){
+						 $image = $this->getParam('file:comment:photo');
+						 if(!empty($image)) {
+							$image = hash('md5', $this->id);
+							return ossn_site_url("comment/image/{$this->id}/{$image}.jpg"); 
+						 }
+					}
+					return false;
+		 
+		 }
+		/**
+		 * Get comment photo file
+		 *
+		 * @return boolean|object
+		 */		 
+		 public function getPhotoFile(){
+					$file = new OssnFile();
+					$search = $file->searchFiles(array(
+								'limit' => 1,
+								'owner_guid' => $this->id,
+								'type' => 'annotation',
+								'subtype' => 'comment:photo',
+					));
+					if($search){
+						return $search[0];	
+					}
+					return false;
+		 }
 } //class

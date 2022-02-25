@@ -186,7 +186,7 @@ class OssnProfile extends OssnDatabase {
 				$user->data->cover_time = $user->cover_time;
 				$user->save();
 			}
-			$url  = ossn_site_url("cover/{$user->username}/".md5($user->cover_time).'.jpg');
+			$url  = ossn_site_url("cover/{$user->username}/{$user->cover_guid}/".md5($user->cover_time).'.jpg');
 			//[B] img js ossn_cache cause duplicate requests #1886
 			return ossn_add_cache_to_url($url);
 		}

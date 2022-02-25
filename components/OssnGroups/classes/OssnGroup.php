@@ -451,6 +451,9 @@ class OssnGroup extends OssnObject {
 						'gif',
 				));
 				$this->OssnFile->setPath('cover/');
+				if(ossn_file_is_cdn_storage_enabled()) {
+						$this->OssnFile->setStore('cdn');
+				}				
 				$files = clone $this->OssnFile;
 				if($this->OssnFile->addFile()){
 						//Different sanity checks on uploading images? #667
@@ -549,8 +552,8 @@ class OssnGroup extends OssnObject {
 						return false;
 				}
 				$this->latestcover = $covers->getParam(0);
-				$file              = str_replace('cover/', '', $this->latestcover->value);
-				$this->coverurl    = ossn_site_url("groups/cover/{$this->latestcover->guid}/{$file}");
+				$file              = md5($this->latestcover->guid);
+				$this->coverurl    = ossn_site_url("groups/cover/{$this->latestcover->guid}/{$file}.jpg");
 				return ossn_call_hook('group', 'cover:url', $this, $this->coverurl);
 		}
 
@@ -670,4 +673,22 @@ class OssnGroup extends OssnObject {
 				//use of this hook via component to write actual functionality of moderators
 				return ossn_call_hook('group', 'is:moderator', $params, false);
 		}
+		/**
+		 * Get group cover photo file
+		 *
+		 * @return string|object
+		 */
+		public function getPhotoFile() {
+				$file   = new OssnFile();
+				$search = $file->searchFiles(array(
+						'limit'      => 1,
+						'owner_guid' => $this->guid,
+						'type'       => 'object',
+						'subtype'    => 'cover',
+				));
+				if($search) {
+						return $search[0];
+				}
+				return false;
+		}		
 } //class

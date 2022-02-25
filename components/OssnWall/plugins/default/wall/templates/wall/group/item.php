@@ -70,7 +70,7 @@ if(!$params['user']){
              <?php
             if (!empty($image)) {
                 ?>
-                <img src="<?php echo ossn_site_url("post/photo/{$params['post']->guid}/{$image}"); ?>"/>
+                <img src="<?php echo $image; ?>"/>
 
             <?php } ?>
          

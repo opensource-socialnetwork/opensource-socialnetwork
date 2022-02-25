@@ -12,7 +12,7 @@ $album = new OssnAlbums;
 $image = $params['entity'];
 
 $name = $album->GetAlbum($image->owner_guid)->album->title;
-$img = str_replace('album/photos/', '', $image->value);
+$img =  $image->getURL();
 ?>
 <div class="ossn-photo-view">
     <h2> <?php echo $name; ?></h2>
@@ -21,8 +21,7 @@ $img = str_replace('album/photos/', '', $image->value);
     <table border="0" class="ossn-photo-viewer">
         <tr>
             <td class="image-block">
-                <img
-                    src="<?php echo ossn_site_url("album/getphoto/") . $image->owner_guid; ?>/<?php echo $img; ?>?size=view"/>
+                <img src="<?php echo $img; ?>?size=view"/>
             </td>
         </tr>
     </table>

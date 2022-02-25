@@ -300,54 +300,42 @@ function get_profile_photo_guid($guid) {
 /**
  * Get user profile photo
  *
- * @return mixed data;
+ * @return void;
  */
 function get_profile_photo($user, $size) {
 		if(!$user instanceof OssnUser) {
 				return false;
 		}
-		
-		if(isset($size) && array_key_exists($size, ossn_user_image_sizes())) {
-				$isize = "{$size}_";
-		}
-		
-		$photo = $user->getProfilePhoto();
-		$etag  = time();
-		if($photo){
-			$etag  = $photo->guid . $photo->time_created;
-		}
-		if(isset($photo->time_created)) {
-				header("Last-Modified: " . gmdate('D, d M Y H:i:s \G\M\T', $photo->time_created));
-		}
-		header("Etag: $etag");
-		
-		if(isset($photo->guid) && isset($_SERVER['HTTP_IF_NONE_MATCH']) && trim($_SERVER['HTTP_IF_NONE_MATCH']) == "\"$etag\"") {
-				header("HTTP/1.1 304 Not Modified");
-				exit;
-		}
-		
-		if($photo && isset($photo->value) && !empty($photo->value)) {
-				$datadir = ossn_get_userdata("user/{$user->guid}/{$photo->value}");
-				if(!empty($size)) {
-						$image   = str_replace('profile/photo/', '', $photo->value);
-						$datadir = ossn_get_userdata("user/{$user->guid}/profile/photo/{$isize}{$image}");
-				}
-		} else {
-				$datadir = ossn_default_theme() . "images/nopictures/users/{$size}.jpg";
-		}
-		$datadir  = ossn_call_hook('profile', 'load:picture', array(
+		$args = array(
 				'user' => $user,
 				'size' => $size
-		), $datadir);
-		$filesize = filesize($datadir);
-		header("Content-type: image/jpeg");
-		header('Expires: ' . gmdate('D, d M Y H:i:s \G\M\T', strtotime("+6 months")), true);
-		header("Pragma: public");
-		header("Cache-Control: public");
-		header("Content-Length: $filesize");
-		header("ETag: \"$etag\"");
-		readfile($datadir);
-		return;
+		);
+		$url  = ossn_call_hook('profile', 'load:picture', $args, false);
+		if(!$url){
+				$photo = $user->getProfilePhoto();
+				if(!$photo){
+					$default = ossn_theme_url() . "images/nopictures/users/{$size}.jpg";
+					ob_flush();
+					header("Location:{$default}");
+					exit;		
+				}
+				if($photo && $photo->subtype != 'file:profile:photo'){
+						ossn_error_page();
+				}
+				if($photo->isCDN()){
+					$manifest = $photo->getManifest();
+					$url = $manifest['url']."{$manifest['path']}{$size}_".$manifest['filename'];
+					ob_flush();
+					header("Location:{$url}");
+					exit;
+				}  else {
+					$photo->output();	
+				}
+		} else {
+					ob_flush();
+					header("Location:{$url}");
+					exit;			
+		}
 }
 /**
  * Get user default cover photo
@@ -360,33 +348,17 @@ function get_cover_photo($user, $params = array()) {
 				return false;
 		}
 		$photo = $user->getProfileCover();
-		$etag  = time();
-		if($photo){
-			$etag  = $photo->guid . $photo->time_created;
-		}
-			
-		if(isset($_SERVER['HTTP_IF_NONE_MATCH']) && trim($_SERVER['HTTP_IF_NONE_MATCH']) == "\"$etag\"") {
-				header("HTTP/1.1 304 Not Modified");
-				exit;
-		}
-		
-		if(isset($photo->value)) {
-				header("Content-type: image/jpeg");
-				header('Expires: ' . gmdate('D, d M Y H:i:s \G\M\T', strtotime("+6 months")), true);
-				header("Pragma: public");
-				header("Cache-Control: public");
-				header("ETag: \"$etag\"");
-				if(!empty($params[1]) && $params[1] == 1) {
-						$datadir = ossn_get_userdata("user/{$user->guid}/{$photo->value}");
-						echo ossn_resize_image($datadir, 170, 170, true);
-				} else {
-						$datadir  = ossn_get_userdata("user/{$user->guid}/{$photo->value}");
-						$filesize = filesize($datadir);
-						header("Content-Length: $filesize");
-						readfile($datadir);
-						
+		if($photo && $photo->subtype == 'file:profile:cover') {
+		   		if($photo->isCDN()){
+					$manifest = $photo->getManifest();
+					$url = $manifest['url']."{$manifest['path']}".$manifest['filename'];
+					ob_flush();
+					header("Location:{$url}");
+					exit;
+				}  else {
+					$photo->output();	
 				}
-				return;
+					
 		} else {
 				redirect('components/OssnProfile/images/transparent.png');
 		}
