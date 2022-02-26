@@ -329,6 +329,9 @@ function get_profile_photo($user, $size) {
 					header("Location:{$url}");
 					exit;
 				}  else {
+					if(!empty($size)){
+						$photo->value = str_replace('profile/photo/', 'profile/photo/' . $size . '_', $photo->value);
+					}
 					$photo->output();	
 				}
 		} else {
