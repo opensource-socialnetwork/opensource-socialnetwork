@@ -285,7 +285,7 @@ function ossn_photos_page_handler($album){
 
 						//redirect user to home page if image is empty
 						if(empty($image)){
-								redirect();
+								//redirect();
 						}
 						//throw 404 page if there is no album access
 						$albumget = ossn_albums();
@@ -404,15 +404,27 @@ function ossn_album_page_handler($album){
 				$guid    = $album[1];
 				$picture = $album[2];
 				$size    = input('size');
-
+				$type 	 = input('type');
+				
 				$file	 = ossn_get_file($guid);
 				if($file){
-						if(!$size){
+						if(!$size && !$file->isCDN()){
 							$file->output();
+						}
+						if($size && !$file->isCDN()){
+							$parsed  = explode('/', $file->value);
+							$file->value = "album/photos/{$size}_".end($parsed);
+							if($type == 1){
+									$file->value = "profile/photo/{$size}_".end($parsed);
+							}
+							$file->output();	
 						}
 						if($file->isCDN()){
 								$manifest = $file->getManifest();
-								$url = $manifest['url']."{$manifest['path']}{$size}_".$manifest['filename'];
+								if(!empty($size)){
+										$size = "{$size}_";		
+								}
+								$url = $manifest['url']."{$manifest['path']}{$size}".$manifest['filename'];
 								ob_flush();
 								header("Location:{$url}");
 								exit;							

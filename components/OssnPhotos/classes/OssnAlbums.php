@@ -97,37 +97,6 @@ class OssnAlbums extends OssnObject {
 						}
 				}
 		}
-		
-		/**
-		 * Get user profile photos album
-		 *
-		 * @param integer $user User guid
-		 *
-		 * @return object
-		 */
-		public function GetUserProfilePhotos($user) {
-				$photos             = new OssnFile;
-				$photos->owner_guid = $user;
-				$photos->type       = 'user';
-				$photos->subtype    = 'profile:photo';
-				$photos->order_by   = 'guid DESC';
-				return $photos->getFiles();
-		}
-		/**
-		 * Get user cover photos album
-		 *
-		 * @param integer $user User guid
-		 *
-		 * @return object
-		 */
-		public function GetUserCoverPhotos($user) {
-				$photos             = new OssnFile;
-				$photos->owner_guid = $user;
-				$photos->type       = 'user';
-				$photos->subtype    = 'profile:cover';
-				$photos->order_by   = 'guid DESC';
-				return $photos->getFiles();
-		}
 		/**
 		 * Delete Album
 		 *

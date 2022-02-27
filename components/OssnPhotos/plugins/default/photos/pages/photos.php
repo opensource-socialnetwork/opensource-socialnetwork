@@ -40,7 +40,7 @@ if ($photos) {
             $images = new OssnPhotos;
             $image = $images->GetPhotos($photo->guid);
             if (isset($image->{0}->guid)) {
-                $image = $image->{0}->getURL();
+                $image = $image->{0}->getURL().'?size=album';
 
             } else {
                 $image = ossn_site_url() . 'components/OssnPhotos/images/nophoto-album.png';

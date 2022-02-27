@@ -114,9 +114,9 @@ class OssnPhotos extends OssnFile {
 		 * @return object;
 		 */
 		public function GetPhoto($photo) {
-				$this->file_id = $photo;
+				$this->guid = $photo;
 				$this->type    = 'object';
-				return $this->fetchFile();
+				return $this->getFile();
 		}
 
 		/**
@@ -126,9 +126,9 @@ class OssnPhotos extends OssnFile {
 		 */
 		public function deleteProfilePhoto() {
 				if(isset($this->photoid)) {
-						$this->file_id = $this->photoid;
+						$this->guid    = $this->photoid;
 						$this->entity  = new OssnEntities();
-						$file          = $this->fetchFile();
+						$file          = $this->getFile();
 						$source        = ossn_get_userdata("user/{$file->owner_guid}/{$file->value}");
 
 						//delete cropped photos
@@ -156,12 +156,12 @@ class OssnPhotos extends OssnFile {
 		 */
 		public function deleteProfileCoverPhoto() {
 				if(isset($this->photoid)) {
-						$this->file_id = $this->photoid;
+						$this->guid    = $this->photoid;
 						$this->entity  = new OssnEntities();
-						$file          = $this->fetchFile();
+						$file          = $this->getFile();
 						$source        = ossn_get_userdata("user/{$file->owner_guid}/{$file->value}");
 
-						if($this->deleteEntity($this->file_id)) {
+						if($this->deleteEntity($this->guid)) {
 								//delete file
 								unlink($source);
 								$params['photo'] = get_object_vars($file);
@@ -181,9 +181,9 @@ class OssnPhotos extends OssnFile {
 		 */
 		public function deleteAlbumPhoto() {
 				if(isset($this->photoid)) {
-						$this->file_id = $this->photoid;
+						$this->guid = $this->photoid;
 						$this->entity  = new OssnEntities();
-						$file          = $this->fetchFile();
+						$file          = $this->getFile();
 						$source        = ossn_get_userdata("object/{$file->owner_guid}/{$file->value}");
 
 						//delete croped photos
@@ -253,4 +253,33 @@ class OssnPhotos extends OssnFile {
 				}
 				return false;
 		}
+		
+		/**
+		 * Get user profile photos album
+		 *
+		 * @param integer $user User guid
+		 *
+		 * @return object
+		 */
+		public function GetUserProfilePhotos($user) {
+				$this->owner_guid = $user;
+				$this->type       = 'user';
+				$this->subtype    = 'profile:photo';
+				$this->order_by   = 'guid DESC';
+				return $this->getFiles();
+		}
+		/**
+		 * Get user cover photos album
+		 *
+		 * @param integer $user User guid
+		 *
+		 * @return object
+		 */
+		public function GetUserCoverPhotos($user) {
+				$this->owner_guid = $user;
+				$this->type       = 'user';
+				$this->subtype    = 'profile:cover';
+				$this->order_by   = 'guid DESC';
+				return $photos->getFiles();
+		}			
 } //class

@@ -203,8 +203,8 @@ function ossn_groups_page($pages) {
 			case 'cover':
 				if(isset($pages[1]) && !empty($pages[1])) {
 						$File          = new OssnFile();
-						$File->file_id = $pages[1];
-						$File          = $File->fetchFile();
+						$File->guid    = $pages[1];
+						$File          = $File->getFile();
 
 						if($File && $File->type == 'object' && $File->subtype == 'file:cover') {
 								$File->output();
