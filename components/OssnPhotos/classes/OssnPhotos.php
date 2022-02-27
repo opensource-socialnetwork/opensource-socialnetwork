@@ -242,7 +242,7 @@ class OssnPhotos extends OssnFile {
 		 * @return boolean
 		 */
 		public function getURL(): bool|string {
-				if($this->subtype == 'file:ossn:aphoto' || $this->subtype == 'file:profile:photo') {
+				if($this->subtype == 'file:ossn:aphoto' || $this->subtype == 'file:profile:photo' || $this->subtype == 'file:profile:cover') {
 						$image = str_replace('album/photos/', '', $this->value);
 						if($this->isCDN()) {
 								$manifest = $this->getManifest();
@@ -280,6 +280,6 @@ class OssnPhotos extends OssnFile {
 				$this->type       = 'user';
 				$this->subtype    = 'profile:cover';
 				$this->order_by   = 'guid DESC';
-				return $photos->getFiles();
+				return $this->getFiles();
 		}			
 } //class
