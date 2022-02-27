@@ -15,8 +15,8 @@ echo '<div class="ossn-photos">';
 echo '<h2>' . ossn_print('profile:covers') . '</h2>';
 if ($photos) {
     foreach ($photos as $photo) {
-        $imagefile = str_replace('profile/cover/', '', $photo->value);
-        $image = ossn_site_url() . "album/getcover/{$params['user']->guid}/{$imagefile}?type=1";
+        $image = $photo->getURL();
+        $image = "{$image}?type=1";
 		//[B] img js ossn_cache cause duplicate requests #1886
 		$image = ossn_add_cache_to_url($image);		
         $view_url = ossn_site_url() . 'photos/cover/view/' . $photo->guid;
