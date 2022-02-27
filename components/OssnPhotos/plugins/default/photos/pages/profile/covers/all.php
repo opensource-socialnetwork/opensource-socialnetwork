@@ -9,7 +9,7 @@
  * @link      https://www.opensource-socialnetwork.org/
  */
 
-$albums = new OssnAlbums;
+$albums = new OssnPhotos();
 $photos = $albums->GetUserCoverPhotos($params['user']->guid);
 echo '<div class="ossn-photos">';
 echo '<h2>' . ossn_print('profile:covers') . '</h2>';
