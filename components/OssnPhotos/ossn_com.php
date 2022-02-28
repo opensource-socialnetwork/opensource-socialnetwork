@@ -201,7 +201,7 @@ function ossn_notification_like_photo($hook, $type, $return, $notification) {
 		if(preg_match('/comments/i', $notification->type)) {
 				$iconType = 'comment';
 		}
-		$url = ossn_site_url("photos/view/{$notif->subject_guid}");
+		$url = ossn_site_url("photos/view/{$notification->subject_guid}");
 		return ossn_plugin_view('notifications/template/view', array(
 				'iconURL'   => $user->iconURL()->small,
 				'guid'      => $notification->guid,
