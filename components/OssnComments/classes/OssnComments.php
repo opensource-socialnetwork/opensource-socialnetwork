@@ -77,12 +77,13 @@ class OssnComments extends OssnAnnotation {
 								$image                = base64_decode($this->comment_image);
 								$file                 = ossn_string_decrypt(base64_decode($image));
 								$file_path            = rtrim(ossn_validate_filepath($file), '/');
+								$full_path            = ossn_get_userdata("tmp/photos/{$file_path}");
 								//[B] Comment Static photo should have only filename no fullpath #2090
 								$_FILES['attachment'] = array(
 										'name'     => $file_path,
-										'tmp_name' => ossn_get_userdata("tmp/photos/{$file_path}"),
+										'tmp_name' => $full_path,
 										'type'     => 'image/jpeg',
-										'size'     => filesize($file_path),
+										'size'     => filesize($full_path),
 										'error'    => UPLOAD_ERR_OK,
 								);
 								$file          = new OssnFile();
@@ -104,7 +105,7 @@ class OssnComments extends OssnAnnotation {
 								$file->owner_guid = $this->getAnnotationId();
 								if($file->owner_guid !== 0) {
 										$file->addFile();
-										unlink($file_path);
+										unlink($full_path);
 										unset($_FILES['attachment']);
 								}
 						}
