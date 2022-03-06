@@ -13,19 +13,21 @@ $group = input('group');
 $group = ossn_get_group_by_guid($group);
 if(ossn_loggedin_user()->guid !== $group->owner_guid && !ossn_isAdminLoggedin()) {
 		echo json_encode(array(
-				'type' => 0
+				'success' => 0,
+				'error' => ossn_print('group:delete:cover:error')
 		));
 		exit;
 }
 if($group->UploadCover()) {
 		echo json_encode(array(
-				'type' => 1,
+				'success' => 1,
 				'url' => $group->coverURL()
 		));
 		exit;
 } else {
 		echo json_encode(array(
-				'type' => 0
+				'success' => 0,
+				'error' => $group->OssnFile->getFileUploadError($group->OssnFile->error)
 		));
 		exit;
 }
