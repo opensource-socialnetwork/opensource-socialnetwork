@@ -68,7 +68,11 @@ class OssnFile extends OssnEntities {
 						$file       = $_FILES[$name];
 						$this->file = $file;
 				} else {
-						$this->error = $_FILES[$name]['error'];
+						if($_FILES[$name]['size'] == 0) {
+								$this->error = UPLOAD_ERR_EXTENSION;
+						} else {
+								$this->error = $_FILES[$name]['error'];
+						}
 				}
 		}
 
