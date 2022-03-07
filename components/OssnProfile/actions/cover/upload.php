@@ -8,6 +8,7 @@
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
  * @link      https://www.opensource-socialnetwork.org/
  */
+header('Content-Type: application/json');
 $file             = new OssnFile();
 $user             = ossn_loggedin_user();
 $user             = ossn_user_by_guid($user->guid);
@@ -40,9 +41,14 @@ if($fileguid = $file->addFile()) {
 		$ossnprofile = new OssnProfile();
 		$ossnprofile->ResetCoverPostition($file->owner_guid);
 		$ossnprofile->addPhotoWallPost($file->owner_guid, $newcover->{0}->guid, 'cover:photo');
-		echo 1;
+		echo json_encode(array(
+				'success' => 1,
+		));
 		exit();
 } else {
-		echo 0;
+		echo json_encode(array(
+				'success' => 0,
+				'error' => $file->getFileUploadError($file->error)
+		));
 		exit();
 }
