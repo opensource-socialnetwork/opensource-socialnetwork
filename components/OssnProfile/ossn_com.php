@@ -163,7 +163,7 @@ function profile_edit_page($hook, $type, $return, $params) {
 		if($page == 'edit') {
 				$section 	  = input('section', '', 'basic');
 				$user['user'] = $params['user'];
-				if($user['user']->guid !== ossn_loggedin_user()->guid) {
+				if(!ossn_isLoggedin() || $user['user']->guid !== ossn_loggedin_user()->guid) {
 						redirect(REF);
 				}
 				$params = array(
