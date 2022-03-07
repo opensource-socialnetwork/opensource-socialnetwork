@@ -14,16 +14,12 @@ Ossn.RegisterStartupFunction(function() {
 			var $url = Ossn.site_url + 'action/group/cover/upload';
 			var fileInput = $('#group-upload-cover').find("input[type='file']")[0],
 				file = fileInput.files && fileInput.files[0];
+			var image_url = window.URL.createObjectURL(file);
 
-			if (file) {
-				var img = new Image();
-
-				img.src = window.URL.createObjectURL(file);
-
-				img.onload = function() {
+			loadGroupCover(image_url).then(
+				function resolved(img) {
 					var width = img.naturalWidth,
 						height = img.naturalHeight;
-
 					window.URL.revokeObjectURL(img.src);
 					if (width < 1040 || height < 300) {
 						Ossn.trigger_message(Ossn.Print('profile:cover:err1:detail'), 'error');
@@ -34,6 +30,9 @@ Ossn.RegisterStartupFunction(function() {
 							type: 'POST',
 							data: formData,
 							async: true,
+							cache: false,
+							contentType: false,
+							processData: false,
 							beforeSend: function(xhr, obj) {
 								if ($('.ossn-group-cover').length == 0) {
 									$('.header-users').attr('style', 'opacity:0.7;');
@@ -43,31 +42,53 @@ Ossn.RegisterStartupFunction(function() {
 								$('.ossn-group-profile').find('.groups-buttons').find('a').hide();
 								$('.ossn-group-cover').prepend('<div class="ossn-covers-uploading-annimation"> <div class="ossn-loading"></div></div>');
 							},
-							cache: false,
-							contentType: false,
-							processData: false,
 							success: function(callback) {
-								if (callback['type'] == 1) {
-									if ($('.ossn-group-cover').length == 0) {
-										location.reload();
-									} else {
-										$('.ossn-group-cover').attr('style', '');
-										$('.ossn-covers-uploading-annimation').remove();
-										$('.ossn-group-profile').find('.groups-buttons').find('a').show();
-										$('.ossn-group-cover').find('img').attr('style', '');
-										$('.ossn-group-cover').find('img').show();
-										$('.ossn-group-cover').find('img').attr('src', callback['url']);
-									}
+								if(callback['success']) {
+									$time = $.now();
+									$('.ossn-group-cover').find('img').attr('style', '');
+									$('.ossn-group-cover').find('img').show();
+									$('.ossn-group-cover').find('img').attr('src', callback['url']);
+								} else {
+									// server side errors like exceeded max_upload_size go here
+									Ossn.trigger_message(callback['error'], 'error');
 								}
-								if (callback['type'] == 0) {
+								$('.ossn-group-cover').attr('style', '');
+								$('.ossn-covers-uploading-annimation').remove();
+								$('.ossn-group-profile').find('.groups-buttons').find('a').show();
+							},
+							error: function(xhr, status, error) {
+								// network errors
+								if (error == 'Internal Server Error' || error !== '') {
 									Ossn.MessageBox('syserror/unknown');
 								}
-							}
+							},
 						});
 					}
-				};
+				},
+				function rejected() {
+					// client side errors like invalid image
+					Ossn.trigger_message(Ossn.Print('upload:file:error:extension'), 'error');
+				}
+			);
+
+			function loadGroupCover(url) {
+				// Define the promise
+				const imgPromise = new Promise(function imgPromise(resolve, reject) {
+					// Create the image
+					const imgElement = new Image();
+					// When image is loaded, resolve the promise
+					imgElement.addEventListener('load', function imgOnLoad() {
+						resolve(this);
+					});
+					// When there's an error during load, reject the promise
+					imgElement.addEventListener('error', function imgOnError() {
+						reject();
+					})
+					// Assign URL
+					imgElement.src = url;
+				});
+				return imgPromise;
 			}
-			return false;
 		});
 
 		$('#add-cover-group').on('click', function(e) {
