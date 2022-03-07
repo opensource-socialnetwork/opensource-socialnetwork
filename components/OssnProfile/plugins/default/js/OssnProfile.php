@@ -41,34 +41,33 @@ Ossn.RegisterStartupFunction(function() {
 				contentType: false,
 				processData: false,
 				success: function(callback) {
-					$time = $.now();
+					if(callback['success']) {
+						$time = $.now();
+						$imageurl = $('.profile-photo').find('img').attr('src') + '?' + $time;
+						$('.profile-photo').find('img').attr('src', $imageurl);
+						$topbar_icon_url = $('.ossn-topbar-menu').find('img').attr('src') + '?' + $time;
+						$('.ossn-topbar-menu').find('img').attr('src', $topbar_icon_url);
+					} else {
+						// errors like file too large, not allowed type, etc...
+						Ossn.trigger_message(callback['error'], 'error');
+					}
 					$('.user-photo-uploading').attr('class', 'upload-photo').hide();
-					$imageurl = $('.profile-photo').find('img').attr('src') + '?' + $time;
-					$('.profile-photo').find('img').attr('src', $imageurl);
-					$topbar_icon_url = $('.ossn-topbar-menu').find('img').attr('src') + '?' + $time;
-					$('.ossn-topbar-menu').find('img').attr('src', $topbar_icon_url);
 				}
 			});
-
-			return false;
 		});
 
 		$("#upload-cover").on('submit', function(event) {
 			event.preventDefault();
-			//console.log('no');
 			var formData = new FormData($(this)[0]);
 			var $url = Ossn.site_url + 'action/profile/cover/upload';
 			var fileInput = $('#upload-cover').find("input[type=file]")[0],
 				file = fileInput.files && fileInput.files[0];
+			var image_url = window.URL.createObjectURL(file);
 
-			if (file) {
-				var img = new Image();
-				img.src = window.URL.createObjectURL(file);
-
-				img.onload = function() {
+			loadProfileCover(image_url).then(
+				function resolved(img) {
 					var width = img.naturalWidth,
 						height = img.naturalHeight;
-
 					window.URL.revokeObjectURL(img.src);
 					if (width < 1040 || height < 300) {
 						Ossn.trigger_message(Ossn.Print('profile:cover:err1:detail'), 'error');
@@ -87,21 +86,53 @@ Ossn.RegisterStartupFunction(function() {
 								$('.profile-cover-img').attr('class', 'user-cover-uploading');
 							},
 							success: function(callback) {
-								$time = $.now();
+								if(callback['success']) {
+									$time = $.now();
+									$('.profile-cover').find('img').addClass('profile-cover-img');
+									$imageurl = $('.profile-cover').find('img').attr('src') + '?' + $time;
+									$('.profile-cover').find('img').attr('src', $imageurl);
+									$('.profile-cover').find('img').attr('style', '');
+									$('.profile-cover').find('img').show();
+								} else {
+									// server side errors like exceeded max_upload_size go here
+									Ossn.trigger_message(callback['error'], 'error');
+								}
 								$('.profile-cover').find('img').removeClass('user-cover-uploading');
-								$('.profile-cover').find('img').addClass('profile-cover-img');
-								$imageurl = $('.profile-cover').find('img').attr('src') + '?' + $time;
-								$('.profile-cover').find('img').attr('src', $imageurl);
-								$('.profile-cover').find('img').attr('style', '');
-								$('.profile-cover').find('img').show();
 								$('.ossn-covers-uploading-annimation').remove();
+							},
+							error: function(xhr, status, error) {
+								// network errors
+								if (error == 'Internal Server Error' || error !== '') {
+									Ossn.MessageBox('syserror/unknown');
+								}
 							},
 						});
 					}
-				};
-			}
+				},
+				function rejected() {
+					// client side errors like invalid image
+					Ossn.trigger_message(Ossn.Print('upload:file:error:extension'), 'error');
+				}
+			);
 
-			return false;
+			function loadProfileCover(url) {
+				// Define the promise
+				const imgPromise = new Promise(function imgPromise(resolve, reject) {
+					// Create the image
+					const imgElement = new Image();
+					// When image is loaded, resolve the promise
+					imgElement.addEventListener('load', function imgOnLoad() {
+						resolve(this);
+					});
+					// When there's an error during load, reject the promise
+					imgElement.addEventListener('error', function imgOnError() {
+						reject();
+					})
+					// Assign URL
+					imgElement.src = url;
+				});
+				return imgPromise;
+			}
 		});
 
 		/* Profile extra menu */
