@@ -8,6 +8,7 @@
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
  * @link      https://www.opensource-socialnetwork.org/
  */
+header('Content-Type: application/json');
 $profile = new OssnProfile();
 $file    = new OssnFile();
 
@@ -69,9 +70,14 @@ if($fileguid = $file->addFile()) {
 						}
 				}
 		}
-		echo 1;
+		echo json_encode(array(
+				'success' => 1,
+		));
 		exit();
 } else {
-		echo 0;
+		echo json_encode(array(
+				'success' => 0,
+				'error' => $file->getFileUploadError($file->error)
+		));
 		exit();
 }
