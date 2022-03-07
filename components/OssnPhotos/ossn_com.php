@@ -486,7 +486,7 @@ function ossn_album_page_handler($album) {
 						);
 						$control_gbutton = ossn_plugin_view('output/url', $gallery_button);
 						//shows add photos if owner is loggedin user
-						if(ossn_loggedin_user()->guid == $owner->owner_guid) {
+						if(ossn_isLoggedin() && ossn_loggedin_user()->guid == $owner->owner_guid) {
 								$addphotos = array(
 										'text'     => ossn_print('add:photos'),
 										'href'     => 'javascript:void(0);',
