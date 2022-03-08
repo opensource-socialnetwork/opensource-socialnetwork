@@ -29,8 +29,31 @@ class OssnWall extends OssnObject {
 				if(strlen($post)){
 						$canpost = true;
 				}
-				if(!empty($_FILES['ossn_photo']['tmp_name'])){
-						$canpost = true;
+				if(isset($_FILES['ossn_photo'])) {
+						$this->OssnFile->setExtension(array(
+								'jpg',
+								'png',
+								'jpeg',
+								'jfif',
+								'gif',
+								'webp',
+						));
+						if(in_array(strtolower($this->OssnFile->getFileExtension($_FILES['ossn_photo']['name'])), $this->OssnFile->fileExtension)) {
+								if($_FILES['ossn_photo']['error'] != 0) {
+										// allowed, but too large, partly loaded, etc.
+										$this->OssnFile->error = $_FILES['ossn_photo']['error'];
+								} else {
+										if($_FILES['ossn_photo']['size'] == 0) {
+												// allowed, but empty image
+												$this->OssnFile->error = UPLOAD_ERR_EXTENSION;
+										} else {
+												$canpost = true;
+										}
+								}
+						} else { 
+								// unallowed file type
+								$this->OssnFile->error = UPLOAD_ERR_EXTENSION;
+						}
 				}
 				if(empty($this->owner_guid) || empty($this->poster_guid) || $canpost === false){
 						return false;
@@ -79,14 +102,6 @@ class OssnWall extends OssnObject {
 								$this->OssnFile->subtype    = 'wallphoto';
 								$this->OssnFile->setFile('ossn_photo');
 								$this->OssnFile->setPath('ossnwall/images/');
-								$this->OssnFile->setExtension(array(
-										'jpg',
-										'png',
-										'jpeg',
-										'jfif',
-										'gif',
-										'webp',
-								));
 								if(ossn_file_is_cdn_storage_enabled()) {
 									$this->OssnFile->setStore('cdn');
 								}
