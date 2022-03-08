@@ -105,7 +105,7 @@ function ossn_topbar_dropdown(){
  */
 function ossn_makesure_confirmation(){
 	$(document).ready(function(){
-		$('.ossn-make-sure').on('click', function(e){
+		$('body').on('click', '.ossn-make-sure', function(e){
 			e.preventDefault();
 			var msg = 'ossn:exception:make:sure';
 			if(typeof $(this).data('ossn-msg') !== "undefined"){
