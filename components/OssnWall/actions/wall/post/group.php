@@ -38,8 +38,15 @@ if ($OssnWall->Post($post, $friends, $location, OSSN_PRIVATE)) {
 		//no need to show message on success.
 		//3.x why not? $arsalanshah
 		ossn_trigger_message(ossn_print('post:created'));
+		if(isset($OssnWall->OssnFile) && isset($OssnWall->OssnFile->error)) {
+				ossn_trigger_message($OssnWall->OssnFile->getFileUploadError($OssnWall->OssnFile->error), 'error');
+		}
 		redirect(REF);
 } else {
-    ossn_trigger_message(ossn_print('post:create:error'), 'error');
-    redirect(REF);
+		if(isset($OssnWall->OssnFile) && isset($OssnWall->OssnFile->error)) {
+				ossn_trigger_message($OssnWall->OssnFile->getFileUploadError($OssnWall->OssnFile->error), 'error');
+		} else {
+				ossn_trigger_message(ossn_print('post:create:error'), 'error');
+		}
+		redirect(REF);
 }
