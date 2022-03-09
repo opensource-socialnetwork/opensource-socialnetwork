@@ -479,12 +479,11 @@ function ossn_comment_page($pages) {
 				break;
 			case 'attachment':
 				header('Content-Type: application/json');
-				if(isset($_FILES['file']['tmp_name']) && ($_FILES['file']['error'] == UPLOAD_ERR_OK && $_FILES['file']['size'] !== 0) && ossn_isLoggedin()) {
-						//code of comment picture preview ignores EXIF header #1056
-						$OssnFile = new OssnFile();
-						$OssnFile->resetRotation($_FILES['file']['tmp_name']);
-
+				$OssnFile = new OssnFile();
+				if(!empty($_FILES['file']['tmp_name']) && ($_FILES['file']['error'] == UPLOAD_ERR_OK && $_FILES['file']['size'] !== 0) && ossn_isLoggedin()) {
 						if(preg_match('/image/i', $_FILES['file']['type'])) {
+								//code of comment picture preview ignores EXIF header #1056
+								$OssnFile->resetRotation($_FILES['file']['tmp_name']);
 								$file    = $_FILES['file']['tmp_name'];
 								$unique  = time() . '-' . substr(md5(time()), 0, 6) . '.jpg';
 								$newfile = ossn_get_userdata("tmp/photos/{$unique}");
@@ -497,15 +496,28 @@ function ossn_comment_page($pages) {
 										$file = base64_encode(ossn_string_encrypt($unique));
 										echo json_encode(array(
 												'file' => base64_encode($file),
-												'type' => 1,
+												'success' => 1,
 										));
 										exit();
 								}
-						}
+						} 
 				}
+				if(empty($_FILES['file']['tmp_name'])) {
+						$error = $OssnFile->getFileUploadError($_FILES['file']['error']);
+				} else {
+						$error = $OssnFile->getFileUploadError(UPLOAD_ERR_EXTENSION);
+				}
+				$params = array(
+						'title' => ossn_print('system:error:title'),
+						'contents' => $error,
+						'callback' => false,
+						'control' => false,
+				);
 				echo json_encode(array(
-						'type' => 0,
+						'error' => ossn_plugin_view('output/ossnbox', $params),
+						'success' => 0,
 				));
+				exit();
 				break;
 			case 'staticimage':
 				$image = base64_decode(input('image'));
@@ -559,6 +571,8 @@ function ossn_comment_page($pages) {
 						echo ossn_plugin_view('output/ossnbox', $params);
 				}
 				break;
+			default:
+				ossn_error_page();
 		}
 }
 /**
