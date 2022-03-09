@@ -211,12 +211,7 @@ function ossn_comment_delete_handler() {
     });
 }
 Ossn.CommentImage = function($container, $ftype) {
-    if ($ftype == 'post') {
-        $ftype = 'p';
-    }
-    if ($ftype == 'entity') {
-        $ftype = 'e';
-    }
+	$ftype = $ftype[0]; // '[p]ost' or '[e]ntity' or '[o]bject'
     $(document).ready(function() {
         $("#ossn-comment-image-file-" + $ftype + "" + $container).on('change', function(event) {
             event.preventDefault();
@@ -236,27 +231,33 @@ Ossn.CommentImage = function($container, $ftype) {
                 contentType: false,
                 processData: false,
                 success: function(callback) {
-                    if (callback['type'] == 1) {
-                        $('#comment-container-' + $ftype + '' + $container).find('input[name="comment-attachment"]').val(callback['file']);
-                        $('#ossn-comment-attachment-' + $ftype + '' + $container).find('.image-data')
-                            .html('<img src="' + Ossn.site_url + 'comment/staticimage?image=' + callback['file'] + '" />');
-                    }
-                    if (callback['type'] == 0) {
-                        $('#comment-container-' + $ftype + '' + $container).find('input[name="comment-attachment"]').val('');
-                        $('#comment-attachment-container-' + $ftype + '' + $container).hide();
-                        Ossn.MessageBox('syserror/unknown');
-                    }
-                    Ossn.trigger_callback('comment', 'attachment:image:callback', {
-                        guid: $container,
-                        type: $ftype,
-                        response: callback,
-                    });
-                },
+					if (callback['success']) {
+						$('#comment-container-' + $ftype + '' + $container).find('input[name="comment-attachment"]').val(callback['file']);
+						$('#ossn-comment-attachment-' + $ftype + '' + $container).find('.image-data')
+							.html('<img src="' + Ossn.site_url + 'comment/staticimage?image=' + callback['file'] + '" />');
+					} else {
+						if (callback['error']) { 
+							$('#comment-container-' + $ftype + '' + $container).find('input[name="comment-attachment"]').val('');
+							$('#comment-attachment-container-' + $ftype + '' + $container).hide();
+							$('.ossn-message-box').html(callback['error']).fadeIn();
+						} else {
+							Ossn.MessageBox('syserror/unknown');
+						}
+					}
+					Ossn.trigger_callback('comment', 'attachment:image:callback', {
+						guid: $container,
+						type: $ftype,
+						response: callback,
+					});
+				},
+				error: function(xhr, status, error) {
+					if (error == 'Internal Server Error' || error !== '') {
+						Ossn.MessageBox('syserror/unknown');
+					}
+				},
             });
-
         });
     });
-
 };
 
 function ossn_comment_edit() {
