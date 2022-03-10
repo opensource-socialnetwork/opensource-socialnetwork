@@ -248,6 +248,7 @@ Um Dein Passwort zurückzusetzen klicke bitte auf den folgenden Link oder kopier
 	'upload:file:error:cant_write' => 'Die hochgeladene Datei kann nicht gespeichert werden.',
 	'upload:file:error:extension' => 'Die hochgeladene Datei kann nicht gespeichert werden.',
 	'upload:file:error:unknown' => 'Der Hochladen hat aus unbekannten Gründen nicht funktioniert .',
+	'upload:file:error:multiple' => '%s von %s Uploads sind fehlgeschlagen.',
 	
 	'ossn:post:size:exceed' => 'Die Aktion überschreitet die erlaubte Länge.',
 	
