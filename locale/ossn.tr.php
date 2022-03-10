@@ -251,6 +251,7 @@ Bağlantı çalışmıyorsa kopyalayıp adres çubuğuna yapıştırarak deneyeb
 	'upload:file:error:cant_write' => 'Yüklenen dosyalar kaydedilemiyor.',
 	'upload:file:error:extension' => 'Yüklenen dosyalar kaydedilemiyor.',
 	'upload:file:error:unknown' => 'Dosyayı yüklerken hata oluştu.',
+	'upload:file:error:multiple' => "%s yüklemeden %s'ü başarısız oldu.",
 	
 	'ossn:post:size:exceed' => 'Yapmak istediğiniz işlem boyut sınırını aşıyor.',
 	
