@@ -325,6 +325,7 @@ Please click the link below to reset password or copy the link and paste into yo
 	'php:upload_err_no_tmp_dir' => '找不到暫存資料夾',
 	'php:upload_err_cant_write' => '檔案寫入磁碟失敗',
 	'php:upload_err_extension' => 'PHP 延伸外掛停止了這個檔案上傳',
+	'upload:file:error:multiple' => '%s 次上傳中有 %s 次失敗。',
 	
 	/*
 	 * List of ISO 639-1 language codes
