@@ -248,6 +248,7 @@ $he = array(
 	'upload:file:error:cant_write' => 'לא ניתן לשמור את הקובץ שהועלה.',
 	'upload:file:error:extension' => 'סיומת קובץ לא תקינה.',
 	'upload:file:error:unknown' => 'העלאת קובץ נכשלה.',
+	'upload:file:error:multiple' => '%s מתוך %s העלאות נכשלו.',
 	
 	'ossn:post:size:exceed' => 'הפעולה שביקשת מעבירה נתונים מעבר לגבול המותר.',
 	
