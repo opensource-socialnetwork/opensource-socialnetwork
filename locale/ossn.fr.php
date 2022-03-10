@@ -248,6 +248,7 @@ S'il vous plaît cliquez sur le lien ci-dessous pour réinitialiser le mot de pa
 	'upload:file:error:cant_write' => "Impossible de sauvegarder le fichier envoyé.",
 	'upload:file:error:extension' => "Impossible de sauvegarder le fichier envoyé.",
 	'upload:file:error:unknown' => "L'envoi du fichier a échoué.",
+	'upload:file:error:multiple' => '%s téléchargements sur %s ont échoué.',
 	
 	'ossn:post:size:exceed' => "L'action que vous avez demandé dépasse la limite de taille.",
 	
