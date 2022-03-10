@@ -248,7 +248,8 @@ Please click the link below to reset password or copy the link and paste into yo
     'upload:file:error:cant_write' => 'Cannot save the uploaded file.',
     'upload:file:error:extension' => 'Cannot save the uploaded file.',
     'upload:file:error:unknown' => 'The file upload failed.',
-    
+ 	'upload:file:error:multiple' => '%s out of %s uploads failed.',
+   
     'ossn:post:size:exceed' => 'The action you requested exceeds the size limit.',
     
     'admin:com:installer' => 'Component Installer',
