@@ -250,6 +250,7 @@ Haga clic en el enlace de abajo para restablecer la contraseña o copie y pegue 
 	'upload:file:error:cant_write' => 'No se puede guardar el archivo cargado.',
 	'upload:file:error:extension' => 'No se puede guardar el archivo cargado.',
 	'upload:file:error:unknown' => 'Error en la carga del archivo.',
+	'upload:file:error:multiple' => '%s de cada %s cargas fallaron.',
 	
 	'ossn:post:size:exceed' => 'La acción solicitada excede el límite de tamaño.',
 	
