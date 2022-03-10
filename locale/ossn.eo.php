@@ -255,6 +255,7 @@ Bonvolu alklaki la ligilon suben por novigi vian pasvorton aŭ kopii kaj alglui 
 	'upload:file:error:cant_write' => 'Ne povas konservi alŝutita dosiero.',
 	'upload:file:error:extension' => 'Ne povas konservi alŝutita dosiero.',
 	'upload:file:error:unknown' => 'La dosiera alŝuto paneis.',
+	'upload:file:error:multiple' => '%s el %s alŝutoj malsukcesis.',
 	
 	'ossn:post:size:exceed' => 'La agadon, kiun vi petis, transpaŝis la grandlimon.',
 	
