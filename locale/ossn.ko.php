@@ -248,6 +248,7 @@ $ko = array(
 	'upload:file:error:cant_write' => '올린 파일을 저장할 수 없습니다.',
 	'upload:file:error:extension' => '올린 파일을 저장할 수 없습니다.',
 	'upload:file:error:unknown' => '파일을 올리지 못했습니다.',
+	'upload:file:error:multiple' => '%s개 중 %s개의 업로드가 실패했습니다.',
 	
 	'ossn:post:size:exceed' => '요청하신 파일 크기가 제한을 넘었습니다.',
 	
