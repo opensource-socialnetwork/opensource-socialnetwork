@@ -248,6 +248,7 @@ Per favore premi sul collegamento sottostante per reimpostare la tua password op
 	'upload:file:error:cant_write' => 'Impossibile salvare il file caricato.',
 	'upload:file:error:extension' => 'Impossibile salvare il file caricato.',
 	'upload:file:error:unknown' => 'Caricamento file fallito.',
+	'upload:file:error:multiple' => '%s caricamenti su %s non sono riusciti.',
 
 	'ossn:post:size:exceed' => 'L\'azione richiesta supera le dimensioni consentite.',
 
