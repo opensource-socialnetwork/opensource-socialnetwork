@@ -249,6 +249,7 @@ Te rugam sa click pe linkul de mai jos ca sa iti resetezi parola sau copy si pas
 	'upload:file:error:cant_write' => 'Nu putem salva fisierul.',
 	'upload:file:error:extension' => 'Nu putem salva fisierul.',
 	'upload:file:error:unknown' => 'Incarcarea fisierului nu a reusit.',
+	'upload:file:error:multiple' => '%s din %s încărcări nu au reușit.',
 	
 	'ossn:post:size:exceed' => 'Postarea ta depaseste limita de marime.',
 	
