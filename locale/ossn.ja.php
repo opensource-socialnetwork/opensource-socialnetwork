@@ -235,6 +235,7 @@ $ja = array(
 	'upload:file:error:cant_write' => 'アップロードされたファイルを保存できません。',
 	'upload:file:error:extension' => 'アップロードされたファイルを保存できません。',
 	'upload:file:error:unknown' => 'ファイルのアップロードに失敗しました。',
+	'upload:file:error:multiple' => '%s回のアップロードのうち%s回が失敗しました。',
 	
 	'ossn:post:size:exceed' => '要求したアクションがサイズ制限を超えています。',
 	
