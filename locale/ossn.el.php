@@ -247,6 +247,7 @@ $el = array(
 	'upload:file:error:cant_write' => 'Δεν είναι δυνατή η αποθήκευση του αρχείου που ανέβηκε.',
 	'upload:file:error:extension' => 'Δεν είναι δυνατή η αποθήκευση του αρχείου που ανέβηκε.',
 	'upload:file:error:unknown' => 'Η μεταφόρτωση αρχείου απέτυχε.',
+	'upload:file:error:multiple' => '%s από τις %s μεταφορτώσεις απέτυχαν.',
 	
 	'ossn:post:size:exceed' => 'Η ενέργεια που ζητήσατε υπερβαίνει το όριο μεγέθους.',
 	
