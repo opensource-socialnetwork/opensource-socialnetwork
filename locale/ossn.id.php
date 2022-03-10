@@ -227,6 +227,7 @@ Silakan klik tautan di bawah untuk mengatur ulang kata sandi atau salin tautan d
 	'upload:file:error:cant_write' => 'Tidak dapat menyimpan file yang diunggah.',
 	'upload:file:error:extension' => 'Tidak dapat menyimpan file yang diunggah.',
 	'upload:file:error:unknown' => 'Pengunggahan file gagal.',
+	'upload:file:error:multiple' => '%s dari %s unggahan gagal.',
 	
 	'ossn:post:size:exceed' => 'Tindakan yang Anda minta melebihi batas ukuran.',
 	
