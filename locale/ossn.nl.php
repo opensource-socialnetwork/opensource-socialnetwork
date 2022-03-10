@@ -252,6 +252,7 @@ Klik op de link hieronder om je wachtwoord te resetten:
 	'upload:file:error:cant_write' => 'Kan het geuploade bestand niet opslaan.',
 	'upload:file:error:extension' => 'Kan het geuploade bestand niet opslaan.',
 	'upload:file:error:unknown' => 'De bestandsupload is mislukt.',
+	'upload:file:error:multiple' => '%s van de %s uploads zijn mislukt.',
 	
 	'ossn:post:size:exceed' => 'De actie die u wilde uitvoern overschrijd de maximum bestandsgrote.',
 	
