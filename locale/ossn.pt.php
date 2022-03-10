@@ -247,6 +247,7 @@ Por favor, clique no link abaixo para redefinir a senha ou copie o link e cole n
 	'upload:file:error:cant_write' => 'Não é possível salvar o arquivo carregado.',
 	'upload:file:error:extension' => 'Não é possível salvar o arquivo carregado.',
 	'upload:file:error:unknown' => 'O upload do arquivo falhou.',
+	'upload:file:error:multiple' => '%s de %s uploads falharam.',
 	
 	'ossn:post:size:exceed' => 'A ação requisitada excede o limite de tamanho.',
 	
