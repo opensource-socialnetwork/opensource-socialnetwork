@@ -249,6 +249,7 @@ $ru = array(
 	'upload:file:error:cant_write' => 'Не получилось сохранить загруженный файл.',
 	'upload:file:error:extension' => 'Не получилось сохранить загруженный файл.',
 	'upload:file:error:unknown' => 'Загрузка файлов не удалась.',
+	'upload:file:error:multiple' => '%s из %s загрузок не удались.',
 	
 	'ossn:post:size:exceed' => 'Действие превышает доступные пределы.',
 	
