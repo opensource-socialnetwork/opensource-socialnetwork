@@ -27,7 +27,6 @@ $OssnClasses = array(
 		'File',
 		'Components',
 		'Menu',
-		'System',
 		'Image',
 );
 foreach($OssnClasses as $class){
