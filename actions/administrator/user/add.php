@@ -17,8 +17,10 @@ $user['password'] = input('password');
 $user['type'] = input('type');
 
 $fields = ossn_user_fields_names();
-foreach($fields['required'] as $field){
-	$user[$field] = input($field);
+if($fields && isset($fields['required'])) {
+		foreach($fields['required'] as $field){
+				$user[$field] = input($field);
+		}
 }
 
 if (!empty($user)) {
@@ -47,10 +49,12 @@ $add->password = $user['password'];
 $add->usertype = $user['type'];
 $add->validated = true;
 
-foreach($fields as $items){
-	foreach($items as $field){
-		$add->{$field} = $user[$field];
-	}
+if($fields) {
+		foreach($fields as $items){
+				foreach($items as $field){
+						$add->{$field} = $user[$field];
+				}
+		}
 }
 
 if (!$add->isUsername($user['username'])) {
