@@ -428,7 +428,9 @@ function ossn_prepare_user_fields($user = '') {
 								}
 						}
 				}
-				return $user_fields;
+				if(isset($user_fields)) {
+						return $user_fields;
+				}
 		}
 		return false;
 }
