@@ -20,8 +20,10 @@ $user['reemail'] = input('email_re');
 $user['password'] = input('password');
 
 $fields = ossn_user_fields_names();
-foreach($fields['required'] as $field){
-	$user[$field] = input($field);
+if($fields && isset($fields['required'])) {
+		foreach($fields['required'] as $field){
+				$user[$field] = input($field);
+		}
 }
 
 if (!empty($user)) {
@@ -52,10 +54,12 @@ $add->password = $user['password'];
 $add->sendactiviation = true;
 $add->validated = false;
 
-foreach($fields as $items){
-	foreach($items as $field){
-		$add->{$field} = $user[$field];
-	}
+if($fields) {
+		foreach($fields as $items){
+				foreach($items as $field){
+						$add->{$field} = $user[$field];
+				}
+		}
 }
 
 if (!$add->isUsername()) {
