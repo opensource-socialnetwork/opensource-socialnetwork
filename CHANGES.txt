@@ -36,6 +36,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v6.2
 * [E] Some small locale fixes. #2087
 * [B] PHP Warning: preg_match(): Compilation failed (#2018). #2086
 * [B] fix creating incomplete wall entities if addPhoto() fails #2088
+* [B] prevent warning if $fields is false #2137 #2136 #2135
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v6.1
 * [B] Undefined array key "HTTP_HOST #2012
