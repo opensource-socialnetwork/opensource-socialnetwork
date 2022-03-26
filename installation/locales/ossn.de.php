@@ -40,7 +40,7 @@ $de = array(
 	'all:files:required' => 'Die Installation ist unvollständig - bitte prüfe, ob es beim Hochladen kein Fehler aufgetreten ist.',
 	
 	'ossn:install:php' => 'PHP ',
-	'ossn:install:old:php' => "Auf dem Server läuft die PHP-Version " . PHP_VERSION . " OSSN braucht PHP 7.0 oder PHP 7.x",
+	'ossn:install:old:php' => "Auf dem Server läuft die PHP-Version " . PHP_VERSION . " OSSN braucht PHP 8.0 oder PHP 8.x",
 	
 	'ossn:install:mysqli' => 'PHP ERWEITERUNG MYSQLI VORHANDEN',
 	'ossn:install:mysqli:required' => 'PHP ERWEITERUNG MYSQLI FEHLT',
