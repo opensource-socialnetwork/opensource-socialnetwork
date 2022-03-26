@@ -40,7 +40,7 @@ $indonesian = array(
 	'all:files:required' => 'Semua file wajib diisi! Silakan cek kembali file Anda.',
 	
 	'ossn:install:php' => 'PHP ',
-	'ossn:install:old:php' => "Anda memiliki PHP versi lama " . PHP_VERSION . " Anda membutuhkan PHP versi 7.0 atau 7.x",
+	'ossn:install:old:php' => "Anda memiliki PHP versi lama " . PHP_VERSION . " Anda membutuhkan PHP versi 8.0 atau 8.x",
 	
 	'ossn:install:mysqli' => 'MYSQLI DIAKTIFKAN',
 	'ossn:install:mysqli:required' => 'PHP EXSENSION MYSQLI DIBUTUHKAN',

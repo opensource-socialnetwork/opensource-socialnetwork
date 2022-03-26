@@ -40,7 +40,7 @@ $korean = array(
 	'all:files:required' => '전체 파일이 다 필요합니다! 파일을 점검하세요.',
 	
 	'ossn:install:php' => 'PHP ',
-	'ossn:install:old:php' => " PHP " . PHP_VERSION . " 은 예전 버전입니다.  PHP 7.0 이나 그 이상이 필요합니다.",
+	'ossn:install:old:php' => " PHP " . PHP_VERSION . " 은 예전 버전입니다.  PHP 8.0 이나 그 이상이 필요합니다.",
 	
 	'ossn:install:mysqli' => 'MYSQLI 켜짐',
 	'ossn:install:mysqli:required' => 'MYSQLI PHP EXTENSION 필요함',
