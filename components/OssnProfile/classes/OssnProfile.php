@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Open Source Social Network
  *
@@ -185,6 +184,10 @@ class OssnProfile extends OssnDatabase {
 				$user->cover_time = time();
 				$user->data->cover_time = $user->cover_time;
 				$user->save();
+			}
+			//[B] missing check if member has a cover image #2093
+			if(!isset($user->cover_guid)){
+				$user->cover_guid = 0;	
 			}
 			$url  = ossn_site_url("cover/{$user->username}/{$user->cover_guid}/".md5($user->cover_time).'.jpg');
 			//[B] img js ossn_cache cause duplicate requests #1886
