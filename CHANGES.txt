@@ -38,6 +38,11 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v6.2
 * [B] fix creating incomplete wall entities if addPhoto() fails #2088
 * [B] prevent warning if $fields is false #2137 #2136 #2135
 * [E] Update PHP version to minimum 8 #2061
+* [B] Comment Static photo should have only filename no fullpath #2090
+* [B] No notification to participants if someone comments on profile photo , cover, album photo #2054
+* [B] jqueryui-datepicker fails on Google translated pages #2036
+* [E] Removal of old upgrade scripts #2085
+* [E] Enhance OssnFile and Include CDN option #2089
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v6.1
 * [B] Undefined array key "HTTP_HOST #2012
