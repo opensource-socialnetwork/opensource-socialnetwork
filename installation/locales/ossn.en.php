@@ -40,7 +40,7 @@ $englsih = array(
 	'all:files:required' => 'All files are required! Please check your files.',
 	
 	'ossn:install:php' => 'PHP ',
-	'ossn:install:old:php' => "You have an old version of PHP " . PHP_VERSION . " You need at least PHP 8.0",
+	'ossn:install:old:php' => "You have an old version of PHP " . PHP_VERSION . " You need minimum PHP 8.0 or 8.x",
 	
 	'ossn:install:mysqli' => 'MYSQLI ENABLED',
 	'ossn:install:mysqli:required' => 'MYSQLI PHP EXTENSION REQUIRED',
