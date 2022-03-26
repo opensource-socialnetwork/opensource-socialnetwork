@@ -20,7 +20,7 @@ $user = $params['user'];
 </div>
 <div>
 	<label> <?php echo ossn_print('username'); ?>  </label>
-	<input type='text' name="username" value="<?php echo $user->username; ?>" style="background:#E8E9EA;" readonly="readonly"/>
+	<input type='text' class="form-control" name="username" value="<?php echo $user->username; ?>" readonly="readonly"/>
 </div>
 <div>
 	<label> <?php echo ossn_print('email'); ?> </label>
