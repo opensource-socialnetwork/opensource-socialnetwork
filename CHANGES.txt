@@ -45,6 +45,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v6.2
 * [E] Enhance OssnFile and Include CDN option #2089
 * [E] fixed different 'readonly' colors #2134
 * [B] missing check if member has a cover image #2093
+* [W] some installation warnings #2018
 
 Special Thanks to Michael Zülsdorff (aka Zetman) (https://www.opensource-socialnetwork.org/u/zetman) for testing and bug reporting, fixing.
 
