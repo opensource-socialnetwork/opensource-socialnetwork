@@ -195,18 +195,18 @@ function profile_search_handler($hook, $type, $return, $params) {
 			$blocked       = "(u.guid NOT IN (SELECT DISTINCT relation_to FROM `ossn_relationships` WHERE relation_from={$loggedin->guid} AND type='userblock') AND u.guid NOT IN (SELECT 	DISTINCT relation_from FROM `ossn_relationships` WHERE relation_to={$loggedin->guid} AND type='userblock'))";
 			
 			$data          = $users->searchUsers(array(
-					'wheres' => "(CONCAT(u.first_name, ' ', u.last_name) LIKE '%{$params['q']}%') AND {$blocked}"
+					'wheres' => "(CONCAT(u.first_name, ' ', u.last_name) LIKE '%{$params['q']}%') AND {$blocked} AND u.activation = ''"
 			));
 			$count         = $users->searchUsers(array(
-					'wheres' => "(CONCAT(u.first_name, ' ', u.last_name) LIKE '%{$params['q']}%') AND {$blocked}",
+					'wheres' => "(CONCAT(u.first_name, ' ', u.last_name) LIKE '%{$params['q']}%') AND {$blocked} AND u.activation = ''",
 					'count' => true
 			));
 		} else {
 			$data          = $users->searchUsers(array(
-					'wheres' => "CONCAT(u.first_name, ' ', u.last_name) LIKE '%{$params['q']}%'"
+					'wheres' => "(CONCAT(u.first_name, ' ', u.last_name) LIKE '%{$params['q']}%') AND u.activation = ''"
 			));
 			$count         = $users->searchUsers(array(
-					'wheres' => "CONCAT(u.first_name, ' ', u.last_name) LIKE '%{$params['q']}%'",
+					'wheres' => "(CONCAT(u.first_name, ' ', u.last_name) LIKE '%{$params['q']}%') AND u.activation = ''",
 					'count' => true
 			));			
 		}
