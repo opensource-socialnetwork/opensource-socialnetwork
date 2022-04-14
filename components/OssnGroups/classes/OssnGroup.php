@@ -361,7 +361,9 @@ class OssnGroup extends OssnObject {
 		 * @return bool;
 		 */
 		public function approveRequest($from, $group){
-				if($this->requestExists($from, $group)){
+				//[B] Multiple clicks on same action add member multiple times in group #2147
+				//used ossn_relation_exists for #2147
+				if($this->requestExists($from, $group) && !ossn_relation_exists($group, $from, 'group:join:approve')){
 						if(ossn_add_relation($group, $from, 'group:join:approve')){
 								ossn_trigger_callback('group', 'approve:request', array(
 										'user_guid'  => $from,
@@ -449,7 +451,6 @@ class OssnGroup extends OssnObject {
 						'jpeg',
 						'jfif',
 						'gif',
-						'webp',
 				));
 				$this->OssnFile->setPath('cover/');
 				if(ossn_file_is_cdn_storage_enabled()) {
