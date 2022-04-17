@@ -6,7 +6,7 @@
 
 post_max_size=50M
 upload_max_filesize=40M
-memory_limit=256M 
+memory_limit=256M
 
 register_globals=0
 default_charset="utf-8"
