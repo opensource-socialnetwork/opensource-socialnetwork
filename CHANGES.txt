@@ -48,6 +48,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v6.2
 * [E] some installation warnings #2018
 * [E] don't list unvalidated members #2144
 * [B] Multiple clicks on same action add member multiple times in group #2147
+* [B] col-xs not anymore with BS5 #2017
 
 Special Thanks to Michael Zülsdorff (aka Zetman) (https://www.opensource-socialnetwork.org/u/zetman) for testing and bug reporting, fixing.
 
