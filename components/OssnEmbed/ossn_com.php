@@ -82,6 +82,9 @@ function ossn_embed_comments_template_params($hook, $type, $return, $params){
 	elseif(isset($return['comment']['comments:entity'])){
 		$return['comment']['comments:entity'] = linkify($return['comment']['comments:entity']);
 	}
+	elseif(isset($return['comment']['comments:object'])){
+		$return['comment']['comments:object'] = linkify($return['comment']['comments:object']);
+	}	
 	return $return;
 }
 //initilize ossn wall
