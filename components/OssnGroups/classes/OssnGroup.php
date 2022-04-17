@@ -163,6 +163,17 @@ class OssnGroup extends OssnObject {
 				}
 				$vars['entity'] = ossn_get_group_by_guid($guid);
 				if($this->deleteObject($guid)){
+						//delete notification
+						//[B] Deleting a group should remove group:joinrequest records #2066
+						if(class_exists('OssnNotifications')) {
+								$notification = new OssnNotifications();
+								$notification->deleteNotification(array(
+										'subject_guid' => $guid,
+										'type'         => array(
+												'group:joinrequest',
+										),
+								));
+						}					
 						//delete group relations
 						ossn_delete_group_relations($vars['entity']);
 						//trigger callback so other components can be notified when group is deleted.
