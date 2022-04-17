@@ -226,21 +226,41 @@ function ossn_installation_simple_curl($url = '') {
 				}
 				curl_close($curlinit);
 		}
-		return (int)$result;
+		return (int) $result;
 }
 /**
- * Generate .htaccess file
+ * Generate server level config files
  *
- * @return ooolean;
+ * @return boolean
  */
-function ossn_generate_server_config_setup($type) {
+function ossn_generate_server_config_setup($type): bool {
 		if($type == 'apache') {
 				$path = str_replace('installation/', '', ossn_installation_paths()->root);
 				$file = ossn_installation_paths()->root . 'configs/htaccess.dist';
 				$file = file_get_contents($file);
+
+				//[E] Stop rewriting .htaccess every time page loads during installation #2091
+				if(file_exists($path . '.htaccess')) {
+						$actual_check_sum = md5(file_get_contents($path . '.htaccess'));
+						$org_check_sum    = md5($file);
+						if($org_check_sum == $actual_check_sum) {
+								return true;
+						}
+				}
 				return file_put_contents($path . '.htaccess', $file);
-		} elseif($type == 'nginx') {
-				return false;
+		} elseif($type == 'php_user_ini') {
+				$path = str_replace('installation/', '', ossn_installation_paths()->root);
+				$file = ossn_installation_paths()->root . 'configs/user.ini.dist';
+				$file = file_get_contents($file);
+
+				if(file_exists($path . '.user.ini')) {
+						$actual_check_sum = md5(file_get_contents($path . '.user.ini'));
+						$org_check_sum    = md5($file);
+						if($org_check_sum == $actual_check_sum) {
+								return true;
+						}
+				}
+				return file_put_contents($path . '.user.ini', $file);
 		}
 		return false;
 }
