@@ -431,4 +431,26 @@ function ossn_group_joinrequest_notification($name, $type, $return, $params) {
 				'</div>
 		   </div></li></a>';
 }
+/**
+ * Delete group relations if user is deleted
+ *
+ * @param  (object) $group Group Entity
+ *
+ * @return bool
+ */
+function ossn_delete_group_relations($group) {
+		if($group) {
+				$delete           = new OssnDatabase;
+				$params['from']   = 'ossn_relationships';
+				//delete group member requests if group deleted
+				$params['wheres'] = array(
+						"relation_from='{$group->guid}' AND type='group:join:approve' OR",
+						"relation_to='{$group->guid}' AND type='group:join'"
+				);
+				if($delete->delete($params)) {
+						return true;
+				}
+		}
+		return false;
+}
 ossn_register_callback('ossn', 'init', 'ossn_groups');
