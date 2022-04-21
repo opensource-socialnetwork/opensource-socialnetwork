@@ -46,7 +46,7 @@ class OssnJWT {
 		 *
 		 * @return object
 		 */
-		public function decode(): object{
+		public function decode(): object {
 				$key = new Firebase\JWT\Key($this->_key, $this->_encType);
 				return Firebase\JWT\JWT::decode($this->_data, $key);
 		}
