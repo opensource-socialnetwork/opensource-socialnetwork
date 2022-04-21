@@ -15,16 +15,16 @@ class OssnUser extends OssnEntities {
 		 * @return void
 		 */
 		public function initAttributes() {
-				$this->OssnDatabase   = new OssnDatabase;
-				$this->OssnAnnotation = new OssnAnnotation;
-				$this->notify         = new OssnMail;
+				$this->OssnDatabase   = new OssnDatabase();
+				$this->OssnAnnotation = new OssnAnnotation();
+				$this->notify         = new OssnMail();
 				if(!isset($this->sendactiviation)) {
 						$this->sendactiviation = false;
 				}
-				if(!isset($this->validated)){
-						$this->validated = false;	
+				if(!isset($this->validated)) {
+						$this->validated = false;
 				}
-				$this->data = new stdClass;
+				$this->data = new stdClass();
 		}
 		/**
 		 * Add user to system.
@@ -42,10 +42,10 @@ class OssnUser extends OssnEntities {
 						//set default algo to bcrypt;
 						$password_encryption_alog = ossn_call_hook('user', 'password:algorithm', false, 'bcrypt');
 						$this->setPassAlgo($password_encryption_alog);
-						
-						$this->salt            = $this->generateSalt();
+
+						$this->salt = $this->generateSalt();
 						//[E] make user email lowercase when adding to db #1864
-						$this->email           = strtolower($this->email);	
+						$this->email           = strtolower($this->email);
 						$password              = $this->generate_password($this->password, $this->salt);
 						$activation            = md5($this->password . time() . rand());
 						$this->sendactiviation = ossn_call_hook('user', 'send:activation', false, $this->sendactiviation);
@@ -54,8 +54,8 @@ class OssnUser extends OssnEntities {
 								//don't set null , set empty value for users created by admin
 								$activation = '';
 						}
-						$params['into']   = 'ossn_users';
-						$params['names']  = array(
+						$params['into']  = 'ossn_users';
+						$params['names'] = array(
 								'first_name',
 								'last_name',
 								'email',
@@ -66,7 +66,7 @@ class OssnUser extends OssnEntities {
 								'activation',
 								'last_login',
 								'last_activity',
-								'time_created'
+								'time_created',
 						);
 						$params['values'] = array(
 								$this->first_name,
@@ -79,23 +79,27 @@ class OssnUser extends OssnEntities {
 								$activation,
 								0,
 								0,
-								time()
+								time(),
 						);
-						$create           = ossn_call_hook('user', 'create', array(
-								'params' => $params,
-								'instance' => $this
-						), true);
+						$create = ossn_call_hook(
+								'user',
+								'create',
+								array(
+										'params'   => $params,
+										'instance' => $this,
+								),
+								true,
+						);
 						if($create) {
 								if($this->insert($params)) {
-										$guid   = $this->getLastEntry();
+										$guid = $this->getLastEntry();
 										//define user extra profile fields
 										$fields = ossn_default_user_fields();
 										if(!empty($guid) && is_int($guid)) {
-												
 												$this->owner_guid = $guid;
 												$this->type       = 'user';
-												
-												//add user entities 
+
+												//add user entities
 												$extra_fields = ossn_call_hook('user', 'signup:fields', $this, $fields);
 												if(!empty($extra_fields['required'])) {
 														foreach($extra_fields['required'] as $type) {
@@ -122,17 +126,17 @@ class OssnUser extends OssnEntities {
 												$activation = ossn_print('ossn:add:user:mail:body', array(
 														$sitename,
 														$link,
-														ossn_site_url()
+														ossn_site_url(),
 												));
-												$subject    = ossn_print('ossn:add:user:mail:subject', array(
+												$subject = ossn_print('ossn:add:user:mail:subject', array(
 														$this->first_name,
-														$sitename
+														$sitename,
 												));
 												//notify users for activation
 												$this->notify->NotifiyUser($this->email, $subject, $activation);
 										}
 										ossn_trigger_callback('user', 'created', array(
-												'guid' => $guid
+												'guid' => $guid,
 										));
 										return $guid;
 								}
@@ -140,7 +144,7 @@ class OssnUser extends OssnEntities {
 				}
 				return false;
 		}
-		
+
 		/**
 		 * Check if username is exist in database or not.
 		 *
@@ -154,7 +158,7 @@ class OssnUser extends OssnEntities {
 				}
 				return false;
 		}
-		
+
 		/**
 		 * Check if email is exist in database or not.
 		 *
@@ -168,7 +172,7 @@ class OssnUser extends OssnEntities {
 				}
 				return false;
 		}
-		
+
 		/**
 		 * Get user with its entities.
 		 *
@@ -180,23 +184,23 @@ class OssnUser extends OssnEntities {
 				if(!empty($this->email)) {
 						$params['from']   = 'ossn_users';
 						$params['wheres'] = array(
-								"LOWER(email) = LOWER('{$this->email}')"
+								"LOWER(email) = LOWER('{$this->email}')",
 						);
-						$user             = $this->select($params);
+						$user = $this->select($params);
 				}
 				if(empty($user) && !empty($this->username)) {
 						$params['from']   = 'ossn_users';
 						$params['wheres'] = array(
-								"LOWER(username) = LOWER('{$this->username}')"
+								"LOWER(username) = LOWER('{$this->username}')",
 						);
-						$user             = $this->select($params);
+						$user = $this->select($params);
 				}
 				if(empty($user) && !empty($this->guid)) {
 						$params['from']   = 'ossn_users';
 						$params['wheres'] = array(
-								"guid='{$this->guid}'"
+								"guid='{$this->guid}'",
 						);
-						$user             = $this->select($params);
+						$user = $this->select($params);
 				}
 				if(!$user) {
 						return false;
@@ -207,7 +211,7 @@ class OssnUser extends OssnEntities {
 				$entities         = $this->get_entities();
 				if(empty($entities)) {
 						$metadata       = arrayObject($user, get_class($this));
-						$metadata->data = new stdClass;
+						$metadata->data = new stdClass();
 						return ossn_call_hook('user', 'get', false, $metadata);
 				}
 				foreach($entities as $entity) {
@@ -215,10 +219,10 @@ class OssnUser extends OssnEntities {
 				}
 				$data           = array_merge(get_object_vars($user), $fields);
 				$metadata       = arrayObject($data, get_class($this));
-				$metadata->data = new stdClass;
+				$metadata->data = new stdClass();
 				return ossn_call_hook('user', 'get', false, $metadata);
 		}
-		
+
 		/**
 		 * Check if password is > 5 or not.
 		 *
@@ -253,7 +257,7 @@ class OssnUser extends OssnEntities {
 				}
 				return false;
 		}
-		
+
 		/**
 		 * Generate salt.
 		 *
@@ -281,25 +285,25 @@ class OssnUser extends OssnEntities {
 				if(!isset($this->password_algorithm)) {
 						return 'md5';
 				}
-				
+
 				return $this->password_algorithm;
 		}
 		/**
-		 * Verify a password 
+		 * Verify a password
 		 *
 		 * @param string $password New entered password
 		 * @param string $salt	User actual password salt
-		 * @param string $hash  Actual password 
+		 * @param string $hash  Actual password
 		 *
 		 * @return boolean
 		 */
 		public function verifyPassword($password, $salt, $hash) {
 				$algo = $this->getPassAlog();
 				switch($algo) {
-						case 'bcrypt':
-						case 'argon2i':
-								return password_verify($password . $salt, $hash);
-								break;
+					case 'bcrypt':
+					case 'argon2i':
+						return password_verify($password . $salt, $hash);
+						break;
 				}
 				$this->setPassAlgo('md5');
 				$password = $this->generate_password($password, $salt);
@@ -316,17 +320,17 @@ class OssnUser extends OssnEntities {
 		public function generate_password($password = '', $salt = '') {
 				$algo = $this->getPassAlog();
 				switch($algo) {
-						case 'bcrypt':
-								return password_hash($password . $salt, PASSWORD_BCRYPT);
-								break;
-						case 'argon2i':
-								return password_hash($password . $salt, PASSWORD_ARGON2I);
-								break;
+					case 'bcrypt':
+						return password_hash($password . $salt, PASSWORD_BCRYPT);
+						break;
+					case 'argon2i':
+						return password_hash($password . $salt, PASSWORD_ARGON2I);
+						break;
 				}
 				//default is always md5 no matter what algo used (then above)
 				return md5($password . $salt);
 		}
-		
+
 		/**
 		 * Login into site.
 		 *
@@ -338,14 +342,13 @@ class OssnUser extends OssnEntities {
 						//setting user password algo
 						$this->setPassAlgo($user->password_algorithm);
 				}
-				if($user && $this->verifyPassword($this->password, $user->salt, $user->password) && $user->activation == NULL) {
-						
+				if($user && $this->verifyPassword($this->password, $user->salt, $user->password) && $user->activation == null) {
 						unset($user->password);
 						unset($user->salt);
-						
+
 						OssnSession::assign('OSSN_USER', $user);
 						$this->update_last_login();
-						
+
 						$vars         = array();
 						$vars['user'] = $user;
 						$login        = ossn_call_hook('user', 'login', $vars, true);
@@ -353,31 +356,31 @@ class OssnUser extends OssnEntities {
 				}
 				return false;
 		}
-		
+
 		/**
 		 * Update user last login time.
 		 *
 		 * @return boolean
 		 */
 		public function update_last_login() {
-				$user             = ossn_loggedin_user();
-				$guid             = $user->guid;
-				$params['table']  = 'ossn_users';
-				$params['names']  = array(
-						'last_login'
+				$user            = ossn_loggedin_user();
+				$guid            = $user->guid;
+				$params['table'] = 'ossn_users';
+				$params['names'] = array(
+						'last_login',
 				);
 				$params['values'] = array(
-						time()
+						time(),
 				);
 				$params['wheres'] = array(
-						"guid='{$guid}'"
+						"guid='{$guid}'",
 				);
 				if($guid > 0 && $this->update($params)) {
 						return true;
 				}
 				return false;
 		}
-		
+
 		/**
 		 * Get user friends requests.
 		 *
@@ -413,7 +416,7 @@ class OssnUser extends OssnEntities {
 				}
 				return false;
 		}
-		
+
 		/**
 		 * Check if the user is friend with other or not.
 		 *
@@ -424,7 +427,7 @@ class OssnUser extends OssnEntities {
 				//Utilize the 4th argument of function that cross check $from - to, $to - from
 				return ossn_relation_exists($usera, $user2, 'friend:request', true);
 		}
-		
+
 		/**
 		 * Get user friends.
 		 *
@@ -434,37 +437,27 @@ class OssnUser extends OssnEntities {
 				if(isset($this->guid)) {
 						$user = $this->guid;
 				}
+				$guid     = $user;
+				$wheres   = array();
+				$wheres[] = "(u.guid IN(SELECT relation_from as friend_guid  FROM `ossn_relationships` WHERE `relation_to` = {$guid} AND `type` LIKE 'friend:request' AND relation_from IN(SELECT DISTINCT relation_to as guid  FROM `ossn_relationships` WHERE `relation_from` = {$guid} AND `type` LIKE 'friend:request')))";
 				
-				$default       = array(
-						'page_limit' => false,
-						'limit' => false,
-						'count' => false
-				);
-				if(!isset($options['order_by'])){
-						$options['order_by'] = '';
+
+				if(isset($options['wheres']) && !is_array($options['wheres'])){
+						$wheres[] = $options['wheres'];	
 				}
-				$args          = array_merge($default, $options);
-				$relationships = ossn_get_relationships(array(
-						'to' => $user,
-						'type' => 'friend:request',
-						'inverse' => true,
-						'page_limit' => $args['page_limit'],
-						'limit' => $args['limit'],
-						'count' => $args['count'],
-						'order_by' => $args['order_by']
-				));
-				if($args['count'] == true) {
-						return $relationships;
-				}
-				if($relationships) {
-						foreach($relationships as $relation) {
-								$friends[] = ossn_user_by_guid($relation->relation_to);
+				if(isset($options['wheres']) && is_array($options['wheres'])){
+						foreach($options['wheres'] as $option){
+								$wheres[] = $option;	
 						}
-						return $friends;
 				}
-				return false;
+				$default = array(
+						'wheres' => $wheres,
+						'page_limit' => false,
+				);
+				unset($options['wheres']);
+				$args = array_merge($default, $options);
+				return $this->searchUsers($args);
 		}
-		
 		/**
 		 * Send request to other user.
 		 *
@@ -479,7 +472,7 @@ class OssnUser extends OssnEntities {
 				}
 				return false;
 		}
-		
+
 		/**
 		 * Check if the request already sent or not.
 		 *
@@ -494,7 +487,7 @@ class OssnUser extends OssnEntities {
 				}
 				return ossn_relation_exists($from, $user, 'friend:request');
 		}
-		
+
 		/**
 		 * Delete friend from list
 		 *
@@ -509,25 +502,24 @@ class OssnUser extends OssnEntities {
 				}
 				return false;
 		}
-		
+
 		/**
 		 * Get site users.
 		 *
 		 * @param array $params A options values
-		 * 
+		 *
 		 * @note This method will be removed from Ossn v5
 		 *
 		 * @return array
 		 */
 		public function getSiteUsers($params = array()) {
 				$default = array(
-						'keyword' => false
+						'keyword' => false,
 				);
-				$vars    = array_merge($default, $params);
+				$vars = array_merge($default, $params);
 				return $this->searchUsers($vars);
-				
 		}
-		
+
 		/**
 		 * Update user last activity time
 		 *
@@ -536,16 +528,16 @@ class OssnUser extends OssnEntities {
 		public function update_last_activity() {
 				$user = ossn_loggedin_user();
 				if($user) {
-						$guid             = $user->guid;
-						$params['table']  = 'ossn_users';
-						$params['names']  = array(
-								'last_activity'
+						$guid            = $user->guid;
+						$params['table'] = 'ossn_users';
+						$params['names'] = array(
+								'last_activity',
 						);
 						$params['values'] = array(
-								time()
+								time(),
 						);
 						$params['wheres'] = array(
-								"guid='{$guid}'"
+								"guid='{$guid}'",
 						);
 						if($guid > 0 && $this->update($params)) {
 								return true;
@@ -553,7 +545,7 @@ class OssnUser extends OssnEntities {
 				}
 				return false;
 		}
-		
+
 		/**
 		 * Count Total online site users.
 		 *
@@ -562,7 +554,7 @@ class OssnUser extends OssnEntities {
 		public function online_total() {
 				return count((array) $this->getOnline());
 		}
-		
+
 		/**
 		 * Get online site users.
 		 *
@@ -574,9 +566,9 @@ class OssnUser extends OssnEntities {
 				$time             = time();
 				$params['from']   = 'ossn_users';
 				$params['wheres'] = array(
-						"last_activity > {$time} - {$intervals}"
+						"last_activity > {$time} - {$intervals}",
 				);
-				$data             = $this->select($params, true);
+				$data = $this->select($params, true);
 				if($data) {
 						foreach($data as $user) {
 								$result[] = arrayObject((array) $user, get_class($this));
@@ -585,7 +577,7 @@ class OssnUser extends OssnEntities {
 				}
 				return false;
 		}
-		
+
 		/**
 		 * Search users using a keyword or entities_pairs
 		 *
@@ -595,7 +587,7 @@ class OssnUser extends OssnEntities {
 		 *    'limit'			=> Result limit default, Default is 10 values
 		 *    'count'			=> True if you wanted to count search items.
 		 *	  'order_by'    	=> To show result in sepcific order. Default is Assending
-		 * 
+		 *
 		 * reutrn array|false;
 		 *
 		 */
@@ -605,16 +597,16 @@ class OssnUser extends OssnEntities {
 				}
 				//prepare default attributes
 				$default = array(
-						'keyword' => false,
-						'order_by' => false,
-						'distinct' => false,
-						'offset' => input('offset', '', 1),
-						'page_limit' => ossn_call_hook('pagination', 'page_limit', false, 10), //call hook for page limit
-						'count' => false,
-						'limit' => false,
-						'entities_pairs' => false
+						'keyword'        => false,
+						'order_by'       => false,
+						'distinct'       => false,
+						'offset'         => input('offset', '', 1),
+						'page_limit'     => ossn_call_hook('pagination', 'page_limit', false, 10), //call hook for page limit
+						'count'          => false,
+						'limit'          => false,
+						'entities_pairs' => false,
 				);
-				
+
 				$options      = array_merge($default, $params);
 				$wheres       = array();
 				$params       = array();
@@ -640,7 +632,7 @@ class OssnUser extends OssnEntities {
 				}
 				if(isset($options['entities_pairs']) && is_array($options['entities_pairs'])) {
 						foreach($options['entities_pairs'] as $key => $pair) {
-								$operand = (empty($pair['operand'])) ? '=' : $pair['operand'];
+								$operand = empty($pair['operand']) ? '=' : $pair['operand'];
 								if(!empty($pair['name']) && isset($pair['value']) && !empty($operand)) {
 										if(!empty($pair['value'])) {
 												$pair['value'] = addslashes($pair['value']);
@@ -652,7 +644,6 @@ class OssnUser extends OssnEntities {
 												$wheres_paris[] = $pair['wheres'];
 										} else {
 												$wheres_paris[] = "emd{$key}.value {$operand} '{$pair['value']}'";
-												
 										}
 										$params['joins'][] = "JOIN ossn_entities as e{$key} ON e{$key}.owner_guid=u.guid";
 										$params['joins'][] = "JOIN ossn_entities_metadata as emd{$key} ON e{$key}.guid=emd{$key}.guid";
@@ -663,7 +654,7 @@ class OssnUser extends OssnEntities {
 								$wheres[]        = $wheres_entities;
 						}
 				}
-				$wheres[] = "u.time_created IS NOT NULL";
+				$wheres[] = 'u.time_created IS NOT NULL';
 				if(isset($options['wheres']) && !empty($options['wheres'])) {
 						if(!is_array($options['wheres'])) {
 								$wheres[] = $options['wheres'];
@@ -680,18 +671,18 @@ class OssnUser extends OssnEntities {
 				}
 				$distinct = '';
 				if($options['distinct'] === true) {
-						$distinct = "DISTINCT ";
+						$distinct = 'DISTINCT ';
 				}
-				$params['from']     = 'ossn_users as u';
-				$params['params']   = array(
+				$params['from']   = 'ossn_users as u';
+				$params['params'] = array(
 						"{$distinct} u.guid",
-						'u.*'
+						'u.*',
 				);
 				$params['order_by'] = $options['order_by'];
 				$params['limit']    = $options['limit'];
-				
+
 				if(!$options['order_by']) {
-						$params['order_by'] = "u.guid ASC";
+						$params['order_by'] = 'u.guid ASC';
 				}
 				if(isset($options['group_by']) && !empty($options['group_by'])) {
 						$params['group_by'] = $options['group_by'];
@@ -701,16 +692,16 @@ class OssnUser extends OssnEntities {
 						$params['params'] = $options['params'];
 				}
 				$params['wheres'] = array(
-						$this->constructWheres($wheres)
+						$this->constructWheres($wheres),
 				);
 				if($options['count'] === true) {
 						unset($params['params']);
 						unset($params['limit']);
 						$count           = array();
 						$count['params'] = array(
-								"count({$distinct}u.guid) as total"
+								"count({$distinct}u.guid) as total",
 						);
-						$count           = array_merge($params, $count);
+						$count = array_merge($params, $count);
 						return $this->select($count)->total;
 				}
 				$users = $this->select($params, true);
@@ -722,7 +713,7 @@ class OssnUser extends OssnEntities {
 				}
 				return false;
 		}
-		
+
 		/**
 		 * Validate User Registration
 		 *
@@ -732,15 +723,15 @@ class OssnUser extends OssnEntities {
 				$user_activation = $this->getUser();
 				$guid            = $user_activation->guid;
 				if($user_activation->activation == $code) {
-						$params['table']  = 'ossn_users';
-						$params['names']  = array(
-								'activation'
+						$params['table'] = 'ossn_users';
+						$params['names'] = array(
+								'activation',
 						);
 						$params['values'] = array(
-								''
+								'',
 						);
 						$params['wheres'] = array(
-								"guid='{$guid}'"
+								"guid='{$guid}'",
 						);
 						if($this->update($params)) {
 								return true;
@@ -748,30 +739,30 @@ class OssnUser extends OssnEntities {
 				}
 				return false;
 		}
-		
+
 		/**
 		 * View user icon url
 		 *
 		 * @return string
 		 */
 		public function iconURL() {
-				$this->iconURLS = new stdClass;
+				$this->iconURLS = new stdClass();
 				//[E] Default profile picture #1647
-				if(!isset($this->icon_guid) || isset($this->icon_guid) && empty($this->icon_guid)){
+				if(!isset($this->icon_guid) || (isset($this->icon_guid) && empty($this->icon_guid))) {
 						$this->icon_guid = false;
 				}
-				if(!isset($this->icon_time)){
-					$this->icon_time = false;		
+				if(!isset($this->icon_time)) {
+						$this->icon_time = false;
 				}
-				foreach(ossn_user_image_sizes() as $size => $dimensions){
-						$seo                   = md5($this->username . $size . $this->icon_time . $this->icon_guid);
-						$url                   = ossn_site_url("avatar/{$this->username}/{$size}/{$seo}.jpeg");
+				foreach(ossn_user_image_sizes() as $size => $dimensions) {
+						$seo = md5($this->username . $size . $this->icon_time . $this->icon_guid);
+						$url = ossn_site_url("avatar/{$this->username}/{$size}/{$seo}.jpeg");
 						//[B] img js ossn_cache cause duplicate requests #1886
 						$this->iconURLS->$size = ossn_add_cache_to_url($url);
 				}
 				return ossn_call_hook('user', 'icon:urls', $this, $this->iconURLS);
 		}
-		
+
 		/**
 		 * View user profile url
 		 *
@@ -781,7 +772,7 @@ class OssnUser extends OssnEntities {
 				$this->profileurl = ossn_site_url("u/{$this->username}") . $extends;
 				return ossn_call_hook('user', 'profile:url', $this, $this->profileurl);
 		}
-		
+
 		/**
 		 * Send user reset password link
 		 *
@@ -793,10 +784,10 @@ class OssnUser extends OssnEntities {
 				$this->type       = 'user';
 				$this->subtype    = 'login:reset:code';
 				$this->owner_guid = $this->guid;
-				
+
 				$site_secret = ossn_site_settings('site_key');
 				$code        = hash('sha256', time() . $this->guid . $site_secret . rand());
-				if(!isset($this->{'login:reset:code'}) && empty($this->old_code)){
+				if(!isset($this->{'login:reset:code'}) && empty($this->old_code)) {
 						$this->value = $code;
 						$this->add();
 				} else {
@@ -807,11 +798,11 @@ class OssnUser extends OssnEntities {
 				$emailreset_url = ossn_site_url("resetlogin?user={$this->username}&c={$this->value}");
 				$emailreset_url = ossn_call_hook('user', 'reset:login:url', $this, $emailreset_url);
 				$sitename       = ossn_site_settings('site_name');
-				
+
 				$emailmessage = ossn_print('ossn:reset:password:body', array(
 						$this->first_name,
 						$emailreset_url,
-						$sitename
+						$sitename,
 				));
 				$emailsubject = ossn_print('ossn:reset:password:subject');
 				if(!empty($this->value) && $this->notify->NotifiyUser($this->email, $emailsubject, $emailmessage)) {
@@ -819,7 +810,7 @@ class OssnUser extends OssnEntities {
 				}
 				return false;
 		}
-		
+
 		/**
 		 * Reset user password
 		 *
@@ -827,19 +818,19 @@ class OssnUser extends OssnEntities {
 		 */
 		public function resetPassword($password) {
 				if(!empty($password)) {
-						$this->salt      = $this->generateSalt();
-						$password        = $this->generate_password($password, $this->salt);
-						$reset['table']  = 'ossn_users';
-						$reset['names']  = array(
+						$this->salt     = $this->generateSalt();
+						$password       = $this->generate_password($password, $this->salt);
+						$reset['table'] = 'ossn_users';
+						$reset['names'] = array(
 								'password',
-								'salt'
+								'salt',
 						);
 						$reset['values'] = array(
 								$password,
-								$this->salt
+								$this->salt,
 						);
 						$reset['wheres'] = array(
-								"guid='{$this->guid}'"
+								"guid='{$this->guid}'",
 						);
 						if($this->update($reset)) {
 								return true;
@@ -847,7 +838,7 @@ class OssnUser extends OssnEntities {
 				}
 				return false;
 		}
-		
+
 		/**
 		 * Remove user reset code
 		 *
@@ -863,7 +854,7 @@ class OssnUser extends OssnEntities {
 				}
 				return false;
 		}
-		
+
 		/**
 		 * Check if user is online or not
 		 *
@@ -878,7 +869,7 @@ class OssnUser extends OssnEntities {
 				}
 				return false;
 		}
-		
+
 		/**
 		 * Delete user from syste,
 		 *
@@ -889,12 +880,12 @@ class OssnUser extends OssnEntities {
 				if(!empty($this->guid) && !empty($this->username)) {
 						$params['from']   = 'ossn_users';
 						$params['wheres'] = array(
-								"guid='{$this->guid}'"
+								"guid='{$this->guid}'",
 						);
 						if($this->delete($params)) {
 								//delete user files
 								$datadir = ossn_get_userdata("user/{$this->guid}/");
-								
+
 								if(is_dir($datadir)) {
 										OssnFile::DeleteDir($datadir);
 										//From of v2.0 DeleteDir delete directory also #138
@@ -902,15 +893,15 @@ class OssnUser extends OssnEntities {
 								}
 								//delete user entites also
 								$this->deleteByOwnerGuid($this->guid, 'user');
-								
+
 								//delete annotations
 								$this->OssnAnnotation->owner_guid = $this->guid;
 								$this->OssnAnnotation->deleteAnnotationByOwner($this->guid);
 								//trigger callback so other components can be notified when user deleted.
-								
+
 								//should delete relationships
 								ossn_delete_user_relations($this);
-								
+
 								$vars['entity'] = $this;
 								ossn_trigger_callback('user', 'delete', $vars);
 								return true;
@@ -920,7 +911,7 @@ class OssnUser extends OssnEntities {
 		}
 		/**
 		 * Check if user is validated or not
-		 * 
+		 *
 		 * @return boolean
 		 */
 		public function isUserVALIDATED() {
@@ -943,11 +934,11 @@ class OssnUser extends OssnEntities {
 						$activation = ossn_print('ossn:add:user:mail:body', array(
 								$sitename,
 								$link,
-								ossn_site_url()
+								ossn_site_url(),
 						));
-						$subject    = ossn_print('ossn:add:user:mail:subject', array(
+						$subject = ossn_print('ossn:add:user:mail:subject', array(
 								$this->first_name,
-								$sitename
+								$sitename,
 						));
 						return $this->notify->NotifiyUser($this->email, $subject, $activation);
 				}
@@ -964,13 +955,13 @@ class OssnUser extends OssnEntities {
 				}
 				if(empty($search)) {
 						$params['wheres'] = array(
-								"activation <> ''"
+								"activation <> ''",
 						);
 				} else {
 						$params['wheres'] = array(
 								"activation <> ''",
 								"CONCAT(first_name, ' ', last_name) LIKE '%$search%' AND activation <> '' OR
-					 		 username LIKE '%$search%' AND activation <> '' OR email LIKE '%$search%' AND activation <> ''"
+					 		 username LIKE '%$search%' AND activation <> '' OR email LIKE '%$search%' AND activation <> ''",
 						);
 				}
 				$users = $this->searchUsers($params);
@@ -986,8 +977,8 @@ class OssnUser extends OssnEntities {
 		 */
 		public function getProfilePhoto() {
 				//[E] Default profile picture #1647
-				if(!empty($this->guid) && isset($this->icon_guid)){
-					  	return ossn_get_file($this->icon_guid);
+				if(!empty($this->guid) && isset($this->icon_guid)) {
+						return ossn_get_file($this->icon_guid);
 				}
 				//fallback to old picture selection solution
 				if(!empty($this->guid) && !isset($this->icon_guid)) {
@@ -995,14 +986,14 @@ class OssnUser extends OssnEntities {
 						$this->type       = 'user';
 						$this->subtype    = 'file:profile:photo';
 						$this->limit      = 1;
-						$this->order_by   = "guid DESC";
+						$this->order_by   = 'guid DESC';
 						$entity           = $this->get_entities();
-						if(isset($entity[0])){
+						if(isset($entity[0])) {
 								//save the icon_guid and move to new procedure #1647
-								$user			= ossn_user_by_guid($this->guid);
-								$user->data->icon_guid  = $entity[0]->guid;
+								$user                  = ossn_user_by_guid($this->guid);
+								$user->data->icon_guid = $entity[0]->guid;
 								$user->save();
-								
+
 								return $entity[0];
 						}
 				}
@@ -1015,22 +1006,22 @@ class OssnUser extends OssnEntities {
 		 */
 		public function getProfileCover() {
 				//[E] Default cover picture #1647
-				if(!empty($this->guid) && isset($this->cover_guid)){
-					  	return ossn_get_file($this->cover_guid);
-				}			
+				if(!empty($this->guid) && isset($this->cover_guid)) {
+						return ossn_get_file($this->cover_guid);
+				}
 				if(!empty($this->guid)) {
 						$this->owner_guid = $this->guid;
 						$this->type       = 'user';
 						$this->subtype    = 'file:profile:cover';
 						$this->limit      = 1;
-						$this->order_by   = "guid DESC";
+						$this->order_by   = 'guid DESC';
 						$entity           = $this->get_entities();
 						if(isset($entity[0])) {
 								//save the cover_guid and move to new procedure #1647
-								$user			 = ossn_user_by_guid($this->guid);
-								$user->data->cover_guid  = $entity[0]->guid;
+								$user                   = ossn_user_by_guid($this->guid);
+								$user->data->cover_guid = $entity[0]->guid;
 								$user->save();
-								
+
 								return $entity[0];
 						}
 				}
@@ -1055,21 +1046,21 @@ class OssnUser extends OssnEntities {
 		public function countByYearMonth() {
 				$wheres = array();
 				$params = array();
-				
-				$wheres[] = "time_created > 0";
-				
-				$params['from']     = "ossn_users";
-				$params['params']   = array(
+
+				$wheres[] = 'time_created > 0';
+
+				$params['from']   = 'ossn_users';
+				$params['params'] = array(
 						"DATE_FORMAT(FROM_UNIXTIME(time_created), '%Y') AS year",
 						"DATE_FORMAT(FROM_UNIXTIME(time_created) , '%m') AS month",
 						"DATE_FORMAT(FROM_UNIXTIME(time_created),'%Y%m') AS YM",
-						"COUNT(guid) AS total"
+						'COUNT(guid) AS total',
 				);
-				$params['group_by'] = "YEAR, MONTH, YM";
-				$params["wheres"]   = array(
-						$this->constructWheres($wheres)
+				$params['group_by'] = 'YEAR, MONTH, YM';
+				$params['wheres']   = array(
+						$this->constructWheres($wheres),
 				);
-				$data               = $this->select($params, true);
+				$data = $this->select($params, true);
 				if($data) {
 						return $data;
 				}
@@ -1082,17 +1073,17 @@ class OssnUser extends OssnEntities {
 		 * @access public
 		 */
 		public function getGenders() {
-				$params             = array();
-				$params['params']   = array(
-						"emd.value as gender"
+				$params           = array();
+				$params['params'] = array(
+						'emd.value as gender',
 				);
-				$params['from']     = "ossn_entities as e";
-				$params['joins']    = array(
-						"JOIN ossn_entities_metadata AS emd ON e.guid = emd.guid"
+				$params['from']  = 'ossn_entities as e';
+				$params['joins'] = array(
+						'JOIN ossn_entities_metadata AS emd ON e.guid = emd.guid',
 				);
 				//[E] don't show empty value genders in graphs #1887
-				$params["wheres"]   = array(
-						"e.type = 'user' AND e.subtype = 'gender' AND emd.value <> ''"
+				$params['wheres'] = array(
+						"e.type = 'user' AND e.subtype = 'gender' AND emd.value <> ''",
 				);
 				$params['group_by'] = 'gender';
 				$genders            = $this->select($params, true);
@@ -1125,13 +1116,13 @@ class OssnUser extends OssnEntities {
 						return false;
 				}
 				$data = $this->searchUsers(array(
-						'count' => true,
+						'count'          => true,
 						'entities_pairs' => array(
 								array(
-										'name' => 'gender',
-										'value' => $gender
-								)
-						)
+										'name'  => 'gender',
+										'value' => $gender,
+								),
+						),
 				));
 				if($data) {
 						return $data;
@@ -1156,31 +1147,31 @@ class OssnUser extends OssnEntities {
 				$params           = array();
 				$wheres['wheres'] = array();
 				$params['joins']  = array();
-				
+
 				$params['params'] = array(
-						'u.*, emd.value as gender'
+						'u.*, emd.value as gender',
 				);
-				$params['from']   = 'ossn_users as u';
-				
+				$params['from'] = 'ossn_users as u';
+
 				$wheres['wheres'][] = "e.type='user'";
 				$wheres['wheres'][] = "e.subtype='gender'";
 				$wheres['wheres'][] = "emd.value='{$gender}'";
 				$wheres['wheres'][] = "u.last_activity > {$time} - {$intervals}";
-				
-				$params['joins'][] = "JOIN ossn_entities as e ON e.owner_guid=u.guid";
-				$params['joins'][] = "JOIN ossn_entities_metadata as emd ON emd.guid=e.guid";
+
+				$params['joins'][] = 'JOIN ossn_entities as e ON e.owner_guid=u.guid';
+				$params['joins'][] = 'JOIN ossn_entities_metadata as emd ON emd.guid=e.guid';
 				$params['wheres']  = array(
-						$this->constructWheres($wheres['wheres'])
+						$this->constructWheres($wheres['wheres']),
 				);
-				
+
 				if($count) {
 						$params['params'] = array(
-								"count(*) as total"
+								'count(*) as total',
 						);
-						$count            = $this->select($params);
+						$count = $this->select($params);
 						return $count->total;
 				}
-				
+
 				$users = $this->select($params, true);
 				if($users) {
 						foreach($users as $user) {
@@ -1196,7 +1187,6 @@ class OssnUser extends OssnEntities {
 		 * @return boolean
 		 */
 		public function save() {
-				
 				if(!isset($this->guid) || empty($this->guid)) {
 						return false;
 				}
