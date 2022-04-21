@@ -57,6 +57,8 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v6.2
 * [E] Ossn::File MaxSize() add UploadMaxSize #2148
 * [B] getting orphan notification records of type comments:post:group:wall #2060
 * [E] isModerator (for groups) in comments section also. #2025
+* [E] Added OssnJWT class based on firebase/JWT
+* [E] Updated cacert.pem
 
 Special Thanks to Michael Zülsdorff (aka Zetman) (https://www.opensource-socialnetwork.org/u/zetman) for testing and bug reporting, fixing.
 
