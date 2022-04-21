@@ -36,11 +36,11 @@ class OssnFile extends OssnEntities {
 		}
 		/**
 		 * MaxSize
-		 * Get server post max size
+		 * Get server post max size size in bytes
 		 *
-		 * @return float;
+		 * @return integer
 		 */
-		public function MaxSize() {
+		public function MaxSize() : int {
 				$val  = ini_get('post_max_size');
 				$val  = trim($val);
 				$last = strtolower($val[strlen($val) - 1]);
@@ -54,6 +54,27 @@ class OssnFile extends OssnEntities {
 				}
 				return $val;
 		}
+		/**
+		 * UploadMaxSize
+		 * Get server upload max size in bytes
+		 * [E] Ossn::File MaxSize() add UploadMaxSize #2148
+		 *
+		 * @return integer
+		 */
+		public function getUploadMaxSize() : int {
+				$val  = min(ini_get('post_max_size'), ini_get('upload_max_filesize'));
+				$val  = trim($val);
+				$last = strtolower($val[strlen($val) - 1]);
+				switch($last) {
+					case 'g':
+						$val *= 1024;
+					case 'm':
+						$val *= 1024;
+					case 'k':
+						$val *= 1024;
+				}
+				return $val;
+		}		
 
 		/**
 		 * setFile
