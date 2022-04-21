@@ -33,11 +33,12 @@ if($comment->type == 'comments:entity') {
 		$entity = ossn_get_entity($comment->subject_guid);
 }
 //Post owner can not delete others comments #607
+//21-04-2022 [E] isModerator (for groups) in comments section also. #2025
 if(
 		$comment->owner_guid == $user->guid ||
 		($object && $object->type == 'user' && $user->guid == $object->owner_guid) ||
 		($post->type == 'user' && $user->guid == $post->owner_guid) ||
-		$group->owner_guid == $user->guid ||
+		(isset($group) && ($group->owner_guid == $user->guid) || $group->isModerator($user->guid)) ||
 		$entity->owner_guid == $user->guid ||
 		ossn_isAdminLoggedin()
 ) {

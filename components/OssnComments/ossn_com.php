@@ -183,6 +183,7 @@ function ossn_comments_notify_participant($callback, $type, $vars) {
 function ossn_comment_notifications_delete($callback, $type, $vars) {
 		$delete = new OssnNotifications();
 		if(isset($vars['comment']) && !empty($vars['comment'])) {
+				//[B] getting orphan notification records of type comments:post:group:wall #2060
 				$delete->deleteNotification(array(
 						'item_guid' => $vars['comment'],
 						'type'      => array(
@@ -194,6 +195,7 @@ function ossn_comment_notifications_delete($callback, $type, $vars) {
 								'comments:entity:file:profile:photo',
 								'comments:entity:file:profile:cover',
 								'comments:entity:file:ossn:aphoto',
+								'comments:post:group:wall',
 						),
 				));
 		}
@@ -380,11 +382,12 @@ function ossn_comment_menu($name, $type, $params) {
 						}
 						//group admins must be able to delete ANY comment in their own group #170
 						//just show menu if group owner is loggedin
+						//21-04-2022 [E] isModerator (for groups) in comments section also. #2025
 						if(
 								ossn_isAdminLoggedin() ||
 								ossn_loggedin_user()->guid == $post->owner_guid ||
 								($comment && $user->guid == $comment->owner_guid) ||
-								($group && ossn_loggedin_user()->guid == $group->owner_guid)
+								($group && ((ossn_loggedin_user()->guid == $group->owner_guid) || $group->isModerator($user->guid)))
 						) {
 								ossn_unregister_menu('delete', 'comments');
 								ossn_register_menu_item('comments', array(
