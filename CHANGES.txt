@@ -53,6 +53,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v6.2
 * [E] Stop rewriting .htaccess every time page loads during installation #2091
 * [B] Deleting a group should remove group:joinrequest records #2066
 * [E] Enable linkifying of Entity comments #2080
+* [B] wrong class extending in all input plugins #2146
 
 Special Thanks to Michael Zülsdorff (aka Zetman) (https://www.opensource-socialnetwork.org/u/zetman) for testing and bug reporting, fixing.
 
