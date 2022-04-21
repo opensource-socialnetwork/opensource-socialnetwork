@@ -12,7 +12,7 @@
 $class = 'ossn-checkbox-input';
 if(isset($params['class'])){
 	//[B] strangeness of class extending in input modules #1635
-	$class = $class .' '. $params['class'];
+	$params['class'] = $class .' '. $params['class'];
 }
 $value = (isset($params['value'])) ? $params['value'] : '';
 //[B] input/checkbox not getting any label #1849
