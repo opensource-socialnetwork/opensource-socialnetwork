@@ -60,6 +60,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v6.2
 * [E] Added OssnJWT class based on firebase/JWT
 * [E] Updated cacert.pem
 * [E] Updated PHP MAILER to 6.6.0
+* [B] Pagination not responsive #2150
 
 Special Thanks to Michael Zülsdorff (aka Zetman) (https://www.opensource-socialnetwork.org/u/zetman) for testing and bug reporting, fixing.
 
