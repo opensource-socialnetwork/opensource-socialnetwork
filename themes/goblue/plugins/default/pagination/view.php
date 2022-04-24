@@ -59,7 +59,7 @@ if (count($pages) !== 1) {
 	echo '
 	<div class="container-table container-table-pagination">
 		<div class="center-row">
-				<ul class="pagination ossn-pagination">';
+				<ul class="pagination ossn-pagination flex-wrap">';
   	//disaply first if first page is exist
 	if(isset($first) && !empty($first)){
         $url = "{$args['href']}?{$args['offset_name']}={$first}{$args_url}";
