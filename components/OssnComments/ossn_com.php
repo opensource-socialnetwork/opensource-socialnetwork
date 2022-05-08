@@ -526,7 +526,7 @@ function ossn_comment_page($pages) {
 				$image = base64_decode(input('image'));
 				if(!empty($image)) {
 						$file = ossn_string_decrypt(base64_decode($image));
-						//header('content-type: image/jpeg');
+						header('content-type: image/jpeg');
 						$file = rtrim(ossn_validate_filepath($file), '/');
 						$tmpphotos = ossn_get_userdata('tmp/photos/');
 						$filename  = str_replace($tmpphotos, '', $file);
