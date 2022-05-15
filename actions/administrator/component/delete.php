@@ -9,9 +9,14 @@
  * @link      https://www.opensource-socialnetwork.org/
  */
 
-$delete = new OssnComponents;
-$com    = input('component');
-$cache  = ossn_site_settings('cache');
+$delete    = new OssnComponents();
+$com       = input('component');
+$keep_pref = input('keep_pref');
+$cache     = ossn_site_settings('cache');
+
+if($keep_pref) {
+		$delete->savePref($com);
+}
 
 if($delete->delete($com)) {
 		ossn_trigger_message(ossn_print('com:deleted'), 'success');
@@ -19,7 +24,7 @@ if($delete->delete($com)) {
 				redirect(REF);
 		} else {
 				//redirect and flush cache
-				$action = ossn_add_tokens_to_url("action/admin/cache/flush");
+				$action = ossn_add_tokens_to_url('action/admin/cache/flush');
 				redirect($action);
 		}
 } else {
