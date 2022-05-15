@@ -46,7 +46,7 @@ class OssnComponents extends OssnDatabase {
 		 * @return array
 		 */
 		public function getComponents() {
-				$params['from']     = 'ossn_components as c';
+				$params['from'] = 'ossn_components as c';
 				//[E] Show components in admin panel in ASC order of their installation #2155
 				$params['order_by'] = 'c.id ASC';
 				$this->coms         = $this->select($params, true);
@@ -760,11 +760,11 @@ class OssnComponents extends OssnDatabase {
 		public function savePref(string $com_id): bool {
 				if(!empty($com_id)) {
 						$data_dir = ossn_get_userdata("components/preferences/{$com_id}/");
-						if(!is_dir($data_dir)) {
-								mkdir($data_dir, 0755, true);
-						}
 						$settings = $this->getSettings($com_id);
 						if($settings) {
+								if(!is_dir($data_dir)) {
+										mkdir($data_dir, 0755, true);
+								}
 								$toArray = (array) $settings;
 								$toJson  = json_encode($toArray);
 								$file    = $data_dir . 'pref.json';
