@@ -43,7 +43,7 @@ function ossn_component_delete_confirmation(){
 			var actionurl = $(this).attr('href');
 			var del = confirm(Ossn.Print('ossn:exception:make:sure'));
 			if(del == true){
-				var keep_pref = confirm(ossn_print('com:pref'));
+				var keep_pref = confirm(Ossn.Print('com:pref'));
 				var keep = '';
 				if(keep_pref){
 						keep = '&keep_pref=1';	
