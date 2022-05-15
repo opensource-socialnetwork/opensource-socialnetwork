@@ -153,7 +153,8 @@ You may copy and paste the address to your browser manually in case the link doe
     'com:delete:error' => 'Cannot delete component! Please try again later.',
     'com:disabled' => 'Component disabled!',
     'com:enabled' => 'Component enabled!',
-    
+    'com:pref' => 'Do you wish to keep preferences for this component? If you are updating component then it is recommended to keep preferences. Press OK to keep it. Press Cancel to remove preferences.',
+	
     'theme:delete:active' => 'Cannot delete active theme.',
     'theme:deleted' => 'Theme deleted.',
     'theme:delete:error' => 'Cannot delete theme! Please try again later.',

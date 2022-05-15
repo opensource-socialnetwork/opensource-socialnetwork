@@ -156,6 +156,7 @@ Mocht de link niet werken dan kunt u proberen deze in de adresbalk van je browse
 	'com:delete:error' => 'Kon het component niet verlaten! Probeer het later nog eens.',
 	'com:disabled' => 'Succesvol uitgeschakeld!',
 	'com:enabled' => 'Component Ingeschakeld!',
+    'com:pref' => 'Wilt u voorkeuren voor dit onderdeel behouden? Als u een component bijwerkt, is het raadzaam om voorkeuren te behouden. Druk op OK om het te behouden. Druk op Annuleren om voorkeuren te verwijderen.',
 	
 	'theme:delete:active' => 'Kan het actieve thema niet verwijderen.',
 	'theme:deleted' => 'Thema is verwijderd.',

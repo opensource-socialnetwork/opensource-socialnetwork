@@ -114,6 +114,7 @@ Bağlantı çalışmıyorsa kopyalayıp adres çubuğuna yapıştırarak deneyeb
 	'cache:disabled' => 'Önbellek pasifleştirildi!',
 	'cache:enable' => 'Önbelleği etkinleştir',
 	'cache:disable' => 'Önbelleği pasifleştir',
+    'com:pref' => "Bu bileşen için tercihleri saklamak istiyor musunuz? Bileşeni güncelliyorsanız, tercihleri saklamanız önerilir. Tutmak için Tamam'a basın. Tercihleri kaldırmak için İptal'e basın.",
 	
 	'cache:1' => 'Etkin',
 	'cache:0' => 'Pasif',

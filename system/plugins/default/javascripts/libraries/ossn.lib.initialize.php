@@ -5,7 +5,6 @@
  */
 Ossn.register_callback('ossn', 'init', 'ossn_startup_functions_compatibility');
 Ossn.register_callback('ossn', 'init', 'ossn_image_url_cache');
-Ossn.register_callback('ossn', 'init', 'ossn_administrator_update_widget');
 Ossn.register_callback('ossn', 'init', 'ossn_makesure_confirmation');
 Ossn.register_callback('ossn', 'init', 'ossn_system_messages');
 Ossn.register_callback('ossn', 'init', 'ossn_user_signup_form');
@@ -117,26 +116,6 @@ function ossn_makesure_confirmation(){
 				window.location = actionurl;
 			}
 		});
-	});
-}
-/**
- * Checks for the updates in administrator panel
- *
- * @return void
- */
-function ossn_administrator_update_widget(){
-	$(document).ready(function(){
-		if($('.avaiable-updates').length){
-			Ossn.PostRequest({
-				url: Ossn.site_url + "administrator/version",
-				action: false,
-				callback: function(callback){
-					if(callback['version']){
-						$('.avaiable-updates').html(callback['version']);
-					}
-				}
-			});
-		}
 	});
 }
 /**

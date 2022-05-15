@@ -154,6 +154,7 @@ Poti sa copy si paste adresa in browser in caz in care nu merge.
 	'com:delete:error' => 'Nu putem sterge Componentul! Incearca mai tarziu.',
 	'com:disabled' => 'A fost deactivat cu succes!',
 	'com:enabled' => 'Componentul a fost activat!',
+    'com:pref' => 'Doriți să păstrați preferințele pentru această componentă? Dacă actualizați o componentă, atunci este recomandat să păstrați preferințele. Apăsați OK pentru a-l păstra. Apăsați Anulare pentru a elimina preferințele.',
 	
 	'theme:delete:active' => 'Nu putem sterge Tematica.',
 	'theme:deleted' => 'Tematica a fost stearsa.',

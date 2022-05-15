@@ -155,6 +155,7 @@ Puede copiar y pegar la dirección a su navegador manualmente en caso de que el 
 	'com:delete:error' => 'No se puede eliminar el componente! Por favor, inténtelo de nuevo más tarde.',
 	'com:disabled' => 'Deshabilitado con éxito!',
 	'com:enabled' => 'Componente habilitado!',
+    'com:pref' => '¿Desea mantener las preferencias para este componente? Si está actualizando un componente, se recomienda mantener las preferencias. Pulse Aceptar para conservarlo. Pulse Cancelar para eliminar las preferencias.',
 	
 	'theme:delete:active' => 'No se puede eliminar el tema activo.',
 	'theme:deleted' => 'Se ha eliminado el tema.',

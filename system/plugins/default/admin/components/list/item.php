@@ -32,7 +32,7 @@
  $delete = '';
  if (!in_array($params['name'], $params['OssnCom']->requiredComponents())) {
   	$delete = ossn_site_url("action/component/delete?component={$params['name']}", true);
-  	$delete = "<a href='{$delete}' class='btn btn-danger ossn-make-sure' data-ossn-msg='ossn:component:delete:exception'><i class='fa fa-close'></i>" . ossn_print('admin:button:delete') ."</a>";
+  	$delete = "<a href='{$delete}' class='btn btn-danger ossn-component-delete-confirm' data-ossn-msg='ossn:component:delete:exception'><i class='fa fa-close'></i>" . ossn_print('admin:button:delete') ."</a>";
  }
  // find active usage of a required component
  $in_use = false;

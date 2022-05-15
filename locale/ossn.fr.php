@@ -153,6 +153,7 @@ Si vous ne pouvez pas cliquer sur le lien, copier et coller le dans votre naviga
 	'com:delete:error' => "Impossible de supprimer le composant! S'il vous plaît réessayez plus tard.",
 	'com:disabled' => "Désactivé avec suucès!",
 	'com:enabled' => "Composant activé!",
+    'com:pref' => 'Souhaitez-vous conserver les préférences pour ce composant ? Si vous mettez à jour un composant, il est recommandé de conserver les préférences. Appuyez sur OK pour le conserver. Appuyez sur Annuler pour supprimer les préférences.',
 	
 	'theme:delete:active' => "Impossible de supprimer le thème actif.",
 	'theme:deleted' => "Le thème a été supprimé.",

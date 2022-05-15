@@ -131,6 +131,7 @@ You may copy and paste the address to your browser manually in case the link doe
 	'com:delete:error' => '無法刪除元件, 請稍後再試一次.',
 	'com:disabled' => '已被停用!',
 	'com:enabled' => '元件啟用!',
+    'com:pref' => '您希望保留此组件的首选项吗？ 如果您正在更新组件，则建议保留首选项。 按 OK 保留它。 按取消删除首选项。',
 	
 	'theme:delete:active' => '無法刪除正在使用的佈景主題.',
 	'theme:deleted' => '佈景主題已被刪除.',

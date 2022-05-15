@@ -132,6 +132,7 @@ Anda dapat menyalin dan menempelkan alamat ke browser Anda secara manual jika ta
 	'com:delete:error' => 'Tidak dapat menghapus komponen! Silakan coba lagi nanti.',
 	'com:disabled' => 'Berhasil dinonaktifkan!',
 	'com:enabled' => 'Komponen Diaktifkan!',
+    'com:pref' => 'Apakah Anda ingin menyimpan preferensi untuk komponen ini? Jika Anda memperbarui komponen maka disarankan untuk menyimpan preferensi. Tekan OK untuk menyimpannya. Tekan Batal untuk menghapus preferensi.',
 	
 	'theme:delete:active' => 'Tidak dapat menghapus tema aktif.',
 	'theme:deleted' => 'Tema telah dihapus.',

@@ -114,7 +114,8 @@ Puoi anche copiare e incollare l'indirizzo nel tuo browser nel caso in cui il li
 	'cache:disabled' => 'Cache disabilitata con successo!',
 	'cache:enable' => 'Abilita Cache',
 	'cache:disable' => 'Disabilita Cache',
-
+    'com:pref' => 'Desideri mantenere le preferenze per questo componente? Se stai aggiornando un componente, ti consigliamo di mantenere le preferenze. Premi OK per mantenerlo. Premi Annulla per rimuovere le preferenze.',
+	
 	'cache:1' => 'Abilitata',
 	'cache:0' => 'Disabilita',
 	'cache:notice' => 'Stores CSS and Javascript files in a cache to improve site performance.',

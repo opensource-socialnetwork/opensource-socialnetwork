@@ -160,6 +160,7 @@ Vi povus kopii kaj alglui la adreson al via retumilo permane se la ligilo ne fun
 	'com:delete:error' => 'Ne povis forigi komponenton. Bonvolu reprovi poste.',
 	'com:disabled' => 'Malebligis sukcese!',
 	'com:enabled' => 'Komponento estas ebligita!',
+    'com:pref' => 'Ĉu vi volas konservi preferojn por ĉi tiu ero? Se vi ĝisdatigas komponantojn, oni rekomendas konservi preferojn. Premu OK por konservi ĝin. Premu Nuligi por forigi preferojn.',
 	
 	'theme:delete:active' => 'Ne eblas forigi uzatan temon.',
 	'theme:deleted' => 'Temo estas forigita.',

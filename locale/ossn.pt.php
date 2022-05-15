@@ -152,6 +152,7 @@ Caso tenha problemas, copie o endereço e cole manualmente em seu navegador.
 	'com:delete:error' => 'Não foi possível deletar o componente! Tente novamente mais tarde.',
 	'com:disabled' => 'Desativado com sucesso!',
 	'com:enabled' => 'Componente ativado',
+    'com:pref' => 'Deseja manter as preferências para este componente? Se você estiver atualizando o componente, é recomendável manter as preferências. Pressione OK para mantê-lo. Pressione Cancelar para remover as preferências.',
 	
 	'theme:delete:active' => 'Não é possível excluir um tema ativo.',
 	'theme:deleted' => 'O tema foi deletado com sucesso.',

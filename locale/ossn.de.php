@@ -153,6 +153,7 @@ Falls der Link nicht anklickbar ist, kopiere ihn einfach in Deinen Browser.
     'com:delete:error' => 'Die Komponente konnte nicht gelöscht werden - versuche es bitte erneut',
     'com:disabled' => 'Die Komponente wurde de-aktiviert',
     'com:enabled' => 'Die Komponente wurde aktiviert',
+    'com:pref' => 'Möchten Sie die Einstellungen für diese Komponente beibehalten? Wenn Sie eine Komponente aktualisieren, wird empfohlen, die Einstellungen beizubehalten. Drücken Sie OK, um es beizubehalten. Drücken Sie Abbrechen, um Einstellungen zu entfernen.',
 
     'theme:delete:active' => 'Ein aktives Thema kann nicht gelöscht werden',
     'theme:deleted' => 'Das Thema wurde gelöscht',
