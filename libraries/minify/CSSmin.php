@@ -9,6 +9,12 @@
  * @license MIT License
  */
 
+
+
+
+
+
+
 /**
  * CSS minifier
  *
@@ -20,7 +26,8 @@
  * @copyright Copyright (c) 2012, Matthias Mullie. All rights reserved
  * @license MIT License
  */
-class CSSmin extends Minify {
+class CSSmin extends Minify
+{
     /**
      * @var int maximum inport size in kB
      */
@@ -30,18 +37,22 @@ class CSSmin extends Minify {
      * @var string[] valid import extensions
      */
     protected $importExtensions = array(
-        'gif' => 'data:image/gif',
+    	'gif' => 'data:image/gif',
         'png' => 'data:image/png',
         'jpe' => 'data:image/jpeg',
         'jpg' => 'data:image/jpeg',
         'jpeg' => 'data:image/jpeg',
-        'jfif' => 'data:image/jpeg',
+		'jfif' => 'data:image/jpeg',
         'svg' => 'data:image/svg+xml',
         'woff' => 'data:application/x-font-woff',
+        'woff2' => 'data:application/x-font-woff2',
+        'avif' => 'data:image/avif',
+        'apng' => 'data:image/apng',
+        'webp' => 'data:image/webp',
         'tif' => 'image/tiff',
         'tiff' => 'image/tiff',
-        'xbm' => 'image/x-xbitmap',
-    );
+        'xbm' => 'image/x-xbitmap',    
+	);
 
     /**
      * Set the maximum size if files to be imported.
@@ -622,21 +633,10 @@ class CSSmin extends Minify {
      */
     protected function stripComments()
     {
-        // PHP only supports $this inside anonymous functions since 5.4
-        $minifier = $this;
-        $callback = function ($match) use ($minifier) {
-            $count = count($minifier->extracted);
-            $placeholder = '/*'.$count.'*/';
-            $minifier->extracted[$placeholder] = $match[0];
-
-            return $placeholder;
-        };
-        $this->registerPattern('/\n?\/\*(!|.*?@license|.*?@preserve).*?\*\/\n?/s', $callback);
-
-        $this->registerPattern('/\/\*.*?\*\//s', '');
+ 		$this->stripMultilineComments();
     }
 
-    /**
+     /**
      * Strip whitespace.
      *
      * @param string $content The CSS content to strip the whitespace for
