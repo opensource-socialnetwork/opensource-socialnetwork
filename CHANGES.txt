@@ -61,6 +61,9 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v6.2
 * [E] Updated cacert.pem
 * [E] Updated PHP MAILER to 6.6.0
 * [B] Pagination not responsive #2150
+* [E] Show components in admin panel in ASC order of their installation #2155
+* [E] Component delete confirmation if wanted to keep settings. #2152
+* [T] OssnUser::getFriends() #2149
 
 Special Thanks to Michael Zülsdorff (aka Zetman) (https://www.opensource-socialnetwork.org/u/zetman) for testing and bug reporting, fixing.
 
