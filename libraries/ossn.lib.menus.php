@@ -139,3 +139,23 @@ function ossn_view_sections_menu($menu, $type = 'frontend') {
 		));
 		return ossn_view_menu($menu, "menus/sections/{$menu}");
 }
+
+/**
+ * Register sidebar menu
+ *
+ * @param string $name The name of the menu
+ * @param string $text Link text
+ * @param string $link Full url
+ * @param string $section Menu section
+ * @param string $for sidebar name
+ *
+ * @return void
+ */
+function ossn_register_admin_sidemenu($name, $text, $link, $section, $for = 'admin/sidemenu') {
+		ossn_register_menu_item($for, array(
+				'name' => $name,
+				'text' => $text,
+				'href' => $link,
+				'parent' => $section
+		));
+}

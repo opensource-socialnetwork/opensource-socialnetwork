@@ -34,9 +34,9 @@ if (!isset($params['callback'])) {
         <div class="controls">
             <?php if ($params['callback'] !== false) { ?>
                 <a href="javascript:void(0);" onclick="Ossn.Clk('<?php echo $params['callback']; ?>');"
-                   class='btn btn-primary'><?php echo $params['button']; ?></a>
+                   class='btn btn-primary btn-sm'><?php echo $params['button']; ?></a>
             <?php } ?>
-            <a href="javascript:void(0);" onclick="Ossn.MessageBoxClose();" class='btn btn-default'><?php echo ossn_print('cancel'); ?></a>
+            <a href="javascript:void(0);" onclick="Ossn.MessageBoxClose();" class='btn btn-default btn-sm'><?php echo ossn_print('cancel'); ?></a>
         </div>
     </div>
 

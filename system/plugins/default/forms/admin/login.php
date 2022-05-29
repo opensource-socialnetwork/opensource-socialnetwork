@@ -20,5 +20,5 @@
 </div>
 
 <div>
-	<input type="submit" value="<?php echo ossn_print('admin:login'); ?>" class="btn btn-primary"/>
+	<input type="submit" value="<?php echo ossn_print('admin:login'); ?>" class="btn btn-primary btn-sm"/>
 </div>

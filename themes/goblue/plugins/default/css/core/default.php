@@ -115,8 +115,9 @@ body {
 	margin-right: 5px;
 }
 
+.hidden,
 .ossn-hidden {
-	display: none;
+	display: none !important;
 }
 
 p {
@@ -153,6 +154,7 @@ p {
 
 a {
 	color: #0f3b4a;
+    text-decoration:none;
 }
 
 
@@ -328,7 +330,7 @@ a {
 	color: #fff;
 	z-index: 1;
 	position: relative;
-	height: 48px;
+	height: 49px;
 }
 
 .topbar .fa {
@@ -2888,4 +2890,109 @@ footer .ossn-footer-menu a:last-child::after {
 	.ossn-wall-container .wall-tabs i {
 		margin-top: 3px;
 	}
+}
+.btn-close {
+    background-size: .7em;
+}
+.img-responsive {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/*************************
+	3.x buttons styles
+***************************/
+.btn-close:focus {
+	box-shadow:none;
+}
+.btn-warning {
+	color:#fff;
+}	
+.btn-primary {
+	background-color: #2a87a7;
+    border-color: #2e6da4;    
+}
+.btn-primary:hover {
+  color: #fff;
+  background-color: #286090;
+  border-color: #204d74;
+}
+.btn-primary:focus,
+.btn-primary.focus {
+  color: #fff;
+  background-color: #286090;
+  border-color: #122b40;
+}
+.btn-check:checked + .btn-primary:focus, 
+.btn-check:active + .btn-primary:focus,
+.btn-primary:active:focus,
+.btn-primary.active:focus, 
+.show > .btn-primary.dropdown-toggle:focus {
+	box-shadow : none;
+}
+.btn:focus {
+	box-shadow : none;
+}
+.btn-warning {
+  color: #fff;
+  background-color: #f0ad4e;
+  border-color: #eea236;
+}
+.btn-warning:active {
+	color:#fff;
+}
+.btn-warning:focus,
+.btn-warning.focus {
+  color: #fff;
+  background-color: #ec971f;
+  border-color: #985f0d;
+}
+.btn-default {
+  color: #333;
+  background-color: #fff;
+  border-color: #ccc;
+}
+.btn-default:focus,
+.btn-default.focus {
+  color: #333;
+  background-color: #e6e6e6;
+  border-color: #8c8c8c;
+}
+.btn-default:hover {
+  color: #333;
+  background-color: #e6e6e6;
+  border-color: #adadad;
+}
+.btn-default:active,
+.btn-default.active,
+.open > .dropdown-toggle.btn-default {
+  color: #333;
+  background-color: #e6e6e6;
+  border-color: #adadad;
+}
+.pagination {
+	margin:20px 0;
+}
+.dropdown-item.active, .dropdown-item:active {
+    color: #212529;
+    background-color: #e9ecef;
+}
+.page-item.active .page-link {
+    background-color: #337ab7;
+    border-color: #337ab7;
+}
+.page-link {
+    color: #337ab7;
+}
+.page-link:hover {
+    color: #23527c;
+    background-color: #eee;
+    border-color: #ddd;
+}
+label {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: 700;
 }

@@ -61,7 +61,10 @@ form {
 .btn {
 	border-radius: 3px;
 }
-
+a {
+	color:#337ab7;
+	text-decoration:none;
+}
 input[type='number'],
 input[type='email'],
 select,
@@ -663,3 +666,23 @@ th {
 .navbar-toggler:focus {
 	box-shadow: none;
 }	 
+.btn-close {
+    background-size: .7em;
+}
+.img-responsive {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+.page-item.active .page-link {
+    background-color: #337ab7;
+    border-color: #337ab7;
+}
+.page-link {
+    color: #337ab7;
+}
+.page-link:hover {
+    color: #23527c;
+    background-color: #eee;
+    border-color: #ddd;
+}

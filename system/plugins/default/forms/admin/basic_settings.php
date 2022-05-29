@@ -57,5 +57,5 @@ ossn_load_available_languages();
 </select>
 </div>
 <div>
-	<input type="submit" class="btn btn-primary" value="<?php echo ossn_print('save'); ?>"/>
+	<input type="submit" class="btn btn-success btn-sm" value="<?php echo ossn_print('save'); ?>"/>
 </div>

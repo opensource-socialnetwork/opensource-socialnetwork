@@ -13,7 +13,7 @@ if ($users) {
     foreach ($users as $user) {
       ?>
 		<div class="row ossn-users-list-item">
-            	<div class="col-md-2 col-sm-2 hidden-xs">
+            	<div class="col-md-2 col-sm-2 d-none d-sm-block">
     	        		<img src="<?php echo $user->iconURL()->large; ?>" width="100" height="100"/>
 				</div>
                 <div class="col-md-10 col-sm-10 col-12">

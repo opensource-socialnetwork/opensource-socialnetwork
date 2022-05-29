@@ -45,7 +45,7 @@ if (isset($_COOKIE['ossn_home_wall_privacy'])) {
     </div>
     <div class='ossn-wall-post-button-container'>
             <div class="ossn-loading ossn-hidden"></div>
-            <input class="btn btn-primary ossn-wall-post" type="submit" value="<?php echo ossn_print('post'); ?>" />
+            <input class="btn btn-primary btn-sm ossn-wall-post" type="submit" value="<?php echo ossn_print('post'); ?>" />
     </div>
     <div class="ossn-wall-privacy">
             <span><i class="ossn-wall-privacy-lock fa fa-lock"></i><span class=""><?php echo ossn_print('privacy'); ?></span></span>

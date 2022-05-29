@@ -177,7 +177,7 @@ $members = $params['group']->getMembers();
             	</div> <!-- ./group-wall -->       
         	</div> <!-- ./col-md-7 -->
              <div class="col-md-4">
-             	<div class="page-sidebar hidden-xs">
+             	<div class="page-sidebar d-none d-sm-block">
         		<?php 
 				echo ossn_view_widget(array(
 						'title' => ossn_print('about:group'),

@@ -139,7 +139,7 @@ if (ossn_isLoggedIn()) {
 					</div>
          </div>      
 		<div class="col-md-4">
-			<div class="ossn-profile-sidebar hidden-xs">
+			<div class="ossn-profile-sidebar d-none d-sm-block">
  				<div class="ossn-profile-modules">
 					<?php if (ossn_is_hook( 'profile', 'modules')) { 
 								$params[ 'user'] = $user; 

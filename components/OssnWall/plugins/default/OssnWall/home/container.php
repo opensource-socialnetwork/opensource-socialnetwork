@@ -51,7 +51,7 @@ if (!isset($params['user']->guid)) {
    		 <input class="btn btn-primary ossn-wall-post" type="submit" value="<?php echo ossn_print('post'); ?>"/>
 	</div>
     <li class="ossn-wall-privacy">
- 		<span><i class="ossn-wall-privacy-lock fa fa-lock"></i><span class="hidden-xs"><?php echo ossn_print('privacy'); ?></span></span>
+ 		<span><i class="ossn-wall-privacy-lock fa fa-lock"></i><span class="d-none d-sm-block"><?php echo ossn_print('privacy'); ?></span></span>
 	</li>
 </div>
 <input type="hidden" value="<?php echo $params['user']->guid; ?>" name="wallowner"/>

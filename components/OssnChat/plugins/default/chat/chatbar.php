@@ -9,7 +9,7 @@
  * @link      https://www.opensource-socialnetwork.org/
  */
 ?>
-<div class="ossn-chat-base hidden-xs hidden-sm">
+<div class="ossn-chat-base d-none d-md-block">
     <div class="ossn-chat-bar">
         <div class="friends-list">
 
