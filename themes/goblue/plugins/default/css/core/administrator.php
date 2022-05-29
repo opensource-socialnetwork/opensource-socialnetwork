@@ -61,10 +61,12 @@ form {
 .btn {
 	border-radius: 3px;
 }
+
 a {
-	color:#337ab7;
-	text-decoration:none;
+	color: #337ab7;
+	text-decoration: none;
 }
+
 input[type='number'],
 input[type='email'],
 select,
@@ -113,6 +115,7 @@ label {
 	color: #333;
 	cursor: pointer;
 	display: block;
+	margin-bottom: 2px;
 }
 
 .dropdown-submenu {
@@ -354,13 +357,102 @@ footer a {
 	margin-right: 5px;
 }
 
+.checkbox-block,
 .radio-block {
 	margin-top: 10px;
 	margin-bottom: 10px;
 }
 
+.checkbox-block span,
 .radio-block span {
-	margin-left: 5px;
+	display: inline-block;
+	margin-right: 10px;
+	font-size: 15px;
+	font-weight: bold;
+	margin-left: 10px;
+}
+
+.ossn-checkbox-input {
+	width: 20px;
+	height: 20px;
+	color: #0b769c;
+	-webkit-appearance: none;
+	background: none;
+	border: 0;
+	outline: 0;
+	flex-grow: 0;
+	background-color: #FFFFFF;
+	transition: background 300ms;
+	cursor: pointer;
+	float: left;
+	margin-top: 2px;
+}
+
+.checkbox-block [type=checkbox]::before {
+	content: "";
+	color: transparent;
+	display: block;
+	width: inherit;
+	height: inherit;
+	border-radius: inherit;
+	border: 0;
+	background-color: transparent;
+	background-size: contain;
+	box-shadow: inset 0 0 0 1px #CCD3D8;
+}
+
+
+.checkbox-block [type=checkbox]:checked {
+	background-color: currentcolor;
+}
+
+.checkbox-block [type=checkbox]:checked::before {
+	box-shadow: none;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E %3Cpath d='M15.88 8.29L10 14.17l-1.88-1.88a.996.996 0 1 0-1.41 1.41l2.59 2.59c.39.39 1.02.39 1.41 0L17.3 9.7a.996.996 0 0 0 0-1.41c-.39-.39-1.03-.39-1.42 0z' fill='%23fff'/%3E %3C/svg%3E");
+}
+
+.checkbox-block [type=checkbox]:disabled {
+	background-color: #CCD3D8;
+	opacity: 0.84;
+	cursor: not-allowed;
+}
+
+
+.ossn-form input[type=radio] {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	display: inline-block;
+	position: relative;
+	background-color: #ececec;
+	color: #666;
+	top: 5px;
+	height: 20px;
+	width: 20px;
+	border: 0;
+	border-radius: 50px;
+	cursor: pointer;
+	outline: none;
+	flex-grow: 0;
+	transition: background 300ms;
+}
+
+.ossn-form input[type=radio]:checked::before {
+	position: absolute;
+	font: 9px/1 'Open Sans', sans-serif;
+	left: 7px;
+	top: 5px;
+	content: '\02143';
+	transform: rotate(40deg);
+}
+
+.ossn-form input[type=radio]:hover {
+	background-color: #f7f7f7;
+}
+
+.ossn-form input[type=radio]:checked {
+	background-color: #0b769c;
+	color: #fff;
 	font-weight: bold;
 }
 
@@ -541,11 +633,13 @@ footer a {
 }
 
 ******************************** Loading Icon @source: https: //github.com/jlong/css-spinners
-*********************************/ @-moz-keyframes three-quarters-loader {
+
+	*********************************/ @-moz-keyframes three-quarters-loader {
 	0% {
 		-moz-transform: rotate(0deg);
 		transform: rotate(0deg);
 	}
+
 	100% {
 		-moz-transform: rotate(360deg);
 		transform: rotate(360deg);
@@ -557,6 +651,7 @@ footer a {
 		-webkit-transform: rotate(0deg);
 		transform: rotate(0deg);
 	}
+
 	100% {
 		-webkit-transform: rotate(360deg);
 		transform: rotate(360deg);
@@ -570,6 +665,7 @@ footer a {
 		-webkit-transform: rotate(0deg);
 		transform: rotate(0deg);
 	}
+
 	100% {
 		-moz-transform: rotate(360deg);
 		-ms-transform: rotate(360deg);
@@ -658,31 +754,36 @@ th {
 .table> :not(caption)>*>* {
 	border-bottom-width: 0;
 }
-	 
+
 .navbar-toggler {
 	color: #fff;
 }
 
 .navbar-toggler:focus {
 	box-shadow: none;
-}	 
+}
+
 .btn-close {
-    background-size: .7em;
+	background-size: .7em;
 }
+
 .img-responsive {
-  display: block;
-  max-width: 100%;
-  height: auto;
+	display: block;
+	max-width: 100%;
+	height: auto;
 }
+
 .page-item.active .page-link {
-    background-color: #337ab7;
-    border-color: #337ab7;
+	background-color: #337ab7;
+	border-color: #337ab7;
 }
+
 .page-link {
-    color: #337ab7;
+	color: #337ab7;
 }
+
 .page-link:hover {
-    color: #23527c;
-    background-color: #eee;
-    border-color: #ddd;
+	color: #23527c;
+	background-color: #eee;
+	border-color: #ddd;
 }
