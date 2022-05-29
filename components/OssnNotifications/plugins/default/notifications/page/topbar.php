@@ -34,7 +34,7 @@ if ($friends) {
                           <span class="ossn-notification-container"><?php echo $friends_c; ?></span>
                           <div class="ossn-icon ossn-icons-topbar-friends-new"><i class="fa fa-users"></i></div>
                       <?php } else { ?>
-                          <span class="ossn-notification-container hidden"></span>
+                          <span class="ossn-notification-container d-none"></span>
                           <div class="ossn-icon ossn-icons-topbar-friends"><i class="fa fa-users"></i></div>
                       <?php } ?>
                        </span>
@@ -49,7 +49,7 @@ if ($friends) {
                             <span class="ossn-notification-container"><?php echo $count_messages; ?></span>
                             <div class="ossn-icon ossn-icons-topbar-messages-new"><i class="fa fa-envelope"></i></div>
                         <?php } else { ?>
-                            <span class="ossn-notification-container hidden"></span>
+                            <span class="ossn-notification-container d-none"></span>
                             <div class="ossn-icon ossn-icons-topbar-messages"><i class="fa fa-envelope"></i></div>
                         <?php } ?>
                        </span>
@@ -62,7 +62,7 @@ if ($friends) {
                            <span class="ossn-notification-container"><?php echo $count_notif; ?></span>
                            <div class="ossn-icon ossn-icons-topbar-notifications-new"><i class="fa fa-globe-americas"></i></div>
                        <?php } else { ?>
-                           <span class="ossn-notification-container hidden"></span>
+                           <span class="ossn-notification-container d-none"></span>
                            <div class="ossn-icon ossn-icons-topbar-notification"><i class="fa fa-globe-americas"></i></div>
                        <?php } ?>
                        </span>
