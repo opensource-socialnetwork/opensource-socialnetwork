@@ -65,6 +65,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v6.2
 * [E] Component delete confirmation if wanted to keep settings. #2152
 * [T] OssnUser::getFriends() #2149
 * [B] Pagination not responsive #2150
+* [B] btn-sm have no effect #2153
 
 Special Thanks to Michael Zülsdorff (aka Zetman) (https://www.opensource-socialnetwork.org/u/zetman) for testing and bug reporting, fixing.
 
