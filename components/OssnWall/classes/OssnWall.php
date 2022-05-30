@@ -203,7 +203,10 @@ class OssnWall extends OssnObject {
 								'value'  => true,
 								'wheres' => '(1=1)',
 						);
-						if(ossn_isLoggedin() && !ossn_user_is_friend(ossn_loggedin_user()->guid, $user->guid) && ossn_loggedin_user()->guid != $user->guid && !ossn_isAdminLoggedin()){
+						//Non logged in visitor can view private posts #2158
+						//Non loggedin should only see a public posts.#2158
+						//31-05-2022 $arsalanshah
+						if((ossn_isLoggedin() && !ossn_user_is_friend(ossn_loggedin_user()->guid, $user->guid) && ossn_loggedin_user()->guid != $user->guid && !ossn_isAdminLoggedin()) || !ossn_isLoggedin()){
 								$default['wheres'][] = '(emd0.value=2)';
 						}
 						$extra_param = array(
