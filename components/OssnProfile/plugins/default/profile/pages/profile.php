@@ -76,16 +76,16 @@ if (ossn_isLoggedIn()) {
 					</div>
 					<div class="user-fullname"><?php echo $user->fullname; ?></div>
                     <?php echo ossn_plugin_view('profile/role', array('user' => $user)); ?>
-					<div id='profile-hr-menu' class="profile-hr-menu visible-lg">
+					<div id='profile-hr-menu' class="profile-hr-menu d-none d-lg-block">
 						<?php echo ossn_plugin_view('menus/user_timeline', array('menu_width' => 60)); ?>
 					</div>
-					<div id='profile-hr-menu' class="profile-hr-menu visible-md">
+					<div id='profile-hr-menu' class="profile-hr-menu d-none d-md-block d-lg-none">
 						<?php echo ossn_plugin_view('menus/user_timeline', array('menu_width' => 40)); ?>
 					</div>
-					<div id='profile-hr-menu' class="profile-hr-menu visible-sm">
+					<div id='profile-hr-menu' class="profile-hr-menu d-none d-sm-block d-md-none">
 						<?php echo ossn_plugin_view('menus/user_timeline', array('menu_width' => 25)); ?>
 					</div>
-					<div id='profile-hr-menu' class="profile-hr-menu visible-xs">
+					<div id='profile-hr-menu' class="profile-hr-menu d-block d-sm-none">
 						<?php echo ossn_plugin_view('menus/user_timeline', array('menu_width' => 1)); ?>
 					</div>
 
