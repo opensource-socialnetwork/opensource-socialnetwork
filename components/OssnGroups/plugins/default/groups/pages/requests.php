@@ -34,12 +34,12 @@ if (empty($requests)) {
 							echo ossn_plugin_view('output/url', array(
 									'text' => ossn_print('approve'),
 									'href' =>  ossn_site_url("action/group/member/approve?group={$params['group']->guid}&user={$user->guid}", true),
-									'class' => 'btn btn-primary',
+									'class' => 'btn btn-primary btn-sm',
 							));
 							echo ossn_plugin_view('output/url', array(
 									'text' => ossn_print('decline'),
 									'href' =>  ossn_site_url("action/group/member/decline?group={$params['group']->guid}&user={$user->guid}", true),
-									'class' => 'btn btn-danger',
+									'class' => 'btn btn-danger btn-sm',
 							));
 						?>		
                    </div>

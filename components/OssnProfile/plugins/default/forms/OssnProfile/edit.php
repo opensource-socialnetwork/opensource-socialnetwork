@@ -52,4 +52,4 @@ if($fields){
 ?>
 </div>
 <input type="hidden" value="<?php echo $user->username; ?>" name="username"/>
-<input type="submit" class="btn btn-primary" value="<?php echo ossn_print('save'); ?>"/>
+<input type="submit" class="btn btn-primary btn-sm" value="<?php echo ossn_print('save'); ?>"/>

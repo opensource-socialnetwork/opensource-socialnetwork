@@ -17,10 +17,10 @@ $count      = $ads->getAds(array(
 ?>
 <div class="right margin-bottom-10">
 	<div class="inline-block">
-    	<a href="<?php echo ossn_site_url("administrator/component/OssnAds?settings=add"); ?>" class="btn btn-success"><?php echo ossn_print('add'); ?></a>
+    	<a href="<?php echo ossn_site_url("administrator/component/OssnAds?settings=add"); ?>" class="btn btn-success btn-sm"><?php echo ossn_print('add'); ?></a>
     </div>
     <div class="inline-block">
-      <input type="submit" class="btn btn-danger" value="<?php echo ossn_print('delete'); ?>"/>
+      <input type="submit" class="btn btn-danger btn-sm" value="<?php echo ossn_print('delete'); ?>"/>
    </div>   
 </div>
 <div>

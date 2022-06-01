@@ -31,10 +31,10 @@
 						  Ossn.removeFriendRequset($users->guid);
 						  </script>
 						  <form id='add-friend-{$users->guid}'>
-                           <input class='btn btn-primary' type='submit' value='{$confirmbutton}' />
+                           <input class='btn btn-primary btn-sm' type='submit' value='{$confirmbutton}' />
 						   </form>
 						   	<form id='remove-friend-{$users->guid}'>
-						   <input class='btn btn-default' type='submit' value='{$denybutton}' />
+						   <input class='btn btn-default btn-sm' type='submit' value='{$denybutton}' />
 						   </form>
 
                            </div>

@@ -32,12 +32,12 @@ $group = $params['group'];
     <option value='1' <?php echo $close; ?>> <?php echo ossn_print('close'); ?> </option>
 </select>
 <input type="hidden" name="group" value="<?php echo $group->guid; ?>"/>
-<input type="submit" value="<?php echo ossn_print('save'); ?>" class="btn btn-success"/>
-<a class="btn btn-warning" href="<?php echo ossn_site_url("action/group/cover/delete?guid={$group->guid}", true);?>"><i class="fa fa-trash-o"></i><?php echo ossn_print('group:delete:cover');?></a>
+<input type="submit" value="<?php echo ossn_print('save'); ?>" class="btn btn-success btn-sm"/>
+<a class="btn btn-warning btn-sm" href="<?php echo ossn_site_url("action/group/cover/delete?guid={$group->guid}", true);?>"><i class="fa fa-trash-o"></i><?php echo ossn_print('group:delete:cover');?></a>
 <?php
 	echo ossn_plugin_view('output/url', array(
 			'text' => ossn_print('delete'),
 			'href' => ossn_site_url("action/group/delete?guid=$group->guid"),
-			'class' => 'btn btn-danger delete-group ossn-make-sure',
+			'class' => 'btn btn-danger btn-sm delete-group ossn-make-sure',
 			'action' => true,
 	));

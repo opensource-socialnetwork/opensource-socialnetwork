@@ -41,7 +41,7 @@ if ($members) {
 	    								echo ossn_plugin_view('output/url', array(
 	    									'text' => ossn_print('group:memb:remove'),
 	    									'href' =>  ossn_site_url("action/group/member/decline?group={$params['group']->guid}&user={$user->guid}", true),
-		    								'class' => 'btn btn-warning btn-responsive ossn-make-sure'
+		    								'class' => 'btn btn-warning btn-sm btn-responsive ossn-make-sure'
 		    							));
 										//don't let moderators to make themselve owner
 										if(ossn_loggedin_user()->guid == $params['group']->owner_guid || ossn_isAdminLoggedin()){
@@ -50,7 +50,7 @@ if ($members) {
 						    					'data-is-admin' => ossn_isAdminLoggedin(),
 							    				'text' => ossn_print('group:memb:make:owner'),
 							    				'href' =>  ossn_site_url("action/group/change_owner?group={$params['group']->guid}&user={$user->guid}", true),
-							    				'class' => 'btn btn-danger btn-responsive ossn-group-change-owner'
+							    				'class' => 'btn btn-danger btn-sm btn-responsive ossn-group-change-owner'
 							    			));
 										}
 		    						}
