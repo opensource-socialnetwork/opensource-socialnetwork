@@ -20,10 +20,10 @@
  $delete = '';
  if(ossn_site_settings('theme') !== $id) {
 	 $enable = ossn_site_url("action/theme/enable?theme={$id}", true);
-	 $enable = "<a href='{$enable}' class='btn btn-success'><i class='fa fa-check'></i>".ossn_print('admin:button:enable')."</a>";
+	 $enable = "<a href='{$enable}' class='btn btn-success btn-sm'><i class='fa fa-check'></i>".ossn_print('admin:button:enable')."</a>";
 
 	 $delete = ossn_site_url("action/theme/delete?theme={$id}", true);
-	 $delete = "<a href='{$delete}' class='btn btn-danger ossn-make-sure'><i class='fa fa-close'></i>".ossn_print('admin:button:delete')."</a>";	  
+	 $delete = "<a href='{$delete}' class='btn btn-danger btn-sm ossn-make-sure'><i class='fa fa-close'></i>".ossn_print('admin:button:delete')."</a>";	  
  } 
 ?> 	
     <div class="card card-spacing">

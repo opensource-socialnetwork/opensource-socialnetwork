@@ -22,6 +22,6 @@
 	<?php echo ossn_fetch_extend_views('forms/login2/before/submit'); ?>
 </div>
 <div>
-    <input type="submit" value="<?php echo ossn_print('site:login');?>" class="btn btn-primary"/>
+    <input type="submit" value="<?php echo ossn_print('site:login');?>" class="btn btn-primary btn-sm"/>
     <a href="<?php echo ossn_site_url('resetlogin'); ?>"><?php echo ossn_print('reset:login'); ?> </a>
 </div>

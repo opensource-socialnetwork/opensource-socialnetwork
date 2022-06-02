@@ -18,21 +18,21 @@
  //used code from ossn v1.0
  if (!$params['OssnCom']->isActive($params['name'])) {
   	$enable = ossn_site_url("action/component/enable?com={$params['name']}", true);
-  	$enable = "<a href='{$enable}' class='btn btn-success'><i class='fa fa-check'></i>" . ossn_print('admin:button:enable') ."</a>";
+  	$enable = "<a href='{$enable}' class='btn btn-success btn-sm'><i class='fa fa-check'></i>" . ossn_print('admin:button:enable') ."</a>";
 	$disable = '';
  } elseif (!in_array($params['name'], $params['OssnCom']->requiredComponents())) {
   	$disable = ossn_site_url("action/component/disable?com={$params['name']}", true);
-  	$disable = "<a href='{$disable}' class='btn btn-warning'><i class='fa fa-minus'></i>" . ossn_print('admin:button:disable') ."</a>";
+  	$disable = "<a href='{$disable}' class='btn btn-warning btn-sm'><i class='fa fa-minus'></i>" . ossn_print('admin:button:disable') ."</a>";
 	$enable = '';
  }
  if (in_array($params['name'], ossn_registered_com_panel())) {
   	$configure = ossn_site_url("administrator/component/{$params['name']}");
-  	$configure = "<a href='{$configure}' class='btn btn-primary'><i class='fa fa-cogs'></i>" . ossn_print('admin:button:configure') ."</a>";
+  	$configure = "<a href='{$configure}' class='btn btn-primary btn-sm'><i class='fa fa-cogs'></i>" . ossn_print('admin:button:configure') ."</a>";
  }
  $delete = '';
  if (!in_array($params['name'], $params['OssnCom']->requiredComponents())) {
   	$delete = ossn_site_url("action/component/delete?component={$params['name']}", true);
-  	$delete = "<a href='{$delete}' class='btn btn-danger ossn-component-delete-confirm' data-ossn-msg='ossn:component:delete:exception'><i class='fa fa-close'></i>" . ossn_print('admin:button:delete') ."</a>";
+  	$delete = "<a href='{$delete}' class='btn btn-danger btn-sm ossn-component-delete-confirm' data-ossn-msg='ossn:component:delete:exception'><i class='fa fa-close'></i>" . ossn_print('admin:button:delete') ."</a>";
  }
  // find active usage of a required component
  $in_use = false;
