@@ -18,7 +18,7 @@ $count = $users->getUnvalidatedUSERS($search, 'count');
 	<div class="col-md-12">
     <form method="post">
         <input type="text" name="search_users" placeholder="<?php echo ossn_print('search'); ?>" />
-        <input type="submit" class="btn btn-primary" value="<?php echo ossn_print('search'); ?>"/>
+        <input type="submit" class="btn btn-primary btn-sm" value="<?php echo ossn_print('search'); ?>"/>
     </form>    
     </div>
 </div>

@@ -17,4 +17,4 @@
 <div>
 		<?php echo ossn_fetch_extend_views('forms/resetpassword/before/submit'); ?>
 </div>
-<input type="submit"  class="btn btn-success" value="<?php echo ossn_print('reset'); ?>"/>
+<input type="submit"  class="btn btn-success btn-sm" value="<?php echo ossn_print('reset'); ?>"/>

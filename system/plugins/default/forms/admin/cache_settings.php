@@ -26,7 +26,7 @@ if ($cache == 1) {
 	</select>
 </div>
 <div>
-	<input type="submit" class="btn btn-primary" value="<?php echo ossn_print('save'); ?>"/>
+	<input type="submit" class="btn btn-primary btn-sm" value="<?php echo ossn_print('save'); ?>"/>
 </div>    
 <div class="alert alert-info page-botton-notice">
     <?php echo ossn_print('cache:notice'); ?>
