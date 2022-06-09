@@ -68,6 +68,8 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v6.2
 * [B] btn-sm have no effect #2153
 * [B] missing checkbox-block span style #2145
 * [B] Non logged in visitor can view private posts #2158
+* [B] OssnChat default value showing 0 in class #2163
+* [E] Request for new user image classes defining the shape only #2143
 
 Special Thanks to Michael Zülsdorff (aka Zetman) (https://www.opensource-socialnetwork.org/u/zetman) for testing and bug reporting, fixing.
 
