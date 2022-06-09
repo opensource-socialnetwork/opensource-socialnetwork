@@ -31,7 +31,7 @@ function ossn_goblue_theme_init() {
 		ossn_extend_view('js/opensource.socialnetwork', 'js/goblue');
 
 		if(ossn_isAdminLoggedin()) {
-				ossn_register_menu_item($for, array(
+				ossn_register_menu_item('admin/sidemenu', array(
 						'name'   => 'admin:theme:goblue',
 						'text'   => 'admin:theme:goblue', //plain string for ossn_print
 						'href'   => ossn_site_url('administrator/settings/goblue'),
