@@ -93,7 +93,8 @@ class OssnChat extends OssnMessages {
 						return false;
 				}
 				foreach($friends as $friend) {
-						$status = 0;
+						//default value should be offline  [B] OssnChat default value showing 0 in class #2163
+						$status = "ossn-chat-icon-offline"; 
 						if(($friend instanceof OssnUser) && $friend->isOnline(10)) {
 								$status = 'ossn-chat-icon-online';
 						}
