@@ -38,7 +38,7 @@
 				?>
 		<div class="row" id="message-item-<?php echo $message->id ?>">
 			<div class="col-md-1">
-				<img  class="user-icon" src="<?php echo $user->iconURL()->smaller;?>" />
+				<img  class="user-icon user-icon-smaller" src="<?php echo $user->iconURL()->smaller;?>" />
 			</div>
 			<div class="col-md-11 pull-left">
 				<div class="message-box-recieved text <?php echo $class;?>">

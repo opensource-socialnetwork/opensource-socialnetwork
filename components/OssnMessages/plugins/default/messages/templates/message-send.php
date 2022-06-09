@@ -27,7 +27,7 @@ if($user->guid == ossn_loggedin_user()->guid){
 						?>
                     	<div class="row" id="message-item-<?php echo $message_id ?>">
                         	<div class="col-md-1">
-                                	<a href="<?php echo $user->profileURL();?>"><img  class="user-icon" src="<?php echo $user->iconURL()->smaller;?>" /></a>
+                                	<a href="<?php echo $user->profileURL();?>"><img class="user-icon-smaller user-icon" src="<?php echo $user->iconURL()->smaller;?>" /></a>
                                 </div>                                
                                 <div class="col-md-11 pull-left">
                                 	<div class="message-box-recieved text">

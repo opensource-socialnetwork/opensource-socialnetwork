@@ -138,7 +138,7 @@ if(OssnChat['allfriends']){
 			if (data['status'] == 'ossn-chat-icon-online' && $item.find('.ustatus').hasClass('ossn-chat-icon-online') == false) {
 				/* state change offline -> online: move friend to top of list */
 				$item.remove();
-				var prependata = '<div data-toggle="tooltip" title="'+data['name']+'" class="friends-list-item" id="friend-list-item-'+data['guid']+'" onClick="Ossn.ChatnewTab('+data['guid']+');"><div class="friends-item-inner"><div class="icon"><img class="ustatus ossn-chat-icon-online" src="'+data['icon']+'" /></div></div></div>';  
+				var prependata = '<div data-toggle="tooltip" title="'+data['name']+'" class="friends-list-item" id="friend-list-item-'+data['guid']+'" onClick="Ossn.ChatnewTab('+data['guid']+');"><div class="friends-item-inner"><div class="icon"><img class="user-icon-small ustatus ossn-chat-icon-online" src="'+data['icon']+'" /></div></div></div>';  
 				if ($('.ossn-chat-pling').length) {
 					$(".ossn-chat-windows-long .inner .ossn-chat-pling").after(prependata);
 				}
@@ -146,16 +146,16 @@ if(OssnChat['allfriends']){
 					$(".ossn-chat-windows-long .inner").prepend(prependata);
 				}
 			}
-			if (data['status'] == '0' && $item.find('.ustatus').hasClass('ossn-chat-icon-online') == true) {
+			if (data['status'] == 'ossn-chat-icon-offline' && $item.find('.ustatus').hasClass('ossn-chat-icon-online') == true) {
 				/* state change online -> offline: move friend to bottom of list */
 				$item.remove();
-				var appendata = '<div data-toggle="tooltip" title="'+data['name']+'" class="friends-list-item" id="friend-list-item-'+data['guid']+'" onClick="Ossn.ChatnewTab('+data['guid']+');"><div class="friends-item-inner"><div class="icon"><img class="ustatus" src="'+data['icon']+'" /></div></div></div>';    
+				var appendata = '<div data-toggle="tooltip" title="'+data['name']+'" class="friends-list-item" id="friend-list-item-'+data['guid']+'" onClick="Ossn.ChatnewTab('+data['guid']+');"><div class="friends-item-inner"><div class="icon"><img class="user-icon-small ustatus" src="'+data['icon']+'" /></div></div></div>';    
 				$(".ossn-chat-windows-long .inner").append(appendata);
 			}
         	} 
         	else {
 			/* build initial list */
-			var appendata = '<div data-toggle="tooltip" title="'+data['name']+'" class="friends-list-item" id="friend-list-item-'+data['guid']+'" onClick="Ossn.ChatnewTab('+data['guid']+');"><div class="friends-item-inner"><div class="icon"><img class="ustatus '+data['status']+'" src="'+data['icon']+'" /></div></div></div>';    
+			var appendata = '<div data-toggle="tooltip" title="'+data['name']+'" class="friends-list-item" id="friend-list-item-'+data['guid']+'" onClick="Ossn.ChatnewTab('+data['guid']+');"><div class="friends-item-inner"><div class="icon"><img class="user-icon-small ustatus '+data['status']+'" src="'+data['icon']+'" /></div></div></div>';    
          		$(".ossn-chat-windows-long .inner").find('.ossn-chat-none').hide();
 			$(".ossn-chat-windows-long .inner").append(appendata);
         	}

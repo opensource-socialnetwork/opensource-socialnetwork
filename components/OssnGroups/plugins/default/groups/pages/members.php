@@ -22,7 +22,7 @@ if ($members) {
 	     <div class="ossn-group-members">
 			<div class="row">
             		<div class="col-md-2 col-sm-2 col-3">
-    	        		<img src="<?php echo $user->iconURL()->large; ?>" class="img-responsive"/>
+    	        		<img src="<?php echo $user->iconURL()->large; ?>" class="user-icon-larger img-responsive"/>
 					</div>
                    <div class="col-md-10 col-sm-10 col-8">
     	    	        <div class="uinfo">

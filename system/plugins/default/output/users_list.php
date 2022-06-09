@@ -24,7 +24,7 @@ foreach ($users as $user) {
     ?>
 
     <div class="ossn-list-users">
-        <img src="<?php echo $icon; ?>"/>
+        <img class="user-icon-<?php echo $avatar_size;?>" src="<?php echo $icon; ?>"/>
 
         <div class="uinfo">
             <a class="userlink"

@@ -13,7 +13,7 @@
  }
 ?>
 <div class="newseed-uinfo">
-    <img src="<?php echo ossn_loggedin_user()->iconURL()->small; ?>"/>
+    <img class="user-icon-small" src="<?php echo ossn_loggedin_user()->iconURL()->small; ?>"/>
 
     <div class="name">
         <a href="<?php echo ossn_loggedin_user()->profileURL(); ?>"><?php echo ossn_loggedin_user()->fullname; ?></a>

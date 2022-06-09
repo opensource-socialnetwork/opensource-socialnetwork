@@ -44,7 +44,7 @@
                         ?>
                         <div class="row user-item <?php echo $new; ?>" onclick="Ossn.redirect('messages/message/<?php echo $user->username; ?>');">
 								<div class="col-md-2">
- 		                               <img class="image" src="<?php echo $user->iconURL()->smaller; ?>"/>
+ 		                               <img class="image user-icon-smaller" src="<?php echo $user->iconURL()->smaller; ?>"/>
                          	   </div>    
                          	   <div class="col-md-10 data">
                          	       <div class="name"><?php echo strl($user->fullname, 17); ?></div>

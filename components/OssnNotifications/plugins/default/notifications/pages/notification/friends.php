@@ -18,7 +18,7 @@
             foreach ($params['friends'] as $users) {
                 $baseurl = ossn_site_url();
                 $url = $users->profileURL();
-                $img = "<img src='{$users->iconURL()->small}' />";
+                $img = "<img class='user-icon-small' src='{$users->iconURL()->small}' />";
                 $messages[] = "<li id='notification-friend-item-{$users->guid}'>
 		              <div class='ossn-notifications-friends-inner'>
 		                <div class='image'>{$img}</div> 

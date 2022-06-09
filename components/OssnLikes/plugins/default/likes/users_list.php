@@ -25,7 +25,7 @@ foreach ($users as $user) {
 	<div class="ossn-reactions-list-wholiked-item">
 		<div class="row">
 			<div class="col-md-2 col-3">
-				<img src="<?php echo $icon; ?>"/>
+				<img class="user-icon-<?php echo $avatar_size;?>" src="<?php echo $icon; ?>"/>
 			</div>
 			<div class="col-md-10 col-9">
 				<div class="ossn-reactions-list-whoreacted-uinfo">

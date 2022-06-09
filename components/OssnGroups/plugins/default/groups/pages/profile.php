@@ -159,7 +159,7 @@ $members = $params['group']->getMembers();
                         <div class="group-members-small">
                             <?php
                              $group_admin = ossn_user_by_guid($params['group']->owner_guid); 
-							 $admin_img =  '<img src="'.$group_admin->iconURL()->small.'" title="'.$group_admin->fullname.'"/>';
+							 $admin_img =  '<img class="user-icon-small" src="'.$group_admin->iconURL()->small.'" title="'.$group_admin->fullname.'"/>';
 							 $admin_profile_url = ossn_plugin_view('output/url', array(
 										'text' => $admin_img,
 										'href' => $group_admin->profileURL()
@@ -204,7 +204,7 @@ $members = $params['group']->getMembers();
 				if($members) {
 						foreach($members as $member) {
 							if($limit <= 10) {
-								$img =  '<img src="'.$member->iconURL()->small.'" title="'.$member->fullname.'"/>';
+								$img =  '<img class="user-icon-small" src="'.$member->iconURL()->small.'" title="'.$member->fullname.'"/>';
 								$profile_url = ossn_plugin_view('output/url', array(
 												'text' => $img,
 												'href' => $member->profileURL()

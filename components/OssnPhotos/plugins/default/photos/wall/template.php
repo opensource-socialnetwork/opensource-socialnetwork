@@ -31,7 +31,7 @@ if($total == 1) {
 <div class="ossn-wall-item" id="activity-item-<?php echo $params['post']->guid; ?>">
 	<div class="row">
 		<div class="meta">
-			<img class="user-img" src="<?php echo $params['user']->iconURL()->small; ?>" />
+			<img class="user-img user-icon-small" src="<?php echo $params['user']->iconURL()->small; ?>" />
 			<div class="post-menu">
 				<div class="dropdown">
                  <?php

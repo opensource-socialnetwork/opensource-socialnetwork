@@ -18,7 +18,7 @@
 ?>
 <div class="message-reciever" id="ossn-message-item-<?php echo $params['id'];?>">
     <div class="user-icon">
-        <img src="<?php echo $params['reciever']->iconURL()->smaller; ?>"/>
+        <img class="user-icon-smaller" src="<?php echo $params['reciever']->iconURL()->smaller; ?>"/>
     </div>
     <div class="ossn-chat-text-data">
         <div class="ossn-chat-triangle ossn-chat-triangle-white"></div>
