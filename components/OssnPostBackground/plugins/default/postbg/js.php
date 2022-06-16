@@ -31,7 +31,10 @@ $(document).ready(function(){
 				}
 		});
  		$('.ossn-wall-container-data textarea').on('keyup', function(){
-   				var length = String.prototype.trim(this.value).length;
+				//[B] Post background not breaking if str > 125 chars #2164
+				var post   = ""+this.value;
+				post       = post.trim();
+				var length = post.length;
 				if(length > 125) {
 					$('.ossn-wall-container-data .postbg-container').attr('style', '');
      				$('.ossn-wall-container-data textarea').removeClass('postbg-container');

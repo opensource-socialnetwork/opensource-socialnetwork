@@ -9,7 +9,7 @@
 .postbg-container {
     min-height: 320px;
     color: #333;
-    font-size: 30px;
+    font-size: 30px !important;
     font-weight: 700;
     line-height: 1.1em;
     padding: 100px 30px !important;
