@@ -70,6 +70,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v6.2
 * [B] Non logged in visitor can view private posts #2158
 * [B] OssnChat default value showing 0 in class #2163
 * [E] Request for new user image classes defining the shape only #2143
+* [B] Post background not breaking if str > 125 chars #2164
 
 Special Thanks to Michael Zülsdorff (aka Zetman) (https://www.opensource-socialnetwork.org/u/zetman) for testing and bug reporting, fixing.
 
