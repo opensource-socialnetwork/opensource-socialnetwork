@@ -8,7 +8,7 @@ Ossn.RegisterStartupFunction(function() {
 });
 Ossn.RegisterStartupFunction(function() {
 	$(document).ready(function() {
-		$("#group-upload-cover").on('submit', function(event) {
+		$('body').on('submit', "#group-upload-cover", function(event) {
 			event.preventDefault();
 			var formData = new FormData($(this)[0]);
 			var $url = Ossn.site_url + 'action/group/cover/upload';
@@ -40,6 +40,9 @@ Ossn.RegisterStartupFunction(function() {
 									$('.ossn-group-cover').attr('style', 'opacity:0.7;');
 								}
 								$('.ossn-group-profile').find('.groups-buttons').find('a').hide();
+								if($('.ossn-group-cover').length == 0){
+									 $('.ossn-group-top-row .profile-header').prepend('<div class="ossn-group-cover"><img id="draggable"></div>');
+								}
 								$('.ossn-group-cover').prepend('<div class="ossn-covers-uploading-annimation"> <div class="ossn-loading"></div></div>');
 							},
 							success: function(callback) {
