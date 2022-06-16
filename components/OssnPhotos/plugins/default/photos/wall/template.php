@@ -64,8 +64,7 @@ if($total == 1) {
 				<?php
 					if($photos > 0){
 							foreach($photos as $photo){
-									$url  = $photo->getURL().'?size=album';		
-									$url  = ossn_add_cache_to_url($url);
+									$url  = $photo->getURL('album');		
 									if($total > 2){
 											$class = 'ossn-photo-wall-item-small';	
 									} else {

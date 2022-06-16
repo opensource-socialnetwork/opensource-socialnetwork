@@ -239,9 +239,11 @@ class OssnPhotos extends OssnFile {
 		/**
 		 * get photo view URL
 		 *
+		 * @param string $size album or default 
+		 * 
 		 * @return boolean
 		 */
-		public function getURL(): bool|string {
+		public function getURL($size = ''): bool|string {
 				if($this->subtype == 'file:ossn:aphoto' || $this->subtype == 'file:profile:photo' || $this->subtype == 'file:profile:cover') {
 						$image = str_replace('album/photos/', '', $this->value);
 						if($this->isCDN()) {
@@ -249,7 +251,11 @@ class OssnPhotos extends OssnFile {
 								$image    = $manifest['filename'];
 						}
 						$usertype = false;
-						return ossn_add_cache_to_url(ossn_site_url("album/getphoto/{$this->guid}/{$image}"));
+						$url      = ossn_site_url("album/getphoto/{$this->guid}/{$image}");
+						if(!empty($size)){
+							$url = $url .'?size='. $size;	
+						}
+						return ossn_add_cache_to_url($url);
 				}
 				return false;
 		}
