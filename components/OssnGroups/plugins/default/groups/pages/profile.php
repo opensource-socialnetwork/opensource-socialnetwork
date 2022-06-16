@@ -111,10 +111,10 @@ $members = $params['group']->getMembers();
 						<div id='group-header-menu' class="group-header-menu d-none d-lg-block">
 						<?php echo ossn_plugin_view('menus/groupheader', array('menu_width' => 60)); ?>
 						</div>
-						<div id='group-header-menu' class="group-header-menu d-md-block d-lg-none">
+						<div id='group-header-menu' class="group-header-menu d-none d-md-block d-lg-none">
 							<?php echo ossn_plugin_view('menus/groupheader', array('menu_width' => 40)); ?>
 						</div>
-						<div id='group-header-menu' class="group-header-menu d-sm-block d-md-none">
+						<div id='group-header-menu' class="group-header-menu d-none d-sm-block d-md-none">
 							<?php echo ossn_plugin_view('menus/groupheader', array('menu_width' => 25)); ?>
 						</div>
 						<div id='group-header-menu' class="group-header-menu d-block d-sm-none">
