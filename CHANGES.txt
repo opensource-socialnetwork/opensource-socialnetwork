@@ -1,4 +1,4 @@
-OSSN - OPEN SOURCE SOCIAL NETWORK v6.3 
+OSSN - OPEN SOURCE SOCIAL NETWORK v6.3 LTS
 * [B] deleting profile photo gives error on iconURL() #2166
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v6.2
