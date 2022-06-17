@@ -1,5 +1,5 @@
 OSSN - OPEN SOURCE SOCIAL NETWORK v6.3 
-- [B] deleting profile photo gives error on iconURL() #2166
+* [B] deleting profile photo gives error on iconURL() #2166
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v6.2
 * [E] Allow all callables for extend view #2024
