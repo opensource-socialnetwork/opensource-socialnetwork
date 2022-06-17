@@ -977,7 +977,7 @@ class OssnUser extends OssnEntities {
 		 */
 		public function getProfilePhoto() {
 				//[E] Default profile picture #1647
-				if(!empty($this->guid) && isset($this->icon_guid)) {
+				if(!empty($this->guid) &&  isset(($this->icon_guid) && !empty($this->icon_guid)) {
 						return ossn_get_file($this->icon_guid);
 				}
 				//fallback to old picture selection solution
