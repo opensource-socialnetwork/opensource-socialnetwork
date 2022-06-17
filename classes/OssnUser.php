@@ -1006,7 +1006,7 @@ class OssnUser extends OssnEntities {
 		 */
 		public function getProfileCover() {
 				//[E] Default cover picture #1647
-				if(!empty($this->guid) && isset($this->cover_guid)) {
+				if(!empty($this->guid) && isset($this->cover_guid) && !empty($this->cover_guid)) {
 						return ossn_get_file($this->cover_guid);
 				}
 				if(!empty($this->guid)) {
