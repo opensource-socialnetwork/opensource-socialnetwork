@@ -238,13 +238,14 @@ function ossn_entity_comment_link($callback, $type, $params) {
  */
 function ossn_object_comment_link($callback, $type, $params) {
 		$guid = $params['object']->guid;
-		ossn_unregister_menu('comment', 'object_comment_like');
+		//[B] Comment object menu not showing comment menu #2168
+		ossn_unregister_menu('comment', 'object_extra');
 		if(isset($params['allow_comment']) && $params['allow_comment'] == false) {
 				$guid = false;
 				//false will just not execute the likes menu
 		}
 		if(!empty($guid) && ossn_isLoggedIn()) {
-				ossn_register_menu_item('object_comment_like', array(
+				ossn_register_menu_item('object_extra', array(
 						'name'      => 'comment',
 						'class'     => 'comment-object',
 						'href'      => 'javascript:void(0)',
