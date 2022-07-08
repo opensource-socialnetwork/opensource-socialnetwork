@@ -10,13 +10,14 @@
  */
 /**
  * Register a language in system;
- * @param  string $code code of language;
+ * @param  string $code code of language
+ * @param  string $file File path 
  *
  * @last edit: $arsalanshah
- * @return void;
+ * @return void
  */
-function ossn_register_language($code = '', $file) {
-		if(isset($code) && isset($file)) {
+function ossn_register_language($code, $file) : void {
+		if(isset($code) && !empty($code) && isset($file) && !empty($file)) {
 				global $Ossn;
 				$Ossn->locale[$code][] = $file;
 		}
