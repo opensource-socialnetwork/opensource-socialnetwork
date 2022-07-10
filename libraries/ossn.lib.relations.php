@@ -89,7 +89,7 @@ function ossn_get_relationships(array $params = array()) {
 						$vars['joins'] = array(
 								'JOIN ossn_relationships as r1 ON r1.relation_from=r.relation_to'
 						);
-						$wheres[]      = "r1.relation_to='{$params['to']}'";
+						$wheres[]      = "r1.relation_to='{$params['from']}'";
 				}
 				$wheres[] = "r.relation_from='{$params['from']}'";
 				if(is_array($params['type'])) {
