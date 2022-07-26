@@ -557,7 +557,7 @@ function ossn_wallpost_to_item($post) {
 				if(!isset($post->poster_guid)) {
 						$post = ossn_get_object($post->guid);
 				}
-				$data = json_decode(html_entity_decode($post->description));
+				$data = json_decode($post->description);
 				$text = '';
 				if($data) {
 						$text = ossn_restore_new_lines($data->post, true);
