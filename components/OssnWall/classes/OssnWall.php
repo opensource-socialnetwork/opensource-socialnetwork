@@ -75,7 +75,7 @@ class OssnWall extends OssnObject {
 				$this->title              = '';
 
 				$post             = preg_replace('/\t/', ' ', $post);
-				$wallpost['post'] = htmlspecialchars($post, ENT_QUOTES, 'UTF-8');
+				$wallpost['post'] = $post;
 
 				//wall tag a friend , GUID issue #566
 				if(!empty($friends)){
@@ -92,6 +92,7 @@ class OssnWall extends OssnObject {
 				if(!empty($location)){
 						$wallpost['location'] = $location;
 				}
+
 				//Encode multibyte Unicode characters literally (default is to escape as \uXXXX)
 				$this->description = json_encode($wallpost, JSON_UNESCAPED_UNICODE);
 				if($this->addObject()){
