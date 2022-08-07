@@ -437,26 +437,17 @@ class OssnUser extends OssnEntities {
 				if(isset($this->guid)) {
 						$user = $this->guid;
 				}
-				$guid     = $user;
-				$wheres   = array();
-				$wheres[] = "(u.guid IN(SELECT relation_from as friend_guid  FROM `ossn_relationships` WHERE `relation_to` = {$guid} AND `type` LIKE 'friend:request' AND relation_from IN(SELECT DISTINCT relation_to as guid  FROM `ossn_relationships` WHERE `relation_from` = {$guid} AND `type` LIKE 'friend:request')))";
-				
-
-				if(isset($options['wheres']) && !is_array($options['wheres'])){
-						$wheres[] = $options['wheres'];	
-				}
-				if(isset($options['wheres']) && is_array($options['wheres'])){
-						foreach($options['wheres'] as $option){
-								$wheres[] = $option;	
-						}
-				}
+				$guid    = $user;
 				$default = array(
-						'wheres' => $wheres,
-						'page_limit' => false,
+						'joins'    => array(
+								'JOIN ossn_relationships AS r1 ON r1.relation_to = u.guid AND r1.type = "friend:request"',
+								'JOIN ossn_relationships AS r2 ON r2.relation_from = r1.relation_to AND r2.type = "friend:request"',
+						),
+						'wheres'   => "(r1.relation_from = '{$guid}')", //replace with loggedin user ID,
+						'distinct' => true,
 				);
-				unset($options['wheres']);
-				$args = array_merge($default, $options);
-				return $this->searchUsers($args);
+				$vars = array_merge($default, $options);
+				return $this->searchUsers($vars);
 		}
 		/**
 		 * Send request to other user.
@@ -977,7 +968,7 @@ class OssnUser extends OssnEntities {
 		 */
 		public function getProfilePhoto() {
 				//[E] Default profile picture #1647
-				if(!empty($this->guid) &&  isset($this->icon_guid) && !empty($this->icon_guid)) {
+				if(!empty($this->guid) && isset($this->icon_guid) && !empty($this->icon_guid)) {
 						return ossn_get_file($this->icon_guid);
 				}
 				//fallback to old picture selection solution
