@@ -38,10 +38,10 @@ function ossn_likes(){
 		ossn_register_callback('comment', 'delete', 'ossn_comment_like_delete');
 		ossn_register_callback('annotation', 'delete', 'ossn_comment_like_delete');
 		ossn_register_callback('user', 'delete', 'ossn_user_likes_delete');
-		ossn_register_callback('wall', 'load:item', 'ossn_wall_like_menu');
+		ossn_register_callback('wall', 'load:item', 'ossn_wall_like_menu', 1);
 
-		ossn_register_callback('entity', 'load:comment:share:like', 'ossn_entity_like_link');
-		ossn_register_callback('object', 'load:comment:share:like', 'ossn_object_like_link');
+		ossn_register_callback('entity', 'load:comment:share:like', 'ossn_entity_like_link', 1);
+		ossn_register_callback('object', 'load:comment:share:like', 'ossn_object_like_link', 1);
 
 		ossn_register_page('likes', 'ossn_likesview_page_handler');
 
