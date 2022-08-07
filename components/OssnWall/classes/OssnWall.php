@@ -79,7 +79,9 @@ class OssnWall extends OssnObject {
 
 				//wall tag a friend , GUID issue #566
 				if(!empty($friends)){
+						//[B] Same Friends tag flooding #2175
 						$friend_guids = explode(',', $friends);
+						$friend_guids = array_unique($friend_guids);
 						//reset friends guids
 						$friends = array();
 						foreach ($friend_guids as $guid){
