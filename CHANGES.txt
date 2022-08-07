@@ -3,7 +3,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v6.4 LTS
 * [B] XSS vulnerability in OssnWall #2173
 * [B] Same Friends tag flooding #2175
 * [B] Bug in ossn_get_relationships when setting only 'from' #2170
-* [E] Enhanced #2149
+* [E] Enhanced, getFriends make sure it returns relation_id in field list #2171 #2149
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v6.3 LTS
 * [B] deleting profile photo gives error on iconURL() #2166
