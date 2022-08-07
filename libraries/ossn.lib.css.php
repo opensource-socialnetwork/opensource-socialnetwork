@@ -137,7 +137,9 @@ function ossn_unload_css($name, $type = 'site') {
 function ossn_css_site() {
 		global $Ossn;
 		$Ossn->cssheadExternalLoaded = array();
+		$Ossn->cssheadLoaded = array();
 		$Ossn->cssheadExternalLoaded['site'] = array();	
+		$Ossn->cssheadLoaded['site'] = array();	
 		
 		$url      = ossn_site_url();
 		//load external css
@@ -156,14 +158,17 @@ function ossn_css_site() {
 		//load internal css
 		if(isset($Ossn->csshead['site'])) {
 				foreach($Ossn->csshead['site'] as $css) {
+					if(!isset($Ossn->cssheadLoaded['site'][$css])){
 						$href = "{$url}css/view/{$css}.css";
 						if(ossn_site_settings('cache') == 1) {
 								$cache = ossn_site_settings('last_cache');
 								$href  = "{$url}cache/css/{$cache}/view/{$css}.css";
 						}
+						$Ossn->cssheadLoaded['site'][$css] = true;
 						echo ossn_html_css(array(
 								'href' => $href
 						));
+					}
 				}
 		}
 		
@@ -177,7 +182,9 @@ function ossn_css_site() {
 function ossn_css_admin() {
 		global $Ossn;
 		$Ossn->cssheadExternalLoaded = array();
+		$Ossn->cssheadLoaded = array();
 		$Ossn->cssheadExternalLoaded['admin'] = array();	
+		$Ossn->cssheadLoaded['admin'] = array();
 		
 		$url      = ossn_site_url();
 		//load external css
@@ -196,14 +203,17 @@ function ossn_css_admin() {
 		//load internal css
 		if(isset($Ossn->csshead['admin'])) {
 				foreach($Ossn->csshead['admin'] as $css) {
+					if(!isset($Ossn->cssheadLoaded['admin'][$css])){					
 						$href = "{$url}css/view/{$css}.css";
 						if(ossn_site_settings('cache') == 1) {
 								$cache = ossn_site_settings('last_cache');
 								$href  = "{$url}cache/css/{$cache}/view/{$css}.css";
 						}
+						$Ossn->cssheadLoaded['admin'][$css] = true;
 						echo ossn_html_css(array(
 								'href' => $href
 						));
+					}
 				}
 		}
 }
