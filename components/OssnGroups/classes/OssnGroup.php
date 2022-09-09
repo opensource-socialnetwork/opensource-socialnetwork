@@ -121,6 +121,9 @@ class OssnGroup extends OssnObject {
 						$description,
 				);
 				if($this->updateObject($data, $values, $guid)){
+						ossn_trigger_callback('group', 'update', array(
+								'group_guid' => $guid,
+						));					
 						return true;
 				}
 				return false;
@@ -145,6 +148,7 @@ class OssnGroup extends OssnObject {
 						$owner,
 				);
 				if($this->updateObject($data, $values, $guid)){
+						
 						return true;
 				}
 				return false;
