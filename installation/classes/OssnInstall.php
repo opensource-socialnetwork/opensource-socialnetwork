@@ -289,8 +289,10 @@ class OssnInstallation {
 				}
 				unlink($this->datadir . 'writeable');
 				
-				if(!$this->dbconnect()) {
-						$this->error_mesg = $this->connect_err->connect_errn;
+				try {
+				   		$this->dbconnect();
+				} catch (Exception $e){
+						$this->error_mesg = $e->getCode().' '.$e->getMessage();
 						return false;
 				}
 				if($script = file_get_contents(ossn_installation_paths()->root . 'sql/opensource-socialnetwork.sql')) {
@@ -345,12 +347,7 @@ class OssnInstallation {
 		 */
 		public function dbconnect() {
 				$connect = new mysqli($this->dbhost, $this->dbusername, $this->dbpassword, $this->dbname, $this->dbport);
-				if($connect->connect_errno) {
-						$this->connect_err->connect_errn = mysqli_connect_error();
-						return false;
-				} else {
-						return $connect;
-				}
+				return $connect;
 				
 		}
 		
