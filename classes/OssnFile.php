@@ -116,7 +116,7 @@ class OssnFile extends OssnEntities {
 				if(isset($file)) {
 						$extension = pathinfo($file, PATHINFO_EXTENSION);
 						if($extension) {
-								return $extension;
+								return strtolower($extension);
 						}
 				}
 				return false;
