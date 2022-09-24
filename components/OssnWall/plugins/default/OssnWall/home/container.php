@@ -28,21 +28,26 @@ if (!isset($params['user']->guid)) {
         <input type="text" placeholder="<?php echo ossn_print('tag:friends'); ?>" name="friends"
                id="ossn-wall-friend-input"/>
     </div>
-    <div id="ossn-wall-location" style="display:none;">
-        <input type="text" placeholder="<?php echo ossn_print('enter:location'); ?>" name="location"
-               id="ossn-wall-location-input"/>
+    <!--Remove of Algolia places API. Migrating to a new component #2184-->
+    <!--
+        <div id="ossn-wall-location" style="display:none;">
+            <input type="text" placeholder="<?php echo ossn_print('enter:location'); ?>" name="location"
+            id="ossn-wall-location-input"/>
+        </div>-->
+        <div id="ossn-wall-photo" style="display:none;">
+            <input type="file" name="ossn_photo"/>
+        </div>
     </div>
-    <div id="ossn-wall-photo" style="display:none;">
-        <input type="file" name="ossn_photo"/>
-    </div>
-</div>
-<div class="controls">
-    <li class="ossn-wall-friend">
-       <i class="fa fa-users"></i>
-    </li>
+    <div class="controls">
+        <li class="ossn-wall-friend">
+            <i class="fa fa-users"></i>
+        </li>
+    <!--Remove of Algolia places API. Migrating to a new component #2184-->
+    <!--
     <li class="ossn-wall-location">
        <i class="fa fa-map-marker"></i>
     </li>
+    -->
     <li class="ossn-wall-photo">
        <i class="fa fa-image"></i>
     </li>

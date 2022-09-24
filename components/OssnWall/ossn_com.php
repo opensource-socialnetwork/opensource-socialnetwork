@@ -40,7 +40,8 @@ function ossn_wall() {
 		//Remove google map search API as it requires API #906
 		//ossn_new_external_js('maps.google', 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places', false);
 		//Location autocomplete not working over https #1043 , use some other service ,  its better than google looks nice.
-		ossn_new_external_js('places.min', '//cdn.jsdelivr.net/places.js/1/places.min.js', false);
+		//Remove of Algolia places API. Migrating to a new component #2184
+		//ossn_new_external_js('places.min', '//cdn.jsdelivr.net/places.js/1/places.min.js', false);
 
 		//pages
 		ossn_register_page('post', 'ossn_post_page');
@@ -74,11 +75,12 @@ function ossn_wall() {
 						'class' => 'ossn-wall-friend',
 						'text'  => '<i class="fa fa-users"></i>',
 				),
-				array(
+				//Remove of Algolia places API. Migrating to a new component #2184
+				/*array(
 						'name'  => 'location',
 						'class' => 'ossn-wall-location',
 						'text'  => '<i class="fa fa-map-marker-alt"></i>',
-				),
+				),*/
 				array(
 						'name'  => 'photo',
 						'class' => 'ossn-wall-photo',
