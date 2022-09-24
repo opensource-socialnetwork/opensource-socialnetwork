@@ -8,7 +8,7 @@
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
  * @link      https://www.opensource-socialnetwork.org/
  */
- $description = json_decode(html_entity_decode($params['post']->description));
+ $description = json_decode($params['post']->description);
  $description = $description->post;
  ?>
  <div>
