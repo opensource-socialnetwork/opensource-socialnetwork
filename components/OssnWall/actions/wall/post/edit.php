@@ -14,8 +14,8 @@ $post = input('post');
 $object = ossn_get_object($guid);
 $user   = ossn_loggedin_user();
 if($object && (strlen($post) || $object->{'file:wallphoto'})) {
-		$post				 = htmlspecialchars($post, ENT_QUOTES, 'UTF-8');
-		$json				 = html_entity_decode($object->description);
+		//[B] Emoji problem introduced in 6.4 #2186
+		$json				 = $object->description;
 		$data				 = json_decode($json, true);
 		$data['post']		 = $post;
 		$data				 = json_encode($data, JSON_UNESCAPED_UNICODE);
