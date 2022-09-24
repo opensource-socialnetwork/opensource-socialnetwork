@@ -1,3 +1,7 @@
+OSSN - OPEN SOURCE SOCIAL NETWORK v6.5 
+* [B] Emoji problem introduced in 6.4 #2186
+* [E] taking care of Upper case file extensions #2185
+
 OSSN - OPEN SOURCE SOCIAL NETWORK v6.4 LTS
 * [B] Comment object menu not showing comment menu #2168
 * [B] XSS vulnerability in OssnWall #2173
