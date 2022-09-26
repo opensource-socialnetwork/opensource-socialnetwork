@@ -41,6 +41,7 @@ function ossn_wall() {
 		//ossn_new_external_js('maps.google', 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places', false);
 		//Location autocomplete not working over https #1043 , use some other service ,  its better than google looks nice.
 		//Remove of Algolia places API. Migrating to a new component #2184
+		//all other references was removed too. Keep this line for the record
 		//ossn_new_external_js('places.min', '//cdn.jsdelivr.net/places.js/1/places.min.js', false);
 
 		//pages
@@ -75,12 +76,6 @@ function ossn_wall() {
 						'class' => 'ossn-wall-friend',
 						'text'  => '<i class="fa fa-users"></i>',
 				),
-				//Remove of Algolia places API. Migrating to a new component #2184
-				/*array(
-						'name'  => 'location',
-						'class' => 'ossn-wall-location',
-						'text'  => '<i class="fa fa-map-marker-alt"></i>',
-				),*/
 				array(
 						'name'  => 'photo',
 						'class' => 'ossn-wall-photo',

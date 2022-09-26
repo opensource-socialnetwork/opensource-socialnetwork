@@ -8,7 +8,6 @@
  * @license   General Public Licence http://opensource-socialnetwork.com/licence
  * @link      http://www.opensource-socialnetwork.com/licence
  */
- ossn_load_external_js('maps.google');
  ossn_load_external_js('jquery.tokeninput');   
 ?>
 <div class="tabs-input">
@@ -20,13 +19,6 @@
     </div>
     <textarea placeholder="<?php echo ossn_print('wall:post:container'); ?>" name="post"></textarea>
 
-    <!--
-    //Remove of Algolia places API. Migrating to a new component #2184
-    <div id="ossn-wall-location" style="display:none;">
-        <input type="text" placeholder="<?php echo ossn_print('enter:location'); ?>" name="location"
-               id="ossn-wall-location-input"/>
-    </div>
-    -->
     <div id="ossn-wall-photo" style="display:none;">
         <input type="file" name="ossn_photo"/>
     </div>

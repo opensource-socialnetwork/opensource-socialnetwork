@@ -12,7 +12,6 @@ Ossn.register_callback('ossn', 'init', 'ossn_wall_init');
 Ossn.register_callback('ossn', 'init', 'ossn_wall_postform');
 Ossn.register_callback('ossn', 'init', 'ossn_wall_post_edit');
 Ossn.register_callback('ossn', 'init', 'ossn_wall_select_friends');
-//Ossn.register_callback('ossn', 'init', 'ossn_wall_location'); //Remove of Algolia places API. Migrating to a new component #2184
 Ossn.register_callback('ossn', 'init', 'ossn_wall_privacy');
 Ossn.register_callback('ossn', 'init', 'ossn_wall_container_expend');
 
@@ -74,11 +73,6 @@ function ossn_wall_clear_form(){
 				$file.replaceWith($file.val('').clone(true));
 				$('#ossn-wall-photo').hide();
 
-				//Tagged friend(s) and location should be cleared, too - after posting #641
-				//Remove of Algolia places API. Migrating to a new component #2184
-				//$("#ossn-wall-location-input").val('');
-				//$('#ossn-wall-location').hide();
-
 				$('#ossn-wall-friend-input').val('');
 				if($('#ossn-wall-friend-input').length){
 					$("#ossn-wall-friend-input").tokenInput("clear");
@@ -134,19 +128,12 @@ function ossn_wall_postform(){
 function ossn_wall_init(){
 	$(document).ready(function(){
 		$('.ossn-wall-container').find('.ossn-wall-friend').on('click', function(){
-			//$('#ossn-wall-location').hide(); //Remove of Algolia places API. Migrating to a new component #2184
 			$('#ossn-wall-photo').hide();
 			$('#ossn-wall-friend').show();
 		});
-		//Remove of Algolia places API. Migrating to a new component #2184
-		/*$('.ossn-wall-container').find('.ossn-wall-location').on('click', function(){
-			$('#ossn-wall-friend').hide();
-			$('#ossn-wall-photo').hide();
-			$('#ossn-wall-location').show();
-		});*/
+
 		$('.ossn-wall-container').find('.ossn-wall-photo').on('click', function(){
 			$('#ossn-wall-friend').hide();
-			//$('#ossn-wall-location').hide(); //Remove of Algolia places API. Migrating to a new component #2184
 			$('#ossn-wall-photo').show();
 
 		});
@@ -438,31 +425,7 @@ function ossn_wall_privacy(){
 	});
 
 }
-/**
- * Setup Google Location input
- *
- * Remove google map search API as it requires API #906 
- * 
- * @return void
- */
-//Remove of Algolia places API. Migrating to a new component #2184
-/*function ossn_wall_location(){
-	$(document).ready(function(){
-		if($('#ossn-wall-location-input').length){
-			//Location autocomplete not working over https #1043
-			//Change to places js
-			var placesAutocomplete = places({
-				container: document.querySelector('#ossn-wall-location-input')
-			});
-			$('#ossn-wall-location-input').on('keypress', function(event){
-				if(event.keyCode == 13){
-					event.preventDefault();
-					return false;
-				}
-			});
-		}
-	});
-}*/
+
 function ossn_wall_container_expend(){
 	$(document).ready(function(){
 			$('#ossn-wall-form').on('submit', function(){

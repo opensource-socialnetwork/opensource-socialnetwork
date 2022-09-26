@@ -17,7 +17,6 @@ if (isset($_COOKIE['ossn_home_wall_privacy'])) {
 } else {
     $privacy = OSSN_PUBLIC;
 }
- ossn_load_external_js('places.min');
  ossn_load_external_js('jquery.tokeninput'); 
 ?>
 <div class="tabs-input">
@@ -32,11 +31,6 @@ if (isset($_COOKIE['ossn_home_wall_privacy'])) {
     <div id="ossn-wall-friend" style="display:none;">
         <input type="text" placeholder="<?php echo ossn_print('tag:friends'); ?>" name="friends" id="ossn-wall-friend-input" />
     </div>
-    <!--
-    //Remove of Algolia places API. Migrating to a new component #2184    
-    <div id="ossn-wall-location" style="display:none;">
-        <input type="text" placeholder="<?php echo ossn_print('enter:location'); ?>" name="location" id="ossn-wall-location-input" />
-    </div>-->
     <div id="ossn-wall-photo" style="display:none;">
         <input type="file" name="ossn_photo" />
     </div>

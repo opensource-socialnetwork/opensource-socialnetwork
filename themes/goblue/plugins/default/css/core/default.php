@@ -69,11 +69,9 @@ body {
 .ossn-form input[readonly] {
 	background: #dbdbdb;
 }
-
 .ossn-form input[type="file"] {
-	display: block;
+	display:block;
 }
-
 .btn:focus,
 .btn:active {
 	outline: none !important;
@@ -117,9 +115,8 @@ body {
 	margin-right: 5px;
 }
 
-.hidden,
 .ossn-hidden {
-	display: none !important;
+	display: none;
 }
 
 p {
@@ -141,13 +138,11 @@ p {
 	text-align: center;
 }
 
-.checkbox-block,
 .radio-block {
 	margin-top: 10px;
 	margin-bottom: 10px;
 }
 
-.checkbox-block span,
 .radio-block span {
 	display: inline-block;
 	margin-right: 10px;
@@ -156,54 +151,8 @@ p {
 	margin-left: 10px;
 }
 
-.ossn-checkbox-input {
-	width: 20px;
-	height: 20px;
-	color: #0b769c;
-	-webkit-appearance: none;
-	background: none;
-	border: 0;
-	outline: 0;
-	flex-grow: 0;
-	background-color: #FFFFFF;
-	transition: background 300ms;
-	cursor: pointer;
-	float: left;
-	margin-top: 2px;
-}
-
-.checkbox-block [type=checkbox]::before {
-	content: "";
-	color: transparent;
-	display: block;
-	width: inherit;
-	height: inherit;
-	border-radius: inherit;
-	border: 0;
-	background-color: transparent;
-	background-size: contain;
-	box-shadow: inset 0 0 0 1px #CCD3D8;
-}
-
-
-.checkbox-block [type=checkbox]:checked {
-	background-color: currentcolor;
-}
-
-.checkbox-block [type=checkbox]:checked::before {
-	box-shadow: none;
-	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E %3Cpath d='M15.88 8.29L10 14.17l-1.88-1.88a.996.996 0 1 0-1.41 1.41l2.59 2.59c.39.39 1.02.39 1.41 0L17.3 9.7a.996.996 0 0 0 0-1.41c-.39-.39-1.03-.39-1.42 0z' fill='%23fff'/%3E %3C/svg%3E");
-}
-
-.checkbox-block [type=checkbox]:disabled {
-	background-color: #CCD3D8;
-	opacity: 0.84;
-	cursor: not-allowed;
-}
-
 a {
 	color: #0f3b4a;
-	text-decoration: none;
 }
 
 
@@ -379,7 +328,7 @@ a {
 	color: #fff;
 	z-index: 1;
 	position: relative;
-	height: 49px;
+	height: 48px;
 }
 
 .topbar .fa {
@@ -486,7 +435,7 @@ a {
 	margin-top: 20px;
 	background-color: #fff;
 	padding-bottom: 0px;
-	border-radius: 10px;
+    	border-radius: 10px;
 }
 
 .ossn-wall-item:first-child {
@@ -645,7 +594,6 @@ a {
 	display: inline-table;
 	float: right;
 }
-
 .ossn-wall-privacy-dummy,
 .ossn-wall-privacy {
 	margin-right: 5px;
@@ -656,18 +604,15 @@ a {
 	display: inline-block;
 	margin-top: 10px;
 }
-
 .ossn-wall-privacy-dummy {
-	background: #e5e5e5e0;
-	cursor: initial;
-	opacity: 0.5;
+    background: #e5e5e5e0;
+    cursor:initial;
+    opacity: 0.5;
 }
-
 .ossn-wall-privacy:hover {
 	background: #eeeeee8c;
 }
-
-.ossn-wall-privacy-dummy span>span,
+.ossn-wall-privacy-dummy span > span,
 .ossn-wall-privacy span>span {
 	margin-left: 5px;
 	float: right;
@@ -1039,7 +984,7 @@ a {
 	display: inline-block;
 	padding-left: 10px;
 	padding-right: 10px;
-	font-weight: 900;
+	font-weight:900;
 	vertical-align: middle;
 	float: right;
 }
@@ -1069,7 +1014,7 @@ a {
 	padding-left: 10px;
 	padding-right: 10px;
 	vertical-align: middle;
-	font-weight: 900;
+    font-weight:900;
 }
 
 .sidebar-menu-nav li {
@@ -1104,16 +1049,13 @@ a {
 		width: 100%;
 		margin-bottom: 10px;
 	}
-
 	.ossn-group-members {
 		text-align: center;
 	}
-
 	.ossn-group-members .request-controls {
 		float: none;
 		padding-bottom: 10px;
 	}
-
 	.ossn-group-members .uinfo .userlink {
 		float: none !important;
 	}
@@ -1215,11 +1157,10 @@ a {
 	Ossn Ads
 *******************************************/
 .ad-image-container {
-	background: #f6f7f8;
-	padding: 5px;
-	border: 1px solid #ebebeb;
+    background: #f6f7f8;
+    padding: 5px;
+    border: 1px solid #ebebeb;
 }
-
 .ossn-ad-item {}
 
 .ossn-ad-item .ad-image {
@@ -1479,12 +1420,10 @@ a {
 	display: inline-table;
 	float: left;
 }
-
 .ossn-notifications-friends-inner a {
-	color: #0f3b4a !important;
-	display: inline-block !important;
+    color: #0f3b4a !important;
+    display: inline-block !important;
 }
-
 .ossn-notifications-friends-inner {
 	padding: 0px 5px;
 }
@@ -1517,15 +1456,13 @@ a {
 	margin-top: 6px;
 	display: inline-block;
 }
-
 .friends-added-text {
-	/**float: left !important;
+    /**float: left !important;
     margin-top: -18px !important;
     display: block !important;
     margin-left: 10px; **/
-	font-size: 13px;
+    font-size: 13px;
 }
-
 .ossn-notifications-friends-inner .btn {
 	padding: 3px 9px;
 	border-radius: 1px;
@@ -1545,7 +1482,7 @@ a {
 	border: 1px solid #C4CDE0;
 	border-width: 1px 1px 2px;
 	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
+    border-bottom-right-radius: 5px;    
 }
 
 .ossn-profile .top-container .profile-cover {
@@ -1577,8 +1514,7 @@ a {
 
 .profile-hr-menu ul li {
 	display: inline-block;
-}
-
+} 
 .profile-hr-menu ul li a:not(.dropdown a) {
 	display: block;
 	padding: 15px;
@@ -1592,10 +1528,10 @@ a {
 }
 
 .profile-hr-menu .dropdown-menu li {
-	display: block;
-	border-bottom: 0;
-	padding: initial;
-	margin: auto;
+    display: block;
+    border-bottom: 0;
+    padding: initial;
+    margin: auto;
 }
 
 .profile-hr-menu .dropdown a i {
@@ -1612,7 +1548,7 @@ a {
 .profile-hr-menu {
 	border-bottom: 1px solid #eee;
 	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
+    border-bottom-right-radius: 5px;    
 }
 
 .profile-hr-menu ul li:last-child {
@@ -2138,7 +2074,7 @@ div.token-input-dropdown ul li.token-input-selected-dropdown-item {
 	background: #F5F6F7;
 	padding: 11px;
 	border-top-right-radius: 10px;
-	border-top-left-radius: 10px;
+    border-top-left-radius: 10px;
 	border-bottom: 1px solid #E5E5E5;
 	color: #5E5656;
 	font-size: 14px;
@@ -2202,9 +2138,8 @@ div.token-input-dropdown ul li.token-input-selected-dropdown-item {
 	border: 0;
 	border-radius: 50px;
 	cursor: pointer;
+	margin-right: 7px;
 	outline: none;
-	flex-grow: 0;
-	transition: background 300ms;
 }
 
 .ossn-form input[type=radio]:checked::before {
@@ -2260,7 +2195,6 @@ div.token-input-dropdown ul li.token-input-selected-dropdown-item {
 		-moz-transform: rotate(0deg);
 		transform: rotate(0deg);
 	}
-
 	100% {
 		-moz-transform: rotate(360deg);
 		transform: rotate(360deg);
@@ -2272,7 +2206,6 @@ div.token-input-dropdown ul li.token-input-selected-dropdown-item {
 		-webkit-transform: rotate(0deg);
 		transform: rotate(0deg);
 	}
-
 	100% {
 		-webkit-transform: rotate(360deg);
 		transform: rotate(360deg);
@@ -2286,7 +2219,6 @@ div.token-input-dropdown ul li.token-input-selected-dropdown-item {
 		-webkit-transform: rotate(0deg);
 		transform: rotate(0deg);
 	}
-
 	100% {
 		-moz-transform: rotate(360deg);
 		-ms-transform: rotate(360deg);
@@ -2597,94 +2529,77 @@ footer .ossn-footer-menu a:last-child::after {
 
 @media (max-width: 480px) {
 	.profile-hr-menu ul li {
-		padding: 10px 0;
-	}
-
-	.ossn-wall-privacy-dummy,
+  	 	padding:10px 0;
+	}	
+    .ossn-wall-privacy-dummy,
 	.ossn-wall-privacy {
 		float: none;
 		margin-right: 0;
 	}
-
 	.ossn-wall-container .controls {
 		height: auto;
 	}
-
 	.ossn-wall-container textarea {
 		margin-left: 0px;
 		width: 100%;
 	}
-
 	/***********************
     	Comments
      ***********************/
 	.comments-list .comments-item .comment-user-img {
 		display: none;
 	}
-
 	.comments-item .col-md-11 {
 		padding-left: 15px;
 	}
-
 	/************************
     	Wall
      ************************/
 	.ossn-wall-item-type {
 		display: block;
 	}
-
 	.ossn-list-users .uinfo .userlink {
 		text-overflow: ellipsis;
 		width: 195px;
 		white-space: nowrap;
 		overflow: hidden;
 	}
-
 	.ossn-list-users a.right.btn.btn-primary {
 		display: none;
 	}
-
 	.ossn-list-users a.right.btn.btn-danger {
 		display: none;
 	}
-
 	.ossn-message-box .contents {
 		height: 280px;
 		overflow-x: auto;
 		overflow: overlay;
 	}
-
 	/***************************
     	Topbar notification box
    *****************************/
 	.ossn-notifications-box {
 		width: 300px;
 	}
-
 	.ossn-notifications-box .notfi-meta {
 		width: 230px;
 	}
-
 	.notification-friends .notfi-meta a {
 		width: 100px;
 	}
-
 	.ossn-notifications-box .notfi-meta,
 	.ossn-notification-messages .user-item .data {
 		width: 215px !important;
 	}
-
 	.ossn-notification-messages .user-item .data .name {
 		width: 110px !important;
 	}
-
 	.ossn-notification-messages .reply-text-from {
 		width: 200px !important;
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;
 	}
-
 	/******************************
     	Profile
     ********************************/
@@ -2692,68 +2607,55 @@ footer .ossn-footer-menu a:last-child::after {
 		width: 100px;
 		height: 100px;
 	}
-
 	.ossn-profile .user-fullname {
 		font-size: 16px;
 		margin-left: 135px;
 		margin-top: -100px;
 		width: 140px;
 	}
-
 	.ossn-profile .top-container .profile-cover {
 		height: 188px;
 	}
-
 	.ossn-profile .profile-photo {
 		margin-top: -130px;
 	}
-
 	.profile-menu {
 		float: right;
 		margin-right: 10px;
 	}
-
 	.ossn-profile .top-container .profile-cover img {
 		width: auto;
 	}
-
 	.ossn-group-cover-button,
 	.profile-cover-controls {
 		display: none !important;
 	}
-
 	.upload-photo {
 		width: 100px;
 	}
-
 	.profile-hr-menu ul li {
 		display: block;
 		border-bottom: 1px solid rgb(238, 238, 238);
 		margin-right: 0px;
-		margin-left: 10px;
+        margin-left:10px;
 	}
-
 	.profile-hr-menu ul li a:not(.dropdown a) {
 		margin-right: 0px;
 		padding: 10px;
 	}
-
 	.ossn-profile-role {
 		display: none;
 	}
-
 	/*****************************
      	System
      *****************************/
 	.ossn-users-list-item img {
 		display: none;
 	}
-
 	.ossn-users-list-item .users-list-controls {
 		margin-top: 10px;
 		margin-bottom: 10px;
 	}
-
 	.ossn-users-list-item .uinfo a {
 		margin-top: 10px;
 		white-space: nowrap;
@@ -2761,150 +2663,120 @@ footer .ossn-footer-menu a:last-child::after {
 		text-overflow: ellipsis;
 		width: 90px;
 	}
-
 	.ossn-search-page .ossn-users-list-item .uinfo a {
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;
 		width: 100px;
 	}
-
 	.ossn-system-messages {
 		padding-left: 15px;
 		padding-right: 15px;
 	}
-
 	.ossn-users-list-item {
 		padding-bottom: 10px;
 	}
-
 	.ossn-widget .widget-contents {
 		padding: 5px;
 	}
-
 	.ossn-message-box {
 		min-width: 300px;
 		width: 300px;
 	}
-
 	.ossn-box-loading {
 		margin-left: 150px;
 		margin-top: 37px;
 	}
-
 	.ossn-message-box .contents input[type="text"] {
 		width: 195px;
 	}
-
 	.ossn-box-inner {
 		width: 280px;
 	}
-
 	footer .ossn-footer-menu a:nth-last-child(2)::after {
 		content: "|";
 	}
-
 	/**********************
     	Groups
     ************************/
 	.ossn-group-cover {
 		height: 100px !important;
 	}
-
 	.ossn-group-cover-header,
 	.ossn-group-profile .profile-header,
 	.ossn-group-profile .profile-header .header-bottom {
 		height: auto !important;
 	}
-
 	.ossn-group-profile .profile-header {
 		max-height: inherit !important;
 	}
-
 	.ossn-group-profile .profile-header .group-name {
 		float: none !important;
 	}
-
 	.group-name {
 		width: 100%;
 	}
-
 	.group-header-sep {
 		height: auto !important;
 		text-align: center;
 	}
-
 	.ossn-group-members {
 		margin-left: 15px;
 		margin-right: 15px;
 	}
-
 	.ossn-group-members .request-controls,
 	.ossn-group-members .uinfo {
 		display: block;
 	}
-
 	.ossn-group-members .uinfo .userlink {
 		margin-left: 10px;
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;
 	}
-
 	.sidebar-menu-nav .sidebar-menu .menu-content {
 		display: block;
 	}
-
 	.sidebar-hide-contents-xs {
 		display: none;
 	}
-
 	.home-left-contents .some-icons {
 		display: none;
 	}
-
 	/**************************
      	Layouts
      ****************************/
 	.newsfeed-right {
 		display: none;
 	}
-
 	.newsfeed-middle-top {
 		display: block;
 	}
-
 	.ossn-messages .message-with .user-icon,
 	.ossn-messages .messages-recent .messages-from .user-item .image {
 		display: none;
 	}
-
 	.ossn-messages .message-inner .row {
 		margin-left: 0px !important;
 	}
-
 	/*************************
      	Home Page
      **************************/
 	.logo img {
 		width: 260px;
 	}
-
 	.home-left-contents .description {
 		font-size: 16px;
 	}
-
 	.home-left-contents {
 		margin-bottom: 20px;
 	}
-
 	/*****************************
     	Wall Menu
     ******************************/
 	.dropdown-menu {
 		margin-left: -110px;
 	}
-
 	.menu-footer-powered {
 		float: none;
 	}
@@ -2919,33 +2791,27 @@ footer .ossn-footer-menu a:last-child::after {
 	.dropdown-menu {
 		margin-left: -110px;
 	}
-
 	.ossn-profile .user-fullname {
 		max-width: 500px;
 	}
-
 	/***********************
     	Comments
      ***********************/
 	.comments-list .comments-item .comment-user-img {
 		display: none;
 	}
-
 	.comments-item .col-md-11 {
 		padding-left: 15px;
 	}
-
 	/**************************
      	Layouts
      ****************************/
 	.newsfeed-right {
 		display: none;
 	}
-
 	.newsfeed-middle-top {
 		display: block;
 	}
-
 	/*******************
      	Messages
      *******************/
@@ -2953,50 +2819,40 @@ footer .ossn-footer-menu a:last-child::after {
 	.ossn-messages .messages-recent .messages-from .user-item .image {
 		display: none;
 	}
-
 	.ossn-messages .message-inner .row {
 		margin-left: 0px !important;
 	}
-
 	.sidebar-menu-nav .sidebar-menu .menu-content {
 		display: block;
 	}
 }
 
 @media only screen and (max-width: 1199px) {
-
 	.comments-list .comments-item .col-md-1,
 	.comments-list .comments-item .comment-user-img {
 		display: none;
 	}
-
 	.comments-list .comments-item .col-md-11 {
 		width: 100%;
 	}
-
 	.comments-item .col-md-11 {
 		padding-left: 15px;
 	}
-
 	.group-search-details {
 		margin-left: 10px;
 	}
-
 	.ossn-search-page .ossn-users-list-item .uinfo {
 		margin-left: 35px;
 	}
-
 	.ossn-search-page .ossn-users-list-item .uinfo a {
 		text-overflow: ellipsis;
 		width: 200px;
 		white-space: nowrap;
 		overflow: hidden;
 	}
-
 	.ossn-users-list-item .users-list-controls {
 		margin-bottom: 10px;
 	}
-
 	.ossn-profile .user-fullname {
 		max-width: 640px;
 	}
@@ -3006,7 +2862,6 @@ footer .ossn-footer-menu a:last-child::after {
 	.ossn-profile .user-fullname {
 		max-width: 767px;
 	}
-
 	.ossn-search-page .ossn-users-list-item .uinfo {
 		margin-left: 0;
 	}
@@ -3033,131 +2888,4 @@ footer .ossn-footer-menu a:last-child::after {
 	.ossn-wall-container .wall-tabs i {
 		margin-top: 3px;
 	}
-}
-
-.btn-close {
-	background-size: .7em;
-}
-
-.img-responsive {
-	display: block;
-	max-width: 100%;
-	height: auto;
-}
-
-/*************************
-	3.x buttons styles
-***************************/
-.btn-close:focus {
-	box-shadow: none;
-}
-
-.btn-warning {
-	color: #fff;
-}
-
-.btn-primary {
-	background-color: #2a87a7;
-	border-color: #2e6da4;
-}
-
-.btn-primary:hover {
-	color: #fff;
-	background-color: #286090;
-	border-color: #204d74;
-}
-
-.btn-primary:focus,
-.btn-primary.focus {
-	color: #fff;
-	background-color: #286090;
-	border-color: #122b40;
-}
-
-.btn-check:checked+.btn-primary:focus,
-.btn-check:active+.btn-primary:focus,
-.btn-primary:active:focus,
-.btn-primary.active:focus,
-.show>.btn-primary.dropdown-toggle:focus {
-	box-shadow: none;
-}
-
-.btn:focus {
-	box-shadow: none;
-}
-
-.btn-warning {
-	color: #fff;
-	background-color: #f0ad4e;
-	border-color: #eea236;
-}
-
-.btn-warning:active {
-	color: #fff;
-}
-
-.btn-warning:focus,
-.btn-warning.focus {
-	color: #fff;
-	background-color: #ec971f;
-	border-color: #985f0d;
-}
-
-.btn-default {
-	color: #333;
-	background-color: #fff;
-	border-color: #ccc;
-}
-
-.btn-default:focus,
-.btn-default.focus {
-	color: #333;
-	background-color: #e6e6e6;
-	border-color: #8c8c8c;
-}
-
-.btn-default:hover {
-	color: #333;
-	background-color: #e6e6e6;
-	border-color: #adadad;
-}
-
-.btn-default:active,
-.btn-default.active,
-.open>.dropdown-toggle.btn-default {
-	color: #333;
-	background-color: #e6e6e6;
-	border-color: #adadad;
-}
-
-.pagination {
-	margin: 20px 0;
-}
-
-.dropdown-item.active,
-.dropdown-item:active {
-	color: #212529;
-	background-color: #e9ecef;
-}
-
-.page-item.active .page-link {
-	background-color: #337ab7;
-	border-color: #337ab7;
-}
-
-.page-link {
-	color: #337ab7;
-}
-
-.page-link:hover {
-	color: #23527c;
-	background-color: #eee;
-	border-color: #ddd;
-}
-
-label {
-	display: inline-block;
-	max-width: 100%;
-	margin-bottom: 5px;
-	font-weight: 700;
 }
