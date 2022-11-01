@@ -403,7 +403,7 @@ function ossn_load_available_languages($language_selection = false) {
 				}
 		}
 		//load component languages
-		$components = $components->getComponents();
+		$components = $components->getActive();
 		foreach($components as $component) {
 				foreach($codes as $code) {
 						$file = $path->components . '/' . $component . "/locale/ossn.{$code}.php";
@@ -413,15 +413,15 @@ function ossn_load_available_languages($language_selection = false) {
 				}
 		}
 		//load theme languages
-		$themes = $themes->getThemes();
-		foreach($themes as $theme) {
-				foreach($codes as $code) {
-						$file = $path->themes . $theme . "/locale/ossn.{$code}.php";
-						if(is_file($file)) {
-								include_once($file);
-						}
+		$theme = $themes->getActive();
+		//foreach($themes as $theme) {
+		foreach($codes as $code) {
+				$file = $path->themes . $theme . "/locale/ossn.{$code}.php";
+				if(is_file($file)) {
+						include_once($file);
 				}
 		}
+		//}
 }
 /**
  * Get list of all available languages
