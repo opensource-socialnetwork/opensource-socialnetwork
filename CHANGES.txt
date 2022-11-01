@@ -2,6 +2,8 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v6.5
 * [B] Emoji problem introduced in 6.4 #2186
 * [E] taking care of Upper case file extensions #2185
 * [B] Installation not throwing mysql errors #2183
+* [B] wrong adjustmment of ossn-like-reactions-panel in mobile view #2189
+* [E] Disable admin to change his own type on user edit page (admin panel) #2182
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v6.4 LTS
 * [B] Comment object menu not showing comment menu #2168
