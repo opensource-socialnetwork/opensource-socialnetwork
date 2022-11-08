@@ -18,7 +18,7 @@ require_once __OSSN_WALL__ . 'classes/OssnWall.php';
  */
 function ossn_wall() {
 		ossn_register_com_panel('OssnWall', 'settings');
-
+	
 		//actions
 		if(ossn_isLoggedin()) {
 				ossn_register_action('wall/post/a', __OSSN_WALL__ . 'actions/wall/post/home.php');
@@ -27,6 +27,10 @@ function ossn_wall() {
 				ossn_register_action('wall/post/delete', __OSSN_WALL__ . 'actions/wall/post/delete.php');
 				ossn_register_action('wall/post/edit', __OSSN_WALL__ . 'actions/wall/post/edit.php');
 				ossn_register_action('wall/post/embed', __OSSN_WALL__ . 'actions/wall/post/embed.php');
+				
+				ossn_extend_view('forms/OssnWall/home/container', 'ossn_wall_container_assets');
+				ossn_extend_view('forms/OssnWall/user/container', 'ossn_wall_container_assets');
+				ossn_extend_view('forms/OssnWall/group/container', 'ossn_wall_container_assets');
 		}
 		if(ossn_isAdminLoggedin()) {
 				ossn_register_action('wall/admin/settings', __OSSN_WALL__ . 'actions/wall/admin/settings.php');
@@ -36,11 +40,6 @@ function ossn_wall() {
 		ossn_extend_view('js/ossn.site', 'js/ossn_wall');
 
 		ossn_new_external_js('jquery.tokeninput', 'vendors/jquery/jquery.tokeninput.js');
-
-		//Remove google map search API as it requires API #906
-		//ossn_new_external_js('maps.google', 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places', false);
-		//Location autocomplete not working over https #1043 , use some other service ,  its better than google looks nice.
-		ossn_new_external_js('places.min', '//cdn.jsdelivr.net/places.js/1/places.min.js', false);
 
 		//pages
 		ossn_register_page('post', 'ossn_post_page');
@@ -591,5 +590,13 @@ function ossn_wallpost_to_item($post) {
 		}
 		return false;
 }
+/**
+ * Wall container assets
+ * 
+ **/
+function ossn_wall_container_assets(){
+		ossn_location_load_jscss();
+		ossn_load_external_js('jquery.tokeninput'); 
+} 
 //initilize ossn wall
 ossn_register_callback('ossn', 'init', 'ossn_wall');

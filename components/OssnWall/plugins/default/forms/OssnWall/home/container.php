@@ -17,7 +17,6 @@ if (isset($_COOKIE['ossn_home_wall_privacy'])) {
 } else {
     $privacy = OSSN_PUBLIC;
 }
- ossn_load_external_js('places.min');
  ossn_load_external_js('jquery.tokeninput'); 
 ?>
 <div class="tabs-input">

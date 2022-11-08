@@ -8,8 +8,6 @@
  * @license   General Public Licence http://opensource-socialnetwork.com/licence
  * @link      http://www.opensource-socialnetwork.com/licence
  */
-  ossn_load_external_js('places.min');
-  ossn_load_external_js('jquery.tokeninput'); 
 ?>
 <div class="tabs-input">
     <div class="wall-tabs">
