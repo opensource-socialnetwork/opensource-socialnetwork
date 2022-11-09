@@ -20,7 +20,8 @@ $configs = array(
 		'cache' => array(
 				'last_cache' => hash('crc32b', ossn_site_settings('last_cache')),
 				'ossn_cache' => ossn_site_settings('cache')
-		)
+		),
+		'lang' => ossn_site_settings('language'),
 );
 ?> 	
 	Ossn.site_url = '<?php echo ossn_site_url();?>';
