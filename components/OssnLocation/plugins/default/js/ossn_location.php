@@ -13,11 +13,16 @@ function ossn_location($obj) {
 				$obj.placeholder = Ossn.Print('enter:location');
 		}
 		//hide input field 
-		$($obj.input).hide();
+		if(!Ossn.isset($obj.hide_input)){
+				$obj.hide_input = true;	
+		}
+		if($obj.hide_input === true){
+			$($obj.input).hide();
+		} 
 		mapboxgl.accessToken = '<?php echo ossn_location_api_key(); ?>';
 		const geocoder = new MapboxGeocoder({
 			accessToken: mapboxgl.accessToken,
-			language: '<?php echo ossn_site_settings("language"); ?>',
+			language: Ossn.Config.lang,
 			types: 'country,region,place,postcode,locality,neighborhood',
 			placeholder: $obj.placeholder,
 		});
@@ -35,4 +40,4 @@ function ossn_location($obj) {
 			results.val("");
 		});
 	}
-}   
+}
