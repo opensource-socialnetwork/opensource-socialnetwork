@@ -46,6 +46,7 @@ if(isset($comment->allow_comment_like) && $comment->allow_comment_like == false)
 						echo ossn_plugin_view('output/user/url', array(
 							'user' => $user,	
 							'class' => 'owner-link',
+							'section' => 'comments',
 						));						
 						echo "<span class='comment-text'>";
 						        if ($comment->type == 'comments:entity') {

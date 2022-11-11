@@ -48,6 +48,7 @@ if(!$params['user']){
 			echo ossn_plugin_view('output/user/url', array(
 						'user' => $params['user'],	
 						'class' => 'owner-link',
+						'section' => 'wall',
 			));
 			if (isset($params['show_group']) && $params['show_group'] == true) {
                 $group = ossn_get_group_by_guid($params['post']->owner_guid);

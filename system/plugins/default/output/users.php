@@ -22,6 +22,7 @@ if ($users) {
 							echo ossn_plugin_view('output/user/url', array(
 									'user' => $user,			
 									'class' => 'userlink',
+									'section' => 'output/users',
 							));							
 						?>
         	   		</div>

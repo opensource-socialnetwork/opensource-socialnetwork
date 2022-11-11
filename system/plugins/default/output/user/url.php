@@ -24,4 +24,5 @@ if(isset($params['class'])) {
 		unset($params['class']);
 }
 $args = array_merge($params, $default);
+unset($args['section']);
 echo ossn_plugin_view('output/url', $args);

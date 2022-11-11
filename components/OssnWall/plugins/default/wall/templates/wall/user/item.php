@@ -42,7 +42,8 @@ if ($params['user']->guid !== $params['post']->owner_guid) {
 			<div class="user">
                 <?php
 				echo ossn_plugin_view('output/user/url', array(
-						'user' => $params['user'],			
+						'user' => $params['user'],		
+						'section' => 'wall',
 				));
 				?>
 				<?php
