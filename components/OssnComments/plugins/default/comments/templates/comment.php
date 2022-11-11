@@ -43,11 +43,10 @@ if(isset($comment->allow_comment_like) && $comment->allow_comment_like == false)
 			<div class="comment-contents">
 				<p>
 					<?php
-						echo ossn_plugin_view('output/url', array(
-											'href' => $user->profileURL(), 
-											'text' => $user->fullname, 
-											'class' => 'owner-link',
-						 ));
+						echo ossn_plugin_view('output/user/url', array(
+							'user' => $user,	
+							'class' => 'owner-link',
+						));						
 						echo "<span class='comment-text'>";
 						        if ($comment->type == 'comments:entity') {
 						            echo nl2br($comment->getParam('comments:entity'));

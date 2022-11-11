@@ -19,11 +19,10 @@ if ($users) {
                 <div class="col-md-10 col-sm-10 col-12">
 	    	        <div class="uinfo">
                         <?php
-							echo ossn_plugin_view('output/url', array(
-									'text' => $user->fullname,
-									'href' =>  $user->profileURL(),
+							echo ossn_plugin_view('output/user/url', array(
+									'user' => $user,			
 									'class' => 'userlink',
-							));						
+							));							
 						?>
         	   		</div>
                     <div class="right users-list-controls">

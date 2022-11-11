@@ -40,12 +40,18 @@ if ($params['user']->guid !== $params['post']->owner_guid) {
 				</div>
 			</div>
 			<div class="user">
- 		                <a href="<?php echo $params['user']->profileURL(); ?>"> <?php echo $params['user']->fullname; ?> </a>
+                <?php
+				echo ossn_plugin_view('output/user/url', array(
+						'user' => $params['user'],			
+				));
+				?>
 				<?php
  		                if ($owner) { ?>
 					<i class="fa fa-angle-right fa-lg"></i>
-					<a href="<?php echo $owner->profileURL(); ?>"> <?php echo $owner->fullname; ?></a>
-				<?php
+					<?php
+						echo ossn_plugin_view('output/user/url', array(
+							'user' => $owner,			
+						));
 				} ?>
 			</div>
 			<div class="post-meta">
@@ -69,6 +75,7 @@ if ($params['user']->guid !== $params['post']->owner_guid) {
 							$user = ossn_user_by_guid($friend);
 							//[B] Wall site crash when mentioning members under certain conditions. #1865
 							if($user){
+								//here no need to use output/user/url
 								$url = $user->profileURL();
 								$friends[] = "<a href='{$url}'>{$user->fullname}</a>";
 							}
