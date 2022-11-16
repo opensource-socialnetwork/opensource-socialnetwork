@@ -406,7 +406,7 @@ function ossn_load_available_languages($language_selection = false) {
 		$components = $components->getActive();
 		foreach($components as $component) {
 				foreach($codes as $code) {
-						$file = $path->components . '/' . $component . "/locale/ossn.{$code}.php";
+						$file = $path->components . '/' . $component->com_id . "/locale/ossn.{$code}.php";
 						if(is_file($file)) {
 								include_once($file);
 						}
