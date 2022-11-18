@@ -9,6 +9,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v6.5
 * [B] incompatibilty of Ossn 6.4 wall post storage and display with former Ossn releases #2187
 * [B] Places service has been sunsetted #2184
 * [E] Add a filetype block when user try upload video file into OssnWall #2191
+* [B] Covers and profile photos not showing pagination #2198
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v6.4 LTS
 * [B] Comment object menu not showing comment menu #2168
