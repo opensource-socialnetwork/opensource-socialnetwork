@@ -16,7 +16,13 @@
     <img class="user-icon-small" src="<?php echo ossn_loggedin_user()->iconURL()->small; ?>"/>
 
     <div class="name">
-        <a href="<?php echo ossn_loggedin_user()->profileURL(); ?>"><?php echo ossn_loggedin_user()->fullname; ?></a>
+	<?php
+		echo ossn_plugin_view('output/user/url', array(
+				'user' => ossn_loggedin_user(),	
+				'class' => 'newsfeed-user-info-top',
+				'section' => 'newsfeed_user_top_info',
+		));	
+	?>
         <a class="edit-profile" href="<?php echo ossn_loggedin_user()->profileURL('/edit'); ?>">
             <?php echo ossn_print('edit:profile'); ?></a>
     </div>
