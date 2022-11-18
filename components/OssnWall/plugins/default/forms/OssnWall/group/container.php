@@ -22,7 +22,7 @@
         <input type="text" placeholder="<?php echo ossn_print('enter:location'); ?>" name="location" id="ossn-wall-location-input" />
     </div>
     <div id="ossn-wall-photo" style="display:none;">
-        <input type="file" name="ossn_photo" />
+        <input type="file" name="ossn_photo" accept="image/*" />
     </div>
     <div class="controls">
         <?php
