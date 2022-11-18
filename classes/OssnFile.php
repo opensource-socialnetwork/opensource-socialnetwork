@@ -40,7 +40,7 @@ class OssnFile extends OssnEntities {
 		 *
 		 * @return integer
 		 */
-		public function MaxSize() : int {
+		public function MaxSize(): int{
 				$val  = ini_get('post_max_size');
 				$val  = trim($val);
 				$last = strtolower($val[strlen($val) - 1]);
@@ -61,7 +61,7 @@ class OssnFile extends OssnEntities {
 		 *
 		 * @return integer
 		 */
-		public function getUploadMaxSize() : int {
+		public function getUploadMaxSize(): int{
 				$val  = min(ini_get('post_max_size'), ini_get('upload_max_filesize'));
 				$val  = trim($val);
 				$last = strtolower($val[strlen($val) - 1]);
@@ -74,7 +74,7 @@ class OssnFile extends OssnEntities {
 						$val *= 1024;
 				}
 				return $val;
-		}		
+		}
 
 		/**
 		 * setFile
@@ -427,7 +427,7 @@ class OssnFile extends OssnEntities {
 		 *
 		 * @return array|bool
 		 */
-		public function searchFiles(array $params = array()): array | bool {
+		public function searchFiles(array $params = array()): array | bool | int {
 				if(!isset($params['guid']) && !empty($params['guid'])) {
 						if(!isset($params['subtype']) || empty($params['subtype'])) {
 								return false;
@@ -575,7 +575,7 @@ class OssnFile extends OssnEntities {
 								'application/zip',
 						),
 						'webp' => array(
-								'image/webp',				
+								'image/webp',
 						),
 				);
 				return ossn_call_hook('file', 'mimetypes', false, $mimetypes);
