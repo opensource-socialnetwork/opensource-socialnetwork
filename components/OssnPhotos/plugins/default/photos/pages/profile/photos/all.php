@@ -11,6 +11,7 @@
 
 $albums = new OssnPhotos();
 $photos = $albums->GetUserProfilePhotos($params['user']->guid);
+$count = $albums->GetUserProfilePhotos($params['user']->guid, ['count' => true]);
 echo '<div class="ossn-photos">';
 echo '<h2>' . ossn_print('profile:photos') . '</h2>';
 if ($photos) {
@@ -23,3 +24,6 @@ if ($photos) {
     }
 }
 echo '</div>';
+echo ossn_view_pagination($count, 10, array(
+			'offset_name' => 'poffset',											
+));
