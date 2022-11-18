@@ -52,6 +52,9 @@ class OssnWall extends OssnObject {
 								}
 						} else { 
 								// unallowed file type
+								//dont post either
+								//[E] Add a filetype block when user try upload video file into OssnWall #2191
+								$canpost = false;
 								$this->OssnFile->error = UPLOAD_ERR_EXTENSION;
 						}
 				}
