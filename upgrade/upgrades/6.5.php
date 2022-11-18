@@ -1,4 +1,8 @@
 <?php
+//OssnLocation
+
+$component = new OssnComponents;
+$component->enable('OssnLocation');
 
 //Wall upgrade for old versions.
 $wall = new OssnWall();
