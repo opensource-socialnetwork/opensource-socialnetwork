@@ -15,6 +15,7 @@ $comment = $delete->GetComment($comment);
 $object = false;
 $entity = false;
 $post   = false;
+$group  = false;
 //group admins must be able to delete ANY comment in their own group #170
 //first get wall post then get group and check if loggedin user is group owner
 if($comment->type == 'comments:post') {
@@ -37,8 +38,8 @@ if($comment->type == 'comments:entity') {
 if(
 		$comment->owner_guid == $user->guid ||
 		($object && $object->type == 'user' && $user->guid == $object->owner_guid) ||
-		($post->type == 'user' && $user->guid == $post->owner_guid) ||
-		(isset($group) && ($group->owner_guid == $user->guid) || $group->isModerator($user->guid)) ||
+		($post && $post->type == 'user' && $user->guid == $post->owner_guid) ||
+		($group && ($group->owner_guid == $user->guid || $group->isModerator($user->guid))) ||
 		$entity->owner_guid == $user->guid ||
 		ossn_isAdminLoggedin()
 ) {
