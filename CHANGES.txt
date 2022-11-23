@@ -13,6 +13,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v6.5
 * [E] Upgraded to BS5.2.2 from BS5.2.0-beta1
 * [E] Add plugin for user/output_url #2193
 * [B] Apache config being rewritten if modified by cpanel #2179
+* [B] fix for not working comment delete on entities #2201
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v6.4 LTS
 * [B] Comment object menu not showing comment menu #2168
