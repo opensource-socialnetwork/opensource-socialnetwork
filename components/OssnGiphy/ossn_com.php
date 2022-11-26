@@ -19,9 +19,11 @@ ossn_register_class(array(
  * @return void
  */
 function ossn_giphy_init(){
+		ossn_extend_view('css/ossn.default', 'giphy/css');
+		//register outside because if keys are entered it may show a broken page because new css/js cached.
+		ossn_new_js('ossn.giphy', 'giphy/js');
 		if(ossn_giphy_api_key()){
-				ossn_extend_view('js/ossn.site', 'giphy/js');
-				ossn_extend_view('css/ossn.default', 'giphy/css');
+				ossn_load_js('ossn.giphy');
 				ossn_add_hook('comment:view', 'template:params', 'ossn_giphy_in_comments', 1);
 
 				if(ossn_isLoggedin()){
