@@ -150,7 +150,7 @@
         		<div class="admin-dashboard-title"><?php echo ossn_print('admin:cache'); ?></div>
             	<div class="admin-dashboard-contents admin-dashboard-contents-small center admin-dashboard-fixed-height">
                         <div class="text center">
-                           	<a href="<?php echo $flush_cache;?>" class="btn btn-primary btn-sm"><?php echo ossn_print('admin:flush:cache'); ?></a>
+                           	<a href="<?php echo $flush_cache;?>" class="btn btn-success btn-sm"><?php echo ossn_print('admin:flush:cache'); ?></a>
                         </div>                    
            	 	</div>
             </div>

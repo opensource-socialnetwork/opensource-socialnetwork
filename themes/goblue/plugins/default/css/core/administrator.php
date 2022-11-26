@@ -787,3 +787,7 @@ th {
 	background-color: #eee;
 	border-color: #ddd;
 }
+.dropdown-item.active, .dropdown-item:active {
+    color: initial;
+    background-color: #d5d7d9;
+}
