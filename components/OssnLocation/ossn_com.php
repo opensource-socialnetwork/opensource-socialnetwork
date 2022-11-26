@@ -22,10 +22,14 @@ function ossn_location() {
 		if(ossn_isAdminLoggedin()) {
 				ossn_register_action('location/admin/settings', __OSSN_LOCATION__ . 'actions/settings.php');
 		}
+		
+		//css and js
+		ossn_new_css('ossn.location', 'css/location');
+		ossn_new_js('ossn.location', 'js/ossn_location');
+		
 		if(ossn_location_api_key() && ossn_isLoggedin()) {
-				//css and js
-				ossn_new_css('ossn.location', 'css/location');
-				ossn_new_js('ossn.location', 'js/ossn_location');
+				//don't cache API keys
+				ossn_extend_view('ossn/site/head', 'location/head');
 
 				ossn_new_external_css('mapbox-gl.css', '//api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.css', false);
 				ossn_new_external_js('mapbox-gl.js', '//api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.js', false);
