@@ -14,6 +14,9 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v6.5
 * [E] Add plugin for user/output_url #2193
 * [B] Apache config being rewritten if modified by cpanel #2179
 * [B] fix for not working comment delete on entities #2201
+* [E] Enhance friends picker because now getFriends searched via OssnUser instance #2202
+* [E] admin_topbar and admin_sidemenu text setting via ossn_register_menu_item #2200
+* [E] Change name fields into max 30 chars each #2203
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v6.4 LTS
 * [B] Comment object menu not showing comment menu #2168
