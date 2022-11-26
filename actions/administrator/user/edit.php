@@ -12,8 +12,8 @@ $entity = ossn_user_by_username(input('username'));
 if(!$entity) {
 		redirect(REF);
 }
-$user['firstname'] = input('firstname');
-$user['lastname']  = input('lastname');
+$user['firstname'] = mb_substr(input('firstname'), 0, 30);
+$user['lastname']  = mb_substr(input('lastname'), 0, 30);
 //[E] make user email lowercase when adding to db #186
 $user['email'] = strtolower(input('email'));
 $user['type']  = input('type');

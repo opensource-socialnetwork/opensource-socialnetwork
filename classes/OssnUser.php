@@ -54,8 +54,10 @@ class OssnUser extends OssnEntities {
 								//don't set null , set empty value for users created by admin
 								$activation = '';
 						}
-						$params['into']  = 'ossn_users';
-						$params['names'] = array(
+						$this->first_name = mb_substr($this->first_name, 0, 30);
+						$this->last_name  = mb_substr($this->last_name, 0, 30);
+						$params['into']   = 'ossn_users';
+						$params['names']  = array(
 								'first_name',
 								'last_name',
 								'email',
