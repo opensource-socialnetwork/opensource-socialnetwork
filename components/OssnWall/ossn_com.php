@@ -18,7 +18,7 @@ require_once __OSSN_WALL__ . 'classes/OssnWall.php';
  */
 function ossn_wall() {
 		ossn_register_com_panel('OssnWall', 'settings');
-	
+
 		//actions
 		if(ossn_isLoggedin()) {
 				ossn_register_action('wall/post/a', __OSSN_WALL__ . 'actions/wall/post/home.php');
@@ -27,7 +27,7 @@ function ossn_wall() {
 				ossn_register_action('wall/post/delete', __OSSN_WALL__ . 'actions/wall/post/delete.php');
 				ossn_register_action('wall/post/edit', __OSSN_WALL__ . 'actions/wall/post/edit.php');
 				ossn_register_action('wall/post/embed', __OSSN_WALL__ . 'actions/wall/post/embed.php');
-				
+
 				ossn_extend_view('forms/OssnWall/home/container', 'ossn_wall_container_assets');
 				ossn_extend_view('forms/OssnWall/user/container', 'ossn_wall_container_assets');
 				ossn_extend_view('forms/OssnWall/group/container', 'ossn_wall_container_assets');
@@ -107,32 +107,28 @@ function ossn_friend_picker() {
 		if(!ossn_isLoggedin()) {
 				exit();
 		}
-		$user    = new OssnUser();
-		$friends = $user->getFriends(ossn_loggedin_user()->guid);
+		$search_for = input('q');
+		$usera      = array();
+		$user       = new OssnUser();
+
+		$options = array();
+		if(!empty($search_for)) {
+				$options = array(
+						'wheres' => "(CONCAT(u.first_name,  ' ', u.last_name) LIKE '%{$search_for}%')",
+				);
+		}
+		//[E] Enhance friends picker because now getFriends searched via OssnUser instance #2202
+		$friends = $user->getFriends(ossn_loggedin_user()->guid, $options);
 		if(!$friends) {
+				echo json_encode(array());
 				return false;
 		}
-		$search_for = input('q');
-		// allow case insensitivity with first typed in char
-		$fc         = mb_strtoupper(mb_substr($search_for, 0, 1, 'UTF-8'), 'UTF-8');
-		$search_For = $fc . mb_substr($search_for, 1, null, 'UTF-8');
-		// show all friends with wildcard '*' in first place
-		if($search_for == '*') {
-				$search_for = '';
-				$search_For = '';
-		}
-		$search_len = mb_strlen($search_for, 'UTF-8');
 		foreach($friends as $users) {
-				if(isset($users->guid) && !empty($users->guid)) {
-						$first_name_start = mb_substr($users->first_name, 0, $search_len, 'UTF-8');
-						if($first_name_start == $search_for || $first_name_start == $search_For) {
-								$p['first_name'] = $users->first_name;
-								$p['last_name']  = $users->last_name;
-								$p['imageurl']   = ossn_site_url("avatar/{$users->username}/smaller");
-								$p['id']         = $users->guid;
-								$usera[]         = $p;
-						}
-				}
+				$p['first_name'] = $users->first_name;
+				$p['last_name']  = $users->last_name;
+				$p['imageurl']   = ossn_site_url("avatar/{$users->username}/smaller");
+				$p['id']         = $users->guid;
+				$usera[]         = $p;
 		}
 		echo json_encode($usera);
 }
@@ -301,7 +297,7 @@ function ossn_post_page($pages) {
 						echo ossn_plugin_view('output/ossnbox', $params);
 				}
 				break;
-		/*	case 'refresh_home':
+		/*		case 'refresh_home':
 						echo ossn_plugin_view('wall/siteactivity');
 				*/
 			case 'edit':
@@ -592,11 +588,11 @@ function ossn_wallpost_to_item($post) {
 }
 /**
  * Wall container assets
- * 
+ *
  **/
-function ossn_wall_container_assets(){
+function ossn_wall_container_assets() {
 		ossn_location_load_jscss();
-		ossn_load_external_js('jquery.tokeninput'); 
-} 
+		ossn_load_external_js('jquery.tokeninput');
+}
 //initilize ossn wall
 ossn_register_callback('ossn', 'init', 'ossn_wall');
