@@ -22,7 +22,6 @@
 												  } 
 												 unset($item['name']);
 												 unset($item['parent']);
-												 $item['text'] = ossn_print($item['text']);
 												 $item['class'] = 'dropdown-item '.$item['class'];
 												 $link = ossn_plugin_view('output/url', $item);
            										 $menu_parent .= '<li>'.$link.'</li>';
@@ -39,7 +38,6 @@
 												  $item['class'] = $class; 
 										} 
 										unset($item['name']);										
-										$item['text'] = ossn_print($item['text']);
 										$item['class'] = 'nav-link '.$item['class'];
 										$link = ossn_plugin_view('output/url', $item);										
             							$menu = '<li class="nav-item">'.$link.'</li>';

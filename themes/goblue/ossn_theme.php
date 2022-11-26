@@ -33,9 +33,9 @@ function ossn_goblue_theme_init() {
 		if(ossn_isAdminLoggedin()) {
 				ossn_register_menu_item('admin/sidemenu', array(
 						'name'   => 'admin:theme:goblue',
-						'text'   => 'admin:theme:goblue', //plain string for ossn_print
+						'text'   => ossn_print('admin:theme:goblue'),
 						'href'   => ossn_site_url('administrator/settings/goblue'),
-						'parent' => ossn_print('admin:sidemenu:themes'),
+						'parent' => 'admin:sidemenu:themes',
 				));
 				ossn_register_site_settings_page('goblue', 'settings/admin/goblue');
 				ossn_register_action('goblue/settings', __THEMEDIR__ . 'actions/settings.php');

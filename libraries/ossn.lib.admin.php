@@ -14,29 +14,6 @@
  * @return void
  */
 function ossn_admin_init() {
-		ossn_register_admin_sidemenu('admin:components', 'admin:components', ossn_site_url('administrator/components'), ossn_print('admin:sidemenu:components'));
-		ossn_register_admin_sidemenu('admin:install', 'admin:install', ossn_site_url('administrator/com_installer'), ossn_print('admin:sidemenu:components'));
-
-		ossn_register_admin_sidemenu('admin:themes', 'admin:themes', ossn_site_url('administrator/themes'), ossn_print('admin:sidemenu:themes'));
-		ossn_register_admin_sidemenu('admin:install', 'admin:install', ossn_site_url('administrator/theme_installer'), ossn_print('admin:sidemenu:themes'));
-
-		ossn_register_admin_sidemenu('admin:basic', 'admin:basic', ossn_site_url('administrator/settings/basic'), ossn_print('admin:sidemenu:settings'));
-		ossn_register_admin_sidemenu('admin:cache', 'admin:cache', ossn_site_url('administrator/cache'), ossn_print('admin:sidemenu:settings'));
-
-		ossn_register_admin_sidemenu('admin:users', 'admin:users', ossn_site_url('administrator/users'), ossn_print('admin:sidemenu:usermanager'));
-		ossn_register_admin_sidemenu('admin:add:user', 'admin:add:user', ossn_site_url('administrator/adduser'), ossn_print('admin:sidemenu:usermanager'));
-		ossn_register_admin_sidemenu('admin:users:unvalidated', 'admin:users:unvalidated', ossn_site_url('administrator/unvalidated_users'), ossn_print('admin:sidemenu:usermanager'));
-
-		ossn_register_menu_link('home', 'admin:dashboard', ossn_site_url('administrator'), 'topbar_admin');
-		ossn_register_menu_link('help', 'admin:help', 'https://www.opensource-socialnetwork.org/', 'topbar_admin');
-		ossn_register_menu_link('viewsite', 'admin:view:site', ossn_site_url(), 'topbar_admin');
-		ossn_register_menu_item('topbar_admin', array(
-				'name'   => 'support',
-				'text'   => 'ossn:premium',
-				'href'   => 'https://www.openteknik.com/',
-				'target' => '_blank',
-		));
-
 		ossn_register_action('admin/login', ossn_route()->actions . 'administrator/login.php');
 		ossn_register_action('admin/logout', ossn_route()->actions . 'administrator/logout.php');
 
@@ -74,6 +51,98 @@ function ossn_admin_init() {
 				));
 		} else {
 				ossn_register_page('administrator', 'ossn_administrator_login_pagehandler');
+		}
+}
+function ossn_admin_menus_init() {
+		$sidemenus = array(
+				array(
+						'name'   => 'admin:components',
+						'text'   => ossn_print('admin:components'),
+						'href'   => ossn_site_url('administrator/components'),
+						'parent' => 'admin:sidemenu:components',
+				),
+				array(
+						'name'   => 'admin:install',
+						'text'   => ossn_print('admin:install'),
+						'href'   => ossn_site_url('administrator/components'),
+						'parent' => 'admin:sidemenu:components',
+				),
+				array(
+						'name'   => 'admin:themes',
+						'text'   => ossn_print('admin:themes'),
+						'href'   => ossn_site_url('administrator/themes'),
+						'parent' => 'admin:sidemenu:themes',
+				),
+				array(
+						'name'   => 'admin:install',
+						'text'   => ossn_print('admin:install'),
+						'href'   => ossn_site_url('administrator/theme_installer'),
+						'parent' => 'admin:sidemenu:themes',
+				),
+				array(
+						'name'   => 'admin:basic',
+						'text'   => ossn_print('admin:basic'),
+						'href'   => ossn_site_url('administrator/settings/basic'),
+						'parent' => 'admin:sidemenu:settings',
+				),
+				array(
+						'name'   => 'admin:cache',
+						'text'   => ossn_print('admin:cache'),
+						'href'   => ossn_site_url('administrator/cache'),
+						'parent' => 'admin:sidemenu:settings',
+				),
+				array(
+						'name'   => 'admin:users',
+						'text'   => ossn_print('admin:users'),
+						'href'   => ossn_site_url('administrator/users'),
+						'parent' => 'admin:sidemenu:usermanager',
+				),
+				array(
+						'name'   => 'admin:add:user',
+						'text'   => ossn_print('admin:add:user'),
+						'href'   => ossn_site_url('administrator/adduser'),
+						'parent' => 'admin:sidemenu:usermanager',
+				),
+				array(
+						'name'   => 'admin:users:unvalidated',
+						'text'   => ossn_print('admin:users:unvalidated'),
+						'href'   => ossn_site_url('administrator/unvalidated_users'),
+						'parent' => 'admin:sidemenu:usermanager',
+				),
+		);
+		foreach($sidemenus as $item) {
+				ossn_register_menu_item('admin/sidemenu', $item);
+		}
+
+		//ossn_register_menu_link('home', 'admin:dashboard', ossn_site_url('administrator'), 'topbar_admin');
+		//ossn_register_menu_link('help', 'admin:help', 'https://www.opensource-socialnetwork.org/', 'topbar_admin');
+		//ossn_register_menu_link('viewsite', 'admin:view:site', ossn_site_url(), 'topbar_admin');
+
+		$topbar_admin = array(
+				array(
+						'name' => 'home',
+						'text' => ossn_print('admin:dashboard'),
+						'href' => ossn_site_url('administrator'),
+				),
+				array(
+						'name' => 'help',
+						'text' => ossn_print('admin:help'),
+						'href' => 'https://www.opensource-socialnetwork.org/',
+				),
+				array(
+						'name' => 'viewsite',
+						'text' => ossn_print('admin:view:site'),
+						'href' => ossn_site_url(),
+				),
+				array(
+						'name'   => 'support',
+						'text'   => ossn_print('ossn:premium'),
+						'href'   => 'https://www.openteknik.com/',
+						'target' => '_blank',
+				),
+		);
+		foreach($topbar_admin as $item) {
+				ossn_register_menu_item('topbar_admin', $item);
 		}
 }
 /**
@@ -310,3 +379,4 @@ function ossn_administrator_login_pagehandler($pages) {
 		}
 }
 ossn_register_callback('ossn', 'init', 'ossn_admin_init');
+ossn_register_callback('ossn', 'init', 'ossn_admin_menus_init');
