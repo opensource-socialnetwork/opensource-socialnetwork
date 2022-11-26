@@ -170,7 +170,10 @@ function ossn_html_js($args) {
  */
 function ossn_load_js($name, $type = 'site') {
 		global $Ossn;
-		$Ossn->jshead[$type][] = $name;
+		//Make sure JS is set before showing
+		if(isset($Ossn->js[$name])){
+			$Ossn->jshead[$type][] = $name;
+		}
 }
 /**
  * Ossn system unloads js from head

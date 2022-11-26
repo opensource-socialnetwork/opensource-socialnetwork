@@ -113,7 +113,10 @@ function ossn_html_css($args) {
  */
 function ossn_load_css($name, $type = 'site') {
 		global $Ossn;
-		$Ossn->csshead[$type][] = $name;
+		//make sure it is set
+		if(isset($Ossn->css[$name])){
+			$Ossn->csshead[$type][] = $name;
+		}
 }
 /**
  * Ossn system unloads css from head
