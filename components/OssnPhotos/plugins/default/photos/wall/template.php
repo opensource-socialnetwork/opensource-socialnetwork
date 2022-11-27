@@ -44,7 +44,12 @@ if($total == 1) {
 			</div>
 			<div class="user">
            <?php if ($params['user']->guid == $params['post']->owner_guid) { ?>
-                <a class="owner-link" href="<?php echo $params['user']->profileURL(); ?>"> <?php echo $params['user']->fullname; ?> </a>
+                <?php
+				echo ossn_plugin_view('output/user/url', array(
+						'user' => $params['user'],		
+						'section' => 'wall',
+				));
+				?>
                 <div class="ossn-wall-item-type ossn-photos-wall-title"><a target="_blank" href="<?php echo ossn_site_url("album/view/{$album->guid}");?>"><i class="fa fa-camera"></i><?php echo $album->title;?></a></div>
             <?php } ?>
 			</div>

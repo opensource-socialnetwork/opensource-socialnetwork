@@ -1,3 +1,6 @@
+OSSN - OPEN SOURCE SOCIAL NETWORK v6.6
+* [E] output/user/url to profile cover , photos, albums wall template #2205
+
 OSSN - OPEN SOURCE SOCIAL NETWORK v6.5 
 * [B] Emoji problem introduced in 6.4 #2186
 * [E] taking care of Upper case file extensions #2185

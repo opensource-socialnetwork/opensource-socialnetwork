@@ -28,19 +28,14 @@ $image = ossn_profile_photo_wall_url($image);
 			</div>
 			<div class="user">
            <?php if ($params['user']->guid == $params['post']->owner_guid) { ?>
-                <a class="owner-link" href="<?php echo $params['user']->profileURL(); ?>"> <?php echo $params['user']->fullname; ?> </a>
+                <?php
+				echo ossn_plugin_view('output/user/url', array(
+						'user' => $params['user'],		
+						'section' => 'wall',
+				));
+				?>
                 <div class="ossn-wall-item-type"><?php echo ossn_print('ossn:profile:picture:updated');?></div>
-            <?Php
-            } else {
-
-                $owner = ossn_user_by_guid($params['post']->owner_guid);
-                ?>
-                <a href="<?php echo $params['user']->profileURL(); ?>">
-                    <?php echo $params['user']->fullname; ?>
-                </a>
-                <i class="fa fa-angle-right fa-lg"></i>
-                <a href="<?php echo $owner->profileURL(); ?>"> <?php echo $owner->fullname; ?></a>
-            <?php } ?>
+            <?php }  ?>
 			</div>
 			<div class="post-meta">
 				<span class="time-created"><?php echo ossn_user_friendly_time($params['post']->time_created); ?></span>
