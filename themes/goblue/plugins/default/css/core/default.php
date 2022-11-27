@@ -2383,7 +2383,7 @@ div.token-input-dropdown ul li.token-input-selected-dropdown-item {
 	margin-top: 20px;
 	float: left;
 	text-overflow: ellipsis;
-	width: 300px;
+	max-width: 300px;
 	white-space: nowrap;
 	overflow: hidden;
 }
@@ -2759,14 +2759,14 @@ footer .ossn-footer-menu a:last-child::after {
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;
-		width: 90px;
+		max-width: 90px;
 	}
 
 	.ossn-search-page .ossn-users-list-item .uinfo a {
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;
-		width: 100px;
+		max-width: 100px;
 	}
 
 	.ossn-system-messages {
@@ -2988,7 +2988,7 @@ footer .ossn-footer-menu a:last-child::after {
 
 	.ossn-search-page .ossn-users-list-item .uinfo a {
 		text-overflow: ellipsis;
-		width: 200px;
+		max-width: 200px;
 		white-space: nowrap;
 		overflow: hidden;
 	}
