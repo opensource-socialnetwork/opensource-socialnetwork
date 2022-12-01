@@ -64,7 +64,7 @@ function ossn_admin_menus_init() {
 				array(
 						'name'   => 'admin:install',
 						'text'   => ossn_print('admin:install'),
-						'href'   => ossn_site_url('administrator/components'),
+						'href'   => ossn_site_url('administrator/com_installer'),
 						'parent' => 'admin:sidemenu:components',
 				),
 				array(
