@@ -1,5 +1,8 @@
 OSSN - OPEN SOURCE SOCIAL NETWORK v6.6
 * [E] output/user/url to profile cover , photos, albums wall template #2205
+* [B] Fix for wrong component installer link #2209
+* [B] Ossn 6.5 crashes if OssnLocation is disabled #2207
+* [E] UI .ossn-users-list-item .uinfo a width to maxwidth #2206
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v6.5 
 * [B] Emoji problem introduced in 6.4 #2186
