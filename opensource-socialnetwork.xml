@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <opensource_socialnework xmlns="http:/opensource-socialnetwork.org/v/1.0">
-    <version>6.6-dev</version>
-    <stable_version>6.5</stable_version>
-    <release>1669507200</release>
-    <build>1669507200</build>
+    <version>6.6</version>
+    <stable_version>6.6</stable_version>
+    <release>1669852800</release>
+    <build>1669852800</build>
     <licence>Open Source Social Network License (OSSN LICENSE)</licence>
     <author_url>http://www.opensource-socialnetwork.org</author_url>
     <copyright>(C) Engr. Syed Arsalan Hussain Shah,  (C) OpenTeknik LLC, (C) 2014-2015 Informatikon Technologies, (C) Open Source Social Network. All rights reserved</copyright>
