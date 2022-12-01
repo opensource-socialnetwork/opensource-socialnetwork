@@ -95,6 +95,16 @@ function ossn_wall() {
 						ossn_register_menu_item('wall/container/controls/group', $container_control);
 				}
 		}
+		ossn_add_hook('required', 'components', 'ossn_location_asure_requirements');
+}
+/**
+ * Location Make sure it is not disabled if Wall is active
+ *
+ * @return array
+ */
+function ossn_location_asure_requirements($hook, $type, $return, $params) {
+		$return[] = 'OssnLocation';
+		return $return;
 }
 /**
  * Friends Picker
@@ -297,9 +307,6 @@ function ossn_post_page($pages) {
 						echo ossn_plugin_view('output/ossnbox', $params);
 				}
 				break;
-		/*		case 'refresh_home':
-						echo ossn_plugin_view('wall/siteactivity');
-				*/
 			case 'edit':
 				$post = ossn_get_object($pages[1]);
 				if(!ossn_is_xhr()) {
