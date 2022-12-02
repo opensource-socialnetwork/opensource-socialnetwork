@@ -233,12 +233,12 @@ function profile_modules($h, $t, $module, $params) {
 		$content = ossn_plugin_view("profile/modules/friends", $user);
 		$title   = ossn_print('friends');
 		
-		$modules[] = ossn_view_widget(array(
+		$module[] = ossn_view_widget(array(
 				'title' => $title,
 				'contents' => $content
 		));
 		
-		return $modules;
+		return $module;
 }
 /**
  * Add user profile picture on sidebar of newsfeed
