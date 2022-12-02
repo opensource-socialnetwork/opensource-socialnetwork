@@ -223,7 +223,7 @@ function profile_search_handler($hook, $type, $return, $params) {
  *
  * @return modules;
  */
-function profile_modules($h, $t, $module, $params) {
+function profile_modules($h, $t, $modules, $params) {
 		$user['user'] = $params['user'];
 		
 		// didn't part of initial release , so in next release we will add
@@ -233,12 +233,12 @@ function profile_modules($h, $t, $module, $params) {
 		$content = ossn_plugin_view("profile/modules/friends", $user);
 		$title   = ossn_print('friends');
 		
-		$module[] = ossn_view_widget(array(
+		$modules[] = ossn_view_widget(array(
 				'title' => $title,
 				'contents' => $content
 		));
 		
-		return $module;
+		return $modules;
 }
 /**
  * Add user profile picture on sidebar of newsfeed
