@@ -223,7 +223,7 @@ function profile_search_handler($hook, $type, $return, $params) {
  *
  * @return modules;
  */
-function profile_modules($h, $t, $module, $params) {
+function profile_modules($h, $t, $modules, $params) {
 		$user['user'] = $params['user'];
 		
 		// didn't part of initial release , so in next release we will add
