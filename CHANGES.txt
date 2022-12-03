@@ -1,3 +1,6 @@
+OSSN - OPEN SOURCE SOCIAL NETWORK vX.X
+- [B] fix allowing to display profile modules with priority < 200 #2211
+
 OSSN - OPEN SOURCE SOCIAL NETWORK v6.6
 * [E] output/user/url to profile cover , photos, albums wall template #2205
 * [B] Fix for wrong component installer link #2209
