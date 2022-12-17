@@ -74,8 +74,8 @@ Backend Features
 * Cache Settings
 * Basic Settings
 * Unvalidated users
-* Custom pages
 * Menu Builder
+* Custom pages
 * Themes management
 * Components Management
 * WebServices API
