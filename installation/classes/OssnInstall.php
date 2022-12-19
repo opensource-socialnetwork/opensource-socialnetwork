@@ -41,7 +41,6 @@ class OssnInstallation {
 				$file    = ossn_url();
 				$rewrite = ossn_installation_simple_curl($file . 'rewrite.php');
 				return $rewrite;
-                                //return 1;
 		}
 		
 		/**
