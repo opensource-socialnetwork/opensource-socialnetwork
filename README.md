@@ -111,6 +111,9 @@ sudo add-apt-repository ppa:arsalanshah/opensource-socialnetwork
 sudo apt-get update
 sudo apt-get install opensource-socialnetwork
 ```
+
+Installation instructions for IIS on Windows can be found [in the README_IIS.md file](README_IIS.md).
+
 DEMO
 ====
 http://demo.opensource-socialnetwork.org/
