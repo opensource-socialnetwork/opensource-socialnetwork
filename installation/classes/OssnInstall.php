@@ -144,7 +144,6 @@ class OssnInstallation {
 						}
 					}
 					return false;
-                                        //return true;
 		 }
 		/**
 		 * Check if mysqli class exist exist or not
