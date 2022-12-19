@@ -45,8 +45,8 @@ $englsih = array(
 	'ossn:install:mysqli' => 'MYSQLI ENABLED',
 	'ossn:install:mysqli:required' => 'MYSQLI PHP EXTENSION REQUIRED',
 	
-	'ossn:install:apache' => 'APACHE ENABLED',
-	'ossn:install:apache:required' => 'APACHE IS REQUIRED',
+	'ossn:install:apache' => 'APACHE, LiteSpeed, or IIS ENABLED',
+	'ossn:install:apache:required' => 'Apache, LiteSpeed, or IIS IS REQUIRED',
 	
 	'ossn:install:modrewrite' => 'MOD_REWRITE',
 	'ossn:install:modrewrite:required' => 'MOD_REWRITE REQUIRED',

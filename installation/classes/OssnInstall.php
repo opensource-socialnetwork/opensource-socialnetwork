@@ -41,6 +41,7 @@ class OssnInstallation {
 				$file    = ossn_url();
 				$rewrite = ossn_installation_simple_curl($file . 'rewrite.php');
 				return $rewrite;
+                                //return 1;
 		}
 		
 		/**
@@ -100,13 +101,13 @@ class OssnInstallation {
 		}
 		
 		/**
-		 * Check if server is running apache or litespeed
-		 * @last edit: $arsalanshah
+		 * Check if server is running apache, litespeed, or IIS
+		 * @last edit: $hannahvernon
 		 * @Reason: Initial;
 		 *
 		 */
 		public static function isApache() {
-				if(preg_match('/apache/i', $_SERVER["SERVER_SOFTWARE"]) || preg_match('/LiteSpeed/i', $_SERVER["SERVER_SOFTWARE"])) {
+				if(preg_match('/apache/i', $_SERVER["SERVER_SOFTWARE"]) || preg_match('/LiteSpeed/i', $_SERVER["SERVER_SOFTWARE"]) || preg_match('/IIS/i', $_SERVER["SERVER_SOFTWARE"])) {
 						return true;
 				}
 				return false;
@@ -144,6 +145,7 @@ class OssnInstallation {
 						}
 					}
 					return false;
+                                        //return true;
 		 }
 		/**
 		 * Check if mysqli class exist exist or not
