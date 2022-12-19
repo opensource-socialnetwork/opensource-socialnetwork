@@ -12,8 +12,7 @@ The following instructions are targeted at developers and shows how to configure
     ```
     cd \inetpub
     mkdir ossn
-    cd ossn
-    git clone https://github.com/opensource-socialnetwork/opensource-socialnetwork.git
+    git clone https://github.com/opensource-socialnetwork/opensource-socialnetwork.git ossn
     ```
 4. Add a "site" in IIS Manager for Open Source Social Network; I chose to call it `OSSN` for simplicity.  Adding a site by default creates a new "application pool", which includes support for ASP.Net.  You can disable ASP.Net in the OSSN application pool, since it is not required.
 5. Select the OSSN site in IIS Manager, then click the `URL Rewrite` applet in the pane on the right.  
