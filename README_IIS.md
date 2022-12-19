@@ -6,8 +6,8 @@ The following instructions are targeted at developers and shows how to configure
 1. Install Microsoft's version of Apache mod rewrite, URL Rewrite, from the official source [here](https://www.iis.net/downloads/microsoft/url-rewrite).
 2. Install the Windows version of a [recent PHP release](https://windows.php.net/download#php-8.1) onto the web server machine.  For reference, I am using the 64 bit version of Windows Server 2019, and chose the PHP 8.1.13 VS16 x64 Non-Thread-Safe download.  You'll need to download Microsoft's C++ Redistributable from [here](https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170) prior to installing PHP.
 2. Create two folders in your web server's filesystem.
-    a. A folder for the php files, in the Inetpub folder.  By default, the following works:  `C:\inetpub\ossn`
-    b. A folder for the site data, *outside of the inetpub folder*; perhaps `C:\ossn-data`.
+    * A folder for the php files, in the Inetpub folder.  By default, the following works:  `C:\inetpub\ossn`
+    * A folder for the site data, *outside of the inetpub folder*; perhaps `C:\ossn-data`.
 3. Install a git client, (I chose the [classic git command-line interface](https://git-scm.com/docs/gitcli)), then clone the Open Source Social Network code into your given folder.  For example, assuming `C:\inetpub\ossn` is your target folder, do the following:
     ```
     cd \inetpub
