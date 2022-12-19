@@ -35,21 +35,21 @@ RewriteRule ^([A-Za-z0-9\_\-]+)\/(.*)$ index.php?h=$1&p=$2 [QSA,L]
 Click the "Apply" link after pasting in the rules, and you should see 4 rules displayed in the list of URL Rewrite rules.
 
 7. From the main IIS Site window, click the "PHP Manager" link, then click the "Enable or Disable an Extension" and ensure the following PHP extensions are enabled:
-   a. php_curl.dll
-   b. php_exif.dll
-   c. php_fileinfo.dll
-   d. php_gd.dll
-   e. php_gd2.dll
-   f. php_gettext.dll
-   g. php_imagick.dll (you'll need to download [Imagick for PHP](https://phpimagick.com/) for this extension to work; the extension itself is [here](https://pecl.php.net/package/imagick/3.7.0/windows).  Ensure you chose the same architecture and thread-safety as your chosen PHP install.)
-   h. php_intl.dll
-   i. php_mbstring.dll
-   j. php_mysql.dll
-   k. php_mysqli.dll
-   l. php_openssl.dll
-   m. php_pdo_mysql.dll
-   n. php_soap.dll
-   o. php_xmlrpc.dll
+   * php_curl.dll
+   * php_exif.dll
+   * php_fileinfo.dll
+   * php_gd.dll
+   * php_gd2.dll
+   * php_gettext.dll
+   * php_imagick.dll (you'll need to download [Imagick for PHP](https://phpimagick.com/) for this extension to work; the extension itself is [here](https://pecl.php.net/package/imagick/3.7.0/windows).  Ensure you chose the same architecture and thread-safety as your chosen PHP install.)
+   * php_intl.dll
+   * php_mbstring.dll
+   * php_mysql.dll
+   * php_mysqli.dll
+   * php_openssl.dll
+   * php_pdo_mysql.dll
+   * php_soap.dll
+   * php_xmlrpc.dll
 
    (all three MySQL extensions, mysql, mysqli, and pdo_mysql, need to be enabled).
 
