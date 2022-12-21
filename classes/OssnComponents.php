@@ -635,34 +635,6 @@ class OssnComponents extends OssnDatabase {
 		}
 
 		/**
-		 * Bundled components
-		 *
-		 * @return array
-		 */
-		public function bundledComponents() {
-				return array_merge(
-						array(
-								'OssnGroups',
-								'OssnSitePages',
-								'OssnChat',
-								'OssnPoke',
-								'OssnBlock',
-								'OssnSmilies',
-								'OssnInvite',
-								'OssnEmbed',
-								'OssnAds',
-								'OssnComments',
-								'OssnLikes',
-								'OssnMessages',
-								'OssnNotifications',
-								'OssnPhotos',
-								'OssnSearch',
-								'OssnWall',
-						),
-						$this->requiredComponents(),
-				);
-		}
-		/**
 		 * Set component settings
 		 *
 		 * setSettings should have array() to accept values #434
