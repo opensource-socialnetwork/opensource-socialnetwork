@@ -38,50 +38,58 @@
 	}
 ?>
 <script>
-		/**
-		 * Get data for last two years
-		 */
-		var lineChartData = {
-			labels : <?php echo json_encode($lables);?>,
-			datasets : [
-				<?php if(isset($years[0])){ ?>
-					{
-					label: "<?php echo $years[0];?>",
-					fillColor : "rgba(151,187,205,0.2)",
-					strokeColor : "rgba(151,187,205,1)",
-					pointColor : "rgba(151,187,205,1)",
-					pointStrokeColor : "#fff",
-					pointHighlightFill : "#fff",
-					pointHighlightStroke : "rgba(151,187,205,1)",					
-					data : <?php echo json_encode($datas[$years[0]]);?>
-				}	
-				<?php } ?>
-				<?php if(isset($years[1])){ ?>
-				, {
-					label: "<?php echo $years[1];?>",
-					fillColor : "rgba(220,220,220,0.2)",
-					strokeColor : "rgba(220,220,220,1)",
-					pointColor : "rgba(220,220,220,1)",
-					pointStrokeColor : "#fff",
-					pointHighlightFill : "#fff",
-					pointHighlightStroke : "rgba(220,220,220,1)",
-					data : <?php echo json_encode($datas[$years[1]]);?>
-				}	
-				<?php } ?>
-			]
-		}
-		/**
-		 * Generate a graph on page load
-		 */		
-		$(document).ready(function(){
-			var ctx = document.getElementById("users-count-graph").getContext("2d");
-			var myLine = new Chart(ctx).Line(lineChartData, {
-				responsive: true,
-				maintainAspectRatio: false,
-			});
-			//don't you want lagends ? $arsalanshah
-			//comment line below if you want to hide legends
-			chart_js_legend(document.getElementById("usercount-lineLegend"),lineChartData);
-
-		});
+var lineChartData = {
+	labels: <?php echo json_encode($lables); ?> ,
+	datasets : [ <?php
+		if (isset($years[0])) {
+			?>
+			{
+				label: "<?php echo $years[0];?>",
+				fill: true,
+				backgroundColor: 'rgb(94,156,220,0.1)',
+				borderColor: 'rgba(151,187,205,1)',
+				data: <?php echo json_encode($datas[$years[0]]); ?>
+			} <?php
+		} ?>
+		<?php
+		if (isset($years[1])) {
+			?>
+			, {
+				label: "<?php echo $years[1];?>",
+				fill: true,
+				backgroundColor: 'rgba(220,220,220,0.2)',
+				borderColor: 'rgba(220,220,220,1)',
+				data: <?php echo json_encode($datas[$years[1]]); ?>
+			} <?php
+		} ?>
+	]
+}
+/**
+ * Generate a graph on page load
+ */
+$(document).ready(function() {
+	var ctx = document.getElementById("users-count-graph").getContext("2d");
+	var myLine = new Chart(ctx, {
+		type: 'line',
+		data: lineChartData,
+		options: {
+			responsive: true,
+			maintainAspectRatio: false,
+			plugins: {
+				legend: {
+					display: true,
+					labels: {
+						usePointStyle: true,
+						boxWidth: 10,
+					}
+				}
+			},
+			scale: {
+				ticks: {
+					precision: 0
+				}
+			}
+		},
+	});
+});
 	</script>
