@@ -67,7 +67,7 @@ function ossn_invite_pagehandler(){
  */
 function ossn_invite_addfriends($callback, $type, $params){
 	   $friend = input('com_invite_friend');
-	   if (isset($params['guid']) && !empty($params['guid']) && isset($friend) && !empty($friend) && ossn_user_by_guid($friend)!=false) {
+	   if (isset($params['guid']) && !empty($params['guid']) && isset($friend) && !empty($friend) && !ossn_user_by_guid($friend)) {
 				ossn_add_friend($friend, $params['guid']);
 				ossn_add_friend($params['guid'], $friend);
 	   }
