@@ -11,7 +11,7 @@ Opensource-Socialnetwork (OSSN) is a social networking software written in PHP. 
 
 OSSN Licensed under the ***Open Source Social Network License (4.0) / Cryptographic Autonomy License version 1.0***
 
-Kernighan & Ritchie (K&R Variant 1TBS) indentation standard is used for the OSSN. For coding standards you may see https://github.com/opensource-socialnetwork/opensource-socialnetwork/wiki/Coding-Standards
+Kernighan & Ritchie (K&R Variant 1TBS) indentation standard is used for the OSSN. For coding standards you may see [following](https://github.com/opensource-socialnetwork/opensource-socialnetwork/wiki/Coding-Standards)
 
 - Copyright (C) ENGR. SYED ARSALAN HUSSAIN SHAH <arsalan@buddyexpress.net>,
 - Copyright (C) OPEN SOURCE SOCIAL NETWORK <https://www.opensource-socialnetwork.org>,
