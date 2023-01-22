@@ -445,9 +445,22 @@ class OssnUser extends OssnEntities {
 								'JOIN ossn_relationships AS r1 ON r1.relation_to = u.guid AND r1.type = "friend:request"',
 								'JOIN ossn_relationships AS r2 ON r2.relation_from = r1.relation_to AND r2.type = "friend:request"',
 						),
-						'wheres'   => "(r1.relation_from = '{$guid}')", //replace with loggedin user ID,
+						'wheres'   => array(
+								"(r1.relation_from = '{$guid}')", //replace with loggedin user ID,
+						), 
 						'distinct' => true,
 				);
+				//[B] OssnUser::getFriends([any wheres]) ignoring actual wheres resulting wrong result #2228
+				if(isset($options['wheres'])) {
+						if(is_array($options['wheres'])) {
+								foreach($options['wheres'] as $where) {
+										$default['wheres'][] = $where;
+								}
+						} else {
+								$default['wheres'][] = $options['wheres'];
+						}
+						unset($options['wheres']);
+				}
 				$vars = array_merge($default, $options);
 				return $this->searchUsers($vars);
 		}
