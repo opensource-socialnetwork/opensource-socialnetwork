@@ -24,7 +24,7 @@ class OssnMail extends PHPMailer {
 		 *
 		 * @return boolean
 		 */
-		public function NotifiyUser($email, $subject, $body) {
+		public function notifyUser($email, $subject, $body) {
 				//Emails should be validated before sending emails #1080
 				if(empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)){
 					error_log('Can not send email to empty email address', 0);
