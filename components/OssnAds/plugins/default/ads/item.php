@@ -5,7 +5,7 @@
 				<div class="ad-title"><?php echo $params['item']->title;?></div>
 				<div class="ad-link"><?php echo $params['item']->site_url;?></div>
 				<div class="ad-image-container">
-					<img class="ad-image" src="<?php echo ossn_ads_image_url($params['item']->guid); ?>" />
+					<img class="ad-image" src="<?php echo $params['item']->getPhotoURL() ?>" />
 				</div>
 				<p><?php echo $params['item']->description;?></p>
 			</div>

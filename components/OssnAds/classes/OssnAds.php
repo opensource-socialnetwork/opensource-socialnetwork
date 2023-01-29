@@ -126,7 +126,8 @@ class OssnAds extends OssnObject {
 								$params['title'],
 								$params['description'],
 						);
-						$this->data->site_url = $params['siteurl'];
+						$this->data->site_url 	  = $params['siteurl'];
+						$this->data->time_updated = time();
 						if($this->updateObject($fields, $data, $entity->guid)) {
 								if(isset($_FILES['ossn_ads']) && $_FILES['ossn_ads']['size'] !== 0) {
 										if($file = $entity->getPhotoFile()) {
@@ -162,7 +163,10 @@ class OssnAds extends OssnObject {
 		public function getPhotoURL() {
 				if(isset($this->{'file:ossnads'})) {
 						$image = md5($this->guid) . '.jpg';
-						return ossn_site_url("post/photo/{$this->guid}/{$image}");
+						if(!isset($this->time_updated)){
+							$this->time_updated = 0;	
+						}
+						return ossn_add_cache_to_url(ossn_site_url("ossnads/photo/{$this->guid}/{$this->time_updated}/{$image}"));
 				}
 				return false;
 		}
