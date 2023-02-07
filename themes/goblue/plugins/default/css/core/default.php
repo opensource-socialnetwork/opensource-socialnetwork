@@ -61,15 +61,11 @@ body {
 	outline: none;
 }
 
-.ossn-form input[readonly],
-.ossn-form input[readonly],
-.ossn-form input[readonly],
 .ossn-form select[readonly],
 .ossn-form textarea[readonly],
 .ossn-form input[readonly] {
 	background: #dbdbdb;
 }
-
 .ossn-form input[type="file"] {
 	display: block;
 }
