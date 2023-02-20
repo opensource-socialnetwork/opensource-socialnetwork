@@ -29,7 +29,11 @@ if($params['recent']) {
 						if(isset($message->is_deleted) && $message->is_deleted == true) {
 								$replied = ossn_print('ossnmessages:deleted');
 						}
-						$replied = "<i class='fa fa-reply'></i><div class='reply-text'>{$replied}</div>";
+						$viewed_check = "";
+						if($message->viewed == 1){
+							$viewed_check = "<i class='ossn-msgrecent-check-read fa fa-check'></i>";
+						}
+						$replied = "<i class='fa fa-reply'></i><div class='reply-text'>{$replied}{$viewed_check}</div>";
 				} else {
 						$user = ossn_user_by_guid($message->message_from);
 						$text = ossn_call_hook('messages', 'message:smilify', $args, strl($message->message, 32));
