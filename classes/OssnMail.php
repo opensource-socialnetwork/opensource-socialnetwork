@@ -55,5 +55,10 @@ class OssnMail extends PHPMailer {
 				}
 				return false;
 		}
-		
+		/**
+		 * Deprecated will be removed in future versions
+		 */
+		 public function NotifiyUser($email, $subject, $body) {
+			 	return $this->notifyUser($email, $subject, $body);
+		 }	
 } //class
