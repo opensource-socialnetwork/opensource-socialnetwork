@@ -12,6 +12,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK vX.X
 - [E] Where does OssnComponents::bundledComponents() used? #2210
 - [E] Improvement in messages and chat,  allow you to upload file and image in message.
 - [E] Chat and Messages UI improved. Messages layout made bigger and remove chat from messages page.
+- [E] typo OssnMail::NotifiyUser #2224
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v6.6
 * [E] output/user/url to profile cover , photos, albums wall template #2205
