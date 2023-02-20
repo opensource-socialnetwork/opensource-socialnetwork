@@ -73,15 +73,19 @@ Ossn.SendMessage = function($user) {
         url: Ossn.site_url + "action/message/send",
         form: '#message-send-' + $user,
         action:true,
+		containMedia:true,
         beforeSend: function(request) {
             $('#message-send-' + $user).find('input[type=submit]').hide();
             $('#message-send-' + $user).find('.ossn-loading').removeClass('ossn-hidden');
         },
         callback: function(callback) {
-	    if(callback !== '0'){
-	          $('#message-append-' + $user).append(callback);
-	    }
-    	    $('#message-send-' + $user).find('textarea').val('');
+	    	if(callback !== '0'){
+	        	  $('#message-append-' + $user).append(callback);
+	 	   }	
+		    $('#message-send-' + $user).find('.ossn-omessage-attachment').val('');
+			$('#message-send-' + $user).find('.ossn-message-attachment-details').html("").hide();
+    	    
+			$('#message-send-' + $user).find('textarea').val('');
        	    $('#message-send-' + $user).find('input[type=submit]').show();
             $('#message-send-' + $user).find('.ossn-loading').addClass('ossn-hidden');
             Ossn.message_scrollMove($user);
@@ -94,8 +98,21 @@ Ossn.getMessages = function($user, $guid) {
         url: Ossn.site_url + "messages/getnew/" + $user,
         action: false,
         callback: function(callback) {
-            $('#message-append-' + $guid).append(callback);
-            if(callback){
+				
+				//we don't need to check with guids like in chat because one window can be opened in one tab
+				//to check status, as there will be only one  .ossn-inmessage-status-circle
+				inchatstatus = $('.ossn-inmessage-status-circle');
+				if (callback['is_online'] == false) {
+					if (inchatstatus.hasClass('ossn-inmessage-status-online')) {
+						inchatstatus.removeClass('ossn-inmessage-status-online');
+						inchatstatus.addClass('ossn-inmessage-status-offline');
+					}
+				} else {
+					inchatstatus.removeClass('ossn-inmessage-status-offline');
+					inchatstatus.addClass('ossn-inmessage-status-online');
+				}				
+            if(callback['html'] && callback['html'] != ''){
+ 	           $('#message-append-' + $guid).append(callback['html']);
             	//Unwanted refresh in message window #416 , there is no need to scroll if no new message.
 	            Ossn.message_scrollMove($guid);
             }
@@ -350,10 +367,44 @@ $(document).ready(function(e) {
 });
 Ossn.RegisterStartupFunction(function() {
     $(document).ready(function() {
+		$('body').on('click', '.ossn-message-icon-attachment', function(){
+					$guid = $(this).attr('data-guid');
+					$id   = '#message-send-'+$guid;
+					$($id).find('.ossn-omessage-attachment').trigger('click');
+		});
+		$('body').on('change', '.ossn-omessage-attachment', function(e){
+					$guid = $(this).attr('data-guid');
+					$id   = '#message-send-'+$guid;
+					fileName = e.target.files[0].name;
+					template = "<span class='ossn-omessage-attachment-name'>"+fileName+"</span>"+"<span class='ossn-omessage-attachment-remove'><i class='fa fa-times'</i></span>",
+					$($id).find('.ossn-message-attachment-details').html(template);
+					$($id).find('.ossn-message-attachment-details').show();
+		});		
+		$('body').on('click', '.ossn-omessage-attachment-remove', function(){
+							$guid = $(this).parent().attr('data-guid');			
+							$id   = '#message-send-'+$guid;
+							$($id).find('.ossn-omessage-attachment').val('');
+							$($id).find('.ossn-message-attachment-details').html("").hide();
+		});		
 		$('body').on('click', '.ossn-message-delete', function(e){
 				var id = $(this).attr('data-id');
 				Ossn.MessageBox('messages/delete?id=' + id);
+		});		
+		$('body').on('click', '.ossn-message-delete-conversation', function(e){
+				var id = $(this).attr('data-guid');
+				Ossn.MessageBox('messages/delete_conversation?id=' + id);
 		});
+		Ossn.ajaxRequest({
+                    form: '#ossn-message-delete-conv-form',
+					url: Ossn.site_url+'action/message/delete_conversation',
+					beforeSend: function(){
+							$('#ossn-message-delete-conv-form').html('<div class="ossn-loading"></div>');	
+					},
+                    callback: function(callback) {
+							//reload page in any case
+							Ossn.redirect('messages/all');		
+					}
+        });				
 		Ossn.ajaxRequest({
                     form: '#ossn-message-delete-form',
 					url: Ossn.site_url+'action/message/delete',

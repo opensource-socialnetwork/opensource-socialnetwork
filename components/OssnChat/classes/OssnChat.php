@@ -20,6 +20,10 @@ class OssnChat extends OssnMessages {
 				if(!isset($_SESSION['ossn_chat_users'])) {
 						$_SESSION['ossn_chat_users'] = array();
 				}
+				$count = count($_SESSION['ossn_chat_users']);
+				if($count >= 2){
+						array_shift($_SESSION['ossn_chat_users']);
+				}
 				if(!in_array($user->guid, $_SESSION['ossn_chat_users']) && $user) {
 						$_SESSION['ossn_chat_users'][] = $user->guid;
 				}
