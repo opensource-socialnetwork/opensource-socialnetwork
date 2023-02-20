@@ -135,7 +135,7 @@ class OssnUser extends OssnEntities {
 														$sitename,
 												));
 												//notify users for activation
-												$this->notify->NotifiyUser($this->email, $subject, $activation);
+												$this->notify->notifyUser($this->email, $subject, $activation);
 										}
 										ossn_trigger_callback('user', 'created', array(
 												'guid' => $guid,
@@ -811,7 +811,7 @@ class OssnUser extends OssnEntities {
 						$sitename,
 				));
 				$emailsubject = ossn_print('ossn:reset:password:subject');
-				if(!empty($this->value) && $this->notify->NotifiyUser($this->email, $emailsubject, $emailmessage)) {
+				if(!empty($this->value) && $this->notify->notifyUser($this->email, $emailsubject, $emailmessage)) {
 						return true;
 				}
 				return false;
@@ -946,7 +946,7 @@ class OssnUser extends OssnEntities {
 								$this->first_name,
 								$sitename,
 						));
-						return $this->notify->NotifiyUser($this->email, $subject, $activation);
+						return $this->notify->notifyUser($this->email, $subject, $activation);
 				}
 				return false;
 		}
