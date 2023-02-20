@@ -340,3 +340,8 @@
 #ossn-message-delete-conv-form .ossn-loading {
     margin: 45px auto;
 }
+.ossn-msgrecent-check-read.fa.fa-check {
+    font-size: 10px;
+    color: #53bdeb;
+    margin-left: 5px;
+}
