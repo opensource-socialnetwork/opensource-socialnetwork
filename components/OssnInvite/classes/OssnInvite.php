@@ -61,6 +61,6 @@ class OssnInvite extends OssnMail {
 				'actual_message' => $actual_message,
 		);
 		$vars = ossn_call_hook('invite', 'user:options', $args, $args);
-		return $this->NotifiyUser($vars['email'], $vars['subject'], $vars['message']);
+		return $this->notifyUser($vars['email'], $vars['subject'], $vars['message']);
 	}
 }//class
