@@ -1,6 +1,16 @@
 OSSN - OPEN SOURCE SOCIAL NETWORK vX.X
 - [B] fix allowing to display profile modules with priority < 200 #2211
 - [B] User existence check #2222
+- [E] Add fancybox into core as external lib #2234
+- [E] Unload OssnChat on Messages pages #2236
+- [B] searchMessages viewed option doesn't work #2235
+- [B] OssnUser::getFriends([any wheres]) ignoring actual wheres resulting wrong result #2228
+- [B] Albums gallery thumbs showing wrong URL even it works #2225
+- [E] Update chart js library #2220
+- [E] jQueryUI 1.12.1 CVE-2021-41184 critical RCE vulnerability #2219
+- [E] typo OssnMail::NotifiyUser #2224
+- [E] Where does OssnComponents::bundledComponents() used? #2210
+
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v6.6
 * [E] output/user/url to profile cover , photos, albums wall template #2205
