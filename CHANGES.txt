@@ -10,7 +10,8 @@ OSSN - OPEN SOURCE SOCIAL NETWORK vX.X
 - [E] jQueryUI 1.12.1 CVE-2021-41184 critical RCE vulnerability #2219
 - [E] typo OssnMail::NotifiyUser #2224
 - [E] Where does OssnComponents::bundledComponents() used? #2210
-
+- [E] Improvement in messages and chat,  allow you to upload file and image in message.
+- [E] Chat and Messages UI improved. Messages layout made bigger and remove chat from messages page.
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v6.6
 * [E] output/user/url to profile cover , photos, albums wall template #2205
