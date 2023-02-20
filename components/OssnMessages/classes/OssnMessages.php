@@ -615,12 +615,22 @@ class OssnMessages extends OssnEntities {
 				}
 				return false;
 		}
+		/**
+		 * Does message have attachment
+		 *
+		 * @return boolean
+		 */
 		public function isAttachment() {
 				if(isset($this->attachment_guid) && !empty($this->attachment_guid)) {
 						return true;
 				}
 				return false;
 		}
+		/**
+		 * Type of attachment
+		 *
+		 * @return boolean|string
+		 */
 		public function typeOfAttachment() {
 				if($this->isAttachment()) {
 						if(str_starts_with($this->attachment_name, 'file:')) {
@@ -631,6 +641,11 @@ class OssnMessages extends OssnEntities {
 				}
 				return false;
 		}
+		/**
+		 * Return attachment URL
+		 *
+		 * @return void|string
+		 */
 		public function attachmentName() {
 				if($this->isAttachment()) {
 						return str_replace(
@@ -643,9 +658,41 @@ class OssnMessages extends OssnEntities {
 						);
 				}
 		}
+		/**
+		 * Return attachment URL
+		 *
+		 * @return void|string
+		 */
 		public function attachmentURL() {
 				if($this->isAttachment()) {
 						return ossn_site_url("messages/attachment/{$this->attachment_guid}/{$this->attachment_name}");
 				}
+		}
+		/**
+		 * Delete message from record
+		 * [E] Permanently Delete message method needs to be created #2231
+		 *
+		 * @return boolean
+		 */
+		public function deleteMessage() {
+				$message_id = $this->id;
+				if(isset($message_id)) {
+						$param = array(
+								'from'   => 'ossn_messages',
+								'wheres' => array(
+										"id='{$message_id}'",
+								),
+						);
+						if($this->delete($param)) {
+								if($this->deleteByOwnerGuid($message_id, 'message')) {
+										$data = ossn_get_userdata("message/{$message_id}/");
+										if(is_dir($data)) {
+												OssnFile::DeleteDir($data);
+										}
+								}
+								return true;
+						}
+				}
+				return false;
 		}
 } //class
