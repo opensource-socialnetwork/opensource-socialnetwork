@@ -367,7 +367,7 @@ function ossn_languages_js() {
  * @return void;
  */
 function ossn_redirect_absolute_url() {
-		if(php_sapi_name() !== 'cli') {
+		if(!ossn_is_from_cli()) {
 				$baseurl  = ossn_site_url();
 				$parts    = parse_url($baseurl);
 				$iswww    = preg_match('/www./i', $parts['host']);
