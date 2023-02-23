@@ -329,27 +329,6 @@ class OssnMessages extends OssnEntities {
 				}
 				return false;
 		}
-		public function deleteMessage() {
-				$message_id = $this->id;
-				if(isset($message_id)) {
-						$param = array(
-								'from'   => 'ossn_messages',
-								'wheres' => array(
-										"id='{$message_id}'",
-								),
-						);
-						if($this->delete($param)) {
-								if($this->deleteByOwnerGuid($message_id, 'message')) {
-										$data = ossn_get_userdata("message/{$message_id}/");
-										if(is_dir($data)) {
-												OssnFile::DeleteDir($data);
-										}
-								}
-								return true;
-						}
-				}
-				return false;
-		}
 		/**
 		 * Delete users all messages.
 		 * This will also delete someone else message to this user.
