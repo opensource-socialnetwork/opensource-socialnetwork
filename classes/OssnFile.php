@@ -89,7 +89,8 @@ class OssnFile extends OssnEntities {
 						$file       = $_FILES[$name];
 						$this->file = $file;
 				} else {
-						if(!$_FILES[$name]['error'] && $_FILES[$name]['size'] == 0) {
+						//[E] Unknown offset on OssnFile #2240
+						if(isset($_FILES[$name]['type']) && !$_FILES[$name]['error'] && $_FILES[$name]['size'] == 0) {
 								$this->error = UPLOAD_ERR_EXTENSION;
 						} else {
 								$this->error = $_FILES[$name]['error'];
