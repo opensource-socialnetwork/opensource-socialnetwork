@@ -164,7 +164,7 @@ class OssnAds extends OssnObject {
 				if(isset($this->{'file:ossnads'})) {
 						$image = md5($this->guid) . '.jpg';
 						if(!isset($this->time_updated)){
-							$this->time_updated = 0;	
+							$this->time_updated = $this->time_created;	
 						}
 						return ossn_add_cache_to_url(ossn_site_url("ossnads/photo/{$this->guid}/{$this->time_updated}/{$image}"));
 				}
