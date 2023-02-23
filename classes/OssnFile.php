@@ -85,15 +85,17 @@ class OssnFile extends OssnEntities {
 		 */
 		public function setFile($name): void {
 				$this->showFileUploadError();
-				if(isset($_FILES[$name]['type']) && ($_FILES[$name]['error'] == UPLOAD_ERR_OK && $_FILES[$name]['size'] !== 0)) {
-						$file       = $_FILES[$name];
-						$this->file = $file;
-				} else {
-						//[E] Unknown offset on OssnFile #2240
-						if(isset($_FILES[$name]['type']) && !$_FILES[$name]['error'] && $_FILES[$name]['size'] == 0) {
-								$this->error = UPLOAD_ERR_EXTENSION;
+				//[E] Unknown offset on OssnFile #2240
+				if(isset($_FILES[$name])) {
+						if(isset($_FILES[$name]['type']) && ($_FILES[$name]['error'] == UPLOAD_ERR_OK && $_FILES[$name]['size'] !== 0)) {
+								$file       = $_FILES[$name];
+								$this->file = $file;
 						} else {
-								$this->error = $_FILES[$name]['error'];
+								if(!$_FILES[$name]['error'] && $_FILES[$name]['size'] == 0) {
+										$this->error = UPLOAD_ERR_EXTENSION;
+								} else {
+										$this->error = $_FILES[$name]['error'];
+								}
 						}
 				}
 		}
