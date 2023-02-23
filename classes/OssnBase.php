@@ -8,8 +8,6 @@
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
  * @link      https://www.opensource-socialnetwork.org/
  */
-//Allow dynamic properties #2238
-#[\AllowDynamicProperties] 
 class OssnBase extends OssnSession {
 		/**
 		 * Get guid.
