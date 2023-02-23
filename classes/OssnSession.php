@@ -8,7 +8,8 @@
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
  * @link      https://www.opensource-socialnetwork.org/
  */
-class OssnSession {
+//Use a stdClass as base instead of using AllowDynamicProperties attributes #2238
+class OssnSession extends stdClass {
 		/**
 		 * Start session
 		 *
