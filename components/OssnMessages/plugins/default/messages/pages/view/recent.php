@@ -47,12 +47,17 @@ if($params['recent']) {
 				} else {
 						$new = '';
 				}
+				$status = 'ossn-inmessage-status-offline';
+				if($user->isOnline(10)){
+					$status = 'ossn-inmessage-status-online';
+				}
 ?>
-                        <div class="row user-item <?php echo $new; ?>" onclick="Ossn.redirect('messages/message/<?php echo $user->username; ?>');">
-								<div class="col-md-2">
+                        <div data-guid="<?php echo $user->guid;?>" class="ossn-recent-message-item d-flex flex-row user-item <?php echo $new; ?> ossn-recent-message-status-offline" onclick="Ossn.redirect('messages/message/<?php echo $user->username; ?>');">
+								<div class="msg-flex-c1">
  		                               <img class="image user-icon-smaller" src="<?php echo $user->iconURL()->smaller; ?>"/>
+                                       <span class="ossn-inmessage-status-circle <?php echo $status;?>"></span>
                          	   </div>    
-                         	   <div class="col-md-10 data">
+                         	   <div class="msg-flex-c2 data">
                          	       <div class="name"><?php echo strl($user->fullname, 17); ?></div>
                          	       <div class="time time-created"><?php echo ossn_user_friendly_time($message->time); ?> </div>
                          	       <div class="reply"><?php echo $replied; ?></div>

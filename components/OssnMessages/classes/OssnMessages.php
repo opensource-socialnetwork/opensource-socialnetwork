@@ -674,4 +674,31 @@ class OssnMessages extends OssnEntities {
 				}
 				return false;
 		}
+	 	/**
+		 * Get status for users by user guids
+		 * We will use plain SQL to avoid loads because of entities checking
+		 *
+		 * @param string $ids User ids
+		 * 
+		 * @return array|boolean
+		 */
+		 public function onlineStatus($ids){
+			 	if(empty($ids)){
+						return false;	
+				}
+			 	$vars  = array(
+						'from' => 'ossn_users as u',
+						'wheres' => array("u.guid IN($ids)"),
+				);
+			 	$status = $this->select($vars, true);
+				$statues = array();
+				if($status){
+						foreach($status as $u){
+								$user = arrayObject($u, 'OssnUser');
+								$statues[$user->guid] = $user->isOnline(10);
+						}
+						return $statues;
+				}
+				return false;
+		 }
 } //class

@@ -218,8 +218,17 @@ function ossn_messages_page($pages) {
 						echo ossn_view_page($title, $content);
 						break;
 				case 'getnew':
+						header('Content-Type: application/json; charset=utf-8');
 						$username = $pages[1];
 						$friend   = ossn_user_by_username($username);
+						if(!$friend){
+							echo json_encode(array(
+									'html' => false,
+									'is_online' => false,
+							));	
+							exit;
+						}
+						$recent_guids = input('recent_guids');
 						$guid     = $friend->guid;
 						$messages = $OssnMessages->getNew($guid, ossn_loggedin_user()->guid);
 						$html = '';
@@ -241,10 +250,10 @@ function ossn_messages_page($pages) {
 								$OssnMessages->markViewed($guid, ossn_loggedin_user()->guid);
 								$html .= '<script>Ossn.MessageplaySound();</script>';
 						}
-						header('Content-Type: application/json; charset=utf-8');
 						echo json_encode(array(
 									'html' => $html,
 									'is_online' => $friend->isOnline(10),
+									'recent_status' => $OssnMessages->onlineStatus($recent_guids),
 						));						
 						break;
 				

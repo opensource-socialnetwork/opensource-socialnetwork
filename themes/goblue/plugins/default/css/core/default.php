@@ -2870,10 +2870,6 @@ footer .ossn-footer-menu a:last-child::after {
 		display: block;
 	}
 
-	.ossn-messages .message-with .user-icon,
-	.ossn-messages .messages-recent .messages-from .user-item .image {
-		display: none;
-	}
 
 	.ossn-messages .message-inner .row {
 		margin-left: 0px !important;
@@ -2945,10 +2941,6 @@ footer .ossn-footer-menu a:last-child::after {
 	/*******************
      	Messages
      *******************/
-	.ossn-messages .message-with .user-icon,
-	.ossn-messages .messages-recent .messages-from .user-item .image {
-		display: none;
-	}
 
 	.ossn-messages .message-inner .row {
 		margin-left: 0px !important;

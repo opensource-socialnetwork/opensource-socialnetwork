@@ -14,8 +14,9 @@
 <div class="row g-0">
 			<div class="col-md-4">
             	      <?php
+					  	$toggle_mobile = '<span class="d-inline d-sm-none ossn-recent-messages-toggle"><i class="fas fa-angle-down"></i></span>';
 	  					echo ossn_plugin_view('widget/view', array(
-							'title' => ossn_print('inbox').' ('.OssnMessages()->countUNREAD(ossn_loggedin_user()->guid).')',
+							'title' => ossn_print('inbox').' ('.OssnMessages()->countUNREAD(ossn_loggedin_user()->guid).')'.$toggle_mobile,
 							'contents' => ossn_plugin_view('messages/pages/view/recent', $params),
 							'class' => 'messages-recent',
 						));

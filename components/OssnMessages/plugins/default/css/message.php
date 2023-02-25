@@ -41,7 +41,7 @@
 }
 
 .ossn-messages .messages-recent .messages-from .user-item .reply {
-	margin-top: 0px;
+	margin-top: -4px;
 	font-size: 13px;
 }
 
@@ -344,4 +344,42 @@
     font-size: 10px;
     color: #53bdeb;
     margin-left: 5px;
+}
+.ossn-recent-message-status-offline .ossn-inmessage-status-circle {
+		background: #D23636;
+}
+.ossn-recent-message-status-online .ossn-inmessage-status-circle {
+		background: #4cae4c;
+}
+.ossn-recent-message-item .ossn-inmessage-status-circle {
+    position: absolute;
+    margin-left: -13px;
+    margin-top: 20px;
+    border-radius: 100%;
+    border: 2px solid white;
+    height: 12px;
+    width: 12px;
+}
+.msg-flex-c1 {
+	position:relative;
+}
+.msg-flex-c2 {
+	width:100%;
+    margin-left:10px;
+}
+.ossn-recent-messages-toggle i {
+	margin-right:0px;
+    margin-top: 6px;
+}
+.ossn-recent-messages-toggle {
+	text-align: center;
+    float: right;
+    background: transparent;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    cursor:pointer;
+}
+.ossn-recent-messages-toggle:hover {
+	background:#fff;
 }
