@@ -112,7 +112,7 @@ Ossn.getMessages = function($user, $guid) {
 				
 				//we don't need to check with guids like in chat because one window can be opened in one tab
 				//to check status, as there will be only one  .ossn-inmessage-status-circle
-				inchatstatus = $('.ossn-inmessage-status-circle');
+				inchatstatus = $('#message-with-user-widget');
 				if (callback['is_online'] == false) {
 					if (inchatstatus.hasClass('ossn-inmessage-status-online')) {
 						inchatstatus.removeClass('ossn-inmessage-status-online');

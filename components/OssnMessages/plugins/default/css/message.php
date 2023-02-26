@@ -327,12 +327,14 @@
     height: 12px;
     width: 12px;
 }
-.ossn-inmessage-status-offline {
+
+.ossn-inmessage-status-offline .ossn-inmessage-status-circle {
 	background:#D23636;
 }
-.ossn-inmessage-status-online {
+.ossn-inmessage-status-online .ossn-inmessage-status-circle {
     background: #4cae4c;
 }
+
 .ossn-message-delete-conversation {
     float: right;
     color: #ec2828;

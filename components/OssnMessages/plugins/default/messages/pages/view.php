@@ -28,18 +28,18 @@
 					  	if($params['user']->isOnline(10)){
 							$status = 'ossn-inmessage-status-online';	
 						}
-					  	$status = "<span class='ossn-inmessage-status-circle {$status}'></span>";
+					  	$status_container = "<span class='ossn-inmessage-status-circle'></span>";
 						$delete = "<a data-guid='{$params['user']->guid}' class='ossn-message-delete-conversation' href='javascript:void(0);'><i class='fas fa-trash-alt'></i></a>";
 					   	$image = ossn_plugin_view('output/image', array(
 										'src' => $params['user']->iconURL()->smaller,
 										'class' => 'user-icon-smaller',
 						));
 	  					echo ossn_plugin_view('widget/view', array(
-							'title' => $image.$status.$params['user']->fullname.$delete,
+							'title' => $image.$status_container.$params['user']->fullname.$delete,
 							'id' => 'message-with-user-widget',
 							'data-guid' => $params['user']->guid,
 							'contents' => ossn_plugin_view('messages/pages/view/with', $params),
-							'class' => 'messages-with',
+							'class' => "messages-with {$status}",
 						));
 						?>
             </div>
