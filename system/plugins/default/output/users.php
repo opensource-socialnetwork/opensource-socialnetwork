@@ -35,20 +35,20 @@ if ($users) {
 												echo ossn_plugin_view('output/url', array(
 													'text' => ossn_print('cancel:request'),
 													'href' =>  ossn_site_url("action/friend/remove?cancel=true&user={$user->guid}", true),
-													'class' => 'btn btn-danger',
+													'class' => 'btn btn-danger btn-sm',
 												));
 										} else {
 												echo ossn_plugin_view('output/url', array(
 													'text' => ossn_print('add:friend'),
 													'href' =>  ossn_site_url("action/friend/add?user={$user->guid}", true),
-													'class' => 'btn btn-primary',
+													'class' => 'btn btn-primary btn-sm',
 												));		
 										}
 								} else {
 									echo ossn_plugin_view('output/url', array(
 													'text' => ossn_print('remove:friend'),
 													'href' =>  ossn_site_url("action/friend/remove?user={$user->guid}", true),
-													'class' => 'btn btn-danger',
+													'class' => 'btn btn-danger btn-sm',
 									));	
 				
 								}
