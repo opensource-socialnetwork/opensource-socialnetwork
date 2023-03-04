@@ -204,6 +204,11 @@ class OssnFile extends OssnEntities {
 				if(empty($this->redirect)) {
 						$this->redirect = REF;
 				}
+				//post size error
+				//post_size < upload max size
+				if(!empty($_SERVER['CONTENT_LENGTH']) && empty($_POST)){
+						$this->error = UPLOAD_ERR_FORM_SIZE;
+				}
 				if(isset($this->file) && ($this->file['error'] !== UPLOAD_ERR_OK || $this->file['size'] == 0)) {
 						ossn_trigger_message($this->getFileUploadError($this->file['error']), 'error');
 						redirect($this->redirect);
