@@ -18,6 +18,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK vX.X
 - [E] Add checkmarks in recent messages #2237
 - [E] input/dropdown allow option values to set class, id etc #2239
 - [E] Dynamic properties PHP 8.2 deprecated notice #2238
+- [E] File sizes error not showing on profile photo/cover upload #2243
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v6.6
 * [E] output/user/url to profile cover , photos, albums wall template #2205
