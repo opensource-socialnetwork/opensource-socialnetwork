@@ -392,24 +392,29 @@ class OssnUser extends OssnEntities {
 				if(isset($this->guid)) {
 						$user = $this->guid;
 				}
-				$this->statement("SELECT * FROM ossn_relationships WHERE(
-					     relation_to='{$user}' AND
-					     type='friend:request'
-					     );");
-				$this->execute();
-				$from = $this->fetch(true);
+				//[E] Improve OssnUser method getFriendRequests #2217
+				$vars = array(
+						'from'   => 'ossn_relationships',
+						'wheres' => array(
+								array(
+										'name'       => 'relation_to',
+										'comparator' => '=',
+										'value'      => $user,
+										'separator'  => 'AND',
+								),
+								array(
+										'name'       => 'type',
+										'comparator' => '=',
+										'value'      => 'friend:request',
+								),
+						),
+				);
+				$from = $this->select($vars, true);
 				if(!is_object($from)) {
 						return false;
 				}
 				foreach($from as $fr) {
-						$this->statement("SELECT * FROM ossn_relationships WHERE(
-                            relation_from='{$user}' AND
-                            relation_to='{$fr->relation_from}' AND
-                            type='friend:request'
-                            );");
-						$this->execute();
-						$from = $this->fetch();
-						if(!isset($from->relation_id)) {
+						if(!$this->isFriend($user, $fr->relation_from)) {
 								$uss[] = ossn_user_by_guid($fr->relation_from);
 						}
 				}
@@ -447,7 +452,7 @@ class OssnUser extends OssnEntities {
 						),
 						'wheres'   => array(
 								"(r1.relation_from = '{$guid}')", //replace with loggedin user ID,
-						), 
+						),
 						'distinct' => true,
 				);
 				//[B] OssnUser::getFriends([any wheres]) ignoring actual wheres resulting wrong result #2228
@@ -1084,6 +1089,7 @@ class OssnUser extends OssnEntities {
 						'emd.value as gender',
 				);
 				$params['from']  = 'ossn_entities as e';
+
 				$params['joins'] = array(
 						'JOIN ossn_entities_metadata AS emd ON e.guid = emd.guid',
 				);
