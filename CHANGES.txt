@@ -22,6 +22,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK vX.X
 - [E] Unknown offset on OssnFile #2240
 - [E] Users list make btn-sm #2214
 - [B] OssnChat shows only 10 friends in sidebar #2227
+- [E] prevent loading language files of disabled components #2192
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v6.6
 * [E] output/user/url to profile cover , photos, albums wall template #2205
