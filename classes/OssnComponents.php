@@ -58,7 +58,17 @@ class OssnComponents extends OssnDatabase {
 				}
 				return $com_ids;
 		}
-
+		/**
+		 * Get components list with object
+		 *
+		 * @return array 
+		 */
+		public function getAll() {
+				$params['from'] = 'ossn_components as c';
+				//[E] Show components in admin panel in ASC order of their installation #2155
+				$params['order_by'] = 'c.id ASC';
+				return $this->select($params, true);
+		}		
 		/**
 		 * Upload component
 		 *
