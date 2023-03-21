@@ -53,3 +53,18 @@ if($fields){
 </p>
 <div class="ossn-loading ossn-hidden"></div>
 <input type="submit" id="ossn-submit-button" class="btn btn-success" value="<?php echo ossn_print('create:account'); ?>" class=""/>
+
+<script>
+    // remove any blank spaces in username field
+    $(document).ready(function () {
+        var usernameField = $('#ossn-home-signup input[name="username"]');
+        
+        if (usernameField.length > 0) {
+            usernameField.on('input', function () {
+                var currentValue = $(this).val();
+	        var newValue = currentValue.replace(/\s/g, '');
+                $(this).val(newValue);
+            });
+        }
+    });
+</script>
