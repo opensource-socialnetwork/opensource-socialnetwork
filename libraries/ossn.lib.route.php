@@ -84,7 +84,7 @@ function ossn_route() {
  * @param boolean $uport false in case you wants a port , true if you don't wants a port
  * @param boolean $uport default false
  *
- * @return string
+ * @return string|boolean
  */
 function current_url($uport = false) {
 		if(ossn_is_from_cli()){
