@@ -25,6 +25,8 @@ OSSN - OPEN SOURCE SOCIAL NETWORK vX.X
 - [E] prevent loading language files of disabled components #2192
 - [E] Improve OssnUser method getFriendRequests #2217
 - [E] OssnAds remove link in view #2242
+- [B] Undefined errors in CLI #2248
+
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v6.6
 * [E] output/user/url to profile cover , photos, albums wall template #2205
