@@ -1,22 +1,22 @@
-.emojii {
-	font-size:17px !important;
-}
-
 .emojii-container {
 	background: #fff;
-	width: 254px;
+	width: 320px;
 	border: 1px solid #ececec;
 	position: fixed;
-	bottom: 1px;
-	right: 1px;
 	z-index: 10000;
 	box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+	top: 30%;
+	left: 50%;
+	transform: translate(-50%, -30%);
+	padding: 0 5px 5px;
+	border-radius: 5px;
 }
 
-.emojii-container .nav {}
+.emojii-container .nav {
+	padding: 3px 0;
+}
 
 .emojii-container .emojii-list {
-	Xpadding: 5px;
 	display: none;
 	height: 179px;
 	overflow: hidden;
@@ -47,7 +47,7 @@
 }
 
 .ossn-wall-container-control-menu-emojii-selector i {
-	    font-weight: initial;
+	font-weight: initial;
 }
 
 .emojii-container-main {
@@ -71,11 +71,13 @@
 	cursor: pointer;
 	font-weight: 400;
 }
+
 .ossn-comment-attach-photo .fa-smile {
 	margin-top: 3px;
-    font-size: 18px;
-    color:#999;
+	font-size: 18px;
+	color: #999;
 }
+
 .comment-container .emojii-container-main {
 	float: right;
 	margin-right: 285px;
@@ -127,4 +129,18 @@
 
 body {
 	font-family: "PT Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "NotoColorEmoji", "Segoe UI Symbol", "Android Emoji", "EmojiSymbols";
+}
+
+.smiles-close {
+	float: right;
+	margin-top: 8px;
+	background: #eee;
+	border-radius: 50%;
+	width: 20px;
+	height: 20px;
+	text-align: center;
+}
+
+.smiles-close i {
+	margin: 0 auto;
 }

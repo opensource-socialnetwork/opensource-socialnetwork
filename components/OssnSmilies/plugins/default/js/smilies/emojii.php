@@ -14,7 +14,7 @@ Ossn.RegisterStartupFunction(function() {
 
 		// A. append multi-purpose emoji container to end of document
 		// **********************************************************
-		$('body').append('<div id="master-moji"><input type="hidden" id="master-moji-anchor" value=""><div class="dropdown emojii-container-main"> <div class="emojii-container" data-active="emoticons"> <ul class="nav nav-tabs"></ul> </div> </div> </div>');
+		$('body').append('<div id="master-moji"><input type="hidden" id="master-moji-anchor" value=""><div class="dropdown emojii-container-main"> <div class="emojii-container" data-active="emoticons"> <a class="smiles-close" href="javascript:void(0);"><i class="fa fa-times"></i></a> <ul class="nav nav-tabs"></ul> </div> </div> </div>');
 
 		// add emojis to container above
 		$.each(EmojiiArray, function(key, data) {
@@ -25,7 +25,6 @@ Ossn.RegisterStartupFunction(function() {
 				$('.emojii-list-' + key).append("<li class='emojii' data-val='" + d + "'>&#x" + d + ";</li>");
 			});
 		});
-
 		// switch between emoji group tabs in container
 		$('body').on('click', '.ossn-emojii-tab', function(e) {
 			e.preventDefault();
@@ -91,11 +90,19 @@ Ossn.RegisterStartupFunction(function() {
 			if ($('#master-moji .emojii-container-main').is(":hidden")) {
 				$('#master-moji-anchor').val(anchor);
 				$('#master-moji .emojii-container-main').show();
+                
+                $('.ossn-halt').attr('style', 'height:' + $(document).height() + 'px;');
+                $('.ossn-halt').show();
 			} else {
 				$('#master-moji-anchor').val('');
 				$('#master-moji .emojii-container-main').hide();
+                $('.ossn-halt').hide();
 			}
 		}
+        $('body').on('click', '.smiles-close', function(){
+        		$('#master-moji .emojii-container-main').hide();
+        		$('.ossn-halt').hide();
+       	});
 
 		// D. insert emoji depending on anchor
 		// ***********************************
