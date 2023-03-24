@@ -55,14 +55,14 @@ if($fields){
 <input type="submit" id="ossn-submit-button" class="btn btn-success" value="<?php echo ossn_print('create:account'); ?>" class=""/>
 
 <script>
-    // remove any blank spaces in username field
+    // Allowing numbers, A-Z and a-z in username field
     $(document).ready(function () {
         var usernameField = $('#ossn-home-signup input[name="username"]');
         
         if (usernameField.length > 0) {
             usernameField.on('input', function () {
                 var currentValue = $(this).val();
-	        var newValue = currentValue.replace(/\s/g, '');
+                var newValue = currentValue.replace(/[^a-zA-Z0-9]/g, '');
                 $(this).val(newValue);
             });
         }
