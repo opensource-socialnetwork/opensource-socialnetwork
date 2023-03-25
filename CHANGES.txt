@@ -27,3 +27,5 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v7.0
 - [E] OssnAds remove link in view #2242
 - [B] Undefined errors in CLI #2248
 - [E] Make similes box in center of page with some background effect #2250
+- [E] Add notification email name in settings #2251
+- [E] Add a copyrights settings instead of site name #2252
