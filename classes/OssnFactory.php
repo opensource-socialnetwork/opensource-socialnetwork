@@ -8,7 +8,7 @@
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
  * @link      https://www.opensource-socialnetwork.org/
  */
-class OssnFactory {
+class OssnFactory extends stdClass {
 		//End Points
 		private $Endpoint = 'https://factory.opensource-socialnetwork.org/api/';
 		

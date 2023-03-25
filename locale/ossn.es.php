@@ -263,6 +263,7 @@ Haga clic en el enlace de abajo para restablecer la contraseña o copie y pegue 
 	'admin:login' => 'Iniciar sesión',
 	'admin:notification:email' => 'Correo electrónico de notificación del sitio',
 	'notification_email' => 'Correo electrónico de notificación (noreply@domain.com)',
+	'admin:email:name' => 'Nombre de correo electrónico de notificación',
 	'owner_email' => 'Correo electrónico del propietario (mysite@domain.com)',
 	'ossn:websitename' => 'Nombre de su sitio web',
 	'ossn:user:validation:resend' => '¡Su cuenta no está validada! Debe validar su cuenta antes de iniciar sesión. Se ha enviado otro correo electrónico de validación a su dirección de correo electrónico.',

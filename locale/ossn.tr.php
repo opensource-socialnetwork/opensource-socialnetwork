@@ -263,6 +263,7 @@ Bağlantı çalışmıyorsa kopyalayıp adres çubuğuna yapıştırarak deneyeb
 	'admin:edit:user' => 'Kullanıcıyı Düzenle',
 	'admin:login' => 'Giriş Yap',
 	'admin:notification:email' => 'E-posta Bildirimi',
+	'admin:email:name' => 'Bildirim E-posta Adı',
 	'notification_email' => 'Bildirim E-postası (destek@eternity.hol.es)',
 	'owner_email' => 'Hesap e-postası (noreply@eternity.hol.es)',
 	'ossn:websitename' => 'Eternity',

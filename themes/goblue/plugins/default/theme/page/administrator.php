@@ -8,7 +8,9 @@
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
  * @link      https://www.opensource-socialnetwork.org/
  */
-$site_name = ossn_site_settings('site_name');
+$site_name  = ossn_site_settings('site_name');
+$copyrights = ossn_site_settings('copyrights');
+
 if (isset($params['title'])) {
     $title = $params['title'] . ' : ' . $site_name;
 } else {
@@ -103,7 +105,7 @@ if (isset($params['contents'])) {
         <footer>
       	  	<div class="row">
         		<div class="col-md-6">
- 				<?php echo ossn_print('copyright'); ?> <?php echo date("Y"); ?> <a href="<?php echo ossn_site_url(); ?>"><?php echo $site_name; ?></a>            			
+ 				<?php echo ossn_print('copyright'); ?> <?php echo date("Y"); ?> <a href="<?php echo ossn_site_url(); ?>"><?php echo $copyrights; ?></a>            			
            	 	</div>
                 <div class="col-md-6 text-right">
                 	 <?php echo 'POWERED <a href="http://www.opensource-socialnetwork.org">OPEN SOURCE SOCIAL NETWORK</a>'; ?>

@@ -267,6 +267,7 @@ Bonvolu alklaki la ligilon suben por novigi vian pasvorton aŭ kopii kaj alglui 
 	'admin:edit:user' => 'Redakti uzanto',
 	'admin:login' => 'Ensaluti',
 	'admin:notification:email' => 'Reteja sciiga retpoŝto',
+	'admin:email:name' => 'Sciiga Retpoŝta Nomo',
 	'notification_email' => 'Sciiga retpoŝto (noreply@domain.com)',
 	'owner_email' => 'Retpoŝto de retejposedanto (mysite@domain.com)',
 	'ossn:websitename' => 'Nomo de via retejo',

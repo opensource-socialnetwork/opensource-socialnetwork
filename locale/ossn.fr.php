@@ -260,6 +260,7 @@ S'il vous plaît cliquez sur le lien ci-dessous pour réinitialiser le mot de pa
 	'admin:edit:user' => "Edition d'utilisateurs",
 	'admin:login' => "Connexion",
 	'admin:notification:email' => "Email de notification du site",
+	'admin:email:name' => "Nom de l'e-mail de notification",
 	'notification_email' => "Email de notification (noreply@domain.com)",
 	'owner_email' => "Email du propriétaire (mysite@domain.com)",
 	'ossn:websitename' => "Non de votre site",

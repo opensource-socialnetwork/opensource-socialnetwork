@@ -260,6 +260,7 @@ Um Dein Passwort zurückzusetzen klicke bitte auf den folgenden Link oder kopier
 	'admin:edit:user' => 'Benutzer bearbeiten',
 	'admin:login' => 'Anmelden',
 	'admin:notification:email' => 'Benachrichtigungs-Email',
+	'admin:email:name' => 'Benachrichtigungs-E-Mail-Name',
 	'notification_email' => 'Benachrichtigungs-Email (noreply@domain.de)',
 	'owner_email' => 'Betreiber-Email (administrator@domain.de)',
 	'ossn:websitename' => 'Name der Webseite',

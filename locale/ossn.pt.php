@@ -259,6 +259,7 @@ Por favor, clique no link abaixo para redefinir a senha ou copie o link e cole n
 	'admin:edit:user' => 'Editar Usuário',
 	'admin:login' => 'Entrar',
 	'admin:notification:email' => 'E-mail para notificações',
+	'admin:email:name' => 'Nome do e-mail de notificação',
 	'notification_email' => 'E-mail para notificações (noreply@domain.com)',
 	'owner_email' => 'E-mail do proprietário (mysite@domain.com)',
 	'ossn:websitename' => 'Nome do seu website',

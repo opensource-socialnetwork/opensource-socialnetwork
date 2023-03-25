@@ -259,6 +259,7 @@ $el = array(
 	'admin:edit:user' => 'Επεξεργασία χρήστη',
 	'admin:login' => 'Σύνδεση',
 	'admin:notification:email' => 'Email Ειδοποίησης Ιστοσελίδας',
+	'admin:email:name' => 'Όνομα email ειδοποίησης',
 	'notification_email' => 'Ειδοποίηση Email (noreply@domain.com)',
 	'owner_email' => 'Email ιδιοκτήτη (mysite@domain.com)',
 	'ossn:websitename' => 'Όνομα της ιστοσελίδας σας',

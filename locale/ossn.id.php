@@ -239,6 +239,7 @@ Silakan klik tautan di bawah untuk mengatur ulang kata sandi atau salin tautan d
 	'admin:edit:user' => 'Edit Pengguna',
 	'admin:login' => 'Gabung',
 	'admin:notification:email' => 'Email Pemberitahuan Situs',
+	'admin:email:name' => 'Nama Email Notifikasi',
 	'notification_email' => 'Email Pemberitahuan (noreply@domain.com)',
 	'owner_email' => 'Email Pemilik (mysite@domain.com)',
 	'ossn:websitename' => 'Nama situs web Anda',

@@ -260,6 +260,7 @@ $he = array(
 	'admin:edit:user' => 'עריכת משתמש',
 	'admin:login' => 'חיבור',
 	'admin:notification:email' => 'דואר אלקטרוני להודעות',
+	'admin:email:name' => 'שם דוא"ל הודעה',
 	'notification_email' => 'דואר אלקטרוני להודעות (noreply@domain.com)',
 	'owner_email' => 'דואר אלקטרוני של בעל האתר (mysite@domain.com)',
 	'ossn:websitename' => 'שם האתר',

@@ -261,6 +261,7 @@ $ru = array(
 	'admin:edit:user' => 'Редактировать пользователя',
 	'admin:login' => 'Вход',
 	'admin:notification:email' => 'Уведомленя с сайта',
+	'admin:email:name' => 'Имя электронной почты для уведомлений',
 	'notification_email' => 'Ящик для уведомлений (noreply@domain.com)',
 	'owner_email' => 'Ящик владельца (mysite@domain.com)',
 	'ossn:websitename' => 'Название сайта',

@@ -260,6 +260,7 @@ Per favore premi sul collegamento sottostante per reimpostare la tua password op
 	'admin:edit:user' => 'Edit User',
 	'admin:login' => 'Login',
 	'admin:notification:email' => 'Site Notification Email',
+	'admin:email:name' => 'Nome e-mail di notifica',
 	'notification_email' => 'Notification Email (noreply@domain.com)',
 	'owner_email' => 'E-mail proprietario (mysite@domain.com)',
 	'ossn:websitename' => 'www.cambiaroma.it',

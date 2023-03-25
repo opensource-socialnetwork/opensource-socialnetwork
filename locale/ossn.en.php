@@ -260,6 +260,7 @@ Please click the link below to reset password or copy the link and paste into yo
     'admin:edit:user' => 'Edit User',
     'admin:login' => 'Login',
     'admin:notification:email' => 'Site Notification Email',
+	'admin:email:name' => 'Notification Email Name',
     'notification_email' => 'Notification Email (noreply@domain.com)',
     'owner_email' => 'Owner Email (mysite@domain.com)',
     'ossn:websitename' => 'Name of your website',

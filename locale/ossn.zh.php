@@ -235,6 +235,7 @@ Please click the link below to reset password or copy the link and paste into yo
 	'admin:edit:user' => '編輯使用者',
 	'admin:login' => '使用者登入',
 	'admin:notification:email' => '網站通知郵件',
+	'admin:email:name' => '通知郵件名稱',
 	'notification_email' => '網站通知郵件 (noreply@domain.com)',
 	'owner_email' => '擁有者郵件 (mysite@domain.com)',
 	'ossn:websitename' => '您的網站名稱',

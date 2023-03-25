@@ -260,6 +260,7 @@ $ko = array(
 	'admin:edit:user' => '사용자 수정',
 	'admin:login' => '로그인',
 	'admin:notification:email' => '사이트 알림 이메일',
+	'admin:email:name' => '알림 이메일 이름',
 	'notification_email' => '알림 이메일 (noreply@domain.com)',
 	'owner_email' => '소유자 이메일 (mysite@domain.com)',
 	'ossn:websitename' => '웹 사이트 명칭',

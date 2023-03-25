@@ -267,6 +267,7 @@ Klik op de link hieronder om je wachtwoord te resetten:
 	'admin:edit:user' => 'Gebruiker aanpassen',
 	'admin:login' => 'Aanmelden',
 	'admin:notification:email' => 'Site notificatie Email',
+	'admin:email:name' => 'Naam e-mailmelding',
 	'notification_email' => 'Notificatie email adres (noreply@domain.com)',
 	'owner_email' => 'Eigenaar Email adres(mysite@domain.com)',
 	'ossn:websitename' => 'Naam van de website',

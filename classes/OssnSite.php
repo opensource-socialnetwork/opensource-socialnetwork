@@ -101,7 +101,9 @@ class OssnSite extends OssnDatabase {
 						'display_errors',
 						'site_key',
 						'last_cache',
-						'site_version'
+						'site_version',
+						'notification_name',
+						'copyrights',
 				);
 		}
 		/**

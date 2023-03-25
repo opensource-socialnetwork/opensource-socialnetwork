@@ -261,6 +261,7 @@ Te rugam sa click pe linkul de mai jos ca sa iti resetezi parola sau copy si pas
 	'admin:edit:user' => 'Editeaza utilizatorul',
 	'admin:login' => 'Logheaza',
 	'admin:notification:email' => 'Notificare email de la Site',
+	'admin:email:name' => 'Nume de e-mail de notificare',
 	'notification_email' => 'Notificare email (noreply@domain.com)',
 	'owner_email' => 'Emailul propietarului (mysite@domain.com)',
 	'ossn:websitename' => 'Numele websiteului',

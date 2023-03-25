@@ -247,6 +247,7 @@ $ja = array(
 	'admin:edit:user' => 'ユーザーを編集',
 	'admin:login' => 'ログイン',
 	'admin:notification:email' => 'サイト通知メール',
+	'admin:email:name' => '通知メール名',
 	'notification_email' => 'Notification Email (noreply@domain.com)',
 	'owner_email' => 'Owner Email (mysite@domain.com)',
 	'ossn:websitename' => 'あなたのウェブサイトのメール',
