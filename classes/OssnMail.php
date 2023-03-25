@@ -31,8 +31,9 @@ class OssnMail extends PHPMailer {
 				}
 				//params contain initial params, while return may contain changed values
 				$mail = ossn_call_hook('email', 'config', $this, $this); 
-				
-				$mail->setFrom(ossn_site_settings('notification_email'), ossn_site_settings('site_name'));
+
+				//[E] Add notification email name in settings #2251
+				$mail->setFrom(ossn_site_settings('notification_email'), ossn_site_settings('notification_name'));
 				$mail->addAddress($email);
 				
 				$mail->Subject = $subject;
