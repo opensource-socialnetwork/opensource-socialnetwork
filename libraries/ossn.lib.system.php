@@ -841,6 +841,7 @@ function _ossn_php_error_handler($errno, $errmsg, $filename, $linenum) {
  */
 function ossn_check_update() {
 	$url             = 'https://api.github.com/repos/opensource-socialnetwork/opensource-socialnetwork/contents/opensource-socialnetwork.xml';
+	$url             = ossn_call_hook('admin','update:check:url', false, $url);
 	$args['method']  = 'GET';
 	$args['header']  = "Accept-language: en\r\n" . "Cookie: opensourcesocialnetwork=system\r\n" . "User-Agent: Mozilla/5.0\r\n";
 	$options['http'] = $args;
