@@ -190,11 +190,11 @@ INSERT INTO `ossn_site_settings` (`setting_id`, `name`, `value`) VALUES
 (4, 'cache', '0'),
 (5, 'owner_email', '<<owner_email>>'),
 (6, 'notification_email', '<<notification_email>>'),
-(7, 'upgrades', '["1605286634.php", "1632413382.php", "1633420776.php", "1655424000.php", "1655453491.php", "1659870406.php", "1669507200.php", "1669852800.php"]'),
+(7, 'upgrades', '["1605286634.php", "1632413382.php", "1633420776.php", "1655424000.php", "1655453491.php", "1659870406.php", "1669507200.php", "1669852800.php", "1680051600.php"]'),
 (9, 'display_errors', 'off'),
 (10, 'site_key', '<<secret>>'),
 (11, 'last_cache', ''),
-(12, 'site_version', '6.6');
+(12, 'site_version', '7.0');
 
 
 -- --------------------------------------------------------
