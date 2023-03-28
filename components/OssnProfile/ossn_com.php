@@ -29,6 +29,9 @@ function ossn_profile() {
 		ossn_extend_view('js/ossn.site.public', 'js/profile/birthdate');
 		ossn_extend_view('js/ossn.admin', 'js/profile/birthdate');
 		
+		if(!ossn_isLoggedin()){
+			ossn_extend_view('forms/signup',  'js/profile/usernamecheck');
+		}
 		//actions
 		if(ossn_isLoggedin()) {
 				ossn_register_action('profile/photo/upload', __OSSN_PROFILE__ . 'actions/photo/upload.php');
