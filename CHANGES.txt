@@ -31,3 +31,4 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v7.0
    - Sometime you don't want to show website name in notification email ,  so this will change sender name in the notification emails.
 * [E] Add a copyrights settings instead of site name #2252
    - Someone requested that they want to change copyright but not the site name. So this will let to change copyrgiht text only (no url).
+* [E] cdnStorage component disabled but settings enabled #2255
