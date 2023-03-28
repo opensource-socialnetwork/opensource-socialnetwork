@@ -105,7 +105,7 @@ if (isset($params['contents'])) {
         <footer>
       	  	<div class="row">
         		<div class="col-md-6">
- 				<?php echo ossn_print('copyright'); ?> <?php echo date("Y"); ?> <a href="<?php echo ossn_site_url(); ?>"><?php echo $copyrights; ?></a>            			
+ 				<?php echo ossn_print('copyright'); ?> <a href="<?php echo ossn_site_url(); ?>"><?php echo $copyrights; ?></a>            			
            	 	</div>
                 <div class="col-md-6 text-right">
                 	 <?php echo 'POWERED <a href="http://www.opensource-socialnetwork.org">OPEN SOURCE SOCIAL NETWORK</a>'; ?>
