@@ -18,7 +18,7 @@
  */
 function ossn_is_from_cli() {
 		//because 0th location is always the script name
-		if(php_sapi_name() == 'cli' || (isset($_SERVER['argv']) && isset($_SERVER['argv'][0]) && !empty($_SERVER['argv'][0]))) {
+		if(php_sapi_name() == 'cli' || (isset($argv) && isset($argv[0]) && !empty($argv[0]))) {
 				return true;
 		}
 		return false;
