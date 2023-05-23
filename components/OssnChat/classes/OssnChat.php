@@ -92,7 +92,8 @@ class OssnChat extends OssnMessages {
 		 * @return json;
 		 */
 		public static function AllNew() {
-				$friends = ossn_loggedin_user()->getFriends(array(
+				//[B] OssnChat showing only 10 users #2263
+				$friends = ossn_loggedin_user()->getFriends(ossn_loggedin_user()->guid, array(
 						'page_limit' => false,
 				));
 				if(!$friends) {
