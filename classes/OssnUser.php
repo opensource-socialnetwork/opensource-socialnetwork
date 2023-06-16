@@ -445,13 +445,15 @@ class OssnUser extends OssnEntities {
 						$user = $this->guid;
 				}
 				$guid    = $user;
+				//[B] Unaccepted friend appears in getFriends #2265
+				//Added AND r2.relation_to = '{$guid}') 
 				$default = array(
 						'joins'    => array(
 								'JOIN ossn_relationships AS r1 ON r1.relation_to = u.guid AND r1.type = "friend:request"',
 								'JOIN ossn_relationships AS r2 ON r2.relation_from = r1.relation_to AND r2.type = "friend:request"',
 						),
 						'wheres'   => array(
-								"(r1.relation_from = '{$guid}')", //replace with loggedin user ID,
+								"(r1.relation_from = '{$guid}' AND r2.relation_to = '{$guid}')", //replace with loggedin user ID,
 						),
 						'distinct' => true,
 				);
