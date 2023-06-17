@@ -42,7 +42,7 @@ if (isset($params['contents'])) {
         tinymce.init({
             toolbar: "bold italic underline alignleft aligncenter alignright bullist numlist image media link unlink emoticons autoresize fullscreen insertdatetime print spellchecker preview",
             selector: '.ossn-editor',
-            plugins: "code image media link emoticons fullscreen insertdatetime print spellchecker preview",
+            plugins: "code image media link emoticons fullscreen insertdatetime print spellchecker preview lists",
             convert_urls: false,
             relative_urls: false,
             language: "<?php echo ossn_site_settings('language'); ?>",
