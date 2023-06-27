@@ -116,7 +116,12 @@ class OssnPhotos extends OssnFile {
 		public function GetPhoto($photo) {
 				$this->guid = $photo;
 				$this->type = 'object';
-				return $this->getFile();
+				$file = $this->getFile();
+				//[B] OssnPhotos::getPhoto should not return other file types #2272
+				if($file && ($file->subtype == 'file:ossn:aphoto' || $file->subtype == 'file:profile:photo' || $file->subtype == 'file:profile:cover')){
+						return $file;	
+				}
+				return false;
 		}
 
 		/**
