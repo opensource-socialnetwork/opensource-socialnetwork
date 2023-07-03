@@ -36,6 +36,7 @@ function ossn_groups() {
 		ossn_group_subpage('requests');
 
 		//group hooks
+		ossn_add_hook('group', 'subpage', 'group_subpage_access_validate');
 		ossn_add_hook('group', 'subpage', 'group_about_page');
 		ossn_add_hook('group', 'subpage', 'group_members_page');
 		ossn_add_hook('group', 'subpage', 'group_edit_page');
@@ -250,8 +251,15 @@ function ossn_group_page($pages) {
 						ossn_error_page();
 				}
 				ossn_set_page_owner_guid($group->guid);
-				ossn_trigger_callback('page', 'load:group');
-
+				ossn_trigger_callback('page', 'load:group', array(
+								'group' => $group, //added OSSN 7.1
+				));
+				$ismember = false;
+				if(ossn_isLoggedin()){
+					$ismember = $group->isMember(NULL, ossn_loggedin_user()->guid);	
+				}
+				//[B] add group user membership status in advance to avoid checking multiple times #2276
+				$params['ismember'] = $ismember;
 				$params['group'] = $group;
 				$title           = $group->title;
 				$view            = ossn_plugin_view('groups/pages/profile', $params);
@@ -280,7 +288,17 @@ function group_about_page($hook, $type, $return, $params) {
 				echo ossn_set_page_layout('module', $mod);
 		}
 }
-
+/**
+ * Restrict access to group subpages if user is not a member and its private group
+ *
+ * @return void
+ * @access private
+ */
+function group_subpage_access_validate($hook, $type, $return, $params){
+	        if($params['group']->membership == OSSN_PRIVATE && !$params['ismember']){
+						redirect("group/{$params['group']->guid}/");	
+			}
+}
 /**
  * Group member page
  *
