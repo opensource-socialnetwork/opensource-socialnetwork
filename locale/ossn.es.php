@@ -3,8 +3,9 @@
  * Open Source Social Network
  *
  * Translated by Zaturnay - https://zaturnay.com.ve
+ * Translated by HenryGR - henrygr@tutanota.de
  *
- * @package   (openteknik.com).ossn
+ * @package   OSSN
  * @author    OSSN Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
@@ -23,7 +24,7 @@ $es = array(
 	'create:account' => 'Crear una cuenta',
 	'its:free' => "Es gratis y siempre lo será.",
 	
-	'register:ok:message' => 'Se ha registrado su cuenta. Se ha enviado un correo electrónico de activación a su buzón de correo. Si no recibió el correo electrónico, compruebe su carpeta de spam/basura.',
+	'register:ok:message' => 'Se ha registrado tu cuenta. Se ha enviado un correo electrónico de activación a tu buzón de correo. Si no recibiste el correo electrónico, comprueba tu carpeta de spam/basura.',
 	
 	'copyright' => '&copy; COPYRIGHT',
 	'powered' => 'Powered by the Open Source Social Network.',
@@ -33,7 +34,7 @@ $es = array(
 	'first:name' => 'Nombre',
 	'last:name' => 'Apellido',
 	'email' => 'Correo electrónico',
-	'email:again' => 'Vuelva a ingresar el correo electrónico',
+	'email:again' => 'Vuelve a ingresar el correo electrónico',
 	'username' => 'Nombre de usuario',
 	'password' => 'Contraseña',
 	'day' => 'Día',
@@ -41,7 +42,7 @@ $es = array(
 	'year' => 'Año',
 	'male' => 'Hombre',
 	'female' => 'Mujer',
-	'account:create:notice' => 'Al hacer clic en Crear una cuenta, usted está de acuerdo a nuestros',
+	'account:create:notice' => 'Al hacer clic en Crear una cuenta, declaras estar de acuerdo con nuestros',
 	'gender' => 'Género',
 	
 	'account:settings' => 'Configuraciones de la cuenta',
@@ -76,7 +77,7 @@ $es = array(
 	'admin:users' => 'Listar Usuarios',
 	'admin:add:user' => 'Agregar Usuario',
 	'admin:user:deleted' => '¡El usuario ha sido eliminado!',
-	'admin:user:delete:error' => 'No se puede eliminar el usuario. Por favor, inténtelo de nuevo más tarde.',
+	'admin:user:delete:error' => 'No se puede eliminar el usuario. Por favor, inténtalo de nuevo más tarde.',
 	
 	'type' => 'Tipo',
 	'normal' => 'Normal',
@@ -98,19 +99,19 @@ $es = array(
 	'photos' => 'Fotos',
 	'friends' => 'Amigos',
 	'links' => 'Enlaces',
-	'ossn:add:user:mail:subject' => "%s por favor confirme su dirección de correo electrónico para %s!",
-	'ossn:add:user:mail:body' => "Antes de empezar a usar %s, debe confirmar su dirección de correo electrónico.
+	'ossn:add:user:mail:subject' => "%s por favor confirma tu dirección de correo electrónico para %s!",
+	'ossn:add:user:mail:body' => "Antes de empezar a usar %s, debes confirmar tu dirección de correo electrónico.
 
-Confirme su dirección de correo electrónico haciendo clic en el siguiente enlace:
+Confirma tu dirección de correo electrónico haciendo clic en el siguiente enlace:
 
 %s
 
-Puede copiar y pegar la dirección a su navegador manualmente en caso de que el enlace no funcione.
+Puedes copiar y pegar la dirección en tu navegador manualmente en caso de que el enlace no funcione.
 
 %s",
 	'user:friends' => 'Amigos',
 	'user:account:validated' => '¡La cuenta ha sido validada con éxito!',
-	'user:account:validate:fail' => 'No se puede validar la cuenta! Por favor, inténtelo de nuevo más tarde.',
+	'user:account:validate:fail' => 'No se puede validar la cuenta! Por favor, inténtalo de nuevo más tarde.',
 	
 	'cache:enabled' => 'Caché habilitado correctamente!',
 	'cache:disabled' => 'Caché deshabilitado correctamente!',
@@ -121,48 +122,48 @@ Puede copiar y pegar la dirección a su navegador manualmente en caso de que el 
 	'cache:0' => 'Deshabilitar',
 	'cache:notice' => 'Almacena archivos CSS y Javascript en un caché para mejorar el rendimiento del sitio.',
 	
-	'theme:install:notice' => 'Cargue un paquete de tema .zip válido.',
-	'com:install:notice' => 'Cargue un paquete de componente .zip válido.',
+	'theme:install:notice' => 'Carga un paquete de tema .zip válido.',
+	'com:install:notice' => 'Carga un paquete de componente .zip válido.',
 	
 	'login:error' => '¡Usuario o contraseña invalido!',
-	'login:error:sub' => 'No pudimos iniciar sesión. Por favor, compruebe su nombre de usuario o contraseña y vuelva a intentarlo.',
-	'login:success' => 'Ahora está conectado!',
+	'login:error:sub' => 'No pudimos iniciar sesión. Por favor, compruebe tu nombre de usuario o contraseña y vuelve a intentarlo.',
+	'login:success' => '¡Ahora estás conectado!',
 	
 	'ossn:com:installer:create:tmpdir:error' => 'No se puede crear un directorio de datos temporal', 
 	'ossn:com:installer:upload:error' => 'Se produjo un error durante la carga: %s',
 	'ossn:com:installer:version:error' => 'Este componente requiere OSSN %s o superior',
-	'ossn:com:installer:remove:comdir:error' => 'Este componente ya se ha instalado; primero bórrelo de la lista en la página de componentes',
+	'ossn:com:installer:remove:comdir:error' => 'Este componente ya se ha instalado; primero bórralo de la lista en la página de componentes',
 	'ossn:com:installer:create:comdir:error' => 'No se pueden copiar archivos al directorio de componentes',
 	'ossn:com:installer:xml:incomplete:error' => 'Falta el archivo de descripción del componente o está incompleto',
 	'ossn:com:installer:zip:incomplete:error' => 'Componente zip-archive incompleto',
 	'ossn:com:installer:open:zip:error' => 'No se puede abrir el archivo zip del componente',
 	'ossn:com:installer:move:uploaded:file:error' => 'Archivo zip inválido',
-	'ossn:com:installer:com:installation:success' => 'El componente se ha cargado en la lista de componentes, ahora puede habilitarlo desde la página de componentes.',
+	'ossn:com:installer:com:installation:success' => 'El componente se ha cargado en la lista de componentes, ahora puedes habilitarlo desde la página de componentes.',
 	
 	'ossn:theme:installer:create:tmpdir:error' => 'No se puede crear un directorio de datos temporal', 
 	'ossn:theme:installer:upload:error' => 'Se produjo un error durante la carga: %s',
 	'ossn:theme:installer:version:error' => 'Este tema requiere Ossn %s o superior',
-	'ossn:theme:installer:remove:themedir:error' => 'Este tema ya se ha instalado; primero bórrelo de la lista en la página de temas',
+	'ossn:theme:installer:remove:themedir:error' => 'Este tema ya se ha instalado; primero bórralo de la lista en la página de temas',
 	'ossn:theme:installer:create:themedir:error' => 'No se pueden copiar archivos al directorio de temas',
 	'ossn:theme:installer:xml:incomplete:error' => 'Falta el archivo de descripción del tema o está incompleto',
 	'ossn:theme:installer:zip:incomplete:error' => 'Tema zip-archivo incompleto',
 	'ossn:theme:installer:open:zip:error' => 'No se puede abrir el archivo zip del tema',
 	'ossn:theme:installer:move:uploaded:file:error' => 'Archivo zip inválido',
-	'ossn:theme:installer:theme:installation:success' => 'El tema se ha subido a su lista de temas, ahora puede habilitarlo desde la página de temas.',
+	'ossn:theme:installer:theme:installation:success' => 'El tema se ha subido a tu lista de temas, ahora puedes habilitarlo desde la página de temas.',
 	
 	'settings:saved' => 'Ajustes guardados',
 	'com:deleted' => '¡El componente ha sido eliminado!',
-	'com:delete:error' => 'No se puede eliminar el componente! Por favor, inténtelo de nuevo más tarde.',
-	'com:disabled' => 'Deshabilitado con éxito!',
-	'com:enabled' => 'Componente habilitado!',
-    'com:pref' => '¿Desea mantener las preferencias para este componente? Si está actualizando un componente, se recomienda mantener las preferencias. Pulse Aceptar para conservarlo. Pulse Cancelar para eliminar las preferencias.',
+	'com:delete:error' => 'No se puede eliminar el componente! Por favor, inténtalo de nuevo más tarde.',
+	'com:disabled' => '¡Deshabilitado con éxito!',
+	'com:enabled' => '¡Componente habilitado!',
+        'com:pref' => '¿Deseas mantener las preferencias para este componente? Si estás actualizando un componente, se recomienda mantener las preferencias. Pulsa Aceptar para conservarlo. Pulsa Cancelar para eliminar las preferencias.',
 	
 	'theme:delete:active' => 'No se puede eliminar el tema activo.',
 	'theme:deleted' => 'Se ha eliminado el tema.',
-	'theme:delete:error' => 'No se puede eliminar el tema! Por favor, inténtelo de nuevo más tarde.',
+	'theme:delete:error' => '¡No se puede eliminar el tema! Por favor, inténtalo de nuevo más tarde.',
 	'theme:enabled' => '¡El tema se ha habilitado correctamente!',
 	'theme:installed' => '¡El tema se ha instalado correctamente!',
-	'theme:install:error' => 'No se puede instalar el tema. Asegúrese de que es compatible con la versión OSSN que está utilizando.',
+	'theme:install:error' => 'No se puede instalar el tema. Asegúrate de que es compatible con la versión OSSN que estás utilizando.',
 	
 	'fields:require' => '¡Todos los campos son obligatorios!',
 	'username:error' => 'Nombre de usuario invalido.',
@@ -172,10 +173,10 @@ Puede copiar y pegar la dirección a su navegador manualmente en caso de que el 
 	'user:updated' => '¡El usuario ha sido actualizado!',
 	'logged:out' => '¡Ahora estás registrado!',
 	'username:inuse' => 'Ya se ha utilizado el siguiente nombre de usuario. Seleccione un nombre de usuario diferente.',
-	'email:inuse' => 'La dirección de correo electrónico que utilizó ya existe en nuestra base de datos. Prueba otra dirección de correo electrónico.',
-	'email:invalid' => '¡Dirección de correo electrónico es inválida! Asegúrese de que la dirección de correo electrónico que introdujo es correcta.',
+	'email:inuse' => 'La dirección de correo electrónico que utilizaste ya existe en nuestra base de datos. Prueba otra dirección de correo electrónico.',
+	'email:invalid' => '¡Dirección de correo electrónico es inválida! Asegúrate de que la dirección de correo electrónico que introdujiste es correcta.',
 	'email:error:matching' => "Las direcciones de correo no coinciden.",
-	'account:created:email' => "Su cuenta ha sido registrada! Te hemos enviado un correo electrónico de activación de cuenta. Si no recibió el correo electrónico, compruebe su carpeta de spam/basura",
+	'account:created:email' => "¡Tu cuenta ha sido registrada! Te hemos enviado un correo electrónico de activación de cuenta. Si no recibiste el correo electrónico, comprueba tu carpeta de spam/basura",
 	
 	'administration' => 'Administración',
 	
@@ -196,10 +197,10 @@ Puede copiar y pegar la dirección a su navegador manualmente en caso de que el 
 	'ossn:friend:request:submitted' => '¡Tu solicitud de amistad ha sido enviada!',
 	
 	/* Upgrades */
-	'upgrade:file:load:error' => 'No se puede cargar el archivo de actualización!',
-	'upgrade:success' => "Su sitio web ha sido actualizado con éxito para lanzar %s.",
-	'upgrade:failed' => "No se puede actualizar su sitio a la versión %s.",
-	'upgrade:not:available' => 'Nada que mejorar!',
+	'upgrade:file:load:error' => '¡No se puede cargar el archivo de actualización!',
+	'upgrade:success' => "Tu sitio web ha sido actualizado con éxito para lanzar %s.",
+	'upgrade:failed' => "No se puede actualizar tu sitio a la versión %s.",
+	'upgrade:not:available' => '¡Nada que mejorar!',
 	
 	'site:login' => 'Iniciar sesión',
 	/* Page errors */
@@ -208,22 +209,22 @@ Puede copiar y pegar la dirección a su navegador manualmente en caso de que el 
 	
 	/* Password Reset */
 	'reset:login' => 'Restablecer la contraseña',
-	'reset:password' => 'Restablecer su contraseña',
-	'enter:new:password' => 'Ingrese su nueva contraseña a continuación y haga clic en restablecer.',
+	'reset:password' => 'Restablecer tu contraseña',
+	'enter:new:password' => 'Ingresa tu nueva contraseña a continuación y haz clic en restablecer.',
 	'reset' => 'Reiniciar',
-	'enter:emai:reset:pwd' => 'Introduzca la dirección de correo electrónico de su cuenta para restablecer la contraseña.',
-	'ossn:reset:password:subject' => 'Restablecer su contraseña',
+	'enter:emai:reset:pwd' => 'Introduce la dirección de correo electrónico de tu cuenta para restablecer la contraseña.',
+	'ossn:reset:password:subject' => 'Restablecer tu contraseña',
 	'ossn:reset:password:body' => "Hola %s,
 	
-Haga clic en el enlace de abajo para restablecer la contraseña o copie y pegue el enlace en la barra de direcciones de su navegador:
+Haz clic en el enlace de abajo para restablecer la contraseña o copia y pega el enlace en la barra de direcciones de tu navegador:
 
 %s
 
 %s",
 	'passord:reset:success' => '¡Contraseña cambiada correctamente!',
-	'passord:reset:fail' => 'No se puede restablecer la contraseña! Por favor, inténtelo de nuevo más tarde.',
+	'passord:reset:fail' => 'No se puede restablecer la contraseña! Por favor, inténtalo de nuevo más tarde.',
 	'password:reset:email:required' => '¡El correo electrónico no puede estar vacío!',
-	'passord:reset:email:success' => 'Las instrucciones de restablecimiento de contraseña se han enviado a su dirección de correo electrónico.',
+	'passord:reset:email:success' => 'Las instrucciones de restablecimiento de contraseña se han enviado a tu dirección de correo electrónico.',
 	
 	'erros:reporting' => 'Error al reportar',
 	'erros:off' => 'Apagado',
@@ -233,9 +234,9 @@ Haga clic en el enlace de abajo para restablecer la contraseña o copie y pegue 
 	'ossn:new:version:error' => 'Desconocido',
 	'ossn:version:avaialbe' => "%s",
 	
-	'ossn:exception:title' => 'Se ha producido un error del sistema. Por favor, inténtelo de nuevo más tarde. Puede enviar por correo electrónico los detalles de este error al administrador del sistema en %s.',
+	'ossn:exception:title' => 'Se ha producido un error del sistema. Por favor, inténtalo de nuevo más tarde. Puedes enviar por correo electrónico los detalles de este error al administrador del sistema en %s.',
 	'ossn:securitytoken:failed' => 'La acción solicitada no es válida.',
-	'ossn:component:delete:exception' => '¿Está seguro de que desea eliminar este componente?',
+	'ossn:component:delete:exception' => '¿Está seguro de que deseas eliminar este componente?',
 	'ossn:user:delete:exception' => '¿Estás seguro de que quieres eliminar este usuario?',
 	
 	//access
@@ -247,10 +248,10 @@ Haga clic en el enlace de abajo para restablecer la contraseña o copie y pegue 
 	'upload:file:error:form_size' => 'El archivo que has intentado cargar es demasiado grande.',
 	'upload:file:error:partial' => 'La carga del archivo no se completó.',
 	'upload:file:error:no_file' => 'No se ha seleccionado ningún archivo.',
-	'upload:file:error:no_tmp_dir' => 'No se puede guardar el archivo cargado.',
-	'upload:file:error:cant_write' => 'No se puede guardar el archivo cargado.',
-	'upload:file:error:extension' => 'No se puede guardar el archivo cargado.',
-	'upload:file:error:unknown' => 'Error en la carga del archivo.',
+	'upload:file:error:no_tmp_dir' => 'No se puede guardar el archivo cargado. (Directorio no válida)',
+	'upload:file:error:cant_write' => 'No se puede guardar el archivo cargado. (No se ha podido escribir)',
+	'upload:file:error:extension' => 'No se puede guardar el archivo cargado. (Extensión no válida)',
+	'upload:file:error:unknown' => 'Error desconocido en la carga del archivo.',
 	'upload:file:error:multiple' => '%s de cada %s cargas fallaron.',
 	
 	'ossn:post:size:exceed' => 'La acción solicitada excede el límite de tamaño.',
@@ -265,8 +266,8 @@ Haga clic en el enlace de abajo para restablecer la contraseña o copie y pegue 
 	'notification_email' => 'Correo electrónico de notificación (noreply@domain.com)',
 	'admin:email:name' => 'Nombre de correo electrónico de notificación',
 	'owner_email' => 'Correo electrónico del propietario (mysite@domain.com)',
-	'ossn:websitename' => 'Nombre de su sitio web',
-	'ossn:user:validation:resend' => '¡Su cuenta no está validada! Debe validar su cuenta antes de iniciar sesión. Se ha enviado otro correo electrónico de validación a su dirección de correo electrónico.',
+	'ossn:websitename' => 'Nombre de tu sitio web',
+	'ossn:user:validation:resend' => '¡Tu cuenta no está validada! Debes validar tu cuenta antes de iniciar sesión. Se ha enviado otro correo electrónico de validación a tu dirección de correo electrónico.',
 	'site:timepassed:text' => 'hace %s',
 	// localization of passed time: 16 time elements (even = singular / odd = plural)
 	'site:timepassed:data' => 'Segundo | segundos|minuto|minutos|hora|horas|día|días|semana|semanas|mes|meses|año|años|décadas|décadas',
@@ -294,14 +295,14 @@ Haga clic en el enlace de abajo para restablecer la contraseña o copie y pegue 
 	//v3.0
 	//admin
 	'my:files:version' => 'Mi versión de los archivos de Ossn',
-	'cache:flush:error' => 'No se puede liberar la caché, asegúrese de que la caché esté habilitada en la configuración de caché',
+	'cache:flush:error' => 'No se puede liberar la caché, asegúrate de que la caché esté habilitada en la configuración de caché',
 	'cache:flushed' => 'Caché enjuagado correctamente',
 	'ossn:version' => 'Versión OSSN', 
 	'php:extension' => 'Extensión de PHP',
 	'php:version' => 'Versión de PHP',
 	'php:function' => 'Función PHP',
-	'admin:old:com' => "Su archivo ossn_com.xml se basa en la versión antigua de Ossn. Actualiza el componente '%s'.",
-	'admin:old:theme' => "Su archivo ossn_theme.xml se basa en la versión antigua de Ossn. Actualice el tema '%s'.",
+	'admin:old:com' => "Tu archivo ossn_com.xml se basa en la versión antigua de Ossn. Actualiza el componente '%s'.",
+	'admin:old:theme' => "Tu archivo ossn_theme.xml se basa en la versión antigua de Ossn. Actualiza el tema '%s'.",
 	'admin:button:disabled' => 'Desactivado',
 	'admin:flush:cache' => 'Enjuagar Caché',
 	'admin:com:version' => 'Versión',
@@ -314,13 +315,13 @@ Haga clic en el enlace de abajo para restablecer la contraseña o copie y pegue 
 	'ossn:exception:make:sure' => '¿Estás seguro?',
 	'ossn:premium' => 'Versión Premium',
 	'datepicker:days' => "Su, Mo, Tu, We, Th, Fr, Sa",
-	'datepicker:months' => "Ene., Feb., Mar., Abr., Mayo, Junio, Julio, Ago., Sep., Oct., Nov., Dec.",
+	'datepicker:months' => "Ene., Feb., Mar., Abr., Mayo, Junio, Julio, Ago., Sep., Oct., Nov., Dic.",
 	'male:gendercolor' => '#01ADEF',
 	'female:gendercolor' => '#ED008C',
 	'ossn:admin:settings:off' => 'desactivado',
 	'ossn:admin:settings:on' => 'activado',
 	'ossn:admin:settings:saved' => '¡Ajustes guardados!',
-	'ossn:admin:settings:save:error' => '¡No se puede guardar la configuración! Por favor, compruebe su archivo error_log.',
+	'ossn:admin:settings:save:error' => '¡No se puede guardar la configuración! Por favor, comprueba tu archivo error_log.',
 	'php:upload_err_ok' => 'No hay error, el archivo cargado con éxito',
 	'php:upload_err_ini_size' => 'El archivo cargado supera la directiva UPLOAD_MAX_FILESIZE en PHP.INI',
 	'php:upload_err_form_size' => 'El archivo cargado supera la directiva MAX_FILE_SIZE que se especificó en el formulario HTML',
