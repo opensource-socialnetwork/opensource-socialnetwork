@@ -1,3 +1,6 @@
+OSSN - OPEN SOURCE SOCIAL NEWORK  v7.1
+- [B] Command to replace slash to backslash missing in vendors/jwt/autoload.php #2274
+
 OSSN - OPEN SOURCE SOCIAL NETWORK v7.0
 * [B] fix allowing to display profile modules with priority < 200 #2211
 * [B] User existence check #2222
