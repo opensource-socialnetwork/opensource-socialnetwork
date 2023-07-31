@@ -163,7 +163,7 @@ Si vous ne pouvez pas cliquer sur le lien, copier et coller le dans votre naviga
 	'theme:install:error' => "Vous ne pouvez pas installer thème! Assurez-vous que c'est un thème valide.",
 	
 	'fields:require' => "Tous les champs sont requis!",
-	'username:error' => "Nom d'utilisateur incorrect.",
+	'username:error' => "Le nom d'utilisateur est incorrect. Veuillez utiliser uniquement des caractères alphanumériques lors de la saisie de vos informations. Veillez à ce qu'il n'y ait pas d'espaces ou de caractères spéciaux. Seuls les lettres A à Z et les chiffres 0 à 9 sont autorisés. Le nom d'utilisateur doit comporter au moins 5 caractères.",
 	'password:error' => "Le mot de passe doint contenir plus de 5 lettres.",
 	'account:created' => "Votre compte a été crée.",
 	'account:create:error:admin' => "Vous ne pouvez pas enregistrer compte! S'il vous plaît réessayez plus tard.",
