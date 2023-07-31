@@ -164,7 +164,7 @@ Bağlantı çalışmıyorsa kopyalayıp adres çubuğuna yapıştırarak deneyeb
 	'theme:install:error' => 'Tema yüklenemedi! Kullandığınız OSSN sürümü ile uyumlu olduğundan emin olun.',
 	
 	'fields:require' => 'Tüm alanlar zorunludur!',
-	'username:error' => 'Kullanıcı adı geçersiz.',
+	'username:error' => 'Kullanıcı adı yanlış. Lütfen bilgilerinizi girerken sadece alfanümerik karakterler kullanın. Boşluk veya özel karakter olmadığından emin olun. Yalnızca A-Z harflerine ve 0-9 rakamlarına izin verilir. Kullanıcı adı en az 5 karakterden oluşmalıdır.',
 	'password:error' => 'Şifre en fazla 5 karakter olmalıdır.',
 	'account:created' => 'Hesap oluşturuldu.',
 	'account:create:error:admin' => 'Hesap oluşturulamadı! Lütfen daha sonra tekrar deneyiniz.',
