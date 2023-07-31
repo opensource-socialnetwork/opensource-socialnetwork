@@ -255,6 +255,8 @@ Ossn.RegisterStartupFunction(function() {
         				callback: function(callback) {
            					if(callback['success']){
 								Ossn.trigger_message(callback['success']);
+								Ossn.NotificationBoxClose();
+								Ossn.NotificationsCheck();
 							}
 							if(callback['error']){
 								Ossn.trigger_message(callback['error']);								
