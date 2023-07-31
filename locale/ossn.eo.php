@@ -170,7 +170,7 @@ Vi povus kopii kaj alglui la adreson al via retumilo permane se la ligilo ne fun
 	'theme:install:error' => 'Ne povis instali temon. Kontrolu ke ĝi estas kongrua kun la versio de OSSN, kiun vi uzas.',
 	
 	'fields:require' => 'Ĉiuj kampoj devas esti enskribitaj!',
-	'username:error' => 'Uzantnomo estas nevalida.',
+	'username:error' => 'La uzantnomo estas malĝusta. Bonvolu uzi nur alfanombrajn signojn kiam vi enigas viajn informojn. Certigu, ke ne estas spacoj aŭ specialaj signoj. Nur literoj A-Z kaj ciferoj 0-9 estas permesitaj. La uzantnomo devas havi almenaŭ 5 signojn.',
 	'password:error' => 'Pasvorto devas havi pli ol 5 literoj.',
 	'account:created' => 'Via konto estas kreita.',
 	'account:create:error:admin' => 'Registriĝo de konto malsukcesis! Bonvolu reprovi poste.',
