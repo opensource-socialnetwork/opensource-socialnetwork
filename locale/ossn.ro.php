@@ -164,7 +164,7 @@ Poti sa copy si paste adresa in browser in caz in care nu merge.
 	'theme:install:error' => 'Tematica nu se poate instala. Verifica daca este compatibila cu versiunea de OSSN pe care o ai.',
 	
 	'fields:require' => 'Toate campurile sint necesare!',
-	'username:error' => 'Numele utilizatorului nu este recunoscut.',
+	'username:error' => 'Numele de utilizator este incorect. Vă rugăm să folosiți numai caractere alfanumerice atunci când introduceți informațiile dumneavoastră. Asigurați-vă că nu există spații sau caractere speciale. Sunt permise doar literele A-Z și numerele 0-9. Numele de utilizator trebuie să aibă cel puțin 5 caractere.',
 	'password:error' => 'Prola trebuie sa aiba mai mult de 5 litere,cifre sau simboluri.',
 	'account:created' => 'Contul tau a fost creeat.',
 	'account:create:error:admin' => 'Contul tau nu a putut fii inregistrat! Incearca mai tarziu.',
