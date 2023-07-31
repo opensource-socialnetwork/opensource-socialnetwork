@@ -163,7 +163,7 @@ Falls der Link nicht anklickbar ist, kopiere ihn einfach in Deinen Browser.
     'theme:install:error' => 'Das Thema konnte nicht installiert werden, überprüfe bitte das zip-Archiv',
 
     'fields:require' => 'Bitte fülle alle Eingabe-Felder aus',
-    'username:error' => 'Der Benutzer-Name muss mindestens 5 Zeichen lang sein',
+    'username:error' => 'Der Benutzername ist falsch. Bitte verwenden Sie bei der Eingabe Ihrer Daten nur alphanumerische Zeichen. Achten Sie darauf, dass keine Leerzeichen oder Sonderzeichen enthalten sind. Es sind nur die Buchstaben A-Z und die Zahlen 0-9 erlaubt. Der Benutzername muss aus mindestens 5 Zeichen bestehen.',
     'password:error' => 'Das Passwort muss mindestens 6 Zeichen lang sein',
     'account:created' => 'Das Benutzer-Konto wurde angelegt',
     'account:create:error:admin' => 'Das Benutzer-Konto konnte nicht angelegt werden - probiere es später nochmal',
