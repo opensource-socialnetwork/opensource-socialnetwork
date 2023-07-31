@@ -163,7 +163,7 @@ You may copy and paste the address to your browser manually in case the link doe
     'theme:install:error' => 'Install failed. Make sure it is compatible with the OSSN version you are using.',
     
     'fields:require' => 'All fields are required!',
-    'username:error' => 'The username is incorrect. Please use only alphanumeric characters when entering your information. Make certain that there are no spaces or special characters. Only letters A-Z and numbers 0-9 are permitted!',
+    'username:error' => 'The username is incorrect. Please use only alphanumeric characters when entering your information. Make certain that there are no spaces or special characters. Only letters A-Z and numbers 0-9 are permitted. The username must have at least 5 characters.',
     'password:error' => 'The password must be more than 5 characters.',
     'account:created' => 'Your account has been created.',
     'account:create:error:admin' => 'Account registration failed! Please try again later.',
