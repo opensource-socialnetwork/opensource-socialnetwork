@@ -5,6 +5,7 @@ OSSN - OPEN SOURCE SOCIAL NEWORK  v7.1
 - [B] OssnPhotos::getPhoto should not return other file types #2272
 - [B] hide group members and subpages for private groups #2276
 - [B] Tinymce lists and bullets missing from topbar #2267
+- [E] OssnNotifications check new one on mark all as read #2266
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v7.0
 * [B] fix allowing to display profile modules with priority < 200 #2211
