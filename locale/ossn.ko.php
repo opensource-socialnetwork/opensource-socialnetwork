@@ -2,8 +2,8 @@
 /**
  * Open Source Social Network
  *
- * @package   (openteknik.com).ossn
- * @author    OSSN Core Team <info@softlab24.com>
+ * @package   OSSN
+ * @author    OSSN Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
  * @link      https://www.opensource-socialnetwork.org/
@@ -163,7 +163,7 @@ $ko = array(
 	'theme:install:error' => '테마를 설치할 수 없습니다. 사용중인 OSSN 버전과 맞는지 확인해 보세요!',
 	
 	'fields:require' => '빈 칸을 다 채워주세요!',
-	'username:error' => '사용자 이름이 이상합니다.',
+	'username:error' => '사용자 아이디가 올바르지 않습니다. 정보를 입력할 때는 영숫자만 사용해 주세요. 공백이나 특수 문자가 없는지 확인하세요. 문자 A-Z와 숫자 0-9만 허용됩니다. 사용자 아이디는 5자 이상이어야 합니다.',
 	'password:error' => '암호는 5자 이상 채워주세요.',
 	'account:created' => '계정을 만들었습니다.',
 	'account:create:error:admin' => '계정 등록을 실패하였으니 나중에 다시 시도해 주세요!',
