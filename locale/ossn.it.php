@@ -163,7 +163,7 @@ Puoi anche copiare e incollare l'indirizzo nel tuo browser nel caso in cui il li
 	'theme:install:error' => 'Unable to install theme. Make sure it is compatible with the OSSN version you are using.',
 
 	'fields:require' => 'Tutti i campi sono richiesti!',
-	'username:error' => 'Username non valido.',
+	'username:error' => 'Il nome utente non è corretto. Si prega di utilizzare solo caratteri alfanumerici quando si inseriscono le informazioni. Assicurarsi che non vi siano spazi o caratteri speciali. Sono consentite solo le lettere A-Z e i numeri 0-9. Il nome utente deve contenere almeno 5 caratteri..',
 	'password:error' => 'La password deve avere più di 5 caratteri.',
 	'account:created' => 'Il tuo account è stato creato.',
 	'account:create:error:admin' => 'Registrazione account fallita! Prova più tardi.',
