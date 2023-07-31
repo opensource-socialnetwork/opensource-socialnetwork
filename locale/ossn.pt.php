@@ -162,7 +162,7 @@ Caso tenha problemas, copie o endereço e cole manualmente em seu navegador.
 	'theme:install:error' => 'Impossível instalar o tema. Certifique-se de que é compatível com a versão do OSSN que você está usando.',
 	
 	'fields:require' => 'Todos os campos são obrigatórios!',
-	'username:error' => 'Nome de usuário inválido.',
+	'username:error' => 'O nome de utilizador está incorreto. Utilize apenas caracteres alfanuméricos ao introduzir as suas informações. Certifique-se de que não existem espaços ou caracteres especiais. Só são permitidas letras A-Z e números 0-9. O nome de utilizador deve ter pelo menos 5 caracteres.',
 	'password:error' => 'Sua senha deve conter mais de 5 caracteres.',
 	'account:created' => 'Conta criada com sucesso.',
 	'account:create:error:admin' => 'Erro ao cadastrar! Tente novamente mais tarde.',
