@@ -141,7 +141,7 @@ You may copy and paste the address to your browser manually in case the link doe
 	'theme:install:error' => '無法安裝佈景主題. 請確認這個檔案是否相容您的 OSSN 版本.',
 	
 	'fields:require' => '所有欄位都必需填寫!',
-	'username:error' => '帳號被使用.',
+	'username:error' => '用户名不正确。请在输入信息时只使用字母数字字符。确保没有空格或特殊字符。只允许使用字母 A-Z 和数字 0-9。用户名必须至少包含 5 个字符。',
 	'password:error' => '密碼必須5個字元以上.',
 	'account:created' => '您的帳號已經建立.',
 	'account:create:error:admin' => '無法建立帳號! 請稍後再試一次.',
