@@ -166,7 +166,7 @@ Mocht de link niet werken dan kunt u proberen deze in de adresbalk van je browse
 	'theme:install:error' => 'Kon het Thema niet installeren. Controlleer of dit thema wel voor deze versie van ossn is.',
 	
 	'fields:require' => 'Alle velden zijn verplicht!',
-	'username:error' => 'Gebruikersnaam is niet goed.',
+	'username:error' => 'De gebruikersnaam is onjuist. Gebruik alleen alfanumerieke tekens bij het invoeren van uw gegevens. Zorg ervoor dat er geen spaties of speciale tekens zijn. Alleen letters A-Z en cijfers 0-9 zijn toegestaan. De gebruikersnaam moet uit minstens 5 tekens bestaan.',
 	'password:error' => 'Het wachtwoord moet langer zijn dan 5 tekens.',
 	'account:created' => 'je account is aangemaakt.',
 	'account:create:error:admin' => 'Account registratie mislukt! Probeer het later nog eens.',
