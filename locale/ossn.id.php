@@ -142,7 +142,7 @@ Anda dapat menyalin dan menempelkan alamat ke browser Anda secara manual jika ta
 	'theme:install:error' => 'Tidak dapat memasang tema. Pastikan itu kompatibel dengan versi OSSN yang Anda gunakan.',
 	
 	'fields:require' => 'Semua bidang yang diperlukan!',
-	'username:error' => 'Nama pengguna tidak sah.',
+	'username:error' => 'Nama pengguna salah. Harap gunakan hanya karakter alfanumerik saat memasukkan informasi Anda. Pastikan tidak ada spasi atau karakter khusus. Hanya huruf A-Z dan angka 0-9 yang diizinkan. Nama pengguna harus terdiri dari minimal 5 karakter.',
 	'password:error' => 'Kata sandi harus lebih dari 5 karakter.',
 	'account:created' => 'Akun anda telah dibuat.',
 	'account:create:error:admin' => 'Registrasi akun gagal! Silakan coba lagi nanti.',
