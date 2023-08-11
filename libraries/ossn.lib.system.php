@@ -451,22 +451,24 @@ function arraySerialize($array = NULL) {
 
 /**
  * Limit a words in a string
- * @params $str = string;
- * @params $limit = words limit;
- * @param integer $limit
+ * @params string  $str Text you want to trim
+ * @params int     $limit Maxmium string width
+ * @params  boolean $dots Show dots at end of string ?
  *
- * @last edit: $arsalanshah
- * @return bool
+ * @last edit: $michael @githubertus
+ * @return string|boolean
  */
 function strl($str, $limit = NULL, $dots = true) {
 	if (isset($str) && isset($limit)) {
-		if (strlen($str) > $limit) {
+		//error_log('STRL: ' . $str . ' LEN: ' . mb_strlen($str, 'HTML-ENTITIES') . ' LIMIT: ' . $limit);
+		//[B] Emojis shows entities in trimmed message notification #2257
+		if (mb_strlen($str, 'HTML-ENTITIES') > $limit) {
 			if ($dots == true) {
-				return substr($str, 0, $limit) . '...';
+				return mb_substr($str, 0, $limit, 'HTML-ENTITIES') . '...';
 			} elseif ($dots == false) {
-				return substr($str, 0, $limit);
+				return mb_substr($str, 0, $limit, 'HTML-ENTITIES');
 			}
-		} elseif (strlen($str) <= $limit) {
+		} elseif (mb_strlen($str, 'HTML-ENTITIES') <= $limit) {
 			return $str;
 		}
 		
