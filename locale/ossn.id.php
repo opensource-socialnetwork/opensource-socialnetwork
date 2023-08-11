@@ -20,9 +20,7 @@ $id = array(
 	'home:top:heading' => "Selamat datang di %s! Bergabunglah sekarang untuk mendapatkan Teman Baru, Membuat Grup, Menambahkan Foto, dan banyak lagi.",
 	'create:account' => 'Buat sebuah Akun',
 	'its:free' => "Gratis dan selalu demikian.",
-	
-	'register:ok:message' => "Akun anda telah Terdaftar. Email Aktivasi telah dikirimkan ke kotak Surat Anda. Jika anda tidak menerima Email, silahkan periksa folder spam/sampah anda",
-	
+		
 	'copyright' => '&copy; COPYRIGHT',
 	'powered' => 'Powered by the Open Source Social Network.',
 	
