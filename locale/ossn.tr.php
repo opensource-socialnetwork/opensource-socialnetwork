@@ -20,9 +20,7 @@ $tr = array(
 	'home:top:heading' => "Merhaba %s! Yeni arkadaşlar edinmek, grup oluşturmak, fotoğraf paylaşmak ve daha fazlasını yapmak için şimdi katılın.",
 	'create:account' => 'Hesap Oluştur',
 	'its:free' => "Tabi ki Ücretsiz!",
-	
-	'register:ok:message' => "Hesabınız oluşturuldu! Şimdi e-mail adresinize gidip onayladıktan sonra hesabınızı etkinleştirebilirsiniz.",
-	
+		
 	'copyright' => '&copy; Telif Hakkı',
 	'powered' => 'Powered by the Open Source Social Network.',
 	
