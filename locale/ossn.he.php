@@ -21,7 +21,6 @@ $he = array(
 	'create:account' => 'יצירת חשבון',
 	'its:free' => "",
 	
-	'register:ok:message' => "החשבון נוצר בהצלחה, מייל הפעלה נשלח אליך. אם אינך רואה את המייל יתכן והוא הגיע לספאם.",
 	'copyright' => '&copy; כל הזכויות שמורות',
 	'powered' => 'Powered by the Open Source Social Network.',
 	
