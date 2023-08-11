@@ -20,9 +20,7 @@ $en = array(
     'home:top:heading' => "Welcome to %s! Join now to make new friends, create groups, add photos, and much more.",
     'create:account' => 'Create an account',
     'its:free' => "It's free and always will be.",
-    
-    'register:ok:message' => "Your account has been registered! We have sent you an account activation email. If you didn't receive the email, please check your spam/junk folder.",
-    
+        
     'copyright' => '&copy; COPYRIGHT',
     'powered' => 'Powered by the Open Source Social Network.',
     
