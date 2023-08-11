@@ -23,9 +23,7 @@ $es = array(
 	'home:top:heading' => "¡Bienvenido a %s! Regístrate para hacer nuevos amigos, crear grupos, añadir fotos, y mucho más.",
 	'create:account' => 'Crear una cuenta',
 	'its:free' => "Es gratis y siempre lo será.",
-	
-	'register:ok:message' => 'Se ha registrado tu cuenta. Se ha enviado un correo electrónico de activación a tu buzón de correo. Si no recibiste el correo electrónico, comprueba tu carpeta de spam/basura.',
-	
+		
 	'copyright' => '&copy; COPYRIGHT',
 	'powered' => 'Powered by the Open Source Social Network.',
 	
