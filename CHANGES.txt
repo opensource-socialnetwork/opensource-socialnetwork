@@ -10,6 +10,9 @@ OSSN - OPEN SOURCE SOCIAL NEWORK  v7.1
 - [E] improve username invalid message #2273
 - [B] Emojis shows entities in trimmed message notification #2257
 - [E] Remove /register page what is it doing? #2270
+- [E] Add max-height in .ossn-wall-item .post-contents img #2259
+- [E] Don't open the last message in messages/all #2283
+
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v7.0
 * [B] fix allowing to display profile modules with priority < 200 #2211
