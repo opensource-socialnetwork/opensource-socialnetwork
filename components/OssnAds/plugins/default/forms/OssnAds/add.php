@@ -20,5 +20,7 @@
 
 <label><?php echo ossn_print('ad:photo'); ?></label>
 <input type="file" name="ossn_ads"/>
-<br/>
-<input type="submit" class="btn btn-primary btn-sm" value="<?php echo ossn_print('add'); ?>"/>
+
+<div class="margin-top-10">
+	<input type="submit" class="btn btn-success btn-sm" value="<?php echo ossn_print('add'); ?>"/>
+</div>

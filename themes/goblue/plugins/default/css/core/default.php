@@ -1,6 +1,9 @@
 /******************************
 	Basic
 **********************************/
+:root {
+	--layout-sidebar-width: 220px;
+}
 
 body {
 	font-size: 14px;
@@ -66,6 +69,7 @@ body {
 .ossn-form input[readonly] {
 	background: #dbdbdb;
 }
+
 .ossn-form input[type="file"] {
 	display: block;
 }
@@ -478,11 +482,11 @@ a {
 .ossn-wall-item {
 	padding: 15px;
 	padding-top: 10px;
-	border: 1px solid #eee;
 	margin-top: 20px;
 	background-color: #fff;
 	padding-bottom: 0px;
 	border-radius: 10px;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .ossn-wall-item:first-child {
@@ -930,10 +934,10 @@ a {
 	background-color: #333;
 	height: 200px;
 	z-index: 1000;
-	width: 200px;
+	width: var(--layout-sidebar-width);
 	position: absolute;
 	height: 100%;
-	margin-left: -200px;
+	margin-left: calc(-1 * var(--layout-sidebar-width));
 	overflow-y: auto;
 	overflow-x: hidden;
 	color: #fff;
@@ -963,7 +967,7 @@ a {
 }
 
 .sidebar-open-page-container {
-	margin-left: 200px;
+	margin-left: var(--layout-sidebar-width);
 	-webkit-transition: all 0.5s ease;
 	-moz-transition: all 0.5s ease;
 	-o-transition: all 0.5s ease;
@@ -971,7 +975,7 @@ a {
 }
 
 .sidebar-open-page-container-no-annimation {
-	margin-left: 200px;
+	margin-left: var(--layout-sidebar-width);
 }
 
 .sidebar-close-page-container {
@@ -983,6 +987,7 @@ a {
 
 .newseed-uinfo {
 	padding: 10px;
+	margin-bottom: 10px;
 }
 
 .newseed-uinfo img {
@@ -1012,7 +1017,7 @@ a {
 .sidebar-menu-nav {
 	overflow: auto;
 	font-family: verdana;
-	font-size: 12px;
+	font-size: 13px;
 	font-weight: 200;
 	top: 0px;
 	width: 100%;
@@ -1047,7 +1052,7 @@ a {
 .sidebar-menu-nav ul .sub-menu li,
 .sidebar-menu-nav li .sub-menu li {
 	border: none;
-	line-height: 28px;
+	line-height: 30px;
 	border-bottom: 1px solid #23282e;
 	margin-left: 0px;
 }
@@ -1126,6 +1131,7 @@ a {
 
 .left {
 	float: left;
+
 }
 
 .text-right {
@@ -1818,7 +1824,7 @@ li[class^="menu-section-item-"] {
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
-	width: 200px;
+	width: var(--layout-sidebar-width);
 	padding-right: 10px;
 }
 
@@ -3149,6 +3155,7 @@ label {
 	margin-bottom: 5px;
 	font-weight: 700;
 }
-.dropdown-menu  {
-    box-shadow: 0 12px 28px 0 rgba(0, 0, 0, 0.20), 0 2px 4px 0 rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+
+.dropdown-menu {
+	box-shadow: 0 12px 28px 0 rgba(0, 0, 0, 0.20), 0 2px 4px 0 rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.5);
 }

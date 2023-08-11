@@ -22,5 +22,7 @@
 <input type="file" name="ossn_ads"/>
 <input type="hidden" name="entity" value="<?php echo $params['entity']->guid;?>" />
 <div class="ossn-ad-image" style="background:url('<?php echo $params['entity']->getPhotoURL();?>') no-repeat;background-size: contain;"></div>
-<br/>
-<input type="submit" class="ossn-admin-button button-dark-blue" value="<?php echo ossn_print('save'); ?>"/>
+
+<div class="margin-top-10">
+	<input type="submit"class="btn btn-success btn-sm" value="<?php echo ossn_print('save'); ?>"/>
+</div>
