@@ -20,9 +20,7 @@ $nl = array(
 	'home:top:heading' => "Schrijf je in en word gratis lid om leuke contacten te maken, groepen te maken en beheren, Foto`s delen, en veel meer!",
 	'create:account' => 'Activeer je account',
 	'its:free' => "Het is weer gratis en zal dat altijd blijven.",
-	
-	'register:ok:message' => "je account is geregistreerd. Een activatie email is naar je mailadres verstuurd. Als u de email niet heeft ontvangen, bekijk dan je spambox.",
-	
+		
 	'copyright' => '&copy;',
 	'powered' => 'Powered by the Open Source Social Network.',
 	
