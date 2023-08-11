@@ -20,9 +20,7 @@ $zh = array(
 	'home:top:heading' => "歡迎來到 %s! 現在加入,認識新朋友,建立群組,建立相本....",
 	'create:account' => '建立帳號',
 	'its:free' => "永遠免費",
-	
-	'register:ok:message' => "您己經註冊了.系統已寄啟用信到您的信箱,如果您沒收到請查看您的垃圾郵件資料夾.",
-	
+		
 	'copyright' => '&copy; 版權擁有',
 	'powered' => 'Powered by the Open Source Social Network.',
 	
