@@ -21,8 +21,6 @@ $en = array(
 	'create:account' => 'Crea un account',
 	'its:free' => "È gratuito.",
 
-	'register:ok:message' => "Il tuo account è stato creato. Ti è stata inviata una e-mail di attivazione. Se cosi non fosse controlla nella cartella di spam.",
-
 	'copyright' => '&copy; COPYRIGHT',
 	'powered' => 'Powered by the Open Source Social Network.',
 
