@@ -20,9 +20,7 @@ $pt = array(
 	'home:top:heading' => "Bem vindo a %s! Cadastre-se agora mesmo para fazer amigos, criar grupos, adicionar fotos, e muito mais!.",
 	'create:account' => 'Criar uma conta',
 	'its:free' => "É grátis e sempre será.",
-	
-	'register:ok:message' => "Sua conta foi criada com sucesso. Um e-mail de ativação foi enviado para seu e-mail. Caso você não receba o e-mail, por favor verifique sua pasta de spam.",
-	
+		
 	'copyright' => '&copy; COPYRIGHT',
 	'powered' => 'Powered by the Open Source Social Network.',
 	
