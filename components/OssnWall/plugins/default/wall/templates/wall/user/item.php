@@ -92,7 +92,7 @@ if ($params['user']->guid !== $params['post']->owner_guid) {
             <?php
             if (!empty($image)) {
                 ?>
-                <img src="<?php echo $image; ?>"/>
+                <div class="ossn-wall-image-container"><img src="<?php echo $image; ?>"/></div>
 
             <?php } ?>          
 		</div>
