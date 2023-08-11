@@ -21,8 +21,6 @@ $fr = array(
     'create:account' => 'Créer un compte !',
     'its:free' => "C'est gratuit et le sera toujours",
 
-    'register:ok:message' => "Votre compte a été enregistré. Nous vous avons envoyé un email d'activation. Si vous ne recevez pas l'email, merci de vérifiez votre dossier de spam.",
-
     'copyright' => '&copy; COPYRIGHT',
     'powered' => 'Powered by the Open Source Social Network.',
 	
