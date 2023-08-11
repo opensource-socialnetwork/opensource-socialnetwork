@@ -20,9 +20,7 @@ $eo = array(
 	'home:top:heading' => "Bonvenon al %s! Membriĝu nun por amikiĝi, krei grupojn, aldoni fotojn, kaj multe pli.",
 	'create:account' => 'Krei konton',
 	'its:free' => "Estas senpaga kaj ĉiam estos senpaga.",
-	
-	'register:ok:message' => "Via konto estas registrita. Retpoŝto kun aktiviga kodo estas sendita al via retpoŝtujo. Se vi ne ricevis la retpoŝton, bonvolu kontroli vian trudmesaĝujon.",
-	
+		
 	'copyright' => '&copy; KOPIRAJTO',
 	'powered' => 'Powered by the Open Source Social Network.',
 	
