@@ -385,3 +385,7 @@
 .ossn-recent-messages-toggle:hover {
 	background:#fff;
 }
+.ossn-messages-select-conv {
+	font-size: 5rem;
+    color: #999;
+}
