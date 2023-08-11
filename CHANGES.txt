@@ -8,6 +8,7 @@ OSSN - OPEN SOURCE SOCIAL NEWORK  v7.1
 - [E] OssnNotifications check new one on mark all as read #2266
 - [E] Default search result type confusing #2279
 - [E] improve username invalid message #2273
+- [B] Emojis shows entities in trimmed message notification #2257
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v7.0
 * [B] fix allowing to display profile modules with priority < 200 #2211
