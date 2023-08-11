@@ -13,7 +13,8 @@ OSSN - OPEN SOURCE SOCIAL NEWORK  v7.1
 - [E] Add max-height in .ossn-wall-item .post-contents img #2259
 - [E] Don't open the last message in messages/all #2283
 - [E] Allow attachment of image in message without text #2268
-
+- [E] Bootstrap badges have blue on however should be same color #2269
+- [E] output/user/url should have data-username #2284
 
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v7.0

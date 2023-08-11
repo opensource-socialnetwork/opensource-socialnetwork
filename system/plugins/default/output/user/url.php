@@ -17,6 +17,7 @@ $default = array(
 		'href'  => $params['user']->profileURL(),
 		'text'  => $params['user']->fullname,
 		'class' => 'ossn-output-user-url',
+		'data-username' => $params['user']->username,
 );
 unset($params['user']);
 if(isset($params['class'])) {
