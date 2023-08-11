@@ -20,9 +20,7 @@ $el = array(
 	'home:top:heading' => "Καλώς ορίσατε στο %s! Γίνετε μέλος τώρα για να κάνετε νέους φίλους, να δημιουργήσετε ομάδες, να προσθέσετε φωτογραφίες και πολλά άλλα.",
 	'create:account' => 'Δημιουργία λογαριασμού',
 	'its:free' => "Είναι και θα είναι πάντα δωρεάν.",
-	
-	'register:ok:message' => "Ο λογαριασμός σας έχει εγγραφεί. Ένα Email ενεργοποίησης σας έχει σταλεί. Εάν δεν λάβατε το Email, ελέγξτε το φάκελο Spam / Junk.",
-	
+		
 	'copyright' => '&copy; COPYRIGHT',
 	'powered' => 'Powered by the Open Source Social Network.',
 	
