@@ -20,9 +20,7 @@ $ja = array(
 	'home:top:heading' => "Welcome to %s! 今すぐ参加して、新しい友達を作り、グループを作成し、写真を追加してください。",
 	'create:account' => 'アカウントを作成する',
 	'its:free' => "無料で、いつでも利用できます。",
-	
-	'register:ok:message' => "アカウントが登録されました。 アクティベーションメールがメールボックスに送信されました。 メールを受信していない場合は、スパム/ジャンクフォルダを確認してください。",
-	
+		
 	'copyright' => '&copy; COPYRIGHT',
 	'powered' => 'Powered by the Open Source Social Network.',
 	
