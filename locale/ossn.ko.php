@@ -20,9 +20,7 @@ $ko = array(
 	'home:top:heading' => "환영합니다! %s 입니다! 가입하시면 새 친구도 만들고 동아리도 만들고 그 외에도 인연을 많이 만들 수 있습니다.",
 	'create:account' => '계정 만들기',
 	'its:free' => "항상 그리고 앞으로도 계속 무료일 것입니다.",
-	
-	'register:ok:message' => "계정을 등록하였습니다. 이메일을 발송하였으니 꼭 확인을 눌러주세요. 스팸함으로 이메일이 갈 수 있 수도 있으니 한번 더 살펴 보세요.",
-	
+		
 	'copyright' => '&copy; 저작권',
 	'powered' => 'Powered by the Open Source Social Network.',
 	
