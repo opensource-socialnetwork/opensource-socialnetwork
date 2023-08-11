@@ -20,9 +20,7 @@ $ro = array(
 	'home:top:heading' => "Bine ai venit pe %s! Inscrie-te acum si fa-ti prieteni, creeaza grupuri, add photos, si mult mai multe.",
 	'create:account' => 'Creeaza un cont',
 	'its:free' => "E gratis si va fii gratis mereu.",
-	
-	'register:ok:message' => "Contul tau a fost inregistrat. Un email a fost trimis la adresa ta de email. Daca nu ai primit emailul verifica spam/junk .",
-	
+		
 	'copyright' => '&copy; COPYRIGHT',
 	'powered' => 'Powered by the Open Source Social Network.',
 	
