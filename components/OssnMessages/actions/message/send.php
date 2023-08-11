@@ -11,6 +11,10 @@
 $send = new OssnMessages;
 $message = input('message');
 
+if(isset($_FILES['attachment']) && isset($_FILES['attachment']['name']) && empty($message)){
+		$message = ossn_print('message:fileattachment'); 
+}
+
 if(trim(ossn_restore_new_lines($message)) == ''){
 	echo 0;
 	exit;

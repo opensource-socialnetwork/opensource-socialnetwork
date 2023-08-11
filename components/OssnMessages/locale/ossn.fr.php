@@ -24,5 +24,6 @@ $fr = array(
 	'ossnmessages:delete:me' => 'Enlever pour vous',
 	'ossnmessages:delete:me:note' => 'Ce message sera supprimé pour vous. Les autres membres pourront toujours le voir.',
 	'ossnmessages:replied:you' => 'Vous : %s',
+	'message:fileattachment' => 'Pièce jointe',	
 );
 ossn_register_languages('fr', $fr); 

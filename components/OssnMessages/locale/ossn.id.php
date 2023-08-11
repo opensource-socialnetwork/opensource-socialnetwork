@@ -24,5 +24,6 @@ $id = array(
 	'ossnmessages:delete:me' => 'Hapus untuk Anda',
 	'ossnmessages:delete:me:note' => 'Pesan ini akan dihapus untuk Anda. Anggota lain masih dapat melihatnya.',
 	'ossnmessages:replied:you' => 'Anda: %s',	
+	'message:fileattachment' => 'Lampiran Berkas',		
 );
 ossn_register_languages('id', $id); 

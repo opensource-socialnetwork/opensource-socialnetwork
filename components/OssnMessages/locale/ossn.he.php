@@ -23,6 +23,7 @@ $he = array(
 	
 	'ossnmessages:delete:me' => 'הסר עבורך',
 	'ossnmessages:delete:me:note' => 'הודעה זו תוסר עבורכם. חבר אחר עדיין יוכל לראות את זה.',
-	'ossnmessages:replied:you' => 'אתה: %s',	
+	'ossnmessages:replied:you' => 'אתה: %s',
+	'message:fileattachment' => 'קובץ מצורף',
 );
 ossn_register_languages('he', $he); 

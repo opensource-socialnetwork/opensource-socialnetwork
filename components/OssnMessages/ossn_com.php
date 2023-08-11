@@ -74,7 +74,7 @@ function ossn_messages_page($pages) {
 		$OssnMessages = new OssnMessages;
 		$page         = $pages[0];
 		if(empty($page)) {
-				$page = 'messages';
+				$page = 'all';
 		}
 		switch($page) {
 				case 'message':

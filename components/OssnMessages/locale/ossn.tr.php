@@ -24,5 +24,6 @@ $tr = array(
 	'ossnmessages:delete:me' => 'Sizin için kaldır',
 	'ossnmessages:delete:me:note' => 'Bu mesaj sizin için kaldırılacaktır. Diğer üye yine de görebilecek.',
 	'ossnmessages:replied:you' => 'Siz: %s',	
+	'message:fileattachment' => 'Dosya eklentisi',	
 );
 ossn_register_languages('tr', $tr); 

@@ -24,5 +24,6 @@ $el = array(
 	'ossnmessages:delete:me' => 'Αφαιρέστε για εσάς',
 	'ossnmessages:delete:me:note' => 'Αυτό το μήνυμα θα καταργηθεί για εσάς. Άλλο μέλος θα μπορεί να το δει.',
 	'ossnmessages:replied:you' => 'Εσείς: %s',	
+	'message:fileattachment' => 'Συνημμένο αρχείο',	
 );
 ossn_register_languages('el', $el); 

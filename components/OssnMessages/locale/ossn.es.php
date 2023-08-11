@@ -23,5 +23,7 @@ $es = array(
 	'ossnmessages:delete:me' => 'Quitar para usted',
 	'ossnmessages:delete:me:note' => 'Este mensaje será eliminado para usted. Otro miembro podrá seguir viéndolo.',
 	'ossnmessages:replied:you' => 'Tú: %s',	
+	'message:fileattachment' => 'Archivo adjunto',
+	
 );
 ossn_register_languages('es', $es); 

@@ -24,5 +24,6 @@ $ro = array(
 	'ossnmessages:delete:me' => 'Scoate pentru tine',
 	'ossnmessages:delete:me:note' => 'Acest mesaj va fi eliminat pentru dvs. Un alt membru îl va putea vedea în continuare.',
 	'ossnmessages:replied:you' => 'Dumneavoastră: %s',	
+	'message:fileattachment' => 'Atasament',			
 );
 ossn_register_languages('ro', $ro); 

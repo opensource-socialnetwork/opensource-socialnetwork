@@ -24,5 +24,7 @@ $eo = array(
 	'ossnmessages:delete:me' => 'Forigu por vi',
 	'ossnmessages:delete:me:note' => 'Ĉi tiu mesaĝo estos forigita por vi. Aliaj membroj ankoraŭ povos vidi ĝin.',
 	'ossnmessages:replied:you' => 'Vi: %s',
+	'message:fileattachment' => 'Dosiero Aldonaĵo',
+	
 );
 ossn_register_languages('eo', $eo); 

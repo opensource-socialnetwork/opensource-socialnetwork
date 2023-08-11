@@ -24,5 +24,6 @@ $ko = array(
 	'ossnmessages:delete:me' => '나한테 온 것만 삭제하기',
 	'ossnmessages:delete:me:note' => '나한테 온 것만 삭제를 하면 다른 사람들은 볼 수 있습니다.',
 	'ossnmessages:replied:you' => '응답: %s',
+	'message:fileattachment' => '파일 첨부',		
 );
 ossn_register_languages('ko', $ko); 

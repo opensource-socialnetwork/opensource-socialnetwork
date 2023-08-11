@@ -24,5 +24,7 @@ $en = array(
 	'ossnmessages:delete:me' => 'Remove for you',
 	'ossnmessages:delete:me:note' => 'This message will be removed for you. Other member will still be able to see it.',
 	'ossnmessages:replied:you' => 'You: %s',
+	
+	'message:fileattachment' => 'File Attachment',
 );
 ossn_register_languages('en', $en); 
