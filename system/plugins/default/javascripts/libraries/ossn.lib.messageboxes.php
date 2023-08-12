@@ -32,37 +32,6 @@ Ossn.MessageBox = function($url) {
 
 };
 /**
- * Load a media viewer
- *
- * @return void
- */
-Ossn.Viewer = function($url) {
-	Ossn.PostRequest({
-		url: Ossn.site_url + $url,
-
-		beforeSend: function() {
-			$('.ossn-halt').removeClass('ossn-light');
-			$('.ossn-halt').show();
-			$('.ossn-viewer').html('<table class="ossn-container"><tr><td class="image-block" style="text-align: center;width:100%;"><div class="ossn-viewer-loding">Loading...</div></td></tr></table>');
-			$('.ossn-viewer').show();
-		},
-		callback: function(callback) {
-			$('.ossn-viewer').html(callback).show();
-		},
-	});
-};
-/**
- * Close a media viewer
- *
- * @return void
- */
-Ossn.ViewerClose = function($url) {
-	$('.ossn-halt').addClass('ossn-light');
-	$('.ossn-halt').hide();
-	$('.ossn-viewer').html('');
-	$('.ossn-viewer').hide();
-};
-/**
  * Add a system messages for users
  *
  * @param string $messages Message for user

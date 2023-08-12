@@ -15,6 +15,7 @@ OSSN - OPEN SOURCE SOCIAL NEWORK  v7.1
 - [E] Allow attachment of image in message without text #2268
 - [E] Bootstrap badges have blue on however should be same color #2269
 - [E] output/user/url should have data-username #2284
+- [E] remove Ossn.Viewer js #2286
 
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v7.0
