@@ -16,7 +16,7 @@ OSSN - OPEN SOURCE SOCIAL NEWORK  v7.1
 - [E] Bootstrap badges have blue on however should be same color #2269
 - [E] output/user/url should have data-username #2284
 - [E] remove Ossn.Viewer js #2286
-
+- [E] Fontawesome 5.x to 6.x #2285
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v7.0
 * [B] fix allowing to display profile modules with priority < 200 #2211
