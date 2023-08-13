@@ -10,7 +10,7 @@
  */
 foreach ($params['menu'] as $key => $value) {
         echo "<li class='nav-item dropdown'><a href='javascript:void(0);' class='nav-link dropdown-toggle' data-bs-toggle='dropdown'>" . ossn_print($key) . "</a>";
-        echo '<ul class="dropdown-menu multi-level">';
+        echo '<ul class="dropdown-menu">';
         foreach ($value as $link) {
 			unset($link['parent']);
 			unset($link['name']);

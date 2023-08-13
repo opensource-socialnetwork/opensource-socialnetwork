@@ -14,7 +14,7 @@
     <?php
     if (!empty($params['menu'])) {
 		echo '<a role="button" data-bs-toggle="dropdown" class="btn-action" data-bs-target="#" aria-expanded="true"><i class="fa fa-sort-down"></i></a>';
-		echo '<ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">';
+		echo '<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">';
         foreach ($params['menu'] as $menu) {
             foreach ($menu as  $link) {
 				$class = "dropdown-item profile-menu-extra-".$link['name'];

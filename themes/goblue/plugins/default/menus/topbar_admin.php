@@ -12,7 +12,7 @@
 									  <a href="javascript:void(0);" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">'
 									  	. ossn_print($key) . 
 									   '</a>
-									  <ul class="dropdown-menu multi-level">';
+									  <ul class="dropdown-menu">';
        									foreach ($links as $item) {
 												 $class = "menu-topbar-admin-" . $item['name']; 
 												 if(isset($item['class'])) { 

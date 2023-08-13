@@ -455,10 +455,49 @@ a {
 	color: #fff;
 }
 
+.ossn-topbar-dropdown-menu .dropdown-menu-container .dropdown-menu-icon {
+		
+}
+
+.ossn-topbar-dropdown-menu .dropdown-menu-container .dropdown-menu-icon > div {
+
+} 
+
+.ossn-wall-item  .dropdown-menu li a:before,
+.ossn-topbar-dropdown-menu ul li a:before {
+    content: "\f068";
+    display: inline-block;
+    float: left;
+    margin-right: 10px;
+    font-family: var(--fa-style-family,"Font Awesome 6 Free");
+    font-weight: var(--fa-style,900);
+}
+.ossn-wall-item >  .dropdown-menu {
+		min-width:200px;
+}
+.menu-topbar-dropdown-administration:before {
+      content: "\f085" !important;   
+}
+.menu-topbar-dropdown-account_settings:before {
+      content: "\f4fe" !important;   
+}
+.menu-topbar-dropdown-logout:before {
+	 content: "\f011" !important;  
+}
+.ossn-edit-comment:before,
+.ossn-wall-item .post-control-edit:before {
+	content : "\f303" !important;
+}	
+.ossn-delete-comment:before,
+.ossn-wall-item .post-control-delete:before {
+	content : "\f2ed" !important;
+}	
 .ossn-topbar-dropdown-menu {
 	float: right;
 }
-
+.comment-metadata .dropdown-item {
+	padding: 0.4rem 1rem;
+}
 .ossn-topbar-dropdown-menu ul li a,
 .ossn-topbar-dropdown-menu ul li {
 	display: block;
@@ -468,6 +507,7 @@ a {
 
 .ossn-topbar-dropdown-menu .dropdown-menu {
 	margin: 1px -120px 0;
+    min-width:200px;
 }
 
 
@@ -1000,7 +1040,7 @@ a {
 	display: inline-block;
 	width: 100px;
 	margin-left: 10px;
-	margin-top: -2px;
+	margin-top: 4px;
 }
 
 .newseed-uinfo .name a {
@@ -1336,9 +1376,11 @@ a {
 	background-clip: padding-box;
 	border: 1px solid #ccc;
 	border: 1px solid rgba(0, 0, 0, .15);
-	border-radius: 4px;
+	border-radius: 5px;
 	-webkit-box-shadow: 0 6px 12px rgb(0 0 0 / 18%);
 	box-shadow: 0 6px 12px rgb(0 0 0 / 18%);
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;    
 }
 
 .ossn-notifications-box .notificaton-item {
@@ -1417,6 +1459,8 @@ a {
 	display: block;
 	height: 40px;
 	border-top: 1px solid #eee;
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
 }
 
 .ossn-notifications-box .metadata {
@@ -2664,14 +2708,13 @@ footer .ossn-footer-menu a:last-child::after {
 	}
 
 	.ossn-notifications-box .notfi-meta {
-		width: 230px;
+		width: 210px;
 	}
 
 	.notification-friends .notfi-meta a {
 		width: 100px;
 	}
 
-	.ossn-notifications-box .notfi-meta,
 	.ossn-notification-messages .user-item .data {
 		width: 215px !important;
 	}
