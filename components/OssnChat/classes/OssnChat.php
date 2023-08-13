@@ -89,22 +89,26 @@ class OssnChat extends OssnMessages {
 		/**
 		 * Get all new friends json
 		 *
-		 * @return json;
+		 * @return array
 		 */
-		public static function AllNew() {
+		public static function AllNew($intervals = 10) {
+				$time = time();
 				//[B] OssnChat showing only 10 users #2263
 				$friends = ossn_loggedin_user()->getFriends(ossn_loggedin_user()->guid, array(
 						'page_limit' => false,
+						"wheres"     => "u.last_activity > {$time} - {$intervals}",
 				));
 				if(!$friends) {
 						return false;
 				}
 				foreach($friends as $friend) {
 						//default value should be offline  [B] OssnChat default value showing 0 in class #2163
-						$status = 'ossn-chat-icon-offline';
-						if($friend instanceof OssnUser && $friend->isOnline(10)) {
-								$status = 'ossn-chat-icon-online';
-						}
+						//$status = 'ossn-chat-icon-offline';
+						//if($friend instanceof OssnUser && $friend->isOnline(10)) { 
+						//[E] Show only online members in Chat #2287
+						//so the status will be online by default
+						$status = 'ossn-chat-icon-online';
+						//}
 						$vars['name']   = $friend->fullname;
 						$vars['icon']   = $friend->iconURL()->small;
 						$vars['guid']   = $friend->guid;

@@ -92,6 +92,7 @@ echo 'var OssnChat = ';
 echo preg_replace('/[ ]{2,}/', ' ', $api);
 echo ';';
 ?>
+/** <script> **/
 /**
  * Count Online friends and put then in friends list
  *
@@ -119,47 +120,26 @@ if (OssnChat['active_friends']) {
  * @params OssnChat['active_friends'] Array
  */
 if (OssnChat['allfriends']) {
+	var prependata = '';
+	$('.friends-list-item').remove();
 	$.each(OssnChat['allfriends'], function(key, data) {
-		var $item = $(".ossn-chat-windows-long .inner").find('#friend-list-item-' + data['guid']);
-		if ($item.length) {
-			if (data['status'] == 'ossn-chat-icon-online' && $item.find('.ustatus').hasClass('ossn-chat-icon-online') == false) {
-				/* state change offline -> online: move friend to top of list */
-				$item.remove();
-				var prependata = '<div data-toggle="tooltip" title="' + data['name'] + '" class="friends-list-item" id="friend-list-item-' + data['guid'] + '" onClick="Ossn.ChatnewTab(' + data['guid'] + ');"><div class="friends-item-inner"><div class="icon"><img class="user-icon-small ustatus ossn-chat-icon-online" src="' + data['icon'] + '" /></div></div></div>';
-				if ($('.ossn-chat-pling').length) {
-					$(".ossn-chat-windows-long .inner .ossn-chat-pling").after(prependata);
-				} else {
-					$(".ossn-chat-windows-long .inner").prepend(prependata);
-				}
-			}
-			inchatstatus = $('#ossn-inchat-status-' + data['guid']);
-			if (inchatstatus.length) {
-				if (data['status'] == 'ossn-chat-icon-offline') {
-					if (inchatstatus.hasClass('ossn-inchat-status-online')) {
-						inchatstatus.removeClass('ossn-inchat-status-online');
-						inchatstatus.addClass('ossn-inchat-status-offline');
-					}
-				} else {
-					inchatstatus.removeClass('ossn-inchat-status-offline');
-					inchatstatus.addClass('ossn-inchat-status-online');
-				}
-			}
-			if (data['status'] == 'ossn-chat-icon-offline' && $item.find('.ustatus').hasClass('ossn-chat-icon-online') == true) {
-				/* state change online -> offline: move friend to bottom of list */
-				$item.remove();
-				var appendata = '<div data-toggle="tooltip" title="' + data['name'] + '" class="friends-list-item" id="friend-list-item-' + data['guid'] + '" onClick="Ossn.ChatnewTab(' + data['guid'] + ');"><div class="friends-item-inner"><div class="icon"><img class="user-icon-small ustatus" src="' + data['icon'] + '" /></div></div></div>';
-				$(".ossn-chat-windows-long .inner").append(appendata);
-			}
-		} else {
-			/* build initial list */
-			var appendata = '<div data-toggle="tooltip" title="' + data['name'] + '" class="friends-list-item" id="friend-list-item-' + data['guid'] + '" onClick="Ossn.ChatnewTab(' + data['guid'] + ');"><div class="friends-item-inner"><div class="icon"><img class="user-icon-small ustatus ' + data['status'] + '" src="' + data['icon'] + '" /></div></div></div>';
-			$(".ossn-chat-windows-long .inner").find('.ossn-chat-none').hide();
-			$(".ossn-chat-windows-long .inner").append(appendata);
-		}
+			prependata += '<div data-toggle="tooltip" title="' + data['name'] + '" class="friends-list-item" id="friend-list-item-' + data['guid'] + '" onClick="Ossn.ChatnewTab(' + data['guid'] + ');"><div class="friends-item-inner"><div class="icon"><img class="user-icon-small ustatus ossn-chat-icon-online" src="' + data['icon'] + '" /></div></div></div>';
 	});
+	
+	if(prependata != ''){
+		$(".ossn-chat-windows-long .inner").find('.ossn-chat-none').hide();
+			if ($('.ossn-chat-pling').length) {
+					$(".ossn-chat-windows-long .inner .ossn-chat-pling").after(prependata);
+			} else {
+					$(".ossn-chat-windows-long .inner").prepend(prependata);
+			}	
+	}
 	$('[data-toggle="tooltip"]').tooltip({
 		placement: 'left',
 	});
+} else {
+	$('.friends-list-item').remove();	
+	$(".ossn-chat-windows-long .inner").find('.ossn-chat-none').show();	
 }
 
 /**
