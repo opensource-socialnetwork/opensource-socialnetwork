@@ -17,6 +17,9 @@ OSSN - OPEN SOURCE SOCIAL NEWORK  v7.1
 - [E] output/user/url should have data-username #2284
 - [E] remove Ossn.Viewer js #2286
 - [E] Fontawesome 5.x to 6.x #2285
+- [B] Message typing UI bug for OSSN chat #2288
+- [E] Show only online members in Chat #2287
+- [B] OssnChat showing only 10 users #2263
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v7.0
 * [B] fix allowing to display profile modules with priority < 200 #2211
