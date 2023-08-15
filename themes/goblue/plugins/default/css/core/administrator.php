@@ -791,3 +791,47 @@ th {
     color: initial;
     background-color: #d5d7d9;
 }
+/**************************
+       Menu Icons
+***************************/
+.admin-topbar-menu-li-viewsite > a:before,
+.admin-topbar-menu-li-support > a:before,
+.admin-topbar-menu-li-configure > a:before,
+.admin-topbar-menu-li-help > a:before,
+.admin-topbar-menu-li-home > a:before,
+.admin-topbar-smenu-usermanager > a:before,
+.admin-topbar-smenu-settings > a:before,
+.admin-topbar-smenu-themes > a:before,
+.admin-topbar-smenu-components > a:before {
+    float: left;
+    margin-right: 10px;
+    font-family: var(--fa-style-family,"Font Awesome 6 Free");
+    font-weight: var(--fa-style,900);
+}
+.admin-topbar-menu-li-viewsite > a:before {
+	content: "\f109";
+}
+.admin-topbar-menu-li-support > a:before {
+	content: "\f005";
+}
+.admin-topbar-menu-li-help > a:before {
+	content: "\f05a";
+}
+.admin-topbar-menu-li-configure > a:before {
+	content: "\f085";
+}
+.admin-topbar-menu-li-home > a:before {
+	content: "\f0db";
+}
+.admin-topbar-smenu-usermanager > a:before {
+	content: "\f007";
+}
+.admin-topbar-smenu-settings > a:before {
+	content: "\f013";
+}
+.admin-topbar-smenu-themes > a:before {
+	content: "\f5aa";
+}
+.admin-topbar-smenu-components > a:before {
+	content: "\f12e";
+}

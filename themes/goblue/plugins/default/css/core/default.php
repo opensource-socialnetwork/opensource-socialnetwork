@@ -454,15 +454,9 @@ a {
 .topbar .ossn-icons-topbar-notifications-new i {
 	color: #fff;
 }
-
-.ossn-topbar-dropdown-menu .dropdown-menu-container .dropdown-menu-icon {
-		
-}
-
-.ossn-topbar-dropdown-menu .dropdown-menu-container .dropdown-menu-icon > div {
-
-} 
-
+/************************************************
+   Topbar Dropdown and Post+Comment menu icons
+*************************************************/
 .ossn-wall-item  .dropdown-menu li a:before,
 .ossn-topbar-dropdown-menu ul li a:before {
     content: "\f068";
@@ -510,7 +504,9 @@ a {
     min-width:200px;
 }
 
-
+/************************************************
+   Topbar Dropdown and Post+Comment menu icons end
+*************************************************/
 /***********************************
 	Ossn Wall
 *************************************/
