@@ -37,7 +37,7 @@ Languages
 | Spanish | Italian | Russian | 
 | Dutch | Hebrew | Greek |
 | Esperanto | Japanese | Indonesian |
-| Traditional Chinese | Korean | 
+| Traditional Chinese | Korean | Hungarian |
 
 Front-End Features
 ===================
