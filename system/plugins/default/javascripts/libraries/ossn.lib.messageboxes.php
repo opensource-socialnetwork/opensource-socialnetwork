@@ -11,6 +11,51 @@ Ossn.MessageBoxClose = function() {
 
 };
 /**
+ * Trigget a Modal box
+ * [E] Add option to trigger manually messagebox/overlay box #2277
+ * 
+ * @param['title']      string Title
+ * @param['content']    string Modal contents (html/text)
+ * @param['callback']   optional  string callback for save button
+ * @param['button']     optional string save button text
+ *
+ * @return boolean|void
+ */
+Ossn.ModalBox = function(params = false) {
+		if(!params){
+				return false;	
+		}
+		$('.ossn-halt').addClass('ossn-light');
+		$('.ossn-halt').attr('style', 'height:' + $(document).height() + 'px;');
+		$('.ossn-halt').show();
+		$('.ossn-message-box').html('<div class="ossn-loading ossn-box-loading"></div>');
+		$('.ossn-message-box').fadeIn('slow');
+		
+		callback = false;
+		if(params['callback']){
+			callback = params['callback'];
+		}
+		
+		$title   = params['title'];
+		$content = params['content'];
+		
+		if(params['button']){
+			button  = params['button'];
+		} else {
+			button = Ossn.Print('save');	
+		}
+		
+		var content = '<div class="title">'+$title+'<div class="close-box" onclick="Ossn.MessageBoxClose();"><i class="fa fa-times"></i></div></div><div class="contents"><div class="ossn-box-inner"><div style="width:100%;margin:auto;">'+$content+'</div></div></div>';
+		content += '<div class="control"><div class="controls">';
+		if(callback != false){
+			content += '<a href="javascript:void(0);" onclick="Ossn.Clk(\''+callback+'\');" class="btn btn-primary btn-sm">'+button+'</a>';
+		}
+		
+		content += ' <a href="javascript:void(0);" onclick="Ossn.MessageBoxClose();" class="btn btn-default btn-sm">'+Ossn.Print('cancel')+'</a>';
+		content += '</div></div>';
+		$('.ossn-message-box').html(content).fadeIn();
+};
+/**
  * Load Message box
  *
  * @return void
@@ -29,7 +74,6 @@ Ossn.MessageBox = function($url) {
 			$('.ossn-message-box').html(callback).fadeIn();
 		},
 	});
-
 };
 /**
  * Add a system messages for users
