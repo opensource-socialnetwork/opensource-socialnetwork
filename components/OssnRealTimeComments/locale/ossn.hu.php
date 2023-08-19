@@ -8,8 +8,7 @@
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
  * @link      https://www.opensource-socialnetwork.org/
  */
-$en = array(
-		'ossnlocation' => 'OssnLocation',
-		'enter:location' => 'Adja meg a Helyet',
+$hu = array(
+	'rtcomments:typing' => 'Valaki éppen ír...',
 );
-ossn_register_languages('hu', $en);
+ossn_register_languages('hu', $hu); 
