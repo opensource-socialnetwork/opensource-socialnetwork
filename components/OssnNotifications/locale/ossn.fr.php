@@ -2,7 +2,7 @@
 /**
  *    OpenSource-SocialNetwork
  *
- * @package   (openteknik.com).ossn
+ * @package   Open Source Social Network (OSSN)
  * @author    OSSN Core Team <info@opensource-socialnetwork.com>
  * @copyright (C) OpenTeknik LLC
  * @license   General Public Licence http://opensource-socialnetwork.com/licence
