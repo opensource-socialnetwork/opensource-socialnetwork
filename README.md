@@ -105,7 +105,7 @@ https://www.opensource-socialnetwork.org/wiki/view/706/how-to-install-open-sourc
 - Web Installer https://www.opensource-socialnetwork.org/download
 - VM Image - https://www.opensource-socialnetwork.org/download-vm-image
 
-Installation on Ubuntu x64 18.04/20.04/21.04 LTS (Experimental) 
+Installation on Ubuntu x64 18.04/20.04/21.04 LTS
 ```
 sudo add-apt-repository ppa:arsalanshah/opensource-socialnetwork
 sudo apt-get update
