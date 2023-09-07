@@ -581,6 +581,7 @@ class OssnFile extends OssnEntities {
 						),
 						'zip'  => array(
 								'application/zip',
+								'application/x-zip-compressed',
 						),
 						'webp' => array(
 								'image/webp',
