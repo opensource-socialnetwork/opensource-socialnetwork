@@ -326,6 +326,11 @@ class OssnInstallation {
 								throw new Exception($msg);
 						}
 				}
+				//for custom installations scripts
+				$post_install = ossn_installation_paths()->root . 'post_install.php';
+				if(file_exists($post_install)){
+						require_once($post_install);	
+				}				
 				return true;
 		}
 		
