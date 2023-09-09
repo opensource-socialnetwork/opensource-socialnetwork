@@ -650,6 +650,7 @@ a {
 	margin-top: 1px;
 	margin-left: 5px;
 	position: absolute;
+
 	font-size: 15px;
 }
 
@@ -1099,6 +1100,7 @@ a {
 }
 
 .sidebar-menu-nav ul .sub-menu li:before,
+
 .sidebar-menu-nav li .sub-menu li:before {
 	font-family: 'Font Awesome 5 Free';
 	content: "\f105";
@@ -2229,7 +2231,7 @@ div.token-input-dropdown ul li.token-input-selected-dropdown-item {
 	font-weight: bold;
 	margin-right: 13px;
 }
-
+.ossn-form input[type=checkbox],
 .ossn-form input[type=radio] {
 	-webkit-appearance: none;
 	-moz-appearance: none;
@@ -2248,7 +2250,10 @@ div.token-input-dropdown ul li.token-input-selected-dropdown-item {
 	flex-grow: 0;
 	transition: background 300ms;
 }
-
+.ossn-form input[type=checkbox] {
+	border-radius:2px;
+}	
+.ossn-form input[type=checkbox]:checked::before,
 .ossn-form input[type=radio]:checked::before {
 	position: absolute;
 	font: 9px/1 'Open Sans', sans-serif;
@@ -2257,11 +2262,11 @@ div.token-input-dropdown ul li.token-input-selected-dropdown-item {
 	content: '\02143';
 	transform: rotate(40deg);
 }
-
+.ossn-form input[type=checkbox]:hover,
 .ossn-form input[type=radio]:hover {
 	background-color: #f7f7f7;
 }
-
+.ossn-form input[type=checkbox]:checked,
 .ossn-form input[type=radio]:checked {
 	background-color: #0b769c;
 	color: #fff;
