@@ -8,7 +8,7 @@
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
  * @link      https://www.opensource-socialnetwork.org/
  */
-class OssnInstallation {
+class OssnInstallation extends stdClass {
 		/**
 		 * Installation Url;
 		 * @last edit: $arsalanshah
@@ -18,7 +18,7 @@ class OssnInstallation {
 		public static function url() {
 				return str_replace('installation/', '', ossn_installation_paths()->url);
 		}
-		
+
 		/**
 		 * Get data directory;
 		 * @last edit: $arsalanshah
@@ -27,10 +27,10 @@ class OssnInstallation {
 		 */
 		public static function DefaultDataDir() {
 				$return = dirname(dirname(__FILE__));
-				$return = str_replace("\\", "/", dirname(dirname($return)));
+				$return = str_replace('\\', '/', dirname(dirname($return)));
 				return "{$return}/ossn_data/";
 		}
-		
+
 		/**
 		 * Check if mod_rewrite exist or not;
 		 * @last edit: $arsalanshah
@@ -42,7 +42,7 @@ class OssnInstallation {
 				$rewrite = ossn_installation_simple_curl($file . 'rewrite.php');
 				return $rewrite;
 		}
-		
+
 		/**
 		 * Check if php curl library installed or not
 		 * @last edit: $arsalanshah
@@ -52,7 +52,7 @@ class OssnInstallation {
 		public static function isCurl() {
 				return function_exists('curl_version');
 		}
-		
+
 		/**
 		 * Check if php GD library is installed or not
 		 * @last edit: $arsalanshah
@@ -89,7 +89,7 @@ class OssnInstallation {
 		 */
 		public static function isPhp() {
 				//$phpversion >= 5.6 , works fine with php 5.6
-			    //Support php 5.6 or larger remove support for < 5.6 #1287
+				//Support php 5.6 or larger remove support for < 5.6 #1287
 				//8tH April 2020, remove support for outdated PHP version
 				//9th Feb 2022 remove support for php 7.x
 				if(version_compare(PHP_VERSION, '8.0', '>=')) {
@@ -97,7 +97,7 @@ class OssnInstallation {
 				}
 				return false;
 		}
-		
+
 		/**
 		 * Check if server is running apache or litespeed
 		 * @last edit: $arsalanshah
@@ -105,12 +105,12 @@ class OssnInstallation {
 		 *
 		 */
 		public static function isApache() {
-				if(preg_match('/apache/i', $_SERVER["SERVER_SOFTWARE"]) || preg_match('/LiteSpeed/i', $_SERVER["SERVER_SOFTWARE"])) {
+				if(preg_match('/apache/i', $_SERVER['SERVER_SOFTWARE']) || preg_match('/LiteSpeed/i', $_SERVER['SERVER_SOFTWARE'])) {
 						return true;
 				}
 				return false;
 		}
-		
+
 		/**
 		 * Check if configuration directory is writeable or not
 		 *
@@ -131,19 +131,19 @@ class OssnInstallation {
 		 *
 		 * @return boolean
 		 */
-		 public static function isCacheWriteable(){
-					$path = str_replace('installation/', '', ossn_installation_paths()->root);
-					$path = $path . 'cache';	
-					if(!is_dir($path)){
-						if(mkdir($path, 0755, true)){
+		public static function isCacheWriteable() {
+				$path = str_replace('installation/', '', ossn_installation_paths()->root);
+				$path = $path . 'cache';
+				if(!is_dir($path)) {
+						if(mkdir($path, 0755, true)) {
 								rmdir($path);
-								return true;	
+								return true;
 						} else {
-								return false;	
+								return false;
 						}
-					}
-					return false;
-		 }
+				}
+				return false;
+		}
 		/**
 		 * Check if mysqli class exist exist or not
 		 *
@@ -154,7 +154,7 @@ class OssnInstallation {
 		public static function is_mysqli_enabled() {
 				return class_exists('mysqli');
 		}
-		
+
 		/**
 		 * Get database user;
 		 * @last edit: $arsalanshah
@@ -168,7 +168,7 @@ class OssnInstallation {
 						$this->dbusername = 'root';
 				}
 		}
-		
+
 		/**
 		 * Get db password;
 		 * @last edit: $arsalanshah
@@ -178,7 +178,7 @@ class OssnInstallation {
 		public function dbpassword($password) {
 				$this->dbpassword = $password;
 		}
-		
+
 		/**
 		 * Get databasename;
 		 * @last edit: $arsalanshah
@@ -192,7 +192,7 @@ class OssnInstallation {
 						$this->dbname = 'Ossn';
 				}
 		}
-		
+
 		/**
 		 * Get db host;
 		 * @last edit: $arsalanshah
@@ -202,8 +202,8 @@ class OssnInstallation {
 		public function dbhost($dbhost) {
 				preg_match('/([\w\.-]+)(|\:(\d+))$/', $dbhost, $matches);
 				//set the host without port
-				if(isset($matches[1])){
-					$dbhost = $matches[1];
+				if(isset($matches[1])) {
+						$dbhost = $matches[1];
 				}
 				if(!empty($dbhost)) {
 						$this->dbhost = $dbhost;
@@ -211,16 +211,15 @@ class OssnInstallation {
 						$this->dbhost = 'localhost';
 				}
 				//set the port
-				if(isset($matches[3]) && !empty($matches[3])){
-					$this->dbport($matches[3]);
+				if(isset($matches[3]) && !empty($matches[3])) {
+						$this->dbport($matches[3]);
 				} else {
-					$port = ini_get("mysqli.default_port");
-					if(empty($port)){
-						$port = 3306;
-					}
-					$this->dbport($port);					
+						$port = ini_get('mysqli.default_port');
+						if(empty($port)) {
+								$port = 3306;
+						}
+						$this->dbport($port);
 				}
-				
 		}
 
 		/**
@@ -230,11 +229,11 @@ class OssnInstallation {
 		 *
 		 */
 		public function dbport($dbport) {
-				if(!empty($dbport) && (int)$dbport > 0) {
+				if(!empty($dbport) && (int) $dbport > 0) {
 						$this->dbport = $dbport;
 				}
 		}
-		
+
 		/**
 		 * Get web url;
 		 * @last edit: $arsalanshah
@@ -246,7 +245,7 @@ class OssnInstallation {
 						$this->weburl = $weburl;
 				}
 		}
-		
+
 		/**
 		 * Set a datadriectory;
 		 * @last edit: $arsalanshah
@@ -256,11 +255,11 @@ class OssnInstallation {
 		public function datadir($dir) {
 				$this->datadir = $dir;
 		}
-		
+
 		public function setStartupSettings($data) {
 				$this->startup_settings = $data;
 		}
-		
+
 		/**
 		 * Process Data;
 		 * @last edit: $arsalanshah
@@ -275,41 +274,40 @@ class OssnInstallation {
 				if(!is_dir($this->datadir) && !is_writable($this->datadir)) {
 						$this->error_mesg = ossn_installation_print('data:directory:invalid');
 						return false;
-				}			
-				if(!file_put_contents($this->datadir . 'writeable', 1)){
+				}
+				if(!file_put_contents($this->datadir . 'writeable', 1)) {
 						$this->error_mesg = ossn_installation_print('data:directory:invalid');
-						return false;						
+						return false;
 				} else {
-					$writeable  = file_get_contents($this->datadir . 'writeable');	
-					if(!$writeable || $writeable &&  $writeable != 1){
-						$this->error_mesg = ossn_installation_print('data:directory:invalid');
-						return false;							
-					}
+						$writeable = file_get_contents($this->datadir . 'writeable');
+						if(!$writeable || ($writeable && $writeable != 1)) {
+								$this->error_mesg = ossn_installation_print('data:directory:invalid');
+								return false;
+						}
 				}
 				unlink($this->datadir . 'writeable');
-				
+
 				try {
-				   		$this->dbconnect();
-				} catch (Exception $e){
-						$this->error_mesg = $e->getCode().' '.$e->getMessage();
+						$this->dbconnect();
+				} catch (Exception $e) {
+						$this->error_mesg = $e->getCode() . ' ' . $e->getMessage();
 						return false;
 				}
 				if($script = file_get_contents(ossn_installation_paths()->root . 'sql/opensource-socialnetwork.sql')) {
 						$script         = str_replace('<<owner_email>>', $this->startup_settings['owner_email'], $script);
 						$script         = str_replace('<<notification_email>>', $this->startup_settings['notification_email'], $script);
 						$script         = str_replace('<<sitename>>', $this->startup_settings['sitename'], $script);
-						$script         = str_replace("<<secret>>", substr(md5('ossn' . bin2hex(random_bytes(6))), 3, 8), $script);
+						$script         = str_replace('<<secret>>', substr(md5('ossn' . bin2hex(random_bytes(6))), 3, 8), $script);
 						$errors         = array();
 						$script         = preg_replace('/\-\-.*\n/', '', $script);
 						$sql_statements = preg_split('/;[\n\r]+/', $script);
-						
+
 						foreach($sql_statements as $statement) {
 								$statement = trim($statement);
 								if(!empty($statement)) {
 										try {
 												$this->dbconnect()->query($statement);
-										}
-										catch(Exception $e) {
+										} catch (Exception $e) {
 												$errors[] = $e->getMessage();
 										}
 								}
@@ -317,26 +315,33 @@ class OssnInstallation {
 						$this->configurations_db();
 						$this->configurations_site();
 						if(!empty($errors)) {
-								$errortxt = "";
+								$errortxt = '';
 								foreach($errors as $error) {
 										$errortxt .= " {$error};";
 								}
-								
+
 								$msg = $errortxt;
 								throw new Exception($msg);
 						}
 				}
+				//[E] Improve installation script #2294
 				//for custom installations scripts
-				$post_install = ossn_installation_paths()->root . 'post_install.php';
-				if(file_exists($post_install)){
+				$post_install = ossn_installation_paths()->root . 'post_install/';
+				$iterator     = new GlobIterator("{$post_install}post_install*.php", FilesystemIterator::KEY_AS_FILENAME);
+				if($iterator) {
 						//start OSSN engine
-						define('OSSN_ALLOW_SYSTEM_START', TRUE);
-						require_once(dirname(dirname(dirname(__FILE__))) . '/system/start.php');
-						require_once($post_install);	
-				}				
+						define('OSSN_ALLOW_SYSTEM_START', true);
+						require_once dirname(dirname(dirname(__FILE__))) . '/system/start.php';
+						foreach($iterator as $item) {
+								$path = $item->getPathname();
+								if(file_exists($post_install)) {
+										require_once $post_install;
+								}
+						}
+				}
 				return true;
 		}
-		
+
 		/**
 		 * Get Installation dir path;
 		 * @last edit: $arsalanshah
@@ -344,9 +349,9 @@ class OssnInstallation {
 		 * @return string
 		 */
 		public static function ossnInstallationDir() {
-				return str_replace("\\", "/", dirname(dirname(dirname(__FILE__)))) . '/';
+				return str_replace('\\', '/', dirname(dirname(dirname(__FILE__)))) . '/';
 		}
-		
+
 		/**
 		 * Connect to database;
 		 * @last edit: $arsalanshah
@@ -355,42 +360,41 @@ class OssnInstallation {
 		public function dbconnect() {
 				$connect = new mysqli($this->dbhost, $this->dbusername, $this->dbpassword, $this->dbname, $this->dbport);
 				return $connect;
-				
 		}
-		
+
 		/**
 		 * Database configuration;
 		 * @last edit: $arsalanshah
 		 * @Reason: Initial;
 		 */
 		function configurations_db() {
-				$params       = array(
-						'host' => $this->dbhost,
-						'port' => $this->dbport,
-						'user' => $this->dbusername,
+				$params = array(
+						'host'     => $this->dbhost,
+						'port'     => $this->dbport,
+						'user'     => $this->dbusername,
 						'password' => $this->dbpassword,
-						'dbname' => $this->dbname
+						'dbname'   => $this->dbname,
 				);
 				$this->path   = str_replace('installation/', '', ossn_installation_paths()->root);
-				$templateFile = $this->path . "configurations/ossn.config.db.example.php";
+				$templateFile = $this->path . 'configurations/ossn.config.db.example.php';
 				$template     = file_get_contents($templateFile);
 				if(!$template) {
 						throw new Exception(ossn_installation_print('all:files:required'));
 				}
-				
+
 				foreach($params as $k => $v) {
-						$template = str_replace("<<" . $k . ">>", $v, $template);
+						$template = str_replace('<<' . $k . '>>', $v, $template);
 				}
-				
-				$settingsFilename = $this->path . "configurations/ossn.config.db.php";
+
+				$settingsFilename = $this->path . 'configurations/ossn.config.db.php';
 				$result           = file_put_contents($settingsFilename, $template);
 				if(!$result) {
 						return false;
 				}
-				
+
 				return true;
 		}
-		
+
 		/**
 		 * Web site configuration;
 		 * @last edit: $arsalanshah
@@ -398,27 +402,27 @@ class OssnInstallation {
 		 * @return bool;
 		 */
 		function configurations_site() {
-				$params       = array(
+				$params = array(
 						'siteurl' => $this->weburl,
-						'datadir' => $this->datadir
+						'datadir' => $this->datadir,
 				);
 				$this->path   = str_replace('installation/', '', ossn_installation_paths()->root);
-				$templateFile = $this->path . "configurations/ossn.config.site.example.php";
+				$templateFile = $this->path . 'configurations/ossn.config.site.example.php';
 				$template     = file_get_contents($templateFile);
 				if(!$template) {
 						throw new Exception(ossn_installation_print('all:files:required'));
 				}
-				
+
 				foreach($params as $k => $v) {
-						$template = str_replace("<<" . $k . ">>", $v, $template);
+						$template = str_replace('<<' . $k . '>>', $v, $template);
 				}
-				
-				$settingsFilename = $this->path . "configurations/ossn.config.site.php";
+
+				$settingsFilename = $this->path . 'configurations/ossn.config.site.php';
 				$result           = file_put_contents($settingsFilename, $template);
 				if(!$result) {
 						return false;
 				}
-				
+
 				return true;
 		}
 } //class
