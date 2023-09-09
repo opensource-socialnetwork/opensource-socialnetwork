@@ -329,6 +329,9 @@ class OssnInstallation {
 				//for custom installations scripts
 				$post_install = ossn_installation_paths()->root . 'post_install.php';
 				if(file_exists($post_install)){
+						//start OSSN engine
+						define('OSSN_ALLOW_SYSTEM_START', TRUE);
+						require_once(dirname(dirname(dirname(__FILE__))) . '/system/start.php'
 						require_once($post_install);	
 				}				
 				return true;
