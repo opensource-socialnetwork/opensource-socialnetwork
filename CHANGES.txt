@@ -24,6 +24,7 @@ OSSN - OPEN SOURCE SOCIAL NEWORK  v7.1
 - [E] Merge Hungarian langauge #2289
 - [E] phpmailer update #2292
 - [E] new zip mime type #2293
+- [E] Improve installation script #2294
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v7.0
 * [B] fix allowing to display profile modules with priority < 200 #2211
