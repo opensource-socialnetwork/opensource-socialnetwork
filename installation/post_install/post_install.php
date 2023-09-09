@@ -12,7 +12,7 @@
 $files = ossn_get_upgrade_files();
 if($files){	
 	foreach($files as $upgrade){
-		ossn_update_upgraded_files($files);
+		ossn_update_upgraded_files($upgrade);
 	}
 }
 

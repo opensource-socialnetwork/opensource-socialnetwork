@@ -334,8 +334,8 @@ class OssnInstallation extends stdClass {
 						require_once dirname(dirname(dirname(__FILE__))) . '/system/start.php';
 						foreach($iterator as $item) {
 								$path = $item->getPathname();
-								if(file_exists($post_install)) {
-										require_once $post_install;
+								if(file_exists($path)) {
+										require_once $path;
 								}
 						}
 				}
