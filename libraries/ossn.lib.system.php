@@ -943,7 +943,7 @@ function ossn_dump($params = '', $clean = true) {
 function ossn_offset_validate() {
 	//pagination offset should be better protected #627
 	$offset = input('offset');
-	if (!ctype_digit($offset)) {
+	if (!is_numeric($offset)) {
 		unset($_REQUEST['offset']);
 	}
 }
