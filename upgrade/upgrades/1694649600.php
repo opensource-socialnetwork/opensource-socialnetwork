@@ -11,10 +11,6 @@
 ossn_generate_server_config('apache');
 ossn_version_upgrade($upgrade, '7.1');
 
-$Site = new OssnSite();
-$Site->setSetting('notification_name', ossn_site_settings('site_name'));
-$Site->setSetting('copyrights', ossn_site_settings('site_name'));
-
 $factory = new OssnFactory(array(
 		'callback' => 'installation',
 		'website'  => ossn_site_url(),
