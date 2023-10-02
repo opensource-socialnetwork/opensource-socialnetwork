@@ -30,7 +30,7 @@ foreach ($menus as $name => $menu) {
 	$hash = 'nm'.md5($name);
     ?>
      <li data-bs-toggle="collapse" data-bs-target="#<?php echo $hash;?>" class="<?php echo $section;?>collapsed active <?php echo $expend;?>">
-        	<a href="javascript:void(0);"><i class="fa <?php echo $icon;?> fa-lg"></i><?php echo ossn_print($name);?><span class="arrow"></span></a>
+        	<a href="javascript:void(0);"><i class="fa <?php echo $icon;?>"></i><?php echo ossn_print($name);?><span class="arrow"></span></a>
      </li>
     <ul class="sub-menu collapse <?php echo $expend;?>" id="<?php echo $hash;?>" class="<?php echo $items;?>"> 
     <?php
