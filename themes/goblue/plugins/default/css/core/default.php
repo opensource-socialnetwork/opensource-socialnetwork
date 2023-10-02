@@ -454,44 +454,54 @@ a {
 .topbar .ossn-icons-topbar-notifications-new i {
 	color: #fff;
 }
+
 /************************************************
    Topbar Dropdown and Post+Comment menu icons
 *************************************************/
-.ossn-wall-item  .dropdown-menu li a:before,
+.ossn-wall-item .dropdown-menu li a:before,
 .ossn-topbar-dropdown-menu ul li a:before {
-    content: "\f068";
-    display: inline-block;
-    float: left;
-    margin-right: 10px;
-    font-family: var(--fa-style-family,"Font Awesome 6 Free");
-    font-weight: var(--fa-style,900);
+	content: "\f068";
+	display: inline-block;
+	float: left;
+	margin-right: 10px;
+	font-family: var(--fa-style-family, "Font Awesome 6 Free");
+	font-weight: var(--fa-style, 900);
 }
-.ossn-wall-item >  .dropdown-menu {
-		min-width:200px;
+
+.ossn-wall-item>.dropdown-menu {
+	min-width: 200px;
 }
+
 .menu-topbar-dropdown-administration:before {
-      content: "\f085" !important;   
+	content: "\f085" !important;
 }
+
 .menu-topbar-dropdown-account_settings:before {
-      content: "\f4fe" !important;   
+	content: "\f4fe" !important;
 }
+
 .menu-topbar-dropdown-logout:before {
-	 content: "\f011" !important;  
+	content: "\f011" !important;
 }
+
 .ossn-edit-comment:before,
 .ossn-wall-item .post-control-edit:before {
-	content : "\f303" !important;
-}	
+	content: "\f303" !important;
+}
+
 .ossn-delete-comment:before,
 .ossn-wall-item .post-control-delete:before {
-	content : "\f2ed" !important;
-}	
+	content: "\f2ed" !important;
+}
+
 .ossn-topbar-dropdown-menu {
 	float: right;
 }
+
 .comment-metadata .dropdown-item {
 	padding: 0.4rem 1rem;
 }
+
 .ossn-topbar-dropdown-menu ul li a,
 .ossn-topbar-dropdown-menu ul li {
 	display: block;
@@ -501,7 +511,7 @@ a {
 
 .ossn-topbar-dropdown-menu .dropdown-menu {
 	margin: 1px -120px 0;
-    min-width:200px;
+	min-width: 200px;
 }
 
 /************************************************
@@ -650,6 +660,7 @@ a {
 	margin-top: 1px;
 	margin-left: 5px;
 	position: absolute;
+
 
 	font-size: 15px;
 }
@@ -982,6 +993,11 @@ a {
 
 .sidebar a {
 	color: #fff;
+	font-size: 14px;
+}
+
+.sidebar a li:before {
+	font-size: initial;
 }
 
 .sidebar-close {
@@ -1053,7 +1069,6 @@ a {
 
 .sidebar-menu-nav {
 	overflow: auto;
-	font-family: verdana;
 	font-size: 13px;
 	font-weight: 200;
 	top: 0px;
@@ -1100,7 +1115,6 @@ a {
 }
 
 .sidebar-menu-nav ul .sub-menu li:before,
-
 .sidebar-menu-nav li .sub-menu li:before {
 	font-family: 'Font Awesome 5 Free';
 	content: "\f105";
@@ -1109,6 +1123,7 @@ a {
 	padding-right: 10px;
 	vertical-align: middle;
 	font-weight: 900;
+	font-size: 13px;
 }
 
 .sidebar-menu-nav li {
@@ -1377,8 +1392,8 @@ a {
 	border-radius: 5px;
 	-webkit-box-shadow: 0 6px 12px rgb(0 0 0 / 18%);
 	box-shadow: 0 6px 12px rgb(0 0 0 / 18%);
-    border-bottom-left-radius: 7px;
-    border-bottom-right-radius: 7px;    
+	border-bottom-left-radius: 7px;
+	border-bottom-right-radius: 7px;
 }
 
 .ossn-notifications-box .notificaton-item {
@@ -1457,8 +1472,8 @@ a {
 	display: block;
 	height: 40px;
 	border-top: 1px solid #eee;
-    border-bottom-left-radius: 7px;
-    border-bottom-right-radius: 7px;
+	border-bottom-left-radius: 7px;
+	border-bottom-right-radius: 7px;
 }
 
 .ossn-notifications-box .metadata {
@@ -1935,7 +1950,6 @@ ul.token-input-list {
 	width: 100%;
 	cursor: text;
 	font-size: 12px;
-	font-family: Verdana;
 	min-height: 1px;
 	margin: 0;
 	z-index: 999;
@@ -2008,7 +2022,6 @@ div.token-input-dropdown {
 	border-bottom: 1px solid #ccc;
 	cursor: default;
 	font-size: 11px;
-	font-family: Verdana;
 	z-index: 1;
 }
 
@@ -2231,6 +2244,7 @@ div.token-input-dropdown ul li.token-input-selected-dropdown-item {
 	font-weight: bold;
 	margin-right: 13px;
 }
+
 .ossn-form input[type=checkbox],
 .ossn-form input[type=radio] {
 	-webkit-appearance: none;
@@ -2250,9 +2264,11 @@ div.token-input-dropdown ul li.token-input-selected-dropdown-item {
 	flex-grow: 0;
 	transition: background 300ms;
 }
+
 .ossn-form input[type=checkbox] {
-	border-radius:2px;
-}	
+	border-radius: 2px;
+}
+
 .ossn-form input[type=checkbox]:checked::before,
 .ossn-form input[type=radio]:checked::before {
 	position: absolute;
@@ -2262,10 +2278,12 @@ div.token-input-dropdown ul li.token-input-selected-dropdown-item {
 	content: '\02143';
 	transform: rotate(40deg);
 }
+
 .ossn-form input[type=checkbox]:hover,
 .ossn-form input[type=radio]:hover {
 	background-color: #f7f7f7;
 }
+
 .ossn-form input[type=checkbox]:checked,
 .ossn-form input[type=radio]:checked {
 	background-color: #0b769c;
