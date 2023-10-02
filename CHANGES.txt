@@ -1,3 +1,6 @@
+OSSN - OPEN SOURCE SOCIAL NEWORK  v7.2
+- [B] usage of unavailable font-family in Goblue #2301
+
 OSSN - OPEN SOURCE SOCIAL NEWORK  v7.1
 - [B] Command to replace slash to backslash missing in vendors/jwt/autoload.php #2274
 - [B] ossn_is_from_cli is returning true on non-cli #2262
