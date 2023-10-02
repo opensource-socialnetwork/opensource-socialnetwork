@@ -14,7 +14,7 @@ ossn_register_languages('fr', array(
 	'theme:goblue:logo:site' => 'Logo du site',
 	'theme:goblue:logo:admin' => "Logo de l'administration",
 	'theme:goblue:logo:large' => 'Le fichier du logo est trop volumineux !',
-	'theme:goblue:logo:failed' => 'Le téléchargement du logo a échoué',
-	'theme:goblue:logo:changed' => 'Le logo a été modifié.',
-	'theme:goblue:browercache' => "Au cas où les images n'apparaissent pas. Veuillez vider le cache de votre navigateur web pour faire apparaître les images"
+	'theme:goblue:logo:failed' => 'Le tÃ©lÃ©chargement du logo a Ã©chouÃ©',
+	'theme:goblue:logo:changed' => 'Le logo a Ã©tÃ© modifiÃ©.',
+	'theme:goblue:browercache' => "Au cas oÃ¹ les images n'apparaissent pas. Veuillez vider le cache de votre navigateur web pour faire apparaÃ®tre les images"
 ));

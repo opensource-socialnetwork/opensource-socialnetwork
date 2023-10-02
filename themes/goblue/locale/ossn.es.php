@@ -12,9 +12,9 @@ ossn_register_languages('es', array(
 	'goblue:settings' => 'GoBlue',
 	'admin:theme:goblue' => 'GoBlue',
 	'theme:goblue:logo:site' => 'Logotipo del sitio',
-	'theme:goblue:logo:admin' => 'Logotipo de la administraciÛn',
-	'theme:goblue:logo:large' => '°El archivo del logo es demasiado grande!',
-	'theme:goblue:logo:failed' => 'La subida del logo fallÛ',
+	'theme:goblue:logo:admin' => 'Logotipo de la administraci√≥n',
+	'theme:goblue:logo:large' => '¬°El archivo del logo es demasiado grande!',
+	'theme:goblue:logo:failed' => 'La subida del logo fall√≥',
 	'theme:goblue:logo:changed' => 'El logo ha sido cambiado.',
-	'theme:goblue:browercache' => 'En caso de que las im·genes no aparezcan. Por favor, borre la memoria cachÈ de su navegador para que aparezcan las im·genes.'
+	'theme:goblue:browercache' => 'En caso de que las im√°genes no aparezcan. Por favor, borre la memoria cach√© de su navegador para que aparezcan las im√°genes.'
 ));
