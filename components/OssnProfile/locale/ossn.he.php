@@ -23,6 +23,6 @@ $he = array(
 		'profile:photos' => 'תמונות פרופיל',
 		
 		'profile:cover:err1' => 'תמונת כותרת קטנה מדי',
-		'profile:cover:err1:detail' => 'תמונת הכותרת צריכה להיות לפחות 1040 x300 או גדולה יותר.'
+		'profile:cover:err1:detail' => 'תמונת הכותרת צריכה להיות לפחות %spx x %spx או גדולה יותר.'
 );
 ossn_register_languages('he', $he);

@@ -23,6 +23,6 @@ $hu = array(
 		'profile:photos' => 'Profilképek',
 		
 		'profile:cover:err1' => 'A borító kép túl kicsi',
-		'profile:cover:err1:detail' => 'A borító képnek legalább 1040 x 300 pixelnek kell lennie.'
+		'profile:cover:err1:detail' => 'A borító képnek legalább %spx x %spx pixelnek kell lennie.'
 );
 ossn_register_languages('hu', $hu);

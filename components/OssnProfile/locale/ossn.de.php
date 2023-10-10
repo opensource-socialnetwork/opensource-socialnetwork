@@ -23,6 +23,6 @@ $de = array(
 		'profile:photos' => 'Profil-Fotos',
 		
 		'profile:cover:err1' => 'Das Titelbild ist zu klein.',
-		'profile:cover:err1:detail' => 'Das Titelbild muss mindestens 1040 x 300 oder größer sein.'
+		'profile:cover:err1:detail' => 'Das Titelbild muss mindestens %spx x %spx oder größer sein.'
 );
 ossn_register_languages('de', $de);

@@ -23,6 +23,6 @@ $zh = array(
 		'profile:photos' => '個人照',
 		
 		'profile:cover:err1' => '封面照片太小',
-		'profile:cover:err1:detail' => '封面照片不可小於 1040 x 300.'
+		'profile:cover:err1:detail' => '封面照片不可小於 %spx x %spx.'
 );
 ossn_register_languages('zh', $zh);

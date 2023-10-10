@@ -23,6 +23,6 @@ $ko = array(
 		'profile:photos' => '인물 소개 사진',
 		
 		'profile:cover:err1' => '표지 그림이 너무 작습니다',
-		'profile:cover:err1:detail' => '표지 그림은 적어도 1040 x 300 이상이어야 합니다.'
+		'profile:cover:err1:detail' => '표지 그림은 적어도 %spx x %spx 이상이어야 합니다.'
 );
 ossn_register_languages('ko', $ko);

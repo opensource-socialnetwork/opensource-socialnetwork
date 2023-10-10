@@ -23,6 +23,6 @@ $id = array(
 		'profile:photos' => 'Foto Profil',
 		
 		'profile:cover:err1' => 'Foto Sampul terlalu kecil',
-		'profile:cover:err1:detail' => 'Foto Sampul minimal harus 1040 x 300 atau lebih besar.'
+		'profile:cover:err1:detail' => 'Foto Sampul minimal harus %spx x %spx atau lebih besar.'
 );
 ossn_register_languages('id', $id);

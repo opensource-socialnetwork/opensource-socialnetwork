@@ -23,6 +23,6 @@ $el = array(
 		'profile:photos' => 'Φωτογραφίες προφίλ',
 		
 		'profile:cover:err1' => 'Η εικόνα εξωφυλλου είναι πολύ μικρή',
-		'profile:cover:err1:detail' => 'Η εικόνα εξωφυλλου πρέπει να είναι τουλάχιστον 1040 x 300 ή μεγαλύτερη.'
+		'profile:cover:err1:detail' => 'Η εικόνα εξωφυλλου πρέπει να είναι τουλάχιστον %spx x %spx ή μεγαλύτερη.'
 );
 ossn_register_languages('el', $el);
