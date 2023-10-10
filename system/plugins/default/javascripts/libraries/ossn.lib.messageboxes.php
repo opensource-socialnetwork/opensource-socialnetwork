@@ -109,10 +109,21 @@ Ossn.trigger_message = function($message, $type) {
  */
 Ossn.Drag = function() {
 	// some sanitizing to work with fluid themes and covers eventually resized according to screen width
-	const default_cover_width  = 1040;
-	const default_cover_height = 200;
+	var theme_config = $('#ossn-theme-config');
+	var default_cover_height = theme_config.attr('data-desktop-cover-height');
+	var default_cover_width  = theme_config.attr('data-minimum-cover-image-width');
+	
+	//[B] Cover seems have a bug #2305
+	if(typeof default_cover_height == 'undefined'){
+		default_cover_height = 200;
+	}
+	if(typeof default_cover_width  == 'undefined'){
+		default_cover_width = 1200;	
+	}
+	
 	var image_width  = document.querySelector("#draggable").naturalWidth;
-	var image_height = document.querySelector("#draggable").naturalHeight;
+	var image_height = document.querySelector("#draggable").naturalHeight;	
+	
 	var cover_width  = $("#container").width();
 	var cover_height = $("#container").height();
 	var drag_width   = 0;
