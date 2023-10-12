@@ -99,9 +99,12 @@ echo ';';
  * @params OssnChat['friends'] Array
  */
 $friends_online = $('.ossn-chat-online-friends-count').find('span');
-if (OssnChat['friends']['online'] > $friends_online.text() || OssnChat['friends']['online'] < $friends_online.text()) {
-	$('.friends-list').find('.data').html(OssnChat['friends']['data']);
-}
+
+//we can not relay on online friends count because what if user add one new firend and remove other the count is still same.
+//resulting in not showing new friend so below three lines are not required will be removed from reference as well.
+//if (OssnChat['friends']['online'] > $friends_online.text() || OssnChat['friends']['online'] < $friends_online.text()) {
+//$('.friends-list').find('.data').html(OssnChat['friends']['data']);
+//}
 $friends_online.html(OssnChat['friends']['online']);
 
 /**
@@ -126,6 +129,10 @@ if (OssnChat['allfriends']) {
 			prependata += '<div data-toggle="tooltip" title="' + data['name'] + '" class="friends-list-item" id="friend-list-item-' + data['guid'] + '" onClick="Ossn.ChatnewTab(' + data['guid'] + ');"><div class="friends-item-inner"><div class="icon"><img class="user-icon-small ustatus ossn-chat-icon-online" src="' + data['icon'] + '" /></div></div></div>';
 	});
 	
+	//[B] online friends being removed from Chat tab #2309
+	if(prependata){
+		$('.friends-list').find('.data').html(OssnChat['friends']['data']);	
+	}
 	if(prependata != ''){
 		$(".ossn-chat-windows-long .inner").find('.ossn-chat-none').hide();
 			if ($('.ossn-chat-pling').length) {
