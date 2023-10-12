@@ -115,6 +115,12 @@ $friends_online.html(OssnChat['friends']['online']);
 if (OssnChat['active_friends']) {
 	$.each(OssnChat['active_friends'], function(key, data) {
 		$('#ossnchat-ustatus-' + key).attr('class', data['status']);
+		if(data['status'] == 'ossn-chat-icon-online'){
+			$('#ossn-inchat-status-' + key).attr('class', 'ossn-inchat-status-circle ossn-inchat-status-online');
+		}
+		if(data['status'] == 'ossn-chat-icon-offline'){
+			$('#ossn-inchat-status-' + key).attr('class', 'ossn-inchat-status-circle ossn-inchat-status-offline');
+		}		
 	});
 }
 /**
