@@ -644,7 +644,10 @@ class OssnMessages extends OssnEntities {
 		 */
 		public function attachmentURL() {
 				if($this->isAttachment()) {
-						return ossn_site_url("messages/attachment/{$this->attachment_guid}/{$this->attachment_name}");
+						$attachment_name = str_replace("file:", "", $this->attachment_name);
+						$attachment_name = str_replace("image:", "", $attachment_name);
+						
+						return ossn_site_url("messages/attachment/{$this->attachment_guid}/{$attachment_name}");
 				}
 		}
 		/**
