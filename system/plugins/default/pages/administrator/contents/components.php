@@ -19,7 +19,10 @@
 			$vars['OssnCom'] = $OssnComs;
 			$vars['component'] = $OssnComs->getCom($component);
 			$vars['name'] = $component;
+			//[E] Add ids in components and themes lists item so can be utilized later #2313
+			echo "<div class='ossn-admin-component-list-item' data-com-id='{$component}' data-com-version='{$vars['component']->version}'>";
 			echo ossn_plugin_view("admin/components/list/item", $vars);
+			echo "</div>";
 		}
 	}
 	?>
