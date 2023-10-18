@@ -24,7 +24,8 @@
             </div>
             <div class="col-md-8">
             	      <?php
-					  	if(isset($params['data']) && $params['data'] != false){
+					  	//[B] Message send form not showing #2314
+					  	if(isset($params['user']) && $params['user'] instanceof OssnUser){
 							$status = 'ossn-inmessage-status-offline';	
 					  		if($params['user']->isOnline(10)){
 								$status = 'ossn-inmessage-status-online';	
