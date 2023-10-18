@@ -194,7 +194,7 @@ function ossn_messages_page($pages) {
 						if($params['recent']) {
 								$params['count_recent'] = $OssnMessages->recentChat($loggedin_guid, true);
 								//[E] Don't open the last message in messages/all #2283								
-								$params['data']   = false;
+								$params['user']   = false;
 								$params['countm'] = false;
 								$contents = array(
 										'content' => ossn_plugin_view('messages/pages/view', $params)
