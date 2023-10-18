@@ -9,7 +9,7 @@
  * @link      https://www.opensource-socialnetwork.org/
  */
 ?>
-<div class="panel-group" id="accordion">
+<div class="panel-group ossn-admin-components-list" id="accordion">
    	<?php
 	$OssnComs = new OssnComponents;
 	$list = $OssnComs->getComponents();
