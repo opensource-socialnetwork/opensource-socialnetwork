@@ -10,7 +10,7 @@ OSSN - OPEN SOURCE SOCIAL NEWORK  v7.2
 - [B] online friends being removed from Chat tab #2309
 - [B] Cover reposition issue due to layout updates in past #2305
 - [B] usage of unavailable font-family in Goblue #2301
-
+- [B] missing declaration of $members in group profile #2307
 
 OSSN - OPEN SOURCE SOCIAL NEWORK  v7.1
 - [B] Command to replace slash to backslash missing in vendors/jwt/autoload.php #2274
