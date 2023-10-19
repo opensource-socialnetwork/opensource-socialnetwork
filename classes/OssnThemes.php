@@ -193,6 +193,10 @@ class OssnThemes extends OssnSite {
 		 */
 		public function loadActive() {
 				$path = ossn_route()->themes;
+				
+				$vars['theme'] = $this->getSettings('theme');
+				ossn_trigger_callback('theme', 'before:load', $vars);
+				
 				if(is_file("{$path}{$this->getSettings('theme')}/ossn_theme.php")) {
 						$lang      = ossn_site_settings('language');
 						$lang_file = "{$path}{$this->getSettings('theme')}/locale/ossn.{$lang}.php";
@@ -203,6 +207,7 @@ class OssnThemes extends OssnSite {
 						}
 						require_once("{$path}{$this->getSettings('theme')}/ossn_theme.php");
 				}
+				ossn_trigger_callback('theme', 'after:load', $vars);
 		}
 		/**
 		 * Enable Theme
