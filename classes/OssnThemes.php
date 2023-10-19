@@ -196,7 +196,8 @@ class OssnThemes extends OssnSite {
 				if(is_file("{$path}{$this->getSettings('theme')}/ossn_theme.php")) {
 						$lang      = ossn_site_settings('language');
 						$lang_file = "{$path}{$this->getSettings('theme')}/locale/ossn.{$lang}.php";
-						if(is_file($lang_file)) {
+						//[B] Theme language strings not cached #2299
+						if(ossn_site_settings('cache') == 0 && is_file($lang_file)) {
 								//feature request: multilanguage themes #281
 								include_once($lang_file);
 						}
