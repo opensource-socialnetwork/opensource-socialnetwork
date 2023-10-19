@@ -74,6 +74,7 @@ class OssnMessages extends OssnEntities {
 								'gif',
 								'webp',
 								'docx',
+								'pdf',
 						));
 
 						if($fileguid = $file->addFile()) {
