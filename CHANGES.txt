@@ -3,6 +3,13 @@ OSSN - OPEN SOURCE SOCIAL NEWORK  v7.2
 - [B] non-UTF8 chars in 3 language files of Goblue #2298
 - [B] Message send form not showing #2314
 - [E] Add ids in components and themes lists item so can be utilized later #2313
+- [B] Add accept types on file input messages #2311
+- [E] Fetch annotation entities in sperate method #2312
+- [E] Fetch annotation entities in sperate method #2312
+- [B] Message attachment file namev (output url) needs changes #2310
+- [B] online friends being removed from Chat tab #2309
+- [B] Cover reposition issue due to layout updates in past #2305
+- [B] usage of unavailable font-family in Goblue #2301
 
 
 OSSN - OPEN SOURCE SOCIAL NEWORK  v7.1
