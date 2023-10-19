@@ -119,6 +119,15 @@ function ossn_trigger_language_cache($cache) {
 								}						
 					}
 				}
+				//load theme locale files
+				//[B] Theme language strings not cached #2299
+				$theme_path = ossn_default_theme();
+				$theme      = ossn_site_settings('theme');
+				if($theme){
+						if(is_file("{$theme_path}/locale/ossn.{$lang}.php")) {
+									include_once("{$theme_path}/locale/ossn.{$lang}.php");
+						}						
+				}				
 				if(isset($Ossn->localestr[$lang])) {
 						$json = ossn_load_json_locales($lang);
 						//private locale cache , Cache the locale files #1321
