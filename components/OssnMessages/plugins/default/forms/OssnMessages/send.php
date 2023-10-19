@@ -9,5 +9,5 @@
 	<div class="ossn-loading ossn-hidden"></div>
 	<input type="submit" class="btn btn-primary btn-sm" value="<?php echo ossn_print('send'); ?>"/>
     <div class="ossn-message-icon-attachment" data-guid="<?php echo $params['user']->guid; ?>"></div>
-    <input type="file"  name="attachment" class="ossn-omessage-attachment d-none" data-guid="<?php echo $params['user']->guid; ?>" />
+    <input type="file"  name="attachment" accept="image/*,.docx, .pdf" class="ossn-omessage-attachment d-none" data-guid="<?php echo $params['user']->guid; ?>" />
 </div>
