@@ -11,6 +11,7 @@ OSSN - OPEN SOURCE SOCIAL NEWORK  v7.2
 - [B] Cover reposition issue due to layout updates in past #2305
 - [B] usage of unavailable font-family in Goblue #2301
 - [B] missing declaration of $members in group profile #2307
+- [E] Changing logo should add timestamp to invalidate cache #2302
 
 OSSN - OPEN SOURCE SOCIAL NEWORK  v7.1
 - [B] Command to replace slash to backslash missing in vendors/jwt/autoload.php #2274
