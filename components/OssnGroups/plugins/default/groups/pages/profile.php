@@ -32,6 +32,8 @@ if ($cover) {
 		$coverp[1] = '';
 	}	
 }
+//[B] missing declaration of $members in group profile #2307
+$members  = false;
 //group members total count becomes 0 when group cover is set #156 $dev.githubertus 
 //[B] hide group members and subpages for private groups #2276
 if($params['group']->membership == OSSN_PUBLIC || ($params['group']->membership == OSSN_PRIVATE && $params['ismember'])){
