@@ -1,5 +1,4 @@
 OSSN - OPEN SOURCE SOCIAL NEWORK  v7.2
-- [B] usage of unavailable font-family in Goblue #2301
 - [B] non-UTF8 chars in 3 language files of Goblue #2298
 - [B] Message send form not showing #2314
 - [E] Add ids in components and themes lists item so can be utilized later #2313
