@@ -254,7 +254,9 @@ class OssnUser extends OssnEntities {
 		 * @return boolean
 		 */
 		public function isUsername() {
-				if(preg_match("/^[a-zA-Z0-9]+$/", $this->username) && strlen($this->username) > 4) {
+				//[E] allow to modify default username length using hook #2304
+				$minimum = ossn_call_hook('user', 'minimum:username:length', $this, 5);
+				if(preg_match("/^[a-zA-Z0-9]+$/", $this->username) && strlen($this->username) >= $minimum) {
 						return true;
 				}
 				return false;
