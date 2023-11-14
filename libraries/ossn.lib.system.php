@@ -451,29 +451,35 @@ function arraySerialize($array = NULL) {
 
 /**
  * Limit a words in a string
+ *
  * @params string  $str Text you want to trim
  * @params int     $limit Maxmium string width
- * @params  boolean $dots Show dots at end of string ?
+ * @params boolean $dots Show dots at end of string ?
  *
- * @last edit: $michael @githubertus
- * @return string|boolean
+ * @return string
  */
-function strl($str, $limit = NULL, $dots = true) {
-	if (isset($str) && isset($limit)) {
-		//error_log('STRL: ' . $str . ' LEN: ' . mb_strlen($str, 'HTML-ENTITIES') . ' LIMIT: ' . $limit);
-		//[B] Emojis shows entities in trimmed message notification #2257
-		if (mb_strlen($str, 'HTML-ENTITIES') > $limit) {
-			if ($dots == true) {
-				return mb_substr($str, 0, $limit, 'HTML-ENTITIES') . '...';
-			} elseif ($dots == false) {
-				return mb_substr($str, 0, $limit, 'HTML-ENTITIES');
-			}
-		} elseif (mb_strlen($str, 'HTML-ENTITIES') <= $limit) {
-			return $str;
+function strl($str, $limit = null, $dots = true) {
+		if(mb_strlen($str, 'UTF-8') > $limit) {
+				$str       = html_entity_decode($str, ENT_QUOTES, 'UTF-8');
+				$str       = mb_substr($str, 0, $limit, 'UTF-8');
+				$str       = htmlentities($str, ENT_QUOTES, 'UTF-8');
+				$str       = trim($str);
+				$dots_text = '...';
+				if($dots) {
+						//https://gist.github.com/khal3d/4648574
+						$is_rtl = function ($string) {
+								$rtl_chars_pattern = '/[\x{0590}-\x{05ff}\x{0600}-\x{06ff}]/u';
+								return preg_match($rtl_chars_pattern, $string);
+						};
+						$output = $str . $dots_text;
+						if($is_rtl($str)) {
+								$output = $dots_text . $str;
+						}
+						return $output;
+				}
+				return $str;
 		}
-		
-	}
-	return false;
+		return $str;
 }
 
 /**
