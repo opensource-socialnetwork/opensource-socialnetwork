@@ -10,7 +10,7 @@
  */
 ?>
 <div class="row">
-	<div class="col-md-12">
+	<div class="col-lg-12">
 		<?php echo nl2br($params['group']->description); ?>
 	</div>
 </div>

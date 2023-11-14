@@ -11,7 +11,7 @@
 $params['controls'] = (isset($params['controls'])) ? $params['controls'] : '';
 
 ?>
-	<div class="col-md-11">
+	<div class="col-lg-11">
 		<div class="ossn-layout-module">
 			<div class="module-title">
 				<div class="title"><?php echo $params['title']; ?></div>

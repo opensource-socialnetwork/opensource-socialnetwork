@@ -20,7 +20,7 @@ if(ossn_is_hook('newsfeed', "sidebar:right")) {
 	<?php echo ossn_plugin_view('theme/page/elements/system_messages'); ?>    
 	<div class="ossn-layout-newsfeed">
 		<div class="row">
-			<div class="col-md-2">
+			<div class="col-lg-2">
 				<div class="coloum-left ossn-page-contents">
 					<?php
 						if (ossn_is_hook('search', "left")) {
@@ -30,12 +30,12 @@ if(ossn_is_hook('newsfeed', "sidebar:right")) {
 						?>   
 				</div>
 			</div>
-			<div class="col-md-6">
+			<div class="col-lg-6">
 				<div class="newsfeed-middle ossn-page-contents">
 					<?php echo $params['content']; ?>
 				</div>
 			</div>
-			<div class="col-md-3">
+			<div class="col-lg-3">
             	<?php if(!empty($isempty)){ ?>
 				<div class="newsfeed-right">
 					<?php

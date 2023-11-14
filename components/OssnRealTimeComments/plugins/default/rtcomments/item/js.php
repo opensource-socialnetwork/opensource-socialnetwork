@@ -12,7 +12,7 @@ if(isset($params['post']) && !empty($params['post']->guid)){
 	<div class="comments-item ctyping-c-item ctyping-hide">
     	<div class="ctyping-c-item-container">
     	<div class="row">
-        	<div class="col-md-12">
+        	<div class="col-lg-12">
            		 <div class="ctyping"> 
              		<span class="ctyping-circle ctyping-bouncing"></span> 
                 	<span class="ctyping-circle ctyping-bouncing"></span> 

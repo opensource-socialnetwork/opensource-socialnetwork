@@ -35,11 +35,11 @@ if(isset($comment->allow_comment_like) && $comment->allow_comment_like == false)
 }
 ?>
 <div class="comments-item" id="comments-item-<?php echo $comment->id; ?>">
-	<div class="row">
-		<div class="col-md-1">
+	<div class="d-flex flex-row">
+		<div class="pe-1">
 			<img class="comment-user-img user-icon-smaller" src="<?php echo $user->iconURL()->smaller; ?>" />
 		</div>
-		<div class="col-md-11">
+		<div class="ps-1 w-100">
 			<div class="comment-contents">
 				<p>
 					<?php

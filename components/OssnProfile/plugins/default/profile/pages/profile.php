@@ -37,7 +37,7 @@ if (ossn_isLoggedIn()) {
 ?>
 <div class="ossn-profile container">
 	<div class="row">
-    	<div class="col-md-11">
+    	<div class="col-lg-11">
 			<div class="<?php echo $class; ?>">
 				<div class="top-container">
 					<div id="container" class="profile-cover">
@@ -129,7 +129,7 @@ if (ossn_isLoggedIn()) {
 							echo ossn_call_hook('profile', 'subpage', $params);
 				}
 			} else { ?>   
-            <div class="col-md-7">
+            <div class="col-lg-7">
 					<div class="ossn-profile-wall">
 						<?php 
 						if(com_is_active('OssnWall')) { 
@@ -138,7 +138,7 @@ if (ossn_isLoggedIn()) {
 						} ?>
 					</div>
          </div>      
-		<div class="col-md-4">
+		<div class="col-lg-4">
 			<div class="ossn-profile-sidebar d-none d-sm-block">
  				<div class="ossn-profile-modules">
 					<?php if (ossn_is_hook( 'profile', 'modules')) { 

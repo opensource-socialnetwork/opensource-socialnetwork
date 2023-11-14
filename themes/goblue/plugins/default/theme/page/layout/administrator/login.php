@@ -15,7 +15,7 @@
 	  	  )); 
 	?>    
 	<div class="row">
-    	<div class="col-md-12 contents">
+    	<div class="col-lg-12 contents">
     	 	<?php echo $params['contents']; ?>
     	</div>
 	</div>

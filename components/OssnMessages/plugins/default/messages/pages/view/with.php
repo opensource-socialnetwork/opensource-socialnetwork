@@ -38,7 +38,7 @@
 								if($user->guid == ossn_loggedin_user()->guid){
 								?>
 		<div class="row" id="message-item-<?php echo $message->id ?>">
-			<div class="col-md-12 pull-right">
+			<div class="col-lg-12 pull-right">
 				<div class="message-box-sent text<?php echo $class;?>">
 					<?php if($deleted){ ?>
 					<span><i class="fa fa-times-circle"></i><?php echo ossn_print('ossnmessages:deleted');?></span>
@@ -60,7 +60,7 @@
 			} else {
 				?>
 		<div class="row" id="message-item-<?php echo $message->id ?>">
-			<div class="col-md-12 pull-left">
+			<div class="col-lg-12 pull-left">
 				<div class="message-box-recieved text <?php echo $class;?>">
 					<?php if($deleted){ ?>
 						<span><i class="fa fa-times-circle"></i><?php echo ossn_print('ossnmessages:deleted');?></span>

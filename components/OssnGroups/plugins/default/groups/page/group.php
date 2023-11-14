@@ -13,7 +13,7 @@
        	<div class="ossn-layout-contents ossn-layout-group">
        		<?php echo ossn_plugin_view('theme/page/elements/system_messages'); ?>
        		<div class="row">
-                 <div class="col-md-12">
+                 <div class="col-lg-12">
 					 <?php echo $params['content']; ?>
                  </div>
              </div>    

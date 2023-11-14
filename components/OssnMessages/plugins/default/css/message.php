@@ -35,8 +35,8 @@
 	background: #F7F7F7;
 }
 
-.ossn-messages .messages-recent .messages-from .user-item .col-md-10,
-.ossn-messages .messages-recent .messages-from .user-item .col-md-2 {
+.ossn-messages .messages-recent .messages-from .user-item .col-lg-10,
+.ossn-messages .messages-recent .messages-from .user-item .col-lg-2 {
 	padding: 0px;
 }
 

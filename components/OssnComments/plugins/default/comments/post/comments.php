@@ -58,11 +58,11 @@ if (ossn_isLoggedIn() && $allow_post_comment){
 
 $form = <<<html
 <div class="comments-item">
-    <div class="row">
-        <div class="col-md-1">
+    <div class="d-flex flex-row">
+        <div class="pe-1">
             <img class="comment-user-img" src="{$iconurl}" />
         </div>
-        <div class="col-md-11">
+        <div class="ps-1 w-100">
             $inputs
         </div>
     </div>

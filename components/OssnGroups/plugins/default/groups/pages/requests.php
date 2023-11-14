@@ -16,10 +16,10 @@ if (empty($requests)) {
         ?>
 	      <div class="ossn-group-members">
 			<div class="row">
-            	<div class="col-md-2 col-sm-2 col-12">
+            	<div class="col-lg-2 col-sm-2 col-12">
     	        		<img src="<?php echo $user->iconURL()->large; ?>" class="user-icon-large img-responsive"/>
 				</div>
-                <div class="col-md-10 col-sm-10 col-12">
+                <div class="col-lg-10 col-sm-10 col-12">
 	    	        <div class="uinfo">
                         <?php
 							echo ossn_plugin_view('output/url', array(

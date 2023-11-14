@@ -66,7 +66,7 @@ if (isset($params['contents'])) {
     	<div class="container">
         
         	<div class="row">
-			<div class="col-6 col-md-6">
+			<div class="col-6 col-lg-6">
             			<?php if(ossn_site_settings('cache') == true){?>
             			<img src="<?php echo ossn_theme_url(); ?>images/logo_admin.jpg"/>
                         <?php } else { ?>
@@ -74,7 +74,7 @@ if (isset($params['contents'])) {
                         <?php } ?> 
             		</div>
                 <?php if(ossn_isAdminLoggedin()){ ?>
-            	<div class="col-6 col-md-6 header-dropdown">
+            	<div class="col-6 col-lg-6 header-dropdown">
 					<ul class="navbar-right">	
                         <div class="dropdown">
                         	<a id="dLabel" role="button" data-bs-toggle="dropdown" data-bs-target="#"><i class="fa fa-bars fa-3"></i></a> 
@@ -96,7 +96,7 @@ if (isset($params['contents'])) {
     <?php } ?>
 	<div class="container">
     	<div class="row">
-        	<div class="col-md-12">
+        	<div class="col-lg-12">
             	 <?php echo $contents; ?>
             </div>
         </div>
@@ -104,10 +104,10 @@ if (isset($params['contents'])) {
         <!-- footer -->
         <footer>
       	  	<div class="row">
-        		<div class="col-md-6">
+        		<div class="col-lg-6">
  				<?php echo ossn_print('copyright'); ?> <a href="<?php echo ossn_site_url(); ?>"><?php echo $copyrights; ?></a>            			
            	 	</div>
-                <div class="col-md-6 text-right">
+                <div class="col-lg-6 text-right">
                 	 <?php echo 'POWERED <a href="http://www.opensource-socialnetwork.org">OPEN SOURCE SOCIAL NETWORK</a>'; ?>
                 </div>
         	</div>

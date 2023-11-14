@@ -46,7 +46,7 @@
 	margin-left:10px;
     margin-right:10px;
 }
-.ossn-viewer .comments-item .col-md-1 {
+.ossn-viewer .comments-item .col-lg-1 {
 	display:none;
 }
 .ossn-viewer-comments .comments-likes .ossn-comment-attach-photo .fa-camera {

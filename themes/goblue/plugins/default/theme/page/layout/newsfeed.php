@@ -26,7 +26,7 @@ if(ossn_is_hook('newsfeed', "center:top")) {
 	<div class="ossn-layout-newsfeed">
        	<?php echo ossn_plugin_view('theme/page/elements/system_messages'); ?>    
 		<div class="row">
-			<div class="col-md-7">
+			<div class="col-lg-7">
 				<?php if(!empty($isempty_top)){ ?>
 				<div class="newsfeed-middle-top">
 					<?php echo $newsfeed_center_top; ?>
@@ -36,7 +36,7 @@ if(ossn_is_hook('newsfeed', "center:top")) {
 					<?php echo $params['content']; ?>
 				</div>
 			</div>
-			<div class="col-md-4">
+			<div class="col-lg-4">
             			<?php if(!empty($isempty)){ ?>
 				<div class="newsfeed-right">
 					<?php

@@ -43,7 +43,7 @@ if($params['group']->membership == OSSN_PUBLIC || ($params['group']->membership 
 <div class="ossn-group-profile">
 	<div class="ossn-group-top-row">
 		<div class="row">
-			<div class="col-md-11">
+			<div class="col-lg-11">
 				<div class="profile-header <?php echo $iscover; ?>">
 					<?php if (ossn_loggedin_user() && ($params['group']->owner_guid == ossn_loggedin_user()->guid || ossn_isAdminLoggedin())) { ?>
 					<form id="group-upload-cover" style="display:none;" method="post" enctype="multipart/form-data">
@@ -125,7 +125,7 @@ if($params['group']->membership == OSSN_PUBLIC || ($params['group']->membership 
 						</div>
 					</div> <!-- .header-bottom/ -->            
 				</div> <!-- ./ossn-group-top-row -->
-			</div> <!-- ./col-md-11 -->
+			</div> <!-- ./col-lg-11 -->
 		</div>	<!-- ./row -->
 	</div> <!-- ./ossn-group-top-row -->
     <div class="ossn-group-bottom-row margin-top-10">
@@ -139,7 +139,7 @@ if($params['group']->membership == OSSN_PUBLIC || ($params['group']->membership 
         }  else { 
 		?>   
     	<div class="row">
-    		<div class="col-md-7">
+    		<div class="col-lg-7">
 				<div class="group-wall">
                 <?php
 					//#113 make contents of public groups visible. 
@@ -178,8 +178,8 @@ if($params['group']->membership == OSSN_PUBLIC || ($params['group']->membership 
                 	}
                	 ?>
             	</div> <!-- ./group-wall -->       
-        	</div> <!-- ./col-md-7 -->
-             <div class="col-md-4">
+        	</div> <!-- ./col-lg-7 -->
+             <div class="col-lg-4">
              	<div class="page-sidebar d-none d-sm-block">
         		<?php 
 				echo ossn_view_widget(array(
@@ -232,7 +232,7 @@ if($params['group']->membership == OSSN_PUBLIC || ($params['group']->membership 
 					}			
            	  ?>
              </div> <!-- ./page-sidebar -->
-            </div> <!-- ./col-md-4 -->
+            </div> <!-- ./col-lg-4 -->
     	</div> <!-- ./row -->
         <?php 
 			} //subpage  end else

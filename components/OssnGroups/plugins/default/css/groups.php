@@ -273,7 +273,7 @@
 	margin-left: 5px;
 }
 
-.ossn-group-members .col-md-2 {
+.ossn-group-members .col-lg-2 {
 	text-align: center;
 }
 

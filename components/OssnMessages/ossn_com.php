@@ -197,7 +197,7 @@ function ossn_messages_page($pages) {
 								$params['user']   = false;
 								$params['countm'] = false;
 								$contents = array(
-										'content' => ossn_plugin_view('messages/pages/view', $params)
+										'content' => ossn_plugin_view('messages/pages/all', $params)
 								);
 						} else {
 								$contents = array(

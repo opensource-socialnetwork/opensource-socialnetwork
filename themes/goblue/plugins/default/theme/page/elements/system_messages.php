@@ -8,9 +8,9 @@
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
  * @link      https://www.opensource-socialnetwork.org/
  */
-$col = "col-md-11";
+$col = "col-lg-11";
 if(isset($params['admin']) && $params['admin'] === true){
-	$col = "col-md-12";
+	$col = "col-lg-12";
 }
  ?>
 <div class="ossn-system-messages">
