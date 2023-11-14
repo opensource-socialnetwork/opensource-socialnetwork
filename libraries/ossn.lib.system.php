@@ -462,11 +462,14 @@ function strl($str, $limit = NULL, $dots = true) {
 	if (isset($str) && isset($limit)) {
 		//error_log('STRL: ' . $str . ' LEN: ' . mb_strlen($str, 'HTML-ENTITIES') . ' LIMIT: ' . $limit);
 		//[B] Emojis shows entities in trimmed message notification #2257
-		if (mb_strlen($str, 'HTML-ENTITIES') > $limit) {
+		if (mb_strlen($str, 'UTF-8') > $limit) {
+			$str     = html_entity_decode($str, ENT_COMPAT, 'UTF-8');
+			$encoded = mb_strcut($str, 0, $limit, 'UTF-8');
+			$encoded = htmlentities($encoded, ENT_QUOTES, 'UTF-8');
 			if ($dots == true) {
-				return mb_substr($str, 0, $limit, 'HTML-ENTITIES') . '...';
+				return $encoded. '...';
 			} elseif ($dots == false) {
-				return mb_substr($str, 0, $limit, 'HTML-ENTITIES');
+				return $encoded;
 			}
 		} elseif (mb_strlen($str, 'HTML-ENTITIES') <= $limit) {
 			return $str;
