@@ -738,7 +738,12 @@ class OssnFile extends OssnEntities {
 						$filesize  = filesize($file);
 						$type      = $this->getFileExtension($file);
 						$MimeTypes = $this->mimeTypes();
-
+						
+						//[B] OssnFile:output doesn't recognize setMimeTypes by component #2331
+						//restricted by component
+						if(isset($this->fileMimeTypes) && is_array($this->fileMimeTypes)){
+							$MimeTypes = $this->fileMimeTypes;
+						}
 						//not getting actual mimetype getting by extension type to avoid any vulnerability.
 						if(isset($MimeTypes[$type][0])) {
 								$MimeType = $MimeTypes[$type][0];
