@@ -55,7 +55,11 @@ function ossn_embed_create_embed_object($url, $guid, $videowidth=0) {
 	} else if (strpos($url, 'metacafe.com') != false) {
 		return ossn_embed_metacafe_handler($url, $guid, $videowidth);
 	} else if (strpos($url, 'dailymotion.com') != false) {
-		return ossn_embed_dm_handler($url, $guid, $videowidth);
+		//day.li not being parsed by embed component
+ 		$url = str_replace('dai.ly', 'dailymotion.com', $url);
+  		return ossn_embed_dm_handler($url, $guid, $videowidth);
+ 	} else if (strpos($url, 'dai.ly') != false) {
+ 		return ossn_embed_dm_shortener_parse_url($url, $guid, $videowidth);
 	} else {
 		return false;
 	}
@@ -389,4 +393,23 @@ function ossn_embed_dm_parse_url($url) {
 	//echo $hash;
 
 	return $hash;
+}
+
+/**
+ * parse dai.ly url
+ *
+ * @param string $url
+ * @return string dailymotion/v/hash
+ */
+function ossn_embed_dm_shortener_parse_url($url) {
+	$path = parse_url($url, PHP_URL_PATH);
+	$videourl = '' . $path;
+
+	ossn_embed_calc_size($videowidth, $videoheight, 425/320, 24);
+
+	$embed_object = ossn_embed_add_css($guid, $videowidth, $videoheight);
+
+	$embed_object .= ossn_embed_add_object('dm', $videourl, $guid, $videowidth, $videoheight);
+
+	return $embed_object;
 }
