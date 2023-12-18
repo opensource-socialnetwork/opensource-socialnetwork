@@ -1,11 +1,12 @@
 <?php
-/* Linkify the URLs in text
+/** 
+ * Linkify the URLs in text
  *
  * License : GNU Public License version 2
  * Taken from hypeJunction
  * https://github.com/hypeJunction/hypeScraper/blob/master/classes/hypeJunction/Scraper/Linkify.php
  * By Ismayil Khayredinov - (ismayil@hypejunction.com)
- */
+ **/
 function linkify($text) {
 		// match entire anchor <a></a> so we can exclude it from matches
 		$REGEX_MATCH_ANCHOR = '<a[^>]*?>.*?<\/a>';
