@@ -1209,6 +1209,11 @@ class OssnUser extends OssnEntities {
 		 *
 		 * @return boolean
 		 */
+		/**
+		 * Save a user entity
+		 *
+		 * @return boolean
+		 */
 		public function save() {
 				if(!isset($this->guid) || empty($this->guid)) {
 						return false;
@@ -1221,6 +1226,11 @@ class OssnUser extends OssnEntities {
 						if($loggedin_user && $loggedin_user->guid == $this->guid) {
 								$_SESSION['OSSN_USER'] = ossn_user_by_guid($this->guid);
 						}
+						//callback when user is saved
+						//useful to find out when user is edited
+						ossn_trigger_callback('user', 'save', array(
+									'guid' => $this->guid,
+						));						
 						return true;
 				}
 				return false;
