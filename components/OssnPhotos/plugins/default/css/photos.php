@@ -61,6 +61,7 @@
 .ossn-photos .pthumb {
     width: 100%;
     height: 200px;
+    object-fit: cover;
 }
 .ossn-photo-menu li {
     display: block;
