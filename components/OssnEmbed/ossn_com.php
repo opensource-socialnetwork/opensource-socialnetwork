@@ -47,6 +47,8 @@ function ossn_embed_wall_template_item($hook, $type, $return){
 						'/(https?:\/\/)(player\.)?(vimeo.com\/video\/)([0-9]*)/',
 						'/(https?:\/\/)(www\.)?(metacafe\.com\/watch\/)([0-9a-zA-Z_-]*)(\/[0-9a-zA-Z_-]*)(\/)/',
 						'/(https?:\/\/www\.dailymotion\.com\/.*\/)([0-9a-z]*)/',
+			  			'#(((https?://)?)|(^./))(((www.)?)|(^./))dailymotion\.com/v=([^\[\]()<.,\s\n\t\r]+)#i',
+ 						'#(((https?://)?)|(^./))(((www.)?)|(^./))dai\.ly/([^\[\]()<.,\s\n\t\r]+)#i',
 						);
 	$regex = "/<a[\s]+[^>]*?href[\s]?=[\s\"\']+"."(.*?)[\"\']+.*?>"."([^<]+|.*?)?<\/a>/";
 	
