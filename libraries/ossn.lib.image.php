@@ -80,10 +80,10 @@ function ossn_user_image_sizes(){
  * @return boolean|array
  */
 function ossn_input_images($name){
-		$files = $_FILES[$name];
-		if(!isset($files)){
+		if(!isset($_FILES[$name])){
 				return false;
 		}
+		$files = $_FILES[$name];
 		$_files       = array();
 		$_files_count = count($files['name']);
 		$_files_keys  = array_keys($files);
