@@ -86,7 +86,7 @@ class OssnMessages extends OssnEntities {
 								}
 						}
 						if(isset($this->data) && is_object($this->data)) {
-								foreach($this->data as $name => $value) {
+								foreach ($this->data as $name => $value) {
 										$this->owner_guid = $this->lastMessage;
 										$this->type       = 'message';
 										$this->subtype    = $name;
@@ -202,7 +202,7 @@ class OssnMessages extends OssnEntities {
 				if(!$chats) {
 						return false;
 				}
-				foreach($chats as $chat) {
+				foreach ($chats as $chat) {
 						// if a more recent record of our own is found
 						// the message is assumed to be answered
 						$chat->answered   = 0;
@@ -288,7 +288,7 @@ class OssnMessages extends OssnEntities {
 				);
 				$params['order_by'] = 'id DESC';
 				$c                  = $this->select($params, true);
-				foreach($c as $rec) {
+				foreach ($c as $rec) {
 						$r[$rec->message_from] = $rec->message_to;
 				}
 				return $r;
@@ -358,7 +358,7 @@ class OssnMessages extends OssnEntities {
 								',',
 								array_map(function ($x) {
 										return $x->id;
-								}, (array) $message_ids),
+								}, (array) $message_ids)
 						);
 
 						$params           = array();
@@ -376,7 +376,7 @@ class OssnMessages extends OssnEntities {
 										',',
 										array_map(function ($x) {
 												return $x->guid;
-										}, (array) $entity_guids),
+										}, (array) $entity_guids)
 								);
 								$this->delete(array(
 										'from'   => 'ossn_entities_metadata',
@@ -464,7 +464,7 @@ class OssnMessages extends OssnEntities {
 						$wheres[] = "m.viewed ='{$options['viewed']}'";
 				}
 				if(isset($options['entities_pairs']) && is_array($options['entities_pairs'])) {
-						foreach($options['entities_pairs'] as $key => $pair) {
+						foreach ($options['entities_pairs'] as $key => $pair) {
 								$operand = empty($pair['operand']) ? '=' : $pair['operand'];
 								if(!empty($pair['name']) && isset($pair['value']) && !empty($operand)) {
 										if(!empty($pair['value'])) {
@@ -491,13 +491,13 @@ class OssnMessages extends OssnEntities {
 						if(!is_array($options['wheres'])) {
 								$wheres[] = $options['wheres'];
 						} else {
-								foreach($options['wheres'] as $witem) {
+								foreach ($options['wheres'] as $witem) {
 										$wheres[] = $witem;
 								}
 						}
 				}
 				if(isset($options['joins']) && !empty($options['joins']) && is_array($options['joins'])) {
-						foreach($options['joins'] as $jitem) {
+						foreach ($options['joins'] as $jitem) {
 								$params['joins'][] = $jitem;
 						}
 				}
@@ -540,7 +540,7 @@ class OssnMessages extends OssnEntities {
 						return $this->select($count)->total;
 				}
 				if($messages) {
-						foreach($messages as $message) {
+						foreach ($messages as $message) {
 								$lists = array();
 								if(isset($message->id)) {
 										$entities = $this->searchEntities(array(
@@ -549,7 +549,7 @@ class OssnMessages extends OssnEntities {
 												'page_limit' => false,
 										));
 										if($entities) {
-												foreach($entities as $entity) {
+												foreach ($entities as $entity) {
 														$lists[$entity->subtype] = $entity->value;
 												}
 										}
@@ -634,7 +634,7 @@ class OssnMessages extends OssnEntities {
 										'file:',
 								),
 								'',
-								$this->attachment_name,
+								$this->attachment_name
 						);
 				}
 		}
@@ -645,10 +645,12 @@ class OssnMessages extends OssnEntities {
 		 */
 		public function attachmentURL() {
 				if($this->isAttachment()) {
-						$attachment_name = str_replace("file:", "", $this->attachment_name);
-						$attachment_name = str_replace("image:", "", $attachment_name);
-						
-						return ossn_site_url("messages/attachment/{$this->attachment_guid}/{$attachment_name}");
+						$attachment_name = str_replace('file:', '', $this->attachment_name);
+						$attachment_name = str_replace('image:', '', $attachment_name);
+						//[B] OssnMessages image attachment broken if invalid file name #2339
+						$path_info       = pathinfo($attachment_name);
+						$attachment_name = OssnTranslit::urlize($path_info['filename']);
+						return ossn_site_url("messages/attachment/{$this->attachment_guid}/{$attachment_name}.{$path_info['extension']}");
 				}
 		}
 		/**
@@ -678,31 +680,33 @@ class OssnMessages extends OssnEntities {
 				}
 				return false;
 		}
-	 	/**
+		/**
 		 * Get status for users by user guids
 		 * We will use plain SQL to avoid loads because of entities checking
 		 *
 		 * @param string $ids User ids
-		 * 
+		 *
 		 * @return array|boolean
 		 */
-		 public function onlineStatus($ids){
-			 	if(empty($ids)){
-						return false;	
+		public function onlineStatus($ids) {
+				if(empty($ids)) {
+						return false;
 				}
-			 	$vars  = array(
-						'from' => 'ossn_users as u',
-						'wheres' => array("u.guid IN($ids)"),
+				$vars = array(
+						'from'   => 'ossn_users as u',
+						'wheres' => array(
+								"u.guid IN($ids)",
+						),
 				);
-			 	$status = $this->select($vars, true);
+				$status  = $this->select($vars, true);
 				$statues = array();
-				if($status){
-						foreach($status as $u){
-								$user = arrayObject($u, 'OssnUser');
+				if($status) {
+						foreach ($status as $u) {
+								$user                 = arrayObject($u, 'OssnUser');
 								$statues[$user->guid] = $user->isOnline(10);
 						}
 						return $statues;
 				}
 				return false;
-		 }
+		}
 } //class
