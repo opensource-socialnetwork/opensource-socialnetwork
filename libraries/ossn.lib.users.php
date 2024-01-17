@@ -110,6 +110,18 @@ function ossn_user_by_username($username) {
 function ossn_user_by_guid($guid) {
 		$user       = new OssnUser;
 		$user->guid = $guid;
+		
+		//caching
+		$cache = new OssnDynamicCaching();
+		if($cache->isAvailableEnabled()){
+				try {
+					$data = $cache->handler()->get("ossn_user_by_guid({$guid})");
+					return $data;
+				} catch(OssnDynamicCacheKeyNotExists $e){
+					$cache->handler()->store("ossn_user_by_guid({$guid})", $user->getUser());
+				}
+		}	
+		
 		return $user->getUser();
 }
 
@@ -123,6 +135,18 @@ function ossn_user_by_guid($guid) {
 function ossn_user_by_email($email) {
 		$user        = new OssnUser;
 		$user->email = $email;
+		
+		//caching
+		$cache = new OssnDynamicCaching();
+		if($cache->isAvailableEnabled()){
+				try {
+					$data = $cache->handler()->get("ossn_user_by_email({$email})");
+					return $data;
+				} catch(OssnDynamicCacheKeyNotExists $e){
+					$cache->handler()->store("ossn_user_by_email({$email})", $user->getUser());
+				}
+		}	
+		
 		return $user->getUser();
 }
 

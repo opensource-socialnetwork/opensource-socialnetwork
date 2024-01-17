@@ -1209,18 +1209,55 @@ class OssnUser extends OssnEntities {
 		 *
 		 * @return boolean
 		 */
-		/**
-		 * Save a user entity
-		 *
-		 * @return boolean
-		 */
 		public function save() {
 				if(!isset($this->guid) || empty($this->guid)) {
 						return false;
 				}
+				//update basic data table
+				if(empty($this->email) || empty($this->first_name) || empty($this->type)){
+						return false;	
+				}
+				
+				$params = array(
+						'table' => 'ossn_users',
+						'wheres' => array("guid='{$this->guid}'"),
+						'names' => array(
+								'first_name',
+								'last_name',
+								'email',
+						),
+						'values' => array(
+								$this->first_name,
+								$this->last_name,
+								$this->email,
+						),
+				);
+				
+				//storing type in different variable to avoid any security breach
+				if(isset($this->new_type) && !empty($this->new_type)){
+						$params['names'][] = 'type';
+						$params['values'][] = $this->new_type ;					
+				}
+				
+				//new password
+				if(isset($this->new_password) && !empty($this->new_password) && $this->isPassword()){
+					if(isset($this->password_algorithm) && !empty($this->password_algorithm)) {
+							$this->setPassAlgo($this->password_algorithm);
+					}
+					$salt            = $this->generateSalt();
+					$password        = $this->generate_password($this->new_password, $salt);
+					
+					$params['names'][] = 'password';
+					$params['values'][] = $password ;
+					
+					$params['names'][] = 'salt';
+					$params['values'][] = $salt ;					
+				}
+
 				$this->owner_guid = $this->guid;
 				$this->type       = 'user';
-				if(parent::save()) {
+				
+				if($this->update($params) && parent::save()) {
 						//check if owner is loggedin user guid , if so update session
 						$loggedin_user = ossn_loggedin_user();
 						if($loggedin_user && $loggedin_user->guid == $this->guid) {
@@ -1234,8 +1271,7 @@ class OssnUser extends OssnEntities {
 						return true;
 				}
 				return false;
-		}
-		/**
+		}		/**
 		 * Can Moderate
 		 * Check if user can moderate the requested item or not
 		 *

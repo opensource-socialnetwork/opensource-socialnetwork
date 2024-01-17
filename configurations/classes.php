@@ -9,6 +9,9 @@
  * @link      https://www.opensource-socialnetwork.org/
  */
 $OssnClasses = array(
+		'DynamicCacheKeyNotExists',
+		'DynamicCaching',
+		'Memcached',
 		'Session',
 		'Factory',
 		'SiteException',
@@ -30,7 +33,8 @@ $OssnClasses = array(
 		'Image',
 		'JWT',
 );
-foreach($OssnClasses as $class){
-		$loadClass['Ossn'.$class] = ossn_route()->classes . "Ossn{$class}.php";
+foreach ($OssnClasses as $class) {
+		$loadClass['Ossn' . $class] = ossn_route()->classes . "Ossn{$class}.php";
 }
+$loadClass['MemoryCaching'] = ossn_route()->classes . 'interfaces/MemoryCaching.php';
 ossn_register_class($loadClass);
