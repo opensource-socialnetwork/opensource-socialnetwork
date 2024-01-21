@@ -1,3 +1,17 @@
+OSSN - OPEN SOURCE SOCIAL NETWORK v7.3
+- [B] Wall is not visible for group member (other than creator) #2340
+- [B] OssnMessages image attachment broken if invalid file name #2339
+- [B] undefined array key "somekey" in file /var/www/libraries/ossn.lib.image.php (line 83) #2338
+- [E] profile cover album , thumbnail is distorted #2337
+- [E] Perform users edit using custom method instead of plain database->update() #2336
+- [B] URL with a special character in a comment post #2332
+- [B] OssnFile:output doesn't recognize setMimeTypes by component #2331
+- [B] strl showing wrong characters effected by #2257 #2325
+- [E] Hide message view on xs devices on message view page #2323
+- [B] countByYears result in admin panel showing wrong years + limit query to 2 years #2320
+- [B] Show chat bottom on large screens only lg (not md) #2321
+
+
 OSSN - OPEN SOURCE SOCIAL NEWORK  v7.2
 - [B] non-UTF8 chars in 3 language files of Goblue #2298
 - [B] Message send form not showing #2314
