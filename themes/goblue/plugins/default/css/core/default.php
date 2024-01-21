@@ -2269,14 +2269,20 @@ div.token-input-dropdown ul li.token-input-selected-dropdown-item {
 	border-radius: 2px;
 }
 
-.ossn-form input[type=checkbox]:checked::before,
-.ossn-form input[type=radio]:checked::before {
+.ossn-form input[type=checkbox]:checked::before {
 	font: 9px/1 'Open Sans', sans-serif;
 	left: 7px;
 	top: 5px;
 	content: '\02143';
 }
-
+.ossn-form input[type=radio]:checked::before {
+	position: absolute;
+	font: 9px/1 'Open Sans', sans-serif;
+	left: 7px;
+	top: 5px;
+	content: '\02143';
+    transform: rotate(40deg);
+}
 .ossn-form input[type=checkbox]:hover,
 .ossn-form input[type=radio]:hover {
 	background-color: #f7f7f7;
@@ -2591,7 +2597,7 @@ footer .ossn-footer-menu a:last-child::after {
 }
 
 .ossn-box-inner {
-	width: 446px;
+	width: 435px;
 }
 
 .home-left-contents .some-icons i {
@@ -2852,8 +2858,9 @@ footer .ossn-footer-menu a:last-child::after {
 	}
 
 	.ossn-box-loading {
-		margin-left: 150px;
-		margin-top: 37px;
+		margin-left: 0;
+		margin-top: 0;
+        margin: 40px auto;
 	}
 
 	.ossn-message-box .contents input[type="text"] {
