@@ -48,3 +48,8 @@
 .menu-section-item-notifications:before{
     content: "\f0f3" !important
 }
+.ossn-notifications-all .time-created {
+    font-weight: bold;
+    font-size: 13px;
+    margin-left: 10px;
+}

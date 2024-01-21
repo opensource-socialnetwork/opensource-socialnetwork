@@ -18,10 +18,17 @@ $notification_read = "{$baseurl}notification/read/{$params['guid']}?notification
 				<div class='ossn-notification-icon-<?php echo $params['icon_type'];?>'></div>
 				<div class='data'>
                 	<?php 
-					echo ossn_print("ossn:notifications:{$params['type']}", array(
-						'<strong>'.$params['fullname'].'</strong>',
-					));
+					if(!isset($params['customprint'])){
+						echo ossn_print("ossn:notifications:{$params['type']}", array(
+							'<strong>'.$params['fullname'].'</strong>',
+						));
+					} else {
+						echo $params['customprint'];	
+					}
 					?>
+                    <?php if(isset($params['instance'])){ ?>
+                    <span class="time-created" title="<?php echo date('d/m/Y', $params['instance']->time_created);?>"><?php echo ossn_user_friendly_time($params['instance']->time_created); ?></span>
+                    <?php } ?>
 				</div>
 		   </div>
 		</li>

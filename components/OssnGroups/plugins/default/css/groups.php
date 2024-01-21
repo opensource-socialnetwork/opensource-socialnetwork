@@ -222,12 +222,12 @@
 	display: inline-block;
 }
 
-.ossn-groups-notification-icon,
-.ossn-groups-notification-icon:before {
+.ossn-notification-icon-groups,
+.ossn-notification-icon-groups:before {
 	display: inline-block;
 }
 
-.ossn-groups-notification-icon:before {
+.ossn-notification-icon-groups:before {
 	content: "\f0c0";
 	font-family: 'Font Awesome 5 Free';
 	font-style: normal;

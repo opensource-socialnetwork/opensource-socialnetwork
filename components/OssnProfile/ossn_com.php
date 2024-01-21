@@ -436,6 +436,7 @@ function ossn_notification_like_profile_photo($hook, $type, $return, $notificati
 				'viewed'    => $notification->viewed,
 				'url'       => $url,
 				'icon_type' => $iconType,
+				'instance'  => $notif,
 				'fullname'  => $user->fullname,
 		));		   
 }

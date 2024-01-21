@@ -253,7 +253,6 @@ function ossn_like_annotation($hook, $type, $return, $params){
 				$url     = ossn_site_url("post/view/{$notif->subject_guid}#comments-item-{$notif->item_guid}");
 				break;
 		}
-
 		if(!$display){
 				return false;
 		}
@@ -265,6 +264,7 @@ function ossn_like_annotation($hook, $type, $return, $params){
 				'viewed'    => $notif->viewed,
 				'url'       => $url,
 				'icon_type' => 'like',
+				'instance'  => $notif,
 				'fullname'  => $user->fullname,
 		));
 }
