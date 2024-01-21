@@ -10,7 +10,7 @@
  */
 ?>
 <div class="row">
-       <div class="col-md-6 col-center ossn-page-contents">
+       <div class="col-lg-6 col-center ossn-page-contents">
     	<?php 
 			$contents = ossn_view_form('user/resetlogin', array(
  				   'action' => ossn_site_url('action/resetlogin'),

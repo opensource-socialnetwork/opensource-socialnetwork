@@ -10,7 +10,7 @@
  */
 ?>
 <div class="row">
-	<div class="col-md-11 ossn-page-contents">
+	<div class="col-lg-11 ossn-page-contents">
  			<div class="ossn-error-page">
 				<i class="fa fa-exclamation-triangle"></i>
     			<div class="error-heading"><?php echo ossn_print('page:error:heading'); ?></div>

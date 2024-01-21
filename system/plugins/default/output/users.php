@@ -13,10 +13,10 @@ if ($users) {
     foreach ($users as $user) {
       ?>
 		<div class="row ossn-users-list-item">
-            	<div class="col-md-2 col-sm-2 d-none d-sm-block">
+            	<div class="col-lg-2 col-sm-2 d-none d-sm-block">
     	        		<img src="<?php echo $user->iconURL()->large; ?>" width="100" height="100"/>
 				</div>
-                <div class="col-md-10 col-sm-10 col-12">
+                <div class="col-lg-10 col-sm-10 col-12">
 	    	        <div class="uinfo">
                         <?php
 							echo ossn_plugin_view('output/user/url', array(

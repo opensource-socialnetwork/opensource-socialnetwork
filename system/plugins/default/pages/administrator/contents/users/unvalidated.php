@@ -15,7 +15,7 @@ $list = $users->getUnvalidatedUSERS($search);
 $count = $users->getUnvalidatedUSERS($search, 'count');
 ?>
 <div class="row">
-	<div class="col-md-12">
+	<div class="col-lg-12">
     <form method="post">
         <input type="text" name="search_users" placeholder="<?php echo ossn_print('search'); ?>" />
         <input type="submit" class="btn btn-primary btn-sm" value="<?php echo ossn_print('search'); ?>"/>
@@ -23,7 +23,7 @@ $count = $users->getUnvalidatedUSERS($search, 'count');
     </div>
 </div>
 <div class="row margin-top-10">
-<div class="col-md-12">
+<div class="col-lg-12">
 <table class="table ossn-users-list">
     <tbody>
     <tr class="table-titles">

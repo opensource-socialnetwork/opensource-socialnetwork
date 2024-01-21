@@ -11,7 +11,7 @@
 $error = input('error');
 ?>
 <div class="row">
-       <div class="col-md-6 col-center ossn-page-contents">
+       <div class="col-lg-6 col-center ossn-page-contents">
     <?php if ($error == 1) { ?>
         <div class="alert alert-danger">
             <strong><?php echo ossn_print('login:error'); ?></strong><br/>

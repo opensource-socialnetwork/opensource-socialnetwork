@@ -10,7 +10,7 @@
  */
 ?>
 <div class="row ossn-page-contents">
-		<div class="col-md-6 home-left-contents">
+		<div class="col-lg-6 home-left-contents">
 			<div class="logo">
             	<?php if(ossn_site_settings('cache') == true){?>
             	<img src="<?php echo ossn_theme_url();?>images/logo.png" />
@@ -36,7 +36,7 @@
                 	<li><i class="fa fa-calendar"></i></li>
              </ul>
  	   </div>   
-       <div class="col-md-6">
+       <div class="col-lg-6">
     	<?php 
 			$contents = ossn_view_form('signup', array(
         					'id' => 'ossn-home-signup',
