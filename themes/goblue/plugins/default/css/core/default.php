@@ -2271,12 +2271,10 @@ div.token-input-dropdown ul li.token-input-selected-dropdown-item {
 
 .ossn-form input[type=checkbox]:checked::before,
 .ossn-form input[type=radio]:checked::before {
-	position: absolute;
 	font: 9px/1 'Open Sans', sans-serif;
 	left: 7px;
 	top: 5px;
 	content: '\02143';
-	transform: rotate(40deg);
 }
 
 .ossn-form input[type=checkbox]:hover,
@@ -2290,7 +2288,9 @@ div.token-input-dropdown ul li.token-input-selected-dropdown-item {
 	color: #fff;
 	font-weight: bold;
 }
-
+.checkbox-block span {
+	margin-top:5px;
+}
 
 /*******************************
 	Ossn Blocked

@@ -11,6 +11,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v7.3
 - [B] countByYears result in admin panel showing wrong years + limit query to 2 years #2320
 - [B] Show chat bottom on large screens only lg (not md) #2321
 - [E] Show current search query inside search box on search page #2328
+- [B] Goblue 6.4 checkbox (checked) display corrupted #2330
 
 
 OSSN - OPEN SOURCE SOCIAL NEWORK  v7.2
