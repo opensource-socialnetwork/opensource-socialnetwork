@@ -13,7 +13,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v7.3
 - [E] Show current search query inside search box on search page #2328
 - [B] Goblue 6.4 checkbox (checked) display corrupted #2330
 - [B] Replace col-md with lg #2322
-
+- [E] .ossn-box-loading not in center #2342
 
 
 OSSN - OPEN SOURCE SOCIAL NEWORK  v7.2
