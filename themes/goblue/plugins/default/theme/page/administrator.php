@@ -21,7 +21,7 @@ if (isset($params['contents'])) {
 } else {
     $contents = '';
 }
-
+$custom_settings = ossn_goblue_get_custom_logos_bgs_setting();
 ?>
 <!DOCTYPE html>
 <html>
@@ -67,10 +67,10 @@ if (isset($params['contents'])) {
         
         	<div class="row">
 			<div class="col-6 col-lg-6">
-            			<?php if(ossn_site_settings('cache') == true){?>
-            			<img src="<?php echo ossn_theme_url(); ?>images/logo_admin.jpg"/>
+            			<?php if(isset($custom_settings) && isset($custom_settings['logo_admin'])){ ?>
+            			<img src="<?php echo ossn_add_cache_to_url(ossn_theme_url("logos_backgrounds/logo_site_{$custom_settings['logo_site']}"));?>"/>
                         <?php } else { ?>
-            			<img src="<?php echo ossn_theme_url(); ?>images/logo_admin.jpg?ver=<?php echo time();?>"/>                        
+            			<img src="<?php echo ossn_theme_url(); ?>images/logo_admin.jpg"/>                        
                         <?php } ?> 
             		</div>
                 <?php if(ossn_isAdminLoggedin()){ ?>
