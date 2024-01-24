@@ -14,6 +14,8 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v7.3
 - [B] Goblue 6.4 checkbox (checked) display corrupted #2330
 - [B] Replace col-md with lg #2322
 - [E] .ossn-box-loading not in center #2342
+- [E] Configure able autocheck OssnNotifications #2329
+- [E] Configure able autocheck OssnNotifications #2329
 
 
 OSSN - OPEN SOURCE SOCIAL NEWORK  v7.2
