@@ -27,6 +27,15 @@ body {
 
 .logo {}
 
+i {
+	margin-right:5px;
+}
+.ossn-admin-unvalidated-users-check {
+	width: 25px;
+    height: 25px;
+    margin-top: 5px;
+    cursor:pointer;
+}
 .header {
 	height: 70px;
 	color: #fff;
