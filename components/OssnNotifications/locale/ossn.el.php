@@ -42,6 +42,8 @@ $el = array(
 	
 	'ossn:notifications:comments:entity:file:profile:photo:someone' => "%s σχολίασε τη φωτογραφία προφίλ.",	
     'ossn:notifications:comments:entity:file:profile:cover:someone' => "%s σχολίασε το εξώφυλλο του προφίλ.",	
-	'ossn:notifications:comments:entity:file:ossn:aphoto:someone' => '%s σχολίασε τη φωτογραφία.',		
+	'ossn:notifications:comments:entity:file:ossn:aphoto:someone' => '%s σχολίασε τη φωτογραφία.',
+
+	'ossn:notifications:admin:settings:checkintervals:title' => 'Χρόνος αυτόματου ελέγχου ειδοποιήσεων (προεπιλογή 60 δευτερόλεπτα)', 	
 );
 ossn_register_languages('el', $el); 

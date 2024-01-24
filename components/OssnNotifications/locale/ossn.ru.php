@@ -42,6 +42,8 @@ $ru = array(
 	
 	'ossn:notifications:comments:entity:file:profile:photo:someone' => "%s прокомментировал фото профиля.",	
     'ossn:notifications:comments:entity:file:profile:cover:someone' => "%s прокомментировал обложку профиля.",	
-	'ossn:notifications:comments:entity:file:ossn:aphoto:someone' => '%s прокомментировал фото.',		
+	'ossn:notifications:comments:entity:file:ossn:aphoto:someone' => '%s прокомментировал фото.',
+	
+	'ossn:notifications:admin:settings:checkintervals:title' => 'Время автоматической проверки уведомлений (по умолчанию 60 секунд)', 
 );
 ossn_register_languages('ru', $ru); 

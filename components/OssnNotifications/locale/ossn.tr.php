@@ -42,6 +42,8 @@ $tr = array(
 	
 	'ossn:notifications:comments:entity:file:profile:photo:someone' => "%s profil fotoğrafına yorum yaptı.",	
     'ossn:notifications:comments:entity:file:profile:cover:someone' => "%s profil kapağına yorum yaptı.",
-	'ossn:notifications:comments:entity:file:ossn:aphoto:someone' => '%s fotoğrafa yorum yaptı.',		
+	'ossn:notifications:comments:entity:file:ossn:aphoto:someone' => '%s fotoğrafa yorum yaptı.',
+
+	'ossn:notifications:admin:settings:checkintervals:title' => 'Bildirim otomatik kontrol süresi (Varsayılan 60 saniye)', 
 );
 ossn_register_languages('tr', $tr); 

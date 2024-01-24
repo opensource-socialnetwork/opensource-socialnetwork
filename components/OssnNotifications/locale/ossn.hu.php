@@ -44,5 +44,7 @@ bezár minden értesítési ablakot, ha rákattint a page<br><br>',
 	'ossn:notifications:comments:entity:file:profile:photo:someone' => "%s megjegyzést fűzött a profilfotóhoz.",
 	'ossn:notifications:comments:entity:file:profile:cover:someone' => "%s megjegyzést fűzött a profil borítójához.",
 	'ossn:notifications:comments:entity:file:ossn:aphoto:someone' => '%s megjegyzést fűzött a fényképhez.',	
+	
+	'ossn:notifications:admin:settings:checkintervals:title' => 'Értesítés automatikus ellenőrzési ideje (alapértelmezett 60 másodperc)', 
 );
 ossn_register_languages('hu', $hu); 

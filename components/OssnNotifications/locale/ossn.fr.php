@@ -42,6 +42,8 @@ $fr = array(
 
 	'ossn:notifications:comments:entity:file:profile:photo:someone' => "%s a commenté la photo de profil.",	
     'ossn:notifications:comments:entity:file:profile:cover:someone' => "%s a commenté la couverture du profil.",
-	'ossn:notifications:comments:entity:file:ossn:aphoto:someone' => '%s a commenté la photo.',		
+	'ossn:notifications:comments:entity:file:ossn:aphoto:someone' => '%s a commenté la photo.',
+
+	'ossn:notifications:admin:settings:checkintervals:title' => 'Temps de vérification automatique des notifications (60 secondes par défaut)', 	
 );
 ossn_register_languages('fr', $fr);

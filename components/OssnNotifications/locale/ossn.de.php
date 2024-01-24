@@ -44,5 +44,7 @@ $de = array(
 	'ossn:notifications:comments:entity:file:profile:photo:someone' => "%s hat das Profilfoto kommentiert.",	
     'ossn:notifications:comments:entity:file:profile:cover:someone' => "%s hat das Profil-Cover kommentiert.",	
 	'ossn:notifications:comments:entity:file:ossn:aphoto:someone' => '%s hat das Foto kommentiert.',	
+	
+	'ossn:notifications:admin:settings:checkintervals:title' => 'Zeit für die automatische Überprüfung der Benachrichtigung (Standard: 60 Sekunden)', 
 );
 ossn_register_languages('de', $de); 

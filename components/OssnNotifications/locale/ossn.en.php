@@ -43,5 +43,7 @@ $en = array(
 	'ossn:notifications:comments:entity:file:profile:photo:someone' => "%s commented on the profile photo.",	
     'ossn:notifications:comments:entity:file:profile:cover:someone' => "%s commented on profile cover.",
 	'ossn:notifications:comments:entity:file:ossn:aphoto:someone' => '%s commented on photo.',	
+	
+	'ossn:notifications:admin:settings:checkintervals:title' => 'Notification auto check time (Default 60 seconds)', 
 );
 ossn_register_languages('en', $en); 

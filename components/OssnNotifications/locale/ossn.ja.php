@@ -43,6 +43,8 @@ $ja = array(
 	
 	'ossn:notifications:comments:entity:file:profile:photo:someone' => "%s プロフィール写真にコメントしました。",	
     'ossn:notifications:comments:entity:file:profile:cover:someone' => "%s プロフィールカバーにコメントしました。",	
-	'ossn:notifications:comments:entity:file:ossn:aphoto:someone' => '%s が写真にコメントしました。',		
+	'ossn:notifications:comments:entity:file:ossn:aphoto:someone' => '%s が写真にコメントしました。',
+
+	'ossn:notifications:admin:settings:checkintervals:title' => '通知自動チェック時間（デフォルトは60秒）', 
 );
 ossn_register_languages('ja', $ja); 
