@@ -16,6 +16,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v7.3
 - [E] .ossn-box-loading not in center #2342
 - [E] Configure able autocheck OssnNotifications #2329
 - [E] Allow selection on multiple users on the unvalidated list current page #2319
+- [E] Session locking issue #2343
 
 
 OSSN - OPEN SOURCE SOCIAL NEWORK  v7.2

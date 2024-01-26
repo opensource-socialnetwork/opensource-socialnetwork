@@ -750,6 +750,8 @@ class OssnFile extends OssnEntities {
 								if(isset($Mime) && !empty($Mime)) {
 										$MimeType = $Mime;
 								}
+								//[E] Session locking issue #2343
+								session_write_close();
 								ob_flush();
 								header("Content-type: {$MimeType}");
 								header('Expires: ' . gmdate('D, d M Y H:i:s \G\M\T', strtotime('+6 months')), true);
