@@ -17,17 +17,41 @@
  * @return object
  */
 function ossn_get_object($guid){
-	if(!empty($guid)){
-		$object = new OssnObject;
-		$search = $object->searchObject(array(
-			'wheres'=> "o.guid='{$guid}'",
-			'offset' => 1
-		));
-		if($search && isset($search[0]->guid)){
-			return $search[0];
+		if(empty($guid)){
+			return false;	
 		}
-	}
-	return false;
+		$getObject = function($guid){
+			if(!empty($guid)){
+				$object = new OssnObject;
+				$search = $object->searchObject(array(
+					'wheres'=> "o.guid='{$guid}'",
+					'offset' => 1
+				));
+				if($search && isset($search[0]->guid)){
+					return $search[0];
+				}
+			}
+			return false;
+		};
+		//caching
+		$cache = new OssnDynamicCaching();
+		if($cache->isAvailableEnabled()){
+				try {
+					
+					$data = $cache->handler()->get("ossn_get_object({$guid})");
+					return $data;
+					
+				} catch(OssnDynamicCacheKeyNotExists $e){
+					
+					$data = $getObject($guid);
+					//don't store if its not exists in system
+					if($data){					
+						$cache->handler()->store("ossn_get_object({$guid})", $data);
+					}
+					return $data;
+				}
+		}	
+		return $getObject($guid);
 }
 /**
  * Get entities of object

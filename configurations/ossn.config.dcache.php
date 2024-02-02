@@ -8,13 +8,12 @@
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
  * @link      https://www.opensource-socialnetwork.org/
  */
-?>
 
-<?php
-echo ossn_view_form('admin/basic_settings', array(
-    'action' => ossn_site_url('action/admin/settings/save/basic'),
-    'class' => 'ossn-admin-form'
-));
-?>
-
-<?php
+$Ossn->dynamic_cache_settings = array(
+		"status"   => "disabled",
+		"type"     => "",
+		"host"     => "",
+		"port"     => "",
+		"username" => "",
+		"password" => "",
+);

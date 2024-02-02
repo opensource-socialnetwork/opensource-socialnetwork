@@ -326,6 +326,22 @@ Per favore premi sul collegamento sottostante per reimpostare la tua password op
 	'php:upload_err_no_tmp_dir' => 'Manca una cartella temporanea',
 	'php:upload_err_cant_write' => 'Impossibile scrivere il file sul disco',
 	'php:upload_err_extension' => "Un'estensione PHP ha interrotto il caricamento del file",
+	
+	'php:extension:notfound' => 'Estensione PHP non trovata!', 
+	'admin:basiccache' => 'Cache di base', 
+	'admin:dcache:note' => 'I dati dinamici vengono memorizzati nella cache utilizzando una cache dinamica. che potrebbe velare il trattamento della tua applicazione. Abilitare la cache non aiuterà se la connessione del server della cache è più lenta dato che renderà la tua applicazione solo più lenta.  Si consiglia di impostare il server di caching sullo stesso host del proprio social network. Si prega di astenersi dall\'utilizzare il caching con i servizi di hosting condivisi. È possibile utilizzare un solo sistema di cache alla volta.', 
+	'admin:dcache:cachename' => 'Tipi Server Cache', 
+	'admin:dcache:extension:enabled' => 'Estensione Abilitata', 
+	'admin:dcache:select:server:type' => 'Seleziona tipo server', 
+	'admin:dcache:host' => 'Host', 
+	'admin:dcache:port' => 'Porta', 
+	'admin:dcache:username' => 'Username (se presente)', 
+	'admin:dcache:password' => 'Password (se presente)', 
+	'admin:dcache:setstatus' => 'Stato impostato', 
+	'admin:dcache:extension:tests' => 'Test', 
+	'admin:dcache:errorconnection' => 'Impossibile confermare la connessione utilizzando i dettagli forniti!', 
+	'admin:dcache:required:field' => 'Compilare i campi obbligatori', 
+	'admin:dcache:memcached:authnotsupport' => 'La tua estensione php Memcached non supporta l\'autenticazione!', 	
 	/*
 	 * List of ISO 639-1 language codes
 	 * http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes

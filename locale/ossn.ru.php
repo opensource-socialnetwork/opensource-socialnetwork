@@ -327,6 +327,22 @@ $ru = array(
 	'php:upload_err_no_tmp_dir' => 'Отсутствует временная папка',
 	'php:upload_err_cant_write' => 'Не удалось записать файл на диск',
 	'php:upload_err_extension' => 'Расширение PHP остановило загрузку файла',
+	'php:extension:notfound' => 'Расширение PHP не найдено!', 
+	
+	'admin:basiccache' => 'Основной кэш', 
+	'admin:dcache:note' => 'Динамические данные кэшируются с помощью динамического кэша. которые могут ускорить обработку вашего приложения. Включение кэша не поможет, если соединение с сервером кэша работает медленнее, так как приложение будет работать только медленнее.  Рекомендуется настроить сервер кэширования на том же хосте, что и социальная сеть. Воздержитесь от использования кэширования с общими службами хостинга. Одновременно можно использовать только одну систему кэша.', 
+	'admin:dcache:cachename' => 'Типы сервера кэша', 
+	'admin:dcache:extension:enabled' => 'Расширение включено', 
+	'admin:dcache:select:server:type' => 'Выберите тип сервера', 
+	'admin:dcache:host' => 'Хост', 
+	'admin:dcache:port' => 'Порт', 
+	'admin:dcache:username' => 'Имя пользователя (если есть)', 
+	'admin:dcache:password' => 'Пароль (если есть)', 
+	'admin:dcache:setstatus' => 'Задать состояние', 
+	'admin:dcache:extension:tests' => 'Тесты', 
+	'admin:dcache:errorconnection' => 'Не удалось подтвердить соединение с использованием данных подробностей!', 
+	'admin:dcache:required:field' => 'Заполните обязательные поля', 
+	'admin:dcache:memcached:authnotsupport' => 'Расширение php Memcached не поддерживает идентификацию!', 	
 	/*
 	 * List of ISO 639-1 language codes
 	 * http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes

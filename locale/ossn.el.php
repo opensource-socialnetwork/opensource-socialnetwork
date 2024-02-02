@@ -325,6 +325,22 @@ $el = array(
 	'php:upload_err_no_tmp_dir' => 'Λείπει ένας προσωρινός φάκελος',
 	'php:upload_err_cant_write' => 'Αποτυχία εγγραφής αρχείου στο δίσκο',
 	'php:upload_err_extension' => 'Μια επέκταση PHP σταμάτησε τη μεταφόρτωση του αρχείου',
+	'php:extension:notfound' => 'Δεν βρέθηκε η επέκταση PHP!', 
+	
+	'admin:basiccache' => 'Βασική Cache', 
+	'admin:dcache:note' => 'Τα δυναμικά δεδομένα αποθηκεύονται στη λανθάνουσα μνήμη. που θα μπορούσε να επιταχύνει την επεξεργασία της αίτησας σας. Η ενεργοποίηση της λανθάνουσας μνήμης δεν θα βοηθήσει αν η σύνδεση με τον εξυπηρετητή λανθάνουσας μνήμης είναι πιο αργή καθώς θα κάνει την εφαρμογή σας να εκτελείται πιο αργά.  Συνιστάται να ρυθμίσετε τον εξυπηρετητή caching στον ίδιο υπολογιστή με το κοινωνικό σας δίκτυο. Απέχετε από τη χρήση caching με κοινόχρηστες υπηρεσίες φιλοξενίας. Μόνο ένα σύστημα μπορεί να χρησιμοποιηθεί κάθε φορά.', 
+	'admin:dcache:cachename' => 'Είδη εξυπηρετητή Cache', 
+	'admin:dcache:extension:enabled' => 'Επέκταση Enabled', 
+	'admin:dcache:select:server:type' => 'Επιλογή είδους εξυπηρετητή', 
+	'admin:dcache:host' => 'Υπολογιστής:', 
+	'admin:dcache:port' => 'Θύρα.', 
+	'admin:dcache:username' => 'Όνομα χρήστη (αν υπάρχει)', 
+	'admin:dcache:password' => 'Κωδικός πρόσβασης (αν υπάρχει)', 
+	'admin:dcache:setstatus' => 'Ορισμός κατάστασης:', 
+	'admin:dcache:extension:tests' => 'Δοκιμές:', 
+	'admin:dcache:errorconnection' => 'Δεν είναι δυνατή η επιβεβαίωση σύνδεσης με συγκεκριμένες λεπτομέρειες!', 
+	'admin:dcache:required:field' => 'Συμπληρώστε τα απαιτούμενα πεδία.', 
+	'admin:dcache:memcached:authnotsupport' => 'Η επέκταση του memcached php δεν υποστηρίζει έλεγχο ταυτότητας!', 	
 	/*
 	 * List of ISO 639-1 language codes
 	 * http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes

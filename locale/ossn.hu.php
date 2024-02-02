@@ -340,6 +340,22 @@ Kérünk kattints az alábbi linkre, vagy másold be a linket a böngészőbe, h
 	'ossn:premium' => 'Prémium verzió',
 	'datepicker:days' => "Va, Hé, Ke, Sz, Cs, Pé, Sz",
 	'datepicker:months' => "Jan., Feb., Már., Ápr., Máj, Juni, Júli, Aug., Szep., Okt., Nov., Dec.",
+	
+	'php:extension:notfound' => 'A PHP kiterjesztés nem található!', 
+	'admin:basiccache' => 'Alapszintű gyorsítótár', 
+	'admin:dcache:note' => 'A dinamikus adatok gyorsítótárazása dinamikus gyorsítótár használatával történik. Ami felgyorsítja az alkalmazás feldolgozását. A gyorsítótár engedélyezése nem segít, ha a gyorsítótár-kiszolgáló kapcsolat lassabb, mivel csak lassabban fogja futtatni az alkalmazást.  Javasolt a gyorsítótárazási kiszolgáló beállítása ugyanazon a hoszton, mint a közösségi hálózat. Ne használja a gyorsítótárazást megosztott fogadási szolgáltatásokkal. Egyszerre csak egy gyorsítótár rendszer használható.', 
+	'admin:dcache:cachename' => 'Ideiglenes kiszolgáló típusok', 
+	'admin:dcache:extension:enabled' => 'Kiterjesztés engedélyezve', 
+	'admin:dcache:select:server:type' => 'Kiszolgálótípus kiválasztása', 
+	'admin:dcache:host' => 'Hoszt', 
+	'admin:dcache:port' => 'Port', 
+	'admin:dcache:username' => 'Felhasználónév (ha van)', 
+	'admin:dcache:password' => 'Jelszó (ha van)', 
+	'admin:dcache:setstatus' => 'Állapot beállítása', 
+	'admin:dcache:extension:tests' => 'Tesztek', 
+	'admin:dcache:errorconnection' => 'Nem lehet megerősíteni a kapcsolatot a megadott részletek használatával!', 
+	'admin:dcache:required:field' => 'Töltse ki a kötelező mezőket', 
+	'admin:dcache:memcached:authnotsupport' => 'A Memcált php bővítmény nem támogatja a hitelesítést!', 	
 	/*
 	 * List of ISO 639-1 language codes
 	 * http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes

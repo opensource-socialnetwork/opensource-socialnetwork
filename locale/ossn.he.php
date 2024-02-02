@@ -327,6 +327,22 @@ $he = array(
 	'php:upload_err_no_tmp_dir' => 'חסר תיקיה זמנית',
 	'php:upload_err_cant_write' => 'כישלון הקובץ לדיסק נכשל',
 	'php:upload_err_extension' => 'סיומת PHP עצרה את העלאת הקובץ',
+	'php:extension:notfound' => 'הרחבת PHP לא נמצאה!',
+	
+	'admin:basiccache' => 'מטמון בסיסי', 
+	'admin:dcache:note' => 'הנתונים הדינמיים מוטמנים באמצעות מטמון דינמי. אשר יכול לזרז את העיבוד של היישום שלך. הפעלת המטמון לא תעזור אם החיבור לשרת המטמון הוא איטי יותר מאחר שהוא רק יגרום ליישום לפעול לאט יותר.  מומלץ להגדיר את שרת ההטמנה באותו מארח של הרשת החברתית שלכם. נא להימנע משימוש במטמון עם שירותי אירוח משותפים. ניתן להשתמש רק במערכת מטמון אחת בכל פעם.', 
+	'admin:dcache:cachename' => 'הטמנת סוגי שרתים', 
+	'admin:dcache:extension:enabled' => 'הרחבה מופעלת', 
+	'admin:dcache:select:server:type' => 'בחירת סוג שרת', 
+	'admin:dcache:host' => 'מארח', 
+	'admin:dcache:port' => 'פורט', 
+	'admin:dcache:username' => 'שם משתמש (אם יש)', 
+	'admin:dcache:password' => 'סיסמה (אם קיימת)', 
+	'admin:dcache:setstatus' => 'הגדרת מצב', 
+	'admin:dcache:extension:tests' => 'בדיקות', 
+	'admin:dcache:errorconnection' => 'לא ניתן לאשר את החיבור באמצעות הפרטים שצוינו!', 
+	'admin:dcache:required:field' => 'נא למלא שדות דרושים.', 
+	'admin:dcache:memcached:authnotsupport' => 'הרחבת ה-Memcached php אינה תומכת באימות זהות!', 
 	/*
 	 * List of ISO 639-1 language codes
 	 * http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes

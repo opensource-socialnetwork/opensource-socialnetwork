@@ -326,6 +326,23 @@ Um Dein Passwort zurückzusetzen klicke bitte auf den folgenden Link oder kopier
 	'php:upload_err_no_tmp_dir' => 'Fehlender temporärer Ordner',
 	'php:upload_err_cant_write' => 'Fehler beim Schreiben der Datei auf die Festplatte',
 	'php:upload_err_extension' => 'Eine PHP-Erweiterung hat den Datei-Upload gestoppt',
+	'php:extension:notfound' => 'PHP-Erweiterung nicht gefunden!', 
+	
+	'admin:basiccache' => 'Basiscache', 
+	'admin:dcache:note' => 'Die dynamischen Daten werden mit Hilfe eines dynamischen Cache zwischengespeichert. die die Verarbeitung Ihrer Anwendung beschleunigen könnte. Der Aktivierung des Cache wird nicht helfen, wenn die Verbindung zwischen dem Cache und dem Cache langsamer ist, da die Anwendung nur noch langsamer ausgeführt werden kann.  Es wird empfohlen, den Caching-Server auf demselben Host wie das soziale Netzwerk zu konfigurieren. Bitte verzichten Sie auf das Caching mit Shared-Hosting-Services. Es kann jeweils nur ein Cache-System verwendet werden.', 
+	'admin:dcache:cachename' => 'Cacheservertypen', 
+	'admin:dcache:extension:enabled' => 'Erweiterung aktiviert', 
+	'admin:dcache:select:server:type' => 'Servertyp auswählen', 
+	'admin:dcache:host' => 'Host', 
+	'admin:dcache:port' => 'Port', 
+	'admin:dcache:username' => 'Benutzername (sofern vorhanden)', 
+	'admin:dcache:password' => 'Kennwort (falls vorhanden)', 
+	'admin:dcache:setstatus' => 'Status festlegen', 
+	'admin:dcache:extension:tests' => 'Tests', 
+	'admin:dcache:errorconnection' => 'Verbindung mit angegebenen Details kann nicht bestätigt werden!', 
+	'admin:dcache:required:field' => 'Füllen Sie die erforderlichen Felder aus', 
+	'admin:dcache:memcached:authnotsupport' => 'Ihre Memcached php-Erweiterung unterstützt keine Authentifizierung!', 
+
 	/*
        * List of ISO 639-1 language codes
        * http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes

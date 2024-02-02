@@ -326,6 +326,23 @@ Please click the link below to reset password or copy the link and paste into yo
     'php:upload_err_no_tmp_dir' => 'Missing a temporary folder',
     'php:upload_err_cant_write' => 'Failed to write file to disk',
     'php:upload_err_extension' => 'A PHP extension stopped the file upload',
+	'php:extension:notfound' => 'PHP Extension not found!',
+	
+	'admin:basiccache' => 'Basic Cache',
+	'admin:dcache:note' => "The dynamic data is cached using a dynamic cache. which could expedite the processing of your application. Enabling cache won't help if your cache server connection is slower since it will only make your application run more slowly.  It is recommended that you set up the caching server on the same host as your social network. Please refrain from using caching with shared hosting services. Only one cache system can be used at a time.",
+	'admin:dcache:cachename' => 'Cache Server Types',
+	'admin:dcache:extension:enabled' => 'Extension Enabled',
+	'admin:dcache:select:server:type' => 'Select server type',
+	'admin:dcache:host' => 'Host',
+	'admin:dcache:port' => 'Port',
+	'admin:dcache:username' => 'Username (if any)',
+	'admin:dcache:password' => 'Password (if any)',
+	'admin:dcache:setstatus' => 'Set Status',
+	'admin:dcache:extension:tests' => 'Tests',
+	'admin:dcache:errorconnection' => 'Unable to confirm connection using given details!',
+	'admin:dcache:required:field' =>  'Please fill required fields',
+	'admin:dcache:memcached:authnotsupport' => 'Your Memcached php extension does not support authentication!',
+	
     /*
      * List of ISO 639-1 language codes
      * http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes

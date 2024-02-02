@@ -327,6 +327,22 @@ Te rugam sa click pe linkul de mai jos ca sa iti resetezi parola sau copy si pas
 	'php:upload_err_no_tmp_dir' => 'Lipsește un folder temporar',
 	'php:upload_err_cant_write' => 'Nu a reușit să scrie fișierul pe disc',
 	'php:upload_err_extension' => 'O extensie PHP a oprit încărcarea fișierului',
+	'php:extension:notfound' => 'PHP Extensie nu a fost găsit!', 
+	
+	'admin:basiccache' => 'Cache de bază', 
+	'admin:dcache:note' => 'Datele dinamice sunt cache folosind un cache dinamic. care ar putea accelera procesarea cererii dumneavoastră. Activarea cache-ului nu va ajuta dacă conexiunea serverului cache este mai lentă, deoarece va face ca aplicația să ruleze mai încet.  Este recomandat să configurați serverul de cache pe aceeași gazdă ca și rețeaua de socializare. Vă rugăm să nu utilizați caching cu servicii de găzduire partajate. Doar un singur sistem de cache poate fi folosit la un moment dat.', 
+	'admin:dcache:cachename' => 'Tipuri de server cache', 
+	'admin:dcache:extension:enabled' => 'Extensie activată', 
+	'admin:dcache:select:server:type' => 'Selectați tipul de server', 
+	'admin:dcache:host' => 'Gazdă', 
+	'admin:dcache:port' => 'Port', 
+	'admin:dcache:username' => 'Nume de utilizator (dacă există)', 
+	'admin:dcache:password' => 'Parolă (dacă există)', 
+	'admin:dcache:setstatus' => 'Starea setată', 
+	'admin:dcache:extension:tests' => 'Teste', 
+	'admin:dcache:errorconnection' => 'Nu pot confirma conexiunea folosind date date!', 
+	'admin:dcache:required:field' => 'Vă rugăm să completaţi câmpurile obligatorii', 
+	'admin:dcache:memcached:authnotsupport' => 'Extensia dvs. php Memcached nu suportă autentificarea!', 	
 	/*
 	 * List of ISO 639-1 language codes
 	 * http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes

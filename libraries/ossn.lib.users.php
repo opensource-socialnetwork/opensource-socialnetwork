@@ -46,7 +46,6 @@ function ossn_users() {
 				));
 		}
 }
-
 /**
  * Check if the user is logged in or not
  *
@@ -97,6 +96,26 @@ function ossn_loggedin_user() {
 function ossn_user_by_username($username) {
 		$user           = new OssnUser;
 		$user->username = $username;
+		
+		//caching
+		$cache = new OssnDynamicCaching();
+		if($cache->isAvailableEnabled()){
+				try {
+					
+					$data = $cache->handler()->get("ossn_user_by_username({$username})");
+					return $data;
+					
+				} catch(OssnDynamicCacheKeyNotExists $e){
+					
+					$data = $user->getUser();
+					//don't store if its not exists in system
+					if($data){					
+						$cache->handler()->store("ossn_user_by_username({$username})", $data);
+					}
+					return $data;
+				}
+		}	
+		
 		return $user->getUser();
 }
 
@@ -115,10 +134,18 @@ function ossn_user_by_guid($guid) {
 		$cache = new OssnDynamicCaching();
 		if($cache->isAvailableEnabled()){
 				try {
+					
 					$data = $cache->handler()->get("ossn_user_by_guid({$guid})");
 					return $data;
+					
 				} catch(OssnDynamicCacheKeyNotExists $e){
-					$cache->handler()->store("ossn_user_by_guid({$guid})", $user->getUser());
+					
+					$data = $user->getUser();
+					//don't store if its not exists in system
+					if($data){
+						$cache->handler()->store("ossn_user_by_guid({$guid})", $data);
+					}
+					return $data;
 				}
 		}	
 		
@@ -140,12 +167,21 @@ function ossn_user_by_email($email) {
 		$cache = new OssnDynamicCaching();
 		if($cache->isAvailableEnabled()){
 				try {
+					
 					$data = $cache->handler()->get("ossn_user_by_email({$email})");
 					return $data;
+					
 				} catch(OssnDynamicCacheKeyNotExists $e){
-					$cache->handler()->store("ossn_user_by_email({$email})", $user->getUser());
+					
+					$data = $user->getUser();
+					//don't store if its not exists in system
+					if($data){
+						$cache->handler()->store("ossn_user_by_email({$email})", $data);
+					}
+					
+					return $data;
 				}
-		}	
+		}
 		
 		return $user->getUser();
 }

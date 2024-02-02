@@ -328,6 +328,22 @@ Haz clic en el enlace de abajo para restablecer la contraseña o copia y pega el
 	'php:upload_err_no_tmp_dir' => 'Falta una carpeta temporal',
 	'php:upload_err_cant_write' => 'Error al escribir el archivo en el disco',
 	'php:upload_err_extension' => 'Una extensión PHP detuvo la carga del archivo',
+	'php:extension:notfound' => 'No se ha encontrado la extensión PHP!', 
+	
+	'admin:basiccache' => 'Memoria caché básica', 
+	'admin:dcache:note' => 'Los datos dinámicos se almacenan en memoria caché utilizando una memoria caché dinámica. que podría acelerar el proceso de la aplicación. La habilitación de la memoria caché no ayudará si la conexión del servidor de memoria caché es más lenta, ya que sólo hará que la aplicación se ejecute más lentamente.  Se recomienda configurar el servidor de almacenamiento en memoria caché en el mismo host que la red social. Absténgase de utilizar el almacenamiento en memoria caché con servicios de alojamiento compartido. Sólo se puede utilizar un sistema de memoria caché a la vez.', 
+	'admin:dcache:cachename' => 'Tipos de servidor de antememoria', 
+	'admin:dcache:extension:enabled' => 'Extensión habilitada', 
+	'admin:dcache:select:server:type' => 'Seleccionar tipo de servidor', 
+	'admin:dcache:host' => 'Host', 
+	'admin:dcache:port' => 'Puerto', 
+	'admin:dcache:username' => 'Nombre de usuario (si existe)', 
+	'admin:dcache:password' => 'Contraseña (si la hay)', 
+	'admin:dcache:setstatus' => 'Establecer estado', 
+	'admin:dcache:extension:tests' => 'Pruebas', 
+	'admin:dcache:errorconnection' => 'No se puede confirmar la conexión utilizando los detalles dados.', 
+	'admin:dcache:required:field' => 'Rellene los campos obligatorios', 
+	'admin:dcache:memcached:authnotsupport' => 'La extensión php de Memcached no da soporte a la autenticación.', 	
 	/*
 	 * List of ISO 639-1 language codes
 	 * http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes

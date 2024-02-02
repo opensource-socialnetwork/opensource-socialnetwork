@@ -325,6 +325,22 @@ Por favor, clique no link abaixo para redefinir a senha ou copie o link e cole n
 	'php:upload_err_no_tmp_dir' => 'Faltando uma pasta temporária',
 	'php:upload_err_cant_write' => 'Falha ao gravar o arquivo no disco',
 	'php:upload_err_extension' => 'Uma extensão PHP interrompeu o upload do arquivo',
+	'php:extension:notfound' => 'Extensão PHP não encontrada!', 
+	
+	'admin:basiccache' => 'Cache básico', 
+	'admin:dcache:note' => 'Os dados dinâmicos são cachos usando um cache dinâmico. o que poderia agilizar o processamento de sua aplicação. A ativação do cache não ajudará se a sua conexão do servidor de cache estiver mais lenta já que ele só fará sua aplicação ser executada mais lentamente.  Recomenda-se configurar o servidor de caching no mesmo host da sua rede social. Favor abster-se de usar o caching com serviços de hospedagem compartilhados. Apenas um sistema de cache pode ser usado de cada vez.', 
+	'admin:dcache:cachename' => 'Tipos de Servidor de Cache', 
+	'admin:dcache:extension:enabled' => 'Extensão Ativada', 
+	'admin:dcache:select:server:type' => 'Selecionar tipo de servidor', 
+	'admin:dcache:host' => 'Host', 
+	'admin:dcache:port' => 'Porta', 
+	'admin:dcache:username' => 'Username (se houver)', 
+	'admin:dcache:password' => 'Senha (se houver)', 
+	'admin:dcache:setstatus' => 'Status do Conjunto', 
+	'admin:dcache:extension:tests' => 'Testes', 
+	'admin:dcache:errorconnection' => 'Não é possível confirmar conexão usando detalhes dados!', 
+	'admin:dcache:required:field' => 'Preencha os campos obrigatórios', 
+	'admin:dcache:memcached:authnotsupport' => 'Sua extensão php Memcached não suporta autenticação!', 	
 	/*
 	 * List of ISO 639-1 language codes
 	 * http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes

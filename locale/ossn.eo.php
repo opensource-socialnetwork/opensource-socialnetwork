@@ -327,6 +327,22 @@ Bonvolu alklaki la ligilon suben por novigi vian pasvorton aŭ kopii kaj alglui 
 	'php:upload_err_no_tmp_dir' => 'Mankas provizora dosierujo',
 	'php:upload_err_cant_write' => 'Malsukcesis skribi dosieron sur disko',
 	'php:upload_err_extension' => 'PHP-etendo ĉesigis la alŝuton de dosieroj',
+	'php:extension:notfound' => 'PHP-Etendaĵo ne trovita!',
+	
+	'admin:basiccache' => 'Baza Kaŝmemoro',
+	'admin:dcache:note' => "La dinamikaj datumoj estas konservitaj uzante dinamikan kaŝmemoron. kiu povus akceli la traktadon de via kandidatiĝo. Ebligi kaŝmemoron ne helpos se via kaŝservila konekto estas pli malrapida ĉar ĝi nur igos vian aplikaĵon funkcii pli malrapide. Oni rekomendas, ke vi agordu la kaŝmemorservilon sur la sama gastiganto kiel via socia reto. Bonvolu deteni sin de uzi kaŝmemoron kun komunaj gastigaj servoj. Nur unu kaŝmemorsistemo povas esti uzata samtempe.",
+	'admin:dcache:cachename' => 'Cache Server Tipoj',
+	'admin:dcache:extension:enabled' => 'Etendo Ebligita',
+	'admin:dcache:select:server:type' => 'Elektu servilan tipon',
+	'admin:dcache:host' => 'Host',
+	'admin:dcache:port' => 'Port',
+	'admin:dcache:username' => 'Uzantnomo (se ekzistas)',
+	'admin:dcache:password' => 'Pasvorto (se ekzistas)',
+	'admin:dcache:setstatus' => 'Agordu Statuson',
+	'admin:dcache:extension:tests' => 'Testoj',
+	'admin:dcache:errorconnection' => 'Ne eblas konfirmi konekton per donitaj detaloj!',
+	'admin:dcache:required:field' =>  'Bonvolu plenigi postulatajn kampojn',
+	'admin:dcache:memcached:authnotsupport' => 'Via Memcached php-etendo ne subtenas aŭtentikigon!',	
 	/*
 	 * List of ISO 639-1 language codes
 	 * http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes

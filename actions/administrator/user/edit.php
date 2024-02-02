@@ -57,6 +57,7 @@ if(!in_array($vars['type'], $types)) {
 
 $user->first_name = $vars['firstname'];
 $user->last_name  = $vars['lastname'];
+$user->old_email  = $user->email;
 $user->email      = $vars['email'];
 $user->new_type   = $vars['type'];
 

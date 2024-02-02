@@ -17,9 +17,10 @@ if ($cache == 1) {
     $enabled = '';
 }
 ?>
-<h4> Status : <?php echo ossn_print("cache:{$cache}"); ?> </h4>
+<label><?php echo ossn_print('admin:basiccache');?></label>
+<strong> Status : <?php echo ossn_print("cache:{$cache}"); ?> </strong>
 
-<div>
+<div class="margin-top-10">
 	<select name="cache">
    	 	<option value="1" <?php echo $enabled; ?>> <?php echo ossn_print('cache:enable'); ?> </option>
    	 	<option value="0" <?php echo $disabled; ?>> <?php echo ossn_print('cache:disable'); ?>  </option>

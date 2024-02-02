@@ -641,9 +641,12 @@ footer a {
 	margin-top: 20%;
 }
 
-******************************** Loading Icon @source: https: //github.com/jlong/css-spinners
+/********************************
+	Loading Icon
+    @source: https://github.com/jlong/css-spinners
+*********************************/
 
-	*********************************/ @-moz-keyframes three-quarters-loader {
+@-moz-keyframes three-quarters-loader {
 	0% {
 		-moz-transform: rotate(0deg);
 		transform: rotate(0deg);

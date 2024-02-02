@@ -329,6 +329,22 @@ Bağlantı çalışmıyorsa kopyalayıp adres çubuğuna yapıştırarak deneyeb
 	'php:upload_err_no_tmp_dir' => 'Geçici klasör eksik',
 	'php:upload_err_cant_write' => 'dosya diske yazılamadı',
 	'php:upload_err_extension' => 'Bir PHP uzantısı dosya yüklemesini durdurdu',
+	'php:extension:notfound' => 'PHP Uzantısı bulunamadı!', 
+	
+	'admin:basiccache' => 'Temel Önbellek', 
+	'admin:dcache:note' => 'Dinamik veriler, dinamik bir önbellek kullanılarak önbelleğe alınır. bu da uygulamanızın işlenmesini hıza çevirebilir. Önbellek sunucusu bağlanmanızın daha yavaş olması durumunda önbellek sunucusu bağlanmanızın daha yavaş olması, önbelleklerin etkinleştirilmesine yardımcı olmaz. Bu durumda, uygulamanızın daha yavaş çalışması gerekir.  Önbelleğe alma sunucusunu, sosyal ağınızla aynı anasistemde kurmanızı öneririz. Lütfen, paylaşılan barındırma hizmetleriyle önbelleğe almayı kullanmaktan kaçının. Aynı anda yalnızca bir önbellek sistemi kullanılabilir.', 
+	'admin:dcache:cachename' => 'Önbellek Sunucusu Tipleri', 
+	'admin:dcache:extension:enabled' => 'Uzantı Etkin', 
+	'admin:dcache:select:server:type' => 'Sunucu tipi seçin', 
+	'admin:dcache:host' => 'Anasistem', 
+	'admin:dcache:port' => 'Kapı', 
+	'admin:dcache:username' => 'Kullanıcı adı (varsa)', 
+	'admin:dcache:password' => 'Parola (varsa)', 
+	'admin:dcache:setstatus' => 'Durumu Ayarla', 
+	'admin:dcache:extension:tests' => 'Sınamalar', 
+	'admin:dcache:errorconnection' => 'Belirtilen ayrıntılar kullanılarak bağlantı doğrulanamıyor!', 
+	'admin:dcache:required:field' => 'Lütfen gerekli alanları doldurun', 
+	'admin:dcache:memcached:authnotsupport' => 'Not önbelleğe yüklenen php uzantınız kimlik doğrulamayı desteklemiyor!', 	
 	/*
 	 * List of ISO 639-1 language codes
 	 * http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes

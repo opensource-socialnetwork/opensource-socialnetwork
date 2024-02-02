@@ -38,6 +38,8 @@ function ossn_admin_init() {
 				ossn_register_action('admin/settings/save/basic', ossn_route()->actions . 'administrator/settings/save/basic.php');
 				ossn_register_action('admin/cache/create', ossn_route()->actions . 'administrator/cache/create.php');
 				ossn_register_action('admin/cache/flush', ossn_route()->actions . 'administrator/cache/flush.php');
+				ossn_register_action('admin/dynamic/cache', ossn_route()->actions . 'administrator/cache/dynamic.php');
+				ossn_register_action('admin/dynamic/cache/test', ossn_route()->actions . 'administrator/cache/dynamic_test.php');
 		}
 
 		if(ossn_isAdminLoggedin()) {

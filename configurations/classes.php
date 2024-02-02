@@ -12,6 +12,7 @@ $OssnClasses = array(
 		'DynamicCacheKeyNotExists',
 		'DynamicCaching',
 		'Memcached',
+		'Redis',
 		'Session',
 		'Factory',
 		'SiteException',

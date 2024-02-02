@@ -326,6 +326,23 @@ S'il vous plaît cliquez sur le lien ci-dessous pour réinitialiser le mot de pa
 	'php:upload_err_no_tmp_dir' => "Absence d'un dossier temporaire",
 	'php:upload_err_cant_write' => "Impossible d'écrire le fichier sur le disque",
 	'php:upload_err_extension' => 'Une extension PHP a arrêté le téléchargement du fichier',
+	'php:extension:notfound' => 'Extension PHP introuvable !', 
+	
+	'admin:basiccache' => 'Cache de base', 
+	'admin:dcache:note' => 'Les données dynamiques sont mises en cache à l\'aide d\'une mémoire cache dynamique. Ce qui pourrait accélérer le traitement de votre demande. L\'activation de la mémoire cache ne vous aidera pas si votre connexion au serveur de cache est plus lente car elle ne fera que rendre votre application plus lente.  Il est recommandé de configurer le serveur de mise en cache sur le même hôte que votre réseau social. Veuillez vous abstenir d\'utiliser la mise en cache avec les services d\'hébergement partagés. Un seul système de cache peut être utilisé à la fois.', 
+	'admin:dcache:cachename' => 'Types de serveur de cache', 
+	'admin:dcache:extension:enabled' => 'Extension activée', 
+	'admin:dcache:select:server:type' => 'Sélectionner le type de serveur', 
+	'admin:dcache:host' => 'Hôte', 
+	'admin:dcache:port' => 'Port', 
+	'admin:dcache:username' => 'Nom d\'utilisateur (le cas échéant)', 
+	'admin:dcache:password' => 'Mot de passe (le cas échéant)', 
+	'admin:dcache:setstatus' => 'Définir l\'état', 
+	'admin:dcache:extension:tests' => 'Tests', 
+	'admin:dcache:errorconnection' => 'Impossible de confirmer la connexion à l\'aide des détails fournis !', 
+	'admin:dcache:required:field' => 'Veuillez renseigner les zones obligatoires', 
+	'admin:dcache:memcached:authnotsupport' => 'Votre extension Memcached php ne prend pas en charge l\'authentification !', 	
+	
   	/*
        * List of ISO 639-1 language codes
        * http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes

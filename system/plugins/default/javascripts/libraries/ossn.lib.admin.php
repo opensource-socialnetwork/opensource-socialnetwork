@@ -11,6 +11,8 @@
 Ossn.register_callback('ossn', 'init', 'ossn_administrator_update_widget');
 Ossn.register_callback('ossn', 'init', 'ossn_component_delete_confirmation');
 Ossn.register_callback('ossn', 'init', 'ossn_unvalidated_users_multiple_controller');
+Ossn.register_callback('ossn', 'init', 'ossn_dcache_tests_check_before_save');
+
 /**
  * Checks for the updates in administrator panel
  *
@@ -92,3 +94,77 @@ function ossn_unvalidated_users_multiple_controller() {
 		});
 	});
 }
+/**
+ * Dynamic cache tests check before save
+ *
+ * @return void
+ */
+function ossn_dcache_tests_check_before_save() {
+	$(document).ready(function() {
+		$('body').on('click', '#dcache-form-submit', function(e) {
+			var form = $('.ossn-admin-dcache-settings-form');
+
+			var type = form.find('select[name="cache_server_type"]').val();
+			var host = form.find('input[name="host"]').val();
+			var port = form.find('input[name="port"]').val();
+			var user = form.find('input[name="username"]').val();
+			var password = form.find('input[name="password"]').val();
+
+			ossn_admin_dynamic_cache_check(type, host, port, user, password, function(status) {
+				var failed = '<span class="badge bg-danger">Failed</span>';
+				var passed = '<span class="badge bg-success">Passed</span>';
+				if (status == 1) {
+					switch (type) {
+						case 'redis':
+							$('#dcache-redis-status').html(passed);
+							break;
+						case 'memcached':
+							$('#dcache-memcached-status').html(passed);
+							break;
+					}
+					form.submit();
+				} else {
+					switch (type) {
+						case 'redis':
+							$('#dcache-redis-status').html(failed);
+							break;
+						case 'memcached':
+							$('#dcache-memcached-status').html(failed);
+							break;
+					}
+					Ossn.trigger_message(Ossn.Print('admin:dcache:errorconnection'), 'error');
+				}
+			});
+		});
+	});
+}
+/**
+ * Dynamic cache check for tests
+ * 
+ * @param string type memcached|redis
+ * @param string host Cache server host name
+ * @param string port Port number
+ * @param string user User for auth if any
+ * @param string password if user provided ,  then apply password if any
+ * @param function cb Callback 
+ * 
+ * @return void
+ */
+function ossn_admin_dynamic_cache_check(type, host, port, user, password, cb) {
+	Ossn.PostRequest({
+		url: Ossn.site_url + 'action/admin/dynamic/cache/test',
+		params: 'cache_server_type=' + type + '&host=' + host + '&port=' + port + '&username=' + user + '&password=' + password,
+		beforeSend: function() {
+			var loading = '<div class="ossn-loading"></div>';
+			if (type == 'redis') {
+				$('#dcache-redis-status').html(loading);
+			}
+			if (type == 'memcached') {
+				$('#dcache-memcached-status').html(loading);
+			}
+		},
+		callback: function($c) {
+			cb($c);
+		},
+	});
+} 

@@ -9,13 +9,21 @@
  * @link      https://www.opensource-socialnetwork.org/
  */
 class OssnDynamicCaching {
-		public function isAvailableEnabled(){
-					return true;
-					$settings = ossn_site_settings('cache.dynmaic.enabled');
-					if($settings == 1){
-						return true;	
-					}
-					return false;
+		public function __construct() {
+				$this->settings = ossn_dynamic_cache_settings();
+		}
+		public function isAvailableEnabled() {
+				if($this->settings['status'] == 'enabled') {
+						if($this->settings['type'] == 'memcached') {
+								$memcached = new OssnMemcached(300, $this->settings);
+								return $memcached->isAvailable();
+						}
+						if($this->settings['type'] == 'redis') {
+								$redis = new OssnRedis(300, $this->settings);
+								return $redis->isAvailable();
+						}
+				}
+				return false;
 		}
 		/**
 		 * Constructor
@@ -25,7 +33,12 @@ class OssnDynamicCaching {
 		 * return void
 		 */
 		public function handler($ttl = 300) {
-				$handler = new OssnMemcached($ttl);
+				if($this->settings['type'] == 'redis') {
+						$handler = new OssnRedis($ttl, $this->settings);
+				}
+				if($this->settings['type'] == 'memcached') {
+						$handler = new OssnMemcached($ttl, $this->settings);
+				}
 				$default = ossn_call_hook('ossn', 'handler:dynamic:caching', $ttl, $handler);
 				return $default;
 		}

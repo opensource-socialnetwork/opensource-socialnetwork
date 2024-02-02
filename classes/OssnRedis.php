@@ -9,9 +9,9 @@
  * @link      https://www.opensource-socialnetwork.org/
  */
 
-class OssnMemcached implements MemoryCaching {
+class OssnRedis implements MemoryCaching {
 		//dc = dynamic cache
-		private $namespace_key = 'dc/memc/';
+		private $namespace_key = 'dc/redis/';
 
 		/**
 		 * Constructor
@@ -26,12 +26,10 @@ class OssnMemcached implements MemoryCaching {
 				if(isset($ttl)) {
 						$this->ttl = $ttl;
 				}
-				$this->memcached = new Memcached();
-				$this->memcached->addServer($settings['host'], $settings['port']);
-				if(!empty($settings['username']) && !empty($settings['password'])) {
-						if(method_exists($this->memcached, 'setSaslAuthData')) {
-								$this->memcached->setSaslAuthData($settings['username'], $settings['password']);
-						}
+				$this->redis = new Redis();
+				$this->redis->connect($settings['host'], $settings['port']);
+				if(!empty($settings['password'])) {
+						$this->redis->auth($password);
 				}
 		}
 		/**
@@ -50,7 +48,7 @@ class OssnMemcached implements MemoryCaching {
 				$key = "{$this->namespace_key}{$key}";
 				//we are using apcu_store not add because this will overwrite
 				//thus saving us for checking the key and delete it first
-				return $this->memcached->set($key, $value, $this->ttl);
+				return $this->redis->set($key, $value, $this->ttl);
 		}
 		/**
 		 * Getting stored value from cache
@@ -64,14 +62,11 @@ class OssnMemcached implements MemoryCaching {
 				if(empty($key)) {
 						return false;
 				}
-				$key  = "{$this->namespace_key}{$key}";
-				$data = $this->memcached->get($key);
-				if($this->memcached->getResultCode() == Memcached::RES_SUCCESS) {
-						return $data;
-				} else {
+				if(!$this->redis->exists('abc')) {
 						throw new OssnDynamicCacheKeyNotExists("Cache key doesn't exists");
 				}
-				return false;
+				$key = "{$this->namespace_key}{$key}";
+				return $this->redis->get($key);
 		}
 		/**
 		 * Deletes key from cache
@@ -85,7 +80,7 @@ class OssnMemcached implements MemoryCaching {
 						return false;
 				}
 				$key = "{$this->namespace_key}{$key}";
-				return $this->memcached->delete($key);
+				return $this->redis->delete($key);
 		}
 		/**
 		 * Check if cache is available by system or not
@@ -93,6 +88,6 @@ class OssnMemcached implements MemoryCaching {
 		 * return boolean
 		 */
 		public function isAvailable() {
-				return extension_loaded('memcached');
+				return extension_loaded('redis');
 		}
 }

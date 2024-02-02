@@ -338,6 +338,22 @@ $ja = array(
 	'php:upload_err_no_tmp_dir' => 'Missing a temporary folder',
 	'php:upload_err_cant_write' => 'Failed to write file to disk',
 	'php:upload_err_extension' => 'A PHP extension stopped the file upload',	
+	'php:extension:notfound' => 'PHP 拡張が見つかりません。', 
+	
+	'admin:basiccache' => '基本キャッシュ', 
+	'admin:dcache:note' => '動的データは、動的キャッシュを使用してキャッシュされます。 これは、アプリケーションの処理を迅速化することができます。 キャッシュを使用可能にすると、アプリケーションの実行速度が向上するだけでなく、キャッシュ・サーバーの接続が遅くなる場合には役立ちません。  キャッシュ・サーバーは、ソーシャル・ネットワークと同じホスト上にセットアップすることをお勧めします。 共有ホスティング・サービスによるキャッシュの使用はご遠慮ください。 一度に 1 つのキャッシュ・システムしか使用できません。', 
+	'admin:dcache:cachename' => 'キャッシュサーバーのタイプ', 
+	'admin:dcache:extension:enabled' => '拡張が有効', 
+	'admin:dcache:select:server:type' => 'サーバータイプの選択', 
+	'admin:dcache:host' => 'ホスト', 
+	'admin:dcache:port' => 'ポート', 
+	'admin:dcache:username' => 'ユーザー名 ( 存在する場合 )', 
+	'admin:dcache:password' => 'パスワード ( 存在する場合 )', 
+	'admin:dcache:setstatus' => '状況の設定', 
+	'admin:dcache:extension:tests' => 'テスト', 
+	'admin:dcache:errorconnection' => '指定の詳細を使用して接続を確認できません', 
+	'admin:dcache:required:field' => '必須フィールドに入力してください', 
+	'admin:dcache:memcached:authnotsupport' => 'Memcached php の拡張機能は認証をサポートしていません。', 	
 	/*
 	 * List of ISO 639-1 language codes
 	 * http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes

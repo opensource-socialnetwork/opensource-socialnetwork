@@ -328,7 +328,22 @@ Silakan klik tautan di bawah untuk mengatur ulang kata sandi atau salin tautan d
 	'php:upload_err_no_tmp_dir' => 'Folder sementara tidak ditemukan',
 	'php:upload_err_cant_write' => 'Terjadi kesalahan saat menulis file ke Disk/Penyimpanan',
 	'php:upload_err_extension' => 'File terhenti karena Ekstensi PHP',
-	
+
+	'php:extension:notfound' => 'Ekstensi PHP tidak ditemukan!', 
+	'admin:basiccache' => 'Tembolok Dasar', 
+	'admin:dcache:note' => 'Data dinamis telah dicache menggunakan cache dinamis. yang dapat mempercepat pemrosesan aplikasi Anda. Tembolok yang diaktifkan tidak akan membantu jika koneksi server cache Anda lebih lambat karena hanya akan membuat aplikasi Anda berjalan lebih lambat.  Disarankan agar Anda mengatur server caching pada host yang sama dengan jaringan sosial Anda. Harap menahan diri dari menggunakan caching dengan layanan hosting bersama. Hanya satu sistem cache yang dapat digunakan pada suatu waktu.', 
+	'admin:dcache:cachename' => 'Tipe Server Cache', 
+	'admin:dcache:extension:enabled' => 'Ekstensi Diaktifkan', 
+	'admin:dcache:select:server:type' => 'Pilih jenis server', 
+	'admin:dcache:host' => 'Host', 
+	'admin:dcache:port' => 'Port', 
+	'admin:dcache:username' => 'Nama pengguna (jika ada)', 
+	'admin:dcache:password' => 'Kata sandi (jika ada)', 
+	'admin:dcache:setstatus' => 'Atur Status', 
+	'admin:dcache:extension:tests' => 'Tes', 
+	'admin:dcache:errorconnection' => 'Tidak dapat mengonfirmasikan koneksi dengan rincian yang diberikan!', 
+	'admin:dcache:required:field' => 'Silakan isi kolom yang diperlukan', 
+	'admin:dcache:memcached:authnotsupport' => 'Ekstensi php Memcached Anda tidak mendukung otentikasi!', 
 	/*
 	 * List of ISO 639-1 language codes
 	 * http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes

@@ -334,6 +334,22 @@ Klik op de link hieronder om je wachtwoord te resetten:
 	'php:upload_err_no_tmp_dir' => 'Er ontbreekt een tijdelijke map',
 	'php:upload_err_cant_write' => 'Kan bestand niet naar schijf schrijven',
 	'php:upload_err_extension' => 'Een PHP-extensie stopte het uploaden van het bestand',
+	'php:extension:notfound' => 'PHP-extensie niet gevonden!', 
+	
+	'admin:basiccache' => 'Basiscache', 
+	'admin:dcache:note' => 'De dynamische gegevens worden in de cache opgeslagen met behulp van een dynamische cache. die de verwerking van uw toepassing kan versnellen. Het inschakelen van de cache zal niet helpen als uw cache server verbinding is langzamer, omdat het zal alleen uw applicatie te laten lopen langzamer.  Het is raadzaam om de cacheserver in te stellen op dezelfde host als uw sociale netwerk. Gelieve geen gebruik te maken van caching met gemeenschappelijke hostingservices. Er kan slechts één cachesysteem tegelijk worden gebruikt.', 
+	'admin:dcache:cachename' => 'Typen cacheserver', 
+	'admin:dcache:extension:enabled' => 'Extensie ingeschakeld', 
+	'admin:dcache:select:server:type' => 'Servertype selecteren', 
+	'admin:dcache:host' => 'Host', 
+	'admin:dcache:port' => 'Haven', 
+	'admin:dcache:username' => 'Gebruikersnaam (indien aanwezig)', 
+	'admin:dcache:password' => 'Wachtwoord (indien aanwezig)', 
+	'admin:dcache:setstatus' => 'Status instellen', 
+	'admin:dcache:extension:tests' => 'Tests', 
+	'admin:dcache:errorconnection' => 'Verbinding met opgegeven details kan niet worden bevestigd!', 
+	'admin:dcache:required:field' => 'Vul de verplichte velden in', 
+	'admin:dcache:memcached:authnotsupport' => 'Uw Memcached php extensie ondersteunt geen authenticatie!', 	
 	/*
 	 * List of ISO 639-1 language codes
 	 * http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes

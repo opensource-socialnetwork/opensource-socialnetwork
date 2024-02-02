@@ -278,3 +278,12 @@ function ossn_add_cache_to_url($url){
 	$params['query'] = $query;
 	return  ossn_build_token_url($params);	
 }
+/**
+ * Ossn Dynamic Cache get settings
+ *
+ * @return aray
+ */
+function ossn_dynamic_cache_settings(){
+	  global $Ossn;
+	  return $Ossn->dynamic_cache_settings;
+}
