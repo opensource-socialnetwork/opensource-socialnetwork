@@ -291,6 +291,12 @@ class OssnObject extends OssnEntities {
 						"guid='{$object}'",
 				);
 				if($this->delete($delete)) {
+						//caching
+						//invalidate
+						$cache = new OssnDynamicCaching();
+						if($cache->isAvailableEnabled()) {
+								$cache->handler()->delete("OssnObject->getObjectById():guid={$object}");
+						}
 						ossn_trigger_callback('object', 'deleted', $vars);
 						return true;
 				}
