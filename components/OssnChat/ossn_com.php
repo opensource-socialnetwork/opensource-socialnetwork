@@ -41,6 +41,9 @@ function ossn_js_page_handler($pages) {
 				if(!ossn_isLoggedIn()) {
 						ossn_error_page();
 				}
+				//Session locking issue #2343
+				//Session is not set in this place only getting so closing is fine
+				session_write_close();
 				if(isset($pages[1]) && $pages[1] == 'ossn.boot.chat.js') {
 						header('Content-Type: application/javascript');
 						echo ossn_plugin_view('js/OssnChat.Boot');
