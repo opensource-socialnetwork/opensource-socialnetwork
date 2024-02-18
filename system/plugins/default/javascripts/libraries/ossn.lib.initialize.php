@@ -9,6 +9,7 @@ Ossn.register_callback('ossn', 'init', 'ossn_makesure_confirmation');
 Ossn.register_callback('ossn', 'init', 'ossn_system_messages');
 Ossn.register_callback('ossn', 'init', 'ossn_user_signup_form');
 Ossn.register_callback('ossn', 'init', 'ossn_topbar_dropdown');	
+Ossn.register_callback('ossn', 'init', 'ossn_checkbox_radio_check_uncheck');	
 /**
  * Setup ajax request for user register
  *
@@ -116,6 +117,23 @@ function ossn_makesure_confirmation(){
 				window.location = actionurl;
 			}
 		});
+	});
+}
+/** 
+ * Check or Uncheck radio or checkbox if clicked on label
+ * 
+ * [E] checkboxes check on label click #2348
+ * 
+ * @return void
+ */
+function ossn_checkbox_radio_check_uncheck(){
+	$(document).ready(function(){
+			$("body").on('click', '.checkbox-block span', function(){
+				$(this).closest('.checkbox-block').find('.ossn-checkbox-input').trigger('click');													   
+			});
+			$("body").on('click', '.radio-block span', function(){
+				$(this).closest('.radio-block').find('.ossn-radio-input').trigger('click');													   
+			});		
 	});
 }
 /**

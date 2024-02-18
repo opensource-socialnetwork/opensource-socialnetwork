@@ -154,6 +154,7 @@ p {
 	font-size: 15px;
 	font-weight: bold;
 	margin-left: 10px;
+    cursor:pointer;
 }
 
 .ossn-checkbox-input {
@@ -2295,7 +2296,7 @@ div.token-input-dropdown ul li.token-input-selected-dropdown-item {
 	font-weight: bold;
 }
 .checkbox-block span {
-	margin-top:5px;
+	margin-top:6px;
 }
 
 /*******************************
