@@ -2007,7 +2007,6 @@ li.token-input-selected-token {
 }
 
 li.token-input-input-token {
-	float: left;
 	margin: 0;
 	padding: 0;
 	list-style-type: none;
@@ -2100,16 +2099,13 @@ div.token-input-dropdown ul li.token-input-selected-dropdown-item {
 	width: 100%;
 	z-index: 10000;
 	background-color: #000;
-	opacity: 0.9;
+    opacity: 0.4;
 	cursor: auto;
 	height: 100%;
 	display: none;
 }
 
-.ossn-light {
-	opacity: 0.4 !important;
-}
-
+.ossn-light {}
 .ossn-viewer {
 	width: 940px;
 	margin: 0 auto;
@@ -2141,20 +2137,6 @@ div.token-input-dropdown ul li.token-input-selected-dropdown-item {
 .ossn-container tbody {
 	background: #000;
 }
-
-.ossn-halt {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	z-index: 10000;
-	background-color: #000;
-	opacity: 0.9;
-	cursor: auto;
-	height: 100%;
-	display: none;
-}
-
 .ossn-viewer .info-block {
 	background: #fff;
 	height: 100%;
