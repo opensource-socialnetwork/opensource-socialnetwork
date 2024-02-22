@@ -2583,25 +2583,23 @@ footer .ossn-footer-menu a:last-child::after {
 	width: 435px;
 }
 
-.home-left-contents .some-icons i {
-	font-size: 45px;
+.landing-page-icons {
+     color: #fff;
+     text-align: center;
+     margin-top: 30px;
 }
-
-.home-left-contents .some-icons li {
-	display: inline-block;
-	color: #fff;
-	border: 3px solid #fff;
-	border-radius: 100%;
-	padding: 20px;
-	margin-right: 20px;
-	margin-bottom: 20px;
-	width: 90px;
-	height: 90px;
+.landing-page-icons-span {
+     border: 3px solid;
+     border-radius: 50px;
+     display: inline-block;
+     width: 90px;
+     text-align: center;
+     padding-top: 20px;
+     padding-bottom: 20px;
+     margin: 10px;
 }
-
-.home-left-contents .some-icons {
-	margin-top: 10%;
-	text-align: center;
+.landing-page-icons-span .fa {
+     margin-right: 0px;
 }
 
 
@@ -2913,7 +2911,7 @@ footer .ossn-footer-menu a:last-child::after {
 		display: none;
 	}
 
-	.home-left-contents .some-icons {
+	.home-left-contents .landing-page-icons {
 		display: none;
 	}
 

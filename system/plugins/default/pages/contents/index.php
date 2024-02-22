@@ -26,16 +26,16 @@ $custom_settings = ossn_goblue_get_custom_logos_bgs_setting();
             	<a href="<?php echo ossn_site_url('login');?>" class="btn btn-primary btn-sm"><?php echo ossn_print('site:login'); ?></a>
                 <a href="<?php echo ossn_site_url('resetlogin');?>" class="btn btn-warning btn-sm"><?php echo ossn_print('reset:login'); ?></a>
             </div>
-           	 <ul  class="some-icons">
-                	<li><i class="fa fa-users"></i></li>
-                	<li><i class="fa fa-comments"></i></li>
-                	<li><i class="fa fa-envelope"></i></li>
-                	<li><i class="fa fa-globe-americas"></i></li>
-                	<li><i class="fa fa-image"></i></li>
-                	<li><i class="fa fa-video"></i></li>
-                	<li><i class="fa fa-map-marker"></i></li>
-                	<li><i class="fa fa-calendar"></i></li>
-             </ul>
+           <div class="landing-page-icons">
+                	<span class="landing-page-icons-span"><i class="fa fa-users fa-3x"></i></span>
+                	<span class="landing-page-icons-span"><i class="fa fa-comments fa-3x"></i></span>
+                	<span class="landing-page-icons-span"><i class="fa fa-envelope fa-3x"></i></span>
+                	<span class="landing-page-icons-span"><i class="fa fa-globe-americas fa-3x"></i></span>
+                	<span class="landing-page-icons-span"><i class="fa fa-image fa-3x"></i></span>
+                	<span class="landing-page-icons-span"><i class="fa fa-video fa-3x"></i></span>
+                	<span class="landing-page-icons-span"><i class="fa fa-map-marker fa-3x"></i></span>
+                	<span class="landing-page-icons-span"><i class="fa fa-calendar fa-3x"></i></span>
+            </div>
  	   </div>   
        <div class="col-lg-6">
     	<?php 
