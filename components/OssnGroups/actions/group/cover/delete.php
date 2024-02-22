@@ -21,7 +21,10 @@ if($files) {
 		}
 		$file->deleteEntity();
 	}
-	$group->ResetCoverPostition($group->guid);
+	
+	$group->data->cover_guid = 0;
+	$group->save();
+	$group->ResetCoverPostition();
 }
 ossn_trigger_message(ossn_print('group:delete:cover:success'));
 redirect(REF);

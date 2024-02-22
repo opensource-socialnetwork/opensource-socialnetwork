@@ -19,6 +19,8 @@ if(ossn_loggedin_user()->guid !== $group->owner_guid && !ossn_isAdminLoggedin())
 		exit;
 }
 if($group->UploadCover()) {
+		//get group again to get newly assigned cover
+		$group = ossn_get_group_by_guid($group->guid);
 		echo json_encode(array(
 				'success' => 1,
 				'url' => $group->coverURL()
