@@ -128,7 +128,7 @@ class OssnObject extends OssnEntities {
 				if($cache->isAvailableEnabled()) {
 						try {
 								$data = $cache->handler()->get("OssnObject->getObjectById():guid={$this->object_guid}");
-								return $data;
+								return arrayObject($data, get_class($this));
 						} catch (OssnDynamicCacheKeyNotExists $e) {
 								//key doesn't exists so we will just fetch and store at end
 								//because if found it return in first step otherwise below step is excuted in both cases
