@@ -48,7 +48,7 @@ class OssnRedis implements MemoryCaching {
 				$key = "{$this->namespace_key}{$key}";
 				//we are using apcu_store not add because this will overwrite
 				//thus saving us for checking the key and delete it first
-				return $this->redis->set($key, $value, $this->ttl);
+				return $this->redis->set($key, serialize($value), $this->ttl);
 		}
 		/**
 		 * Getting stored value from cache
@@ -62,11 +62,11 @@ class OssnRedis implements MemoryCaching {
 				if(empty($key)) {
 						return false;
 				}
-				if(!$this->redis->exists('abc')) {
+				$key = "{$this->namespace_key}{$key}";
+				if(!$this->redis->exists($key)) {
 						throw new OssnDynamicCacheKeyNotExists("Cache key doesn't exists");
 				}
-				$key = "{$this->namespace_key}{$key}";
-				return $this->redis->get($key);
+				return unserialize($this->redis->get($key));
 		}
 		/**
 		 * Deletes key from cache
