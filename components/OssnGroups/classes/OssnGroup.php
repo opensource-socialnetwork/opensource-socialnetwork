@@ -466,6 +466,7 @@ class OssnGroup extends OssnObject {
 						'jpeg',
 						'jfif',
 						'gif',
+						'webp',
 				));
 				$this->OssnFile->setPath('cover/');
 				if(ossn_file_is_cdn_storage_enabled()) {
