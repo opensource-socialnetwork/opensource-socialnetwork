@@ -282,6 +282,11 @@ function ossn_photos_page_handler($album) {
 
 						$view            = new OssnPhotos();
 						$image           = $view->GetPhoto($photo['photo']);
+						
+						if(!$image){
+								ossn_error_page();	
+						}
+						
 						$photo['entity'] = $image;
 
 						//redirect user to home page if image is empty
