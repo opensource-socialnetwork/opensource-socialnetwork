@@ -232,6 +232,8 @@ function ossn_messages_page($pages) {
 										//reduce loop for getting user again and again as its only the $friend or loggedin user
 										if($message->message_from != $guid){
 												$user =  ossn_loggedin_user();
+										} else {
+												$user = $friend;	
 										}
 										$params['user']    = $user;
 										$message           = $message->message;
