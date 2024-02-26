@@ -209,7 +209,7 @@ function ossn_notification_like_photo($hook, $type, $return, $notification) {
 				'viewed'    => $notification->viewed,
 				'url'       => $url,
 				'icon_type' => $iconType,
-				'instance'  => $notif,
+				'instance'  => $notification,
 				'fullname'  => $user->fullname,
 		));
 }
