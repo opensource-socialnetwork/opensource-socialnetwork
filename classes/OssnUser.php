@@ -115,6 +115,19 @@ class OssnUser extends OssnEntities {
 																}
 														}
 												}
+												//[B] input of non_required extra fields in signup form is ignored #2355
+												if(!empty($extra_fields['non_required'])) {
+														foreach ($extra_fields['non_required'] as $type) {
+																foreach ($type as $field) {
+																		if(isset($this->{$field['name']})) {
+																				$this->subtype = $field['name'];
+																				$this->value   = $this->{$field['name']};
+																				//add entity
+																				$this->add();
+																		}
+																}
+														}
+												}
 												//v5.1 allow a specific password algorithm for each user
 												$this->subtype = 'password_algorithm';
 												$this->value   = $this->getPassAlog();

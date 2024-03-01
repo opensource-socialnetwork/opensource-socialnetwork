@@ -33,6 +33,14 @@ if (!empty($user)) {
         }
     }
 }
+
+//[B] input of non_required extra fields in signup form is ignored #2355
+if($fields && isset($fields['non_required'])) {
+		foreach($fields['non_required'] as $field){
+				$user[$field] = input($field);
+		}
+}
+
 if (isset($json['error']) && !empty($json['error'])) {
     echo json_encode($json);
     exit;
