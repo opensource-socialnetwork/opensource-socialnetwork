@@ -2280,7 +2280,14 @@ div.token-input-dropdown ul li.token-input-selected-dropdown-item {
 .checkbox-block span {
 	margin-top:6px;
 }
-
+.checkbox-block-container {
+	margin-bottom: 20px;
+}
+#ossn-home-signup .checkbox-block,
+.ossn-profile-bottom .ossn-edit-form .checkbox-block {
+	margin-top: 0;
+	margin-bottom: 0;
+}
 /*******************************
 	Ossn Blocked
 *********************************/
