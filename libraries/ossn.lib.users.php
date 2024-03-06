@@ -556,4 +556,4 @@ function ossn_get_admin_users() {
 }
 ossn_register_callback('ossn', 'init', 'ossn_users');
 ossn_add_hook('load:settings', 'language', 'ossn_site_user_lang_code');
-ossn_add_hook('user', 'default:fields','ossn_user_fields_set_nonrequired', 201);
+ossn_add_hook('user', 'default:fields','ossn_user_fields_set_nonrequired', 1000);

@@ -29,10 +29,25 @@ function ossn_user_signup_form(){
 			$('#ossn-home-signup input').filter(function(){
 				$(this).closest('span').removeClass('ossn-required');
 				if(this.type == 'radio' && !$(this).hasClass('ossn-field-not-required')){
-					if(!$("input[name='gender']:checked").val()){
-						$(this).closest('span').addClass('ossn-required');
-						failedValidate = true;
-					}
+							$radio_name = this.name;	
+							//no checkbox is checked
+							if($("input[name='"+$radio_name+"']:checked").length == 0){
+									$(this).closest('.radio-block-container').addClass('ossn-required');
+									failedValidate = true;
+							}	else {
+									$(this).closest('.radio-block-container').removeClass('ossn-required');
+							}
+				}
+				
+				if(this.type == 'checkbox' && !$(this).hasClass('ossn-field-not-required')){
+							$checkbox_name = this.name;	
+							//no checkbox is checked
+							if($("input[name='"+$checkbox_name+"']:checked").length == 0){
+									$(this).closest('.checkbox-block-container').addClass('ossn-required');
+									failedValidate = true;
+							}	else {
+									$(this).closest('.checkbox-block-container').removeClass('ossn-required');
+							}
 				}
 				if(this.value == "" && !$(this).hasClass('ossn-field-not-required')){
 					$(this).addClass('ossn-red-borders');
