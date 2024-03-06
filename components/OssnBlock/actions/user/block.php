@@ -13,7 +13,8 @@ $user = input('user');
 $user = ossn_user_by_guid($user);
 
 //Admin profiles should be unblockable by 'normal' members #625
-if(!$user || $user->isAdmin()){
+//[E] OssnBlock allows blocking of moderators #2358
+if(!$user || $user->isAdmin() || $user->canModerate()){
     ossn_trigger_message(ossn_print('user:block:error'), 'error');
     redirect(REF);	
 }
