@@ -25,6 +25,10 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v7.3
 - [B] Disorted frontpage icons #2352
 - [B] Truncated placeholder text in friends tagger #2351
 - [B] Transparency change of emoji overlay after editing posts/comments #2350
+- [E] Improvement to checkboxes #2357
+- [E] Mark radio boxes required if not checked #2359
+- [E] OssnBlock allows blocking of moderators #2358
+
 
 
 OSSN - OPEN SOURCE SOCIAL NEWORK  v7.2
