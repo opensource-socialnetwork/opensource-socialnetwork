@@ -1289,7 +1289,8 @@ class OssnUser extends OssnEntities {
 						//check if owner is loggedin user guid , if so update session
 						$loggedin_user = ossn_loggedin_user();
 						if($loggedin_user && $loggedin_user->guid == $this->guid) {
-								$_SESSION['OSSN_USER'] = ossn_user_by_guid($this->guid);
+								$fresh_user = ossn_user_by_guid($this->guid);
+								OssnSession::assign('OSSN_USER', $fresh_user);
 						}
 						//callback when user is saved
 						//useful to find out when user is edited

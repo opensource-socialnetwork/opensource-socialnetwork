@@ -311,6 +311,12 @@ ossn_register_callback('ossn', 'init', function () {
 												$cache->handler()->delete("ossn_user_by_username({$user->username})");
 												$cache->handler()->delete("ossn_user_by_guid({$user->guid})");
 												$cache->handler()->delete("ossn_user_by_email({$user->email})");
+												
+												//also needs to update session of current user
+												if($user->guid == ossn_loggedin_user()->guid){
+														$fresh_user = ossn_user_by_guid($owner_guid);
+														OssnSession::assign('OSSN_USER', $fresh_user);
+												}
 										}
 								}
 								break;
