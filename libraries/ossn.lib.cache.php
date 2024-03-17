@@ -297,13 +297,23 @@ ossn_register_callback('ossn', 'init', function () {
 				if(isset($params['instance']->type)) {
 						$owner_guid = $params['instance']->owner_guid;
 						switch ($params['instance']->type) {
-							case 'object':
+						case 'object':
 								$cache = new OssnDynamicCaching();
 								if($cache->isAvailableEnabled()) {
 										$cache->handler()->delete("OssnObject->getObjectById():guid={$owner_guid}");
 								}
 								break;
-								//case user needs special handling because of email/username/guid
+						case 'user':
+								$cache = new OssnDynamicCaching();
+								if($cache->isAvailableEnabled()) {
+										$user = ossn_user_by_guid($owner_guid);
+										if($user) {
+												$cache->handler()->delete("ossn_user_by_username({$user->username})");
+												$cache->handler()->delete("ossn_user_by_guid({$user->guid})");
+												$cache->handler()->delete("ossn_user_by_email({$user->email})");
+										}
+								}
+								break;
 						}
 				}
 		});
