@@ -1,3 +1,6 @@
+OSSN - OPEN SOURCE SOCIAL NETWORK v7.4
+- [E] OssnNotification autocheck if undefined causing page unresponsive
+
 OSSN - OPEN SOURCE SOCIAL NETWORK v7.3
 - [B] Wall is not visible for group member (other than creator) #2340
 - [B] OssnMessages image attachment broken if invalid file name #2339
