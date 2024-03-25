@@ -1,3 +1,6 @@
+OSSN - OPEN SOURCE SOCIAL NETWORK v7.5
+- [B] Editing user giving error, the email already existing (admin panel) #2364
+
 OSSN - OPEN SOURCE SOCIAL NETWORK v7.4
 - [E] OssnNotification autocheck if undefined causing page unresponsive
 
