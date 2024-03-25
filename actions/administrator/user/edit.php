@@ -55,10 +55,6 @@ if(!in_array($vars['type'], $types)) {
 		redirect(REF);
 }
 
-$user->first_name = $vars['firstname'];
-$user->last_name  = $vars['lastname'];
-$user->email      = $vars['email'];
-$user->new_type   = $vars['type'];
 
 //check if email is not in user
 if($user->email !== input('email')) {
@@ -75,6 +71,12 @@ if($user->email !== input('email')) {
 				redirect(REF);
 		}
 }
+
+$user->first_name = $vars['firstname'];
+$user->last_name  = $vars['lastname'];
+$user->email      = $vars['email'];
+$user->new_type   = $vars['type'];
+
 //check if password then change password
 if(!empty($password)) {
 		$OssnUser           = new OssnUser();
