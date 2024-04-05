@@ -10,6 +10,10 @@
  */
 
 $path  = ossn_route()->themes . 'goblue/logos_backgrounds/';
+//[B] Reset logo if no logo set before causing error #2368
+if(!is_dir($path)){
+	redirect(REF);
+}
 $files = array_diff(scandir($path), array(
 		'.',
 		'..',
