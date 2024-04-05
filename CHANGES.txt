@@ -1,3 +1,7 @@
+OSSN - OPEN SOURCE SOCIAL NETWORK v7.6
+- [B] Logo upload failed #2369
+- [B] Reset logo if no logo set before causing error #2368
+
 OSSN - OPEN SOURCE SOCIAL NETWORK v7.5
 - [B] Editing user giving error, the email already existing (admin panel) #2364
 
