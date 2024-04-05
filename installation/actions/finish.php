@@ -18,7 +18,7 @@ $factory = new OssnFactory(array(
 		'email' => ossn_site_settings('owner_email'),
 		'version' => ossn_site_settings('site_version')
 ));
-$factory->connect;
+$factory->connect();
 
 //Enable cache after installation complete! #1338
 ossn_create_cache();
