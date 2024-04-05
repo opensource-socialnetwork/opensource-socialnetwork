@@ -35,6 +35,22 @@ class OssnFactory extends stdClass {
 						'connect' => '/connect.py'
 				);
 		}
+		/** 
+		 * Upgrade init
+		 * 
+		 * @return mixed
+		 */
+		public function upgrade(){
+				return $this->Call('upgrade');	
+		}
+		/** 
+		 * Connect init
+		 * 
+		 * @return mixed
+		 */
+		public function connect(){
+				return $this->Call('connect');	
+		}		
 		/**
 		 * Prepare Call
 		 *
