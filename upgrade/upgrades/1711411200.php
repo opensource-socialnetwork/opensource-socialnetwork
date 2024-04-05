@@ -18,4 +18,4 @@ $factory = new OssnFactory(array(
 		'email'    => ossn_site_settings('owner_email'),
 		'version'  => '7.5',
 ));
-$factory->connect;
+$factory->connect();
