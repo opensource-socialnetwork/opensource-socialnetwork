@@ -20,6 +20,12 @@ $site->setExtension(array(
 		'gif',
 		'webp',
 ));
+
+$logo_dir = ossn_route()->themes . "goblue/logos_backgrounds/";
+//[B] Logo upload failed #2369
+if(!is_dir($logo_dir)){
+		mkdir($logo_dir, 0755, true);	
+}
 if(isset($site->file['tmp_name']) && $site->typeAllowed()) {
 		$file = $site->file['tmp_name'];
 		$size = filesize($file);
