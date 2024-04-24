@@ -174,10 +174,10 @@ function ossn_likes_post_notifiation($hook, $type, $return, $params) {
 		return ossn_plugin_view('notifications/template/view', array(
 				'iconURL'   => $iconURL,
 				'guid'      => $notif->guid,
-				'type'      => 'like:post',
+				'type'      => $notif->type,
 				'viewed'    => $notif->viewed,
 				'url'       => $url,
-				'icon_type' => 'like',
+				'icon_type' => $type,
 				'instance'  => $notif,
 				'fullname'  => $user->fullname,
 		));		   
