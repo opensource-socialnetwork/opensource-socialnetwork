@@ -91,8 +91,10 @@ if(!empty($fields)) {
 						$user->data->{$field} = $vars[$field];
 				}
 		}
-		$user->data->language = $lang;
 }
+//[B] If not extra fields langauge won't save at all. Profile edit #2385
+$user->data->language = $lang;
+
 //save
 if($user->save()) {
 		ossn_trigger_message($success, 'success');
