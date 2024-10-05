@@ -939,6 +939,8 @@ a {
 
 [contentEditable=true]:empty:not(:focus)::before {
 	content: attr(placeholder);
+	pointer-events: none;
+	display: block;    
 }
 
 
