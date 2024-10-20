@@ -58,7 +58,7 @@ class OssnPhotos extends OssnFile {
 										$file_name = str_replace('album/photos/', '', $resize->{0}->value);
 										//crop photos and create new photos from source
 										$sizes = ossn_photos_sizes();
-										foreach($sizes as $size => $params) {
+										foreach ($sizes as $size => $params) {
 												$params = explode('x', $params);
 												$width  = $params[1];
 												$height = $params[0];
@@ -116,10 +116,10 @@ class OssnPhotos extends OssnFile {
 		public function GetPhoto($photo) {
 				$this->guid = $photo;
 				$this->type = 'object';
-				$file = $this->getFile();
+				$file       = $this->getFile();
 				//[B] OssnPhotos::getPhoto should not return other file types #2272
-				if($file && ($file->subtype == 'file:ossn:aphoto' || $file->subtype == 'file:profile:photo' || $file->subtype == 'file:profile:cover')){
-						return $file;	
+				if($file && ($file->subtype == 'file:ossn:aphoto' || $file->subtype == 'file:profile:photo' || $file->subtype == 'file:profile:cover')) {
+						return $file;
 				}
 				return false;
 		}
@@ -136,9 +136,7 @@ class OssnPhotos extends OssnFile {
 						$file         = $this->getFile();
 						$source       = ossn_get_userdata("user/{$file->owner_guid}/{$file->value}");
 
-						//delete cropped photos
-						unlink($source);
-						foreach(ossn_user_image_sizes() as $size => $dimensions) {
+						foreach (ossn_user_image_sizes() as $size => $dimensions) {
 								$filename = str_replace('profile/photo/', '', $file->value);
 								$filename = ossn_get_userdata("user/{$file->owner_guid}/profile/photo/{$size}_{$filename}");
 								if(is_file($filename)) {
@@ -146,7 +144,7 @@ class OssnPhotos extends OssnFile {
 								}
 						}
 						//delete photo from database
-						if($this->deleteEntity($file->guid)) {
+						if($this->deleteFile()) {
 								$params['photo'] = get_object_vars($file);
 								ossn_trigger_callback('delete', 'profile:photo', $params);
 								return true;
@@ -191,15 +189,15 @@ class OssnPhotos extends OssnFile {
 						$file         = $this->getFile();
 						$source       = ossn_get_userdata("object/{$file->owner_guid}/{$file->value}");
 
-						//delete croped photos
-						unlink($source);
-						foreach(ossn_photos_sizes() as $size => $dimensions) {
-								$filename = str_replace('album/photos/', '', $file->value);
-								$filename = ossn_get_userdata("object/{$file->owner_guid}/album/photos/{$size}_{$filename}");
-								unlink($filename);
-						}
 						//delete photo from database
-						if($this->deleteEntity($file->guid)) {
+						if($file && $file->deleteFile()) {
+								//delete croped photos
+								foreach (ossn_photos_sizes() as $size => $dimensions) {
+										$filename = str_replace('album/photos/', '', $file->value);
+										$filename = ossn_get_userdata("object/{$file->owner_guid}/album/photos/{$size}_{$filename}");
+										unlink($filename);
+								}
+
 								$params['photo'] = get_object_vars($file);
 								ossn_trigger_callback('delete', 'album:photo', $params);
 								return true;
@@ -214,7 +212,7 @@ class OssnPhotos extends OssnFile {
 		 *
 		 * @return boolean
 		 */
-		public function addWall($itemguid = '', array $images_guid = array()): bool {
+		public function addWall($itemguid = '', array $images_guid = array()): bool{
 				$album = ossn_get_object($itemguid);
 				if(!$album || !class_exists('OssnWall')) {
 						return false;
