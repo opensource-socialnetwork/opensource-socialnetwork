@@ -939,8 +939,8 @@ a {
 
 [contentEditable=true]:empty:not(:focus)::before {
 	content: attr(placeholder);
-	pointer-events: none;
-	display: block;    
+    pointer-events: none;
+    display: block;    
 }
 
 
@@ -2076,6 +2076,7 @@ div.token-input-dropdown ul li.token-input-selected-dropdown-item {
 
 .ossn-system-messages .ossn-system-messages-inner .alert {
 	margin-bottom: 0px;
+    z-index:-1;
 }
 
 
