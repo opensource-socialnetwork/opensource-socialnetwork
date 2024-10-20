@@ -4,6 +4,8 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v7.6
 - [E] Update phpmailer
 - [B] When deleting album Undefined property #2395
 - [B] Admins can not view "friends only" posts if not friend with user #2403
+- [B] Close Button (X) of System Messages Overlaps with Dropdown Menu #2396
+
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v7.5
 - [B] Editing user giving error, the email already existing (admin panel) #2364
