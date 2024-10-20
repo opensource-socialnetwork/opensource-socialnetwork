@@ -174,10 +174,10 @@ function ossn_likes_post_notifiation($hook, $type, $return, $params) {
 		return ossn_plugin_view('notifications/template/view', array(
 				'iconURL'   => $iconURL,
 				'guid'      => $notif->guid,
-				'type'      => $notif->type,
+				'type'      => 'like:post',
 				'viewed'    => $notif->viewed,
 				'url'       => $url,
-				'icon_type' => $type,
+				'icon_type' => 'like',
 				'instance'  => $notif,
 				'fullname'  => $user->fullname,
 		));		   
@@ -253,9 +253,10 @@ function ossn_post_page($pages) {
 				//Posts having friends privacy are visible to public using direct URL #1484
 				//re-opened on 27-06-2021 thanks to Haydar Alkaduhimi for reporting it.
 				//fixing again on 18-09-2021 user can not view own post.
+				//fixing admins can not view friends only post if they are not friends October 20th 2024  #2403
 				if(
 						(isset($post->access) && $post->access == OSSN_FRIENDS && !ossn_isLoggedin()) ||
-						(ossn_isLoggedin() && $loggedin->guid != $post->poster_guid && $post->access == OSSN_FRIENDS && ossn_isLoggedin() && !ossn_user_is_friend($loggedin->guid, $post->poster_guid))
+						(!ossn_isAdminLoggedin() && ossn_isLoggedin() && $loggedin->guid != $post->poster_guid && $post->access == OSSN_FRIENDS && ossn_isLoggedin() && !ossn_user_is_friend($loggedin->guid, $post->poster_guid))
 				) {
 						ossn_error_page();
 				}
