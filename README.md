@@ -38,6 +38,7 @@ Languages
 | Dutch | Hebrew | Greek |
 | Esperanto | Japanese | Indonesian |
 | Traditional Chinese | Korean | Hungarian |
+| Sinhala |
 
 Front-End Features
 ===================
