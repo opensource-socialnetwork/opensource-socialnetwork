@@ -29,7 +29,8 @@ class OssnRedis implements MemoryCaching {
 				$this->redis = new Redis();
 				$this->redis->connect($settings['host'], $settings['port']);
 				if(!empty($settings['password'])) {
-						$this->redis->auth($password);
+						//[B] Redis password is an undefined var #2379
+						$this->redis->auth($settings['password']);
 				}
 		}
 		/**
