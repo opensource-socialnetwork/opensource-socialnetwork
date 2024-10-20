@@ -1043,22 +1043,6 @@ class OssnUser extends OssnEntities {
 				if(!empty($this->guid) && isset($this->cover_guid) && !empty($this->cover_guid)) {
 						return ossn_get_file($this->cover_guid);
 				}
-				if(!empty($this->guid)) {
-						$this->owner_guid = $this->guid;
-						$this->type       = 'user';
-						$this->subtype    = 'file:profile:cover';
-						$this->limit      = 1;
-						$this->order_by   = 'guid DESC';
-						$entity           = $this->get_entities();
-						if(isset($entity[0])) {
-								//save the cover_guid and move to new procedure #1647
-								$user                   = ossn_user_by_guid($this->guid);
-								$user->data->cover_guid = $entity[0]->guid;
-								$user->save();
-
-								return $entity[0];
-						}
-				}
 				return false;
 		}
 		/**
