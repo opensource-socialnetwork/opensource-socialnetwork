@@ -668,7 +668,7 @@ class OssnFile extends OssnEntities {
 
 						if($this->deleteEntity() && $this->isFile()) {
 								if(unlink($path)) {
-										ossn_trigger_callback('file', 'deleted', $args);
+										ossn_trigger_callback('file', 'deleted', $callback);
 										return true;
 								}
 						}
