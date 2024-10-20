@@ -294,7 +294,7 @@ function ossn_dynamic_cache_settings() {
  */
 ossn_register_callback('ossn', 'init', function () {
 		ossn_register_callback('delete', 'entity', function ($callback, $type, $params) {
-				if(isset($params['instance']->type)) {
+				if(isset($params['instance']->type) && isset($params['instance']->owner_guid)) {
 						$owner_guid = $params['instance']->owner_guid;
 						switch ($params['instance']->type) {
 						case 'object':
