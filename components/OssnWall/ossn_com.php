@@ -174,10 +174,10 @@ function ossn_likes_post_notifiation($hook, $type, $return, $params) {
 		return ossn_plugin_view('notifications/template/view', array(
 				'iconURL'   => $iconURL,
 				'guid'      => $notif->guid,
-				'type'      => 'like:post',
+				'type'      => $notif->type,
 				'viewed'    => $notif->viewed,
 				'url'       => $url,
-				'icon_type' => 'like',
+				'icon_type' => $type,
 				'instance'  => $notif,
 				'fullname'  => $user->fullname,
 		));		   
@@ -595,4 +595,4 @@ function ossn_wall_container_assets() {
 		ossn_load_external_js('jquery.tokeninput');
 }
 //initilize ossn wall
-ossn_register_callback('ossn', 'init', 'ossn_wall');
+ossn_register_callback('ossn', 'init', 'ossn_wall')
