@@ -595,4 +595,4 @@ function ossn_wall_container_assets() {
 		ossn_load_external_js('jquery.tokeninput');
 }
 //initilize ossn wall
-ossn_register_callback('ossn', 'init', 'ossn_wall')
+ossn_register_callback('ossn', 'init', 'ossn_wall');
