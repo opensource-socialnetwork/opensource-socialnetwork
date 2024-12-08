@@ -10,7 +10,7 @@
  */
 
 $fa = array(
-   'home' => 'خانه',
+    'home' => 'خانه',
     'site:index' => 'خوش‌آمدید',
     'news:feed' => 'اخبار',
     'new:feed' => 'اخبار',
@@ -22,7 +22,7 @@ $fa = array(
     'its:free' => "این سرویس رایگان است و همیشه رایگان خواهد بود.",
 
     'copyright' => '&copy; کپی‌رایت',
-    'powered' => 'قدرت گرفته از شبکه اجتماعی متن‌باز.',
+    'powered' => 'Powered by the Open Source Social Network.',
 
     'name' => 'نام',
     'birthdate' => 'تاریخ تولد',
