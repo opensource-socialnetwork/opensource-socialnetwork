@@ -7,6 +7,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v7.6
 - [B] Close Button (X) of System Messages Overlaps with Dropdown Menu #2396
 - [B] Redis password is an undefined var #2379
 - [B] If not extra fields langauge won't save at all. Profile edit #2385
+- [B] Add persian langauge #2412
 
 
 
