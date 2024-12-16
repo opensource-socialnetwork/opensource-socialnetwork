@@ -1069,7 +1069,8 @@ class OssnUser extends OssnEntities {
 				$timestamp_last_year = mktime(0, 0, 0, 1, 1, $last_year);
 
 				$current_year           = date('Y');
-				$timestamp_current_year = mktime(0, 0, 0, 12, 1, $current_year);
+				//[B] New installation suddenly shows user empty graph (total by year) #2413
+				$timestamp_current_year = mktime(0, 0, 0, 12, 31, $current_year);
 
 				//[B] countByYears result in admin panel showing wrong years + limit query to 2 years #2320
 				$wheres[] = "time_created > 0 AND time_created >= {$timestamp_last_year} AND time_created <= {$timestamp_current_year}";
