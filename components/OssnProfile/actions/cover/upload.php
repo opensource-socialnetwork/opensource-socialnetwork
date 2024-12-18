@@ -29,6 +29,38 @@ $file->setExtension(array(
 		'gif',
 		'webp',
 ));
+$getNewDim = function ($original_file) {
+		if(!is_file($original_file)) {
+				return false;
+		}
+		$details = getimagesize($original_file);
+
+		$max_height = 1500;
+		$max_width  = 1500;
+
+		$ratio  = $details[1] / $details[0];
+		$width  = $max_width;
+		$height = $width * $ratio;
+
+		if($height > $max_height) {
+				$height = $max_height;
+				$width  = (int) round($height / $ratio);
+		}
+		return array(
+				'w' => $width,
+				'h' => $height,
+		);
+};
+if(isset($file->file['tmp_name'])) {
+		$original_file = $file->file['tmp_name'];
+
+		$dims = $getNewDim($original_file);
+
+		if($dims['w'] < 1200) {
+				//use 2000 x 2000
+				$file->setImageDim(2000, 2000, false);
+		}
+}
 if($fileguid = $file->addFile()) {
 		//update user cover time, this time has nothing to do with photo entity time
 		$user->data->cover_time = time();
@@ -48,7 +80,7 @@ if($fileguid = $file->addFile()) {
 } else {
 		echo json_encode(array(
 				'success' => 0,
-				'error' => $file->getFileUploadError($file->error)
+				'error'   => $file->getFileUploadError($file->error),
 		));
 		exit();
 }
