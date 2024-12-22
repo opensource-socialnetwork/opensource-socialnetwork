@@ -65,8 +65,13 @@ function ossn_profile() {
 		//notifications
 		ossn_add_hook('notification:view', 'like:entity:file:profile:photo', 'ossn_notification_like_profile_photo');
 		ossn_add_hook('notification:view', 'comments:entity:file:profile:photo', 'ossn_notification_like_profile_photo');
-		ossn_add_hook('notification:view', 'like:entity:file:profile:cover', 'ossn_notification_like_profile_cover');
+		ossn_add_hook('notification:view', 'like:entity:file:profile:cover', 'ossn_notification_like_profile_photo');
 		ossn_add_hook('notification:view', 'comments:entity:file:profile:cover', 'ossn_notification_like_profile_photo');
+		
+		ossn_add_hook('notification:redirect:uri', 'like:entity:file:profile:photo', 'ossn_notification_like_profile_photo_redirect_uri');
+		ossn_add_hook('notification:redirect:uri', 'comments:entity:file:profile:photo', 'ossn_notification_like_profile_photo_redirect_uri');
+		ossn_add_hook('notification:redirect:uri', 'like:entity:file:profile:cover', 'ossn_notification_like_profile_photo_redirect_uri');
+		ossn_add_hook('notification:redirect:uri', 'comments:entity:file:profile:cover', 'ossn_notification_like_profile_photo_redirect_uri');
 		
 		//subpages of profile
 		ossn_profile_subpage('friends');
@@ -89,6 +94,32 @@ function ossn_profile() {
 							'text' => ossn_print('basic:settings'),
 				));									
 		}
+}
+/**
+ * Redirect URI for profile photo like or comment like
+ *
+ * @reutrn boolean|string
+ */
+function ossn_notification_like_profile_photo_redirect_uri($hook, $type, $return, $params) {
+		$notification = $params['notification'];
+		$uri          = "photos/user/view/{$notification->subject_guid}";
+		if(preg_match('/comments:entity/i', $notification->type)){
+			$uri = "photos/user/view/{$notification->subject_guid}#comments-item-{$notification->item_guid}";				
+		}
+		return $uri;
+}
+/**
+ * Redirect URI for profile cover like or comment like
+ *
+ * @reutrn boolean|string
+ */
+function ossn_notification_like_profile_cover_redirect_uri($hook, $type, $return, $params) {
+		$notification = $params['notification'];
+		$uri          = "photos/user/view/{$notification->subject_guid}";
+		if(preg_match('/comments:entity/i', $notification->type)){
+			$uri = "photos/user/view/{$notification->subject_guid}#comments-item-{$notification->item_guid}";				
+		}
+		return $uri;
 }
 /**
  * Add users link in search page
@@ -428,13 +459,11 @@ function ossn_notification_like_profile_photo($hook, $type, $return, $notificati
 		if(preg_match('/comments/i', $notification->type)) {
 				$iconType = 'comment';
 		}
-		$url               = ossn_site_url("photos/user/view/{$notification->subject_guid}");
 		return ossn_plugin_view('notifications/template/view', array(
 				'iconURL'   => $user->iconURL()->small,
 				'guid'      => $notification->guid,
 				'type'      => $notification->type,
 				'viewed'    => $notification->viewed,
-				'url'       => $url,
 				'icon_type' => $iconType,
 				'instance'  => $notification,
 				'fullname'  => $user->fullname,
