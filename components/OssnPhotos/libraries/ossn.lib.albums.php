@@ -9,6 +9,16 @@
  * @link      https://www.opensource-socialnetwork.org/
  */
 function ossn_albums() {
-    $albums = new OssnAlbums;
-    return $albums;
+		$albums = new OssnAlbums();
+		return $albums;
+}
+function ossn_get_album_object($guid) {
+		if(!empty($guid)) {
+				$object = ossn_get_object($guid);
+				if($object && $object->subtype == 'ossn:album') {
+						$object = (array) $object;
+						return arrayObject($object, 'OssnAlbums');
+				}
+		}
+		return false;
 }

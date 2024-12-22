@@ -37,7 +37,10 @@ function ossn_photos_initialize() {
 
 		ossn_add_hook('notification:view', 'like:entity:file:ossn:aphoto', 'ossn_notification_like_photo');
 		ossn_add_hook('notification:view', 'comments:entity:file:ossn:aphoto', 'ossn_notification_like_photo');
-
+		
+		ossn_add_hook('notification:redirect:uri', 'like:entity:file:ossn:aphoto', 'ossn_notification_like_photo_redirect_uri');
+		ossn_add_hook('notification:redirect:uri', 'comments:entity:file:ossn:aphoto', 'ossn_notification_like_photo_redirect_uri');
+		
 		ossn_add_hook('photo:view', 'profile:controls', 'ossn_profile_photo_menu');
 		ossn_add_hook('photo:view', 'album:controls', 'ossn_album_photo_menu');
 		ossn_add_hook('cover:view', 'profile:controls', 'ossn_album_cover_photo_menu');
@@ -48,9 +51,6 @@ function ossn_photos_initialize() {
 		ossn_add_hook('notification:participants', 'like:entity:file:profile:cover', 'ossn_profile_photo_cover_like_participants_deny');
 		ossn_add_hook('notification:participants', 'like:entity:file:ossn:aphoto', 'ossn_profile_photo_cover_like_participants_deny');
 
-		//ossn_add_hook('notification:participants', 'comments:entity:file:profile:photo', 'ossn_profile_photo_cover_like_participants_deny');
-		//ossn_add_hook('notification:participants', 'comments:entity:file:profile:cover', 'ossn_profile_photo_cover_like_participants_deny');
-		//ossn_add_hook('notification:participants', 'comments:entity:file:ossn:aphoto', 'ossn_profile_photo_cover_like_participants_deny');
 
 		//actions
 		if(ossn_isLoggedin()) {
@@ -92,6 +92,19 @@ function ossn_photos_initialize() {
 		//gallery plugin dist include
 		ossn_new_external_js('jquery.fancybox.min.js', '//cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js', false);
 		ossn_new_external_css('jquery.fancybox.min.css', '//cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css', false);
+}
+/**
+ * Redirect URI for album photo like or comment like
+ *
+ * @reutrn boolean|string
+ */
+function ossn_notification_like_photo_redirect_uri($hook, $type, $return, $params) {
+		$notification = $params['notification'];
+		$uri = "photos/view/{$notification->subject_guid}";
+		if(preg_match('/comments:entity/i', $notification->type)){
+			$uri = "photos/view/{$notification->subject_guid}#comments-item-{$notification->item_guid}";				
+		}
+		return $uri;
 }
 /**
  * Like & Comment on photos check before like & comment
@@ -191,7 +204,7 @@ function ossn_notification_like_photo($hook, $type, $return, $notification) {
 		$user = ossn_user_by_guid($notification->poster_guid);
 		//change your/someone photo string
 		$entity = ossn_get_entity($notification->subject_guid);
-		$album  = ossn_get_object($entity->owner_guid);
+		$album  = ossn_get_album_object($entity->owner_guid);
 		if($album && $album->subtype == 'ossn:album' && ossn_loggedin_user()->guid != $album->owner_guid) {
 				$notification->type = $notification->type . ':someone';
 		}
@@ -201,13 +214,11 @@ function ossn_notification_like_photo($hook, $type, $return, $notification) {
 		if(preg_match('/comments/i', $notification->type)) {
 				$iconType = 'comment';
 		}
-		$url = ossn_site_url("photos/view/{$notification->subject_guid}");
 		return ossn_plugin_view('notifications/template/view', array(
 				'iconURL'   => $user->iconURL()->small,
 				'guid'      => $notification->guid,
 				'type'      => $notification->type,
 				'viewed'    => $notification->viewed,
-				'url'       => $url,
 				'icon_type' => $iconType,
 				'instance'  => $notification,
 				'fullname'  => $user->fullname,

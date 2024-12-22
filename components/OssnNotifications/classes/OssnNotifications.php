@@ -114,7 +114,7 @@ class OssnNotifications extends OssnDatabase {
 		 * @param array   $vars        Option values
 		 *
 		 * @return boolean
-		 */		
+		 */
 		public function notifyParticipant($partcipate, $vars) {
 				if(empty($partcipate)) {
 						return false;
@@ -169,7 +169,7 @@ class OssnNotifications extends OssnDatabase {
 						return $get;
 				}
 				if($get) {
-						foreach($get as $notif) {
+						foreach ($get as $notif) {
 								if(ossn_is_hook('notification:view', $notif->type)) {
 										$messages[] = ossn_call_hook('notification:view', $notif->type, $notif);
 								}
@@ -215,18 +215,26 @@ class OssnNotifications extends OssnDatabase {
 		}
 
 		/**
-		 * Mark notification as viewd
+		 * Mark notification as viewed
 		 *
-		 * @param integer $guid Notification guid
-		 *
-		 * @return object;
+		 * @return boolean
 		 */
 		public function setViewed($guid) {
-				$this->statement("UPDATE ossn_notifications SET viewed='' WHERE(guid='{$guid}');");
-				if($this->execute()) {
-						return true;
+				if(!isset($this->guid)) {
+						return false;
 				}
-				return false;
+				return $this->update(array(
+						'table'  => 'ossn_notifications',
+						'names'  => array(
+								'viewed',
+						),
+						'values' => array(
+								'',
+						),
+						'wheres' => array(
+								"guid='{$this->guid}'",
+						),
+				));
 		}
 		/**
 		 * Delete user notifications
@@ -288,7 +296,7 @@ class OssnNotifications extends OssnDatabase {
 								'subject_guid',
 								'item_guid',
 						);
-						foreach($params as $key => $item) {
+						foreach ($params as $key => $item) {
 								if(!in_array($key, $valid)) {
 										unset($params[$key]);
 								}
@@ -296,9 +304,9 @@ class OssnNotifications extends OssnDatabase {
 						if(empty($params)) {
 								return false;
 						}
-						foreach($params as $key => $where) {
+						foreach ($params as $key => $where) {
 								if(is_array($where)) {
-										foreach($where as $implode) {
+										foreach ($where as $implode) {
 												$items[] = "'{$implode}'";
 										}
 										$in       = implode(',', $items);
@@ -439,7 +447,7 @@ class OssnNotifications extends OssnDatabase {
 				}
 				$fetched_data = $this->select($params, true);
 				if($fetched_data) {
-						foreach($fetched_data as $item) {
+						foreach ($fetched_data as $item) {
 								$results[] = arrayObject($item, get_class($this));
 						}
 						return $results;
@@ -457,6 +465,31 @@ class OssnNotifications extends OssnDatabase {
 				}
 				if(ossn_is_hook('notification:view', $this->type)) {
 						return ossn_call_hook('notification:view', $this->type, $this);
+				}
+				return false;
+		}
+		/**
+		 * Notification redirect URI
+		 *
+		 * OSSN 7.7 new way to handle long subject URLs
+		 * As the URL may include & and = which some servers givies 403 forbidden error
+		 * So instead of passing subject_url in URL parameter use hook
+		 *
+		 * @params object $instance Notification instance
+		 *
+		 * @return boolean|string
+		 */
+		public function getRedirectURI() {
+				if(isset($this->type)) {
+						if(ossn_is_hook('notification:redirect:uri', $this->type)) {
+								$args = array(
+										'notification' => $this,
+								);
+								$hook = ossn_call_hook('notification:redirect:uri', $this->type, $args, false);
+								if($hook && !empty($hook)) {
+										return $hook;
+								}
+						}
 				}
 				return false;
 		}

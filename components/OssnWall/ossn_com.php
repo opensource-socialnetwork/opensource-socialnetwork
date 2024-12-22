@@ -49,8 +49,15 @@ function ossn_wall() {
 		ossn_add_hook('notification:view', 'like:post', 'ossn_likes_post_notifiation');
 		ossn_add_hook('notification:view', 'comments:post', 'ossn_likes_post_notifiation');
 		ossn_add_hook('notification:view', 'wall:friends:tag', 'ossn_likes_post_notifiation');
-		ossn_add_hook('notification:view', 'comments:post:group:wall', 'ossn_group_comment_post');
-		ossn_add_hook('notification:view', 'like:post:group:wall', 'ossn_group_comment_post');
+		ossn_add_hook('notification:view', 'comments:post:group:wall', 'ossn_likes_post_notifiation');
+		ossn_add_hook('notification:view', 'like:post:group:wall', 'ossn_likes_post_notifiation');
+
+		//hooks for notification redirect URI
+		ossn_add_hook('notification:redirect:uri', 'like:post', 'ossn_likes_redirect_uri');
+		ossn_add_hook('notification:redirect:uri', 'comments:post', 'ossn_likes_redirect_uri');
+		ossn_add_hook('notification:redirect:uri', 'wall:friends:tag', 'ossn_likes_redirect_uri');
+		ossn_add_hook('notification:redirect:uri', 'comments:post:group:wall', 'ossn_likes_redirect_uri');
+		ossn_add_hook('notification:redirect:uri', 'like:post:group:wall', 'ossn_likes_redirect_uri');
 
 		ossn_add_hook('wall', 'post:menu', 'ossn_wall_post_menu');
 
@@ -88,7 +95,7 @@ function ossn_wall() {
 		ossn_register_menu_item('wall/container/group', $menupost);
 		ossn_register_menu_item('wall/container/user', $menupost);
 
-		foreach($container_controls as $key => $container_control) {
+		foreach ($container_controls as $key => $container_control) {
 				ossn_register_menu_item('wall/container/controls/home', $container_control);
 				ossn_register_menu_item('wall/container/controls/user', $container_control);
 				if($container_control['name'] != 'tag_friend') {
@@ -96,6 +103,20 @@ function ossn_wall() {
 				}
 		}
 		ossn_add_hook('required', 'components', 'ossn_location_asure_requirements');
+}
+/**
+ * Redirect URI for wall like or comment like
+ * Since its same for groups and wall so no need for seperate function
+ *
+ * @reutrn string
+ */
+function ossn_likes_redirect_uri($hook, $type, $return, $params) {
+		$notification = $params['notification'];
+		$uri          = "post/view/{$notification->subject_guid}";
+		if(preg_match('/comments/i', $notification->type)) {
+				$uri = "post/view/{$notification->subject_guid}#comments-item-{$notification->item_guid}";
+		}
+		return $uri;
 }
 /**
  * Location Make sure it is not disabled if Wall is active
@@ -133,7 +154,7 @@ function ossn_friend_picker() {
 				echo json_encode(array());
 				return false;
 		}
-		foreach($friends as $users) {
+		foreach ($friends as $users) {
 				$p['first_name'] = $users->first_name;
 				$p['last_name']  = $users->last_name;
 				$p['imageurl']   = ossn_site_url("avatar/{$users->username}/smaller");
@@ -154,11 +175,8 @@ function ossn_friend_picker() {
  * @access private
  */
 function ossn_likes_post_notifiation($hook, $type, $return, $params) {
-		$notif          = $params;
-		$user           = ossn_user_by_guid($notif->poster_guid);
-
-		$url = ossn_site_url("post/view/{$notif->subject_guid}");
-
+		$notif = $params;
+		$user  = ossn_user_by_guid($notif->poster_guid);
 		if(preg_match('/like/i', $notif->type)) {
 				$type = 'like';
 		}
@@ -167,7 +185,6 @@ function ossn_likes_post_notifiation($hook, $type, $return, $params) {
 		}
 		if(preg_match('/comments/i', $notif->type)) {
 				$type = 'comment';
-				$url  = ossn_site_url("post/view/{$notif->subject_guid}#comments-item-{$notif->item_guid}");
 		}
 
 		$iconURL = $user->iconURL()->small;
@@ -176,56 +193,10 @@ function ossn_likes_post_notifiation($hook, $type, $return, $params) {
 				'guid'      => $notif->guid,
 				'type'      => $notif->type,
 				'viewed'    => $notif->viewed,
-				'url'       => $url,
 				'icon_type' => $type,
 				'instance'  => $notif,
 				'fullname'  => $user->fullname,
-		));		   
-}
-/**
- * Setting up a template for notification view for commponent post
- *
- * @param string $hook Name of hook
- * @param string $type Hook type
- * @param string $return mixed data
- * @param array $params Arrays or Objects
- *
- * @return mixed data
- * @access private
- */
-function ossn_group_comment_post($hook, $type, $return, $params) {
-		$notif          = $params;
-		$baseurl        = ossn_site_url();
-		$user           = ossn_user_by_guid($notif->poster_guid);
-		$user->fullname = "<strong>{$user->fullname}</strong>";
-		$iconURL        = $user->iconURL()->small;
-
-		$img = "<div class='notification-image'><img src='{$iconURL}' /></div>";
-		$url = ossn_site_url("post/view/{$notif->subject_guid}");
-
-		if(preg_match('/like/i', $notif->type)) {
-				$type = 'like';
-		}
-		if(preg_match('/comments/i', $notif->type)) {
-				$type = 'comment';
-				$url  = ossn_site_url("post/view/{$notif->subject_guid}#comments-item-{$notif->item_guid}");
-		}
-		$type = "<div class='ossn-notification-icon-{$type}'></div>";
-		if($notif->viewed !== null) {
-				$viewed = '';
-		} elseif($notif->viewed == null) {
-				$viewed = 'class="ossn-notification-unviewed"';
-		}
-		$notification_read = "{$baseurl}notification/read/{$notif->guid}?notification=" . urlencode($url);
-		return "<a href='{$notification_read}'>
-	       <li {$viewed}> {$img}
-		   <div class='notfi-meta'> {$type}
-		   <div class='data'>" .
-		ossn_print("ossn:notifications:{$notif->type}", array(
-				$user->fullname,
-		)) .
-				'</div>
-		   </div></li></a>';
+		));
 }
 /**
  * OssnWall post page handlers
@@ -240,8 +211,8 @@ function ossn_post_page($pages) {
 		if(empty($page)) {
 				return false;
 		}
-		switch($page) {
-			case 'view':
+		switch ($page) {
+		case 'view':
 				$title = ossn_print('post:view');
 				$wall  = new OssnWall();
 				$post  = $pages[1];
@@ -256,7 +227,12 @@ function ossn_post_page($pages) {
 				//fixing admins can not view friends only post if they are not friends October 20th 2024  #2403
 				if(
 						(isset($post->access) && $post->access == OSSN_FRIENDS && !ossn_isLoggedin()) ||
-						(!ossn_isAdminLoggedin() && ossn_isLoggedin() && $loggedin->guid != $post->poster_guid && $post->access == OSSN_FRIENDS && ossn_isLoggedin() && !ossn_user_is_friend($loggedin->guid, $post->poster_guid))
+						(!ossn_isAdminLoggedin() &&
+								ossn_isLoggedin() &&
+								$loggedin->guid != $post->poster_guid &&
+								$post->access == OSSN_FRIENDS &&
+								ossn_isLoggedin() &&
+								!ossn_user_is_friend($loggedin->guid, $post->poster_guid))
 				) {
 						ossn_error_page();
 				}
@@ -277,7 +253,7 @@ function ossn_post_page($pages) {
 				$content = ossn_set_page_layout('newsfeed', $contents);
 				echo ossn_view_page($title, $content);
 				break;
-			case 'photo':
+		case 'photo':
 				$wall = new OssnWall();
 				$post = $wall->GetPost($pages[1]);
 				if(!empty($pages[1]) && !empty($pages[2]) && $post) {
@@ -290,7 +266,7 @@ function ossn_post_page($pages) {
 						ossn_error_page();
 				}
 				break;
-			case 'privacy':
+		case 'privacy':
 				if(ossn_is_xhr()) {
 						$params = array(
 								'title'    => ossn_print('privacy'),
@@ -300,7 +276,7 @@ function ossn_post_page($pages) {
 						echo ossn_plugin_view('output/ossnbox', $params);
 				}
 				break;
-			case 'edit':
+		case 'edit':
 				$post = ossn_get_object($pages[1]);
 				if(!ossn_is_xhr()) {
 						ossn_error_page();
@@ -322,7 +298,7 @@ function ossn_post_page($pages) {
 														'post' => $post,
 												),
 										),
-										false,
+										false
 								),
 								'callback' => '#ossn-post-edit-save',
 						);
@@ -398,7 +374,7 @@ function ossn_group_wall_delete($callback, $type, $params) {
 		$wall  = new OssnWall();
 		$posts = $wall->GetPostByOwner($params['entity']->guid, 'group');
 		if($posts) {
-				foreach($posts as $post) {
+				foreach ($posts as $post) {
 						$wall->deletePost($post->guid);
 				}
 		}
@@ -417,7 +393,7 @@ function ossn_user_posts_delete($callback, $type, $params) {
 		$wall  = new OssnWall();
 		$posts = $wall->getUserGroupPostsGuids($params['entity']->guid);
 		if($posts) {
-				foreach($posts as $post) {
+				foreach ($posts as $post) {
 						//$post is here int
 						$wall->deletePost($post);
 				}
@@ -426,7 +402,7 @@ function ossn_user_posts_delete($callback, $type, $params) {
 		$wall      = new OssnWall();
 		$userposts = $wall->getPosterPosts($params['entity']->guid);
 		if($userposts) {
-				foreach($userposts as $item) {
+				foreach ($userposts as $item) {
 						$wall->deletePost($item->guid);
 				}
 		}
@@ -439,7 +415,7 @@ function ossn_user_posts_delete($callback, $type, $params) {
 						'page_limit' => false,
 				));
 				if($posts_by_owner_guid) {
-						foreach($posts_by_owner_guid as $posti) {
+						foreach ($posts_by_owner_guid as $posti) {
 								$posti->deletePost($posti->guid);
 						}
 				}

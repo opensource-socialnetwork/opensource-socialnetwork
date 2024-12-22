@@ -30,10 +30,24 @@ function ossn_poke() {
 		}
 		//hooks
 		ossn_add_hook('notification:view', 'ossnpoke:poke', 'ossn_poke_notification');
+		ossn_add_hook('notification:redirect:uri', 'ossnpoke:poke', 'ossn_poke_notification_redirect_uri');
+
 		//profile menu
 		ossn_register_callback('page', 'load:profile', 'ossn_user_poke_menu', 1);
 }
-
+/**
+ * Redirect URI for poke
+ *
+ * @reutrn boolean|string
+ */
+function ossn_poke_notification_redirect_uri($hook, $type, $return, $params) {
+		$notification = $params['notification'];
+		$user         = ossn_user_by_guid($notification->poster_guid);
+		if($user) {
+				return "/u/{$user->username}";
+		}
+		return false;
+}
 /**
  * User poke menu item in profile.
  *
@@ -51,20 +65,14 @@ function ossn_user_poke_menu($name, $type, $params) {
  * @return void
  */
 function ossn_poke_notification($name, $type, $return, $params) {
-		$notif   = $params;
-		$baseurl = ossn_site_url();
-		$user    = ossn_user_by_guid($notif->poster_guid);
-
-		$user->fullname = "<strong>{$user->fullname}</strong>";
-
-		$url     = $user->profileURL();
+		$notif = $params;
+		$user  = ossn_user_by_guid($notif->poster_guid);
 		$iconURL = $user->iconURL()->small;
 		return ossn_plugin_view('notifications/template/view', array(
 				'iconURL'     => $iconURL,
 				'guid'        => $notif->guid,
 				'type'        => $notif->type,
 				'viewed'      => $notif->viewed,
-				'url'         => $url,
 				'icon_type'   => 'poke',
 				'instance'    => $notif,
 				'customprint' => $text,

@@ -7,7 +7,11 @@ if($params['viewed'] !== NULL) {
 				
 $url               = $params['url'];
 $baseurl           = ossn_site_url();
-$notification_read = "{$baseurl}notification/read/{$params['guid']}?notification=" . urlencode($url);
+$urlencoded        = "";
+if(isset($params['url'])){
+	$urlencoded  = "?notification=" . urlencode($url);	
+}
+$notification_read = "{$baseurl}notification/read/{$params['guid']}{$urlencoded}";
 ?>
 <a href='<?php echo $notification_read;?>'>
 		<li <?php echo $viewed;?>> 

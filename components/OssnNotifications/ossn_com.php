@@ -145,18 +145,22 @@ function ossn_notification_page($pages) {
 						break;
 				case 'read';
 						if(!empty($pages[1])) {
-								$notification = new OssnNotifications;
-								$guid         = $notification->getbyGUID($pages[1]);
-								if($guid->owner_guid == ossn_loggedin_user()->guid) {
+								$notification = new OssnNotifications();
+								$notification = $notification->getbyGUID($pages[1]);
+								if($notification->owner_guid == ossn_loggedin_user()->guid) {
 										$notification->setViewed($pages[1]);
+										$uri = $notification->getRedirectURI();
+										//old mechanisim for other components
 										$url = urldecode(input('notification'));
+										if($uri){
+											$url = ossn_site_url($uri);	
+										}
+										ob_flush();
 										header("Location: {$url}");
-								} else {
-										redirect();
+										exit();
 								}
-						} else {
-								redirect();
 						}
+						redirect();
 						break;
 				case 'count':
 						if(!ossn_isLoggedIn()) {
