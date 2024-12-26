@@ -43,9 +43,12 @@ function ossn_groups() {
 		ossn_add_hook('group', 'subpage', 'group_requests_page');
 		ossn_add_hook('newsfeed', 'left', 'ossn_add_groups_to_newfeed');
 		ossn_add_hook('search', 'type:groups', 'groups_search_handler');
+
 		ossn_add_hook('notification:add', 'comments:post:group:wall', 'ossn_notificaiton_groups_comments_hook');
 		ossn_add_hook('notification:add', 'like:post:group:wall', 'ossn_notificaiton_groups_comments_hook');
+
 		ossn_add_hook('notification:view', 'group:joinrequest', 'ossn_group_joinrequest_notification');
+		ossn_add_hook('notification:redirect:uri', 'group:joinrequest', 'ossn_group_joinrequest_notification_redirect_uri');
 
 		//group actions
 		if(ossn_isLoggedin()) {
@@ -72,7 +75,22 @@ function ossn_groups() {
 		ossn_register_callback('page', 'load:search', 'ossn_group_search_link');
 		ossn_register_callback('user', 'delete', 'ossn_user_groups_delete');
 }
-
+/**
+ * Redirect URI for group join request
+ *
+ * @reutrn string
+ */
+function ossn_group_joinrequest_notification_redirect_uri($hook, $type, $return, $params) {
+		$notification = $params['notification'];
+		$group        = ossn_get_group_by_guid($notification->subject_guid);
+		$uri          = "group/{$notification->subject_guid}/requests";
+		return $uri;
+}
+/**
+ * Show sidebar group meni entries
+ *
+ * @return boolean
+ */
 function ossn_group_sidebar_entries($event, $type, $params) {
 		// using priority hack here to make the groups menu appear at the old known position :)
 		// otherwise it's moved to the end because other component menus register earlier the old way
@@ -83,7 +101,7 @@ function ossn_group_sidebar_entries($event, $type, $params) {
 		//group list in newsfeed sidebar mebu
 		$groups_user = ossn_get_user_groups(ossn_loggedin_user());
 		if($groups_user) {
-				foreach($groups_user as $group) {
+				foreach ($groups_user as $group) {
 						$icon = ossn_site_url('components/OssnGroups/images/group.png');
 						ossn_register_sections_menu('newsfeed', array(
 								'text'     => $group->title,
@@ -187,8 +205,8 @@ function ossn_groups_page($pages) {
 		if(empty($page)) {
 				return false;
 		}
-		switch($page) {
-			case 'add':
+		switch ($page) {
+		case 'add':
 				$params = array(
 						'action'    => ossn_site_url() . 'action/group/add',
 						'component' => 'OssnGroups',
@@ -201,11 +219,11 @@ function ossn_groups_page($pages) {
 						'callback' => '#ossn-group-submit',
 				));
 				break;
-			case 'cover':
+		case 'cover':
 				if(isset($pages[1]) && !empty($pages[1])) {
-						$File          = new OssnFile();
-						$File->guid    = $pages[1];
-						$File          = $File->getFile();
+						$File       = new OssnFile();
+						$File->guid = $pages[1];
+						$File       = $File->getFile();
 
 						if($File && $File->type == 'object' && $File->subtype == 'file:cover') {
 								$File->output();
@@ -252,18 +270,18 @@ function ossn_group_page($pages) {
 				}
 				ossn_set_page_owner_guid($group->guid);
 				ossn_trigger_callback('page', 'load:group', array(
-								'group' => $group, //added OSSN 7.1
+						'group' => $group, //added OSSN 7.1
 				));
 				$ismember = false;
-				if(ossn_isLoggedin()){
-					$ismember = $group->isMember(NULL, ossn_loggedin_user()->guid);	
+				if(ossn_isLoggedin()) {
+						$ismember = $group->isMember(null, ossn_loggedin_user()->guid);
 				}
 				//[B] add group user membership status in advance to avoid checking multiple times #2276
 				$params['ismember'] = $ismember;
-				$params['group'] = $group;
-				$title           = $group->title;
-				$view            = ossn_plugin_view('groups/pages/profile', $params);
-				$content         = ossn_group_layout($view);
+				$params['group']    = $group;
+				$title              = $group->title;
+				$view               = ossn_plugin_view('groups/pages/profile', $params);
+				$content            = ossn_group_layout($view);
 				echo ossn_view_page($title, $content);
 		}
 }
@@ -294,11 +312,11 @@ function group_about_page($hook, $type, $return, $params) {
  * @return void
  * @access private
  */
-function group_subpage_access_validate($hook, $type, $return, $params){
-			//[B] Allow admins to view group subpages without being a member #2420
-	        if($params['group']->membership == OSSN_PRIVATE && !$params['ismember'] && !ossn_isAdminLoggedin()){
-						redirect("group/{$params['group']->guid}/");	
-			}
+function group_subpage_access_validate($hook, $type, $return, $params) {
+		//[B] Allow admins to view group subpages without being a member #2420
+		 if($params['group']->membership == OSSN_PRIVATE && !$params['ismember'] && !ossn_isAdminLoggedin()){
+				redirect("group/{$params['group']->guid}/");
+		}
 }
 /**
  * Group member page
@@ -397,7 +415,7 @@ function ossn_user_groups_delete($callback, $type, $params) {
 				'page_limit' => false,
 		));
 		if($groups) {
-				foreach($groups as $group) {
+				foreach ($groups as $group) {
 						$deleteGroup->deleteGroup($group->guid);
 				}
 		}
@@ -422,33 +440,34 @@ function ossn_notificaiton_groups_comments_hook($hook, $type, $return, $params) 
 		}
 		return false;
 }
-
+/**
+ * Group join request notification view
+ *
+ * @return string
+ */
 // #186 group join request hook
 function ossn_group_joinrequest_notification($name, $type, $return, $params) {
-		$notif			= $params;
-		$baseurl        = ossn_site_url();
-		$user           = ossn_user_by_guid($params->poster_guid);
-		
-		$group          = ossn_get_group_by_guid($params->subject_guid);
+		$notif   = $params;
+		$baseurl = ossn_site_url();
+		$user    = ossn_user_by_guid($params->poster_guid);
+		$group   = ossn_get_group_by_guid($params->subject_guid);
 
 		// lead directly to groups request page
-		$url               = "{$baseurl}group/{$params->subject_guid}/requests";
 		$text = ossn_print("ossn:notifications:{$params->type}", array(
-				"<strong>".$user->fullname."</strong>",
-				"<strong>".$group->title."</strong>",
+				'<strong>' . $user->fullname . '</strong>',
+				'<strong>' . $group->title . '</strong>',
 		));
 		$iconURL = $user->iconURL()->small;
 		return ossn_plugin_view('notifications/template/view', array(
-				'iconURL'   => $iconURL,
-				'guid'      => $notif->guid,
-				'type'      => 'like:post',
-				'viewed'    => $notif->viewed,
-				'url'       => $url,
-				'icon_type' => 'groups',
-				'instance'  => $notif,
+				'iconURL'     => $iconURL,
+				'guid'        => $notif->guid,
+				'type'        => 'like:post',
+				'viewed'      => $notif->viewed,
+				'icon_type'   => 'groups',
+				'instance'    => $notif,
 				'customprint' => $text,
-				'fullname'  => $user->fullname,
-		));		   		   
+				'fullname'    => $user->fullname,
+		));
 }
 /**
  * Delete group relations if user is deleted
@@ -459,12 +478,12 @@ function ossn_group_joinrequest_notification($name, $type, $return, $params) {
  */
 function ossn_delete_group_relations($group) {
 		if($group) {
-				$delete           = new OssnDatabase;
-				$params['from']   = 'ossn_relationships';
+				$delete         = new OssnDatabase();
+				$params['from'] = 'ossn_relationships';
 				//delete group member requests if group deleted
 				$params['wheres'] = array(
 						"relation_from='{$group->guid}' AND type='group:join:approve' OR",
-						"relation_to='{$group->guid}' AND type='group:join'"
+						"relation_to='{$group->guid}' AND type='group:join'",
 				);
 				if($delete->delete($params)) {
 						return true;
