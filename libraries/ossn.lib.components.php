@@ -31,7 +31,8 @@ function ossn_components() {
  */
 function com_is_active($comn = '') {
 		global $Ossn;
-		if(!empty($comn) && in_array($comn, $Ossn->activeComponents)){
+		//site crashes if no component enabled #2418
+		if(!empty($comn) && is_array($Ossn->activeComponents) && in_array($comn, $Ossn->activeComponents)){
 				return true;	
 		}
 		return false;
