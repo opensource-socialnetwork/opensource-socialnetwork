@@ -75,7 +75,7 @@ $(window).on('load resize', function () {
 			current_cover_height = ~~($('.ossn-group-cover').height() + 0.5);
 			current_cover_width = ~~($('.ossn-group-cover').width() + 0.5);
 		}
-		if (current_cover_width < 481) {
+		if (current_cover_width < 1024) {
 			var theme_config = $('#ossn-theme-config');
 			var default_cover_height = theme_config.attr('data-desktop-cover-height');
 			var default_cover_width = theme_config.attr('data-minimum-cover-image-width');
