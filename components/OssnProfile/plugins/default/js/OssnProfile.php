@@ -223,11 +223,11 @@ Ossn.repositionCOVER = function() {
 	var $pcover_top = cover_elem.css('top');
 	var $pcover_left = cover_elem.css('left');
 	
-	if(cover_elem.data('scaled_top')){
-		$pcover_top = cover_elem.data('scaled_top'); 
+	if(cover_elem.attr('data-scaled_top')){
+		$pcover_top = cover_elem.attr('data-scaled_top'); 
 	}
-	if(cover_elem.data('scaled_left')){
-		$pcover_left = cover_elem.data('scaled_left'); 
+	if(cover_elem.attr('data-scaled_left')){
+		$pcover_left = cover_elem.attr('data-scaled_left'); 
 	}
 	
 	$url = Ossn.site_url + "action/profile/cover/reposition";
