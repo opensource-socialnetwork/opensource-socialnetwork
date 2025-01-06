@@ -105,9 +105,11 @@ Ossn.trigger_message = function($message, $type) {
  * Dragging support of images
  * currently used by OssnProfile and OssnGroups
  *
+ * @param function drag_cb Callback
+ * 
  * @return void
  */
-Ossn.Drag = function() {
+Ossn.Drag = function(drag_cb = false) {
 	// some sanitizing to work with fluid themes and covers eventually resized according to screen width
 	var theme_config = $('#ossn-theme-config');
 	var default_cover_height = theme_config.attr('data-desktop-cover-height');
@@ -115,7 +117,7 @@ Ossn.Drag = function() {
 	
 	//[B] Cover seems have a bug #2305
 	if(typeof default_cover_height == 'undefined'){
-		default_cover_height = 200;
+		default_cover_height = 300;
 	}
 	if(typeof default_cover_width  == 'undefined'){
 		default_cover_width = 1200;	
@@ -167,6 +169,9 @@ Ossn.Drag = function() {
 			}
 			ui.position.top = newTop;
 			ui.position.left = newLeft;
+			if(typeof drag_cb == 'function'){
+					drag_cb(ui, $.globalVars);
+			}
 		}
 	});
 };	

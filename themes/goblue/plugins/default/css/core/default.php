@@ -1611,7 +1611,7 @@ a {
 }
 
 .ossn-profile .top-container .profile-cover {
-	height: 200px;
+	height: 300px;
 	overflow: hidden;
 	opacity: .99;
 	background: -moz-linear-gradient(top, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 1%, rgba(0, 0, 0, .38) 100%);
@@ -1633,8 +1633,8 @@ a {
 }
 
 .profile-hr-menu ul {
-	margin-bottom: 0px;
-	padding: 0px;
+    margin: 5px 0;
+    padding: 0px;
 }
 
 .profile-hr-menu ul li {
@@ -1646,7 +1646,15 @@ a {
 	padding: 15px;
 	margin-right: 5px;
 	font-weight: bold;
-	border-right: 1px solid #eee;
+}
+.profile-hr-menu  a:hover {
+	color:initial;
+}
+.profile-hr-menu  > li > a:not(.profile-hr-menu .dropdown-toggle):hover,
+.profile-hr-menu  > ul > li:hover> a:not(.profile-hr-menu .dropdown-toggle) {
+    background: #F6F7F8;
+    text-decoration: none;
+    border-radius: 10px;
 }
 
 .profile-hr-menu .dropdown-menu {
@@ -1687,20 +1695,19 @@ a {
 	margin-top: -190px;
 	background-color: #fff;
 	border: 1px solid #CCC;
-	border-radius: 2px 2px 2px 2px;
-	-webkit-border-radius: 2px 2px 2px 2px;
-	-moz-border-radius: 2px 2px 2px 2px;
+	border-radius: 50%;
 	padding: 2px;
 }
 
-.ossn-profile .profile-photo img {}
+.ossn-profile .profile-photo img {
+	border-radius:50%;
+}
 
 .ossn-profile .user-fullname {
 	color: #FFF;
 	font-weight: bold;
 	margin-top: -155px;
 	font-size: 35px;
-	font-size: 2.3vw;
 	margin-left: 211px;
 	position: absolute;
 	text-shadow: 0 0 3px #000;
@@ -1756,25 +1763,33 @@ a {
 }
 
 .profile-cover-controls {
-	position: absolute;
-	width: 100%;
-	margin-right: -32px;
-	margin-top: 150px;
-	z-index: 1;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    margin-top: 20px;
+    z-index: 1;
+}
+.profile-cover-controls a:before {
+    font-family: 'Font Awesome 5 Free';
+    display: inline-block;
+    padding-right: 5px;
+    vertical-align: middle;
+    font-weight: 900;
 }
 
-.change-cover {
+.profile-cover-controls a {
 	float: right;
 	position: relative;
-	margin-right: 50px !important;
+    margin-right:10px;
+
 }
 
-.reposition-cover {
-	float: right;
-	position: relative;
-	margin-right: 5px !important;
+.change-cover:before {
+    content: "\f303";
 }
-
+.reposition-cover:before {
+	content: "\f0b2";
+}
 .profile-menu {
 	float: right;
 	position: relative;
@@ -1787,21 +1802,24 @@ a {
 }
 
 .upload-photo {
-	background: #000;
-	opacity: 0.5;
-	width: 170px;
-	padding: 10px;
-	position: absolute;
-	color: #FFF;
-	text-align: center;
-	font-size: 15px;
-	font-family: sans-serif;
+    background: #fff;
+    position: absolute;
+    font-size: 15px;
+    font-family: sans-serif;
+    bottom: 0;
+    right: 0;
+    margin-bottom: 20px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
 }
 
 .upload-photo span {
-	width: 100%;
-	padding: 12px;
-	text-align: center;
+    text-align: center;
+    display: block;
+    margin-top: 5px;
+    font-size: 20px;
+       color: #000;
 }
 
 .user-cover-uploading {
@@ -1809,13 +1827,13 @@ a {
 }
 
 .user-photo-uploading {
-	height: 100%;
-	opacity: 0.8;
-	background: #fff;
-	width: 100%;
-	padding: 7px;
-	position: absolute;
-	border-radius: 2px;
+    height: 100%;
+    opacity: 0.8;
+    background: #fff;
+    width: 100%;
+    position: absolute;
+    border-radius: 50%;
+    margin-bottom: 0;
 }
 
 .user-photo-uploading span {
@@ -2755,10 +2773,10 @@ footer .ossn-footer-menu a:last-child::after {
 	}
 
 	.ossn-profile .user-fullname {
-		font-size: 16px;
+		font-size: 20px;
 		margin-left: 135px;
 		margin-top: -100px;
-		width: 140px;
+		width: 200px;
 	}
 
 	.ossn-profile .top-container .profile-cover {
@@ -2778,18 +2796,13 @@ footer .ossn-footer-menu a:last-child::after {
 		width: auto;
 	}
 
-	.ossn-group-cover-button,
-	.profile-cover-controls {
-		display: none !important;
-	}
-
 	.upload-photo {
-		width: 100px;
+		margin-bottom:0px;
+        transform: scale(0.8);
 	}
 
 	.profile-hr-menu ul li {
 		display: block;
-		border-bottom: 1px solid rgb(238, 238, 238);
 		margin-right: 0px;
 		margin-left: 10px;
 	}
@@ -2800,7 +2813,8 @@ footer .ossn-footer-menu a:last-child::after {
 	}
 
 	.ossn-profile-role {
-		display: none;
+		font-size: 15px !important;
+        margin-top: -75px !important;
 	}
 
 	/*****************************

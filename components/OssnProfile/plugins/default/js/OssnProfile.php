@@ -17,7 +17,6 @@ Ossn.RegisterStartupFunction(function () {
 			$('#profile-menu').hide();
 			$('#cover-menu').show();
 			$('.profile-cover-controls').hide();
-			$('.profile-cover').unbind('mouseenter').unbind('mouseleave');
 			Ossn.Drag();
 		});
 		$("#upload-photo").on('submit', function (event) {
@@ -51,7 +50,7 @@ Ossn.RegisterStartupFunction(function () {
 						// errors like file too large, not allowed type, etc...
 						Ossn.trigger_message(callback['error'], 'error');
 					}
-					$('.user-photo-uploading').attr('class', 'upload-photo').hide();
+					$('.user-photo-uploading').attr('class', 'upload-photo');
 				}
 			});
 		});
@@ -173,43 +172,8 @@ Ossn.repositionCOVER = function () {
 			$("#draggable").draggable('destroy');
 			$('#profile-menu').show();
 			$('#cover-menu').hide();
-
-			$('.profile-cover').on('mouseenter', function () {
-				$('.profile-cover-controls').show();
-			});
-			$('.profile-cover').on('mouseleave', function () {
-				$('.profile-cover-controls').hide();
-			});
+			
+			$('.profile-cover-controls').show();
 		},
 	});
 };
-/**
- * Setup a profile photo buttons
- *
- * @return void
- */
-Ossn.RegisterStartupFunction(function () {
-	$(document).ready(function () {
-		$('.profile-photo').on('mouseenter', function () {
-			$('.upload-photo').slideDown();
-		});
-		$('.profile-photo').on('mouseleave', function () {
-			$('.upload-photo').slideUp();
-		});
-	});
-});
-/**
- * Setup a profile cover buttons
- *
- * @return void
- */
-Ossn.RegisterStartupFunction(function () {
-	$(document).ready(function () {
-		$('.profile-cover').on('mouseenter', function () {
-			$('.profile-cover-controls').show();
-		});
-		$('.profile-cover').on('mouseleave', function () {
-			$('.profile-cover-controls').hide();
-		});
-	});
-});
