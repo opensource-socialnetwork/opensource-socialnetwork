@@ -2776,7 +2776,7 @@ footer .ossn-footer-menu a:last-child::after {
 		font-size: 20px;
 		margin-left: 135px;
 		margin-top: -100px;
-		width: 200px;
+		width: 180px;
 	}
 
 	.ossn-profile .top-container .profile-cover {
