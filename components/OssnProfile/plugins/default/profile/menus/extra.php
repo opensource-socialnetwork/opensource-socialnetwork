@@ -13,7 +13,7 @@
 <div>
     <?php
     if (!empty($params['menu'])) {
-		echo '<a role="button" data-bs-toggle="dropdown" class="btn-action" data-bs-target="#" aria-expanded="true"><i class="fa fa-sort-down"></i></a>';
+		echo '<a role="button" data-bs-toggle="dropdown" class="btn btn-secondary " data-bs-target="#" aria-expanded="true"><i class="fa fa-angle-down me-0"></i></a>';
 		echo '<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">';
         foreach ($params['menu'] as $menu) {
             foreach ($menu as  $link) {

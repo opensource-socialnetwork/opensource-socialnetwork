@@ -154,7 +154,7 @@ p {
 	font-size: 15px;
 	font-weight: bold;
 	margin-left: 10px;
-    cursor:pointer;
+	cursor: pointer;
 }
 
 .ossn-checkbox-input {
@@ -455,6 +455,7 @@ a {
 .topbar .ossn-icons-topbar-notifications-new i {
 	color: #fff;
 }
+
 
 /************************************************
    Topbar Dropdown and Post+Comment menu icons
@@ -939,8 +940,8 @@ a {
 
 [contentEditable=true]:empty:not(:focus)::before {
 	content: attr(placeholder);
-    pointer-events: none;
-    display: block;    
+	pointer-events: none;
+	display: block;
 }
 
 
@@ -1601,11 +1602,25 @@ a {
 /*******************************
 	Profile
 ********************************/
-
 .ossn-profile .top-container {
 	background: #fff;
 	border: 1px solid #C4CDE0;
 	border-width: 1px 1px 2px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	border-top-right-radius: 10px;
+	border-top-left-radius: 10px;
+}
+
+.ossn-profile-usermetadata {
+	position: relative;
+	min-height: 85px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #eee;
+}
+
+.profile-hr-menu {
+	border-bottom: 1px solid #eee;
 	border-bottom-left-radius: 5px;
 	border-bottom-right-radius: 5px;
 }
@@ -1633,8 +1648,8 @@ a {
 }
 
 .profile-hr-menu ul {
-    margin: 5px 0;
-    padding: 0px;
+	margin: 5px 0;
+	padding: 0px;
 }
 
 .profile-hr-menu ul li {
@@ -1647,14 +1662,16 @@ a {
 	margin-right: 5px;
 	font-weight: bold;
 }
-.profile-hr-menu  a:hover {
-	color:initial;
+
+.profile-hr-menu a:hover {
+	color: initial;
 }
-.profile-hr-menu  > li > a:not(.profile-hr-menu .dropdown-toggle):hover,
-.profile-hr-menu  > ul > li:hover> a:not(.profile-hr-menu .dropdown-toggle) {
-    background: #F6F7F8;
-    text-decoration: none;
-    border-radius: 10px;
+
+.profile-hr-menu>li>a:not(.profile-hr-menu .dropdown-toggle):hover,
+.profile-hr-menu>ul>li:hover>a:not(.profile-hr-menu .dropdown-toggle) {
+	background: #F6F7F8;
+	text-decoration: none;
+	border-radius: 10px;
 }
 
 .profile-hr-menu .dropdown-menu {
@@ -1692,26 +1709,33 @@ a {
 .ossn-profile .profile-photo {
 	position: absolute;
 	margin-left: 20px;
-	margin-top: -190px;
+	margin-top: -80px;
 	background-color: #fff;
-	border: 1px solid #CCC;
 	border-radius: 50%;
-	padding: 2px;
+	padding: 4px;
+	width: 160px;
+	height: 160px;
 }
 
 .ossn-profile .profile-photo img {
-	border-radius:50%;
+	border-radius: 50%;
+	width: 150px;
+	height: 150px;
+}
+
+.profile-menu-hr-container {
+	background: #fff;
+	border: 1px solid #C4CDE0;
+	border-width: 1px 1px 2px;
+	margin: 10px 0;
+	border-radius: 5px;
 }
 
 .ossn-profile .user-fullname {
-	color: #FFF;
+	color: #333334;
+	font-size: 30px;
+	margin-left: 200px;
 	font-weight: bold;
-	margin-top: -155px;
-	font-size: 35px;
-	margin-left: 211px;
-	position: absolute;
-	text-shadow: 0 0 3px #000;
-	/** overlapping issue with longer names on profile page #630 **/
 	max-width: 820px;
 	white-space: nowrap;
 	overflow: hidden;
@@ -1719,8 +1743,25 @@ a {
 }
 
 .ossn-profile-role {
-	font-size: 25px !important;
-	margin-top: -105px !important;
+	font-size: 15px !important;
+	margin-top: -8px !important;
+	margin-right: 24px;
+	position: absolute;
+}
+
+.ossn-profile .user-username {
+	font-size: 15px;
+	margin-right: 24px;
+	position: absolute;
+	font-weight: normal;
+}
+
+.ossn-profile .user-username-margin-top {
+	margin-top: 13px !important;
+}
+
+.ossn-profile .user-username-margin-top-offset {
+	margin-top: 0px !important;
 }
 
 .btn-standalone-grey {
@@ -1763,37 +1804,40 @@ a {
 }
 
 .profile-cover-controls {
-    position: absolute;
-    width: 100%;
-    top: 0;
-    margin-top: 20px;
-    z-index: 1;
+	position: absolute;
+	width: 100%;
+	top: 0;
+	margin-top: 20px;
+	z-index: 1;
 }
+
 .profile-cover-controls a:before {
-    font-family: 'Font Awesome 5 Free';
-    display: inline-block;
-    padding-right: 5px;
-    vertical-align: middle;
-    font-weight: 900;
+	font-family: 'Font Awesome 5 Free';
+	display: inline-block;
+	padding-right: 5px;
+	vertical-align: middle;
+	font-weight: 900;
 }
 
 .profile-cover-controls a {
 	float: right;
 	position: relative;
-    margin-right:10px;
+	margin-right: 10px;
 
 }
 
 .change-cover:before {
-    content: "\f303";
+	content: "\f303";
 }
+
 .reposition-cover:before {
 	content: "\f0b2";
 }
+
 .profile-menu {
 	float: right;
 	position: relative;
-	margin-top: -40px;
+	margin-top: -20px;
 	margin-right: 20px;
 }
 
@@ -1802,24 +1846,24 @@ a {
 }
 
 .upload-photo {
-    background: #fff;
-    position: absolute;
-    font-size: 15px;
-    font-family: sans-serif;
-    bottom: 0;
-    right: 0;
-    margin-bottom: 20px;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
+	background: #eee;
+	position: absolute;
+	font-size: 15px;
+	font-family: sans-serif;
+	bottom: 0;
+	right: 0;
+	margin-bottom: 20px;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
 }
 
 .upload-photo span {
-    text-align: center;
-    display: block;
-    margin-top: 5px;
-    font-size: 20px;
-       color: #000;
+	text-align: center;
+	display: block;
+	margin-top: 5px;
+	font-size: 20px;
+	color: #000;
 }
 
 .user-cover-uploading {
@@ -1827,13 +1871,13 @@ a {
 }
 
 .user-photo-uploading {
-    height: 100%;
-    opacity: 0.8;
-    background: #fff;
-    width: 100%;
-    position: absolute;
-    border-radius: 50%;
-    margin-bottom: 0;
+	height: 100%;
+	opacity: 0.8;
+	background: #fff;
+	width: 100%;
+	position: absolute;
+	border-radius: 50%;
+	margin-bottom: 0;
 }
 
 .user-photo-uploading span {
@@ -2094,7 +2138,7 @@ div.token-input-dropdown ul li.token-input-selected-dropdown-item {
 
 .ossn-system-messages .ossn-system-messages-inner .alert {
 	margin-bottom: 0px;
-    z-index:-1;
+	z-index: -1;
 }
 
 
@@ -2120,13 +2164,14 @@ div.token-input-dropdown ul li.token-input-selected-dropdown-item {
 	width: 100%;
 	z-index: 10000;
 	background-color: #000;
-    opacity: 0.4;
+	opacity: 0.4;
 	cursor: auto;
 	height: 100%;
 	display: none;
 }
 
 .ossn-light {}
+
 .ossn-viewer {
 	width: 940px;
 	margin: 0 auto;
@@ -2158,6 +2203,7 @@ div.token-input-dropdown ul li.token-input-selected-dropdown-item {
 .ossn-container tbody {
 	background: #000;
 }
+
 .ossn-viewer .info-block {
 	background: #fff;
 	height: 100%;
@@ -2279,14 +2325,16 @@ div.token-input-dropdown ul li.token-input-selected-dropdown-item {
 	top: 5px;
 	content: '\02143';
 }
+
 .ossn-form input[type=radio]:checked::before {
 	position: absolute;
 	font: 9px/1 'Open Sans', sans-serif;
 	left: 7px;
 	top: 5px;
 	content: '\02143';
-    transform: rotate(40deg);
+	transform: rotate(40deg);
 }
+
 .ossn-form input[type=checkbox]:hover,
 .ossn-form input[type=radio]:hover {
 	background-color: #f7f7f7;
@@ -2298,17 +2346,21 @@ div.token-input-dropdown ul li.token-input-selected-dropdown-item {
 	color: #fff;
 	font-weight: bold;
 }
+
 .checkbox-block span {
-	margin-top:6px;
+	margin-top: 6px;
 }
+
 .checkbox-block-container {
 	margin-bottom: 20px;
 }
+
 #ossn-home-signup .checkbox-block,
 .ossn-profile-bottom .ossn-edit-form .checkbox-block {
 	margin-top: 0;
 	margin-bottom: 0;
 }
+
 /*******************************
 	Ossn Blocked
 *********************************/
@@ -2612,22 +2664,24 @@ footer .ossn-footer-menu a:last-child::after {
 }
 
 .landing-page-icons {
-     color: #fff;
-     text-align: center;
-     margin-top: 30px;
+	color: #fff;
+	text-align: center;
+	margin-top: 30px;
 }
+
 .landing-page-icons-span {
-     border: 3px solid;
-     border-radius: 50px;
-     display: inline-block;
-     width: 90px;
-     text-align: center;
-     padding-top: 20px;
-     padding-bottom: 20px;
-     margin: 10px;
+	border: 3px solid;
+	border-radius: 50px;
+	display: inline-block;
+	width: 90px;
+	text-align: center;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	margin: 10px;
 }
+
 .landing-page-icons-span .fa {
-     margin-right: 0px;
+	margin-right: 0px;
 }
 
 
@@ -2767,16 +2821,14 @@ footer .ossn-footer-menu a:last-child::after {
 	/******************************
     	Profile
     ********************************/
-	.ossn-profile .profile-photo img {
-		width: 100px;
-		height: 100px;
-	}
+	.ossn-profile .profile-photo img {}
 
 	.ossn-profile .user-fullname {
-		font-size: 20px;
-		margin-left: 135px;
-		margin-top: -100px;
+		margin: 50px 0px 10px;
 		width: 180px;
+		text-align: center;
+		position: relative;
+		margin: 50px auto 10px;
 	}
 
 	.ossn-profile .top-container .profile-cover {
@@ -2784,12 +2836,18 @@ footer .ossn-footer-menu a:last-child::after {
 	}
 
 	.ossn-profile .profile-photo {
-		margin-top: -130px;
+		position: relative;
+		margin: -51px auto;
+	}
+
+	.ossn-profile-usermetadata {
+		min-height: 230px;
 	}
 
 	.profile-menu {
-		float: right;
-		margin-right: 10px;
+		float: initial;
+		text-align: center;
+		margin: 0;
 	}
 
 	.ossn-profile .top-container .profile-cover img {
@@ -2797,8 +2855,8 @@ footer .ossn-footer-menu a:last-child::after {
 	}
 
 	.upload-photo {
-		margin-bottom:0px;
-        transform: scale(0.8);
+		margin-bottom: 0px;
+		transform: scale(0.8);
 	}
 
 	.profile-hr-menu ul li {
@@ -2814,8 +2872,16 @@ footer .ossn-footer-menu a:last-child::after {
 
 	.ossn-profile-role {
 		font-size: 15px !important;
-        margin-top: -75px !important;
+		margin-top: -10px !important;
+		position: relative;
 	}
+
+	.ossn-profile .user-username-margin-top-offset,
+	.ossn-profile .user-username-margin-top {
+		margin-top: -10px !important;
+	}
+
+	.ossn-profile .user-username {}
 
 	/*****************************
      	System
@@ -2865,7 +2931,7 @@ footer .ossn-footer-menu a:last-child::after {
 	.ossn-box-loading {
 		margin-left: 0;
 		margin-top: 0;
-        margin: 40px auto;
+		margin: 40px auto;
 	}
 
 	.ossn-message-box .contents input[type="text"] {
