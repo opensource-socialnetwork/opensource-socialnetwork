@@ -23,7 +23,7 @@ $ru = array(
 	
 	'ossnmessages:delete:me' => 'Удалить для вас',
 	'ossnmessages:delete:me:note' => 'Это сообщение будет удалено для вас. Другой пользователь все равно сможет его увидеть.',
-	'ossnmessages:replied:you' => 'Вы: %',	
+	'ossnmessages:replied:you' => 'Вы: %s',	
 	'message:fileattachment' => 'Файл вложения',		
 );
 ossn_register_languages('ru', $ru); 
