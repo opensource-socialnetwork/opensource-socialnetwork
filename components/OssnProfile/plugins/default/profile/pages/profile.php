@@ -114,8 +114,10 @@ if (ossn_isLoggedIn()) {
 							</div>
 							<?php } ?>
 							<?php if(ossn_loggedin_user()->guid == $user->guid){ ?>
-                            	<a href="" class="btn btn-secondary"><i class="fas fa-pencil"></i> Edit Profile</a>
-                            	<a href="" class="btn btn-primary"><i class="fa fa-message"></i> Messages</a>
+                            	<a href="<?php echo ossn_loggedin_user()->profileURL('/edit'); ?>" class="btn btn-secondary"><i class="fas fa-pencil"></i><?php echo ossn_print('edit:profile');?></a>
+                                	<?php if(com_is_active('OssnMessages')){ ?>
+                            			<a href="<?php echo ossn_site_url('messages/all');?>" class="btn btn-primary"><i class="fa fa-message"></i> <?php echo ossn_print('user:messages');?></a>
+                                	<?php } ?>
                             <?php } ?>
 							<?php }?>
 						</div>
