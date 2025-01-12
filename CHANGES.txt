@@ -9,6 +9,17 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v7.6
 - [B] If not extra fields langauge won't save at all. Profile edit #2385
 - [B] Add persian langauge #2412
 - [E] if no wall is enabled show a empty home page instead
+- [B] System Error: Missing format specifier - OSSN ver. 7.6 (basic) #2423
+- [B] Goblue js not taking new cover width and height for resize on mobile devices #2422
+- [B] Allow admins to view group subpages without being a member #2420
+- [B] admin component page crashing if all components are disabled #2418
+- [B] Like profile cover have no notification view #2417
+- [B] Group members can not like the group post #2415
+- [B] Cover image cropped to lower than 1200px #2414
+- [B] New installation suddenly shows user empty graph (total by year) #2413
+- [E] Remove old getProfileCover code #2404
+- [B] comments are not active after first click on placeholder #2400
+- [B] Some systems Notification read URL gives 403 forbidden if query parameter found in notification=(url) #2392
 
 
 
