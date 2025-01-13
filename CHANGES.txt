@@ -24,7 +24,9 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v7.6
 - [E] Display Errors #2393
 - [B] Icons for comment edit and delete on photo view not showing #2416
 - [E] Add check for ossn_theme for components manifest #2402
-
+- [E] Update Bootstrap to 5.3.x
+- [E] Update jQuery UI 1.14.1
+- [E] Update fontawesome to 6.7.2
 
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v7.5
