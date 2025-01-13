@@ -25,7 +25,10 @@ $icon  = ossn_theme_url().'images/broken.png';
 				<div class="ossn-logo"></div>
 				<div class="title"><?php echo ossn_print('ossn:exception:title', array($email)); ?></div>
 			</div>
-			<?php if(ossn_isAdminLoggedin()){ ?>
+			<?php 
+			//[E] Display Errors #2393
+			if(ossn_isAdminLoggedin() || file_exists(ossn_route()->wwww . 'DISPLAY_ERRORS')){ 
+			?>
 			<div class="ossn-exception-description">
 				<div>
 					<pre><?php echo $params['exception']; ?></pre>
