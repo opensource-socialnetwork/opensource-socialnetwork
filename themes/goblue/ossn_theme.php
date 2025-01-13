@@ -82,7 +82,7 @@ function ossn_goblue_head() {
 				'src' => ossn_theme_url() . 'vendors/bootstrap/js/bootstrap.min.js?v5.2',
 		));
 		$head[] = ossn_html_css(array(
-				'href' => '//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.4/css/jquery-ui.css',
+				'href' => '//code.jquery.com/ui/1.14.1/jquery-ui.min.css',
 		));
 		return implode('', $head);
 }
@@ -98,7 +98,7 @@ function ossn_goblue_admin_head() {
 				'src' => ossn_theme_url() . 'vendors/bootstrap/js/bootstrap.min.js?v5.2',
 		));
 		$head[] = ossn_html_css(array(
-				'href' => '//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.4/css/jquery-ui.css',
+				'href' => '//code.jquery.com/ui/1.14.1/jquery-ui.min.css',
 		));
 		return implode('', $head);
 }

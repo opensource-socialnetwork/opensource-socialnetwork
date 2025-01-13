@@ -1666,7 +1666,7 @@ a {
 }
 
 .profile-hr-menu ul {
-	margin: 5px 0;
+	margin: 7px 0 5px;
 	padding: 0px;
 }
 

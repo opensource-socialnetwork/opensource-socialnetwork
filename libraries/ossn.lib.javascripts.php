@@ -45,7 +45,7 @@ function ossn_javascript() {
 		ossn_new_external_js('jquery-3.7.1.min.js', 'vendors/jquery/jquery-3.7.1.min.js');
 
 		ossn_new_external_js('tinymce.min', 'vendors/tinymce/tinymce.min.js');
-		ossn_new_external_js('jquery-ui.min.js', '//ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js', false);
+		ossn_new_external_js('jquery-ui.min.js', '//ajax.googleapis.com/ajax/libs/jqueryui/1.14.1/jquery-ui.min.js', false);
 
 		ossn_load_external_js('jquery-3.7.1.min.js');
 		ossn_load_external_js('jquery-3.7.1.min.js', 'admin');
