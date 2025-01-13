@@ -368,6 +368,7 @@ class OssnComponents extends OssnDatabase {
 						'php_version',
 						'php_function',
 						'ossn_component',
+						'ossn_theme',
 				);
 				if(isset($element->name)) {
 						if(isset($element->requires)) {
@@ -465,6 +466,39 @@ class OssnComponents extends OssnDatabase {
 														}
 												}
 										}
+										//theme
+										//[E] Add check for ossn_theme for components manifest #2402
+										if($item->type == 'ossn_theme') {
+												$OssnTheme = new OssnThemes();
+												$comparator = '>=';
+												if(isset($item->comparator) && !empty($item->comparator)) {
+														$comparator = $item->comparator;
+												}
+												$requirments['type']         = (string) $item->name . ' (' . ossn_print('admin:sidemenu:themes'). ')';
+												$requirments['value']        = $comparator . ' ' . (string) $item->version;
+												$requirments['availability'] = 0;
+
+												$active_theme = ossn_site_settings('theme');
+												if($active_theme == $item->name) {
+														$requirments['availability'] = 1;
+
+														if(isset($item->version)) {
+																$theme_load = $OssnTheme->getTheme($item->name);
+																if($theme_load && version_compare($theme_load->version, (string) $item->version, $comparator)) {
+																		$requirments['availability'] = 1;
+																} else {
+																		$requirments['availability'] = 0;
+																}
+														}
+														if($comparator == 'disabled') {
+																$requirments['availability'] = 0;
+														}
+												} else {
+														if($comparator == 'disabled') {
+																$requirments['availability'] = 1;
+														}
+												}
+										}										
 										$result[] = $requirments;
 								} //loop
 								return $result;
