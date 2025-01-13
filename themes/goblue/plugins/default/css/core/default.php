@@ -460,6 +460,10 @@ a {
 /************************************************
    Topbar Dropdown and Post+Comment menu icons
 *************************************************/
+/**********************************************
+[B] Icons for comment edit and delete on photo view not showing #2416
+***********************************************/
+.ossn-comment-menu .dropdown-menu li a:before,
 .ossn-wall-item .dropdown-menu li a:before,
 .ossn-topbar-dropdown-menu ul li a:before {
 	content: "\f068";
