@@ -23,6 +23,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v7.6
 - [B] Chat small window shows distorted friends if theme other than goblue #2371
 - [E] Display Errors #2393
 - [B] Icons for comment edit and delete on photo view not showing #2416
+- [E] Add check for ossn_theme for components manifest #2402
 
 
 
