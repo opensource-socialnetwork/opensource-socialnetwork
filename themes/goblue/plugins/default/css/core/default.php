@@ -455,8 +455,22 @@ a {
 .topbar .ossn-icons-topbar-notifications-new i {
 	color: #fff;
 }
-
-
+.topbar .left-side {
+	left:0;	
+}
+.topbar .right-side {
+	right:0;	
+}
+.topbar .site-name {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;	
+}
+.topbar .site-name,
+.topbar .right-side {
+	position:absolute;	
+}
 /************************************************
    Topbar Dropdown and Post+Comment menu icons
 *************************************************/
