@@ -20,6 +20,9 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v7.6
 - [E] Remove old getProfileCover code #2404
 - [B] comments are not active after first click on placeholder #2400
 - [B] Some systems Notification read URL gives 403 forbidden if query parameter found in notification=(url) #2392
+- [B] Chat small window shows distorted friends if theme other than goblue #2371
+- [E] Display Errors #2393
+- [B] Icons for comment edit and delete on photo view not showing #2416
 
 
 
