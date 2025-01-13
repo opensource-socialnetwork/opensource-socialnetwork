@@ -131,20 +131,10 @@ class OssnFile extends OssnEntities {
 		 * @return array|null
 		 */
 		public function allowedFileExtensions(): array | null{
-				$types = array(
-						'zip',
-						'doc',
-						'docx',
-						'mp4',
-						'mp3',
-						'pdf',
-						'zip',
-						'jpg',
-						'png',
-						'gif',
-						'jpeg',
-						'webp',
-				);
+				//why hardcoded again?
+				//[B] problem with extending allowed file types #2407
+				//we can take keys from mimetypes
+				$types = array_keys($this->mimeTypes());
 				return ossn_call_hook('file', 'allowed:extensions', null, $types);
 		}
 		/**
@@ -486,11 +476,13 @@ class OssnFile extends OssnEntities {
 		 * @return boolean
 		 */
 		public function typeAllowed(): bool {
-				if(!empty($this->file) && !empty($this->fileExtension)) {
+				if(!empty($this->file)) {
 						$this->extensions = $this->allowedFileExtensions();
 						$this->extension  = $this->getFileExtension($this->file['name']);
 						$this->extension  = strtolower($this->extension);
-						if(in_array($this->extension, $this->fileExtension)) {
+						
+						//[B] problem with extending allowed file types #2407
+						if((isset($this->fileExtension) && in_array($this->extension, $this->fileExtension)) || (!isset($this->fileExtension) && in_array($this->extension, $this->extensions))) {
 								$mimetypes = $this->mimeTypes();
 								if(!empty($this->fileMimeTypes) && is_array($this->fileMimeTypes)) {
 										$mimetypes = array();
