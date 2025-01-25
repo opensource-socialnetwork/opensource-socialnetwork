@@ -31,7 +31,6 @@ if (isset($params['contents'])) {
 	
     <?php echo ossn_fetch_extend_views('ossn/endpoint'); ?>
     <?php echo ossn_fetch_extend_views('ossn/site/head'); ?>
-
     <script>
         <?php echo ossn_fetch_extend_views('ossn/js/head'); ?>
     </script>

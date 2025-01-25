@@ -295,6 +295,7 @@ function profile_page_handler($page) {
 		}
 		ossn_set_page_owner_guid($user->guid);
 		ossn_trigger_callback('page', 'load:profile');
+		ossn_load_external_js('jquery.ui.touch.punch.js');
 		
 		$params['user'] = $user;
 		$params['page'] = $page;

@@ -121,12 +121,11 @@ if (ossn_isLoggedIn()) {
                             <?php } ?>
 							<?php }?>
 						</div>
-					</div>
-
-					<div id="cover-menu" class="profile-menu">
-						<a href="javascript:void(0);" onclick="Ossn.repositionCOVER();" class='btn-action'>
-						<?php echo ossn_print('save:position'); ?>
-						</a>
+						<div id="cover-menu" class="profile-menu">
+							<a href="javascript:void(0);" onclick="Ossn.repositionCOVER();" class='btn btn-success'>
+								<i class="far fa-floppy-disk"></i><?php echo ossn_print('save:position'); ?>
+							</a>
+						</div>    
 					</div>
 				</div>
 			</div>

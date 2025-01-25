@@ -27,6 +27,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v7.6
 - [E] Update Bootstrap to 5.3.x
 - [E] Update jQuery UI 1.14.1
 - [E] Update fontawesome to 6.7.2
+- [B] wrong addressing of goblue admin page logo #2424
 
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v7.5
