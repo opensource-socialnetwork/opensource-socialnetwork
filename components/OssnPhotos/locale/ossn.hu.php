@@ -34,6 +34,7 @@ $hu = array(
 	'photo:album:deleted' => 'Az album sikeresen törölve',
 	'photo:album:delete:error' => 'Nem törölhető az album',
 	
-
+	'ossn:notifications:comments:object:ossn:album' => '%s megjegyzést fűzött a %s fotóalbumodhoz',
+	'ossn:notifications:like:object:ossn:album' => '%s kedvelte a fényképe(ke)t egy %s albumban',
 );
 ossn_register_languages('hu', $hu); 

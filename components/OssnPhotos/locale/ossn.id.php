@@ -34,6 +34,7 @@ $id = array(
 	'photo:album:deleted' => 'Foto Album berhasil Dihapus',
 	'photo:album:delete:error' => 'Tidak dapat menghapus Foto Album',
 	
-
+	'ossn:notifications:comments:object:ossn:album' => '%s mengomentari album foto Anda %s',
+	'ossn:notifications:like:object:ossn:album' => '%s menyukai foto Anda di album %s',
 );
 ossn_register_languages('id', $id); 

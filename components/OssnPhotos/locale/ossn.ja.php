@@ -34,6 +34,7 @@ $ja = array(
 	'photo:album:deleted' => 'アルバムを削除しました。',
 	'photo:album:delete:error' => 'アルバムを削除できませんでした。',
 	
-
+	'ossn:notifications:comments:object:ossn:album' => '%s があなたのフォトアルバム %s にコメントしました',
+	'ossn:notifications:like:object:ossn:album' => '%s さんがアルバム %s のあなたの写真を「いいね！」しました',
 );
 ossn_register_languages('ja', $ja); 

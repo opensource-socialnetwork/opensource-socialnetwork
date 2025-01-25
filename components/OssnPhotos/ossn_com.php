@@ -36,10 +36,16 @@ function ossn_photos_initialize() {
 		ossn_add_hook('profile', 'modules', 'profile_modules_albums');
 
 		ossn_add_hook('notification:view', 'like:entity:file:ossn:aphoto', 'ossn_notification_like_photo');
+		ossn_add_hook('notification:view', 'like:object:ossn:album', 'ossn_notification_comment_like_album');
 		ossn_add_hook('notification:view', 'comments:entity:file:ossn:aphoto', 'ossn_notification_like_photo');
+		ossn_add_hook('notification:view', 'comments:object:ossn:album', 'ossn_notification_comment_like_album');
+		//ossn_add_hook('notification:view', 'like:annotation:comments:object', 'ossn_notification_comment_like_album');
 		
 		ossn_add_hook('notification:redirect:uri', 'like:entity:file:ossn:aphoto', 'ossn_notification_like_photo_redirect_uri');
 		ossn_add_hook('notification:redirect:uri', 'comments:entity:file:ossn:aphoto', 'ossn_notification_like_photo_redirect_uri');
+		ossn_add_hook('notification:redirect:uri', 'comments:object:ossn:album', 'ossn_notification_like_album_redirect_uri');
+		ossn_add_hook('notification:redirect:uri', 'like:object:ossn:album', 'ossn_notification_like_album_redirect_uri');
+		ossn_add_hook('notification:redirect:uri', 'like:annotation:comments:object', 'ossn_notification_comment_like_album_redirect_uri');
 		
 		ossn_add_hook('photo:view', 'profile:controls', 'ossn_profile_photo_menu');
 		ossn_add_hook('photo:view', 'album:controls', 'ossn_album_photo_menu');
@@ -103,6 +109,36 @@ function ossn_notification_like_photo_redirect_uri($hook, $type, $return, $param
 		$uri = "photos/view/{$notification->subject_guid}";
 		if(preg_match('/comments:entity/i', $notification->type)){
 			$uri = "photos/view/{$notification->subject_guid}#comments-item-{$notification->item_guid}";				
+		}
+		return $uri;
+}
+/**
+ * Redirect URI for someone like commnet on album photos
+ *
+ * @reutrn void|string
+ */
+function ossn_notification_comment_like_album_redirect_uri($hook, $type, $return, $params) {
+		$notification = $params['notification'];
+		$object	= ossn_get_object($notification->subject_guid);
+		if($object && $object->subtype == 'ossn:album'){
+			$uri = "album/view/{$object->guid}";
+			if(preg_match('/comments:/i', $notification->type)){
+				$uri = "album/view/{$object->guid}#comments-item-{$notification->item_guid}";				
+			}
+			return $uri;
+		}
+}
+
+/**
+ * Redirect URI for album like or comment like
+ *
+ * @reutrn boolean|string
+ */
+function ossn_notification_like_album_redirect_uri($hook, $type, $return, $params) {
+		$notification = $params['notification'];
+		$uri = "album/view/{$notification->subject_guid}";
+		if(preg_match('/comments:/i', $notification->type)){
+			$uri = "album/view/{$notification->subject_guid}#comments-item-{$notification->item_guid}";				
 		}
 		return $uri;
 }
@@ -224,7 +260,35 @@ function ossn_notification_like_photo($hook, $type, $return, $notification) {
 				'fullname'  => $user->fullname,
 		));
 }
-
+/**
+ * Set template for album like for OssnNotifications
+ *
+ * @return string
+ */
+function ossn_notification_comment_like_album($hook, $type, $return, $notification) {
+		$user = ossn_user_by_guid($notification->poster_guid);
+		//change your/someone photo string
+		$album  = ossn_get_album_object($notification->subject_guid);		
+		if(preg_match('/like/i', $notification->type)) {
+				$iconType = 'like';
+		}
+		if(preg_match('/comments/i', $notification->type)) {
+				$iconType = 'comment';
+		}
+		return ossn_plugin_view('notifications/template/view', array(
+				'iconURL'   => $user->iconURL()->small,
+				'guid'      => $notification->guid,
+				'type'      => $notification->type,
+				'viewed'    => $notification->viewed,
+				'icon_type' => $iconType,
+				'instance'  => $notification,
+				'customprint' => ossn_print("ossn:notifications:{$notification->type}", array(
+							'<strong>'.$user->fullname.'</strong>',
+							'<strong>'.$album->title.'</strong>',
+				)),
+				'fullname'  => $user->fullname,
+		));
+}
 /**
  * Add photos link to user timeline
  *

@@ -34,6 +34,7 @@ $si = array(
 	'photo:album:deleted' => 'පින්තුර ඇල්බමය සාර්ථකව ඉවත් කරන ලදී',
 	'photo:album:delete:error' => 'පින්තුර ඇල්බමය ඉවත් කළ නොහැක',
 	
-
+	'ossn:notifications:comments:object:ossn:album' => '%s ඔබේ ඡායාරූප ඇල්බමය %s මත අදහස් දැක්වීය',
+	'ossn:notifications:like:object:ossn:album' => '%s ඇල්බමයක ඔබේ ඡායාරූප(ව) %s කැමති විය',
 );
 ossn_register_languages('si', $si); 

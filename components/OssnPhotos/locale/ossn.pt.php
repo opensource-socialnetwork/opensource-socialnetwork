@@ -34,6 +34,7 @@ $pt = array(
 	'photo:album:deleted' => 'Álbum de fotos excluído com sucesso',
 	'photo:album:delete:error' => 'Não foi possível excluir o álbum de fotos',
 	
-
+	'ossn:notifications:comments:object:ossn:album' => '%s comentou no seu álbum de fotos %s',
+	'ossn:notifications:like:object:ossn:album' => '%s curtiu sua(s) foto(s) em um álbum %s',
 );
 ossn_register_languages('pt', $pt); 

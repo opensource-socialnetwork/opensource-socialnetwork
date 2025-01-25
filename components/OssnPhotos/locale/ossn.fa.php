@@ -34,6 +34,7 @@ $fa = array(
     'photo:album:deleted' => 'آلبوم عکس با موفقیت حذف شد',
     'photo:album:delete:error' => 'امکان حذف آلبوم عکس وجود ندارد',
 	
-
+	'ossn:notifications:comments:object:ossn:album' => '%s روی آلبوم عکس %s شما نظر داد',
+	'ossn:notifications:like:object:ossn:album' => '%s عکس(های) شما را در آلبوم %s پسندید',
 );
 ossn_register_languages('fa', $fa);

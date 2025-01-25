@@ -34,6 +34,7 @@ $ru = array(
 	'photo:album:deleted' => 'Альбом фотографий успешно удалён',
 	'photo:album:delete:error' => 'Не получилось удалить альбом',
 	
-
+	'ossn:notifications:comments:object:ossn:album' => '%s прокомментировал ваш фотоальбом %s',
+	'ossn:notifications:like:object:ossn:album' => '%s понравилось ваше фото в альбоме %s',
 );
 ossn_register_languages('ru', $ru); 

@@ -34,6 +34,7 @@ $en = array(
 	'photo:album:deleted' => 'Photo album successfully deleted',
 	'photo:album:delete:error' => 'Can not delete photo album',
 	
-
+	'ossn:notifications:comments:object:ossn:album' => '%s commented on your photo album %s',
+	'ossn:notifications:like:object:ossn:album' => '%s liked your photo(s) in an album %s',
 );
 ossn_register_languages('en', $en); 

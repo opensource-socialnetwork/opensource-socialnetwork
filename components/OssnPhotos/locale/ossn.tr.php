@@ -34,6 +34,7 @@ $tr = array(
 	'photo:album:deleted' => 'Albüm silindi',
 	'photo:album:delete:error' => 'Albüm silinemedi',
 	
-
+	'ossn:notifications:comments:object:ossn:album' => '%s fotoğraf albümünüze yorum yaptı %s',
+	'ossn:notifications:like:object:ossn:album' => '%s bir albümdeki fotoğraflarınızı beğendim %s',
 );
 ossn_register_languages('tr', $tr); 

@@ -34,6 +34,7 @@ $fr = array(
 	'photo:album:deleted' => 'Album photo supprimé avec succès',
 	'photo:album:delete:error' => "Impossible de supprimer l'album",	
 
-	
+	'ossn:notifications:comments:object:ossn:album' => '%s a commenté votre album photo %s',
+	'ossn:notifications:like:object:ossn:album' => '%s a aimé votre/vos photo(s) dans un album %s',	
 );
 ossn_register_languages('fr', $fr);

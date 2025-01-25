@@ -36,6 +36,7 @@ $es = array(
 	'photo:album:deleted' => 'Álbum de fotos eliminado correctamente',
 	'photo:album:delete:error' => 'No se puede eliminar el álbum de fotos',
 	
-
+	'ossn:notifications:comments:object:ossn:album' => '%s comentó tu álbum de fotos %s',
+	'ossn:notifications:like:object:ossn:album' => 'A %s le gustaron tus fotos en un álbum %s',
 );
 ossn_register_languages('es', $es); 

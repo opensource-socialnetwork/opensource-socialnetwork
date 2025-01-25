@@ -34,6 +34,7 @@ $eo = array(
 	'photo:album:deleted' => 'Fotaro estas sukcese forigita',
 	'photo:album:delete:error' => 'Ne povas forigi fotaron',
 	
-
+	'ossn:notifications:comments:object:ossn:album' => '%s komentis vian fotoalbumon %s',
+	'ossn:notifications:like:object:ossn:album' => '%s satis vian(j)n foto(j)n en albumo %s',
 );
 ossn_register_languages('eo', $eo); 

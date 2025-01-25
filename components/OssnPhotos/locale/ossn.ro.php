@@ -34,6 +34,7 @@ $ro = array(
 	'photo:album:deleted' => 'Albumul Foto a fost sters',
 	'photo:album:delete:error' => 'Nu putem sterge acest Album',
 	
-
+	'ossn:notifications:comments:object:ossn:album' => '%s a comentat albumul tau foto %s',
+	'ossn:notifications:like:object:ossn:album' => '%s a apreciat fotografiile tale dintr-un album %s',
 );
 ossn_register_languages('ro', $ro); 

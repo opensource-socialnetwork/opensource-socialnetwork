@@ -33,5 +33,8 @@ $he = array(
 	
 	'photo:album:deleted' => 'אלבום תמונות נמחק בהצלחה',
 	'photo:album:delete:error' => 'לא ניתן למחוק אלבום',
+	
+	'ossn:notifications:comments:object:ossn:album' => '%s הגיב על אלבום התמונות שלך %s',
+	'ossn:notifications:like:object:ossn:album' => '%s אהב את התמונות שלך באלבום %s',	
 );
 ossn_register_languages('he', $he); 
