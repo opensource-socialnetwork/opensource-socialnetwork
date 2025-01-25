@@ -26,6 +26,8 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v8.0
 - [E] Update fontawesome to 6.7.2
 - [B] wrong addressing of goblue admin page logo #2424
 - [E] Michael Drag Drop Cover Images (TouchPunch) added in core now. It loads on profile page and group page only.
+- [E] Allow comments on entire album #2425
+
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v7.6
 - [B] Logo upload failed #2369
