@@ -254,6 +254,7 @@ function ossn_group_page($pages) {
 		if(empty($pages[0])) {
 				ossn_error_page();
 		}
+		ossn_load_external_js('jquery.ui.touch.punch.js');
 		if(!empty($pages[0])) {
 				if(isset($pages[1])) {
 						$params['subpage'] = $pages[1];

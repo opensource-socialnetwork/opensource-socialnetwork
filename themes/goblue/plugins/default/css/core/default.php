@@ -1829,6 +1829,7 @@ a {
 	z-index: 1;
 }
 
+.ossn-group-cover-button a:before,
 .profile-cover-controls a:before {
 	font-family: 'Font Awesome 5 Free';
 	display: inline-block;
@@ -1844,10 +1845,11 @@ a {
 
 }
 
+#reposition-group-cover:before,
 .change-cover:before {
 	content: "\f303";
 }
-
+#add-cover-group:before,
 .reposition-cover:before {
 	content: "\f0b2";
 }
@@ -2968,7 +2970,7 @@ footer .ossn-footer-menu a:last-child::after {
     	Groups
     ************************/
 	.ossn-group-cover {
-		height: 100px !important;
+		height: 180px !important;
 	}
 
 	.ossn-group-cover-header,

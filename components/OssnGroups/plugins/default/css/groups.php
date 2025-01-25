@@ -189,7 +189,7 @@
 
 .ossn-group-cover {
 	overflow: hidden;
-	height: 200px;
+	height: 300px;
 }
 
 .ossn-group-cover img {
@@ -201,13 +201,12 @@
 }
 
 .ossn-group-cover-button {
-	margin-top: 150px;
-	margin-right: 10px;
-	float: right;
-	display: none;
-	z-index: 9;
-	position: absolute;
-	right: 0px;
+    margin-right: 10px;
+    top: 0;
+    margin-top: 20px;
+    z-index: 9;
+    position: absolute;
+    right: 0px;
 }
 
 .ossn-group-cover-button a {

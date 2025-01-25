@@ -126,17 +126,6 @@ Ossn.RegisterStartupFunction(function() {
 	});
 });
 
-Ossn.RegisterStartupFunction(function() {
-	$(document).ready(function() {
-		$('.ossn-group-cover').on('mouseenter', function(){
-			$('.ossn-group-cover-button').show();
-		});
-		$('.ossn-group-cover').on('mouseleave', function(){
-			$('.ossn-group-cover-button').hide();
-		});			
-	});
-});
-
 Ossn.repositionGroupCOVER = function($group) {
 	var cover_top  = parseInt($('.ossn-group-cover').find('img').css('top'));
 	var cover_left = parseInt($('.ossn-group-cover').find('img').css('left'));
@@ -149,11 +138,7 @@ Ossn.repositionGroupCOVER = function($group) {
 		success: function(callback) {
 			$("#draggable").draggable('destroy');
 			$('.group-c-position').attr('style', 'display:none !important;');
-			$('.ossn-group-cover').hover(function() {
-				$('.ossn-group-cover-button').show();
-			}, function() {
-				$('.ossn-group-cover-button').hide();
-			});
+			$('.ossn-group-cover-button').show();
 		},
 	});
 };
