@@ -68,7 +68,7 @@ $custom_settings = ossn_goblue_get_custom_logos_bgs_setting();
         	<div class="row">
 			<div class="col-6 col-lg-6">
             			<?php if(isset($custom_settings) && isset($custom_settings['logo_admin'])){ ?>
-            			<img src="<?php echo ossn_add_cache_to_url(ossn_theme_url("logos_backgrounds/logo_site_{$custom_settings['logo_site']}"));?>"/>
+            			<img src="<?php echo ossn_add_cache_to_url(ossn_theme_url("logos_backgrounds/logo_admin_{$custom_settings['logo_admin']}"));?>"/>
                         <?php } else { ?>
             			<img src="<?php echo ossn_theme_url(); ?>images/logo_admin.jpg"/>                        
                         <?php } ?> 
