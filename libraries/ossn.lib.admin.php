@@ -376,7 +376,7 @@ function ossn_administrator_login_pagehandler($pages) {
 				echo ossn_view_page($title, $content, 'administrator');
 				break;
 		default:
-				ossn_error_page();
+				redirect('administrator');
 				break;
 		}
 }
