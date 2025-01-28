@@ -1,15 +1,15 @@
 <?php
-if($params['viewed'] !== NULL) {
+if($params['viewed'] !== null) {
 		$viewed = '';
-} elseif($params['viewed'] == NULL) {
+} elseif($params['viewed'] == null) {
 		$viewed = 'class="ossn-notification-unviewed"';
 }
-				
-$baseurl           = ossn_site_url();
-$urlencoded        = "";
-if(isset($params['url'])){
-	$url               = $params['url'];
-	$urlencoded  = "?notification=" . urlencode($url);	
+
+$baseurl    = ossn_site_url();
+$urlencoded = '';
+if(isset($params['url'])) {
+		$url        = $params['url'];
+		$urlencoded = '?notification=' . urlencode($url);
 }
 $notification_read = "{$baseurl}notification/read/{$params['guid']}{$urlencoded}";
 ?>
