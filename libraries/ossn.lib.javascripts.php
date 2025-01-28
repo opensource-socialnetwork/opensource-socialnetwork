@@ -55,6 +55,7 @@ function ossn_javascript() {
 
 		ossn_load_external_js('tinymce.min', 'admin');
 
+		ossn_new_external_js('jquery.ui.touch.punch.js', 'vendors/jquery/jquery.ui.touch-punch.107.min.js');
 		if(ossn_get_context() != 'administrator') {
 				ossn_new_external_js('jquery-arhandler-1.1-min.js', 'vendors/jquery/jquery-arhandler-1.1-min.js');
 				ossn_load_external_js('jquery-arhandler-1.1-min.js');

@@ -40,11 +40,15 @@ function ossn_notifications() {
 		ossn_register_callback('like', 'deleted', 'ossn_like_notifications_delete');
 		
 		//hooks 
-		ossn_add_hook('notification:add', 'comments:post', 'ossn_notificaiton_comments_post_hook');
 		ossn_add_hook('notification:add', 'like:post', 'ossn_notificaiton_comments_post_hook');
 		ossn_add_hook('notification:add', 'like:annotation', 'ossn_notificaiton_like_annotation_hook');
-		ossn_add_hook('notification:add', 'comments:entity', 'ossn_notificaiton_comment_entity_hook');
 		ossn_add_hook('notification:add', 'like:entity', 'ossn_notificaiton_comment_entity_hook');
+		ossn_add_hook('notification:add', 'like:object', 'ossn_notificaiton_comment_object_hook');
+		
+		ossn_add_hook('notification:add', 'comments:post', 'ossn_notificaiton_comments_post_hook');
+		ossn_add_hook('notification:add', 'comments:entity', 'ossn_notificaiton_comment_entity_hook');
+		ossn_add_hook('notification:add', 'comments:object', 'ossn_notificaiton_comment_object_hook');
+		
 		//tag post with a friend, doesn't show in friend's notification #589
 		ossn_add_hook('notification:add', 'wall:friends:tag', 'ossn_notificaiton_walltag_hook');
 		
@@ -399,6 +403,27 @@ function ossn_notificaiton_comment_entity_hook($hook, $type, $return, $params) {
 						if($object) {
 								$params['owner_guid'] = $object->owner_guid;
 						}
+				}
+				return $params;
+		}
+		return false;
+}
+/**
+ * Object comments/likes notification hook
+ *
+ * @param string $hook Hook name
+ * @param string $type Hook type
+ * @param array Callback data
+ *
+ * @return array|boolean
+ * @access public
+ */
+function ossn_notificaiton_comment_object_hook($hook, $type, $return, $params) {
+		$object  = ossn_get_object($params['subject_guid']);
+		if($object) {
+				$params['type'] = "{$params['type']}:{$object->subtype}";
+				if($object->type == 'user') {
+						$params['owner_guid'] = $object->owner_guid;
 				}
 				return $params;
 		}

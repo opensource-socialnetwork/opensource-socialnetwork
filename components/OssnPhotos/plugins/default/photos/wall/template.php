@@ -97,6 +97,6 @@ if($total == 1) {
 								echo $view;
 					}
 				?>
-    	</div>
+    	</div>      
 	</div>
 </div>
