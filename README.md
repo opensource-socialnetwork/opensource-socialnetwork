@@ -7,7 +7,7 @@ Open Source Social Network [8.0]
 [![DeepScan grade](https://deepscan.io/api/teams/4774/projects/6525/branches/747601/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=4774&pid=6525&bid=747601)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/88c6ef38f593440cafe7ba350e592649)](https://app.codacy.com/gh/opensource-socialnetwork/opensource-socialnetwork/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 
-Opensource-Socialnetwork (OSSN) is a social networking software written in PHP. It allows you to make a social networking website and helps your members build social relationships, with people who share similar professional or personal interests. It is available in 17 international languages.
+Opensource-Socialnetwork (OSSN) is a social networking software written in PHP. It allows you to make a social networking website and helps your members build social relationships, with people who share similar professional or personal interests. It is available in 20 international languages.
 
 OSSN Licensed under the ***Open Source Social Network License (4.0) / Cryptographic Autonomy License version 1.0***
 
