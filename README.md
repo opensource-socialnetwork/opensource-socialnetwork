@@ -13,7 +13,7 @@ OSSN Licensed under the ***Open Source Social Network License (4.0) / Cryptograp
 
 Kernighan & Ritchie (K&R Variant 1TBS) indentation standard is used for the OSSN. For coding standards you may see [following](https://github.com/opensource-socialnetwork/opensource-socialnetwork/wiki/Coding-Standards)
 
-- Copyright (C) ENGR. SYED ARSALAN HUSSAIN SHAH <arsalan@buddyexpress.net>,
+- Copyright (C) ENGR. SYED ARSALAN HUSSAIN SHAH <arsalan@buddyexpress.net>, <email@arsalanshah.com>,
 - Copyright (C) OPEN SOURCE SOCIAL NETWORK <https://www.opensource-socialnetwork.org>,
 - Copyright (C) OPEN TEKNIK LLC <https://www.openteknik.com>,
 - Copyright (C) OPENHOST247 LLC <https://www.openhost247.com>,
