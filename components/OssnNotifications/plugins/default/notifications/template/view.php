@@ -5,10 +5,10 @@ if($params['viewed'] !== NULL) {
 		$viewed = 'class="ossn-notification-unviewed"';
 }
 				
-$url               = $params['url'];
 $baseurl           = ossn_site_url();
 $urlencoded        = "";
 if(isset($params['url'])){
+	$url               = $params['url'];
 	$urlencoded  = "?notification=" . urlencode($url);	
 }
 $notification_read = "{$baseurl}notification/read/{$params['guid']}{$urlencoded}";
