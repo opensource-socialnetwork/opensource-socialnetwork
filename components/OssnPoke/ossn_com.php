@@ -75,7 +75,6 @@ function ossn_poke_notification($name, $type, $return, $params) {
 				'viewed'      => $notif->viewed,
 				'icon_type'   => 'poke',
 				'instance'    => $notif,
-				'customprint' => $text,
 				'fullname'    => $user->fullname,
 		));
 }
