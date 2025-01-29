@@ -6,6 +6,9 @@ if(isset($params->guid) && !empty($params->guid)){
 if(isset($params['post']) && !empty($params['post']->guid)){
 	$guid = $params['post']->guid;
 }
+if(!$guid){
+	return;
+}	
 ?>
 <script>$(document).ready(function(){Ossn.commentTyping(<?php echo $guid?>, 'post');});</script>
 <div class="comments-realtime-status ctyping-post-<?php echo $guid;?>" data-type="post" data-guid="<?php echo $guid;?>" data-time="<?php echo time();?>">

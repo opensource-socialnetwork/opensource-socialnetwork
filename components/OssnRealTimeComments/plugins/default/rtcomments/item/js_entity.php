@@ -1,3 +1,4 @@
+<?php  if(isset($params['params']) && isset($params['params']['entity'])){ ?>
 <script>$(document).ready(function(){Ossn.commentTyping(<?php echo $params['params']['entity']->guid;?>, 'entity');});</script>
 <div class="comments-realtime-status ctyping-entity-<?php echo $params['params']['entity']->guid;?>" data-type="entity" data-guid="<?php echo $params['params']['entity']->guid;?>" data-time="<?php echo time();?>">
 	<div class="comments-item ctyping-c-item ctyping-hide">
@@ -15,3 +16,4 @@
         </div>
 	</div>
 </div>
+<?php } ?>
