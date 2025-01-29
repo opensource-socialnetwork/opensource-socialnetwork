@@ -31,7 +31,7 @@ class OssnAlbums extends OssnObject {
 						$this->subtype      = 'ossn:album';
 						$this->data->access = $access;
 						$this->title        = strip_tags($name);
-						
+
 						//add ablum
 						if($this->addObject()) {
 								$this->getObjectId = $this->getObjectId();
@@ -40,7 +40,7 @@ class OssnAlbums extends OssnObject {
 						return false;
 				}
 		}
-		
+
 		/**
 		 * Get newly created album guid
 		 *
@@ -52,7 +52,7 @@ class OssnAlbums extends OssnObject {
 				}
 				return false;
 		}
-		
+
 		/**
 		 * Get albums by owner id and owner type
 		 *
@@ -64,16 +64,16 @@ class OssnAlbums extends OssnObject {
 		public function GetAlbums($owner_id, $params = array()) {
 				if(!empty($owner_id)) {
 						$args = array(
-							'type' => 'user',
-							'subtype' => 'ossn:album',
-							'owner_guid' => $owner_id,
+								'type'       => 'user',
+								'subtype'    => 'ossn:album',
+								'owner_guid' => $owner_id,
 						);
 						$vars = array_merge($args, $params);
 						return $this->searchObject($vars);
 				}
 				return false;
 		}
-		
+
 		/**
 		 * Get album by id
 		 *
@@ -86,12 +86,12 @@ class OssnAlbums extends OssnObject {
 						$this->object_guid = $album_id;
 						$this->album       = $this->getObjectbyId();
 						if(!empty($this->album)) {
-								$this->photos             = new OssnPhotos;
+								$this->photos = new OssnPhotos();
 								//Photos limit issue, only 10 displays #523
 								$this->photos->page_limit = false;
 								$this->album              = array(
-										'album' => $this->album,
-										'photos' => $this->photos->GetPhotos($album_id)
+										'album'  => $this->album,
+										'photos' => $this->photos->GetPhotos($album_id),
 								);
 								return arrayObject($this->album, get_class($this));
 						}
@@ -108,9 +108,9 @@ class OssnAlbums extends OssnObject {
 				if(!empty($guid)) {
 						$album = $this->GetAlbum($guid);
 						if($album->album->owner_guid == ossn_loggedin_user()->guid || ossn_isAdminLoggedin()) {
-								$photos = new OssnPhotos;
+								$photos = new OssnPhotos();
 								if($album->photos) {
-										foreach($album->photos as $photo) {
+										foreach ($album->photos as $photo) {
 												$photos->photoid = $photo->guid;
 												$photos->deleteAlbumPhoto();
 										}
@@ -118,33 +118,50 @@ class OssnAlbums extends OssnObject {
 								if(class_exists('OssnWall')) {
 										$wall      = new OssnWall();
 										$wallposts = $wall->searchObject(array(
-												'type' => 'user',
-												'page_limit' => false,
+												'type'           => 'user',
+												'page_limit'     => false,
 												'entities_pairs' => array(
 														array(
-																'name' => 'item_type',
-																'value' => 'album:photos:wall'
+																'name'  => 'item_type',
+																'value' => 'album:photos:wall',
 														),
 														array(
-																'name' => 'item_guid',
-																'value' => $guid
-														)
-												)
+																'name'  => 'item_guid',
+																'value' => $guid,
+														),
+												),
 										));
 										if($wallposts) {
-												foreach($wallposts as $post) {
+												foreach ($wallposts as $post) {
 														if(!empty($post->guid)) {
 																$post->deletePost($post->guid);
 														}
 												}
 										}
 								}
+								if(class_exists('OssnNotifications')) {
+										$delete = new OssnNotifications();
+										$delete->deleteNotification(array(
+												'subject_guid' => $album->album->guid,
+												'type'         => array(
+														'comments:object:ossn:album',
+														'like:object:ossn:album',
+												),
+										));
+								}
+								ossn_trigger_callback('album', 'before:delete', array(
+										'album' => $album->album,
+										'guid'  => $album->album->guid,
+								));
 								if($album->album->deleteObject()) {
+										ossn_trigger_callback('album', 'deleted', array(
+												'album' => $album->album,
+												'guid'  => $album->album->guid,
+										));
 										return true;
 								}
 						}
 				}
 				return false;
 		}
-		
 }

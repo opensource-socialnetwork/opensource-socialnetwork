@@ -131,11 +131,11 @@ class OssnPhotos extends OssnFile {
 		 */
 		public function deleteProfilePhoto() {
 				if(isset($this->photoid)) {
-						$this->guid   = $this->photoid;
-						$this->entity = new OssnEntities();
-						$file         = $this->getFile();
+						$file         = ossn_get_file($this->photoid);
+						if(!$file){
+							return false;	
+						}
 						$source       = ossn_get_userdata("user/{$file->owner_guid}/{$file->value}");
-
 						foreach (ossn_user_image_sizes() as $size => $dimensions) {
 								$filename = str_replace('profile/photo/', '', $file->value);
 								$filename = ossn_get_userdata("user/{$file->owner_guid}/profile/photo/{$size}_{$filename}");
@@ -144,7 +144,7 @@ class OssnPhotos extends OssnFile {
 								}
 						}
 						//delete photo from database
-						if($this->deleteFile()) {
+						if($file->deleteFile()) {
 								$params['photo'] = get_object_vars($file);
 								ossn_trigger_callback('delete', 'profile:photo', $params);
 								return true;
@@ -159,14 +159,8 @@ class OssnPhotos extends OssnFile {
 		 */
 		public function deleteProfileCoverPhoto() {
 				if(isset($this->photoid)) {
-						$this->guid   = $this->photoid;
-						$this->entity = new OssnEntities();
-						$file         = $this->getFile();
-						$source       = ossn_get_userdata("user/{$file->owner_guid}/{$file->value}");
-
-						if($this->deleteEntity($this->guid)) {
-								//delete file
-								unlink($source);
+						$file         = ossn_get_file($this->photoid);
+						if($file && $file->deleteFile()) {
 								$params['photo'] = get_object_vars($file);
 								ossn_trigger_callback('delete', 'profile:cover:photo', $params);
 								return true;
@@ -184,9 +178,7 @@ class OssnPhotos extends OssnFile {
 		 */
 		public function deleteAlbumPhoto() {
 				if(isset($this->photoid)) {
-						$this->guid   = $this->photoid;
-						$this->entity = new OssnEntities();
-						$file         = $this->getFile();
+						$file         = ossn_get_file($this->photoid);
 						$source       = ossn_get_userdata("object/{$file->owner_guid}/{$file->value}");
 
 						//delete photo from database
