@@ -1,3 +1,10 @@
+OSSN - OPEN SOURCE SOCIAL NETWORK v8.1
+- [B] Owner can not able to delete comment of others in photo #2428
+- [B] Notifications remains if album is deleted #2427
+- [B] "Attempt to read property "guid" on bool" in file\components\OssnRealTimeComments\plugins\default\rtcomments\item\js_entity.php #2430
+- [B] Profile photo delete gives error but photo deleted #2429
+
+
 OSSN - OPEN SOURCE SOCIAL NETWORK v8.0
 - [B] When deleting album Undefined property #2395
 - [B] Admins can not view "friends only" posts if not friend with user #2403
