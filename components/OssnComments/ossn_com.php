@@ -420,7 +420,10 @@ function ossn_comment_menu($name, $type, $params) {
 		//this section is for entity comment only
 		if(ossn_isLoggedin() && $comment->type == 'comments:entity') {
 				$entity = ossn_get_entity($comment->subject_guid);
-				if($user->guid == $params['owner_guid'] || ossn_isAdminLoggedin() || ($comment->type == 'comments:entity' && ($entity->type = 'user' && $user->guid == $entity->owner_guid))) {
+				if($entity->type == 'object'){
+					$entity_object = ossn_get_object($entity->owner_guid);	
+				}
+				if($user->guid == $params['owner_guid'] || ossn_isAdminLoggedin() || ($comment->type == 'comments:entity' && ($entity->type = 'user' && $user->guid == $entity->owner_guid)) || ($entity->type = 'object' && $entity_object && $user->guid == $entity_object->owner_guid)) {
 						ossn_unregister_menu('delete', 'comments');
 						ossn_register_menu_item('comments', array(
 								'name'     => 'delete',
