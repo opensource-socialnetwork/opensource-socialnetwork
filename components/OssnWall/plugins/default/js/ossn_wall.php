@@ -72,7 +72,8 @@ function ossn_wall_post_edit() {
 
 function ossn_wall_clear_form() {
 	var $file = $("#ossn-wall-form").find("input[type='file']");
-	$file.replaceWith($file.val('').clone(true));
+	$file.val("");
+	
 	$('#ossn-wall-photo').hide();
 
 	//Tagged friend(s) and location should be cleared, too - after posting #641
