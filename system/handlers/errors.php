@@ -27,7 +27,9 @@ $icon  = ossn_theme_url().'images/broken.png';
 			</div>
 			<?php 
 			//[E] Display Errors #2393
-			if(ossn_isAdminLoggedin() || file_exists(ossn_route()->wwww . 'DISPLAY_ERRORS')){ 
+			//[B] Undefined property: stdClass::$wwww" in file /system/handlers/errors.php (line 30) #2444
+			//fixing 2393 caused new bug 2444 fixes that removed one extra w
+			if(ossn_isAdminLoggedin() || file_exists(ossn_route()->www . 'DISPLAY_ERRORS')){ 
 			?>
 			<div class="ossn-exception-description">
 				<div>
