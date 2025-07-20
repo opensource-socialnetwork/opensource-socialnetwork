@@ -2158,10 +2158,11 @@ div.token-input-dropdown ul li.token-input-selected-dropdown-item {
 
 .ossn-system-messages .ossn-system-messages-inner .alert {
 	margin-bottom: 0px;
-	z-index: -1;
 }
 
-
+.ossn-system-messages .ossn-system-messages-inner .alert-dismissible .btn-close {
+	z-index:initial;
+}
 /** v1-v3 compitible **/
 
 .ossn-message-done {
