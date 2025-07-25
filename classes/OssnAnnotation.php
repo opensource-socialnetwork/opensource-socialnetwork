@@ -13,8 +13,8 @@ class OssnAnnotation extends OssnEntities {
 		 * Initialize the class
 		 *
 		 * @return void
-		 */	
-		public function __construct(){
+		 */
+		public function __construct() {
 				//relates to #2312
 				$this->data = new stdClass();
 		}
@@ -75,13 +75,13 @@ class OssnAnnotation extends OssnEntities {
 								'params'   => $params,
 								'instance' => $this,
 						),
-						true,
+						true
 				);
 				if($create) {
 						if($this->OssnDatabase->insert($params)) {
 								$this->annotation_inserted = $this->OssnDatabase->getLastEntry();
 								if(isset($this->data) && is_object($this->data)) {
-										foreach($this->data as $name => $value) {
+										foreach ($this->data as $name => $value) {
 												$this->owner_guid = $this->annotation_inserted;
 												$this->type       = 'annotation';
 												$this->subtype    = $name;
@@ -104,18 +104,21 @@ class OssnAnnotation extends OssnEntities {
 		/**
 		 * Get annotation by annotation id;
 		 *
-		 * Requires : $object->(annotation_id)
+		 * Requires $object->(annotation_id)
+		 * //[B] getAnnotationById returns false if offset is set in URL #2457
 		 *
-		 * @return object
+		 * @return object|boolean
 		 */
 		public function getAnnotationById() {
 				$params                  = array();
 				$params['annotation_id'] = $this->annotation_id;
+				$params['offset']        = false;
 
 				$data = $this->searchAnnotation($params);
 				if($data) {
 						return $data[0];
 				}
+				return false;
 		}
 		/**
 		 * Get annotations by annotation type
@@ -184,7 +187,7 @@ class OssnAnnotation extends OssnEntities {
 				$this->page_limit   = false;
 				$annotations        = $this->getAnnotationBySubject();
 				if($annotations) {
-						foreach($annotations as $annontation) {
+						foreach ($annotations as $annontation) {
 								if(class_exists('OssnLikes')) {
 										$like = new OssnLikes();
 										$like->deleteLikes($annontation->id, 'annotation');
@@ -276,7 +279,7 @@ class OssnAnnotation extends OssnEntities {
 				$this->type       = false;
 				$annotations      = $this->getAnnotationsByOwner();
 				if($annotations) {
-						foreach($annotations as $annotation) {
+						foreach ($annotations as $annotation) {
 								$this->deleteAnnotation($annotation->id);
 						}
 				}
@@ -354,7 +357,7 @@ class OssnAnnotation extends OssnEntities {
 						$wheres[] = "a.subject_guid ='{$options['subject_guid']}'";
 				}
 				if(isset($options['entities_pairs']) && is_array($options['entities_pairs'])) {
-						foreach($options['entities_pairs'] as $key => $pair) {
+						foreach ($options['entities_pairs'] as $key => $pair) {
 								$operand = empty($pair['operand']) ? '=' : $pair['operand'];
 								if(!empty($pair['name']) && isset($pair['value']) && !empty($operand)) {
 										if(!empty($pair['value'])) {
@@ -387,13 +390,13 @@ class OssnAnnotation extends OssnEntities {
 						if(!is_array($options['wheres'])) {
 								$wheres[] = $options['wheres'];
 						} else {
-								foreach($options['wheres'] as $witem) {
+								foreach ($options['wheres'] as $witem) {
 										$wheres[] = $witem;
 								}
 						}
 				}
 				if(isset($options['joins']) && !empty($options['joins']) && is_array($options['joins'])) {
-						foreach($options['joins'] as $jitem) {
+						foreach ($options['joins'] as $jitem) {
 								$params['joins'][] = $jitem;
 						}
 				}
@@ -443,7 +446,7 @@ class OssnAnnotation extends OssnEntities {
 				$result_annotations = $this->select($params, true);
 
 				if($result_annotations) {
-						foreach($result_annotations as $annotation) {
+						foreach ($result_annotations as $annotation) {
 								$merge = array(
 										$annotation->type => $annotation->value,
 								);
@@ -461,7 +464,7 @@ class OssnAnnotation extends OssnEntities {
 										'offset'     => false,
 								));
 								if(!empty($entities)) {
-										foreach($entities as $entity) {
+										foreach ($entities as $entity) {
 												$entities_data[$entity->subtype] = $entity->value;
 										}
 										$merge = array_merge($merge, $entities_data);
