@@ -112,7 +112,7 @@ class OssnAnnotation extends OssnEntities {
 		public function getAnnotationById() {
 				$params                  = array();
 				$params['annotation_id'] = $this->annotation_id;
-				$params['offset']        = false;
+				$params['offset']        = false; 
 
 				$data = $this->searchAnnotation($params);
 				if($data) {
@@ -435,6 +435,7 @@ class OssnAnnotation extends OssnEntities {
 				if($options['count'] === true) {
 						unset($params['params']);
 						unset($params['limit']);
+						unset($params['order_by']);
 						$count           = array();
 						$count['params'] = array(
 								"count({$distinct}a.id) as total",

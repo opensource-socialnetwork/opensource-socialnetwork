@@ -474,6 +474,7 @@ class OssnObject extends OssnEntities {
 				if($options['count'] === true) {
 						unset($params['params']);
 						unset($params['limit']);
+						unset($params['order_by']);
 						$count           = array();
 						$count['params'] = array(
 								"count({$distinct}o.guid) as total",

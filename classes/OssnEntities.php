@@ -520,6 +520,8 @@ class OssnEntities extends OssnDatabase {
 				if($options['count'] === true) {
 						unset($params['params']);
 						unset($params['limit']);
+						unset($params['order_by']);
+						
 						$count           = array();
 						$count['params'] = array(
 								"count(*) as total"
