@@ -46,7 +46,8 @@ if (isset($params['contents'])) {
 	<div class="ossn-halt ossn-light"></div>
 	<div class="ossn-message-box"></div>
 	<div class="ossn-viewer" style="display:none"></div>
-    
+    <?php echo ossn_plugin_view('theme/page/elements/system_messages'); ?>    
+   
     <div class="opensource-socalnetwork">
     	<?php echo ossn_plugin_view('theme/page/elements/sidebar');?>
     	 <div class="ossn-page-container">

@@ -10,10 +10,6 @@
  */
  ?>
 <div class="ossn-layout-admin">
-	<?php echo ossn_plugin_view('theme/page/elements/system_messages', array(
-						'admin' => true
-	  	  )); 
-	?>    
     <div class="row">
     	<div class="col-lg-12 contents">
 			<div class="page-title"><?php echo $params['title']; ?></div>

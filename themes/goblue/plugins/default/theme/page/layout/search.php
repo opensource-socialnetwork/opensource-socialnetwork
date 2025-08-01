@@ -17,7 +17,6 @@ if(ossn_is_hook('newsfeed', "sidebar:right")) {
 } 
 ?>
 <div class="container-fluid">
-	<?php echo ossn_plugin_view('theme/page/elements/system_messages'); ?>    
 	<div class="ossn-layout-newsfeed">
 		<div class="row">
 			<div class="col-lg-2">

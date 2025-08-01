@@ -61,7 +61,10 @@ $custom_settings = ossn_goblue_get_custom_logos_bgs_setting();
 	<div class="ossn-halt ossn-light"></div>
 	<div class="ossn-message-box"></div>
 	<div class="ossn-viewer" style="display:none"></div>
-    
+	<?php echo ossn_plugin_view('theme/page/elements/system_messages', array(
+						'admin' => true
+	  	  )); 
+	?>        
 	<div class="header">
     	<div class="container">
         

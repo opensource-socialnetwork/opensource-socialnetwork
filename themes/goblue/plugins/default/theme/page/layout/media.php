@@ -11,7 +11,6 @@
 ?>
 <div class="container">
 	<div class="ossn-layout-media">
-       <?php echo ossn_plugin_view('theme/page/elements/system_messages'); ?>    
 			<div class="row">
 				<div class="col-lg-8">
 					<div class="content">

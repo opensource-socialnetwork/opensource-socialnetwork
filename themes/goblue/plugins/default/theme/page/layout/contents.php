@@ -11,7 +11,6 @@
  ?>
 <div class="container">
        	<div class="ossn-layout-contents">
-            <?php echo ossn_plugin_view('theme/page/elements/system_messages'); ?>
        		<div class="row">
 				 	<?php echo $params['content']; ?>
              </div>    

@@ -602,7 +602,7 @@ function ossn_display_system_messages() {
 			if (isset($dermessage) && is_array($dermessage) && sizeof($dermessage) > 0) {
 				foreach ($dermessage as $type => $list) {
 					foreach ($list as $message) {
-						$ms[] = ossn_plugin_view('output/alert', array(
+						$ms[] = ossn_plugin_view('output/system_message', array(
 								'message' => $message,
 								'type' => $type,
 						));

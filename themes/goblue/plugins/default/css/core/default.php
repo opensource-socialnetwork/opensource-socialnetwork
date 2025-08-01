@@ -2150,19 +2150,6 @@ div.token-input-dropdown ul li.token-input-selected-dropdown-item {
 		System Messages
 *******************************************/
 
-.ossn-system-messages .ossn-system-messages-inner {
-	margin-top: 20px;
-	margin-bottom: 20px;
-	display: none;
-}
-
-.ossn-system-messages .ossn-system-messages-inner .alert {
-	margin-bottom: 0px;
-}
-
-.ossn-system-messages .ossn-system-messages-inner .alert-dismissible .btn-close {
-	z-index:initial;
-}
 /** v1-v3 compitible **/
 
 .ossn-message-done {
@@ -2929,11 +2916,6 @@ footer .ossn-footer-menu a:last-child::after {
 		overflow: hidden;
 		text-overflow: ellipsis;
 		max-width: 100px;
-	}
-
-	.ossn-system-messages {
-		padding-left: 15px;
-		padding-right: 15px;
 	}
 
 	.ossn-users-list-item {

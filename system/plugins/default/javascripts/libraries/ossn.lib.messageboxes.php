@@ -84,23 +84,38 @@ Ossn.MessageBox = function($url) {
  * @return void
  */
 Ossn.trigger_message = function($message, $type) {
-	$type = $type || 'success';
-	if ($type == 'error') {
-		//compitable to bootstrap framework
-		$type = 'danger';
-	}
-	if ($message == '') {
-		return false;
-	}
-	$html = "<div class='alert alert-dismissible alert-" + $type + "'><button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>" + $message + "</div>";
-	$('.ossn-system-messages').find('.ossn-system-messages-inner').append($html);
-	if ($('.ossn-system-messages').find('.ossn-system-messages-inner').is(":not(:visible)")) {
-		$('.ossn-system-messages').find('.ossn-system-messages-inner').slideDown('slow');
-	}
-	setTimeout(function(){ 
-		$('.ossn-system-messages').find('.ossn-system-messages-inner').empty().hide()
-	}, 10000);
+    $type = $type || 'success';
+    if ($type == 'error') {
+        $type = 'danger';
+    }
+    if ($message == '') {
+        return false;
+    }
+
+    // Create unique ID for each toast
+    const toastId = 'ossn-system-message-item-' +  Date.now() + Math.floor(Math.random() * 1000);
+
+    const $html = `
+    <div id="${toastId}" class="toast align-items-center text-bg-${$type} border-0 mt-2 mb-2" role="alert" aria-live="assertive" aria-atomic="true"
+         data-bs-autohide="true" data-bs-delay="10000">
+      <div class="d-flex">
+        <div class="toast-body">${$message}</div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+      </div>
+    </div>`;
+
+    // Append to toast container
+    $('.ossn-system-message.toast-container').append($html);
+
+    // Show the toast using Bootstrap's JS API
+    const toastEl = document.getElementById(toastId);
+    const toast = new bootstrap.Toast(toastEl);
+    toast.show();
+    toastEl.addEventListener('hidden.bs.toast', function () {
+        toastEl.remove();
+    });	
 };
+
 /**
  * Dragging support of images
  * currently used by OssnProfile and OssnGroups
