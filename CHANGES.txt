@@ -8,6 +8,8 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v8.2
 - [B] Emojis are only inserted at end of text #2451
 - [B] Undefined property: stdClass::$wwww" in file /system/handlers/errors.php (line 30) #2444
 - [B] Group change cover shows broken icon #2442
+- [B] Profile picture padded on left side #2433
+
  
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v8.1

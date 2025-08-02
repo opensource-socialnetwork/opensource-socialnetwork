@@ -1730,7 +1730,7 @@ a {
 	margin-top: -80px;
 	background-color: #fff;
 	border-radius: 50%;
-	padding: 4px;
+	padding: 5px;
 	width: 160px;
 	height: 160px;
 }
