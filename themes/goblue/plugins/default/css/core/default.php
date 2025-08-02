@@ -1852,6 +1852,7 @@ a {
 #add-cover-group:before,
 .reposition-cover:before {
 	content: "\f0b2";
+    font-family: 'Font Awesome 5 Free';
 }
 
 .profile-menu {
