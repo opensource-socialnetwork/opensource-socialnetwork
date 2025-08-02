@@ -1,3 +1,12 @@
+OSSN - OPEN SOURCE SOCIAL NETWORK v8.2
+- [E] loading spinner when uploading to album #2458
+- [B] Notification is not getting marked viewed #2439
+- [E] Vimeo Event embed #2447
+- [B] getAnnotationById returns false if offset is set in URL #2457
+- [E] Idea to change alerts trigger messages to BS Toasts #2449
+- [B] Trigger message, when displayed x (close) button not working #2440
+ 
+
 OSSN - OPEN SOURCE SOCIAL NETWORK v8.1
 - [B] Owner can not able to delete comment of others in photo #2428
 - [B] Notifications remains if album is deleted #2427
