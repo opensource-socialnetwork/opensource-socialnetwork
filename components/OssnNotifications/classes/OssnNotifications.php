@@ -220,7 +220,11 @@ class OssnNotifications extends OssnDatabase {
 		 * @return boolean
 		 */
 		public function setViewed($guid) {
-				if(!isset($this->guid)) {
+				//[B] Notification is not getting marked viewed #2439
+				if(isset($this->guid)){
+						$guid = $this->guid;	
+				}	
+				if(!isset($guid)) {
 						return false;
 				}
 				return $this->update(array(
