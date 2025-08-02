@@ -8,31 +8,38 @@
  * @link      https://www.opensource-socialnetwork.org/
  */
 //<script>
-Ossn.RegisterStartupFunction(function() {
-    $(document).ready(function() {
-        $('#ossn-add-album').on('click', function() {
-            Ossn.MessageBox('album/add');
-        });
-        $('#album-add').on('click', function() {
-            Ossn.MessageBox('album/add');
-        });
-        $('body').on('click', '#ossn-photos-edit-album', function(){
+Ossn.RegisterStartupFunction(function () {
+	$(document).ready(function () {
+		$('#ossn-add-album').on('click', function () {
+			Ossn.MessageBox('album/add');
+		});
+		$('#album-add').on('click', function () {
+			Ossn.MessageBox('album/add');
+		});
+		$('body').on('click', '#ossn-photos-edit-album', function () {
 			$guid = $(this).attr('data-guid');
-            Ossn.MessageBox("album/edit/"+$guid);
-        });		
-        $('#ossn-add-photos').on('click', function() {
-            $dataurl = $(this).attr('data-url');
-            Ossn.MessageBox('photos/add' + $dataurl);
-        });
-        $('body').on('click', '#ossn-photos-add-button-inner', function(e){
-        	e.preventDefault();
-		$('.ossn-photos-add-button').find('input').click();
-        });
-	$('body').on('change', '.ossn-photos-add-button input', function(e){
-		$length = $(this)[0].files.length;
-		$('.ossn-photos-add-button').find('.images').show();
-		$('.ossn-photos-add-button').find('.images .count').html($length);
-		$('#ossn-photos-add-button-inner').blur();
+			Ossn.MessageBox("album/edit/" + $guid);
+		});
+		$('#ossn-add-photos').on('click', function () {
+			$dataurl = $(this).attr('data-url');
+			Ossn.MessageBox('photos/add' + $dataurl);
+		});
+		$('body').on('click', '#ossn-photos-add-button-inner', function (e) {
+			e.preventDefault();
+			$('.ossn-photos-add-button').find('input').click();
+		});
+		$('body').on('change', '.ossn-photos-add-button input', function (e) {
+			$length = $(this)[0].files.length;
+			$('.ossn-photos-add-button').find('.images').show();
+			$('.ossn-photos-add-button').find('.images .count').html($length);
+			$('#ossn-photos-add-button-inner').blur();
+		});
+		$('body').on('click', '#ossn-photos-submit', function () {
+			var cont = $('.ossn-box-inner .ossn-photos-add-button');
+			cont.find('button').hide();
+			cont.append('<div class="ossn-loading mx-auto"></div>');
+
+			$('.ossn-message-box .controls').hide();
+		});
 	});
-    });
 });
