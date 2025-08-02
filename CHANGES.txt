@@ -5,6 +5,8 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v8.2
 - [B] getAnnotationById returns false if offset is set in URL #2457
 - [E] Idea to change alerts trigger messages to BS Toasts #2449
 - [B] Trigger message, when displayed x (close) button not working #2440
+- [B] Emojis are only inserted at end of text #2451
+
  
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v8.1
