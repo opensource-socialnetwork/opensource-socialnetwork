@@ -361,7 +361,14 @@ function ossn_uservalidate_pagehandler($pages) {
 		switch($page) {
 				case 'activate':
 						if(!empty($pages[1]) && !empty($pages[2])) {
-								$user       = new OssnUser;
+								//[E] If account is activated and user visited activation page show activation message #2432
+								$user       = ossn_user_by_guid($pages[1]);
+								if($user->isUserVALIDATED()){
+										ossn_trigger_message(ossn_print('user:account:validated'), 'success');
+										redirect();									
+								}
+								
+								$user       = new OssnUser();
 								$user->guid = $pages[1];
 								if($user->ValidateRegistration($pages[2])) {
 										ossn_trigger_message(ossn_print('user:account:validated'), 'success');
