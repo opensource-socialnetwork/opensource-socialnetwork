@@ -22,7 +22,7 @@ $si = array(
     'its:free' => "එය සැමදාමත් නොමිලේය.",
         
     'copyright' => '&copy; COPYRIGHT',
-    'powered' => 'සවිබලගැන්විම the Open Source Social Network.',
+    'powered' => 'Powered by the Open Source Social Network.',
     
     'name' => 'නම',
     'birthdate' => 'උපන්දිනය',

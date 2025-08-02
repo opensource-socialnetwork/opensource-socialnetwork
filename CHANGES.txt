@@ -9,7 +9,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v8.2
 - [B] Undefined property: stdClass::$wwww" in file /system/handlers/errors.php (line 30) #2444
 - [B] Group change cover shows broken icon #2442
 - [B] Profile picture padded on left side #2433
-
+- [B] Tinymce missing si and farsi langauge #2431
  
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v8.1
