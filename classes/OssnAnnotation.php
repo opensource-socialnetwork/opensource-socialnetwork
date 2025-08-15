@@ -54,12 +54,14 @@ class OssnAnnotation extends OssnEntities {
 						'subject_guid',
 						'type',
 						'time_created',
+						'time_updated',
 				);
 				$params['values'] = array(
 						$this->owner_guid,
 						$this->subject_guid,
 						$this->type,
 						$this->time_created,
+						0,
 				);
 
 				$this->annotation_type = $this->type;
@@ -508,10 +510,12 @@ class OssnAnnotation extends OssnEntities {
 						$params['names'] = array(
 								'owner_guid',
 								'subject_guid',
+								'time_updated',
 						);
 						$params['values'] = array(
 								$this->owner_guid,
 								$this->subject_guid,
+								time(),
 						);
 						$params['wheres'] = array(
 								"a.id='{$this->id}'",

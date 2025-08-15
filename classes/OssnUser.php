@@ -69,6 +69,7 @@ class OssnUser extends OssnEntities {
 								'last_login',
 								'last_activity',
 								'time_created',
+								'time_updated',
 						);
 						$params['values'] = array(
 								$this->first_name,
@@ -82,6 +83,7 @@ class OssnUser extends OssnEntities {
 								0,
 								0,
 								time(),
+								0,
 						);
 						$create = ossn_call_hook(
 								'user',
@@ -1231,11 +1233,13 @@ class OssnUser extends OssnEntities {
 								'first_name',
 								'last_name',
 								'email',
+								'time_updated',
 						),
 						'values' => array(
 								$this->first_name,
 								$this->last_name,
 								$this->email,
+								time(),
 						),
 				);
 

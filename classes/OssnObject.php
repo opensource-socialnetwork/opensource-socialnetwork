@@ -66,6 +66,7 @@ class OssnObject extends OssnEntities {
 						'type',
 						'subtype',
 						'time_created',
+						'time_updated',
 						'title',
 						'description',
 				);
@@ -74,6 +75,7 @@ class OssnObject extends OssnEntities {
 						$this->type,
 						$this->subtype,
 						$this->time_created,
+						0,
 						$this->title,
 						$this->description,
 				);
@@ -213,6 +215,16 @@ class OssnObject extends OssnEntities {
 				$params['table']  = 'ossn_object';
 				$params['names']  = $name;
 				$params['values'] = $value;
+
+				$count_names  = count($params['names']);
+				$count_values = count($params['values']);
+
+				if($count_names != $count_values) {
+						return false;
+				}
+				$params['names'][]  = 'time_updated';
+				$params['values'][] = time();
+
 				$params['wheres'] = array(
 						"guid='{$guid}'",
 				);
