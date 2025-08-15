@@ -25,30 +25,30 @@ define('REF', true);
  * Load site settings , so the setting should not load agian and again
  */
 global $Ossn;
-$settings           = new OssnSite;
+$settings           = new OssnSite();
 $Ossn->siteSettings = $settings->getAllSettings();
 
 /*
- * Set exceptions handler 
+ * Set exceptions handler
  */
 set_exception_handler('_ossn_exception_handler');
 /**
- * ossn_recursive_array_search 
+ * ossn_recursive_array_search
  * Searches the array for a given value and returns the corresponding key if successful
  * @source: http://php.net/manual/en/function.array-search.php
- * 
+ *
  * @param mixed $needle The searched value. If needle is a string, the comparison is done in a case-sensitive manner.
  * @param array $haystack The array
  * @return false|integer
  */
 function ossn_recursive_array_search($needle, $haystack) {
-	foreach ($haystack as $key => $value) {
-		$current_key = $key;
-		if (($needle === $value) || (is_array($value) && ossn_recursive_array_search($needle, $value))) {
-			return $current_key;
+		foreach ($haystack as $key => $value) {
+				$current_key = $key;
+				if($needle === $value || (is_array($value) && ossn_recursive_array_search($needle, $value))) {
+						return $current_key;
+				}
 		}
-	}
-	return false;
+		return false;
 }
 /**
  * Get site url
@@ -58,12 +58,12 @@ function ossn_recursive_array_search($needle, $haystack) {
  * @return string
  */
 function ossn_site_url($extend = '', $action = false) {
-	global $Ossn;
-	$siteurl = "{$Ossn->url}{$extend}";
-	if ($action === true) {
-		$siteurl = ossn_add_tokens_to_url($siteurl);
-	}
-	return $siteurl;
+		global $Ossn;
+		$siteurl = "{$Ossn->url}{$extend}";
+		if($action === true) {
+				$siteurl = ossn_add_tokens_to_url($siteurl);
+		}
+		return $siteurl;
 }
 
 /**
@@ -74,8 +74,8 @@ function ossn_site_url($extend = '', $action = false) {
  * @return string
  */
 function ossn_get_userdata($extend = '') {
-	global $Ossn;
-	return "{$Ossn->userdata}{$extend}";
+		global $Ossn;
+		return "{$Ossn->userdata}{$extend}";
 }
 
 /**
@@ -84,18 +84,18 @@ function ossn_get_userdata($extend = '') {
  * @return object
  */
 function ossn_database_settings() {
-	global $Ossn;
-	if (!isset($Ossn->port)) {
-		$Ossn->port = false;
-	}
-	$defaults = array(
-		'host' => $Ossn->host,
-		'port' => $Ossn->port,
-		'user' => $Ossn->user,
-		'password' => $Ossn->password,
-		'database' => $Ossn->database
-	);
-	return arrayObject($defaults);
+		global $Ossn;
+		if(!isset($Ossn->port)) {
+				$Ossn->port = false;
+		}
+		$defaults = array(
+				'host'     => $Ossn->host,
+				'port'     => $Ossn->port,
+				'user'     => $Ossn->user,
+				'password' => $Ossn->password,
+				'database' => $Ossn->database,
+		);
+		return arrayObject($defaults);
 }
 
 /**
@@ -104,7 +104,7 @@ function ossn_database_settings() {
  * @return SimpleXMLElement
  */
 function ossn_package_information() {
-	return simplexml_load_file(ossn_route()->www . 'opensource-socialnetwork.xml');
+		return simplexml_load_file(ossn_route()->www . 'opensource-socialnetwork.xml');
 }
 
 /**
@@ -117,40 +117,39 @@ function ossn_package_information() {
  *
  * @return bool
  *
- * This part is contain code from project called Elgg 
- * 
+ * This part is contain code from project called Elgg
+ *
  * See licenses/elgg/LICENSE.txt
  */
 function ossn_add_hook($hook, $type, $callback, $priority = 200) {
-	global $Ossn;
-	
-	if (empty($hook) || empty($type)) {
-		return false;
-	}
-	
-	if (!isset($Ossn->hooks)) {
-		$Ossn->hooks = array();
-	}
-	if (!isset($Ossn->hooks[$hook])) {
-		$Ossn->hooks[$hook] = array();
-	}
-	if (!isset($Ossn->hooks[$hook][$type])) {
-		$Ossn->hooks[$hook][$type] = array();
-	}
-	
-	if (!is_callable($callback, true)) {
-		return false;
-	}
-	
-	$priority = max((int) $priority, 0);
-	
-	while (isset($Ossn->hooks[$hook][$type][$priority])) {
-		$priority++;
-	}
-	$Ossn->hooks[$hook][$type][$priority] = $callback;
-	ksort($Ossn->hooks[$hook][$type]);
-	return true;
-	
+		global $Ossn;
+
+		if(empty($hook) || empty($type)) {
+				return false;
+		}
+
+		if(!isset($Ossn->hooks)) {
+				$Ossn->hooks = array();
+		}
+		if(!isset($Ossn->hooks[$hook])) {
+				$Ossn->hooks[$hook] = array();
+		}
+		if(!isset($Ossn->hooks[$hook][$type])) {
+				$Ossn->hooks[$hook][$type] = array();
+		}
+
+		if(!is_callable($callback, true)) {
+				return false;
+		}
+
+		$priority = max((int) $priority, 0);
+
+		while (isset($Ossn->hooks[$hook][$type][$priority])) {
+				$priority++;
+		}
+		$Ossn->hooks[$hook][$type][$priority] = $callback;
+		ksort($Ossn->hooks[$hook][$type]);
+		return true;
 }
 /**
  * Unset a hook to system, hooks are usefull for callback returns
@@ -160,23 +159,23 @@ function ossn_add_hook($hook, $type, $callback, $priority = 200) {
  * @param callable $callback The name of a valid function or an array with object and method
  *
  * @return bool
- * 
+ *
  */
 function ossn_unset_hook($hook, $type, $callback) {
-	global $Ossn;
-	
-	if (empty($hook) || empty($type) || empty($callback)) {
-		return false;
-	}
-	
-	if (ossn_is_hook($hook, $type)) {
-		$search = array_search($callback, $Ossn->hooks[$hook][$type]);
-		if (isset($search)) {
-			unset($Ossn->hooks[$hook][$type][$search]);
-			return true;
+		global $Ossn;
+
+		if(empty($hook) || empty($type) || empty($callback)) {
+				return false;
 		}
-	}
-	return false;
+
+		if(ossn_is_hook($hook, $type)) {
+				$search = array_search($callback, $Ossn->hooks[$hook][$type]);
+				if(isset($search)) {
+						unset($Ossn->hooks[$hook][$type][$search]);
+						return true;
+				}
+		}
+		return false;
 }
 /**
  * Check if the hook exists or not
@@ -187,11 +186,11 @@ function ossn_unset_hook($hook, $type, $callback) {
  * @return bool
  */
 function ossn_is_hook($hook, $type) {
-	global $Ossn;
-	if (isset($Ossn->hooks[$hook][$type])) {
-		return true;
-	}
-	return false;
+		global $Ossn;
+		if(isset($Ossn->hooks[$hook][$type])) {
+				return true;
+		}
+		return false;
 }
 
 /**
@@ -205,31 +204,31 @@ function ossn_is_hook($hook, $type) {
  * @return mix data
  */
 function ossn_call_hook($hook, $type, $params = null, $returnvalue = null) {
-	global $Ossn;
-	$hooks = array();
-	if (isset($Ossn->hooks[$hook][$type])) {
-		$hooks[] = $Ossn->hooks[$hook][$type];
-	}
-	foreach ($hooks as $callback_list) {
-		if (is_array($callback_list)) {
-			foreach ($callback_list as $hookcallback) {
-				if (is_callable($hookcallback)) {
-					$args              = array(
-						$hook,
-						$type,
-						$returnvalue,
-						$params
-					);
-					$temp_return_value = call_user_func_array($hookcallback, $args);
-					if (!is_null($temp_return_value)) {
-						$returnvalue = $temp_return_value;
-					}
-				}
-			}
+		global $Ossn;
+		$hooks = array();
+		if(isset($Ossn->hooks[$hook][$type])) {
+				$hooks[] = $Ossn->hooks[$hook][$type];
 		}
-	}
-	
-	return $returnvalue;
+		foreach ($hooks as $callback_list) {
+				if(is_array($callback_list)) {
+						foreach ($callback_list as $hookcallback) {
+								if(is_callable($hookcallback)) {
+										$args = array(
+												$hook,
+												$type,
+												$returnvalue,
+												$params,
+										);
+										$temp_return_value = call_user_func_array($hookcallback, $args);
+										if(!is_null($temp_return_value)) {
+												$returnvalue = $temp_return_value;
+										}
+								}
+						}
+				}
+		}
+
+		return $returnvalue;
 }
 
 /**
@@ -242,27 +241,27 @@ function ossn_call_hook($hook, $type, $params = null, $returnvalue = null) {
  * @return bool
  */
 function ossn_trigger_callback($event, $type, $params = null) {
-	global $Ossn;
-	$events = array();
-	if (isset($Ossn->events[$event][$type])) {
-		$events[] = $Ossn->events[$event][$type];
-	}
-	foreach ($events as $callback_list) {
-		if (is_array($callback_list)) {
-			foreach ($callback_list as $eventcallback) {
-				$args = array(
-					$event,
-					$type,
-					$params
-				);
-				if (is_callable($eventcallback) && (call_user_func_array($eventcallback, $args) === false)) {
-					return false;
-				}
-			}
+		global $Ossn;
+		$events = array();
+		if(isset($Ossn->events[$event][$type])) {
+				$events[] = $Ossn->events[$event][$type];
 		}
-	}
-	
-	return true;
+		foreach ($events as $callback_list) {
+				if(is_array($callback_list)) {
+						foreach ($callback_list as $eventcallback) {
+								$args = array(
+										$event,
+										$type,
+										$params,
+								);
+								if(is_callable($eventcallback) && call_user_func_array($eventcallback, $args) === false) {
+										return false;
+								}
+						}
+				}
+		}
+
+		return true;
 }
 
 /**
@@ -276,35 +275,34 @@ function ossn_trigger_callback($event, $type, $params = null) {
  * @return bool
  */
 function ossn_register_callback($event, $type, $callback, $priority = 200) {
-	global $Ossn;
-	
-	if (empty($event) || empty($type)) {
-		return false;
-	}
-	
-	if (!isset($Ossn->events)) {
-		$Ossn->events = array();
-	}
-	if (!isset($Ossn->events[$event])) {
-		$Ossn->events[$event] = array();
-	}
-	if (!isset($Ossn->events[$event][$type])) {
-		$Ossn->events[$event][$type] = array();
-	}
-	
-	if (!is_callable($callback, true)) {
-		return false;
-	}
-	
-	$priority = max((int) $priority, 0);
-	
-	while (isset($Ossn->events[$event][$type][$priority])) {
-		$priority++;
-	}
-	$Ossn->events[$event][$type][$priority] = $callback;
-	ksort($Ossn->events[$event][$type]);
-	return true;
-	
+		global $Ossn;
+
+		if(empty($event) || empty($type)) {
+				return false;
+		}
+
+		if(!isset($Ossn->events)) {
+				$Ossn->events = array();
+		}
+		if(!isset($Ossn->events[$event])) {
+				$Ossn->events[$event] = array();
+		}
+		if(!isset($Ossn->events[$event][$type])) {
+				$Ossn->events[$event][$type] = array();
+		}
+
+		if(!is_callable($callback, true)) {
+				return false;
+		}
+
+		$priority = max((int) $priority, 0);
+
+		while (isset($Ossn->events[$event][$type][$priority])) {
+				$priority++;
+		}
+		$Ossn->events[$event][$type][$priority] = $callback;
+		ksort($Ossn->events[$event][$type]);
+		return true;
 }
 /**
  * Unset a callback
@@ -316,20 +314,20 @@ function ossn_register_callback($event, $type, $callback, $priority = 200) {
  * @return bool
  */
 function ossn_unset_callback($event, $type, $callback) {
-	global $Ossn;
-	
-	if (empty($event) || empty($type) || empty($callback)) {
-		return false;
-	}
-	
-	if (isset($Ossn->events[$event][$type])) {
-		$search = array_search($callback, $Ossn->events[$event][$type]);
-		if (isset($search)) {
-			unset($Ossn->events[$event][$type][$search]);
-			return true;
+		global $Ossn;
+
+		if(empty($event) || empty($type) || empty($callback)) {
+				return false;
 		}
-	}
-	return false;
+
+		if(isset($Ossn->events[$event][$type])) {
+				$search = array_search($callback, $Ossn->events[$event][$type]);
+				if(isset($search)) {
+						unset($Ossn->events[$event][$type][$search]);
+						return true;
+				}
+		}
+		return false;
 }
 /**
  * Get a site settings
@@ -341,12 +339,12 @@ function ossn_unset_callback($event, $type, $callback) {
  * @return string or null
  */
 function ossn_site_settings($setting) {
-	global $Ossn;
-	if (isset($Ossn->siteSettings->$setting)) {
-		//allow to override a settings
-		return ossn_call_hook('load:settings', $setting, false, $Ossn->siteSettings->$setting);
-	}
-	return false;
+		global $Ossn;
+		if(isset($Ossn->siteSettings->$setting)) {
+				//allow to override a settings
+				return ossn_call_hook('load:settings', $setting, false, $Ossn->siteSettings->$setting);
+		}
+		return false;
 }
 /**
  * Redirect a user to specific external url
@@ -356,16 +354,16 @@ function ossn_site_settings($setting) {
  * @return boolean|void
  */
 function redirect_external($url = '') {
-	global $Ossn;
-	if (empty($url)) {
-		return false;
-	}
-	if (ossn_is_xhr()) {
-		$Ossn->redirect = $url;
-	} else {
-		header("Location: {$url}");
-		exit;
-	}
+		global $Ossn;
+		if(empty($url)) {
+				return false;
+		}
+		if(ossn_is_xhr()) {
+				$Ossn->redirect = $url;
+		} else {
+				header("Location: {$url}");
+				exit();
+		}
 }
 /**
  * Redirect a user to specific url
@@ -375,21 +373,21 @@ function redirect_external($url = '') {
  * @return return
  */
 function redirect($new = '') {
-	global $Ossn;
-	$url = ossn_site_url($new);
-	if ($new === REF) {
-		if (isset($_SERVER['HTTP_REFERER'])) {
-			$url = $_SERVER['HTTP_REFERER'];
-		} else {
-			$url = ossn_site_url();
+		global $Ossn;
+		$url = ossn_site_url($new);
+		if($new === REF) {
+				if(isset($_SERVER['HTTP_REFERER'])) {
+						$url = $_SERVER['HTTP_REFERER'];
+				} else {
+						$url = ossn_site_url();
+				}
 		}
-	}
-	if (ossn_is_xhr()) {
-		$Ossn->redirect = $url;
-	} else {
-		header("Location: {$url}");
-		exit;
-	}
+		if(ossn_is_xhr()) {
+				$Ossn->redirect = $url;
+		} else {
+				header("Location: {$url}");
+				exit();
+		}
 }
 
 /**
@@ -398,11 +396,11 @@ function redirect($new = '') {
  * @return integer[]
  */
 function ossn_access_types() {
-	return array(
-		OSSN_FRIENDS,
-		OSSN_PUBLIC,
-		OSSN_PRIVATE
-	);
+		return array(
+				OSSN_FRIENDS,
+				OSSN_PUBLIC,
+				OSSN_PRIVATE,
+		);
 }
 
 /**
@@ -411,15 +409,15 @@ function ossn_access_types() {
  * @return bool
  */
 function ossn_access_validate($access, $owner) {
-	if (ossn_loggedin_user() && $access == OSSN_FRIENDS) {
-		if (ossn_user_is_friend($owner, ossn_loggedin_user()->guid) || ossn_loggedin_user()->guid == $owner || ossn_isAdminLoggedin()) {
-			return true;
+		if(ossn_loggedin_user() && $access == OSSN_FRIENDS) {
+				if(ossn_user_is_friend($owner, ossn_loggedin_user()->guid) || ossn_loggedin_user()->guid == $owner || ossn_isAdminLoggedin()) {
+						return true;
+				}
 		}
-	}
-	if ($access == OSSN_PUBLIC) {
-		return true;
-	}
-	return false;
+		if($access == OSSN_PUBLIC) {
+				return true;
+		}
+		return false;
 }
 
 /**
@@ -428,10 +426,10 @@ function ossn_access_validate($access, $owner) {
  * @return bool
  */
 function ossn_is_xhr() {
-	if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest') {
-		return true;
-	}
-	return false;
+		if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest') {
+				return true;
+		}
+		return false;
 }
 
 /**
@@ -441,12 +439,12 @@ function ossn_is_xhr() {
  *
  * @return array
  */
-function arraySerialize($array = NULL) {
-	if (isset($array) && !empty($array)) {
-		array_unshift($array, "");
-		unset($array[0]);
-		return $array;
-	}
+function arraySerialize($array = null) {
+		if(isset($array) && !empty($array)) {
+				array_unshift($array, '');
+				unset($array[0]);
+				return $array;
+		}
 }
 
 /**
@@ -493,17 +491,23 @@ function strl($str, $limit = null, $dots = true) {
  * @return bool
  */
 function ossn_site_setting_update($name, $value, $id) {
-	$settings = new OssnSite;
-	if ($settings->UpdateSettings(array(
-		'value'
-	), array(
-		$value
-	), array(
-		"setting_id='{$id}'"
-	))) {
-		return true;
-	}
-	return false;
+		$settings = new OssnSite();
+		if(
+				$settings->UpdateSettings(
+						array(
+								'value',
+						),
+						array(
+								$value,
+						),
+						array(
+								"setting_id='{$id}'",
+						)
+				)
+		) {
+				return true;
+		}
+		return false;
 }
 
 /**
@@ -516,43 +520,43 @@ function ossn_site_setting_update($name, $value, $id) {
  *
  * @return bool
  */
-function ossn_system_message_add($message = null, $register = "success", $count = false) {
-	if (!isset($_SESSION['ossn_messages'])) {
-		$_SESSION['ossn_messages'] = array();
-	}
-	if (!isset($_SESSION['ossn_messages'][$register]) && !empty($register)) {
-		$_SESSION['ossn_messages'][$register] = array();
-	}
-	if (!$count) {
-		if (!empty($message) && is_array($message)) {
-			$_SESSION['ossn_messages'][$register] = array_merge($_SESSION['ossn_messages'][$register], $message);
-			return true;
-		} else if (!empty($message) && is_string($message)) {
-			$_SESSION['ossn_messages'][$register][] = $message;
-			return true;
-		} else if (is_null($message)) {
-			if ($register != "") {
-				$returnarray                          = array();
-				$returnarray[$register]               = $_SESSION['ossn_messages'][$register];
-				$_SESSION['ossn_messages'][$register] = array();
-			} else {
-				$returnarray               = $_SESSION['ossn_messages'];
+function ossn_system_message_add($message = null, $register = 'success', $count = false) {
+		if(!isset($_SESSION['ossn_messages'])) {
 				$_SESSION['ossn_messages'] = array();
-			}
-			return $returnarray;
 		}
-	} else {
-		if (!empty($register)) {
-			return sizeof($_SESSION['ossn_messages'][$register]);
+		if(!isset($_SESSION['ossn_messages'][$register]) && !empty($register)) {
+				$_SESSION['ossn_messages'][$register] = array();
+		}
+		if(!$count) {
+				if(!empty($message) && is_array($message)) {
+						$_SESSION['ossn_messages'][$register] = array_merge($_SESSION['ossn_messages'][$register], $message);
+						return true;
+				} elseif(!empty($message) && is_string($message)) {
+						$_SESSION['ossn_messages'][$register][] = $message;
+						return true;
+				} elseif(is_null($message)) {
+						if($register != '') {
+								$returnarray                          = array();
+								$returnarray[$register]               = $_SESSION['ossn_messages'][$register];
+								$_SESSION['ossn_messages'][$register] = array();
+						} else {
+								$returnarray               = $_SESSION['ossn_messages'];
+								$_SESSION['ossn_messages'] = array();
+						}
+						return $returnarray;
+				}
 		} else {
-			$count = 0;
-			foreach ($_SESSION['ossn_messages'] as $submessages) {
-				$count += sizeof($submessages);
-			}
-			return $count;
+				if(!empty($register)) {
+						return sizeof($_SESSION['ossn_messages'][$register]);
+				} else {
+						$count = 0;
+						foreach ($_SESSION['ossn_messages'] as $submessages) {
+								$count += sizeof($submessages);
+						}
+						return $count;
+				}
 		}
-	}
-	return false;
+		return false;
 }
 
 /**
@@ -564,28 +568,28 @@ function ossn_system_message_add($message = null, $register = "success", $count 
  * @return void
  */
 function ossn_trigger_message($message, $type = 'success') {
-	if ($type == 'error') {
-		ossn_system_message_add($message, 'danger');
-	} elseif($type == 'success'){
-		ossn_system_message_add($message, 'success');
-	} else {
-		ossn_system_message_add($message, $type);
-	}
+		if($type == 'error') {
+				ossn_system_message_add($message, 'danger');
+		} elseif($type == 'success') {
+				ossn_system_message_add($message, 'success');
+		} else {
+				ossn_system_message_add($message, $type);
+		}
 }
 /**
  * Display a error if post size exceed
- * 
+ *
  * @param string $error Langauge string
  * @param string $redirect Custom redirect url
  */
 function ossn_post_size_exceed_error($error = 'ossn:post:size:exceed', $redirect = null) {
-	if (!empty($_SERVER['CONTENT_LENGTH']) && empty($_POST)) {
-		if (empty($redirect)) {
-			$redirect = null;
+		if(!empty($_SERVER['CONTENT_LENGTH']) && empty($_POST)) {
+				if(empty($redirect)) {
+						$redirect = null;
+				}
+				ossn_trigger_message(ossn_print($error), 'error');
+				redirect($redirect);
 		}
-		ossn_trigger_message(ossn_print($error), 'error');
-		redirect($redirect);
-	}
 }
 /**
  * Display a system messages
@@ -595,28 +599,25 @@ function ossn_post_size_exceed_error($error = 'ossn:post:size:exceed', $redirect
  * @return string|null data
  */
 function ossn_display_system_messages() {
-	if (isset($_SESSION['ossn_messages'])) {
-		$dermessage = $_SESSION['ossn_messages'];
-		if (!empty($dermessage)) {
-			
-			if (isset($dermessage) && is_array($dermessage) && sizeof($dermessage) > 0) {
-				foreach ($dermessage as $type => $list) {
-					foreach ($list as $message) {
-						$ms[] = ossn_plugin_view('output/system_message', array(
-								'message' => $message,
-								'type' => $type,
-						));
-						unset($_SESSION['ossn_messages'][$type]);
-					}
+		if(isset($_SESSION['ossn_messages'])) {
+				$dermessage = $_SESSION['ossn_messages'];
+				if(!empty($dermessage)) {
+						if(isset($dermessage) && is_array($dermessage) && sizeof($dermessage) > 0) {
+								foreach ($dermessage as $type => $list) {
+										foreach ($list as $message) {
+												$ms[] = ossn_plugin_view('output/system_message', array(
+														'message' => $message,
+														'type'    => $type,
+												));
+												unset($_SESSION['ossn_messages'][$type]);
+										}
+								}
+						}
 				}
-			}
-			
 		}
-		
-	}
-	if (isset($ms) && is_array($ms)) {
-		return implode('', $ms);
-	}
+		if(isset($ms) && is_array($ms)) {
+				return implode('', $ms);
+		}
 }
 
 /**
@@ -625,8 +626,8 @@ function ossn_display_system_messages() {
  * @return (int)
  */
 function ossn_site_total_themes() {
-	$themes = new OssnThemes;
-	return $themes->total();
+		$themes = new OssnThemes();
+		return $themes->total();
 }
 
 /**
@@ -635,19 +636,19 @@ function ossn_site_total_themes() {
  * @param string $path
  * @return string;
  */
-function ossn_validate_filepath($path, $append_slash = TRUE) {
-	$path = str_replace('\\', '/', $path);
-	$path = str_replace('../', '/', $path);
-	
-	$path = preg_replace("/([^:])\/\//", "$1/", $path);
-	$path = trim($path);
-	$path = rtrim($path, " \n\t\0\x0B/");
-	
-	if ($append_slash) {
-		$path = $path . '/';
-	}
-	
-	return $path;
+function ossn_validate_filepath($path, $append_slash = true) {
+		$path = str_replace('\\', '/', $path);
+		$path = str_replace('../', '/', $path);
+
+		$path = preg_replace('/([^:])\/\//', "$1/", $path);
+		$path = trim($path);
+		$path = rtrim($path, " \n\t\0\x0B/");
+
+		if($append_slash) {
+				$path = $path . '/';
+		}
+
+		return $path;
 }
 
 /**
@@ -656,17 +657,17 @@ function ossn_validate_filepath($path, $append_slash = TRUE) {
  * @return mix data
  */
 function ossn_error_page() {
-	if (ossn_is_xhr()) {
-		header("HTTP/1.0 404 Not Found");
-	} else {
-		$title                  = ossn_print('page:error');
-		$contents['content']    = ossn_plugin_view('pages/contents/error');
-		$contents['background'] = false;
-		$content                = ossn_set_page_layout('contents', $contents);
-		$data                   = ossn_view_page($title, $content);
-		echo $data;
-	}
-	exit;
+		if(ossn_is_xhr()) {
+				header('HTTP/1.0 404 Not Found');
+		} else {
+				$title                  = ossn_print('page:error');
+				$contents['content']    = ossn_plugin_view('pages/contents/error');
+				$contents['background'] = false;
+				$content                = ossn_set_page_layout('contents', $contents);
+				$data                   = ossn_view_page($title, $content);
+				echo $data;
+		}
+		exit();
 }
 
 /**
@@ -675,15 +676,15 @@ function ossn_error_page() {
  * @return string
  */
 function ossn_access_id_str($id) {
-	$access = array(
-		'3' => 'friends',
-		'2' => 'public',
-		'1' => 'private'
-	);
-	if (isset($access[$id])) {
-		return $access[$id];
-	}
-	return false;
+		$access = array(
+				'3' => 'friends',
+				'2' => 'public',
+				'1' => 'private',
+		);
+		if(isset($access[$id])) {
+				return $access[$id];
+		}
+		return false;
 }
 
 /**
@@ -692,10 +693,10 @@ function ossn_access_id_str($id) {
  * @return bool;
  */
 function ossn_validate_access_friends($owner) {
-	if (ossn_user_is_friend(ossn_loggedin_user()->guid, $owner) || ossn_loggedin_user()->guid == $owner || ossn_isAdminLoggedin()) {
-		return true;
-	}
-	return false;
+		if(ossn_user_is_friend(ossn_loggedin_user()->guid, $owner) || ossn_loggedin_user()->guid == $owner || ossn_isAdminLoggedin()) {
+				return true;
+		}
+		return false;
 }
 /**
  * Ossn padding of key if its less then 16 bytes
@@ -704,21 +705,22 @@ function ossn_validate_access_friends($owner) {
  *
  * @return string|boolean
  */
-function ossn_string_encrypt_key_cycled($key = "") {
-	if(empty($key)) {
-		return false;
-	}
-	$required_length = 16;
-	//[B]PHP 7.4 pseudo_bytes throws warning | migration from bow-fish #1673
-	// Move from bf-ecb to aes
-	// key must be 128 bits
-	$keylen    = mb_strlen($key, 'utf-8');
-	if($keylen < $required_length){ //lets say we need to generate 16 bytes / 128bits
-		$ceil = ceil($required_length / $keylen);
-		$key  = str_repeat($key, $ceil);
-	}
-	return substr($key, 0, $required_length); 
-	//key cycling and truncating end 	
+function ossn_string_encrypt_key_cycled($key = '') {
+		if(empty($key)) {
+				return false;
+		}
+		$required_length = 16;
+		//[B]PHP 7.4 pseudo_bytes throws warning | migration from bow-fish #1673
+		// Move from bf-ecb to aes
+		// key must be 128 bits
+		$keylen = mb_strlen($key, 'utf-8');
+		if($keylen < $required_length) {
+				//lets say we need to generate 16 bytes / 128bits
+				$ceil = ceil($required_length / $keylen);
+				$key  = str_repeat($key, $ceil);
+		}
+		return substr($key, 0, $required_length);
+		//key cycling and truncating end
 }
 /**
  * Ossn encrypt string
@@ -729,19 +731,19 @@ function ossn_string_encrypt_key_cycled($key = "") {
  * @return string|boolean
  */
 function ossn_string_encrypt($string = '', $key = '') {
-	if (empty($string)) {
-		return false;
-	}
-	if(empty($key)) {
-		$key = ossn_site_settings('site_key');
-	}
-	//[B]PHP 7.4 pseudo_bytes throws warning | migration from bow-fish #1673
-	// Move from bf-ecb to aes	
-	$key    = ossn_string_encrypt_key_cycled($key);
-	$size    = openssl_cipher_iv_length('aes-128-cbc');
-	$mcgetvi = openssl_random_pseudo_bytes($size);
-	
-	return $mcgetvi.openssl_encrypt($string, "aes-128-cbc", $key, OPENSSL_RAW_DATA, $mcgetvi);	
+		if(empty($string)) {
+				return false;
+		}
+		if(empty($key)) {
+				$key = ossn_site_settings('site_key');
+		}
+		//[B]PHP 7.4 pseudo_bytes throws warning | migration from bow-fish #1673
+		// Move from bf-ecb to aes
+		$key     = ossn_string_encrypt_key_cycled($key);
+		$size    = openssl_cipher_iv_length('aes-128-cbc');
+		$mcgetvi = openssl_random_pseudo_bytes($size);
+
+		return $mcgetvi . openssl_encrypt($string, 'aes-128-cbc', $key, OPENSSL_RAW_DATA, $mcgetvi);
 }
 
 /**
@@ -753,20 +755,20 @@ function ossn_string_encrypt($string = '', $key = '') {
  * @return string|boolean
  */
 function ossn_string_decrypt($string = '', $key = '') {
-	if (empty($string)) {
-		return false;
-	}
-	if (empty($key)) {
-		$key = ossn_site_settings('site_key');
-	}
-	//[B]PHP 7.4 pseudo_bytes throws warning | migration from bow-fish #1673
-	// Move from bf-ecb to aes
-	$key 	 = ossn_string_encrypt_key_cycled($key);	
-	$size    = openssl_cipher_iv_length('aes-128-cbc');
-	$mcgetvi = substr($string, 0, $size);
-	$string  = substr($string, $size);
-	//padding is removed you may still use trim if you getting some padding at start or end
-	return openssl_decrypt($string, "aes-128-cbc", $key, OPENSSL_RAW_DATA, $mcgetvi);
+		if(empty($string)) {
+				return false;
+		}
+		if(empty($key)) {
+				$key = ossn_site_settings('site_key');
+		}
+		//[B]PHP 7.4 pseudo_bytes throws warning | migration from bow-fish #1673
+		// Move from bf-ecb to aes
+		$key     = ossn_string_encrypt_key_cycled($key);
+		$size    = openssl_cipher_iv_length('aes-128-cbc');
+		$mcgetvi = substr($string, 0, $size);
+		$string  = substr($string, $size);
+		//padding is removed you may still use trim if you getting some padding at start or end
+		return openssl_decrypt($string, 'aes-128-cbc', $key, OPENSSL_RAW_DATA, $mcgetvi);
 }
 /**
  * Ossn php display erros settings
@@ -775,18 +777,18 @@ function ossn_string_decrypt($string = '', $key = '') {
  * @access pritvate;
  */
 function ossn_errros() {
-	$settings = ossn_site_settings('display_errors');
-	if ($settings == 'on' || is_file(ossn_route()->www . 'DISPLAY_ERRORS')) {
-		error_reporting(E_NOTICE ^ ~E_WARNING);
-		
-		ini_set('log_errors', 1);
-		ini_set('error_log', ossn_route()->www . 'error_log');
-		
-		set_error_handler('_ossn_php_error_handler');
-	} elseif ($settings !== 'on') {
-		ini_set("log_errors", 0);
-		ini_set('display_errors', 'off');
-	}
+		$settings = ossn_site_settings('display_errors');
+		if($settings == 'on' || is_file(ossn_route()->www . 'DISPLAY_ERRORS')) {
+				error_reporting(E_NOTICE ^ ~E_WARNING);
+
+				ini_set('log_errors', 1);
+				ini_set('error_log', ossn_route()->www . 'error_log');
+
+				set_error_handler('_ossn_php_error_handler');
+		} elseif($settings !== 'on') {
+				ini_set('log_errors', 0);
+				ini_set('display_errors', 'off');
+		}
 }
 /**
  * Intercepts catchable PHP errors.
@@ -812,59 +814,142 @@ function ossn_errros() {
  * @access private
  */
 function _ossn_php_error_handler($errno, $errmsg, $filename, $linenum) {
-	$error = date("Y-m-d H:i:s (T)") . ": \"$errmsg\" in file $filename (line $linenum)";
-	switch ($errno) {
+		// Skip errors suppressed with @
+		if(error_reporting() === 0) {
+				return true;
+		}
+
+		$errorType = _ossn_php_error_type($errno);
+		$error     = date('Y-m-d H:i:s (T)') . ": [$errorType] \"$errmsg\" in file $filename (line $linenum)";
+
+		switch ($errno) {
+		// Fatal errors
+		case E_ERROR:
+		case E_PARSE:
+		case E_CORE_ERROR:
+		case E_COMPILE_ERROR:
 		case E_USER_ERROR:
-			error_log("PHP ERROR: $error");
-			ossn_trigger_message("ERROR: $error", 'error');
-			
-			// Since this is a fatal error, we want to stop any further execution but do so gracefully.
-			throw new Exception($error);
-			break;
-		
+				error_log("PHP FATAL: $error");
+				ossn_trigger_message("ERROR: $error", 'error');
+				throw new Exception($error); // Stop execution
+				break;
+
+		// Warnings
 		case E_WARNING:
+		case E_CORE_WARNING:
+		case E_COMPILE_WARNING:
 		case E_USER_WARNING:
-		case E_RECOVERABLE_ERROR: // (e.g. type hint violation)
-			
-			// check if the error wasn't suppressed by the error control operator (@)
-			if (error_reporting()) {
+		case E_RECOVERABLE_ERROR:
 				error_log("PHP WARNING: $error");
-			}
-			break;
-		
-		default:
-			global $Ossn;
-			if (isset($Ossn->DebugNotice) && $Ossn->DebugNotice == true) {
+				break;
+
+		// Notices
+		case E_NOTICE:
+		case E_USER_NOTICE:
+		case E_STRICT:
 				error_log("PHP NOTICE: $error");
-			}
-	}
-	
-	return true;
+				break;
+
+		// Deprecated warnings
+		case E_DEPRECATED:
+		case E_USER_DEPRECATED:
+				error_log("PHP DEPRECATED: $error");
+				break;
+
+		// Unknown / unhandled
+		default:
+				error_log("PHP UNKNOWN [$errno]: $error");
+				break;
+		}
+
+		return true; // Allow script to continue for non-fatal errors
+}
+
+/**
+ * Map PHP error numbers to readable type names
+ *
+ * @param int $errno Error Number
+ *
+ * @return string
+ */
+function _ossn_php_error_type($errno) {
+		$map = array(
+				E_ERROR             => 'E_ERROR',
+				E_WARNING           => 'E_WARNING',
+				E_PARSE             => 'E_PARSE',
+				E_NOTICE            => 'E_NOTICE',
+				E_CORE_ERROR        => 'E_CORE_ERROR',
+				E_CORE_WARNING      => 'E_CORE_WARNING',
+				E_COMPILE_ERROR     => 'E_COMPILE_ERROR',
+				E_COMPILE_WARNING   => 'E_COMPILE_WARNING',
+				E_USER_ERROR        => 'E_USER_ERROR',
+				E_USER_WARNING      => 'E_USER_WARNING',
+				E_USER_NOTICE       => 'E_USER_NOTICE',
+				E_STRICT            => 'E_STRICT',
+				E_RECOVERABLE_ERROR => 'E_RECOVERABLE_ERROR',
+				E_DEPRECATED        => 'E_DEPRECATED',
+				E_USER_DEPRECATED   => 'E_USER_DEPRECATED',
+		);
+		return isset($map[$errno]) ? $map[$errno] : 'UNKNOWN';
 }
 /**
  * Check ossn update version
  *
- * @return (bool);
- * @access public;
+ * @return string
  */
 function ossn_check_update() {
-	$url             = 'https://api.github.com/repos/opensource-socialnetwork/opensource-socialnetwork/contents/opensource-socialnetwork.xml';
-	$url             = ossn_call_hook('admin','update:check:url', false, $url);
-	$args['method']  = 'GET';
-	$args['header']  = "Accept-language: en\r\n" . "Cookie: opensourcesocialnetwork=system\r\n" . "User-Agent: Mozilla/5.0\r\n";
-	$options['http'] = $args;
-	$context = stream_context_create($options);
-	$file    = file_get_contents($url, false, $context);
-	$data    = json_decode($file);
-	$file    = simplexml_load_string(base64_decode($data->content));
-	if (!empty($file->stable_version)) {
-		if(ossn_site_settings('site_version') < $file->stable_version) {
-			return ossn_print('ossn:version:avaialbe', array($file->stable_version));
-		} else {
-			return ossn_print('ossn:version:avaialbe', array('---'));
+		$url = 'https://api.github.com/repos/opensource-socialnetwork/opensource-socialnetwork/contents/opensource-socialnetwork.xml';
+		$url = ossn_call_hook('admin', 'update:check:url', false, $url);
+
+		// HTTP context with timeout and browser-like UA
+		$options = array(
+				'http' => array(
+						'method'  => 'GET',
+						'header'  =>
+						"Accept-language: en\r\n" .
+						"Cookie: opensourcesocialnetwork=system\r\n" .
+						'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) ' .
+						'AppleWebKit/537.36 (KHTML, like Gecko) ' .
+						"Chrome/115.0.0.0 Safari/537.36\r\n",
+						'timeout' => 5, // seconds
+				),
+		);
+
+		$context  = stream_context_create($options);
+		$response = @file_get_contents($url, false, $context);
+
+		if($response === false) {
+				return ossn_print('ossn:update:check:error'); // network error
 		}
-	}
-	return ossn_print('ossn:update:check:error');
+
+		$json = json_decode($response);
+		if(json_last_error() !== JSON_ERROR_NONE || empty($json->content)) {
+				return ossn_print('ossn:update:check:error'); // invalid JSON
+		}
+
+		$decodedXml = base64_decode($json->content, true);
+		if($decodedXml === false) {
+				return ossn_print('ossn:update:check:error'); // base64 decode failed
+		}
+
+		$xml = @simplexml_load_string($decodedXml);
+		if($xml === false || empty($xml->stable_version)) {
+				return ossn_print('ossn:update:check:error'); // invalid XML or missing version
+		}
+
+		$currentVersion = ossn_site_settings('site_version');
+		$latestVersion  = (string) $xml->stable_version;
+
+		// Compare versions correctly
+		if(version_compare($currentVersion, $latestVersion, '<')) {
+				return ossn_print('ossn:version:avaialbe', array(
+						$latestVersion,
+				));
+		}
+
+		return ossn_print('ossn:version:avaialbe', array(
+				'---',
+		)); // already latest
 }
 /**
  * Add exception handler
@@ -872,20 +957,20 @@ function ossn_check_update() {
  * @return (html);
  * @access public;
  */
-function _ossn_exception_handler($exception){
-	$time	= time();
-	$session_id = session_id();
-	
-	$params['exception'] = $exception;
-	$params['time'] = $time;
-	$params['session_id'] = '';
-	if($session_id){
-		$params['session_id'] = strtoupper($session_id);
-	}	
-	//[E] Improve Error Reporting 
-	//support at least exception message  #1014
-	error_log("[#{$time}|{$params['session_id']}] ".$params['exception']);
-	echo ossn_view('system/handlers/errors', $params);
+function _ossn_exception_handler($exception) {
+		$time       = time();
+		$session_id = session_id();
+
+		$params['exception']  = $exception;
+		$params['time']       = $time;
+		$params['session_id'] = '';
+		if($session_id) {
+				$params['session_id'] = strtoupper($session_id);
+		}
+		//[E] Improve Error Reporting
+		//support at least exception message  #1014
+		error_log("[#{$time}|{$params['session_id']}] " . $params['exception']);
+		echo ossn_view('system/handlers/errors', $params);
 }
 /**
  * Set Ajax Data
@@ -896,14 +981,14 @@ function _ossn_exception_handler($exception){
  * @return void
  */
 function ossn_set_ajax_data(array $data = array()) {
-	global $Ossn;
-	if (ossn_is_xhr()) {
-		$Ossn->ajaxData = $data;
-	}
+		global $Ossn;
+		if(ossn_is_xhr()) {
+				$Ossn->ajaxData = $data;
+		}
 }
 /**
  * Generate server level config files
- * 
+ *
  * @param string $type php_user_ini or apache config?
  * @return boolean
  */
@@ -911,16 +996,16 @@ function ossn_generate_server_config($type): bool {
 		if($type == 'apache') {
 				$path = ossn_route()->www;
 				$file = $path . 'installation/configs/htaccess.dist';
-				
+
 				//[B] Apache config being rewritten if modified by cpanel #2179
-				$comapreFunc = function($file){
+				$comapreFunc = function ($file) {
 						$file = fopen($file, 'r');
 						$line = fgets($file);
 						fclose($file);
-						$line = preg_replace('/\s+/','', trim($line));
+						$line = preg_replace('/\s+/', '', trim($line));
 						return str_replace('#', '', $line);
 				};
-				
+
 				//[E] Stop rewriting .htaccess every time page loads during installation #2091
 				if(file_exists($path . '.htaccess')) {
 						$actual_check_sum = $comapreFunc($path . '.htaccess');
@@ -948,28 +1033,33 @@ function ossn_generate_server_config($type): bool {
 }
 /**
  * Ossn Dump
- * 
+ *
  * Dump a variable
  *
  * @param array}object}string}integer}boolean $param A variable you wanted to dump.
+ * @param bookean $readable print_r default is true
  *
  * @return string
  */
-function ossn_dump($params = '', $clean = true) {
-	if (!empty($params)) {
+function ossn_dump($params = '', $readable = true) {
 		ob_start();
-		echo "<pre>";
-		if ($clean === true) {
-			print_r($params);
-		} elseif ($clean === false) {
-			var_dump($params);
+
+		if(!ossn_is_from_cli()) {
+				echo '<pre>';
 		}
-		echo "</pre>";
-		$content = ob_get_contents();
-		ob_end_clean();
+
+		if($readable === true) {
+				print_r($params);
+		} else {
+				var_dump($params);
+		}
+
+		if(!ossn_is_from_cli()) {
+				echo '</pre>';
+		}
+
+		$content = ob_get_clean();
 		return $content;
-	}
-	return false;
 }
 /**
  * Ossn validate offset
@@ -977,11 +1067,63 @@ function ossn_dump($params = '', $clean = true) {
  * @return void
  */
 function ossn_offset_validate() {
-	//pagination offset should be better protected #627
-	$offset = input('offset');
-	if (!is_numeric($offset)) {
-		unset($_REQUEST['offset']);
-	}
+		//pagination offset should be better protected #627
+		$offset = input('offset');
+		if(!is_numeric($offset)) {
+				unset($_REQUEST['offset']);
+		}
+}
+/**
+ * Run mysql queries
+ *
+ * @param string $sql SQL commands
+ *
+ * @return boolean|array
+ */
+function ossn_run_sql_script($sql) {
+		if(empty($sql)) {
+				return false;
+		}
+		$results = array(
+				'success' => array(),
+				'errors'  => array(),
+		);
+
+		// Remove different SQL comment types
+		$sql = preg_replace('/--.*(\r?\n)/', "\n", $sql); // -- comment
+		$sql = preg_replace('/#.*(\r?\n)/', "\n", $sql); // # comment
+		$sql = preg_replace('/\/\*.*?\*\//s', '', $sql); // /* multi-line comment */
+
+		// Split by semicolon + optional whitespace + newline or end of string
+
+		$statements = preg_split('/;\s*(\r?\n|$)/', $sql);
+
+		foreach ($statements as $statement) {
+				$statement = trim($statement);
+				if(!empty($statement)) {
+						try {
+								$database = new OssnDatabase();
+								$database->statement($statement);
+								$result = $database->execute();
+
+								if($result === false) {
+										$results['errors'][] = array(
+												'query' => $statement,
+												'error' => 'Execution returned false',
+										);
+								} else {
+										$results['success'][] = $statement;
+								}
+						} catch (Exception $e) {
+								$results['errors'][] = array(
+										'query' => $statement,
+										'error' => $e->getMessage(),
+								);
+						}
+				}
+		}
+
+		return $results;
 }
 ossn_errros();
 ossn_register_callback('ossn', 'init', 'ossn_offset_validate');
