@@ -12,6 +12,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v8.2
 - [B] Tinymce missing si and farsi langauge #2431
 - [E] Update phpmailer to 6.10
 - [E] If account is activated and user visited activation page show activation message #2432
+- [E] Allow tagging in group for group members only #2436
  
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v8.1
