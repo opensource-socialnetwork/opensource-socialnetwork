@@ -16,6 +16,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v8.2
 - [B] OssnNotifications component removed and when user is deleted cause error #2459
 - [E] Friends widget on profile page . Friends should be in center #2445
 - [B] Fix indexes in database (uses MyISAM) #2455
+- [E] Add time_updated to tables that allows update like user, object etc #2454
 
  
 
