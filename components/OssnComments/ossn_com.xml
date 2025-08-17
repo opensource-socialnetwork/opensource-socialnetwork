@@ -11,5 +11,10 @@
 	<requires>
 		<type>ossn_version</type>
 		<version>6.2</version>
-	</requires>
+	</requires>	
+	<requires>
+		<type>ossn_component</type>
+		<name>OssnNotifications</name>
+		<version>6.4</version>
+	</requires>			
 </component>

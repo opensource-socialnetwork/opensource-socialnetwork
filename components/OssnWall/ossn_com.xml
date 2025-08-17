@@ -17,4 +17,9 @@
 		<name>OssnLocation</name>
 		<version>2.0</version>
 	</requires>	
+	<requires>
+		<type>ossn_component</type>
+		<name>OssnNotifications</name>
+		<version>6.4</version>
+	</requires>	
 </component>
