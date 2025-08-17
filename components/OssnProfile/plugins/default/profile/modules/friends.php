@@ -11,7 +11,7 @@
 $friends = $params['user']->getFriends(false, array(
 		'limit' => 9
 ));
-echo '<div class="ossn-profile-module-friends">';
+echo '<div class="ossn-profile-module-friends text-center">';
 if($friends) {
 		foreach($friends as $friend) {
 				$url       = $friend->iconURL()->large;
