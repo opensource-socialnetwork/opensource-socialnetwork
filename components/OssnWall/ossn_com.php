@@ -91,6 +91,11 @@ function ossn_wall() {
 						'text'  => '<i class="fa fa-image"></i>',
 				),
 		);
+		ossn_register_menu_item('wall/container/controls/group', array(
+				'name'  => 'tag_friend',
+				'class' => 'ossn-wall-friend',
+				'text'  => '<i class="fa fa-users"></i>',
+		));
 		ossn_register_menu_item('wall/container/home', $menupost);
 		ossn_register_menu_item('wall/container/group', $menupost);
 		ossn_register_menu_item('wall/container/user', $menupost);
@@ -148,8 +153,38 @@ function ossn_friend_picker() {
 						'wheres' => "(CONCAT(u.first_name,  ' ', u.last_name) LIKE '%{$search_for}%')",
 				);
 		}
+		$picker_type = input('picker_type');
+		$group_guid  = input('guid');
+
 		//[E] Enhance friends picker because now getFriends searched via OssnUser instance #2202
-		$friends = $user->getFriends(ossn_loggedin_user()->guid, $options);
+		if(empty($picker_type) || (isset($picker_type) && $picker_type != 'group')) {
+				$friends = $user->getFriends(ossn_loggedin_user()->guid, $options);
+		} elseif(isset($picker_type) && $picker_type == 'group' && com_is_active('OssnGroups')) {
+				$group  = ossn_get_group_by_guid($group_guid);
+				$member = false;
+				if($group) {
+						$member = $group->isMember($group->guid, ossn_loggedin_user()->guid);
+				}
+				if($group->owner_guid == ossn_loggedin_user()->guid) {
+						$member = true;
+				}
+				if(empty($search_for) || !$group || ($group && !$member)) {
+						echo json_encode(array());
+						return false;
+				}
+				$loggedin_guid = ossn_loggedin_user()->guid;
+				
+				$user    = new OssnUser();
+				$friends = $user->searchUsers(array(
+						'joins'    => array(
+								'JOIN ossn_relationships AS r ON r.relation_to = u.guid AND r.type = "group:join:approve"',
+						),
+						'wheres'   => array(
+								"(r.relation_from = '{$group_guid}') AND (CONCAT(u.first_name,  ' ', u.last_name) LIKE '%{$search_for}%') AND u.guid != '{$loggedin_guid}'", //replace with group ID,
+						),
+						'distinct' => true,
+				));
+		}
 		if(!$friends) {
 				echo json_encode(array());
 				return false;

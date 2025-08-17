@@ -27,6 +27,7 @@ $pt = array(
 		'ossn:wall:allsite:posts' => 'Todas as postagens do site',
 		'ossn:wall:friends:posts' => 'Somente postagens de amigos',
 		'ossn:wall:post:saved' => 'Postagem salva com sucesso',
-		'ossn:wall:post:save:error' => 'Não foi possível salvar a postagem'
+		'ossn:wall:post:save:error' => 'Não foi possível salvar a postagem',
+		'ossn:wall:tag:member'  => 'Membro da etiqueta',		
 );
 ossn_register_languages('pt', $pt);

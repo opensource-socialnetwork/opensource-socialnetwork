@@ -27,6 +27,8 @@ $ru = array(
 		'ossn:wall:allsite:posts' => 'Все записи',
 		'ossn:wall:friends:posts' => 'Записи друзей',
 		'ossn:wall:post:saved' => 'Запись сохранена',
-		'ossn:wall:post:save:error' => 'Нельзя сохранить запись'
+		'ossn:wall:post:save:error' => 'Нельзя сохранить запись',
+		'ossn:wall:tag:member'  => 'Участник тега',
+
 );
 ossn_register_languages('ru', $ru);

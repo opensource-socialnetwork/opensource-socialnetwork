@@ -9,29 +9,42 @@
  * @link      https://www.opensource-socialnetwork.org/
  */
 
-$OssnWall = new OssnWall;
+$OssnWall = new OssnWall();
 
 $OssnWall->poster_guid = ossn_loggedin_user()->guid;
 
 $owner = input('wallowner');
-if (isset($owner) && !empty($owner)) {
-    $OssnWall->owner_guid = $owner;
+if(isset($owner) && !empty($owner)) {
+		$OssnWall->owner_guid = $owner;
 }
+
+$group = ossn_get_group_by_guid($owner);
 
 $OssnWall->type = 'group';
 
-$post = input('post');
-$friends = false;
+$post     = input('post');
 $location = input('location');
+$friends  = input('friends');
 
-if ($OssnWall->Post($post, $friends, $location, OSSN_PRIVATE)) {
+if($friends) {
+		$friend_guids = explode(',', $friends);
+		$friend_guids = array_unique($friend_guids);
+		$friends      = array();
+		foreach ($friend_guids as $guid) {
+				if($group->isMember($group->guid, $guid)) {
+						$friends[] = $guid;
+				}
+		}
+		$friends = implode(',', $friends);
+}
+if($group && $OssnWall->Post($post, $friends, $location, OSSN_PRIVATE)) {
 		if(ossn_is_xhr()) {
 				$guid = $OssnWall->getObjectId();
 				$get  = $OssnWall->GetPost($guid);
 				if($get) {
 						$get = ossn_wallpost_to_item($get);
 						ossn_set_ajax_data(array(
-								'post' => ossn_wall_view_template($get)
+								'post' => ossn_wall_view_template($get),
 						));
 				}
 		}

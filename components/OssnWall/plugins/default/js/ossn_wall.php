@@ -399,9 +399,18 @@ function ossn_wall_init() {
 
 function ossn_wall_select_friends() {
 	$(document).ready(function() {
-		if (typeof $.fn.tokenInput === 'function') {
-			$("#ossn-wall-friend-input").tokenInput(Ossn.site_url + "friendpicker", {
-				placeholder: Ossn.Print('tag:friends'),
+		if (typeof $.fn.tokenInput === 'function' && $('#ossn-wall-friend-input').length > 0) {
+			var picker_type = $('#ossn-wall-friend-input').attr('data-type');
+			var tag_type = "";
+			var $placeholder = Ossn.Print('tag:friends');
+			
+			if(typeof picker_type != 'undefined' && picker_type == 'group'){
+					var group_guid = $('#ossn-wall-friend-input').attr('data-guid');
+					tag_type = '?picker_type=group&guid='+group_guid;	
+					$placeholder = Ossn.Print('ossn:wall:tag:member')
+			}
+			$("#ossn-wall-friend-input").tokenInput(Ossn.site_url + "friendpicker" + tag_type, {
+				placeholder: $placeholder,
 				hintText: false,
 				propertyToSearch: "first_name",
 				resultsFormatter: function(item) {
