@@ -15,6 +15,8 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v8.2
 - [E] Allow tagging in group for group members only #2436
 - [B] OssnNotifications component removed and when user is deleted cause error #2459
 - [E] Friends widget on profile page . Friends should be in center #2445
+- [B] Fix indexes in database and move to InnoDB #2455
+
  
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v8.1
