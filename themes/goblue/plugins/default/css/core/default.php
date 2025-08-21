@@ -1466,9 +1466,10 @@ a {
 .ossn-notifications-box .notification-image img {
 	width: 50px;
 	height: 50px;
-	display: inline-block;
 }
-
+.ossn-notifications-all a {
+	padding:10px;
+}
 .ossn-notifications-box .bottom-all a,
 .ossn-notifications-box .notfi-meta strong {
 	color: #337ab7;
@@ -1516,10 +1517,43 @@ a {
 	float: right;
 }
 
-.ossn-notifications-all a {}
+.ossn-notif-delete-item i {
+    margin-right: 0;
+    font-size: initial !important;
+    margin-top: initial !important;
+}
+.ossn-notif-delete-item {
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin-top: 0px;
+    background: #fff;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    border: 1px solid #eee;
+    border-radius: 100%;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+.ossn-notif-delete-item {
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 0.3s ease;
+    pointer-events: none; /* prevent accidental clicks when hidden */
+}
+
+/* Show on hover of the <a> inside <li> */
+.ossn-notifications-all li a:hover .ossn-notif-delete-item {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto;
+}
 
 .ossn-notifications-all li {
-	padding: 10px;
 	display: block;
 }
 

@@ -221,9 +221,9 @@ class OssnNotifications extends OssnDatabase {
 		 */
 		public function setViewed($guid) {
 				//[B] Notification is not getting marked viewed #2439
-				if(isset($this->guid)){
-						$guid = $this->guid;	
-				}	
+				if(isset($this->guid)) {
+						$guid = $this->guid;
+				}
 				if(!isset($guid)) {
 						return false;
 				}
@@ -245,7 +245,7 @@ class OssnNotifications extends OssnDatabase {
 		 *
 		 * @param object $user User entity
 		 *
-		 * @return boolean;
+		 * @return boolean
 		 */
 		public function deleteUserNotifications($user) {
 				if($user) {
@@ -256,6 +256,22 @@ class OssnNotifications extends OssnDatabase {
 						}
 				}
 				return false;
+		}
+		/**
+		 * Delete notification by guid
+		 *
+		 * @return boolean
+		 */
+		public function deleteItem() {
+				if(!isset($this->guid) || empty($this->guid)) {
+						return false;
+				}
+				$vars           = array();
+				$vars['from']   = 'ossn_notifications';
+				$vars['wheres'] = array(
+						"(guid={$this->guid})",
+				);
+				return $this->delete($vars);
 		}
 		/**
 		 * Clear all notifications of specific user

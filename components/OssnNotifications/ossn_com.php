@@ -59,6 +59,7 @@ function ossn_notifications() {
 						ossn_register_action('notifications/admin/settings', __OSSN_NOTIF__ . 'actions/notifications/admin/settings.php');
 						ossn_register_com_panel('OssnNotifications', 'settings');
 				}
+				ossn_register_action('notifications/delete/item', __OSSN_NOTIF__ . 'actions/delete/item.php');
 				ossn_register_sections_menu('newsfeed', array(
 					'name' => 'notifications',
 					'text' => ossn_print('notifications'),
