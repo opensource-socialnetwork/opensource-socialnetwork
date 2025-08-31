@@ -20,7 +20,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v8.2
 - [E] Allow to complete remove all notifications or single #2446
 - [E] Remove multiple new lines in post and multiple spaces to single #2461
 - [E] Normalize Wall Remove JSON #2460
- 
+- [E] Remove multiple new lines from comments and multiple spaces to single #2462
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v8.1
 - [B] Owner can not able to delete comment of others in photo #2428
