@@ -15,11 +15,8 @@ $object = ossn_get_object($guid);
 $user   = ossn_loggedin_user();
 if($object && (strlen($post) || $object->{'file:wallphoto'})) {
 		//[B] Emoji problem introduced in 6.4 #2186
-		$json				 = $object->description;
-		$data				 = json_decode($json, true);
-		$data['post']		 = $post;
-		$data				 = json_encode($data, JSON_UNESCAPED_UNICODE);
-		$object->description = $data;
+		//[E] Normalize Wall Remove JSON #2460
+		$object->description = $post;
 		if(($object->poster_guid == $user->guid || $user->canModerate()) && $object->save()) {
 				$params           = array();
 				$params['text']   = $post;

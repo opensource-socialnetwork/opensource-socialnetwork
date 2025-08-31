@@ -47,19 +47,16 @@ if (com_is_active('LinkPreview')) {
 			$linkpreview_guid = $linkpreview->addLinkPreview();
 			if($linkpreview_guid) {
 				// yes, there's a new preview, attach it to the post !
-				$wall = new OssnWall;
+				//v8.2 doesn't require to resotre lines as its no more json so lines won't effect
+				
+				$wall = new OssnWall();
 				$post = $wall->GetPost($post_guid);
 				$post->data->linkPreview = $linkpreview_guid;
-				$json = html_entity_decode($post->description);
-				$data = json_decode($json, true);
-				// make sure we restore new linse back to \r\n
-				$data['post'] = htmlspecialchars($data['post'], ENT_QUOTES, 'UTF-8');
-				$data['post'] = ossn_input_escape($data['post']);
-				$post->description = json_encode($data, JSON_UNESCAPED_UNICODE);
 				$post->save();
+				
 				// ok, new entity has been created now
 				// let's fetch the new html for passing back via json
-				$object = new OssnObject;
+				$object = new OssnObject();
 				$params = array(
 					'subtype' => 'LinkPreview',
 					'type' => 'object',
@@ -81,18 +78,16 @@ if (com_is_active('LinkPreview')) {
 		$linkpreview_guid = $linkpreview->addLinkPreview();
 		if($linkpreview_guid) {
 			// yes, there's a new preview, attach it to the post !
-			$wall = new OssnWall;
+			//v8.2 doesn't require to resotre lines as its no more json so lines won't effect
+			
+			$wall = new OssnWall();
 			$post = $wall->GetPost($post_guid);
-			$post->data->linkPreview = $linkpreview_guid;
-			$json = html_entity_decode($post->description);
-			$data = json_decode($json, true);
-			$data['post'] = htmlspecialchars($data['post'], ENT_QUOTES, 'UTF-8');
-			$data['post'] = ossn_input_escape($data['post']);
-			$post->description = json_encode($data, JSON_UNESCAPED_UNICODE);
+			$post->data->linkPreview = $linkpreview_guid;			
 			$post->save();
+			
 			// ok, entity has been created now
 			// let's fetch the preview html for passing back via json
-			$object = new OssnObject;
+			$object = new OssnObject();
 			$params = array(
 				'subtype' => 'LinkPreview',
 				'type' => 'object',
@@ -119,4 +114,4 @@ echo json_encode(array(
 	"preview" => $preview_html,
 	"item_guid" => 'id="activity-item-' . $post_guid . '"'
 ));
-exit;
+exit();

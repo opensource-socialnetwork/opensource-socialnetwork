@@ -110,6 +110,19 @@ function ossn_wall() {
 		ossn_add_hook('required', 'components', 'ossn_location_asure_requirements');
 }
 /**
+ * ossn get wall by guid
+ *
+ * @param integer $guid Wall post guid
+ * @return object|boolean
+ */
+function ossn_wall_by_guid($guid) {
+		if(!isset($guid) || (isset($guid) && empty($guid))) {
+				return false;
+		}
+		$wall = new OssnWall();
+		return $wall->GetPost($guid);
+}
+/**
  * Redirect URI for wall like or comment like
  * Since its same for groups and wall so no need for seperate function
  *
@@ -173,7 +186,7 @@ function ossn_friend_picker() {
 						return false;
 				}
 				$loggedin_guid = ossn_loggedin_user()->guid;
-				
+
 				$user    = new OssnUser();
 				$friends = $user->searchUsers(array(
 						'joins'    => array(
@@ -552,7 +565,7 @@ function ossn_get_homepage_wall_access() {
 		}
 }
 /**
- * Convert wallobject to wall post item
+ * Convert wallobject to wall post array
  *
  * @param object $post A wall object
  *
@@ -560,19 +573,19 @@ function ossn_get_homepage_wall_access() {
  */
 function ossn_wallpost_to_item($post) {
 		if($post && $post instanceof OssnWall) {
-				if(!isset($post->poster_guid)) {
-						$post = ossn_get_object($post->guid);
-				}
-				$data = json_decode($post->description);
+				//post text
 				$text = '';
-				if($data) {
-						$text = ossn_restore_new_lines($data->post, true);
+				if(!empty($post->description)) {
+						$text = ossn_restore_new_lines($post->description, true);
 				}
-				$location = '';
 
-				if(isset($data->location)) {
-						$location = '- ' . $data->location;
+				//location
+				$location = '';
+				if(isset($post->location)) {
+						$location = '- ' . $post->location;
 				}
+
+				//image
 				if(isset($post->{'file:wallphoto'})) {
 						$image = $post->getPhotoURL();
 				} else {
@@ -580,15 +593,16 @@ function ossn_wallpost_to_item($post) {
 				}
 
 				$user = ossn_user_by_guid($post->poster_guid);
-				if(!isset($data->friend)) {
-						if(!$data) {
-								$data = new stdClass();
-						}
-						$data->friend = '';
+
+				//friends
+				$friends = '';
+				if(isset($post->tag_friend_guids)) {
+						$friends = $post->tag_friend_guids;
 				}
+
 				return array(
 						'post'     => $post,
-						'friends'  => explode(',', $data->friend),
+						'friends'  => explode(',', $friends),
 						'text'     => $text,
 						'location' => $location,
 						'user'     => $user,
