@@ -13,6 +13,46 @@ set_time_limit(0);
 ossn_generate_server_config('apache');
 ossn_version_upgrade($upgrade, '8.2');
 
+function v82update_json_validate_fallback($string) {
+		if(!is_string($string)) {
+				return false;
+		}
+
+		json_decode($string);
+		return json_last_error() === JSON_ERROR_NONE;
+}
+$wall = new OssnWall();
+$all  = $wall->GetPosts(array(
+		'page_limit' => false,
+));
+if($all) {
+		foreach ($all as $item) {
+				if(!v82update_json_validate_fallback($item->description)) {
+						continue;
+				}
+				$data = json_decode($item->description);
+				//text
+				if($data) {
+						//restore /r/n because input comes with /r/n new lines instead of actual lines
+						//we simulate input()
+						$text = ossn_input_escape($data->post);
+						if($text == 'null:data') {
+								$text = '';
+						}
+						$item->description = $text;
+				}
+				//location
+				if(isset($data->location)) {
+						$item->data->location = $data->location;
+				}
+				//friends
+				if(isset($data->friend)) {
+						$item->data->tag_friend_guids = $data->friend;
+				}
+				$item->save();
+		}
+}
+
 $v82update = "ALTER TABLE ossn_users DROP INDEX index_username;
 ALTER TABLE ossn_users ADD UNIQUE INDEX index_username (username);
 
