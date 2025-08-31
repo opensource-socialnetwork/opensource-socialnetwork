@@ -18,7 +18,8 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v8.2
 - [B] Fix indexes in database (uses MyISAM) #2455
 - [E] Add time_updated to tables that allows update like user, object etc #2454
 - [E] Allow to complete remove all notifications or single #2446
-
+- [E] Remove multiple new lines in post and multiple spaces to single #2461
+- [E] Normalize Wall Remove JSON #2460
  
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v8.1
