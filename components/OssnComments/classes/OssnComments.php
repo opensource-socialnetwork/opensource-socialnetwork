@@ -68,16 +68,21 @@ class OssnComments extends OssnAnnotation {
 				if(!empty($this->comment_image)) {
 						$cancomment = true;
 				}
+
+				$comment = ossn_restore_new_lines($comment);
+				$comment = preg_replace('/\t/', ' ', $comment);
+				$comment = preg_replace('/(\r\n|\r|\n)+/', "\n", $comment);
+
 				$this->subject_guid = $subject_id;
 				$this->owner_guid   = $guid;
 				$this->type         = "comments:{$type}";
 				$this->value        = $comment;
 				if($cancomment && $this->addAnnotation()) {
 						if(isset($this->comment_image)) {
-								$image                = base64_decode($this->comment_image);
-								$file                 = ossn_string_decrypt(base64_decode($image));
-								$file_path            = rtrim(ossn_validate_filepath($file), '/');
-								$full_path            = ossn_get_userdata("tmp/photos/{$file_path}");
+								$image     = base64_decode($this->comment_image);
+								$file      = ossn_string_decrypt(base64_decode($image));
+								$file_path = rtrim(ossn_validate_filepath($file), '/');
+								$full_path = ossn_get_userdata("tmp/photos/{$file_path}");
 								//[B] Comment Static photo should have only filename no fullpath #2090
 								$_FILES['attachment'] = array(
 										'name'     => $file_path,
@@ -218,7 +223,7 @@ class OssnComments extends OssnAnnotation {
 				//[B]No callback triggered for OssnComments::commentsDeleteAll
 				$list = $this->GetComments($subject, $type, false);
 				if($list) {
-						foreach($list as $comment) {
+						foreach ($list as $comment) {
 								$this->deleteComment($comment->id);
 						}
 						return true;
@@ -283,33 +288,32 @@ class OssnComments extends OssnAnnotation {
 		 *
 		 * @return string|boolean
 		 */
-		 public function photoURL(){
-			 		if(isset($this->id)){
-						 $image = $this->getParam('file:comment:photo');
-						 if(!empty($image)) {
-							$image = hash('md5', $this->id);
-							return ossn_site_url("comment/image/{$this->id}/{$image}.jpg"); 
-						 }
-					}
-					return false;
-		 
-		 }
+		public function photoURL() {
+				if(isset($this->id)) {
+						$image = $this->getParam('file:comment:photo');
+						if(!empty($image)) {
+								$image = hash('md5', $this->id);
+								return ossn_site_url("comment/image/{$this->id}/{$image}.jpg");
+						}
+				}
+				return false;
+		}
 		/**
 		 * Get comment photo file
 		 *
 		 * @return boolean|object
-		 */		 
-		 public function getPhotoFile(){
-					$file = new OssnFile();
-					$search = $file->searchFiles(array(
-								'limit' => 1,
-								'owner_guid' => $this->id,
-								'type' => 'annotation',
-								'subtype' => 'comment:photo',
-					));
-					if($search){
-						return $search[0];	
-					}
-					return false;
-		 }
+		 */
+		public function getPhotoFile() {
+				$file   = new OssnFile();
+				$search = $file->searchFiles(array(
+						'limit'      => 1,
+						'owner_guid' => $this->id,
+						'type'       => 'annotation',
+						'subtype'    => 'comment:photo',
+				));
+				if($search) {
+						return $search[0];
+				}
+				return false;
+		}
 } //class

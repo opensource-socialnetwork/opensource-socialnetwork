@@ -13,8 +13,12 @@ $text    = input('comment');
 $comment = ossn_get_annotation($guid);
 
 if($comment && (strlen($text) || $comment->{'file:comment:photo'})) {
+		$comment = ossn_restore_new_lines($comment);
+		$comment = preg_replace('/\t/', ' ', $comment);
+		$comment = preg_replace('/(\r\n|\r|\n)+/', "\n", $comment);
+
 		//editing, then saving a comment gives warning #685
-		$comment->data	= new stdClass;
+		$comment->data = new stdClass();
 		if($comment->type == 'comments:entity') {
 				$comment->data->{'comments:entity'} = $text;
 		} elseif($comment->type == 'comments:object') {
@@ -28,7 +32,7 @@ if($comment && (strlen($text) || $comment->{'file:comment:photo'})) {
 				$params['text']       = $text;
 				$params['annotation'] = $comment;
 				ossn_trigger_callback('comment', 'edited', $params);
-		
+
 				ossn_trigger_message(ossn_print('comment:edit:success'));
 				return;
 		}
