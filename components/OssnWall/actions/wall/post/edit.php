@@ -16,13 +16,18 @@ $user   = ossn_loggedin_user();
 if($object && (strlen($post) || $object->{'file:wallphoto'})) {
 		//[B] Emoji problem introduced in 6.4 #2186
 		//[E] Normalize Wall Remove JSON #2460
+		// Replace tabs with a space abd multiple new lines to signle
+		$post = ossn_restore_new_lines($post);
+		$post = preg_replace('/\t/', ' ', $post);
+		$post = preg_replace('/(\r\n|\r|\n)+/', "\n", $post);
+
 		$object->description = $post;
 		if(($object->poster_guid == $user->guid || $user->canModerate()) && $object->save()) {
 				$params           = array();
 				$params['text']   = $post;
 				$params['object'] = $object;
 				ossn_trigger_callback('wall', 'post:edited', $params);
-		
+
 				ossn_trigger_message(ossn_print('ossn:wall:post:saved'));
 				return;
 		}

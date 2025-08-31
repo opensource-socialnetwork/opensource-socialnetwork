@@ -84,7 +84,12 @@ class OssnWall extends OssnObject {
 				$this->subtype            = 'wall';
 				$this->title              = '';
 
+				// Replace tabs with a space
 				$post = preg_replace('/\t/', ' ', $post);
+				// Normalize multiple newlines to a single \n
+				$post = ossn_restore_new_lines($post);
+				$post = preg_replace('/(\r\n|\r|\n)+/', "\n", $post);
+
 				//wall tag a friend , GUID issue #566
 				if(!empty($friends)) {
 						//[B] Same Friends tag flooding #2175
