@@ -65,7 +65,7 @@ function ossn_cli_input(array $names = array()) {
 		foreach($names as $item) {
 				array_push($args, $item . ':');
 		}
-		return getopt(null, $args);
+		return getopt('', $args);
 }
 /**
  * OSSN ClI handler
