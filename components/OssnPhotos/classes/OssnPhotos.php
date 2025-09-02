@@ -216,7 +216,7 @@ class OssnPhotos extends OssnFile {
 				$this->wall->poster_guid        = ossn_loggedin_user()->guid;
 				$this->wall->item_guid          = $itemguid;
 				$this->wall->data->photos_guids = implode(',', $images_guid);
-				if($this->wall->Post('null:data', '', '', $album->access)) {
+				if($this->wall->Post(NULL, '', '', $album->access)) {
 						return true;
 				}
 				return false;
