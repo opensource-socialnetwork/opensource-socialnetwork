@@ -10,7 +10,7 @@
  */
 $de = array(
     'people:like:this' => 'Leute, denen dieser Beitrag gefällt',
-    'ossn:like:this' => '%s gefällt das',
+    'ossn:like:this' => '%s Nutzer:innen haben reagiert',
     'ossn:like:you:and:this' => 'Dir und %s gefällt das',
     'ossn:like:people' => '%s Leuten',
     'ossn:like:person' => '%s Person',
