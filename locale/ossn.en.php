@@ -2,7 +2,7 @@
 /**
  * Open Source Social Network
  *
- * @package   (openteknik.com).ossn
+ * @package   Open Source Social Network (OSSN)
  * @author    OSSN Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
@@ -20,9 +20,7 @@ $en = array(
     'home:top:heading' => "Welcome to %s! Join now to make new friends, create groups, add photos, and much more.",
     'create:account' => 'Create an account',
     'its:free' => "It's free and always will be.",
-    
-    'register:ok:message' => "Your account has been registered! We have sent you an account activation email. If you didn't receive the email, please check your spam/junk folder.",
-    
+        
     'copyright' => '&copy; COPYRIGHT',
     'powered' => 'Powered by the Open Source Social Network.',
     
@@ -163,7 +161,7 @@ You may copy and paste the address to your browser manually in case the link doe
     'theme:install:error' => 'Install failed. Make sure it is compatible with the OSSN version you are using.',
     
     'fields:require' => 'All fields are required!',
-    'username:error' => 'Username is invalid.',
+    'username:error' => 'The username is incorrect. Please use only alphanumeric characters when entering your information. Make certain that there are no spaces or special characters. Only letters A-Z and numbers 0-9 are permitted. The username must have at least 5 characters.',
     'password:error' => 'The password must be more than 5 characters.',
     'account:created' => 'Your account has been created.',
     'account:create:error:admin' => 'Account registration failed! Please try again later.',
@@ -260,6 +258,7 @@ Please click the link below to reset password or copy the link and paste into yo
     'admin:edit:user' => 'Edit User',
     'admin:login' => 'Login',
     'admin:notification:email' => 'Site Notification Email',
+	'admin:email:name' => 'Notification Email Name',
     'notification_email' => 'Notification Email (noreply@domain.com)',
     'owner_email' => 'Owner Email (mysite@domain.com)',
     'ossn:websitename' => 'Name of your website',
@@ -327,6 +326,23 @@ Please click the link below to reset password or copy the link and paste into yo
     'php:upload_err_no_tmp_dir' => 'Missing a temporary folder',
     'php:upload_err_cant_write' => 'Failed to write file to disk',
     'php:upload_err_extension' => 'A PHP extension stopped the file upload',
+	'php:extension:notfound' => 'PHP Extension not found!',
+	
+	'admin:basiccache' => 'Basic Cache',
+	'admin:dcache:note' => "The dynamic data is cached using a dynamic cache. which could expedite the processing of your application. Enabling cache won't help if your cache server connection is slower since it will only make your application run more slowly.  It is recommended that you set up the caching server on the same host as your social network. Please refrain from using caching with shared hosting services. Only one cache system can be used at a time.",
+	'admin:dcache:cachename' => 'Cache Server Types',
+	'admin:dcache:extension:enabled' => 'Extension Enabled',
+	'admin:dcache:select:server:type' => 'Select server type',
+	'admin:dcache:host' => 'Host',
+	'admin:dcache:port' => 'Port',
+	'admin:dcache:username' => 'Username (if any)',
+	'admin:dcache:password' => 'Password (if any)',
+	'admin:dcache:setstatus' => 'Set Status',
+	'admin:dcache:extension:tests' => 'Tests',
+	'admin:dcache:errorconnection' => 'Unable to confirm connection using given details!',
+	'admin:dcache:required:field' =>  'Please fill required fields',
+	'admin:dcache:memcached:authnotsupport' => 'Your Memcached php extension does not support authentication!',
+	
     /*
      * List of ISO 639-1 language codes
      * http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes

@@ -2,7 +2,7 @@
 /**
  * Open Source Social Network
  *
- * @package   (openteknik.com).ossn
+ * @package   Open Source Social Network (OSSN)
  * @author    OSSN Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
@@ -14,7 +14,7 @@ ossn_register_languages('fr', array(
 	'theme:goblue:logo:site' => 'Logo du site',
 	'theme:goblue:logo:admin' => "Logo de l'administration",
 	'theme:goblue:logo:large' => 'Le fichier du logo est trop volumineux !',
-	'theme:goblue:logo:failed' => 'Le tÈlÈchargement du logo a ÈchouÈ',
-	'theme:goblue:logo:changed' => 'Le logo a ÈtÈ modifiÈ.',
-	'theme:goblue:browercache' => "Au cas o˘ les images n'apparaissent pas. Veuillez vider le cache de votre navigateur web pour faire apparaÓtre les images"
+	'theme:goblue:logo:failed' => 'Le t√©l√©chargement du logo a √©chou√©',
+	'theme:goblue:logo:changed' => 'Le logo a √©t√© modifi√©.',
+	'theme:goblue:browercache' => "Au cas o√π les images n'apparaissent pas. Veuillez vider le cache de votre navigateur web pour faire appara√Ætre les images"
 ));

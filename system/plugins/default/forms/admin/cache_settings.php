@@ -3,7 +3,7 @@
  * Open Source Social Network
  *
  * @package   Open Source Social Network
- * @author    Open Social Website Core Team <info@openteknik.com>
+ * @author    Open Source Social Network Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
  * @link      https://www.opensource-socialnetwork.org/
@@ -17,9 +17,10 @@ if ($cache == 1) {
     $enabled = '';
 }
 ?>
-<h4> Status : <?php echo ossn_print("cache:{$cache}"); ?> </h4>
+<label><?php echo ossn_print('admin:basiccache');?></label>
+<strong> Status : <?php echo ossn_print("cache:{$cache}"); ?> </strong>
 
-<div>
+<div class="margin-top-10">
 	<select name="cache">
    	 	<option value="1" <?php echo $enabled; ?>> <?php echo ossn_print('cache:enable'); ?> </option>
    	 	<option value="0" <?php echo $disabled; ?>> <?php echo ossn_print('cache:disable'); ?>  </option>

@@ -2,7 +2,7 @@
 /**
  * Open Source Social Network
  *
- * @package   (openteknik.com).ossn
+ * @package   Open Source Social Network (OSSN)
  * @author    OSSN Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
@@ -24,5 +24,7 @@ $eo = array(
 	'ossnmessages:delete:me' => 'Forigu por vi',
 	'ossnmessages:delete:me:note' => 'Ĉi tiu mesaĝo estos forigita por vi. Aliaj membroj ankoraŭ povos vidi ĝin.',
 	'ossnmessages:replied:you' => 'Vi: %s',
+	'message:fileattachment' => 'Dosiero Aldonaĵo',
+	
 );
 ossn_register_languages('eo', $eo); 

@@ -1,147 +1,65 @@
-OSSN - OPEN SOURCE SOCIAL NETWORK v6.4 LTS
-* [B] Comment object menu not showing comment menu #2168
+OSSN - OPEN SOURCE SOCIAL NETWORK v8.2
+- [E] loading spinner when uploading to album #2458
+- [B] Notification is not getting marked viewed #2439
+- [E] Vimeo Event embed #2447
+- [B] getAnnotationById returns false if offset is set in URL #2457
+- [E] Idea to change alerts trigger messages to BS Toasts #2449
+- [B] Trigger message, when displayed x (close) button not working #2440
+- [B] Emojis are only inserted at end of text #2451
+- [B] Undefined property: stdClass::$wwww" in file /system/handlers/errors.php (line 30) #2444
+- [B] Group change cover shows broken icon #2442
+- [B] Profile picture padded on left side #2433
+- [B] Tinymce missing si and farsi langauge #2431
+- [E] Update phpmailer to 6.10
+- [E] If account is activated and user visited activation page show activation message #2432
+- [E] Allow tagging in group for group members only #2436
+- [B] OssnNotifications component removed and when user is deleted cause error #2459
+- [E] Friends widget on profile page . Friends should be in center #2445
+- [B] Fix indexes in database (uses MyISAM) #2455
+- [E] Add time_updated to tables that allows update like user, object etc #2454
+- [E] Allow to complete remove all notifications or single #2446
+- [E] Remove multiple new lines in post and multiple spaces to single #2461
+- [E] Normalize Wall Remove JSON #2460
+- [E] Remove multiple new lines from comments and multiple spaces to single #2462
+- [E] Reactions instead of "like" #2453
+- [E] Normalize Wall Remove JSON #2460
+- [E] Remove multiple new lines from comments and multiple spaces to single #2462
 
-OSSN - OPEN SOURCE SOCIAL NETWORK v6.3 LTS
-* [B] deleting profile photo gives error on iconURL() #2166
-* [B] deleting profile cover gives error on coverURL() #2166
 
-OSSN - OPEN SOURCE SOCIAL NETWORK v6.2
-* [E] Allow all callables for extend view #2024
-* [E] avoiding unnecessary handling of extra space at comment start #2029
-* [B] skip friend access check if page visitor is not logged in #2037
-* [B] User can not comment on friend only, own album photo #2039
-* [B] OssnSounds missing the button for sound on/off #2032
-* [E] Make sure addUser also run isEmail validation #2022
-* [E] Multiple select (html) handler #2040
-* [B] jqueryui-datepicker fails on Google translated pages #2036
-* [B] ossn_delete_relationship recursive not working #2035
-* [E] add a new function ossn_get_relation_by_id() #2034
-* [B] UI add friend success text goes wrong position #2027
-* [E] update version and pre-requisite OssnEmbed #2045
-* [B] fixed unallowed <div> inside paragraph again #2044
-* [E] load css for video in <span> #2043
-* [E] make video visible in <span> #2042
-* [E] Add provided by giphy footer or banner #2049
-* [E] Correction of term 'miinutos' to 'minutos' #2048
-* [E] CLI + cron library and documentation on community #2050
-* [B] fixed calling unavailable/mistyped function #2051
-* [E] OssnMail 'email', 'send:policy' 3rd parameter #2052
-* [E] [E] optimized getMyGroups() #2071
-* [E] optimized OssnGroup::isMember() #2070
-* [E] optimized OssnGroup::getMembersRequests() #2069
-* [E] optimized group join-requests counter #2067
-* [E] PHP8 prevent bool->guid warnings #2058
-* [B] fixed missing error handler for not existing subpages #2055
-* [E] Add confirmation before deleting photos #2073
-* [E] Enhance group menu entries in sidebar #2072
-* [B] PHP8 If deleted comments tried to be deleted again #2057
-* [B] OssnNotification if poster and owner is same participants hook never run #2053
-* [B] Fix the like:object view menu type introduced in #1868 #2081
-* [E] Replace translation PT #2079 #2075
-* [E] Improve mod_rewrite CURL functionality #2078
-* [B] fixed use of undefined variable $object #2084
-* [E] Some small locale fixes. #2087
-* [B] PHP Warning: preg_match(): Compilation failed (#2018). #2086
-* [B] fix creating incomplete wall entities if addPhoto() fails #2088
-* [B] prevent warning if $fields is false #2137 #2136 #2135
-* [E] Update PHP version to minimum 8 #2061
-* [B] Comment Static photo should have only filename no fullpath #2090
-* [B] No notification to participants if someone comments on profile photo , cover, album photo #2054
-* [B] jqueryui-datepicker fails on Google translated pages #2036
-* [E] Removal of old upgrade scripts #2085
-* [E] Enhance OssnFile and Include CDN option #2089
-* [E] fixed different 'readonly' colors #2134
-* [B] missing check if member has a cover image #2093
-* [E] some installation warnings #2018
-* [E] don't list unvalidated members #2144
-* [B] Multiple clicks on same action add member multiple times in group #2147
-* [B] col-xs not anymore with BS5 #2017
-* [E] Remove php5 apache config and update post and upload sizes #2033
-* [E] Stop rewriting .htaccess every time page loads during installation #2091
-* [B] Deleting a group should remove group:joinrequest records #2066
-* [E] Enable linkifying of Entity comments #2080
-* [B] wrong class extending in all input plugins #2146
-* [E] Ossn::File MaxSize() add UploadMaxSize #2148
-* [B] getting orphan notification records of type comments:post:group:wall #2060
-* [E] isModerator (for groups) in comments section also. #2025
-* [E] Added OssnJWT class based on firebase/JWT
-* [E] Updated cacert.pem
-* [E] Updated PHP MAILER to 6.6.0
-* [B] Pagination not responsive #2150
-* [E] Show components in admin panel in ASC order of their installation #2155
-* [E] Component delete confirmation if wanted to keep settings. #2152
-* [T] OssnUser::getFriends() #2149
-* [B] Pagination not responsive #2150
-* [B] btn-sm have no effect #2153
-* [B] missing checkbox-block span style #2145
-* [B] Non logged in visitor can view private posts #2158
-* [B] OssnChat default value showing 0 in class #2163
-* [E] Request for new user image classes defining the shape only #2143
-* [B] Post background not breaking if str > 125 chars #2164
+OSSN - OPEN SOURCE SOCIAL NETWORK v8.1
+- [B] Owner can not able to delete comment of others in photo #2428
+- [B] Notifications remains if album is deleted #2427
+- [B] "Attempt to read property "guid" on bool" in file\components\OssnRealTimeComments\plugins\default\rtcomments\item\js_entity.php #2430
+- [B] Profile photo delete gives error but photo deleted #2429
 
-Special Thanks to Michael Zülsdorff (aka Zetman) (https://www.opensource-socialnetwork.org/u/zetman) for testing and bug reporting, fixing.
 
-OSSN - OPEN SOURCE SOCIAL NETWORK v6.1
-* [B] Undefined array key "HTTP_HOST #2012
-* [B] Admin menus issues not appearing on mobile phone #2015
-* [B] PHP 8 Warnings #2014
-* [B] BS5 js file cached during upgrade #2016
-
-OSSN - OPEN SOURCE SOCIAL NETWORK v6.0
-* [B] Make pagination work on photo album overview page #1838 #1840
-* [B] input/radio didn't accept 0 as value #1848
-* [B] input/checkbox not getting any label #1849
-* [E] prevent script error if hook doesn't exist
-* [E] Move to JQuery 3.x #1874
-* [E] Move to JQuery UI latest version #1873
-* [E] Move to latest boostrap  #1872
-* [E] There should be callback to delete entity likes, comments by default #1877
-* [E] Like Comment on object #1868
-* [E] Separate frontend/backend JS #1867
-* [B] changed encoding to utf-8 #1880
-* [B] changed encoding to utf-8 #1879
-* [B] changed encoding to utf-8 #1878
-* [B] preserve exact <br>\n sequence after editing #1860
-* [B] preserve exact <br>\n sequence after editing #1859
-* [E] ossn.en.php Improve and correct grammar mistakes #1862
-* [B] New Message missing message id in div ... id='message-item-'
-* [E] OssnPhotos -> Fancybox issue and feature request #1858
-* [B] img js ossn_cache cause duplicate requests #1886
-* [E] don't show empty value genders in graphs #1887
-* [B] Wall site crash when mentioning members under certain conditions. #1865
-* [E] Check user existence before sending message #1883
-* [E] Made it compitable with php 8
-* [E] Make user external CSS/JS loaded once if load func used twice #1890
-* [E] Avoid ossn_cache to append on already ossn_cache imgs #1891
-* [B] CSSMin didn't minify data:image type svg #1889
-* [E] Remove unused CSS minify code from older OSSN #1892
-* [E] Return xhr object on post and ajaxrequest #1909
-* [B] Group header menu shows multiple more #1888
-* [E] prevent creating groups with undefined membership #1916
-* [E] replaced getObjectsByTypes() by searchObject()
-* [E] removal of obsolete getObjectsByTypes() #1926
-* [E] removal of unused getGroups() #1925
-* [E] removed dominant comment-box padding #1944
-* [B] OssnPagination::constructUrlArgs() not taking non alphanumeric chars #1974
-* [E] Check the OssnEmbed for videos links issues #1957
-* [E] Add hook for wall, getAllPosts
-* [E] Fixed: jfif photo uploads don't work #1984
-* [B] PHP rename function doesn't copy folders recursively across separated… #1987
-* [B] aasure instance of logged-in user before using its guid #1988
-* [B] Non friend may able to add like & comment to friend photo only [huntr.dev] #1979
-* [E] Disallow to upload empty files and improve files function #1976
-* [E] Check if profile and cover posted on newsfeed as public #1991
-* [E] show deactivated privacy label on group wall with opacity 0.5 #1993
-* [B] Unset properties on Group update #1994
-* [E] Allow to use metatags in head #1996
-* [B] Close group post is accessible when not loggedin #1997
-* [E] removal of unused function #2003
-* [B] Notification type like:post:group:wall participants supress #2002
-* [E] Removal of duplicate dLabel ids #2001
-* [E] Fontawesome 5 migration #2000
-* [E] exif_read_data only for jpeg #1999
-* [E] Load ossn notifications only when loggedin #1998
-* [E] Improve the comment add #1990
-* [E] Inefficient table design and query #1864
-* [E] Blocked user showing in search and people can add friends #2008
-* [E] Strip comments for blocked users, for each of them #2009
+OSSN - OPEN SOURCE SOCIAL NETWORK v8.0
+- [B] When deleting album Undefined property #2395
+- [B] Admins can not view "friends only" posts if not friend with user #2403
+- [B] Close Button (X) of System Messages Overlaps with Dropdown Menu #2396
+- [B] Redis password is an undefined var #2379
+- [B] If not extra fields langauge won't save at all. Profile edit #2385
+- [B] Add persian langauge #2412
+- [E] if no wall is enabled show a empty home page instead
+- [B] System Error: Missing format specifier - OSSN ver. 7.6 (basic) #2423
+- [B] Goblue js not taking new cover width and height for resize on mobile devices #2422
+- [B] Allow admins to view group subpages without being a member #2420
+- [B] admin component page crashing if all components are disabled #2418
+- [B] Like profile cover have no notification view #2417
+- [B] Group members can not like the group post #2415
+- [B] Cover image cropped to lower than 1200px #2414
+- [B] New installation suddenly shows user empty graph (total by year) #2413
+- [E] Remove old getProfileCover code #2404
+- [B] comments are not active after first click on placeholder #2400
+- [B] Some systems Notification read URL gives 403 forbidden if query parameter found in notification=(url) #2392
+- [B] Chat small window shows distorted friends if theme other than goblue #2371
+- [E] Display Errors #2393
+- [B] Icons for comment edit and delete on photo view not showing #2416
+- [E] Add check for ossn_theme for components manifest #2402
+- [E] Update Bootstrap to 5.3.x
+- [E] Update jQuery UI 1.14.1
+- [E] Update fontawesome to 6.7.2
+- [B] wrong addressing of goblue admin page logo #2424
+- [E] Michael Drag Drop Cover Images (TouchPunch) added in core now. It loads on profile page and group page only.
+- [E] Allow comments on entire album #2425
+- [E] Improvement of goblue theme  #2421

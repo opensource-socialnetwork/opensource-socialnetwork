@@ -2,7 +2,7 @@
 /**
  * Open Source Social Network
  *
- * @package   (openteknik.com).ossn
+ * @package   Open Source Social Network (OSSN)
  * @author    OSSN Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
@@ -20,9 +20,7 @@ $zh = array(
 	'home:top:heading' => "歡迎來到 %s! 現在加入,認識新朋友,建立群組,建立相本....",
 	'create:account' => '建立帳號',
 	'its:free' => "永遠免費",
-	
-	'register:ok:message' => "您己經註冊了.系統已寄啟用信到您的信箱,如果您沒收到請查看您的垃圾郵件資料夾.",
-	
+		
 	'copyright' => '&copy; 版權擁有',
 	'powered' => 'Powered by the Open Source Social Network.',
 	
@@ -141,7 +139,7 @@ You may copy and paste the address to your browser manually in case the link doe
 	'theme:install:error' => '無法安裝佈景主題. 請確認這個檔案是否相容您的 OSSN 版本.',
 	
 	'fields:require' => '所有欄位都必需填寫!',
-	'username:error' => '帳號被使用.',
+	'username:error' => '用户名不正确。请在输入信息时只使用字母数字字符。确保没有空格或特殊字符。只允许使用字母 A-Z 和数字 0-9。用户名必须至少包含 5 个字符。',
 	'password:error' => '密碼必須5個字元以上.',
 	'account:created' => '您的帳號已經建立.',
 	'account:create:error:admin' => '無法建立帳號! 請稍後再試一次.',
@@ -235,6 +233,7 @@ Please click the link below to reset password or copy the link and paste into yo
 	'admin:edit:user' => '編輯使用者',
 	'admin:login' => '使用者登入',
 	'admin:notification:email' => '網站通知郵件',
+	'admin:email:name' => '通知郵件名稱',
 	'notification_email' => '網站通知郵件 (noreply@domain.com)',
 	'owner_email' => '擁有者郵件 (mysite@domain.com)',
 	'ossn:websitename' => '您的網站名稱',
@@ -327,7 +326,22 @@ Please click the link below to reset password or copy the link and paste into yo
 	'php:upload_err_cant_write' => '檔案寫入磁碟失敗',
 	'php:upload_err_extension' => 'PHP 延伸外掛停止了這個檔案上傳',
 	'upload:file:error:multiple' => '%s 次上傳中有 %s 次失敗。',
+	'php:extension:notfound' => '未找到 PHP 扩展 !', 
 	
+	'admin:basiccache' => '基本高速缓存', 
+	'admin:dcache:note' => '使用动态高速缓存对动态数据进行高速缓存。 可以加速应用程序的处理。 如果高速缓存服务器连接较慢，那么启用高速缓存将无法帮助，因为它只会使应用程序运行速度更慢。  建议您在与社交网络相同的主机上设置高速缓存服务器。 请避免使用共享托管服务的高速缓存。 一次只能使用一个高速缓存系统。', 
+	'admin:dcache:cachename' => '高速缓存服务器类型', 
+	'admin:dcache:extension:enabled' => '已启用扩展', 
+	'admin:dcache:select:server:type' => '选择服务器类型', 
+	'admin:dcache:host' => '主机', 
+	'admin:dcache:port' => '波特', 
+	'admin:dcache:username' => '用户名 (如果有)', 
+	'admin:dcache:password' => '密码 (如有 )', 
+	'admin:dcache:setstatus' => '设置状态', 
+	'admin:dcache:extension:tests' => '测试', 
+	'admin:dcache:errorconnection' => '无法使用给定详细信息确认连接 !', 
+	'admin:dcache:required:field' => '请填写必填字段', 
+	'admin:dcache:memcached:authnotsupport' => 'Memcached php 扩展名不支持认证!', 	
 	/*
 	 * List of ISO 639-1 language codes
 	 * http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes

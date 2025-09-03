@@ -2,7 +2,7 @@
 /**
  * Open Source Social Network
  *
- * @package   (openteknik.com).ossn
+ * @package   Open Source Social Network (OSSN)
  * @author    OSSN Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
@@ -34,6 +34,7 @@ $en = array(
 	'photo:album:deleted' => 'Album cancellato con successo',
 	'photo:album:delete:error' => 'Impossibile cancellare l\'album',
 	
-
+	'ossn:notifications:comments:object:ossn:album' => '%s ha commentato il tuo album fotografico %s',
+	'ossn:notifications:like:object:ossn:album' => 'A %s sono piaciute le tue foto in un album %s',
 );
 ossn_register_languages('it', $en); 

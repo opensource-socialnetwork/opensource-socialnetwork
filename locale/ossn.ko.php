@@ -2,8 +2,8 @@
 /**
  * Open Source Social Network
  *
- * @package   (openteknik.com).ossn
- * @author    OSSN Core Team <info@softlab24.com>
+ * @package   OSSN
+ * @author    OSSN Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
  * @link      https://www.opensource-socialnetwork.org/
@@ -20,9 +20,7 @@ $ko = array(
 	'home:top:heading' => "환영합니다! %s 입니다! 가입하시면 새 친구도 만들고 동아리도 만들고 그 외에도 인연을 많이 만들 수 있습니다.",
 	'create:account' => '계정 만들기',
 	'its:free' => "항상 그리고 앞으로도 계속 무료일 것입니다.",
-	
-	'register:ok:message' => "계정을 등록하였습니다. 이메일을 발송하였으니 꼭 확인을 눌러주세요. 스팸함으로 이메일이 갈 수 있 수도 있으니 한번 더 살펴 보세요.",
-	
+		
 	'copyright' => '&copy; 저작권',
 	'powered' => 'Powered by the Open Source Social Network.',
 	
@@ -163,7 +161,7 @@ $ko = array(
 	'theme:install:error' => '테마를 설치할 수 없습니다. 사용중인 OSSN 버전과 맞는지 확인해 보세요!',
 	
 	'fields:require' => '빈 칸을 다 채워주세요!',
-	'username:error' => '사용자 이름이 이상합니다.',
+	'username:error' => '사용자 아이디가 올바르지 않습니다. 정보를 입력할 때는 영숫자만 사용해 주세요. 공백이나 특수 문자가 없는지 확인하세요. 문자 A-Z와 숫자 0-9만 허용됩니다. 사용자 아이디는 5자 이상이어야 합니다.',
 	'password:error' => '암호는 5자 이상 채워주세요.',
 	'account:created' => '계정을 만들었습니다.',
 	'account:create:error:admin' => '계정 등록을 실패하였으니 나중에 다시 시도해 주세요!',
@@ -260,6 +258,7 @@ $ko = array(
 	'admin:edit:user' => '사용자 수정',
 	'admin:login' => '로그인',
 	'admin:notification:email' => '사이트 알림 이메일',
+	'admin:email:name' => '알림 이메일 이름',
 	'notification_email' => '알림 이메일 (noreply@domain.com)',
 	'owner_email' => '소유자 이메일 (mysite@domain.com)',
 	'ossn:websitename' => '웹 사이트 명칭',
@@ -327,6 +326,22 @@ $ko = array(
 	'php:upload_err_no_tmp_dir' => '임시 폴더 없음',
 	'php:upload_err_cant_write' => '파일 쓰기 실패',
 	'php:upload_err_extension' => 'PHP 익스텐션이 파일 올리기 중단함',
+	'php:extension:notfound' => 'PHP 확장을 찾을 수 없습니다!', 
+	
+	'admin:basiccache' => '기본 캐시', 
+	'admin:dcache:note' => '동적 데이터는 동적 캐시를 사용하여 캐시됩니다. 를 사용하여 애플리케이션을 신속하게 처리할 수 있습니다. 캐시를 사용하면 애플리케이션이 더 느리게 실행되기 때문에 캐시 서버 연결이 느리면 도움이 되지 않습니다.  소셜 네트워크와 동일한 호스트에 캐싱 서버를 설정하는 것이 좋습니다. 공유 호스팅 서비스와 함께 캐싱을 사용하지 않도록 하십시오. 한 번에 하나의 캐시 시스템만 사용할 수 있습니다.', 
+	'admin:dcache:cachename' => '캐시 서버 유형', 
+	'admin:dcache:extension:enabled' => '확장 사용', 
+	'admin:dcache:select:server:type' => '서버 유형 선택', 
+	'admin:dcache:host' => '호스트', 
+	'admin:dcache:port' => '포트', 
+	'admin:dcache:username' => '사용자 이름 (있는 경우)', 
+	'admin:dcache:password' => '암호 (있는 경우)', 
+	'admin:dcache:setstatus' => '상태 설정', 
+	'admin:dcache:extension:tests' => '테스트', 
+	'admin:dcache:errorconnection' => '주어진 세부사항을 사용하여 연결을 확인할 수 없습니다!', 
+	'admin:dcache:required:field' => '필수 필드를 채우십시오.', 
+	'admin:dcache:memcached:authnotsupport' => 'Memcached php 확장은 인증을 지원하지 않는다.', 	
 	/*
 	 * List of ISO 639-1 language codes
 	 * http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes

@@ -2,7 +2,7 @@
 /**
  * Open Source Social Network
  *
- * @package   (openteknik.com).ossn
+ * @package   Open Source Social Network (OSSN)
  * @author    Dieter <info@marohn.nl>
  * @copyright 2014-2018 OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
@@ -20,9 +20,7 @@ $nl = array(
 	'home:top:heading' => "Schrijf je in en word gratis lid om leuke contacten te maken, groepen te maken en beheren, Foto`s delen, en veel meer!",
 	'create:account' => 'Activeer je account',
 	'its:free' => "Het is weer gratis en zal dat altijd blijven.",
-	
-	'register:ok:message' => "je account is geregistreerd. Een activatie email is naar je mailadres verstuurd. Als u de email niet heeft ontvangen, bekijk dan je spambox.",
-	
+		
 	'copyright' => '&copy;',
 	'powered' => 'Powered by the Open Source Social Network.',
 	
@@ -166,7 +164,7 @@ Mocht de link niet werken dan kunt u proberen deze in de adresbalk van je browse
 	'theme:install:error' => 'Kon het Thema niet installeren. Controlleer of dit thema wel voor deze versie van ossn is.',
 	
 	'fields:require' => 'Alle velden zijn verplicht!',
-	'username:error' => 'Gebruikersnaam is niet goed.',
+	'username:error' => 'De gebruikersnaam is onjuist. Gebruik alleen alfanumerieke tekens bij het invoeren van uw gegevens. Zorg ervoor dat er geen spaties of speciale tekens zijn. Alleen letters A-Z en cijfers 0-9 zijn toegestaan. De gebruikersnaam moet uit minstens 5 tekens bestaan.',
 	'password:error' => 'Het wachtwoord moet langer zijn dan 5 tekens.',
 	'account:created' => 'je account is aangemaakt.',
 	'account:create:error:admin' => 'Account registratie mislukt! Probeer het later nog eens.',
@@ -267,6 +265,7 @@ Klik op de link hieronder om je wachtwoord te resetten:
 	'admin:edit:user' => 'Gebruiker aanpassen',
 	'admin:login' => 'Aanmelden',
 	'admin:notification:email' => 'Site notificatie Email',
+	'admin:email:name' => 'Naam e-mailmelding',
 	'notification_email' => 'Notificatie email adres (noreply@domain.com)',
 	'owner_email' => 'Eigenaar Email adres(mysite@domain.com)',
 	'ossn:websitename' => 'Naam van de website',
@@ -335,6 +334,22 @@ Klik op de link hieronder om je wachtwoord te resetten:
 	'php:upload_err_no_tmp_dir' => 'Er ontbreekt een tijdelijke map',
 	'php:upload_err_cant_write' => 'Kan bestand niet naar schijf schrijven',
 	'php:upload_err_extension' => 'Een PHP-extensie stopte het uploaden van het bestand',
+	'php:extension:notfound' => 'PHP-extensie niet gevonden!', 
+	
+	'admin:basiccache' => 'Basiscache', 
+	'admin:dcache:note' => 'De dynamische gegevens worden in de cache opgeslagen met behulp van een dynamische cache. die de verwerking van uw toepassing kan versnellen. Het inschakelen van de cache zal niet helpen als uw cache server verbinding is langzamer, omdat het zal alleen uw applicatie te laten lopen langzamer.  Het is raadzaam om de cacheserver in te stellen op dezelfde host als uw sociale netwerk. Gelieve geen gebruik te maken van caching met gemeenschappelijke hostingservices. Er kan slechts één cachesysteem tegelijk worden gebruikt.', 
+	'admin:dcache:cachename' => 'Typen cacheserver', 
+	'admin:dcache:extension:enabled' => 'Extensie ingeschakeld', 
+	'admin:dcache:select:server:type' => 'Servertype selecteren', 
+	'admin:dcache:host' => 'Host', 
+	'admin:dcache:port' => 'Haven', 
+	'admin:dcache:username' => 'Gebruikersnaam (indien aanwezig)', 
+	'admin:dcache:password' => 'Wachtwoord (indien aanwezig)', 
+	'admin:dcache:setstatus' => 'Status instellen', 
+	'admin:dcache:extension:tests' => 'Tests', 
+	'admin:dcache:errorconnection' => 'Verbinding met opgegeven details kan niet worden bevestigd!', 
+	'admin:dcache:required:field' => 'Vul de verplichte velden in', 
+	'admin:dcache:memcached:authnotsupport' => 'Uw Memcached php extensie ondersteunt geen authenticatie!', 	
 	/*
 	 * List of ISO 639-1 language codes
 	 * http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes

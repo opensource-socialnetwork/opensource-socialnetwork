@@ -2,13 +2,15 @@
 /**
  * Open Source Social Network
  *
- * @package   (openteknik.com).ossn
+ * @package   Open Source Social Network (OSSN)
  * @author    OSSN Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
  * @link      https://www.opensource-socialnetwork.org/
  */
-if($params['ismember'] === 1) {
+//[B] Wall is not visible for group member (other than creator) #2340 
+//should be == instead of ===  as value can be either 1 or true ,  0 or false
+if($params['ismember'] == true) {
 		echo '<div class="ossn-wall-container">';
 		echo ossn_view_form('group/container', array(
 				'action' => ossn_site_url() . 'action/wall/post/g',
@@ -23,7 +25,7 @@ if($params['ismember'] === 1) {
 echo '<div class="user-activity">';
 $posts = new OssnWall;
 $count = 0;
-if($params['ismember'] === 1 || $params['membership'] == OSSN_PUBLIC) {
+if($params['ismember'] == true || $params['membership'] == OSSN_PUBLIC) {
 		$count = $posts->GetPostByOwner($params['group']['group']->guid, 'group', true);
 		$posts = $posts->GetPostByOwner($params['group']['group']->guid, 'group');
 }

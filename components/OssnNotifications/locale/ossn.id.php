@@ -2,7 +2,7 @@
 /**
  * Open Source Social Network
  *
- * @package   (openteknik.com).ossn
+ * @package   Open Source Social Network (OSSN)
  * @author    OSSN Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
@@ -42,6 +42,8 @@ $id = array(
 	
 	'ossn:notifications:comments:entity:file:profile:photo:someone' => "%s mengomentari foto profil.",	
     'ossn:notifications:comments:entity:file:profile:cover:someone' => "%s mengomentari sampul profil.",	
-	'ossn:notifications:comments:entity:file:ossn:aphoto:someone' => '%s mengomentari foto.',		
+	'ossn:notifications:comments:entity:file:ossn:aphoto:someone' => '%s mengomentari foto.',
+
+	'ossn:notifications:admin:settings:checkintervals:title' => 'Waktu pemeriksaan otomatis notifikasi (Default 60 detik)', 
 );
 ossn_register_languages('id', $id); 

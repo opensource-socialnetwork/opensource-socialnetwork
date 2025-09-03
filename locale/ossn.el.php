@@ -2,7 +2,7 @@
 /**
  * Open Source Social Network
  *
- * @package   (openteknik.com).ossn
+ * @package   Open Source Social Network (OSSN)
  * @author    OSSN Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
@@ -20,9 +20,7 @@ $el = array(
 	'home:top:heading' => "Καλώς ορίσατε στο %s! Γίνετε μέλος τώρα για να κάνετε νέους φίλους, να δημιουργήσετε ομάδες, να προσθέσετε φωτογραφίες και πολλά άλλα.",
 	'create:account' => 'Δημιουργία λογαριασμού',
 	'its:free' => "Είναι και θα είναι πάντα δωρεάν.",
-	
-	'register:ok:message' => "Ο λογαριασμός σας έχει εγγραφεί. Ένα Email ενεργοποίησης σας έχει σταλεί. Εάν δεν λάβατε το Email, ελέγξτε το φάκελο Spam / Junk.",
-	
+		
 	'copyright' => '&copy; COPYRIGHT',
 	'powered' => 'Powered by the Open Source Social Network.',
 	
@@ -162,7 +160,7 @@ $el = array(
 	'theme:install:error' => 'Δεν είναι δυνατή η εγκατάσταση του θέματος. Βεβαιωθείτε ότι είναι συμβατό με την έκδοση OSSN που χρησιμοποιείτε.',
 	
 	'fields:require' => 'Ολα τα πεδία είναι υποχρεωτικά!',
-	'username:error' => 'Το όνομα χρήστη δεν είναι έγκυρο.',
+	'username:error' => 'Το όνομα χρήστη είναι λανθασμένο. Παρακαλούμε χρησιμοποιήστε μόνο αλφαριθμητικούς χαρακτήρες κατά την εισαγωγή των στοιχείων σας. Βεβαιωθείτε ότι δεν υπάρχουν κενά ή ειδικοί χαρακτήρες. Επιτρέπονται μόνο τα γράμματα A-Z και οι αριθμοί 0-9. Το όνομα χρήστη πρέπει να έχει τουλάχιστον 5 χαρακτήρες.',
 	'password:error' => 'Ο κωδικός πρόσβασης πρέπει να είναι μεγαλύτερος από 5 χαρακτήρες.',
 	'account:created' => 'Ο λογαριασμός σας έχει δημιουργηθεί.',
 	'account:create:error:admin' => 'Η καταχώριση λογαριασμού απέτυχε! Παρακαλώ δοκιμάστε ξανά αργότερα.',
@@ -259,6 +257,7 @@ $el = array(
 	'admin:edit:user' => 'Επεξεργασία χρήστη',
 	'admin:login' => 'Σύνδεση',
 	'admin:notification:email' => 'Email Ειδοποίησης Ιστοσελίδας',
+	'admin:email:name' => 'Όνομα email ειδοποίησης',
 	'notification_email' => 'Ειδοποίηση Email (noreply@domain.com)',
 	'owner_email' => 'Email ιδιοκτήτη (mysite@domain.com)',
 	'ossn:websitename' => 'Όνομα της ιστοσελίδας σας',
@@ -326,6 +325,22 @@ $el = array(
 	'php:upload_err_no_tmp_dir' => 'Λείπει ένας προσωρινός φάκελος',
 	'php:upload_err_cant_write' => 'Αποτυχία εγγραφής αρχείου στο δίσκο',
 	'php:upload_err_extension' => 'Μια επέκταση PHP σταμάτησε τη μεταφόρτωση του αρχείου',
+	'php:extension:notfound' => 'Δεν βρέθηκε η επέκταση PHP!', 
+	
+	'admin:basiccache' => 'Βασική Cache', 
+	'admin:dcache:note' => 'Τα δυναμικά δεδομένα αποθηκεύονται στη λανθάνουσα μνήμη. που θα μπορούσε να επιταχύνει την επεξεργασία της αίτησας σας. Η ενεργοποίηση της λανθάνουσας μνήμης δεν θα βοηθήσει αν η σύνδεση με τον εξυπηρετητή λανθάνουσας μνήμης είναι πιο αργή καθώς θα κάνει την εφαρμογή σας να εκτελείται πιο αργά.  Συνιστάται να ρυθμίσετε τον εξυπηρετητή caching στον ίδιο υπολογιστή με το κοινωνικό σας δίκτυο. Απέχετε από τη χρήση caching με κοινόχρηστες υπηρεσίες φιλοξενίας. Μόνο ένα σύστημα μπορεί να χρησιμοποιηθεί κάθε φορά.', 
+	'admin:dcache:cachename' => 'Είδη εξυπηρετητή Cache', 
+	'admin:dcache:extension:enabled' => 'Επέκταση Enabled', 
+	'admin:dcache:select:server:type' => 'Επιλογή είδους εξυπηρετητή', 
+	'admin:dcache:host' => 'Υπολογιστής:', 
+	'admin:dcache:port' => 'Θύρα.', 
+	'admin:dcache:username' => 'Όνομα χρήστη (αν υπάρχει)', 
+	'admin:dcache:password' => 'Κωδικός πρόσβασης (αν υπάρχει)', 
+	'admin:dcache:setstatus' => 'Ορισμός κατάστασης:', 
+	'admin:dcache:extension:tests' => 'Δοκιμές:', 
+	'admin:dcache:errorconnection' => 'Δεν είναι δυνατή η επιβεβαίωση σύνδεσης με συγκεκριμένες λεπτομέρειες!', 
+	'admin:dcache:required:field' => 'Συμπληρώστε τα απαιτούμενα πεδία.', 
+	'admin:dcache:memcached:authnotsupport' => 'Η επέκταση του memcached php δεν υποστηρίζει έλεγχο ταυτότητας!', 	
 	/*
 	 * List of ISO 639-1 language codes
 	 * http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes

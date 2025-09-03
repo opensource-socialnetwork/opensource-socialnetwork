@@ -2,7 +2,7 @@
 /**
  * Open Source Social Network
  *
- * @package   (openteknik.com).ossn
+ * @package   Open Source Social Network (OSSN)
  * @author    OSSN Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
@@ -20,9 +20,7 @@ $eo = array(
 	'home:top:heading' => "Bonvenon al %s! Membriĝu nun por amikiĝi, krei grupojn, aldoni fotojn, kaj multe pli.",
 	'create:account' => 'Krei konton',
 	'its:free' => "Estas senpaga kaj ĉiam estos senpaga.",
-	
-	'register:ok:message' => "Via konto estas registrita. Retpoŝto kun aktiviga kodo estas sendita al via retpoŝtujo. Se vi ne ricevis la retpoŝton, bonvolu kontroli vian trudmesaĝujon.",
-	
+		
 	'copyright' => '&copy; KOPIRAJTO',
 	'powered' => 'Powered by the Open Source Social Network.',
 	
@@ -170,7 +168,7 @@ Vi povus kopii kaj alglui la adreson al via retumilo permane se la ligilo ne fun
 	'theme:install:error' => 'Ne povis instali temon. Kontrolu ke ĝi estas kongrua kun la versio de OSSN, kiun vi uzas.',
 	
 	'fields:require' => 'Ĉiuj kampoj devas esti enskribitaj!',
-	'username:error' => 'Uzantnomo estas nevalida.',
+	'username:error' => 'La uzantnomo estas malĝusta. Bonvolu uzi nur alfanombrajn signojn kiam vi enigas viajn informojn. Certigu, ke ne estas spacoj aŭ specialaj signoj. Nur literoj A-Z kaj ciferoj 0-9 estas permesitaj. La uzantnomo devas havi almenaŭ 5 signojn.',
 	'password:error' => 'Pasvorto devas havi pli ol 5 literoj.',
 	'account:created' => 'Via konto estas kreita.',
 	'account:create:error:admin' => 'Registriĝo de konto malsukcesis! Bonvolu reprovi poste.',
@@ -267,6 +265,7 @@ Bonvolu alklaki la ligilon suben por novigi vian pasvorton aŭ kopii kaj alglui 
 	'admin:edit:user' => 'Redakti uzanto',
 	'admin:login' => 'Ensaluti',
 	'admin:notification:email' => 'Reteja sciiga retpoŝto',
+	'admin:email:name' => 'Sciiga Retpoŝta Nomo',
 	'notification_email' => 'Sciiga retpoŝto (noreply@domain.com)',
 	'owner_email' => 'Retpoŝto de retejposedanto (mysite@domain.com)',
 	'ossn:websitename' => 'Nomo de via retejo',
@@ -328,6 +327,22 @@ Bonvolu alklaki la ligilon suben por novigi vian pasvorton aŭ kopii kaj alglui 
 	'php:upload_err_no_tmp_dir' => 'Mankas provizora dosierujo',
 	'php:upload_err_cant_write' => 'Malsukcesis skribi dosieron sur disko',
 	'php:upload_err_extension' => 'PHP-etendo ĉesigis la alŝuton de dosieroj',
+	'php:extension:notfound' => 'PHP-Etendaĵo ne trovita!',
+	
+	'admin:basiccache' => 'Baza Kaŝmemoro',
+	'admin:dcache:note' => "La dinamikaj datumoj estas konservitaj uzante dinamikan kaŝmemoron. kiu povus akceli la traktadon de via kandidatiĝo. Ebligi kaŝmemoron ne helpos se via kaŝservila konekto estas pli malrapida ĉar ĝi nur igos vian aplikaĵon funkcii pli malrapide. Oni rekomendas, ke vi agordu la kaŝmemorservilon sur la sama gastiganto kiel via socia reto. Bonvolu deteni sin de uzi kaŝmemoron kun komunaj gastigaj servoj. Nur unu kaŝmemorsistemo povas esti uzata samtempe.",
+	'admin:dcache:cachename' => 'Cache Server Tipoj',
+	'admin:dcache:extension:enabled' => 'Etendo Ebligita',
+	'admin:dcache:select:server:type' => 'Elektu servilan tipon',
+	'admin:dcache:host' => 'Host',
+	'admin:dcache:port' => 'Port',
+	'admin:dcache:username' => 'Uzantnomo (se ekzistas)',
+	'admin:dcache:password' => 'Pasvorto (se ekzistas)',
+	'admin:dcache:setstatus' => 'Agordu Statuson',
+	'admin:dcache:extension:tests' => 'Testoj',
+	'admin:dcache:errorconnection' => 'Ne eblas konfirmi konekton per donitaj detaloj!',
+	'admin:dcache:required:field' =>  'Bonvolu plenigi postulatajn kampojn',
+	'admin:dcache:memcached:authnotsupport' => 'Via Memcached php-etendo ne subtenas aŭtentikigon!',	
 	/*
 	 * List of ISO 639-1 language codes
 	 * http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes

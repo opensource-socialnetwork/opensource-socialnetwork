@@ -2,7 +2,7 @@
 /**
  * Open Source Social Network
  *
- * @package   (openteknik.com).ossn
+ * @package   Open Source Social Network (OSSN)
  * @author    OSSN Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
@@ -24,15 +24,16 @@ class OssnMail extends PHPMailer {
 		 *
 		 * @return boolean
 		 */
-		public function NotifiyUser($email, $subject, $body) {
+		public function notifyUser($email, $subject, $body) {
 				//Emails should be validated before sending emails #1080
 				if(empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)){
 					error_log('Can not send email to empty email address', 0);
 				}
 				//params contain initial params, while return may contain changed values
 				$mail = ossn_call_hook('email', 'config', $this, $this); 
-				
-				$mail->setFrom(ossn_site_settings('notification_email'), ossn_site_settings('site_name'));
+
+				//[E] Add notification email name in settings #2251
+				$mail->setFrom(ossn_site_settings('notification_email'), ossn_site_settings('notification_name'));
 				$mail->addAddress($email);
 				
 				$mail->Subject = $subject;
@@ -55,5 +56,10 @@ class OssnMail extends PHPMailer {
 				}
 				return false;
 		}
-		
+		/**
+		 * Deprecated will be removed in future versions
+		 */
+		 public function NotifiyUser($email, $subject, $body) {
+			 	return $this->notifyUser($email, $subject, $body);
+		 }	
 } //class

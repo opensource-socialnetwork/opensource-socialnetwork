@@ -2,7 +2,7 @@
 /**
  * Open Source Social Network
  *
- * @package   (openteknik.com).ossn
+ * @package   Open Source Social Network (OSSN)
  * @author    OSSN Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
@@ -24,5 +24,7 @@ $zh = array(
 	'ossnmessages:delete:me' => '為您移除',
 	'ossnmessages:delete:me:note' => '此消息將為您刪除。 其他成員仍然可以看到它。',
 	'ossnmessages:replied:you' => '您：%s',	
+	
+	'message:fileattachment' => '文件附件',
 );
 ossn_register_languages('zh', $zh); 

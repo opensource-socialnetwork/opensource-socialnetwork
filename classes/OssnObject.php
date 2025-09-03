@@ -2,7 +2,7 @@
 /**
  * Open Source Social Network
  *
- * @package   (openteknik.com).ossn
+ * @package   Open Source Social Network (OSSN)
  * @author    OSSN Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
@@ -20,7 +20,7 @@ class OssnObject extends OssnEntities {
 				if(!empty($guid)) {
 						$object = ossn_get_object($guid);
 						if($object) {
-								foreach($object as $item => $val) {
+								foreach ($object as $item => $val) {
 										$this->{$item} = $val;
 								}
 						} else {
@@ -66,6 +66,7 @@ class OssnObject extends OssnEntities {
 						'type',
 						'subtype',
 						'time_created',
+						'time_updated',
 						'title',
 						'description',
 				);
@@ -74,6 +75,7 @@ class OssnObject extends OssnEntities {
 						$this->type,
 						$this->subtype,
 						$this->time_created,
+						0,
 						$this->title,
 						$this->description,
 				);
@@ -90,7 +92,7 @@ class OssnObject extends OssnEntities {
 						if($this->insert($params)) {
 								$this->createdObject = $this->getLastEntry();
 								if(isset($this->data) && is_object($this->data)) {
-										foreach($this->data as $name => $value) {
+										foreach ($this->data as $name => $value) {
 												$this->owner_guid = $this->createdObject;
 												$this->type       = 'object';
 												$this->subtype    = $name;
@@ -114,15 +116,26 @@ class OssnObject extends OssnEntities {
 
 		/**
 		 * Get object by object guid;
+		 * Requires $object->object_guid
 		 *
-		 * Requires : $object->object_guid
-		 *
-		 * @return object;
+		 * @return object|boolean
 		 */
-		public function getObjectById(array $options = array()) {
+		public function getObjectById() {
 				self::initAttributes();
 				if(empty($this->object_guid)) {
 						return false;
+				}
+				//caching
+				$cache = new OssnDynamicCaching();
+				if($cache->isAvailableEnabled()) {
+						try {
+								$data = $cache->handler()->get("OssnObject->getObjectById():guid={$this->object_guid}");
+								return arrayObject($data, get_class($this));
+						} catch (OssnDynamicCacheKeyNotExists $e) {
+								//key doesn't exists so we will just fetch and store at end
+								//because if found it return in first step otherwise below step is excuted in both cases
+								//catching it because we don't want to terminate process
+						}
 				}
 				$params['from']   = 'ossn_object as o';
 				$params['params'] = array(
@@ -134,22 +147,11 @@ class OssnObject extends OssnEntities {
 						'o.type',
 						'o.subtype',
 				);
-				//Allow to set searchObject result params #1436
-				if(isset($options['params']) && is_array($options['params']) && !empty($options['params'])) {
-						$params['params'] = $options['params'];
-				}
-				if(isset($options['unset_params']) && is_array($options['unset_params'])) {
-						foreach($options['unset_params'] as $item) {
-								if(($key = array_search($item, $params['params'])) !== false) {
-										unset($params['params'][$key]);
-								}
-						}
-				}
+
 				$params['wheres'] = array(
 						"o.guid='{$this->object_guid}'",
 				);
 				//there is no need to order as its will fetch only one record
-				//$params['order_by'] = $this->order_by;
 				unset($this->order_by);
 
 				$object = $this->select($params);
@@ -161,7 +163,7 @@ class OssnObject extends OssnEntities {
 
 						if($entities) {
 								$fileds = array();
-								foreach($entities as $entity) {
+								foreach ($entities as $entity) {
 										$fields[$entity->subtype] = $entity->value;
 								}
 								$object_array = get_object_vars($object);
@@ -169,10 +171,18 @@ class OssnObject extends OssnEntities {
 										$data = array_merge($object_array, $fields);
 								}
 								if(!empty($fields)) {
-										return arrayObject($data, get_class($this));
+										$result = arrayObject($data, get_class($this));
+										if($cache->isAvailableEnabled()) {
+												$cache->handler()->store("OssnObject->getObjectById():guid={$this->object_guid}", $result);
+										}
+										return $result;
 								}
 						}
-						return arrayObject($object, get_class($this));
+						$object = arrayObject($object, get_class($this));
+						if($cache->isAvailableEnabled()) {
+								$cache->handler()->store("OssnObject->getObjectById():guid={$this->object_guid}", $object);
+						}
+						return $object;
 				}
 				return false;
 		}
@@ -205,6 +215,16 @@ class OssnObject extends OssnEntities {
 				$params['table']  = 'ossn_object';
 				$params['names']  = $name;
 				$params['values'] = $value;
+
+				$count_names  = count($params['names']);
+				$count_values = count($params['values']);
+
+				if($count_names != $count_values) {
+						return false;
+				}
+				$params['names'][]  = 'time_updated';
+				$params['values'][] = time();
+
 				$params['wheres'] = array(
 						"guid='{$guid}'",
 				);
@@ -242,6 +262,12 @@ class OssnObject extends OssnEntities {
 										$this->subtype = $subtype_self;
 								}
 						}
+						//caching
+						//invalidate
+						$cache = new OssnDynamicCaching();
+						if($cache->isAvailableEnabled()) {
+								$cache->handler()->delete("OssnObject->getObjectById():guid={$guid}");
+						}
 						return true;
 				}
 				return false;
@@ -277,6 +303,12 @@ class OssnObject extends OssnEntities {
 						"guid='{$object}'",
 				);
 				if($this->delete($delete)) {
+						//caching
+						//invalidate
+						$cache = new OssnDynamicCaching();
+						if($cache->isAvailableEnabled()) {
+								$cache->handler()->delete("OssnObject->getObjectById():guid={$object}");
+						}
 						ossn_trigger_callback('object', 'deleted', $vars);
 						return true;
 				}
@@ -285,20 +317,18 @@ class OssnObject extends OssnEntities {
 		/**
 		 * Search object by its title, description etc
 		 *
-		 * @param array $params A valid options in format:
-		 * 	  'search_type' => true(default) to performs matching on a per-character basis
-		 *			   false for performs matching on exact value.
-		 * 	  'subtype' => Valid object subtype
-		 *	  'type' => Valid object type
-		 *	  'title' => Valid object title
-		 *        'description'	=> Valid object description
-		 *        'owner_guid'  	=> A valid owner guid, which results integer value
-		 *        'entities_pairs'  => A entities pairs options, must be array
-		 *        'count' => True if you wanted to count search items.
-		 *        'limit' => Result limit default, Default is 10 values
-		 *	  'order_by'=> To show result in sepcific order. Default is Assending
+		 * @param string  $params['search_type']	true(default) to performs matching on a per-character basis false for performs matching on exact value.
+		 * @param string  $params['subtype']		Valid object subtype
+		 * @param string  $param['type']			Valid object type
+		 * @param string  $param['title']			Valid object title
+		 * @param string  $param['description']		Valid object description
+		 * @param int     $param['owner_guid']  	A valid owner guid, which results integer value
+		 * @param array   $param['entities_pairs']  A entities pairs options, must be array
+		 * @param boolean $param['count']			True if you wanted to count search items.
+		 * @param init    $param['limit']			Result limit default, Default is 10 values
+		 * @param string  $param['order_by']		To show result in sepcific order. Default is Assending
 		 *
-		 * reutrn array|false;
+		 * @reutrn array|boolean
 		 *
 		 */
 		public function searchObject(array $params = array()) {
@@ -390,7 +420,7 @@ class OssnObject extends OssnEntities {
 						}
 				}
 				if(isset($options['entities_pairs']) && is_array($options['entities_pairs'])) {
-						foreach($options['entities_pairs'] as $key => $pair) {
+						foreach ($options['entities_pairs'] as $key => $pair) {
 								$operand = empty($pair['operand']) ? '=' : $pair['operand'];
 								if(!empty($pair['name']) && isset($pair['value']) && !empty($operand)) {
 										if(!empty($pair['value'])) {
@@ -417,13 +447,13 @@ class OssnObject extends OssnEntities {
 						if(!is_array($options['wheres'])) {
 								$wheres[] = $options['wheres'];
 						} else {
-								foreach($options['wheres'] as $witem) {
+								foreach ($options['wheres'] as $witem) {
 										$wheres[] = $witem;
 								}
 						}
 				}
 				if(isset($options['joins']) && !empty($options['joins']) && is_array($options['joins'])) {
-						foreach($options['joins'] as $jitem) {
+						foreach ($options['joins'] as $jitem) {
 								$params['joins'][] = $jitem;
 						}
 				}
@@ -456,6 +486,7 @@ class OssnObject extends OssnEntities {
 				if($options['count'] === true) {
 						unset($params['params']);
 						unset($params['limit']);
+						unset($params['order_by']);
 						$count           = array();
 						$count['params'] = array(
 								"count({$distinct}o.guid) as total",
@@ -466,9 +497,9 @@ class OssnObject extends OssnEntities {
 				//load fetch query after count condition #1316
 				$this->get = $this->select($params, true);
 				if($this->get) {
-						foreach($this->get as $object) {
+						foreach ($this->get as $object) {
 								$this->object_guid = $object->guid;
-								$objects[]         = $this->getObjectById($options);
+								$objects[]         = $this->getObjectById();
 						}
 						return $objects;
 				}

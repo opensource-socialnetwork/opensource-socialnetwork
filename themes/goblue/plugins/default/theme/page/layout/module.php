@@ -2,7 +2,7 @@
 /**
  * Open Source Social Network
  *
- * @package   (openteknik.com).ossn
+ * @package   Open Source Social Network (OSSN)
  * @author    OSSN Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
@@ -11,7 +11,7 @@
 $params['controls'] = (isset($params['controls'])) ? $params['controls'] : '';
 
 ?>
-	<div class="col-md-11">
+	<div class="col-lg-11">
 		<div class="ossn-layout-module">
 			<div class="module-title">
 				<div class="title"><?php echo $params['title']; ?></div>

@@ -3,7 +3,7 @@
  * Open Source Social Network
  *
  * @package   Open Source Social Network
- * @author    Open Social Website Core Team <info@openteknik.com>
+ * @author    Open Source Social Network Core Team <info@openteknik.com>
  * @copyright 2014 iNFORMATIKON TECHNOLOGIES
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
  * @link      http://www.opensource-socialnetwork.org/licence
@@ -27,6 +27,7 @@ $pt = array(
 		'ossn:wall:allsite:posts' => 'Todas as postagens do site',
 		'ossn:wall:friends:posts' => 'Somente postagens de amigos',
 		'ossn:wall:post:saved' => 'Postagem salva com sucesso',
-		'ossn:wall:post:save:error' => 'Não foi possível salvar a postagem'
+		'ossn:wall:post:save:error' => 'Não foi possível salvar a postagem',
+		'ossn:wall:tag:member'  => 'Membro da etiqueta',		
 );
 ossn_register_languages('pt', $pt);

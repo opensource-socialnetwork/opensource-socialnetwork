@@ -2,7 +2,7 @@
 /**
  * Open Source Social Network
  *
- * @package   (openteknik.com).ossn
+ * @package   Open Source Social Network (OSSN)
  * @author    OSSN Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
@@ -11,14 +11,13 @@
 ?>
 <div class="container">
 	<div class="ossn-layout-media">
-       <?php echo ossn_plugin_view('theme/page/elements/system_messages'); ?>    
 			<div class="row">
-				<div class="col-md-8">
+				<div class="col-lg-8">
 					<div class="content">
 						<?php echo $params['content']; ?>
 					</div>
 				</div>
-				<div class="col-md-3">
+				<div class="col-lg-3">
 					<?php if (ossn_is_hook( 'theme', 'sidebar:right')) { ?>
 						<div class="page-sidebar">
 						<?php

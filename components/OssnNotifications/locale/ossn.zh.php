@@ -2,7 +2,7 @@
 /**
  * Open Source Social Network
  *
- * @package   (openteknik.com).ossn
+ * @package   Open Source Social Network (OSSN)
  * @author    OSSN Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
@@ -43,5 +43,7 @@ $zh = array(
 	'ossn:notifications:comments:entity:file:profile:photo:someone' => "%s 评论了个人资料照片。",	
     'ossn:notifications:comments:entity:file:profile:cover:someone' => "%s 评论了个人资料封面。",	
 	'ossn:notifications:comments:entity:file:ossn:aphoto:someone' => '%s 对照片发表了评论。',		
+	
+	'ossn:notifications:admin:settings:checkintervals:title' => '通知自动检查时间（默认60秒）', 
 );
 ossn_register_languages('zh', $zh); 

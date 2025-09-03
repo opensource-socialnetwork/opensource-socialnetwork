@@ -3,7 +3,7 @@
  * Open Source Social Network
  *
  * @package   Open Source Social Network
- * @author    Open Social Website Core Team <info@openteknik.com>
+ * @author    Open Source Social Network Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
  * @link      https://www.opensource-socialnetwork.org/
@@ -38,17 +38,18 @@ function ossn_likes(){
 		ossn_register_callback('comment', 'delete', 'ossn_comment_like_delete');
 		ossn_register_callback('annotation', 'delete', 'ossn_comment_like_delete');
 		ossn_register_callback('user', 'delete', 'ossn_user_likes_delete');
-		ossn_register_callback('wall', 'load:item', 'ossn_wall_like_menu');
+		ossn_register_callback('wall', 'load:item', 'ossn_wall_like_menu', 1);
 
-		ossn_register_callback('entity', 'load:comment:share:like', 'ossn_entity_like_link');
-		ossn_register_callback('object', 'load:comment:share:like', 'ossn_object_like_link');
+		ossn_register_callback('entity', 'load:comment:share:like', 'ossn_entity_like_link', 1);
+		ossn_register_callback('object', 'load:comment:share:like', 'ossn_object_like_link', 1);
 
 		ossn_register_page('likes', 'ossn_likesview_page_handler');
 
 		ossn_add_hook('notification:view', 'like:annotation:comments:post', 'ossn_like_annotation');
 		ossn_add_hook('notification:view', 'like:annotation:comments:entity', 'ossn_like_annotation');
+		ossn_add_hook('notification:view', 'like:annotation:comments:object', 'ossn_like_annotation');
+		
 		ossn_add_hook('post', 'likes', 'ossn_post_likes');
-
 		ossn_add_hook('post', 'likes:entity', 'ossn_post_likes_entity');
 		ossn_add_hook('post', 'likes:object', 'ossn_post_likes_object');
 
@@ -56,6 +57,7 @@ function ossn_likes(){
 		ossn_add_hook('notification:participants', 'like:annotation', 'ossn_likes_suppress_participants_notifications');
 		ossn_add_hook('notification:participants', 'like:post:group:wall', 'ossn_likes_suppress_participants_notifications');
 }
+
 /**
  * Add a like menu item in post
  *
@@ -231,10 +233,7 @@ function ossn_like_annotation($hook, $type, $return, $params){
 		switch($notif->type){
 			case 'like:annotation:comments:entity':
 				$display  = true;
-				$database = new OssnDatabase();
-				$database->statement("SELECT * FROM ossn_entities WHERE(guid='{$notif->subject_guid}')");
-				$database->execute();
-				$result = $database->fetch();
+				$result = ossn_get_entity($notif->subject_guid);
 				if($result->subtype == 'file:ossn:aphoto'){
 						$url = ossn_site_url("photos/view/{$notif->subject_guid}#comments-item-{$notif->item_guid}");
 				}
@@ -253,7 +252,6 @@ function ossn_like_annotation($hook, $type, $return, $params){
 				$url     = ossn_site_url("post/view/{$notif->subject_guid}#comments-item-{$notif->item_guid}");
 				break;
 		}
-
 		if(!$display){
 				return false;
 		}
@@ -265,6 +263,7 @@ function ossn_like_annotation($hook, $type, $return, $params){
 				'viewed'    => $notif->viewed,
 				'url'       => $url,
 				'icon_type' => 'like',
+				'instance'  => $notif,
 				'fullname'  => $user->fullname,
 		));
 }

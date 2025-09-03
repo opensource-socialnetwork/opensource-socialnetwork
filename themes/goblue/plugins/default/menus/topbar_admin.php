@@ -7,12 +7,14 @@
             		<ul class="nav navbar-nav">
             			<?php
 							foreach ($params['menu'] as $key => $links) {
+								 $urlize_key = str_replace(':', '-', $key);
+								 $menu_class = "admin-topbar-menu-li-".OssnTranslit::urlize($urlize_key);								
    								 if (count($links) > 1) {
-      								  $menu_parent = '<li class="nav-item dropdown">
+      								  $menu_parent = '<li class="nav-item dropdown '.$menu_class.'">
 									  <a href="javascript:void(0);" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">'
 									  	. ossn_print($key) . 
 									   '</a>
-									  <ul class="dropdown-menu multi-level">';
+									  <ul class="dropdown-menu">';
        									foreach ($links as $item) {
 												 $class = "menu-topbar-admin-" . $item['name']; 
 												 if(isset($item['class'])) { 
@@ -22,7 +24,6 @@
 												  } 
 												 unset($item['name']);
 												 unset($item['parent']);
-												 $item['text'] = ossn_print($item['text']);
 												 $item['class'] = 'dropdown-item '.$item['class'];
 												 $link = ossn_plugin_view('output/url', $item);
            										 $menu_parent .= '<li>'.$link.'</li>';
@@ -39,10 +40,9 @@
 												  $item['class'] = $class; 
 										} 
 										unset($item['name']);										
-										$item['text'] = ossn_print($item['text']);
 										$item['class'] = 'nav-link '.$item['class'];
 										$link = ossn_plugin_view('output/url', $item);										
-            							$menu = '<li class="nav-item">'.$link.'</li>';
+            							$menu = "<li class='nav-item {$menu_class}'>".$link.'</li>';
         						 	}
         						 	echo $menu;
     					 	 	}

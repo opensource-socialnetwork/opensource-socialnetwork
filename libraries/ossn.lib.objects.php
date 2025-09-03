@@ -2,7 +2,7 @@
 /**
  * Open Source Social Network
  *
- * @package   (openteknik.com).ossn
+ * @package   Open Source Social Network (OSSN)
  * @author    OSSN Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
@@ -17,17 +17,12 @@
  * @return object
  */
 function ossn_get_object($guid){
-	if(!empty($guid)){
-		$object = new OssnObject;
-		$search = $object->searchObject(array(
-			'wheres'=> "o.guid='{$guid}'",
-			'offset' => 1
-		));
-		if($search && isset($search[0]->guid)){
-			return $search[0];
+		if(empty($guid)){
+			return false;	
 		}
-	}
-	return false;
+		$object = new OssnObject;
+		$object->object_guid = $guid;
+		return $object->getObjectById();
 }
 /**
  * Get entities of object

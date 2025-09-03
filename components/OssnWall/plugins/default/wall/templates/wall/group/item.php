@@ -2,7 +2,7 @@
 /**
  * Open Source Social Network
  *
- * @package   (openteknik.com).ossn
+ * @package   Open Source Social Network (OSSN)
  * @author    OSSN Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
@@ -44,8 +44,13 @@ if(!$params['user']){
 				</div>
 			</div>
 			<div class="user">
-            <a class="owner-link" href="<?php echo $params['user']->profileURL(); ?>"> <?php echo $params['user']->fullname; ?> </a>
-            <?php if (isset($params['show_group']) && $params['show_group'] == true) {
+            <?php 
+			echo ossn_plugin_view('output/user/url', array(
+						'user' => $params['user'],	
+						'class' => 'owner-link',
+						'section' => 'wall',
+			));
+			if (isset($params['show_group']) && $params['show_group'] == true) {
                 $group = ossn_get_group_by_guid($params['post']->owner_guid);
                 ?>
                <i class="fa fa-angle-right fa-lg"></i>
@@ -67,23 +72,46 @@ if(!$params['user']){
 		</div>
 		<div class="post-contents">
 			<p><?php echo $params['text']; ?></p>
+			 <?php
+				if(!empty($params['friends'])){
+					foreach ($params['friends'] as $friend) {
+						if(!empty($friend)){
+							$user = ossn_user_by_guid($friend);
+							//[B] Wall site crash when mentioning members under certain conditions. #1865
+							if($user){
+								//here no need to use output/user/url
+								$url = $user->profileURL();
+								$friends[] = "<a href='{$url}'>{$user->fullname}</a>";
+							}
+						}
+					}
+					if(!empty($friends)){
+						echo '<div class="friends">';
+						echo implode(', ', $friends);
+						echo '</div>';
+					}
+				}
+              ?>            
              <?php
             if (!empty($image)) {
                 ?>
-                <img src="<?php echo $image; ?>"/>
+                 <div class="ossn-wall-image-container"><img src="<?php echo $image; ?>"/></div>
 
             <?php } ?>
          
 		</div>
         
 		<div class="comments-likes">
-			<?php if(isset($params['ismember']) && $params['ismember'] === 1){  ?>
+			<?php 
+				//[B] Group members can not like the group post #2415
+				if(isset($params['ismember']) && $params['ismember'] == true){ 
+			?>
 				<div class="menu-likes-comments-share">
 					<?php echo ossn_view_menu('postextra', 'wall/menus/postextra');?>
 				</div>
             <?php } ?>
          	<?php
-      		  if (ossn_is_hook('post', 'likes')) {
+      		  	if (ossn_is_hook('post', 'likes')) {
           			  echo ossn_call_hook('post', 'likes', $params['post']);
         		}
       		  ?>           
@@ -92,7 +120,7 @@ if(!$params['user']){
           		if(ossn_is_hook('post', 'comments')) {
 						$vars = array();
 						$vars['post'] =  $params['post'];
-						if(isset($params['ismember']) && $params['ismember'] != 1){
+						if(isset($params['ismember']) && $params['ismember'] != true){
 								$vars['allow_comment'] = false;
 						}
                 		echo ossn_call_hook('post', 'comments', $vars);

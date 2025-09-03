@@ -2,7 +2,7 @@
 /**
  * Open Source Social Network
  *
- * @package   (openteknik.com).ossn
+ * @package   Open Source Social Network (OSSN)
  * @author    OSSN Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
@@ -17,6 +17,47 @@
  */
 function ossn_upgrade_init() {
 		ossn_add_hook('database', 'execution:message', 'ossn_disable_database_exception');
+		ossn_register_callback('cli', 'loaded', 'ossn_upgrade_cli_handler');
+}
+/**
+ * Handles the CLI upgrade process by authenticating the admin user and triggering the upgrade process.
+ * [E] Allow upgrade process using CLI #2463
+ *
+ * Usage using CLI
+ * /usr/bin/php system/handlers/cli --handler=upgrade --username=adminusername --password=adminpassword
+ *
+ * @return void
+ */
+function ossn_upgrade_cli_handler($cb, $type, $args) {
+		if($args['handler'] == 'upgrade') {
+				$vars = ossn_cli_input(array(
+						'username',
+						'password',
+				));
+
+				if(isset($vars['username']) && isset($vars['password'])) {
+						$login           = new OssnUser();
+						$login->username = $vars['username'];
+						$login->password = $vars['password'];
+
+						function cli_upgrade_ms_time() {
+								$date = new DateTime();
+								return $date->format('l jS \of F Y h:i:s.') . substr($date->format('u'), 0, 3);
+						}
+
+						if(!$login->Login()) {
+								ossn_cli_output('Admin login details are invalid unable to login', 'error');
+						} else {
+								//convert video
+								ossn_cli_output('Upgrade process has started at ' . cli_upgrade_ms_time(), 'warning');
+								set_time_limit(0);
+								ossn_trigger_upgrades();
+								ossn_cli_output('Upgrade process completed at ' . cli_upgrade_ms_time(), 'success');
+						}
+				} else {
+						ossn_cli_output('Please provide --username and --password for admin account!', 'error');
+				}
+		}
 }
 /**
  * Get upgrade files
@@ -30,15 +71,15 @@ function ossn_get_upgrade_files() {
 		if(!$handle) {
 				return false;
 		}
-		
+
 		$files = array();
-		
-		while($file = readdir($handle)) {
-				if($file != "." && $file != "..") {
+
+		while ($file = readdir($handle)) {
+				if($file != '.' && $file != '..') {
 						$files[] = $file;
 				}
 		}
-		
+
 		sort($files);
 		return $files;
 }
@@ -50,7 +91,7 @@ function ossn_get_upgrade_files() {
  * @access private
  */
 function ossn_get_upgraded_files() {
-		$settings = new OssnSite;
+		$settings = new OssnSite();
 		$upgrades = $settings->getSettings('upgrades');
 		$upgrades = json_decode($upgrades);
 		if(!is_array($upgrades) || empty($upgrades)) {
@@ -82,31 +123,47 @@ function ossn_trigger_upgrades() {
 				ossn_kill_upgrading();
 				ossn_error_page();
 		}
+
+		$continue = true;
 		$upgrades = ossn_get_process_upgrade_files();
+
 		if(!is_array($upgrades) || empty($upgrades)) {
 				ossn_trigger_message(ossn_print('upgrade:not:available'), 'error');
+
+				if(ossn_is_from_cli()) {
+						ossn_cli_output(ossn_print('upgrade:not:available'), 'error');
+						$continue = false;
+				}
 				ossn_kill_upgrading();
-				redirect('administrator');
+
+				//in cli mode it is exit()
+				if(!ossn_is_from_cli()) {
+						redirect('administrator');
+				}
 		}
-		foreach($upgrades as $upgrade) {
+		if($continue === false) {
+				return false;
+		}
+		foreach ($upgrades as $upgrade) {
 				$file = ossn_route()->upgrade . "upgrades/{$upgrade}";
-				if(!include_once($file)) {
+				if(!include_once $file) {
 						throw new exception(ossn_print('upgrade:file:load:error'));
 				}
 		}
 		/**
-		 * Since the update wiki states that disable cache,  so this code never works 
+		 * Since the update wiki states that disable cache,  so this code never works
 		 * https://www.opensource-socialnetwork.org/wiki/view/708/how-to-upgrade-ossn
 		 *
 		 * OSSN v4.2
 		 */
-		 
+
 		//need to reset cache files
 		//if(ossn_site_settings('cache') !== 0) {
 		//		ossn_trigger_css_cache();
+
 		//		ossn_trigger_js_cache();
 		//}
-		
+
 		return true;
 }
 /**
@@ -146,27 +203,27 @@ function ossn_kill_upgrading() {
  * Update site version
  *
  * @param string $version new Version
- * 
+ *
  * @return boolean
  */
 function ossn_update_db_version($version = '') {
 		if(!empty($version)) {
-				$db             = new OssnDatabase;
-				$vars           = array();
-				$vars['table']  = 'ossn_site_settings';
-				$vars['names']  = array(
-						'value'
+				$db            = new OssnDatabase();
+				$vars          = array();
+				$vars['table'] = 'ossn_site_settings';
+				$vars['names'] = array(
+						'value',
 				);
 				$vars['values'] = array(
-						$version
+						$version,
 				);
 				$vars['wheres'] = array(
-						"name='site_version'"
+						"name='site_version'",
 				);
 				return $db->update($vars);
 		}
 }
-/** 
+/**
  * Update processed upgrades
  *
  * @param integer $upgrade New release
@@ -177,31 +234,31 @@ function ossn_update_upgraded_files($upgrade) {
 		if(empty($upgrade)) {
 				return false;
 		}
-		$database     = new OssnDatabase;
+		$database     = new OssnDatabase();
 		$upgrade_json = array_merge(ossn_get_upgraded_files(), array(
-				$upgrade
+				$upgrade,
 		));
 		$upgrade_json = json_encode($upgrade_json);
-		
-		$update           = array();
-		$update['table']  = 'ossn_site_settings';
-		$update['names']  = array(
-				'value'
+
+		$update          = array();
+		$update['table'] = 'ossn_site_settings';
+		$update['names'] = array(
+				'value',
 		);
 		$update['values'] = array(
-				$upgrade_json
+				$upgrade_json,
 		);
 		$update['wheres'] = array(
-				"name='upgrades'"
+				"name='upgrades'",
 		);
-		
+
 		if($database->update($update)) {
 				return true;
 		} else {
 				return false;
 		}
 }
-/** 
+/**
  * Update version of Ossn
  *
  * @param integer $upgrade New release
@@ -214,13 +271,23 @@ function ossn_version_upgrade($upgrade, $version) {
 		}
 		$release = str_replace('.php', '', $upgrade);
 		if(ossn_update_upgraded_files($upgrade) && ossn_update_db_version($version)) {
-				ossn_trigger_message(ossn_print('upgrade:success', array(
-						$release
-				)), 'success');
+				$success = ossn_print('upgrade:success', array(
+						$release,
+				));
+				ossn_trigger_message($success, 'success');
+
+				if(ossn_is_from_cli()) {
+						ossn_cli_output($success, 'success');
+				}
 		} else {
-				ossn_trigger_message(ossn_print('upgrade:failed', array(
-						$release
-				)), 'error');
+				$error = ossn_print('upgrade:failed', array(
+						$release,
+				));
+				ossn_trigger_message($error, 'error');
+
+				if(ossn_is_from_cli()) {
+						ossn_cli_output($error, 'error');
+				}
 		}
 		return true;
 }

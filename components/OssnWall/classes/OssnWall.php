@@ -2,7 +2,7 @@
 /**
  * Open Source Social Network
  *
- * @package   (openteknik.com).ossn
+ * @package   Open Source Social Network (OSSN)
  * @author    OSSN Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
@@ -10,23 +10,30 @@
  */
 class OssnWall extends OssnObject {
 		/**
-		 * Post on wall
+		 * Create a wall post
 		 *
-		 * @params $post: Post text
-		 *         $friends: Friend guids
-		 *         $location: Post location
-		 *         $access: (OSSN_PUBLIC, OSSN_PRIVATE, OSSN_FRIENDS)
-		 * @param string $post
+		 * @param string $post Post text
+		 * @param string $friends Friend guids
+		 * @param string $location Post location
+		 * @param string $access (OSSN_PUBLIC, OSSN_PRIVATE, OSSN_FRIENDS)
 		 *
-		 * @return bool;
+		 * @return boolean|integer
 		 */
-		public function Post($post, $friends = '', $location = '', $access = ''){
+		public function Post($post, $friends = '', $location = '', $access = '') {
 				self::initAttributes();
-				if(empty($access)){
+				if(empty($access)) {
 						$access = OSSN_PUBLIC;
 				}
 				$canpost = false;
-				if(strlen($post)){
+				if(strlen($post)) {
+						$canpost = true;
+				}
+				//no more null:data you can pass null
+				//if it have item_guid by default that means the post is for some other object
+				//e.g events post ,  videos have item_guid and item_type
+				//these special posts just share update and have no self text
+				if((isset($this->item_guid) && isset($this->item_type)) || $post === null) {
+						$post    = '';
 						$canpost = true;
 				}
 				if(isset($_FILES['ossn_photo'])) {
@@ -50,20 +57,23 @@ class OssnWall extends OssnObject {
 												$canpost = true;
 										}
 								}
-						} else { 
+						} else {
 								// unallowed file type
+								//dont post either
+								//[E] Add a filetype block when user try upload video file into OssnWall #2191
+								$canpost               = false;
 								$this->OssnFile->error = UPLOAD_ERR_EXTENSION;
 						}
 				}
-				if(empty($this->owner_guid) || empty($this->poster_guid) || $canpost === false){
+				if(empty($this->owner_guid) || empty($this->poster_guid) || $canpost === false) {
 						return false;
 				}
-				if(isset($this->item_type) && !empty($this->item_type)){
+				if(isset($this->item_type) && !empty($this->item_type)) {
 						$this->data->item_type = $this->item_type;
 				} else {
 						$this->data->item_type = false;
 				}
-				if(isset($this->item_guid) && !empty($this->item_guid)){
+				if(isset($this->item_guid) && !empty($this->item_guid)) {
 						$this->data->item_guid = $this->item_guid;
 				} else {
 						$this->data->item_guid = false;
@@ -74,36 +84,43 @@ class OssnWall extends OssnObject {
 				$this->subtype            = 'wall';
 				$this->title              = '';
 
-				$post             = preg_replace('/\t/', ' ', $post);
-				$wallpost['post'] = htmlspecialchars($post, ENT_QUOTES, 'UTF-8');
+				// Replace tabs with a space
+				$post = preg_replace('/\t/', ' ', $post);
+				// Normalize multiple newlines to a single \n
+				$post = ossn_restore_new_lines($post);
+				$post = preg_replace('/(\r\n|\r|\n)+/', "\n", $post);
 
 				//wall tag a friend , GUID issue #566
-				if(!empty($friends)){
+				if(!empty($friends)) {
+						//[B] Same Friends tag flooding #2175
 						$friend_guids = explode(',', $friends);
+						$friend_guids = array_unique($friend_guids);
 						//reset friends guids
 						$friends = array();
-						foreach ($friend_guids as $guid){
-								if(ossn_user_by_guid($guid)){
+						foreach ($friend_guids as $guid) {
+								if(ossn_user_by_guid($guid)) {
 										$friends[] = $guid;
 								}
 						}
-						$wallpost['friend'] = implode(',', $friends);
+						$this->data->tag_friend_guids = implode(',', $friends);
 				}
-				if(!empty($location)){
-						$wallpost['location'] = $location;
+				if(!empty($location)) {
+						$this->data->location = $location;
 				}
+
 				//Encode multibyte Unicode characters literally (default is to escape as \uXXXX)
-				$this->description = json_encode($wallpost, JSON_UNESCAPED_UNICODE);
-				if($this->addObject()){
+				//[E] Normalize Wall Remove JSON #2460
+				$this->description = $post;
+				if($this->addObject()) {
 						$this->wallguid = $this->getObjectId();
-						if(isset($_FILES['ossn_photo'])){
+						if(isset($_FILES['ossn_photo'])) {
 								$this->OssnFile->owner_guid = $this->wallguid;
 								$this->OssnFile->type       = 'object';
 								$this->OssnFile->subtype    = 'wallphoto';
 								$this->OssnFile->setFile('ossn_photo');
 								$this->OssnFile->setPath('ossnwall/images/');
 								if(ossn_file_is_cdn_storage_enabled()) {
-									$this->OssnFile->setStore('cdn');
+										$this->OssnFile->setStore('cdn');
 								}
 								$this->OssnFile->addFile();
 						}
@@ -111,12 +128,12 @@ class OssnWall extends OssnObject {
 						$params['guid']        = $this->wallguid; //object_guid should be removed
 						$params['type']        = $this->type;
 						$params['poster_guid'] = $this->poster_guid;
-						if(isset($wallpost['location'])){
-								$params['location'] = $wallpost['location'];
+						if(isset($wallpost['location'])) {
+								$params['location'] = $location;
 						}
 
-						if(isset($wallpost['friend'])){
-								$params['friends'] = explode(',', $wallpost['friend']);
+						if(isset($wallpost['friend'])) {
+								$params['friends'] = explode(',', $friends);
 						}
 						ossn_trigger_callback('wall', 'post:created', $params);
 						return $this->wallguid;
@@ -129,12 +146,12 @@ class OssnWall extends OssnObject {
 		 *
 		 * @return void;
 		 */
-		public function initAttributes(){
-				if(empty($this->type)){
+		public function initAttributes() {
+				if(empty($this->type)) {
 						$this->type = 'user';
 				}
 				$this->OssnFile = new OssnFile();
-				if(!isset($this->data)){
+				if(!isset($this->data)) {
 						$this->data = new stdClass();
 				}
 				$this->OssnDatabase = new OssnDatabase();
@@ -148,9 +165,9 @@ class OssnWall extends OssnObject {
 		 *
 		 * @return object;
 		 */
-		public function GetPostByOwner($owner, $type = 'user', $count = false){
+		public function GetPostByOwner($owner, $type = 'user', $count = false) {
 				self::initAttributes();
-				if(empty($owner) || empty($type)){
+				if(empty($owner) || empty($type)) {
 						return false;
 				}
 				$vars = array(
@@ -176,13 +193,13 @@ class OssnWall extends OssnObject {
 		 *
 		 * @return object;
 		 */
-		public function GetUserPosts($user, $params = array()){
-				if(isset($user->guid) && !empty($user->guid)){
+		public function GetUserPosts($user, $params = array()) {
+				if(isset($user->guid) && !empty($user->guid)) {
 						$friends = $user->getFriends();
 						//operator not supported for strings #999
 						$friend_guids = array();
-						if($friends){
-								foreach ($friends as $friend){
+						if($friends) {
+								foreach ($friends as $friend) {
 										$friend_guids[] = $friend->guid;
 								}
 						}
@@ -206,7 +223,7 @@ class OssnWall extends OssnObject {
 						//Non logged in visitor can view private posts #2158
 						//Non loggedin should only see a public posts.#2158
 						//31-05-2022 $arsalanshah
-						if((ossn_isLoggedin() && !ossn_user_is_friend(ossn_loggedin_user()->guid, $user->guid) && ossn_loggedin_user()->guid != $user->guid && !ossn_isAdminLoggedin()) || !ossn_isLoggedin()){
+						if((ossn_isLoggedin() && !ossn_user_is_friend(ossn_loggedin_user()->guid, $user->guid) && ossn_loggedin_user()->guid != $user->guid && !ossn_isAdminLoggedin()) || !ossn_isLoggedin()) {
 								$default['wheres'][] = '(emd0.value=2)';
 						}
 						$extra_param = array(
@@ -227,7 +244,7 @@ class OssnWall extends OssnObject {
 		 *
 		 * @return object;
 		 */
-		public function GetPost($guid){
+		public function GetPost($guid) {
 				$this->object_guid = $guid;
 				return $this->getObjectById();
 		}
@@ -239,12 +256,12 @@ class OssnWall extends OssnObject {
 		 *
 		 * @return bool;
 		 */
-		public function deletePost($post){
-				if(empty($post)){
+		public function deletePost($post) {
+				if(empty($post)) {
 						return false;
 				}
 				ossn_trigger_callback('post', 'before:delete', $post);
-				if($this->deleteObject($post)){
+				if($this->deleteObject($post)) {
 						ossn_trigger_callback('post', 'delete', $post);
 						return true;
 				}
@@ -256,14 +273,14 @@ class OssnWall extends OssnObject {
 		 *
 		 * @return void;
 		 */
-		public function deleteAllPosts(){
+		public function deleteAllPosts() {
 				$posts = $this->GetPosts(array(
 						'page_limit' => false,
 				));
-				if(!$posts){
+				if(!$posts) {
 						return false;
 				}
-				foreach ($posts as $post){
+				foreach ($posts as $post) {
 						$this->deleteObject($post->guid);
 						ossn_trigger_callback('post', 'delete', $post->guid);
 				}
@@ -274,7 +291,7 @@ class OssnWall extends OssnObject {
 		 *
 		 * @return object;
 		 */
-		public function GetPosts(array $params = array()){
+		public function GetPosts(array $params = array()) {
 				$default = array(
 						'subtype'  => 'wall',
 						'order_by' => 'o.guid DESC',
@@ -289,8 +306,8 @@ class OssnWall extends OssnObject {
 		 *
 		 * @return array;
 		 */
-		public static function getUserGroupPostsGuids($userguid){
-				if(empty($userguid)){
+		public static function getUserGroupPostsGuids($userguid) {
+				if(empty($userguid)) {
 						return false;
 				}
 				$statement = "SELECT * FROM ossn_entities, ossn_entities_metadata WHERE(
@@ -303,8 +320,8 @@ class OssnWall extends OssnObject {
 				$database->statement($statement);
 				$database->execute();
 				$objects = $database->fetch(true);
-				if($objects){
-						foreach ($objects as $object){
+				if($objects) {
+						foreach ($objects as $object) {
 								$guids[] = $object->owner_guid;
 						}
 						asort($guids);
@@ -319,14 +336,14 @@ class OssnWall extends OssnObject {
 		 *
 		 * @return array;
 		 */
-		public function getFriendsPosts($params = array()){
+		public function getFriendsPosts($params = array()) {
 				$user = ossn_loggedin_user();
-				if(isset($user->guid) && !empty($user->guid)){
+				if(isset($user->guid) && !empty($user->guid)) {
 						$friends = $user->getFriends();
 						//operator not supported for strings #999
 						$friend_guids = array();
-						if($friends){
-								foreach ($friends as $friend){
+						if($friends) {
+								foreach ($friends as $friend) {
 										$friend_guids[] = $friend->guid;
 								}
 						}
@@ -336,9 +353,9 @@ class OssnWall extends OssnObject {
 
 						//add visibility of admin postings to friends-only wall? #1294
 						$admins = ossn_get_admin_users();
-						if($admins){
-								foreach ($admins as $item){
-										if(!in_array($item->guid, $friend_guids)){
+						if($admins) {
+								foreach ($admins as $item) {
+										if(!in_array($item->guid, $friend_guids)) {
 												$friend_guids[] = $item->guid;
 										}
 								}
@@ -381,14 +398,14 @@ class OssnWall extends OssnObject {
 		 *
 		 * @return array;
 		 */
-		public function getPublicPosts($params = array()){
+		public function getPublicPosts($params = array()) {
 				$user = ossn_loggedin_user();
-				if(isset($user->guid) && !empty($user->guid)){
+				if(isset($user->guid) && !empty($user->guid)) {
 						$friends = $user->getFriends();
 						//operator not supported for strings #999
 						$friend_guids = array();
-						if($friends){
-								foreach ($friends as $friend){
+						if($friends) {
+								foreach ($friends as $friend) {
 										$friend_guids[] = $friend->guid;
 								}
 						}
@@ -432,14 +449,14 @@ class OssnWall extends OssnObject {
 		 *
 		 * @return array;
 		 */
-		public function getAllPosts($params = array()){
+		public function getAllPosts($params = array()) {
 				$user = ossn_loggedin_user();
-				if(isset($user->guid) && !empty($user->guid)){
+				if(isset($user->guid) && !empty($user->guid)) {
 						$friends = $user->getFriends();
 						//operator not supported for strings #999
 						$friend_guids = array();
-						if($friends){
-								foreach ($friends as $friend){
+						if($friends) {
+								foreach ($friends as $friend) {
 										$friend_guids[] = $friend->guid;
 								}
 						}
@@ -482,8 +499,8 @@ class OssnWall extends OssnObject {
 		 *
 		 * @return array;
 		 */
-		public function getPosterPosts($guid = ''){
-				if(isset($guid) && !empty($guid)){
+		public function getPosterPosts($guid = '') {
+				if(isset($guid) && !empty($guid)) {
 						//Deleting user didn't delete users wall posts if wall poster_guid is not same user as deleted #1505
 						//added page_limit => false
 						$default = array(
@@ -503,32 +520,32 @@ class OssnWall extends OssnObject {
 		}
 		/**
 		 * Get wall photo URL
-		 * 
+		 *
 		 * @return string|bool
 		 */
-		 public function getPhotoURL(){
-			 	if(isset($this->{'file:wallphoto'})) {
-					$image = md5($this->guid).'.jpg';
-					return ossn_add_cache_to_url(ossn_site_url("post/photo/{$this->guid}/{$image}"));
+		public function getPhotoURL() {
+				if(isset($this->{'file:wallphoto'})) {
+						$image = md5($this->guid) . '.jpg';
+						return ossn_add_cache_to_url(ossn_site_url("post/photo/{$this->guid}/{$image}"));
 				}
 				return false;
-		 }
+		}
 		/**
 		 * Get wall photo file
-		 * 
+		 *
 		 * @return string|object
-		 */		 
-		 public function getPhotoFile(){
-					$file = new OssnFile();
-					$search = $file->searchFiles(array(
-								'limit' => 1,
-								'owner_guid' => $this->guid,
-								'type' => 'object',
-								'subtype' => 'wallphoto',
-					));
-					if($search){
-						return $search[0];	
-					}
-					return false;
-		 }		 
+		 */
+		public function getPhotoFile() {
+				$file   = new OssnFile();
+				$search = $file->searchFiles(array(
+						'limit'      => 1,
+						'owner_guid' => $this->guid,
+						'type'       => 'object',
+						'subtype'    => 'wallphoto',
+				));
+				if($search) {
+						return $search[0];
+				}
+				return false;
+		}
 } //class

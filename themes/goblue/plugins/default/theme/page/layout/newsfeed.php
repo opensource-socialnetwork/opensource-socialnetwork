@@ -2,7 +2,7 @@
 /**
  * Open Source Social Network
  *
- * @package   (openteknik.com).ossn
+ * @package   Open Source Social Network (OSSN)
  * @author    OSSN Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
@@ -24,9 +24,8 @@ if(ossn_is_hook('newsfeed', "center:top")) {
 ?>
 <div class="container-fluid">
 	<div class="ossn-layout-newsfeed">
-       	<?php echo ossn_plugin_view('theme/page/elements/system_messages'); ?>    
 		<div class="row">
-			<div class="col-md-7">
+			<div class="col-lg-7">
 				<?php if(!empty($isempty_top)){ ?>
 				<div class="newsfeed-middle-top">
 					<?php echo $newsfeed_center_top; ?>
@@ -36,7 +35,7 @@ if(ossn_is_hook('newsfeed', "center:top")) {
 					<?php echo $params['content']; ?>
 				</div>
 			</div>
-			<div class="col-md-4">
+			<div class="col-lg-4">
             			<?php if(!empty($isempty)){ ?>
 				<div class="newsfeed-right">
 					<?php

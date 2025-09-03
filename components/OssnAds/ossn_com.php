@@ -3,7 +3,7 @@
  * Open Source Social Network
  *
  * @package   Open Source Social Network
- * @author    Open Social Website Core Team <info@openteknik.com>
+ * @author    Open Source Social Network Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
  * @link      https://www.opensource-socialnetwork.org/
@@ -74,9 +74,8 @@ function ossn_ads_handler($pages) {
  * @access public
  */
 function ossn_ads_image_url($guid) {
-		$image = md5($guid);
-		$image = ossn_site_url("ossnads/photo/{$guid}/{$image}.jpg");
-		return ossn_add_cache_to_url($image);
+		$ad = get_ad_entity($guid);
+		return $ad->getPhotoURL();
 }
 /**
  * Get ad entity
@@ -90,11 +89,9 @@ function get_ad_entity($guid) {
 		if($guid < 1 || empty($guid)) {
 				return false;
 		}
-		$resume              = new OssnObject();
-		$resume->object_guid = $guid;
-		$resume              = $resume->getObjectById();
-		if(isset($resume->guid)) {
-				return arrayObject($resume, 'OssnAds');
+		$ad = ossn_get_object($guid);
+		if($ad) {
+				return arrayObject($ad, 'OssnAds');
 		}
 		return false;
 }

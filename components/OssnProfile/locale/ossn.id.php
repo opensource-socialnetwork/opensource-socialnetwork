@@ -3,7 +3,7 @@
  * Open Source Social Network
  *
  * @package   Open Source Social Network
- * @author    Open Social Website Core Team <info@openteknik.com>
+ * @author    Open Source Social Network Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
  * @link      https://www.opensource-socialnetwork.org/
@@ -23,6 +23,6 @@ $id = array(
 		'profile:photos' => 'Foto Profil',
 		
 		'profile:cover:err1' => 'Foto Sampul terlalu kecil',
-		'profile:cover:err1:detail' => 'Foto Sampul minimal harus 1040 x 300 atau lebih besar.'
+		'profile:cover:err1:detail' => 'Foto Sampul minimal harus %spx x %spx atau lebih besar.'
 );
 ossn_register_languages('id', $id);

@@ -2,7 +2,7 @@
 /**
  * Open Source Social Network
  *
- * @package   (openteknik.com).ossn
+ * @package   Open Source Social Network (OSSN)
  * @author    OSSN Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
@@ -10,7 +10,7 @@
  */
 ?>
 <div class="row">
-       <div class="col-md-6 col-center ossn-page-contents">
+       <div class="col-lg-6 col-center ossn-page-contents">
     	<?php 
 			$contents = ossn_view_form('user/resetpassword', array(
   					 'action' => ossn_site_url('action/resetpassword'),

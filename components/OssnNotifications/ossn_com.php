@@ -2,7 +2,7 @@
 /**
  * Open Source Social Network
  *
- * @package   (openteknik.com).ossn
+ * @package   Open Source Social Network (OSSN)
  * @author    OSSN Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
@@ -40,11 +40,15 @@ function ossn_notifications() {
 		ossn_register_callback('like', 'deleted', 'ossn_like_notifications_delete');
 		
 		//hooks 
-		ossn_add_hook('notification:add', 'comments:post', 'ossn_notificaiton_comments_post_hook');
 		ossn_add_hook('notification:add', 'like:post', 'ossn_notificaiton_comments_post_hook');
 		ossn_add_hook('notification:add', 'like:annotation', 'ossn_notificaiton_like_annotation_hook');
-		ossn_add_hook('notification:add', 'comments:entity', 'ossn_notificaiton_comment_entity_hook');
 		ossn_add_hook('notification:add', 'like:entity', 'ossn_notificaiton_comment_entity_hook');
+		ossn_add_hook('notification:add', 'like:object', 'ossn_notificaiton_comment_object_hook');
+		
+		ossn_add_hook('notification:add', 'comments:post', 'ossn_notificaiton_comments_post_hook');
+		ossn_add_hook('notification:add', 'comments:entity', 'ossn_notificaiton_comment_entity_hook');
+		ossn_add_hook('notification:add', 'comments:object', 'ossn_notificaiton_comment_object_hook');
+		
 		//tag post with a friend, doesn't show in friend's notification #589
 		ossn_add_hook('notification:add', 'wall:friends:tag', 'ossn_notificaiton_walltag_hook');
 		
@@ -55,6 +59,7 @@ function ossn_notifications() {
 						ossn_register_action('notifications/admin/settings', __OSSN_NOTIF__ . 'actions/notifications/admin/settings.php');
 						ossn_register_com_panel('OssnNotifications', 'settings');
 				}
+				ossn_register_action('notifications/delete/item', __OSSN_NOTIF__ . 'actions/delete/item.php');
 				ossn_register_sections_menu('newsfeed', array(
 					'name' => 'notifications',
 					'text' => ossn_print('notifications'),
@@ -145,18 +150,22 @@ function ossn_notification_page($pages) {
 						break;
 				case 'read';
 						if(!empty($pages[1])) {
-								$notification = new OssnNotifications;
-								$guid         = $notification->getbyGUID($pages[1]);
-								if($guid->owner_guid == ossn_loggedin_user()->guid) {
+								$notification = new OssnNotifications();
+								$notification = $notification->getbyGUID($pages[1]);
+								if($notification->owner_guid == ossn_loggedin_user()->guid) {
 										$notification->setViewed($pages[1]);
+										$uri = $notification->getRedirectURI();
+										//old mechanisim for other components
 										$url = urldecode(input('notification'));
+										if($uri){
+											$url = ossn_site_url($uri);	
+										}
+										ob_flush();
 										header("Location: {$url}");
-								} else {
-										redirect();
+										exit();
 								}
-						} else {
-								redirect();
 						}
+						redirect();
 						break;
 				case 'count':
 						if(!ossn_isLoggedIn()) {
@@ -395,6 +404,27 @@ function ossn_notificaiton_comment_entity_hook($hook, $type, $return, $params) {
 						if($object) {
 								$params['owner_guid'] = $object->owner_guid;
 						}
+				}
+				return $params;
+		}
+		return false;
+}
+/**
+ * Object comments/likes notification hook
+ *
+ * @param string $hook Hook name
+ * @param string $type Hook type
+ * @param array Callback data
+ *
+ * @return array|boolean
+ * @access public
+ */
+function ossn_notificaiton_comment_object_hook($hook, $type, $return, $params) {
+		$object  = ossn_get_object($params['subject_guid']);
+		if($object) {
+				$params['type'] = "{$params['type']}:{$object->subtype}";
+				if($object->type == 'user') {
+						$params['owner_guid'] = $object->owner_guid;
 				}
 				return $params;
 		}

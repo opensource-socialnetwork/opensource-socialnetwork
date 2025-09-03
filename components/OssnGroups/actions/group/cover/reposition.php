@@ -2,7 +2,7 @@
 /**
  * Open Source Social Network
  *
- * @package   (openteknik.com).ossn
+ * @package   Open Source Social Network (OSSN)
  * @author    OSSN Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
@@ -13,7 +13,7 @@ $group = ossn_get_group_by_guid(input('group'));
 if ($group->owner_guid !== ossn_loggedin_user()->guid && !ossn_isAdminLoggedin()) {
     exit;
 }
-if ($group->repositionCOVER($group->guid, input('top'), input('left'))) {
+if ($group->repositionCOVER(input('top'), input('left'))) {
     $params = $group->coverParameters($group->guid);
     echo json_encode(array(
             'top' => $params[0],

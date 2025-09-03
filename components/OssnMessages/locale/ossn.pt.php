@@ -24,5 +24,6 @@ $pt = array(
 	'ossnmessages:delete:me' => 'Remover para si',
 	'ossnmessages:delete:me:note' => 'Esta mensagem será retirada para si. Outro membro ainda poderá vê-la.',
 	'ossnmessages:replied:you' => 'Você: %s',	
+	'message:fileattachment' => 'Anexo de arquivo',	
 );
 ossn_register_languages('pt', $pt); 

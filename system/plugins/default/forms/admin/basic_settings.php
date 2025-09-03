@@ -2,7 +2,7 @@
 /**
  * Open Source Social Network
  *
- * @package   (openteknik.com).ossn
+ * @package   Open Source Social Network (OSSN)
  * @author    OSSN Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
@@ -25,6 +25,14 @@ ossn_load_available_languages();
 <div> 
 	<label><?php echo ossn_print('admin:notification:email'); ?></label>
 	<input type="text" name="notification_email" value="<?php echo $setting->notification_email; ?>" placeholder="<?php echo ossn_print('notification_email'); ?>"/>
+</div>
+<div> 
+	<label><?php echo ossn_print('admin:email:name'); ?></label>
+	<input type="text" name="notification_name" value="<?php echo $setting->notification_name; ?>" placeholder="<?php echo ossn_print('admin:email:name'); ?>"/>
+</div>
+<div> 
+	<label><?php echo ossn_print('copyright'); ?></label>
+	<input type="text" name="copyrights" value="<?php echo $setting->copyrights; ?>" placeholder="<?php echo ossn_print('copyright'); ?>"/>
 </div>
 <div>
 	<label><?php echo ossn_print('default:lang'); ?></label>

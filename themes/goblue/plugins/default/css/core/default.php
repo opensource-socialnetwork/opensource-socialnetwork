@@ -1,6 +1,9 @@
 /******************************
 	Basic
 **********************************/
+:root {
+	--layout-sidebar-width: 220px;
+}
 
 body {
 	font-size: 14px;
@@ -61,9 +64,6 @@ body {
 	outline: none;
 }
 
-.ossn-form input[readonly],
-.ossn-form input[readonly],
-.ossn-form input[readonly],
 .ossn-form select[readonly],
 .ossn-form textarea[readonly],
 .ossn-form input[readonly] {
@@ -154,6 +154,7 @@ p {
 	font-size: 15px;
 	font-weight: bold;
 	margin-left: 10px;
+	cursor: pointer;
 }
 
 .ossn-checkbox-input {
@@ -242,7 +243,7 @@ a {
 	background-size: cover;
 }
 
-.ossn-layout-startup .col-md-11 {
+.ossn-layout-startup .col-lg-11 {
 	width: 100%;
 }
 
@@ -454,9 +455,71 @@ a {
 .topbar .ossn-icons-topbar-notifications-new i {
 	color: #fff;
 }
+.topbar .left-side {
+	left:0;	
+}
+.topbar .right-side {
+	right:0;	
+}
+.topbar .site-name {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;	
+}
+.topbar .site-name,
+.topbar .right-side {
+	position:absolute;	
+}
+/************************************************
+   Topbar Dropdown and Post+Comment menu icons
+*************************************************/
+/**********************************************
+[B] Icons for comment edit and delete on photo view not showing #2416
+***********************************************/
+.ossn-comment-menu .dropdown-menu li a:before,
+.ossn-wall-item .dropdown-menu li a:before,
+.ossn-topbar-dropdown-menu ul li a:before {
+	content: "\f068";
+	display: inline-block;
+	float: left;
+	margin-right: 10px;
+	font-family: var(--fa-style-family, "Font Awesome 6 Free");
+	font-weight: var(--fa-style, 900);
+}
+
+.ossn-wall-item>.dropdown-menu {
+	min-width: 200px;
+}
+
+.menu-topbar-dropdown-administration:before {
+	content: "\f085" !important;
+}
+
+.menu-topbar-dropdown-account_settings:before {
+	content: "\f4fe" !important;
+}
+
+.menu-topbar-dropdown-logout:before {
+	content: "\f011" !important;
+}
+
+.ossn-edit-comment:before,
+.ossn-wall-item .post-control-edit:before {
+	content: "\f303" !important;
+}
+
+.ossn-delete-comment:before,
+.ossn-wall-item .post-control-delete:before {
+	content: "\f2ed" !important;
+}
 
 .ossn-topbar-dropdown-menu {
 	float: right;
+}
+
+.comment-metadata .dropdown-item {
+	padding: 0.4rem 1rem;
 }
 
 .ossn-topbar-dropdown-menu ul li a,
@@ -468,9 +531,12 @@ a {
 
 .ossn-topbar-dropdown-menu .dropdown-menu {
 	margin: 1px -120px 0;
+	min-width: 200px;
 }
 
-
+/************************************************
+   Topbar Dropdown and Post+Comment menu icons end
+*************************************************/
 /***********************************
 	Ossn Wall
 *************************************/
@@ -482,11 +548,11 @@ a {
 .ossn-wall-item {
 	padding: 15px;
 	padding-top: 10px;
-	border: 1px solid #eee;
 	margin-top: 20px;
 	background-color: #fff;
 	padding-bottom: 0px;
 	border-radius: 10px;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .ossn-wall-item:first-child {
@@ -614,6 +680,8 @@ a {
 	margin-top: 1px;
 	margin-left: 5px;
 	position: absolute;
+
+
 	font-size: 15px;
 }
 
@@ -831,7 +899,7 @@ a {
 	z-index: 0;
 }
 
-.comments-item .col-md-11 {
+.comments-item .col-lg-11 {
 	padding-left: 0px;
 }
 
@@ -890,6 +958,8 @@ a {
 
 [contentEditable=true]:empty:not(:focus)::before {
 	content: attr(placeholder);
+	pointer-events: none;
+	display: block;
 }
 
 
@@ -934,10 +1004,10 @@ a {
 	background-color: #333;
 	height: 200px;
 	z-index: 1000;
-	width: 200px;
+	width: var(--layout-sidebar-width);
 	position: absolute;
 	height: 100%;
-	margin-left: -200px;
+	margin-left: calc(-1 * var(--layout-sidebar-width));
 	overflow-y: auto;
 	overflow-x: hidden;
 	color: #fff;
@@ -945,6 +1015,11 @@ a {
 
 .sidebar a {
 	color: #fff;
+	font-size: 14px;
+}
+
+.sidebar a li:before {
+	font-size: initial;
 }
 
 .sidebar-close {
@@ -967,7 +1042,7 @@ a {
 }
 
 .sidebar-open-page-container {
-	margin-left: 200px;
+	margin-left: var(--layout-sidebar-width);
 	-webkit-transition: all 0.5s ease;
 	-moz-transition: all 0.5s ease;
 	-o-transition: all 0.5s ease;
@@ -975,7 +1050,7 @@ a {
 }
 
 .sidebar-open-page-container-no-annimation {
-	margin-left: 200px;
+	margin-left: var(--layout-sidebar-width);
 }
 
 .sidebar-close-page-container {
@@ -987,6 +1062,7 @@ a {
 
 .newseed-uinfo {
 	padding: 10px;
+	margin-bottom: 10px;
 }
 
 .newseed-uinfo img {
@@ -999,7 +1075,7 @@ a {
 	display: inline-block;
 	width: 100px;
 	margin-left: 10px;
-	margin-top: -2px;
+	margin-top: 4px;
 }
 
 .newseed-uinfo .name a {
@@ -1015,8 +1091,7 @@ a {
 
 .sidebar-menu-nav {
 	overflow: auto;
-	font-family: verdana;
-	font-size: 12px;
+	font-size: 13px;
 	font-weight: 200;
 	top: 0px;
 	width: 100%;
@@ -1051,7 +1126,7 @@ a {
 .sidebar-menu-nav ul .sub-menu li,
 .sidebar-menu-nav li .sub-menu li {
 	border: none;
-	line-height: 28px;
+	line-height: 30px;
 	border-bottom: 1px solid #23282e;
 	margin-left: 0px;
 }
@@ -1070,6 +1145,7 @@ a {
 	padding-right: 10px;
 	vertical-align: middle;
 	font-weight: 900;
+	font-size: 13px;
 }
 
 .sidebar-menu-nav li {
@@ -1130,6 +1206,7 @@ a {
 
 .left {
 	float: left;
+
 }
 
 .text-right {
@@ -1334,9 +1411,11 @@ a {
 	background-clip: padding-box;
 	border: 1px solid #ccc;
 	border: 1px solid rgba(0, 0, 0, .15);
-	border-radius: 4px;
+	border-radius: 5px;
 	-webkit-box-shadow: 0 6px 12px rgb(0 0 0 / 18%);
 	box-shadow: 0 6px 12px rgb(0 0 0 / 18%);
+	border-bottom-left-radius: 7px;
+	border-bottom-right-radius: 7px;
 }
 
 .ossn-notifications-box .notificaton-item {
@@ -1387,9 +1466,10 @@ a {
 .ossn-notifications-box .notification-image img {
 	width: 50px;
 	height: 50px;
-	display: inline-block;
 }
-
+.ossn-notifications-all a {
+	padding:10px;
+}
 .ossn-notifications-box .bottom-all a,
 .ossn-notifications-box .notfi-meta strong {
 	color: #337ab7;
@@ -1415,6 +1495,8 @@ a {
 	display: block;
 	height: 40px;
 	border-top: 1px solid #eee;
+	border-bottom-left-radius: 7px;
+	border-bottom-right-radius: 7px;
 }
 
 .ossn-notifications-box .metadata {
@@ -1435,10 +1517,43 @@ a {
 	float: right;
 }
 
-.ossn-notifications-all a {}
+.ossn-notif-delete-item i {
+    margin-right: 0;
+    font-size: initial !important;
+    margin-top: initial !important;
+}
+.ossn-notif-delete-item {
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin-top: 0px;
+    background: #fff;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    border: 1px solid #eee;
+    border-radius: 100%;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+.ossn-notif-delete-item {
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 0.3s ease;
+    pointer-events: none; /* prevent accidental clicks when hidden */
+}
+
+/* Show on hover of the <a> inside <li> */
+.ossn-notifications-all li a:hover .ossn-notif-delete-item {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto;
+}
 
 .ossn-notifications-all li {
-	padding: 10px;
 	display: block;
 }
 
@@ -1539,17 +1654,31 @@ a {
 /*******************************
 	Profile
 ********************************/
-
 .ossn-profile .top-container {
 	background: #fff;
 	border: 1px solid #C4CDE0;
 	border-width: 1px 1px 2px;
 	border-bottom-left-radius: 5px;
 	border-bottom-right-radius: 5px;
+	border-top-right-radius: 10px;
+	border-top-left-radius: 10px;
+}
+
+.ossn-profile-usermetadata {
+	position: relative;
+	min-height: 85px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #eee;
+}
+
+.profile-hr-menu {
+	border-bottom: 1px solid #eee;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
 }
 
 .ossn-profile .top-container .profile-cover {
-	height: 200px;
+	height: 300px;
 	overflow: hidden;
 	opacity: .99;
 	background: -moz-linear-gradient(top, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 1%, rgba(0, 0, 0, .38) 100%);
@@ -1571,7 +1700,7 @@ a {
 }
 
 .profile-hr-menu ul {
-	margin-bottom: 0px;
+	margin: 7px 0 5px;
 	padding: 0px;
 }
 
@@ -1584,7 +1713,17 @@ a {
 	padding: 15px;
 	margin-right: 5px;
 	font-weight: bold;
-	border-right: 1px solid #eee;
+}
+
+.profile-hr-menu a:hover {
+	color: initial;
+}
+
+.profile-hr-menu>li>a:not(.profile-hr-menu .dropdown-toggle):hover,
+.profile-hr-menu>ul>li:hover>a:not(.profile-hr-menu .dropdown-toggle) {
+	background: #F6F7F8;
+	text-decoration: none;
+	border-radius: 10px;
 }
 
 .profile-hr-menu .dropdown-menu {
@@ -1622,27 +1761,33 @@ a {
 .ossn-profile .profile-photo {
 	position: absolute;
 	margin-left: 20px;
-	margin-top: -190px;
+	margin-top: -80px;
 	background-color: #fff;
-	border: 1px solid #CCC;
-	border-radius: 2px 2px 2px 2px;
-	-webkit-border-radius: 2px 2px 2px 2px;
-	-moz-border-radius: 2px 2px 2px 2px;
-	padding: 2px;
+	border-radius: 50%;
+	padding: 5px;
+	width: 160px;
+	height: 160px;
 }
 
-.ossn-profile .profile-photo img {}
+.ossn-profile .profile-photo img {
+	border-radius: 50%;
+	width: 150px;
+	height: 150px;
+}
+
+.profile-menu-hr-container {
+	background: #fff;
+	border: 1px solid #C4CDE0;
+	border-width: 1px 1px 2px;
+	margin: 10px 0;
+	border-radius: 5px;
+}
 
 .ossn-profile .user-fullname {
-	color: #FFF;
+	color: #333334;
+	font-size: 30px;
+	margin-left: 200px;
 	font-weight: bold;
-	margin-top: -155px;
-	font-size: 35px;
-	font-size: 2.3vw;
-	margin-left: 211px;
-	position: absolute;
-	text-shadow: 0 0 3px #000;
-	/** overlapping issue with longer names on profile page #630 **/
 	max-width: 820px;
 	white-space: nowrap;
 	overflow: hidden;
@@ -1650,8 +1795,25 @@ a {
 }
 
 .ossn-profile-role {
-	font-size: 25px !important;
-	margin-top: -105px !important;
+	font-size: 15px !important;
+	margin-top: -8px !important;
+	margin-right: 24px;
+	position: absolute;
+}
+
+.ossn-profile .user-username {
+	font-size: 15px;
+	margin-right: 24px;
+	position: absolute;
+	font-weight: normal;
+}
+
+.ossn-profile .user-username-margin-top {
+	margin-top: 13px !important;
+}
+
+.ossn-profile .user-username-margin-top-offset {
+	margin-top: 0px !important;
 }
 
 .btn-standalone-grey {
@@ -1696,27 +1858,41 @@ a {
 .profile-cover-controls {
 	position: absolute;
 	width: 100%;
-	margin-right: -32px;
-	margin-top: 150px;
+	top: 0;
+	margin-top: 20px;
 	z-index: 1;
 }
 
-.change-cover {
-	float: right;
-	position: relative;
-	margin-right: 50px !important;
+.ossn-group-cover-button a:before,
+.profile-cover-controls a:before {
+	font-family: 'Font Awesome 5 Free';
+	display: inline-block;
+	padding-right: 5px;
+	vertical-align: middle;
+	font-weight: 900;
 }
 
-.reposition-cover {
+.profile-cover-controls a {
 	float: right;
 	position: relative;
-	margin-right: 5px !important;
+	margin-right: 10px;
+
+}
+
+#reposition-group-cover:before,
+.change-cover:before {
+	content: "\f303";
+}
+#add-cover-group:before,
+.reposition-cover:before {
+	content: "\f0b2";
+    font-family: 'Font Awesome 5 Free';
 }
 
 .profile-menu {
 	float: right;
 	position: relative;
-	margin-top: -40px;
+	margin-top: -20px;
 	margin-right: 20px;
 }
 
@@ -1725,21 +1901,24 @@ a {
 }
 
 .upload-photo {
-	background: #000;
-	opacity: 0.5;
-	width: 170px;
-	padding: 10px;
+	background: #eee;
 	position: absolute;
-	color: #FFF;
-	text-align: center;
 	font-size: 15px;
 	font-family: sans-serif;
+	bottom: 0;
+	right: 0;
+	margin-bottom: 20px;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
 }
 
 .upload-photo span {
-	width: 100%;
-	padding: 12px;
 	text-align: center;
+	display: block;
+	margin-top: 5px;
+	font-size: 20px;
+	color: #000;
 }
 
 .user-cover-uploading {
@@ -1751,9 +1930,9 @@ a {
 	opacity: 0.8;
 	background: #fff;
 	width: 100%;
-	padding: 7px;
 	position: absolute;
-	border-radius: 2px;
+	border-radius: 50%;
+	margin-bottom: 0;
 }
 
 .user-photo-uploading span {
@@ -1822,7 +2001,7 @@ li[class^="menu-section-item-"] {
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
-	width: 200px;
+	width: var(--layout-sidebar-width);
 	padding-right: 10px;
 }
 
@@ -1891,7 +2070,6 @@ ul.token-input-list {
 	width: 100%;
 	cursor: text;
 	font-size: 12px;
-	font-family: Verdana;
 	min-height: 1px;
 	margin: 0;
 	z-index: 999;
@@ -1948,7 +2126,6 @@ li.token-input-selected-token {
 }
 
 li.token-input-input-token {
-	float: left;
 	margin: 0;
 	padding: 0;
 	list-style-type: none;
@@ -1964,7 +2141,6 @@ div.token-input-dropdown {
 	border-bottom: 1px solid #ccc;
 	cursor: default;
 	font-size: 11px;
-	font-family: Verdana;
 	z-index: 1;
 }
 
@@ -2009,17 +2185,6 @@ div.token-input-dropdown ul li.token-input-selected-dropdown-item {
 		System Messages
 *******************************************/
 
-.ossn-system-messages .ossn-system-messages-inner {
-	margin-top: 20px;
-	margin-bottom: 20px;
-	display: none;
-}
-
-.ossn-system-messages .ossn-system-messages-inner .alert {
-	margin-bottom: 0px;
-}
-
-
 /** v1-v3 compitible **/
 
 .ossn-message-done {
@@ -2042,15 +2207,13 @@ div.token-input-dropdown ul li.token-input-selected-dropdown-item {
 	width: 100%;
 	z-index: 10000;
 	background-color: #000;
-	opacity: 0.9;
+	opacity: 0.4;
 	cursor: auto;
 	height: 100%;
 	display: none;
 }
 
-.ossn-light {
-	opacity: 0.4 !important;
-}
+.ossn-light {}
 
 .ossn-viewer {
 	width: 940px;
@@ -2082,19 +2245,6 @@ div.token-input-dropdown ul li.token-input-selected-dropdown-item {
 
 .ossn-container tbody {
 	background: #000;
-}
-
-.ossn-halt {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	z-index: 10000;
-	background-color: #000;
-	opacity: 0.9;
-	cursor: auto;
-	height: 100%;
-	display: none;
 }
 
 .ossn-viewer .info-block {
@@ -2151,7 +2301,7 @@ div.token-input-dropdown ul li.token-input-selected-dropdown-item {
 	max-height: 420px;
 	overflow-x: auto;
 	overflow: overlay;
-	overflow-x: -moz-hidden-unscrollable
+	overflow-x: hidden;
 }
 
 .ossn-message-box .control {
@@ -2188,6 +2338,7 @@ div.token-input-dropdown ul li.token-input-selected-dropdown-item {
 	margin-right: 13px;
 }
 
+.ossn-form input[type=checkbox],
 .ossn-form input[type=radio] {
 	-webkit-appearance: none;
 	-moz-appearance: none;
@@ -2207,6 +2358,17 @@ div.token-input-dropdown ul li.token-input-selected-dropdown-item {
 	transition: background 300ms;
 }
 
+.ossn-form input[type=checkbox] {
+	border-radius: 2px;
+}
+
+.ossn-form input[type=checkbox]:checked::before {
+	font: 9px/1 'Open Sans', sans-serif;
+	left: 7px;
+	top: 5px;
+	content: '\02143';
+}
+
 .ossn-form input[type=radio]:checked::before {
 	position: absolute;
 	font: 9px/1 'Open Sans', sans-serif;
@@ -2216,16 +2378,31 @@ div.token-input-dropdown ul li.token-input-selected-dropdown-item {
 	transform: rotate(40deg);
 }
 
+.ossn-form input[type=checkbox]:hover,
 .ossn-form input[type=radio]:hover {
 	background-color: #f7f7f7;
 }
 
+.ossn-form input[type=checkbox]:checked,
 .ossn-form input[type=radio]:checked {
 	background-color: #0b769c;
 	color: #fff;
 	font-weight: bold;
 }
 
+.checkbox-block span {
+	margin-top: 6px;
+}
+
+.checkbox-block-container {
+	margin-bottom: 20px;
+}
+
+#ossn-home-signup .checkbox-block,
+.ossn-profile-bottom .ossn-edit-form .checkbox-block {
+	margin-top: 0;
+	margin-bottom: 0;
+}
 
 /*******************************
 	Ossn Blocked
@@ -2383,12 +2560,12 @@ div.token-input-dropdown ul li.token-input-selected-dropdown-item {
 	margin-top: 20px;
 	float: left;
 	text-overflow: ellipsis;
-	width: 300px;
+	max-width: 300px;
 	white-space: nowrap;
 	overflow: hidden;
 }
 
-.ossn-users-list-item .col-md-2 {
+.ossn-users-list-item .col-lg-2 {
 	text-align: center;
 }
 
@@ -2402,7 +2579,7 @@ footer {
 	padding-top: 5px;
 }
 
-footer .col-md-11 {
+footer .col-lg-11 {
 	border-top: 1px solid #E8E8E8;
 }
 
@@ -2526,28 +2703,28 @@ footer .ossn-footer-menu a:last-child::after {
 }
 
 .ossn-box-inner {
-	width: 446px;
+	width: 435px;
 }
 
-.home-left-contents .some-icons i {
-	font-size: 45px;
-}
-
-.home-left-contents .some-icons li {
-	display: inline-block;
+.landing-page-icons {
 	color: #fff;
-	border: 3px solid #fff;
-	border-radius: 100%;
-	padding: 20px;
-	margin-right: 20px;
-	margin-bottom: 20px;
-	width: 90px;
-	height: 90px;
+	text-align: center;
+	margin-top: 30px;
 }
 
-.home-left-contents .some-icons {
-	margin-top: 10%;
+.landing-page-icons-span {
+	border: 3px solid;
+	border-radius: 50px;
+	display: inline-block;
+	width: 90px;
 	text-align: center;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	margin: 10px;
+}
+
+.landing-page-icons-span .fa {
+	margin-right: 0px;
 }
 
 
@@ -2622,7 +2799,7 @@ footer .ossn-footer-menu a:last-child::after {
 		display: none;
 	}
 
-	.comments-item .col-md-11 {
+	.comments-item .col-lg-11 {
 		padding-left: 15px;
 	}
 
@@ -2662,14 +2839,13 @@ footer .ossn-footer-menu a:last-child::after {
 	}
 
 	.ossn-notifications-box .notfi-meta {
-		width: 230px;
+		width: 210px;
 	}
 
 	.notification-friends .notfi-meta a {
 		width: 100px;
 	}
 
-	.ossn-notifications-box .notfi-meta,
 	.ossn-notification-messages .user-item .data {
 		width: 215px !important;
 	}
@@ -2688,16 +2864,14 @@ footer .ossn-footer-menu a:last-child::after {
 	/******************************
     	Profile
     ********************************/
-	.ossn-profile .profile-photo img {
-		width: 100px;
-		height: 100px;
-	}
+	.ossn-profile .profile-photo img {}
 
 	.ossn-profile .user-fullname {
-		font-size: 16px;
-		margin-left: 135px;
-		margin-top: -100px;
-		width: 140px;
+		margin: 50px 0px 10px;
+		width: 180px;
+		text-align: center;
+		position: relative;
+		margin: 50px auto 10px;
 	}
 
 	.ossn-profile .top-container .profile-cover {
@@ -2705,30 +2879,31 @@ footer .ossn-footer-menu a:last-child::after {
 	}
 
 	.ossn-profile .profile-photo {
-		margin-top: -130px;
+		position: relative;
+		margin: -51px auto;
+	}
+
+	.ossn-profile-usermetadata {
+		min-height: 230px;
 	}
 
 	.profile-menu {
-		float: right;
-		margin-right: 10px;
+		float: initial;
+		text-align: center;
+		margin: 0;
 	}
 
 	.ossn-profile .top-container .profile-cover img {
 		width: auto;
 	}
 
-	.ossn-group-cover-button,
-	.profile-cover-controls {
-		display: none !important;
-	}
-
 	.upload-photo {
-		width: 100px;
+		margin-bottom: 0px;
+		transform: scale(0.8);
 	}
 
 	.profile-hr-menu ul li {
 		display: block;
-		border-bottom: 1px solid rgb(238, 238, 238);
 		margin-right: 0px;
 		margin-left: 10px;
 	}
@@ -2739,8 +2914,17 @@ footer .ossn-footer-menu a:last-child::after {
 	}
 
 	.ossn-profile-role {
-		display: none;
+		font-size: 15px !important;
+		margin-top: -10px !important;
+		position: relative;
 	}
+
+	.ossn-profile .user-username-margin-top-offset,
+	.ossn-profile .user-username-margin-top {
+		margin-top: -10px !important;
+	}
+
+	.ossn-profile .user-username {}
 
 	/*****************************
      	System
@@ -2759,19 +2943,14 @@ footer .ossn-footer-menu a:last-child::after {
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;
-		width: 90px;
+		max-width: 90px;
 	}
 
 	.ossn-search-page .ossn-users-list-item .uinfo a {
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;
-		width: 100px;
-	}
-
-	.ossn-system-messages {
-		padding-left: 15px;
-		padding-right: 15px;
+		max-width: 100px;
 	}
 
 	.ossn-users-list-item {
@@ -2788,8 +2967,9 @@ footer .ossn-footer-menu a:last-child::after {
 	}
 
 	.ossn-box-loading {
-		margin-left: 150px;
-		margin-top: 37px;
+		margin-left: 0;
+		margin-top: 0;
+		margin: 40px auto;
 	}
 
 	.ossn-message-box .contents input[type="text"] {
@@ -2808,7 +2988,7 @@ footer .ossn-footer-menu a:last-child::after {
     	Groups
     ************************/
 	.ossn-group-cover {
-		height: 100px !important;
+		height: 180px !important;
 	}
 
 	.ossn-group-cover-header,
@@ -2859,7 +3039,7 @@ footer .ossn-footer-menu a:last-child::after {
 		display: none;
 	}
 
-	.home-left-contents .some-icons {
+	.home-left-contents .landing-page-icons {
 		display: none;
 	}
 
@@ -2874,10 +3054,6 @@ footer .ossn-footer-menu a:last-child::after {
 		display: block;
 	}
 
-	.ossn-messages .message-with .user-icon,
-	.ossn-messages .messages-recent .messages-from .user-item .image {
-		display: none;
-	}
 
 	.ossn-messages .message-inner .row {
 		margin-left: 0px !important;
@@ -2931,7 +3107,7 @@ footer .ossn-footer-menu a:last-child::after {
 		display: none;
 	}
 
-	.comments-item .col-md-11 {
+	.comments-item .col-lg-11 {
 		padding-left: 15px;
 	}
 
@@ -2949,10 +3125,6 @@ footer .ossn-footer-menu a:last-child::after {
 	/*******************
      	Messages
      *******************/
-	.ossn-messages .message-with .user-icon,
-	.ossn-messages .messages-recent .messages-from .user-item .image {
-		display: none;
-	}
 
 	.ossn-messages .message-inner .row {
 		margin-left: 0px !important;
@@ -2965,16 +3137,16 @@ footer .ossn-footer-menu a:last-child::after {
 
 @media only screen and (max-width: 1199px) {
 
-	.comments-list .comments-item .col-md-1,
+	.comments-list .comments-item .col-lg-1,
 	.comments-list .comments-item .comment-user-img {
 		display: none;
 	}
 
-	.comments-list .comments-item .col-md-11 {
+	.comments-list .comments-item .col-lg-11 {
 		width: 100%;
 	}
 
-	.comments-item .col-md-11 {
+	.comments-item .col-lg-11 {
 		padding-left: 15px;
 	}
 
@@ -2988,7 +3160,7 @@ footer .ossn-footer-menu a:last-child::after {
 
 	.ossn-search-page .ossn-users-list-item .uinfo a {
 		text-overflow: ellipsis;
-		width: 200px;
+		max-width: 200px;
 		white-space: nowrap;
 		overflow: hidden;
 	}
@@ -3160,4 +3332,8 @@ label {
 	max-width: 100%;
 	margin-bottom: 5px;
 	font-weight: 700;
+}
+
+.dropdown-menu {
+	box-shadow: 0 12px 28px 0 rgba(0, 0, 0, 0.20), 0 2px 4px 0 rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.5);
 }

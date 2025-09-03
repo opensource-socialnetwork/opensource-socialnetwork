@@ -2,37 +2,35 @@
 /**
  * Open Source Social Network
  *
- * @package   (openteknik.com).ossn
+ * @package   Open Source Social Network (OSSN)
  * @author    OSSN Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
  * @link      https://www.opensource-socialnetwork.org/
  */
-$settings = new OssnDatabase;
+$settings = new OssnDatabase();
 
-$sitename = input('sitename');
-$owneremail = input('owneremail');
-$sitelang = input('sitelang');
+$sitename           = input('sitename');
+$owneremail         = input('owneremail');
+$sitelang           = input('sitelang');
 $notification_email = input('notification_email');
+$notification_name  = input('notification_name');
+$copyrights         = input('copyrights');
 
 $errors = input('errors');
 
-if (empty($sitename) || empty($owneremail) || empty($sitelang) || empty($errors)
-) {
-    redirect(REF);
+if(empty($sitename) || empty($owneremail) || empty($sitelang) || empty($errors) || empty($notification_name) || empty($copyrights)) {
+		redirect(REF);
 }
 
-ossn_site_setting_update('site_name', $sitename, 2);
-ossn_site_setting_update('lang', $sitelang, 3);
-ossn_site_setting_update('owner_email', $owneremail, 5);
-ossn_site_setting_update('notification_email', $notification_email, 6);
-
-//update errors settings
-$update['table'] = 'ossn_site_settings';
-$update['names'] = array('value');
-$update['values'] = array($errors);
-$update['wheres'] = array("name='display_errors'");
-$settings->update($update);
+$Site = new OssnSite();
+$Site->setSetting('site_name', $sitename);
+$Site->setSetting('language', $sitelang);
+$Site->setSetting('owner_email', $owneremail);
+$Site->setSetting('notification_email', $notification_email);
+$Site->setSetting('display_errors', $errors);
+$Site->setSetting('notification_name', $notification_name);
+$Site->setSetting('copyrights', $copyrights);
 
 ossn_trigger_message(ossn_print('settings:saved'), 'success');
 redirect(REF);

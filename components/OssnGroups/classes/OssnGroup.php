@@ -2,7 +2,7 @@
 /**
  * Open Source Social Network
  *
- * @package   (openteknik.com).ossn
+ * @package   Open Source Social Network (OSSN)
  * @author    OSSN Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
@@ -121,6 +121,9 @@ class OssnGroup extends OssnObject {
 						$description,
 				);
 				if($this->updateObject($data, $values, $guid)){
+						ossn_trigger_callback('group', 'update', array(
+								'group_guid' => $guid,
+						));					
 						return true;
 				}
 				return false;
@@ -145,6 +148,7 @@ class OssnGroup extends OssnObject {
 						$owner,
 				);
 				if($this->updateObject($data, $values, $guid)){
+						
 						return true;
 				}
 				return false;
@@ -462,13 +466,14 @@ class OssnGroup extends OssnObject {
 						'jpeg',
 						'jfif',
 						'gif',
+						'webp',
 				));
 				$this->OssnFile->setPath('cover/');
 				if(ossn_file_is_cdn_storage_enabled()) {
 						$this->OssnFile->setStore('cdn');
 				}				
 				$files = clone $this->OssnFile;
-				if($this->OssnFile->addFile()){
+				if($cover_guid = $this->OssnFile->addFile()){
 						//Different sanity checks on uploading images? #667
 						$files = $files->getFiles();
 						$count = (array) $files;
@@ -484,7 +489,9 @@ class OssnGroup extends OssnObject {
 										}
 								}
 						}
-						$this->ResetCoverPostition($this->OssnFile->owner_guid);
+						$this->data->cover_guid = $cover_guid;
+						$this->save();
+						$this->ResetCoverPostition();
 						return true;
 				}
 		}
@@ -492,34 +499,18 @@ class OssnGroup extends OssnObject {
 		/**
 		 * Reset cover position
 		 *
-		 * @param $guid Group guid
-		 *
-		 * @return bool;
-		 * @access private;
+		 * @return bool
 		 */
-		public function ResetCoverPostition($guid){
-				$this->statement("SELECT * FROM ossn_entities WHERE(
-				             owner_guid='{$guid}' AND
-				             type='object' AND
-				             subtype='cover');");
-				$this->execute();
-				$entity   = $this->fetch();
+		public function ResetCoverPostition(){
+				if(!isset($this->cover)){
+						return false;
+				}
 				$position = array(
 						'',
 						'',
 				);
-
-				$fields           = new OssnEntities();
-				$fields->owner_id = $guid;
-				$fields->guid     = $entity->guid;
-				$fields->type     = 'user';
-
-				$fields->subtype = 'cover';
-				$fields->value   = json_encode($position);
-				if($fields->updateEntity()){
-						return true;
-				}
-				return false;
+				$this->data->cover   = json_encode($position);
+				return $this->save();
 		}
 
 		/**
@@ -560,66 +551,26 @@ class OssnGroup extends OssnObject {
 		 * @access public;
 		 */
 		public function coverURL(){
-				$covers = $this->groupCovers();
-				if(!$covers){
+				if(!isset($this->cover_guid) || (isset($this->cover_guid) && empty($this->cover_guid))){
 						return false;
 				}
-				$this->latestcover = $covers->getParam(0);
-				$file              = md5($this->latestcover->guid);
-				$this->coverurl    = ossn_add_cache_to_url(ossn_site_url("groups/cover/{$this->latestcover->guid}/{$file}.jpg"));
+				$file              = md5($this->cover_guid);
+				$this->coverurl    = ossn_add_cache_to_url(ossn_site_url("groups/cover/{$this->cover_guid}/{$file}.jpg"));
 				return ossn_call_hook('group', 'cover:url', $this, $this->coverurl);
 		}
 
 		/**
 		 * Reposition group cover
 		 *
-		 * @param $guid Group guid
-		 *        $top  Position from top
-		 *        $left Position from left
+		 *  @param int $top  Position from top
+		 *  @param int $left Position from left
 		 *
-		 * @return bool;
-		 * @access public;
+		 * @return boolean
 		 */
-		public function repositionCOVER($guid, $top, $left){
-				$user = ossn_get_group_by_guid($guid);
-				if(!isset($user->cover) && empty($user->cover)){
-						$position = array(
-								$top,
-								$left,
-						);
-						$fields             = new OssnEntities();
-						$fields->owner_guid = $guid;
-						$fields->type       = 'object';
-						$fields->subtype    = 'cover';
-						$fields->value      = json_encode($position);
-						if($fields->add()){
-								return true;
-						}
-				} else {
-						$this->statement("SELECT * FROM ossn_entities WHERE(
-				             owner_guid='{$guid}' AND
-				             type='object' AND
-				             subtype='cover');");
-						$this->execute();
-						$entity    = $this->fetch();
-						$entity_id = $entity->guid;
-
-						$position = array(
-								$top,
-								$left,
-						);
-						$fields           = new OssnEntities();
-						$fields->owner_id = $guid;
-						$fields->guid     = $entity_id;
-						$fields->type     = 'object';
-
-						$fields->subtype = 'cover';
-						$fields->value   = json_encode($position);
-						if($fields->updateEntity()){
-								return true;
-						}
-				}
-				return false;
+		public function repositionCOVER($top, $left){
+				$position = array($top,$left);
+				$this->data->cover   = json_encode($position);
+				return $this->save();
 		}
 
 		/**

@@ -2,7 +2,7 @@
 /**
  * Open Source Social Network
  *
- * @package   (openteknik.com).ossn
+ * @package   Open Source Social Network (OSSN)
  * @author    OSSN Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
@@ -84,9 +84,12 @@ function ossn_route() {
  * @param boolean $uport false in case you wants a port , true if you don't wants a port
  * @param boolean $uport default false
  *
- * @return object
+ * @return string|boolean
  */
 function current_url($uport = false) {
+		if(ossn_is_from_cli()){
+			return false;	
+		}
 		$protocol = 'http';
 		$uri      = $_SERVER['REQUEST_URI'];
 		

@@ -2,7 +2,7 @@
 /**
  * Open Source Social Network
  *
- * @package   (openteknik.com).ossn
+ * @package   Open Source Social Network (OSSN)
  * @author    OSSN Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
@@ -25,7 +25,12 @@ $icon  = ossn_theme_url().'images/broken.png';
 				<div class="ossn-logo"></div>
 				<div class="title"><?php echo ossn_print('ossn:exception:title', array($email)); ?></div>
 			</div>
-			<?php if(ossn_isAdminLoggedin()){ ?>
+			<?php 
+			//[E] Display Errors #2393
+			//[B] Undefined property: stdClass::$wwww" in file /system/handlers/errors.php (line 30) #2444
+			//fixing 2393 caused new bug 2444 fixes that removed one extra w
+			if(ossn_isAdminLoggedin() || file_exists(ossn_route()->www . 'DISPLAY_ERRORS')){ 
+			?>
 			<div class="ossn-exception-description">
 				<div>
 					<pre><?php echo $params['exception']; ?></pre>

@@ -3,14 +3,13 @@
  * Open Source Social Network
  *
  * @package   Open Source Social Network
- * @author    Open Social Website Core Team <info@openteknik.com>
+ * @author    Open Source Social Network Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
  * @link      https://www.opensource-socialnetwork.org/
  */
 $cover = $params['group']->haveCover();
 $iscover = '';
-$ismember = false;
 if ($cover) {
     $iscover = 'ossn-group-cover-header';
     $coverp = $params['group']->coverParameters($params['group']->guid);
@@ -33,13 +32,18 @@ if ($cover) {
 		$coverp[1] = '';
 	}	
 }
+//[B] missing declaration of $members in group profile #2307
+$members  = false;
 //group members total count becomes 0 when group cover is set #156 $dev.githubertus 
-$members = $params['group']->getMembers();
+//[B] hide group members and subpages for private groups #2276
+if($params['group']->membership == OSSN_PUBLIC || ($params['group']->membership == OSSN_PRIVATE && $params['ismember'])){
+	$members = $params['group']->getMembers();
+}
 ?>
 <div class="ossn-group-profile">
 	<div class="ossn-group-top-row">
 		<div class="row">
-			<div class="col-md-11">
+			<div class="col-lg-11">
 				<div class="profile-header <?php echo $iscover; ?>">
 					<?php if (ossn_loggedin_user() && ($params['group']->owner_guid == ossn_loggedin_user()->guid || ossn_isAdminLoggedin())) { ?>
 					<form id="group-upload-cover" style="display:none;" method="post" enctype="multipart/form-data">
@@ -72,8 +76,7 @@ $members = $params['group']->getMembers();
 								<div class="groups-buttons">
 							
 							<?php if(ossn_isLoggedin() && $params['group']->owner_guid !== ossn_loggedin_user()->guid) {
-									if($params['group']->isMember(NULL, ossn_loggedin_user()->guid)) {
-								   		 $ismember = 1;
+									if($params['ismember']) {
 								    	?>
 										<a href="<?php echo ossn_site_url("action/group/member/cancel?group={$params['group']->guid}", true); ?>" class='button-grey'>
 											<?php echo ossn_print('leave:group'); ?>
@@ -84,7 +87,7 @@ $members = $params['group']->getMembers();
                                         </a>
 								<?php } ?>
                                 
-								<?php if(!$ismember && $params['group']->requestExists(ossn_loggedin_user()->guid, false)) { ?>
+								<?php if(!$params['ismember'] && $params['group']->requestExists(ossn_loggedin_user()->guid, false)) { ?>
 										<a href="<?php echo ossn_site_url("action/group/member/cancel?group={$params['group']->guid}", true); ?>" class='button-grey'>
 										<?php echo ossn_print('cancel:membership'); ?></a>
 								<?php } ?>
@@ -92,7 +95,7 @@ $members = $params['group']->getMembers();
 							<?php } // if(ossn_isLoggedin() && $params['group']->owner_guid !== ossn_loggedin_user()->guid) {?>
                             
 							<?php if(ossn_loggedin_user() && ($params['group']->owner_guid == ossn_loggedin_user()->guid || ossn_isAdminLoggedin())) {
-										$ismember = 1;
+										$params['ismember'] = 1;
 							?>
 									<a href="<?php echo ossn_group_url($params['group']->guid); ?>edit" class='button-grey'>
 										<?php echo ossn_print('settings'); ?>
@@ -122,7 +125,7 @@ $members = $params['group']->getMembers();
 						</div>
 					</div> <!-- .header-bottom/ -->            
 				</div> <!-- ./ossn-group-top-row -->
-			</div> <!-- ./col-md-11 -->
+			</div> <!-- ./col-lg-11 -->
 		</div>	<!-- ./row -->
 	</div> <!-- ./ossn-group-top-row -->
     <div class="ossn-group-bottom-row margin-top-10">
@@ -136,17 +139,17 @@ $members = $params['group']->getMembers();
         }  else { 
 		?>   
     	<div class="row">
-    		<div class="col-md-7">
+    		<div class="col-lg-7">
 				<div class="group-wall">
                 <?php
 					//#113 make contents of public groups visible. 
 					//send ismember, and member ship param to group wall
                 	echo ossn_plugin_view('wall/group', array(
 									'group' => $params, 
-									'ismember' => $ismember,
+									'ismember' => $params['ismember'],
 									'membership' => $params['group']->membership
 									));
-               		 if ($params['group']->membership == OSSN_PRIVATE && $ismember !== 1) {
+               		 if ($params['group']->membership == OSSN_PRIVATE && !$params['ismember']) {
 						$close_group_text = "<p>".ossn_print('close:group:notice')."</p>";
                     	?>
                     	<div class="group-closed-container">
@@ -175,8 +178,8 @@ $members = $params['group']->getMembers();
                 	}
                	 ?>
             	</div> <!-- ./group-wall -->       
-        	</div> <!-- ./col-md-7 -->
-             <div class="col-md-4">
+        	</div> <!-- ./col-lg-7 -->
+             <div class="col-lg-4">
              	<div class="page-sidebar d-none d-sm-block">
         		<?php 
 				echo ossn_view_widget(array(
@@ -229,7 +232,7 @@ $members = $params['group']->getMembers();
 					}			
            	  ?>
              </div> <!-- ./page-sidebar -->
-            </div> <!-- ./col-md-4 -->
+            </div> <!-- ./col-lg-4 -->
     	</div> <!-- ./row -->
         <?php 
 			} //subpage  end else

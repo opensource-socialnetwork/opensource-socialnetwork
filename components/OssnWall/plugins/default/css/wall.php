@@ -48,3 +48,17 @@
 .group-wall .ossn-wall-post {
 	float: right;
 }
+#ossn-wall-location .mapboxgl-ctrl-geocoder--input {
+	padding-left: 30px;
+    background: initial;
+    border-radius: 10px;
+    border: 1px dashed #eee;
+    margin-top: 5px;
+}
+.ossn-wall-image-container {
+    background: #f8f8f8;
+}
+.ossn-wall-image-container > img {
+		max-height:80vh;
+        margin:0 auto;
+}

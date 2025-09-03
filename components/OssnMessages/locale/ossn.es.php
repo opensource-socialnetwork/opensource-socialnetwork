@@ -4,7 +4,7 @@
  *
  * Translated by Zaturnay - https://zaturnay.com.ve
  *
- * @package   (openteknik.com).ossn
+ * @package   Open Source Social Network (OSSN)
  * @author    OSSN Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
@@ -23,5 +23,7 @@ $es = array(
 	'ossnmessages:delete:me' => 'Quitar para usted',
 	'ossnmessages:delete:me:note' => 'Este mensaje será eliminado para usted. Otro miembro podrá seguir viéndolo.',
 	'ossnmessages:replied:you' => 'Tú: %s',	
+	'message:fileattachment' => 'Archivo adjunto',
+	
 );
 ossn_register_languages('es', $es); 

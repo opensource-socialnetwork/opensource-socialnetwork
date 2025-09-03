@@ -2,7 +2,7 @@
 /**
  * Open Source Social Network
  *
- * @package   (openteknik.com).ossn
+ * @package   Open Source Social Network (OSSN)
  * @author    OSSN Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
@@ -31,7 +31,6 @@ if (isset($params['contents'])) {
 	
     <?php echo ossn_fetch_extend_views('ossn/endpoint'); ?>
     <?php echo ossn_fetch_extend_views('ossn/site/head'); ?>
-
     <script>
         <?php echo ossn_fetch_extend_views('ossn/js/head'); ?>
     </script>
@@ -47,7 +46,8 @@ if (isset($params['contents'])) {
 	<div class="ossn-halt ossn-light"></div>
 	<div class="ossn-message-box"></div>
 	<div class="ossn-viewer" style="display:none"></div>
-    
+    <?php echo ossn_plugin_view('theme/page/elements/system_messages'); ?>    
+   
     <div class="opensource-socalnetwork">
     	<?php echo ossn_plugin_view('theme/page/elements/sidebar');?>
     	 <div class="ossn-page-container">
@@ -57,7 +57,7 @@ if (isset($params['contents'])) {
           </div>    
 		</div>
     </div>
-    <div id="theme-config" class="hidden" data-desktop-cover-height="200" data-minimum-cover-image-width="1040"></div>	
+    <div id="ossn-theme-config" class="hidden" data-desktop-cover-height="300" data-minimum-cover-image-width="1200"></div>	
     <?php echo ossn_fetch_extend_views('ossn/page/footer'); ?>           
 </body>
 </html>

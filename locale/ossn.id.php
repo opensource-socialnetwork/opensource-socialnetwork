@@ -2,7 +2,7 @@
 /**
  * Open Source Social Network
  *
- * @package   (openteknik.com).ossn
+ * @package   Open Source Social Network (OSSN)
  * @author    OSSN Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
@@ -20,9 +20,7 @@ $id = array(
 	'home:top:heading' => "Selamat datang di %s! Bergabunglah sekarang untuk mendapatkan Teman Baru, Membuat Grup, Menambahkan Foto, dan banyak lagi.",
 	'create:account' => 'Buat sebuah Akun',
 	'its:free' => "Gratis dan selalu demikian.",
-	
-	'register:ok:message' => "Akun anda telah Terdaftar. Email Aktivasi telah dikirimkan ke kotak Surat Anda. Jika anda tidak menerima Email, silahkan periksa folder spam/sampah anda",
-	
+		
 	'copyright' => '&copy; COPYRIGHT',
 	'powered' => 'Powered by the Open Source Social Network.',
 	
@@ -142,7 +140,7 @@ Anda dapat menyalin dan menempelkan alamat ke browser Anda secara manual jika ta
 	'theme:install:error' => 'Tidak dapat memasang tema. Pastikan itu kompatibel dengan versi OSSN yang Anda gunakan.',
 	
 	'fields:require' => 'Semua bidang yang diperlukan!',
-	'username:error' => 'Nama pengguna tidak sah.',
+	'username:error' => 'Nama pengguna salah. Harap gunakan hanya karakter alfanumerik saat memasukkan informasi Anda. Pastikan tidak ada spasi atau karakter khusus. Hanya huruf A-Z dan angka 0-9 yang diizinkan. Nama pengguna harus terdiri dari minimal 5 karakter.',
 	'password:error' => 'Kata sandi harus lebih dari 5 karakter.',
 	'account:created' => 'Akun anda telah dibuat.',
 	'account:create:error:admin' => 'Registrasi akun gagal! Silakan coba lagi nanti.',
@@ -239,6 +237,7 @@ Silakan klik tautan di bawah untuk mengatur ulang kata sandi atau salin tautan d
 	'admin:edit:user' => 'Edit Pengguna',
 	'admin:login' => 'Gabung',
 	'admin:notification:email' => 'Email Pemberitahuan Situs',
+	'admin:email:name' => 'Nama Email Notifikasi',
 	'notification_email' => 'Email Pemberitahuan (noreply@domain.com)',
 	'owner_email' => 'Email Pemilik (mysite@domain.com)',
 	'ossn:websitename' => 'Nama situs web Anda',
@@ -329,7 +328,22 @@ Silakan klik tautan di bawah untuk mengatur ulang kata sandi atau salin tautan d
 	'php:upload_err_no_tmp_dir' => 'Folder sementara tidak ditemukan',
 	'php:upload_err_cant_write' => 'Terjadi kesalahan saat menulis file ke Disk/Penyimpanan',
 	'php:upload_err_extension' => 'File terhenti karena Ekstensi PHP',
-	
+
+	'php:extension:notfound' => 'Ekstensi PHP tidak ditemukan!', 
+	'admin:basiccache' => 'Tembolok Dasar', 
+	'admin:dcache:note' => 'Data dinamis telah dicache menggunakan cache dinamis. yang dapat mempercepat pemrosesan aplikasi Anda. Tembolok yang diaktifkan tidak akan membantu jika koneksi server cache Anda lebih lambat karena hanya akan membuat aplikasi Anda berjalan lebih lambat.  Disarankan agar Anda mengatur server caching pada host yang sama dengan jaringan sosial Anda. Harap menahan diri dari menggunakan caching dengan layanan hosting bersama. Hanya satu sistem cache yang dapat digunakan pada suatu waktu.', 
+	'admin:dcache:cachename' => 'Tipe Server Cache', 
+	'admin:dcache:extension:enabled' => 'Ekstensi Diaktifkan', 
+	'admin:dcache:select:server:type' => 'Pilih jenis server', 
+	'admin:dcache:host' => 'Host', 
+	'admin:dcache:port' => 'Port', 
+	'admin:dcache:username' => 'Nama pengguna (jika ada)', 
+	'admin:dcache:password' => 'Kata sandi (jika ada)', 
+	'admin:dcache:setstatus' => 'Atur Status', 
+	'admin:dcache:extension:tests' => 'Tes', 
+	'admin:dcache:errorconnection' => 'Tidak dapat mengonfirmasikan koneksi dengan rincian yang diberikan!', 
+	'admin:dcache:required:field' => 'Silakan isi kolom yang diperlukan', 
+	'admin:dcache:memcached:authnotsupport' => 'Ekstensi php Memcached Anda tidak mendukung otentikasi!', 
 	/*
 	 * List of ISO 639-1 language codes
 	 * http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes

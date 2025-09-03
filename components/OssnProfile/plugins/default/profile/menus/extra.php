@@ -2,7 +2,7 @@
 /**
  * Open Source Social Network
  *
- * @package   (openteknik.com).ossn
+ * @package   Open Source Social Network (OSSN)
  * @author    OSSN Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
@@ -13,8 +13,8 @@
 <div>
     <?php
     if (!empty($params['menu'])) {
-		echo '<a role="button" data-bs-toggle="dropdown" class="btn-action" data-bs-target="#" aria-expanded="true"><i class="fa fa-sort-down"></i></a>';
-		echo '<ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">';
+		echo '<a role="button" data-bs-toggle="dropdown" class="btn btn-secondary " data-bs-target="#" aria-expanded="true"><i class="fa fa-angle-down me-0"></i></a>';
+		echo '<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">';
         foreach ($params['menu'] as $menu) {
             foreach ($menu as  $link) {
 				$class = "dropdown-item profile-menu-extra-".$link['name'];

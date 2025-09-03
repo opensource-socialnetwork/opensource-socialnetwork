@@ -2,7 +2,7 @@
 /**
  * Open Source Social Network
  *
- * @package   (openteknik.com).ossn
+ * @package   Open Source Social Network (OSSN)
  * @author    OSSN Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
@@ -20,9 +20,7 @@ $ja = array(
 	'home:top:heading' => "Welcome to %s! 今すぐ参加して、新しい友達を作り、グループを作成し、写真を追加してください。",
 	'create:account' => 'アカウントを作成する',
 	'its:free' => "無料で、いつでも利用できます。",
-	
-	'register:ok:message' => "アカウントが登録されました。 アクティベーションメールがメールボックスに送信されました。 メールを受信していない場合は、スパム/ジャンクフォルダを確認してください。",
-	
+		
 	'copyright' => '&copy; COPYRIGHT',
 	'powered' => 'Powered by the Open Source Social Network.',
 	
@@ -150,7 +148,7 @@ $ja = array(
 	'theme:install:error' => 'テーマをインストールできません。 使用しているOSSNバージョンと互換性があることを確認してください。',
 	
 	'fields:require' => '全て必須項目です！',
-	'username:error' => 'ユーザー名が無効です。',
+	'username:error' => 'ユーザー名が正しくありません。半角英数字で入力してください。スペースや特殊文字は使用しないでください。A-Zのアルファベットと0-9の数字のみ使用できます。ユーザー名は5文字以上でなければなりません。',
 	'password:error' => 'パスワードは5文字以上にする必要があります。',
 	'account:created' => 'アカウントを作成しました。',
 	'account:create:error:admin' => 'アカウントの登録に失敗しました！ 後でもう一度やり直してください。',
@@ -247,6 +245,7 @@ $ja = array(
 	'admin:edit:user' => 'ユーザーを編集',
 	'admin:login' => 'ログイン',
 	'admin:notification:email' => 'サイト通知メール',
+	'admin:email:name' => '通知メール名',
 	'notification_email' => 'Notification Email (noreply@domain.com)',
 	'owner_email' => 'Owner Email (mysite@domain.com)',
 	'ossn:websitename' => 'あなたのウェブサイトのメール',
@@ -339,6 +338,22 @@ $ja = array(
 	'php:upload_err_no_tmp_dir' => 'Missing a temporary folder',
 	'php:upload_err_cant_write' => 'Failed to write file to disk',
 	'php:upload_err_extension' => 'A PHP extension stopped the file upload',	
+	'php:extension:notfound' => 'PHP 拡張が見つかりません。', 
+	
+	'admin:basiccache' => '基本キャッシュ', 
+	'admin:dcache:note' => '動的データは、動的キャッシュを使用してキャッシュされます。 これは、アプリケーションの処理を迅速化することができます。 キャッシュを使用可能にすると、アプリケーションの実行速度が向上するだけでなく、キャッシュ・サーバーの接続が遅くなる場合には役立ちません。  キャッシュ・サーバーは、ソーシャル・ネットワークと同じホスト上にセットアップすることをお勧めします。 共有ホスティング・サービスによるキャッシュの使用はご遠慮ください。 一度に 1 つのキャッシュ・システムしか使用できません。', 
+	'admin:dcache:cachename' => 'キャッシュサーバーのタイプ', 
+	'admin:dcache:extension:enabled' => '拡張が有効', 
+	'admin:dcache:select:server:type' => 'サーバータイプの選択', 
+	'admin:dcache:host' => 'ホスト', 
+	'admin:dcache:port' => 'ポート', 
+	'admin:dcache:username' => 'ユーザー名 ( 存在する場合 )', 
+	'admin:dcache:password' => 'パスワード ( 存在する場合 )', 
+	'admin:dcache:setstatus' => '状況の設定', 
+	'admin:dcache:extension:tests' => 'テスト', 
+	'admin:dcache:errorconnection' => '指定の詳細を使用して接続を確認できません', 
+	'admin:dcache:required:field' => '必須フィールドに入力してください', 
+	'admin:dcache:memcached:authnotsupport' => 'Memcached php の拡張機能は認証をサポートしていません。', 	
 	/*
 	 * List of ISO 639-1 language codes
 	 * http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes

@@ -3,7 +3,7 @@
  * Open Source Social Network
  *
  * @package   Open Source Social Network
- * @author    Open Social Website Core Team <info@openteknik.com>
+ * @author    Open Source Social Network Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
  * @link      https://www.opensource-socialnetwork.org/
@@ -11,9 +11,6 @@
 define('__OSSN_COMMENTS__', ossn_route()->com . 'OssnComments/');
 require_once __OSSN_COMMENTS__ . 'classes/OssnComments.php';
 require_once __OSSN_COMMENTS__ . 'libs/comments.php';
-if(!com_is_active('OssnNotifications')) {
-		require_once ossn_route()->com . 'OssnNotifications/classes/OssnNotifications.php';
-}
 
 /**
  * Initialize Comments Component
@@ -420,7 +417,10 @@ function ossn_comment_menu($name, $type, $params) {
 		//this section is for entity comment only
 		if(ossn_isLoggedin() && $comment->type == 'comments:entity') {
 				$entity = ossn_get_entity($comment->subject_guid);
-				if($user->guid == $params['owner_guid'] || ossn_isAdminLoggedin() || ($comment->type == 'comments:entity' && ($entity->type = 'user' && $user->guid == $entity->owner_guid))) {
+				if($entity->type == 'object'){
+					$entity_object = ossn_get_object($entity->owner_guid);	
+				}
+				if($user->guid == $params['owner_guid'] || ossn_isAdminLoggedin() || ($comment->type == 'comments:entity' && ($entity->type = 'user' && $user->guid == $entity->owner_guid)) || ($entity->type = 'object' && $entity_object && $user->guid == $entity_object->owner_guid)) {
 						ossn_unregister_menu('delete', 'comments');
 						ossn_register_menu_item('comments', array(
 								'name'     => 'delete',

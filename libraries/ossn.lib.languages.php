@@ -3,7 +3,7 @@
  * Open Source Social Network
  *
  * @package   Open Source Social Network
- * @author    Open Social Website Core Team <info@openteknik.com>
+ * @author    Open Source Social Network Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
  * @link      https://www.opensource-socialnetwork.org/
@@ -381,9 +381,11 @@ function ossn_standard_language_codes() {
 /**
  * Load all available languages
  *
+ * @param string|boolean $language_selection load specific langauge?
+ * @param boolean        $load_all if you wanted to load langauges for non-active components too
  * @return void
  */
-function ossn_load_available_languages($language_selection = false) {
+function ossn_load_available_languages($language_selection = false, $load_all = false) {
 		if(!$language_selection) {
 				$codes = ossn_standard_language_codes();
 		} else {
@@ -403,25 +405,29 @@ function ossn_load_available_languages($language_selection = false) {
 				}
 		}
 		//load component languages
-		$components = $components->getComponents();
+		if($load_all === false){
+			$components = $components->getActive();
+		} else {
+			$components = $components->getAll();				
+		}
 		foreach($components as $component) {
 				foreach($codes as $code) {
-						$file = $path->components . '/' . $component . "/locale/ossn.{$code}.php";
+						$file = $path->components . '/' . $component->com_id . "/locale/ossn.{$code}.php";
 						if(is_file($file)) {
 								include_once($file);
 						}
 				}
 		}
 		//load theme languages
-		$themes = $themes->getThemes();
-		foreach($themes as $theme) {
-				foreach($codes as $code) {
-						$file = $path->themes . $theme . "/locale/ossn.{$code}.php";
-						if(is_file($file)) {
-								include_once($file);
-						}
+		$theme = $themes->getActive();
+		//foreach($themes as $theme) {
+		foreach($codes as $code) {
+				$file = $path->themes . $theme . "/locale/ossn.{$code}.php";
+				if(is_file($file)) {
+						include_once($file);
 				}
 		}
+		//}
 }
 /**
  * Get list of all available languages

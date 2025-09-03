@@ -1,7 +1,7 @@
 /**
  * 	Open Source Social Network
  *
- * @package   (openteknik.com).ossn
+ * @package   Open Source Social Network (OSSN)
  * @author    OSSN Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
@@ -73,15 +73,19 @@ Ossn.SendMessage = function($user) {
         url: Ossn.site_url + "action/message/send",
         form: '#message-send-' + $user,
         action:true,
+		containMedia:true,
         beforeSend: function(request) {
             $('#message-send-' + $user).find('input[type=submit]').hide();
             $('#message-send-' + $user).find('.ossn-loading').removeClass('ossn-hidden');
         },
         callback: function(callback) {
-	    if(callback !== '0'){
-	          $('#message-append-' + $user).append(callback);
-	    }
-    	    $('#message-send-' + $user).find('textarea').val('');
+	    	if(callback !== '0'){
+	        	  $('#message-append-' + $user).append(callback);
+	 	   }	
+		    $('#message-send-' + $user).find('.ossn-omessage-attachment').val('');
+			$('#message-send-' + $user).find('.ossn-message-attachment-details').html("").hide();
+    	    
+			$('#message-send-' + $user).find('textarea').val('');
        	    $('#message-send-' + $user).find('input[type=submit]').show();
             $('#message-send-' + $user).find('.ossn-loading').addClass('ossn-hidden');
             Ossn.message_scrollMove($user);
@@ -90,12 +94,52 @@ Ossn.SendMessage = function($user) {
 
 };
 Ossn.getMessages = function($user, $guid) {
+	//recent messages statuses for users
+	//get the users id for the users who are in sidebar only.
+	$recent_containers = $('.messages-recent .ossn-recent-message-item');
+	$guids = new Array();
+	if($recent_containers.length > 0){
+			$recent_containers.each(function(){
+					$userid = $(this).attr('data-guid');
+					$guids.push($userid);							 
+			});	
+	}
     Ossn.PostRequest({
         url: Ossn.site_url + "messages/getnew/" + $user,
         action: false,
+		params: '&recent_guids='+$guids.join(','),
         callback: function(callback) {
-            $('#message-append-' + $guid).append(callback);
-            if(callback){
+				
+				//we don't need to check with guids like in chat because one window can be opened in one tab
+				//to check status, as there will be only one  .ossn-inmessage-status-circle
+				inchatstatus = $('#message-with-user-widget');
+				if (callback['is_online'] == false) {
+					if (inchatstatus.hasClass('ossn-inmessage-status-online')) {
+						inchatstatus.removeClass('ossn-inmessage-status-online');
+						inchatstatus.addClass('ossn-inmessage-status-offline');
+					}
+				} else {
+					inchatstatus.removeClass('ossn-inmessage-status-offline');
+					inchatstatus.addClass('ossn-inmessage-status-online');
+				}	
+			//check status for recent messages sidebar 
+			if(callback['recent_status']){
+					$.each(callback['recent_status'], function(guid, is_online){
+								$elem = $('.ossn-recent-message-item[data-guid="'+guid+'"]');
+								if($elem.length > 0){
+										if(is_online && $elem.hasClass('ossn-recent-message-status-offline')){
+												$elem.removeClass('ossn-recent-message-status-offline');		
+												$elem.addClass('ossn-recent-message-status-online');	
+										}
+										if(!is_online && $elem.hasClass('ossn-recent-message-status-online')){
+												$elem.removeClass('ossn-recent-message-status-online');		
+												$elem.addClass('ossn-recent-message-status-offline');	
+										}										
+								}
+					});	
+			}
+            if(callback['html'] && callback['html'] != ''){
+ 	           $('#message-append-' + $guid).append(callback['html']);
             	//Unwanted refresh in message window #416 , there is no need to scroll if no new message.
 	            Ossn.message_scrollMove($guid);
             }
@@ -350,10 +394,55 @@ $(document).ready(function(e) {
 });
 Ossn.RegisterStartupFunction(function() {
     $(document).ready(function() {
+		$('body').on('click', '.ossn-message-icon-attachment', function(){
+					$guid = $(this).attr('data-guid');
+					$id   = '#message-send-'+$guid;
+					$($id).find('.ossn-omessage-attachment').trigger('click');
+		});
+		$('body').on('click', '.ossn-recent-messages-toggle', function(){
+					$('.messages-recent .widget-contents').fadeToggle();	
+					icon = $('.ossn-recent-messages-toggle i');
+					if(icon.hasClass('fa-angle-up')){
+							icon.removeClass('fa-angle-up');
+							icon.addClass('fa-angle-down');
+					} else if(icon.hasClass('fa-angle-down')){
+							icon.removeClass('fa-angle-down');
+							icon.addClass('fa-angle-up');
+					}					
+		});
+		$('body').on('change', '.ossn-omessage-attachment', function(e){
+					$guid = $(this).attr('data-guid');
+					$id   = '#message-send-'+$guid;
+					fileName = e.target.files[0].name;
+					template = "<span class='ossn-omessage-attachment-name'>"+fileName+"</span>"+"<span class='ossn-omessage-attachment-remove'><i class='fa fa-times'</i></span>",
+					$($id).find('.ossn-message-attachment-details').html(template);
+					$($id).find('.ossn-message-attachment-details').show();
+		});		
+		$('body').on('click', '.ossn-omessage-attachment-remove', function(){
+							$guid = $(this).parent().attr('data-guid');			
+							$id   = '#message-send-'+$guid;
+							$($id).find('.ossn-omessage-attachment').val('');
+							$($id).find('.ossn-message-attachment-details').html("").hide();
+		});		
 		$('body').on('click', '.ossn-message-delete', function(e){
 				var id = $(this).attr('data-id');
 				Ossn.MessageBox('messages/delete?id=' + id);
+		});		
+		$('body').on('click', '.ossn-message-delete-conversation', function(e){
+				var id = $(this).attr('data-guid');
+				Ossn.MessageBox('messages/delete_conversation?id=' + id);
 		});
+		Ossn.ajaxRequest({
+                    form: '#ossn-message-delete-conv-form',
+					url: Ossn.site_url+'action/message/delete_conversation',
+					beforeSend: function(){
+							$('#ossn-message-delete-conv-form').html('<div class="ossn-loading"></div>');	
+					},
+                    callback: function(callback) {
+							//reload page in any case
+							Ossn.redirect('messages/all');		
+					}
+        });				
 		Ossn.ajaxRequest({
                     form: '#ossn-message-delete-form',
 					url: Ossn.site_url+'action/message/delete',

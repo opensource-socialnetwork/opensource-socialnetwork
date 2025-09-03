@@ -3,7 +3,7 @@
  * Open Source Social Network
  *
  * @package   Open Source Social Network
- * @author    Open Social Website Core Team <info@openteknik.com>
+ * @author    Open Source Social Network Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
  * @link      https://www.opensource-socialnetwork.org/
@@ -29,6 +29,9 @@ function ossn_profile() {
 		ossn_extend_view('js/ossn.site.public', 'js/profile/birthdate');
 		ossn_extend_view('js/ossn.admin', 'js/profile/birthdate');
 		
+		if(!ossn_isLoggedin()){
+			ossn_extend_view('forms/signup',  'js/profile/usernamecheck');
+		}
 		//actions
 		if(ossn_isLoggedin()) {
 				ossn_register_action('profile/photo/upload', __OSSN_PROFILE__ . 'actions/photo/upload.php');
@@ -62,8 +65,13 @@ function ossn_profile() {
 		//notifications
 		ossn_add_hook('notification:view', 'like:entity:file:profile:photo', 'ossn_notification_like_profile_photo');
 		ossn_add_hook('notification:view', 'comments:entity:file:profile:photo', 'ossn_notification_like_profile_photo');
-		ossn_add_hook('notification:view', 'like:entity:file:profile:cover', 'ossn_notification_like_profile_cover');
+		ossn_add_hook('notification:view', 'like:entity:file:profile:cover', 'ossn_notification_like_profile_photo');
 		ossn_add_hook('notification:view', 'comments:entity:file:profile:cover', 'ossn_notification_like_profile_photo');
+		
+		ossn_add_hook('notification:redirect:uri', 'like:entity:file:profile:photo', 'ossn_notification_like_profile_photo_redirect_uri');
+		ossn_add_hook('notification:redirect:uri', 'comments:entity:file:profile:photo', 'ossn_notification_like_profile_photo_redirect_uri');
+		ossn_add_hook('notification:redirect:uri', 'like:entity:file:profile:cover', 'ossn_notification_like_profile_photo_redirect_uri');
+		ossn_add_hook('notification:redirect:uri', 'comments:entity:file:profile:cover', 'ossn_notification_like_profile_photo_redirect_uri');
 		
 		//subpages of profile
 		ossn_profile_subpage('friends');
@@ -86,6 +94,32 @@ function ossn_profile() {
 							'text' => ossn_print('basic:settings'),
 				));									
 		}
+}
+/**
+ * Redirect URI for profile photo like or comment like
+ *
+ * @reutrn boolean|string
+ */
+function ossn_notification_like_profile_photo_redirect_uri($hook, $type, $return, $params) {
+		$notification = $params['notification'];
+		$uri          = "photos/user/view/{$notification->subject_guid}";
+		if(preg_match('/comments:entity/i', $notification->type)){
+			$uri = "photos/user/view/{$notification->subject_guid}#comments-item-{$notification->item_guid}";				
+		}
+		return $uri;
+}
+/**
+ * Redirect URI for profile cover like or comment like
+ *
+ * @reutrn boolean|string
+ */
+function ossn_notification_like_profile_cover_redirect_uri($hook, $type, $return, $params) {
+		$notification = $params['notification'];
+		$uri          = "photos/user/view/{$notification->subject_guid}";
+		if(preg_match('/comments:entity/i', $notification->type)){
+			$uri = "photos/user/view/{$notification->subject_guid}#comments-item-{$notification->item_guid}";				
+		}
+		return $uri;
 }
 /**
  * Add users link in search page
@@ -223,7 +257,7 @@ function profile_search_handler($hook, $type, $return, $params) {
  *
  * @return modules;
  */
-function profile_modules($h, $t, $module, $params) {
+function profile_modules($h, $t, $modules, $params) {
 		$user['user'] = $params['user'];
 		
 		// didn't part of initial release , so in next release we will add
@@ -261,6 +295,7 @@ function profile_page_handler($page) {
 		}
 		ossn_set_page_owner_guid($user->guid);
 		ossn_trigger_callback('page', 'load:profile');
+		ossn_load_external_js('jquery.ui.touch.punch.js');
 		
 		$params['user'] = $user;
 		$params['page'] = $page;
@@ -425,14 +460,13 @@ function ossn_notification_like_profile_photo($hook, $type, $return, $notificati
 		if(preg_match('/comments/i', $notification->type)) {
 				$iconType = 'comment';
 		}
-		$url               = ossn_site_url("photos/user/view/{$notification->subject_guid}");
 		return ossn_plugin_view('notifications/template/view', array(
 				'iconURL'   => $user->iconURL()->small,
 				'guid'      => $notification->guid,
 				'type'      => $notification->type,
 				'viewed'    => $notification->viewed,
-				'url'       => $url,
 				'icon_type' => $iconType,
+				'instance'  => $notification,
 				'fullname'  => $user->fullname,
 		));		   
 }

@@ -34,14 +34,15 @@
 	position: relative;
 }
 .ossn-covers-uploading-annimation {
-    position: absolute;
     float: right;
-    left: 50%;
-    top: 30%;
     background: rgba(255, 255, 255, 0.62);
     padding: 20px;
     border-radius: 20px;
     z-index: 1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 .ossn-profile-bottom .ossn-edit-form .radio-block {
     margin-top: 0;

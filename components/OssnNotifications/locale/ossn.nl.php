@@ -2,7 +2,7 @@
 /**
  * Open Source Social Network
  *
- * @package   (openteknik.com).ossn
+ * @package   Open Source Social Network (OSSN)
  * @author    Dieter <info@marohn.nl>
  * @copyright 2014-2018 OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
@@ -40,6 +40,8 @@ $nl = array(
 	
 	'ossn:notifications:comments:entity:file:profile:photo:someone' => "%s heeft gereageerd op de profielfoto.",	
     'ossn:notifications:comments:entity:file:profile:cover:someone' => "%s heeft gereageerd op profielomslag.",	
-	'ossn:notifications:comments:entity:file:ossn:aphoto:someone' => '%s heeft gereageerd op de foto.',		
+	'ossn:notifications:comments:entity:file:ossn:aphoto:someone' => '%s heeft gereageerd op de foto.',	
+	
+	'ossn:notifications:admin:settings:checkintervals:title' => 'Automatische controletijd voor meldingen (standaard 60 seconden)', 
 );
 ossn_register_languages('nl', $nl); 

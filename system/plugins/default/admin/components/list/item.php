@@ -2,7 +2,7 @@
 /**
  * Open Source Social Network
  *
- * @package   (openteknik.com).ossn
+ * @package   Open Source Social Network (OSSN)
  * @author    OSSN Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
@@ -25,9 +25,11 @@
   	$disable = "<a href='{$disable}' class='btn btn-warning btn-sm'><i class='fa fa-minus'></i>" . ossn_print('admin:button:disable') ."</a>";
 	$enable = '';
  }
- if (in_array($params['name'], ossn_registered_com_panel())) {
-  	$configure = ossn_site_url("administrator/component/{$params['name']}");
-  	$configure = "<a href='{$configure}' class='btn btn-primary btn-sm'><i class='fa fa-cogs'></i>" . ossn_print('admin:button:configure') ."</a>";
+ $configure = "";
+ $configure_options = ossn_registered_com_panel();
+ if ($configure_options && in_array($params['name'], $configure_options)) {
+	$configure = ossn_site_url("administrator/component/{$params['name']}");
+  	$configure = "<a href='{$configure}' class='btn btn-success btn-sm'><i class='fa fa-cogs'></i>" . ossn_print('admin:button:configure') ."</a>";
  }
  $delete = '';
  if (!in_array($params['name'], $params['OssnCom']->requiredComponents())) {
@@ -132,7 +134,7 @@
 					if($check){
 						echo $enable;
 					}
-			 		echo $disable, $delete;
+			 		echo $configure, $disable, $delete;
 			 ?>
             </div>
 			

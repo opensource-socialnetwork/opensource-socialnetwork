@@ -1131,7 +1131,7 @@
 
 @media (max-width: 480px) {
 	.ossn-like-reactions-panel {
-		margin-left: -100px;
+		margin-left: -40px;
 		transform: scale(0.8);
 	}
 	.comment-contents .ossn-like-reactions-panel {

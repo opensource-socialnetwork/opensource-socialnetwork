@@ -2,7 +2,7 @@
 /**
  * Open Source Social Network
  *
- * @package   (openteknik.com).ossn
+ * @package   Open Source Social Network (OSSN)
  * @author    OSSN Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
@@ -20,9 +20,7 @@ $tr = array(
 	'home:top:heading' => "Merhaba %s! Yeni arkadaşlar edinmek, grup oluşturmak, fotoğraf paylaşmak ve daha fazlasını yapmak için şimdi katılın.",
 	'create:account' => 'Hesap Oluştur',
 	'its:free' => "Tabi ki Ücretsiz!",
-	
-	'register:ok:message' => "Hesabınız oluşturuldu! Şimdi e-mail adresinize gidip onayladıktan sonra hesabınızı etkinleştirebilirsiniz.",
-	
+		
 	'copyright' => '&copy; Telif Hakkı',
 	'powered' => 'Powered by the Open Source Social Network.',
 	
@@ -164,7 +162,7 @@ Bağlantı çalışmıyorsa kopyalayıp adres çubuğuna yapıştırarak deneyeb
 	'theme:install:error' => 'Tema yüklenemedi! Kullandığınız OSSN sürümü ile uyumlu olduğundan emin olun.',
 	
 	'fields:require' => 'Tüm alanlar zorunludur!',
-	'username:error' => 'Kullanıcı adı geçersiz.',
+	'username:error' => 'Kullanıcı adı yanlış. Lütfen bilgilerinizi girerken sadece alfanümerik karakterler kullanın. Boşluk veya özel karakter olmadığından emin olun. Yalnızca A-Z harflerine ve 0-9 rakamlarına izin verilir. Kullanıcı adı en az 5 karakterden oluşmalıdır.',
 	'password:error' => 'Şifre en fazla 5 karakter olmalıdır.',
 	'account:created' => 'Hesap oluşturuldu.',
 	'account:create:error:admin' => 'Hesap oluşturulamadı! Lütfen daha sonra tekrar deneyiniz.',
@@ -263,6 +261,7 @@ Bağlantı çalışmıyorsa kopyalayıp adres çubuğuna yapıştırarak deneyeb
 	'admin:edit:user' => 'Kullanıcıyı Düzenle',
 	'admin:login' => 'Giriş Yap',
 	'admin:notification:email' => 'E-posta Bildirimi',
+	'admin:email:name' => 'Bildirim E-posta Adı',
 	'notification_email' => 'Bildirim E-postası (destek@eternity.hol.es)',
 	'owner_email' => 'Hesap e-postası (noreply@eternity.hol.es)',
 	'ossn:websitename' => 'Eternity',
@@ -330,6 +329,22 @@ Bağlantı çalışmıyorsa kopyalayıp adres çubuğuna yapıştırarak deneyeb
 	'php:upload_err_no_tmp_dir' => 'Geçici klasör eksik',
 	'php:upload_err_cant_write' => 'dosya diske yazılamadı',
 	'php:upload_err_extension' => 'Bir PHP uzantısı dosya yüklemesini durdurdu',
+	'php:extension:notfound' => 'PHP Uzantısı bulunamadı!', 
+	
+	'admin:basiccache' => 'Temel Önbellek', 
+	'admin:dcache:note' => 'Dinamik veriler, dinamik bir önbellek kullanılarak önbelleğe alınır. bu da uygulamanızın işlenmesini hıza çevirebilir. Önbellek sunucusu bağlanmanızın daha yavaş olması durumunda önbellek sunucusu bağlanmanızın daha yavaş olması, önbelleklerin etkinleştirilmesine yardımcı olmaz. Bu durumda, uygulamanızın daha yavaş çalışması gerekir.  Önbelleğe alma sunucusunu, sosyal ağınızla aynı anasistemde kurmanızı öneririz. Lütfen, paylaşılan barındırma hizmetleriyle önbelleğe almayı kullanmaktan kaçının. Aynı anda yalnızca bir önbellek sistemi kullanılabilir.', 
+	'admin:dcache:cachename' => 'Önbellek Sunucusu Tipleri', 
+	'admin:dcache:extension:enabled' => 'Uzantı Etkin', 
+	'admin:dcache:select:server:type' => 'Sunucu tipi seçin', 
+	'admin:dcache:host' => 'Anasistem', 
+	'admin:dcache:port' => 'Kapı', 
+	'admin:dcache:username' => 'Kullanıcı adı (varsa)', 
+	'admin:dcache:password' => 'Parola (varsa)', 
+	'admin:dcache:setstatus' => 'Durumu Ayarla', 
+	'admin:dcache:extension:tests' => 'Sınamalar', 
+	'admin:dcache:errorconnection' => 'Belirtilen ayrıntılar kullanılarak bağlantı doğrulanamıyor!', 
+	'admin:dcache:required:field' => 'Lütfen gerekli alanları doldurun', 
+	'admin:dcache:memcached:authnotsupport' => 'Not önbelleğe yüklenen php uzantınız kimlik doğrulamayı desteklemiyor!', 	
 	/*
 	 * List of ISO 639-1 language codes
 	 * http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes

@@ -17,7 +17,8 @@
  * @return boolean
  */
 function ossn_is_from_cli() {
-		if(php_sapi_name() == 'cli' || (isset($_SERVER['argv']) && $_SERVER['argv'] > 0)) {
+		//because 0th location is always the script name
+		if(php_sapi_name() == 'cli' || (isset($argv) && isset($argv[0]) && !empty($argv[0]))) {
 				return true;
 		}
 		return false;
@@ -64,7 +65,7 @@ function ossn_cli_input(array $names = array()) {
 		foreach($names as $item) {
 				array_push($args, $item . ':');
 		}
-		return getopt(null, $args);
+		return getopt('', $args);
 }
 /**
  * OSSN ClI handler

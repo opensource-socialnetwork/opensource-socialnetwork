@@ -2,7 +2,7 @@
 /**
  * Open Source Social Network
  *
- * @package   (openteknik.com).ossn
+ * @package   Open Source Social Network (OSSN)
  * @author    OSSN Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
@@ -21,7 +21,6 @@ $he = array(
 	'create:account' => 'יצירת חשבון',
 	'its:free' => "",
 	
-	'register:ok:message' => "החשבון נוצר בהצלחה, מייל הפעלה נשלח אליך. אם אינך רואה את המייל יתכן והוא הגיע לספאם.",
 	'copyright' => '&copy; כל הזכויות שמורות',
 	'powered' => 'Powered by the Open Source Social Network.',
 	
@@ -163,7 +162,7 @@ $he = array(
 	'theme:install:error' => 'לא ניתן להתקין עיצוב, יש לוודא שהוא מתאים לגרסת המערכת!',
 	
 	'fields:require' => 'כל השדות נדרשים!',
-	'username:error' => 'שם משתמש לא תקין.',
+	'username:error' => 'שם המשתמש שגוי. אנא השתמש רק בתווים אלפאנומריים בעת הזנת המידע שלך. ודא שאין רווחים או תווים מיוחדים. רק אותיות A-Z ומספרים 0-9 מותרים. שם המשתמש חייב להכיל לפחות 5 תווים.',
 	'password:error' => 'סיסמה חייבת להיות בת יותר מ 5 תווים.',
 	'account:created' => 'החשבון נוצר בהצלחה.',
 	'account:create:error:admin' => 'יצירת חשבון נכשלה, נסה שנית מאוחר יותר.',
@@ -260,6 +259,7 @@ $he = array(
 	'admin:edit:user' => 'עריכת משתמש',
 	'admin:login' => 'חיבור',
 	'admin:notification:email' => 'דואר אלקטרוני להודעות',
+	'admin:email:name' => 'שם דוא"ל הודעה',
 	'notification_email' => 'דואר אלקטרוני להודעות (noreply@domain.com)',
 	'owner_email' => 'דואר אלקטרוני של בעל האתר (mysite@domain.com)',
 	'ossn:websitename' => 'שם האתר',
@@ -327,6 +327,22 @@ $he = array(
 	'php:upload_err_no_tmp_dir' => 'חסר תיקיה זמנית',
 	'php:upload_err_cant_write' => 'כישלון הקובץ לדיסק נכשל',
 	'php:upload_err_extension' => 'סיומת PHP עצרה את העלאת הקובץ',
+	'php:extension:notfound' => 'הרחבת PHP לא נמצאה!',
+	
+	'admin:basiccache' => 'מטמון בסיסי', 
+	'admin:dcache:note' => 'הנתונים הדינמיים מוטמנים באמצעות מטמון דינמי. אשר יכול לזרז את העיבוד של היישום שלך. הפעלת המטמון לא תעזור אם החיבור לשרת המטמון הוא איטי יותר מאחר שהוא רק יגרום ליישום לפעול לאט יותר.  מומלץ להגדיר את שרת ההטמנה באותו מארח של הרשת החברתית שלכם. נא להימנע משימוש במטמון עם שירותי אירוח משותפים. ניתן להשתמש רק במערכת מטמון אחת בכל פעם.', 
+	'admin:dcache:cachename' => 'הטמנת סוגי שרתים', 
+	'admin:dcache:extension:enabled' => 'הרחבה מופעלת', 
+	'admin:dcache:select:server:type' => 'בחירת סוג שרת', 
+	'admin:dcache:host' => 'מארח', 
+	'admin:dcache:port' => 'פורט', 
+	'admin:dcache:username' => 'שם משתמש (אם יש)', 
+	'admin:dcache:password' => 'סיסמה (אם קיימת)', 
+	'admin:dcache:setstatus' => 'הגדרת מצב', 
+	'admin:dcache:extension:tests' => 'בדיקות', 
+	'admin:dcache:errorconnection' => 'לא ניתן לאשר את החיבור באמצעות הפרטים שצוינו!', 
+	'admin:dcache:required:field' => 'נא למלא שדות דרושים.', 
+	'admin:dcache:memcached:authnotsupport' => 'הרחבת ה-Memcached php אינה תומכת באימות זהות!', 
 	/*
 	 * List of ISO 639-1 language codes
 	 * http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes

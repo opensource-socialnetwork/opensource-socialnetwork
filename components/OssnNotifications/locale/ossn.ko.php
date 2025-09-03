@@ -2,7 +2,7 @@
 /**
  * Open Source Social Network
  *
- * @package   (openteknik.com).ossn
+ * @package   Open Source Social Network (OSSN)
  * @author    OSSN Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
@@ -43,5 +43,7 @@ $ko = array(
 	'ossn:notifications:comments:entity:file:profile:photo:someone' => "%s 님이 프로필 사진에 댓글을 달았습니다.",	
     'ossn:notifications:comments:entity:file:profile:cover:someone' => "%s 님이 프로필 표지에 댓글을 달았습니다.",	
 	'ossn:notifications:comments:entity:file:ossn:aphoto:someone' => '%s 님이 사진에 댓글을 달았습니다.',		
+
+	'ossn:notifications:admin:settings:checkintervals:title' => '알림 자동 확인 시간 (기본 60초)', 	
 );
 ossn_register_languages('ko', $ko); 

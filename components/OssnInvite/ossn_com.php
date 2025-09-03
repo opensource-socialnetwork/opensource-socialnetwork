@@ -3,7 +3,7 @@
  * Open Source Social Network
  *
  * @package   Open Source Social Network
- * @author    Open Social Website Core Team <info@openteknik.com>
+ * @author    Open Source Social Network Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
  * @link      https://www.opensource-socialnetwork.org/
@@ -67,7 +67,7 @@ function ossn_invite_pagehandler(){
  */
 function ossn_invite_addfriends($callback, $type, $params){
 	   $friend = input('com_invite_friend');
-	   if(isset($params['guid']) && !empty($params['guid']) && isset($friend) && !empty($friend)){
+	   if (isset($params['guid']) && !empty($params['guid']) && isset($friend) && !empty($friend) && !ossn_user_by_guid($friend)) {
 				ossn_add_friend($friend, $params['guid']);
 				ossn_add_friend($params['guid'], $friend);
 	   }

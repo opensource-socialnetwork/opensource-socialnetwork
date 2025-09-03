@@ -2,7 +2,7 @@
 /**
  * Open Source Social Network
  *
- * @package   (openteknik.com).ossn
+ * @package   Open Source Social Network (OSSN)
  * @author    OSSN Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
@@ -131,7 +131,7 @@ class OssnProfile extends OssnDatabase {
 		$this->wall->item_guid = $itemguid;
 		
 		//[E] Check if profile and cover posted on newsfeed as public #1991
-		if($this->wall->Post('null:data', '', '', OSSN_FRIENDS)){
+		if($this->wall->Post(NULL, '', '', OSSN_FRIENDS)){
 			return true;
 		}
 	}

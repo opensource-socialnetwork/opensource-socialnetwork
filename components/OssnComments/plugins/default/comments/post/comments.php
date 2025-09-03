@@ -3,7 +3,7 @@
  * Open Source Social Network
  *
  * @package   Open Source Social Network
- * @author    Open Social Website Core Team <info@openteknik.com>
+ * @author    Open Source Social Network Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
  * @link      https://www.opensource-socialnetwork.org/
@@ -58,11 +58,11 @@ if (ossn_isLoggedIn() && $allow_post_comment){
 
 $form = <<<html
 <div class="comments-item">
-    <div class="row">
-        <div class="col-md-1">
+    <div class="d-flex flex-row">
+        <div class="pe-1">
             <img class="comment-user-img" src="{$iconurl}" />
         </div>
-        <div class="col-md-11">
+        <div class="ps-1 w-100">
             $inputs
         </div>
     </div>

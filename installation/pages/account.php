@@ -2,7 +2,7 @@
 /**
  * Open Source Social Network
  *
- * @package   (openteknik.com).ossn
+ * @package   Open Source Social Network (OSSN)
  * @author    OSSN Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
@@ -10,6 +10,14 @@
  */
 define('OSSN_ALLOW_SYSTEM_START', TRUE);
 require_once(dirname(dirname(dirname(__FILE__))) . '/system/start.php');
+
+$copyrights = ossn_site_settings('copyrights');
+if(!$copyrights || empty($copyrights)){
+	$Site = new OssnSite();
+	$Site->setSetting('notification_name', ossn_site_settings('site_name'));
+	$Site->setSetting('copyrights', ossn_site_settings('site_name'));
+}
+
 ?>
 <div class="layout-installation">
     <h2> <?php echo ossn_installation_print('create:admin:account'); ?> </h2>

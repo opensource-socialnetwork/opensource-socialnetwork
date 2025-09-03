@@ -2,7 +2,7 @@
 /**
  *    OpenSource-SocialNetwork
  *
- * @package   (openteknik.com).ossn
+ * @package   Open Source Social Network (OSSN)
  * @author    OSSN Core Team <info@opensource-socialnetwork.com>
  * @copyright (C) OpenTeknik LLC
  * @license   General Public Licence http://opensource-socialnetwork.com/licence
@@ -17,7 +17,6 @@ if (isset($_COOKIE['ossn_home_wall_privacy'])) {
 } else {
     $privacy = OSSN_PUBLIC;
 }
- ossn_load_external_js('places.min');
  ossn_load_external_js('jquery.tokeninput'); 
 ?>
 <div class="tabs-input">
@@ -36,7 +35,7 @@ if (isset($_COOKIE['ossn_home_wall_privacy'])) {
         <input type="text" placeholder="<?php echo ossn_print('enter:location'); ?>" name="location" id="ossn-wall-location-input" />
     </div>
     <div id="ossn-wall-photo" style="display:none;">
-        <input type="file" name="ossn_photo" />
+        <input type="file" name="ossn_photo" accept="image/*"  />
     </div>
     <div class="controls">
         <?php

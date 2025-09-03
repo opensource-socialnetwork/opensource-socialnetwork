@@ -6,13 +6,13 @@
     float: right;
     position: relative;
     margin-right: 5px;
-    margin-top: 4px;
+    margin-top: 3px;
     width: 25px;
     height: 25px;
     padding: 5px;
-    font-size:16px;
-    cursor:pointer;
-    color:#999;
+    font-size: 17px;
+    cursor: pointer;
+    color: #999;
 }
 .ossn-comment-attachment {
     width: 115px;
@@ -46,7 +46,7 @@
 	margin-left:10px;
     margin-right:10px;
 }
-.ossn-viewer .comments-item .col-md-1 {
+.ossn-viewer .comments-item .col-lg-1 {
 	display:none;
 }
 .ossn-viewer-comments .comments-likes .ossn-comment-attach-photo .fa-camera {

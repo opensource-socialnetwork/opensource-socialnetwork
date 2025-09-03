@@ -2,7 +2,7 @@
 /**
  * Open Source Social Network
  *
- * @package   (openteknik.com).ossn
+ * @package   Open Source Social Network (OSSN)
  * @author    OSSN Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
@@ -42,6 +42,8 @@ $en = array(
 	
 	'ossn:notifications:comments:entity:file:profile:photo:someone' => "%s ha commentato la foto del profilo.",	
     'ossn:notifications:comments:entity:file:profile:cover:someone' => "%s ha commentato la copertina del profilo.",	
-	'ossn:notifications:comments:entity:file:ossn:aphoto:someone' => '%s ha commentato la foto.',		
+	'ossn:notifications:comments:entity:file:ossn:aphoto:someone' => '%s ha commentato la foto.',	
+
+	'ossn:notifications:admin:settings:checkintervals:title' => 'Tempo di controllo automatico delle notifiche (predefinito 60 secondi)', 
 );
 ossn_register_languages('it', $en); 

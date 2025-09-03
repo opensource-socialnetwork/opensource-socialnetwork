@@ -3,7 +3,7 @@
  * Open Source Social Network
  *
  * @package   Open Source Social Network
- * @author    Open Social Website Core Team <info@openteknik.com>
+ * @author    Open Source Social Network Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
  * @link      https://www.opensource-socialnetwork.org/
@@ -27,6 +27,10 @@ function ossn_wall() {
 				ossn_register_action('wall/post/delete', __OSSN_WALL__ . 'actions/wall/post/delete.php');
 				ossn_register_action('wall/post/edit', __OSSN_WALL__ . 'actions/wall/post/edit.php');
 				ossn_register_action('wall/post/embed', __OSSN_WALL__ . 'actions/wall/post/embed.php');
+
+				ossn_extend_view('forms/OssnWall/home/container', 'ossn_wall_container_assets');
+				ossn_extend_view('forms/OssnWall/user/container', 'ossn_wall_container_assets');
+				ossn_extend_view('forms/OssnWall/group/container', 'ossn_wall_container_assets');
 		}
 		if(ossn_isAdminLoggedin()) {
 				ossn_register_action('wall/admin/settings', __OSSN_WALL__ . 'actions/wall/admin/settings.php');
@@ -37,11 +41,6 @@ function ossn_wall() {
 
 		ossn_new_external_js('jquery.tokeninput', 'vendors/jquery/jquery.tokeninput.js');
 
-		//Remove google map search API as it requires API #906
-		//ossn_new_external_js('maps.google', 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places', false);
-		//Location autocomplete not working over https #1043 , use some other service ,  its better than google looks nice.
-		ossn_new_external_js('places.min', '//cdn.jsdelivr.net/places.js/1/places.min.js', false);
-
 		//pages
 		ossn_register_page('post', 'ossn_post_page');
 		ossn_register_page('friendpicker', 'ossn_friend_picker');
@@ -50,8 +49,15 @@ function ossn_wall() {
 		ossn_add_hook('notification:view', 'like:post', 'ossn_likes_post_notifiation');
 		ossn_add_hook('notification:view', 'comments:post', 'ossn_likes_post_notifiation');
 		ossn_add_hook('notification:view', 'wall:friends:tag', 'ossn_likes_post_notifiation');
-		ossn_add_hook('notification:view', 'comments:post:group:wall', 'ossn_group_comment_post');
-		ossn_add_hook('notification:view', 'like:post:group:wall', 'ossn_group_comment_post');
+		ossn_add_hook('notification:view', 'comments:post:group:wall', 'ossn_likes_post_notifiation');
+		ossn_add_hook('notification:view', 'like:post:group:wall', 'ossn_likes_post_notifiation');
+
+		//hooks for notification redirect URI
+		ossn_add_hook('notification:redirect:uri', 'like:post', 'ossn_likes_redirect_uri');
+		ossn_add_hook('notification:redirect:uri', 'comments:post', 'ossn_likes_redirect_uri');
+		ossn_add_hook('notification:redirect:uri', 'wall:friends:tag', 'ossn_likes_redirect_uri');
+		ossn_add_hook('notification:redirect:uri', 'comments:post:group:wall', 'ossn_likes_redirect_uri');
+		ossn_add_hook('notification:redirect:uri', 'like:post:group:wall', 'ossn_likes_redirect_uri');
 
 		ossn_add_hook('wall', 'post:menu', 'ossn_wall_post_menu');
 
@@ -85,17 +91,59 @@ function ossn_wall() {
 						'text'  => '<i class="fa fa-image"></i>',
 				),
 		);
+		ossn_register_menu_item('wall/container/controls/group', array(
+				'name'  => 'tag_friend',
+				'class' => 'ossn-wall-friend',
+				'text'  => '<i class="fa fa-users"></i>',
+		));
 		ossn_register_menu_item('wall/container/home', $menupost);
 		ossn_register_menu_item('wall/container/group', $menupost);
 		ossn_register_menu_item('wall/container/user', $menupost);
 
-		foreach($container_controls as $key => $container_control) {
+		foreach ($container_controls as $key => $container_control) {
 				ossn_register_menu_item('wall/container/controls/home', $container_control);
 				ossn_register_menu_item('wall/container/controls/user', $container_control);
 				if($container_control['name'] != 'tag_friend') {
 						ossn_register_menu_item('wall/container/controls/group', $container_control);
 				}
 		}
+		ossn_add_hook('required', 'components', 'ossn_location_asure_requirements');
+}
+/**
+ * ossn get wall by guid
+ *
+ * @param integer $guid Wall post guid
+ * @return object|boolean
+ */
+function ossn_wall_by_guid($guid) {
+		if(!isset($guid) || (isset($guid) && empty($guid))) {
+				return false;
+		}
+		$wall = new OssnWall();
+		return $wall->GetPost($guid);
+}
+/**
+ * Redirect URI for wall like or comment like
+ * Since its same for groups and wall so no need for seperate function
+ *
+ * @reutrn string
+ */
+function ossn_likes_redirect_uri($hook, $type, $return, $params) {
+		$notification = $params['notification'];
+		$uri          = "post/view/{$notification->subject_guid}";
+		if(preg_match('/comments/i', $notification->type)) {
+				$uri = "post/view/{$notification->subject_guid}#comments-item-{$notification->item_guid}";
+		}
+		return $uri;
+}
+/**
+ * Location Make sure it is not disabled if Wall is active
+ *
+ * @return array
+ */
+function ossn_location_asure_requirements($hook, $type, $return, $params) {
+		$return[] = 'OssnLocation';
+		return $return;
 }
 /**
  * Friends Picker
@@ -108,32 +156,58 @@ function ossn_friend_picker() {
 		if(!ossn_isLoggedin()) {
 				exit();
 		}
-		$user    = new OssnUser();
-		$friends = $user->getFriends(ossn_loggedin_user()->guid);
+		$search_for = input('q');
+		$usera      = array();
+		$user       = new OssnUser();
+
+		$options = array();
+		if(!empty($search_for)) {
+				$options = array(
+						'wheres' => "(CONCAT(u.first_name,  ' ', u.last_name) LIKE '%{$search_for}%')",
+				);
+		}
+		$picker_type = input('picker_type');
+		$group_guid  = input('guid');
+
+		//[E] Enhance friends picker because now getFriends searched via OssnUser instance #2202
+		if(empty($picker_type) || (isset($picker_type) && $picker_type != 'group')) {
+				$friends = $user->getFriends(ossn_loggedin_user()->guid, $options);
+		} elseif(isset($picker_type) && $picker_type == 'group' && com_is_active('OssnGroups')) {
+				$group  = ossn_get_group_by_guid($group_guid);
+				$member = false;
+				if($group) {
+						$member = $group->isMember($group->guid, ossn_loggedin_user()->guid);
+				}
+				if($group->owner_guid == ossn_loggedin_user()->guid) {
+						$member = true;
+				}
+				if(empty($search_for) || !$group || ($group && !$member)) {
+						echo json_encode(array());
+						return false;
+				}
+				$loggedin_guid = ossn_loggedin_user()->guid;
+
+				$user    = new OssnUser();
+				$friends = $user->searchUsers(array(
+						'joins'    => array(
+								'JOIN ossn_relationships AS r ON r.relation_to = u.guid AND r.type = "group:join:approve"',
+						),
+						'wheres'   => array(
+								"(r.relation_from = '{$group_guid}') AND (CONCAT(u.first_name,  ' ', u.last_name) LIKE '%{$search_for}%') AND u.guid != '{$loggedin_guid}'", //replace with group ID,
+						),
+						'distinct' => true,
+				));
+		}
 		if(!$friends) {
+				echo json_encode(array());
 				return false;
 		}
-		$search_for = input('q');
-		// allow case insensitivity with first typed in char
-		$fc         = mb_strtoupper(mb_substr($search_for, 0, 1, 'UTF-8'), 'UTF-8');
-		$search_For = $fc . mb_substr($search_for, 1, null, 'UTF-8');
-		// show all friends with wildcard '*' in first place
-		if($search_for == '*') {
-				$search_for = '';
-				$search_For = '';
-		}
-		$search_len = mb_strlen($search_for, 'UTF-8');
-		foreach($friends as $users) {
-				if(isset($users->guid) && !empty($users->guid)) {
-						$first_name_start = mb_substr($users->first_name, 0, $search_len, 'UTF-8');
-						if($first_name_start == $search_for || $first_name_start == $search_For) {
-								$p['first_name'] = $users->first_name;
-								$p['last_name']  = $users->last_name;
-								$p['imageurl']   = ossn_site_url("avatar/{$users->username}/smaller");
-								$p['id']         = $users->guid;
-								$usera[]         = $p;
-						}
-				}
+		foreach ($friends as $users) {
+				$p['first_name'] = $users->first_name;
+				$p['last_name']  = $users->last_name;
+				$p['imageurl']   = ossn_site_url("avatar/{$users->username}/smaller");
+				$p['id']         = $users->guid;
+				$usera[]         = $p;
 		}
 		echo json_encode($usera);
 }
@@ -149,15 +223,8 @@ function ossn_friend_picker() {
  * @access private
  */
 function ossn_likes_post_notifiation($hook, $type, $return, $params) {
-		$notif          = $params;
-		$baseurl        = ossn_site_url();
-		$user           = ossn_user_by_guid($notif->poster_guid);
-		$user->fullname = "<strong>{$user->fullname}</strong>";
-		$iconURL        = $user->iconURL()->small;
-
-		$img = "<div class='notification-image'><img src='{$iconURL}' /></div>";
-		$url = ossn_site_url("post/view/{$notif->subject_guid}");
-
+		$notif = $params;
+		$user  = ossn_user_by_guid($notif->poster_guid);
 		if(preg_match('/like/i', $notif->type)) {
 				$type = 'like';
 		}
@@ -166,69 +233,18 @@ function ossn_likes_post_notifiation($hook, $type, $return, $params) {
 		}
 		if(preg_match('/comments/i', $notif->type)) {
 				$type = 'comment';
-				$url  = ossn_site_url("post/view/{$notif->subject_guid}#comments-item-{$notif->item_guid}");
 		}
-		$type = "<div class='ossn-notification-icon-{$type}'></div>";
-		if($notif->viewed !== null) {
-				$viewed = '';
-		} elseif($notif->viewed == null) {
-				$viewed = 'class="ossn-notification-unviewed"';
-		}
-		$notification_read = "{$baseurl}notification/read/{$notif->guid}?notification=" . urlencode($url);
-		return "<a href='{$notification_read}'>
-	       <li {$viewed}> {$img}
-		   <div class='notfi-meta'> {$type}
-		   <div class='data'>" .
-		ossn_print("ossn:notifications:{$notif->type}", array(
-				$user->fullname,
-		)) .
-				'</div>
-		   </div></li></a>';
-}
-/**
- * Setting up a template for notification view for commponent post
- *
- * @param string $hook Name of hook
- * @param string $type Hook type
- * @param string $return mixed data
- * @param array $params Arrays or Objects
- *
- * @return mixed data
- * @access private
- */
-function ossn_group_comment_post($hook, $type, $return, $params) {
-		$notif          = $params;
-		$baseurl        = ossn_site_url();
-		$user           = ossn_user_by_guid($notif->poster_guid);
-		$user->fullname = "<strong>{$user->fullname}</strong>";
-		$iconURL        = $user->iconURL()->small;
 
-		$img = "<div class='notification-image'><img src='{$iconURL}' /></div>";
-		$url = ossn_site_url("post/view/{$notif->subject_guid}");
-
-		if(preg_match('/like/i', $notif->type)) {
-				$type = 'like';
-		}
-		if(preg_match('/comments/i', $notif->type)) {
-				$type = 'comment';
-				$url  = ossn_site_url("post/view/{$notif->subject_guid}#comments-item-{$notif->item_guid}");
-		}
-		$type = "<div class='ossn-notification-icon-{$type}'></div>";
-		if($notif->viewed !== null) {
-				$viewed = '';
-		} elseif($notif->viewed == null) {
-				$viewed = 'class="ossn-notification-unviewed"';
-		}
-		$notification_read = "{$baseurl}notification/read/{$notif->guid}?notification=" . urlencode($url);
-		return "<a href='{$notification_read}'>
-	       <li {$viewed}> {$img}
-		   <div class='notfi-meta'> {$type}
-		   <div class='data'>" .
-		ossn_print("ossn:notifications:{$notif->type}", array(
-				$user->fullname,
-		)) .
-				'</div>
-		   </div></li></a>';
+		$iconURL = $user->iconURL()->small;
+		return ossn_plugin_view('notifications/template/view', array(
+				'iconURL'   => $iconURL,
+				'guid'      => $notif->guid,
+				'type'      => $notif->type,
+				'viewed'    => $notif->viewed,
+				'icon_type' => $type,
+				'instance'  => $notif,
+				'fullname'  => $user->fullname,
+		));
 }
 /**
  * OssnWall post page handlers
@@ -243,8 +259,8 @@ function ossn_post_page($pages) {
 		if(empty($page)) {
 				return false;
 		}
-		switch($page) {
-			case 'view':
+		switch ($page) {
+		case 'view':
 				$title = ossn_print('post:view');
 				$wall  = new OssnWall();
 				$post  = $pages[1];
@@ -256,9 +272,15 @@ function ossn_post_page($pages) {
 				//Posts having friends privacy are visible to public using direct URL #1484
 				//re-opened on 27-06-2021 thanks to Haydar Alkaduhimi for reporting it.
 				//fixing again on 18-09-2021 user can not view own post.
+				//fixing admins can not view friends only post if they are not friends October 20th 2024  #2403
 				if(
 						(isset($post->access) && $post->access == OSSN_FRIENDS && !ossn_isLoggedin()) ||
-						(ossn_isLoggedin() && $loggedin->guid != $post->poster_guid && $post->access == OSSN_FRIENDS && ossn_isLoggedin() && !ossn_user_is_friend($loggedin->guid, $post->poster_guid))
+						(!ossn_isAdminLoggedin() &&
+								ossn_isLoggedin() &&
+								$loggedin->guid != $post->poster_guid &&
+								$post->access == OSSN_FRIENDS &&
+								ossn_isLoggedin() &&
+								!ossn_user_is_friend($loggedin->guid, $post->poster_guid))
 				) {
 						ossn_error_page();
 				}
@@ -279,7 +301,7 @@ function ossn_post_page($pages) {
 				$content = ossn_set_page_layout('newsfeed', $contents);
 				echo ossn_view_page($title, $content);
 				break;
-			case 'photo':
+		case 'photo':
 				$wall = new OssnWall();
 				$post = $wall->GetPost($pages[1]);
 				if(!empty($pages[1]) && !empty($pages[2]) && $post) {
@@ -292,7 +314,7 @@ function ossn_post_page($pages) {
 						ossn_error_page();
 				}
 				break;
-			case 'privacy':
+		case 'privacy':
 				if(ossn_is_xhr()) {
 						$params = array(
 								'title'    => ossn_print('privacy'),
@@ -302,10 +324,7 @@ function ossn_post_page($pages) {
 						echo ossn_plugin_view('output/ossnbox', $params);
 				}
 				break;
-		/*	case 'refresh_home':
-						echo ossn_plugin_view('wall/siteactivity');
-				*/
-			case 'edit':
+		case 'edit':
 				$post = ossn_get_object($pages[1]);
 				if(!ossn_is_xhr()) {
 						ossn_error_page();
@@ -327,7 +346,7 @@ function ossn_post_page($pages) {
 														'post' => $post,
 												),
 										),
-										false,
+										false
 								),
 								'callback' => '#ossn-post-edit-save',
 						);
@@ -403,7 +422,7 @@ function ossn_group_wall_delete($callback, $type, $params) {
 		$wall  = new OssnWall();
 		$posts = $wall->GetPostByOwner($params['entity']->guid, 'group');
 		if($posts) {
-				foreach($posts as $post) {
+				foreach ($posts as $post) {
 						$wall->deletePost($post->guid);
 				}
 		}
@@ -422,7 +441,7 @@ function ossn_user_posts_delete($callback, $type, $params) {
 		$wall  = new OssnWall();
 		$posts = $wall->getUserGroupPostsGuids($params['entity']->guid);
 		if($posts) {
-				foreach($posts as $post) {
+				foreach ($posts as $post) {
 						//$post is here int
 						$wall->deletePost($post);
 				}
@@ -431,7 +450,7 @@ function ossn_user_posts_delete($callback, $type, $params) {
 		$wall      = new OssnWall();
 		$userposts = $wall->getPosterPosts($params['entity']->guid);
 		if($userposts) {
-				foreach($userposts as $item) {
+				foreach ($userposts as $item) {
 						$wall->deletePost($item->guid);
 				}
 		}
@@ -444,7 +463,7 @@ function ossn_user_posts_delete($callback, $type, $params) {
 						'page_limit' => false,
 				));
 				if($posts_by_owner_guid) {
-						foreach($posts_by_owner_guid as $posti) {
+						foreach ($posts_by_owner_guid as $posti) {
 								$posti->deletePost($posti->guid);
 						}
 				}
@@ -546,7 +565,7 @@ function ossn_get_homepage_wall_access() {
 		}
 }
 /**
- * Convert wallobject to wall post item
+ * Convert wallobject to wall post array
  *
  * @param object $post A wall object
  *
@@ -554,19 +573,19 @@ function ossn_get_homepage_wall_access() {
  */
 function ossn_wallpost_to_item($post) {
 		if($post && $post instanceof OssnWall) {
-				if(!isset($post->poster_guid)) {
-						$post = ossn_get_object($post->guid);
-				}
-				$data = json_decode(html_entity_decode($post->description));
+				//post text
 				$text = '';
-				if($data) {
-						$text = ossn_restore_new_lines($data->post, true);
+				if(!empty($post->description)) {
+						$text = ossn_restore_new_lines($post->description, true);
 				}
-				$location = '';
 
-				if(isset($data->location)) {
-						$location = '- ' . $data->location;
+				//location
+				$location = '';
+				if(isset($post->location)) {
+						$location = '- ' . $post->location;
 				}
+
+				//image
 				if(isset($post->{'file:wallphoto'})) {
 						$image = $post->getPhotoURL();
 				} else {
@@ -574,15 +593,16 @@ function ossn_wallpost_to_item($post) {
 				}
 
 				$user = ossn_user_by_guid($post->poster_guid);
-				if(!isset($data->friend)) {
-						if(!$data) {
-								$data = new stdClass();
-						}
-						$data->friend = '';
+
+				//friends
+				$friends = '';
+				if(isset($post->tag_friend_guids)) {
+						$friends = $post->tag_friend_guids;
 				}
+
 				return array(
 						'post'     => $post,
-						'friends'  => explode(',', $data->friend),
+						'friends'  => explode(',', $friends),
 						'text'     => $text,
 						'location' => $location,
 						'user'     => $user,
@@ -590,6 +610,14 @@ function ossn_wallpost_to_item($post) {
 				);
 		}
 		return false;
+}
+/**
+ * Wall container assets
+ *
+ **/
+function ossn_wall_container_assets() {
+		ossn_location_load_jscss();
+		ossn_load_external_js('jquery.tokeninput');
 }
 //initilize ossn wall
 ossn_register_callback('ossn', 'init', 'ossn_wall');

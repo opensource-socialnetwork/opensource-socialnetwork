@@ -2,7 +2,7 @@
 /**
  * Open Source Social Network
  *
- * @package   (openteknik.com).ossn
+ * @package   Open Source Social Network (OSSN)
  * @author    OSSN Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
@@ -58,7 +58,17 @@ class OssnComponents extends OssnDatabase {
 				}
 				return $com_ids;
 		}
-
+		/**
+		 * Get components list with object
+		 *
+		 * @return array 
+		 */
+		public function getAll() {
+				$params['from'] = 'ossn_components as c';
+				//[E] Show components in admin panel in ASC order of their installation #2155
+				$params['order_by'] = 'c.id ASC';
+				return $this->select($params, true);
+		}		
 		/**
 		 * Upload component
 		 *
@@ -358,6 +368,7 @@ class OssnComponents extends OssnDatabase {
 						'php_version',
 						'php_function',
 						'ossn_component',
+						'ossn_theme',
 				);
 				if(isset($element->name)) {
 						if(isset($element->requires)) {
@@ -455,6 +466,39 @@ class OssnComponents extends OssnDatabase {
 														}
 												}
 										}
+										//theme
+										//[E] Add check for ossn_theme for components manifest #2402
+										if($item->type == 'ossn_theme') {
+												$OssnTheme = new OssnThemes();
+												$comparator = '>=';
+												if(isset($item->comparator) && !empty($item->comparator)) {
+														$comparator = $item->comparator;
+												}
+												$requirments['type']         = (string) $item->name . ' (' . ossn_print('admin:sidemenu:themes'). ')';
+												$requirments['value']        = $comparator . ' ' . (string) $item->version;
+												$requirments['availability'] = 0;
+
+												$active_theme = ossn_site_settings('theme');
+												if($active_theme == $item->name) {
+														$requirments['availability'] = 1;
+
+														if(isset($item->version)) {
+																$theme_load = $OssnTheme->getTheme($item->name);
+																if($theme_load && version_compare($theme_load->version, (string) $item->version, $comparator)) {
+																		$requirments['availability'] = 1;
+																} else {
+																		$requirments['availability'] = 0;
+																}
+														}
+														if($comparator == 'disabled') {
+																$requirments['availability'] = 0;
+														}
+												} else {
+														if($comparator == 'disabled') {
+																$requirments['availability'] = 1;
+														}
+												}
+										}										
 										$result[] = $requirments;
 								} //loop
 								return $result;
@@ -634,34 +678,6 @@ class OssnComponents extends OssnDatabase {
 				return false;
 		}
 
-		/**
-		 * Bundled components
-		 *
-		 * @return array
-		 */
-		public function bundledComponents() {
-				return array_merge(
-						array(
-								'OssnGroups',
-								'OssnSitePages',
-								'OssnChat',
-								'OssnPoke',
-								'OssnBlock',
-								'OssnSmilies',
-								'OssnInvite',
-								'OssnEmbed',
-								'OssnAds',
-								'OssnComments',
-								'OssnLikes',
-								'OssnMessages',
-								'OssnNotifications',
-								'OssnPhotos',
-								'OssnSearch',
-								'OssnWall',
-						),
-						$this->requiredComponents(),
-				);
-		}
 		/**
 		 * Set component settings
 		 *

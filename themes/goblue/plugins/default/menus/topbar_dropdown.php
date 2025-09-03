@@ -2,7 +2,7 @@
 /**
  * Open Source Social Network
  *
- * @package   (openteknik.com).ossn
+ * @package   Open Source Social Network (OSSN)
  * @author    OSSN Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
@@ -10,7 +10,7 @@
  */
 $menus = $params['menu'];
 if($menus){
-    echo '<ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">';
+    echo '<ul class="dropdown-menu dropdown-menu-end" role="menu" aria-labelledby="dropdownMenu">';
 	foreach($menus as $menu) {
 			foreach($menu as $link) {
 					$class = "dropdown-item menu-topbar-dropdown-" . $link['name'];

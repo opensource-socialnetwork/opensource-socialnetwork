@@ -2,7 +2,7 @@
 /**
  * Open Source Social Network
  *
- * @package   (openteknik.com).ossn
+ * @package   Open Source Social Network (OSSN)
  * @author    OSSN Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
@@ -34,6 +34,7 @@ $zh = array(
 	'photo:album:deleted' => '相簿已被刪除',
 	'photo:album:delete:error' => '無法刪除相簿!',
 	
-
+	'ossn:notifications:comments:object:ossn:album' => '%s 对你的相册 %s 发表了评论',
+	'ossn:notifications:like:object:ossn:album' => '%s 喜欢了相册 %s 中的你的照片',
 );
 ossn_register_languages('zh', $zh); 

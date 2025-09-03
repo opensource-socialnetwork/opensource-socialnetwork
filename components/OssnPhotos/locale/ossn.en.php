@@ -2,7 +2,7 @@
 /**
  * Open Source Social Network
  *
- * @package   (openteknik.com).ossn
+ * @package   Open Source Social Network (OSSN)
  * @author    OSSN Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
@@ -34,6 +34,7 @@ $en = array(
 	'photo:album:deleted' => 'Photo album successfully deleted',
 	'photo:album:delete:error' => 'Can not delete photo album',
 	
-
+	'ossn:notifications:comments:object:ossn:album' => '%s commented on your photo album %s',
+	'ossn:notifications:like:object:ossn:album' => '%s liked your photo(s) in an album %s',
 );
 ossn_register_languages('en', $en); 

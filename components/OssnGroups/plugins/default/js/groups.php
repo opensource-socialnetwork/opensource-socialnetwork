@@ -18,11 +18,25 @@ Ossn.RegisterStartupFunction(function() {
 
 			loadGroupCover(image_url).then(
 				function resolved(img) {
-					var width = img.naturalWidth,
-						height = img.naturalHeight;
+					//[E] Get size of cover from theme config #2305
+					var theme_config = $('#ossn-theme-config');
+					var default_cover_height = theme_config.attr('data-desktop-cover-height');
+					var default_cover_width = theme_config.attr('data-minimum-cover-image-width');
+
+					if (typeof default_cover_height == 'undefined' || typeof default_cover_width == 'undefined') {
+						Ossn.MessageBox('syserror/unknown');
+						console.error("Theme config not found for cover sizes");
+						return false;
+					}
+					
+					var width = img.naturalWidth;
+					var	height = img.naturalHeight;
+					
 					window.URL.revokeObjectURL(img.src);
-					if (width < 1040 || height < 300) {
-						Ossn.trigger_message(Ossn.Print('profile:cover:err1:detail'), 'error');
+					
+					if (width < default_cover_width || height < default_cover_height) {
+						var cover_error_message = Ossn.Print('profile:cover:err1:detail', [default_cover_width, default_cover_height]);
+						Ossn.trigger_message(cover_error_message, 'error');
 						return false;
 					} else {
 						$.ajax({
@@ -112,17 +126,6 @@ Ossn.RegisterStartupFunction(function() {
 	});
 });
 
-Ossn.RegisterStartupFunction(function() {
-	$(document).ready(function() {
-		$('.ossn-group-cover').on('mouseenter', function(){
-			$('.ossn-group-cover-button').show();
-		});
-		$('.ossn-group-cover').on('mouseleave', function(){
-			$('.ossn-group-cover-button').hide();
-		});			
-	});
-});
-
 Ossn.repositionGroupCOVER = function($group) {
 	var cover_top  = parseInt($('.ossn-group-cover').find('img').css('top'));
 	var cover_left = parseInt($('.ossn-group-cover').find('img').css('left'));
@@ -135,11 +138,7 @@ Ossn.repositionGroupCOVER = function($group) {
 		success: function(callback) {
 			$("#draggable").draggable('destroy');
 			$('.group-c-position').attr('style', 'display:none !important;');
-			$('.ossn-group-cover').hover(function() {
-				$('.ossn-group-cover-button').show();
-			}, function() {
-				$('.ossn-group-cover-button').hide();
-			});
+			$('.ossn-group-cover-button').show();
 		},
 	});
 };

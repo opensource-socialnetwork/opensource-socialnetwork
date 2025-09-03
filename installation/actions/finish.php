@@ -2,7 +2,7 @@
 /**
  * Open Source Social Network
  *
- * @package   (openteknik.com).ossn
+ * @package   Open Source Social Network (OSSN)
  * @author    OSSN Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
@@ -18,7 +18,7 @@ $factory = new OssnFactory(array(
 		'email' => ossn_site_settings('owner_email'),
 		'version' => ossn_site_settings('site_version')
 ));
-$factory->connect;
+$factory->connect();
 
 //Enable cache after installation complete! #1338
 ossn_create_cache();

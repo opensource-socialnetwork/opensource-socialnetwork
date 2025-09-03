@@ -2,7 +2,7 @@
 /**
  * Open Source Social Network
  *
- * @package   (openteknik.com).ossn
+ * @package   Open Source Social Network (OSSN)
  * @author    OSSN Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
@@ -11,6 +11,7 @@
 
 $albums = new OssnPhotos();
 $photos = $albums->GetUserCoverPhotos($params['user']->guid);
+$count  = $albums->GetUserCoverPhotos($params['user']->guid, ['count' => true]);
 echo '<div class="ossn-photos">';
 echo '<h2>' . ossn_print('profile:covers') . '</h2>';
 if ($photos) {
@@ -24,3 +25,6 @@ if ($photos) {
     }
 }
 echo '</div>';
+echo ossn_view_pagination($count, 10, array(
+			'offset_name' => 'cover_offset',											
+));

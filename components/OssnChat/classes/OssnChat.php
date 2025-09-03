@@ -2,7 +2,7 @@
 /**
  * Open Source Social Network
  *
- * @package   (openteknik.com).ossn
+ * @package   Open Source Social Network (OSSN)
  * @author    OSSN Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
@@ -20,11 +20,15 @@ class OssnChat extends OssnMessages {
 				if(!isset($_SESSION['ossn_chat_users'])) {
 						$_SESSION['ossn_chat_users'] = array();
 				}
+				$count = count($_SESSION['ossn_chat_users']);
+				if($count >= 2){
+						array_shift($_SESSION['ossn_chat_users']);
+				}
 				if(!in_array($user->guid, $_SESSION['ossn_chat_users']) && $user) {
 						$_SESSION['ossn_chat_users'][] = $user->guid;
 				}
 		}
-		
+
 		/**
 		 * Get active sessions
 		 *
@@ -36,7 +40,7 @@ class OssnChat extends OssnMessages {
 				}
 				return false;
 		}
-		
+
 		/**
 		 * Get user chat status
 		 *
@@ -53,7 +57,7 @@ class OssnChat extends OssnMessages {
 				}
 				return 'offline';
 		}
-		
+
 		/**
 		 * Remove chat tab
 		 *
@@ -69,7 +73,7 @@ class OssnChat extends OssnMessages {
 				}
 				return false;
 		}
-		
+
 		/**
 		 * Get user friendly time
 		 *
@@ -81,48 +85,64 @@ class OssnChat extends OssnMessages {
 				$time = date('d/m/Y h:i A', $time);
 				return $time;
 		}
-		
+
 		/**
 		 * Get all new friends json
 		 *
-		 * @return json;
+		 * @return array
 		 */
-		public static function AllNew() {
-				$friends = ossn_loggedin_user()->getFriends();
+		public static function AllNew($intervals = 10) {
+				$time = time();
+				//[B] OssnChat showing only 10 users #2263
+				$friends = ossn_loggedin_user()->getFriends(ossn_loggedin_user()->guid, array(
+						'page_limit' => false,
+						"wheres"     => "u.last_activity > {$time} - {$intervals}",
+				));
 				if(!$friends) {
 						return false;
 				}
 				foreach($friends as $friend) {
 						//default value should be offline  [B] OssnChat default value showing 0 in class #2163
-						$status = "ossn-chat-icon-offline"; 
-						if(($friend instanceof OssnUser) && $friend->isOnline(10)) {
-								$status = 'ossn-chat-icon-online';
-						}
+						//$status = 'ossn-chat-icon-offline';
+						//if($friend instanceof OssnUser && $friend->isOnline(10)) { 
+						//[E] Show only online members in Chat #2287
+						//so the status will be online by default
+						$status = 'ossn-chat-icon-online';
+						//}
 						$vars['name']   = $friend->fullname;
 						$vars['icon']   = $friend->iconURL()->small;
 						$vars['guid']   = $friend->guid;
 						$vars['status'] = $status;
 						$all[]          = $vars;
 				}
-				array_multisort(array_map(function($element){ return $element['status']; }, $all), SORT_DESC, SORT_STRING, $all);
+				$comp = function ($element) {
+								return $element['status'];
+				};
+				$map = array_map($comp, $all);
+				array_multisort($map,SORT_DESC,SORT_STRING,$all,);
 				return $all;
-		}						
+		}
 		/**
 		 * Count online friends of user
 		 *
-		 * @param int $intervals => seconds
-		 * @param object $user User guid
+		 * @param int  $intervals seconds
+		 * @param int  $user USER GUID or Empty
 		 *
-		 * @return bool
+		 * @return integer
 		 */
 		public function countOnlineFriends($user, $intervals = 100) {
-				$friends = $this->getOnlineFriends($user, $intervals);
-				if($friends) {
-						return count($friends);
+				if(is_int($user)) {
+						$user = ossn_user_by_guid($user);
+				} else {
+						$user = ossn_loggedin_user();
 				}
-				return 0;
+				$time = time();
+				return $user->getFriends($user->guid, array(
+						'wheres' => "(u.last_activity > {$time} - {$intervals})",
+						'count'  => true,
+				));
 		}
-		
+
 		/**
 		 * Get online user friends
 		 *
@@ -137,33 +157,13 @@ class OssnChat extends OssnMessages {
 				} else {
 						$user = ossn_user_by_guid($user);
 				}
-				$friends      = $user->getFriends();
-				$friend_guids = array();
-				if($friends) {
-						foreach($friends as $friend) {
-								$friend_guids[] = $friend->guid;
-						}
-				}
-				if(!is_array($friend_guids) || empty($friend_guids)) {
-						return false;
-				}
-				$friend_guids     = implode(',', $friend_guids);
-				$time             = time();
-				$params['from']   = 'ossn_users';
-				$params['wheres'] = array(
-						"last_activity > {$time} - {$intervals} AND guid IN ({$friend_guids})"
-				);
-				$friends = false;
-				$friendsl          = $this->select($params, true);
-				//[B] user get hook didn't works on chat #1679
-				if($friendsl){
-					foreach($friendsl as $fl){
-						$friends[] = ossn_call_hook('user', 'get', false, $fl);		
-					}
-				}
-				return $friends;
+				$time = time();
+				return $user->getFriends($user->guid, array(
+						'wheres'     => "(u.last_activity > {$time} - {$intervals})",
+						'page_limit' => false,
+				));
 		}
-		
+
 		/**
 		 * Get all new non-viewed messages
 		 *
@@ -175,26 +175,26 @@ class OssnChat extends OssnMessages {
 				if(empty($params)) {
 						$parm = array(
 								'message_from',
-								'message'
+								'message',
 						);
 				}
 				$parm             = implode(',', $parm);
 				$user             = ossn_loggedin_user()->guid;
 				$params['from']   = 'ossn_messages';
 				$params['params'] = array(
-						"{$parm}"
+						"{$parm}",
 				);
 				$params['wheres'] = array(
-						"message_to='{$user}' AND viewed='0'"
+						"message_to='{$user}' AND viewed='0'",
 				);
-				$friends          = $this->select($params, true);
+				$friends = $this->select($params, true);
 				return $friends;
 		}
 		/**
 		 * Get messages between two users
-		 * 
+		 *
 		 * @note this copied from OssnMessages and edited offest beacuse of #1832
-		 * 
+		 *
 		 * @param int $from User 1 guid
 		 * @param int $to User 2 guid
 		 *
@@ -202,28 +202,28 @@ class OssnChat extends OssnMessages {
 		 */
 		public function getWith($from, $to, $count = false) {
 				$messages = $this->searchMessages(array(
-						'wheres' => array(
-								"((message_from='{$from}' AND message_to='{$to}' AND emd0.value='') OR (message_from='{$to}' AND message_to='{$from}' AND emd1.value=''))"
+						'wheres'         => array(
+								"((message_from='{$from}' AND message_to='{$to}' AND emd0.value='') OR (message_from='{$to}' AND message_to='{$from}' AND emd1.value=''))",
 						),
-						'order_by' => 'm.id DESC',
-						'offset' => input("offset_message_xhr_with_{$to}", '', 1),
-						'count' => $count,
+						'order_by'       => 'm.id DESC',
+						'offset'         => input("offset_message_xhr_with_{$to}", '', 1),
+						'count'          => $count,
 						'entities_pairs' => array(
 								array(
-									'name' => 'is_deleted_from', //we don't wanted to show messages which user have expunged from record
-									'value' => false,
-									'wheres' =>  '(emd0.value IS NOT NULL)',
-								),	
+										'name'   => 'is_deleted_from', //we don't wanted to show messages which user have expunged from record
+										'value'  => false,
+										'wheres' => '(emd0.value IS NOT NULL)',
+								),
 								array(
-									'name' => 'is_deleted_to', //we don't wanted to show messages which user have expunged from record
-									'value' => false,
-									'wheres' =>  '(emd1.value IS NOT NULL)',
-								),									
+										'name'   => 'is_deleted_to', //we don't wanted to show messages which user have expunged from record
+										'value'  => false,
+										'wheres' => '(emd1.value IS NOT NULL)',
+								),
 						),
 				));
 				if($messages && !$count) {
 						return array_reverse($messages);
 				}
 				return $messages;
-		}		
+		}
 } //class

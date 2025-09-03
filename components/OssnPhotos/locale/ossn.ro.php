@@ -2,7 +2,7 @@
 /**
  * Open Source Social Network
  *
- * @package   (openteknik.com).ossn
+ * @package   Open Source Social Network (OSSN)
  * @author    OSSN Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
@@ -34,6 +34,7 @@ $ro = array(
 	'photo:album:deleted' => 'Albumul Foto a fost sters',
 	'photo:album:delete:error' => 'Nu putem sterge acest Album',
 	
-
+	'ossn:notifications:comments:object:ossn:album' => '%s a comentat albumul tau foto %s',
+	'ossn:notifications:like:object:ossn:album' => '%s a apreciat fotografiile tale dintr-un album %s',
 );
 ossn_register_languages('ro', $ro); 

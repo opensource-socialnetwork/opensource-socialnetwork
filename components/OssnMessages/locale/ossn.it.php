@@ -2,7 +2,7 @@
 /**
  * Open Source Social Network
  *
- * @package   (openteknik.com).ossn
+ * @package   Open Source Social Network (OSSN)
  * @author    OSSN Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
@@ -24,5 +24,6 @@ $en = array(
 	'ossnmessages:delete:me' => 'Togliere per voi',
 	'ossnmessages:delete:me:note' => "Questo messaggio sarà rimosso per voi. L'altro membro sarà ancora in grado di vederlo.",
 	'ossnmessages:replied:you' => 'Tu: %s',	
+	'message:fileattachment' => 'File allegato',	
 );
 ossn_register_languages('it', $en); 

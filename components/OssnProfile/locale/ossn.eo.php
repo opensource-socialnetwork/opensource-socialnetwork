@@ -3,7 +3,7 @@
  * Open Source Social Network
  *
  * @package   Open Source Social Network
- * @author    Open Social Website Core Team <info@openteknik.com>
+ * @author    Open Source Social Network Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
  * @link      https://www.opensource-socialnetwork.org/
@@ -23,6 +23,6 @@ $eo = array(
 		'profile:photos' => 'Profilaj fotoj',
 		
 		'profile:cover:err1' => 'Kovrila bildo estas tro malgranda',
-		'profile:cover:err1:detail' => 'La kovrila bildo devas esti almenaŭ 1040 x 300 aŭ pli granda.'
+		'profile:cover:err1:detail' => 'La kovrila bildo devas esti almenaŭ %spx x %spx aŭ pli granda.'
 );
 ossn_register_languages('eo', $eo);

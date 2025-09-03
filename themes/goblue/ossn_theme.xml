@@ -7,9 +7,9 @@
     <description>A responsive theme for Ossn.</description>
     <license>Open Source Social Network License (OSSN LICENSE)</license>
     <license_url>https://www.opensource-socialnetwork.org/licence</license_url>
-    <version>6.2</version>
+    <version>8.0</version>
 	<requires>
 		<type>ossn_version</type>
-		<version>6.2</version>
+		<version>8.0</version>
 	</requires>
 </theme>

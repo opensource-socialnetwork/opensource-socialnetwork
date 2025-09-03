@@ -3,7 +3,7 @@
  * Open Source Social Network
  *
  * @package   Open Source Social Network
- * @author    Open Social Website Core Team <info@openteknik.com>
+ * @author    Open Source Social Network Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
  * @link      https://www.opensource-socialnetwork.org/
@@ -20,5 +20,7 @@
 
 <label><?php echo ossn_print('ad:photo'); ?></label>
 <input type="file" name="ossn_ads"/>
-<br/>
-<input type="submit" class="btn btn-primary btn-sm" value="<?php echo ossn_print('add'); ?>"/>
+
+<div class="margin-top-10">
+	<input type="submit" class="btn btn-success btn-sm" value="<?php echo ossn_print('add'); ?>"/>
+</div>

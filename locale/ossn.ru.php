@@ -2,7 +2,7 @@
 /**
  * Open Source Social Network
  *
- * @package   (openteknik.com).ossn
+ * @package   Open Source Social Network (OSSN)
  * @author    OSSN Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
@@ -20,9 +20,7 @@ $ru = array(
 	'home:top:heading' => "Привет %s! Присоединяйся сейчас чтобы найти новый друзей, создать группы, добавить фотографии, и многое другое.",
 	'create:account' => 'Создать аккаунт',
 	'its:free' => "Это бесплатно и всегда будет",
-	
-	'register:ok:message' => "Ваш аккаунт зарегестрирован. Ссылка для активации отправлена на Вашу почту. Если Вы не получили сообщения, проверьте папку со спамом.",
-	
+		
 	'copyright' => '&copy; Права',
 	'powered' => 'Powered by the Open Source Social Network.',
 	
@@ -164,7 +162,7 @@ $ru = array(
 	'theme:install:error' => 'Не получилось установить тему. Убедитесь что она совместима с текущей версией OSSN.',
 	
 	'fields:require' => 'Требуются все друзья!',
-	'username:error' => 'Неправильное имя пользователя.',
+	'username:error' => 'Имя пользователя указано неверно. Пожалуйста, используйте только буквенно-цифровые символы при вводе информации. Убедитесь в отсутствии пробелов и специальных символов. Допускаются только буквы A-Z и цифры 0-9. Имя пользователя должно содержать не менее 5 символов.',
 	'password:error' => 'Пароль должен быть больше 5 символов.',
 	'account:created' => 'Ваш аккаунт создан.',
 	'account:create:error:admin' => 'Не получилось зарегестрироваться. Повторите позже.',
@@ -261,6 +259,7 @@ $ru = array(
 	'admin:edit:user' => 'Редактировать пользователя',
 	'admin:login' => 'Вход',
 	'admin:notification:email' => 'Уведомленя с сайта',
+	'admin:email:name' => 'Имя электронной почты для уведомлений',
 	'notification_email' => 'Ящик для уведомлений (noreply@domain.com)',
 	'owner_email' => 'Ящик владельца (mysite@domain.com)',
 	'ossn:websitename' => 'Название сайта',
@@ -328,6 +327,22 @@ $ru = array(
 	'php:upload_err_no_tmp_dir' => 'Отсутствует временная папка',
 	'php:upload_err_cant_write' => 'Не удалось записать файл на диск',
 	'php:upload_err_extension' => 'Расширение PHP остановило загрузку файла',
+	'php:extension:notfound' => 'Расширение PHP не найдено!', 
+	
+	'admin:basiccache' => 'Основной кэш', 
+	'admin:dcache:note' => 'Динамические данные кэшируются с помощью динамического кэша. которые могут ускорить обработку вашего приложения. Включение кэша не поможет, если соединение с сервером кэша работает медленнее, так как приложение будет работать только медленнее.  Рекомендуется настроить сервер кэширования на том же хосте, что и социальная сеть. Воздержитесь от использования кэширования с общими службами хостинга. Одновременно можно использовать только одну систему кэша.', 
+	'admin:dcache:cachename' => 'Типы сервера кэша', 
+	'admin:dcache:extension:enabled' => 'Расширение включено', 
+	'admin:dcache:select:server:type' => 'Выберите тип сервера', 
+	'admin:dcache:host' => 'Хост', 
+	'admin:dcache:port' => 'Порт', 
+	'admin:dcache:username' => 'Имя пользователя (если есть)', 
+	'admin:dcache:password' => 'Пароль (если есть)', 
+	'admin:dcache:setstatus' => 'Задать состояние', 
+	'admin:dcache:extension:tests' => 'Тесты', 
+	'admin:dcache:errorconnection' => 'Не удалось подтвердить соединение с использованием данных подробностей!', 
+	'admin:dcache:required:field' => 'Заполните обязательные поля', 
+	'admin:dcache:memcached:authnotsupport' => 'Расширение php Memcached не поддерживает идентификацию!', 	
 	/*
 	 * List of ISO 639-1 language codes
 	 * http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes

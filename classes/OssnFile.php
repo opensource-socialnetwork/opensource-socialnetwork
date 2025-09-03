@@ -2,7 +2,7 @@
 /**
  * Open Source Social Network
  *
- * @package   (openteknik.com).ossn
+ * @package   Open Source Social Network (OSSN)
  * @author    OSSN Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
@@ -40,7 +40,7 @@ class OssnFile extends OssnEntities {
 		 *
 		 * @return integer
 		 */
-		public function MaxSize() : int {
+		public function MaxSize(): int{
 				$val  = ini_get('post_max_size');
 				$val  = trim($val);
 				$last = strtolower($val[strlen($val) - 1]);
@@ -61,7 +61,7 @@ class OssnFile extends OssnEntities {
 		 *
 		 * @return integer
 		 */
-		public function getUploadMaxSize() : int {
+		public function getUploadMaxSize(): int{
 				$val  = min(ini_get('post_max_size'), ini_get('upload_max_filesize'));
 				$val  = trim($val);
 				$last = strtolower($val[strlen($val) - 1]);
@@ -74,7 +74,7 @@ class OssnFile extends OssnEntities {
 						$val *= 1024;
 				}
 				return $val;
-		}		
+		}
 
 		/**
 		 * setFile
@@ -85,14 +85,17 @@ class OssnFile extends OssnEntities {
 		 */
 		public function setFile($name): void {
 				$this->showFileUploadError();
-				if(isset($_FILES[$name]['type']) && ($_FILES[$name]['error'] == UPLOAD_ERR_OK && $_FILES[$name]['size'] !== 0)) {
-						$file       = $_FILES[$name];
-						$this->file = $file;
-				} else {
-						if(!$_FILES[$name]['error'] && $_FILES[$name]['size'] == 0) {
-								$this->error = UPLOAD_ERR_EXTENSION;
+				//[E] Unknown offset on OssnFile #2240
+				if(isset($_FILES[$name])) {
+						if(isset($_FILES[$name]['type']) && ($_FILES[$name]['error'] == UPLOAD_ERR_OK && $_FILES[$name]['size'] !== 0)) {
+								$file       = $_FILES[$name];
+								$this->file = $file;
 						} else {
-								$this->error = $_FILES[$name]['error'];
+								if(!$_FILES[$name]['error'] && $_FILES[$name]['size'] == 0) {
+										$this->error = UPLOAD_ERR_EXTENSION;
+								} else {
+										$this->error = $_FILES[$name]['error'];
+								}
 						}
 				}
 		}
@@ -116,7 +119,7 @@ class OssnFile extends OssnEntities {
 				if(isset($file)) {
 						$extension = pathinfo($file, PATHINFO_EXTENSION);
 						if($extension) {
-								return $extension;
+								return strtolower($extension);
 						}
 				}
 				return false;
@@ -128,20 +131,10 @@ class OssnFile extends OssnEntities {
 		 * @return array|null
 		 */
 		public function allowedFileExtensions(): array | null{
-				$types = array(
-						'zip',
-						'doc',
-						'docx',
-						'mp4',
-						'mp3',
-						'pdf',
-						'zip',
-						'jpg',
-						'png',
-						'gif',
-						'jpeg',
-						'webp',
-				);
+				//why hardcoded again?
+				//[B] problem with extending allowed file types #2407
+				//we can take keys from mimetypes
+				$types = array_keys($this->mimeTypes());
 				return ossn_call_hook('file', 'allowed:extensions', null, $types);
 		}
 		/**
@@ -200,6 +193,11 @@ class OssnFile extends OssnEntities {
 		public function showFileUploadError(): void {
 				if(empty($this->redirect)) {
 						$this->redirect = REF;
+				}
+				//post size error
+				//post_size < upload max size
+				if(!empty($_SERVER['CONTENT_LENGTH']) && empty($_POST)){
+						$this->error = UPLOAD_ERR_FORM_SIZE;
 				}
 				if(isset($this->file) && ($this->file['error'] !== UPLOAD_ERR_OK || $this->file['size'] == 0)) {
 						ossn_trigger_message($this->getFileUploadError($this->file['error']), 'error');
@@ -427,7 +425,7 @@ class OssnFile extends OssnEntities {
 		 *
 		 * @return array|bool
 		 */
-		public function searchFiles(array $params = array()): array | bool {
+		public function searchFiles(array $params = array()): array | bool | int {
 				if(!isset($params['guid']) && !empty($params['guid'])) {
 						if(!isset($params['subtype']) || empty($params['subtype'])) {
 								return false;
@@ -478,11 +476,13 @@ class OssnFile extends OssnEntities {
 		 * @return boolean
 		 */
 		public function typeAllowed(): bool {
-				if(!empty($this->file) && !empty($this->fileExtension)) {
+				if(!empty($this->file)) {
 						$this->extensions = $this->allowedFileExtensions();
 						$this->extension  = $this->getFileExtension($this->file['name']);
 						$this->extension  = strtolower($this->extension);
-						if(in_array($this->extension, $this->fileExtension)) {
+						
+						//[B] problem with extending allowed file types #2407
+						if((isset($this->fileExtension) && in_array($this->extension, $this->fileExtension)) || (!isset($this->fileExtension) && in_array($this->extension, $this->extensions))) {
 								$mimetypes = $this->mimeTypes();
 								if(!empty($this->fileMimeTypes) && is_array($this->fileMimeTypes)) {
 										$mimetypes = array();
@@ -573,9 +573,10 @@ class OssnFile extends OssnEntities {
 						),
 						'zip'  => array(
 								'application/zip',
+								'application/x-zip-compressed',
 						),
 						'webp' => array(
-								'image/webp',				
+								'image/webp',
 						),
 				);
 				return ossn_call_hook('file', 'mimetypes', false, $mimetypes);
@@ -659,7 +660,7 @@ class OssnFile extends OssnEntities {
 
 						if($this->deleteEntity() && $this->isFile()) {
 								if(unlink($path)) {
-										ossn_trigger_callback('file', 'deleted', $args);
+										ossn_trigger_callback('file', 'deleted', $callback);
 										return true;
 								}
 						}
@@ -729,13 +730,20 @@ class OssnFile extends OssnEntities {
 						$filesize  = filesize($file);
 						$type      = $this->getFileExtension($file);
 						$MimeTypes = $this->mimeTypes();
-
+						
+						//[B] OssnFile:output doesn't recognize setMimeTypes by component #2331
+						//restricted by component
+						if(isset($this->fileMimeTypes) && is_array($this->fileMimeTypes)){
+							$MimeTypes = $this->fileMimeTypes;
+						}
 						//not getting actual mimetype getting by extension type to avoid any vulnerability.
 						if(isset($MimeTypes[$type][0])) {
 								$MimeType = $MimeTypes[$type][0];
 								if(isset($Mime) && !empty($Mime)) {
 										$MimeType = $Mime;
 								}
+								//[E] Session locking issue #2343
+								session_write_close();
 								ob_flush();
 								header("Content-type: {$MimeType}");
 								header('Expires: ' . gmdate('D, d M Y H:i:s \G\M\T', strtotime('+6 months')), true);

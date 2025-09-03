@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component xmlns="http://www.opensource-socialnetwork.org/v/3.0">
+    <name>OssnLocation</name>
+    <id>OssnLocation</id>
+    <author>Core Team, Rafael Amorim</author>
+    <description>This component change the current location services (Algolia) to MapBox. The old service was shutting down in May-2022, but still working until September. </description>
+    <license>Open Source Social Network License (OSSN LICENSE)</license>
+    <author_url>https://www.opensource-socialnetwork.org/</author_url>
+    <license_url>http://www.opensource-socialnetwork.org/licence/</license_url>
+    <version>2.0</version>
+	<requires>
+		<type>ossn_version</type>
+		<version>6.5</version>
+	</requires>
+</component>

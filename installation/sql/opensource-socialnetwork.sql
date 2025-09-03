@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS `ossn_components` (
   `com_id` varchar(50) NOT NULL,
   `active` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=24 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=25 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ossn_components`
@@ -51,7 +51,8 @@ INSERT INTO `ossn_components` (`id`, `com_id`, `active`) VALUES
 (20, 'OssnMessageTyping', 1),
 (21, 'OssnRealTimeComments', 1),
 (22, 'OssnPostBackground', 1),
-(23, 'OssnGiphy', 1);
+(23, 'OssnGiphy', 1),
+(24, 'OssnLocation', 1);
 
 -- --------------------------------------------------------
 
@@ -189,11 +190,11 @@ INSERT INTO `ossn_site_settings` (`setting_id`, `name`, `value`) VALUES
 (4, 'cache', '0'),
 (5, 'owner_email', '<<owner_email>>'),
 (6, 'notification_email', '<<notification_email>>'),
-(7, 'upgrades', '["1605286634.php", "1632413382.php", "1633420776.php", "1655424000.php", "1655453491.php"]'),
+(7, 'upgrades', ''),
 (9, 'display_errors', 'off'),
 (10, 'site_key', '<<secret>>'),
 (11, 'last_cache', ''),
-(12, 'site_version', '6.3');
+(12, 'site_version', '<<siteversion>>');
 
 
 -- --------------------------------------------------------
@@ -209,8 +210,8 @@ CREATE TABLE IF NOT EXISTS `ossn_users` (
   `email` text NOT NULL,
   `password` varchar(65) NOT NULL,
   `salt` varchar(8) NOT NULL,
-  `first_name` text NOT NULL,
-  `last_name` text NOT NULL,
+  `first_name` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `last_name` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `last_login` int NOT NULL,
   `last_activity` int NOT NULL,
   `activation` varchar(32),

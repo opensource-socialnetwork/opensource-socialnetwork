@@ -2,7 +2,7 @@
 /**
  * Open Source Social Network
  *
- * @package   (openteknik.com).ossn
+ * @package   Open Source Social Network (OSSN)
  * @author    OSSN Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
@@ -20,9 +20,7 @@ $ro = array(
 	'home:top:heading' => "Bine ai venit pe %s! Inscrie-te acum si fa-ti prieteni, creeaza grupuri, add photos, si mult mai multe.",
 	'create:account' => 'Creeaza un cont',
 	'its:free' => "E gratis si va fii gratis mereu.",
-	
-	'register:ok:message' => "Contul tau a fost inregistrat. Un email a fost trimis la adresa ta de email. Daca nu ai primit emailul verifica spam/junk .",
-	
+		
 	'copyright' => '&copy; COPYRIGHT',
 	'powered' => 'Powered by the Open Source Social Network.',
 	
@@ -164,7 +162,7 @@ Poti sa copy si paste adresa in browser in caz in care nu merge.
 	'theme:install:error' => 'Tematica nu se poate instala. Verifica daca este compatibila cu versiunea de OSSN pe care o ai.',
 	
 	'fields:require' => 'Toate campurile sint necesare!',
-	'username:error' => 'Numele utilizatorului nu este recunoscut.',
+	'username:error' => 'Numele de utilizator este incorect. Vă rugăm să folosiți numai caractere alfanumerice atunci când introduceți informațiile dumneavoastră. Asigurați-vă că nu există spații sau caractere speciale. Sunt permise doar literele A-Z și numerele 0-9. Numele de utilizator trebuie să aibă cel puțin 5 caractere.',
 	'password:error' => 'Prola trebuie sa aiba mai mult de 5 litere,cifre sau simboluri.',
 	'account:created' => 'Contul tau a fost creeat.',
 	'account:create:error:admin' => 'Contul tau nu a putut fii inregistrat! Incearca mai tarziu.',
@@ -261,6 +259,7 @@ Te rugam sa click pe linkul de mai jos ca sa iti resetezi parola sau copy si pas
 	'admin:edit:user' => 'Editeaza utilizatorul',
 	'admin:login' => 'Logheaza',
 	'admin:notification:email' => 'Notificare email de la Site',
+	'admin:email:name' => 'Nume de e-mail de notificare',
 	'notification_email' => 'Notificare email (noreply@domain.com)',
 	'owner_email' => 'Emailul propietarului (mysite@domain.com)',
 	'ossn:websitename' => 'Numele websiteului',
@@ -328,6 +327,22 @@ Te rugam sa click pe linkul de mai jos ca sa iti resetezi parola sau copy si pas
 	'php:upload_err_no_tmp_dir' => 'Lipsește un folder temporar',
 	'php:upload_err_cant_write' => 'Nu a reușit să scrie fișierul pe disc',
 	'php:upload_err_extension' => 'O extensie PHP a oprit încărcarea fișierului',
+	'php:extension:notfound' => 'PHP Extensie nu a fost găsit!', 
+	
+	'admin:basiccache' => 'Cache de bază', 
+	'admin:dcache:note' => 'Datele dinamice sunt cache folosind un cache dinamic. care ar putea accelera procesarea cererii dumneavoastră. Activarea cache-ului nu va ajuta dacă conexiunea serverului cache este mai lentă, deoarece va face ca aplicația să ruleze mai încet.  Este recomandat să configurați serverul de cache pe aceeași gazdă ca și rețeaua de socializare. Vă rugăm să nu utilizați caching cu servicii de găzduire partajate. Doar un singur sistem de cache poate fi folosit la un moment dat.', 
+	'admin:dcache:cachename' => 'Tipuri de server cache', 
+	'admin:dcache:extension:enabled' => 'Extensie activată', 
+	'admin:dcache:select:server:type' => 'Selectați tipul de server', 
+	'admin:dcache:host' => 'Gazdă', 
+	'admin:dcache:port' => 'Port', 
+	'admin:dcache:username' => 'Nume de utilizator (dacă există)', 
+	'admin:dcache:password' => 'Parolă (dacă există)', 
+	'admin:dcache:setstatus' => 'Starea setată', 
+	'admin:dcache:extension:tests' => 'Teste', 
+	'admin:dcache:errorconnection' => 'Nu pot confirma conexiunea folosind date date!', 
+	'admin:dcache:required:field' => 'Vă rugăm să completaţi câmpurile obligatorii', 
+	'admin:dcache:memcached:authnotsupport' => 'Extensia dvs. php Memcached nu suportă autentificarea!', 	
 	/*
 	 * List of ISO 639-1 language codes
 	 * http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes

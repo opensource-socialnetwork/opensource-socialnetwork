@@ -2,7 +2,7 @@
 /**
  * Open Source Social Network
  *
- * @package   (openteknik.com).ossn
+ * @package   Open Source Social Network (OSSN)
  * @author    OSSN Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
@@ -40,12 +40,19 @@ if ($params['user']->guid !== $params['post']->owner_guid) {
 				</div>
 			</div>
 			<div class="user">
- 		                <a href="<?php echo $params['user']->profileURL(); ?>"> <?php echo $params['user']->fullname; ?> </a>
+                <?php
+				echo ossn_plugin_view('output/user/url', array(
+						'user' => $params['user'],		
+						'section' => 'wall',
+				));
+				?>
 				<?php
  		                if ($owner) { ?>
 					<i class="fa fa-angle-right fa-lg"></i>
-					<a href="<?php echo $owner->profileURL(); ?>"> <?php echo $owner->fullname; ?></a>
-				<?php
+					<?php
+						echo ossn_plugin_view('output/user/url', array(
+							'user' => $owner,			
+						));
 				} ?>
 			</div>
 			<div class="post-meta">
@@ -69,6 +76,7 @@ if ($params['user']->guid !== $params['post']->owner_guid) {
 							$user = ossn_user_by_guid($friend);
 							//[B] Wall site crash when mentioning members under certain conditions. #1865
 							if($user){
+								//here no need to use output/user/url
 								$url = $user->profileURL();
 								$friends[] = "<a href='{$url}'>{$user->fullname}</a>";
 							}
@@ -84,7 +92,7 @@ if ($params['user']->guid !== $params['post']->owner_guid) {
             <?php
             if (!empty($image)) {
                 ?>
-                <img src="<?php echo $image; ?>"/>
+                <div class="ossn-wall-image-container"><img src="<?php echo $image; ?>"/></div>
 
             <?php } ?>          
 		</div>

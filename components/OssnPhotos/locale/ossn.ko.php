@@ -2,7 +2,7 @@
 /**
  * Open Source Social Network
  *
- * @package   (openteknik.com).ossn
+ * @package   Open Source Social Network (OSSN)
  * @author    OSSN Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
@@ -34,6 +34,7 @@ $ko = array(
 	'photo:album:deleted' => '사진첩을 지웠습니다',
 	'photo:album:delete:error' => '사진첩을 지울 수 없습니다',
 	
-
+	'ossn:notifications:comments:object:ossn:album' => '%s 님이 귀하의 사진 앨범 %s 에 댓글을 남겼습니다.',
+	'ossn:notifications:like:object:ossn:album' => '%s 님이 %s 앨범에 있는 당신의 사진을 좋아했습니다.',
 );
 ossn_register_languages('ko', $ko); 

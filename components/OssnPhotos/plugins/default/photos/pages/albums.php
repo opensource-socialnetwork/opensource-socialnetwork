@@ -2,7 +2,7 @@
 /**
  * Open Source Social Network
  *
- * @package   (openteknik.com).ossn
+ * @package   Open Source Social Network (OSSN)
  * @author    OSSN Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
@@ -23,6 +23,15 @@ if ($photos->photos) {
     }
 }
 echo '</div>';
+?>
+<div class="ossn-photos-album-comments-likes margin-top-20">
+<?php
+$vars['object'] = ossn_get_album_object($params['album']);
+$vars['full_view'] = true;
+echo ossn_plugin_view('object/comment/like/share/view', $vars);
+?>
+</div>
+<?php
 echo ossn_plugin_view('photos/pages/gallery', array(
 		'photos' => $photos->photos,													
 ));

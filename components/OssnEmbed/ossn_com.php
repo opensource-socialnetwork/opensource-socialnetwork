@@ -3,7 +3,7 @@
  * Open Source Social Network
  *
  * @package   Open Source Social Network
- * @author    Open Social Website Core Team <info@openteknik.com>
+ * @author    Open Source Social Network Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
  * @link      https://www.opensource-socialnetwork.org/
@@ -45,8 +45,12 @@ function ossn_embed_wall_template_item($hook, $type, $return){
 						'/(https?:\/\/)(www\.)?(vimeo\.com\/groups)(.*)(\/videos\/)([0-9]*)/',
 						'/(https?:\/\/)(www\.)?(vimeo.com\/)([0-9]*)/',
 						'/(https?:\/\/)(player\.)?(vimeo.com\/video\/)([0-9]*)/',
+						'/https?:\/\/(www\.)?vimeo\.com\/event\/([0-9]+)/',
 						'/(https?:\/\/)(www\.)?(metacafe\.com\/watch\/)([0-9a-zA-Z_-]*)(\/[0-9a-zA-Z_-]*)(\/)/',
+						'/(https?:\/\/)(www\.)?(rumble\.com\/embed\/)([0-9a-zA-Z_-]*)(\/)/',
 						'/(https?:\/\/www\.dailymotion\.com\/.*\/)([0-9a-z]*)/',
+			  			'#(((https?://)?)|(^./))(((www.)?)|(^./))dailymotion\.com/v=([^\[\]()<.,\s\n\t\r]+)#i',
+ 						'#(((https?://)?)|(^./))(((www.)?)|(^./))dai\.ly/([^\[\]()<.,\s\n\t\r]+)#i',
 						);
 	$regex = "/<a[\s]+[^>]*?href[\s]?=[\s\"\']+"."(.*?)[\"\']+.*?>"."([^<]+|.*?)?<\/a>/";
 	

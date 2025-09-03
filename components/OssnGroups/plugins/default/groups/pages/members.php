@@ -3,7 +3,7 @@
  * Open Source Social Network
  *
  * @package   Open Source Social Network
- * @author    Open Social Website Core Team <info@openteknik.com>
+ * @author    Open Source Social Network Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
  * @link      https://www.opensource-socialnetwork.org/
@@ -21,10 +21,10 @@ if ($members) {
       ?>
 	     <div class="ossn-group-members">
 			<div class="row">
-            		<div class="col-md-2 col-sm-2 col-3">
+            		<div class="col-lg-2 col-sm-2 col-3">
     	        		<img src="<?php echo $user->iconURL()->large; ?>" class="user-icon-larger img-responsive"/>
 					</div>
-                   <div class="col-md-10 col-sm-10 col-8">
+                   <div class="col-lg-10 col-sm-10 col-8">
     	    	        <div class="uinfo">
                           <?php
 	    						echo ossn_plugin_view('output/url', array(

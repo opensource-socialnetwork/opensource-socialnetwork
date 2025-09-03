@@ -2,7 +2,7 @@
 /**
  * Open Source Social Network
  *
- * @package   (openteknik.com).ossn
+ * @package   Open Source Social Network (OSSN)
  * @author    OSSN Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
@@ -193,15 +193,21 @@ class OssnThemes extends OssnSite {
 		 */
 		public function loadActive() {
 				$path = ossn_route()->themes;
+				
+				$vars['theme'] = $this->getSettings('theme');
+				ossn_trigger_callback('theme', 'before:load', $vars);
+				
 				if(is_file("{$path}{$this->getSettings('theme')}/ossn_theme.php")) {
 						$lang      = ossn_site_settings('language');
 						$lang_file = "{$path}{$this->getSettings('theme')}/locale/ossn.{$lang}.php";
-						if(is_file($lang_file)) {
+						//[B] Theme language strings not cached #2299
+						if(ossn_site_settings('cache') == 0 && is_file($lang_file)) {
 								//feature request: multilanguage themes #281
 								include_once($lang_file);
 						}
 						require_once("{$path}{$this->getSettings('theme')}/ossn_theme.php");
 				}
+				ossn_trigger_callback('theme', 'after:load', $vars);
 		}
 		/**
 		 * Enable Theme

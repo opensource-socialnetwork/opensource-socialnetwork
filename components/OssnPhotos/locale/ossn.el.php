@@ -2,7 +2,7 @@
 /**
  * Open Source Social Network
  *
- * @package   (openteknik.com).ossn
+ * @package   Open Source Social Network (OSSN)
  * @author    OSSN Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
@@ -34,6 +34,7 @@ $el = array(
 	'photo:album:deleted' => 'Το άλμπουμ φωτογραφιών διαγράφηκε με επιτυχία!',
 	'photo:album:delete:error' => 'Δεν είναι δυνατή η διαγραφή του άλμπουμ φωτογραφιών',
 	
-
+	'ossn:notifications:comments:object:ossn:album' => 'Ο %s σχολίασε το άλμπουμ φωτογραφιών σας %s',
+	'ossn:notifications:like:object:ossn:album' => 'Στο %s άρεσε η φωτογραφία(ες) σας σε ένα λεύκωμα %s',
 );
 ossn_register_languages('el', $el); 

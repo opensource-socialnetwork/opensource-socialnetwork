@@ -11,6 +11,51 @@ Ossn.MessageBoxClose = function() {
 
 };
 /**
+ * Trigget a Modal box
+ * [E] Add option to trigger manually messagebox/overlay box #2277
+ * 
+ * @param['title']      string Title
+ * @param['content']    string Modal contents (html/text)
+ * @param['callback']   optional  string callback for save button
+ * @param['button']     optional string save button text
+ *
+ * @return boolean|void
+ */
+Ossn.ModalBox = function(params = false) {
+		if(!params){
+				return false;	
+		}
+		$('.ossn-halt').addClass('ossn-light');
+		$('.ossn-halt').attr('style', 'height:' + $(document).height() + 'px;');
+		$('.ossn-halt').show();
+		$('.ossn-message-box').html('<div class="ossn-loading ossn-box-loading"></div>');
+		$('.ossn-message-box').fadeIn('slow');
+		
+		callback = false;
+		if(params['callback']){
+			callback = params['callback'];
+		}
+		
+		$title   = params['title'];
+		$content = params['content'];
+		
+		if(params['button']){
+			button  = params['button'];
+		} else {
+			button = Ossn.Print('save');	
+		}
+		
+		var content = '<div class="title">'+$title+'<div class="close-box" onclick="Ossn.MessageBoxClose();"><i class="fa fa-times"></i></div></div><div class="contents"><div class="ossn-box-inner"><div style="width:100%;margin:auto;">'+$content+'</div></div></div>';
+		content += '<div class="control"><div class="controls">';
+		if(callback != false){
+			content += '<a href="javascript:void(0);" onclick="Ossn.Clk(\''+callback+'\');" class="btn btn-primary btn-sm">'+button+'</a>';
+		}
+		
+		content += ' <a href="javascript:void(0);" onclick="Ossn.MessageBoxClose();" class="btn btn-default btn-sm">'+Ossn.Print('cancel')+'</a>';
+		content += '</div></div>';
+		$('.ossn-message-box').html(content).fadeIn();
+};
+/**
  * Load Message box
  *
  * @return void
@@ -29,38 +74,6 @@ Ossn.MessageBox = function($url) {
 			$('.ossn-message-box').html(callback).fadeIn();
 		},
 	});
-
-};
-/**
- * Load a media viewer
- *
- * @return void
- */
-Ossn.Viewer = function($url) {
-	Ossn.PostRequest({
-		url: Ossn.site_url + $url,
-
-		beforeSend: function() {
-			$('.ossn-halt').removeClass('ossn-light');
-			$('.ossn-halt').show();
-			$('.ossn-viewer').html('<table class="ossn-container"><tr><td class="image-block" style="text-align: center;width:100%;"><div class="ossn-viewer-loding">Loading...</div></td></tr></table>');
-			$('.ossn-viewer').show();
-		},
-		callback: function(callback) {
-			$('.ossn-viewer').html(callback).show();
-		},
-	});
-};
-/**
- * Close a media viewer
- *
- * @return void
- */
-Ossn.ViewerClose = function($url) {
-	$('.ossn-halt').addClass('ossn-light');
-	$('.ossn-halt').hide();
-	$('.ossn-viewer').html('');
-	$('.ossn-viewer').hide();
 };
 /**
  * Add a system messages for users
@@ -71,35 +84,63 @@ Ossn.ViewerClose = function($url) {
  * @return void
  */
 Ossn.trigger_message = function($message, $type) {
-	$type = $type || 'success';
-	if ($type == 'error') {
-		//compitable to bootstrap framework
-		$type = 'danger';
-	}
-	if ($message == '') {
-		return false;
-	}
-	$html = "<div class='alert alert-dismissible alert-" + $type + "'><button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>" + $message + "</div>";
-	$('.ossn-system-messages').find('.ossn-system-messages-inner').append($html);
-	if ($('.ossn-system-messages').find('.ossn-system-messages-inner').is(":not(:visible)")) {
-		$('.ossn-system-messages').find('.ossn-system-messages-inner').slideDown('slow');
-	}
-	setTimeout(function(){ 
-		$('.ossn-system-messages').find('.ossn-system-messages-inner').empty().hide()
-	}, 10000);
+    $type = $type || 'success';
+    if ($type == 'error') {
+        $type = 'danger';
+    }
+    if ($message == '') {
+        return false;
+    }
+
+    // Create unique ID for each toast
+    const toastId = 'ossn-system-message-item-' +  Date.now() + Math.floor(Math.random() * 1000);
+
+    const $html = `
+    <div id="${toastId}" class="toast align-items-center text-bg-${$type} border-0 mt-2 mb-2" role="alert" aria-live="assertive" aria-atomic="true"
+         data-bs-autohide="true" data-bs-delay="10000">
+      <div class="d-flex">
+        <div class="toast-body">${$message}</div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+      </div>
+    </div>`;
+
+    // Append to toast container
+    $('.ossn-system-message.toast-container').append($html);
+
+    // Show the toast using Bootstrap's JS API
+    const toastEl = document.getElementById(toastId);
+    const toast = new bootstrap.Toast(toastEl);
+    toast.show();
+    toastEl.addEventListener('hidden.bs.toast', function () {
+        toastEl.remove();
+    });	
 };
+
 /**
  * Dragging support of images
  * currently used by OssnProfile and OssnGroups
  *
+ * @param function drag_cb Callback
+ * 
  * @return void
  */
-Ossn.Drag = function() {
+Ossn.Drag = function(drag_cb = false) {
 	// some sanitizing to work with fluid themes and covers eventually resized according to screen width
-	const default_cover_width  = 1040;
-	const default_cover_height = 200;
+	var theme_config = $('#ossn-theme-config');
+	var default_cover_height = theme_config.attr('data-desktop-cover-height');
+	var default_cover_width  = theme_config.attr('data-minimum-cover-image-width');
+	
+	//[B] Cover seems have a bug #2305
+	if(typeof default_cover_height == 'undefined'){
+		default_cover_height = 300;
+	}
+	if(typeof default_cover_width  == 'undefined'){
+		default_cover_width = 1200;	
+	}
+	
 	var image_width  = document.querySelector("#draggable").naturalWidth;
-	var image_height = document.querySelector("#draggable").naturalHeight;
+	var image_height = document.querySelector("#draggable").naturalHeight;	
+	
 	var cover_width  = $("#container").width();
 	var cover_height = $("#container").height();
 	var drag_width   = 0;
@@ -143,6 +184,9 @@ Ossn.Drag = function() {
 			}
 			ui.position.top = newTop;
 			ui.position.left = newLeft;
+			if(typeof drag_cb == 'function'){
+					drag_cb(ui, $.globalVars);
+			}
 		}
 	});
 };	

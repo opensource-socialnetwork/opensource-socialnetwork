@@ -2,7 +2,7 @@
 /**
  * Open Source Social Network
  *
- * @package   (openteknik.com).ossn
+ * @package   Open Source Social Network (OSSN)
  * @author    OSSN Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
@@ -20,8 +20,6 @@ $de = array(
     'home:top:heading' => "Willkommen bei %s!<br>Egal, ob Du neue Freunde oder alte Bekannte suchst: Hier bist Du richtig.",
     'create:account' => 'Mitmachen!',
     'its:free' => 'Es ist umsonst und kostet nichts.',
-
-    'register:ok:message' => "Dein Benutzer-Konto wurde nun eingerichtet, und Du hast eine Aktivierungs-Email erhalten. Sieh in Deinem Spam-Ordner nach, wenn Du die Nachricht im Posteingang nicht findest.",
 
     'copyright' => '&copy; COPYRIGHT',
     'powered' => 'Powered by the Open Source Social Network.',
@@ -163,7 +161,7 @@ Falls der Link nicht anklickbar ist, kopiere ihn einfach in Deinen Browser.
     'theme:install:error' => 'Das Thema konnte nicht installiert werden, überprüfe bitte das zip-Archiv',
 
     'fields:require' => 'Bitte fülle alle Eingabe-Felder aus',
-    'username:error' => 'Der Benutzer-Name muss mindestens 5 Zeichen lang sein',
+    'username:error' => 'Der Benutzername ist falsch. Bitte verwenden Sie bei der Eingabe Ihrer Daten nur alphanumerische Zeichen. Achten Sie darauf, dass keine Leerzeichen oder Sonderzeichen enthalten sind. Es sind nur die Buchstaben A-Z und die Zahlen 0-9 erlaubt. Der Benutzername muss aus mindestens 5 Zeichen bestehen.',
     'password:error' => 'Das Passwort muss mindestens 6 Zeichen lang sein',
     'account:created' => 'Das Benutzer-Konto wurde angelegt',
     'account:create:error:admin' => 'Das Benutzer-Konto konnte nicht angelegt werden - probiere es später nochmal',
@@ -260,6 +258,7 @@ Um Dein Passwort zurückzusetzen klicke bitte auf den folgenden Link oder kopier
 	'admin:edit:user' => 'Benutzer bearbeiten',
 	'admin:login' => 'Anmelden',
 	'admin:notification:email' => 'Benachrichtigungs-Email',
+	'admin:email:name' => 'Benachrichtigungs-E-Mail-Name',
 	'notification_email' => 'Benachrichtigungs-Email (noreply@domain.de)',
 	'owner_email' => 'Betreiber-Email (administrator@domain.de)',
 	'ossn:websitename' => 'Name der Webseite',
@@ -327,6 +326,23 @@ Um Dein Passwort zurückzusetzen klicke bitte auf den folgenden Link oder kopier
 	'php:upload_err_no_tmp_dir' => 'Fehlender temporärer Ordner',
 	'php:upload_err_cant_write' => 'Fehler beim Schreiben der Datei auf die Festplatte',
 	'php:upload_err_extension' => 'Eine PHP-Erweiterung hat den Datei-Upload gestoppt',
+	'php:extension:notfound' => 'PHP-Erweiterung nicht gefunden!', 
+	
+	'admin:basiccache' => 'Basiscache', 
+	'admin:dcache:note' => 'Die dynamischen Daten werden mit Hilfe eines dynamischen Cache zwischengespeichert. die die Verarbeitung Ihrer Anwendung beschleunigen könnte. Der Aktivierung des Cache wird nicht helfen, wenn die Verbindung zwischen dem Cache und dem Cache langsamer ist, da die Anwendung nur noch langsamer ausgeführt werden kann.  Es wird empfohlen, den Caching-Server auf demselben Host wie das soziale Netzwerk zu konfigurieren. Bitte verzichten Sie auf das Caching mit Shared-Hosting-Services. Es kann jeweils nur ein Cache-System verwendet werden.', 
+	'admin:dcache:cachename' => 'Cacheservertypen', 
+	'admin:dcache:extension:enabled' => 'Erweiterung aktiviert', 
+	'admin:dcache:select:server:type' => 'Servertyp auswählen', 
+	'admin:dcache:host' => 'Host', 
+	'admin:dcache:port' => 'Port', 
+	'admin:dcache:username' => 'Benutzername (sofern vorhanden)', 
+	'admin:dcache:password' => 'Kennwort (falls vorhanden)', 
+	'admin:dcache:setstatus' => 'Status festlegen', 
+	'admin:dcache:extension:tests' => 'Tests', 
+	'admin:dcache:errorconnection' => 'Verbindung mit angegebenen Details kann nicht bestätigt werden!', 
+	'admin:dcache:required:field' => 'Füllen Sie die erforderlichen Felder aus', 
+	'admin:dcache:memcached:authnotsupport' => 'Ihre Memcached php-Erweiterung unterstützt keine Authentifizierung!', 
+
 	/*
        * List of ISO 639-1 language codes
        * http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes

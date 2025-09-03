@@ -75,10 +75,15 @@ $(window).on('load resize', function () {
 			current_cover_height = ~~($('.ossn-group-cover').height() + 0.5);
 			current_cover_width = ~~($('.ossn-group-cover').width() + 0.5);
 		}
-		if (current_cover_width < 481) {
+		if (current_cover_width < 1024) {
+			var theme_config = $('#ossn-theme-config');
+			var default_cover_height = theme_config.attr('data-desktop-cover-height');
+			var default_cover_width = theme_config.attr('data-minimum-cover-image-width');
+					
 			// we're on mobile
-			const desktop_cover_width  = 1040;
-			const desktop_cover_height = 200;
+			const desktop_cover_width  = default_cover_width;
+			const desktop_cover_height = default_cover_height;
+			
 			var real_image_width  = document.querySelector("#draggable").naturalWidth;
 			var real_image_height = document.querySelector("#draggable").naturalHeight;
 			// 1. how many mobile heights would we need to hold the image?

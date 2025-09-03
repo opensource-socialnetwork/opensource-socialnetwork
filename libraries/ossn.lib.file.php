@@ -2,7 +2,7 @@
 /**
  * Open Source Social Network
  *
- * @package   (openteknik.com).ossn
+ * @package   Open Source Social Network (OSSN)
  * @author    OSSN Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
@@ -31,6 +31,10 @@ function ossn_get_file($guid) {
  * @return boolean
  */
 function ossn_file_is_cdn_storage_enabled(): bool {
+		//[E] cdnStorage component disabled but settings enabled #2255
+		 if(!com_is_active('CDNStorage')){
+			 	return false;
+		 }
 		 $site = new \OssnSite();
 		 $settings = $site->getSettings('cdnstorage.status');
 		 if($settings && $settings == 'enabled'){

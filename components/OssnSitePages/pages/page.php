@@ -2,7 +2,7 @@
 /**
  * Open Source Social Network
  *
- * @package   (openteknik.com).ossn
+ * @package   Open Source Social Network (OSSN)
  * @author    OSSN Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
@@ -15,7 +15,7 @@ if (!isset($params['contents'])) {
     $params['contents'] = '';
 }
 ?>
-<div class="col-md-11">
+<div class="col-lg-11">
 	<div class="ossn-site-pages">
 		<div class="ossn-site-pages-inner  ossn-page-contents">
 			<div class="ossn-site-pages-title">

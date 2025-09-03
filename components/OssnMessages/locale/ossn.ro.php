@@ -2,7 +2,7 @@
 /**
  * Open Source Social Network
  *
- * @package   (openteknik.com).ossn
+ * @package   Open Source Social Network (OSSN)
  * @author    OSSN Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
@@ -24,5 +24,6 @@ $ro = array(
 	'ossnmessages:delete:me' => 'Scoate pentru tine',
 	'ossnmessages:delete:me:note' => 'Acest mesaj va fi eliminat pentru dvs. Un alt membru îl va putea vedea în continuare.',
 	'ossnmessages:replied:you' => 'Dumneavoastră: %s',	
+	'message:fileattachment' => 'Atasament',			
 );
 ossn_register_languages('ro', $ro); 

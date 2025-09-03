@@ -2,7 +2,7 @@
 /**
  * Open Source Social Network
  *
- * @package   (openteknik.com).ossn
+ * @package   Open Source Social Network (OSSN)
  * @author    OSSN Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
@@ -27,8 +27,13 @@ foreach ($users as $user) {
         <img class="user-icon-<?php echo $avatar_size;?>" src="<?php echo $icon; ?>"/>
 
         <div class="uinfo">
-            <a class="userlink"
-               href="<?php echo ossn_site_url(); ?>u/<?php echo $user->username; ?>"><?php echo $user->fullname; ?></a>
+            <?php
+			echo ossn_plugin_view('output/user/url', array(
+					'user' => $user,			
+					'class' => 'userlink',
+					'section' => 'output/users/list',
+			));
+			?>
         </div>
         <?php if (ossn_isLoggedIn()) { ?>
             <?php if (ossn_loggedin_user()->guid !== $user->guid) {

@@ -2,7 +2,7 @@
 /**
  * Open Source Social Network
  *
- * @package   (openteknik.com).ossn
+ * @package   Open Source Social Network (OSSN)
  * @author    OSSN Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
@@ -19,6 +19,8 @@ if(ossn_loggedin_user()->guid !== $group->owner_guid && !ossn_isAdminLoggedin())
 		exit;
 }
 if($group->UploadCover()) {
+		//get group again to get newly assigned cover
+		$group = ossn_get_group_by_guid($group->guid);
 		echo json_encode(array(
 				'success' => 1,
 				'url' => $group->coverURL()

@@ -2,7 +2,7 @@
 /**
  * Open Source Social Network
  *
- * @package   (openteknik.com).ossn
+ * @package   Open Source Social Network (OSSN)
  * @author    Dieter <info@marohn.nl>
  * @copyright 2014-2018 OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
@@ -36,5 +36,7 @@ $nl = array(
 	'photo:album:deleted' => 'Fotoalbum succesvol verwijderd',
 	'photo:album:delete:error' => 'Kan Fotoablbum niet verwijderen',
 	
+	'ossn:notifications:comments:object:ossn:album' => '%s heeft gereageerd op je fotoalbum %s',
+	'ossn:notifications:like:object:ossn:album' => '%s vond je foto(s) leuk in een album %s',	
 );
 ossn_register_languages('nl', $nl); 

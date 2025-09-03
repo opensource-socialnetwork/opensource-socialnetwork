@@ -7,3 +7,6 @@
     color: #000;
     border-radius: 3px;
 }
+.ossn-search-active-item {
+    background: #eee;
+}

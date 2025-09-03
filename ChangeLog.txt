@@ -1,3 +1,310 @@
+OSSN - OPEN SOURCE SOCIAL NETWORK v7.6
+- [B] Logo upload failed #2369
+- [B] Reset logo if no logo set before causing error #2368
+- [E] Update phpmailer
+
+OSSN - OPEN SOURCE SOCIAL NETWORK v7.5
+- [B] Editing user giving error, the email already existing (admin panel) #2364
+
+OSSN - OPEN SOURCE SOCIAL NETWORK v7.4
+- [E] OssnNotification autocheck if undefined causing page unresponsive
+
+OSSN - OPEN SOURCE SOCIAL NETWORK v7.3
+- [B] Wall is not visible for group member (other than creator) #2340
+- [B] OssnMessages image attachment broken if invalid file name #2339
+- [B] undefined array key "somekey" in file /var/www/libraries/ossn.lib.image.php (line 83) #2338
+- [E] profile cover album , thumbnail is distorted #2337
+- [E] Perform users edit using custom method instead of plain database->update() #2336
+- [B] URL with a special character in a comment post #2332
+- [B] OssnFile:output doesn't recognize setMimeTypes by component #2331
+- [B] strl showing wrong characters effected by #2257 #2325
+- [E] Hide message view on xs devices on message view page #2323
+- [B] countByYears result in admin panel showing wrong years + limit query to 2 years #2320
+- [B] Show chat bottom on large screens only lg (not md) #2321
+- [E] Show current search query inside search box on search page #2328
+- [B] Goblue 6.4 checkbox (checked) display corrupted #2330
+- [B] Replace col-md with lg #2322
+- [E] .ossn-box-loading not in center #2342
+- [E] Configure able autocheck OssnNotifications #2329
+- [E] Allow selection on multiple users on the unvalidated list current page #2319
+- [E] Session locking issue #2343
+- [B] When fixing #2305 we missed groups cover error handling #2346
+- [E] Revert of old #1436 as its never used anywhere #2345
+- [E] DynamicCaching usage #2335
+- [E] checkboxes check on label click #2348
+- [E] Fix the distorted 404 error page #2353
+- [B] Disorted frontpage icons #2352
+- [B] Truncated placeholder text in friends tagger #2351
+- [B] Transparency change of emoji overlay after editing posts/comments #2350
+- [E] Improvement to checkboxes #2357
+- [E] Mark radio boxes required if not checked #2359
+- [E] OssnBlock allows blocking of moderators #2358
+- [E] Allow rumble embed URL support #2362
+
+
+OSSN - OPEN SOURCE SOCIAL NEWORK  v7.2
+- [B] non-UTF8 chars in 3 language files of Goblue #2298
+- [B] Message send form not showing #2314
+- [E] Add ids in components and themes lists item so can be utilized later #2313
+- [B] Add accept types on file input messages #2311
+- [E] Fetch annotation entities in sperate method #2312
+- [E] Fetch annotation entities in sperate method #2312
+- [B] Message attachment file namev (output url) needs changes #2310
+- [B] online friends being removed from Chat tab #2309
+- [B] Cover reposition issue due to layout updates in past #2305
+- [B] usage of unavailable font-family in Goblue #2301
+- [B] missing declaration of $members in group profile #2307
+- [E] Changing logo should add timestamp to invalidate cache #2302
+- [B] Theme language strings not cached #2299
+- [E] callback for theme before and after load #2299
+- [E] allow to modify default username length using hook #2304
+
+OSSN - OPEN SOURCE SOCIAL NEWORK  v7.1
+- [B] Command to replace slash to backslash missing in vendors/jwt/autoload.php #2274
+- [B] ossn_is_from_cli is returning true on non-cli #2262
+- [B] Unaccepted friend appears in getFriends #2265
+- [B] OssnPhotos::getPhoto should not return other file types #2272
+- [B] hide group members and subpages for private groups #2276
+- [B] Tinymce lists and bullets missing from topbar #2267
+- [E] OssnNotifications check new one on mark all as read #2266
+- [E] Default search result type confusing #2279
+- [E] improve username invalid message #2273
+- [B] Emojis shows entities in trimmed message notification #2257
+- [E] Remove /register page what is it doing? #2270
+- [E] Add max-height in .ossn-wall-item .post-contents img #2259
+- [E] Don't open the last message in messages/all #2283
+- [E] Allow attachment of image in message without text #2268
+- [E] Bootstrap badges have blue on however should be same color #2269
+- [E] output/user/url should have data-username #2284
+- [E] remove Ossn.Viewer js #2286
+- [E] Fontawesome 5.x to 6.x #2285
+- [B] Message typing UI bug for OSSN chat #2288
+- [E] Show only online members in Chat #2287
+- [B] OssnChat showing only 10 users #2263
+- [E] Add option to trigger manually messagebox/overlay box #2277
+- [E] Merge Hungarian langauge #2289
+- [E] phpmailer update #2292
+- [E] new zip mime type #2293
+- [E] Improve installation script #2294
+- [E] Add style to checkboxes #2291
+
+OSSN - OPEN SOURCE SOCIAL NETWORK v7.0
+* [B] fix allowing to display profile modules with priority < 200 #2211
+* [B] User existence check #2222
+* [E] Add fancybox into core as external lib #2234
+* [E] Unload OssnChat on Messages pages #2236
+* [B] searchMessages viewed option doesn't work #2235
+* [B] OssnUser::getFriends([any wheres]) ignoring actual wheres resulting wrong result #2228
+* [B] Albums gallery thumbs showing wrong URL even it works #2225
+* [E] Update chart js library #2220
+* [E] jQueryUI 1.12.1 CVE*2021*41184 critical RCE vulnerability #2219
+* [E] typo OssnMail::NotifiyUser #2224
+* [E] Where does OssnComponents::bundledComponents() used? #2210
+* [E] Improvement in messages and chat,  allow you to upload file and image in message.
+* [E] Chat and Messages UI improved. Messages layout made bigger and remove chat from messages page.
+* [E] typo OssnMail::NotifiyUser #2224
+* [E] Update php version checking to version compare (installation) #2221
+* [B] Image in advertisement stays in cache #2229
+* [E] Add checkmarks in recent messages #2237
+* [E] input/dropdown allow option values to set class, id etc #2239
+* [E] Dynamic properties PHP 8.2 deprecated notice #2238
+* [E] File sizes error not showing on profile photo/cover upload #2243
+* [E] Unknown offset on OssnFile #2240
+* [E] Users list make btn*sm #2214
+* [B] OssnChat shows only 10 friends in sidebar #2227
+* [E] prevent loading language files of disabled components #2192
+* [E] Improve OssnUser method getFriendRequests #2217
+* [E] OssnAds remove link in view #2242
+* [B] Undefined errors in CLI #2248
+* [E] Make similes box in center of page with some background effect #2250
+* [E] Add notification email name in settings #2251
+   - Sometime you don't want to show website name in notification email ,  so this will change sender name in the notification emails.
+* [E] Add a copyrights settings instead of site name #2252
+   - Someone requested that they want to change copyright but not the site name. So this will let to change copyrgiht text only (no url).
+* [E] cdnStorage component disabled but settings enabled #2255
+* [E] Remove any blank spaces from the username field #2249 thanks to Rafael Amorim (https://github.com/rafaelmamorim)
+
+OSSN - OPEN SOURCE SOCIAL NETWORK v6.6
+* [E] output/user/url to profile cover , photos, albums wall template #2205
+* [B] Fix for wrong component installer link #2209
+* [B] Ossn 6.5 crashes if OssnLocation is disabled #2207
+* [E] UI .ossn-users-list-item .uinfo a width to maxwidth #2206
+
+OSSN - OPEN SOURCE SOCIAL NETWORK v6.5 
+* [B] Emoji problem introduced in 6.4 #2186
+* [E] taking care of Upper case file extensions #2185
+* [B] Installation not throwing mysql errors #2183
+* [B] wrong adjustmment of ossn-like-reactions-panel in mobile view #2189
+* [E] Disable admin to change his own type on user edit page (admin panel) #2182
+* [E] prevent loading language files of disabled components #2192
+* [B] With php 8 return type searchFiles not returing count #2199
+* [B] incompatibilty of Ossn 6.4 wall post storage and display with former Ossn releases #2187
+* [B] Places service has been sunsetted #2184
+* [E] Add a filetype block when user try upload video file into OssnWall #2191
+* [B] Covers and profile photos not showing pagination #2198
+* [E] Upgraded to BS5.2.2 from BS5.2.0-beta1
+* [E] Add plugin for user/output_url #2193
+* [B] Apache config being rewritten if modified by cpanel #2179
+* [B] fix for not working comment delete on entities #2201
+* [E] Enhance friends picker because now getFriends searched via OssnUser instance #2202
+* [E] admin_topbar and admin_sidemenu text setting via ossn_register_menu_item #2200
+* [E] Change name fields into max 30 chars each #2203
+* [E] Don't load js if it is not set.
+
+OSSN - OPEN SOURCE SOCIAL NETWORK v6.4 LTS
+* [B] Comment object menu not showing comment menu #2168
+* [B] XSS vulnerability in OssnWall #2173
+* [B] Same Friends tag flooding #2175
+* [B] Bug in ossn_get_relationships when setting only 'from' #2170
+* [E] Enhanced, getFriends make sure it returns relation_id in field list #2171 #2149
+* [B] Multiple css js loaded if multiple ossn_load_js(css) #2169
+* [E] Show like menu on priority 1
+
+OSSN - OPEN SOURCE SOCIAL NETWORK v6.3 LTS
+* [B] deleting profile photo gives error on iconURL() #2166
+* [B] deleting profile cover gives error on coverURL() #2166
+
+OSSN - OPEN SOURCE SOCIAL NETWORK v6.2
+* [E] Allow all callables for extend view #2024
+* [E] avoiding unnecessary handling of extra space at comment start #2029
+* [B] skip friend access check if page visitor is not logged in #2037
+* [B] User can not comment on friend only, own album photo #2039
+* [B] OssnSounds missing the button for sound on/off #2032
+* [E] Make sure addUser also run isEmail validation #2022
+* [E] Multiple select (html) handler #2040
+* [B] jqueryui-datepicker fails on Google translated pages #2036
+* [B] ossn_delete_relationship recursive not working #2035
+* [E] add a new function ossn_get_relation_by_id() #2034
+* [B] UI add friend success text goes wrong position #2027
+* [E] update version and pre-requisite OssnEmbed #2045
+* [B] fixed unallowed <div> inside paragraph again #2044
+* [E] load css for video in <span> #2043
+* [E] make video visible in <span> #2042
+* [E] Add provided by giphy footer or banner #2049
+* [E] Correction of term 'miinutos' to 'minutos' #2048
+* [E] CLI + cron library and documentation on community #2050
+* [B] fixed calling unavailable/mistyped function #2051
+* [E] OssnMail 'email', 'send:policy' 3rd parameter #2052
+* [E] [E] optimized getMyGroups() #2071
+* [E] optimized OssnGroup::isMember() #2070
+* [E] optimized OssnGroup::getMembersRequests() #2069
+* [E] optimized group join-requests counter #2067
+* [E] PHP8 prevent bool->guid warnings #2058
+* [B] fixed missing error handler for not existing subpages #2055
+* [E] Add confirmation before deleting photos #2073
+* [E] Enhance group menu entries in sidebar #2072
+* [B] PHP8 If deleted comments tried to be deleted again #2057
+* [B] OssnNotification if poster and owner is same participants hook never run #2053
+* [B] Fix the like:object view menu type introduced in #1868 #2081
+* [E] Replace translation PT #2079 #2075
+* [E] Improve mod_rewrite CURL functionality #2078
+* [B] fixed use of undefined variable $object #2084
+* [E] Some small locale fixes. #2087
+* [B] PHP Warning: preg_match(): Compilation failed (#2018). #2086
+* [B] fix creating incomplete wall entities if addPhoto() fails #2088
+* [B] prevent warning if $fields is false #2137 #2136 #2135
+* [E] Update PHP version to minimum 8 #2061
+* [B] Comment Static photo should have only filename no fullpath #2090
+* [B] No notification to participants if someone comments on profile photo , cover, album photo #2054
+* [B] jqueryui-datepicker fails on Google translated pages #2036
+* [E] Removal of old upgrade scripts #2085
+* [E] Enhance OssnFile and Include CDN option #2089
+* [E] fixed different 'readonly' colors #2134
+* [B] missing check if member has a cover image #2093
+* [E] some installation warnings #2018
+* [E] don't list unvalidated members #2144
+* [B] Multiple clicks on same action add member multiple times in group #2147
+* [B] col-xs not anymore with BS5 #2017
+* [E] Remove php5 apache config and update post and upload sizes #2033
+* [E] Stop rewriting .htaccess every time page loads during installation #2091
+* [B] Deleting a group should remove group:joinrequest records #2066
+* [E] Enable linkifying of Entity comments #2080
+* [B] wrong class extending in all input plugins #2146
+* [E] Ossn::File MaxSize() add UploadMaxSize #2148
+* [B] getting orphan notification records of type comments:post:group:wall #2060
+* [E] isModerator (for groups) in comments section also. #2025
+* [E] Added OssnJWT class based on firebase/JWT
+* [E] Updated cacert.pem
+* [E] Updated PHP MAILER to 6.6.0
+* [B] Pagination not responsive #2150
+* [E] Show components in admin panel in ASC order of their installation #2155
+* [E] Component delete confirmation if wanted to keep settings. #2152
+* [T] OssnUser::getFriends() #2149
+* [B] Pagination not responsive #2150
+* [B] btn-sm have no effect #2153
+* [B] missing checkbox-block span style #2145
+* [B] Non logged in visitor can view private posts #2158
+* [B] OssnChat default value showing 0 in class #2163
+* [E] Request for new user image classes defining the shape only #2143
+* [B] Post background not breaking if str > 125 chars #2164
+
+Special Thanks to Michael Zülsdorff (aka Zetman) (https://www.opensource-socialnetwork.org/u/zetman) for testing and bug reporting, fixing.
+
+OSSN - OPEN SOURCE SOCIAL NETWORK v6.1
+* [B] Undefined array key "HTTP_HOST #2012
+* [B] Admin menus issues not appearing on mobile phone #2015
+* [B] PHP 8 Warnings #2014
+* [B] BS5 js file cached during upgrade #2016
+
+OSSN - OPEN SOURCE SOCIAL NETWORK v6.0
+* [B] Make pagination work on photo album overview page #1838 #1840
+* [B] input/radio didn't accept 0 as value #1848
+* [B] input/checkbox not getting any label #1849
+* [E] prevent script error if hook doesn't exist
+* [E] Move to JQuery 3.x #1874
+* [E] Move to JQuery UI latest version #1873
+* [E] Move to latest boostrap  #1872
+* [E] There should be callback to delete entity likes, comments by default #1877
+* [E] Like Comment on object #1868
+* [E] Separate frontend/backend JS #1867
+* [B] changed encoding to utf-8 #1880
+* [B] changed encoding to utf-8 #1879
+* [B] changed encoding to utf-8 #1878
+* [B] preserve exact <br>\n sequence after editing #1860
+* [B] preserve exact <br>\n sequence after editing #1859
+* [E] ossn.en.php Improve and correct grammar mistakes #1862
+* [B] New Message missing message id in div ... id='message-item-'
+* [E] OssnPhotos -> Fancybox issue and feature request #1858
+* [B] img js ossn_cache cause duplicate requests #1886
+* [E] don't show empty value genders in graphs #1887
+* [B] Wall site crash when mentioning members under certain conditions. #1865
+* [E] Check user existence before sending message #1883
+* [E] Made it compitable with php 8
+* [E] Make user external CSS/JS loaded once if load func used twice #1890
+* [E] Avoid ossn_cache to append on already ossn_cache imgs #1891
+* [B] CSSMin didn't minify data:image type svg #1889
+* [E] Remove unused CSS minify code from older OSSN #1892
+* [E] Return xhr object on post and ajaxrequest #1909
+* [B] Group header menu shows multiple more #1888
+* [E] prevent creating groups with undefined membership #1916
+* [E] replaced getObjectsByTypes() by searchObject()
+* [E] removal of obsolete getObjectsByTypes() #1926
+* [E] removal of unused getGroups() #1925
+* [E] removed dominant comment-box padding #1944
+* [B] OssnPagination::constructUrlArgs() not taking non alphanumeric chars #1974
+* [E] Check the OssnEmbed for videos links issues #1957
+* [E] Add hook for wall, getAllPosts
+* [E] Fixed: jfif photo uploads don't work #1984
+* [B] PHP rename function doesn't copy folders recursively across separated… #1987
+* [B] aasure instance of logged-in user before using its guid #1988
+* [B] Non friend may able to add like & comment to friend photo only [huntr.dev] #1979
+* [E] Disallow to upload empty files and improve files function #1976
+* [E] Check if profile and cover posted on newsfeed as public #1991
+* [E] show deactivated privacy label on group wall with opacity 0.5 #1993
+* [B] Unset properties on Group update #1994
+* [E] Allow to use metatags in head #1996
+* [B] Close group post is accessible when not loggedin #1997
+* [E] removal of unused function #2003
+* [B] Notification type like:post:group:wall participants supress #2002
+* [E] Removal of duplicate dLabel ids #2001
+* [E] Fontawesome 5 migration #2000
+* [E] exif_read_data only for jpeg #1999
+* [E] Load ossn notifications only when loggedin #1998
+* [E] Improve the comment add #1990
+* [E] Inefficient table design and query #1864
+* [E] Blocked user showing in search and people can add friends #2008
+* [E] Strip comments for blocked users, for each of them #2009
+
 OSSN - OPEN SOURCE SOCIAL NETWORK v5.6
 * [B] prevent creating of new records if setting value is 0 #1815
 * [E] Integrate BanUser inside wall loading #1817

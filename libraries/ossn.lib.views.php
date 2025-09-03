@@ -2,7 +2,7 @@
 /**
  * Open Source Social Network
  *
- * @package   (openteknik.com).ossn
+ * @package   Open Source Social Network (OSSN)
  * @author    OSSN Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
@@ -91,6 +91,29 @@ function ossn_extend_view($views, $file) {
     global $VIEW;
     $VIEW->register[$views][] = $file;
 	return true;
+}
+
+/**
+ * Unregister a view;
+ *
+ * @param string $view Path of view;
+ * @param string|callable $file File name for view;
+ * @last edit: $arsalanshah
+ *
+ * @reason: Initial;
+ * @returnn mix data
+ */
+function ossn_unextend_view($views, $file) {
+    global $VIEW;
+	if(isset($VIEW->register[$views])){	
+			foreach($VIEW->register[$views] as $key => $view){
+					if($view == $file){
+						 	unset($VIEW->register[$views][$key]); 
+							return true;
+					}
+			}
+	}
+	return false;
 }
 
 /**

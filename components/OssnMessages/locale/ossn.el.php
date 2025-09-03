@@ -2,7 +2,7 @@
 /**
  * Open Source Social Network
  *
- * @package   (openteknik.com).ossn
+ * @package   Open Source Social Network (OSSN)
  * @author    OSSN Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
@@ -24,5 +24,6 @@ $el = array(
 	'ossnmessages:delete:me' => 'Αφαιρέστε για εσάς',
 	'ossnmessages:delete:me:note' => 'Αυτό το μήνυμα θα καταργηθεί για εσάς. Άλλο μέλος θα μπορεί να το δει.',
 	'ossnmessages:replied:you' => 'Εσείς: %s',	
+	'message:fileattachment' => 'Συνημμένο αρχείο',	
 );
 ossn_register_languages('el', $el); 

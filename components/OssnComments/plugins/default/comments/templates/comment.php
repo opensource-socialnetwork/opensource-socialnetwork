@@ -3,7 +3,7 @@
  * Open Source Social Network
  *
  * @package   Open Source Social Network
- * @author    Open Social Website Core Team <info@openteknik.com>
+ * @author    Open Source Social Network Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
  * @link      https://www.opensource-socialnetwork.org/
@@ -35,19 +35,19 @@ if(isset($comment->allow_comment_like) && $comment->allow_comment_like == false)
 }
 ?>
 <div class="comments-item" id="comments-item-<?php echo $comment->id; ?>">
-	<div class="row">
-		<div class="col-md-1">
+	<div class="d-flex flex-row">
+		<div class="pe-1">
 			<img class="comment-user-img user-icon-smaller" src="<?php echo $user->iconURL()->smaller; ?>" />
 		</div>
-		<div class="col-md-11">
+		<div class="ps-1 w-100">
 			<div class="comment-contents">
 				<p>
 					<?php
-						echo ossn_plugin_view('output/url', array(
-											'href' => $user->profileURL(), 
-											'text' => $user->fullname, 
-											'class' => 'owner-link',
-						 ));
+						echo ossn_plugin_view('output/user/url', array(
+							'user' => $user,	
+							'class' => 'owner-link',
+							'section' => 'comments',
+						));						
 						echo "<span class='comment-text'>";
 						        if ($comment->type == 'comments:entity') {
 						            echo nl2br($comment->getParam('comments:entity'));
