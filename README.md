@@ -104,6 +104,7 @@ Installation
 https://www.opensource-socialnetwork.org/wiki/view/706/how-to-install-open-source-social-network
 
 - Web Installer https://www.opensource-socialnetwork.org/download
+- Docker - https://github.com/opensource-socialnetwork/docker
 - VM Image - https://www.opensource-socialnetwork.org/download-vm-image
 
 Installation on Ubuntu x64 18.04/20.04/21.04 LTS
