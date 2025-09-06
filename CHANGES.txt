@@ -24,6 +24,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v8.2
 - [E] Reactions instead of "like" #2453
 - [E] Normalize Wall Remove JSON #2460
 - [E] Remove multiple new lines from comments and multiple spaces to single #2462
+- [E] Some CLI based commands for user and site #2464
 
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v8.1
