@@ -21,46 +21,47 @@ function v82update_json_validate_fallback($string) {
 		json_decode($string);
 		return json_last_error() === JSON_ERROR_NONE;
 }
-$wall = new OssnWall();
-$all  = $wall->GetPosts(array(
-		'page_limit' => false,
-));
-if($all) {
-		foreach ($all as $item) {
-				if(!v82update_json_validate_fallback($item->description)) {
-						continue;
-				}
-				$data = json_decode($item->description);
-				//text
-				if($data) {
-						//restore /r/n because input comes with /r/n new lines instead of actual lines
-						//we simulate input()
-						$text = ossn_input_escape($data->post);
-						if($text == 'null:data') {
-								$text = '';
+if(com_is_active('OssnWall')) {
+		$wall = new OssnWall();
+		$all  = $wall->GetPosts(array(
+				'page_limit' => false,
+		));
+		if($all) {
+				foreach ($all as $item) {
+						if(!v82update_json_validate_fallback($item->description)) {
+								continue;
 						}
-						$item->description = $text;
+						$data = json_decode($item->description);
+						//text
+						if($data) {
+								//restore /r/n because input comes with /r/n new lines instead of actual lines
+								//we simulate input()
+								$text = ossn_input_escape($data->post);
+								if($text == 'null:data') {
+										$text = '';
+								}
+								$item->description = $text;
+						}
+						//location
+						if(isset($data->location)) {
+								$item->data->location = $data->location;
+						}
+						//friends
+						if(isset($data->friend)) {
+								$item->data->tag_friend_guids = $data->friend;
+						}
+						$item->save();
 				}
-				//location
-				if(isset($data->location)) {
-						$item->data->location = $data->location;
-				}
-				//friends
-				if(isset($data->friend)) {
-						$item->data->tag_friend_guids = $data->friend;
-				}
-				$item->save();
 		}
 }
-
 $v82update = "ALTER TABLE ossn_users DROP INDEX index_username;
 ALTER TABLE ossn_users ADD UNIQUE INDEX index_username (username);
 
 CREATE INDEX idx_annotations_type_subject ON ossn_annotations (type, subject_guid);
 CREATE INDEX idx_entities_type_owner ON ossn_entities (type, owner_guid);
 
-CREATE INDEX idx_likes_subject_guid_type ON ossn_likes (subject_id, guid, type); 
-CREATE INDEX idx_likes_subject_type ON ossn_likes (subject_id, type); 
+CREATE INDEX idx_likes_subject_guid_type ON ossn_likes (subject_id, guid, type);
+CREATE INDEX idx_likes_subject_type ON ossn_likes (subject_id, type);
 
 ALTER TABLE ossn_components DROP INDEX index_com_id;
 ALTER TABLE ossn_components ADD UNIQUE INDEX index_com_id (com_id);
