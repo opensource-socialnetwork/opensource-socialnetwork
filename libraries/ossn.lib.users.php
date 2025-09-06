@@ -26,7 +26,7 @@ function ossn_user() {
  */
 function ossn_users() {
 		ossn_register_page('uservalidate', 'ossn_uservalidate_pagehandler');
-		
+		ossn_register_callback('cli', 'loaded', 'ossn_cli_user_commands_handler');
 		/**
 		 * Logout outuser if user didn't exists
 		 */
@@ -44,6 +44,47 @@ function ossn_users() {
 						'action' => true,
 						'priority' => 200
 				));
+		}
+}
+/**
+ * OSSN User releated CLI commands
+ *
+ * Usage using CLI
+ * sername is not a email it must be username
+ * 
+ * /usr/bin/php system/handlers/cli --handler=resetpassword --username=dummyuser --password=dummyuser
+ *
+ * @return void
+ */
+function ossn_cli_user_commands_handler($cb, $type, $args) {
+		if($args['handler'] == 'resetpassword') {
+				
+				$vars = ossn_cli_input(array(
+						'username',
+						'password',
+				));
+				
+				if(empty($vars['username']) || empty($vars['password'])) {
+						ossn_cli_output('Username or Password can not be empty!', 'error');
+						exit();
+				}
+				$user = ossn_user_by_username($vars['username']);
+
+				$check           = new OssnUser();
+				$check->password = $vars['password'];
+
+				if(!$check->isPassword()) {
+						ossn_cli_output(ossn_print('password:error'), 'error');
+						exit();
+				}
+
+				if(!$user) {
+						ossn_cli_output('Invalid user, no such a user exists', 'error');
+						exit();
+				}
+				if($user->resetPassword($vars['password'])) {
+						ossn_cli_output('Password has been changed', 'success');
+				}
 		}
 }
 /**
