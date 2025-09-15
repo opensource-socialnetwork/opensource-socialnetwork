@@ -1,4 +1,4 @@
-Open Source Social Network [8.2-dev]
+Open Source Social Network [8.2]
 ======================================
 [![Open Source Love](https://badges.frapsoft.com/os/v2/open-source.svg?v=102)](https://www.opensource-socialnetwork.org/)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://www.opensource-socialnetwork.org/)
@@ -109,7 +109,7 @@ https://www.opensource-socialnetwork.org/wiki/view/706/how-to-install-open-sourc
 - Docker - https://github.com/opensource-socialnetwork/docker
 - VM Image - https://www.opensource-socialnetwork.org/download-vm-image
 
-Installation on Ubuntu x64 18.04/20.04/21.04 LTS
+Installation on Ubuntu x64 18.04/20.04/21.04/22.04/24.04 LTS
 ```
 sudo add-apt-repository ppa:arsalanshah/opensource-socialnetwork
 sudo apt-get update
