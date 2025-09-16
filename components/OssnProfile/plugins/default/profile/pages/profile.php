@@ -15,6 +15,10 @@ $cover = new OssnProfile;
 $coverp = $cover->coverParameters($user->guid);
 $cover = $cover->getCoverURL($user);
 
+if (!is_array($coverp)) {
+    $coverp = [];
+}
+
 if(!isset($coverp[0])){
 	$coverp[0] = '';
 }	
