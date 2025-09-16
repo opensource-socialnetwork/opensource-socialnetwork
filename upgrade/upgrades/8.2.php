@@ -60,9 +60,6 @@ ALTER TABLE ossn_users ADD UNIQUE INDEX index_username (username);
 CREATE INDEX idx_annotations_type_subject ON ossn_annotations (type, subject_guid);
 CREATE INDEX idx_entities_type_owner ON ossn_entities (type, owner_guid);
 
-CREATE INDEX idx_likes_subject_guid_type ON ossn_likes (subject_id, guid, type);
-CREATE INDEX idx_likes_subject_type ON ossn_likes (subject_id, type);
-
 ALTER TABLE ossn_components DROP INDEX index_com_id;
 ALTER TABLE ossn_components ADD UNIQUE INDEX index_com_id (com_id);
 
@@ -85,7 +82,11 @@ ALTER TABLE ossn_entities_metadata ADD INDEX idx_guid_value (guid, value(50));
 
 ALTER TABLE `ossn_object` ADD `time_updated` INT NOT NULL AFTER `time_created`;
 ALTER TABLE `ossn_annotations` ADD `time_updated` INT NOT NULL AFTER `time_created`;
-ALTER TABLE `ossn_users` ADD `time_updated` INT NOT NULL AFTER `time_created`;";
+ALTER TABLE `ossn_users` ADD `time_updated` INT NOT NULL AFTER `time_created`;
+
+ALTER TABLE `ossn_object`ADD KEY `time_updated` (`time_updated`);
+ALTER TABLE `ossn_annotations`ADD KEY `time_updated` (`time_updated`);
+ALTER TABLE `ossn_users`ADD KEY `time_updated` (`time_updated`);";
 
 ossn_run_sql_script($v82update);
 
