@@ -1,3 +1,6 @@
+OSSN - OPEN SOURCE SOCIAL NETWORK v8.3
+- [B] php 8.4 deprecation notices #2465
+
 OSSN - OPEN SOURCE SOCIAL NETWORK v8.2
 - [E] loading spinner when uploading to album #2458
 - [B] Notification is not getting marked viewed #2439
