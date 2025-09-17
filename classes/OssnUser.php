@@ -349,27 +349,42 @@ class OssnUser extends OssnEntities {
 				//default is always md5 no matter what algo used (then above)
 				return md5($password . $salt);
 		}
-
 		/**
-		 * Login into site.
+		 * Username and Password Authenticate
+		 * This didn't check other things
+		 * Only checks username (email/username) and password
 		 *
-		 * @return boolean
+		 * @return boolean|object
 		 */
-		public function Login() {
+		public function authenticate() {
 				$user = $this->getUser();
+				if(!$user) {
+						return false;
+				}
 				if(isset($user->password_algorithm)) {
 						//setting user password algo
 						$this->setPassAlgo($user->password_algorithm);
 				}
-				if($user && $this->verifyPassword($this->password, $user->salt, $user->password) && $user->activation == null) {
-						unset($user->password);
-						unset($user->salt);
+				if($this->verifyPassword($this->password, $user->salt, $user->password)) {
+						return $user;
+				}
+				return false;
+		}
+		/**
+		 * Login user into session		 *
+		 * @return boolean
+		 */
+		public function Login() {
+				$login = $this->authenticate();
+				if($login && $login->activation == null) {
+						unset($login->password);
+						unset($login->salt);
 
-						OssnSession::assign('OSSN_USER', $user);
+						OssnSession::assign('OSSN_USER', $login);
 						$this->update_last_login();
 
 						$vars         = array();
-						$vars['user'] = $user;
+						$vars['user'] = $login;
 						$login        = ossn_call_hook('user', 'login', $vars, true);
 						return $login;
 				}
@@ -524,6 +539,9 @@ class OssnUser extends OssnEntities {
 		 * @return boolean
 		 */
 		public function deleteFriend($from, $to) {
+				if(empty($from) || empty($to)) {
+						return false;
+				}
 				$this->statement("DELETE FROM ossn_relationships WHERE(
 						 (relation_from='{$from}' AND relation_to='{$to}' AND type='friend:request') OR
 						 (relation_from='{$to}' AND relation_to='{$from}' AND type='friend:request'))");
@@ -1070,7 +1088,7 @@ class OssnUser extends OssnEntities {
 				$last_year           = date('Y', strtotime('-1 year'));
 				$timestamp_last_year = mktime(0, 0, 0, 1, 1, $last_year);
 
-				$current_year           = date('Y');
+				$current_year = date('Y');
 				//[B] New installation suddenly shows user empty graph (total by year) #2413
 				$timestamp_current_year = mktime(0, 0, 0, 12, 31, $current_year);
 

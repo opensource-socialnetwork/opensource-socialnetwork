@@ -26,6 +26,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v8.2
 - [E] Remove multiple new lines from comments and multiple spaces to single #2462
 - [E] Some CLI based commands for user and site #2464
 - [E] Allow upgrade process using CLI #2463
+- [E] OssnUser->authenticate() method to verify user logins only (not logging into system)
 
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v8.1
