@@ -1,5 +1,6 @@
 OSSN - OPEN SOURCE SOCIAL NETWORK v8.3
 - [B] php 8.4 deprecation notices #2465
+- [B] PostBackground not working #2466
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v8.2
 - [E] loading spinner when uploading to album #2458
