@@ -9,6 +9,8 @@
  * @link      https://www.opensource-socialnetwork.org/
  */
 class OssnDynamicCaching {
+		protected $settings;
+		
 		public function __construct() {
 				$this->settings = ossn_dynamic_cache_settings();
 		}

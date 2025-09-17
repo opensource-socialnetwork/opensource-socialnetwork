@@ -846,7 +846,6 @@ function _ossn_php_error_handler($errno, $errmsg, $filename, $linenum) {
 		// Notices
 		case E_NOTICE:
 		case E_USER_NOTICE:
-		case E_STRICT:
 				error_log("PHP NOTICE: $error");
 				break;
 
@@ -864,7 +863,6 @@ function _ossn_php_error_handler($errno, $errmsg, $filename, $linenum) {
 
 		return true; // Allow script to continue for non-fatal errors
 }
-
 /**
  * Map PHP error numbers to readable type names
  *
@@ -885,7 +883,6 @@ function _ossn_php_error_type($errno) {
 				E_USER_ERROR        => 'E_USER_ERROR',
 				E_USER_WARNING      => 'E_USER_WARNING',
 				E_USER_NOTICE       => 'E_USER_NOTICE',
-				E_STRICT            => 'E_STRICT',
 				E_RECOVERABLE_ERROR => 'E_RECOVERABLE_ERROR',
 				E_DEPRECATED        => 'E_DEPRECATED',
 				E_USER_DEPRECATED   => 'E_USER_DEPRECATED',
