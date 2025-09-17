@@ -16,7 +16,7 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 if (is_file('DISPLAY_ERRORS')) {
-    error_reporting(E_NOTICE ^ ~E_WARNING);
+    error_reporting(E_ALL);
 } else {
     ini_set('display_errors', 'off');
 }
