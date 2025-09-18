@@ -141,6 +141,7 @@ class OssnObject extends OssnEntities {
 				$params['params'] = array(
 						'o.guid',
 						'o.time_created',
+						'o.time_updated',
 						'o.owner_guid',
 						'o.description',
 						'o.title',

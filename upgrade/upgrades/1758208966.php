@@ -9,6 +9,19 @@
  * @link      https://www.opensource-socialnetwork.org/
  */
 
+$entities = ossn_get_entities(array(
+		'page_limit' => false,
+		'subtype'    => 'time_updated',
+		'wheres'     => array(
+				"e.type IN ('object', 'user', 'annotation')",
+		),
+));
+if($entities) {
+		foreach ($entities as $entity) {
+				$entity->deleteEntity();
+		}
+}
+
 ossn_generate_server_config('apache');
 ossn_version_upgrade($upgrade, '8.5');
 
