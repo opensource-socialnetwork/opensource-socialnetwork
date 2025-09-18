@@ -1,3 +1,7 @@
+OSSN - OPEN SOURCE SOCIAL NETWORK v8.5
+- [B] time_updated not showing in results #2470
+- [B] Wall is causing time_update=0 for objects #2469
+
 OSSN - OPEN SOURCE SOCIAL NETWORK v8.4
 - [E] Change DB engine to InnoDB #2468
 - [B] Installation fails for OSSN 8.3 #2467
