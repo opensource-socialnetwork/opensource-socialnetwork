@@ -80,7 +80,6 @@ class OssnWall extends OssnObject {
 				}
 				$this->data->poster_guid  = $this->poster_guid;
 				$this->data->access       = $access;
-				$this->data->time_updated = 0;
 				$this->subtype            = 'wall';
 				$this->title              = '';
 
