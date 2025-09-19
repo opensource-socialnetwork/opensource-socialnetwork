@@ -4,6 +4,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v8.6
 - [E] Add styling to license page on installation #2473
 - [E] Update old if time_updated=0 to time_created #2472
 - [B] comment edit is not working #2474
+- [E] Check ossn_restore_new_lines for valid string as strlen didn't accept other values #2475
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v8.5
 - [B] time_updated not showing in results #2470
