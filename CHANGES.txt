@@ -1,3 +1,8 @@
+OSSN - OPEN SOURCE SOCIAL NETWORK v8.6
+- [B] OssnAds image not showing #2471
+- [E] Make time_updated = time_created by default not 0 #2472
+
+
 OSSN - OPEN SOURCE SOCIAL NETWORK v8.5
 - [B] time_updated not showing in results #2470
 - [B] Wall is causing time_update=0 for objects #2469
