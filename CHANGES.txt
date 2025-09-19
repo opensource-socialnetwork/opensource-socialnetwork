@@ -1,6 +1,8 @@
 OSSN - OPEN SOURCE SOCIAL NETWORK v8.6
 - [B] OssnAds image not showing #2471
 - [E] Make time_updated = time_created by default not 0 #2472
+- [E] Add styling to license page on installation #2473
+- [E] Update old if time_updated=0 to time_created #2472
 
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v8.5
