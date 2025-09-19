@@ -24,7 +24,7 @@ $count      = $ads->getAds(array(
    </div>   
 </div>
 <div>
-<table class="table">
+<table class="table table-striped">
     <tbody>
     <tr class="table-titles">
         <td></td>
@@ -39,7 +39,7 @@ $count      = $ads->getAds(array(
         foreach ($items as $ads) {
             ?>
             <tr>
-                <td><input type="checkbox" name="entites[]" value="<?php echo $ads->guid; ?>"/></td>
+                <td><div class="checkbox-block mt-0"><input class="ossn-checkbox-input mt-0" type="checkbox" name="entites[]" value="<?php echo $ads->guid; ?>"/></div></td>
                 <td><?php echo $ads->title; ?></td>
                 <td><?php echo $ads->description; ?></td>
                 <!-- <td> 32</td> -->
