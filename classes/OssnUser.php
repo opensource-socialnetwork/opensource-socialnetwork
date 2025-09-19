@@ -71,6 +71,7 @@ class OssnUser extends OssnEntities {
 								'time_created',
 								'time_updated',
 						);
+						$time_created = time();
 						$params['values'] = array(
 								$this->first_name,
 								$this->last_name,
@@ -82,8 +83,8 @@ class OssnUser extends OssnEntities {
 								$activation,
 								0,
 								0,
-								time(),
-								0,
+								$time_created,
+								$time_created, //time_update=created
 						);
 						$create = ossn_call_hook(
 								'user',

@@ -75,7 +75,7 @@ class OssnObject extends OssnEntities {
 						$this->type,
 						$this->subtype,
 						$this->time_created,
-						0,
+						$this->time_created,  //time_update = time_created
 						$this->title,
 						$this->description,
 				);

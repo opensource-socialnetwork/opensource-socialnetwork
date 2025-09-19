@@ -61,7 +61,7 @@ class OssnAnnotation extends OssnEntities {
 						$this->subject_guid,
 						$this->type,
 						$this->time_created,
-						0,
+						$this->time_created, //updated=created
 				);
 
 				$this->annotation_type = $this->type;
