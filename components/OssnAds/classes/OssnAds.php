@@ -127,7 +127,6 @@ class OssnAds extends OssnObject {
 								$params['description'],
 						);
 						$this->data->site_url 	  = $params['siteurl'];
-						$this->data->time_updated = time();
 						if($this->updateObject($fields, $data, $entity->guid)) {
 								if(isset($_FILES['ossn_ads']) && $_FILES['ossn_ads']['size'] !== 0) {
 										if($file = $entity->getPhotoFile()) {
