@@ -11,12 +11,12 @@
 /**
  * Register a language in system;
  * @param  string $code code of language
- * @param  string $file File path 
+ * @param  string $file File path
  *
  * @last edit: $arsalanshah
  * @return void
  */
-function ossn_register_language($code, $file) : void {
+function ossn_register_language($code, $file): void {
 		if(isset($code) && !empty($code) && isset($file) && !empty($file)) {
 				global $Ossn;
 				$Ossn->locale[$code][] = $file;
@@ -27,7 +27,7 @@ function ossn_register_language($code, $file) : void {
  * Get a languages strings;
  * @param string $code Code of language;
  * @param array $params Translations;
- * 
+ *
  * @return void;
  */
 function ossn_register_languages($code, $params = array()) {
@@ -40,7 +40,7 @@ function ossn_register_languages($code, $params = array()) {
 
 /**
  * Get registered language codes;
- * 
+ *
  * @return array
  */
 function ossn_locales() {
@@ -48,14 +48,13 @@ function ossn_locales() {
 		if(!isset($Ossn->locale)) {
 				return false;
 		}
-		foreach($Ossn->locale as $key => $val) {
+		foreach ($Ossn->locale as $key => $val) {
 				$keys[] = $key;
 		}
 		if(!empty($keys)) {
 				return $keys;
 		} else {
 				return array();
-				
 		}
 }
 
@@ -79,7 +78,6 @@ function ossn_print($id = '', $args = array()) {
 		} else {
 				return $id;
 		}
-		
 }
 
 /**
@@ -91,7 +89,7 @@ function ossn_default_load_locales() {
 		global $Ossn;
 		$active = ossn_site_settings('language');
 		if(ossn_site_settings('cache') == 1) {
-				$system_locale_cache = ossn_get_userdata("system/locales/");
+				$system_locale_cache = ossn_get_userdata('system/locales/');
 				$cached_locale       = $system_locale_cache . "ossn.{$active}.json";
 				if(file_exists($cached_locale)) {
 						//this includes component language file too
@@ -100,14 +98,14 @@ function ossn_default_load_locales() {
 						if(!json_last_error()) {
 								$Ossn->localestr[$active] = $cached_locale_array;
 						} else {
-							throw new exception('Can not decode the cached language file');	
+								throw new exception('Can not decode the cached language file');
 						}
 				}
 		} else {
 				if(isset($Ossn->locale[$active])) {
-						foreach($Ossn->locale[$active] as $locales) {
+						foreach ($Ossn->locale[$active] as $locales) {
 								if(is_file($locales)) {
-										include_once($locales);
+										include_once $locales;
 								}
 						}
 				}
@@ -118,7 +116,7 @@ function ossn_default_load_locales() {
  *
  * @return string|false or false
  */
-function ossn_load_json_locales($lcode = "") {
+function ossn_load_json_locales($lcode = '') {
 		global $Ossn;
 		$code = ossn_site_settings('language');
 		if(!empty($lcode)) {
@@ -127,25 +125,24 @@ function ossn_load_json_locales($lcode = "") {
 		if(!isset($Ossn->localestr[$code])) {
 				return false;
 		}
-		$isUTF8 = function($str) {
-				return preg_match("/^(
-         [\x09\x0A\x0D\x20-\x7E]            # ASCII
-       | [\xC2-\xDF][\x80-\xBF]             # non-overlong 2-byte
-       |  \xE0[\xA0-\xBF][\x80-\xBF]        # excluding overlongs
-       | [\xE1-\xEC\xEE\xEF][\x80-\xBF]{2}  # straight 3-byte
-       |  \xED[\x80-\x9F][\x80-\xBF]        # excluding surrogates
-       |  \xF0[\x90-\xBF][\x80-\xBF]{2}     # planes 1-3
-       | [\xF1-\xF3][\x80-\xBF]{3}          # planes 4-15
-       |  \xF4[\x80-\x8F][\x80-\xBF]{2}     # plane 16
-      )*$/x", $str);
-		};
-		foreach($Ossn->localestr[$code] as $key => $item) {
-				if(!$isUTF8($item)) {
-						$strings[$key] = utf8_encode($item);
+
+		foreach ($Ossn->localestr[$code] as $key => $item) {
+				$encoding = mb_detect_encoding(
+						$item,
+						array(
+								'UTF-8',
+								'ISO-8859-1',
+								'Windows-1252',
+						),
+						true
+				);
+				if($encoding !== 'UTF-8') {
+						$strings[$key] = mb_convert_encoding($item, 'UTF-8', $encoding ?: 'ISO-8859-1');
 				} else {
 						$strings[$key] = $item;
 				}
 		}
+
 		$json = json_encode($strings, JSON_UNESCAPED_UNICODE);
 		if($json) {
 				return $json;
@@ -157,7 +154,7 @@ function ossn_load_json_locales($lcode = "") {
  * array "two letter code" => "native language name".
  *
  * This function contain code from other project
- * See licenses/elgg/LICENSE.txt 
+ * See licenses/elgg/LICENSE.txt
  *
  * @return array
  */
@@ -166,15 +163,15 @@ function ossn_get_installed_translations($percentage = true) {
 		global $Ossn;
 		$installed = array();
 		ossn_load_available_languages();
-		
-		foreach($Ossn->locale as $k => $v) {
+
+		foreach ($Ossn->locale as $k => $v) {
 				$installed[$k] = ossn_print($k, array(), $k);
 				$completeness  = ossn_get_language_completeness($k);
-				if(($completeness < 100) && ($k != 'en') && $percentage !== false) {
-						$installed[$k] .= " (" . $completeness . "% " . ossn_print('ossn:language:complete') . ")";
+				if($completeness < 100 && $k != 'en' && $percentage !== false) {
+						$installed[$k] .= ' (' . $completeness . '% ' . ossn_print('ossn:language:complete') . ')';
 				}
 		}
-		
+
 		return $installed;
 }
 /**
@@ -183,24 +180,24 @@ function ossn_get_installed_translations($percentage = true) {
  * @param string $language Language
  *
  * This function contain code from other project
- * See licenses/elgg/LICENSE.txt 
+ * See licenses/elgg/LICENSE.txt
  *
  * @return int
  */
 function ossn_get_language_completeness($language) {
 		global $Ossn;
 		$en = count($Ossn->localestr['en']);
-		
+
 		$missing = ossn_get_missing_language_keys($language);
 		if($missing) {
 				$missing = count($missing);
 		} else {
 				$missing = 0;
 		}
-		
+
 		//$lang = count($Ossn->translations[$language]);
 		$lang = $en - $missing;
-		
+
 		return round(($lang / $en) * 100, 2);
 }
 /**
@@ -213,19 +210,19 @@ function ossn_get_language_completeness($language) {
  */
 function ossn_get_missing_language_keys($language) {
 		global $Ossn;
-		
+
 		$missing = array();
-		
-		foreach($Ossn->localestr['en'] as $k => $v) {
+
+		foreach ($Ossn->localestr['en'] as $k => $v) {
 				if(!isset($Ossn->localestr[$language][$k])) {
 						$missing[] = $k;
 				}
 		}
-		
+
 		if(count($missing)) {
 				return $missing;
 		}
-		
+
 		return false;
 }
 /**
@@ -375,7 +372,7 @@ function ossn_standard_language_codes() {
 				'yo',
 				'za',
 				'zh',
-				'zu'
+				'zu',
 		);
 }
 /**
@@ -389,42 +386,42 @@ function ossn_load_available_languages($language_selection = false, $load_all = 
 		if(!$language_selection) {
 				$codes = ossn_standard_language_codes();
 		} else {
-				$codes = array();
+				$codes   = array();
 				$codes[] = $language_selection;
 		}
-		$path  = ossn_route();
-		
-		$components = new OssnComponents;
-		$themes = new OssnThemes;
+		$path = ossn_route();
+
+		$components = new OssnComponents();
+		$themes     = new OssnThemes();
 
 		//load core framework languages
-		foreach($codes as $code) {
+		foreach ($codes as $code) {
 				$file = $path->locale . "ossn.{$code}.php";
 				if(is_file($file)) {
-						include_once($file);
+						include_once $file;
 				}
 		}
 		//load component languages
-		if($load_all === false){
-			$components = $components->getActive();
+		if($load_all === false) {
+				$components = $components->getActive();
 		} else {
-			$components = $components->getAll();				
+				$components = $components->getAll();
 		}
-		foreach($components as $component) {
-				foreach($codes as $code) {
+		foreach ($components as $component) {
+				foreach ($codes as $code) {
 						$file = $path->components . '/' . $component->com_id . "/locale/ossn.{$code}.php";
 						if(is_file($file)) {
-								include_once($file);
+								include_once $file;
 						}
 				}
 		}
 		//load theme languages
 		$theme = $themes->getActive();
 		//foreach($themes as $theme) {
-		foreach($codes as $code) {
+		foreach ($codes as $code) {
 				$file = $path->themes . $theme . "/locale/ossn.{$code}.php";
 				if(is_file($file)) {
-						include_once($file);
+						include_once $file;
 				}
 		}
 		//}
@@ -437,14 +434,14 @@ function ossn_load_available_languages($language_selection = false, $load_all = 
 function ossn_get_available_languages() {
 		$codes = ossn_standard_language_codes();
 		$path  = ossn_route();
-		
+
 		$com_langs  = array();
 		$core_langs = array();
-		
-		$components = new OssnComponents;
-		
+
+		$components = new OssnComponents();
+
 		//load core framework languages
-		foreach($codes as $code) {
+		foreach ($codes as $code) {
 				$file = $path->locale . "ossn.{$code}.php";
 				if(is_file($file)) {
 						$core_langs[] = $code;
@@ -452,8 +449,8 @@ function ossn_get_available_languages() {
 		}
 		//load component languages
 		$components = $components->getActive();
-		foreach($components as $component) {
-				foreach($codes as $code) {
+		foreach ($components as $component) {
+				foreach ($codes as $code) {
 						$file = $path->components . '/' . $component->com_id . "/locale/ossn.{$code}.php";
 						if(is_file($file)) {
 								$com_langs[] = $code;
