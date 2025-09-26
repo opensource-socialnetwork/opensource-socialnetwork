@@ -61,7 +61,7 @@ class OssnAnnotation extends OssnEntities {
 						$this->subject_guid,
 						$this->type,
 						$this->time_created,
-						0,
+						$this->time_created, //updated=created
 				);
 
 				$this->annotation_type = $this->type;
@@ -411,6 +411,7 @@ class OssnAnnotation extends OssnEntities {
 				$params['params'] = array(
 						"{$distinct}a.id",
 						'a.time_created',
+						'a.time_updated',
 						'a.owner_guid',
 						'a.subject_guid',
 						'a.type',

@@ -80,15 +80,15 @@ class OssnWall extends OssnObject {
 				}
 				$this->data->poster_guid  = $this->poster_guid;
 				$this->data->access       = $access;
-				$this->data->time_updated = 0;
 				$this->subtype            = 'wall';
 				$this->title              = '';
 
-				// Replace tabs with a space
-				$post = preg_replace('/\t/', ' ', $post);
-				// Normalize multiple newlines to a single \n
 				$post = ossn_restore_new_lines($post);
-				$post = preg_replace('/(\r\n|\r|\n)+/', "\n", $post);
+				// Replace tabs with a space
+				$post = preg_replace('/\t/', ' ', $post); // Replace tabs with spaces
+				$post = preg_replace('/(\r\n|\r|\n)/', "\n", $post); // Normalize newlines to \n
+				$post = preg_replace('/\n{3,}/', "\n\n", $post); // Allow max 1 empty line
+				$post = trim($post); // Trim leading/trailing whitespace and newlines
 
 				//wall tag a friend , GUID issue #566
 				if(!empty($friends)) {

@@ -54,7 +54,58 @@ function ossn_admin_init() {
 		} else {
 				ossn_register_page('administrator', 'ossn_administrator_login_pagehandler');
 		}
+
+		ossn_register_callback('cli', 'loaded', 'ossn_cli_admin_commands_handler');
 }
+/**
+ * OSSN Admin releated CLI commands
+ *
+ * Usage using CLI
+ *
+ * /usr/bin/php system/handlers/cli --handler=DoNotDisplayErrors
+ * /usr/bin/php system/handlers/cli --handler=DisplayErrors
+ * /usr/bin/php system/handlers/cli --handler=DisableCache
+ * /usr/bin/php system/handlers/cli --handler=EnableCache
+ *
+ * @return void
+ */
+function ossn_cli_admin_commands_handler($cb, $type, $args) {
+		if($args['handler'] == 'DisplayErrors') {
+				$Site = new OssnSite();
+				if($Site->setSetting('display_errors', 'on')) {
+						ossn_cli_output('Error reporting enabled!', 'success');
+				} else {
+						ossn_cli_output('Error reporting can not be enabled!', 'error');
+				}
+		}
+		if($args['handler'] == 'DoNotDisplayErrors') {
+				$Site = new OssnSite();
+				if($Site->setSetting('display_errors', 'off')) {
+						ossn_cli_output('Errors reporting disabled', 'success');
+				} else {
+						ossn_cli_output('Error reporting can not be disabled!', 'error');
+				}
+		}
+		if($args['handler'] == 'DisableCache') {
+				if(ossn_disable_cache()) {
+						ossn_cli_output('Cache has been disabled', 'success');
+				} else {
+						ossn_cli_output('Cache can not be disabled', 'error');
+				}
+		}
+		if($args['handler'] == 'EnableCache') {
+				if(ossn_create_cache()) {
+						ossn_cli_output('Cache has been enabled', 'success');
+				} else {
+						ossn_cli_output('Cache can not be enabled', 'error');
+				}
+		}
+}
+/**
+ * Admin menu sinit
+ *
+ * @return void
+ */
 function ossn_admin_menus_init() {
 		$sidemenus = array(
 				array(
@@ -112,7 +163,7 @@ function ossn_admin_menus_init() {
 						'parent' => 'admin:sidemenu:usermanager',
 				),
 		);
-		foreach($sidemenus as $item) {
+		foreach ($sidemenus as $item) {
 				ossn_register_menu_item('admin/sidemenu', $item);
 		}
 
@@ -143,7 +194,7 @@ function ossn_admin_menus_init() {
 						'target' => '_blank',
 				),
 		);
-		foreach($topbar_admin as $item) {
+		foreach ($topbar_admin as $item) {
 				ossn_register_menu_item('topbar_admin', $item);
 		}
 }
@@ -170,7 +221,7 @@ function ossn_registered_com_panel() {
 		if(!isset($Ossn->com_panel)) {
 				return false;
 		}
-		foreach($Ossn->com_panel as $key => $name) {
+		foreach ($Ossn->com_panel as $key => $name) {
 				$registered[] = $key;
 		}
 		return $registered;
@@ -199,7 +250,7 @@ function ossn_registered_settings_pages() {
 		if(!isset($Ossn->adminSettingsPage)) {
 				return false;
 		}
-		foreach($Ossn->adminSettingsPage as $key => $name) {
+		foreach ($Ossn->adminSettingsPage as $key => $name) {
 				$registered[] = $key;
 		}
 		return $registered;
@@ -242,15 +293,15 @@ function ossn_administrator_pagehandler($pages) {
 		if(ossn_isAdminLoggedin()) {
 				ossn_load_js('ossn.admin', 'admin');
 		}
-		switch($page) {
-			case 'dashboard':
+		switch ($page) {
+		case 'dashboard':
 				$title                = ossn_print('admin:dashboard');
 				$contents['contents'] = ossn_plugin_view('pages/administrator/contents/dashboard');
 				$contents['title']    = $title;
 				$content              = ossn_set_page_layout('administrator/administrator', $contents);
 				echo ossn_view_page($title, $content, 'administrator');
 				break;
-			case 'component':
+		case 'component':
 				global $Ossn;
 				if(isset($pages[1]) && in_array($pages[1], ossn_registered_com_panel())) {
 						$com['com']           = OssnComponents::getCom($pages[1]);
@@ -262,35 +313,35 @@ function ossn_administrator_pagehandler($pages) {
 						echo ossn_view_page($title, $content, 'administrator');
 				}
 				break;
-			case 'components':
+		case 'components':
 				$title                = ossn_print('admin:components');
 				$contents['contents'] = ossn_plugin_view('pages/administrator/contents/components');
 				$contents['title']    = $title;
 				$content              = ossn_set_page_layout('administrator/administrator', $contents);
 				echo ossn_view_page($title, $content, 'administrator');
 				break;
-			case 'themes':
+		case 'themes':
 				$title                = ossn_print('admin:themes');
 				$contents['contents'] = ossn_plugin_view('pages/administrator/contents/themes');
 				$contents['title']    = $title;
 				$content              = ossn_set_page_layout('administrator/administrator', $contents);
 				echo ossn_view_page($title, $content, 'administrator');
 				break;
-			case 'com_installer':
+		case 'com_installer':
 				$title                = ossn_print('admin:com:installer');
 				$contents['contents'] = ossn_plugin_view('pages/administrator/contents/com_installer');
 				$contents['title']    = $title;
 				$content              = ossn_set_page_layout('administrator/administrator', $contents);
 				echo ossn_view_page($title, $content, 'administrator');
 				break;
-			case 'theme_installer':
+		case 'theme_installer':
 				$title                = ossn_print('admin:theme:installer');
 				$contents['contents'] = ossn_plugin_view('pages/administrator/contents/theme_installer');
 				$contents['title']    = $title;
 				$content              = ossn_set_page_layout('administrator/administrator', $contents);
 				echo ossn_view_page($title, $content, 'administrator');
 				break;
-			case 'settings':
+		case 'settings':
 				global $Ossn;
 				if(isset($pages[1]) && in_array($pages[1], ossn_registered_settings_pages())) {
 						$title = ossn_print("{$pages[1]}:settings");
@@ -301,35 +352,35 @@ function ossn_administrator_pagehandler($pages) {
 						echo ossn_view_page($title, $content, 'administrator');
 				}
 				break;
-			case 'cache':
+		case 'cache':
 				$title                = ossn_print('admin:cache:settings');
 				$contents['contents'] = ossn_plugin_view('pages/administrator/contents/cache');
 				$contents['title']    = $title;
 				$content              = ossn_set_page_layout('administrator/administrator', $contents);
 				echo ossn_view_page($title, $content, 'administrator');
 				break;
-			case 'adduser':
+		case 'adduser':
 				$title                = ossn_print('admin:add:user');
 				$contents['contents'] = ossn_plugin_view('pages/administrator/contents/adduser');
 				$contents['title']    = $title;
 				$content              = ossn_set_page_layout('administrator/administrator', $contents);
 				echo ossn_view_page($title, $content, 'administrator');
 				break;
-			case 'users':
+		case 'users':
 				$title                = ossn_print('admin:user:list');
 				$contents['contents'] = ossn_plugin_view('pages/administrator/contents/users/list');
 				$contents['title']    = $title;
 				$content              = ossn_set_page_layout('administrator/administrator', $contents);
 				echo ossn_view_page($title, $content, 'administrator');
 				break;
-			case 'unvalidated_users':
+		case 'unvalidated_users':
 				$title                = ossn_print('admin:users:unvalidated');
 				$contents['contents'] = ossn_plugin_view('pages/administrator/contents/users/unvalidated');
 				$contents['title']    = $title;
 				$content              = ossn_set_page_layout('administrator/administrator', $contents);
 				echo ossn_view_page($title, $content, 'administrator');
 				break;
-			case 'edituser':
+		case 'edituser':
 				if(isset($pages[1])) {
 						$user['user'] = ossn_user_by_username($pages[1]);
 				}
@@ -339,7 +390,7 @@ function ossn_administrator_pagehandler($pages) {
 				$content              = ossn_set_page_layout('administrator/administrator', $contents);
 				echo ossn_view_page($title, $content, 'administrator');
 				break;
-			case 'version':
+		case 'version':
 				header('Content-Type: application/json');
 				$version = array(
 						'version' => ossn_check_update(),
@@ -367,8 +418,8 @@ function ossn_administrator_login_pagehandler($pages) {
 				ossn_trigger_message(ossn_print('logged:out'));
 				redirect('administrator');
 		}
-		switch($page) {
-			case 'login':
+		switch ($page) {
+		case 'login':
 				$title                = ossn_print('admin:login');
 				$contents['contents'] = ossn_plugin_view('pages/administrator/contents/login');
 				$contents['title']    = $title;

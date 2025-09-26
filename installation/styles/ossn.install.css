@@ -128,7 +128,7 @@ form div {
 	padding-bottom:0px;
 }
 
-.layout-installation h2 {
+.layout-installation h2:not(#ossnlicense h2) {
     background-color: #f8f8f8;
     border: 1px solid #e7e7e7;
     padding: 10px;

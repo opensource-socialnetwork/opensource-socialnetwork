@@ -9,6 +9,9 @@
  * @link      https://www.opensource-socialnetwork.org/
  */
 class OssnPagination {
+		public $ppage;
+		public $options;
+
 		/**
 		 * Construct a pagination class;
 		 *

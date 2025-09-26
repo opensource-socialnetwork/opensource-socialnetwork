@@ -779,7 +779,7 @@ function ossn_string_decrypt($string = '', $key = '') {
 function ossn_errros() {
 		$settings = ossn_site_settings('display_errors');
 		if($settings == 'on' || is_file(ossn_route()->www . 'DISPLAY_ERRORS')) {
-				error_reporting(E_NOTICE ^ ~E_WARNING);
+				error_reporting(E_ALL);
 
 				ini_set('log_errors', 1);
 				ini_set('error_log', ossn_route()->www . 'error_log');
@@ -846,7 +846,6 @@ function _ossn_php_error_handler($errno, $errmsg, $filename, $linenum) {
 		// Notices
 		case E_NOTICE:
 		case E_USER_NOTICE:
-		case E_STRICT:
 				error_log("PHP NOTICE: $error");
 				break;
 
@@ -864,7 +863,6 @@ function _ossn_php_error_handler($errno, $errmsg, $filename, $linenum) {
 
 		return true; // Allow script to continue for non-fatal errors
 }
-
 /**
  * Map PHP error numbers to readable type names
  *
@@ -885,7 +883,6 @@ function _ossn_php_error_type($errno) {
 				E_USER_ERROR        => 'E_USER_ERROR',
 				E_USER_WARNING      => 'E_USER_WARNING',
 				E_USER_NOTICE       => 'E_USER_NOTICE',
-				E_STRICT            => 'E_STRICT',
 				E_RECOVERABLE_ERROR => 'E_RECOVERABLE_ERROR',
 				E_DEPRECATED        => 'E_DEPRECATED',
 				E_USER_DEPRECATED   => 'E_USER_DEPRECATED',

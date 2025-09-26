@@ -13,9 +13,9 @@ $text    = input('comment');
 $comment = ossn_get_annotation($guid);
 
 if($comment && (strlen($text) || $comment->{'file:comment:photo'})) {
-		$comment = ossn_restore_new_lines($comment);
-		$comment = preg_replace('/\t/', ' ', $comment);
-		$comment = preg_replace('/(\r\n|\r|\n)+/', "\n", $comment);
+		$text = ossn_restore_new_lines($text);
+		$text = preg_replace('/\t/', ' ', $text);
+		$text = preg_replace('/(\r\n|\r|\n)+/', "\n", $text);
 
 		//editing, then saving a comment gives warning #685
 		$comment->data = new stdClass();

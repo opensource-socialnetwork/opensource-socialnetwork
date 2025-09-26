@@ -10,6 +10,16 @@
  */
 class OssnMenu {
 		/**
+		 * @var string|null
+		 */
+		protected $menutype;
+
+		/**
+		 * @var mixed|null
+		 */
+		protected $options;
+
+		/**
 		 * Initialize the OssnMenu
 		 *
 		 * @return void
@@ -32,12 +42,12 @@ class OssnMenu {
 						if(isset($options['parent']) && !empty($options['parent'])) {
 								$name = $options['parent'];
 						}
-						
+
 						$maxpriority = $this->maxPriority($menutype);
 						$priorities  = $this->priorities($menutype);
-						
+
 						$priority = 100;
-						while(in_array($priority, $priorities)) {
+						while (in_array($priority, $priorities)) {
 								$priority++;
 						}
 						if(!isset($options['priority'])) {
@@ -50,17 +60,17 @@ class OssnMenu {
 		 * Get the menu item priorities
 		 *
 		 * @param string $menutype A key of menu
-		 * 
+		 *
 		 * @return array
 		 */
 		public function priorities($menutype) {
 				global $Ossn;
 				if(isset($Ossn->menu[$menutype])) {
 						$list = array();
-						foreach($Ossn->menu[$menutype] as $items) {
-								foreach($items as $item) {
-										if(isset($item['priority'])){
-											$list[] = $item['priority'];
+						foreach ($Ossn->menu[$menutype] as $items) {
+								foreach ($items as $item) {
+										if(isset($item['priority'])) {
+												$list[] = $item['priority'];
 										}
 								}
 						}
@@ -72,22 +82,22 @@ class OssnMenu {
 		 * Get the menu max priority
 		 *
 		 * @param string $menutype A key of menu
-		 * 
+		 *
 		 * @return array
 		 */
 		public function maxPriority($menutype) {
 				global $Ossn;
 				if(isset($Ossn->menu[$menutype])) {
 						$list = array();
-						foreach($Ossn->menu[$menutype] as $items) {
-								foreach($items as $item) {
+						foreach ($Ossn->menu[$menutype] as $items) {
+								foreach ($items as $item) {
 										if(isset($item['priority'])) {
 												$list[] = $item['priority'];
 										}
 								}
 						}
-						if(!empty($list)){
-							return max($list);
+						if(!empty($list)) {
+								return max($list);
 						}
 				}
 				return false;
@@ -96,7 +106,7 @@ class OssnMenu {
 		 * Sort menu with priority
 		 *
 		 * @param string $menutype A key of menu
-		 * 
+		 *
 		 * @return void
 		 */
 		public function sortMenu($menutype) {
@@ -104,24 +114,24 @@ class OssnMenu {
 				if(empty($menutype)) {
 						return false;
 				}
-				foreach($Ossn->menu[$menutype] as $name => $items) {
-						foreach($items as $item) {
-								if(!isset($item['priority'])){
-									$item['priority'] = null;	
+				foreach ($Ossn->menu[$menutype] as $name => $items) {
+						foreach ($items as $item) {
+								if(!isset($item['priority'])) {
+										$item['priority'] = null;
 								}
 								$custom[$menutype][$item['priority']][$name] = $item;
 						}
 				}
 				//still warnings from OssnMenue when displaying newsthread #683
-				if(empty($custom[$menutype]) || !is_array($custom[$menutype])){
-					return false;
+				if(empty($custom[$menutype]) || !is_array($custom[$menutype])) {
+						return false;
 				}
 				ksort($custom[$menutype]);
 				unset($Ossn->menu[$menutype]);
-				foreach($custom[$menutype] as $nitems) {
-						foreach($nitems as $nname => $nitem) {
-								if(isset($nitem['priority'])){
-									unset($nitem['priority']);
+				foreach ($custom[$menutype] as $nitems) {
+						foreach ($nitems as $nname => $nitem) {
+								if(isset($nitem['priority'])) {
+										unset($nitem['priority']);
 								}
 								$Ossn->menu[$menutype][$nname][] = $nitem;
 						}

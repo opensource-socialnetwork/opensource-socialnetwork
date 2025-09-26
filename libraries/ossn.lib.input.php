@@ -31,7 +31,7 @@ function ossn_input_escape($str, $newlines = true) {
 				);
 				$replacements = array_merge($replacements, $newline);
 		}
-		if (strlen($str) > 0) {
+		if (is_string($str) && strlen($str) > 0) {
 				return strtr($str, $replacements);
 		}
 		return false;
@@ -148,7 +148,7 @@ function input($input, $noencode = '', $default = false, $strip = true) {
  * @return string
  */
 function ossn_restore_new_lines($string, $br = false) {
-		if(strlen($string) == 0) {
+		if(!is_string($string) || strlen($string) == 0) {
 				return false;
 		}
 		$replacements = array(

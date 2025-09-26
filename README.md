@@ -1,4 +1,4 @@
-Open Source Social Network [8.2-dev]
+Open Source Social Network [8.6]
 ======================================
 [![Open Source Love](https://badges.frapsoft.com/os/v2/open-source.svg?v=102)](https://www.opensource-socialnetwork.org/)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://www.opensource-socialnetwork.org/)
@@ -7,7 +7,9 @@ Open Source Social Network [8.2-dev]
 [![DeepScan grade](https://deepscan.io/api/teams/4774/projects/6525/branches/747601/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=4774&pid=6525&bid=747601)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/88c6ef38f593440cafe7ba350e592649)](https://app.codacy.com/gh/opensource-socialnetwork/opensource-socialnetwork/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 
-Opensource-Socialnetwork (OSSN) is a social networking software written in PHP. It allows you to make a social networking website and helps your members build social relationships, with people who share similar professional or personal interests. It is available in 20 international languages.
+Opensource-Socialnetwork (OSSN) is a powerful open-source social networking software developed in PHP. It enables you to create a fully functional social networking website that fosters community engagement and helps your members form meaningful social relationships. Whether you're looking to connect people with similar professional interests or personal passions, OSSN offers a versatile platform to bring like-minded individuals together.
+
+With multiple language support, OSSN ensures that you can reach a global audience and expand your network across different regions and cultures.
 
 OSSN Licensed under the ***Open Source Social Network License (4.0) / Cryptographic Autonomy License version 1.0***
 
@@ -104,9 +106,10 @@ Installation
 https://www.opensource-socialnetwork.org/wiki/view/706/how-to-install-open-source-social-network
 
 - Web Installer https://www.opensource-socialnetwork.org/download
+- Docker - https://github.com/opensource-socialnetwork/docker
 - VM Image - https://www.opensource-socialnetwork.org/download-vm-image
 
-Installation on Ubuntu x64 18.04/20.04/21.04 LTS
+Installation on Ubuntu x64 18.04/20.04/21.04/22.04/24.04 LTS
 ```
 sudo add-apt-repository ppa:arsalanshah/opensource-socialnetwork
 sudo apt-get update

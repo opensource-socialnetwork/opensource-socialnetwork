@@ -18,8 +18,10 @@ if($object && (strlen($post) || $object->{'file:wallphoto'})) {
 		//[E] Normalize Wall Remove JSON #2460
 		// Replace tabs with a space abd multiple new lines to signle
 		$post = ossn_restore_new_lines($post);
-		$post = preg_replace('/\t/', ' ', $post);
-		$post = preg_replace('/(\r\n|\r|\n)+/', "\n", $post);
+		$post = preg_replace('/\t/', ' ', $post); // Replace tabs with spaces
+		$post = preg_replace('/(\r\n|\r|\n)/', "\n", $post); // Normalize newlines to \n
+		$post = preg_replace('/\n{3,}/', "\n\n", $post); // Allow max 1 empty line
+		$post = trim($post); // Trim leading/trailing whitespace and newlines
 
 		$object->description = $post;
 		if(($object->poster_guid == $user->guid || $user->canModerate()) && $object->save()) {

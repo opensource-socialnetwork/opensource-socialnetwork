@@ -75,7 +75,7 @@ class OssnObject extends OssnEntities {
 						$this->type,
 						$this->subtype,
 						$this->time_created,
-						0,
+						$this->time_created,  //time_update = time_created
 						$this->title,
 						$this->description,
 				);
@@ -141,6 +141,7 @@ class OssnObject extends OssnEntities {
 				$params['params'] = array(
 						'o.guid',
 						'o.time_created',
+						'o.time_updated',
 						'o.owner_guid',
 						'o.description',
 						'o.title',
