@@ -179,7 +179,17 @@ function ossn_include_upgrade_file($file) {
 		}
 
 		// Include in isolated function scope
-		return include_once $file;
+		include_once $file;
+
+		$release = basename($file, '.php');
+		$success = ossn_print('upgrade:success', array(
+				$release,
+		));
+		ossn_trigger_message($success, 'success');
+
+		if(ossn_is_from_cli()) {
+				ossn_cli_output($success, 'success');
+		}
 }
 /**
  * Get update status
@@ -275,26 +285,17 @@ function ossn_update_upgraded_files($upgrade) {
 }
 /**
  * Update version of Ossn
+ * $upgrade param removed OSSN 8.7 as its done automatically
  *
- * @param integer $upgrade New release
+ * @param string $version New version
  *
  * @return boolean
  */
-function ossn_version_upgrade($upgrade, $version) {
-		if(empty($upgrade) || empty($version)) {
+function ossn_version_upgrade($version) {
+		if(empty($version)) {
 				return false;
 		}
-		$release = str_replace('.php', '', $upgrade);
-		if(ossn_update_upgraded_files($upgrade) && ossn_update_db_version($version)) {
-				$success = ossn_print('upgrade:success', array(
-						$release,
-				));
-				ossn_trigger_message($success, 'success');
-
-				if(ossn_is_from_cli()) {
-						ossn_cli_output($success, 'success');
-				}
-		} else {
+		if(!ossn_update_db_version($version)) {
 				$error = ossn_print('upgrade:failed', array(
 						$release,
 				));

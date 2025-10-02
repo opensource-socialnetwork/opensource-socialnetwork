@@ -9,7 +9,7 @@
  * @link      https://www.opensource-socialnetwork.org/
  */
 ossn_generate_server_config('apache');
-ossn_version_upgrade($upgrade, '7.0');
+ossn_version_upgrade('7.0');
 
 $Site = new OssnSite();
 $Site->setSetting('notification_name', ossn_site_settings('site_name'));

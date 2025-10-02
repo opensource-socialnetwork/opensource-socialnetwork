@@ -10,7 +10,7 @@
  */
 
 ossn_generate_server_config('apache');
-ossn_version_upgrade($upgrade, '7.3');
+ossn_version_upgrade('7.3');
 
 
 $v73update = "ALTER TABLE `ossn_users` DROP INDEX `email`;

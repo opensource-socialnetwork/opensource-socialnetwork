@@ -11,7 +11,7 @@
 set_time_limit(0);
 ossn_generate_server_config('apache');
 ossn_generate_server_config('php_user_ini');
-ossn_version_upgrade($upgrade, '6.3');
+ossn_version_upgrade('6.3');
 
 $factory = new OssnFactory(array(
 		'callback' => 'installation',
