@@ -1,7 +1,8 @@
 OSSN - OPEN SOURCE SOCIAL NETWORK v8.7
 - [B] When profile edit animation is outside of round box #2477
 - [E] Refactor ossn_version_upgrade #2478
-- [B] Deprecations PHP 8.4 #2476
+- [B] [B] Deprecations PHP 8.4 for OSSN v8.7 #2476
+- [B] Resolved a cross-site scripting (XSS) vulnerability that impacted all OSSN versions earlier than v8. Thanks to Kgan for reporting.
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v8.6
 - [B] OssnAds image not showing #2471
