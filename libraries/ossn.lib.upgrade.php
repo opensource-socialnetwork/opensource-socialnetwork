@@ -148,7 +148,7 @@ function ossn_trigger_upgrades() {
 				$file = ossn_route()->upgrade . "upgrades/{$upgrade}";
 				// Use the isolated include function
 				ossn_include_upgrade_file($file);
-				ossn_release_update($upgrade);
+				ossn_update_upgraded_files($upgrade);
 		}
 		/**
 		 * Since the update wiki states that disable cache,  so this code never works
