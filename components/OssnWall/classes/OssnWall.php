@@ -25,7 +25,7 @@ class OssnWall extends OssnObject {
 						$access = OSSN_PUBLIC;
 				}
 				$canpost = false;
-				if(strlen($post)) {
+				if(is_string($post) && strlen($post)) {
 						$canpost = true;
 				}
 				//no more null:data you can pass null
