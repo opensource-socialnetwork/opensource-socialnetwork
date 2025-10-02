@@ -1,3 +1,6 @@
+OSSN - OPEN SOURCE SOCIAL NETWORK v8.7
+- [B] When profile edit animation is outside of round box #2477
+
 OSSN - OPEN SOURCE SOCIAL NETWORK v8.6
 - [B] OssnAds image not showing #2471
 - [E] Make time_updated = time_created by default not 0 #2472
