@@ -676,27 +676,41 @@ class OssnFile extends OssnEntities {
 				if(!is_file($filename)) {
 						return;
 				}
+
+				// Get the MIME type of the file
+				$mime = mime_content_type($filename);
+
+				// Only attempt EXIF rotation for JPEGs
+				if($mime !== 'image/jpeg') {
+						return;
+				}
+
 				if(function_exists('exif_read_data')) {
-						$exif = exif_read_data($filename);
+						// Suppress warning for invalid EXIF
+						$exif = @exif_read_data($filename);
+
 						if($exif && isset($exif['Orientation'])) {
 								$orientation = $exif['Orientation'];
 								$rotate      = false;
-								if($orientation != 1) {
+
+								switch ($orientation) {
+								case 3:
+										$rotate = 180;
+										break;
+								case 6:
+										$rotate = 270;
+										break;
+								case 8:
+										$rotate = 90;
+										break;
+								}
+
+								if($rotate) {
 										$img = imagecreatefromjpeg($filename);
-										switch($orientation) {
-										case 3:
-												$rotate = 180;
-												break;
-										case 6:
-												$rotate = 270;
-												break;
-										case 8:
-												$rotate = 90;
-												break;
-										}
-										if($rotate) {
+										if($img !== false) {
 												$img = imagerotate($img, $rotate, 0);
 												imagejpeg($img, $filename, 90);
+												imagedestroy($img);
 										}
 								}
 						}
