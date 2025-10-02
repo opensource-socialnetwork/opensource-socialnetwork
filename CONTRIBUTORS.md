@@ -28,4 +28,5 @@ The following developers contributed to this project:
 * ToffyMTA https://github.com/ToffyMTA
 * Aroshana Dissanayake https://github.com/Aroshana1
 * Ahmadreza Bashari https://github.com/ahmadreza1383 (Persian Language) 
+* Kgan - vulnerability reporter
 
