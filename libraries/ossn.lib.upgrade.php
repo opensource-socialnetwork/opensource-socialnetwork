@@ -114,9 +114,9 @@ function ossn_get_process_upgrade_files() {
 
 /**
  * Trigger upgrade / Run upgrade
+ * [E] Refactor ossn_version_upgrade #2478
  *
- * @return void;
- * @access private
+ * @return boolean
  */
 function ossn_trigger_upgrades() {
 		if(!ossn_isAdminLoggedin()) {
@@ -146,9 +146,9 @@ function ossn_trigger_upgrades() {
 		}
 		foreach ($upgrades as $upgrade) {
 				$file = ossn_route()->upgrade . "upgrades/{$upgrade}";
-				if(!include_once $file) {
-						throw new exception(ossn_print('upgrade:file:load:error'));
-				}
+				// Use the isolated include function
+				ossn_include_upgrade_file($file);
+				ossn_release_update($upgrade);
 		}
 		/**
 		 * Since the update wiki states that disable cache,  so this code never works
@@ -165,6 +165,21 @@ function ossn_trigger_upgrades() {
 		//}
 
 		return true;
+}
+/**
+ * Safely includes an upgrade file in an isolated scope.
+ *
+ * @param string $file Full path to the upgrade file.
+ * @return mixed The result of the included file, or throws an Exception on failure.
+ * @throws Exception if the file doesn't exist.
+ */
+function ossn_include_upgrade_file($file) {
+		if(!file_exists($file)) {
+				throw new Exception(ossn_print('upgrade:file:load:error'));
+		}
+
+		// Include in isolated function scope
+		return include_once $file;
 }
 /**
  * Get update status
