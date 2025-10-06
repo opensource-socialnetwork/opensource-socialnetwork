@@ -209,9 +209,7 @@ function ossn_get_relationships(array $params = array()) {
 				$vars['limit'] = $options['limit'];
 		}
 		$vars['from']   = 'ossn_relationships as r';
-		$vars['wheres'] = array(
-				$database->constructWheres($wheres),
-		);
+		$vars['wheres'] = $wheres;
 		if(isset($params['count']) && $params['count'] === true) {
 				unset($vars['params']);
 				unset($vars['limit']);
