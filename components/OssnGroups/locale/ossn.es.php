@@ -74,5 +74,6 @@ $es = array(
     'group:memb:make:owner' => 'Make group owner',
     'group:memb:make:owner:confirm' => 'Attention! This action will make >> %s << the new owner of the group and you will lose all of your group admin privileges. Are you sure to proceed?',
     'group:memb:make:owner:admin:confirm' => 'Attention! This action will make >> %s << the new owner of the group and the former owner will lose all of his group admin privileges. Are you sure to proceed?',	
+	'group:my' => 'Mis Grupos',
 );
 ossn_register_languages('es', $es); 

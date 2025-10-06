@@ -97,23 +97,6 @@ function ossn_group_sidebar_entries($event, $type, $params) {
 		// of course in longer terms those components may use the same callback too,
 		// so things will be arranged as before
 		$priority = 100;
-
-		//group list in newsfeed sidebar mebu
-		$groups_user = ossn_get_user_groups(ossn_loggedin_user());
-		if($groups_user) {
-				foreach ($groups_user as $group) {
-						$icon = ossn_site_url('components/OssnGroups/images/group.png');
-						ossn_register_sections_menu('newsfeed', array(
-								'text'     => $group->title,
-								'name'     => 'groups',
-								'url'      => ossn_group_url($group->guid),
-								'parent'   => 'groups',
-								'icon'     => $icon,
-								'priority' => $priority++,
-						));
-						unset($icon);
-				}
-		}
 		//add gorup link in sidebar
 		ossn_register_sections_menu('newsfeed', array(
 				'name'     => 'addgroup',
@@ -121,9 +104,19 @@ function ossn_group_sidebar_entries($event, $type, $params) {
 				'url'      => 'javascript:void(0);',
 				'id'       => 'ossn-group-add',
 				'parent'   => 'groups',
-				'icon'     => ossn_site_url('components/OssnGroups/images/add.png'),
+				'icon'     => true,
 				'priority' => $priority++,
 		));
+		//mygroups
+		ossn_register_sections_menu('newsfeed', array(
+				'name'     => 'mygroups',
+				'text'     => ossn_print('group:my'),
+				'url'      => ossn_site_url("groups/owner/".ossn_loggedin_user()->guid),
+				'id'       => 'ossn-group-add',
+				'parent'   => 'groups',
+				'icon'     => true,				
+				'priority' => $priority++,
+		));		
 		//Create link in nav to list all groups #990
 		ossn_register_sections_menu('newsfeed', array(
 				'name'     => 'allgroups',
@@ -219,6 +212,17 @@ function ossn_groups_page($pages) {
 						'callback' => '#ossn-group-submit',
 				));
 				break;
+		case 'owner':
+			if(!ossn_isLoggedin()){
+					ossn_error_page();
+			}
+				$title = ossn_print('group:my');
+				$contents = array(
+						'content' => ossn_plugin_view('groups/pages/owner'),
+				);
+				$content = ossn_set_page_layout('newsfeed', $contents);
+				echo ossn_view_page($title, $content);				
+			break;
 		case 'cover':
 				if(isset($pages[1]) && !empty($pages[1])) {
 						$File       = new OssnFile();

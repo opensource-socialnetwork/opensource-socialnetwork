@@ -70,5 +70,6 @@ $eo = array(
 	'group:delete:cover' => 'Forigi kovrilan bildon',
 	'group:delete:cover:error' => 'Eraro okazis dum forigo de la kovrila bildo',
 	'group:delete:cover:success' => 'La kovrila bildo estas sukcese forigita',	
+	'group:my' => 'Miaj Grupoj',		
 );
 ossn_register_languages('eo', $eo); 

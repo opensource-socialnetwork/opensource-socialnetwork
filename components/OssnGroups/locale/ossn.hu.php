@@ -70,6 +70,7 @@ $hu = array(
 	'group:delete:cover' => 'Borító törlése',
 	'group:delete:cover:error' => 'Hiba történt a borítókép törlése közben',
 	'group:delete:cover:success' => 'A borítókép sikeresen törölve',
+	'group:my' => 'Csoportjaim',
 
 );
 ossn_register_languages('hu', $hu); 

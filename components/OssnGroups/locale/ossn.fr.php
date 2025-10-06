@@ -69,8 +69,9 @@ $fr = array(
 	'group:delete:cover:success' => "L'image de couverture a été supprimée avec succès",
 	
 	//need translation
-    'group:memb:make:owner' => 'Make group owner',
-    'group:memb:make:owner:confirm' => 'Attention! This action will make >> %s << the new owner of the group and you will lose all of your group admin privileges. Are you sure to proceed?',
-    'group:memb:make:owner:admin:confirm' => 'Attention! This action will make >> %s << the new owner of the group and the former owner will lose all of his group admin privileges. Are you sure to proceed?',	
+	'group:memb:make:owner' => 'Faire propriétaire du groupe',
+	'group:memb:make:owner:confirm' => 'Attention ! Cette action fera de >> %s << le nouveau propriétaire du groupe et vous perdrez tous vos privilèges d\'administrateur de groupe. Êtes-vous sûr de vouloir continuer ?',
+	'group:memb:make:owner:admin:confirm' => 'Attention ! Cette action fera de >> %s << le nouveau propriétaire du groupe et l\'ancien propriétaire perdra tous ses privilèges d\'administrateur de groupe. Êtes-vous sûr de vouloir continuer ?',	
+	'group:my' => 'Mes Groupes',
 );
 ossn_register_languages('fr', $fr); 

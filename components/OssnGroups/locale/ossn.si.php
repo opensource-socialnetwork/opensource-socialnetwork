@@ -70,6 +70,6 @@ $si = array(
 	'group:delete:cover' => 'කවරය ඉවත් කරන්න',
 	'group:delete:cover:error' => 'කවරය ඉවත් කිරීමේදී දෝෂයක් සිදු විය',
 	'group:delete:cover:success' => 'කවරය සාර්ථකව ඉවත් කළා',
-
+	'group:my' => 'මගේ සමූහ',
 );
 ossn_register_languages('si', $si); 

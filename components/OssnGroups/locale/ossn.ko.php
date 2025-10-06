@@ -70,6 +70,6 @@ $ko = array(
 	'group:delete:cover' => '커버 삭제하기',
 	'group:delete:cover:error' => '커버 그림을 삭제하는 중에 오류가 발생하였습니다',
 	'group:delete:cover:success' => '커버 그림을 삭제하였습니다',
-
+	'group:my' => '내 그룹',
 );
 ossn_register_languages('ko', $ko); 
