@@ -435,7 +435,6 @@ class OssnMessages extends OssnEntities {
 				$options      = array_merge($default, $params);
 				$wheres       = array();
 				$params       = array();
-				$wheres_paris = array();
 				//validate offset values
 				if($options['limit'] !== false && $options['limit'] !== 0 && $options['page_limit'] !== false && $options['page_limit'] !== 0) {
 						$offset_vals = ceil($options['limit'] / $options['page_limit']);
@@ -451,17 +450,33 @@ class OssnMessages extends OssnEntities {
 						$options['limit'] = $getlimit;
 				}
 				if(!empty($options['id'])) {
-						$wheres[] = "m.id='{$options['id']}'";
+						$wheres[] = array(
+							'name'       => 'm.id',
+							'comparator' => '=',
+							'value'      => $options['id'],
+						);						
 				}
 				if(!empty($options['message_from'])) {
-						$wheres[] = "m.message_from ='{$options['message_from']}'";
+						$wheres[] = array(
+							'name'       => 'm.message_from',
+							'comparator' => '=',
+							'value'      => $options['message_from'],
+						);
 				}
 				if(!empty($options['message_to'])) {
-						$wheres[] = "m.message_to ='{$options['message_to']}'";
+						$wheres[] = array(
+							'name'       => 'm.message_to',
+							'comparator' => '=',
+							'value'      => $options['message_to'],
+						);						
 				}
 				//[B] searchMessages viewed option doesn't work #2235
 				if(isset($options['viewed'])) {
-						$wheres[] = "m.viewed ='{$options['viewed']}'";
+						$wheres[] = array(
+							'name'       => 'm.viewed',
+							'comparator' => '=',
+							'value'      => $options['viewed'],
+						);							
 				}
 				if(isset($options['entities_pairs']) && is_array($options['entities_pairs'])) {
 						foreach ($options['entities_pairs'] as $key => $pair) {
@@ -470,21 +485,22 @@ class OssnMessages extends OssnEntities {
 										if(!empty($pair['value'])) {
 												$pair['value'] = addslashes($pair['value']);
 										}
-										$wheres_paris[] = "e{$key}.type='message'";
-										$wheres_paris[] = "e{$key}.subtype='{$pair['name']}'";
+										$wheres[] = "e{$key}.type='message'";
+										$wheres[] = "e{$key}.subtype='{$pair['name']}'";
 										if(isset($pair['wheres']) && !empty($pair['wheres'])) {
-												$pair['wheres'] = str_replace('[this].', "emd{$key}.", $pair['wheres']);
-												$wheres_paris[] = $pair['wheres'];
+												$wheres[] = str_replace('[this].', "emd{$key}.", $pair['wheres']);
 										} else {
-												$wheres_paris[] = "emd{$key}.value {$operand} '{$pair['value']}'";
+												//$wheres_pairs[] = "emd{$key}.value {$operand} '{$pair['value']}'";
+												//v8.8 uses prepared wheres
+												$wheres[] = array(
+														'name'     => "emd{$key}.value",
+														'operator' => $operand,
+														'value'    => $pair['value'],
+												);												
 										}
 										$params['joins'][] = "INNER JOIN ossn_entities as e{$key} ON e{$key}.owner_guid=m.id";
 										$params['joins'][] = "INNER JOIN ossn_entities_metadata as emd{$key} ON e{$key}.guid=emd{$key}.guid";
 								}
-						}
-						if(!empty($wheres_paris)) {
-								$wheres_entities = '(' . $this->constructWheres($wheres_paris) . ')';
-								$wheres[]        = $wheres_entities;
 						}
 				}
 				if(isset($options['wheres']) && !empty($options['wheres'])) {
@@ -511,9 +527,7 @@ class OssnMessages extends OssnEntities {
 						"{$distinct}m.id",
 						'm.*',
 				);
-				$params['wheres'] = array(
-						$this->constructWheres($wheres),
-				);
+				$params['wheres'] = $wheres;
 				$params['order_by'] = $options['order_by'];
 				$params['limit']    = $options['limit'];
 

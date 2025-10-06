@@ -1,7 +1,7 @@
 <?php
 /**
  * Open Source Social Network
- * 
+ *
  * @package   Open Source Social Network (OSSN)
  * @author    OSSN Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
@@ -10,25 +10,28 @@
  *
  *
  * Database v5.3 #1525
- * Improvements in v5.3, 
+ * Improvements in v5.3,
  * You can use wheres based on array parameters
  * Example
  *  $db->select(array(
  *		'from' => 'mysqli',
  *		'wheres' => array(
  *		array(
- *			'name' => 'b', 
+ *			'name' => 'b',
  *			'comparator' => '=',
- *			'value' => '10', 
+ *			'value' => '10',
  *			'separator' => 'AND',
  *		),
  *		array(
- *			'name' => 'c', 
+ *			'name' => 'c',
  *			'comparator' => '=',
- *			'value' => '20', 
- *		)		
+ *			'value' => '20',
+ *		)
  *	),
  * ));
+ * Database OSSN v8.8
+ * Supports nested wheres and mixed
+ * see https://github.com/opensource-socialnetwork/opensource-socialnetwork/wiki/OSSN-8.8-Database-complex-wheres-using-array
  */
 class OssnDatabase extends OssnBase {
 		/**
@@ -39,7 +42,7 @@ class OssnDatabase extends OssnBase {
 		public function __construct() {
 				global $Ossn;
 				//Avoid the multiple db connections #1001
-				if(!isset($Ossn->dbLINK) || isset($Ossn->dbLINK) && $Ossn->dbLINK == false) {
+				if(!isset($Ossn->dbLINK) || (isset($Ossn->dbLINK) && $Ossn->dbLINK == false)) {
 						$Ossn->dbLINK = $this->Connect();
 				}
 				//set the sql mode and avoid setting again and again for each request
@@ -57,16 +60,15 @@ class OssnDatabase extends OssnBase {
 		public function Connect() {
 				$settings = ossn_database_settings();
 				$options  = array(
-						PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+						PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
 						PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-						PDO::ATTR_EMULATE_PREPARES => false,
+						PDO::ATTR_EMULATE_PREPARES   => false,
 				);
 				$conector = "mysql:host={$settings->host};dbname={$settings->database};port={$settings->port};charset=utf8mb4";
 				try {
 						$connect = new PDO($conector, $settings->user, $settings->password, $options);
 						return $connect;
-				}
-				catch(PDOException $ex) {
+				} catch (PDOException $ex) {
 						throw new OssnDatabaseException($ex->getMessage());
 				}
 		}
@@ -83,15 +85,15 @@ class OssnDatabase extends OssnBase {
 				global $Ossn;
 				if(is_array($params)) {
 						if(count($params['names']) == count($params['values'])) {
-								for($i = 1; $i <= count($params['values']); $i++) {
+								for ($i = 1; $i <= count($params['values']); $i++) {
 										$values[] = '?';
 								}
-								$colums         = "`" . implode("`, `", $params['names']) . '`';
-								$values         = implode(", ", $values);
-								$actual_values  = array();
-								foreach($params['values'] as $val){
-										if(!isset($val)){
-											$val = '';	
+								$colums        = '`' . implode('`, `', $params['names']) . '`';
+								$values        = implode(', ', $values);
+								$actual_values = array();
+								foreach ($params['values'] as $val) {
+										if(!isset($val)) {
+												$val = '';
 										}
 										$actual_values[] = $val;
 								}
@@ -143,8 +145,7 @@ class OssnDatabase extends OssnBase {
 										$this->exe = $this->database->prepare($this->query);
 										$this->exe->execute($values);
 								}
-						}
-						catch(PDOException $ex) {
+						} catch (PDOException $ex) {
 								throw new OssnDatabaseException("{$ex->getMessage()} \n {$this->query} ");
 						}
 						unset($this->query);
@@ -154,6 +155,136 @@ class OssnDatabase extends OssnBase {
 				}
 				return false;
 		}
+		/**
+		 * Recursively builds the content of the WHERE clause (without the 'WHERE (...)').
+		 *
+		 * This method handles simple conditions, raw strings, and nested groups defined by
+		 * the 'group' and 'connector' keys.
+		 *
+		 * @param array $arg_wheres The array of WHERE conditions.
+		 * @param string $default_connector The default logical connector for this level (AND or OR).
+		 * @return array Associative array containing 'content' (the WHERE string) and 'values' (the bound values).
+		 */
+		private function buildWheresContent($arg_wheres, $default_connector = 'AND') {
+				$known_seperators = array(
+						'AND',
+						'OR',
+				);
+				$in_or_notin = array(
+						'IN',
+						'NOT IN',
+				);
+
+				// Ensure the default connector for this level is valid
+				if(!in_array(strtoupper($default_connector), $known_seperators, true)) {
+						$default_connector = 'AND';
+				}
+
+				$where_content = '';
+				$wheres_values = array();
+
+				if(isset($arg_wheres) && is_array($arg_wheres)) {
+						foreach ($arg_wheres as $index => $where_item) {
+								// By default, the connector used *after* this item is the parent's default.
+								$next_connector = $default_connector;
+
+								// --- 1. Handle Explicit Grouping (Recursive Call) ---
+								if(is_array($where_item) && isset($where_item['group'])) {
+										// Get the connector *internal* to the group
+										$group_connector = strtoupper($where_item['connector'] ?? 'AND');
+										if(!in_array($group_connector, $known_seperators, true)) {
+												$group_connector = 'AND';
+										}
+
+										// Recurse, passing the group's internal connector as the new default for the nested items.
+										$nested_result = $this->buildWheresContent($where_item['group'], $group_connector);
+
+										// Wrap the inner content in parentheses
+										$where_content .= " ({$nested_result['content']}) ";
+										$wheres_values = array_merge($wheres_values, $nested_result['values']);
+
+										// If the group item itself has a custom separator, use that to link it to the next sibling.
+										if(isset($where_item['separator'])) {
+												$next_connector = strtoupper($where_item['separator']);
+										}
+
+										// --- 2. Handle Raw String Condition ---
+								} elseif(is_string($where_item)) {
+										$where_content .= " {$where_item} ";
+
+										// --- 3. Handle Simple/Complex Condition (name/value) ---
+								} elseif(isset($where_item['name']) && isset($where_item['value'])) {
+										$comparator = strtoupper(trim($where_item['comparator'] ?? '='));
+										$column     = trim($where_item['name']);
+
+										// If the item has a custom separator, use it to link to the next sibling.
+										$item_separator = strtoupper($where_item['separator'] ?? $default_connector);
+										if(in_array($item_separator, $known_seperators, true)) {
+												$next_connector = $item_separator;
+										}
+
+										// Build the SQL fragment and collect values
+										if($comparator === 'LIKE' || $comparator === 'NOT LIKE') {
+												$value = $where_item['value'];
+												if(strpos($value, '%') === false) {
+														$value = "%{$value}%";
+												}
+												$where_content .= " {$column} {$comparator} ? ";
+												$wheres_values[] = $value;
+										} elseif(in_array($comparator, $in_or_notin, true)) {
+												if(!is_array($where_item['value']) || count($where_item['value']) === 0) {
+														// Skip invalid IN/NOT IN
+														continue;
+												}
+												$valueCount   = count($where_item['value']);
+												$placeholders = implode(', ', array_fill(0, $valueCount, '?'));
+												$where_content .= " {$column} {$comparator} ({$placeholders}) ";
+												$wheres_values = array_merge($wheres_values, $where_item['value']);
+										} else {
+												$where_content .= " {$column} {$comparator} ? ";
+												$wheres_values[] = $where_item['value'];
+										}
+								}
+
+								// Ensure proper logical separators between conditions
+								if($index < count($arg_wheres) - 1) {
+										// Add the determined connector after the current item
+										$where_content .= " {$next_connector} ";
+								}
+						}
+				}
+
+				return array(
+						'content' => trim($where_content),
+						'values'  => $wheres_values,
+				);
+		}
+		/**
+		 * Public method to build the complete WHERE clause string and values array.
+		 *
+		 * @param array $arg_wheres The array of WHERE conditions.
+		 * @param string $default_separator The default logical separator (AND/OR).
+		 * @return array Associative array containing 'where' (the full WHERE clause) and 'values' (the bound values).
+		 */
+		private function buildWheresFromArray($arg_wheres, $default_separator = 'AND') {
+				$where = '';
+
+				// Call the recursive method
+				$result        = $this->buildWheresContent($arg_wheres, $default_separator);
+				$where_content = $result['content'];
+
+				// Only add the WHERE clause if there is content
+				if(!empty($where_content)) {
+						// Add the final 'WHERE (...)' wrapper
+						$where = "WHERE ({$where_content})";
+				}
+				// Return the final where clause and the values array
+				return array(
+						'where'  => $where,
+						'values' => $result['values'], // Access the values directly from $result
+				);
+		}
+
 		/**
 		 * Prepare a query to update data in database
 		 *
@@ -166,19 +297,34 @@ class OssnDatabase extends OssnBase {
 		 */
 		public function update($params = array()) {
 				if(is_array($params)) {
+						if(!isset($params['names'])) {
+								throw new OssnDatabaseException('Col names are not set');
+						}
+						if(!is_array($params['names'])) {
+								throw new OssnDatabaseException('Col are not array');
+						}
+						if(!isset($params['values'])) {
+								throw new OssnDatabaseException('Values are not set');
+						}
+						if(!is_array($params['values'])) {
+								throw new OssnDatabaseException('Values are not array');
+						}
+						if(count($params['names']) != count($params['values'])) {
+								throw new OssnDatabaseException("Cols and values didn't match");
+						}
 						if(count($params['names']) == count($params['values']) && !empty($params['table'])) {
-								// error_log('UPDATE: ' . ossn_dump($params['values']));
 								$params['values'] = str_replace('\\r\\n', "\r\n", $params['values']);
 								$params['values'] = str_replace('\\\r\\\n', '\r\n', $params['values']);
 								$params['values'] = str_replace('\\\\', '\\', $params['values']);
+
 								// error_log('UPDATE_2: ' . ossn_dump($params['values']));
 								$valuec = count($params['names']);
 								$i      = 1;
-								foreach($params['names'] as $key => $val) {
+								foreach ($params['names'] as $key => $val) {
 										$data[$val] = $params['values'][$key];
 								}
-								
-								foreach($data as $keys => $vals) {
+
+								foreach ($data as $keys => $vals) {
 										if($i == $valuec) {
 												$valyes[] = "`{$keys}` = ?";
 										} else {
@@ -187,29 +333,19 @@ class OssnDatabase extends OssnBase {
 										$i++;
 								}
 								$q = implode('', $valyes);
+
+								// Get the default separator (use AND if none is specified)
+								$default_separator = isset($params['default_separator']) ? strtoupper($params['default_separator']) : 'AND';
+
 								//wheres rebuild
-								if(!isset($params['wheres'][0]['name'])) {
-										$params['wheres'] = implode(' ', $params['wheres']);
-										$this->statement("UPDATE {$params['table']} SET {$q} WHERE {$params['wheres']}");
-								} else {
-										$where_merge   = '';
-										$wheres_values = array();
-										foreach($params['wheres'] as $where_item) {
-												if(!isset($where_item['name']) || !isset($where_item['value'])) {
-														continue;
-												}
-												if(!isset($where_item['separator'])) {
-														$where_item['separator'] = '';
-												}
-												if(!isset($where_item['comparator'])) {
-														$where_item['comparator'] = '=';
-												}
-												$where_merge .= " `{$where_item['name']}` {$where_item['comparator']} ? {$where_item['separator']}";
-												$params['values'][] = $where_item['value'];
-										}
-										$this->statement("UPDATE {$params['table']} SET {$q} WHERE {$where_merge}");
-								}
-								if($this->execute($params['values'])) {
+								$build_wheres  = $this->buildWheresFromArray($params['wheres'], $default_separator);
+								$where         = $build_wheres['where'];
+								$wheres_values = $build_wheres['values'];
+
+								$this->statement("UPDATE {$params['table']} SET {$q} {$where}");
+								$prepared_values = array_merge($params['values'], $wheres_values);
+								//set=values and wheres values need to pass to execte at once
+								if($this->execute($prepared_values)) {
 										return true;
 								}
 						}
@@ -227,63 +363,49 @@ class OssnDatabase extends OssnBase {
 		 */
 		public function select($params, $multi = '') {
 				if(is_array($params)) {
-						if(!isset($params['params'])) {
-								$parameters = '*';
-						} else {
-								$parameters = implode(', ', $params['params']);
-						}
-						$order_by = '';
-						if(!empty($params['order_by'])) {
-								$order_by = "ORDER by {$params['order_by']}";
-						}
-						$group_by = '';
-						if(!empty($params['group_by'])) {
-								$group_by = "GROUP by {$params['group_by']}";
-						}
-						$where         = '';
-						$wheres_values = false;
+						// Define the parameters to be selected (either * or specific fields)
+						$parameters = isset($params['params']) ? implode(', ', $params['params']) : '*';
+
+						// Handle optional sorting
+						$order_by = !empty($params['order_by']) ? "ORDER BY {$params['order_by']}" : '';
+
+						// Handle grouping
+						$group_by = !empty($params['group_by']) ? "GROUP BY {$params['group_by']}" : '';
+
+						// Get the default separator (use AND if none is specified)
+						$default_separator = isset($params['default_separator']) ? strtoupper($params['default_separator']) : 'AND';
+
 						//wheres rebuild
-						if(isset($params['wheres']) && !isset($params['wheres'][0]['name']) && is_array($params['wheres'])) {
-								$where = implode(' ', $params['wheres']);
-						} elseif(isset($params['wheres'])) {
-								$where_merge   = '';
-								$wheres_values = array();
-								foreach($params['wheres'] as $where_item) {
-										if(!isset($where_item['name']) || !isset($where_item['value'])) {
-												continue;
-										}
-										if(!isset($where_item['separator'])) {
-												$where_item['separator'] = '';
-										}
-										if(!isset($where_item['comparator'])) {
-												$where_item['comparator'] = '=';
-										}
-										$where_merge .= " `{$where_item['name']}` {$where_item['comparator']} ? {$where_item['separator']}";
-										$wheres_values[] = $where_item['value'];
-								}
-								$where = $where_merge;
-						}
-						$wheres = '';
-						if(!empty($params['wheres'])) {
-								$wheres = "WHERE({$where})";
-						}
-						$limit = '';
-						if(!empty($params['limit'])) {
-								$limit = "LIMIT {$params['limit']}";
-						}
+						$build_wheres  = $this->buildWheresFromArray($params['wheres'], $default_separator);
+						$where         = $build_wheres['where'];
+						$wheres_values = $build_wheres['values'];
+
+						// Handle LIMIT
+						$limit = !empty($params['limit']) ? "LIMIT {$params['limit']}" : '';
+
+						// Handle JOINS (if any)
 						$joins = '';
-						if(!empty($params['joins']) && !is_array($params['joins'])) {
-								$joins = $params['joins'];
-						} elseif(!empty($params['joins']) && is_array($params['joins'])) {
-								$joins = implode(' ', $params['joins']);
+						if(!empty($params['joins'])) {
+								if(is_array($params['joins'])) {
+										$joins = implode(' ', $params['joins']);
+								} else {
+										$joins = $params['joins'];
+								}
 						}
-						$this->statement("SELECT {$parameters} FROM {$params['from']} {$joins} {$wheres} {$group_by} {$order_by} {$limit};");
+
+						// Construct the final SQL query
+						$sql = "SELECT {$parameters} FROM {$params['from']} {$joins} {$where} {$group_by} {$order_by} {$limit};";
+
+						// Execute the query
+						$this->statement($sql);
 						if($this->execute($wheres_values)) {
 								return $this->fetch($multi);
 						}
 				}
+
 				return false;
 		}
+
 		/**
 		 * Fetch the data from memory that is stored during execution;
 		 *
@@ -302,7 +424,7 @@ class OssnDatabase extends OssnBase {
 						if($data === true) {
 								if($fetch = $this->exe) {
 										$all = $fetch->fetchAll();
-										if($all){
+										if($all) {
 												$this->clearVars();
 												return arrayObject($all);
 										}
@@ -321,36 +443,19 @@ class OssnDatabase extends OssnBase {
 		 */
 		public function delete($params) {
 				if(is_array($params)) {
-						$wheres_values = false;
+						// Get the default separator (use AND if none is specified)
+						$default_separator = isset($params['default_separator']) ? strtoupper($params['default_separator']) : 'AND';
+
 						//wheres rebuild
-						if(isset($params['wheres']) && !isset($params['wheres'][0]['name']) && is_array($params['wheres'])) {
-								$where = implode(' ', $params['wheres']);
-						} elseif(isset($params['wheres'])) {
-								$where_merge   = '';
-								$wheres_values = array();
-								foreach($params['wheres'] as $where_item) {
-										if(!isset($where_item['name']) || !isset($where_item['value'])) {
-												continue;
-										}
-										if(!isset($where_item['separator'])) {
-												$where_item['separator'] = '';
-										}
-										if(!isset($where_item['comparator'])) {
-												$where_item['comparator'] = '=';
-										}
-										$where_merge .= " `{$where_item['name']}` {$where_item['comparator']} ? {$where_item['separator']}";
-										$wheres_values[] = $where_item['value'];
-								}
-								$where = $where_merge;
-						}
-						if(!empty($params['wheres'])) {
-								$wheres = "WHERE({$where})";
-						}
-						//don't let any component or query to empty entire table
-						if(empty($params['wheres'])) {
-								return false;
-						}
-						$this->statement("DELETE FROM `{$params['from']}` {$wheres};");
+						$build_wheres  = $this->buildWheresFromArray($params['wheres'], $default_separator);
+						$where         = $build_wheres['where'];
+						$wheres_values = $build_wheres['values'];
+
+						// Construct the final SQL query
+						$sql = "DELETE FROM {$params['from']} {$where};";
+
+						// Execute the query
+						$this->statement($sql);
 						if($this->execute($wheres_values)) {
 								return true;
 						}
@@ -368,14 +473,14 @@ class OssnDatabase extends OssnBase {
 				}
 		}
 		/**
-		 * Create a wheres clause for database
+		 * Create a wheres clause for database. Support 1D array only.
 		 *
 		 * @param array $array A valid array containg wheres clauses;
 		 * @param string $operator AND, OR, LIKE
 		 *
 		 * @return string
 		 */
-		public function constructWheres(array $array, $operator = "AND") {
+		public function constructWheres(array $array, $operator = 'AND') {
 				if(!empty($array) && !empty($operator)) {
 						$result = implode(" {$operator} ", $array);
 						return $result;
@@ -384,7 +489,7 @@ class OssnDatabase extends OssnBase {
 		}
 		/**
 		 * Generate limit from options
-		 * 
+		 *
 		 * @param integer $data_limit How much data should be fetched?
 		 * @param integer $page_limit Limit of data on one page
 		 * @param integer $offset Offset value
@@ -395,9 +500,9 @@ class OssnDatabase extends OssnBase {
 				$limit = $data_limit;
 				//get only required result, don't bust your server memory
 				if(isset($offset) && $offset !== false && $page_limit !== false) {
-						$limitfrom = ($offset - 1) * ($page_limit);
+						$limitfrom = ($offset - 1) * $page_limit;
 						$limitto   = $page_limit;
-						
+
 						$data_limit = "{$limitfrom}, {$limitto}";
 						if($offset > 1) {
 								if($limit > $limitfrom) {
@@ -418,17 +523,17 @@ class OssnDatabase extends OssnBase {
 		 * Clear variables to avoid passing then in other objects
 		 *
 		 * @return void
-		 */		
-		public function clearVars(){
+		 */
+		public function clearVars() {
 				unset($this->exe);
-				unset($this->database);			
+				unset($this->database);
 		}
 		/**
 		 * Unset the stuff that is not need once op is finished
 		 *
 		 * @return void
 		 */
-		public function __destruct(){
+		public function __destruct() {
 				$this->clearVars();
 		}
 } //class

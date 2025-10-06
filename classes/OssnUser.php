@@ -71,7 +71,7 @@ class OssnUser extends OssnEntities {
 								'time_created',
 								'time_updated',
 						);
-						$time_created = time();
+						$time_created     = time();
 						$params['values'] = array(
 								$this->first_name,
 								$this->last_name,
@@ -202,21 +202,33 @@ class OssnUser extends OssnEntities {
 				if(!empty($this->email)) {
 						$params['from']   = 'ossn_users';
 						$params['wheres'] = array(
-								"LOWER(email) = LOWER('{$this->email}')",
+								array(
+										'name'     => 'LOWER(email)',
+										'operator' => '=',
+										'value'    => "LOWER('{$this->email}')",
+								),
 						);
 						$user = $this->select($params);
 				}
 				if(empty($user) && !empty($this->username)) {
 						$params['from']   = 'ossn_users';
 						$params['wheres'] = array(
-								"LOWER(username) = LOWER('{$this->username}')",
+								array(
+										'name'     => 'LOWER(username)',
+										'operator' => '=',
+										'value'    => "LOWER('{$this->username}')",
+								),
 						);
 						$user = $this->select($params);
 				}
 				if(empty($user) && !empty($this->guid)) {
 						$params['from']   = 'ossn_users';
 						$params['wheres'] = array(
-								"guid='{$this->guid}'",
+								array(
+										'name'     => 'guid',
+										'operator' => '=',
+										'value'    => $this->guid,
+								),
 						);
 						$user = $this->select($params);
 				}
@@ -408,7 +420,11 @@ class OssnUser extends OssnEntities {
 						time(),
 				);
 				$params['wheres'] = array(
-						"guid='{$guid}'",
+						array(
+								'name'     => 'guid',
+								'operator' => '=',
+								'value'    => $guid,
+						),
 				);
 				if($guid > 0 && $this->update($params)) {
 						return true;
@@ -486,7 +502,17 @@ class OssnUser extends OssnEntities {
 								'JOIN ossn_relationships AS r2 ON r2.relation_from = r1.relation_to AND r2.type = "friend:request"',
 						),
 						'wheres'   => array(
-								"(r1.relation_from = '{$guid}' AND r2.relation_to = '{$guid}')", //replace with loggedin user ID,
+								//"(r1.relation_from = '{$guid}' AND r2.relation_to = '{$guid}')", //replace with loggedin user ID,
+								array(
+										'name'       => 'r1.relation_from',
+										'comparator' => '=',
+										'value'      => $guid,
+								),
+								array(
+										'name'       => 'r2.relation_to',
+										'comparator' => '=',
+										'value'      => $guid,
+								),
 						),
 						'distinct' => true,
 				);
@@ -543,13 +569,63 @@ class OssnUser extends OssnEntities {
 				if(empty($from) || empty($to)) {
 						return false;
 				}
-				$this->statement("DELETE FROM ossn_relationships WHERE(
-						 (relation_from='{$from}' AND relation_to='{$to}' AND type='friend:request') OR
-						 (relation_from='{$to}' AND relation_to='{$from}' AND type='friend:request'))");
-				if($this->execute()) {
-						return true;
-				}
-				return false;
+				$group1 = array(
+						'connector' => 'AND', // Ensures conditions inside this group are AND-ed
+						'group'     => array(
+								array(
+										'name'       => 'relation_from',
+										'comparator' => '=',
+										'value'      => $from,
+								),
+								array(
+										'name'       => 'relation_to',
+										'comparator' => '=',
+										'value'      => $to,
+								),
+								array(
+										'name'       => 'type',
+										'comparator' => '=',
+										'value'      => 'friend:request',
+								),
+						),
+				);
+				$group2 = array(
+						'connector' => 'AND', // Ensures conditions inside this group are AND-ed
+						'group'     => array(
+								array(
+										'name'       => 'relation_from',
+										'comparator' => '=',
+										'value'      => $to,
+								),
+								array(
+										'name'       => 'relation_to',
+										'comparator' => '=',
+										'value'      => $from,
+								),
+								array(
+										'name'       => 'type',
+										'comparator' => '=',
+										'value'      => 'friend:request',
+								),
+						),
+				);
+				return $this->delete(array(
+						'from'   => 'ossn_relationships',
+						'wheres' => array(
+								// This is the SINGLE OUTER OR group: ( (A->B AND type) OR (B->A AND type) )
+								array(
+										'connector' => 'OR', // <-- This is the key change: forces OR between its children (Group 1 and Group 2)
+										'group'     => array(
+												// Group 1: (relation_from = ? AND relation_to = ? AND type = ?)
+												$group1,
+												
+												// Group 2: (relation_from = ? AND relation_to = ? AND type = ?)
+												// This is OR-ed with Group 1 because the parent's 'connector' is 'OR'.
+												$group2,
+										),
+								),
+						),
+				));
 		}
 
 		/**
@@ -656,10 +732,9 @@ class OssnUser extends OssnEntities {
 						'entities_pairs' => false,
 				);
 
-				$options      = array_merge($default, $params);
-				$wheres       = array();
-				$params       = array();
-				$wheres_paris = array();
+				$options = array_merge($default, $params);
+				$wheres  = array();
+				$params  = array();
 				//validate offset values
 				if($options['limit'] !== false && $options['limit'] != 0 && $options['page_limit'] != 0) {
 						$offset_vals = ceil($options['limit'] / $options['page_limit']);
@@ -675,34 +750,55 @@ class OssnUser extends OssnEntities {
 						$options['limit'] = $getlimit;
 				}
 				if(!empty($options['keyword'])) {
-						$wheres[] = "(CONCAT(u.first_name, ' ', u.last_name) LIKE '%{$options['keyword']}%' OR
-									  u.username LIKE '%{$options['keyword']}%' OR
-									  u.email LIKE '%{$options['keyword']}%')";
+						/*$wheres[] = "(CONCAT(u.first_name, ' ', u.last_name) LIKE '%{$options['keyword']}%' OR
+														  u.username LIKE '%{$options['keyword']}%' OR
+												*/
+						//group
+						$wheres[] = array(
+								'connector' => 'OR',
+								'group'     => array(
+										array(
+												'name'       => "CONCAT(u.first_name, ' ', u.last_name)",
+												'comparator' => 'LIKE',
+												'value'      => "%{$options['keyword']}%",
+										),
+										array(
+												'name'       => 'u.username',
+												'comparator' => 'LIKE',
+												'value'      => "%{$options['keyword']}%",
+										),
+										array(
+												'name'       => 'u.email',
+												'comparator' => 'LIKE',
+												'value'      => "%{$options['keyword']}%",
+										),
+								),
+						);
 				}
 				if(isset($options['entities_pairs']) && is_array($options['entities_pairs'])) {
 						foreach ($options['entities_pairs'] as $key => $pair) {
 								$operand = empty($pair['operand']) ? '=' : $pair['operand'];
 								if(!empty($pair['name']) && isset($pair['value']) && !empty($operand)) {
-										if(!empty($pair['value'])) {
-												$pair['value'] = addslashes($pair['value']);
-										}
-										$wheres_paris[] = "e{$key}.type='user'";
-										$wheres_paris[] = "e{$key}.subtype='{$pair['name']}'";
+										$wheres[] = "e{$key}.type='user'";
+										$wheres[] = "e{$key}.subtype='{$pair['name']}'";
+
 										if(isset($pair['wheres']) && !empty($pair['wheres'])) {
-												$pair['wheres'] = str_replace('[this].', "emd{$key}.", $pair['wheres']);
-												$wheres_paris[] = $pair['wheres'];
+												$wheres[] = str_replace('[this].', "emd{$key}.", $pair['wheres']);
 										} else {
-												$wheres_paris[] = "emd{$key}.value {$operand} '{$pair['value']}'";
+												//$wheres_pairs[] = "emd{$key}.value {$operand} '{$pair['value']}'";
+												//v8.8 uses prepared wheres
+												$wheres[] = array(
+														'name'     => "emd{$key}.value",
+														'operator' => $operand,
+														'value'    => $pair['value'],
+												);
 										}
 										$params['joins'][] = "JOIN ossn_entities as e{$key} ON e{$key}.owner_guid=u.guid";
 										$params['joins'][] = "JOIN ossn_entities_metadata as emd{$key} ON e{$key}.guid=emd{$key}.guid";
 								}
 						}
-						if(!empty($wheres_paris)) {
-								$wheres_entities = '(' . $this->constructWheres($wheres_paris) . ')';
-								$wheres[]        = $wheres_entities;
-						}
 				}
+
 				$wheres[] = 'u.time_created IS NOT NULL';
 				if(isset($options['wheres']) && !empty($options['wheres'])) {
 						if(!is_array($options['wheres'])) {
@@ -740,9 +836,7 @@ class OssnUser extends OssnEntities {
 				if(isset($options['params']) && !empty($options['params'])) {
 						$params['params'] = $options['params'];
 				}
-				$params['wheres'] = array(
-						$this->constructWheres($wheres),
-				);
+				$params['wheres'] = $wheres;
 				if($options['count'] === true) {
 						unset($params['params']);
 						unset($params['limit']);
@@ -1079,6 +1173,9 @@ class OssnUser extends OssnEntities {
 		/**
 		 * Get total users per month for each year
 		 *
+
+
+
 		 * @return object|false
 		 * @access public
 		 */

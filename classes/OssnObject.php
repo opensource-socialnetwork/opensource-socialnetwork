@@ -75,7 +75,7 @@ class OssnObject extends OssnEntities {
 						$this->type,
 						$this->subtype,
 						$this->time_created,
-						$this->time_created,  //time_update = time_created
+						$this->time_created, //time_update = time_created
 						$this->title,
 						$this->description,
 				);
@@ -150,7 +150,11 @@ class OssnObject extends OssnEntities {
 				);
 
 				$params['wheres'] = array(
-						"o.guid='{$this->object_guid}'",
+						array(
+								'name'     => 'o.guid',
+								'operator' => '=',
+								'value'    => $this->object_guid,
+						),
 				);
 				//there is no need to order as its will fetch only one record
 				unset($this->order_by);
@@ -227,7 +231,11 @@ class OssnObject extends OssnEntities {
 				$params['values'][] = time();
 
 				$params['wheres'] = array(
-						"guid='{$guid}'",
+						array(
+								'name'     => 'guid',
+								'operator' => '=',
+								'value'    => $guid,
+						),
 				);
 
 				if($this->update($params)) {
@@ -301,7 +309,11 @@ class OssnObject extends OssnEntities {
 				}
 				$delete['from']   = 'ossn_object';
 				$delete['wheres'] = array(
-						"guid='{$object}'",
+						array(
+								'name'     => 'guid',
+								'operator' => '=',
+								'value'    => $object,
+						),
 				);
 				if($this->delete($delete)) {
 						//caching
@@ -353,10 +365,9 @@ class OssnObject extends OssnEntities {
 						'entities_pairs' => false,
 				);
 
-				$options      = array_merge($default, $params);
-				$wheres       = array();
-				$params       = array();
-				$wheres_paris = array();
+				$options = array_merge($default, $params);
+				$wheres  = array();
+				$params  = array();
 				//validate offset values
 				if($options['limit'] !== false && $options['limit'] != 0 && $options['page_limit'] != 0) {
 						$offset_vals = ceil($options['limit'] / $options['page_limit']);
@@ -374,50 +385,94 @@ class OssnObject extends OssnEntities {
 
 				if(!empty($options['object_guid'])) {
 						if(!is_array($options['object_guid'])) {
-								$wheres[] = "o.guid='{$options['object_guid']}'";
+								$wheres[] = array(
+										'name'       => 'o.guid',
+										'comparator' => '=',
+										'value'      => $options['object_guid'],
+								);
 						} elseif(is_array($options['object_guid']) && !empty($options['object_guid'])) {
-								$object_guid_in = implode("','", $options['object_guid']);
-								$wheres[]       = "o.guid IN ('{$object_guid_in}')";
+								$wheres[] = array(
+										'name'       => 'o.guid',
+										'comparator' => 'IN',
+										'value'      => $options['object_guid'],
+								);
 						}
 				}
 				if(!empty($options['subtype'])) {
 						if(!is_array($options['subtype'])) {
-								$wheres[] = "o.subtype='{$options['subtype']}'";
+								$wheres[] = array(
+										'name'       => 'o.subtype',
+										'comparator' => '=',
+										'value'      => $options['subtype'],
+								);
 						} elseif(is_array($options['subtype']) && !empty($options['subtype'])) {
-								$subtypes_in = implode("','", $options['subtype']);
-								$wheres[]    = "o.subtype IN ('{$subtypes_in}')";
+								$wheres[] = array(
+										'name'       => 'o.subtype',
+										'comparator' => 'IN',
+										'value'      => $options['subtype'],
+								);
 						}
 				}
 				if(!empty($options['type'])) {
 						if(!is_array($options['type'])) {
-								$wheres[] = "o.type='{$options['type']}'";
+								$wheres[] = array(
+										'name'       => 'o.type',
+										'comparator' => '=',
+										'value'      => $options['type'],
+								);
 						} elseif(is_array($options['type']) && !empty($options['type'])) {
-								$types_in = implode("','", $options['type']);
-								$wheres[] = "o.type IN ('{$types_in}')";
+								$wheres[] = array(
+										'name'       => 'o.type',
+										'comparator' => 'IN',
+										'value'      => $options['type'],
+								);
 						}
 				}
 				if(!empty($options['owner_guid'])) {
 						if(!is_array($options['owner_guid'])) {
-								$wheres[] = "o.owner_guid ='{$options['owner_guid']}'";
+								$wheres[] = array(
+										'name'       => 'o.owner_guid',
+										'comparator' => '=',
+										'value'      => $options['owner_guid'],
+								);
 						} elseif(is_array($options['owner_guid']) && !empty($options['owner_guid'])) {
-								$owners_guids_in = implode("','", $options['owner_guid']);
-								$wheres[]        = "o.owner_guid IN ('{$owners_guids_in}')";
+								$wheres[] = array(
+										'name'       => 'o.owner_guid',
+										'comparator' => 'IN',
+										'value'      => $options['owner_guid'],
+								);
 						}
 				}
 				//check if developer want to search title or description
 				if($options['search_type'] === true) {
 						if(!empty($options['title'])) {
-								$wheres[] = "o.title LIKE '%{$options['title']}%'";
+								$wheres[] = array(
+										'name'       => 'o.title',
+										'comparator' => 'LIKE',
+										'value'      => "%{$options['title']}%",
+								);
 						}
 						if(!empty($options['description'])) {
-								$wheres[] = "o.description LIKE '%{$options['description']}%'";
+								$wheres[] = array(
+										'name'       => 'o.description',
+										'comparator' => 'LIKE',
+										'value'      => "%{$options['description']}%",
+								);
 						}
 				} elseif($options['search_type'] === false) {
 						if(!empty($options['title'])) {
-								$wheres[] = "o.title = '{$options['title']}'";
+								$wheres[] = array(
+										'name'       => 'o.title',
+										'comparator' => '=',
+										'value'      => $options['title'],
+								);
 						}
 						if(!empty($options['description'])) {
-								$wheres[] = "o.description = '{$options['description']}'";
+								$wheres[] = array(
+										'name'       => 'o.description',
+										'comparator' => '=',
+										'value'      => $options['description'],
+								);
 						}
 				}
 				if(isset($options['entities_pairs']) && is_array($options['entities_pairs'])) {
@@ -427,21 +482,22 @@ class OssnObject extends OssnEntities {
 										if(!empty($pair['value'])) {
 												$pair['value'] = addslashes($pair['value']);
 										}
-										$wheres_paris[] = "e{$key}.type='object'";
-										$wheres_paris[] = "e{$key}.subtype='{$pair['name']}'";
+										$wheres[] = "e{$key}.type='object'";
+										$wheres[] = "e{$key}.subtype='{$pair['name']}'";
 										if(isset($pair['wheres']) && !empty($pair['wheres'])) {
-												$pair['wheres'] = str_replace('[this].', "emd{$key}.", $pair['wheres']);
-												$wheres_paris[] = $pair['wheres'];
+												$wheres[] = str_replace('[this].', "emd{$key}.", $pair['wheres']);
 										} else {
-												$wheres_paris[] = "emd{$key}.value {$operand} '{$pair['value']}'";
+												//$wheres_pairs[] = "emd{$key}.value {$operand} '{$pair['value']}'";
+												//v8.8 uses prepared wheres
+												$wheres[] = array(
+														'name'     => "emd{$key}.value",
+														'operator' => $operand,
+														'value'    => $pair['value'],
+												);
 										}
 										$params['joins'][] = "JOIN ossn_entities as e{$key} ON e{$key}.owner_guid=o.guid";
 										$params['joins'][] = "JOIN ossn_entities_metadata as emd{$key} ON e{$key}.guid=emd{$key}.guid";
 								}
-						}
-						if(!empty($wheres_paris)) {
-								$wheres_entities = '(' . $this->constructWheres($wheres_paris) . ')';
-								$wheres[]        = $wheres_entities;
 						}
 				}
 				if(isset($options['wheres']) && !empty($options['wheres'])) {
@@ -467,9 +523,7 @@ class OssnObject extends OssnEntities {
 				$params['params'] = array(
 						"{$distinct} o.guid, o.time_created",
 				);
-				$params['wheres'] = array(
-						$this->constructWheres($wheres),
-				);
+				$params['wheres']   = $wheres;
 				$params['order_by'] = $options['order_by'];
 				$params['limit']    = $options['limit'];
 
