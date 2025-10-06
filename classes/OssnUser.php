@@ -205,7 +205,7 @@ class OssnUser extends OssnEntities {
 								array(
 										'name'     => 'LOWER(email)',
 										'operator' => '=',
-										'value'    => "LOWER('{$this->email}')",
+										'value'    => strtolower($this->email),
 								),
 						);
 						$user = $this->select($params);
@@ -216,7 +216,7 @@ class OssnUser extends OssnEntities {
 								array(
 										'name'     => 'LOWER(username)',
 										'operator' => '=',
-										'value'    => "LOWER('{$this->username}')",
+										'value'    => strtolower($this->username),
 								),
 						);
 						$user = $this->select($params);
