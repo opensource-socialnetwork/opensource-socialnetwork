@@ -520,6 +520,29 @@ class OssnDatabase extends OssnBase {
 				return false;
 		}
 		/**
+		 * OssnDatabase Wheres Helper
+		 * Creates a structured array for a single WHERE condition.
+		 * @param string $name The column name or raw SQL expression (e.g., 'u.guid', 'CONCAT(...)').
+		 * @param string $comparator The SQL comparator (e.g., '=', 'LIKE', 'IN', '!=').
+		 * @param mixed  $value The value to bind (e.g., 101, 'active', or an array for 'IN').
+		 * @param string|null $separator Optional. Overrides the default 'AND' to link this condition to the next (e.g., 'OR').
+		 * @return array The structured condition array.
+		 */
+		public static function Wheres(string $name, string $comparator, $value,  ? string $separator = null) : array {
+				$condition = array(
+						'name'       => $name,
+						'comparator' => $comparator,
+						'value'      => $value,
+				);
+
+				// If a separator is provided, add it to the array
+				if($separator !== null) {
+						$condition['separator'] = strtoupper($separator); // Ensure it's uppercase (AND/OR)
+				}
+
+				return $condition;
+		}
+		/**
 		 * Clear variables to avoid passing then in other objects
 		 *
 		 * @return void
