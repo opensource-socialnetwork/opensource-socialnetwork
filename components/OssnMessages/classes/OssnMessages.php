@@ -121,8 +121,16 @@ class OssnMessages extends OssnEntities {
 						1,
 				);
 				$params['wheres'] = array(
-						"message_from='{$from}' AND
-								   message_to='{$to}'",
+						array(
+								'name'       => 'message_from',
+								'comparator' => '=',
+								'value'      => $from,
+						),
+						array(
+								'name'       => 'message_to',
+								'comparator' => '=',
+								'value'      => $to,
+						),
 				);
 				if($this->update($params)) {
 						return true;
@@ -161,6 +169,9 @@ class OssnMessages extends OssnEntities {
 				if(empty($to)) {
 						return false;
 				}
+				//convert to saveside integers
+				$to = intval($to);
+
 				// return the most recent message of each corresponding partner
 				// exclude deleted ones
 				//include deleted once and show deleted text %arsalanshah
@@ -209,9 +220,25 @@ class OssnMessages extends OssnEntities {
 						$params['params'] = array(
 								'count(id) as answered',
 						);
-						$params['from']   = 'ossn_messages';
+						$params['from'] = 'ossn_messages';
+						//"message != '' AND message_from = '{$chat->message_to}' AND message_to = '{$chat->message_from}' AND id > '{$chat->id}'",
 						$params['wheres'] = array(
-								"message != '' AND message_from = '{$chat->message_to}' AND message_to = '{$chat->message_from}' AND id > '{$chat->id}'",
+								"message != ''",
+								array(
+										'name'       => 'message_from',
+										'comparator' => '=',
+										'value'      => $chat->message_to,
+								),
+								array(
+										'name'       => 'message_to',
+										'comparator' => '=',
+										'value'      => $chat->message_from,
+								),
+								array(
+										'name'       => 'id',
+										'comparator' => '>',
+										'value'      => $chat->id,
+								),
 						);
 						if($this->select($params, false)->answered) {
 								$chat->answered = 1;
@@ -229,10 +256,59 @@ class OssnMessages extends OssnEntities {
 		 * @return object
 		 */
 		public function getWith($from, $to, $count = false) {
-				$messages = $this->searchMessages(array(
-						'wheres'         => array(
-								"((message_from='{$from}' AND message_to='{$to}' AND emd0.value='') OR (message_from='{$to}' AND message_to='{$from}' AND emd1.value=''))",
+				//"((message_from='{$from}' AND message_to='{$to}' AND emd0.value='') OR (message_from='{$to}' AND message_to='{$from}' AND emd1.value=''))",
+				$wheres = array(
+						array(
+								'connector' => 'OR',
+								'group'     => array(
+										array(
+												'connector' => 'AND',
+												'group'     => array(
+														array(
+																'name'       => 'message_from',
+																'comparator' => '=',
+																'value'      => $from,
+														),
+														array(
+																'name'       => 'message_to',
+																'comparator' => '=',
+																'value'      => $to,
+														),
+														array(
+																'name'       => 'emd0.value',
+																'comparator' => '=',
+																'value'      => '',
+														),
+												),
+										),
+								),
+								//or
+								array(
+										array(
+												'connector' => 'AND',
+												'group'     => array(
+														array(
+																'name'       => 'message_from',
+																'comparator' => '=',
+																'value'      => $to,
+														),
+														array(
+																'name'       => 'message_to',
+																'comparator' => '=',
+																'value'      => $from,
+														),
+														array(
+																'name'       => 'emd1.value',
+																'comparator' => '=',
+																'value'      => '',
+														),
+												),
+										),
+								),
 						),
+				);
+				$messages = $this->searchMessages(array(
+						'wheres'         => $wheres,
 						'order_by'       => 'm.id DESC',
 						'offset'         => input('offset_message_xhr_with', '', 1),
 						'count'          => $count,
@@ -257,19 +333,60 @@ class OssnMessages extends OssnEntities {
 		/**
 		 * Get messages between two users
 		 *
-		 * @params $from: User 1 guid
-		 *         $to User 2 guid
+		 * @param $from User 1 guid
+		 * @param  $to User 2 guid
 		 *
-		 * @return object
+		 * @return array|boolean
 		 */
 		public function get($from, $to) {
-				$params['from']   = 'ossn_messages';
-				$params['wheres'] = array(
-						"message_from='{$from}' AND
-								  message_to='{$to}' OR
-								  message_from='{$to}' AND
-								  message_to='{$from}'",
+				if(empty($from) || empty($to)) {
+						return false;
+				}
+				$wheres = array(
+						// Outer Group: Uses 'OR' to join the two relationship directions
+						array(
+								'connector' => 'OR',
+								'group'     => array(
+										// 1. First Direction (Internal Connector: AND)
+										// Logic: (message_from = $from AND message_to = $to)
+										array(
+												'connector' => 'AND',
+												'group'     => array(
+														array(
+																'name'       => 'message_from',
+																'comparator' => '=',
+																'value'      => $from,
+														),
+														array(
+																'name'       => 'message_to',
+																'comparator' => '=',
+																'value'      => $to,
+														),
+												),
+										),
+
+										// 2. Second Direction (Internal Connector: AND)
+										// Logic: OR (message_from = $to AND message_to = $from)
+										array(
+												'connector' => 'AND',
+												'group'     => array(
+														array(
+																'name'       => 'message_from',
+																'comparator' => '=',
+																'value'      => $to,
+														),
+														array(
+																'name'       => 'message_to',
+																'comparator' => '=',
+																'value'      => $from,
+														),
+												),
+										),
+								),
+						),
 				);
+				$params['from']     = 'ossn_messages';
+				$params['wheres']   = $wheres;
 				$params['order_by'] = 'id ASC';
 				return $this->select($params, true);
 		}
@@ -284,7 +401,11 @@ class OssnMessages extends OssnEntities {
 		public function recentSent($from) {
 				$params['from']   = 'ossn_messages';
 				$params['wheres'] = array(
-						"message_from='{$from}'",
+						array(
+								'name'       => 'message_from',
+								'comparator' => '=',
+								'value'      => $from,
+						),
 				);
 				$params['order_by'] = 'id DESC';
 				$c                  = $this->select($params, true);
@@ -304,7 +425,12 @@ class OssnMessages extends OssnEntities {
 		public function countUNREAD($to) {
 				$params['from']   = 'ossn_messages';
 				$params['wheres'] = array(
-						"message_to='{$to}' AND viewed='0'",
+						"viewed='0'",
+						array(
+								'name'       => 'message_to',
+								'comparator' => '=',
+								'value'      => $to,
+						),
 				);
 				$params['params'] = array(
 						'count(*) as new',
@@ -320,9 +446,16 @@ class OssnMessages extends OssnEntities {
 		 * @return object|false
 		 */
 		public function getMessage($id) {
+				if(empty($id)) {
+						return false;
+				}
 				$params['from']   = 'ossn_messages';
 				$params['wheres'] = array(
-						"id='{$id}'",
+						array(
+								'name'       => 'id',
+								'comparator' => '=',
+								'value'      => $id,
+						),
 				);
 				$get = $this->select($params);
 				if($get) {
@@ -349,17 +482,25 @@ class OssnMessages extends OssnEntities {
 				);
 				$params['from']   = 'ossn_messages as a';
 				$params['wheres'] = array(
-						"a.message_to='{$guid}' OR a.message_from='{$guid}'",
+						array(
+								'name'       => 'a.message_to',
+								'comparator' => '=',
+								'value'      => $guid,
+								'separator'  => 'OR', // <-- Overrides the default AND
+						),
+						// Condition 2: Linked by the previous OR
+						array(
+								'name'       => 'a.message_from',
+								'comparator' => '=',
+								'value'      => $guid,
+						),
 				);
 				$message_ids = $this->select($params, true);
 				if($message_ids) {
 						$deleted_messages = count((array) $message_ids);
-						$message_id_list  = implode(
-								',',
-								array_map(function ($x) {
-										return $x->id;
-								}, (array) $message_ids)
-						);
+						foreach ($message_ids as $m) {
+								$message_id_list[] = $m->id;
+						}
 
 						$params           = array();
 						$params['params'] = array(
@@ -367,7 +508,12 @@ class OssnMessages extends OssnEntities {
 						);
 						$params['from']   = 'ossn_entities as e';
 						$params['wheres'] = array(
-								"e.owner_guid IN ({$message_id_list}) AND e.type = 'message'",
+								"e.type = 'message'",
+								array(
+										'name'       => 'e.owner_guid',
+										'comparator' => 'IN',
+										'value'      => $message_id_list,
+								),
 						);
 						$entity_guids = $this->select($params, true);
 
@@ -378,6 +524,7 @@ class OssnMessages extends OssnEntities {
 												return $x->guid;
 										}, (array) $entity_guids)
 								);
+								//this is safe as we are not getting ids from user
 								$this->delete(array(
 										'from'   => 'ossn_entities_metadata',
 										'wheres' => array(
@@ -432,9 +579,9 @@ class OssnMessages extends OssnEntities {
 						'page_limit'     => ossn_call_hook('pagination', 'messages:list:limit', false, 10), //call hook for page limit
 						'count'          => false,
 				);
-				$options      = array_merge($default, $params);
-				$wheres       = array();
-				$params       = array();
+				$options = array_merge($default, $params);
+				$wheres  = array();
+				$params  = array();
 				//validate offset values
 				if($options['limit'] !== false && $options['limit'] !== 0 && $options['page_limit'] !== false && $options['page_limit'] !== 0) {
 						$offset_vals = ceil($options['limit'] / $options['page_limit']);
@@ -451,32 +598,32 @@ class OssnMessages extends OssnEntities {
 				}
 				if(!empty($options['id'])) {
 						$wheres[] = array(
-							'name'       => 'm.id',
-							'comparator' => '=',
-							'value'      => $options['id'],
-						);						
+								'name'       => 'm.id',
+								'comparator' => '=',
+								'value'      => $options['id'],
+						);
 				}
 				if(!empty($options['message_from'])) {
 						$wheres[] = array(
-							'name'       => 'm.message_from',
-							'comparator' => '=',
-							'value'      => $options['message_from'],
+								'name'       => 'm.message_from',
+								'comparator' => '=',
+								'value'      => $options['message_from'],
 						);
 				}
 				if(!empty($options['message_to'])) {
 						$wheres[] = array(
-							'name'       => 'm.message_to',
-							'comparator' => '=',
-							'value'      => $options['message_to'],
-						);						
+								'name'       => 'm.message_to',
+								'comparator' => '=',
+								'value'      => $options['message_to'],
+						);
 				}
 				//[B] searchMessages viewed option doesn't work #2235
 				if(isset($options['viewed'])) {
 						$wheres[] = array(
-							'name'       => 'm.viewed',
-							'comparator' => '=',
-							'value'      => $options['viewed'],
-						);							
+								'name'       => 'm.viewed',
+								'comparator' => '=',
+								'value'      => $options['viewed'],
+						);
 				}
 				if(isset($options['entities_pairs']) && is_array($options['entities_pairs'])) {
 						foreach ($options['entities_pairs'] as $key => $pair) {
@@ -496,7 +643,7 @@ class OssnMessages extends OssnEntities {
 														'name'     => "emd{$key}.value",
 														'operator' => $operand,
 														'value'    => $pair['value'],
-												);												
+												);
 										}
 										$params['joins'][] = "INNER JOIN ossn_entities as e{$key} ON e{$key}.owner_guid=m.id";
 										$params['joins'][] = "INNER JOIN ossn_entities_metadata as emd{$key} ON e{$key}.guid=emd{$key}.guid";
@@ -527,7 +674,7 @@ class OssnMessages extends OssnEntities {
 						"{$distinct}m.id",
 						'm.*',
 				);
-				$params['wheres'] = $wheres;
+				$params['wheres']   = $wheres;
 				$params['order_by'] = $options['order_by'];
 				$params['limit']    = $options['limit'];
 
@@ -594,7 +741,11 @@ class OssnMessages extends OssnEntities {
 								$this->message,
 						);
 						$params['wheres'] = array(
-								"id='{$this->id}'",
+								array(
+										'name'       => 'id',
+										'comparator' => '=',
+										'value'      => $this->id,
+								),
 						);
 						if($this->update($params)) {
 								if(isset($this->data)) {
@@ -679,7 +830,11 @@ class OssnMessages extends OssnEntities {
 						$param = array(
 								'from'   => 'ossn_messages',
 								'wheres' => array(
-										"id='{$message_id}'",
+										array(
+												'name'       => 'id',
+												'comparator' => '=',
+												'value'      => $message_id,
+										),
 								),
 						);
 						if($this->delete($param)) {
@@ -706,10 +861,15 @@ class OssnMessages extends OssnEntities {
 				if(empty($ids)) {
 						return false;
 				}
-				$vars = array(
+				$user_ids = explode(',', $user_ids);
+				$vars     = array(
 						'from'   => 'ossn_users as u',
 						'wheres' => array(
-								"u.guid IN($ids)",
+								array(
+										'name'       => 'u.guid',
+										'comparator' => 'IN',
+										'value'      => $user_ids,
+								),
 						),
 				);
 				$status  = $this->select($vars, true);

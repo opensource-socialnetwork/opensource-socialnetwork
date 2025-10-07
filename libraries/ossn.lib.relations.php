@@ -56,6 +56,9 @@ function ossn_add_relation($from, $to, $type) {
  */
 function ossn_relation_exists($from, $to, $type, $recursive = false) {
 		if(!empty($from) && !empty($to) && !empty($type)) {
+				$to   = intval($to); //cast to int
+				$from = intval($to); //cast to int
+
 				$database           = new OssnDatabase();
 				$params['from']     = 'ossn_relationships as r';
 				$params['wheres']   = array();

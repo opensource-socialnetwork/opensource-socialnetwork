@@ -236,7 +236,11 @@ class OssnNotifications extends OssnDatabase {
 								'',
 						),
 						'wheres' => array(
-								"guid='{$this->guid}'",
+								array(
+										'name'       => 'guid',
+										'comparator' => '=',
+										'value'      => $this->guid,
+								),
 						),
 				));
 		}
@@ -249,6 +253,7 @@ class OssnNotifications extends OssnDatabase {
 		 */
 		public function deleteUserNotifications($user) {
 				if($user) {
+						//secure as uses $user->guid from object
 						$this->statement("DELETE FROM ossn_notifications WHERE(
 							  poster_guid='{$user->guid}' OR owner_guid='{$user->guid}');");
 						if($this->execute()) {
@@ -269,7 +274,7 @@ class OssnNotifications extends OssnDatabase {
 				$vars           = array();
 				$vars['from']   = 'ossn_notifications';
 				$vars['wheres'] = array(
-						"(guid={$this->guid})",
+						"(guid='{$this->guid}')",
 				);
 				return $this->delete($vars);
 		}
@@ -295,7 +300,11 @@ class OssnNotifications extends OssnDatabase {
 						'',
 				);
 				$vars['wheres'] = array(
-						"owner_guid='{$guid}'",
+						array(
+								'name'       => 'owner_guid',
+								'comparator' => '=',
+								'value'      => $guid,
+						),
 				);
 				return $this->update($vars);
 		}
@@ -329,12 +338,19 @@ class OssnNotifications extends OssnDatabase {
 										foreach ($where as $implode) {
 												$items[] = "'{$implode}'";
 										}
-										$in       = implode(',', $items);
-										$wheres[] = "{$key} IN ($in)";
+										$wheres[] = array(
+												'name'       => $key,
+												'comparator' => 'IN',
+												'value'      => $items,
+										);
 										unset($items);
 										unset($in);
 								} else {
-										$wheres[] = "{$key} = '{$where}'";
+										$wheres[] = array(
+												'name'       => $key,
+												'comparator' => '=',
+												'value'      => $where,
+										);
 								}
 						}
 						if(empty($wheres)) {
@@ -342,9 +358,7 @@ class OssnNotifications extends OssnDatabase {
 						}
 						$vars           = array();
 						$vars['from']   = 'ossn_notifications';
-						$vars['wheres'] = array(
-								$this->constructWheres($wheres),
-						);
+						$vars['wheres'] = $wheres;
 						return $this->delete($vars);
 				}
 				return false;
@@ -404,25 +418,60 @@ class OssnNotifications extends OssnDatabase {
 				}
 				//search notifications
 				if(!empty($options['guid'])) {
-						$wheres[] = "n.guid='{$options['guid']}'";
+						//$wheres[] = "n.guid='{$options['guid']}'";
+						$wheres[] = array(
+								'name'       => 'n.guid',
+								'comparator' => '=',
+								'value'      => $options['guid'],
+						);
 				}
 				if(!empty($options['type'])) {
-						$wheres[] = "n.type='{$options['type']}'";
+						//$wheres[] = "n.type='{$options['type']}'";
+						$wheres[] = array(
+								'name'       => 'n.type',
+								'comparator' => '=',
+								'value'      => $options['type'],
+						);
 				}
 				if(!empty($options['owner_guid'])) {
-						$wheres[] = "n.owner_guid ='{$options['owner_guid']}'";
+						//$wheres[] = "n.owner_guid ='{$options['owner_guid']}'";
+						$wheres[] = array(
+								'name'       => 'n.owner_guid',
+								'comparator' => '=',
+								'value'      => $options['owner_guid'],
+						);
 				}
 				if(!empty($options['poster_guid'])) {
-						$wheres[] = "n.poster_guid ='{$options['poster_guid']}'";
+						//$wheres[] = "n.poster_guid ='{$options['poster_guid']}'";
+						$wheres[] = array(
+								'name'       => 'n.poster_guid',
+								'comparator' => '=',
+								'value'      => $options['poster_guid'],
+						);
 				}
 				if(!empty($options['subject_guid'])) {
-						$wheres[] = "n.subject_guid ='{$options['subject_guid']}'";
+						//$wheres[] = "n.subject_guid ='{$options['subject_guid']}'";
+						$wheres[] = array(
+								'name'       => 'n.subject_guid',
+								'comparator' => '=',
+								'value'      => $options['subject_guid'],
+						);
 				}
 				if(!empty($options['item_guid'])) {
-						$wheres[] = "n.item_guid ='{$options['item_guid']}'";
+						//$wheres[] = "n.item_guid ='{$options['item_guid']}'";
+						$wheres[] = array(
+								'name'       => 'n.item_guid',
+								'comparator' => '=',
+								'value'      => $options['item_guid'],
+						);
 				}
 				if(!empty($options['time_created'])) {
-						$wheres[] = "n.time_created ='{$options['time_created']}'";
+						//$wheres[] = "n.time_created ='{$options['time_created']}'";
+						$wheres[] = array(
+								'name'       => 'n.time_created',
+								'comparator' => '=',
+								'value'      => $options['time_created'],
+						);
 				}
 				if(isset($options['viewed']) && $options['viewed'] == true) {
 						$wheres[] = "n.viewed =''";

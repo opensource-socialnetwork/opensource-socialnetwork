@@ -162,8 +162,22 @@ function ossn_friend_picker() {
 
 		$options = array();
 		if(!empty($search_for)) {
+				$search_term = "%{$search_for}%"; // Prepend/append wildcards for the LIKE search
+
+				$wheres = array(
+						array(
+								// CRITICAL: The entire SQL function goes into the 'name' key.
+								'name'       => "CONCAT(u.first_name, ' ', u.last_name)",
+
+								// Use the LIKE comparator
+								'comparator' => 'LIKE',
+
+								// Pass the parameterized value for security (e.g., '%John Smith%')
+								'value'      => $search_term,
+						),
+				);
 				$options = array(
-						'wheres' => "(CONCAT(u.first_name,  ' ', u.last_name) LIKE '%{$search_for}%')",
+						'wheres' => $wheres,
 				);
 		}
 		$picker_type = input('picker_type');
@@ -187,13 +201,38 @@ function ossn_friend_picker() {
 				}
 				$loggedin_guid = ossn_loggedin_user()->guid;
 
+				// Define secure variables once for clarity
+				$group_guid    = $params['entity']->guid; // Assuming this is where the group GUID comes from
+				$search_term   = "%{$search_for}%"; // Securely prepared search string
+
 				$user    = new OssnUser();
 				$friends = $user->searchUsers(array(
 						'joins'    => array(
 								'JOIN ossn_relationships AS r ON r.relation_to = u.guid AND r.type = "group:join:approve"',
 						),
 						'wheres'   => array(
-								"(r.relation_from = '{$group_guid}') AND (CONCAT(u.first_name,  ' ', u.last_name) LIKE '%{$search_for}%') AND u.guid != '{$loggedin_guid}'", //replace with group ID,
+								// 1. First Condition: r.relation_from = ?
+								// Linked to the next item by the default 'AND'
+								array(
+										'name'       => 'r.relation_from',
+										'comparator' => '=',
+										'value'      => $group_guid,
+								),
+
+								// 2. Second Condition: CONCAT(...) LIKE ?
+								// Linked to the next item by the default 'AND'
+								array(
+										'name'       => "CONCAT(u.first_name, ' ', u.last_name)",
+										'comparator' => 'LIKE',
+										'value'      => $search_term,
+								),
+
+								// 3. Third Condition: u.guid != ?
+								array(
+										'name'       => 'u.guid',
+										'comparator' => '!=',
+										'value'      => $loggedin_guid,
+								),
 						),
 						'distinct' => true,
 				));

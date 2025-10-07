@@ -18,7 +18,7 @@ $count  	 = count(explode(',', $photos_guid));
 
 $photos		 = new \OssnPhotos();
 $photos      = $photos->searchPhotos(array(
-		'wheres' => "e.guid IN({$photos_guid})",
+		'wheres' => "e.guid IN({$photos_guid})", //safe as not useinput
 		'page_limit' => 17,
 ));
 $total       = count((array) $photos);

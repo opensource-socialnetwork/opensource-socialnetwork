@@ -63,7 +63,7 @@ function ossn_block() {
  */
 function ossn_block_strip_comments($hook, $type, $return, $params){
 		$user = ossn_loggedin_user();
-		$return['wheres'] = array("(a.owner_guid NOT IN (SELECT DISTINCT relation_to FROM `ossn_relationships` WHERE relation_from={$user->guid} AND type='userblock') AND a.owner_guid NOT IN (SELECT 	DISTINCT relation_from FROM `ossn_relationships` WHERE relation_to={$user->guid} AND type='userblock'))");		
+		$return['wheres'] = array("(a.owner_guid NOT IN (SELECT DISTINCT relation_to FROM `ossn_relationships` WHERE relation_from={$user->guid} AND type='userblock') AND a.owner_guid NOT IN (SELECT 	DISTINCT relation_from FROM `ossn_relationships` WHERE relation_to='{$user->guid}' AND type='userblock'))");		
 		return $return;
 }
 /**
@@ -85,7 +85,7 @@ function ossn_block_strip_users_profile_posts($hook, $type, $return, $params) {
 				$return['entities_pairs'][] = array(
 						'name'   => 'poster_guid',
 						'value'  => true,
-						'wheres' => "([this].value NOT IN (SELECT DISTINCT relation_to FROM `ossn_relationships` WHERE relation_from={$user->guid} AND type='userblock') AND [this].value NOT IN (SELECT 	DISTINCT relation_from FROM `ossn_relationships` WHERE relation_to={$user->guid} AND type='userblock'))",
+						'wheres' => "([this].value NOT IN (SELECT DISTINCT relation_to FROM `ossn_relationships` WHERE relation_from={$user->guid} AND type='userblock') AND [this].value NOT IN (SELECT 	DISTINCT relation_from FROM `ossn_relationships` WHERE relation_to='{$user->guid}' AND type='userblock'))",
 				);
 		}
 		return $return;
@@ -105,7 +105,7 @@ function ossn_block_strip_group_posts($hook, $type, $return, $params) {
 				$return['entities_pairs'][] = array(
 						'name'   => 'poster_guid',
 						'value'  => true,
-						'wheres' => "([this].value NOT IN (SELECT DISTINCT relation_to FROM `ossn_relationships` WHERE relation_from={$user->guid} AND type='userblock') AND [this].value NOT IN (SELECT 	DISTINCT relation_from FROM `ossn_relationships` WHERE relation_to={$user->guid} AND type='userblock'))",
+						'wheres' => "([this].value NOT IN (SELECT DISTINCT relation_to FROM `ossn_relationships` WHERE relation_from={$user->guid} AND type='userblock') AND [this].value NOT IN (SELECT 	DISTINCT relation_from FROM `ossn_relationships` WHERE relation_to='{$user->guid}' AND type='userblock'))",
 				);
 		}
 		return $return;
@@ -122,9 +122,7 @@ function ossn_block_strip_group_posts($hook, $type, $return, $params) {
 function ossn_block_strip_posts($hook, $type, $return, $params) {
 		//here posts belongs to owner_guid so we can use owner_guid instea of poster_guid using joins.
 		if(isset($params['user']->guid) && $params['user']->guid == ossn_loggedin_user()->guid) {
-				$return[
-						'wheres'
-				][] = "(o.owner_guid NOT IN (SELECT DISTINCT relation_to FROM `ossn_relationships` WHERE relation_from={$params['user']->guid} AND type='userblock') AND o.owner_guid NOT IN (SELECT 	DISTINCT relation_from FROM `ossn_relationships` WHERE relation_to={$params['user']->guid} AND type='userblock'))";
+				$return['wheres'][] = "(o.owner_guid NOT IN (SELECT DISTINCT relation_to FROM `ossn_relationships` WHERE relation_from={$params['user']->guid} AND type='userblock') AND o.owner_guid NOT IN (SELECT DISTINCT relation_from FROM `ossn_relationships` WHERE relation_to='{$params['user']->guid}' AND type='userblock'))";
 		}
 		return $return;
 }

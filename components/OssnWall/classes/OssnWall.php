@@ -78,10 +78,10 @@ class OssnWall extends OssnObject {
 				} else {
 						$this->data->item_guid = false;
 				}
-				$this->data->poster_guid  = $this->poster_guid;
-				$this->data->access       = $access;
-				$this->subtype            = 'wall';
-				$this->title              = '';
+				$this->data->poster_guid = $this->poster_guid;
+				$this->data->access      = $access;
+				$this->subtype           = 'wall';
+				$this->title             = '';
 
 				$post = ossn_restore_new_lines($post);
 				// Replace tabs with a space
@@ -310,6 +310,7 @@ class OssnWall extends OssnObject {
 				if(empty($userguid)) {
 						return false;
 				}
+				$userguid  = intval($userguid);
 				$statement = "SELECT * FROM ossn_entities, ossn_entities_metadata WHERE(
 				  ossn_entities_metadata.guid = ossn_entities.guid
 				  AND  ossn_entities.subtype='poster_guid'

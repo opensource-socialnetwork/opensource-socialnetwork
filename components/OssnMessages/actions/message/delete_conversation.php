@@ -20,11 +20,41 @@ $userguid = ossn_loggedin_user()->guid;
 $from     = $userguid;
 $to       = $friend->guid;
 
+
+//"((message_from='{$from}' AND message_to='{$to}' AND emd0.value='') OR (message_from='{$to}' AND message_to='{$from}' AND emd1.value=''))",
+$wheres = array(
+    // Outer Group: This has the 'OR' connector, linking the two inner groups.
+    array(
+        'connector' => 'OR', 
+        'group'     => array(
+            
+            // 1. First Direction (Internal Connector: AND)
+            // Logic: (message_from = $from AND message_to = $to AND emd0.value = '')
+            array(
+                'connector' => 'AND',
+                'group'     => array(
+                    array('name' => 'message_from', 'comparator' => '=', 'value' => $from),
+                    array('name' => 'message_to',   'comparator' => '=', 'value' => $to),
+                    array('name' => 'emd0.value',   'comparator' => '=', 'value' => ""),
+                ),
+            ),
+            
+            // 2. Second Direction (Internal Connector: AND)
+            // Logic: OR (message_from = $to AND message_to = $from AND emd1.value = '')
+            array(
+                'connector' => 'AND',
+                'group'     => array(
+                    array('name' => 'message_from', 'comparator' => '=', 'value' => $to),    // Swapped
+                    array('name' => 'message_to',   'comparator' => '=', 'value' => $from),  // Swapped
+                    array('name' => 'emd1.value',   'comparator' => '=', 'value' => ""),
+                ),
+            ),
+        ),
+    ),
+);
 $messages = new OssnMessages();
 $list     = $messages->searchMessages(array(
-		'wheres'         => array(
-				"((message_from='{$from}' AND message_to='{$to}' AND emd0.value='') OR (message_from='{$to}' AND message_to='{$from}' AND emd1.value=''))",
-		),
+		'wheres'         => $wheres,
 		'order_by'       => 'm.id DESC',
 		'offset'         => false,
 		'page_limit'     => false,
