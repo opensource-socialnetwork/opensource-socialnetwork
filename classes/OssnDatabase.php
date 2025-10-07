@@ -528,7 +528,7 @@ class OssnDatabase extends OssnBase {
 		 * @param string|null $separator Optional. Overrides the default 'AND' to link this condition to the next (e.g., 'OR').
 		 * @return array The structured condition array.
 		 */
-		public static function Wheres(string $name, string $comparator, $value,  ? string $separator = null) : array {
+		public static function wheres(string $name, string $comparator, $value,  ? string $separator = null) : array {
 				$condition = array(
 						'name'       => $name,
 						'comparator' => $comparator,
@@ -541,6 +541,28 @@ class OssnDatabase extends OssnBase {
 				}
 
 				return $condition;
+		}
+		/**
+		 * OssnDatabase Wheres Group Helper
+		 * Creates a structured array representing a nested WHERE clause group,
+		 * which is essential for controlling parentheses and OR logic.
+		 * @param string $connector The SQL connector to use *between* items in the $group (e.g., 'AND', 'OR').
+		 * @param array $group An array of conditions (created by OssnDatabase::Wheres or other groups).
+		 * @param string|null $separator Optional. Overrides the default 'AND' to link this group to the next condition/group.
+		 * @return array The structured group array.
+		 */
+		public static function wheresGroup(string $connector, array $group,  ? string $separator = null) : array {
+				$group_array = array(
+						'connector' => strtoupper($connector), // Make sure it's 'AND' or 'OR'
+						'group'     => $group,
+				);
+
+				// If a separator is provided (to link this group to the next), add it
+				if($separator !== null) {
+						$group_array['separator'] = strtoupper($separator);
+				}
+
+				return $group_array;
 		}
 		/**
 		 * Clear variables to avoid passing then in other objects
