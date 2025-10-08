@@ -1253,7 +1253,8 @@ class OssnUser extends OssnEntities {
 				}
 				$time             = time();
 				$params           = array();
-				$wheres['wheres'] = array();
+				$wheres = array();
+				
 				$params['joins']  = array();
 
 				$params['params'] = array(
@@ -1261,16 +1262,14 @@ class OssnUser extends OssnEntities {
 				);
 				$params['from'] = 'ossn_users as u';
 
-				$wheres['wheres'][] = OssnDatabase::wheres('e.type', '=', 'user');
-				$wheres['wheres'][] = OssnDatabase::wheres('e.subtype', '=', 'gender');
-				$wheres['wheres'][] = OssnDatabase::wheres('emd.value', '=', $gender);
-				$wheres['wheres'][] = OssnDatabase::wheres('u.last_activity', '>', $time - $intervals);
+				$wheres[] = OssnDatabase::wheres('e.type', '=', 'user');
+				$wheres[] = OssnDatabase::wheres('e.subtype', '=', 'gender');
+				$wheres[] = OssnDatabase::wheres('emd.value', '=', $gender);
+				$wheres[] = OssnDatabase::wheres('u.last_activity', '>', $time - $intervals);
 
 				$params['joins'][] = 'JOIN ossn_entities as e ON e.owner_guid=u.guid';
 				$params['joins'][] = 'JOIN ossn_entities_metadata as emd ON emd.guid=e.guid';
-				$params['wheres']  = array(
-						$this->constructWheres($wheres['wheres']),
-				);
+				$params['wheres']  = $wheres;
 
 				if($count) {
 						$params['params'] = array(
