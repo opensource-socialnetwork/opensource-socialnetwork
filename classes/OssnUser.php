@@ -569,61 +569,24 @@ class OssnUser extends OssnEntities {
 				if(empty($from) || empty($to)) {
 						return false;
 				}
-				$group1 = array(
-						'connector' => 'AND', // Ensures conditions inside this group are AND-ed
-						'group'     => array(
-								array(
-										'name'       => 'relation_from',
-										'comparator' => '=',
-										'value'      => $from,
-								),
-								array(
-										'name'       => 'relation_to',
-										'comparator' => '=',
-										'value'      => $to,
-								),
-								array(
-										'name'       => 'type',
-										'comparator' => '=',
-										'value'      => 'friend:request',
-								),
-						),
-				);
-				$group2 = array(
-						'connector' => 'AND', // Ensures conditions inside this group are AND-ed
-						'group'     => array(
-								array(
-										'name'       => 'relation_from',
-										'comparator' => '=',
-										'value'      => $to,
-								),
-								array(
-										'name'       => 'relation_to',
-										'comparator' => '=',
-										'value'      => $from,
-								),
-								array(
-										'name'       => 'type',
-										'comparator' => '=',
-										'value'      => 'friend:request',
-								),
-						),
-				);
+				$group1 = OssnDatabase::wheresGroup('AND', array(
+						OssnDatabase::wheres('relation_from', '=', $from),
+						OssnDatabase::wheres('relation_to', '=', $to),
+						OssnDatabase::wheres('type', '=', 'friend:request'),
+				));
+				$group2 = OssnDatabase::wheresGroup('AND', array(
+						OssnDatabase::wheres('relation_from', '=', $to),
+						OssnDatabase::wheres('relation_to', '=', $from),
+						OssnDatabase::wheres('type', '=', 'friend:request'),
+				));
+				// SQL Goal: ( (FROM=A AND TO=B AND TYPE=R) OR (FROM=B AND TO=A AND TYPE=R) )
 				return $this->delete(array(
 						'from'   => 'ossn_relationships',
 						'wheres' => array(
-								// This is the SINGLE OUTER OR group: ( (A->B AND type) OR (B->A AND type) )
-								array(
-										'connector' => 'OR', // <-- This is the key change: forces OR between its children (Group 1 and Group 2)
-										'group'     => array(
-												// Group 1: (relation_from = ? AND relation_to = ? AND type = ?)
-												$group1,
-												
-												// Group 2: (relation_from = ? AND relation_to = ? AND type = ?)
-												// This is OR-ed with Group 1 because the parent's 'connector' is 'OR'.
-												$group2,
-										),
-								),
+								OssnDatabase::wheresGroup('OR', array(
+										$group1,
+										$group2,
+								)),
 						),
 				));
 		}
