@@ -674,7 +674,7 @@ class OssnGroup extends OssnObject {
 						'type' => 'group:join:approve',
 				);
 				$relations = ossn_get_relationships(array_merge($default, $params));
-				if($params['count'] == true) {
+				if(isset($params['count']) && $params['count'] == true) {
 						return $relations;
 				}
 				# zfix #177 old code throws PHP warnings if user is not member of any group
