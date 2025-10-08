@@ -41,10 +41,20 @@ if(!empty($commentids)) {
 				array(
 						'name'       => 'a.time_created',
 						'comparator' => '>',
-						'value'      => (int)$timestamp,
+						'value'      => (int) $timestamp,
 				),
 		);
 }
+//[B] RealTimeComments shows comments if user are blocked #2482
+if(com_is_active('OssnBlock')) {
+		$user   = ossn_loggedin_user();
+		$wheres = "(a.owner_guid NOT IN (SELECT DISTINCT relation_to FROM `ossn_relationships` WHERE relation_from={$user->guid} AND type='userblock') AND a.owner_guid NOT IN (SELECT 	DISTINCT relation_from FROM `ossn_relationships` WHERE relation_to='{$user->guid}' AND type='userblock'))";
+		if(!isset($vars['wheres'])) {
+				$vars['wheres'] = array();
+		}
+		$vars['wheres'][] = $wheres;
+}
+
 $comments = $comments->searchAnnotation($vars);
 $lists    = array();
 if($comments) {
@@ -54,6 +64,7 @@ if($comments) {
 		}
 }
 header('Content-Type: application/json');
+
 if($RealTimeComments->isTyping($guid, $type)) {
 		echo json_encode(array(
 				'status' => 'typing',
