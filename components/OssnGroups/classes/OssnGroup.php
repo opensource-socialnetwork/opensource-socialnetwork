@@ -429,59 +429,31 @@ class OssnGroup extends OssnObject {
 				}
 				//where can't use ossn_delete_relationship as type is same in recursive but here its different
 
-				$wheres = $wheres = array(
-						// OUTER GROUP: Uses 'OR' to join the two inner AND groups
-						array(
-								'connector' => 'OR', // <-- This explicitly joins the two groups below with OR
-								'group'     => array(
-										// 1. First Group (Internal Connector: AND)
-										// Logic: (relation_from = ? AND relation_to = ? AND type = 'group:join')
-										array(
-												'connector' => 'AND',
-												'group'     => array(
-														array(
-																'name'       => 'relation_from',
-																'comparator' => '=',
-																'value'      => $from,
-														),
-														array(
-																'name'       => 'relation_to',
-																'comparator' => '=',
-																'value'      => $group,
-														),
-														array(
-																'name'       => 'type',
-																'comparator' => '=',
-																'value'      => 'group:join',
-														),
-												),
-										),
+				// SQL Goal:
+				// WHERE ( (relation_from = $from AND relation_to = $group AND type = 'group:join')
+				//          OR
+				//         (relation_from = $group AND relation_to = $from AND type = 'group:join:approve') )
 
-										// 2. Second Group (Internal Connector: AND)
-										// Logic: (relation_from = ? AND relation_to = ? AND type = 'group:join:approve')
-										// This entire group is OR-ed with the first group.
-										array(
-												'connector' => 'AND',
-												'group'     => array(
-														array(
-																'name'       => 'relation_from',
-																'comparator' => '=',
-																'value'      => $group,
-														),
-														array(
-																'name'       => 'relation_to',
-																'comparator' => '=',
-																'value'      => $from,
-														),
-														array(
-																'name'       => 'type',
-																'comparator' => '=',
-																'value'      => 'group:join:approve',
-														),
-												),
-										),
-								),
-						),
+				$group1 = OssnDatabase::wheresGroup('AND', array(
+						// (relation_from = $from AND relation_to = $group AND type = 'group:join')
+						OssnDatabase::wheres('relation_from', '=', $from),
+						OssnDatabase::wheres('relation_to', '=', $group),
+						OssnDatabase::wheres('type', '=', 'group:join'),
+				));
+
+				$group2 = OssnDatabase::wheresGroup('AND', array(
+						// (relation_from = $group AND relation_to = $from AND type = 'group:join:approve')
+						OssnDatabase::wheres('relation_from', '=', $group),
+						OssnDatabase::wheres('relation_to', '=', $from),
+						OssnDatabase::wheres('type', '=', 'group:join:approve'),
+				));
+
+				$wheres = array(
+						// Outer OR Group: ( $group1 OR $group2 )
+						OssnDatabase::wheresGroup('OR', array(
+								$group1,
+								$group2,
+						)),
 				);
 				$args = array(
 						'from'   => 'ossn_relationships',
