@@ -203,7 +203,6 @@ class OssnChat extends OssnMessages {
 						"{$parm}",
 				);
 				$params['wheres'] = array(
-						'wheres' => array(
 								array(
 										'name'       => 'message_to',
 										'comparator' => '=',
@@ -215,7 +214,6 @@ class OssnChat extends OssnMessages {
 										'comparator' => '=',
 										'value'      => 0,
 								),
-						),
 				);
 				$friends = $this->select($params, true);
 				return $friends;
@@ -263,7 +261,7 @@ class OssnChat extends OssnMessages {
 														array(
 																'name'       => 'message_from',
 																'comparator' => '=',
-																'value'      => $TO,
+																'value'      => $to,
 														),
 														array(
 																'name'       => 'message_to',
