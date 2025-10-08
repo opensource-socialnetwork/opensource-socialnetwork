@@ -31,7 +31,9 @@ class OssnMessages extends OssnEntities {
 				if(!strlen($message) || empty($from) || empty($to)) {
 						return false;
 				}
-
+				if($from == $to){
+						return false;	
+				}
 				$this->data->is_deleted_from = false;
 				$this->data->is_deleted_to   = false;
 
@@ -818,7 +820,7 @@ class OssnMessages extends OssnEntities {
 				if(empty($ids)) {
 						return false;
 				}
-				$user_ids = explode(',', $user_ids);
+				$user_ids = explode(',', $ids);
 				$vars     = array(
 						'from'   => 'ossn_users as u',
 						'wheres' => array(
