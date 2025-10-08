@@ -13,7 +13,7 @@
 define('__OSSN_BLOCK__', ossn_route()->com . 'OssnBlock/');
 
 /* Load OssnBlock Class */
-require_once(__OSSN_BLOCK__ . 'classes/OssnBlock.php');
+require_once __OSSN_BLOCK__ . 'classes/OssnBlock.php';
 
 /**
  * Initialize the block component.
@@ -54,25 +54,27 @@ function ossn_block() {
 /**
  * Block comments showing
  * [E] Strip comments for blocked users, for each of them #2009
- * 
+ *
  * @param string $hook comments
  * @param string $type GetComments
  * @param array  $return Option values
- * 
+ *
  * @return array
  */
-function ossn_block_strip_comments($hook, $type, $return, $params){
-		$user = ossn_loggedin_user();
-		$return['wheres'] = array("(a.owner_guid NOT IN (SELECT DISTINCT relation_to FROM `ossn_relationships` WHERE relation_from={$user->guid} AND type='userblock') AND a.owner_guid NOT IN (SELECT 	DISTINCT relation_from FROM `ossn_relationships` WHERE relation_to='{$user->guid}' AND type='userblock'))");		
+function ossn_block_strip_comments($hook, $type, $return, $params) {
+		$user             = ossn_loggedin_user();
+		$return['wheres'] = array(
+				"(a.owner_guid NOT IN (SELECT DISTINCT relation_to FROM `ossn_relationships` WHERE relation_from='{$user->guid}' AND type='userblock') AND a.owner_guid NOT IN (SELECT 	DISTINCT relation_from FROM `ossn_relationships` WHERE relation_to='{$user->guid}' AND type='userblock'))",
+		);
 		return $return;
 }
 /**
  * Block user profile posts
- * 
+ *
  * @param string $hook hook
  * @param string $type type
  * @param array  $return Option values
- * 
+ *
  * @return array
  */
 function ossn_block_strip_users_profile_posts($hook, $type, $return, $params) {
@@ -85,18 +87,18 @@ function ossn_block_strip_users_profile_posts($hook, $type, $return, $params) {
 				$return['entities_pairs'][] = array(
 						'name'   => 'poster_guid',
 						'value'  => true,
-						'wheres' => "([this].value NOT IN (SELECT DISTINCT relation_to FROM `ossn_relationships` WHERE relation_from={$user->guid} AND type='userblock') AND [this].value NOT IN (SELECT 	DISTINCT relation_from FROM `ossn_relationships` WHERE relation_to='{$user->guid}' AND type='userblock'))",
+						'wheres' => "([this].value NOT IN (SELECT DISTINCT relation_to FROM `ossn_relationships` WHERE relation_from='{$user->guid}' AND type='userblock') AND [this].value NOT IN (SELECT 	DISTINCT relation_from FROM `ossn_relationships` WHERE relation_to='{$user->guid}' AND type='userblock'))",
 				);
 		}
 		return $return;
 }
 /**
  * Block user group posts
- * 
+ *
  * @param string $hook hook
  * @param string $type type
  * @param array  $return Option values
- * 
+ *
  * @return array
  */
 function ossn_block_strip_group_posts($hook, $type, $return, $params) {
@@ -105,24 +107,26 @@ function ossn_block_strip_group_posts($hook, $type, $return, $params) {
 				$return['entities_pairs'][] = array(
 						'name'   => 'poster_guid',
 						'value'  => true,
-						'wheres' => "([this].value NOT IN (SELECT DISTINCT relation_to FROM `ossn_relationships` WHERE relation_from={$user->guid} AND type='userblock') AND [this].value NOT IN (SELECT 	DISTINCT relation_from FROM `ossn_relationships` WHERE relation_to='{$user->guid}' AND type='userblock'))",
+						'wheres' => "([this].value NOT IN (SELECT DISTINCT relation_to FROM `ossn_relationships` WHERE relation_from='{$user->guid}' AND type='userblock') AND [this].value NOT IN (SELECT 	DISTINCT relation_from FROM `ossn_relationships` WHERE relation_to='{$user->guid}' AND type='userblock'))",
 				);
 		}
 		return $return;
 }
 /**
  * Block user posts
- * 
+ *
  * @param string $hook hook
  * @param string $type type
  * @param array  $return Option values
- * 
+ *
  * @return array
  */
 function ossn_block_strip_posts($hook, $type, $return, $params) {
 		//here posts belongs to owner_guid so we can use owner_guid instea of poster_guid using joins.
 		if(isset($params['user']->guid) && $params['user']->guid == ossn_loggedin_user()->guid) {
-				$return['wheres'][] = "(o.owner_guid NOT IN (SELECT DISTINCT relation_to FROM `ossn_relationships` WHERE relation_from={$params['user']->guid} AND type='userblock') AND o.owner_guid NOT IN (SELECT DISTINCT relation_from FROM `ossn_relationships` WHERE relation_to='{$params['user']->guid}' AND type='userblock'))";
+				$return[
+						'wheres'
+				][] = "(o.owner_guid NOT IN (SELECT DISTINCT relation_to FROM `ossn_relationships` WHERE relation_from='{$params['user']->guid}' AND type='userblock') AND o.owner_guid NOT IN (SELECT DISTINCT relation_from FROM `ossn_relationships` WHERE relation_to='{$params['user']->guid}' AND type='userblock'))";
 		}
 		return $return;
 }
@@ -159,8 +163,8 @@ function ossn_user_block_menu($name, $type, $params) {
  * @access private;
  */
 function ossn_user_block_action($callback, $type, $params) {
-		switch($params['action']) {
-			case 'poke/user':
+		switch ($params['action']) {
+		case 'poke/user':
 				$user = ossn_user_by_guid(input('user'));
 				if($user) {
 						if(OssnBlock::UserBlockCheck($user)) {
@@ -169,7 +173,7 @@ function ossn_user_block_action($callback, $type, $params) {
 						}
 				}
 				break;
-			case 'friend/add':
+		case 'friend/add':
 				$user = ossn_user_by_guid(input('user'));
 				if($user) {
 						if(OssnBlock::UserBlockCheck($user)) {
@@ -187,7 +191,7 @@ function ossn_user_block_action($callback, $type, $params) {
 						}
 				}
 				break;
-			case 'ossnchat/send':
+		case 'ossnchat/send':
 				$user = ossn_user_by_guid(input('to'));
 				if($user) {
 						//we need to check for other user too to avoid sending message to user that he blocked
@@ -201,7 +205,7 @@ function ossn_user_block_action($callback, $type, $params) {
 						}
 				}
 				break;
-			case 'post/comment':
+		case 'post/comment':
 				$guid = input('post');
 
 				$post = new OssnWall();
@@ -212,7 +216,7 @@ function ossn_user_block_action($callback, $type, $params) {
 						ossn_block_page();
 				}
 				break;
-			case 'message/send':
+		case 'message/send':
 				$user = ossn_user_by_guid(input('to'));
 				if($user) {
 						//we need to check for other user too to avoid sending message to user that he blocked
@@ -297,6 +301,7 @@ function ossn_user_block($name, $type, $return, $params) {
 				*/
 		if($params['handler'] == 'album' && !ossn_isAdminLoggedin()) {
 				//check if album is profile photos
+				$user = false;
 				if($params['page'][0] == 'profile') {
 						$user = ossn_user_by_guid($params['page'][1]);
 						//if album is not profile photos album then it means it simple album
@@ -305,8 +310,24 @@ function ossn_user_block($name, $type, $return, $params) {
 						$album = $album->GetAlbum($params['page'][1]);
 						$user  = ossn_user_by_guid($album->album->owner_guid);
 				}
-				if(isset($user) && OssnBlock::UserBlockCheck($user)) {
+				if($user && (OssnBlock::UserBlockCheck($user) || OssnBlock::selfBlocked($user))) {
 						ossn_block_page();
+				}
+		}
+		if($params['handler'] == 'photos' && !ossn_isAdminLoggedin()) {
+				if($params['page'][0] == 'view') {
+						$view  = new OssnPhotos();
+						$image = $view->GetPhoto($params['page'][1]);
+						if($image) {
+								$album = new OssnAlbums();
+								$album = $album->GetAlbum($image->owner_guid);
+								if($album) {
+										$user = ossn_user_by_guid($album->album->owner_guid);
+										if($user && (OssnBlock::UserBlockCheck($user) || OssnBlock::selfBlocked($user))) {
+												ossn_block_page();
+										}
+								}
+						}
 				}
 		}
 		return $return;
@@ -360,7 +381,7 @@ function ossn_user_block_relations_delete($callback, $type, $params) {
 				'page_limit' => false,
 		));
 		if($from) {
-				foreach($from as $item) {
+				foreach ($from as $item) {
 						ossn_delete_relationship_by_id($item->relation_id);
 				}
 		}
@@ -371,7 +392,7 @@ function ossn_user_block_relations_delete($callback, $type, $params) {
 				'page_limit' => false,
 		));
 		if($to) {
-				foreach($to as $item) {
+				foreach ($to as $item) {
 						ossn_delete_relationship_by_id($item->relation_id);
 				}
 		}
