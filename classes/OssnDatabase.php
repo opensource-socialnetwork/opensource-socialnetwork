@@ -338,9 +338,13 @@ class OssnDatabase extends OssnBase {
 								$default_separator = isset($params['default_separator']) ? strtoupper($params['default_separator']) : 'AND';
 
 								//wheres rebuild
-								$build_wheres  = $this->buildWheresFromArray($params['wheres'], $default_separator);
-								$where         = $build_wheres['where'];
-								$wheres_values = $build_wheres['values'];
+								$where         = '';
+								$wheres_values = '';
+								if(isset($params['wheres'])) {
+										$build_wheres  = $this->buildWheresFromArray($params['wheres'], $default_separator);
+										$where         = $build_wheres['where'];
+										$wheres_values = $build_wheres['values'];
+								}
 
 								$this->statement("UPDATE {$params['table']} SET {$q} {$where}");
 								$prepared_values = array_merge($params['values'], $wheres_values);
@@ -376,9 +380,13 @@ class OssnDatabase extends OssnBase {
 						$default_separator = isset($params['default_separator']) ? strtoupper($params['default_separator']) : 'AND';
 
 						//wheres rebuild
-						$build_wheres  = $this->buildWheresFromArray($params['wheres'], $default_separator);
-						$where         = $build_wheres['where'];
-						$wheres_values = $build_wheres['values'];
+						$where         = '';
+						$wheres_values = '';
+						if(isset($params['wheres'])) {
+								$build_wheres  = $this->buildWheresFromArray($params['wheres'], $default_separator);
+								$where         = $build_wheres['where'];
+								$wheres_values = $build_wheres['values'];
+						}
 
 						// Handle LIMIT
 						$limit = !empty($params['limit']) ? "LIMIT {$params['limit']}" : '';
@@ -447,9 +455,13 @@ class OssnDatabase extends OssnBase {
 						$default_separator = isset($params['default_separator']) ? strtoupper($params['default_separator']) : 'AND';
 
 						//wheres rebuild
-						$build_wheres  = $this->buildWheresFromArray($params['wheres'], $default_separator);
-						$where         = $build_wheres['where'];
-						$wheres_values = $build_wheres['values'];
+						$where         = '';
+						$wheres_values = '';
+						if(isset($params['wheres'])) {
+								$build_wheres  = $this->buildWheresFromArray($params['wheres'], $default_separator);
+								$where         = $build_wheres['where'];
+								$wheres_values = $build_wheres['values'];
+						}
 
 						// Construct the final SQL query
 						$sql = "DELETE FROM {$params['from']} {$where};";
@@ -528,7 +540,8 @@ class OssnDatabase extends OssnBase {
 		 * @param string|null $separator Optional. Overrides the default 'AND' to link this condition to the next (e.g., 'OR').
 		 * @return array The structured condition array.
 		 */
-		public static function wheres(string $name, string $comparator, $value,  ? string $separator = null) : array {
+		public static function wheres(string $name, string $comparator, $value,  ? string $separator = null) : array
+		{
 				$condition = array(
 						'name'       => $name,
 						'comparator' => $comparator,
@@ -551,7 +564,8 @@ class OssnDatabase extends OssnBase {
 		 * @param string|null $separator Optional. Overrides the default 'AND' to link this group to the next condition/group.
 		 * @return array The structured group array.
 		 */
-		public static function wheresGroup(string $connector, array $group,  ? string $separator = null) : array {
+		public static function wheresGroup(string $connector, array $group,  ? string $separator = null) : array
+		{
 				$group_array = array(
 						'connector' => strtoupper($connector), // Make sure it's 'AND' or 'OR'
 						'group'     => $group,
