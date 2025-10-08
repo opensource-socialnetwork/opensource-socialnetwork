@@ -487,9 +487,7 @@ class OssnNotifications extends OssnDatabase {
 				$params['params'] = array(
 						'n.*',
 				);
-				$params['wheres'] = array(
-						$this->constructWheres($wheres),
-				);
+				$params['wheres'] = $wheres;
 				$params['order_by'] = $options['order_by'];
 				$params['limit']    = $options['limit'];
 
