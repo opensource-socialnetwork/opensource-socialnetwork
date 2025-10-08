@@ -1261,10 +1261,10 @@ class OssnUser extends OssnEntities {
 				);
 				$params['from'] = 'ossn_users as u';
 
-				$wheres['wheres'][] = "e.type='user'";
-				$wheres['wheres'][] = "e.subtype='gender'";
-				$wheres['wheres'][] = "emd.value='{$gender}'";
-				$wheres['wheres'][] = "u.last_activity > {$time} - {$intervals}";
+				$wheres['wheres'][] = OssnDatabase::wheres('e.type', '=', 'user');
+				$wheres['wheres'][] = OssnDatabase::wheres('e.subtype', '=', 'gender');
+				$wheres['wheres'][] = OssnDatabase::wheres('emd.value', '=', $gender);
+				$wheres['wheres'][] = OssnDatabase::wheres('u.last_activity', '>', $time - $intervals);
 
 				$params['joins'][] = 'JOIN ossn_entities as e ON e.owner_guid=u.guid';
 				$params['joins'][] = 'JOIN ossn_entities_metadata as emd ON emd.guid=e.guid';
@@ -1306,7 +1306,7 @@ class OssnUser extends OssnEntities {
 				$params = array(
 						'table'  => 'ossn_users',
 						'wheres' => array(
-								"guid='{$this->guid}'",
+								OssnDatabase::wheres('guid', '=', $this->guid),
 						),
 						'names'  => array(
 								'first_name',
