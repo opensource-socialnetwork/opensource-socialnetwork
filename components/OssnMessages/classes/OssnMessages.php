@@ -250,62 +250,39 @@ class OssnMessages extends OssnEntities {
 		/**
 		 * Get messages between two users
 		 *
-		 * @params $from: User 1 guid
-		 *         $to User 2 guid
+		 * @param int $from User 1 guid
+		 * @param ubt $to $to User 2 guid
 		 *
-		 * @return object
+		 * @return array|boolean
 		 */
 		public function getWith($from, $to, $count = false) {
-				//"((message_from='{$from}' AND message_to='{$to}' AND emd0.value='') OR (message_from='{$to}' AND message_to='{$from}' AND emd1.value=''))",
+				if(empty($from) || empty($to)) {
+						return false;
+				}
+				// WHERE ( (message_from = $from AND message_to = $to AND emd0.value = '')
+				//          OR
+				//         (message_from = $to AND message_to = $from AND emd1.value = '') )
+
+				$group1 = OssnDatabase::wheresGroup('AND', array(
+						// (FROM=A AND TO=B AND emd0.value='')
+						OssnDatabase::wheres('message_from', '=', $from),
+						OssnDatabase::wheres('message_to', '=', $to),
+						OssnDatabase::wheres('emd0.value', '=', ''),
+				));
+
+				$group2 = OssnDatabase::wheresGroup('AND', array(
+						// (FROM=B AND TO=A AND emd1.value='')
+						OssnDatabase::wheres('message_from', '=', $to),
+						OssnDatabase::wheres('message_to', '=', $from),
+						OssnDatabase::wheres('emd1.value', '=', ''),
+				));
+
 				$wheres = array(
-						array(
-								'connector' => 'OR',
-								'group'     => array(
-										array(
-												'connector' => 'AND',
-												'group'     => array(
-														array(
-																'name'       => 'message_from',
-																'comparator' => '=',
-																'value'      => $from,
-														),
-														array(
-																'name'       => 'message_to',
-																'comparator' => '=',
-																'value'      => $to,
-														),
-														array(
-																'name'       => 'emd0.value',
-																'comparator' => '=',
-																'value'      => '',
-														),
-												),
-										),
-								),
-								//or
-								array(
-										array(
-												'connector' => 'AND',
-												'group'     => array(
-														array(
-																'name'       => 'message_from',
-																'comparator' => '=',
-																'value'      => $to,
-														),
-														array(
-																'name'       => 'message_to',
-																'comparator' => '=',
-																'value'      => $from,
-														),
-														array(
-																'name'       => 'emd1.value',
-																'comparator' => '=',
-																'value'      => '',
-														),
-												),
-										),
-								),
-						),
+						// Outer OR Group: Forces the OR between the two major blocks
+						OssnDatabase::wheresGroup('OR', array(
+								$group1,
+								$group2,
+						)),
 				);
 				$messages = $this->searchMessages(array(
 						'wheres'         => $wheres,
@@ -342,48 +319,28 @@ class OssnMessages extends OssnEntities {
 				if(empty($from) || empty($to)) {
 						return false;
 				}
-				$wheres = array(
-						// Outer Group: Uses 'OR' to join the two relationship directions
-						array(
-								'connector' => 'OR',
-								'group'     => array(
-										// 1. First Direction (Internal Connector: AND)
-										// Logic: (message_from = $from AND message_to = $to)
-										array(
-												'connector' => 'AND',
-												'group'     => array(
-														array(
-																'name'       => 'message_from',
-																'comparator' => '=',
-																'value'      => $from,
-														),
-														array(
-																'name'       => 'message_to',
-																'comparator' => '=',
-																'value'      => $to,
-														),
-												),
-										),
+				// WHERE ( (message_from = $from AND message_to = $to)
+				//          OR
+				//         (message_from = $to AND message_to = $from) )
 
-										// 2. Second Direction (Internal Connector: AND)
-										// Logic: OR (message_from = $to AND message_to = $from)
-										array(
-												'connector' => 'AND',
-												'group'     => array(
-														array(
-																'name'       => 'message_from',
-																'comparator' => '=',
-																'value'      => $to,
-														),
-														array(
-																'name'       => 'message_to',
-																'comparator' => '=',
-																'value'      => $from,
-														),
-												),
-										),
-								),
-						),
+				$group1 = OssnDatabase::wheresGroup('AND', array(
+						// (FROM=A AND TO=B)
+						OssnDatabase::wheres('message_from', '=', $from),
+						OssnDatabase::wheres('message_to', '=', $to),
+				));
+
+				$group2 = OssnDatabase::wheresGroup('AND', array(
+						// (FROM=B AND TO=A)
+						OssnDatabase::wheres('message_from', '=', $to),
+						OssnDatabase::wheres('message_to', '=', $from),
+				));
+
+				$wheres = array(
+						// Outer OR Group: Forces the OR between the two simple blocks
+						OssnDatabase::wheresGroup('OR', array(
+								$group1,
+								$group2,
+						)),
 				);
 				$params['from']     = 'ossn_messages';
 				$params['wheres']   = $wheres;
