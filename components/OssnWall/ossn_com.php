@@ -201,10 +201,6 @@ function ossn_friend_picker() {
 				}
 				$loggedin_guid = ossn_loggedin_user()->guid;
 
-				// Define secure variables once for clarity
-				$group_guid    = $params['entity']->guid; // Assuming this is where the group GUID comes from
-				$search_term   = "%{$search_for}%"; // Securely prepared search string
-
 				$user    = new OssnUser();
 				$friends = $user->searchUsers(array(
 						'joins'    => array(
