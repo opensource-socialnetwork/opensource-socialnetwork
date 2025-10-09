@@ -1130,8 +1130,8 @@ class OssnUser extends OssnEntities {
 		 */
 		public static function Logout() {
 				unset($_SESSION['OSSN_USER']);
-				@session_destroy();
 				$_SESSION['OSSN_USER'] = false;
+				@session_destroy();
 		}
 		/**
 		 * Get total users per month for each year
