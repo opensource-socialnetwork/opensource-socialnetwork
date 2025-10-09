@@ -1,3 +1,12 @@
+OSSN - OPEN SOURCE SOCIAL NETWORK v8.8
+- [B] Tag notification is not sending #2485
+- [B] PHP 8.4 deprecations for OSSN 8.8 #2484
+- [B] User can view blocked user album photo #2483
+- [B] RealTimeComments shows comments if user are blocked #2482
+- [E] Show user groups on seperate page avoid searching in init function for menus #2480
+- [B] SQL Injection discoverd by KGAN #2479
+
+
 OSSN - OPEN SOURCE SOCIAL NETWORK v8.7
 - [B] When profile edit animation is outside of round box #2477
 - [E] Refactor ossn_version_upgrade #2478
