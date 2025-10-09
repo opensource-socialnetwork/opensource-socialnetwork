@@ -128,12 +128,12 @@ class OssnWall extends OssnObject {
 						$params['guid']        = $this->wallguid; //object_guid should be removed
 						$params['type']        = $this->type;
 						$params['poster_guid'] = $this->poster_guid;
-						if(isset($wallpost['location'])) {
+						if(isset($location)) {
 								$params['location'] = $location;
 						}
 
-						if(isset($wallpost['friend'])) {
-								$params['friends'] = explode(',', $friends);
+						if(isset($friends)) {
+								$params['friends'] = $friends;
 						}
 						ossn_trigger_callback('wall', 'post:created', $params);
 						return $this->wallguid;
