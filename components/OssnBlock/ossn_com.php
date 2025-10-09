@@ -105,6 +105,7 @@ function ossn_block_strip_group_posts($hook, $type, $return, $params) {
 		$user = ossn_loggedin_user();
 		if(isset($user->guid)) {
 				$return['entities_pairs'][] = array(
+
 						'name'   => 'poster_guid',
 						'value'  => true,
 						'wheres' => "([this].value NOT IN (SELECT DISTINCT relation_to FROM `ossn_relationships` WHERE relation_from='{$user->guid}' AND type='userblock') AND [this].value NOT IN (SELECT 	DISTINCT relation_from FROM `ossn_relationships` WHERE relation_to='{$user->guid}' AND type='userblock'))",
@@ -210,10 +211,11 @@ function ossn_user_block_action($callback, $type, $params) {
 
 				$post = new OssnWall();
 				$post = $post->GetPost($guid);
-
-				$user = ossn_user_by_guid($post->owner_guid);
-				if($user && (OssnBlock::UserBlockCheck($user) || OssnBlock::selfBlocked($user))) {
-						ossn_block_page();
+				if($post) {
+						$user = ossn_user_by_guid($post->owner_guid);
+						if($user && (OssnBlock::UserBlockCheck($user) || OssnBlock::selfBlocked($user))) {
+								ossn_block_page();
+						}
 				}
 				break;
 		case 'message/send':
