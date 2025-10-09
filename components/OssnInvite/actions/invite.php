@@ -53,7 +53,7 @@
  }
  //invite only valid addresses
  foreach($correct_emails as $email){
- 	 $invite = new OssnInvite;
+ 	 $invite = new OssnInvite();
  	 $invite->message = input('message');
 	 $invite->address = trim($email);
 	 //check if email exist then don't send invitation
