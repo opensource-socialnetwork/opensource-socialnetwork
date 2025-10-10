@@ -460,6 +460,7 @@ class OssnGroup extends OssnObject {
 						'wheres' => $wheres,
 				);
 
+
 				if($this->delete($args)) {
 						ossn_trigger_callback('group', 'delete:member', array(
 								'user_guid'  => $from,
@@ -483,17 +484,10 @@ class OssnGroup extends OssnObject {
 				$params['subtype'] = 'ossngroup';
 				//[B] groups not showing in search because of $q in single quotes #2487
 				$params['wheres'] = array(
-						array(
-								'name'       => 'title',
-								'comparator' => 'LIKE',
-								'value'      => "%{$q}%",
-								'separator'  => 'OR',
-						),
-						array(
-								'name'       => 'description',
-								'comparator' => 'LIKE',
-								'value'      => "%{$q}%",
-						),
+						OssnDatabase::wheresGroup('OR', array(
+								OssnDatabase::wheres('title', 'LIKE', "%{$q}%"),
+								OssnDatabase::wheres('description', 'LIKE', "%{$q}%"),
+						)),
 				);
 				$params['count'] = false;
 				$vars            = array_merge($params, $args);
@@ -626,6 +620,7 @@ class OssnGroup extends OssnObject {
 		}
 
 		/**
+
 		 * Reposition group cover
 		 *
 		 *  @param int $top  Position from top
