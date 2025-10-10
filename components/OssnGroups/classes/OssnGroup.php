@@ -226,7 +226,7 @@ class OssnGroup extends OssnObject {
 								array(
 										'name'     => 'type',
 										'operator' => '=',
-										'value'    => 'group:join:approv',
+										'value'    => 'group:join:approve',
 								),
 						),
 				);
