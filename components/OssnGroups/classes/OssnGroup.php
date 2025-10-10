@@ -487,7 +487,7 @@ class OssnGroup extends OssnObject {
 								'name'       => 'title',
 								'comparator' => 'LIKE',
 								'value'      => "%{$q}%",
-								'seperator'  => 'OR',
+								'separator'  => 'OR',
 						),
 						array(
 								'name'       => 'description',
