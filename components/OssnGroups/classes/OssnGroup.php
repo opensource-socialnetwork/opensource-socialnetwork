@@ -459,6 +459,7 @@ class OssnGroup extends OssnObject {
 						'from'   => 'ossn_relationships',
 						'wheres' => $wheres,
 				);
+
 				if($this->delete($args)) {
 						ossn_trigger_callback('group', 'delete:member', array(
 								'user_guid'  => $from,
@@ -480,17 +481,18 @@ class OssnGroup extends OssnObject {
 				$params['from']    = 'ossn_object';
 				$params['type']    = 'user';
 				$params['subtype'] = 'ossngroup';
-				$params['wheres']  = array(
+				//[B] groups not showing in search because of $q in single quotes #2487
+				$params['wheres'] = array(
 						array(
 								'name'       => 'title',
 								'comparator' => 'LIKE',
-								'value'      => '%{$q}%',
+								'value'      => "%{$q}%",
 								'seperator'  => 'OR',
 						),
 						array(
 								'name'       => 'description',
 								'comparator' => 'LIKE',
-								'value'      => '%{$q}%',
+								'value'      => "%{$q}%",
 						),
 				);
 				$params['count'] = false;
