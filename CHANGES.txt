@@ -1,3 +1,9 @@
+OSSN - OPEN SOURCE SOCIAL NETWORK vx.x
+- [E] Add favicon using callback so it can be removed using component #2497
+- [E] Add a callback before page load #2496
+- [B] ossn_include_upgrade_file replaces $file variable #2495
+
+
 OSSN - OPEN SOURCE SOCIAL NETWORK v8.9
 - [B] groups not showing in search because of $q in single quotes #2487
 - [B] Group shows wrong member requests #2486
