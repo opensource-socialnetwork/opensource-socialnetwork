@@ -149,6 +149,17 @@ function ossn_trigger_upgrades() {
 				// Use the isolated include function
 				ossn_include_upgrade_file($file);
 				ossn_update_upgraded_files($upgrade);
+				
+				//[B] ossn_include_upgrade_file replaces $file variable move messages outside #2495
+				$release = basename($file, '.php');
+				$success = ossn_print('upgrade:success', array(
+						$release,
+				));
+				ossn_trigger_message($success, 'success');
+
+				if(ossn_is_from_cli()) {
+						ossn_cli_output($success, 'success');
+				}
 		}
 		/**
 		 * Since the update wiki states that disable cache,  so this code never works
@@ -180,16 +191,6 @@ function ossn_include_upgrade_file($file) {
 
 		// Include in isolated function scope
 		include_once $file;
-
-		$release = basename($file, '.php');
-		$success = ossn_print('upgrade:success', array(
-				$release,
-		));
-		ossn_trigger_message($success, 'success');
-
-		if(ossn_is_from_cli()) {
-				ossn_cli_output($success, 'success');
-		}
 }
 /**
  * Get update status
