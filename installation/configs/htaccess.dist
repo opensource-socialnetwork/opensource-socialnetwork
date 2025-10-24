@@ -1,4 +1,4 @@
-# v6.5.0.0
+# v9.0.0.0
 # Open Source Social Network
 #
 # @package   .htaccess.ossn
@@ -44,21 +44,18 @@ RedirectMatch 404 ^/system/handlers/cron$
 </FilesMatch>
 
 <IfModule mod_rewrite.c>
-#SetEnv HTTP_MOD_REWRITE 1
-RewriteEngine on
+	RewriteEngine on
 
-RewriteRule ^rewrite.php$ installation/tests/apache_rewrite.php [L]
+	RewriteRule ^rewrite.php$ installation/tests/apache_rewrite.php [L]
+	RewriteRule ^action/([A-Za-z0-9\_\-\/]+)$ system/handlers/actions.php?action=$1&%{QUERY_STRING} [L]
 
-RewriteRule ^action\/([A-Za-z0-9\_\-\/]+)$ system/handlers/actions.php?action=$1&%{QUERY_STRING} [L]
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteRule ^([A-Za-z0-9\_\-\.]+)$ index.php?h=$1 [QSA,L]
 
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^([A-Za-z0-9\_\-]+)$ index.php?h=$1 [QSA,L]
-
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^([A-Za-z0-9\_\-]+)\/(.*)$ index.php?h=$1&p=$2 [QSA,L]
-
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteRule ^([A-Za-z0-9\_\-\.]+)/(.*)$ index.php?h=$1&p=$2 [QSA,L]
 </IfModule>
 
 #https://github.com/nextcloud/server/issues/26569
