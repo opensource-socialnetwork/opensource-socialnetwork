@@ -68,9 +68,9 @@ $en = array(
 	'group:delete:cover:error' => "Si è verificato un errore durante l'eliminazione dell'immagine di copertina",
 	'group:delete:cover:success' => "L'immagine di copertina è stata eliminata con successo",
 	
-	//need translation
-    'group:memb:make:owner' => 'Make group owner',
-    'group:memb:make:owner:confirm' => 'Attention! This action will make >> %s << the new owner of the group and you will lose all of your group admin privileges. Are you sure to proceed?',
-    'group:memb:make:owner:admin:confirm' => 'Attention! This action will make >> %s << the new owner of the group and the former owner will lose all of his group admin privileges. Are you sure to proceed?',		
+	'group:memb:make:owner' => 'Rendi proprietario del gruppo',
+	'group:memb:make:owner:confirm' => 'Attenzione! Questa azione renderà >> %s << il nuovo proprietario del gruppo e perderai tutti i privilegi di amministratore del gruppo. Sei sicuro di voler procedere?',
+	'group:memb:make:owner:admin:confirm' => 'Attenzione! Questa azione renderà >> %s << il nuovo proprietario del gruppo e il precedente proprietario perderà tutti i suoi privilegi di amministratore del gruppo. Sei sicuro di voler procedere?',
+	'group:my' => 'I miei gruppi',
 );
 ossn_register_languages('it', $en); 

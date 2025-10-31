@@ -62,8 +62,8 @@ class OssnImage {
 		 * @return ImageResize
 		 * @throws Exception
 		 */
-		public static function createFromString($image_data){
-				if(empty($image_data) || $image_data === null){
+		public static function createFromString($image_data) {
+				if(empty($image_data) || $image_data === null) {
 						throw new Exception('image_data must not be empty');
 				}
 				$resize = new self('data://application/octet-stream;base64,' . base64_encode($image_data));
@@ -76,7 +76,7 @@ class OssnImage {
 		 * @param callable $filter
 		 * @return $this
 		 */
-		public function addFilter(callable $filter){
+		public function addFilter(callable $filter) {
 				$this->filters[] = $filter;
 				return $this;
 		}
@@ -87,8 +87,8 @@ class OssnImage {
 		 * @param $image resource an image resource identifier
 		 * @param $filterType filter type and default value is IMG_FILTER_NEGATE
 		 */
-		protected function applyFilter($image, $filterType = IMG_FILTER_NEGATE){
-				foreach ($this->filters as $function){
+		protected function applyFilter($image, $filterType = IMG_FILTER_NEGATE) {
+				foreach ($this->filters as $function) {
 						$function($image, $filterType);
 				}
 		}
@@ -100,34 +100,34 @@ class OssnImage {
 		 * @return ImageResize
 		 * @throws Exception
 		 */
-		public function __construct($filename){
-				if(!defined('IMAGETYPE_WEBP')){
+		public function __construct($filename) {
+				if(!defined('IMAGETYPE_WEBP')) {
 						define('IMAGETYPE_WEBP', 18);
 				}
-				if($filename === null || empty($filename) || (substr($filename, 0, 5) !== 'data:' && !is_file($filename))){
+				if($filename === null || empty($filename) || (substr($filename, 0, 5) !== 'data:' && !is_file($filename))) {
 						throw new Exception('File does not exist');
 				}
 
 				$finfo     = finfo_open(FILEINFO_MIME_TYPE);
 				$checkWebp = false;
-				if(strstr(finfo_file($finfo, $filename), 'image') === false){
-						if(version_compare(PHP_VERSION, '7.0.0', '<=') && strstr(file_get_contents($filename), 'WEBPVP8') !== false){
+				if(strstr(finfo_file($finfo, $filename), 'image') === false) {
+						if(version_compare(PHP_VERSION, '7.0.0', '<=') && strstr(file_get_contents($filename), 'WEBPVP8') !== false) {
 								$checkWebp         = true;
 								$this->source_type = IMAGETYPE_WEBP;
 						} else {
 								throw new Exception('Unsupported file type');
 						}
-				} elseif(strstr(finfo_file($finfo, $filename), 'image/webp') !== false){
+				} elseif(strstr(finfo_file($finfo, $filename), 'image/webp') !== false) {
 						$checkWebp         = true;
 						$this->source_type = IMAGETYPE_WEBP;
 				}
 
-				if(!($image_info = getimagesize($filename, $this->source_info))){
+				if(!($image_info = getimagesize($filename, $this->source_info))) {
 						$image_info = getimagesize($filename);
 				}
 
-				if(!$checkWebp){
-						if(!$image_info){
+				if(!$checkWebp) {
+						if(!$image_info) {
 								throw new Exception('Could not read file');
 						}
 
@@ -136,7 +136,7 @@ class OssnImage {
 						$this->source_type = $image_info[2];
 				}
 
-				switch($this->source_type){
+				switch ($this->source_type) {
 				case IMAGETYPE_GIF:
 						$this->source_image = imagecreatefromgif($filename);
 						break;
@@ -165,7 +165,7 @@ class OssnImage {
 						throw new Exception('Unsupported image type');
 				}
 
-				if(!$this->source_image){
+				if(!$this->source_image) {
 						throw new Exception('Could not load image');
 				}
 
@@ -173,35 +173,35 @@ class OssnImage {
 		}
 
 		// http://stackoverflow.com/a/28819866
-		public function imageCreateJpegfromExif($filename){
+		public function imageCreateJpegfromExif($filename) {
 				$img = imagecreatefromjpeg($filename);
 
-				if(!function_exists('exif_read_data') || !isset($this->source_info['APP1']) || strpos($this->source_info['APP1'], 'Exif') !== 0){
+				if(!function_exists('exif_read_data') || !isset($this->source_info['APP1']) || strpos($this->source_info['APP1'], 'Exif') !== 0) {
 						return $img;
 				}
 
 				try {
 						$exif = @exif_read_data($filename);
-				} catch (Exception $e){
+				} catch (Exception $e) {
 						$exif = null;
 				}
 
-				if(!$exif || !isset($exif['Orientation'])){
+				if(!$exif || !isset($exif['Orientation'])) {
 						return $img;
 				}
 
 				$orientation = $exif['Orientation'];
 
-				if($orientation === 6 || $orientation === 5){
+				if($orientation === 6 || $orientation === 5) {
 						$img = imagerotate($img, 270, null);
-				} elseif($orientation === 3 || $orientation === 4){
+				} elseif($orientation === 3 || $orientation === 4) {
 						$img = imagerotate($img, 180, null);
-				} elseif($orientation === 8 || $orientation === 7){
+				} elseif($orientation === 8 || $orientation === 7) {
 						$img = imagerotate($img, 90, null);
 				}
 
-				if($orientation === 5 || $orientation === 4 || $orientation === 7){
-						if(function_exists('imageflip')){
+				if($orientation === 5 || $orientation === 4 || $orientation === 7) {
+						if(function_exists('imageflip')) {
 								imageflip($img, IMG_FLIP_HORIZONTAL);
 						} else {
 								$this->imageFlip($img, IMG_FLIP_HORIZONTAL);
@@ -221,13 +221,13 @@ class OssnImage {
 		 * @param boolean $exact_size
 		 * @return static
 		 */
-		public function save($filename, $image_type = null, $quality = null, $permissions = null, $exact_size = false){
+		public function save($filename, $image_type = null, $quality = null, $permissions = null, $exact_size = false) {
 				$image_type = $image_type ?: $this->source_type;
 				$quality    = is_numeric($quality) ? (int) abs($quality) : null;
 
-				switch($image_type){
+				switch ($image_type) {
 				case IMAGETYPE_GIF:
-						if(!empty($exact_size) && is_array($exact_size)){
+						if(!empty($exact_size) && is_array($exact_size)) {
 								$dest_image = imagecreatetruecolor($exact_size[0], $exact_size[1]);
 						} else {
 								$dest_image = imagecreatetruecolor($this->getDestWidth(), $this->getDestHeight());
@@ -240,7 +240,7 @@ class OssnImage {
 						break;
 
 				case IMAGETYPE_JPEG:
-						if(!empty($exact_size) && is_array($exact_size)){
+						if(!empty($exact_size) && is_array($exact_size)) {
 								$dest_image = imagecreatetruecolor($exact_size[0], $exact_size[1]);
 								$background = imagecolorallocate($dest_image, 255, 255, 255);
 								imagefilledrectangle($dest_image, 0, 0, $exact_size[0], $exact_size[1], $background);
@@ -252,10 +252,10 @@ class OssnImage {
 						break;
 
 				case IMAGETYPE_WEBP:
-						if(version_compare(PHP_VERSION, '5.5.0', '<')){
+						if(version_compare(PHP_VERSION, '5.5.0', '<')) {
 								throw new Exception('For WebP support PHP >= 5.5.0 is required');
 						}
-						if(!empty($exact_size) && is_array($exact_size)){
+						if(!empty($exact_size) && is_array($exact_size)) {
 								$dest_image = imagecreatetruecolor($exact_size[0], $exact_size[1]);
 								$background = imagecolorallocate($dest_image, 255, 255, 255);
 								imagefilledrectangle($dest_image, 0, 0, $exact_size[0], $exact_size[1], $background);
@@ -271,14 +271,14 @@ class OssnImage {
 						break;
 
 				case IMAGETYPE_PNG:
-						if(!$this->quality_truecolor || !imageistruecolor($this->source_image)){
-								if(!empty($exact_size) && is_array($exact_size)){
+						if(!$this->quality_truecolor || !imageistruecolor($this->source_image)) {
+								if(!empty($exact_size) && is_array($exact_size)) {
 										$dest_image = imagecreate($exact_size[0], $exact_size[1]);
 								} else {
 										$dest_image = imagecreate($this->getDestWidth(), $this->getDestHeight());
 								}
 						} else {
-								if(!empty($exact_size) && is_array($exact_size)){
+								if(!empty($exact_size) && is_array($exact_size)) {
 										$dest_image = imagecreatetruecolor($exact_size[0], $exact_size[1]);
 								} else {
 										$dest_image = imagecreatetruecolor($this->getDestWidth(), $this->getDestHeight());
@@ -296,47 +296,48 @@ class OssnImage {
 
 				imageinterlace($dest_image, $this->interlace);
 
-				if($this->gamma_correct){
+				if($this->gamma_correct) {
 						imagegammacorrect($this->source_image, 2.2, 1.0);
 				}
 
-				if(!empty($exact_size) && is_array($exact_size)){
-						if($this->getSourceHeight() < $this->getSourceWidth()){
+				if(!empty($exact_size) && is_array($exact_size)) {
+						if($this->getSourceHeight() < $this->getSourceWidth()) {
 								$this->dest_x = 0;
 								$this->dest_y = ($exact_size[1] - $this->getDestHeight()) / 2;
 						}
-						if($this->getSourceHeight() > $this->getSourceWidth()){
+						if($this->getSourceHeight() > $this->getSourceWidth()) {
 								$this->dest_x = ($exact_size[0] - $this->getDestWidth()) / 2;
 								$this->dest_y = 0;
 						}
 				}
 
-				imagecopyresampled(
-						$dest_image,
-						$this->source_image,
-						$this->dest_x,
-						$this->dest_y,
-						$this->source_x,
-						$this->source_y,
-						$this->getDestWidth(),
-						$this->getDestHeight(),
-						$this->source_w,
-						$this->source_h
-				);
+				$src_img = $this->source_image;
+				$src_w   = imagesx($src_img);
+				$src_h   = imagesy($src_img);
 
-				if($this->gamma_correct){
+				$dst_w = (int) round($this->getDestWidth());
+				$dst_h = (int) round($this->getDestHeight());
+
+				$src_x      = min((int) round($this->source_x), $src_w - 1);
+				$src_y      = min((int) round($this->source_y), $src_h - 1);
+				$src_copy_w = min((int) round($this->source_w), $src_w - $src_x);
+				$src_copy_h = min((int) round($this->source_h), $src_h - $src_y);
+
+				imagecopyresampled($dest_image, $src_img, (int) round($this->dest_x), (int) round($this->dest_y), $src_x, $src_y, $dst_w, $dst_h, $src_copy_w, $src_copy_h);
+
+				if($this->gamma_correct) {
 						imagegammacorrect($dest_image, 1.0, 2.2);
 				}
 
 				$this->applyFilter($dest_image);
 
-				switch($image_type){
+				switch ($image_type) {
 				case IMAGETYPE_GIF:
 						imagegif($dest_image, $filename);
 						break;
 
 				case IMAGETYPE_JPEG:
-						if($quality === null || $quality > 100){
+						if($quality === null || $quality > 100) {
 								$quality = $this->quality_jpg;
 						}
 
@@ -344,10 +345,10 @@ class OssnImage {
 						break;
 
 				case IMAGETYPE_WEBP:
-						if(version_compare(PHP_VERSION, '5.5.0', '<')){
+						if(version_compare(PHP_VERSION, '5.5.0', '<')) {
 								throw new Exception('For WebP support PHP >= 5.5.0 is required');
 						}
-						if($quality === null){
+						if($quality === null) {
 								$quality = $this->quality_webp;
 						}
 
@@ -355,7 +356,7 @@ class OssnImage {
 						break;
 
 				case IMAGETYPE_PNG:
-						if($quality === null || $quality > 9){
+						if($quality === null || $quality > 9) {
 								$quality = $this->quality_png;
 						}
 
@@ -363,7 +364,7 @@ class OssnImage {
 						break;
 				}
 
-				if($permissions){
+				if($permissions) {
 						chmod($filename, $permissions);
 				}
 
@@ -379,7 +380,7 @@ class OssnImage {
 		 * @param int $quality
 		 * @return string
 		 */
-		public function getImageAsString($image_type = null, $quality = null){
+		public function getImageAsString($image_type = null, $quality = null) {
 				$string_temp = tempnam(sys_get_temp_dir(), '');
 
 				$this->save($string_temp, $image_type, $quality);
@@ -396,7 +397,7 @@ class OssnImage {
 		 *
 		 * @return string
 		 */
-		public function __toString(){
+		public function __toString() {
 				return $this->getImageAsString();
 		}
 
@@ -405,7 +406,7 @@ class OssnImage {
 		 * @param string $image_type
 		 * @param integer $quality
 		 */
-		public function output($image_type = null, $quality = null){
+		public function output($image_type = null, $quality = null) {
 				$image_type = $image_type ?: $this->source_type;
 
 				header('Content-Type: ' . image_type_to_mime_type($image_type));
@@ -420,8 +421,8 @@ class OssnImage {
 		 * @param boolean $allow_enlarge
 		 * @return static
 		 */
-		public function resizeToShortSide($max_short, $allow_enlarge = false){
-				if($this->getSourceHeight() < $this->getSourceWidth()){
+		public function resizeToShortSide($max_short, $allow_enlarge = false) {
+				if($this->getSourceHeight() < $this->getSourceWidth()) {
 						$ratio = $max_short / $this->getSourceHeight();
 						$long  = $this->getSourceWidth() * $ratio;
 
@@ -443,8 +444,8 @@ class OssnImage {
 		 * @param boolean $allow_enlarge
 		 * @return static
 		 */
-		public function resizeToLongSide($max_long, $allow_enlarge = false){
-				if($this->getSourceHeight() > $this->getSourceWidth()){
+		public function resizeToLongSide($max_long, $allow_enlarge = false) {
+				if($this->getSourceHeight() > $this->getSourceWidth()) {
 						$ratio = $max_long / $this->getSourceHeight();
 						$short = $this->getSourceWidth() * $ratio;
 
@@ -466,7 +467,7 @@ class OssnImage {
 		 * @param boolean $allow_enlarge
 		 * @return static
 		 */
-		public function resizeToHeight($height, $allow_enlarge = false){
+		public function resizeToHeight($height, $allow_enlarge = false) {
 				$ratio = $height / $this->getSourceHeight();
 				$width = $this->getSourceWidth() * $ratio;
 
@@ -482,7 +483,7 @@ class OssnImage {
 		 * @param boolean $allow_enlarge
 		 * @return static
 		 */
-		public function resizeToWidth($width, $allow_enlarge = false){
+		public function resizeToWidth($width, $allow_enlarge = false) {
 				$ratio  = $width / $this->getSourceWidth();
 				$height = $this->getSourceHeight() * $ratio;
 
@@ -499,8 +500,8 @@ class OssnImage {
 		 * @param boolean $allow_enlarge
 		 * @return static
 		 */
-		public function resizeToBestFit($max_width, $max_height, $allow_enlarge = false){
-				if($this->getSourceWidth() <= $max_width && $this->getSourceHeight() <= $max_height && $allow_enlarge === false){
+		public function resizeToBestFit($max_width, $max_height, $allow_enlarge = false) {
+				if($this->getSourceWidth() <= $max_width && $this->getSourceHeight() <= $max_height && $allow_enlarge === false) {
 						return $this;
 				}
 
@@ -508,7 +509,7 @@ class OssnImage {
 				$width  = $max_width;
 				$height = $width * $ratio;
 
-				if($height > $max_height){
+				if($height > $max_height) {
 						$height = $max_height;
 						$width  = (int) round($height / $ratio);
 				}
@@ -522,7 +523,7 @@ class OssnImage {
 		 * @param integer|float $scale
 		 * @return static
 		 */
-		public function scale($scale){
+		public function scale($scale) {
 				$width  = ($this->getSourceWidth() * $scale) / 100;
 				$height = ($this->getSourceHeight() * $scale) / 100;
 
@@ -539,13 +540,13 @@ class OssnImage {
 		 * @param boolean $allow_enlarge
 		 * @return static
 		 */
-		public function resize($width, $height, $allow_enlarge = false){
-				if(!$allow_enlarge){
+		public function resize($width, $height, $allow_enlarge = false) {
+				if(!$allow_enlarge) {
 						// if the user hasn't explicitly allowed enlarging,
 						// but either of the dimensions are larger then the original,
 						// then just use original dimensions - this logic may need rethinking
 
-						if($width > $this->getSourceWidth() || $height > $this->getSourceHeight()){
+						if($width > $this->getSourceWidth() || $height > $this->getSourceHeight()) {
 								$width  = $this->getSourceWidth();
 								$height = $this->getSourceHeight();
 						}
@@ -572,17 +573,17 @@ class OssnImage {
 		 * @param integer $position
 		 * @return static
 		 */
-		public function crop($width, $height, $allow_enlarge = false, $position = self::CROPCENTER){
-				if(!$allow_enlarge){
+		public function crop($width, $height, $allow_enlarge = false, $position = self::CROPCENTER) {
+				if(!$allow_enlarge) {
 						// this logic is slightly different to resize(),
 						// it will only reset dimensions to the original
 						// if that particular dimenstion is larger
 
-						if($width > $this->getSourceWidth()){
+						if($width > $this->getSourceWidth()) {
 								$width = $this->getSourceWidth();
 						}
 
-						if($height > $this->getSourceHeight()){
+						if($height > $this->getSourceHeight()) {
 								$height = $this->getSourceHeight();
 						}
 				}
@@ -590,7 +591,7 @@ class OssnImage {
 				$ratio_source = $this->getSourceWidth() / $this->getSourceHeight();
 				$ratio_dest   = $width / $height;
 
-				if($ratio_dest < $ratio_source){
+				if($ratio_dest < $ratio_source) {
 						$this->resizeToHeight($height, $allow_enlarge);
 
 						$excess_width = (($this->getDestWidth() - $width) / $this->getDestWidth()) * $this->getSourceWidth();
@@ -622,19 +623,19 @@ class OssnImage {
 		 * @param integer $y
 		 * @return static
 		 */
-		public function freecrop($width, $height, $x = false, $y = false){
-				if($x === false || $y === false){
+		public function freecrop($width, $height, $x = false, $y = false) {
+				if($x === false || $y === false) {
 						return $this->crop($width, $height);
 				}
 				$this->source_x = $x;
 				$this->source_y = $y;
-				if($width > $this->getSourceWidth() - $x){
+				if($width > $this->getSourceWidth() - $x) {
 						$this->source_w = $this->getSourceWidth() - $x;
 				} else {
 						$this->source_w = $width;
 				}
 
-				if($height > $this->getSourceHeight() - $y){
+				if($height > $this->getSourceHeight() - $y) {
 						$this->source_h = $this->getSourceHeight() - $y;
 				} else {
 						$this->source_h = $height;
@@ -651,7 +652,7 @@ class OssnImage {
 		 *
 		 * @return integer
 		 */
-		public function getSourceWidth(){
+		public function getSourceWidth() {
 				return $this->original_w;
 		}
 
@@ -660,7 +661,7 @@ class OssnImage {
 		 *
 		 * @return integer
 		 */
-		public function getSourceHeight(){
+		public function getSourceHeight() {
 				return $this->original_h;
 		}
 
@@ -669,7 +670,7 @@ class OssnImage {
 		 *
 		 * @return integer
 		 */
-		public function getDestWidth(){
+		public function getDestWidth() {
 				return $this->dest_w;
 		}
 
@@ -677,7 +678,7 @@ class OssnImage {
 		 * Gets height of the destination image
 		 * @return integer
 		 */
-		public function getDestHeight(){
+		public function getDestHeight() {
 				return $this->dest_h;
 		}
 
@@ -688,9 +689,9 @@ class OssnImage {
 		 * @param integer $position
 		 * @return float|integer
 		 */
-		protected function getCropPosition($expectedSize, $position = self::CROPCENTER){
+		protected function getCropPosition($expectedSize, $position = self::CROPCENTER) {
 				$size = 0;
-				switch($position){
+				switch ($position) {
 				case self::CROPBOTTOM:
 				case self::CROPRIGHT:
 						$size = $expectedSize;
@@ -713,14 +714,14 @@ class OssnImage {
 		 * @param  integer  $mode
 		 * @return null
 		 */
-		public function imageFlip($image, $mode){
-				switch($mode){
+		public function imageFlip($image, $mode) {
+				switch ($mode) {
 				case self::IMG_FLIP_HORIZONTAL:
 						$max_x      = imagesx($image) - 1;
 						$half_x     = $max_x / 2;
 						$sy         = imagesy($image);
 						$temp_image = imageistruecolor($image) ? imagecreatetruecolor(1, $sy) : imagecreate(1, $sy);
-						for($x = 0; $x < $half_x; ++$x){
+						for ($x = 0; $x < $half_x; ++$x) {
 								imagecopy($temp_image, $image, 0, 0, $x, 0, 1, $sy);
 								imagecopy($image, $image, $x, 0, $max_x - $x, 0, 1, $sy);
 								imagecopy($image, $temp_image, $max_x - $x, 0, 0, 0, 1, $sy);
@@ -731,7 +732,7 @@ class OssnImage {
 						$max_y      = imagesy($image) - 1;
 						$half_y     = $max_y / 2;
 						$temp_image = imageistruecolor($image) ? imagecreatetruecolor($sx, 1) : imagecreate($sx, 1);
-						for($y = 0; $y < $half_y; ++$y){
+						for ($y = 0; $y < $half_y; ++$y) {
 								imagecopy($temp_image, $image, 0, 0, 0, $y, $sx, 1);
 								imagecopy($image, $image, 0, $y, 0, $max_y - $y, $sx, 1);
 								imagecopy($image, $temp_image, 0, $max_y - $y, 0, 0, $sx, 1);
@@ -755,7 +756,7 @@ class OssnImage {
 		 * @param bool $enable
 		 * @return static
 		 */
-		public function gamma($enable = true){
+		public function gamma($enable = true) {
 				$this->gamma_correct = $enable;
 
 				return $this;

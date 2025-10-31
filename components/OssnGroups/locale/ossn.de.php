@@ -71,5 +71,6 @@ $de = array(
 	'group:memb:make:owner' => 'Zum Gruppen-Eigentümer machen',
     	'group:memb:make:owner:confirm' => 'Achtung! Dieser Vorgang wird >> %s << zum neuen Eigentümer dieser Gruppe machen, und Du wirst alle administrativen Privilegien verlieren. Willst Du das wirklich?',
     	'group:memb:make:owner:admin:confirm' => 'Achtung! Dieser Vorgang wird >> %s << zum neuen Eigentümer dieser Gruppe machen, und der vorherige Eigentümer wird alle administrativen Privilegien verlieren. Willst Du das wirklich?',
+		'group:my' => 'Meine Gruppen',
 );
 ossn_register_languages('de', $de); 

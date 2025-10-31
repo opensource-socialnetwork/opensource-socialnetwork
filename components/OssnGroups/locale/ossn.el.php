@@ -70,5 +70,6 @@ $el = array(
 	'group:delete:cover' => 'Διαγραφή καλύμματος',
 	'group:delete:cover:error' => 'Παρουσιάστηκε σφάλμα κατά τη διαγραφή της εικόνας εξωφύλλου',
 	'group:delete:cover:success' => 'Η εικόνα του καλύμματος διαγράφηκε με επιτυχία',
+	'group:my' => 'Οι Ομάδες μου',
 );
 ossn_register_languages('el', $el); 

@@ -9,7 +9,7 @@
  * @link      https://www.opensource-socialnetwork.org/
  */
 ossn_generate_server_config('apache');
-ossn_version_upgrade($upgrade, '6.6');
+ossn_version_upgrade('6.6');
 
 $factory = new OssnFactory(array(
 		'callback' => 'installation',

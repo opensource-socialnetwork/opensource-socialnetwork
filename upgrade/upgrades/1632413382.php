@@ -10,7 +10,7 @@
  */
 set_time_limit(0);
 ossn_generate_server_config('apache');
-ossn_version_upgrade($upgrade, '6.0');
+ossn_version_upgrade('6.0');
 
 //Thanks to Benjamin Oldenburg https://github.com/ordisbold
 $v60update	  = "ALTER TABLE ossn_users MODIFY username VARCHAR(50);

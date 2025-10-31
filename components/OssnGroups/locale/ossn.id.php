@@ -70,6 +70,6 @@ $id = array(
 	'group:delete:cover' => 'Hapus Foto Sampul',
 	'group:delete:cover:error' => 'Terjadi kesalahan saat menghapus Foto Sampul',
 	'group:delete:cover:success' => 'Foto Sampul berhasil dihapus',
-
+	'group:my' => 'Grup Saya',
 );
 ossn_register_languages('id', $id); 

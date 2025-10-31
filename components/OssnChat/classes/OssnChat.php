@@ -21,7 +21,7 @@ class OssnChat extends OssnMessages {
 						$_SESSION['ossn_chat_users'] = array();
 				}
 				$count = count($_SESSION['ossn_chat_users']);
-				if($count >= 2){
+				if($count >= 2) {
 						array_shift($_SESSION['ossn_chat_users']);
 				}
 				if(!in_array($user->guid, $_SESSION['ossn_chat_users']) && $user) {
@@ -96,15 +96,21 @@ class OssnChat extends OssnMessages {
 				//[B] OssnChat showing only 10 users #2263
 				$friends = ossn_loggedin_user()->getFriends(ossn_loggedin_user()->guid, array(
 						'page_limit' => false,
-						"wheres"     => "u.last_activity > {$time} - {$intervals}",
+						'wheres'     => array(
+								array(
+										'name'       => 'u.last_activity',
+										'comparator' => '>',
+										'value'      => $time - $intervals,
+								),
+						),
 				));
 				if(!$friends) {
 						return false;
 				}
-				foreach($friends as $friend) {
+				foreach ($friends as $friend) {
 						//default value should be offline  [B] OssnChat default value showing 0 in class #2163
 						//$status = 'ossn-chat-icon-offline';
-						//if($friend instanceof OssnUser && $friend->isOnline(10)) { 
+						//if($friend instanceof OssnUser && $friend->isOnline(10)) {
 						//[E] Show only online members in Chat #2287
 						//so the status will be online by default
 						$status = 'ossn-chat-icon-online';
@@ -116,10 +122,10 @@ class OssnChat extends OssnMessages {
 						$all[]          = $vars;
 				}
 				$comp = function ($element) {
-								return $element['status'];
+						return $element['status'];
 				};
 				$map = array_map($comp, $all);
-				array_multisort($map,SORT_DESC,SORT_STRING,$all,);
+				array_multisort($map, SORT_DESC, SORT_STRING, $all);
 				return $all;
 		}
 		/**
@@ -138,7 +144,13 @@ class OssnChat extends OssnMessages {
 				}
 				$time = time();
 				return $user->getFriends($user->guid, array(
-						'wheres' => "(u.last_activity > {$time} - {$intervals})",
+						'wheres' => array(
+								array(
+										'name'       => 'u.last_activity',
+										'comparator' => '>',
+										'value'      => $time - $intervals,
+								),
+						),
 						'count'  => true,
 				));
 		}
@@ -159,7 +171,13 @@ class OssnChat extends OssnMessages {
 				}
 				$time = time();
 				return $user->getFriends($user->guid, array(
-						'wheres'     => "(u.last_activity > {$time} - {$intervals})",
+						'wheres'     => array(
+								array(
+										'name'       => 'u.last_activity',
+										'comparator' => '>',
+										'value'      => $time - $intervals,
+								),
+						),
 						'page_limit' => false,
 				));
 		}
@@ -185,7 +203,17 @@ class OssnChat extends OssnMessages {
 						"{$parm}",
 				);
 				$params['wheres'] = array(
-						"message_to='{$user}' AND viewed='0'",
+								array(
+										'name'       => 'message_to',
+										'comparator' => '=',
+										'value'      => $user,
+										'separator'  => 'AND',
+								),
+								array(
+										'name'       => 'viewed',
+										'comparator' => '=',
+										'value'      => 0,
+								),
 				);
 				$friends = $this->select($params, true);
 				return $friends;
@@ -201,10 +229,60 @@ class OssnChat extends OssnMessages {
 		 * @return object
 		 */
 		public function getWith($from, $to, $count = false) {
-				$messages = $this->searchMessages(array(
-						'wheres'         => array(
-								"((message_from='{$from}' AND message_to='{$to}' AND emd0.value='') OR (message_from='{$to}' AND message_to='{$from}' AND emd1.value=''))",
+				$wheres = array(
+						array(
+								'connector' => 'OR',
+								'group'     => array(
+										//(message_from='{$from}' AND message_to='{$to}' AND emd0.value=''))
+										array(
+												'connector' => 'AND', // <-- Internal Glue
+												'group'     => array(
+														array(
+																'name'       => 'message_from',
+																'comparator' => '=',
+																'value'      => $from,
+														),
+														array(
+																'name'       => 'message_to',
+																'comparator' => '=',
+																'value'      => $to,
+														),
+														array(
+																'name'       => 'emd0.value',
+																'comparator' => '=',
+																'value'      => '',
+														),
+												),
+										),
+										//(message_from='{$to}' AND message_to='{$from}' AND emd1.value='')
+										array(
+												'connector' => 'AND', // <-- Internal Glue
+												'group'     => array(
+														array(
+																'name'       => 'message_from',
+																'comparator' => '=',
+																'value'      => $to,
+														),
+														array(
+																'name'       => 'message_to',
+																'comparator' => '=',
+																'value'      => $from,
+														),
+														array(
+																'name'       => 'emd1.value',
+																'comparator' => '=',
+																'value'      => '',
+														),
+												),
+										),
+								),
 						),
+				);
+				/*'wheres'=> array(
+				*"((message_from='{$from}' AND message_to='{$to}' AND emd0.value='') OR (message_from='{$to}' AND message_to='{$from}' AND emd1.value=''))",
+				*/				
+				$messages = $this->searchMessages(array(
+						'wheres'         => $wheres,
 						'order_by'       => 'm.id DESC',
 						'offset'         => input("offset_message_xhr_with_{$to}", '', 1),
 						'count'          => $count,

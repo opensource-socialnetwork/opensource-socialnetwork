@@ -70,6 +70,6 @@ $zh = array(
 	'group:delete:cover' => '刪除封面圖片',
 	'group:delete:cover:error' => '發生錯誤無法刪除封面圖片',
 	'group:delete:cover:success' => '封面圖片已刪除',
-
+	'group:my' => '我的群组',
 );
 ossn_register_languages('zh', $zh); 

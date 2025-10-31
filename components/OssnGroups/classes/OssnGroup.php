@@ -14,7 +14,7 @@ class OssnGroup extends OssnObject {
 		 *
 		 * @return void;
 		 */
-		public function initAttributes(){
+		public function initAttributes() {
 				$this->OssnDatabase = new OssnDatabase();
 				$this->OssnFile     = new OssnFile();
 		}
@@ -29,18 +29,18 @@ class OssnGroup extends OssnObject {
 		 *
 		 * @return bool;
 		 */
-		public function createGroup($params){
+		public function createGroup($params) {
 				self::initAttributes();
 				$this->title       = trim($params['name']);
 				$this->description = trim($params['description']);
-				if(empty($this->title) || ($params['privacy'] != OSSN_PRIVATE && $params['privacy'] != OSSN_PUBLIC)){
+				if(empty($this->title) || ($params['privacy'] != OSSN_PRIVATE && $params['privacy'] != OSSN_PUBLIC)) {
 						return false;
 				}
 				$this->owner_guid       = $params['owner_guid'];
 				$this->type             = 'user';
 				$this->subtype          = 'ossngroup';
 				$this->data->membership = $params['privacy'];
-				if($guid = $this->addObject()){
+				if($guid = $this->addObject()) {
 						ossn_add_relation($params['owner_guid'], $this->getGuid(), 'group:join');
 						ossn_add_relation($this->getGuid(), $params['owner_guid'], 'group:join:approve');
 
@@ -58,7 +58,7 @@ class OssnGroup extends OssnObject {
 		 * @return int;
 		 * @access public;
 		 */
-		public function getGuid(){
+		public function getGuid() {
 				return $this->getObjectId();
 		}
 
@@ -70,8 +70,8 @@ class OssnGroup extends OssnObject {
 		 *
 		 * @return object;
 		 */
-		public function getUserGroups($owner_guid, $params = array()){
-				if(!empty($owner_guid)){
+		public function getUserGroups($owner_guid, $params = array()) {
+				if(!empty($owner_guid)) {
 						$args = array(
 								'type'       => 'user',
 								'subtype'    => 'ossngroup',
@@ -90,10 +90,10 @@ class OssnGroup extends OssnObject {
 		 *
 		 * @return object;
 		 */
-		public function getGroup($guid){
+		public function getGroup($guid) {
 				$this->object_guid = $guid;
 				$group             = $this->getObjectById();
-				if($group && isset($group->subtype) && $group->subtype == 'ossngroup'){
+				if($group && isset($group->subtype) && $group->subtype == 'ossngroup') {
 						return $group;
 				}
 				return false;
@@ -108,8 +108,8 @@ class OssnGroup extends OssnObject {
 		 *
 		 * @return bool;
 		 */
-		public function updateGroup($name, $description, $guid){
-				if(empty($name) || empty($guid)){
+		public function updateGroup($name, $description, $guid) {
+				if(empty($name) || empty($guid)) {
 						return false;
 				}
 				$data = array(
@@ -120,10 +120,10 @@ class OssnGroup extends OssnObject {
 						$name,
 						$description,
 				);
-				if($this->updateObject($data, $values, $guid)){
+				if($this->updateObject($data, $values, $guid)) {
 						ossn_trigger_callback('group', 'update', array(
 								'group_guid' => $guid,
-						));					
+						));
 						return true;
 				}
 				return false;
@@ -137,8 +137,8 @@ class OssnGroup extends OssnObject {
 		 *
 		 * @return bool;
 		 */
-		public function changeOwner($owner, $guid){
-				if(empty($owner) || empty($guid)){
+		public function changeOwner($owner, $guid) {
+				if(empty($owner) || empty($guid)) {
 						return false;
 				}
 				$data = array(
@@ -147,8 +147,7 @@ class OssnGroup extends OssnObject {
 				$values = array(
 						$owner,
 				);
-				if($this->updateObject($data, $values, $guid)){
-						
+				if($this->updateObject($data, $values, $guid)) {
 						return true;
 				}
 				return false;
@@ -161,12 +160,12 @@ class OssnGroup extends OssnObject {
 		 *
 		 * @return bool;
 		 */
-		public function deleteGroup($guid){
-				if(empty($guid)){
+		public function deleteGroup($guid) {
+				if(empty($guid)) {
 						return false;
 				}
 				$vars['entity'] = ossn_get_group_by_guid($guid);
-				if($this->deleteObject($guid)){
+				if($this->deleteObject($guid)) {
 						//delete notification
 						//[B] Deleting a group should remove group:joinrequest records #2066
 						if(class_exists('OssnNotifications')) {
@@ -177,7 +176,7 @@ class OssnGroup extends OssnObject {
 												'group:joinrequest',
 										),
 								));
-						}					
+						}
 						//delete group relations
 						ossn_delete_group_relations($vars['entity']);
 						//trigger callback so other components can be notified when group is deleted.
@@ -192,24 +191,47 @@ class OssnGroup extends OssnObject {
 		 *
 		 * @return int;
 		 */
-		public function countRequests(){
+		public function countRequests() {
 				$group = $this->guid;
 
-				$this->statement("SELECT COUNT(*) as join_requests FROM ossn_relationships  WHERE(
-					relation_to='{$group}' AND
-					type='group:join'
-				);");
-				$this->execute();
-				$from = $this->fetch(false);
-				$join_requests = $from->join_requests;
-
-				$this->statement("SELECT COUNT(*) as approved_members FROM ossn_relationships WHERE(
-					relation_from='{$group}' AND
-					type='group:join:approve'
-				);");
-				$this->execute();
-				$from = $this->fetch(false);
-				$approved_members = $from->approved_members;
+				$args = array(
+						'params' => array(
+								'COUNT(*) as join_requests',
+						),
+						'from'   => 'ossn_relationships',
+						'wheres' => array(
+								array(
+										'name'     => 'relation_to',
+										'operator' => '=',
+										'value'    => $group,
+								),
+								array(
+										'name'     => 'type',
+										'operator' => '=',
+										'value'    => 'group:join',
+								),
+						),
+				);
+				$args2 = array(
+						'params' => array(
+								'COUNT(*) as approved_members',
+						),
+						'from'   => 'ossn_relationships',
+						'wheres' => array(
+								array(
+										'name'     => 'relation_from',
+										'operator' => '=',
+										'value'    => $group,
+								),
+								array(
+										'name'     => 'type',
+										'operator' => '=',
+										'value'    => 'group:join:approve',
+								),
+						),
+				);
+				$join_requests    = $this->select($args)->join_requests;
+				$approved_members = $this->select($args2)->approved_members;
 
 				return $join_requests - $approved_members;
 		}
@@ -221,8 +243,8 @@ class OssnGroup extends OssnObject {
 		 *
 		 * @return object;
 		 */
-		public function getMembersRequests(){
-				$group = $this->guid;
+		public function getMembersRequests() {
+				$group = $this->guid; //its fine as guid is taken from database not user input
 				$this->statement("SELECT relation_from FROM ossn_relationships WHERE
 						relation_to = '{$group}' AND
 						type = 'group:join' AND
@@ -232,7 +254,7 @@ class OssnGroup extends OssnObject {
 				;");
 				$this->execute();
 				$requests = $this->fetch(true);
-				if ($requests) {
+				if($requests) {
 						$users = array();
 						foreach ($requests as $request) {
 								$users[] = ossn_user_by_guid($request->relation_from);
@@ -250,9 +272,9 @@ class OssnGroup extends OssnObject {
 		 *
 		 * @return bool;
 		 */
-		public function isMember($group, $user){
-				if(isset($this->guid)){
-						$group = $this->guid;
+		public function isMember($group, $user) {
+				if(isset($this->guid)) {
+						$group = $this->guid; //guid is taken from object not userinput
 				}
 				$this->statement("SELECT * FROM ossn_relationships WHERE(
 					     relation_from='{$group}' AND
@@ -261,7 +283,7 @@ class OssnGroup extends OssnObject {
 					     );");
 				$this->execute();
 				$from = $this->fetch();
-				if(isset($from->relation_id)){
+				if(isset($from->relation_id)) {
 						return true;
 				}
 				return false;
@@ -274,8 +296,8 @@ class OssnGroup extends OssnObject {
 		 *
 		 * @return object;
 		 */
-		public function getMembers($count = false){
-				if(!isset($this->guid)){
+		public function getMembers($count = false) {
+				if(!isset($this->guid)) {
 						return false;
 				}
 				$members = ossn_get_relationships(array(
@@ -283,15 +305,15 @@ class OssnGroup extends OssnObject {
 						'type'  => 'group:join:approve',
 						'count' => $count,
 				));
-				if($count){
+				if($count) {
 						return $members;
 				}
-				if($members){
-						foreach ($members as $member){
+				if($members) {
+						foreach ($members as $member) {
 								$users[] = ossn_user_by_guid($member->relation_to);
 						}
 				}
-				if(isset($users)){
+				if(isset($users)) {
 						return $users;
 				}
 				return false;
@@ -305,10 +327,10 @@ class OssnGroup extends OssnObject {
 		 *
 		 * @return bool;
 		 */
-		public function sendRequest($from, $group){
+		public function sendRequest($from, $group) {
 				self::initAttributes();
-				if(!$this->requestExists($from, $group)){
-						if(ossn_add_relation($from, $group, 'group:join')){
+				if(!$this->requestExists($from, $group)) {
+						if(ossn_add_relation($from, $group, 'group:join')) {
 								// #186 send notification to Group Owner
 								$current_group = $this->getGroup($group);
 								$group_owner   = $current_group->owner_guid;
@@ -331,7 +353,7 @@ class OssnGroup extends OssnObject {
 										0,
 										time(),
 								);
-								if($this->OssnDatabase->insert($params)){
+								if($this->OssnDatabase->insert($params)) {
 										ossn_trigger_callback('group', 'send:request', array(
 												'user_guid'  => $from,
 												'group_guid' => $group,
@@ -350,8 +372,8 @@ class OssnGroup extends OssnObject {
 		 *
 		 * @return bool;
 		 */
-		public function requestExists($from, $group){
-				if(isset($this->guid)){
+		public function requestExists($from, $group) {
+				if(isset($this->guid)) {
 						$group = $this->guid;
 				}
 				$this->statement("SELECT * FROM ossn_relationships WHERE(
@@ -361,7 +383,7 @@ class OssnGroup extends OssnObject {
 					     );");
 				$this->execute();
 				$request = $this->fetch();
-				if(!empty($request->relation_id)){
+				if(!empty($request->relation_id)) {
 						return true;
 				}
 				return false;
@@ -375,11 +397,11 @@ class OssnGroup extends OssnObject {
 		 *
 		 * @return bool;
 		 */
-		public function approveRequest($from, $group){
+		public function approveRequest($from, $group) {
 				//[B] Multiple clicks on same action add member multiple times in group #2147
 				//used ossn_relation_exists for #2147
-				if($this->requestExists($from, $group) && !ossn_relation_exists($group, $from, 'group:join:approve')){
-						if(ossn_add_relation($group, $from, 'group:join:approve')){
+				if($this->requestExists($from, $group) && !ossn_relation_exists($group, $from, 'group:join:approve')) {
+						if(ossn_add_relation($group, $from, 'group:join:approve')) {
 								ossn_trigger_callback('group', 'approve:request', array(
 										'user_guid'  => $from,
 										'group_guid' => $group,
@@ -393,19 +415,53 @@ class OssnGroup extends OssnObject {
 		/**
 		 * Delete member from group
 		 *
-		 * @params $from Member guid
-		 *         $group Group guid
+		 * @param int $from Member guid
+		 * @param int $group Group guid
 		 *
-		 * @return bool;
+		 * @return boolean
 		 */
-		public function deleteMember($from, $group){
-				if(!$this->requestExists($from, $group)){
+		public function deleteMember($from, $group) {
+				if(empty($from) || empty($group)) {
 						return false;
 				}
-				$this->statement("DELETE FROM ossn_relationships WHERE(
-						 relation_from='{$from}' AND relation_to='{$group}'  AND type='group:join' OR
-						 relation_from='{$group}' AND relation_to='{$from}' AND type='group:join:approve')");
-				if($this->execute()){
+				if(!$this->requestExists($from, $group)) {
+						return false;
+				}
+				//where can't use ossn_delete_relationship as type is same in recursive but here its different
+
+				// SQL Goal:
+				// WHERE ( (relation_from = $from AND relation_to = $group AND type = 'group:join')
+				//          OR
+				//         (relation_from = $group AND relation_to = $from AND type = 'group:join:approve') )
+
+				$group1 = OssnDatabase::wheresGroup('AND', array(
+						// (relation_from = $from AND relation_to = $group AND type = 'group:join')
+						OssnDatabase::wheres('relation_from', '=', $from),
+						OssnDatabase::wheres('relation_to', '=', $group),
+						OssnDatabase::wheres('type', '=', 'group:join'),
+				));
+
+				$group2 = OssnDatabase::wheresGroup('AND', array(
+						// (relation_from = $group AND relation_to = $from AND type = 'group:join:approve')
+						OssnDatabase::wheres('relation_from', '=', $group),
+						OssnDatabase::wheres('relation_to', '=', $from),
+						OssnDatabase::wheres('type', '=', 'group:join:approve'),
+				));
+
+				$wheres = array(
+						// Outer OR Group: ( $group1 OR $group2 )
+						OssnDatabase::wheresGroup('OR', array(
+								$group1,
+								$group2,
+						)),
+				);
+				$args = array(
+						'from'   => 'ossn_relationships',
+						'wheres' => $wheres,
+				);
+
+
+				if($this->delete($args)) {
 						ossn_trigger_callback('group', 'delete:member', array(
 								'user_guid'  => $from,
 								'group_guid' => $group,
@@ -422,23 +478,27 @@ class OssnGroup extends OssnObject {
 		 *
 		 * @return object;
 		 */
-		public function searchGroups($q, array $args = array()){
+		public function searchGroups($q, array $args = array()) {
 				$params['from']    = 'ossn_object';
 				$params['type']    = 'user';
 				$params['subtype'] = 'ossngroup';
-				$params['wheres']  = array(
-						"(title LIKE '%{$q}%' OR description LIKE '%{$q}%')",
+				//[B] groups not showing in search because of $q in single quotes #2487
+				$params['wheres'] = array(
+						OssnDatabase::wheresGroup('OR', array(
+								OssnDatabase::wheres('title', 'LIKE', "%{$q}%"),
+								OssnDatabase::wheres('description', 'LIKE', "%{$q}%"),
+						)),
 				);
 				$params['count'] = false;
 				$vars            = array_merge($params, $args);
 				$search          = $this->searchObject($vars, true);
-				if(!$search){
+				if(!$search) {
 						return false;
 				}
-				if($vars['count'] === true){
+				if($vars['count'] === true) {
 						return $search;
 				}
-				foreach ($search as $group){
+				foreach ($search as $group) {
 						$groupentity[] = ossn_get_group_by_guid($group->guid);
 				}
 				$data = $groupentity;
@@ -451,9 +511,9 @@ class OssnGroup extends OssnObject {
 		 * @return boolean|null
 		 * @access public;
 		 */
-		public function UploadCover(){
+		public function UploadCover() {
 				self::initAttributes();
-				if(empty($this->guid) || $this->guid < 1){
+				if(empty($this->guid) || $this->guid < 1) {
 						return false;
 				}
 				$this->OssnFile->owner_guid = $this->guid;
@@ -471,18 +531,18 @@ class OssnGroup extends OssnObject {
 				$this->OssnFile->setPath('cover/');
 				if(ossn_file_is_cdn_storage_enabled()) {
 						$this->OssnFile->setStore('cdn');
-				}				
+				}
 				$files = clone $this->OssnFile;
-				if($cover_guid = $this->OssnFile->addFile()){
+				if($cover_guid = $this->OssnFile->addFile()) {
 						//Different sanity checks on uploading images? #667
 						$files = $files->getFiles();
 						$count = (array) $files;
-						if(count($count) > 1){
+						if(count($count) > 1) {
 								unset($files->{0});
-								if($files){
-										foreach ($files as $file){
+								if($files) {
+										foreach ($files as $file) {
 												//Uploading new group cover, it keeps the old cover file only. #1528
-												if($file->isFile()){
+												if($file->isFile()) {
 														unlink($file->getPath());
 												}
 												$file->deleteEntity();
@@ -501,15 +561,15 @@ class OssnGroup extends OssnObject {
 		 *
 		 * @return bool
 		 */
-		public function ResetCoverPostition(){
-				if(!isset($this->cover)){
+		public function ResetCoverPostition() {
+				if(!isset($this->cover)) {
 						return false;
 				}
 				$position = array(
 						'',
 						'',
 				);
-				$this->data->cover   = json_encode($position);
+				$this->data->cover = json_encode($position);
 				return $this->save();
 		}
 
@@ -519,9 +579,9 @@ class OssnGroup extends OssnObject {
 		 * @return bool;
 		 * @access private;
 		 */
-		public function haveCover(){
+		public function haveCover() {
 				$covers = $this->groupCovers();
-				if(isset($covers->{0})){
+				if(isset($covers->{0})) {
 						return true;
 				}
 				return false;
@@ -533,9 +593,9 @@ class OssnGroup extends OssnObject {
 		 * @return object;
 		 * @access public;
 		 */
-		public function groupCovers(){
+		public function groupCovers() {
 				self::initAttributes();
-				if(empty($this->guid) || $this->guid < 1){
+				if(empty($this->guid) || $this->guid < 1) {
 						return false;
 				}
 				$this->OssnFile->owner_guid = $this->guid;
@@ -550,16 +610,17 @@ class OssnGroup extends OssnObject {
 		 * @return url;
 		 * @access public;
 		 */
-		public function coverURL(){
-				if(!isset($this->cover_guid) || (isset($this->cover_guid) && empty($this->cover_guid))){
+		public function coverURL() {
+				if(!isset($this->cover_guid) || (isset($this->cover_guid) && empty($this->cover_guid))) {
 						return false;
 				}
-				$file              = md5($this->cover_guid);
-				$this->coverurl    = ossn_add_cache_to_url(ossn_site_url("groups/cover/{$this->cover_guid}/{$file}.jpg"));
+				$file           = md5($this->cover_guid);
+				$this->coverurl = ossn_add_cache_to_url(ossn_site_url("groups/cover/{$this->cover_guid}/{$file}.jpg"));
 				return ossn_call_hook('group', 'cover:url', $this, $this->coverurl);
 		}
 
 		/**
+
 		 * Reposition group cover
 		 *
 		 *  @param int $top  Position from top
@@ -567,9 +628,12 @@ class OssnGroup extends OssnObject {
 		 *
 		 * @return boolean
 		 */
-		public function repositionCOVER($top, $left){
-				$position = array($top,$left);
-				$this->data->cover   = json_encode($position);
+		public function repositionCOVER($top, $left) {
+				$position = array(
+						$top,
+						$left,
+				);
+				$this->data->cover = json_encode($position);
 				return $this->save();
 		}
 
@@ -581,9 +645,9 @@ class OssnGroup extends OssnObject {
 		 * @return array;
 		 * @access public;
 		 */
-		public function coverParameters($guid){
+		public function coverParameters($guid) {
 				$group = ossn_get_group_by_guid($guid);
-				if(isset($group->cover)){
+				if(isset($group->cover)) {
 						$parameters = $group->cover;
 						return json_decode($parameters);
 				}
@@ -593,29 +657,30 @@ class OssnGroup extends OssnObject {
 		 * Get user groups (owned groups and groups user member of)
 		 *
 		 * @param object $user User entity
-		 * @return array
+		 * #param array $params Option values
+		 *
+		 * @return array|boolean
 		 */
-		public function getMyGroups($user){
-				self::initAttributes();
-				if(empty($user->guid) || !$user instanceof OssnUser){
+		public function getMyGroups($user, array $params = array()) {
+				if(empty($user->guid) || !$user instanceof OssnUser) {
 						return false;
 				}
-				$params           = array();
-				$params['from']   = 'ossn_relationships';
-				$params['wheres'] = array(
-						"relation_to = '{$user->guid}'",
-						"AND type = 'group:join:approve'",
+
+				$default = array(
+						'to'   => $user->guid,
+						'type' => 'group:join:approve',
 				);
+				$relations = ossn_get_relationships(array_merge($default, $params));
+				if(isset($params['count']) && $params['count'] == true) {
+						return $relations;
+				}
 				# zfix #177 old code throws PHP warnings if user is not member of any group
-				if($myGroups = $this->OssnDatabase->select($params, true)){
-						$myGroups = get_object_vars($myGroups);
-						foreach ($myGroups as $group){
-								$group = $this->getGroup($group->relation_from);
-								$groupsEntities[] = arrayObject($group, get_class($this));
+				if($relations) {
+						foreach ($relations as $relation) {
+								$group    = $this->getGroup($relation->relation_from);
+								$groups[] = arrayObject($group, get_class($this));
 						}
-						if(!empty($groupsEntities)){
-								return $groupsEntities;
-						}
+						return $groups;
 				}
 				return false;
 		}
@@ -624,9 +689,9 @@ class OssnGroup extends OssnObject {
 		 *
 		 * @return boolean
 		 */
-		public function isModerator($user_guid){
+		public function isModerator($user_guid) {
 				$group_guid = $this->guid;
-				if(empty($user_guid) || empty($group_guid)){
+				if(empty($user_guid) || empty($group_guid)) {
 						return false;
 				}
 				$params = array(
@@ -654,5 +719,5 @@ class OssnGroup extends OssnObject {
 						return $search[0];
 				}
 				return false;
-		}		
+		}
 } //class

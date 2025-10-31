@@ -114,9 +114,9 @@ function ossn_get_process_upgrade_files() {
 
 /**
  * Trigger upgrade / Run upgrade
+ * [E] Refactor ossn_version_upgrade #2478
  *
- * @return void;
- * @access private
+ * @return boolean
  */
 function ossn_trigger_upgrades() {
 		if(!ossn_isAdminLoggedin()) {
@@ -146,8 +146,19 @@ function ossn_trigger_upgrades() {
 		}
 		foreach ($upgrades as $upgrade) {
 				$file = ossn_route()->upgrade . "upgrades/{$upgrade}";
-				if(!include_once $file) {
-						throw new exception(ossn_print('upgrade:file:load:error'));
+				// Use the isolated include function
+				ossn_include_upgrade_file($file);
+				ossn_update_upgraded_files($upgrade);
+				
+				//[B] ossn_include_upgrade_file replaces $file variable move messages outside #2495
+				$release = basename($file, '.php');
+				$success = ossn_print('upgrade:success', array(
+						$release,
+				));
+				ossn_trigger_message($success, 'success');
+
+				if(ossn_is_from_cli()) {
+						ossn_cli_output($success, 'success');
 				}
 		}
 		/**
@@ -165,6 +176,21 @@ function ossn_trigger_upgrades() {
 		//}
 
 		return true;
+}
+/**
+ * Safely includes an upgrade file in an isolated scope.
+ *
+ * @param string $file Full path to the upgrade file.
+ * @return mixed The result of the included file, or throws an Exception on failure.
+ * @throws Exception if the file doesn't exist.
+ */
+function ossn_include_upgrade_file($file) {
+		if(!file_exists($file)) {
+				throw new Exception(ossn_print('upgrade:file:load:error'));
+		}
+
+		// Include in isolated function scope
+		include_once $file;
 }
 /**
  * Get update status
@@ -260,26 +286,17 @@ function ossn_update_upgraded_files($upgrade) {
 }
 /**
  * Update version of Ossn
+ * $upgrade param removed OSSN 8.7 as its done automatically
  *
- * @param integer $upgrade New release
+ * @param string $version New version
  *
  * @return boolean
  */
-function ossn_version_upgrade($upgrade, $version) {
-		if(empty($upgrade) || empty($version)) {
+function ossn_version_upgrade($version) {
+		if(empty($version)) {
 				return false;
 		}
-		$release = str_replace('.php', '', $upgrade);
-		if(ossn_update_upgraded_files($upgrade) && ossn_update_db_version($version)) {
-				$success = ossn_print('upgrade:success', array(
-						$release,
-				));
-				ossn_trigger_message($success, 'success');
-
-				if(ossn_is_from_cli()) {
-						ossn_cli_output($success, 'success');
-				}
-		} else {
+		if(!ossn_update_db_version($version)) {
 				$error = ossn_print('upgrade:failed', array(
 						$release,
 				));

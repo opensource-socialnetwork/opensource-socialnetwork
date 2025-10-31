@@ -44,8 +44,8 @@ class OssnPoke extends OssnDatabase {
         );
         $params['values'] = array(
             $type,
-            $poker,
-            $owner,
+            intval($poker),
+            intval($owner),
             0,
             0,
             time()

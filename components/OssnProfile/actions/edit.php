@@ -26,8 +26,10 @@ $vars['email']    = strtolower(input('email'));
 $vars['username'] = input('username');
 
 $fields = ossn_user_fields_names();
-foreach ($fields['required'] as $field) {
-		$vars[$field] = input($field);
+if($fields && isset($fields['required'])) {
+		foreach ($fields['required'] as $field) {
+				$vars[$field] = input($field);
+		}
 }
 if(!empty($vars)) {
 		foreach ($vars as $field => $value) {
@@ -37,7 +39,7 @@ if(!empty($vars)) {
 				}
 		}
 }
-if(isset($fields['non_required'])) {
+if($fields && isset($fields['non_required'])) {
 		foreach ($fields['non_required'] as $field) {
 				$vars[$field] = input($field);
 		}

@@ -225,7 +225,6 @@
 .ossn-notification-icon-groups:before {
 	display: inline-block;
 }
-
 .ossn-notification-icon-groups:before {
 	content: "\f0c0";
 	font-family: 'Font Awesome 5 Free';

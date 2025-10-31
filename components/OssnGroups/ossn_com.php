@@ -97,23 +97,6 @@ function ossn_group_sidebar_entries($event, $type, $params) {
 		// of course in longer terms those components may use the same callback too,
 		// so things will be arranged as before
 		$priority = 100;
-
-		//group list in newsfeed sidebar mebu
-		$groups_user = ossn_get_user_groups(ossn_loggedin_user());
-		if($groups_user) {
-				foreach ($groups_user as $group) {
-						$icon = ossn_site_url('components/OssnGroups/images/group.png');
-						ossn_register_sections_menu('newsfeed', array(
-								'text'     => $group->title,
-								'name'     => 'groups',
-								'url'      => ossn_group_url($group->guid),
-								'parent'   => 'groups',
-								'icon'     => $icon,
-								'priority' => $priority++,
-						));
-						unset($icon);
-				}
-		}
 		//add gorup link in sidebar
 		ossn_register_sections_menu('newsfeed', array(
 				'name'     => 'addgroup',
@@ -121,7 +104,17 @@ function ossn_group_sidebar_entries($event, $type, $params) {
 				'url'      => 'javascript:void(0);',
 				'id'       => 'ossn-group-add',
 				'parent'   => 'groups',
-				'icon'     => ossn_site_url('components/OssnGroups/images/add.png'),
+				'icon'     => true,
+				'priority' => $priority++,
+		));
+		//mygroups
+		ossn_register_sections_menu('newsfeed', array(
+				'name'     => 'mygroups',
+				'text'     => ossn_print('group:my'),
+				'url'      => ossn_site_url('groups/owner/' . ossn_loggedin_user()->guid),
+				'id'       => 'ossn-group-add',
+				'parent'   => 'groups',
+				'icon'     => true,
 				'priority' => $priority++,
 		));
 		//Create link in nav to list all groups #990
@@ -219,6 +212,17 @@ function ossn_groups_page($pages) {
 						'callback' => '#ossn-group-submit',
 				));
 				break;
+		case 'owner':
+				if(!ossn_isLoggedin()) {
+						ossn_error_page();
+				}
+				$title    = ossn_print('group:my');
+				$contents = array(
+						'content' => ossn_plugin_view('groups/pages/owner'),
+				);
+				$content = ossn_set_page_layout('newsfeed', $contents);
+				echo ossn_view_page($title, $content);
+				break;
 		case 'cover':
 				if(isset($pages[1]) && !empty($pages[1])) {
 						$File       = new OssnFile();
@@ -315,7 +319,7 @@ function group_about_page($hook, $type, $return, $params) {
  */
 function group_subpage_access_validate($hook, $type, $return, $params) {
 		//[B] Allow admins to view group subpages without being a member #2420
-		 if($params['group']->membership == OSSN_PRIVATE && !$params['ismember'] && !ossn_isAdminLoggedin()){
+		if($params['group']->membership == OSSN_PRIVATE && !$params['ismember'] && !ossn_isAdminLoggedin()) {
 				redirect("group/{$params['group']->guid}/");
 		}
 }
@@ -482,9 +486,23 @@ function ossn_delete_group_relations($group) {
 				$delete         = new OssnDatabase();
 				$params['from'] = 'ossn_relationships';
 				//delete group member requests if group deleted
+				// WHERE (relation_from = ? AND type = 'group:join:approve')
+				//          OR
+				//       (relation_to = ? AND type = 'group:join')
 				$params['wheres'] = array(
-						"relation_from='{$group->guid}' AND type='group:join:approve' OR",
-						"relation_to='{$group->guid}' AND type='group:join'",
+						// Outer OR Group: Forces the OR between the two major blocks
+						OssnDatabase::wheresGroup('OR', array(
+								OssnDatabase::wheresGroup('AND', array(
+										// 1. (relation_from = $group->guid AND type = 'group:join:approve')
+										OssnDatabase::wheres('relation_from', '=', $group->guid),
+										OssnDatabase::wheres('type', '=', 'group:join:approve'),
+								)),
+								OssnDatabase::wheresGroup('AND', array(
+										// 2. OR (relation_to = $group->guid AND type = 'group:join')
+										OssnDatabase::wheres('relation_to', '=', $group->guid),
+										OssnDatabase::wheres('type', '=', 'group:join'),
+								)),
+						)),
 				);
 				if($delete->delete($params)) {
 						return true;

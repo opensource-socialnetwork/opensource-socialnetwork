@@ -70,6 +70,6 @@ $fa = array(
     'group:delete:cover' => 'حذف تصویر کاور',
     'group:delete:cover:error' => 'خطایی در هنگام حذف تصویر کاور رخ داد',
     'group:delete:cover:success' => 'تصویر کاور با موفقیت حذف شد',
-
+	'group:my' => 'گروه‌های من',
 );
 ossn_register_languages('fa', $fa);

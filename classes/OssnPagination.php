@@ -23,7 +23,7 @@ class OssnPagination {
 				}
 				$this->options = $options;
 		}
-		
+
 		/**
 		 * Get current url with arguments;
 		 *
@@ -34,14 +34,15 @@ class OssnPagination {
 				$default = array(
 						'h',
 						'p',
-						'offset'
+						'offset',
 				);
-				$unset   = array_merge($default, $kill);
+				$unset = array_merge($default, $kill);
 				if(count($_GET)) {
 						$args_url = '';
-						foreach($_GET as $key => $value) {
+						foreach ($_GET as $key => $value) {
 								//validate input again
-								$value = input($key);							
+								$value = input($key);
+								$key   = preg_replace('/[^a-zA-Z0-9_-]/', '', $key);
 								if(in_array($key, $unset)) {
 										continue;
 								}
@@ -53,7 +54,7 @@ class OssnPagination {
 						return $args_url;
 				}
 		}
-		
+
 		/**
 		 * Set arrays or objects to pagination;
 		 * @removal It will be removed within any v5.x version $arsalanshah 3/11/2018
@@ -71,13 +72,13 @@ class OssnPagination {
 						$this->setItem = $item;
 				}
 		}
-		
+
 		/**
 		 * Get spilted array or object;
 		 * @removal It will be removed within any v5.x version $arsalanshah 3/11/2018
 		 *
 		 * object may changed to arrays
-		 * 
+		 *
 		 * @return boolean
 		 */
 		public function getItem() {
@@ -97,10 +98,10 @@ class OssnPagination {
 				}
 				return false;
 		}
-		
+
 		/**
 		 * Spilt a arrays or objects into pagination
-		 * @removal It will be removed within any v5.x version $arsalanshah 3/11/2018		 
+		 * @removal It will be removed within any v5.x version $arsalanshah 3/11/2018
 		 *
 		 * @return boolean
 		 */
@@ -114,7 +115,7 @@ class OssnPagination {
 						return arraySerialize($newitem);
 				}
 		}
-		
+
 		/**
 		 * Output pagination bar
 		 *
@@ -124,9 +125,9 @@ class OssnPagination {
 				if(!isset($this->setItem) && !isset($vars)) {
 						return false;
 				}
-				if(!isset($vars['options']['offset_name']) || empty($vars['options']['offset_name'])){
-						$vars['options']['offset_name'] = 'offset'; 
-				}					
+				if(!isset($vars['options']['offset_name']) || empty($vars['options']['offset_name'])) {
+						$vars['options']['offset_name'] = 'offset';
+				}
 				if(!empty($vars)) {
 						$vars['offset'] = (int) input($vars['options']['offset_name']) ? (int) input($vars['options']['offset_name']) : 1;
 						$vars['total']  = abs($vars['limit'] / $vars['page_limit']);
@@ -138,7 +139,7 @@ class OssnPagination {
 						$newitem       = array_chunk($item, $this->ppage);
 						$newitem_total = count($newitem);
 						$pages         = arraySerialize($newitem);
-						
+
 						$offset = (int) input($vars['options']['offset_name']);
 						if(!array_key_exists($offset, $pages)) {
 								$view = 1;
@@ -150,9 +151,8 @@ class OssnPagination {
 						$params['options'] = $vars['options'];
 						return $this->view($params);
 				}
-				
 		}
-		
+
 		/**
 		 * Call a structure of pagination;
 		 *
@@ -161,7 +161,6 @@ class OssnPagination {
 		 * @return string
 		 */
 		private function view($params) {
-				return ossn_plugin_view("pagination/view", $params);
+				return ossn_plugin_view('pagination/view', $params);
 		}
-		
 } //CLASS

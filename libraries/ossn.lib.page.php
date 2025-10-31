@@ -66,6 +66,14 @@ function ossn_load_page($handler, $page) {
 		ossn_add_context($context);
 
 		$page = explode('/', $page);
+
+		//[E] Add a callback before page load #2496
+		ossn_trigger_callback('page', 'before:load', array(
+				'page'    => $page,
+				'handler' => $handler,
+				'context' => $context,
+		));
+
 		if(isset($Ossn->page) && isset($Ossn->page[$handler]) && !empty($handler) && is_callable($Ossn->page[$handler])) {
 				//supply params to hook
 				$params['page']    = $page;
@@ -139,7 +147,7 @@ function ossn_view_metatags() {
 		global $Ossn;
 		if(isset($Ossn->pageMetaTags)) {
 				$results = array();
-				foreach($Ossn->pageMetaTags as $name => $vars) {
+				foreach ($Ossn->pageMetaTags as $name => $vars) {
 						if(!empty($vars['value']) && isset($vars['property'])) {
 								$args = array();
 								if($vars['property'] === false) {

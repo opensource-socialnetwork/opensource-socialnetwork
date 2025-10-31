@@ -9,6 +9,8 @@
  * @link      https://www.opensource-socialnetwork.org/
  */
 class OssnInvite extends OssnMail {
+	public $message;
+	public $address;
 	/**
      * Check if email is valid or not
      *

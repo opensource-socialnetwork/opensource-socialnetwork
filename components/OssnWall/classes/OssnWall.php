@@ -25,7 +25,7 @@ class OssnWall extends OssnObject {
 						$access = OSSN_PUBLIC;
 				}
 				$canpost = false;
-				if(strlen($post)) {
+				if(is_string($post) && strlen($post)) {
 						$canpost = true;
 				}
 				//no more null:data you can pass null
@@ -78,10 +78,10 @@ class OssnWall extends OssnObject {
 				} else {
 						$this->data->item_guid = false;
 				}
-				$this->data->poster_guid  = $this->poster_guid;
-				$this->data->access       = $access;
-				$this->subtype            = 'wall';
-				$this->title              = '';
+				$this->data->poster_guid = $this->poster_guid;
+				$this->data->access      = $access;
+				$this->subtype           = 'wall';
+				$this->title             = '';
 
 				$post = ossn_restore_new_lines($post);
 				// Replace tabs with a space
@@ -128,12 +128,12 @@ class OssnWall extends OssnObject {
 						$params['guid']        = $this->wallguid; //object_guid should be removed
 						$params['type']        = $this->type;
 						$params['poster_guid'] = $this->poster_guid;
-						if(isset($wallpost['location'])) {
+						if(isset($location)) {
 								$params['location'] = $location;
 						}
 
-						if(isset($wallpost['friend'])) {
-								$params['friends'] = explode(',', $friends);
+						if(isset($friends)) {
+								$params['friends'] = $friends;
 						}
 						ossn_trigger_callback('wall', 'post:created', $params);
 						return $this->wallguid;
@@ -310,6 +310,7 @@ class OssnWall extends OssnObject {
 				if(empty($userguid)) {
 						return false;
 				}
+				$userguid  = intval($userguid);
 				$statement = "SELECT * FROM ossn_entities, ossn_entities_metadata WHERE(
 				  ossn_entities_metadata.guid = ossn_entities.guid
 				  AND  ossn_entities.subtype='poster_guid'

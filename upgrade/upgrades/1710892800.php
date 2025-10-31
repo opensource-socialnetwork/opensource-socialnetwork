@@ -10,7 +10,7 @@
  */
 
 ossn_generate_server_config('apache');
-ossn_version_upgrade($upgrade, '7.4');
+ossn_version_upgrade('7.4');
 
 $factory = new OssnFactory(array(
 		'callback' => 'installation',

@@ -27,8 +27,10 @@ if($user->guid == ossn_loggedin_user()->guid) {
 }
 
 $fields = ossn_user_fields_names();
-foreach ($fields['required'] as $field) {
-		$vars[$field] = input($field);
+if(is_array($fields) && isset($fields['required'])) {
+		foreach ($fields['required'] as $field) {
+				$vars[$field] = input($field);
+		}
 }
 
 if(!empty($vars)) {
@@ -54,7 +56,6 @@ if(!in_array($vars['type'], $types)) {
 		ossn_trigger_message(ossn_print('account:create:error:admin'), 'error');
 		redirect(REF);
 }
-
 
 //check if email is not in user
 if($user->email !== input('email')) {

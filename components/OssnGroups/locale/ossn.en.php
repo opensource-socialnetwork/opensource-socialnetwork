@@ -40,6 +40,7 @@ $en = array(
     'group:memb:make:owner' => 'Make group owner',
     'group:memb:make:owner:confirm' => 'Attention! This action will make >> %s << the new owner of the group and you will lose all of your group admin privileges. Are you sure to proceed?',
     'group:memb:make:owner:admin:confirm' => 'Attention! This action will make >> %s << the new owner of the group and the former owner will lose all of his group admin privileges. Are you sure to proceed?',
+	
     'leave:group' => 'Leave Group',
     'join:group' => 'Join Group',
     'total:members' => 'Total Members',
@@ -70,6 +71,6 @@ $en = array(
 	'group:delete:cover' => 'Delete Cover',
 	'group:delete:cover:error' => 'An error occurred while deleting the cover image',
 	'group:delete:cover:success' => 'The cover image was successfully deleted',
-
+	'group:my' => 'My Groups',
 );
 ossn_register_languages('en', $en); 

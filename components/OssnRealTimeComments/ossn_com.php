@@ -31,8 +31,8 @@ function rtcomments_init() {
 function rtcomments_user_delete($event, $type, $params) {
 				if(!empty($params['entity']->guid)){
 					$delete           = new OssnDatabase;
-					$params['from']   = 'ossn_relationships';
-					$params['wheres'] = array(
+					$params['from']   = 'ossn_relationships'; 
+					$params['wheres'] = array( //safe as not userinput
 							"relation_from='{$params['entity']->guid}' AND type IN('rtctypingentity', 'rtctypingpost')",
 					);
 					if($delete->delete($params)) {
@@ -45,7 +45,7 @@ function rtcomments_entity_delete($event, $type, $params) {
 				if(!empty($params['entity'])){
 					$delete           = new OssnDatabase;
 					$params['from']   = 'ossn_relationships';
-					$params['wheres'] = array(
+					$params['wheres'] = array( //safe not userinput
 							"relation_to='{$params['entity']}' AND type='rtctypingentity'",
 					);
 					if($delete->delete($params)) {

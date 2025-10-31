@@ -1,10 +1,10 @@
-OPEN SOURCE SOCIAL NETWORK V6.4 TESTS
+OPEN SOURCE SOCIAL NETWORK V8.8 TESTS
 
-TESTS BY: CORE TEAM
+TESTS BY: $arsalanshah
 
-PHP: 8.1
+PHP: 8.4
 
-BUILD: 1659870406
+Errors were fixed during testing!
 
 ## Installation
 
@@ -94,12 +94,13 @@ BUILD: 1659870406
 
 ### OssnChat
 
-* Send Message					      <b>[OK]</b>
-* Send emoticon					      <b>[OK]</b>
-* Receive Message				      <b>[OK]</b>
-* Select Friend					      <b>[OK]</b>
+* Send Message					      	<b>[OK]</b>
+* Send emoticon					      	<b>[OK]</b>
+* Receive Message				      	<b>[OK]</b>
+* Select Friend					     	 <b>[OK]</b>
 * Close Chat					        <b>[OK]</b>
-* Full Chat Window			    	<b>[OK]</b>
+* Full Chat Window			    		<b>[OK]</b>
+* Attachment							<b>[OK]</b>
 
 ### OssnMessage
 
@@ -113,13 +114,13 @@ BUILD: 1659870406
 
 ### Ossn Group
 
-* Add Group					                    <b>[OK]</b>
-* Edit Group					                  <b>[OK]</b>
-* Change Cover					                <b>[OK]</b>
-* Reposition Cover				              <b>[OK]</b>
-* Approve/Decline Request			          <b>[OK]</b>
-* On cover upload, old covers deleted		<b>[OK]</b>
-* Delete Group					                <b>[OK]</b>
+* Add Group					                   <b>[OK]</b>
+* Edit Group					               <b>[OK]</b>
+* Change Cover					               <b>[OK]</b>
+* Reposition Cover				               <b>[OK]</b>
+* Approve/Decline Request			           <b>[OK]</b>
+* On cover upload, old covers deleted		   <b>[OK]</b>
+* Delete Group					               <b>[OK]</b>
 
 ### OssnSitePages
 

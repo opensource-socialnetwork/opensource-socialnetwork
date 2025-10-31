@@ -68,9 +68,10 @@ $tr = array(
 	'group:delete:cover:error' => 'Kapak resmi başarıyla silindi',
 	'group:delete:cover:success' => 'Kapak resmi silinirken bir hata oluştu',
 
-	//need translation
-    'group:memb:make:owner' => 'Make group owner',
-    'group:memb:make:owner:confirm' => 'Attention! This action will make >> %s << the new owner of the group and you will lose all of your group admin privileges. Are you sure to proceed?',
-    'group:memb:make:owner:admin:confirm' => 'Attention! This action will make >> %s << the new owner of the group and the former owner will lose all of his group admin privileges. Are you sure to proceed?',	
+	'group:my' => 'Gruplarım',
+
+	'group:memb:make:owner' => 'Grup sahibini yap',
+	'group:memb:make:owner:confirm' => 'Dikkat! Bu işlem, >> %s << kişisini grubun yeni sahibi yapacak ve tüm grup yönetici yetkilerinizi kaybedeceksiniz. Devam etmek istediğinizden emin misiniz?',
+	'group:memb:make:owner:admin:confirm' => 'Dikkat! Bu işlem, >> %s << kişisini grubun yeni sahibi yapacak ve eski sahip tüm grup yönetici yetkilerini kaybedecek. Devam etmek istediğinizden emin misiniz?',
 );
 ossn_register_languages('tr', $tr); 

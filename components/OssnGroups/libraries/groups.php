@@ -33,14 +33,14 @@ function ossn_group_layout($contents) {
  * Get user groups (owned/member of)
  *
  * @param object $user User entity
- * @return object
+ * @param array $options Option values
+ *
+ * @return boolean|array|integer
  */
-function ossn_get_user_groups($user) {
-    if ($user) {
+function ossn_get_user_groups($user, array $options = array()) {
         $groups = new OssnGroup;
 		//get user owned/member of groups #155
-        return $groups->getMyGroups($user);
-    }
+        return $groups->getMyGroups($user, $options);
 }
 /**
  * Group subpage set

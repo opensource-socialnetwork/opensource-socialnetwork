@@ -1933,6 +1933,8 @@ a {
 	position: absolute;
 	border-radius: 50%;
 	margin-bottom: 0;
+	margin-left: -5px;
+	margin-top: -5px;
 }
 
 .user-photo-uploading span {

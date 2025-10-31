@@ -23,8 +23,8 @@ class OssnLikes extends OssnDatabase {
 				if(empty($subject_id) || empty($guid) || empty($type)) {
 						return false;
 				}
-				if(empty($reaction_type)){
-					$reaction_type = 'like';	
+				if(empty($reaction_type)) {
+						$reaction_type = 'like';
 				}
 				if($type == 'annotation') {
 						$annotation = ossn_get_annotation($subject_id);
@@ -32,9 +32,9 @@ class OssnLikes extends OssnDatabase {
 								return false;
 						}
 						ossn_trigger_callback('like', 'before:created', array(
-									'type' => 'annotation',
-									'annotation' => $annotation,
-						));							
+								'type'       => 'annotation',
+								'annotation' => $annotation,
+						));
 				}
 				if($type == 'post' || $type == 'object') {
 						$object = ossn_get_object($subject_id);
@@ -42,9 +42,9 @@ class OssnLikes extends OssnDatabase {
 								return false;
 						}
 						ossn_trigger_callback('like', 'before:created', array(
-									'type' => 'object',
-									'object' => $object,
-						));							
+								'type'   => 'object',
+								'object' => $object,
+						));
 				}
 				if($type == 'entity') {
 						$entity = ossn_get_entity($subject_id);
@@ -52,10 +52,10 @@ class OssnLikes extends OssnDatabase {
 								return false;
 						}
 						ossn_trigger_callback('like', 'before:created', array(
-									'type' => 'entity',
-									'entity' => $entity,
-						));	
-				}				
+								'type'   => 'entity',
+								'entity' => $entity,
+						));
+				}
 				if(!$this->isLiked($subject_id, $guid, $type)) {
 						$this->statement("INSERT INTO ossn_likes (`subject_id`, `guid`, `type`, `subtype`)
 					           VALUES('{$subject_id}', '{$guid}', '{$type}', '{$reaction_type}');");
@@ -69,7 +69,7 @@ class OssnLikes extends OssnDatabase {
 				}
 				return false;
 		}
-		
+
 		/**
 		 * Check if user liked item or not
 		 *
@@ -84,13 +84,13 @@ class OssnLikes extends OssnDatabase {
 	                     subject_id='{$subject_id}' AND guid='{$guid}' AND type='{$type}');");
 				$this->execute();
 				$this->check = $this->fetch();
-				
+
 				if(!empty($this->check->id)) {
 						return true;
 				}
 				return false;
 		}
-		
+
 		/**
 		 * Unlike item
 		 *
@@ -104,12 +104,12 @@ class OssnLikes extends OssnDatabase {
 				if(empty($subject_id) || empty($guid) || empty($type)) {
 						return false;
 				}
-			
+
 				$vars               = array();
 				$vars['subject_id'] = $subject_id;
 				$vars['type']       = $type;
 				$vars['guid']       = $guid;
-				
+
 				ossn_trigger_callback('like', 'before:deleted', $vars);
 				if($this->isLiked($subject_id, $guid, $type)) {
 						$this->statement("DELETE FROM ossn_likes WHERE(
@@ -121,7 +121,7 @@ class OssnLikes extends OssnDatabase {
 				}
 				return false;
 		}
-		
+
 		/**
 		 * Delte subject likes
 		 *
@@ -136,15 +136,15 @@ class OssnLikes extends OssnDatabase {
 				}
 				//[B]Like deleted callback triggered even if there is no likes #1643
 				$likes = $this->GetLikes($subject_id, $type);
-				if($likes){
-					$this->statement("DELETE FROM ossn_likes WHERE(subject_id='{$subject_id}' AND type='{$type}');");
-					if($this->execute()) {
-							$vars               = array();
-							$vars['subject_id'] = $subject_id;
-							$vars['type']       = $type;
-							ossn_trigger_callback('like', 'deleted', $vars);
-							return true;
-					}
+				if($likes) {
+						$this->statement("DELETE FROM ossn_likes WHERE(subject_id='{$subject_id}' AND type='{$type}');");
+						if($this->execute()) {
+								$vars               = array();
+								$vars['subject_id'] = $subject_id;
+								$vars['type']       = $type;
+								ossn_trigger_callback('like', 'deleted', $vars);
+								return true;
+						}
 				}
 				return false;
 		}
@@ -174,7 +174,7 @@ class OssnLikes extends OssnDatabase {
 		 * @return bool;
 		 */
 		public function CountLikes($subject_id, $type = 'post') {
-				$likes = $this->GetLikes($subject_id, $type);
+				$likes                 = $this->GetLikes($subject_id, $type);
 				$this->__likes_get_all = $likes;
 				if($likes) {
 						$likes = get_object_vars($likes);
@@ -184,20 +184,29 @@ class OssnLikes extends OssnDatabase {
 				}
 				return false;
 		}
-		
+
 		/**
 		 * Get likes
 		 *
-		 * @params integer $subject_id Id of item which users liked
-		 * @params string  $type Subject type
+		 * @param integer $subject_id Id of item which users liked
+		 * @param string  $type Subject type
+		 * @param array   $wheres Extra wheres for likes
 		 *
 		 * @return bool;
 		 */
-		public function GetLikes($subject_id, $type = 'post') {
-				$this->statement("SELECT * FROM ossn_likes WHERE (
-	                     subject_id='{$subject_id}' AND type='{$type}');");
-				$this->execute();
-				return $this->fetch(true);
+		public function GetLikes($subject_id, $type = 'post', array $wheres = array()) {
+				if(empty($subject_id) || empty($type)) {
+						return false;
+				}
+				$default = array(
+						OssnDatabase::wheres('subject_id', '=', $subject_id),
+						OssnDatabase::wheres('type', '=', $type),
+				);
+				$args = array(
+						'from'       => 'ossn_likes as l',
+						'page_limit' => false,
+						'wheres'     => array_merge($default, $wheres),
+				);
+				return $this->select($args, true);
 		}
-		
 } //class

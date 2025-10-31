@@ -1,3 +1,29 @@
+OSSN - OPEN SOURCE SOCIAL NETWORK vx.x
+- [E] Add favicon using callback so it can be removed using component #2497
+- [E] Add a callback before page load #2496
+- [B] ossn_include_upgrade_file replaces $file variable #2495
+
+
+OSSN - OPEN SOURCE SOCIAL NETWORK v8.9
+- [B] groups not showing in search because of $q in single quotes #2487
+- [B] Group shows wrong member requests #2486
+- [B] Other PHP deprecations fixes
+
+OSSN - OPEN SOURCE SOCIAL NETWORK v8.8
+- [B] Tag notification is not sending #2485
+- [B] PHP 8.4 deprecations for OSSN 8.8 #2484
+- [B] User can view blocked user album photo #2483
+- [B] RealTimeComments shows comments if user are blocked #2482
+- [E] Show user groups on seperate page avoid searching in init function for menus #2480
+- [B] SQL Injection discoverd by KGAN #2479
+
+
+OSSN - OPEN SOURCE SOCIAL NETWORK v8.7
+- [B] When profile edit animation is outside of round box #2477
+- [E] Refactor ossn_version_upgrade #2478
+- [B] Deprecations PHP 8.4 for OSSN v8.7 #2476
+- [B] Resolved a cross-site scripting (XSS) vulnerability that impacted all OSSN versions earlier than v8.7. Thanks to Kgan for reporting.
+
 OSSN - OPEN SOURCE SOCIAL NETWORK v8.6
 - [B] OssnAds image not showing #2471
 - [E] Make time_updated = time_created by default not 0 #2472
