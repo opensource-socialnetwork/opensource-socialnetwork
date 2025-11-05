@@ -8,14 +8,16 @@
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
  * @link      https://www.opensource-socialnetwork.org/
  */
-$hu = array(
-    'ossnsitepages' => 'Oldalak',
-    'site:privacy' => 'Jogi infók',
-    'site:about' => 'Az oldalról',
-    'site:terms' => 'Felhasználási feltételek',
+ossn_register_languages('hu', array(
+		'ossnsitepages'         => 'Webhely oldalak',
+		'site:privacy'          => 'Adatvédelem',
+		'site:about'            => 'Rólunk',
+		'site:terms'            => 'Felhasználási feltételek',
 
-    'page:saved' => 'Az oldal sikeresen mentve!',
-    'page:save:error' => 'Nem menthető az oldal. Kérünk próbáld meg később.',
-
-);
-ossn_register_languages('hu', $hu);
+		'page:saved'            => 'Oldal sikeresen mentve!',
+		'page:save:error'       => 'Nem lehet menteni az oldalt! Kérjük, próbálja meg később.',
+		'sitepages:page'        => 'Oldal',
+		'sitepages:edit'        => 'Szerkesztés',
+		'sitepages:delete'      => 'Törlés',
+		'sitepages:defaultlang' => 'Válassza ki a preferált nyelvet. Ha a kiválasztott nyelvhez nincs elérhető fordítás, a tartalom a visszaállított nyelven fog megjelenni.',
+));
