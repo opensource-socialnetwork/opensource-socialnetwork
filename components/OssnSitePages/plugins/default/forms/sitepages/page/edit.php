@@ -65,6 +65,7 @@ foreach ($langcodes as $code) {
 			$('body').on('change', '#sitepages-page', function(){
 					var val = $(this).val();
 					$('#sitepage-loading').removeClass('d-none');
+					$('#sitepage-textarea').fadeOut();
 					window.location = Ossn.site_url + 'administrator/component/OssnSitePages?page='+val;	
 			});	
 			$('body').on('change', '#sitepages-language', function(){
