@@ -1,10 +1,12 @@
 <?php
 $pages = array(
 		''        => '',
-		'terms'   => ossn_print('site:terms'),
-		'about'   => ossn_print('site:about'),
-		'privacy' => ossn_print('site:privacy'),
 );
+foreach(ossn_site_pages_valid_pages_prefixes() as $prefix){
+	$locale = str_replace('-', ':', $prefix);
+	$locale = 'site:'.$locale;
+	$pages[$prefix] = ossn_print($locale);	
+}
 $page = input('page');
 if(!empty($page) && !in_array($page, ossn_site_pages_valid_pages_prefixes())) {
 		$page = '';
@@ -52,7 +54,7 @@ foreach ($langcodes as $code) {
 			$text = html_entity_decode($sitepage->description);
 		}	
 		?>
-		<textarea id="sitepage-textarea" name="description" class="ossn-editor"><?php echo $text; ?></textarea>
+		<textarea id="sitepage-textarea" name="description"><?php echo $text; ?></textarea>
         <input type="submit" class="mt-2 btn btn-success btn-sm" value="<?php echo ossn_print('save'); ?>"/>
 	<?php 
 	}
