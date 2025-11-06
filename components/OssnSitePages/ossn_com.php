@@ -123,7 +123,7 @@ function ossn_site_pages($pages) {
 
 		// Set page content and title
 		$params['contents'] = isset($page_data->description) ? html_entity_decode($page_data->description) : '';
-		$params['title']    = ossn_print('site:' . $page);
+		$params['title']    = ossn_print('site:' . str_replace('-', ':', $page));
 
 		// Generate the content and display the page
 		$contents = array(
