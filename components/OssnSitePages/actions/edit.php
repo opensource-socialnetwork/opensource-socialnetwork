@@ -13,7 +13,7 @@ $page = input('page');
 $desc = input('description');
 $lang = input('language');
 
-if(in_array($page, ossn_site_pages_valid_pages_prefixes())) {
+if(!in_array($page, ossn_site_pages_valid_pages_prefixes())) {
 		ossn_trigger_message(ossn_print('page:save:error'), 'error');
 		redirect(REF);
 }

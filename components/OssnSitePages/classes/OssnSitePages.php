@@ -25,7 +25,7 @@ class OssnSitePages extends OssnObject {
 						return false;
 				}
 				//check if already exists
-				if($page = $this->getPage($prefix, $language)) {
+				if($page = $this->getPrefix($prefix, $language)) {
 						//update
 						$page->description = $desc;
 						return $page->save();
