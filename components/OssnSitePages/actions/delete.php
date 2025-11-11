@@ -8,13 +8,9 @@
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
  * @link      https://www.opensource-socialnetwork.org/
  */
-$save = new OssnSitePages;
-$save->pagename = 'about';
-$save->pagebody = input('pagebody');
-if ($save->SaveSitePage()) {
-    ossn_trigger_message(ossn_print('page:saved'), 'success');
-    redirect(REF);
-} else {
-    ossn_trigger_message(ossn_print('page:save:error'), 'error');
-    redirect(REF);
+$guid = input('guid');
+$page = ossn_get_object($guid);
+if($page && $page->subtype == 'sitepage'){
+	$page->deleteObject();
 }
+redirect(REF);

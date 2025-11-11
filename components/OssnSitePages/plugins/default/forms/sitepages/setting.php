@@ -8,19 +8,27 @@
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
  * @link      https://www.opensource-socialnetwork.org/
  */
-$OssnSitePages = new OssnSitePages;
-$OssnSitePages->pagename = 'privacy';
-$OssnSitePages = $OssnSitePages->getPage();
-if($OssnSitePages) {
-	$description = html_entity_decode($OssnSitePages->description);
-} else {
-	$description = '';
+$langcodes = ossn_standard_language_codes();
+$langs[''] = '';
+foreach($langcodes as $code){
+	$langs[$code] =	ossn_print($code);
+}
+$lang = '';
+$fall = ossn_site_pages_fallback_language();
+if($fall){
+	$lang = $fall;	
 }
 ?>
 <div>
-	<label><?php echo ossn_print('site:privacy'); ?></label>
-	<textarea name="pagebody" class="ossn-editor"><?php echo $description; ?></textarea>
-</div>
+	<div class="alert alert-warning"><?php echo ossn_print('sitepages:defaultlang');?></div>
+    <?php 
+		echo ossn_plugin_view('input/dropdown', array(
+			'name' => 'language',
+			'options' => $langs,
+			'value' => $lang,
+		)); 
+	?>
+<div>
 <div class="margin-top-10">
 	<input type="submit" class="btn btn-success btn-sm" value="<?php echo ossn_print('save'); ?>"/>
 </div>

@@ -3,14 +3,13 @@
     <name>Ossn Site Pages</name>
     <id>OssnSitePages</id>
     <author>Core Team</author>
-    <description>Create a about, terms page.</description>
+    <description>Create a about, terms and privacy page.</description>
     <license>Open Source Social Network License (OSSN LICENSE)</license>
     <author_url>https://www.openteknik.com/</author_url>
     <license_url>http://www.opensource-socialnetwork.org/licence/</license_url>
-    <author_url>http://informatikon.com</author_url>
-    <version>3.2</version>
+    <version>4.0</version>
 	<requires>
 		<type>ossn_version</type>
-		<version>5.6</version>
+		<version>8.6</version>
 	</requires>
 </component>

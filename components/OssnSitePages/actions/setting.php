@@ -8,14 +8,12 @@
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
  * @link      https://www.opensource-socialnetwork.org/
  */
-$save = new OssnSitePages;
-$save->pagename = 'terms';
-$save->pagebody = input('pagebody');
-if ($save->SaveSitePage()) {
-    ossn_trigger_message(ossn_print('page:saved'), 'success');
-    redirect(REF);
-} else {
-    ossn_trigger_message(ossn_print('page:save:error'), 'error');
-    redirect(REF);
-}
+$lang = input('language');
 
+$component = new OssnComponents();
+$settings  = array(
+		'fallback_language' => $lang,
+);
+
+$component->setSettings('OssnSitePages', $settings);
+redirect(REF);

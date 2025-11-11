@@ -8,14 +8,16 @@
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
  * @link      https://www.opensource-socialnetwork.org/
  */
-$ro = array(
-    'ossnsitepages' => 'Paginile Site ului',
-    'site:privacy' => 'Protectie Personala',
-    'site:about' => 'Despre',
-    'site:terms' => 'Termeni si Conditii',
+ossn_register_languages('ro', array(
+		'ossnsitepages'         => 'Pagini ale site-ului',
+		'site:privacy'          => 'Confiden?ialitate',
+		'site:about'            => 'Despre noi',
+		'site:terms'            => 'Termeni ?i condi?ii',
 
-    'page:saved' => 'Pagina a fost Salvata!',
-    'page:save:error' => 'Nu putem salva pagina! Incearca mai tarziu.',
-
-);
-ossn_register_languages('ro', $ro); 
+		'page:saved'            => 'Pagina a fost salvata cu succes!',
+		'page:save:error'       => 'Nu s-a putut salva pagina! Te rugam sa încerci din nou mai târziu.',
+		'sitepages:page'        => 'Pagina',
+		'sitepages:edit'        => 'Editeaza',
+		'sitepages:delete'      => '?terge',
+		'sitepages:defaultlang' => 'Selecteaza limba preferata. Daca traducerea în limba aleasa nu este disponibila, se va afi?a traducerea în limba de rezerva.',
+));

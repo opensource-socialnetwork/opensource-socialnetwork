@@ -8,14 +8,16 @@
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
  * @link      https://www.opensource-socialnetwork.org/
  */
-$de = array(
-    'ossnsitepages' => 'Seiten-Verwaltung',
-    'site:privacy' => 'Datenschutz',
-    'site:about' => 'Über&nbsp;uns',
-    'site:terms' => 'AGB',
+ossn_register_languages('de', array(
+		'ossnsitepages'         => 'Seiten',
+		'site:privacy'          => 'Datenschutz',
+		'site:about'            => 'Über uns',
+		'site:terms'            => 'Allgemeine Geschäftsbedingungen',
 
-    'page:saved' => 'Die Seiten-Änderung wurde gespeichert',
-    'page:save:error' => 'Die Seite kann nicht gespeichert werden',
-
-);
-ossn_register_languages('de', $de); 
+		'page:saved'            => 'Seite erfolgreich gespeichert!',
+		'page:save:error'       => 'Seite kann nicht gespeichert werden! Bitte versuche es später noch einmal.',
+		'sitepages:page'        => 'Seite',
+		'sitepages:edit'        => 'Bearbeiten',
+		'sitepages:delete'      => 'Löschen',
+		'sitepages:defaultlang' => 'Wähle deine bevorzugte Sprache. Wenn eine Übersetzung in der gewählten Sprache nicht verfügbar ist, wird die Übersetzung in der Fallback-Sprache angezeigt.',
+));

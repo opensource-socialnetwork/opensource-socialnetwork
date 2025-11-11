@@ -10,50 +10,81 @@
  * @link      https://www.opensource-socialnetwork.org/
  */
 class OssnSitePages extends OssnObject {
-    /**
-     * Save site page
-     *
-     * @params $object->description: Page body
-     *
-     * @return bool;
-     */
-    public function SaveSitePage() {
-        $this->title = '';
-        $this->description = trim(htmlspecialchars($this->pagebody));
+        /**
+		 * Save site page
+		 * 
+		 * @param string $prefix page prefix
+		 * @param string $desc Page contents
+		 * @param string $language Lang code
+		 *
+		 * @return boolean
+		 */
+		public function savePage($prefix, $desc, $language) {
+				//desc can be empty
+				if(empty($prefix) || empty($language)) {
+						return false;
+				}
+				//check if already exists
+				if($page = $this->getPrefix($prefix, $language)) {
+						//update
+						$page->description = $desc;
+						return $page->save();
+				}
+				$this->title             = '';
+				$this->description       = $desc;
+				$this->owner_guid        = 1;
+				$this->type              = 'site';
+				$this->subtype           = 'sitepage';
+				$this->data->page_prefix = $prefix;
+				$this->data->language    = $language;
+				return $this->addObject();
+		}
+        /**
+		 * get site page by prefix
+		 * 
+		 * @param string $prefix page prefix
+		 * @param string $language Lang code
+		 *
+		 * @return boolean|object
+		 */		
+		public function getPrefix($prefix, $language) {
+				if(empty($prefix) || empty($language)) {
+						return false;
+				}
+				$page = $this->searchObject(array(
+						'type'           => 'site',
+						'subtype'        => 'sitepage',
+						'entities_pairs' => array(
+								array(
+										'name'  => 'page_prefix',
+										'value' => $prefix,
+								),
+								array(
+										'name'  => 'language',
+										'value' => $language,
+								),
+						),
+				));
+				if(isset($page)) {
+						return $page[0];
+				}
+				return false;
+		}
+        /**
+		 * Get all site pages
+		 * 
+		 * @param array $params Array option values
+		 *
+		 * @return boolean|object
+		 */			
+		public function getAll(array $params = array()) {
+				$default = array(
+						'type'    => 'site',
+						'subtype' => 'sitepage',
+				);
+				$args = array_merge($default, $params);
+				$list = $this->searchObject($args);
 
-        $this->owner_guid = 1;
-        $this->type = 'site';
-        $this->subtype = "sitepage:{$this->pagename}";
-        //check if page exists of not
-        if (!$this->getPage()) {
-            if ($this->addObject()) {
-                return true;
-            }
-        } else {
-            $data = array('description');
-            $values = array($this->description);
-            if ($this->updateObject($data, $values, $this->getPage()->guid)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
-     * Get page site page
-     *
-     * @return object;
-     */
-    public function getPage() {
-		$params = array(
-			'type' => 'site',
-			'subtype' => "sitepage:{$this->pagename}"
-		);
-		$sitepage = $this->searchObject($params);
-        if($sitepage) {
-			return $sitepage[0];
-        }
-        return false;
-    }
-
-}//class
+				return $list;
+		}
+} //class
