@@ -65,7 +65,8 @@ class OssnSitePages extends OssnObject {
 								),
 						),
 				));
-				if(isset($page)) {
+				
+				if($page) {
 						return $page[0];
 				}
 				return false;
