@@ -740,22 +740,24 @@ class OssnUser extends OssnEntities {
 				}
 				if(isset($options['entities_pairs']) && is_array($options['entities_pairs'])) {
 						foreach ($options['entities_pairs'] as $key => $pair) {
-								$operand = empty($pair['operand']) ? '=' : $pair['operand'];
-								if(!empty($pair['name']) && isset($pair['value']) && !empty($operand)) {
+								$comparator = empty($pair['comparator']) ? '=' : $pair['comparator'];
+								if(!empty($pair['name']) && isset($pair['value']) && !empty($comparator)) {
+										//[E] slashes doesn't required for entites pairs search #2508
+										//if(!empty($pair['value'])) {
+										//		$pair['value'] = addslashes($pair['value']);
+										//}
 										$wheres[] = "e{$key}.type='user'";
 										$wheres[] = "e{$key}.subtype='{$pair['name']}'";
-
+										
+										//old query like in single line string
 										if(isset($pair['wheres']) && !empty($pair['wheres'])) {
 												$wheres[] = str_replace('[this].', "emd{$key}.", $pair['wheres']);
 										} else {
-												//$wheres_pairs[] = "emd{$key}.value {$operand} '{$pair['value']}'";
+												//$wheres_pairs[] = "emd{$key}.value {$comparator} '{$pair['value']}'";
 												//v8.8 uses prepared wheres
-												$wheres[] = array(
-														'name'     => "emd{$key}.value",
-														'operator' => $operand,
-														'value'    => $pair['value'],
-												);
+												$wheres[] = OssnDatabase::wheres("emd{$key}.value", $comparator, $pair['value']);
 										}
+										
 										$params['joins'][] = "JOIN ossn_entities as e{$key} ON e{$key}.owner_guid=u.guid";
 										$params['joins'][] = "JOIN ossn_entities_metadata as emd{$key} ON e{$key}.guid=emd{$key}.guid";
 								}

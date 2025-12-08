@@ -357,31 +357,33 @@ class OssnAnnotation extends OssnEntities {
 				if(!empty($options['subject_guid'])) {
 						$wheres[] = "a.subject_guid ='{$options['subject_guid']}'";
 				}
+				
 				if(isset($options['entities_pairs']) && is_array($options['entities_pairs'])) {
 						foreach ($options['entities_pairs'] as $key => $pair) {
-								$operand = empty($pair['operand']) ? '=' : $pair['operand'];
-								if(!empty($pair['name']) && isset($pair['value']) && !empty($operand)) {
-										if(!empty($pair['value'])) {
-												$pair['value'] = addslashes($pair['value']);
-										}
+								$comparator = empty($pair['comparator']) ? '=' : $pair['comparator'];
+								if(!empty($pair['name']) && isset($pair['value']) && !empty($comparator)) {
+										//[E] slashes doesn't required for entites pairs search #2508
+										//if(!empty($pair['value'])) {
+										//		$pair['value'] = addslashes($pair['value']);
+										//}
 										$wheres[] = "e{$key}.type='annotation'";
 										$wheres[] = "e{$key}.subtype='{$pair['name']}'";
+										
+										//old query like in single line string
 										if(isset($pair['wheres']) && !empty($pair['wheres'])) {
 												$wheres[] = str_replace('[this].', "emd{$key}.", $pair['wheres']);
 										} else {
-												//$wheres_pairs[] = "emd{$key}.value {$operand} '{$pair['value']}'";
+												//$wheres_pairs[] = "emd{$key}.value {$comparator} '{$pair['value']}'";
 												//v8.8 uses prepared wheres
-												$wheres[] = array(
-														'name'     => "emd{$key}.value",
-														'operator' => $operand,
-														'value'    => $pair['value'],
-												);
+												$wheres[] = OssnDatabase::wheres("emd{$key}.value", $comparator, $pair['value']);
 										}
+										
 										$params['joins'][] = "INNER JOIN ossn_entities as e{$key} ON e{$key}.owner_guid=a.id";
 										$params['joins'][] = "INNER JOIN ossn_entities_metadata as emd{$key} ON e{$key}.guid=emd{$key}.guid";
 								}
 						}
 				}
+				
 				$params['joins'][] = 'INNER JOIN ossn_entities as e ON e.owner_guid=a.id';
 				$params['joins'][] = 'INNER JOIN ossn_entities_metadata as emd ON e.guid=emd.guid';
 
