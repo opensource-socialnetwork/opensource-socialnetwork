@@ -320,7 +320,7 @@ class OssnNotifications extends OssnDatabase {
 						$valid = array(
 								'guid',
 								'type',
-								'poser_guid',
+								'poster_guid', //fix typo #2512
 								'owner_guid',
 								'subject_guid',
 								'item_guid',
@@ -333,29 +333,20 @@ class OssnNotifications extends OssnDatabase {
 						if(empty($params)) {
 								return false;
 						}
+						//[B] ossn_notifications -> group:joinrequest orphans on group deletion #2512
 						foreach ($params as $key => $where) {
 								if(is_array($where)) {
-										foreach ($where as $implode) {
-												$items[] = "'{$implode}'";
-										}
-										$wheres[] = array(
-												'name'       => $key,
-												'comparator' => 'IN',
-												'value'      => $items,
-										);
+										$wheres[] = OssnDatabase::wheres($key, 'IN', $where);
 										unset($items);
 										unset($in);
 								} else {
-										$wheres[] = array(
-												'name'       => $key,
-												'comparator' => '=',
-												'value'      => $where,
-										);
+										$wheres[] = OssnDatabase::wheres($key, '=', $where);
 								}
 						}
 						if(empty($wheres)) {
 								return false;
 						}
+						
 						$vars           = array();
 						$vars['from']   = 'ossn_notifications';
 						$vars['wheres'] = $wheres;
