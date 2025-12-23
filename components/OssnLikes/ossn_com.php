@@ -39,23 +39,25 @@ function ossn_likes(){
 		ossn_register_callback('annotation', 'delete', 'ossn_comment_like_delete');
 		ossn_register_callback('user', 'delete', 'ossn_user_likes_delete');
 		ossn_register_callback('wall', 'load:item', 'ossn_wall_like_menu', 1);
+		
+		if(ossn_isLoggedin()){
+			ossn_register_callback('entity', 'load:comment:share:like', 'ossn_entity_like_link', 1);
+			ossn_register_callback('object', 'load:comment:share:like', 'ossn_object_like_link', 1);
+			
+			ossn_add_hook('notification:view', 'like:annotation:comments:post', 'ossn_like_annotation');
+			ossn_add_hook('notification:view', 'like:annotation:comments:entity', 'ossn_like_annotation');
+			ossn_add_hook('notification:view', 'like:annotation:comments:object', 'ossn_like_annotation');
 
-		ossn_register_callback('entity', 'load:comment:share:like', 'ossn_entity_like_link', 1);
-		ossn_register_callback('object', 'load:comment:share:like', 'ossn_object_like_link', 1);
+			ossn_add_hook('notification:participants', 'like:post', 'ossn_likes_suppress_participants_notifications');
+			ossn_add_hook('notification:participants', 'like:annotation', 'ossn_likes_suppress_participants_notifications');
+			ossn_add_hook('notification:participants', 'like:post:group:wall', 'ossn_likes_suppress_participants_notifications');
+		}
 
 		ossn_register_page('likes', 'ossn_likesview_page_handler');
-
-		ossn_add_hook('notification:view', 'like:annotation:comments:post', 'ossn_like_annotation');
-		ossn_add_hook('notification:view', 'like:annotation:comments:entity', 'ossn_like_annotation');
-		ossn_add_hook('notification:view', 'like:annotation:comments:object', 'ossn_like_annotation');
 		
 		ossn_add_hook('post', 'likes', 'ossn_post_likes');
 		ossn_add_hook('post', 'likes:entity', 'ossn_post_likes_entity');
 		ossn_add_hook('post', 'likes:object', 'ossn_post_likes_object');
-
-		ossn_add_hook('notification:participants', 'like:post', 'ossn_likes_suppress_participants_notifications');
-		ossn_add_hook('notification:participants', 'like:annotation', 'ossn_likes_suppress_participants_notifications');
-		ossn_add_hook('notification:participants', 'like:post:group:wall', 'ossn_likes_suppress_participants_notifications');
 }
 
 /**
