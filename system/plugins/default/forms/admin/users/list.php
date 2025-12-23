@@ -8,25 +8,27 @@
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
  * @link      https://www.opensource-socialnetwork.org/
  */
-$search = input('search_users');
-$users = new OssnUser;
-$pagination = new OssnPagination;
+$search     = input('search_users');
+$users      = new OssnUser();
+$pagination = new OssnPagination();
 
-if (!empty($search)) {
-   $list = $users->searchUsers(array(
-				 'keyword' => $search,
-			));
-   $count = $users->searchUsers(array(
-				 'count' => true,
-			));  
+if(!empty($search)) {
+		$list = $users->searchUsers(array(
+				'keyword' => $search,
+		));
+		$count = $users->searchUsers(array(
+				'keyword' => $search,
+				'count'   => true,
+		));
 } else {
-   $list = $users->searchUsers(array(
-				 'keyword' => false,
-			));
-   $count = $users->searchUsers(array(
-				 'keyword' => false,
-				 'count' => true,
-			));  }
+		$list = $users->searchUsers(array(
+				'keyword' => false,
+		));
+		$count = $users->searchUsers(array(
+				'keyword' => false,
+				'count'   => true,
+		));
+}
 ?>
 <div class="margin-top-10">
 <table class="table ossn-users-list">
