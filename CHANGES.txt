@@ -11,6 +11,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK vx.x
 - [B] [E_WARNING] "Attempt to read property "username" on bool" in file /actions/user/login.php (line 27) #2490
 - [B] [E_WARNING] "Attempt to read property "guid" on false" in /components/OssnLikes/ossn_com.php (line 141) #2492
 - [B] [E_DEPRECATED] preg_match Passing null to parameter #2 & preg_replace(): Passing null to parameter #3 #2493
+- [B] admin users earch gives wrong pagination #2505
 
 
 
