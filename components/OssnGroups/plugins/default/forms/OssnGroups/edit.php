@@ -9,6 +9,8 @@
  * @link      https://www.opensource-socialnetwork.org/
  */
 $group = $params['group'];
+$open  = "";
+$close = "";
 ?>
 <label><?php echo ossn_print('group:name'); ?></label>
 <input type="text" name="groupname" value="<?php echo $group->title; ?>"/>
