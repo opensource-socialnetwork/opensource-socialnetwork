@@ -2,6 +2,14 @@ OSSN - OPEN SOURCE SOCIAL NETWORK vx.x
 - [E] Add favicon using callback so it can be removed using component #2497
 - [E] Add a callback before page load #2496
 - [B] ossn_include_upgrade_file replaces $file variable #2495
+- [B] Some OssnGroup related warnings #2513
+- [B] ossn_notifications -> group:joinrequest orphans on group deletion #2512
+- [B] admins can not view access=1 posts if not member of group #2510
+- [E] slashes doesn't required for entites pairs search #2508
+- [B] Wheres only accept 'comparator' not 'operator' in wheres manual #2507
+- [E] Allow dynamic file names using ossn page handler #2499
+- [B] [E_WARNING] "Attempt to read property "username" on bool" in file /actions/user/login.php (line 27) #2490
+
 
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v8.9
