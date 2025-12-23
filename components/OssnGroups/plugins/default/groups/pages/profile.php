@@ -25,6 +25,10 @@ if ($cover) {
 	else {
 		$cover_left = 'left:0px;';
 	}
+	//[B] Some OssnGroup related warnings #2513
+	if(!is_array($coverp)){
+		$coverp = array();	
+	}
 	if(!isset($coverp[0])){
 		$coverp[0] = '';
 	}
