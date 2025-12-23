@@ -42,7 +42,9 @@ class OssnTranslit {
 	 */
 	static public function urlize($string, $separator = '-') {
 		// Iñtërnâtiônàlizætiøn, AND 日本語!
-
+		if(empty($string)){
+			return $string;	
+		}
 		// try to force combined chars because the translit map and others expect it
 		if (self::hasNormalizerSupport()) {
 			$nfc = normalizer_normalize($string);
@@ -111,7 +113,7 @@ class OssnTranslit {
 	 */
 	static public function transliterateAscii($utf8) {
 		static $map = null;
-		if (!preg_match('/[\x80-\xff]/', $utf8)) {
+		if (!is_string($utf8) || !preg_match('/[\x80-\xff]/', $utf8)) {
 			return $utf8;
 		}
 		if (null === $map) {
