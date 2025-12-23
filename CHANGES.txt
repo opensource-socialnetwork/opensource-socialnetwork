@@ -9,6 +9,9 @@ OSSN - OPEN SOURCE SOCIAL NETWORK vx.x
 - [B] Wheres only accept 'comparator' not 'operator' in wheres manual #2507
 - [E] Allow dynamic file names using ossn page handler #2499
 - [B] [E_WARNING] "Attempt to read property "username" on bool" in file /actions/user/login.php (line 27) #2490
+- [B] [E_WARNING] "Attempt to read property "guid" on false" in /components/OssnLikes/ossn_com.php (line 141) #2492
+- [B] [E_DEPRECATED] preg_match Passing null to parameter #2 & preg_replace(): Passing null to parameter #3 #2493
+
 
 
 
