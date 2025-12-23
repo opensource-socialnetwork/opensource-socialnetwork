@@ -323,7 +323,8 @@ function ossn_post_page($pages) {
 				if($post->type == 'group' && com_is_active('OssnGroups')) {
 						$group = ossn_get_group_by_guid($post->owner_guid);
 						if($group && $group->membership == OSSN_PRIVATE) {
-								if((ossn_isLoggedin() && !$group->isMember($group->guid, $loggedin->guid)) || !ossn_isLoggedin()) {
+								//[B] admins can not view access=1 posts if not member of group #2510
+								if((ossn_isLoggedin() && !ossn_isAdminLoggedin() && !$group->isMember($group->guid, $loggedin->guid)) || !ossn_isLoggedin()) {
 										ossn_error_page();
 								}
 						}
