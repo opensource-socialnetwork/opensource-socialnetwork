@@ -397,6 +397,51 @@ function ossn_administrator_pagehandler($pages) {
 				);
 				echo json_encode($version);
 				break;
+		case 'xhr':
+				header('Content-Type: application/json; charset=utf-8');
+				$users = new OssnUser();
+				switch ($pages[1]) {
+				case 'online_by_gender':
+						$gender = input('gender');
+						$online = false;
+
+						if(!empty($gender)) {
+								$genders = explode(',', $gender);
+
+								foreach ($genders as $gender) {
+										$online[$gender] = $users->onlineByGender($gender, true);
+								}
+						}
+						echo json_encode(array(
+								'online' => $online,
+						));
+						break;
+				case 'count_by_gender':
+						$gender = input('gender');
+						$total  = false;
+
+						if(!empty($gender)) {
+								$genders = explode(',', $gender);
+
+								foreach ($genders as $gender) {
+										$total[$gender] = $users->countByGender($gender);
+								}
+						}
+						echo json_encode(array(
+								'total' => $total,
+						));
+						break;
+				case 'unvalidated':
+						$unvalidated = $users->getUnvalidatedUSERS('', true);
+						if(!$unvalidated) {
+								$unvalidated = 0;
+						}
+						echo json_encode(array(
+								'total' => $unvalidated,
+						));
+						break;
+				}
+				break;
 		default:
 				ossn_error_page();
 				break;
