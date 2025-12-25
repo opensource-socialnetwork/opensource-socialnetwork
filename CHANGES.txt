@@ -15,6 +15,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK vx.x
 - [B] Wrong locale content for OssnLocation #2509
 - [E] Load Admin dashboard graphs using xhr #2519
 - [E] Improve OssnUser::countByGender method #2517
+- [E] Remove order_by for counts #2516
 
 
 
