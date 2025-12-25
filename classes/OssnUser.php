@@ -748,7 +748,7 @@ class OssnUser extends OssnEntities {
 										//}
 										$wheres[] = "e{$key}.type='user'";
 										$wheres[] = "e{$key}.subtype='{$pair['name']}'";
-										
+
 										//old query like in single line string
 										if(isset($pair['wheres']) && !empty($pair['wheres'])) {
 												$wheres[] = str_replace('[this].', "emd{$key}.", $pair['wheres']);
@@ -757,7 +757,7 @@ class OssnUser extends OssnEntities {
 												//v8.8 uses prepared wheres
 												$wheres[] = OssnDatabase::wheres("emd{$key}.value", $comparator, $pair['value']);
 										}
-										
+
 										$params['joins'][] = "JOIN ossn_entities as e{$key} ON e{$key}.owner_guid=u.guid";
 										$params['joins'][] = "JOIN ossn_entities_metadata as emd{$key} ON e{$key}.guid=emd{$key}.guid";
 								}
@@ -805,6 +805,8 @@ class OssnUser extends OssnEntities {
 				if($options['count'] === true) {
 						unset($params['params']);
 						unset($params['limit']);
+						unset($params['order_by']);
+						
 						$count           = array();
 						$count['params'] = array(
 								"count({$distinct}u.guid) as total",
@@ -1176,10 +1178,9 @@ class OssnUser extends OssnEntities {
 				return false;
 		}
 		/**
-		 * List existing Genders
+		 * Get genders from database it will take time to fetch all
 		 *
 		 * @return array
-		 * @access public
 		 */
 		public function getGenders() {
 				$params           = array();
@@ -1212,8 +1213,13 @@ class OssnUser extends OssnEntities {
 		 * @access public
 		 */
 		public function genderTypes() {
-				$gender = $this->getGenders();
-				return ossn_call_hook('user', 'gender:types', $this, $gender);
+				//why getting from database and scanning many rows
+				//$gender = $this->getGenders();
+				return ossn_call_hook('user', 'gender:types', $this, array(
+						'male',
+						'female',
+						'other',
+				));
 		}
 		/**
 		 * Get total users per month for each year
@@ -1225,20 +1231,27 @@ class OssnUser extends OssnEntities {
 				if(empty($gender)) {
 						return false;
 				}
-				$data = $this->searchUsers(array(
-						'count'          => true,
-						'entities_pairs' => array(
-								array(
-										'name'  => 'gender',
-										'value' => $gender,
-								),
+				$count = $this->select(array(
+						'from'   => 'ossn_entities as e',
+						'params' => array(
+								'count(e.guid) as total',
+						),
+						'joins'  => array(
+								// We only join metadata to filter the value
+								'INNER JOIN ossn_entities_metadata as emd ON e.guid = emd.guid',
+						),
+						'wheres' => array(
+								OssnDatabase::wheres('e.type', '=', 'user'),
+								OssnDatabase::wheres('e.subtype', '=', 'gender'),
+								OssnDatabase::wheres('emd.value', '=', $gender),
 						),
 				));
-				if($data) {
-						return $data;
+				if($count && isset($count->total)) {
+						return $count->total;
 				}
 				return false;
 		}
+
 		/**
 		 * Get online users by gender
 		 *
@@ -1253,11 +1266,11 @@ class OssnUser extends OssnEntities {
 				if(empty($gender) || !in_array($gender, $this->genderTypes())) {
 						return false;
 				}
-				$time             = time();
-				$params           = array();
+				$time   = time();
+				$params = array();
 				$wheres = array();
-				
-				$params['joins']  = array();
+
+				$params['joins'] = array();
 
 				$params['params'] = array(
 						'u.*, emd.value as gender',
