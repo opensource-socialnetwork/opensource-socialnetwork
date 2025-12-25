@@ -439,6 +439,7 @@ class OssnAnnotation extends OssnEntities {
 						unset($params['params']);
 						unset($params['limit']);
 						unset($params['order_by']);
+						
 						$count           = array();
 						$count['params'] = array(
 								"count({$distinct}a.id) as total",

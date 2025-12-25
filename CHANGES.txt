@@ -13,6 +13,8 @@ OSSN - OPEN SOURCE SOCIAL NETWORK vx.x
 - [B] [E_DEPRECATED] preg_match Passing null to parameter #2 & preg_replace(): Passing null to parameter #3 #2493
 - [B] admin users earch gives wrong pagination #2505
 - [B] Wrong locale content for OssnLocation #2509
+- [E] Load Admin dashboard graphs using xhr #2519
+- [E] Improve OssnUser::countByGender method #2517
 
 
 
