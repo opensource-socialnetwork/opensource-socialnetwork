@@ -12,13 +12,13 @@
  ossn_load_external_js('chart.legend.js', 'admin');
  
  $users = new OssnUser;
- $genders = $users->getGenders();
+ $genders = $users->genderTypes();
 
  $total = array();
  $online = array();
  foreach($genders as $gender) {
-		$total[]	= $users->countByGender($gender);
-		$online[]	= $users->onlineByGender($gender, true);
+		$total[]	= false;
+		$online[]	= false;
  }
  foreach($total as $k => $t){
 		if($t === false){
@@ -29,10 +29,6 @@
 		if($o === false){
 			$online[$k] = 0;	
 		}
- }
- $unvalidated = $users->getUnvalidatedUSERS('', true);
- if(!$unvalidated){
-		$unvalidated = 0; 
  }
  $flush_cache = ossn_site_url("action/admin/cache/flush", true);
 ?>
@@ -54,9 +50,10 @@
     <div class="row margin-top-10">
             <div class="col-lg-4 admin-dashboard-item">
         	<div class="admin-dashboard-box">
-        		<div class="admin-dashboard-title"><?php echo ossn_print("users");?> (<?php echo array_sum($total); ?>)</div>
+        		<div class="admin-dashboard-title"><?php echo ossn_print("users");?> (<span id="users-classified-graph-total"> --- </span>)</div>
             	<div class="admin-dashboard-contents center admin-dashboard-fixed-height">
-               			<canvas id="users-classified-graph"></canvas>
+                        <div class="ossn-loading mx-auto mt-5 users-classified-graph-loader"></div>
+               			<canvas id="users-classified-graph" class="d-none"></canvas>
                         <div id="userclassified-lineLegend"></div>         			
            	 	</div>
             </div>
@@ -65,10 +62,8 @@
         <div class="col-lg-4 admin-dashboard-item">
         	<div class="admin-dashboard-box">
         		<div class="admin-dashboard-title"><?php echo ossn_print("admin:users:unvalidated");?></div>
-            	<div class="admin-dashboard-contents center admin-dashboard-fixed-height">
-                        <div class="text center">
-                        	<?php echo $unvalidated;?>
-                        </div>                     
+            	<div class="admin-dashboard-contents center admin-dashboard-fixed-height" id="admin-dashboard-unvalidated-text">
+                         <div class="ossn-loading mx-auto mt-5"></div>
            	 	</div>
             </div>
         </div>
@@ -76,9 +71,10 @@
         
         <div class="col-lg-4 admin-dashboard-item">
         	<div class="admin-dashboard-box">
-        		<div class="admin-dashboard-title"><?php echo ossn_print("online:users");?> (<?php echo array_sum($online);?>)</div>
+        		<div class="admin-dashboard-title"><?php echo ossn_print("online:users");?> (<span id="onlineusers-classified-graph-total"> --- </span>)</div>
             	<div class="admin-dashboard-contents center admin-dashboard-fixed-height">
-                        	<canvas id="onlineusers-classified-graph"></canvas>
+                			<div class="ossn-loading mx-auto mt-5 onlineusers-classified-graph-loader"></div>
+                        	<canvas id="onlineusers-classified-graph" class="d-none"></canvas>
                             <div id="onlineuserclassified-lineLegend"></div>     
            	 	</div>
             </div>
@@ -164,7 +160,17 @@
   Hi this is mesage from our site
 </div> -->
 
+<script>
+$(window).on('load', function () {
+	Ossn.PostRequest({
+		'url': Ossn.site_url + 'administrator/xhr/unvalidated',
+		'callback': function (result) {
+				$('#admin-dashboard-unvalidated-text').html("<div class='text center'>"+parseInt(result.total)+'</div>');
+		}
+	});
+});
+</script>
 
 <?php echo ossn_plugin_view('javascripts/dynamic/admin/dashboard/users/users'); ?>
-<?php echo ossn_plugin_view('javascripts/dynamic/admin/dashboard/users/classfied', array('genders' => $genders, 'total' => $total)); ?>
-<?php echo ossn_plugin_view('javascripts/dynamic/admin/dashboard/users/online/classfied', array('genders' => $genders, 'total' => $online)); ?>
+<?php echo ossn_plugin_view('javascripts/dynamic/admin/dashboard/users/classfied', array('genders' => $genders)); ?>
+<?php echo ossn_plugin_view('javascripts/dynamic/admin/dashboard/users/online/classfied', array('genders' => $genders)); ?>
