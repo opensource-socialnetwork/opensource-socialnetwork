@@ -216,6 +216,8 @@ function ossn_get_relationships(array $params = array()) {
 		if(isset($params['count']) && $params['count'] === true) {
 				unset($vars['params']);
 				unset($vars['limit']);
+				unset($vars['order_by']);
+				
 				$count['params'] = array(
 						'count(*) as total',
 				);
