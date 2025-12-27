@@ -78,10 +78,12 @@ function ossn_relation_exists($from, $to, $type, $recursive = false) {
 /**
  * Ossn get relationships
  *
- * @param array $params A options
- * @Note inverse should only work perfectly one setting only one (to/from) parameter
+ * Inverse should only work perfectly by providing at least (to/from) parameter
+ * Type must be supplied without type function will return false
  *
- * @return objects
+ * #param array $params A options
+ *
+ * @return array|boolean
  */
 function ossn_get_relationships(array $params = array()) {
 		$wheres   = array();
@@ -103,33 +105,6 @@ function ossn_get_relationships(array $params = array()) {
 						'comparator' => '=',
 						'value'      => $params['from'],
 				);
-				if(is_array($params['type'])) {
-						$wheres[] = array(
-								'name'       => 'r.type',
-								'comparator' => 'IN',
-								'value'      => $params['type'],
-						);
-						if(isset($params['inverse'])) {
-								$wheres[] = array(
-										'name'       => 'r1.type',
-										'comparator' => 'IN',
-										'value'      => $params['type'],
-								);
-						}
-				} else {
-						$wheres[] = array(
-								'name'       => 'r.type',
-								'comparator' => '=',
-								'value'      => $params['type'],
-						);
-						if(isset($params['inverse'])) {
-								$wheres[] = array(
-										'name'       => 'r1.type',
-										'comparator' => 'IN',
-										'value'      => $params['type'],
-								);
-						}
-				}
 		}
 		if(isset($params['to']) && !empty($params['to'])) {
 				if(isset($params['inverse'])) {
@@ -147,7 +122,8 @@ function ossn_get_relationships(array $params = array()) {
 						'comparator' => '=',
 						'value'      => $params['to'],
 				);
-
+		}
+		if(isset($params['type']) && !empty($params['type'])) {
 				if(is_array($params['type'])) {
 						$wheres[] = array(
 								'name'       => 'r.type',
@@ -216,8 +192,6 @@ function ossn_get_relationships(array $params = array()) {
 		if(isset($params['count']) && $params['count'] === true) {
 				unset($vars['params']);
 				unset($vars['limit']);
-				unset($vars['order_by']);
-				
 				$count['params'] = array(
 						'count(*) as total',
 				);
@@ -227,7 +201,7 @@ function ossn_get_relationships(array $params = array()) {
 		$vars['order_by'] = $options['order_by'];
 		$data             = $database->select($vars, true);
 		if($data) {
-				return $data;
+				return (array) $data;
 		}
 		return false;
 }

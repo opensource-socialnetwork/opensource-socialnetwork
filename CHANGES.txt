@@ -16,6 +16,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK vx.x
 - [E] Load Admin dashboard graphs using xhr #2519
 - [E] Improve OssnUser::countByGender method #2517
 - [E] Remove order_by for counts #2516
+- [B] ossn_get_relationships searching only type didn't works it accepts to or from #2520
 
 
 
