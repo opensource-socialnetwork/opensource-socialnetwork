@@ -1784,36 +1784,21 @@ a {
 }
 
 .ossn-profile .user-fullname {
-	color: #333334;
-	font-size: 30px;
-	margin-left: 200px;
-	font-weight: bold;
-	max-width: 820px;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
+    color: #333334;
+    font-weight: bold;
+    max-width: 600px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .ossn-profile-role {
 	font-size: 15px !important;
-	margin-top: -8px !important;
-	margin-right: 24px;
-	position: absolute;
 }
 
 .ossn-profile .user-username {
 	font-size: 15px;
-	margin-right: 24px;
-	position: absolute;
 	font-weight: normal;
-}
-
-.ossn-profile .user-username-margin-top {
-	margin-top: 13px !important;
-}
-
-.ossn-profile .user-username-margin-top-offset {
-	margin-top: 0px !important;
 }
 
 .btn-standalone-grey {
@@ -1890,9 +1875,7 @@ a {
 }
 
 .profile-menu {
-	float: right;
 	position: relative;
-	margin-top: -20px;
 	margin-right: 20px;
 }
 
@@ -2869,11 +2852,8 @@ footer .ossn-footer-menu a:last-child::after {
 	.ossn-profile .profile-photo img {}
 
 	.ossn-profile .user-fullname {
-		margin: 50px 0px 10px;
-		width: 180px;
-		text-align: center;
-		position: relative;
-		margin: 50px auto 10px;
+		width: auto;
+        white-space: normal;
 	}
 
 	.ossn-profile .top-container .profile-cover {
@@ -2892,7 +2872,7 @@ footer .ossn-footer-menu a:last-child::after {
 	.profile-menu {
 		float: initial;
 		text-align: center;
-		margin: 0;
+		margin: 10px 0;
 	}
 
 	.ossn-profile .top-container .profile-cover img {
@@ -2917,16 +2897,9 @@ footer .ossn-footer-menu a:last-child::after {
 
 	.ossn-profile-role {
 		font-size: 15px !important;
-		margin-top: -10px !important;
 		position: relative;
 	}
 
-	.ossn-profile .user-username-margin-top-offset,
-	.ossn-profile .user-username-margin-top {
-		margin-top: -10px !important;
-	}
-
-	.ossn-profile .user-username {}
 
 	/*****************************
      	System
@@ -3097,9 +3070,12 @@ footer .ossn-footer-menu a:last-child::after {
 	.dropdown-menu {
 		margin-left: -110px;
 	}
-
+    
+	.profile-menu {
+		margin: 10px 0;
+	}
 	.ossn-profile .user-fullname {
-		max-width: 500px;
+		max-width: initial;
 	}
 
 	/***********************
@@ -3172,13 +3148,13 @@ footer .ossn-footer-menu a:last-child::after {
 	}
 
 	.ossn-profile .user-fullname {
-		max-width: 640px;
+		max-width: initial;
 	}
 }
 
 @media only screen and (max-width: 767px) {
 	.ossn-profile .user-fullname {
-		max-width: 767px;
+		max-width: initial;
 	}
 
 	.ossn-search-page .ossn-users-list-item .uinfo {

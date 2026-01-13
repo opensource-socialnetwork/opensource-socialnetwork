@@ -62,8 +62,8 @@ if (ossn_isLoggedIn()) {
 						<?php } ?>
 						<img id="draggable" class="profile-cover-img" src="<?php echo $cover; ?>" style='<?php echo $cover_top; ?><?php echo $cover_left; ?>' data-top='<?php echo $coverp[0]; ?>' data-left='<?php echo $coverp[1]; ?>'/>
 					</div>
-					<div class="ossn-profile-usermetadata">
-						<div class="profile-photo">
+					<div class="ossn-profile-usermetadata d-flex flex-column flex-lg-row align-items-center justify-content-between">
+						<div class="profile-photo mb-3 mb-lg-0 me-lg-3 position-relative">
 							<?php if (ossn_loggedin_user() && ossn_loggedin_user()->guid == $user->guid) { ?>
 							<div class="upload-photo" style="cursor:pointer;">
 								<span onclick="Ossn.Clk('.pfile');" title="<?php echo ossn_print('change:photo'); ?>"><i class="fa-solid fa-camera"></i></span>
@@ -78,19 +78,11 @@ if (ossn_isLoggedIn()) {
 								?>
 							<img src="<?php echo $user->iconURL()->larger; ?>" />
 						</div>
-						<div class="user-fullname"><?php echo $user->fullname; ?></div>
-						<?php echo ossn_plugin_view('profile/role', array('user' => $user)); ?>
-                        <?php 
-						$margin_top_user_username = "user-username-margin-top";
-						if(ossn_isLoggedin() && !$user->canModerate()){ 
-								//user-username margin-top
-								//that mean no roles showing for noremal user
-								//so to avoid extra space
-								//because of position absolute
-								$margin_top_user_username = "user-username-margin-top-offset";
-						}
-						?>
-						<div class="user-fullname user-username <?php echo $margin_top_user_username;?>">@<?php echo $user->username; ?></div>
+                        <div class="flex-grow-1 text-center text-lg-start ossn-profile-page-usermeta-area">
+							<div class="user-fullname fs-3"><?php echo $user->fullname; ?></div>
+								<?php echo ossn_plugin_view('profile/role', array('user' => $user)); ?>
+							<div class="user-fullname user-username">@<?php echo $user->username; ?></div>
+                        </div>
 						<div id="profile-menu" class="profile-menu">
 							<?php if (ossn_isLoggedIn()) { ?>
 							<?php 
