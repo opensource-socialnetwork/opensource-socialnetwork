@@ -500,7 +500,7 @@ class OssnMessages extends OssnEntities {
 						$this->delete(array(
 								'from'   => 'ossn_messages',
 								'wheres' => array(
-										"id IN ({$message_id_list})",
+										OssnDatabase::wheres('id', 'IN', $message_id_list),
 								),
 						));
 						return $deleted_messages;
