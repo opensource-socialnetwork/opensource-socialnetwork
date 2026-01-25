@@ -426,14 +426,11 @@ class OssnFile extends OssnEntities {
 		 * @return array|bool
 		 */
 		public function searchFiles(array $params = array()): array | bool | int {
-				if(!isset($params['guid']) && !empty($params['guid'])) {
-						if(!isset($params['subtype']) || empty($params['subtype'])) {
+				//[B] Some ambiguous #2524
+				if(!isset($params['subtype']) || empty($params['subtype'])) {
 								return false;
-						}
 				}
-				if(isset($params['subtype'])) {
-						$params['subtype'] = "file:{$params['subtype']}";
-				}
+				$params['subtype'] = "file:{$params['subtype']}";
 				$files = $this->searchEntities($params);
 				if(isset($params['count']) && $params['count'] == true) {
 						return $files;
