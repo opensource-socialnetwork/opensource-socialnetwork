@@ -215,12 +215,14 @@ label {
 .page-title {
 	background-color: #f5f5f5;
 	border: 1px solid #ddd;
-	padding: 10px;
+	padding: 15px 10px;
 	font-weight: 700;
-	border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
+	font-size: 15px;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
 	text-transform: uppercase;
 	margin-bottom: 10px;
+	margin-top: 10px;
 }
 
 .page-botton-notice {
@@ -691,6 +693,7 @@ footer a {
 	width: 250px;
 	height: 140px;
 }
+
 
 .logo-container-goblue {}
 
