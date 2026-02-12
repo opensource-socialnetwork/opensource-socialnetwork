@@ -69,6 +69,7 @@ i {
 	padding-top: 5px;
 }
 
+.ossn-admin-pg-content,
 form {
 	background: #ffffff;
 	/* Increase padding for better whitespace */
@@ -84,6 +85,7 @@ form {
 	transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
+.ossn-admin-pg-content:hover,
 form:hover {
 	/* Subtle lift effect on hover */
 	box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.06);

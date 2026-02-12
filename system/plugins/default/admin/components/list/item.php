@@ -74,8 +74,7 @@
         <div class="com-row-details">
             
             <div class="com-details-wrapper">
-                
-                <?php if(isset($params['theme']->preview) && !empty($params['theme']->preview)){ ?>
+                <?php if(isset($params['component']->preview) && !empty($params['component']->preview)){ ?>
                 <div class="com-preview-side mt-3">
                     <img src="<?php echo ossn_site_url("components/{$params['component']->id}/{$params['component']->preview}"); ?>" onclick="event.stopPropagation(); showOssnPreview(this.src);" class="com-full-preview" />
                 </div>
