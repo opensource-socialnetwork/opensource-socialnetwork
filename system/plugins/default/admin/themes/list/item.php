@@ -26,98 +26,87 @@
 	 $delete = "<a href='{$delete}' class='btn btn-danger btn-sm ossn-make-sure'><i class='fa fa-close'></i>".ossn_print('admin:button:delete')."</a>";	  
  } 
 ?> 	
-    <div class="card card-spacing">
-      <div class="card-header">
-          <a data-parent="#accordion" href="#collapse-<?php echo $translit;?>" data-bs-toggle="collapse">
-		  	<?php echo $params['theme']->name;?> <?php echo $params['theme']->version;?> <i class="fa fa-sort-down"></i>
-          </a>
-          <div class="right">
-          
-          <?php if (ossn_site_settings('theme') == $id){ ?>
-           		<i title="<?php echo ossn_print('admin:button:enabled');?>" class="component-title-icon component-title-check fa fa-check-circle"></i>           
-          <?php } else {?>
-           		<i title="<?php echo ossn_print('admin:button:disabled');?>" class="component-title-icon component-title-delete fa fa-times-circle"></i>         
-		  <?php } ?>
-          </div>
-      </div>
-      <div id="collapse-<?php echo $translit;?>" class="collapse">
-        <div class="card-body">
-			<p><?php echo $params['theme']->description;?></p>
-            <?php 
-			if(!$themes->isOld($params['theme'])){
-			?>
-			<table class="table margin-top-10">
- 			 	<tr>
-    				<th scope="row"><?php echo ossn_print('admin:com:version');?></th>
-    				<td><?php echo $params['theme']->version;?></td>
- 			 	</tr>
- 			 	<tr>
-    				<th scope="row"><?php echo ossn_print('admin:com:author');?></th>
-    				<td><?php echo $params['theme']->author;?></td>
- 			 	</tr>
- 			 	<tr>
-    				<th scope="row"><?php echo ossn_print('admin:com:author:url');?></th>
-    				<td><a target="_blank" href="<?php echo $params['theme']->author_url;?>"><?php echo $params['theme']->author_url;?></a></td>
- 			 	</tr>  
- 			 	<tr>
-    				<th scope="row"><?php echo ossn_print('admin:com:license');?></th>
-    				<td><a target="_blank" href="<?php echo $params['theme']->license_url;?>"><?php echo $params['theme']->license;?></a></td>
- 			 	</tr>
-      			 	<tr>
-    				<th scope="row"><?php echo ossn_print('admin:com:requirements');?></th>
-    				<td>
-                    	<table class="table">
-                        	<tr class="table-titles">
-                            	<th><?php echo ossn_print('name');?></th>
-                            	<th><?php echo ossn_print('admin:com:requirement');?></th>
-                                <th><?php echo ossn_print('admin:com:fulfilled');?></th>
-                            </tr>
-                            <?php
-							if($requirements){ 
+ <div class="ossn-com-row">
+    <div class="com-row-header" data-bs-toggle="collapse" href="#details-<?php echo $translit;?>">
+        <div class="com-ui-info">
+            <div class="status-dot <?php echo (ossn_site_settings('theme') == $id) ? 'dot-active' : 'dot-inactive'; ?>"></div>
+            <?php if(isset($params['theme']->icon) && !empty($params['theme']->icon)){ ?>
+               		 <img class="com-ui-preview-thumb" src="<?php echo ossn_site_url("themes/{$id}/{$params['theme']->icon}"); ?>" onclick="event.stopPropagation(); showOssnPreview(this.src);" />
+            <?php } else { ?>
+                 <div class="com-ui-preview-thumb d-flex align-items-center justify-content-center">
+                    <i class="fa fa-paint-brush text-muted" style="opacity:0.5"></i>
+                 </div>
+            <?php } ?>
+
+            <div>
+                <h4 class="com-ui-name"><?php echo $params['theme']->name;?></h4>
+                <span class="com-ui-version"><?php echo $params['theme']->version;?></span>
+            </div>
+        </div>
+        <div class="com-ui-toggle">
+            <i class="fa fa-angle-down text-muted"></i>
+        </div>
+    </div>
+
+    <div id="details-<?php echo $translit;?>" class="collapse">
+        <div class="com-row-details">
+            
+            <div class="com-details-wrapper">
+                
+                <?php if(isset($params['theme']->preview) && !empty($params['theme']->preview)){ ?>
+                <div class="com-preview-side">
+                    <img src="<?php echo ossn_site_url("themes/{$id}/{$params['theme']->preview}"); ?>" onclick="event.stopPropagation(); showOssnPreview(this.src);" class="com-full-preview" />
+                </div>
+                <?php } ?>
+
+                <div class="com-details-text-side">
+                    <p class="com-description-text"><?php echo $params['theme']->description;?></p>
+
+                    <div class="com-meta-tiles">
+                        <div class="meta-tile">
+                            <label><?php echo ossn_print('admin:com:version');?></label>
+                            <span><?php echo $params['theme']->version;?></span>
+                        </div>
+                        <div class="meta-tile">
+                            <label><?php echo ossn_print('admin:com:author');?></label>
+                            <span><a target="_blank" href="<?php echo $params['theme']->author_url;?>"><?php echo $params['theme']->author;?></a></span>
+                        </div>
+                        <div class="meta-tile">
+                            <label><?php echo ossn_print('admin:com:license');?></label>
+                            <a href="<?php echo $params['theme']->license_url;?>" target="_blank"><?php echo $params['theme']->license;?></a>
+                        </div>
+                    </div>
+
+                    <div class="d-flex flex-wrap gap-2 mb-3">
+                        <?php if($requirements){ 
 								$check = true;
-								foreach($requirements  as $item){ 
+                            	foreach($requirements as $item){ 
 									if($item['availability'] == 0){
+										$badge_color = "bg-danger";
 										$check = false;
 									}
 									$icon = 'component-title-delete fa fa-times-circle';
 									if($item['availability'] == 1){
-											$icon = 'component-title-check fa fa-check-circle';
+											$badge_color = 'bg-success';
 									}
-							?>                            
-                            	<tr>
-                            		<td><?php echo $item['type'];?></td>
-                                	<td><?php echo $item['value'];?></td>
-                               	 	<td><i class="component-title-icon <?php echo $icon;?>"></i></td>
-                            	</tr>
-                        	<?php
-								} 
-							}
-							?>
-                        </table>
-                    
-                    </td>
- 			 	</tr>                                                      
-			</table>
-            <div class="margin-top-10 components-list-buttons">
-            	<?php
-					if($check){
-						echo $enable;
-					}
-			 		echo $delete;
-			 ?>
-            </div>
-			
-			<?php
-            } else {
-			?>
-            <div class="alert alert-danger">
-            	<?php echo ossn_print('admin:old:theme', array($id)); ?>
-            </div>
-            <div class="margin-top-10 components-list-buttons">
-                      <?php echo $delete;?>
-             </div>
-            <?php } ?>
-            
+                       		 ?>
+                            	<span class="badge com-badge-req <?php echo $badge_color; ?>">
+                               	 <?php echo $item['type'];?>: <?php echo $item['value'];?>
+                           		</span>
+                        <?php } 
+                        } ?>
+                    </div>
+
+                    <div class="com-action-area">
+                        <?php 
+						if($check){
+								echo $enable;
+						}
+			 			echo $delete;
+                        ?>
+                    </div>
+                </div>
+            </div> 
         </div>
-      </div>
     </div>
+</div>

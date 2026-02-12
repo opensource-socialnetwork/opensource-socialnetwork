@@ -14,5 +14,5 @@ echo ossn_view_form('admin/users/list_search', array(
 ));
 echo ossn_view_form('admin/users/list', array(
     'action' => ossn_site_url('action/admin/users/delete'),
-    'class' => 'ossn-admin-form',
+    'class' => 'ossn-admin-form mt-2',
 ));

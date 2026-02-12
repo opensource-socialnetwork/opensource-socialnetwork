@@ -9,7 +9,7 @@
  * @link      https://www.opensource-socialnetwork.org/
  */
 ?>
-<div class="panel-group ossn-admin-components-list" id="accordion">
+<div class="ossn-admin-components-list">
    	<?php
 	$OssnComs = new OssnComponents;
 	$list = $OssnComs->getComponents();
@@ -27,3 +27,14 @@
 	}
 	?>
 </div> 
+<div id="ossn-com-lightbox" onclick="this.style.display='none'">
+    <img id="lightbox-img" src="" alt="Preview">
+</div>
+<script>
+function showOssnPreview(src) {
+    const lightbox = document.getElementById('ossn-com-lightbox');
+    const img = document.getElementById('lightbox-img');
+    img.src = src;
+    lightbox.style.display = 'flex';
+}
+</script>

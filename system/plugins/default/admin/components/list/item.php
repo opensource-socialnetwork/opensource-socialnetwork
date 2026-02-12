@@ -16,139 +16,119 @@
  $requirements = $OssnComs->checkRequirments($params['component']);
 
  //used code from ossn v1.0
- if (!$params['OssnCom']->isActive($params['name'])) {
-  	$enable = ossn_site_url("action/component/enable?com={$params['name']}", true);
+ if (!$params['OssnCom']->isActive($params['component']->id)) {
+  	$enable = ossn_site_url("action/component/enable?com={$params['component']->id}", true);
   	$enable = "<a href='{$enable}' class='btn btn-success btn-sm'><i class='fa fa-check'></i>" . ossn_print('admin:button:enable') ."</a>";
 	$disable = '';
- } elseif (!in_array($params['name'], $params['OssnCom']->requiredComponents())) {
+ } elseif (!in_array($params['component']->id, $params['OssnCom']->requiredComponents())) {
   	$disable = ossn_site_url("action/component/disable?com={$params['name']}", true);
   	$disable = "<a href='{$disable}' class='btn btn-warning btn-sm'><i class='fa fa-minus'></i>" . ossn_print('admin:button:disable') ."</a>";
 	$enable = '';
  }
  $configure = "";
  $configure_options = ossn_registered_com_panel();
- if ($configure_options && in_array($params['name'], $configure_options)) {
+ if ($configure_options && in_array($params['component']->id, $configure_options)) {
 	$configure = ossn_site_url("administrator/component/{$params['name']}");
   	$configure = "<a href='{$configure}' class='btn btn-success btn-sm'><i class='fa fa-cogs'></i>" . ossn_print('admin:button:configure') ."</a>";
  }
  $delete = '';
- if (!in_array($params['name'], $params['OssnCom']->requiredComponents())) {
+ if (!in_array($params['component']->id, $params['OssnCom']->requiredComponents())) {
   	$delete = ossn_site_url("action/component/delete?component={$params['name']}", true);
   	$delete = "<a href='{$delete}' class='btn btn-danger btn-sm ossn-component-delete-confirm' data-ossn-msg='ossn:component:delete:exception'><i class='fa fa-close'></i>" . ossn_print('admin:button:delete') ."</a>";
  }
  // find active usage of a required component
  $in_use = false;
- if (in_array($params['name'], $params['OssnCom']->requiredComponents())) {
+ if (in_array($params['component']->id, $params['OssnCom']->requiredComponents())) {
 	$enable = '';
 	$disable = '';
-	if($active_usage = $OssnComs->inUseBy($params['name'])) {
+	if($active_usage = $OssnComs->inUseBy($params['component']->id)) {
 		$active_usage_list = implode(", ", $active_usage);
 		$in_use = true;
 	}
  }
 ?>    
-    
-    <div class="card card-spacing">
-      <div class="card-header">
-          <a data-parent="#accordion" href="#collapse-<?php echo $translit;?>" data-bs-toggle="collapse">
-		  	<?php echo $params['component']->name;?> <?php echo $params['component']->version;?> <i class="fa fa-sort-down"></i>
-          </a>
-          <div class="right">
-          <?php if (!$params['OssnCom']->isActive($params['name'])){ ?>
-           	<i title="<?php echo ossn_print('admin:button:disabled');?>" class="component-title-icon component-title-delete fa fa-times-circle"></i>         
-          <?php } else {?>
-           	<i title="<?php echo ossn_print('admin:button:enabled');?>" class="component-title-icon component-title-check fa fa-check-circle"></i>           
-		  <?php } ?>
-          </div>
-      </div>
-      <div id="collapse-<?php echo $translit;?>" class="collapse">
-        <div class="card-body">
-			<p><?php echo $params['component']->description;?></p>
-            <?php 
-			if(!$OssnComs->isOld($params['component'])){
-			?>
-			<table class="table margin-top-10">
- 			 	<tr>
-    				<th scope="row"><?php echo ossn_print('admin:com:version');?></th>
-    				<td><?php echo $params['component']->version;?></td>
- 			 	</tr>
- 			 	<tr>
-    				<th scope="row"><?php echo ossn_print('admin:com:author');?></th>
-    				<td><?php echo $params['component']->author;?></td>
- 			 	</tr>
- 			 	<tr>
-    				<th scope="row"><?php echo ossn_print('admin:com:author:url');?></th>
-    				<td><a target="_blank" href="<?php echo $params['component']->author_url;?>"><?php echo $params['component']->author_url;?></a></td>
- 			 	</tr>  
- 			 	<tr>
-    				<th scope="row"><?php echo ossn_print('admin:com:license');?></th>
-    				<td><a target="_blank" href="<?php echo $params['component']->license_url;?>"><?php echo $params['component']->license;?></a></td>
- 			 	</tr>
-      			 	<tr>
-    				<th scope="row"><?php echo ossn_print('admin:com:requirements');?></th>
-    				<td>
-                    	<table class="table">
-                        	<tr class="table-titles">
-                            	<th><?php echo ossn_print('name');?></th>
-                            	<th><?php echo ossn_print('admin:com:requirement');?></th>
-                                <th><?php echo ossn_print('admin:com:fulfilled');?></th>
-                            </tr>
-                            <?php
-							if($requirements){ 
+<div class="ossn-com-row">
+    <div class="com-row-header" data-bs-toggle="collapse" href="#details-<?php echo $translit;?>">
+        <div class="com-ui-info">
+            <div class="status-dot <?php echo ($params['OssnCom']->isActive($params['name'])) ? 'dot-active' : 'dot-inactive'; ?>"></div>
+            
+            <?php if(isset($params['component']->icon) && !empty($params['component']->icon)){ ?>
+                <img class="com-ui-preview-thumb" src="<?php echo ossn_site_url("components/{$params['component']->id}/{$params['component']->icon}"); ?>" onclick="event.stopPropagation(); showOssnPreview(this.src);" />
+            <?php } else { ?>
+                 <div class="com-ui-preview-thumb d-flex align-items-center justify-content-center">
+                    <i class="fa fa-puzzle-piece text-muted" style="opacity:0.5"></i>
+                 </div>
+            <?php } ?>
+
+            <div>
+                <h4 class="com-ui-name"><?php echo $params['component']->name;?></h4>
+                <span class="com-ui-version"><?php echo $params['component']->version;?></span>
+            </div>
+        </div>
+        <div class="com-ui-toggle">
+            <i class="fa fa-angle-down text-muted"></i>
+        </div>
+    </div>
+
+    <div id="details-<?php echo $translit;?>" class="collapse">
+        <div class="com-row-details">
+            
+            <div class="com-details-wrapper">
+                
+                <?php if(isset($params['theme']->preview) && !empty($params['theme']->preview)){ ?>
+                <div class="com-preview-side mt-3">
+                    <img src="<?php echo ossn_site_url("components/{$params['component']->id}/{$params['component']->preview}"); ?>" onclick="event.stopPropagation(); showOssnPreview(this.src);" class="com-full-preview" />
+                </div>
+                <?php } ?>
+
+                <div class="com-details-text-side">
+                    <p class="com-description-text"><?php echo $params['component']->description;?></p>
+
+                    <div class="com-meta-tiles">
+                        <div class="meta-tile">
+                            <label><?php echo ossn_print('admin:com:version');?></label>
+                            <span><?php echo $params['component']->version;?></span>
+                        </div>
+                        <div class="meta-tile">
+                            <label><?php echo ossn_print('admin:com:author');?></label>
+                            <span><a target="_blank" href="<?php echo $params['component']->author_url;?>"><?php echo $params['component']->author;?></a></span>
+                        </div>
+                        <div class="meta-tile">
+                            <label><?php echo ossn_print('admin:com:license');?></label>
+                            <a href="<?php echo $params['component']->license_url;?>" target="_blank"><?php echo $params['component']->license;?></a>
+                        </div>
+                    </div>
+                    <label><?php echo ossn_print('admin:com:requirement');?></label>
+                    <div class="d-flex flex-wrap gap-2 mb-3">
+                        <?php if($requirements){ 
 								$check = true;
-								foreach($requirements  as $item){ 
+                            	foreach($requirements as $item){ 
 									if($item['availability'] == 0){
+										$badge_color = "bg-danger";
 										$check = false;
 									}
 									$icon = 'component-title-delete fa fa-times-circle';
 									if($item['availability'] == 1){
-											$icon = 'component-title-check fa fa-check-circle';
+											$badge_color = 'bg-success';
 									}
-							?>                            
-                            	<tr>
-                            		<td><?php echo $item['type'];?></td>
-                                	<td><?php echo $item['value'];?></td>
-                               	 	<td><i class="component-title-icon <?php echo $icon;?>"></i></td>
-                            	</tr>
-                        	<?php
-								} 
-							}
-							?>
-                        </table>
-                    
-                    </td>
- 			 	</tr>                                                      
-				<?php
-				if($in_use) {
-				?>
-					<tr>
-						<th scope="row"><?php echo ossn_print('admin:com:used:by');?></th>
-						<td><?php echo $active_usage_list?></td>
-					</tr>
-				<?php
-				}
-				?>
-		</table>
-            <div class="margin-top-10 components-list-buttons">
-            	<?php
-					if($check){
-						echo $enable;
-					}
-			 		echo $configure, $disable, $delete;
-			 ?>
-            </div>
-			
-			<?php
-            } else {
-			?>
-            <div class="alert alert-danger">
-            	<?php echo ossn_print('admin:old:com', array($params['name'])); ?>
-            </div>
-            <div class="margin-top-10 components-list-buttons">
-                      <?php echo $delete;?>
-             </div>
-            <?php } ?>
-            
+                       		 ?>
+                            	<span class="badge com-badge-req <?php echo $badge_color; ?>">
+                               	 <?php echo $item['type'];?>: <?php echo $item['value'];?>
+                           		</span>
+                        <?php } 
+                        } ?>
+                    </div>
+
+                    <div class="com-action-area">
+                        <?php 
+						if($check){
+								echo $enable;
+						}
+			 			echo $configure, $disable, $delete;
+                        ?>
+                    </div>
+                </div>
+            </div> 
         </div>
-      </div>
     </div>
+</div>
