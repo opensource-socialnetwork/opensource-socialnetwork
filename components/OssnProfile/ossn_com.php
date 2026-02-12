@@ -94,6 +94,10 @@ function ossn_profile() {
 						'text' => ossn_print('basic:settings'),
 				));
 		}
+		ossn_add_hook('required', 'components', function ($hook, $type, $return, $params) {
+				$return[] = 'OssnPhotos';
+				return $return;
+		});
 }
 /**
  * Redirect URI for profile photo like or comment like

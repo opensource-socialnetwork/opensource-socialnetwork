@@ -326,9 +326,15 @@ class OssnComponents extends OssnDatabase {
 		 * @return array
 		 */
 		public function inUseBy($comId) {
-				$list   = $this->getActive();
-				$result = array();
+				global $Ossn;
+				//avoid calling again and again
+				if(!isset($Ossn->_temp_isusedby_getActive)){
+					$Ossn->_temp_isusedby_getActive =  $this->getActive();
+				}
+				$list   = $Ossn->_temp_isusedby_getActive;
+				$result = false;
 				if($list) {
+						$result  = array();
 						foreach($list as $component) {
 								$element = $this->getCom($component->com_id);
 								if($element->name == 'OssnProfile' && $comId == 'OssnProfile') {
@@ -343,7 +349,7 @@ class OssnComponents extends OssnDatabase {
 														continue;
 												}
 												if($item->name == $comId) {
-														$result[] = $element->name;
+														$result[] = $element->id;
 												}
 										}
 								}
@@ -448,10 +454,9 @@ class OssnComponents extends OssnDatabase {
 												$OssnComponent = new OssnComponents();
 												if($OssnComponent->isActive($item->name)) {
 														$requirments['availability'] = 1;
-
 														if(isset($item->version)) {
 																$com_load = $OssnComponent->getCom($item->name);
-																if($com_load && version_compare($com_load->version, (string) $item->version, $comparator)) {
+																if($com_load && version_compare($com_load->version, (string)$item->version, $comparator)) {
 																		$requirments['availability'] = 1;
 																} else {
 																		$requirments['availability'] = 0;
