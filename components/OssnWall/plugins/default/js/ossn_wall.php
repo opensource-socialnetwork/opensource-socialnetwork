@@ -477,19 +477,47 @@ function ossn_wall_location() {
 }
 
 function ossn_wall_container_expend() {
-	$(document).ready(function() {
-		$('#ossn-wall-form').on('submit', function() {
-			$('.ossn-wall-container textarea').height(40);
-		});
-		$('.ossn-wall-container textarea:not(.postbg-container)').on('keyup', function(e) {
-			if (!$(this).hasClass('postbg-container')) {
-				$(this).height(0);
-				$(this).height(this.scrollHeight + parseFloat($(this).css('borderTopWidth')) + parseFloat($(this).css('borderBottomWidth')));
-			}
-		});
-	});
-}
+    $(document).ready(function() {
+        const textarea = $('.ossn-wall-container textarea:not(.postbg-container)');
+        
+        textarea.each(function() {
+            const $this = $(this);
+            $this.data('manualHeight', $this.height());
+        });
 
+        textarea.on('input', function() {
+            const $this = $(this);
+            const lineHeight = parseFloat($this.css('line-height')) || 20;
+            const maxHeight = parseFloat($this.css('max-height')) || 200;
+
+            // reset to auto to measure scrollHeight
+            this.style.height = 'auto';
+            let newHeight = this.scrollHeight;
+
+            // increase a few lines only
+            const increment = lineHeight * 2; // grow 2 lines at a time
+            let currentHeight = parseFloat($this.height());
+
+            if (newHeight > currentHeight) {
+                currentHeight += increment;
+            } else {
+                currentHeight = newHeight;
+            }
+
+            // do not exceed maxHeight
+            if (currentHeight > maxHeight) {
+                currentHeight = maxHeight;
+            }
+
+            this.style.height = currentHeight + 'px';
+        });
+
+        // reset on submit
+        $('#ossn-wall-form').on('submit', function() {
+            textarea.css('height', '40px').data('manualHeight', 40);
+        });
+    });
+}
 function wallSetCookie(cname, cvalue, exdays) {
 	var d = new Date();
 	d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));

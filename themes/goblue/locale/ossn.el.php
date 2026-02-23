@@ -16,5 +16,14 @@ ossn_register_languages('el', array(
 	'theme:goblue:logo:large' => 'Το αρχείο λογότυπου είναι πολύ μεγάλο!',
 	'theme:goblue:logo:failed' => 'Η μεταφόρτωση λογότυπου απέτυχε',
 	'theme:goblue:logo:changed' => 'Το λογότυπο άλλαξε.',
-	'theme:goblue:browercache' => 'Σε περίπτωση που δεν εμφανίζονται εικόνες. Εκκαθαρίστε την προσωρινή μνήμη του προγράμματος περιήγησης ιστού για να εμφανιστούν οι εικόνες.'
+	'theme:goblue:browercache' => 'Σε περίπτωση που δεν εμφανίζονται εικόνες. Εκκαθαρίστε την προσωρινή μνήμη του προγράμματος περιήγησης ιστού για να εμφανιστούν οι εικόνες.',
+    'feature:homepage:groups'        => 'Δημιουργία και συμμετοχή σε ομάδες',
+    'feature:homepage:profiles'      => 'Προσωπικά Προφίλ',
+    'feature:homepage:photos'        => 'Μοιραστείτε Φωτογραφίες και Βίντεο',
+    'feature:homepage:comments'      => 'Αφήστε Σχόλια',
+    'feature:homepage:likes'         => 'Μου Αρέσει και Αντιδράσεις',
+    'feature:homepage:messaging'     => 'Ιδιωτικά Μηνύματα',
+    'feature:homepage:notifications' => 'Ειδοποιήσεις και Συναγερμοί',
+    'feature:homepage:search'        => 'Εύκολη Αναζήτηση και Ανακάλυψη',
+    'feature:homepage:collaboration' => 'Μοιραστείτε και Συνεργαστείτε',	
 ));

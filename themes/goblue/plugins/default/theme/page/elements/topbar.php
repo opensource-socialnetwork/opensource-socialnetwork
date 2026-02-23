@@ -45,6 +45,9 @@
 					</ul>
 				</div>
 			</div>
-			<?php } ?>            
+			<?php } ?>   
+            <?php if(!ossn_isLoggedin()){ ?>
+            	<a class="btn ossn-topbar-login-btn" href="<?php echo ossn_site_url('login'); ?>"><?php echo ossn_print('site:login');?></a>
+            <?php } ?>         
 </div>
 <!-- ./ ossn topbar -->

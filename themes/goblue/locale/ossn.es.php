@@ -16,5 +16,14 @@ ossn_register_languages('es', array(
 	'theme:goblue:logo:large' => '¡El archivo del logo es demasiado grande!',
 	'theme:goblue:logo:failed' => 'La subida del logo falló',
 	'theme:goblue:logo:changed' => 'El logo ha sido cambiado.',
-	'theme:goblue:browercache' => 'En caso de que las imágenes no aparezcan. Por favor, borre la memoria caché de su navegador para que aparezcan las imágenes.'
+	'theme:goblue:browercache' => 'En caso de que las imágenes no aparezcan. Por favor, borre la memoria caché de su navegador para que aparezcan las imágenes.',
+    'feature:homepage:groups'        => 'Crear y Unirse a Grupos',
+    'feature:homepage:profiles'      => 'Perfiles Personales',
+    'feature:homepage:photos'        => 'Compartir Fotos y Videos',
+    'feature:homepage:comments'      => 'Dejar Comentarios',
+    'feature:homepage:likes'         => 'Me Gusta y Reacciones',
+    'feature:homepage:messaging'     => 'Mensajería Privada',
+    'feature:homepage:notifications' => 'Notificaciones y Alertas',
+    'feature:homepage:search'        => 'Búsqueda Fácil y Descubrimiento',
+    'feature:homepage:collaboration' => 'Compartir y Colaborar',	
 ));

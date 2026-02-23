@@ -9,7 +9,13 @@
  * @link      https://www.opensource-socialnetwork.org/
  */
 ?>
-<div class="ossn-layout-startup">
+<div class="ossn-startup-wrapper">
+    <div class="blob-container">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+        <div class="blob blob-4"></div>
+    </div>
 	<div class="container">
 		<div class="ossn-home-container">    
 					<?php echo $params['content']; ?>
@@ -17,4 +23,3 @@
 		<?php echo ossn_plugin_view('theme/page/elements/footer');?>
 	</div>
 </div>
-<script>$(window).ready(function(){$('body').addClass('ossn-layout-startup-background');}); </script>

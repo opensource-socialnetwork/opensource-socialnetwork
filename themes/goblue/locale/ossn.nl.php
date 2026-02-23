@@ -16,5 +16,14 @@ ossn_register_languages('nl', array(
 	'theme:goblue:logo:large' => 'Logobestand is te groot!',
 	'theme:goblue:logo:failed' => 'Logo upload mislukt',
 	'theme:goblue:logo:changed' => 'Het logo is veranderd.',
-	'theme:goblue:browercache' => 'Voor het geval dat er geen beelden verschijnen. Verwijder de cache van uw webbrowser om de afbeeldingen te laten verschijnen.'
+	'theme:goblue:browercache' => 'Voor het geval dat er geen beelden verschijnen. Verwijder de cache van uw webbrowser om de afbeeldingen te laten verschijnen.',
+    'feature:homepage:groups'        => 'Groepen Maken en Deelnemen',
+    'feature:homepage:profiles'      => 'Persoonlijke Profielen',
+    'feature:homepage:photos'        => 'Foto\'s en Video\'s Delen',
+    'feature:homepage:comments'      => 'Reacties Achterlaten',
+    'feature:homepage:likes'         => 'Vind ik leuk en Reacties',
+    'feature:homepage:messaging'     => 'Privéberichten',
+    'feature:homepage:notifications' => 'Meldingen en Waarschuwingen',
+    'feature:homepage:search'        => 'Eenvoudig Zoeken en Ontdekken',
+    'feature:homepage:collaboration' => 'Delen en Samenwerken',	
 ));

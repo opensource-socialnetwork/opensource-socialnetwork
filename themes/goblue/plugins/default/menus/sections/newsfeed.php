@@ -21,7 +21,6 @@ foreach ($menus as $name => $menu) {
 	$expend = '';
 	$icon = "fa-angle-right";
 	if($name == 'links'){
-		$expend = 'show';
 		$icon = "fa-newspaper";
 	}
 	if($name  == 'groups'){
@@ -29,7 +28,7 @@ foreach ($menus as $name => $menu) {
 	}
 	$hash = 'nm'.md5($name);
     ?>
-     <li data-bs-toggle="collapse" data-bs-target="#<?php echo $hash;?>" class="<?php echo $section;?>collapsed active <?php echo $expend;?>">
+     <li data-bs-toggle="collapse" data-bs-target="#<?php echo $hash;?>" class="sidebar-parent-item-main <?php echo $section;?>collapsed" aria-expanded="false">
         	<a href="javascript:void(0);"><i class="fa <?php echo $icon;?>"></i><?php echo ossn_print($name);?><span class="arrow"></span></a>
      </li>
     <ul class="sub-menu collapse <?php echo $expend;?>" id="<?php echo $hash;?>" class="<?php echo $items;?>"> 
@@ -63,3 +62,6 @@ foreach ($menus as $name => $menu) {
          </ul>
     </div>
 </div>
+<script>
+$(document).ready(function(){ $('.menu-section-links').trigger('click');});
+</script>

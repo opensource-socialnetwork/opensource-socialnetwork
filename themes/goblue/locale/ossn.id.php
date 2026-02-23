@@ -16,5 +16,14 @@ ossn_register_languages('id', array(
 	'theme:goblue:logo:large' => 'File logo terlalu besar!',
 	'theme:goblue:logo:failed' => 'Pengunggahan logo gagal',
 	'theme:goblue:logo:changed' => 'Logo telah diubah.',
-	'theme:goblue:browercache' => 'Dalam hal gambar tidak muncul. Harap bersihkan cache browser Anda untuk membuat gambar muncul'
+	'theme:goblue:browercache' => 'Dalam hal gambar tidak muncul. Harap bersihkan cache browser Anda untuk membuat gambar muncul',
+    'feature:homepage:groups'        => 'Buat dan Bergabung dengan Grup',
+    'feature:homepage:profiles'      => 'Profil Pribadi',
+    'feature:homepage:photos'        => 'Berbagi Foto dan Video',
+    'feature:homepage:comments'      => 'Tinggalkan Komentar',
+    'feature:homepage:likes'         => 'Suka dan Reaksi',
+    'feature:homepage:messaging'     => 'Pesan Pribadi',
+    'feature:homepage:notifications' => 'Pemberitahuan dan Peringatan',
+    'feature:homepage:search'        => 'Pencarian Mudah dan Penemuan',
+    'feature:homepage:collaboration' => 'Berbagi dan Kolaborasi',	
 ));

@@ -16,6 +16,15 @@ $en = array(
 	'theme:goblue:logo:large' => 'A logófájl túl nagy!',
 	'theme:goblue:logo:failed' => 'Az embléma feltöltése sikertelen',
 	'theme:goblue:logo:changed' => 'A logó megváltozott.',
-	'theme:goblue:browercache' => 'Abban az esetben, ha a képek nem jelennek meg. A képek megjelenítéséhez törölje a böngésző gyorsítótárát'
+	'theme:goblue:browercache' => 'Abban az esetben, ha a képek nem jelennek meg. A képek megjelenítéséhez törölje a böngésző gyorsítótárát',
+    'feature:homepage:groups'        => 'Csoportok létrehozása és csatlakozás',
+    'feature:homepage:profiles'      => 'Személyes profilok',
+    'feature:homepage:photos'        => 'Képek és videók megosztása',
+    'feature:homepage:comments'      => 'Hozzászólások írása',
+    'feature:homepage:likes'         => 'Tetszik és reakciók',
+    'feature:homepage:messaging'     => 'Privát üzenetküldés',
+    'feature:homepage:notifications' => 'Értesítések és figyelmeztetések',
+    'feature:homepage:search'        => 'Könnyű keresés és felfedezés',
+    'feature:homepage:collaboration' => 'Megosztás és együttműködés',	
 );
 ossn_register_languages('en', $en);

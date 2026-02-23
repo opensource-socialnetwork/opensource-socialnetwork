@@ -16,5 +16,14 @@ ossn_register_languages('tr', array(
 	'theme:goblue:logo:large' => 'Logo dosyası çok büyük!',
 	'theme:goblue:logo:failed' => 'Logo yüklenemedi',
 	'theme:goblue:logo:changed' => 'Logo değiştirildi.',
-	'theme:goblue:browercache' => 'Görüntülerin görünmemesi durumunda. Görüntülerin görünmesi için lütfen web tarayıcı önbelleğinizi temizleyin.'
+	'theme:goblue:browercache' => 'Görüntülerin görünmemesi durumunda. Görüntülerin görünmesi için lütfen web tarayıcı önbelleğinizi temizleyin.',
+    'feature:homepage:groups'        => 'Gruplar Oluştur & Katıl',
+    'feature:homepage:profiles'      => 'Kişisel Profiller',
+    'feature:homepage:photos'        => 'Fotoğraflar & Videolar Paylaş',
+    'feature:homepage:comments'      => 'Yorum Yap',
+    'feature:homepage:likes'         => 'Beğen & Tepki Göster',
+    'feature:homepage:messaging'     => 'Özel Mesajlaşma',
+    'feature:homepage:notifications' => 'Bildirimler & Uyarılar',
+    'feature:homepage:search'        => 'Kolay Arama & Keşif',
+    'feature:homepage:collaboration' => 'Paylaş & İşbirliği Yap',	
 ));

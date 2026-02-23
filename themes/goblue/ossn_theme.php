@@ -29,7 +29,8 @@ function ossn_goblue_theme_init() {
 		ossn_extend_view('ossn/admin/head', 'ossn_goblue_admin_head');
 		ossn_extend_view('ossn/site/head', 'ossn_goblue_head');
 		ossn_extend_view('js/opensource.socialnetwork', 'js/goblue');
-
+		ossn_extend_view('profile/newsfeed/info', 'goblue_search_bar_sidebar');
+		
 		if(ossn_isAdminLoggedin()) {
 				ossn_register_menu_item('admin/sidemenu', array(
 						'name'   => 'admin:theme:goblue',
@@ -44,6 +45,17 @@ function ossn_goblue_theme_init() {
 		}
 		ossn_extend_view('ossn/site/head', 'goblue_meta_favicon');
 		ossn_extend_view('ossn/admin/head', 'goblue_meta_favicon');
+}
+
+function goblue_search_bar_sidebar(){
+		return ossn_view_form('search', array(
+								'component' => 'OssnSearch',
+								'class' => 'ossn-search',
+								'autocomplete' => 'off',
+								'method' => 'get',
+								'security_tokens' => false,
+								'action' => ossn_site_url("search"),
+		), false);	
 }
 function goblue_meta_favicon() {
 		$icon = ossn_add_cache_to_url(ossn_theme_url() . 'images/favicon.ico');
