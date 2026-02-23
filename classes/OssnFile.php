@@ -196,12 +196,42 @@ class OssnFile extends OssnEntities {
 				}
 				//post size error
 				//post_size < upload max size
-				if(!empty($_SERVER['CONTENT_LENGTH']) && empty($_POST)){
+				if(!empty($_SERVER['CONTENT_LENGTH']) && empty($_POST)) {
 						$this->error = UPLOAD_ERR_FORM_SIZE;
 				}
 				if(isset($this->file) && ($this->file['error'] !== UPLOAD_ERR_OK || $this->file['size'] == 0)) {
 						ossn_trigger_message($this->getFileUploadError($this->file['error']), 'error');
 						redirect($this->redirect);
+				}
+
+				if(isset($this->file) && preg_match('/image/i', $this->file['type'])) {
+						$fileTmpPath = $this->file['tmp_name'];
+
+						// Read image headers safely without loading the full image
+						$imageInfo = @getimagesize($fileTmpPath);
+						if($imageInfo === false) {
+								$this->error = UPLOAD_ERR_NO_FILE;
+								redirect($this->redirect);
+						}
+
+						$width  = $imageInfo[0];
+						$height = $imageInfo[1];
+						
+						//OSSN Vulnerability report: CWE-400 - Uncontrolled Resource Consumption
+						// Set maximum allowed dimensions
+						$image_max_dim = ossn_call_hook('file', 'max:dimensions', $this->file, array(
+									'width' => 5000,
+									'height' => 5000,
+						));
+						$maxWidth  = $image_max_dim['width']; 
+						$maxHeight = $image_max_dim['height']; 
+						$maxPixels = $maxWidth * $maxHeight;
+						
+						 if ($width > $maxWidth || $height > $maxHeight || ($width * $height) > $maxPixels) {
+								$this->error = UPLOAD_ERR_FORM_SIZE;
+								ossn_trigger_message($this->getFileUploadError($this->error), 'error');
+								redirect($this->redirect);
+						}
 				}
 		}
 		/**
