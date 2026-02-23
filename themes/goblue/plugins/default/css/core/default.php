@@ -650,6 +650,9 @@ z-index: 1;
     transition: none;           /* disable global transition to prevent jumping */
     margin-left: 0;
 }
+.ossn-wall-container textarea:focus {
+  border:none;
+}
 .ossn-wall-container .controls {
 	background-color: #F6F7F8;
 	margin-top: 5px;
