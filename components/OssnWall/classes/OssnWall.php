@@ -45,25 +45,7 @@ class OssnWall extends OssnObject {
 								'gif',
 								'webp',
 						));
-						if(in_array(strtolower($this->OssnFile->getFileExtension($_FILES['ossn_photo']['name'])), $this->OssnFile->fileExtension)) {
-								if($_FILES['ossn_photo']['error'] != 0) {
-										// allowed, but too large, partly loaded, etc.
-										$this->OssnFile->error = $_FILES['ossn_photo']['error'];
-								} else {
-										if($_FILES['ossn_photo']['size'] == 0) {
-												// allowed, but empty image
-												$this->OssnFile->error = UPLOAD_ERR_EXTENSION;
-										} else {
-												$canpost = true;
-										}
-								}
-						} else {
-								// unallowed file type
-								//dont post either
-								//[E] Add a filetype block when user try upload video file into OssnWall #2191
-								$canpost               = false;
-								$this->OssnFile->error = UPLOAD_ERR_EXTENSION;
-						}
+						$canpost = true;
 				}
 				if(empty($this->owner_guid) || empty($this->poster_guid) || $canpost === false) {
 						return false;
@@ -111,8 +93,8 @@ class OssnWall extends OssnObject {
 				//Encode multibyte Unicode characters literally (default is to escape as \uXXXX)
 				//[E] Normalize Wall Remove JSON #2460
 				$this->description = $post;
-				if($this->addObject()) {
-						$this->wallguid = $this->getObjectId();
+				if($wallguid = $this->addObject()) {
+						$this->wallguid = $wallguid;
 						if(isset($_FILES['ossn_photo'])) {
 								$this->OssnFile->owner_guid = $this->wallguid;
 								$this->OssnFile->type       = 'object';
@@ -122,7 +104,11 @@ class OssnWall extends OssnObject {
 								if(ossn_file_is_cdn_storage_enabled()) {
 										$this->OssnFile->setStore('cdn');
 								}
-								$this->OssnFile->addFile();
+								if(!$this->OssnFile->addFile()){
+										$object = ossn_get_object($wallguid);
+										$object->deleteObject();
+										return false;
+								}
 						}
 						$params['object_guid'] = $this->wallguid;
 						$params['guid']        = $this->wallguid; //object_guid should be removed
