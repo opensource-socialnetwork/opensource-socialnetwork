@@ -37,6 +37,7 @@ $he = array(
 	'year' => 'שנה',
 	'male' => 'זכר',
 	'female' => 'נקבה',
+	'gender:other' => 'אחר',
 	'account:create:notice' => 'בלחיצה על יצירה אתם מסכימים',
 	'gender' => 'מגדר',
 	

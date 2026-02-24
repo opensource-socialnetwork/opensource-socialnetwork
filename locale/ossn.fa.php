@@ -37,6 +37,7 @@ $fa = array(
     'year' => 'سال',
     'male' => 'مرد',
     'female' => 'زن',
+	'gender:other' => 'سایر',
     'account:create:notice' => 'با کلیک روی ایجاد حساب، شما با شرایط ما موافقت می‌کنید.',
     'gender' => 'جنسیت',
 

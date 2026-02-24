@@ -37,6 +37,7 @@ $ko = array(
 	'year' => '년',
 	'male' => '남자',
 	'female' => '여자',
+	'gender:other' => '기타',
 	'account:create:notice' => '계정 만들기를 누르면 동의하는 것으로 간주합니다.',
 	'gender' => '성별',
 	

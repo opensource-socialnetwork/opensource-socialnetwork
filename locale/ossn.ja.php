@@ -37,6 +37,7 @@ $ja = array(
 	'year' => '年',
 	'male' => '男性',
 	'female' => '女性',
+	'gender:other' => 'その他',
 	'account:create:notice' => '[アカウントを作成]をクリックすると、',
 	'gender' => '性別',
 	

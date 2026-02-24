@@ -37,6 +37,7 @@ $zh = array(
 	'year' => '年',
 	'male' => '男',
 	'female' => '女',
+	'gender:other' => '其他',
 	'account:create:notice' => '點擊建立帳號並同意我們的',
 	'gender' => '性別',
 	

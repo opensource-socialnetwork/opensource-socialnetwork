@@ -473,7 +473,8 @@ function ossn_default_user_fields() {
 								'name' => 'gender',
 								'options' => array(
 										'male' => ossn_print('male'),
-										'female' => ossn_print('female')
+										'female' => ossn_print('female'),
+										'other' => ossn_print('gender:other'),
 								)
 						)
 				)

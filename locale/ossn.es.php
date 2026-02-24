@@ -40,6 +40,7 @@ $es = array(
 	'year' => 'Año',
 	'male' => 'Hombre',
 	'female' => 'Mujer',
+	'gender:other' => 'Otro',
 	'account:create:notice' => 'Al hacer clic en Crear una cuenta, declaras estar de acuerdo con nuestros',
 	'gender' => 'Género',
 	

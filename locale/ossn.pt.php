@@ -37,6 +37,7 @@ $pt = array(
 	'year' => 'Ano',
 	'male' => 'Masculino',
 	'female' => 'Feminino',
+	'gender:other' => 'Outro',
 	'account:create:notice' => 'Após clicar em CRIAR UMA CONTA você aceita os nossos',
 	'gender' => 'Gênero',
 	

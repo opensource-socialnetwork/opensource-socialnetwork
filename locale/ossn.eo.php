@@ -37,6 +37,7 @@ $eo = array(
 	'year' => 'Jaro',
 	'male' => 'Viro',
 	'female' => 'Virino',
+	'gender:other' => 'Alia',
 	'account:create:notice' => 'Alklakante Krei konton, vi konsentas pri nia',
 	'gender' => 'Sekso',
 	

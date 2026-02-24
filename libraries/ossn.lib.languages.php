@@ -231,7 +231,7 @@ function ossn_get_missing_language_keys($language) {
  * @return array
  */
 function ossn_standard_language_codes() {
-		return array(
+		$codes = array(
 				'aa',
 				'ab',
 				'af',
@@ -374,6 +374,7 @@ function ossn_standard_language_codes() {
 				'zh',
 				'zu',
 		);
+		return ossn_call_hook("langauge", 'codes', [], $codes);
 }
 /**
  * Load all available languages

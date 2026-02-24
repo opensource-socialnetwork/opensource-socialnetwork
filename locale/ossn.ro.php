@@ -37,6 +37,7 @@ $ro = array(
 	'year' => 'Anul',
 	'male' => 'Barbat',
 	'female' => 'Femeie',
+	'gender:other' => 'Altul',
 	'account:create:notice' => 'Daca click sa creezi contul, esti de acord cu',
 	'gender' => 'Sex',
 	

@@ -37,6 +37,7 @@ $nl = array(
 	'year' => 'Jaar',
 	'male' => 'Man',
 	'female' => 'Vrouw',
+	'gender:other' => 'Overig',
 	'account:create:notice' => 'Door een account aan te maken, stem je in met',
 	'gender' => 'Ik ben een:',
 	

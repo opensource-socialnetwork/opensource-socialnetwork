@@ -37,6 +37,7 @@ $hu = array(
 	'year' => 'Év',
 	'male' => 'Férfi',
 	'female' => 'Nő',
+	'gender:other' => 'Egyéb',
 	'account:create:notice' => 'A fiók létrehozásával beleegyezel a ',
 	'gender' => 'Nem',
 	

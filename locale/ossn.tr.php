@@ -37,6 +37,7 @@ $tr = array(
 	'year' => 'Yıl',
 	'male' => 'Erkek',
 	'female' => 'Kadın',
+	'gender:other' => 'Diğer',
 	'account:create:notice' => 'Aşağıdaki tuşa tıklayarak bunları kabul etmiş olursunuz: ',
 	'gender' => 'Cinsiyet',
 	

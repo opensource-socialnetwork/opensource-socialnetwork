@@ -36,6 +36,7 @@ $en = array(
     'month' => 'Month',
     'year' => 'Year',
     'male' => 'Male',
+	'gender:other' => 'Other',
     'female' => 'Female',
     'account:create:notice' => 'By clicking Create an account, you agree to our',
     'gender' => 'Gender',

@@ -37,6 +37,7 @@ $id = array(
 	'year' => 'Tahun',
 	'male' => 'Laki Laki',
 	'female' => 'Perempuan',
+	'gender:other' => 'Lainnya',
 	'account:create:notice' => 'Dengan mengklik Buat akun, Anda telah setuju dengan kami',
 	'gender' => 'Jenis Kelamin',
 	

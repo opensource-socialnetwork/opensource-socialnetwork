@@ -37,6 +37,7 @@ $ru = array(
 	'year' => 'Год',
 	'male' => 'Самец',
 	'female' => 'Самка',
+	'gender:other' => 'Другое',
 	'account:create:notice' => 'Кликая на "создать аккаунт" Вы соглашаетесь с нашими',
 	'gender' => 'Пол',
 	

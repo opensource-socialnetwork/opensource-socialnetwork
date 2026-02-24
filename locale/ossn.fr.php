@@ -37,6 +37,7 @@ $fr = array(
     'year' => 'Année',
     'male' => 'Homme',
     'female' => 'Femme',
+	'gender:other' => 'Autre',
     'account:create:notice' => 'En cliquant sur Créer un compte, vous acceptez nos',
     'gender' => 'Genre',
 
