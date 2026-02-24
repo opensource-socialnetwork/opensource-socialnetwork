@@ -35,7 +35,7 @@ $close = "";
 </select>
 <input type="hidden" name="group" value="<?php echo $group->guid; ?>"/>
 <input type="submit" value="<?php echo ossn_print('save'); ?>" class="btn btn-success btn-sm"/>
-<a class="btn btn-warning btn-sm" href="<?php echo ossn_site_url("action/group/cover/delete?guid={$group->guid}", true);?>"><i class="fa fa-trash-o"></i><?php echo ossn_print('group:delete:cover');?></a>
+<a class="btn btn-warning btn-sm" href="<?php echo ossn_site_url("action/group/cover/delete?guid={$group->guid}", true);?>"><i class="fa fa-trash"></i><?php echo ossn_print('group:delete:cover');?></a>
 <?php
 	echo ossn_plugin_view('output/url', array(
 			'text' => ossn_print('delete'),
