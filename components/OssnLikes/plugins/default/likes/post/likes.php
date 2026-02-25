@@ -21,7 +21,8 @@ if (ossn_isLoggedIn()) {
             }
 }
 /* Likes and comments don't show for nonlogged in users */ 
-if ($OssnLikes->CountLikes($object)) {
+//[B] Duplicate count query #2523
+if ($count) {
 	foreach($OssnLikes->__likes_get_all as $item){
 		$last_three_icons[$item->subtype] = $item->subtype;
 	}
