@@ -10,55 +10,61 @@
  */
 $users = $params['users'];
 if ($users) {
+    // Wrap the loop in the prefix class so your CSS can target the cards
+    echo '<div class="ossn-output-users-list">';
+    
     foreach ($users as $user) {
-      ?>
-		<div class="row ossn-users-list-item">
-            	<div class="col-lg-2 col-sm-2 d-none d-sm-block">
-    	        		<img src="<?php echo $user->iconURL()->large; ?>" width="100" height="100"/>
-				</div>
-                <div class="col-lg-10 col-sm-10 col-12">
-	    	        <div class="uinfo">
+?>
+    <div class="user-item-card">
+        <div class="user-item-inner">
+            <div class="user-info-box">
+                <div class="user-avatar-container">
+                    <img src="<?php echo $user->iconURL()->large; ?>" alt="user" />
+                </div>
+                <div class="user-details">
+                    <div class="user-name-text">
                         <?php
-							echo ossn_plugin_view('output/user/url', array(
-									'user' => $user,			
-									'class' => 'userlink',
-									'section' => 'output/users',
-							));							
-						?>
-        	   		</div>
-                    <div class="right users-list-controls">
-	                    <?php
-						if (ossn_isLoggedIn()) {
-							if (ossn_loggedin_user()->guid !== $user->guid) {
-                    			if (!ossn_user_is_friend(ossn_loggedin_user()->guid, $user->guid)) {
-                        				if (ossn_user()->requestExists(ossn_loggedin_user()->guid, $user->guid)) {
-												echo ossn_plugin_view('output/url', array(
-													'text' => ossn_print('cancel:request'),
-													'href' =>  ossn_site_url("action/friend/remove?cancel=true&user={$user->guid}", true),
-													'class' => 'btn btn-danger btn-sm',
-												));
-										} else {
-												echo ossn_plugin_view('output/url', array(
-													'text' => ossn_print('add:friend'),
-													'href' =>  ossn_site_url("action/friend/add?user={$user->guid}", true),
-													'class' => 'btn btn-primary btn-sm',
-												));		
-										}
-								} else {
-									echo ossn_plugin_view('output/url', array(
-													'text' => ossn_print('remove:friend'),
-													'href' =>  ossn_site_url("action/friend/remove?user={$user->guid}", true),
-													'class' => 'btn btn-danger btn-sm',
-									));	
-				
-								}
-							}
-						}
-						?>		
-                   </div>
-               </div>         
-        </div>
-    <?php
-    }
+                            echo ossn_plugin_view('output/user/url', array(
+                                'user' => $user,            
+                                'class' => 'user-link-inherited', 
+                            ));                         
+                        ?>
+                    </div>
+                    <div class="user-username-sub">@<?php echo $user->username; ?></div>
+                </div>
+            </div>
 
-}?>
+            <div class="user-controls-box">
+                <?php
+                if (ossn_isLoggedIn() && ossn_loggedin_user()->guid !== $user->guid) {
+                    if (!ossn_user_is_friend(ossn_loggedin_user()->guid, $user->guid)) {
+                        if (ossn_user()->requestExists(ossn_loggedin_user()->guid, $user->guid)) {
+                            echo ossn_plugin_view('output/url', array(
+                                'text' => ossn_print('cancel:request'),
+                                'href' => ossn_site_url("action/friend/remove?cancel=true&user={$user->guid}", true),
+                                'class' => 'ossn-action-btn btn-danger-outline',
+                            ));
+                        } else {
+                            echo ossn_plugin_view('output/url', array(
+                                'text' => '<i class="fa fa-user-plus"></i> ' . ossn_print('add:friend'),
+                                'href' => ossn_site_url("action/friend/add?user={$user->guid}", true),
+                                'class' => 'ossn-action-btn btn-primary-outline',
+                            ));     
+                        }
+                    } else {
+                        echo ossn_plugin_view('output/url', array(
+                            'text' => ossn_print('remove:friend'),
+                            'href' => ossn_site_url("action/friend/remove?user={$user->guid}", true),
+                            'class' => 'ossn-action-btn btn-danger-outline',
+                        )); 
+                    }
+                }
+                ?>      
+            </div>
+        </div>
+    </div>
+<?php
+    }
+    
+    echo '</div>'; // Close the prefix wrapper
+} ?>

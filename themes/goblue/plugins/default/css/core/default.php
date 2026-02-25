@@ -665,10 +665,11 @@ z-index: 1;
 }
 
 .ossn-wall-container .wall-tabs {
-	border-bottom: 1px solid #E5E5E5;
+	border-bottom: 0;
 	background-color: #F6F7F8;
 	border: 1px solid #E9EAED;
 	margin-top: 5px;
+    border-bottom: 0px;
 	border-top-right-radius: 10px;
 	border-top-left-radius: 10px;
 }
@@ -677,7 +678,6 @@ z-index: 1;
 	padding: 10px;
 	display: inline-flex;
 	cursor: pointer;
-	border-bottom: 1px solid #eee;
 	font-weight: bold;
 	font-size: 13px;
 }
@@ -3817,5 +3817,111 @@ label {
     /* Reduce card padding so the inputs have more room to breathe */
     .glass-signup-card {
         padding: 20px 15px !important;
+    }
+}
+/******************************
+	Output/users
+*****************************/
+/* Scoped Container for User Cards */
+.ossn-output-users-list .user-item-card {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1); 
+    border-radius: 16px;
+    margin-bottom: 15px; 
+    padding: 15px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.ossn-output-users-list .user-item-inner {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    flex-wrap: wrap; 
+    gap: 15px;
+}
+
+/* Avatar Styling */
+.ossn-output-users-list .user-avatar-container img {
+    width: 65px;
+    height: 65px;
+    border-radius: 12px;
+    object-fit: cover;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* Grouping Name and Avatar */
+.ossn-output-users-list .user-info-box {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.ossn-output-users-list .user-name-text {
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.ossn-output-users-list .user-username-sub {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.4);
+    margin-top: 2px;
+}
+
+/* Control Buttons */
+.ossn-output-users-list .ossn-action-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 18px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none !important;
+    white-space: nowrap; 
+    transition: all 0.2s ease;
+}
+
+/* Primary Button (Add Friend) */
+.ossn-output-users-list .btn-primary-outline {
+    background: rgba(11, 118, 156, 0.1);
+    color: #3fb1d9 !important;
+    border: 1px solid rgba(11, 118, 156, 0.4);
+}
+
+.ossn-output-users-list .btn-primary-outline:hover {
+    background: #0b769c;
+    color: #fff !important;
+    border-color: #0b769c;
+}
+
+/* Danger Button (Remove/Cancel) */
+.ossn-output-users-list .btn-danger-outline {
+    background: rgba(239, 68, 68, 0.1);
+    color: #ef4444 !important;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.ossn-output-users-list .btn-danger-outline:hover {
+    background: #ef4444;
+    color: #fff !important;
+}
+
+/* Small Device Adjustments */
+@media (max-width: 480px) {
+    .ossn-output-users-list .user-item-inner {
+        justify-content: center; 
+        text-align: center;
+    }
+    .ossn-output-users-list .user-info-box {
+        flex-direction: column; 
+        width: 100%;
+    }
+    .ossn-output-users-list .user-controls-box {
+        width: 100%;
+    }
+    .ossn-output-users-list .ossn-action-btn {
+        width: 100%; 
+        justify-content: center;
     }
 }
