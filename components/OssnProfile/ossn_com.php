@@ -95,6 +95,7 @@ function ossn_profile() {
 				));
 		}
 		ossn_add_hook('required', 'components', function ($hook, $type, $return, $params) {
+				//[B] Add required ossn photos component by profile #2531
 				$return[] = 'OssnPhotos';
 				return $return;
 		});
