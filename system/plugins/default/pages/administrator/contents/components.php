@@ -14,13 +14,20 @@
 	$OssnComs = new OssnComponents;
 	$list = $OssnComs->getComponents();
 	if($list){
-		foreach($list as $component) {
+		foreach($list as $com_id) {
+			$manifest = $OssnComs->getCom($com_id);
+			if(!$manifest){
+					error_log("Invalid component manifest file or not found");
+					ossn_trigger_message("{$com_id}: ".ossn_print("ossn:com:installer:xml:incomplete:error"), 'error');
+					continue;
+			}
+			
 			$vars = array();
-			$vars['OssnCom'] = $OssnComs;
-			$vars['component'] = $OssnComs->getCom($component);
-			$vars['name'] = $component;
+			$vars['xml'] = $manifest;
+			$vars['com_id'] = $com_id;
+			
 			//[E] Add ids in components and themes lists item so can be utilized later #2313
-			echo "<div class='ossn-admin-component-list-item' data-com-id='{$component}' data-com-version='{$vars['component']->version}'>";
+			echo "<div class='ossn-admin-component-list-item' data-com-id='{$com_id}' data-com-version='{$vars['xml']->version}'>";
 			echo ossn_plugin_view("admin/components/list/item", $vars);
 			echo "</div>";
 		}

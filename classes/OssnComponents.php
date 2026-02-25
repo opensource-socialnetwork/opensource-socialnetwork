@@ -337,7 +337,10 @@ class OssnComponents extends OssnDatabase {
 						$result  = array();
 						foreach($list as $component) {
 								$element = $this->getCom($component->com_id);
-								if($element->name == 'OssnProfile' && $comId == 'OssnProfile') {
+								if(!$element){
+									continue;
+								}
+								if($element->id == 'OssnProfile' && $comId == 'OssnProfile') {
 										// special case: not defined in xml, but used and needed by Ossn
 										$result[] = 'Ossn';
 										break;
