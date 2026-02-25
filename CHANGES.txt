@@ -30,6 +30,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK vx.x
 - [E] remove isOld checking themes and components #2533
 - [E] Limit the width and height for the images upload to avoid resources overusage CWE-400 #2535
 - [B] showFileUploadError is set on top of setFile where the $this->file is not yet set funny #2536
+- [B] [E_DEPRECATED] "Implicit conversion from float 867.9315476190476 to int loses precision" in file /home/user/public_html/classes/OssnImage.php) #2489
 
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v8.9
