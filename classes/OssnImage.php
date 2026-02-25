@@ -230,7 +230,7 @@ class OssnImage {
 						if(!empty($exact_size) && is_array($exact_size)) {
 								$dest_image = imagecreatetruecolor($exact_size[0], $exact_size[1]);
 						} else {
-								$dest_image = imagecreatetruecolor($this->getDestWidth(), $this->getDestHeight());
+								$dest_image = imagecreatetruecolor((int) $this->getDestWidth(), (int) $this->getDestHeight());
 						}
 
 						$background = imagecolorallocatealpha($dest_image, 255, 255, 255, 1);
@@ -245,24 +245,37 @@ class OssnImage {
 								$background = imagecolorallocate($dest_image, 255, 255, 255);
 								imagefilledrectangle($dest_image, 0, 0, $exact_size[0], $exact_size[1], $background);
 						} else {
-								$dest_image = imagecreatetruecolor($this->getDestWidth(), $this->getDestHeight());
+								$dest_image = imagecreatetruecolor((int) $this->getDestWidth(), (int) $this->getDestHeight());
 								$background = imagecolorallocate($dest_image, 255, 255, 255);
-								imagefilledrectangle($dest_image, 0, 0, $this->getDestWidth(), $this->getDestHeight(), $background);
+								imagefilledrectangle($dest_image, 0, 0, (int) $this->getDestWidth(), (int) $this->getDestHeight(), $background);
 						}
 						break;
 
 				case IMAGETYPE_WEBP:
-						if(version_compare(PHP_VERSION, '5.5.0', '<')) {
-								throw new Exception('For WebP support PHP >= 5.5.0 is required');
-						}
 						if(!empty($exact_size) && is_array($exact_size)) {
 								$dest_image = imagecreatetruecolor($exact_size[0], $exact_size[1]);
 								$background = imagecolorallocate($dest_image, 255, 255, 255);
 								imagefilledrectangle($dest_image, 0, 0, $exact_size[0], $exact_size[1], $background);
 						} else {
-								$dest_image = imagecreatetruecolor($this->getDestWidth(), $this->getDestHeight());
+								$dest_image = imagecreatetruecolor((int) $this->getDestWidth(), (int) $this->getDestHeight());
 								$background = imagecolorallocate($dest_image, 255, 255, 255);
-								imagefilledrectangle($dest_image, 0, 0, $this->getDestWidth(), $this->getDestHeight(), $background);
+								imagefilledrectangle($dest_image, 0, 0, (int) $this->getDestWidth(), (int) $this->getDestHeight(), $background);
+						}
+
+						imagealphablending($dest_image, false);
+						imagesavealpha($dest_image, true);
+
+						break;
+
+				case IMAGETYPE_AVIF:
+						if(!empty($exact_size) && is_array($exact_size)) {
+								$dest_image = imagecreatetruecolor($exact_size[0], $exact_size[1]);
+								$background = imagecolorallocate($dest_image, 255, 255, 255);
+								imagefilledrectangle($dest_image, 0, 0, $exact_size[0], $exact_size[1], $background);
+						} else {
+								$dest_image = imagecreatetruecolor((int) $this->getDestWidth(), (int) $this->getDestHeight());
+								$background = imagecolorallocate($dest_image, 255, 255, 255);
+								imagefilledrectangle($dest_image, 0, 0, (int) $this->getDestWidth(), (int) $this->getDestHeight(), $background);
 						}
 
 						imagealphablending($dest_image, false);
@@ -275,13 +288,13 @@ class OssnImage {
 								if(!empty($exact_size) && is_array($exact_size)) {
 										$dest_image = imagecreate($exact_size[0], $exact_size[1]);
 								} else {
-										$dest_image = imagecreate($this->getDestWidth(), $this->getDestHeight());
+										$dest_image = imagecreate((int) $this->getDestWidth(), (int) $this->getDestHeight());
 								}
 						} else {
 								if(!empty($exact_size) && is_array($exact_size)) {
 										$dest_image = imagecreatetruecolor($exact_size[0], $exact_size[1]);
 								} else {
-										$dest_image = imagecreatetruecolor($this->getDestWidth(), $this->getDestHeight());
+										$dest_image = imagecreatetruecolor((int) $this->getDestWidth(), (int) $this->getDestHeight());
 								}
 						}
 
@@ -291,6 +304,18 @@ class OssnImage {
 						$background = imagecolorallocatealpha($dest_image, 255, 255, 255, 127);
 						imagecolortransparent($dest_image, $background);
 						imagefill($dest_image, 0, 0, $background);
+						break;
+
+				case IMAGETYPE_BMP:
+						if(!empty($exact_size) && is_array($exact_size)) {
+								$dest_image = imagecreatetruecolor($exact_size[0], $exact_size[1]);
+								$background = imagecolorallocate($dest_image, 255, 255, 255);
+								imagefilledrectangle($dest_image, 0, 0, $exact_size[0], $exact_size[1], $background);
+						} else {
+								$dest_image = imagecreatetruecolor((int) $this->getDestWidth(), (int) $this->getDestHeight());
+								$background = imagecolorallocate($dest_image, 255, 255, 255);
+								imagefilledrectangle($dest_image, 0, 0, (int) $this->getDestWidth(), (int) $this->getDestHeight(), $background);
+						}
 						break;
 				}
 
@@ -311,19 +336,18 @@ class OssnImage {
 						}
 				}
 
-				$src_img = $this->source_image;
-				$src_w   = imagesx($src_img);
-				$src_h   = imagesy($src_img);
-
-				$dst_w = (int) round($this->getDestWidth());
-				$dst_h = (int) round($this->getDestHeight());
-
-				$src_x      = min((int) round($this->source_x), $src_w - 1);
-				$src_y      = min((int) round($this->source_y), $src_h - 1);
-				$src_copy_w = min((int) round($this->source_w), $src_w - $src_x);
-				$src_copy_h = min((int) round($this->source_h), $src_h - $src_y);
-
-				imagecopyresampled($dest_image, $src_img, (int) round($this->dest_x), (int) round($this->dest_y), $src_x, $src_y, $dst_w, $dst_h, $src_copy_w, $src_copy_h);
+				imagecopyresampled(
+						$dest_image,
+						$this->source_image,
+						$this->dest_x,
+						$this->dest_y,
+						(int) $this->source_x,
+						(int) $this->source_y,
+						(int) $this->getDestWidth(),
+						(int) $this->getDestHeight(),
+						(int) $this->source_w,
+						(int) $this->source_h
+				);
 
 				if($this->gamma_correct) {
 						imagegammacorrect($dest_image, 1.0, 2.2);
@@ -345,14 +369,19 @@ class OssnImage {
 						break;
 
 				case IMAGETYPE_WEBP:
-						if(version_compare(PHP_VERSION, '5.5.0', '<')) {
-								throw new Exception('For WebP support PHP >= 5.5.0 is required');
-						}
 						if($quality === null) {
 								$quality = $this->quality_webp;
 						}
 
 						imagewebp($dest_image, $filename, $quality);
+						break;
+
+				case IMAGETYPE_AVIF:
+						if($quality === null) {
+								$quality = $this->quality_avif;
+						}
+
+						imageavif($dest_image, $filename, $quality);
 						break;
 
 				case IMAGETYPE_PNG:
@@ -362,13 +391,15 @@ class OssnImage {
 
 						imagepng($dest_image, $filename, $quality);
 						break;
+
+				case IMAGETYPE_BMP:
+						imagebmp($dest_image, $filename, $quality);
+						break;
 				}
 
 				if($permissions) {
 						chmod($filename, $permissions);
 				}
-
-				imagedestroy($dest_image);
 
 				return $this;
 		}
