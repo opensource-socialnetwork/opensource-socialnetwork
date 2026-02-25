@@ -17,7 +17,19 @@ OSSN - OPEN SOURCE SOCIAL NETWORK vx.x
 - [E] Improve OssnUser::countByGender method #2517
 - [E] Remove order_by for counts #2516
 - [B] ossn_get_relationships searching only type didn't works it accepts to or from #2520
-
+- [B] If component folder is deleted but record exists #2491
+- [E] Allow 'other' gender type #2518
+- [B] ossn_get_relationships searching only type didn't works it accepts to or from #2520
+- [B] Duplicate count query #2523
+- [B] Some ambiguous #2524
+- [E] Move away from static margins of fullname on profile #2525
+- [B] fa-trash-o no longer exists #2526
+- [B] missing exit 2 times in actions/friend/remove #2529
+- [B] Error when deleting user message unknown colum Array #2528
+- [B] Add required ossn photos component by profile #2531
+- [E] remove isOld checking themes and components #2533
+- [E] Limit the width and height for the images upload to avoid resources overusage CWE-400 #2535
+- [B] showFileUploadError is set on top of setFile where the $this->file is not yet set funny #2536
 
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v8.9
