@@ -1412,10 +1412,13 @@ a {
 .ossn-widget {
 	margin-bottom: 10px;
 	background-color: #fff;
-	border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-	border-bottom-left-radius: 3px;
-	border-bottom-right-radius: 3px;
+	border-radius: 10px;
+	box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 2px;
+}
+
+.ossn-messages .ossn-widget {
+	border-radius: 0px;
+	box-shadow: none;
 }
 
 .ossn-widget .widget-heading {
@@ -1423,8 +1426,8 @@ a {
 	border: 1px solid #eee;
 	padding: 10px;
 	font-weight: bold;
-	border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
 }
 
 .ossn-widget .widget-contents {
@@ -2617,6 +2620,7 @@ div.token-input-dropdown ul li.token-input-selected-dropdown-item {
 	width: 24px;
 	height: 24px;
 }
+
 
 .ossn-box-loading {
 	margin-left: 216px;
