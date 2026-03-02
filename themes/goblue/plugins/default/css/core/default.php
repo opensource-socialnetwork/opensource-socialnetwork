@@ -275,8 +275,10 @@ a {
 .ossn-layout-module {
 	margin-top: 10px;
 	background: #fff;
-	border: 1px solid #eee;
-	border-radius: 10px;
+    margin-bottom: 10px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 2px;
+    border-radius: 10px;    
 }
 
 .ossn-layout-module .module-title {
