@@ -11,8 +11,8 @@
 
 $albums = new OssnAlbums;
 $photos = $albums->GetAlbum($params['album']);
+echo '<h2 class="ossn-photos-mod-title mb-2">' . $photos->album->title . '</h2>';
 echo '<div class="ossn-photos">';
-echo '<h2>' . $photos->album->title . '</h2>';
 if ($photos->photos) {
     foreach ($photos->photos as $photo) {
         $image = $photo->getURL('album');
