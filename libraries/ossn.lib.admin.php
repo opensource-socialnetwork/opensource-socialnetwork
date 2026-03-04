@@ -406,6 +406,7 @@ function ossn_administrator_pagehandler($pages) {
 						$online = false;
 
 						if(!empty($gender)) {
+								$online = array();
 								$genders = explode(',', $gender);
 
 								foreach ($genders as $gender) {
