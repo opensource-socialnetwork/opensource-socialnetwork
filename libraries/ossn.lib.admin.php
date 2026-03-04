@@ -422,8 +422,9 @@ function ossn_administrator_pagehandler($pages) {
 						$total  = false;
 
 						if(!empty($gender)) {
+								$total = array();
 								$genders = explode(',', $gender);
-
+								
 								foreach ($genders as $gender) {
 										$total[$gender] = $users->countByGender($gender);
 								}
