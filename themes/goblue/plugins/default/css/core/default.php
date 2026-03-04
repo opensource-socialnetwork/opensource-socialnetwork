@@ -3740,7 +3740,7 @@ label {
 	inset: 0;
 	background-size: cover;
 	z-index: -2;
-	background: url(http://local.opensource-socialnetwork.org/themes/goblue/images/background.jpg) no-repeat;
+	background: url("<?php echo ossn_theme_url();?>themes/goblue/images/background.jpg") no-repeat;
 	background-size: cover;
 }
 
