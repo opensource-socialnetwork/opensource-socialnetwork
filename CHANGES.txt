@@ -1,4 +1,10 @@
 OSSN - OPEN SOURCE SOCIAL NETWORK v9.0
+- [E] Two reset password links shows on login page #2537
+- [B] background is loading from wrong URL #2539
+- [E] "Automatic conversion of false to array is deprecated" www\libraries\ossn.lib.admin.php (line 412) #2538
+
+OSSN - OPEN SOURCE SOCIAL NETWORK v9.0
+
 - [E] Add favicon using callback so it can be removed using component #2497
 - [E] Add a callback before page load #2496
 - [B] ossn_include_upgrade_file replaces $file variable #2495
