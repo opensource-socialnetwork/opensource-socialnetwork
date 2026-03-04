@@ -13,7 +13,6 @@ Ossn.RegisterStartupFunction(function () {
 		/*
 		 * Friends List Open
 		 */
-
 		$('.friends-tab').on('click', function (e) {
 			var $friends_list;
 			$friends_list = $('.friends-list');
@@ -58,6 +57,11 @@ Ossn.RegisterStartupFunction(function () {
 		sidebarheight = sidebarheight - 45;
 		$(".ossn-chat-windows-long").find('.inner').height(sidebarheight + 'px');
 
+		if ($('.ossn-chat-windows-long').is(':visible')) {
+			$('footer').css('margin-right', '90px');
+		} else {
+			$('footer').css('margin-right', '');
+		}
 	});
 });
 Ossn.ChatOpenTab = function ($user) {

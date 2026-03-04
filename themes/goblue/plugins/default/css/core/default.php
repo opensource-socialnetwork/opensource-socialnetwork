@@ -2714,7 +2714,7 @@ footer {
 }
 
 footer {
-	border-top: 1px solid #E8E8E8;
+	border-top: 1px solid #d2d2d2;
 }
 
 footer .container {}
