@@ -2711,6 +2711,7 @@ div.token-input-dropdown ul li.token-input-selected-dropdown-item {
 footer {
 	margin-top: 20px;
 	padding-top: 5px;
+	position: relative;
 }
 
 footer {
