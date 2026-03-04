@@ -1,4 +1,6 @@
-OSSN - OPEN SOURCE SOCIAL NETWORK v9.0
+OSSN - OPEN SOURCE SOCIAL NETWORK v9.2
+
+OSSN - OPEN SOURCE SOCIAL NETWORK v9.1
 - [E] Two reset password links shows on login page #2537
 - [B] background is loading from wrong URL #2539
 - [E] "Automatic conversion of false to array is deprecated" www\libraries\ossn.lib.admin.php (line 412) #2538
