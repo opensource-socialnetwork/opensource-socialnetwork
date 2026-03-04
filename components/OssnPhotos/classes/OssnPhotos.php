@@ -229,6 +229,9 @@ class OssnPhotos extends OssnFile {
 		 * @return boolean|array
 		 */
 		public function searchPhotos($params): array | bool {
+				//searchFile must have types or guid
+				//as this uses wheres without guid or subtype it returned false
+				$params['subtype'] = 'ossn:aphoto';
 				return $this->searchFiles($params);
 		}
 		/**
