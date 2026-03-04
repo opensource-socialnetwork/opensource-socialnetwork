@@ -490,7 +490,7 @@ and (min-width : 1360px) {
     }
 
     .ossn-chat-windows-long .inner {
-        margin-top: 45px;
+        margin-top: 55px;
         border-top: 1px solid #ccc;
         overflow-x: hidden;
         overflow-y: auto;

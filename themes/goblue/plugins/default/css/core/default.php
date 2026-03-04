@@ -647,7 +647,7 @@ a {
 	border-radius: 0;
 	font-size: 15px;
 
-	resize: vertical;
+	resize: none;
 	/* allow manual resize */
 	overflow-y: auto;
 	/* show scrollbar when max-height reached */

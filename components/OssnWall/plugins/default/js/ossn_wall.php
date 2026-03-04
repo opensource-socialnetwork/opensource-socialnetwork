@@ -17,17 +17,17 @@ Ossn.register_callback('ossn', 'init', 'ossn_wall_privacy');
 Ossn.register_callback('ossn', 'init', 'ossn_wall_container_expend');
 
 function ossn_wall_post_edit() {
-	$(document).ready(function() {
+	$(document).ready(function () {
 		//post edit
 		Ossn.ajaxRequest({
 			url: Ossn.site_url + "action/wall/post/edit",
 			containMedia: true,
 			form: '#ossn-post-edit-form',
-			beforeSend: function() {
+			beforeSend: function () {
 				$('#ossn-post-edit-form').find('textarea').hide();
 				$('#ossn-post-edit-form').append('<div class="ossn-loading ossn-box-loading"></div>');
 			},
-			callback: function(callback) {
+			callback: function (callback) {
 				if (callback['success']) {
 					$text = $('#ossn-post-edit-form').find('#post-edit').val();
 					$guid = $('#ossn-post-edit-form').find('input[name="guid"]').val();
@@ -46,7 +46,7 @@ function ossn_wall_post_edit() {
 						Ossn.PostRequest({
 							url: Ossn.site_url + "action/wall/post/embed",
 							params: 'text=' + encodeURIComponent($text) + '&preview=' + preview_url + '&guid=' + $guid,
-							callback: function(return_data) {
+							callback: function (return_data) {
 								$elem.append(return_data['text']);
 								// handle existing/changed/removed/new preview according to action result
 								if ((return_data['preview_state'] == 'removed') || (return_data['preview_state'] == 'changed')) {
@@ -73,7 +73,7 @@ function ossn_wall_post_edit() {
 function ossn_wall_clear_form() {
 	var $file = $("#ossn-wall-form").find("input[type='file']");
 	$file.val("");
-	
+
 	$('#ossn-wall-photo').hide();
 
 	//Tagged friend(s) and location should be cleared, too - after posting #641
@@ -97,7 +97,7 @@ function ossn_wall_clear_form() {
 }
 
 function ossn_wall_postform() {
-	$(document).ready(function() {
+	$(document).ready(function () {
 		//ajax post
 		$url = $('#ossn-wall-form').attr('action');
 		Ossn.ajaxRequest({
@@ -106,11 +106,11 @@ function ossn_wall_postform() {
 			containMedia: true,
 			form: '#ossn-wall-form',
 
-			beforeSend: function(request) {
+			beforeSend: function (request) {
 				$('#ossn-wall-form').find('input[type=submit]').hide();
 				$('#ossn-wall-form').find('.ossn-loading').removeClass('ossn-hidden');
 			},
-			callback: function(callback) {
+			callback: function (callback) {
 				if (callback['success']) {
 					//[E] Hide a success message when post is added #1745
 					//Ossn.trigger_message(callback['success']);
@@ -134,29 +134,29 @@ function ossn_wall_postform() {
 }
 
 function ossn_wall_init() {
-	$(document).ready(function() {
-		$('.ossn-wall-container').find('.ossn-wall-friend').on('click', function() {
+	$(document).ready(function () {
+		$('.ossn-wall-container').find('.ossn-wall-friend').on('click', function () {
 			$('#ossn-wall-location').hide();
 			$('#ossn-wall-photo').hide();
 			$('#ossn-wall-friend').show();
 		});
-		$('.ossn-wall-container').find('.ossn-wall-location').on('click', function() {
+		$('.ossn-wall-container').find('.ossn-wall-location').on('click', function () {
 			$('#ossn-wall-friend').hide();
 			$('#ossn-wall-photo').hide();
 			$('#ossn-wall-location').show();
 		});
-		$('.ossn-wall-container').find('.ossn-wall-photo').on('click', function() {
+		$('.ossn-wall-container').find('.ossn-wall-photo').on('click', function () {
 			$('#ossn-wall-friend').hide();
 			$('#ossn-wall-location').hide();
 			$('#ossn-wall-photo').show();
 
 		});
-		$('body').on('click', '.ossn-wall-container-menu-post', function(e) {
+		$('body').on('click', '.ossn-wall-container-menu-post', function (e) {
 			e.preventDefault();
 			$('.ossn-wall-container-data-post').hide();
 			$('.ossn-wall-container-data-post').show();
 		});
-		$('body').on('click', '.ossn-wall-post-delete', function(e) {
+		$('body').on('click', '.ossn-wall-post-delete', function (e) {
 			$url = $(this);
 			e.preventDefault();
 
@@ -221,8 +221,8 @@ function ossn_wall_init() {
 							async: false, // !!!
 							action: false,
 							url: base_page_url + next_url,
-							beforeSend: function() {},
-							callback: function(callback) {
+							beforeSend: function () {},
+							callback: function (callback) {
 								// try to get the first posting of the next page
 								$element = $(callback).find('.ossn-wall-item').first();
 								if ($element.length) {
@@ -245,10 +245,10 @@ function ossn_wall_init() {
 			Ossn.PostRequest({
 				url: $url.attr('href'),
 				async: false,
-				beforeSend: function(request) {
+				beforeSend: function (request) {
 					$('#activity-item-' + $url.attr('data-guid')).attr('style', 'opacity:0.5;');
 				},
-				callback: function(callback) {
+				callback: function (callback) {
 					if (callback == 1) {
 						$('#activity-item-' + $url.attr('data-guid')).fadeOut();
 						$('#activity-item-' + $url.attr('data-guid')).remove();
@@ -282,8 +282,8 @@ function ossn_wall_init() {
 							async: false,
 							action: false,
 							url: base_page_url + last_url,
-							beforeSend: function() {},
-							callback: function(callback) {
+							beforeSend: function () {},
+							callback: function (callback) {
 								$element = $(callback).find('.ossn-wall-item').first();
 								if ($element.length) {
 									// the last page still has entries - do nothing
@@ -297,8 +297,8 @@ function ossn_wall_init() {
 										async: false,
 										action: false,
 										url: base_page_url + current_url,
-										beforeSend: function() {},
-										callback: function(callback) {
+										beforeSend: function () {},
+										callback: function (callback) {
 											$element = $(callback).find('.container-table-pagination');
 											if ($element.length) {
 												// and add adjusted pagination
@@ -308,6 +308,8 @@ function ossn_wall_init() {
 											// we have run into the special case
 											// offset = 1 and either no postings at all or number of postings < pagelimit
 										},
+
+
 									});
 								}
 							},
@@ -329,8 +331,8 @@ function ossn_wall_init() {
 							async: false,
 							action: false,
 							url: base_page_url + last_url,
-							beforeSend: function() {},
-							callback: function(callback) {
+							beforeSend: function () {},
+							callback: function (callback) {
 								$element = $(callback).find('.ossn-wall-item').first();
 								if ($element.length) {
 									// the last page still has entries - do nothing
@@ -347,8 +349,8 @@ function ossn_wall_init() {
 											async: false,
 											action: false,
 											url: base_page_url + current_url,
-											beforeSend: function() {},
-											callback: function(callback) {
+											beforeSend: function () {},
+											callback: function (callback) {
 												// get complete feed of previous page
 												$element = $(callback).find('.user-activity');
 												if ($element.length) {
@@ -370,12 +372,12 @@ function ossn_wall_init() {
 			} ?>
 		});
 
-		$('body').on('click', '.ossn-wall-post-edit', function() {
+		$('body').on('click', '.ossn-wall-post-edit', function () {
 			var $dataguid = $(this).attr('data-guid');
 			Ossn.MessageBox('post/edit/' + $dataguid);
 		});
 		//Change the privacy button as per the privacy value #1289
-		$('body').on('input', '#ossn-wall-privacy', function() {
+		$('body').on('input', '#ossn-wall-privacy', function () {
 			switch (parseInt($(this).val())) {
 				case 3:
 					$('.ossn-wall-privacy-lock').removeClass('fa-lock');
@@ -398,32 +400,32 @@ function ossn_wall_init() {
 }
 
 function ossn_wall_select_friends() {
-	$(document).ready(function() {
+	$(document).ready(function () {
 		if (typeof $.fn.tokenInput === 'function' && $('#ossn-wall-friend-input').length > 0) {
 			var picker_type = $('#ossn-wall-friend-input').attr('data-type');
 			var tag_type = "";
 			var $placeholder = Ossn.Print('tag:friends');
-			
-			if(typeof picker_type != 'undefined' && picker_type == 'group'){
-					var group_guid = $('#ossn-wall-friend-input').attr('data-guid');
-					tag_type = '?picker_type=group&guid='+group_guid;	
-					$placeholder = Ossn.Print('ossn:wall:tag:member')
+
+			if (typeof picker_type != 'undefined' && picker_type == 'group') {
+				var group_guid = $('#ossn-wall-friend-input').attr('data-guid');
+				tag_type = '?picker_type=group&guid=' + group_guid;
+				$placeholder = Ossn.Print('ossn:wall:tag:member')
 			}
 			$("#ossn-wall-friend-input").tokenInput(Ossn.site_url + "friendpicker" + tag_type, {
 				placeholder: $placeholder,
 				hintText: false,
 				propertyToSearch: "first_name",
-				resultsFormatter: function(item) {
+				resultsFormatter: function (item) {
 					return "<li>" + "<img src='" + item.imageurl + "' title='" + item.first_name + " " + item.last_name + "' height='25px' width='25px' />" + "<div style='display: inline-block; padding-left: 10px;'><div class='full_name' style='font-weight:bold;color:#2B5470;'>" + item.first_name + " " + item.last_name + "</div></div></li>"
 				},
-				tokenFormatter: function(item) {
+				tokenFormatter: function (item) {
 					return "<li><p>" + item.first_name + " " + item.last_name + "</p></li>"
 				},
 			});
 		}
 	});
 }
-Ossn.PostMenu = function($id) {
+Ossn.PostMenu = function ($id) {
 	$element = $($id).find('.menu-links');
 	if ($element.is(":not(:visible)")) {
 		$element.show();
@@ -433,11 +435,11 @@ Ossn.PostMenu = function($id) {
 };
 
 function ossn_wall_privacy() {
-	$(document).ready(function() {
-		$('.ossn-wall-privacy').on('click', function(e) {
+	$(document).ready(function () {
+		$('.ossn-wall-privacy').on('click', function (e) {
 			Ossn.MessageBox('post/privacy');
 		});
-		$('#ossn-wall-privacy').on('click', function(e) {
+		$('#ossn-wall-privacy').on('click', function (e) {
 			var wallprivacy = $('#ossn-wall-privacy-container').find('input[name="privacy"]:checked').val();
 			$('#ossn-wall-privacy').val(wallprivacy);
 			$('#ossn-wall-privacy').trigger("input");
@@ -460,13 +462,13 @@ function ossn_wall_privacy() {
  * @return void
  */
 function ossn_wall_location() {
-	$(document).ready(function() {
+	$(document).ready(function () {
 		if ($('#ossn-wall-location-input').length) {
 			ossn_location({
 				container: '#ossn-wall-location',
 				input: '#ossn-wall-location-input',
 			});
-			$('#ossn-wall-location-input').on('keypress', function(event) {
+			$('#ossn-wall-location-input').on('keypress', function (event) {
 				if (event.keyCode == 13) {
 					event.preventDefault();
 					return false;
@@ -477,47 +479,33 @@ function ossn_wall_location() {
 }
 
 function ossn_wall_container_expend() {
-    $(document).ready(function() {
-        const textarea = $('.ossn-wall-container textarea:not(.postbg-container)');
-        
-        textarea.each(function() {
-            const $this = $(this);
-            $this.data('manualHeight', $this.height());
-        });
+	$(document).ready(function () {
+		const textarea = $('.ossn-wall-container textarea:not(.postbg-container)');
 
-        textarea.on('input', function() {
-            const $this = $(this);
-            const lineHeight = parseFloat($this.css('line-height')) || 20;
-            const maxHeight = parseFloat($this.css('max-height')) || 200;
+		textarea.on('input', function () {
+			this.style.height = 'auto'; // reset first
 
-            // reset to auto to measure scrollHeight
-            this.style.height = 'auto';
-            let newHeight = this.scrollHeight;
+			let maxHeight = parseFloat($(this).css('max-height')) || 200;
 
-            // increase a few lines only
-            const increment = lineHeight * 2; // grow 2 lines at a time
-            let currentHeight = parseFloat($this.height());
+			if (this.scrollHeight <= maxHeight) {
+				this.style.height = this.scrollHeight + 'px';
+				this.style.overflowY = 'hidden';
+			} else {
+				this.style.height = maxHeight + 'px';
+				this.style.overflowY = 'auto'; // show scrollbar only after max
+			}
+		});
 
-            if (newHeight > currentHeight) {
-                currentHeight += increment;
-            } else {
-                currentHeight = newHeight;
-            }
-
-            // do not exceed maxHeight
-            if (currentHeight > maxHeight) {
-                currentHeight = maxHeight;
-            }
-
-            this.style.height = currentHeight + 'px';
-        });
-
-        // reset on submit
-        $('#ossn-wall-form').on('submit', function() {
-            textarea.css('height', '40px').data('manualHeight', 40);
-        });
-    });
+		// Reset on submit
+		$('#ossn-wall-form').on('submit', function () {
+			textarea.css({
+				height: '40px',
+				overflowY: 'hidden'
+			});
+		});
+	});
 }
+
 function wallSetCookie(cname, cvalue, exdays) {
 	var d = new Date();
 	d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
