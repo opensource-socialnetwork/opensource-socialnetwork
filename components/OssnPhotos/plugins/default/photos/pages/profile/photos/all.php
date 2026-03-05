@@ -12,8 +12,8 @@
 $albums = new OssnPhotos();
 $photos = $albums->GetUserProfilePhotos($params['user']->guid);
 $count = $albums->GetUserProfilePhotos($params['user']->guid, ['count' => true]);
+echo '<h2 class="ossn-photos-mod-title mb-2">' . ossn_print('profile:photos') . '</h2>';
 echo '<div class="ossn-photos">';
-echo '<h2>' . ossn_print('profile:photos') . '</h2>';
 if ($photos) {
     foreach ($photos as $photo) {
         $image = $photo->getURL().'?size=larger&type=1';

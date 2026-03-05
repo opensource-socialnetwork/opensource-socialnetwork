@@ -12,8 +12,8 @@
 $albums = new OssnPhotos();
 $photos = $albums->GetUserCoverPhotos($params['user']->guid);
 $count  = $albums->GetUserCoverPhotos($params['user']->guid, ['count' => true]);
+echo '<h2 class="ossn-photos-mod-title mb-2">' . ossn_print('profile:covers') . '</h2>';
 echo '<div class="ossn-photos">';
-echo '<h2>' . ossn_print('profile:covers') . '</h2>';
 if ($photos) {
     foreach ($photos as $photo) {
         $image = $photo->getURL();
