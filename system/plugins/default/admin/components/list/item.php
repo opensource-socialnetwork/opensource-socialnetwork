@@ -14,8 +14,8 @@
  if(empty($params['xml']->name)){
 	 $translit = rand();
  }
-
- $requirements = $OssnComs->checkRequirments($params['com_id']);
+ //[B] Component checkRequirments failed #2543 it should be [xml] 
+ $requirements = $OssnComs->checkRequirments($params['xml']);
 
  //used code from ossn v1.0
  if (!$OssnComs->isActive($params['com_id'])) {
