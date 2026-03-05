@@ -275,10 +275,10 @@ a {
 .ossn-layout-module {
 	margin-top: 10px;
 	background: #fff;
-    margin-bottom: 10px;
-    background-color: rgb(255, 255, 255);
-    box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 2px;
-    border-radius: 10px;    
+	margin-bottom: 10px;
+	background-color: rgb(255, 255, 255);
+	box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 2px;
+	border-radius: 10px;
 }
 
 .ossn-layout-module .module-title {
@@ -1945,6 +1945,7 @@ a {
 	font-weight: 900;
 }
 
+
 .profile-cover-controls a {
 	float: right;
 	position: relative;
@@ -3497,7 +3498,6 @@ label {
 	background: linear-gradient(135deg, rgba(102, 126, 234, 0.4) 0%, rgba(118, 75, 162, 0.4) 100%);
 	filter: blur(70px);
 	border-radius: 43% 57% 70% 30% / 30% 45% 55% 70%;
-	animation: drift 20s infinite alternate;
 }
 
 .ossn-startup-wrapper .blob-1 {
@@ -3510,7 +3510,6 @@ label {
 	bottom: -10%;
 	right: -5%;
 	background: rgba(255, 126, 179, 0.15);
-	animation-duration: 25s;
 }
 
 .ossn-startup-wrapper .blob-3 {
@@ -3519,7 +3518,6 @@ label {
 	width: 300px;
 	height: 300px;
 	background: rgba(130, 255, 160, 0.1);
-	animation-duration: 15s;
 }
 
 .ossn-startup-wrapper .blob-4 {
@@ -3528,16 +3526,6 @@ label {
 	width: 400px;
 	height: 400px;
 	background: rgba(0, 210, 255, 0.1);
-}
-
-@keyframes drift {
-	from {
-		transform: translate(0, 0) rotate(0deg) scale(1);
-	}
-
-	to {
-		transform: translate(50px, 100px) rotate(30deg) scale(1.1);
-	}
 }
 
 /* Glass Branding Box */
