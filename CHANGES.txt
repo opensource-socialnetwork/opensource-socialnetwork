@@ -1,3 +1,7 @@
+OSSN - OPEN SOURCE SOCIAL NETWORK v9.3
+- [B] cpu usage goblue frontpage because of animation #2544
+- [B] Component checkRequirments failed #2543
+
 OSSN - OPEN SOURCE SOCIAL NETWORK v9.2
 - [E] Change front-page icon color to topar color #2541
 - [B] Terms line not viisble on signup form #2540
