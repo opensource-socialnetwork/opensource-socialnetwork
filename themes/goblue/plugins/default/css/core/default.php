@@ -3598,7 +3598,7 @@ label {
 .ossn-startup-wrapper .feature-tag i,
 .ossn-startup-wrapper .pill i {
 	margin-right: 8px;
-	color: #6366f1;
+	color: #0b769c;
 	font-size: 14px;
 }
 
@@ -3715,10 +3715,9 @@ label {
 }
 
 .ossn-startup-wrapper .terms-text {
-	font-size: 12px;
-	color: #718096;
+	font-size: 14px;
+	color: #fff;
 	margin-top: 15px;
-	text-align: center;
 }
 
 .topbar::before {

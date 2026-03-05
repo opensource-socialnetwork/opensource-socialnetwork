@@ -1,4 +1,7 @@
 OSSN - OPEN SOURCE SOCIAL NETWORK v9.2
+- [E] Change front-page icon color to topar color #2541
+- [B] Terms line not viisble on signup form #2540
+
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v9.1
 - [E] Two reset password links shows on login page #2537
