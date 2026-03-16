@@ -1,6 +1,6 @@
 <?php
 /**
- * Open Source Social Network - Modernized Form
+ * Login Form
  */
 ?>
 <div class="custom-row">
@@ -34,7 +34,9 @@ if($fields){
     echo ossn_plugin_view('user/fields/item', array('items' => $fields));
 }
 ?>
-
+<div>
+<?php echo ossn_fetch_extend_views('forms/signup/before/submit'); ?>
+</div>
 <div id="ossn-signup-errors" class="alert alert-danger ossn-hidden"></div>
 
 <p class="terms-text">
