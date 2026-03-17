@@ -20,59 +20,99 @@ if(!$copyrights || empty($copyrights)){
 
 ?>
 <div class="layout-installation">
-    <h2> <?php echo ossn_installation_print('create:admin:account'); ?> </h2>
+    <header class="content-header mb-4">
+        <h1 class="display-6 fw-bold text-dark mb-1"><?php echo ossn_installation_print('create:admin:account'); ?></h1>
+        <p class="text-muted fs-6"><?php echo ossn_installation_print('create:admin:account:sub');?></p>
+    </header>
 
     <form action="<?php echo ossn_installation_paths()->url; ?>?action=account" method="post">
-        <div>
-            <input type="text" name="firstname" placeholder="<?php echo ossn_print('first:name'); ?>"/>
-            <input type="text" name="lastname" placeholder="<?php echo ossn_print('last:name'); ?>"/>
+        
+        <div class="row g-3 mb-3">
+            <div class="col-md-6">
+                <label class="form-label fw-bold text-secondary small text-uppercase"><?php echo ossn_installation_print('create:admin:account:firstname'); ?></label>
+                <input type="text" name="firstname" class="form-control" placeholder="<?php echo ossn_installation_print('create:admin:account:firstname'); ?>"/>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label fw-bold text-secondary small text-uppercase"><?php echo ossn_installation_print('create:admin:account:lastname'); ?></label>
+                <input type="text" name="lastname" class="form-control" placeholder="<?php echo ossn_installation_print('create:admin:account:lastname'); ?>"/>
+            </div>
         </div>
 
-        <div>
-            <input type="text" name="email" placeholder="<?php echo ossn_print('email'); ?>"/>
-            <input name="email_re" type="text" placeholder="<?php echo ossn_print('email:again'); ?>"/>
+        <div class="row g-3 mb-3">
+            <div class="col-md-6">
+                <label class="form-label fw-bold text-secondary small text-uppercase"><?php echo ossn_installation_print('create:admin:account:email'); ?></label>
+                <input type="text" name="email" class="form-control" placeholder="<?php echo ossn_installation_print('create:admin:account:email'); ?>"/>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label fw-bold text-secondary small text-uppercase"><?php echo ossn_installation_print('create:admin:account:cemail'); ?></label>
+                <input name="email_re" type="text" class="form-control" placeholder="<?php echo ossn_installation_print('create:admin:account:cemail'); ?>"/>
+            </div>
         </div>
 
-        <div>
-            <input type="text" name="username" placeholder="<?php echo ossn_print('username'); ?>" class="long-input"/>
-            <input type="password" name="password" placeholder="<?php echo ossn_print('password'); ?>" class="long-input"/>
+        <div class="row g-3 mb-4">
+            <div class="col-md-6">
+                <label class="form-label fw-bold text-secondary small text-uppercase"><?php echo ossn_installation_print('create:admin:account:username'); ?></label>
+                <input type="text" name="username" class="form-control" placeholder="<?php echo ossn_installation_print('create:admin:account:username'); ?>"/>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label fw-bold text-secondary small text-uppercase"><?php echo ossn_installation_print('create:admin:account:password'); ?></label>
+                <input type="password" name="password" class="form-control" placeholder="<?php echo ossn_installation_print('create:admin:account:password'); ?>"/>
+            </div>
         </div>
-        <div class="margin-top-10">
-            <label><?php echo ossn_print('birthdate'); ?> </label>
 
-            <select name="birthday">
-                <option value=""><?php echo ossn_print('day'); ?></option>
-                <?php for ($day = 1; $day <= 31; $day++) { ?>
-                    <option
-                        value="<?php echo strlen($day) == 1 ? '0' . $day : $day; ?>"><?php echo strlen($day) == 1 ? '0' . $day : $day; ?></option>
-                <?php } ?>
-            </select>
+        <div class="row g-3 mb-4">
+            <div class="col-12">
+                <label class="form-label fw-bold text-secondary small text-uppercase d-block"><?php echo ossn_installation_print('create:admin:account:birthdate'); ?></label>
+                <div class="d-flex gap-2">
+                    <select name="birthday" class="form-select" style="max-width: 100px;">
+                        <option value=""><?php echo ossn_installation_print('create:admin:account:day'); ?></option>
+                        <?php for ($day = 1; $day <= 31; $day++) { 
+                             $val = str_pad($day, 2, "0", STR_PAD_LEFT); ?>
+                             <option value="<?php echo $val; ?>"><?php echo $val; ?></option>
+                        <?php } ?>
+                    </select>
 
-            <select name="birthm">
-                <option value=""><?php echo ossn_print('month'); ?></option>
-                <?php for ($month = 1; $month <= 12; $month++) { ?>
-                    <option
-                        value="<?php echo strlen($month) == 1 ? '0' . $month : $month; ?>"><?php echo strlen($month) == 1 ? '0' . $month : $month; ?></option>
-                <?php } ?>
-            </select>
+                    <select name="birthm" class="form-select" style="max-width: 140px;">
+                        <option value=""><?php echo ossn_installation_print('create:admin:account:month'); ?></option>
+                        <?php for ($month = 1; $month <= 12; $month++) { 
+                             $val = str_pad($month, 2, "0", STR_PAD_LEFT); ?>
+                             <option value="<?php echo $val; ?>"><?php echo $val; ?></option>
+                        <?php } ?>
+                    </select>
 
-            <select name="birthy">
-                <option value=""><?php echo ossn_print('year'); ?></option>
-                <?php for ($year = date('Y'); $year > date('Y') - 100; $year--) { ?>
-                    <option value="<?php echo $year; ?>"><?php echo $year; ?></option>
-                <?php } ?>
-            </select>
-
+                    <select name="birthy" class="form-select" style="max-width: 120px;">
+                        <option value=""><?php echo ossn_installation_print('create:admin:account:year'); ?></option>
+                        <?php for ($year = date('Y'); $year > date('Y') - 100; $year--) { ?>
+                            <option value="<?php echo $year; ?>"><?php echo $year; ?></option>
+                        <?php } ?>
+                    </select>
+                </div>
+            </div>
         </div>
-        <br/>
 
-        <div class="margin-top-10">
-            <label> <?php echo ossn_print('gender'); ?> </label>
-            <span><input type="radio" name="gender" value="male"/> <?php echo ossn_print('male'); ?></span>
-            <span><input type="radio" name="gender" value="female"/> <?php echo ossn_print('female'); ?></span>
+        <div class="row g-3 mb-4">
+
+            <div class="col-12">
+                <label class="form-label fw-bold text-secondary small text-uppercase d-block"><?php echo ossn_installation_print('create:admin:account:gender'); ?></label>
+                <div class="d-flex gap-4 mt-1">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gender" id="genderM" value="male"/>
+                        <label class="form-check-label" for="genderM"><?php echo ossn_installation_print('create:admin:account:male'); ?></label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gender" id="genderF" value="female"/>
+                        <label class="form-check-label" for="genderF"><?php echo ossn_installation_print('create:admin:account:female'); ?></label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gender" id="genderO" value="other"/>
+                        <label class="form-check-label" for="genderO"><?php echo ossn_installation_print('create:admin:account:other'); ?></label>
+                    </div>                    
+                </div>
+            </div>
         </div>
-        <br/>
-        <input type="submit" value="<?php echo ossn_installation_print('ossn:install:create'); ?>" class="button-blue primary margin-top-10"/>
 
-        </from>
+        <div class="d-flex justify-content-end pt-4 mt-5 border-top">
+            <input type="submit" value="<?php echo ossn_installation_print('ossn:install:create'); ?>" class="installer-btn btn-primary px-5 py-3"/>
+        </div>
     </form>
+</div>

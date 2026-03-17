@@ -1,369 +1,453 @@
-/**
- * 	Open Source Social Network
- *
- * @package   Open Source Social Network (OSSN)
- * @author    OSSN Core Team <info@openteknik.com>
- * @copyright (C) OpenTeknik LLC
- * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence 
- * @link      https://www.opensource-socialnetwork.org/
- */
-
-body {
-	padding-bottom: 10px;
-	position: relative;
-	z-index: 2;
-	background: none repeat scroll 0 0;
-	line-height: 1.5;
-	font-family: 'PT Sans', sans-serif;
-	color: #000;
-	background: #f7f7f7;
-	font-size: 10pt;
-	margin: 0;
+:root {
+    --primary-blue: #0b769c;
+    --primary-text-light: #ffffff;
+    --primary-text-dark: #374151;
+    --secondary-text: #6b7280;
+    --input-border: #e2e8f0;
+    --input-focus: #93c5fd;
+    --btn-cancel: #f1f5f9;
+    --btn-cancel-text: #64748b;
+    --background-subtle: #f9fafb;
+    --gap-standard: 20px;
+    --gap-generous: 40px;
+    --gap-subtle: 8px;
+    --sidebar-padding: 30px;
+    --radius-standard: 12px;
 }
 
-form label {
-	display: block;
-	color: #000;
-	font-weight: bold;
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f4f8; 
 }
 
-form div {
-	display: inline-block;
+.help-text a {
+	color:#fff;
+	text-decoration:none;
 }
 
-#ossn-page-menubar {
-	width: 100%;
-	margin: 0;
-	padding: 10px 0 0 0;
-	list-style: none;
-    background-color: #585858;
-    border-color: #6f6f6f;
+body::before {
+    content: "";
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 1200px;
+    height: 1200px;
+    background: radial-gradient(circle, rgba(0, 190, 241, 0.08) 0%, rgba(240, 244, 248, 0) 70%);
+    z-index: -1;
+    pointer-events: none;
+}
+
+.ossn-installer-window {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    width: 95vw;
+    max-width: 1200px;
+    height: 85vh;
+    margin: auto;
+    background: #fff;
+    border-radius: var(--radius-standard);
+    overflow: hidden;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.installer-sidebar {
+    background-color: var(--primary-blue);
+    padding: var(--gap-generous) var(--sidebar-padding);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: var(--primary-text-light);
+}
+
+.installer-sidebar:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(0, 0, 0, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.sidebar-logo {
+    text-align: center;
+    display: inline-block;
+    padding: 15px 25px;
+    background: #fff;
+    backdrop-filter: blur(5px);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, .5);    
+    margin-bottom:10px;
+}
+
+.sidebar-img-logo {
+    max-width: 100%;
+    height: auto;
+    max-height: 60px;
+    display: block;
+    margin: 0 auto;
+}
+
+.sidebar-steps {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.step-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+    height: 24px;
+}
+
+.step-item .text {
+    line-height: 1;
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+    margin-top: -5px;
+}
+
+.step-item .circle {
+    width: 24px;
+    height: 24px;
+    min-width: 24px;
+    min-height: 24px;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.step-item.visited .circle {
+    background-color: #fff;
+    border-color: #fff;
+}
+
+.step-item.visited .circle::after {
+    content: '';
+    width: 6px;
+    height: 10px;
+    border: solid #00bef1;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    margin-bottom: 2px;
+}
+
+.step-item.active .circle {
+    background-color: #fff;
+    border-color: #fff;
+}
+
+.step-item.active .text {
     color: #fff;
-    border: 0;
-    border-radius: 0;
+    font-weight: 700;
 }
 
-#ossn-page-menubar li {
-	float: left;
-	padding: 0 0 10px 0;
-	position: relative;
+.step-item.visited .text {
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 500;
 }
 
-#ossn-page-menubar a {
-	float: left;
-	height: 25px;
-	padding: 0 25px;
-	color: #fff;
-	text-transform: uppercase;
-	font: bold 12px/25px Arial, Helvetica;
-	text-decoration: none;
+.sidebar-help {
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
-#ossn-page-menubar li:hover>a {
-	color: #dedede;
+.help-icon {
+    font-weight: bold;
+    font-size: 16px;
 }
 
-* html #ossn-page-menubar li a:hover {
-	/* IE6 */
-	color: #2F4959;
+.installer-content {
+    background-color: #ffffff;
+    padding: var(--gap-generous);
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    gap: var(--gap-standard);
+    overflow: hidden;
 }
 
-#ossn-page-menubar li:hover>ul {
-	display: block;
+.content-header h1 {
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--primary-text-dark);
+    margin: 0;
+    letter-spacing: -0.03em;
 }
 
-#ossn-page-menubar:after {
-	visibility: hidden;
-	display: block;
-	font-size: 0;
-	content: " ";
-	clear: both;
-	height: 0;
+.content-header p {
+    color: var(--secondary-text);
+    margin-top: 5px;
 }
 
-* html #ossn-page-menubar {
-	zoom: 1;
+.installer-form-area {
+    overflow-y: auto;
+    padding-right: 10px;
 }
 
-
-/* IE6 */
-
-*:first-child+html #ossn-page-menubar {
-	zoom: 1;
+.ossn-form-group {
+    margin-bottom: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
 }
 
-
-/* IE7 */
-
-.ossn-default {
-	width: 965px;
-	margin: 0 auto;
+.ossn-form-label {
+    font-weight: 600;
+    font-size: 14px;
+    color: #1f2937;
 }
 
-.ossn-top {
-	margin: 15px auto;
-	width: 950px;
-	margin-bottom: -35px;
+.ossn-input {
+    width: 100%;
+    max-width: 480px;
+    padding: 12px 16px;
+    font-size: 14px;
+    border: 1px solid var(--input-border);
+    border-radius: 8px;
+    background-color: #ffffff;
+    box-sizing: border-box;
+    transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-.ossn-top .inline {
-	display: inline-block;
+.ossn-input:focus {
+    outline: none;
+    border-color: var(--input-focus);
+    box-shadow: 0 0 0 4px rgba(147, 197, 253, 0.2);
 }
 
-.search {
-	float: right;
-	margin-top: 30px;
-	margin-right: 10px;
+.installer-footer {
+    padding-top: var(--gap-standard);
+    border-top: 1px solid #f1f5f9;
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
 }
 
-.layout-installation {
-	background-color: #fff;
-	min-height: 300px;
-	width: 920px;
-	margin: 20px;
-	border-radius: 5px;
-	border: 2px solid #EEE;
-	padding: 20px;
-	padding-top:10px;
-	padding-bottom:0px;
+.installer-btn {
+    padding: 0.85rem 2.5rem;
+    font-weight: 600;
+    border-radius: 12px;
+    font-size: 15px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.layout-installation h2:not(#ossnlicense h2) {
-    background-color: #f8f8f8;
-    border: 1px solid #e7e7e7;
-    padding: 10px;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    text-transform: uppercase;
-    margin-bottom: 10px;
-    font-size: 12px;
-    margin-left: 10px;
-    margin-right: 10px;	
+.installer-btn:active {
+    transform: translateY(1px);
 }
 
-.button-nav-default {
-	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2);
-	-webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075);
-	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075);
+.btn-cancel {
+    background-color: var(--btn-cancel);
+    color: var(--btn-cancel-text);
 }
 
-.button-nav {
-	display: inline-block;
-	padding: 6px 12px;
-	margin-bottom: 0;
-	text-decoration: none;
-	cursor: pointer;
-	font-size: 14px;
-	font-weight: bold;
-	line-height: 1.428571429;
-	text-align: center;
-	white-space: nowrap;
-	vertical-align: middle;
-	cursor: pointer;
-	border: 1px solid rgba(0, 0, 0, 0.38);
-	;
-	border-radius: 4px;
-	color: #333;
+.btn-cancel:hover {
+    background-color: #e2e8f0;
 }
 
-.button-nav:active {
-	background: #E6E6E6;
+.btn-primary {
+    background-color: var(--primary-blue);
+    color: var(--primary-text-light);
 }
 
-.button-blue {
-	cursor: pointer;
-	display: inline-block;
-	text-decoration: none;
-	background-color: #e6e6e6;
-	background-repeat: no-repeat;
-	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), color-stop(25%, #ffffff), to(#e6e6e6));
-	background-image: -webkit-linear-gradient(#ffffff, #ffffff 25%, #e6e6e6);
-	background-image: -moz-linear-gradient(top, #ffffff, #ffffff 25%, #e6e6e6);
-	background-image: -ms-linear-gradient(#ffffff, #ffffff 25%, #e6e6e6);
-	background-image: -o-linear-gradient(#ffffff, #ffffff 25%, #e6e6e6);
-	background-image: linear-gradient(#ffffff, #ffffff 25%, #e6e6e6);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#e6e6e6', GradientType=0);
-	padding: 5px 14px 6px;
-	text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
-	color: #333;
-	font-size: 13px;
-	line-height: normal;
-	border: 1px solid #ccc;
-	border-bottom-color: #bbb;
-	-webkit-border-radius: 4px;
-	-moz-border-radius: 4px;
-	border-radius: 4px;
-	-webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
-	-moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
-	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
-	-webkit-transition: 0.1s linear all;
-	-moz-transition: 0.1s linear all;
-	-ms-transition: 0.1s linear all;
-	-o-transition: 0.1s linear all;
-	transition: 0.1s linear all;
+.btn-primary:hover {
+    background-color: #00a9d9;
 }
 
-.button-blue:hover {
-	background-position: 0 -15px;
-	color: #333;
-	text-decoration: none;
-}
-
-.button-blue:focus {
-	outline: 1px dotted #666;
-}
-
-.button-blue.primary {
-	color: #ffffff !important;
-	background-color: #0064cd;
-	background-repeat: repeat-x;
-	background-image: -khtml-gradient(linear, left top, left bottom, from(#049cdb), to(#0064cd));
-	background-image: -moz-linear-gradient(top, #049cdb, #0064cd);
-	background-image: -ms-linear-gradient(top, #049cdb, #0064cd);
-	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #049cdb), color-stop(100%, #0064cd));
-	background-image: -webkit-linear-gradient(top, #049cdb, #0064cd);
-	background-image: -o-linear-gradient(top, #049cdb, #0064cd);
-	background-image: linear-gradient(top, #049cdb, #0064cd);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#049cdb', endColorstr='#0064cd', GradientType=0);
-	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-	border-color: #0064cd #0064cd #003f81;
-	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-}
-textarea,
-input[type=password],
-input[type=text] {
-	-webkit-transition: all 0.30s ease-in-out;
-	-moz-transition: all 0.30s ease-in-out;
-	-ms-transition: all 0.30s ease-in-out;
-	-o-transition: all 0.30s ease-in-out;
-	outline: none;
-	border: 1px solid #eee;
-	background: #f9f9f9;
-}
-form {
-	margin-left: 10px;
-    margin-right: 10px;	
-    margin-bottom: 20px;
-}
-.margin-top-10 {
-	margin-top:10px;	
-}
-input[type=password]:focus,
-input[type=text]:focus,
-textarea:focus {
-	box-shadow: 0 0 5px rgb(202, 202, 202);
-	border: 1px solid rgb(202, 202, 202);
-}
-
-input[type=password],
-input[type=text] {
-	-webkit-transition: all 0.30s ease-in-out;
-	-moz-transition: all 0.30s ease-in-out;
-	-ms-transition: all 0.30s ease-in-out;
-	-o-transition: all 0.30s ease-in-out;
-	outline: none;
-	padding: 3px 0px 3px 3px;
-	margin: 5px 1px 3px 0px;
-	border: 1px solid #eee;
-	width: 425px;
-	height: 30px;
-	padding: 5px 10px;
-	font-weight: bold;
-	color: #999;
-	border-radius: 5px;
-}
-input[type=password]:focus,
-input[type=text]:focus,
-textarea:focus {
-	box-shadow: 0 0 5px rgb(202, 202, 202);
-	border: 1px solid rgb(202, 202, 202);
-}
-
-.ossn-installation-success {
-	padding: 2px;
-	border: 1px solid #C7CEDF;
-	background: #E7EDFA;
-	color: #7387B1;
-	padding: 10px;
-	border-radius: 5px
-}
-
-.ossn-installation-fail {
-	padding: 2px;
-	border: 1px solid #F59BA8;
-	background: #FFE5E6;
-	padding: 10px;
-	border-radius: 5px
+@media (max-width: 768px) {
+    .ossn-installer-window {
+        grid-template-columns: 1fr;
+        height: auto;
+        max-height: none;
+    }
+    
+    .installer-sidebar {
+        padding: var(--gap-standard);
+        display: block;
+        justify-content: center;
+        text-align: center;
+    }
+    
+    .sidebar-steps {
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-bottom: 10px;
+    }
+    
+    .step-item {
+        font-size: 13px;
+    }
+    
+    .sidebar-help {
+        display: none;
+    }
+    
+    .installer-content {
+        padding: var(--gap-standard);
+    }
 }
 
 .ossn-installation-message {
-	margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100%;
 }
 
-.ossn-header {
-	height: 65px;
-	color: #fff;
-	background: #3d3d3d;
+.ossn-installation-success, 
+.ossn-installation-fail {
+    padding: 16px 20px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.5;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
 }
 
-.logo-installation {
-	background: url('./logo_admin.jpg?va') no-repeat;
-	height: 57px;
-	width: 187px;
-	display: inline-block;
+.ossn-installation-success {
+    background-color: #f0fdf4;
+    color: #166534;
+    border-color: #dcfce7;
 }
 
-.ossn-header .inner {
-	padding: 10px;
-	width: 965px;
-	margin: 0 auto;
-	color: #fff;
-}
-#ossn-page-menubar .inner {
-	width: 965px;
-	margin: 0 auto;
-}
-#ossn-page-menubar li a:first-child{
-	padding-left:0px;	
-}
-.ossn-installation-topmenu {
-	background: #406479;
-	height: 40px;
+.ossn-installation-success::before {
+    content: '?';
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    background-color: #22c55e;
+    color: white;
+    border-radius: 50%;
+    font-size: 12px;
+    flex-shrink: 0;
+    margin-top: 1px;
 }
 
-.ossn-installation-footer {
-	margin: 5px auto;
-	width: 940px;
-	border-top: 1px solid #ccc;
-	line-height: 35px;
-	color: #333;
+.ossn-installation-fail {
+    background-color: #fef2f2;
+    color: #991b1b;
+    border-color: #fee2e2;
 }
 
-.ossn-installation-footer a {
-	color: #2F4959;
-	text-decoration: none;
-	font-weight: bold;
+.ossn-installation-fail::before {
+    content: '?';
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    background-color: #ef4444;
+    color: white;
+    border-radius: 50%;
+    font-size: 10px;
+    flex-shrink: 0;
+    margin-top: 1px;
 }
 
-.settings {
-	float: right;
-	display: inline-block;
-	margin-top: 5px;
-}
-.ossn-installation-message-marg {
-	margin-left:20px;
-	margin-right:20px;
+#ossnlicense h1 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 5px;
 }
 
-.ossn-installation-success:before {
-    content: "\2713";
-    padding-right: 5px;
-    font-weight: bold;
-    color: green;
+#ossnlicense h2 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #334155;
 }
-.ossn-installation-fail:before {
-    content: "\292B";
-    padding-right: 5px;
-    font-weight: bold;
-    color: red;
+
+#ossnlicense h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+    color: #64748b;
+}
+
+.form-control {
+    padding-top: 0.85rem;
+    padding-bottom: 0.85rem;
+    padding-left: 1.25rem;
+    font-size: 1.1rem;
+    border-radius: 12px;
+    border-width: 2px;
+}
+
+.form-control::placeholder {
+    font-size: 0.95rem;
+    opacity: 0.7;
+}
+
+.row {
+    margin-right: 0;
+    margin-left: 0;
+}
+
+.premium-badge-wrapper {
+    margin-top: 10px;
+}
+
+.premium-badge {
+    background: linear-gradient(45deg, #ffd700, #ff8c00);
+    color: #000;
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    padding: 5px 12px;
+    border-radius: 50px;
+    text-transform: uppercase;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.premium-badge::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: rgba(255,255,255,0.2);
+    transform: rotate(45deg);
+    transition: 0.5s;
+    animation: shine 3s infinite;
+}
+
+@keyframes shine {
+    0% { transform: translateX(-150%) rotate(45deg); }
+    100% { transform: translateX(150%) rotate(45deg); }
 }

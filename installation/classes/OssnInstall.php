@@ -271,6 +271,10 @@ class OssnInstallation extends stdClass {
 						$this->error_mesg = ossn_installation_print('data:directory:outside');
 						return false;
 				}
+				if(!is_dir($this->datadir) && !mkdir($this->datadir, 0755, true)) {
+						$this->error_mesg = ossn_installation_print('data:directory:unabletoautocreate');
+						return false;
+				}
 				if(!is_dir($this->datadir) && !is_writable($this->datadir)) {
 						$this->error_mesg = ossn_installation_print('data:directory:invalid');
 						return false;
@@ -302,7 +306,7 @@ class OssnInstallation extends stdClass {
 						$script         = preg_replace('/\-\-.*\n/', '', $script);
 						$sql_statements = preg_split('/;[\n\r]+/', $script);
 
-						foreach($sql_statements as $statement) {
+						foreach ($sql_statements as $statement) {
 								$statement = trim($statement);
 								if(!empty($statement)) {
 										try {
@@ -316,7 +320,7 @@ class OssnInstallation extends stdClass {
 						$this->configurations_site();
 						if(!empty($errors)) {
 								$errortxt = '';
-								foreach($errors as $error) {
+								foreach ($errors as $error) {
 										$errortxt .= " {$error};";
 								}
 
@@ -332,7 +336,7 @@ class OssnInstallation extends stdClass {
 						//start OSSN engine
 						define('OSSN_ALLOW_SYSTEM_START', true);
 						require_once dirname(dirname(dirname(__FILE__))) . '/system/start.php';
-						foreach($iterator as $item) {
+						foreach ($iterator as $item) {
 								$path = $item->getPathname();
 								if(file_exists($path)) {
 										require_once $path;
@@ -382,7 +386,7 @@ class OssnInstallation extends stdClass {
 						throw new Exception(ossn_installation_print('all:files:required'));
 				}
 
-				foreach($params as $k => $v) {
+				foreach ($params as $k => $v) {
 						$template = str_replace('<<' . $k . '>>', $v, $template);
 				}
 
@@ -413,7 +417,7 @@ class OssnInstallation extends stdClass {
 						throw new Exception(ossn_installation_print('all:files:required'));
 				}
 
-				foreach($params as $k => $v) {
+				foreach ($params as $k => $v) {
 						$template = str_replace('<<' . $k . '>>', $v, $template);
 				}
 

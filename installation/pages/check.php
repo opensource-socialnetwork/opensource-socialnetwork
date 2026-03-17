@@ -8,7 +8,13 @@
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
  * @link      https://www.opensource-socialnetwork.org/
  */
-echo '<div><div class="layout-installation"><h2>' . ossn_installation_print('ossn:prerequisites') . '</h2><div style="margin:0 auto; width:900px;">';
+?>
+<header class="content-header">
+    <h1><?php echo ossn_installation_print('ossn:prerequisites');?></h1>
+    <p><?php echo ossn_installation_print('ossn:prerequisites:desc'); ?></p>
+</header>
+<?php 
+echo '<div><div class="layout-installation"><div class="ossn-installation-checklist">';
 //overwriting of php's default settings by Ossn not working on some servers #965
 /*if(!preg_match('/apache/', php_sapi_name()) && !preg_match('/litespeed/', php_sapi_name())){
     echo '<div class="ossn-installation-message ossn-installation-fail">APACHE, PHP_SAPI ('.php_sapi_name().')</div>';
@@ -117,9 +123,8 @@ if (OssnInstallation::isCon_WRITEABLE()) {
     echo '<div class="ossn-installation-message ossn-installation-fail">'.ossn_installation_print('ossn:install:config:error').'</div>';
     $error[] = 'permission:configuration';
 }
-echo '<br />';
+echo '</div>';
 if (empty($error)) {
-    echo '<a href="' . ossn_installation_paths()->url . '?page=license" class="button-blue primary">'.ossn_installation_print('ossn:install:next').'</a>';
+    echo '<a href="' . ossn_installation_paths()->url . '?page=license" class="installer-btn btn-primary">'.ossn_installation_print('ossn:install:next').'</a>';
 }
-
-echo '</div><br /><br /></div>';
+echo '</div>';
