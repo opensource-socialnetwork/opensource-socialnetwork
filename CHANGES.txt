@@ -1,3 +1,9 @@
+OSSN - OPEN SOURCE SOCIAL NETWORK v9.4
+- [E] Group members list should follow new users/list format #2548
+- [B] .user-username-sub is hidden from users/list #2550
+- [E] forms/signup/before/submit missing in singup form #2549
+
+
 OSSN - OPEN SOURCE SOCIAL NETWORK v9.3
 - [B] cpu usage goblue frontpage because of animation #2544
 - [B] Component checkRequirments failed #2543
