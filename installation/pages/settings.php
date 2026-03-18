@@ -73,12 +73,21 @@ if(substr($notification_email['host'], 0, 4) == 'www.'){
             </div>
         </div>
 
+        <label class="form-label fw-bold text-secondary small text-uppercase mb-2">
+            <?php echo ossn_installation_print('notification_email'); ?>
+        </label>  
+
         <div class="row">
             <div class="col-12">
                 <?php
-                $notif_val = !filter_var($notification_email['host'], FILTER_VALIDATE_IP) ? "noreply@" . $notification_email['host'] : "";
-                ?>
-                <input class="form-control" type="text" name="notification_email" placeholder="<?php echo ossn_installation_print('notification_email'); ?>" value="<?php echo $notif_val; ?>" />
+                    if (!filter_var($host, FILTER_VALIDATE_IP)) {
+                        $email = "noreply@" . $host;
+                        $notif_val = filter_var($email, FILTER_VALIDATE_EMAIL) ? $email : "";
+                    } else {
+                        $notif_val = "";
+                    }
+                ?>              
+                <input class="form-control" type="text" placeholder="<?php echo ossn_installation_print('notification_email:noreply'); ?>" name="notification_email" value="<?php echo $notif_val; ?>" />
             </div>
         </div>
     </div>
@@ -115,7 +124,9 @@ if(substr($notification_email['host'], 0, 4) == 'www.'){
     </div>
 
     <div class="d-flex justify-content-end pt-4 mt-5 border-top">
-        <a href="/installation/?page=license" class="installer-btn btn-cancel"><?php echo ossn_installation_print('ossn:back'); ?></a>
+        <a href="/installation/?page=license" class="installer-btn btn-cancel">
+            <?php echo ossn_installation_print('ossn:back'); ?>
+        </a>
         <input type="submit" value="<?php echo ossn_installation_print('ossn:install:install'); ?>" class="ms-2 installer-btn btn-primary px-5 py-3">
     </div>
 
