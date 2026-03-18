@@ -17,50 +17,59 @@ if(ossn_isLoggedin()){
 	}
 }
 if ($members) {
+	echo '<div class="ossn-group-members ossn-output-users-list">';
     foreach ($members as $user) {
       ?>
-	     <div class="ossn-group-members">
-			<div class="row">
-            		<div class="col-lg-2 col-sm-2 col-3">
-    	        		<img src="<?php echo $user->iconURL()->large; ?>" class="user-icon-larger img-responsive"/>
-					</div>
-                   <div class="col-lg-10 col-sm-10 col-8">
-    	    	        <div class="uinfo">
-                          <?php
-	    						echo ossn_plugin_view('output/url', array(
-	    								'text' => $user->fullname,
-	    								'href' =>  $user->profileURL(),
-	    								'class' => 'userlink',
-	    						));						
-	    					?>
-             	   		</div>
-                    	 <div class="right request-controls">
-				<?php
-					if(ossn_isLoggedin()){
-						if ((ossn_isAdminLoggedin() || $loggedin_moderator || ossn_loggedin_user()->guid == $params['group']->owner_guid) && $user->guid !== $params['group']->owner_guid && $params['group']->isMember($params['group']->guid, $user->guid)) {
-	    								echo ossn_plugin_view('output/url', array(
-	    									'text' => ossn_print('group:memb:remove'),
-	    									'href' =>  ossn_site_url("action/group/member/decline?group={$params['group']->guid}&user={$user->guid}", true),
-		    								'class' => 'btn btn-warning btn-sm btn-responsive ossn-make-sure'
-		    							));
-										//don't let moderators to make themselve owner
-										if(ossn_loggedin_user()->guid == $params['group']->owner_guid || ossn_isAdminLoggedin()){
-							        		echo ossn_plugin_view('output/url', array(
-						    					'data-new-owner' => $user->fullname,
-						    					'data-is-admin' => ossn_isAdminLoggedin(),
-							    				'text' => ossn_print('group:memb:make:owner'),
-							    				'href' =>  ossn_site_url("action/group/change_owner?group={$params['group']->guid}&user={$user->guid}", true),
-							    				'class' => 'btn btn-danger btn-sm btn-responsive ossn-group-change-owner'
-							    			));
-										}
-		    						}
-					}
-				?>		
-                    	</div>
-            		</div>           
-       			</div>
-          </div>
+ <div class="user-item-card">
+        <div class="user-item-inner">
+            <div class="user-info-box">
+                <div class="user-avatar-container">
+                    <img src="<?php echo $user->iconURL()->large; ?>" alt="user" />
+                </div>
+                <div class="user-details">
+                    <div class="user-name-text">
+                        <?php
+                            echo ossn_plugin_view('output/user/url', array(
+                                'user' => $user,            
+                                'class' => 'user-link-inherited', 
+                            ));                         
+                        ?>
+                    </div>
+                    <div class="user-username-sub">@<?php echo $user->username; ?></div>
+                </div>
+            </div>
+
+            <div class="user-controls-box">
+                <?php
+                if (ossn_isLoggedIn() && ossn_loggedin_user()->guid !== $user->guid) {
+                    if (!ossn_user_is_friend(ossn_loggedin_user()->guid, $user->guid)) {
+                        if (ossn_user()->requestExists(ossn_loggedin_user()->guid, $user->guid)) {
+                            echo ossn_plugin_view('output/url', array(
+                                'text' => ossn_print('cancel:request'),
+                                'href' => ossn_site_url("action/friend/remove?cancel=true&user={$user->guid}", true),
+                                'class' => 'ossn-action-btn btn-danger-outline',
+                            ));
+                        } else {
+                            echo ossn_plugin_view('output/url', array(
+                                'text' => '<i class="fa fa-user-plus"></i> ' . ossn_print('add:friend'),
+                                'href' => ossn_site_url("action/friend/add?user={$user->guid}", true),
+                                'class' => 'ossn-action-btn btn-primary-outline',
+                            ));     
+                        }
+                    } else {
+                        echo ossn_plugin_view('output/url', array(
+                            'text' => ossn_print('remove:friend'),
+                            'href' => ossn_site_url("action/friend/remove?user={$user->guid}", true),
+                            'class' => 'ossn-action-btn btn-danger-outline',
+                        )); 
+                    }
+                }
+                ?>      
+            </div>
+        </div>
+    </div>	   
     <?php
     }
+	echo "</div>";
 	echo ossn_view_pagination($count);
 }

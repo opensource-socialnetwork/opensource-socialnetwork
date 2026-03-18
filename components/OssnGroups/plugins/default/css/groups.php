@@ -103,18 +103,6 @@
 	width: 995px;
 }
 
-.ossn-group-members {
-	border: 1px solid #E9EAED;
-	margin-left: 5px;
-	margin-bottom: 10px;
-}
-
-.ossn-group-members .uinfo .userlink {
-	font-size: 14px;
-	font-weight: bold;
-	margin-top: 20px;
-	float: left;
-}
 
 .ossn-group-no-requests {
 	text-align: center;
@@ -263,16 +251,6 @@
 .ossn-group-profile .group-requests-widget a {
 	font-weight: bold;
 	text-transform: uppercase;
-}
-
-.ossn-group-members .request-controls {}
-
-.ossn-group-members .request-controls a {
-	margin-left: 5px;
-}
-
-.ossn-group-members .col-lg-2 {
-	text-align: center;
 }
 
 .group-search-details {
