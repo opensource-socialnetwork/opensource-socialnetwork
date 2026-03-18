@@ -1,7 +1,9 @@
 OSSN - OPEN SOURCE SOCIAL NETWORK v9.4
 - [E] Group members list should follow new users/list format #2548
 - [B] .user-username-sub is hidden from users/list #2550
-- [E] forms/signup/before/submit missing in singup form #2549
+- [E] forms/signup/before/submit missing in signup form #2549
+- [E] Improve Installation UI OSSN 9.4 #2542
+- [E] Remove locales from installation as its not used and if required we need to add language selector #2551
 
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v9.3
