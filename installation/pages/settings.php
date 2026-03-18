@@ -80,7 +80,7 @@ if(substr($notification_email['host'], 0, 4) == 'www.'){
         <div class="row">
             <div class="col-12">
                 <?php
-                    if (!filter_var($host, FILTER_VALIDATE_IP)) {
+                    if (!filter_var($notification_email['host'], FILTER_VALIDATE_IP)) {
                         $email = "noreply@" . $host;
                         $notif_val = filter_var($email, FILTER_VALIDATE_EMAIL) ? $email : "";
                     } else {
