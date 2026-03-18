@@ -5,7 +5,6 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v9.4
 - [E] Improve Installation UI OSSN 9.4 #2542
 - [E] Remove locales from installation as its not used and if required we need to add language selector #2551
 
-
 OSSN - OPEN SOURCE SOCIAL NETWORK v9.3
 - [B] cpu usage goblue frontpage because of animation #2544
 - [B] Component checkRequirments failed #2543
