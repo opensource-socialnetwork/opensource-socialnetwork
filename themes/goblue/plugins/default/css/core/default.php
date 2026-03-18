@@ -3987,7 +3987,6 @@ label {
 
 .ossn-output-users-list .user-username-sub {
 	font-size: 12px;
-	color: rgba(255, 255, 255, 0.4);
 	margin-top: 2px;
 }
 
