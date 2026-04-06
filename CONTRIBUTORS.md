@@ -29,4 +29,5 @@ The following developers contributed to this project:
 * Aroshana Dissanayake https://github.com/Aroshana1
 * Ahmadreza Bashari https://github.com/ahmadreza1383 (Persian Language) 
 * Kgan - vulnerability reporter
+* Jayaseelan Samuel - Tamil Langauge <jetkingsam@gmail.com>
 
