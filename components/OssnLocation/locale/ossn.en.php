@@ -10,6 +10,6 @@
  */
 $en = array(
 		'ossnlocation' => 'OssnLocation',
-		'enter:location' => 'Adja meg a Helyet',
+		'enter:location' => 'Enter Location',
 );
 ossn_register_languages('hu', $en);
