@@ -1,3 +1,6 @@
+OSSN - OPEN SOURCE SOCIAL NETWORK v9.5
+- [B] OssnSitePages editor not loading #2554
+
 OSSN - OPEN SOURCE SOCIAL NETWORK v9.4
 - [E] Group members list should follow new users/list format #2548
 - [B] .user-username-sub is hidden from users/list #2550

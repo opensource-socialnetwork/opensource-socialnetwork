@@ -54,7 +54,7 @@ foreach ($langcodes as $code) {
 			$text = html_entity_decode($sitepage->description);
 		}	
 		?>
-		<textarea id="sitepage-textarea" name="description"><?php echo $text; ?></textarea>
+		<textarea id="sitepage-textarea" class="ossn-editor" name="description"><?php echo $text; ?></textarea>
         <input type="submit" class="mt-2 btn btn-success btn-sm" value="<?php echo ossn_print('save'); ?>"/>
 	<?php 
 	}
