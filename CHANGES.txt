@@ -1,5 +1,8 @@
 OSSN - OPEN SOURCE SOCIAL NETWORK v9.5
 - [B] OssnSitePages editor not loading #2554
+- [B] ossn goblue theme hu locale have en #2553
+- [B] OssnLocations wrong translation #2552
+
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v9.4
 - [E] Group members list should follow new users/list format #2548
