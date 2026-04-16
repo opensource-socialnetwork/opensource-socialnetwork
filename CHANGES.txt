@@ -3,6 +3,8 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v9.5
 - [B] ossn goblue theme hu locale have en #2553
 - [B] OssnLocations wrong translation #2552
 - [E] Add join group button for logged out users points to login page #2555
+- [E] Add tamil ta langauge support #2556
+- [E] Add danish langauge pack #2557
 
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v9.4
