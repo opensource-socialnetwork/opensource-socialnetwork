@@ -39,8 +39,9 @@ Languages
 | Spanish | Italian | Russian | 
 | Dutch | Hebrew | Greek |
 | Esperanto | Japanese | Indonesian |
-| Traditional Chinese | Korean | Hungarian |
-| Sinhala | Persian  | Tamil | Danish |
+| Traditional Chinese | Korean | 
+| Hungarian | Sinhala | Persian  | 
+| Tamil | Danish | |
 
 Front-End Features
 ===================
