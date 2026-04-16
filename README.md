@@ -40,7 +40,7 @@ Languages
 | Dutch | Hebrew | Greek |
 | Esperanto | Japanese | Indonesian |
 | Traditional Chinese | Korean | Hungarian |
-| Sinhala | Persian  |
+| Sinhala | Persian  | Tamil | Danish |
 
 Front-End Features
 ===================
