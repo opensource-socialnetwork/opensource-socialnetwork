@@ -113,6 +113,11 @@ if($params['group']->membership == OSSN_PUBLIC || ($params['group']->membership 
 									</a>
 								<?php } ?>
 							<?php } ?>
+                            	<?php if(!ossn_isLoggedin()){ ?>
+									<a href="<?php echo ossn_site_url("login"); ?>" class='button-grey' id="group-btn-unloggedin-join">
+											<?php echo ossn_print('join:group'); ?>
+									</a>                                
+                                <?php } ?>
 								</div>   
                          </div>  <!-- ./div -->                   
 						<div id='group-header-menu' class="group-header-menu d-none d-lg-block">

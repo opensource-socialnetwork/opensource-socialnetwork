@@ -162,14 +162,7 @@
 	font-weight: bold;
 }
 
-.group-closed-container {
-	background: #FFF;
-	border: 1px solid;
-	border-color: #E5E6E9 #DFE0E4 #D0D1D5;
-	-webkit-border-radius: 3px;
-	padding: 10px;
-	margin-bottom: 10px;
-}
+.group-closed-container {}
 
 .group-closed-container p {
 	padding: 3px 6px;
