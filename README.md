@@ -32,8 +32,9 @@ Visit https://www.opensource-socialnetwork.org/ for more details
 Languages
 ==========
 
-| English             | French              | Spanish            |
+|                     |                     |                    |
 |---------------------|---------------------|--------------------|
+| English             | French              | Spanish            |
 | Italian             | Portuguese          | German             |
 | Dutch               | Turkish             | Russian            |
 | Hebrew              | Greek               | Esperanto          |
