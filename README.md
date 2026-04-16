@@ -32,16 +32,14 @@ Visit https://www.opensource-socialnetwork.org/ for more details
 Languages
 ==========
 
-|  |  |  |
-|:-------------------------:|:-------------------------:|:-------------------------:|
-| English |German | Romanian | 
-| French | Portuguese | Turkish |
-| Spanish | Italian | Russian | 
-| Dutch | Hebrew | Greek |
-| Esperanto | Japanese | Indonesian |
-| Traditional Chinese | Korean | 
-| Hungarian | Sinhala | Persian  | 
-| Tamil | Danish | |
+| English             | French              | Spanish            |
+|---------------------|---------------------|--------------------|
+| Italian             | Portuguese          | German             |
+| Dutch               | Turkish             | Russian            |
+| Hebrew              | Greek               | Esperanto          |
+| Japanese            | Korean              | Indonesian         |
+| Traditional Chinese | Sinhala             | Tamil              |
+| Persian             | Hungarian           | Danish             |
 
 Front-End Features
 ===================
