@@ -27,9 +27,9 @@ class OssnAds extends OssnObject {
 				if(empty($_FILES['ossn_ads']['tmp_name'])) {
 						return false;
 				}
-				if($this->addObject()) {
+				if($guid = $this->addObject()) {
 						if(isset($_FILES['ossn_ads'])) {
-								$this->OssnFile->owner_guid = $this->getObjectId();
+								$this->OssnFile->owner_guid = $guid;
 								$this->OssnFile->type       = 'object';
 								$this->OssnFile->subtype    = 'ossnads';
 								$this->OssnFile->setFile('ossn_ads');
@@ -39,12 +39,17 @@ class OssnAds extends OssnObject {
 										'jpeg',
 										'jfif',
 										'gif',
+										'webp', //[E] OssnAds add support for webp #2558
 								));
 								$this->OssnFile->setPath('ossnads/images/');
 								if(ossn_file_is_cdn_storage_enabled()) {
 										$this->OssnFile->setStore('cdn');
 								}
-								$this->OssnFile->addFile();
+								if(!$this->OssnFile->addFile()){
+										$object = ossn_get_object($guid);
+										$object->deleteObject();
+										return false;	
+								}
 						}
 						return true;
 				}
