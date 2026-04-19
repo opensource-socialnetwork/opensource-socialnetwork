@@ -5,6 +5,8 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v9.5
 - [E] Add join group button for logged out users points to login page #2555
 - [E] Add tamil ta langauge support #2556
 - [E] Add danish langauge pack #2557
+- [E] OssnAds add support for webp #2558
+
 
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v9.4
