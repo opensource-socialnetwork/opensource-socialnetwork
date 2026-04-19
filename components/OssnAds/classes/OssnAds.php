@@ -142,6 +142,7 @@ class OssnAds extends OssnObject {
 												'jpeg',
 												'jfif',
 												'gif',
+												'webp', //[E] OssnAds add support for webp #2558
 										));
 										$this->OssnFile->setPath('ossnads/images/');
 										if(ossn_file_is_cdn_storage_enabled()) {
