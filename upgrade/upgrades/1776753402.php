@@ -11,7 +11,7 @@
 
 //update version once done
 ossn_generate_server_config('apache');
-ossn_version_upgrade('9.4');
+ossn_version_upgrade('9.5');
 
 $factory = new OssnFactory(array(
 		'callback' => 'installation',
