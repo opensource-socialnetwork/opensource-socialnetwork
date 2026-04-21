@@ -7,8 +7,6 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v9.5
 - [E] Add danish langauge pack #2557
 - [E] OssnAds add support for webp #2558
 
-
-
 OSSN - OPEN SOURCE SOCIAL NETWORK v9.4
 - [E] Group members list should follow new users/list format #2548
 - [B] .user-username-sub is hidden from users/list #2550
