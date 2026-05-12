@@ -37,7 +37,7 @@ if($fields){
 <div>
 <?php echo ossn_fetch_extend_views('forms/signup/before/submit'); ?>
 </div>
-<div id="ossn-signup-errors" class="alert alert-danger ossn-hidden"></div>
+<div id="ossn-signup-errors" class="alert alert-danger d-none"></div>
 
 <p class="terms-text">
     <?php echo ossn_print('account:create:notice'); ?>

@@ -23,9 +23,10 @@ function ossn_user_signup_form(){
 		beforeSend: function(request){
 			var failedValidate = false;
 			$('#ossn-submit-button').show();
+			//[B] Singup form not showing errors #2562
 			$('#ossn-home-signup .ossn-loading').addClass("ossn-hidden");
 
-			$('#ossn-home-signup').find('#ossn-signup-errors').hide();
+			$('#ossn-home-signup').find('#ossn-signup-errors').addClass('d-none');
 			$('#ossn-home-signup input').filter(function(){
 				$(this).closest('span').removeClass('ossn-required');
 				if(this.type == 'radio' && !$(this).hasClass('ossn-field-not-required')){
@@ -63,7 +64,8 @@ function ossn_user_signup_form(){
 		},
 		callback: function(callback){
 			if(callback['dataerr']){
-				$('#ossn-home-signup').find('#ossn-signup-errors').html(callback['dataerr']).fadeIn();
+				//[B] Singup form not showing errors #2562
+				$('#ossn-home-signup').find('#ossn-signup-errors').html(callback['dataerr']).removeClass('d-none').fadeIn();
 				$('#ossn-submit-button').show();
 				$('#ossn-home-signup .ossn-loading').addClass("ossn-hidden");
 			} else if(callback['success'] == 1){
