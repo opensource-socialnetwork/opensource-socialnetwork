@@ -192,11 +192,12 @@ Ossn.Drag = function(drag_cb = false) {
 };	
 /**
  * Message done
+ * [E] Ossn.MessageDone to alert #2563
  *
  * @param $message = message
  *
- * @return mix data
+ * @return string
  */
 Ossn.MessageDone = function($message) {
-	return "<div class='ossn-message-done'>" + $message + "</div>";
+	return "<div class='alert alert-info'>" + $message + "</div>";
 };
