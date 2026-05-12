@@ -1,4 +1,4 @@
-# v9.1.0.0
+# v9.0.0.0
 # Open Source Social Network
 #
 # @package   .htaccess.ossn
@@ -56,12 +56,6 @@ RedirectMatch 404 ^/system/handlers/cron$
 	RewriteCond %{REQUEST_FILENAME} !-d
 	RewriteCond %{REQUEST_FILENAME} !-f
 	RewriteRule ^([A-Za-z0-9\_\-\.]+)/(.*)$ index.php?h=$1&p=$2 [QSA,L]
-</IfModule>
-
-<IfModule mod_headers.c>
-    <FilesMatch "\.(jpg|jpeg|png|gif|webp|svg)$">
-        Header set Access-Control-Allow-Origin "*"
-    </FilesMatch>
 </IfModule>
 
 #https://github.com/nextcloud/server/issues/26569
