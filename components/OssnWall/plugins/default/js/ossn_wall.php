@@ -16,6 +16,196 @@ Ossn.register_callback('ossn', 'init', 'ossn_wall_location');
 Ossn.register_callback('ossn', 'init', 'ossn_wall_privacy');
 Ossn.register_callback('ossn', 'init', 'ossn_wall_container_expend');
 
+/**
+ * Main editor
+ */
+var OssnWallEditor = {
+	inject: function ($editor, type, value) {
+		const sel = window.getSelection();
+		if (!sel || !sel.rangeCount) return;
+
+		const range = sel.getRangeAt(0);
+		const node = range.startContainer;
+		const offset = range.startOffset;
+		const trigger = (type === 'mention') ? '@' : '#';
+
+		const startPos = node.textContent.lastIndexOf(trigger, offset - 1);
+
+		if (startPos !== -1) {
+			const tokenText = (type === 'hashtag') ? node.textContent.substring(startPos, offset) : value;
+			const tokenClass = (type === 'mention') ? 'ossn-wall-token-mention' : 'ossn-wall-token-hashtag';
+
+			// 1. Prepare Replacement
+			range.setStart(node, startPos);
+			range.setEnd(node, offset);
+			range.deleteContents();
+
+			// 2. Create the Chip
+			const span = document.createElement('span');
+			const tempId = "token-" + Date.now();
+			span.id = tempId;
+			span.contentEditable = "false";
+			span.className = `ossn-wall-token ${tokenClass}`;
+			span.appendChild(document.createTextNode(tokenText));
+
+			// 3. Insert the Chip
+			range.insertNode(span);
+
+			// 4. Handle Spacing
+			if (type === 'mention') {
+				// Create a literal standard space
+				const spaceNode = document.createTextNode(' ');
+				// Move range to immediately after the span and insert space
+				range.setStartAfter(span);
+				range.insertNode(spaceNode);
+
+				// Move cursor to after the space
+				range.setStartAfter(spaceNode);
+			} else {
+				// For hashtags, just move cursor after the span (the user's typed space is already there)
+				range.setStartAfter(span);
+			}
+
+			// 5. Finalize Cursor Position
+			range.collapse(true);
+			sel.removeAllRanges();
+			sel.addRange(range);
+
+			// Cleanup temp ID
+			const insertedElem = document.getElementById(tempId);
+			if (insertedElem) {
+				insertedElem.removeAttribute('id');
+			}
+
+			$editor.trigger('input');
+		}
+	},
+	// UI HELPER: Finds cursor screen coordinates
+	getCaretCoords: function () {
+		const sel = window.getSelection();
+		if (!sel.rangeCount) return {
+			top: 0,
+			left: 0
+		};
+		const range = sel.getRangeAt(0).cloneRange();
+		const span = document.createElement("span");
+		span.appendChild(document.createTextNode("\u200b"));
+		range.insertNode(span);
+		const rect = span.getBoundingClientRect();
+		const coords = {
+			top: rect.top + window.scrollY + 25, // Slightly more offset for larger UI
+			left: rect.left + window.scrollX
+		};
+		span.parentNode.removeChild(span);
+		return coords;
+	}
+};
+/**
+ * CORE ENGINE - Triggering Callbacks
+ */
+Ossn.register_callback('ossn', 'init', function () {
+	// Security: Block rich text pasting
+	$(document).on('paste', '.ossn-wall-textarea', function (e) {
+		e.preventDefault();
+		const text = (e.originalEvent || e).clipboardData.getData('text/plain');
+		document.execCommand("insertText", false, text);
+	});
+
+	$(document).on('drop', '.ossn-wall-textarea', function (e) {
+		e.preventDefault();
+
+		// Get the raw text data from the dropped item, ignoring HTML formatting
+		const text = (e.originalEvent || e).dataTransfer.getData('text/plain');
+
+		// Target the specific textarea the user dropped the text into
+		const $textarea = $(this);
+		$textarea.focus();
+
+		// Insert the clean plain text at the current cursor drop point
+		document.execCommand("insertText", false, text);
+	});
+
+	// Main Scanner
+	$(document).on('input keyup', '.ossn-wall-textarea', function () {
+		const sel = window.getSelection();
+		if (!sel.rangeCount) return;
+		const range = sel.getRangeAt(0);
+		const node = range.startContainer;
+		if (node.nodeType !== 3) return;
+
+		const textBefore = node.textContent.substring(0, range.startOffset);
+		const words = textBefore.split(/\s|\xa0/);
+		const lastWord = words[words.length - 1];
+
+		// Trigger Component Callbacks
+		Ossn.trigger_callback('wall', 'input:scan', {
+			word: lastWord,
+			$editor: $(this)
+		});
+	});
+
+	// Spacebar Listener
+	$(document).on('keydown', '.ossn-wall-textarea', function (e) {
+		if (e.keyCode === 32) {
+			Ossn.trigger_callback('wall', 'input:space', {
+				$editor: $(this)
+			});
+		}
+	});
+	// 4. Backspace Guard: Delete whole tokens at once
+	$(document).on('keydown', '.ossn-wall-textarea', function (e) {
+		if (e.keyCode === 8) { // Backspace
+			const sel = window.getSelection();
+			if (!sel.rangeCount) return;
+
+			const range = sel.getRangeAt(0);
+			const node = range.startContainer;
+
+			// If we are at the start of a text node, check the previous element
+			if (range.startOffset === 0) {
+				let prev = node.previousSibling;
+
+				// If there's no previous sibling, check parent's previous sibling
+				if (!prev && node.parentNode !== this) {
+					prev = node.parentNode.previousSibling;
+				}
+
+				if (prev && $(prev).hasClass('ossn-wall-token')) {
+					e.preventDefault();
+					prev.remove();
+					// Trigger input to update any hidden fields
+					$(this).trigger('input');
+				}
+			}
+			// If we are inside a text node but just after the &nbsp; of a token
+			else if (node.nodeType === 3) {
+				const textBefore = node.textContent.substring(0, range.startOffset);
+				// Check if the last character is the non-breaking space we added
+				if (textBefore.endsWith('\u00A0') || textBefore.endsWith(' ')) {
+					const prev = node.previousSibling;
+					if (prev && $(prev).hasClass('ossn-wall-token')) {
+						e.preventDefault();
+						prev.remove();
+						// Remove the trailing space as well
+						node.textContent = node.textContent.substring(range.startOffset);
+						$(this).trigger('input');
+					}
+				}
+			}
+		}
+	});
+	// Placeholder Fix: Ensure the div is TRULY empty when text is cleared
+	$(document).on('blur keyup', '.ossn-wall-textarea', function () {
+		const $this = $(this);
+
+		// Use trim() to check for actual content
+		// If it's just whitespace or a stray <br>, empty it out completely
+		if ($this.text().trim().length === 0 && $this.find('img').length === 0) {
+			$this.empty();
+		}
+	});
+});
+
 function ossn_wall_post_edit() {
 	$(document).ready(function () {
 		//post edit
@@ -24,7 +214,7 @@ function ossn_wall_post_edit() {
 			containMedia: true,
 			form: '#ossn-post-edit-form',
 			beforeSend: function () {
-				$('#ossn-post-edit-form').find('textarea').hide();
+				$('#ossn-post-edit-form').find('.ossn-wall-textarea').hide();
 				$('#ossn-post-edit-form').append('<div class="ossn-loading ossn-box-loading"></div>');
 			},
 			callback: function (callback) {
@@ -86,12 +276,12 @@ function ossn_wall_clear_form() {
 		$('#ossn-wall-friend').hide();
 	}
 
-	$('#ossn-wall-form').find('input[type=submit]').show();
+	$('#ossn-wall-form').find('.ossn-wall-post').show();
 	$('#ossn-wall-form').find('.ossn-loading').addClass('ossn-hidden');
-	$('#ossn-wall-form').find('textarea').val("");
+	$('#ossn-wall-form').find('.ossn-wall-textarea').html("");
 
-	$('.ossn-wall-container-data textarea').removeClass('postbg-container');
-	$('.ossn-wall-container-data textarea').attr('style', '');
+	$('.ossn-wall-container-data .ossn-wall-textarea').removeClass('postbg-container');
+	$('.ossn-wall-container-data .ossn-wall-textarea').attr('style', '');
 	$('#ossn-wall-postbg').attr('data-toggle', 0);
 	$('#ossn-wall-postbg').hide();
 }
@@ -99,6 +289,37 @@ function ossn_wall_clear_form() {
 function ossn_wall_postform() {
 	$(document).ready(function () {
 		//ajax post
+		$('body').on('click', '.ossn-wall-post', function (e) {
+			e.preventDefault();
+
+			const $form = $('#ossn-wall-form');
+			const $editor = $('.ossn-wall-textarea');
+
+			/**
+			 * 1. EXTRACT PLAIN TEXT
+			 * .text() handles the conversion of all <span> chips into plain 
+			 * @username and #hashtag strings for the backend.
+			 */
+			const plainText = $editor.text().trim();
+
+			/**
+			 * 2. CLEANUP & INJECTION
+			 * We remove any existing 'post' field to prevent conflicts, 
+			 * then re-inject the updated content.
+			 */
+			$form.find('[name="post"]').remove();
+
+			// Create a new hidden textarea to hold the final text
+			const $hiddenPost = $('<textarea name="post" style="display:none;"></textarea>');
+			$hiddenPost.val(plainText);
+			$form.append($hiddenPost);
+
+			/**
+			 * 3. SUBMIT FORM
+			 * Now that the 'post' field is synchronized, we trigger the form.
+			 */
+			$form.submit();
+		});
 		$url = $('#ossn-wall-form').attr('action');
 		Ossn.ajaxRequest({
 			url: $url,
@@ -107,7 +328,7 @@ function ossn_wall_postform() {
 			form: '#ossn-wall-form',
 
 			beforeSend: function (request) {
-				$('#ossn-wall-form').find('input[type=submit]').hide();
+				$('#ossn-wall-form').find('.ossn-wall-post').hide();
 				$('#ossn-wall-form').find('.ossn-loading').removeClass('ossn-hidden');
 			},
 			callback: function (callback) {
@@ -478,30 +699,52 @@ function ossn_wall_location() {
 	});
 }
 
+/**
+ * OSSN Wall Container Expand
+ * Handles auto-height and max-height for contenteditable
+ */
 function ossn_wall_container_expend() {
 	$(document).ready(function () {
-		const textarea = $('.ossn-wall-container textarea:not(.postbg-container)');
+		// Target the new contenteditable div
+		const $editor = $('.ossn-wall-textarea');
 
-		textarea.on('input', function () {
-			this.style.height = 'auto'; // reset first
+		// We use 'input' to detect text changes, mentions, and hashtags
+		$editor.on('input', function () {
+			const el = this;
 
-			let maxHeight = parseFloat($(this).css('max-height')) || 200;
+			// If the Post Background is active, we usually want a fixed height
+			// so we skip the auto-expand logic if that class exists
+			if ($(el).hasClass('postbg-container')) {
+				return;
+			}
 
-			if (this.scrollHeight <= maxHeight) {
-				this.style.height = this.scrollHeight + 'px';
-				this.style.overflowY = 'hidden';
+			// Get max-height from CSS (usually 200px or 400px)
+			let maxHeight = parseFloat($(el).css('max-height')) || 300;
+
+			// Reset height to auto to calculate current content height
+			el.style.height = 'auto';
+
+			if (el.scrollHeight > maxHeight) {
+				// If content is larger than max, lock height and scroll
+				el.style.height = maxHeight + 'px';
+				el.style.overflowY = 'auto';
 			} else {
-				this.style.height = maxHeight + 'px';
-				this.style.overflowY = 'auto'; // show scrollbar only after max
+				// If content is small, expand naturally and hide scrollbar
+				el.style.height = 'auto';
+				el.style.overflowY = 'hidden';
 			}
 		});
 
-		// Reset on submit
-		$('#ossn-wall-form').on('submit', function () {
-			textarea.css({
-				height: '40px',
-				overflowY: 'hidden'
-			});
+		// Reset on AJAX Complete (After post is successful)
+		$(document).ajaxComplete(function (event, xhr, settings) {
+			var $url = settings.url;
+			if ($url.indexOf('action/wall/post') >= 0) {
+				$editor.css({
+					height: 'auto',
+					minHeight: '50px',
+					overflowY: 'hidden'
+				});
+			}
 		});
 	});
 }

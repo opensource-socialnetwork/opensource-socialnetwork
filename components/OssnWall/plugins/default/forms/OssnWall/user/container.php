@@ -23,7 +23,8 @@ if (isset($_COOKIE['ossn_user_wall_privacy'])) {
     </div>
 </div>
 <div class="ossn-wall-container-data ossn-wall-container-data-post" data-type="post">
-    <textarea placeholder="<?php echo ossn_print('wall:post:container'); ?>" name="post"></textarea>
+    <div class="ossn-wall-userimage-form"><img src="<?php echo ossn_loggedin_user()->iconURL()->smaller;?>" /></div>
+    <div contenteditable="true" class="ossn-wall-textarea" placeholder="<?php echo ossn_print('wall:post:container'); ?>"></div>
     <div id="ossn-wall-friend" style="display:none;">
         <input type="text" placeholder="<?php echo ossn_print('tag:friends'); ?>" name="friends" id="ossn-wall-friend-input" />
     </div>
@@ -40,7 +41,7 @@ if (isset($_COOKIE['ossn_user_wall_privacy'])) {
     </div>
     <div class='ossn-wall-post-button-container'>
             <div class="ossn-loading ossn-hidden"></div>
-            <input class="btn btn-primary btn-sm ossn-wall-post" type="submit" value="<?php echo ossn_print('post'); ?>" />
+            <input class="btn btn-primary btn-sm ossn-wall-post" type="button" value="<?php echo ossn_print('post'); ?>" />
     </div>
     <div class="ossn-wall-privacy">
             <span><i class="ossn-wall-privacy-lock fa fa-lock"></i><span class=""><?php echo ossn_print('privacy'); ?></span></span>

@@ -17,7 +17,8 @@
     </div>
 </div>
 <div class="ossn-wall-container-data ossn-wall-container-data-post" data-type="post">
-    <textarea placeholder="<?php echo ossn_print('wall:post:container'); ?>" name="post"></textarea>
+    <div class="ossn-wall-userimage-form"><img src="<?php echo ossn_loggedin_user()->iconURL()->smaller;?>" /></div>
+    <div contenteditable="true" class="ossn-wall-textarea" placeholder="<?php echo ossn_print('wall:post:container'); ?>"></div>
     <div id="ossn-wall-friend" style="display:none;">
         <input type="text" placeholder="<?php echo ossn_print('tag:friends'); ?>" name="friends" id="ossn-wall-friend-input" data-type="group" data-guid="<?php echo $params['group']['group']->guid; ?>" />
     </div>    

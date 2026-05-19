@@ -137,12 +137,14 @@ function ossn_likes_redirect_uri($hook, $type, $return, $params) {
 		return $uri;
 }
 /**
- * Location Make sure it is not disabled if Wall is active
+ * Location, Profile, Notifications Make sure it is not disabled if Wall is active
  *
  * @return array
  */
 function ossn_location_asure_requirements($hook, $type, $return, $params) {
 		$return[] = 'OssnLocation';
+		$return[] = 'OssnNotifications';
+		$return[] = 'OssnProfile';
 		return $return;
 }
 /**
@@ -242,6 +244,7 @@ function ossn_friend_picker() {
 				$p['last_name']  = $users->last_name;
 				$p['imageurl']   = ossn_site_url("avatar/{$users->username}/smaller");
 				$p['id']         = $users->guid;
+				$p['username']   = $users->username;
 				$usera[]         = $p;
 		}
 		echo json_encode($usera);
