@@ -17,5 +17,13 @@ $tr = array(
 	'ossn:liked:you' => 'Bunu beğendin',
 	'ossn:unlike' => 'Beğenmekten vazgeç',
 	'ossn:like' => 'Beğen',
+	'ossn:reaction:like' => 'Beğen',
+	'ossn:reaction:dislike' => 'Beğenme',
+	'ossn:reaction:love' => 'Aşk',
+	'ossn:reaction:haha' => 'Haha',
+	'ossn:reaction:yay' => 'Yaşasın',
+	'ossn:reaction:wow' => 'Vay',
+	'ossn:reaction:sad' => 'Üzgün',
+	'ossn:reaction:angry' => 'Kızgın',	
 );
 ossn_register_languages('tr', $tr); 

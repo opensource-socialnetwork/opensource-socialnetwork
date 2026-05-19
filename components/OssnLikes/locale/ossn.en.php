@@ -16,6 +16,14 @@ $en = array(
 	'ossn:like:person' => '%s Person',
 	'ossn:liked:you' => 'You reacted on this',
 	'ossn:unlike' => 'Unlike',
-	'ossn:like' => 'Like',		
+	'ossn:like' => 'Like',
+	'ossn:reaction:like' => 'Like',
+	'ossn:reaction:dislike' => 'Dislike',
+	'ossn:reaction:love' => 'Love',
+	'ossn:reaction:haha' => 'Haha',
+	'ossn:reaction:yay' => 'Yay',
+	'ossn:reaction:wow' => 'Wow',
+	'ossn:reaction:sad' => 'Sad',
+	'ossn:reaction:angry' => 'Angry',		
 );
 ossn_register_languages('en', $en); 

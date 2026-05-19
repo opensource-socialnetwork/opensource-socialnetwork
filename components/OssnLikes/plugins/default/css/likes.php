@@ -1,3 +1,14 @@
+.like-share {
+	border-top: 1px solid #eee;
+	border-bottom: 1px solid #eee;
+	padding: 10px;
+	background-color: #FBFBFB;
+	margin-left: -15px;
+	margin-right: -15px;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
 .ossn-likes-view a.right.btn.btn-danger {
 	font-size: 12px;
 	margin-top: 8px;
@@ -1155,4 +1166,170 @@
 
 .comment-metadata .ossn-reaction-list .emoji--dislike {
 	transform: scale(0.12, -0.12);
+}
+
+/*************************
+	OSSN 9.6 reactions
+**************************/
+.menu-likes-comments-share {
+    border-top: 1px solid #f0f2f5;
+    margin-left: -15px;
+    margin-right: -15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: auto;
+    padding: 4px 15px;
+    box-sizing: border-box;
+}
+
+.menu-likes-comments-share > li {
+    flex: 1;            /* Spaces columns perfectly and equally */
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    /* Removed redundant width: 50% and float: left which break flex layout */
+    float: none; 
+    /* Hard constraint: Ensures all columns track the exact same height */
+    height: 40px !important; 
+}
+
+/*==========================================
+   ANCHOR BUTTONS (UNREACTED STATE)
+============================================*/
+.menu-likes-comments-share > li a {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important; /* Spaces text and icons consistently */
+    
+    /* Fills out the parent 40px height so hover backgrounds match dimensions */
+    width: 100%;
+    height: 100% !important; 
+    padding: 0 !important; /* Height control replaces text padding to prevent uneven jumps */
+    
+    color: #65676b;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none !important;
+    border-radius: 6px;
+    cursor: pointer;
+    box-sizing: border-box !important;
+    transition: background-color 0.15s ease, transform 0.1s ease;
+}
+
+/* FontAwesome Icons Generation */
+.menu-likes-comments-share > li a::before {
+    font-family: "Font Awesome 6 Free", "FontAwesome";
+    font-weight: 400;
+    margin-right: 0; /* Managed cleanly via gap now */
+    font-size: 18px;
+    color: #65676b;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1 !important;
+}
+
+/* Target Specific Icons */
+.menu-likes-comments-share > li a.entity-menu-extra-like::before,
+.menu-likes-comments-share > li a.post-control-like::before {
+    content: "\f164"; /* Like face */
+}
+.menu-likes-comments-share > li a.entity-menu-extra-comment::before,
+.menu-likes-comments-share > li a.post-control-comment::before {
+    content: "\f075"; /* Comment bubble */
+}
+.menu-likes-comments-share > li a.post-control-share::before {
+    content: "\f064"; 
+}
+.menu-likes-comments-share > li a.post-control-review::before {
+    content: "\f005"; 
+}
+
+/*==========================================================
+	ACTIVE / REACTED OVERRIDES (a.ossn-reacted-item)
+=========================================================== */
+
+/* Clean out the font icon instantly when user reacts */
+.menu-likes-comments-share > li a[class*="ossn-reacted-"]::before {
+    display: none !important;
+    content: "" !important;
+}
+
+a.ossn-reacted-item {
+    vertical-align: middle !important;
+    /* Uses the exact same structure as unreacted buttons */
+    gap: 8px !important; 
+}
+
+a.ossn-reacted-item.ossn-reacted-love span { color: #f33e5b !important; }
+a.ossn-reacted-item.ossn-reacted-haha span { color: #f7b125 !important; }
+a.ossn-reacted-item.ossn-reacted-like span { color: #2078f4 !important; }
+
+/*Emoji Wrapper for Reacted Item*/
+.ossn-reacted-item-icon {
+    width: 25px !important;
+    height: 25px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-shrink: 0 !important;
+    
+    /* Removed the negative margin-top which forced the wrapper out of bounds */
+    margin: 0 !important; 
+    
+    /* explicit scaling option centered perfectly */
+    transform: scale(0.7);
+    transform-origin: center center;
+}
+
+/* Handles nested 120px assets smoothly within the 25px constraints */
+.ossn-reacted-item-icon .emoji {
+    margin: 0 !important;
+    position: absolute !important;
+}
+
+/* Reset baseline padding metric for span alongside the flex elements */
+.ossn-reacted-item span {
+    margin-left: 0 !important; /* Flexbox gap handles layout spacing now */
+    display: inline-block !important;
+    line-height: 1 !important;
+}
+
+/*====================================
+   INTERACTIVE HOVER STATES
+======================================*/
+.menu-likes-comments-share > li a:hover {
+    background-color: #f2f3f5;
+    color: #1c1e21;
+}
+.menu-likes-comments-share > li a:hover::before {
+    color: #1c1e21;
+}
+.menu-likes-comments-share > li a:active {
+    transform: scale(0.97);
+}
+
+a.ossn-reacted-item.ossn-reacted-like span { 
+    color: #2078f4 !important; 
+}
+
+a.ossn-reacted-item.ossn-reacted-dislike span { 
+    color: #65676b !important; 
+}
+
+a.ossn-reacted-item.ossn-reacted-love span { 
+    color: #f33e5b !important; 
+}
+
+a.ossn-reacted-item.ossn-reacted-haha span,
+a.ossn-reacted-item.ossn-reacted-yay span,
+a.ossn-reacted-item.ossn-reacted-wow span,
+a.ossn-reacted-item.ossn-reacted-wowo span,
+a.ossn-reacted-item.ossn-reacted-sad span { 
+    color: #f7b125 !important; 
+}
+
+a.ossn-reacted-item.ossn-reacted-angry span { 
+    color: #e24e22 !important; 
 }

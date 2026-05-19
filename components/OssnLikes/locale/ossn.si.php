@@ -17,5 +17,13 @@ $si = array(
 	'ossn:liked:you' => 'ඔබ මෙයට රියැක්ට් කර ඇත',
 	'ossn:unlike' => 'අකමැතියි',
 	'ossn:like' => 'කැමතියි',		
+	'ossn:reaction:like' => 'කැමතියි',
+	'ossn:reaction:dislike' => 'අකමැතියි',
+	'ossn:reaction:love' => 'ආදරෙයි',
+	'ossn:reaction:haha' => 'හහා',
+	'ossn:reaction:yay' => 'යේ',
+	'ossn:reaction:wow' => 'වාව්',
+	'ossn:reaction:sad' => 'දුකයි',
+	'ossn:reaction:angry' => 'කෝපය',	
 );
 ossn_register_languages('si', $si); 

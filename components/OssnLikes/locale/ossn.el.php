@@ -17,5 +17,13 @@ $el = array(
 	'ossn:liked:you' => 'Σου άρεσε αυτό',
 	'ossn:unlike' => 'Αφαίρεση αντιδράσεις',
 	'ossn:like' => 'Μου αρέσει!',
+	'ossn:reaction:like' => 'Μου αρέσει',
+	'ossn:reaction:dislike' => 'Δεν μου αρέσει',
+	'ossn:reaction:love' => 'Αγάπη',
+	'ossn:reaction:haha' => 'Χαχα',
+	'ossn:reaction:yay' => 'Γιούπι',
+	'ossn:reaction:wow' => 'Ουάου',
+	'ossn:reaction:sad' => 'Λυπημένο',
+	'ossn:reaction:angry' => 'Θυμωμένο',	
 );
 ossn_register_languages('el', $el); 

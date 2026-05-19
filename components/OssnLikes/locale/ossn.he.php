@@ -16,6 +16,14 @@ $he = array(
 	'ossn:like:person' => '%s איש',
 	'ossn:liked:you' => 'אהבת את זה',
 	'ossn:unlike' => 'לא אוהב',
-	'ossn:like' => 'אוהב',		
+	'ossn:like' => 'אוהב',	
+	'ossn:reaction:like' => 'אהבתי',
+	'ossn:reaction:dislike' => 'לא אהבתי',
+	'ossn:reaction:love' => 'אהבה',
+	'ossn:reaction:haha' => 'חחח',
+	'ossn:reaction:yay' => 'יש',
+	'ossn:reaction:wow' => 'וואו',
+	'ossn:reaction:sad' => 'עצוב',
+	'ossn:reaction:angry' => 'כועס',	
 );
 ossn_register_languages('he', $he); 

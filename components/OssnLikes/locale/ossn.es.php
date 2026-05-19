@@ -19,5 +19,13 @@ $es = array(
 	'ossn:liked:you' => 'Te gustó esto',
 	'ossn:unlike' => 'No me gusta',
 	'ossn:like' => 'Me gusta',
+	'ossn:reaction:like' => 'Me gusta',
+	'ossn:reaction:dislike' => 'No me gusta',
+	'ossn:reaction:love' => 'Me encanta',
+	'ossn:reaction:haha' => 'Jaja',
+	'ossn:reaction:yay' => '¡Yay!',
+	'ossn:reaction:wow' => '¡Wow!',
+	'ossn:reaction:sad' => 'Triste',
+	'ossn:reaction:angry' => 'Enojado',	
 );
 ossn_register_languages('es', $es); 

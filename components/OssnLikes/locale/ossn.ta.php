@@ -17,5 +17,13 @@ $ta = array(
 	'ossn:liked:you' => 'நீங்கள் இதில் உணர்ச்சியை வெளிப்படுத்தினீர்கள்',
 	'ossn:unlike' => 'விருப்பமில்லை',
 	'ossn:like' => 'விருப்பம்',		
+	'ossn:reaction:like' => 'விருப்பு',
+	'ossn:reaction:dislike' => 'விருப்பமில்லை',
+	'ossn:reaction:love' => 'அன்பு',
+	'ossn:reaction:haha' => 'ஹாஹா',
+	'ossn:reaction:yay' => 'யே',
+	'ossn:reaction:wow' => 'ஆஹா',
+	'ossn:reaction:sad' => 'சோகம்',
+	'ossn:reaction:angry' => 'கோபம்',	
 );
 ossn_register_languages('ta', $ta); 

@@ -16,6 +16,14 @@ $pt = array(
 	'ossn:like:person' => '%s Pessoa',
 	'ossn:liked:you' => 'Você curtiu isso',
 	'ossn:unlike' => 'Descurtir',
-	'ossn:like' => 'Curtir',		
+	'ossn:like' => 'Curtir',	
+	'ossn:reaction:like' => 'Curtir',
+	'ossn:reaction:dislike' => 'Não curtir',
+	'ossn:reaction:love' => 'Amei',
+	'ossn:reaction:haha' => 'Haha',
+	'ossn:reaction:yay' => 'Eba',
+	'ossn:reaction:wow' => 'Uau',
+	'ossn:reaction:sad' => 'Triste',
+	'ossn:reaction:angry' => 'Bravo',	
 );
 ossn_register_languages('pt', $pt);

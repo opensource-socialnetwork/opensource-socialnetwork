@@ -47,10 +47,14 @@ if($OssnLikes->Like($subject, ossn_loggedin_user()->guid, $type, $reaction_type)
 						$likes_container = ossn_plugin_view('likes/post/likes', $object);
 				}
 				header('Content-Type: application/json');
+				$icon = ossn_plugin_view('likes/reacted_icon', array(
+						'type' => $reaction_type,													 
+				));				
 				echo json_encode(array(
 						'done'      => 1,
 						'container' => $likes_container,
-						'button'    => ossn_print('ossn:unlike'),
+						'class'		=> 	"ossn-reacted-item ossn-reacted-{$reaction_type}",
+						'button'    => "{$icon} <span>".ossn_print("ossn:reaction:{$reaction_type}").'</span>',
 				));
 		}
 } else {

@@ -16,6 +16,14 @@ $da = array(
 	'ossn:like:person' => '%s person',
 	'ossn:liked:you' => 'Du har reageret på dette',
 	'ossn:unlike' => 'Fjern synes godt om',
-	'ossn:like' => 'Synes godt om',		
+	'ossn:like' => 'Synes godt om',	
+	'ossn:reaction:like' => 'Synes godt om',
+	'ossn:reaction:dislike' => 'Synes ikke godt om',
+	'ossn:reaction:love' => 'Kærlighed',
+	'ossn:reaction:haha' => 'Haha',
+	'ossn:reaction:yay' => 'Jubii',
+	'ossn:reaction:wow' => 'Wow',
+	'ossn:reaction:sad' => 'Trist',
+	'ossn:reaction:angry' => 'Vred',	
 );
 ossn_register_languages('da', $da);

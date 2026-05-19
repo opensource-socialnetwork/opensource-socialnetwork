@@ -17,5 +17,13 @@ $de = array(
     'ossn:liked:you' => 'Dir gefällt das',
     'ossn:unlike' => 'Gefällt mir nicht mehr',
     'ossn:like' => 'Gefällt mir',
+	'ossn:reaction:like' => 'Gefällt mir',
+	'ossn:reaction:dislike' => 'Gefällt mir nicht',
+	'ossn:reaction:love' => 'Liebe',
+	'ossn:reaction:haha' => 'Haha',
+	'ossn:reaction:yay' => 'Juhu',
+	'ossn:reaction:wow' => 'Wow',
+	'ossn:reaction:sad' => 'Traurig',
+	'ossn:reaction:angry' => 'Wütend',	
 );
 ossn_register_languages('de', $de); 

@@ -17,8 +17,8 @@ require_once __OSSN_LIKES__ . 'classes/OssnLikes.php';
  * @return void;
  * @access private
  */
-function ossn_likes(){
-		if(ossn_isLoggedin()){
+function ossn_likes() {
+		if(ossn_isLoggedin()) {
 				ossn_register_action('post/like', __OSSN_LIKES__ . 'actions/post/like.php');
 				ossn_register_action('post/unlike', __OSSN_LIKES__ . 'actions/post/unlike.php');
 
@@ -34,27 +34,27 @@ function ossn_likes(){
 		ossn_register_callback('object', 'deleted', 'ossn_object_likes_delete');
 		//[E] There should be callback to delete entity likes, comments by default #1877
 		ossn_register_callback('delete', 'entity', 'ossn_entity_likes_delete');
-		
+
 		ossn_register_callback('comment', 'delete', 'ossn_comment_like_delete');
 		ossn_register_callback('annotation', 'delete', 'ossn_comment_like_delete');
 		ossn_register_callback('user', 'delete', 'ossn_user_likes_delete');
 		ossn_register_callback('wall', 'load:item', 'ossn_wall_like_menu', 1);
-		
-		if(ossn_isLoggedin()){
-			ossn_register_callback('entity', 'load:comment:share:like', 'ossn_entity_like_link', 1);
-			ossn_register_callback('object', 'load:comment:share:like', 'ossn_object_like_link', 1);
-			
-			ossn_add_hook('notification:view', 'like:annotation:comments:post', 'ossn_like_annotation');
-			ossn_add_hook('notification:view', 'like:annotation:comments:entity', 'ossn_like_annotation');
-			ossn_add_hook('notification:view', 'like:annotation:comments:object', 'ossn_like_annotation');
 
-			ossn_add_hook('notification:participants', 'like:post', 'ossn_likes_suppress_participants_notifications');
-			ossn_add_hook('notification:participants', 'like:annotation', 'ossn_likes_suppress_participants_notifications');
-			ossn_add_hook('notification:participants', 'like:post:group:wall', 'ossn_likes_suppress_participants_notifications');
+		if(ossn_isLoggedin()) {
+				ossn_register_callback('entity', 'load:comment:share:like', 'ossn_entity_like_link', 1);
+				ossn_register_callback('object', 'load:comment:share:like', 'ossn_object_like_link', 1);
+
+				ossn_add_hook('notification:view', 'like:annotation:comments:post', 'ossn_like_annotation');
+				ossn_add_hook('notification:view', 'like:annotation:comments:entity', 'ossn_like_annotation');
+				ossn_add_hook('notification:view', 'like:annotation:comments:object', 'ossn_like_annotation');
+
+				ossn_add_hook('notification:participants', 'like:post', 'ossn_likes_suppress_participants_notifications');
+				ossn_add_hook('notification:participants', 'like:annotation', 'ossn_likes_suppress_participants_notifications');
+				ossn_add_hook('notification:participants', 'like:post:group:wall', 'ossn_likes_suppress_participants_notifications');
 		}
 
 		ossn_register_page('likes', 'ossn_likesview_page_handler');
-		
+
 		ossn_add_hook('post', 'likes', 'ossn_post_likes');
 		ossn_add_hook('post', 'likes:entity', 'ossn_post_likes_entity');
 		ossn_add_hook('post', 'likes:object', 'ossn_post_likes_object');
@@ -65,14 +65,15 @@ function ossn_likes(){
  *
  * @return void
  */
-function ossn_wall_like_menu($callback, $type, $params){
+function ossn_wall_like_menu($callback, $type, $params) {
 		$guid = $params['post']->guid;
 
 		ossn_unregister_menu('like', 'postextra');
 
-		if(ossn_loggedin_user() && !empty($guid)){
-				$likes = new OssnLikes();
-				if(!$likes->isLiked($guid, ossn_loggedin_user()->guid)){
+		if(ossn_loggedin_user() && !empty($guid)) {
+				$likes    = new OssnLikes();
+				$is_liked = $likes->isLiked($guid, ossn_loggedin_user()->guid);
+				if(!$is_liked) {
 						ossn_register_menu_item('postextra', array(
 								'name'          => 'like',
 								'href'          => 'javascript:void(0);',
@@ -81,12 +82,16 @@ function ossn_wall_like_menu($callback, $type, $params){
 								'text'          => ossn_print('ossn:like'),
 						));
 				} else {
+						$icon = ossn_plugin_view('likes/reacted_icon', array(
+								'type' => $is_liked->subtype,
+						));
 						ossn_register_menu_item('postextra', array(
 								'name'    => 'like',
 								'href'    => 'javascript:void(0);',
 								'id'      => 'ossn-like-' . $guid,
+								'class'   => "ossn-reacted-item ossn-reacted-{$is_liked->subtype}",
 								'onclick' => "Ossn.PostUnlike({$guid});",
-								'text'    => ossn_print('ossn:unlike'),
+								'text'    => "{$icon} <span>" . ossn_print("ossn:reaction:{$is_liked->subtype}") . '</span>',
 						));
 				}
 		}
@@ -96,17 +101,18 @@ function ossn_wall_like_menu($callback, $type, $params){
  *
  * @return void
  */
-function ossn_entity_like_link($callback, $type, $params){
+function ossn_entity_like_link($callback, $type, $params) {
 		$guid = $params['entity']->guid;
 
 		ossn_unregister_menu('like', 'entityextra');
-		if(isset($params['allow_like']) && $params['allow_like'] == false){
+		if(isset($params['allow_like']) && $params['allow_like'] == false) {
 				$guid = false;
 				//false will just not execute the likes menu
 		}
-		if(ossn_loggedin_user() && !empty($guid)){
-				$likes = new OssnLikes();
-				if(!$likes->isLiked($guid, ossn_loggedin_user()->guid, 'entity')){
+		if(ossn_loggedin_user() && !empty($guid)) {
+				$likes    = new OssnLikes();
+				$is_liked = $likes->isLiked($guid, ossn_loggedin_user()->guid, 'entity');
+				if(!$is_liked) {
 						ossn_register_menu_item('entityextra', array(
 								'name'          => 'like',
 								'href'          => 'javascript:void(0);',
@@ -115,12 +121,16 @@ function ossn_entity_like_link($callback, $type, $params){
 								'text'          => ossn_print('ossn:like'),
 						));
 				} else {
+						$icon = ossn_plugin_view('likes/reacted_icon', array(
+								'type' => $is_liked->subtype,
+						));
 						ossn_register_menu_item('entityextra', array(
 								'name'    => 'like',
 								'href'    => 'javascript:void(0);',
 								'id'      => 'ossn-elike-' . $guid,
+								'class'   => "ossn-reacted-item ossn-reacted-{$is_liked->subtype}",
 								'onclick' => "Ossn.EntityUnlike({$guid});",
-								'text'    => ossn_print('ossn:unlike'),
+								'text'    => "{$icon} <span>" . ossn_print("ossn:reaction:{$is_liked->subtype}") . '</span>',
 						));
 				}
 		}
@@ -130,17 +140,18 @@ function ossn_entity_like_link($callback, $type, $params){
  *
  * @return void
  */
-function ossn_object_like_link($callback, $type, $params){
+function ossn_object_like_link($callback, $type, $params) {
 		$guid = $params['object']->guid;
 
 		ossn_unregister_menu('like', 'object_extra');
-		if(isset($params['allow_like']) && $params['allow_like'] == false){
+		if(isset($params['allow_like']) && $params['allow_like'] == false) {
 				$guid = false;
 				//false will just not execute the likes menu
 		}
-		if(!empty($guid)){
-				$likes = new OssnLikes();
-				if(!$likes->isLiked($guid, ossn_loggedin_user()->guid, 'object')){
+		if(!empty($guid)) {
+				$likes    = new OssnLikes();
+				$is_liked = $likes->isLiked($guid, ossn_loggedin_user()->guid, 'object');
+				if(!$is_liked) {
 						ossn_register_menu_item('object_extra', array(
 								'name'          => 'like',
 								'href'          => 'javascript:void(0);',
@@ -149,12 +160,16 @@ function ossn_object_like_link($callback, $type, $params){
 								'text'          => ossn_print('ossn:like'),
 						));
 				} else {
+						$icon = ossn_plugin_view('likes/reacted_icon', array(
+								'type' => $is_liked->subtype,
+						));
 						ossn_register_menu_item('object_extra', array(
 								'name'    => 'like',
 								'href'    => 'javascript:void(0);',
 								'id'      => 'ossn-olike-' . $guid,
 								'onclick' => "Ossn.ObjectUnlike({$guid});",
-								'text'    => ossn_print('ossn:unlike'),
+								'class'   => "ossn-reacted-item ossn-reacted-{$is_liked->subtype}",
+								'text'    => "{$icon} <span>" . ossn_print("ossn:reaction:{$is_liked->subtype}") . '</span>',
 						));
 				}
 		}
@@ -165,7 +180,7 @@ function ossn_object_like_link($callback, $type, $params){
  * @return voud;
  * @access private
  */
-function ossn_post_like_delete($name, $type, $params){
+function ossn_post_like_delete($name, $type, $params) {
 		$delete = new OssnLikes();
 		$delete->deleteLikes($params);
 }
@@ -175,10 +190,10 @@ function ossn_post_like_delete($name, $type, $params){
  * @return voud;
  * @access private
  */
-function ossn_object_likes_delete($name, $type, $params){
-		if(isset($params['guid'])){
-			$delete = new OssnLikes();
-			$delete->deleteLikes($params['guid'], 'object');
+function ossn_object_likes_delete($name, $type, $params) {
+		if(isset($params['guid'])) {
+				$delete = new OssnLikes();
+				$delete->deleteLikes($params['guid'], 'object');
 		}
 }
 /**
@@ -187,10 +202,10 @@ function ossn_object_likes_delete($name, $type, $params){
  * @return voud;
  * @access private
  */
-function ossn_entity_likes_delete($name, $type, $params){
-		if(isset($params['entity'])){
-			$delete = new OssnLikes();
-			$delete->deleteLikes($params['entity'], 'entity');
+function ossn_entity_likes_delete($name, $type, $params) {
+		if(isset($params['entity'])) {
+				$delete = new OssnLikes();
+				$delete->deleteLikes($params['entity'], 'entity');
 		}
 }
 /**
@@ -199,7 +214,7 @@ function ossn_entity_likes_delete($name, $type, $params){
  * @return voud;
  * @access private
  */
-function ossn_user_likes_delete($name, $type, $entity){
+function ossn_user_likes_delete($name, $type, $entity) {
 		$delete = new OssnLikes();
 		$delete->deleteLikesByOwnerGuid($entity['entity']->guid);
 }
@@ -209,11 +224,11 @@ function ossn_user_likes_delete($name, $type, $entity){
  * @return voud;
  * @access private
  */
-function ossn_comment_like_delete($name, $type, $params){
+function ossn_comment_like_delete($name, $type, $params) {
 		$delete = new OssnLikes();
-		if(isset($params['comment'])){
+		if(isset($params['comment'])) {
 				$delete->deleteLikes($params['comment'], 'annotation');
-				if(isset($params['annotation'])){
+				if(isset($params['annotation'])) {
 						$delete->deleteLikes($params['annotation'], 'annotation');
 				}
 		}
@@ -225,36 +240,36 @@ function ossn_comment_like_delete($name, $type, $params){
  * @return voud;
  * @access private
  */
-function ossn_like_annotation($hook, $type, $return, $params){
+function ossn_like_annotation($hook, $type, $return, $params) {
 		$notif   = $params;
 		$user    = ossn_user_by_guid($notif->poster_guid);
 		$display = true;
-		if(!$user){
-			return false;	
+		if(!$user) {
+				return false;
 		}
-		switch($notif->type){
-			case 'like:annotation:comments:entity':
-				$display  = true;
-				$result = ossn_get_entity($notif->subject_guid);
-				if($result->subtype == 'file:ossn:aphoto'){
+		switch ($notif->type) {
+		case 'like:annotation:comments:entity':
+				$display = true;
+				$result  = ossn_get_entity($notif->subject_guid);
+				if($result->subtype == 'file:ossn:aphoto') {
 						$url = ossn_site_url("photos/view/{$notif->subject_guid}#comments-item-{$notif->item_guid}");
 				}
-				if($result->subtype == 'file:profile:photo'){
+				if($result->subtype == 'file:profile:photo') {
 						$url = ossn_site_url("photos/user/view/{$notif->subject_guid}#comments-item-{$notif->item_guid}");
 				}
-				if($result->subtype == 'file:profile:cover'){
+				if($result->subtype == 'file:profile:cover') {
 						$url = ossn_site_url("photos/cover/view/{$notif->subject_guid}#comments-item-{$notif->item_guid}");
 				}
-				if($result->subtype == 'file:video'){
+				if($result->subtype == 'file:video') {
 						$url = ossn_site_url("video/view/{$result->owner_guid}#comments-item-{$notif->item_guid}");
 				}
 				break;
-			case 'like:annotation:comments:post':
+		case 'like:annotation:comments:post':
 				$display = true;
 				$url     = ossn_site_url("post/view/{$notif->subject_guid}#comments-item-{$notif->item_guid}");
 				break;
 		}
-		if(!$display){
+		if(!$display) {
 				return false;
 		}
 		$iconURL = $user->iconURL()->small;
@@ -276,7 +291,7 @@ function ossn_like_annotation($hook, $type, $return, $params){
  * @return mix data;
  * @access private
  */
-function ossn_post_likes($hook, $type, $return, $params){
+function ossn_post_likes($hook, $type, $return, $params) {
 		return ossn_plugin_view('likes/post/likes', $params);
 }
 
@@ -286,7 +301,7 @@ function ossn_post_likes($hook, $type, $return, $params){
  * @return mix data;
  * @access private
  */
-function ossn_post_likes_entity($h, $t, $r, $p){
+function ossn_post_likes_entity($h, $t, $r, $p) {
 		return ossn_plugin_view('likes/post/likes_entity', $p);
 }
 /**
@@ -295,7 +310,7 @@ function ossn_post_likes_entity($h, $t, $r, $p){
  * @return mix data;
  * @access private
  */
-function ossn_post_likes_object($h, $t, $r, $p){
+function ossn_post_likes_object($h, $t, $r, $p) {
 		return ossn_plugin_view('likes/post/likes_object', $p);
 }
 
@@ -305,7 +320,7 @@ function ossn_post_likes_object($h, $t, $r, $p){
  * @return false;
  * @access private
  */
-function ossn_likes_suppress_participants_notifications($h, $t, $r, $p){
+function ossn_likes_suppress_participants_notifications($h, $t, $r, $p) {
 		$notifyParticipants = false;
 		return $notifyParticipants;
 }
@@ -316,7 +331,7 @@ function ossn_likes_suppress_participants_notifications($h, $t, $r, $p){
  * @return mix data;
  * @access public;
  */
-function ossn_likesview_page_handler(){
+function ossn_likesview_page_handler() {
 		echo ossn_plugin_view('output/ossnbox', array(
 				'title'    => ossn_print('people:like:this'),
 				'contents' => ossn_plugin_view('likes/pages/view'),

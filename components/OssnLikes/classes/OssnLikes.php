@@ -80,15 +80,14 @@ class OssnLikes extends OssnDatabase {
 		 * @return bool;
 		 */
 		public function isLiked($subject_id, $guid, $type = 'post') {
-				$this->statement("SELECT * FROM ossn_likes WHERE (
-	                     subject_id='{$subject_id}' AND guid='{$guid}' AND type='{$type}');");
-				$this->execute();
-				$this->check = $this->fetch();
-
-				if(!empty($this->check->id)) {
-						return true;
-				}
-				return false;
+				return $this->select(array(
+						'from' => 'ossn_likes',
+						'wheres' => array(
+								OssnDatabase::wheres('subject_id', '=', $subject_id),
+								OssnDatabase::wheres('guid', '=', $guid),
+								OssnDatabase::wheres('type', '=', $type),
+						 ),
+				));
 		}
 
 		/**

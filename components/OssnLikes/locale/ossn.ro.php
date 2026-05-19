@@ -17,5 +17,13 @@ $ro = array(
 	'ossn:liked:you' => 'Ti-a placut asta',
 	'ossn:unlike' => 'Nu imi mai place',
 	'ossn:like' => 'Imi place',
+	'ossn:reaction:like' => 'Îmi place',
+	'ossn:reaction:dislike' => 'Nu îmi place',
+	'ossn:reaction:love' => 'Dragoste',
+	'ossn:reaction:haha' => 'Haha',
+	'ossn:reaction:yay' => 'Ura',
+	'ossn:reaction:wow' => 'Wow',
+	'ossn:reaction:sad' => 'Trist',
+	'ossn:reaction:angry' => 'Furios',	
 );
 ossn_register_languages('ro', $ro); 

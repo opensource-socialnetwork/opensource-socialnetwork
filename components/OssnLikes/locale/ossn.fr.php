@@ -17,5 +17,13 @@ $fr = array(
     'ossn:liked:you' => 'Vous aimez ça',
     'ossn:unlike' => 'Ne plus aimer',
     'ossn:like' => 'Aimer',		
+	'ossn:reaction:like' => 'J’aime',
+	'ossn:reaction:dislike' => 'Je n’aime pas',
+	'ossn:reaction:love' => 'Amour',
+	'ossn:reaction:haha' => 'Haha',
+	'ossn:reaction:yay' => 'Youpi',
+	'ossn:reaction:wow' => 'Wow',
+	'ossn:reaction:sad' => 'Triste',
+	'ossn:reaction:angry' => 'En colère',	
 );
 ossn_register_languages('fr', $fr);

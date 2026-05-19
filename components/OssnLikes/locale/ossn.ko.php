@@ -16,6 +16,14 @@ $ko = array(
 	'ossn:like:person' => '%s 명',
 	'ossn:liked:you' => '이 글에 응답하셨습니다',
 	'ossn:unlike' => '취소',
-	'ossn:like' => '좋아요',	
+	'ossn:like' => '좋아요',
+	'ossn:reaction:like' => '좋아요',
+	'ossn:reaction:dislike' => '싫어요',
+	'ossn:reaction:love' => '사랑해요',
+	'ossn:reaction:haha' => '하하',
+	'ossn:reaction:yay' => '야호',
+	'ossn:reaction:wow' => '와우',
+	'ossn:reaction:sad' => '슬퍼요',
+	'ossn:reaction:angry' => '화나요',	
 );
 ossn_register_languages('ko', $ko); 

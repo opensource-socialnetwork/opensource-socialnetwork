@@ -16,6 +16,14 @@ $ru = array(
 	'ossn:like:person' => '%s Человек',
 	'ossn:liked:you' => 'Ты это заценил',
 	'ossn:unlike' => 'Разлюбить',
-	'ossn:like' => 'Заценить',		
+	'ossn:like' => 'Заценить',	
+	'ossn:reaction:like' => 'Нравится',
+	'ossn:reaction:dislike' => 'Не нравится',
+	'ossn:reaction:love' => 'Любовь',
+	'ossn:reaction:haha' => 'Ха-ха',
+	'ossn:reaction:yay' => 'Ура',
+	'ossn:reaction:wow' => 'Вау',
+	'ossn:reaction:sad' => 'Грусть',
+	'ossn:reaction:angry' => 'Злость',	
 );
 ossn_register_languages('ru', $ru); 

@@ -16,6 +16,14 @@ $zh = array(
 	'ossn:like:person' => '%s 人',
 	'ossn:liked:you' => '你按讚了',
 	'ossn:unlike' => '取消讚',
-	'ossn:like' => '讚',		
+	'ossn:like' => '讚',	
+	'ossn:reaction:like' => '赞',
+	'ossn:reaction:dislike' => '踩',
+	'ossn:reaction:love' => '爱心',
+	'ossn:reaction:haha' => '哈哈',
+	'ossn:reaction:yay' => '耶',
+	'ossn:reaction:wow' => '哇',
+	'ossn:reaction:sad' => '难过',
+	'ossn:reaction:angry' => '愤怒',	
 );
 ossn_register_languages('zh', $zh); 

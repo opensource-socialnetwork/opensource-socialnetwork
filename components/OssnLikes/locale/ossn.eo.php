@@ -17,5 +17,13 @@ $eo = array(
 	'ossn:liked:you' => 'Vi ŝatas ĉi tion',
 	'ossn:unlike' => 'Ne plu ŝati',
 	'ossn:like' => 'Ŝati',
+	'ossn:reaction:like' => 'Ŝati',
+	'ossn:reaction:dislike' => 'Malŝati',
+	'ossn:reaction:love' => 'Amo',
+	'ossn:reaction:haha' => 'Haha',
+	'ossn:reaction:yay' => 'Hura',
+	'ossn:reaction:wow' => 'Vau',
+	'ossn:reaction:sad' => 'Malĝoja',
+	'ossn:reaction:angry' => 'Kolera',	
 );
 ossn_register_languages('eo', $eo); 

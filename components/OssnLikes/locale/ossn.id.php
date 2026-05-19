@@ -17,5 +17,13 @@ $id = array(
 	'ossn:liked:you' => 'Anda menanggapi ini',
 	'ossn:unlike' => 'Batal Suka',
 	'ossn:like' => 'Suka',		
+	'ossn:reaction:like' => 'Suka',
+	'ossn:reaction:dislike' => 'Tidak suka',
+	'ossn:reaction:love' => 'Cinta',
+	'ossn:reaction:haha' => 'Haha',
+	'ossn:reaction:yay' => 'Hore',
+	'ossn:reaction:wow' => 'Wow',
+	'ossn:reaction:sad' => 'Sedih',
+	'ossn:reaction:angry' => 'Marah',	
 );
 ossn_register_languages('id', $id); 

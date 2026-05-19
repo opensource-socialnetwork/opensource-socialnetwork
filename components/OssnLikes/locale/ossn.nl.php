@@ -17,5 +17,13 @@ $nl = array(
 	'ossn:liked:you' => 'Jij vind dit leuk',
 	'ossn:unlike' => 'Niet meer leuk',
 	'ossn:like' => 'Leuk',	
+	'ossn:reaction:like' => 'Leuk',
+	'ossn:reaction:dislike' => 'Niet leuk',
+	'ossn:reaction:love' => 'Geweldig',
+	'ossn:reaction:haha' => 'Haha',
+	'ossn:reaction:yay' => 'Yes',
+	'ossn:reaction:wow' => 'Wauw',
+	'ossn:reaction:sad' => 'Verdrietig',
+	'ossn:reaction:angry' => 'Boos',	
 );
 ossn_register_languages('nl', $nl); 

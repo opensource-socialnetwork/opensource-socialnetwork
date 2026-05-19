@@ -17,5 +17,13 @@ $fa = array(
 	'ossn:liked:you' => 'شما به این واکنش نشان دادید',
 	'ossn:unlike' => 'لغو پسندیدن',
 	'ossn:like' => 'پسندیدن',
+	'ossn:reaction:like' => 'پسندیدن',
+	'ossn:reaction:dislike' => 'نپسندیدن',
+	'ossn:reaction:love' => 'عشق',
+	'ossn:reaction:haha' => 'هاها',
+	'ossn:reaction:yay' => 'هورا',
+	'ossn:reaction:wow' => 'واو',
+	'ossn:reaction:sad' => 'غمگین',
+	'ossn:reaction:angry' => 'عصبانی',	
 );
 ossn_register_languages('fa', $fa);

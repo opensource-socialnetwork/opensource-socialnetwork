@@ -8,167 +8,91 @@
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
  * @link      https://www.opensource-socialnetwork.org/
  */
-Ossn.PostUnlike = function(post) {
-    Ossn.PostRequest({
-        url: Ossn.site_url + 'action/post/unlike',
-        beforeSend: function() {
-            $('#ossn-like-' + post).html('<img src="' + Ossn.site_url + 'components/OssnComments/images/loading.gif" />');
-        },
-        params: '&post=' + post,
-        callback: function(callback) {
-            if (callback['done'] !== 0) {
-                $('#ossn-like-' + post).html(callback['button']);
-                $('#ossn-like-' + post).attr('data-reaction', 'Ossn.PostLike(' + post + ', "<<reaction_type>>");');
-				$('#ossn-like-' + post).removeAttr('onclick'); 
-				//reactions
-				$parent = $('#ossn-like-' + post).parent().parent().parent();				
-				if(callback['container']){
-						$parent.find('.like-share').remove();
-						$parent.find('.menu-likes-comments-share').after(callback['container']);
-				}
-				if(!callback['container']){
-						$parent.find('.like-share').remove();	
-				}				
-            } else {
-                $('#ossn-like-' + post).html(Ossn.Print('unlike'));
-            }
-        },
-    });
-
+ 
+const OSSN_REACTION_TYPES = {
+    post: { prefix: '#ossn-like-', pascal: 'Post' },
+    entity: { prefix: '#ossn-elike-', pascal: 'Entity' },
+    object: { prefix: '#ossn-olike-', pascal: 'Object' }
 };
-Ossn.PostLike = function(post, $reaction_type = '') {
+
+Ossn.setReaction = function(type, id, action, reactionType = '') {
+    const config = OSSN_REACTION_TYPES[type];
+    if (!config) return;
+
+    const selector = config.prefix + id;
+    const isLike = action === 'like';
+	var queryParams = '&' + type + '=' + id;
+
+	if (isLike) {
+    	queryParams = queryParams + '&reaction_type=' + reactionType;
+	}
+
     Ossn.PostRequest({
-        url: Ossn.site_url + 'action/post/like',
+        url: Ossn.site_url + 'action/post/' + action,
         beforeSend: function() {
-            $('#ossn-like-' + post).html('<img src="' + Ossn.site_url + 'components/OssnComments/images/loading.gif" />');
+            $(selector).html('<img src="' + Ossn.site_url + 'components/OssnComments/images/loading.gif" />');
         },
-        params: '&post=' + post + '&reaction_type='+$reaction_type,
+        params: queryParams,
         callback: function(callback) {
             if (callback['done'] !== 0) {
-                $('#ossn-like-' + post).html(callback['button']);
-                $('#ossn-like-' + post).attr('onClick', 'Ossn.PostUnlike(' + post + ');');
-				$('#ossn-like-' + post).removeAttr('data-reaction'); 
-				//reactions				
-				if(callback['container']){
-						$parent = $('#ossn-like-' + post).parent().parent().parent();
-						$parent.find('.like-share').remove();
-						$parent.find('.menu-likes-comments-share').after(callback['container']);
-				}
+                $(selector).html(callback['button']);
+                
+                if (isLike) {
+                    // Logic specific to LIKING an item
+                    $(selector).attr('onClick', `Ossn.${config.pascal}Unlike(${id});`);
+                    $(selector).removeAttr('data-reaction');
+                    if (callback['class']) $(selector).addClass(callback['class']);
+                    $('.ossn-like-reactions-panel').remove();
+                } else {
+                    // Logic specific to UNLIKING an item
+                    $(selector).attr('data-reaction', `Ossn.${config.pascal}Like(${id}, "<<reaction_type>>");`);
+                    $(selector).removeAttr('onclick');
+                    $(selector).removeClass(function(index, className) {
+                        return (className.match(/(^|\s)ossn-reacted-\S+/g) || []).join(' ');
+                    });
+                }
+
+                // Shared reaction container updates
+                const $parent = $(selector).parent().parent().parent();
+                if (callback['container']) {
+                    $parent.find('.like-share').remove();
+                    $parent.find('.menu-likes-comments-share').after(callback['container']);
+                } else if (!isLike) {
+                    // Only unlike drops container explicitly if missing
+                    $parent.find('.like-share').remove();
+                }
             } else {
-                $('#ossn-like-' + post).html(Ossn.Print('like'));
+                $(selector).html(Ossn.Print(action));
             }
         },
     });
+};
+// Classic function wrappers for backward compatibility
+Ossn.PostUnlike = function(post) {
+    Ossn.setReaction('post', post, 'unlike');
+};
 
+Ossn.PostLike = function(post, reaction_type) {
+    if (reaction_type === undefined) { reaction_type = ''; }
+    Ossn.setReaction('post', post, 'like', reaction_type);
 };
 
 Ossn.EntityUnlike = function(entity) {
-    Ossn.PostRequest({
-        url: Ossn.site_url + 'action/post/unlike',
-        beforeSend: function() {
-            $('#ossn-elike-' + entity).html('<img src="' + Ossn.site_url + 'components/OssnComments/images/loading.gif" />');
-        },
-        params: '&entity=' + entity,
-        callback: function(callback) {
-            if (callback['done'] !== 0) {
-                $('#ossn-elike-' + entity).html(callback['button']);
-                $('#ossn-elike-' + entity).attr('data-reaction', 'Ossn.EntityLike(' + entity + ', "<<reaction_type>>");');
-				$('#ossn-elike-' + entity).removeAttr('onclick'); 
-				//reactions				
-				$parent = $('#ossn-elike-' + entity).parent().parent().parent();				
-				if(callback['container']){
-						$parent.find('.like-share').remove();
-						$parent.find('.menu-likes-comments-share').after(callback['container']);
-				}
-				if(!callback['container']){
-						$parent.find('.like-share').remove();	
-				}
-            } else {
-                $('#ossn-elike-' + entity).html(Ossn.Print('unlike'));
-            }
-        },
-    });
-
-};
-Ossn.EntityLike = function(entity, $reaction_type = '') {
-    Ossn.PostRequest({
-        url: Ossn.site_url + 'action/post/like',
-        beforeSend: function() {
-            $('#ossn-elike-' + entity).html('<img src="' + Ossn.site_url + 'components/OssnComments/images/loading.gif" />');
-        },
-        params: '&entity=' + entity + '&reaction_type='+$reaction_type,
-        callback: function(callback) {
-            if (callback['done'] !== 0) {
-                $('#ossn-elike-' + entity).html(callback['button']);
-                $('#ossn-elike-' + entity).attr('onClick', 'Ossn.EntityUnlike(' + entity + ');');
-				$('#ossn-elike-' + entity).removeAttr('data-reaction'); 
-				//reactions				
-				if(callback['container']){
-						$parent = $('#ossn-elike-' + entity).parent().parent().parent();
-						$parent.find('.like-share').remove();
-						$parent.find('.menu-likes-comments-share').after(callback['container']);
-				}				
-            } else {
-                $('#ossn-elike-' + entity).html(Ossn.Print('like'));
-            }
-        },
-    });
-
+    Ossn.setReaction('entity', entity, 'unlike');
 };
 
+Ossn.EntityLike = function(entity, reaction_type) {
+    if (reaction_type === undefined) { reaction_type = ''; }
+    Ossn.setReaction('entity', entity, 'like', reaction_type);
+};
 
 Ossn.ObjectUnlike = function(object_guid) {
-    Ossn.PostRequest({
-        url: Ossn.site_url + 'action/post/unlike',
-        beforeSend: function() {
-            $('#ossn-olike-' + object_guid).html('<img src="' + Ossn.site_url + 'components/OssnComments/images/loading.gif" />');
-        },
-        params: '&object=' + object_guid,
-        callback: function(callback) {
-            if (callback['done'] !== 0) {
-                $('#ossn-olike-' + object_guid).html(callback['button']);
-                $('#ossn-olike-' + object_guid).attr('data-reaction', 'Ossn.ObjectLike(' + object_guid + ', "<<reaction_type>>");');
-				$('#ossn-olike-' + object_guid).removeAttr('onclick'); 
-				//reactions				
-				$parent = $('#ossn-olike-' + object_guid).parent().parent().parent();				
-				if(callback['container']){
-						$parent.find('.like-share').remove();
-						$parent.find('.menu-likes-comments-share').after(callback['container']);
-				}
-				if(!callback['container']){
-						$parent.find('.like-share').remove();	
-				}
-            } else {
-                $('#ossn-olike-' + object_guid).html(Ossn.Print('unlike'));
-            }
-        },
-    });
-
+    Ossn.setReaction('object', object_guid, 'unlike');
 };
-Ossn.ObjectLike = function(object_guid, $reaction_type = '') {
-    Ossn.PostRequest({
-        url: Ossn.site_url + 'action/post/like',
-        beforeSend: function() {
-            $('#ossn-olike-' + object_guid).html('<img src="' + Ossn.site_url + 'components/OssnComments/images/loading.gif" />');
-        },
-        params: '&object=' + object_guid + '&reaction_type='+$reaction_type,
-        callback: function(callback) {
-            if (callback['done'] !== 0) {
-                $('#ossn-olike-' + object_guid).html(callback['button']);
-                $('#ossn-olike-' + object_guid).attr('onClick', 'Ossn.ObjectUnlike(' + object_guid + ');');
-				$('#ossn-olike-' + object_guid).removeAttr('data-reaction'); 
-				//reactions				
-				if(callback['container']){
-						$parent = $('#ossn-olike-' + object_guid).parent().parent().parent();
-						$parent.find('.like-share').remove();
-						$parent.find('.menu-likes-comments-share').after(callback['container']);
-				}				
-            } else {
-                $('#ossn-olike-' + object_guid).html(Ossn.Print('like'));
-            }
-        },
-    });
 
+Ossn.ObjectLike = function(object_guid, reaction_type) {
+    if (reaction_type === undefined) { reaction_type = ''; }
+    Ossn.setReaction('object', object_guid, 'like', reaction_type);
 };
 
 Ossn.RegisterStartupFunction(function() {								  
