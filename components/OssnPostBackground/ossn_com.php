@@ -64,7 +64,17 @@ define('__PostBackground_List__', array(
 				'name' => 'pbg11',
 				'url' => ossn_site_url('components/OssnPostBackground/images/11.jpg'),
 				'color_hex' => '#333',
-		)
+		),
+		array(
+				'name' => 'pbg12',
+				'url' => ossn_site_url('components/OssnPostBackground/images/12.jpg'),
+				'color_hex' => '#fff',
+		),
+		array(
+				'name' => 'pbg13',
+				'url' => ossn_site_url('components/OssnPostBackground/images/13.jpg'),
+				'color_hex' => '#333',
+		)			
 ));
 ossn_register_class(array(
 		'PostBackground' => PostBackground . 'classes/PostBackground.php'
