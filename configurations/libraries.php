@@ -11,7 +11,6 @@
 
 $Ossn->libraries = array(
 	'cli',
-	'cron',
 	'actions',
 	'input',
 	'languages',
