@@ -57,6 +57,10 @@ function ossn_comments() {
 
 				ossn_register_callback('comment', 'delete', 'ossn_comment_notifications_delete');
 		}
+		ossn_add_hook('required', 'components', function ($hook, $type, $return, $params) {
+				$return[] = 'OssnNotifications';
+				return $return;
+		});
 }
 /**
  * Notify the comments participants
@@ -87,7 +91,7 @@ function ossn_comments_notify_participant($callback, $type, $vars) {
 						}
 						$guids = array();
 						if($comments) {
-								foreach($comments as $list) {
+								foreach ($comments as $list) {
 										//do not notify the poster (itself notification) if its guid match in participants
 										if($list->owner_guid != $vars['notification']['poster_guid']) {
 												array_push($guids, $list->owner_guid);
@@ -123,31 +127,31 @@ function ossn_comments_notify_participant($callback, $type, $vars) {
 										if($post) {
 												$owner_type_guid = $post->owner_guid;
 												//group wall
-												if ($post->type == 'group') { 
-													$owner_type_guid = $post->poster_guid;
-												}	
+												if($post->type == 'group') {
+														$owner_type_guid = $post->poster_guid;
+												}
 												//not for groups poster, owner match.
-												if($post->type == 'user' && $type == 'owner:poster:match'){
-														//means posted on different user	
+												if($post->type == 'user' && $type == 'owner:poster:match') {
+														//means posted on different user
 														//and no one commented then
-														if(!in_array($post->poster_guid, $guids)){
-															array_push($guids, $post->poster_guid);
+														if(!in_array($post->poster_guid, $guids)) {
+																array_push($guids, $post->poster_guid);
 														}
 												}
 												//posted on someone else wall
-												//someone commenting on post 
-												if($post->type == 'user' && $post->owner_guid != $post->poster_guid){
+												//someone commenting on post
+												if($post->type == 'user' && $post->owner_guid != $post->poster_guid) {
 														//now we need to check again notification poster guid not post poster guid
 														//now add to notificaiton list to wall poster guid (not owner) if they are not same
-														if($vars['notification']['poster_guid'] != $post->poster_guid && !in_array($post->poster_guid, $guids)){
-																array_push($guids, $post->poster_guid);	
+														if($vars['notification']['poster_guid'] != $post->poster_guid && !in_array($post->poster_guid, $guids)) {
+																array_push($guids, $post->poster_guid);
 														}
 												}
 										}
 								}
 						}
 						if(!empty($guids) && !empty($owner_type_guid)) {
-								foreach($guids as $guid) {
+								foreach ($guids as $guid) {
 										//no need to notify the object owner again as if its inside comments as
 										//its already notified before this callback.
 										if(intval($guid) != $owner_type_guid) {
@@ -155,7 +159,7 @@ function ossn_comments_notify_participant($callback, $type, $vars) {
 												$args         = ossn_call_hook('notification', 'add:participant', false, array(
 														'notification' => $vars['notification'],
 														'entity'       => $entity,
-														'guid'		   => $guid,
+														'guid'         => $guid,
 														'object'       => $object,
 														'post'         => $post,
 												));
@@ -385,7 +389,7 @@ function ossn_comment_menu($name, $type, $params) {
 								ossn_isAdminLoggedin() ||
 								ossn_loggedin_user()->guid == $post->owner_guid ||
 								($comment && $user->guid == $comment->owner_guid) ||
-								($group && ((ossn_loggedin_user()->guid == $group->owner_guid) || $group->isModerator($user->guid)))
+								($group && (ossn_loggedin_user()->guid == $group->owner_guid || $group->isModerator($user->guid)))
 						) {
 								ossn_unregister_menu('delete', 'comments');
 								ossn_register_menu_item('comments', array(
@@ -417,10 +421,16 @@ function ossn_comment_menu($name, $type, $params) {
 		//this section is for entity comment only
 		if(ossn_isLoggedin() && $comment->type == 'comments:entity') {
 				$entity = ossn_get_entity($comment->subject_guid);
-				if($entity->type == 'object'){
-					$entity_object = ossn_get_object($entity->owner_guid);	
+				$entity_object = false;
+				if($entity->type == 'object') {
+						$entity_object = ossn_get_object($entity->owner_guid);
 				}
-				if($user->guid == $params['owner_guid'] || ossn_isAdminLoggedin() || ($comment->type == 'comments:entity' && ($entity->type = 'user' && $user->guid == $entity->owner_guid)) || ($entity->type = 'object' && $entity_object && $user->guid == $entity_object->owner_guid)) {
+				if(
+						$user->guid == $params['owner_guid'] ||
+						ossn_isAdminLoggedin() ||
+						($comment->type == 'comments:entity' && ($entity->type = 'user' && $user->guid == $entity->owner_guid)) ||
+						($entity->type = 'object' && $entity_object && $user->guid == $entity_object->owner_guid)
+				) {
 						ossn_unregister_menu('delete', 'comments');
 						ossn_register_menu_item('comments', array(
 								'name'     => 'delete',
@@ -468,20 +478,20 @@ function ossn_comment_edit_menu($name, $type, $comment) {
  */
 function ossn_comment_page($pages) {
 		$page = $pages[0];
-		switch($page) {
-			case 'image':
+		switch ($page) {
+		case 'image':
 				$comment = ossn_get_comment($pages[1]);
-				if(!empty($pages[1]) && !empty($pages[2])  && $comment) {		
+				if(!empty($pages[1]) && !empty($pages[2]) && $comment) {
 						$file = $comment->getPhotoFile();
-						if(!$file){
-							ossn_error_page();	
+						if(!$file) {
+								ossn_error_page();
 						}
 						$file->output();
 				} else {
 						ossn_error_page();
 				}
 				break;
-			case 'attachment':
+		case 'attachment':
 				header('Content-Type: application/json');
 				$OssnFile = new OssnFile();
 				if(!empty($_FILES['file']['tmp_name']) && ($_FILES['file']['error'] == UPLOAD_ERR_OK && $_FILES['file']['size'] !== 0) && ossn_isLoggedin()) {
@@ -499,12 +509,12 @@ function ossn_comment_page($pages) {
 										//[B] Comment Static photo should have only filename no fullpath #2090
 										$file = base64_encode(ossn_string_encrypt($unique));
 										echo json_encode(array(
-												'file' => base64_encode($file),
+												'file'    => base64_encode($file),
 												'success' => 1,
 										));
 										exit();
 								}
-						} 
+						}
 				}
 				if(empty($_FILES['file']['tmp_name'])) {
 						$error = $OssnFile->getFileUploadError($_FILES['file']['error']);
@@ -512,23 +522,23 @@ function ossn_comment_page($pages) {
 						$error = $OssnFile->getFileUploadError(UPLOAD_ERR_EXTENSION);
 				}
 				$params = array(
-						'title' => ossn_print('system:error:title'),
+						'title'    => ossn_print('system:error:title'),
 						'contents' => $error,
 						'callback' => false,
-						'control' => false,
+						'control'  => false,
 				);
 				echo json_encode(array(
-						'error' => ossn_plugin_view('output/ossnbox', $params),
+						'error'   => ossn_plugin_view('output/ossnbox', $params),
 						'success' => 0,
 				));
 				exit();
 				break;
-			case 'staticimage':
+		case 'staticimage':
 				$image = base64_decode(input('image'));
 				if(!empty($image)) {
 						$file = ossn_string_decrypt(base64_decode($image));
 						header('content-type: image/jpeg');
-						$file = rtrim(ossn_validate_filepath($file), '/');
+						$file      = rtrim(ossn_validate_filepath($file), '/');
 						$tmpphotos = ossn_get_userdata('tmp/photos/');
 						$filename  = str_replace($tmpphotos, '', $file);
 						$file      = $tmpphotos . $file;
@@ -546,7 +556,7 @@ function ossn_comment_page($pages) {
 						ossn_error_page();
 				}
 				break;
-			case 'edit':
+		case 'edit':
 				$comment = ossn_get_annotation($pages[1]);
 				if(!ossn_is_xhr()) {
 						ossn_error_page();
@@ -575,7 +585,7 @@ function ossn_comment_page($pages) {
 						echo ossn_plugin_view('output/ossnbox', $params);
 				}
 				break;
-			default:
+		default:
 				ossn_error_page();
 		}
 }
