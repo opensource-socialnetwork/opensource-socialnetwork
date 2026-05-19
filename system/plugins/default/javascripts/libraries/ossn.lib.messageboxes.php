@@ -5,13 +5,16 @@
  * @return void
  */
 Ossn.MessageBoxClose = function() {
-	$('.ossn-message-box').hide();
-	$('.ossn-halt').removeClass('ossn-light').hide();
-	$('.ossn-halt').attr('style', '');
+    // 1. Fade out the message box over 400ms
+    $('.ossn-message-box').fadeOut(400);
 
-};
-/**
- * Trigget a Modal box
+    // 2. Fade out the overlay (halt) and clean up after it finishes
+    $('.ossn-halt').fadeOut(400, function() {
+        // This code runs ONLY after the fade is done
+        $(this).removeClass('ossn-light').attr('style', '');
+    });
+};/**
+ * Trigger a Modal box
  * [E] Add option to trigger manually messagebox/overlay box #2277
  * 
  * @param['title']      string Title
@@ -61,19 +64,23 @@ Ossn.ModalBox = function(params = false) {
  * @return void
  */
 Ossn.MessageBox = function($url) {
-	Ossn.PostRequest({
-		url: Ossn.site_url + $url,
-		beforeSend: function() {
-			$('.ossn-halt').addClass('ossn-light');
-			$('.ossn-halt').attr('style', 'height:' + $(document).height() + 'px;');
-			$('.ossn-halt').show();
-			$('.ossn-message-box').html('<div class="ossn-loading ossn-box-loading"></div>');
-			$('.ossn-message-box').fadeIn('slow');
-		},
-		callback: function(callback) {
-			$('.ossn-message-box').html(callback).fadeIn();
-		},
-	});
+    Ossn.PostRequest({
+        url: Ossn.site_url + $url,
+        beforeSend: function() {
+            // 1. Prepare the background overlay
+            $('.ossn-halt').addClass('ossn-light')
+                           .css('height', $(document).height() + 'px')
+                           .fadeIn(300); // Smoothly fade in the dark background
+
+            // 2. Clear box and show loading spinner
+            $('.ossn-message-box').html('<div class="ossn-loading ossn-box-loading"></div>')
+                                  .fadeIn(400); 
+        },
+        callback: function(callback) {
+            // 3. Hide the loader quickly, then fade in the actual content
+            $('.ossn-message-box').html(callback);
+        },
+    });
 };
 /**
  * Add a system messages for users
