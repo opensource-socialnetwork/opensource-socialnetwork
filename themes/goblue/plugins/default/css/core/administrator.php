@@ -358,6 +358,7 @@ footer a {
 	font-size: 15px;
 	font-weight: bold;
 	margin-left: 10px;
+    cursor:pointer;
 }
 
 .ossn-checkbox-input {
@@ -374,6 +375,7 @@ footer a {
 	cursor: pointer;
 	float: left;
 	margin-top: 2px;
+    border-radius: 5px;
 }
 
 .checkbox-block [type=checkbox]::before {
