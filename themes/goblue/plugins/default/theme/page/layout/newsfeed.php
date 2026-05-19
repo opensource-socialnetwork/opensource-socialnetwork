@@ -21,8 +21,9 @@ if(ossn_is_hook('newsfeed', "center:top")) {
 	$newsfeed_center_top = implode('', $newsfeed_center_top);
 	$isempty_top 	     = trim($newsfeed_center_top);
 }
+//[E] Change container fluid to container-xl layout newsfeed #2564
 ?>
-<div class="container-fluid">
+<div class="container-xl">
 	<div class="ossn-layout-newsfeed">
 		<div class="row">
 			<div class="col-lg-7">
