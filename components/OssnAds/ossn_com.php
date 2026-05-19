@@ -9,6 +9,7 @@
  * @link      https://www.opensource-socialnetwork.org/
  */
 define('__OSSN_ADS__', ossn_route()->com . 'OssnAds/');
+
 require_once __OSSN_ADS__ . 'classes/OssnAds.php';
 /**
  * Initialize Ads Component
@@ -22,16 +23,52 @@ function ossn_ads() {
 				ossn_register_action('ossnads/add', __OSSN_ADS__ . 'actions/add.php');
 				ossn_register_action('ossnads/edit', __OSSN_ADS__ . 'actions/edit.php');
 				ossn_register_action('ossnads/delete', __OSSN_ADS__ . 'actions/delete.php');
+				ossn_extend_view('js/ossn.admin', 'js/ads.admin');
 		}
+		ossn_register_action('ad/viewinc', __OSSN_ADS__ . 'actions/view.php');
+
+		ossn_extend_view('js/opensource.socialnetwork', 'js/ads');
 		ossn_register_page('ossnads', 'ossn_ads_handler');
 
 		ossn_extend_view('css/ossn.default', 'css/ads');
 		ossn_extend_view('css/ossn.admin.default', 'css/ads.admin');
 
-		ossn_add_hook('newsfeed', 'sidebar:right', 'ossn_ads_sidebar', 300);
+		ossn_add_hook('newsfeed', 'sidebar:right', 'ossn_ads_newsfeed_sidebar', 300);
 		ossn_add_hook('profile', 'modules', 'profile_modules_ads', 300);
 		ossn_add_hook('group', 'widgets', 'group_widgets_ads', 300);
 		ossn_add_hook('theme', 'sidebar:right', 'theme_sidebar_right_ads', 300);
+
+		ossn_register_callback('cli', 'loaded', 'ossn_ads_cli');
+}
+/**
+ * OSSN Ads CLI
+ *
+ * /usr/bin/php system/handlers/cli --handler=AdsCron
+ *
+ * @return void
+ */
+function ossn_ads_cli($cb, $type, $args) {
+		if($args['handler'] == 'AdsCron') {
+				$component = new OssnComponents();
+				$component->setSettings('OssnAds', array(
+						'last_time' => time(),
+				));
+
+				$ads     = new OssnAds();
+				$expired = $ads->getExpired();
+				if($expired) {
+						ossn_cli_output('Founds ads to mark expired', 'warning');
+						foreach ($expired as $item) {
+								ossn_cli_output("Ad with ID marked expired : {$item->guid}", 'success');
+
+								$item->data->expired = true;
+								$item->save();
+						}
+						ossn_cli_output('All found ads marked expired', 'success');
+				} else {
+						ossn_cli_output('No ads found for expiration', 'warning');
+				}
+		}
 }
 /**
  * Ad image page handler
@@ -46,9 +83,9 @@ function ossn_ads_handler($pages) {
 		if(empty($page)) {
 				return false;
 		}
-		switch($page) {
-			case 'photo':
-				$ad = get_ad_entity($pages[1]);
+		switch ($page) {
+		case 'photo':
+				$ad = ossn_get_ad($pages[1]);
 				if(!empty($pages[1]) && !empty($pages[2]) && $ad) {
 						$file = $ad->getPhotoFile();
 						if(!$file) {
@@ -57,6 +94,23 @@ function ossn_ads_handler($pages) {
 						$file->output();
 				} else {
 						ossn_error_page();
+				}
+				break;
+		case 'go':
+				$ad_guid = $pages[1];
+				$ad      = ossn_get_ad($ad_guid);
+
+				if(!empty($ad_guid) && $ad) {
+						//avoid multiple click counts for same session
+						if(!isset($_SESSION['ossn_ads_clicked']) || !is_array($_SESSION['ossn_ads_clicked'])) {
+								$_SESSION['ossn_ads_clicked'] = array();
+						}
+						if(!in_array($ad_guid, $_SESSION['ossn_ads_clicked'])) {
+								$ad->incClicks();
+								$_SESSION['ossn_ads_clicked'][] = $ad_guid;
+						}
+						header("Location: {$ad->site_url}");
+						exit();
 				}
 				break;
 		default:
@@ -74,19 +128,18 @@ function ossn_ads_handler($pages) {
  * @access public
  */
 function ossn_ads_image_url($guid) {
-		$ad = get_ad_entity($guid);
+		$ad = ossn_get_ad($guid);
 		return $ad->getPhotoURL();
 }
 /**
- * Get ad entity
+ * Get ad
  *
  * @params $guid ad guid
  *
- * @return object;
- * @access public
+ * @return object|boolean
  */
-function get_ad_entity($guid) {
-		if($guid < 1 || empty($guid)) {
+function ossn_get_ad($guid) {
+		if(empty($guid)) {
 				return false;
 		}
 		$ad = ossn_get_object($guid);
@@ -96,7 +149,7 @@ function get_ad_entity($guid) {
 		return false;
 }
 /**
- * Display ads on sidebar
+ * Display ads on sidebar newsfeed
  *
  * @param string $hook Name of the hook
  * @param string $type A hook type
@@ -104,8 +157,13 @@ function get_ad_entity($guid) {
  *
  * @return array
  */
-function ossn_ads_sidebar($hook, $type, $return) {
-		$return[] = ossn_plugin_view('ads/page/view');
+function ossn_ads_newsfeed_sidebar($hook, $type, $return) {
+		$ads = new OssnAds();
+		$ads = $ads->getByPlacement('newsfeed');
+
+		$return[] = ossn_plugin_view('ads/page/view', array(
+				'ads' => $ads,
+		));
 		return $return;
 }
 /**
@@ -114,7 +172,12 @@ function ossn_ads_sidebar($hook, $type, $return) {
  * @return array
  */
 function profile_modules_ads($hook, $type, $module, $params) {
-		$module[] = ossn_plugin_view('ads/page/view_small');
+		$ads = new OssnAds();
+		$ads = $ads->getByPlacement('profile');
+
+		$module[] = ossn_plugin_view('ads/page/view', array(
+				'ads' => $ads,
+		));
 		return $module;
 }
 /**
@@ -123,7 +186,12 @@ function profile_modules_ads($hook, $type, $module, $params) {
  * @return array
  */
 function group_widgets_ads($hook, $type, $module, $params) {
-		$module[] = ossn_plugin_view('ads/page/view');
+		$ads = new OssnAds();
+		$ads = $ads->getByPlacement('groups');
+
+		$module[] = ossn_plugin_view('ads/page/view', array(
+				'ads' => $ads,
+		));
 		return $module;
 }
 /**
@@ -132,7 +200,12 @@ function group_widgets_ads($hook, $type, $module, $params) {
  * @return array
  */
 function theme_sidebar_right_ads($hook, $type, $module, $params) {
-		$module[] = ossn_plugin_view('ads/page/view');
+		$ads = new OssnAds();
+		$ads = $ads->getByPlacement('global');
+
+		$module[] = ossn_plugin_view('ads/page/view', array(
+				'ads' => $ads,
+		));
 		return $module;
 }
 ossn_register_callback('ossn', 'init', 'ossn_ads');

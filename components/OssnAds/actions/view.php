@@ -8,5 +8,14 @@
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
  * @link      https://www.opensource-socialnetwork.org/
  */
- 
-echo ossn_plugin_view('ads/page/view', $params);
+$guid = input('guid'); 
+$ad = ossn_get_ad($guid);
+if($ad){
+	$ad->incViews();	
+}
+if(!ossn_is_xhr()){
+	redirect();	
+} else {
+	echo 1;	
+}	
+exit();
