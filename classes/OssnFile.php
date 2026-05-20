@@ -777,11 +777,11 @@ class OssnFile extends OssnEntities {
 						$filesize  = filesize($file);
 						$type      = $this->getFileExtension($file);
 						$MimeTypes = $this->mimeTypes();
-						
+
 						//[B] OssnFile:output doesn't recognize setMimeTypes by component #2331
 						//restricted by component
-						if(isset($this->fileMimeTypes) && is_array($this->fileMimeTypes)){
-							$MimeTypes = $this->fileMimeTypes;
+						if(isset($this->fileMimeTypes) && is_array($this->fileMimeTypes)) {
+								$MimeTypes = $this->fileMimeTypes;
 						}
 						//not getting actual mimetype getting by extension type to avoid any vulnerability.
 						if(isset($MimeTypes[$type][0])) {
@@ -793,6 +793,13 @@ class OssnFile extends OssnEntities {
 								session_write_close();
 								ob_flush();
 								header("Content-type: {$MimeType}");
+
+								//[E] Allow cross origin for images #2559
+								$file_disallow_cros = ossn_get_userdata('NoAccessControlAllowOrigin');
+								if(strpos($MimeType, 'image/') === 0 && !file_exists($file_disallow_cros)) {
+										header('Access-Control-Allow-Origin: *');
+								}
+
 								header('Expires: ' . gmdate('D, d M Y H:i:s \G\M\T', strtotime('+6 months')), true);
 								header('Pragma: public');
 								header('Cache-Control: public');
