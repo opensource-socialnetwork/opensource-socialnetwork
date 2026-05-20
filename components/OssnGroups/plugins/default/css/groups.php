@@ -1,3 +1,5 @@
+/**** <style> ***/
+
 .group-header-menu {}
 
 .group-header-menu .first-item {
@@ -112,19 +114,19 @@
 
 .ossn-group-profile .profile-header {
 	border: 1px solid #ccc;
-	border-width: 1px 1px 2px 0px;
+	border-bottom-width: 3px;
 	position: relative;
 	width: 100%;
 	opacity: .99;
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
+	border-bottom-right-radius: 10px;
+	border-bottom-left-radius: 10px;
 }
 
 .ossn-group-profile .profile-header .header-bottom {
 	background: #fff;
 	height: 115px;
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
 }
 
 .ossn-group-profile .profile-header .group-name {
@@ -171,6 +173,8 @@
 .ossn-group-cover {
 	overflow: hidden;
 	height: 300px;
+	border-top-right-radius: 10px;
+	border-top-left-radius: 10px;
 }
 
 .ossn-group-cover img {
@@ -182,12 +186,12 @@
 }
 
 .ossn-group-cover-button {
-    margin-right: 10px;
-    top: 0;
-    margin-top: 20px;
-    z-index: 9;
-    position: absolute;
-    right: 0px;
+	margin-right: 10px;
+	top: 0;
+	margin-top: 20px;
+	z-index: 9;
+	position: absolute;
+	right: 0px;
 }
 
 .ossn-group-cover-button a {
@@ -206,6 +210,7 @@
 .ossn-notification-icon-groups:before {
 	display: inline-block;
 }
+
 .ossn-notification-icon-groups:before {
 	content: "\f0c0";
 	font-family: 'Font Awesome 5 Free';
@@ -301,4 +306,113 @@
 		padding: 8px 10px !important;
 		margin: 0 !important;
 	}
+}
+
+
+@media (max-width: 767px) {
+	.ossn-group-members {
+		text-align: center;
+	}
+
+	.ossn-group-members .request-controls {
+		float: none;
+		padding-bottom: 10px;
+	}
+
+	.ossn-group-members .uinfo .userlink {
+		float: none !important;
+	}
+}
+
+.group-add-privacy .radio-block span {
+	margin-top: 5px;
+}
+
+.group-add-privacy .radio-block .ossn-radio-input {
+	float: left;
+}
+
+.ossn-group-cover img {
+	width: auto;
+}
+
+@media (max-width: 480px) {
+
+	/**********************
+    	Groups
+    ************************/
+	.ossn-group-cover {
+		height: 180px !important;
+	}
+
+	.ossn-group-cover-header,
+	.ossn-group-profile .profile-header,
+	.ossn-group-profile .profile-header .header-bottom {
+		height: auto !important;
+	}
+
+	.ossn-group-profile .profile-header {
+		max-height: inherit !important;
+	}
+
+	.ossn-group-profile .profile-header .group-name {
+		float: none !important;
+	}
+
+	.group-name {
+		width: 100%;
+	}
+
+	.group-header-sep {
+		height: auto !important;
+		text-align: center;
+	}
+
+	.ossn-group-members {
+		margin-left: 15px;
+		margin-right: 15px;
+	}
+
+	.ossn-group-members .request-controls,
+	.ossn-group-members .uinfo {
+		display: block;
+	}
+
+	.ossn-group-members .uinfo .userlink {
+		margin-left: 10px;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+}
+
+@media only screen and (max-width: 1199px) {
+	.group-search-details {
+		margin-left: 10px;
+	}
+}
+
+.menu-section-item-groups:before {
+	content: "\f07b" !important
+}
+
+.ossn-group-members {
+	margin-right: 5px;
+}
+
+.ossn-group-cover-button a:before {
+	font-family: 'Font Awesome 5 Free';
+	display: inline-block;
+	padding-right: 5px;
+	vertical-align: middle;
+	font-weight: 900;
+}
+
+#reposition-group-cover:before {
+	content: "\f303";
+}
+
+#add-cover-group:before {
+	content: "\f0b2";
+	font-family: 'Font Awesome 5 Free';
 }

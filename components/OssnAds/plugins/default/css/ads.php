@@ -1,4 +1,41 @@
 /******** <style> ******/
+/******************************************
+	Ossn Ads
+*******************************************/
+.ad-image-container {
+	background: #f6f7f8;
+	padding: 5px;
+	border: 1px solid #ebebeb;
+}
+
+.ossn-ad-item .ad-image {
+	max-width: 200px;
+	margin: 0 auto;
+	display: block;
+}
+
+.ossn-ad-item a {
+	text-decoration: none;
+	color: #000;
+	cursor: pointer;
+}
+
+.ossn-ad-item .ad-title {
+	font-weight: bold;
+	font-size: 15px;
+	margin-bottom: 5px;
+}
+
+.ossn-ad-item .ad-link {
+	margin-bottom: 5px;
+}
+
+.ossn-ad-item p {
+	margin-top: 10px;
+	text-align: justify;
+}
+
+
 .ossn-ad-item {
 	border-bottom: 1px solid #eee;
 	margin-bottom: 10px;

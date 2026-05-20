@@ -74,6 +74,11 @@ function ossn_groups() {
 		ossn_register_callback('page', 'load:group', 'ossn_group_load_event');
 		ossn_register_callback('page', 'load:search', 'ossn_group_search_link');
 		ossn_register_callback('user', 'delete', 'ossn_user_groups_delete');
+		
+		ossn_add_hook('required', 'components', function ($hook, $type, $return, $params) {
+				$return[] = 'OssnProfile';
+				return $return;
+		});		
 }
 /**
  * Redirect URI for group join request

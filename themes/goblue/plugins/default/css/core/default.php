@@ -1,5 +1,5 @@
 /******************************
-	Basic
+	Basic <style>
 **********************************/
 :root {
 	--layout-sidebar-width: 240px;
@@ -76,6 +76,12 @@ body {
 }
 
 .ossn-form input[type="file"] {
+	display: block;
+}
+
+[contentEditable=true]:empty:not(:focus)::before {
+	content: attr(placeholder);
+	pointer-events: none;
 	display: block;
 }
 
@@ -216,8 +222,6 @@ a {
 /************************************
 	Layouts
 ************************************/
-
-
 /** didn't we have a minimum page height in goblue? #702 **/
 
 .ossn-layout-module,
@@ -318,6 +322,7 @@ a {
 	background: #fff;
 	padding: 10px;
 	border: 1px solid #eee;
+	border-radius: 10px;
 }
 
 .opensource-socalnetwork {
@@ -350,10 +355,6 @@ a {
 
 .ossn-error-page .fa-exclamation-triangle {
 	font-size: 100px;
-}
-
-.ossn-group-members {
-	margin-right: 5px;
 }
 
 .ossn-page-loading-annimation {
@@ -516,20 +517,9 @@ a {
 	content: "\f011" !important;
 }
 
-.ossn-edit-comment:before {
-	content: "\f303" !important;
-}
-
-.ossn-delete-comment:before {
-	content: "\f2ed" !important;
-}
 
 .ossn-topbar-dropdown-menu {
 	float: right;
-}
-
-.comment-metadata .dropdown-item {
-	padding: 0.4rem 1rem;
 }
 
 .ossn-topbar-dropdown-menu ul li a,
@@ -543,134 +533,6 @@ a {
 	margin: 1px -120px 0;
 	min-width: 200px;
 }
-
-/************************************************
-   Topbar Dropdown and Post+Comment menu icons end
-*************************************************/
-
-.ossn-comment-menu {
-	float: right;
-	margin-left: 10px;
-}
-
-.comments-item:hover .ossn-comment-menu {
-	display: block;
-	margin-left: 10px;
-}
-
-.comments-likes {
-	width: 100%;
-}
-.comments-list {
-	background-color: #FBFBFB;
-	margin-left: -15px;
-	margin-right: -15px;
-	padding-left: 10px;
-	padding-right: 10px;
-	border-bottom-left-radius: 10px;
-	border-bottom-right-radius: 10px;
-}
-
-.comments-list .comments-item {
-	padding-top: 10px;
-	padding-bottom: 5px;
-}
-
-.comments-list .comments-item:first-child {
-	margin-top: 0px;
-	padding-top: 10px;
-}
-
-.comments-list .comments-item:last-child {
-	border-bottom: none;
-}
-
-.comments-list .comments-item .comment-user-img {
-	display: inline-block;
-	border-radius: 32px;
-}
-
-
-/** UI improvements comments #1524 **/
-
-.comments-list .comments-item .comment-contents {
-	display: inline-block;
-	margin-top: -3px;
-	background-color: #ebedf0;
-	border-radius: 18px;
-	width: auto;
-	line-height: 16px;
-	padding: 6px 12px 7px 12px;
-}
-
-.comment-container {
-	position: relative;
-	z-index: 0;
-}
-
-.comments-item .col-lg-11 {
-	padding-left: 0px;
-}
-
-.comment-metadata .time-created,
-.comment-metadata a {
-	display: inline-block;
-}
-
-.comment-contents p {
-	margin: 0px;
-	word-break: break-word;
-	text-align: left;
-}
-
-.comment-contents p img {
-	display: block;
-	margin-top: 10px;
-	margin-bottom: 10px;
-	max-width: 100%;
-}
-
-.comment-contents .owner-link {
-	font-weight: bold;
-	margin-right: 5px;
-	font-size: 14px;
-}
-
-.comment-contents {
-	width: 100%;
-}
-
-.comment-container span[readonly='readonly'],
-.comment-container input[readonly='readonly'] {
-	background: #eee;
-}
-
-.comments-item .comment-metadata {
-	margin-top: 5px;
-}
-
-.comment-box {
-	width: 100%;
-	border: 1px solid #eee;
-	padding: 6px 65px 6px 12px;
-	margin-bottom: 5px;
-	outline: none;
-	display: block;
-	resize: vertical;
-	min-height: 32px;
-	background-color: #f2f3f5;
-	border: 1px solid #ccd0d5;
-	border-radius: 15px;
-	word-break: break-word;
-	text-align: left;
-}
-
-[contentEditable=true]:empty:not(:focus)::before {
-	content: attr(placeholder);
-	pointer-events: none;
-	display: block;
-}
-
 
 .ossn-like-comment,
 .ossn-total-likes {
@@ -928,19 +790,6 @@ a {
 		width: 100%;
 		margin-bottom: 10px;
 	}
-
-	.ossn-group-members {
-		text-align: center;
-	}
-
-	.ossn-group-members .request-controls {
-		float: none;
-		padding-bottom: 10px;
-	}
-
-	.ossn-group-members .uinfo .userlink {
-		float: none !important;
-	}
 }
 
 
@@ -1035,46 +884,6 @@ a {
 	right: 0;
 }
 
-
-/******************************************
-	Ossn Ads
-*******************************************/
-.ad-image-container {
-	background: #f6f7f8;
-	padding: 5px;
-	border: 1px solid #ebebeb;
-}
-
-.ossn-ad-item {}
-
-.ossn-ad-item .ad-image {
-	max-width: 200px;
-	margin: 0 auto;
-	display: block;
-}
-
-.ossn-ad-item a {
-	text-decoration: none;
-	color: #000;
-	cursor: pointer;
-}
-
-.ossn-ad-item .ad-title {
-	font-weight: bold;
-	font-size: 15px;
-	margin-bottom: 5px;
-}
-
-.ossn-ad-item .ad-link {
-	margin-bottom: 5px;
-}
-
-.ossn-ad-item p {
-	margin-top: 10px;
-	text-align: justify;
-}
-
-
 /*****************************
 	Widgets
 ******************************/
@@ -1084,11 +893,6 @@ a {
 	background-color: #fff;
 	border-radius: 10px;
 	box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 2px;
-}
-
-.ossn-messages .ossn-widget {
-	border-radius: 0px;
-	box-shadow: none;
 }
 
 .ossn-widget .widget-heading {
@@ -1103,8 +907,8 @@ a {
 .ossn-widget .widget-contents {
 	padding: 10px;
 	border-bottom: 1px solid #eee;
-	border-bottom-left-radius: 3px;
-	border-bottom-right-radius: 3px;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
 }
 
 .ossn-privacy .radio-block {
@@ -1122,592 +926,6 @@ a {
 	width: 85%;
 	margin-top: 7px;
 }
-
-.group-add-privacy .radio-block span {
-	margin-top: 5px;
-}
-
-.group-add-privacy .radio-block .ossn-radio-input {
-	float: left;
-}
-
-
-/***********************************
-	Ossn Notifications
-***************************************/
-
-.ossn-notifications-box .collapsing {
-	-webkit-transition: none;
-	transition: none;
-	display: none;
-}
-
-.ossn-notifications-box {
-	width: 430px;
-	color: #000;
-	position: absolute;
-	top: 100%;
-	right: 20px;
-	z-index: 1000;
-	display: none;
-	float: left;
-	min-width: 160px;
-	padding: 5px 0;
-	margin: 2px 0 0;
-	font-size: 14px;
-	text-align: left;
-	list-style: none;
-	background-color: #fff;
-	-webkit-background-clip: padding-box;
-	background-clip: padding-box;
-	border: 1px solid #ccc;
-	border: 1px solid rgba(0, 0, 0, .15);
-	border-radius: 5px;
-	-webkit-box-shadow: 0 6px 12px rgb(0 0 0 / 18%);
-	box-shadow: 0 6px 12px rgb(0 0 0 / 18%);
-	border-bottom-left-radius: 7px;
-	border-bottom-right-radius: 7px;
-}
-
-.ossn-notifications-box .notificaton-item {
-	border-bottom: 1px solid #eee;
-}
-
-.ossn-notifications-box .notificaton-item:hover,
-.ossn-notifications-box .notificaton-item .active {
-	background-color: #F9F9F9;
-}
-
-.ossn-notifications-box .type-name {
-	font-size: 13px;
-	font-weight: bold;
-	padding: 1px 10px 5px 10px;
-	color: #000;
-	height: 25px;
-	border-bottom: 1px solid #DDDDDD;
-}
-
-.ossn-notification-box-loading {
-	margin: 0 auto;
-	margin-top: 20px;
-	margin-bottom: 20px;
-}
-
-.ossn-no-notification {
-	text-align: center;
-	padding: 10px;
-}
-
-.ossn-notifications-box .type-name .title {
-	display: inline-block;
-}
-
-.ossn-notifications-box .type-name .links {
-	display: inline-block;
-	float: right;
-}
-
-.ossn-notifications-box .type-name .links a {
-	color: #337ab7;
-	display: inline;
-	font-weight: normal;
-}
-
-.ossn-notifications-box .notification-image,
-.ossn-notifications-box .notification-image img {
-	width: 50px;
-	height: 50px;
-}
-
-.ossn-notifications-all a {
-	padding: 10px;
-}
-
-.ossn-notifications-box .bottom-all a,
-.ossn-notifications-box .notfi-meta strong {
-	color: #337ab7;
-}
-
-.ossn-notifications-box .notfi-meta {
-	width: 330px;
-	margin-left: 5px;
-	display: inline-block;
-	float: right;
-	color: #000;
-}
-
-.ossn-notifications-box .bottom-all a {
-	font-weight: bold;
-}
-
-.ossn-notifications-box .bottom-all {
-	background: #F7F7F7;
-	text-align: center;
-	padding: 0px;
-	padding-top: 10px;
-	display: block;
-	height: 40px;
-	border-top: 1px solid #eee;
-	border-bottom-left-radius: 7px;
-	border-bottom-right-radius: 7px;
-}
-
-.ossn-notifications-box .metadata {
-	margin-bottom: -5px;
-}
-
-.ossn-notifications-box .messages-inner {
-	max-height: 400px;
-	overflow: hidden;
-	overflow-y: scroll;
-}
-
-.latest-users img {
-	margin-bottom: 5px;
-}
-
-.ossn-notification-mark-read {
-	float: right;
-}
-
-.ossn-notif-delete-item i {
-	margin-right: 0;
-	font-size: initial !important;
-	margin-top: initial !important;
-}
-
-.ossn-notif-delete-item {
-	position: absolute;
-	right: 0;
-	top: 0;
-	margin-top: 0px;
-	background: #fff;
-	width: 30px;
-	height: 30px;
-	text-align: center;
-	border: 1px solid #eee;
-	border-radius: 100%;
-
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-}
-
-.ossn-notif-delete-item {
-	opacity: 0;
-	transform: scale(0.8);
-	transition: all 0.3s ease;
-	pointer-events: none;
-	/* prevent accidental clicks when hidden */
-}
-
-/* Show on hover of the <a> inside <li> */
-.ossn-notifications-all li a:hover .ossn-notif-delete-item {
-	opacity: 1;
-	transform: scale(1);
-	pointer-events: auto;
-}
-
-.ossn-notifications-all li {
-	display: block;
-}
-
-.ossn-notifications-all a:hover {
-	cursor: pointer;
-	background-color: transparent;
-	text-decoration: none;
-}
-
-.ossn-notifications-box li:hover,
-.ossn-notifications-box a:hover,
-.ossn-notifications-all a:hover,
-.ossn-notifications-all li:hover {
-	background: #F9F9F9;
-}
-
-.ossn-notification-container {
-	background-color: #dc0d17;
-	background-image: -webkit-linear-gradient(#fa3c45, #dc0d17);
-	color: #fff;
-	min-height: 13px;
-	padding: 1px 3px;
-	text-shadow: 0 -1px 0 rgba(0, 0, 0, .4);
-	-webkit-border-radius: 2px;
-	-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .7);
-	-webkit-background-clip: padding-box;
-	display: inline-block;
-	font-size: 11px;
-	line-height: normal;
-	position: absolute;
-	margin-left: -10px;
-	z-index: 1;
-}
-
-.notification-friends .image {
-	width: 50px;
-	height: 50px;
-	display: inline-table;
-	float: left;
-}
-
-.ossn-notifications-friends-inner a {
-	color: #0f3b4a !important;
-	display: inline-block !important;
-}
-
-.ossn-notifications-friends-inner {
-	padding: 0px 5px;
-}
-
-.ossn-notifications-friends-inner form {
-	display: inline-table;
-}
-
-.ossn-notification-page li img {
-	display: none;
-}
-
-.notification-friends li {
-	width: 100%;
-	border-bottom: 1px solid #eee;
-}
-
-.notification-friends .notfi-meta a {
-	color: #337ab7;
-	font-weight: bold;
-	display: inline-block;
-	width: 200px;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-}
-
-.ossn-notifications-friends-inner .controls {
-	float: right;
-	margin-top: 6px;
-	display: inline-block;
-}
-
-.friends-added-text {
-	/**float: left !important;
-    margin-top: -18px !important;
-    display: block !important;
-    margin-left: 10px; **/
-	font-size: 13px;
-}
-
-.ossn-notifications-friends-inner .btn {
-	padding: 3px 9px;
-	border-radius: 1px;
-}
-
-.notification-friends {
-	max-height: 400px;
-}
-
-
-/*******************************
-	Profile
-********************************/
-.ossn-profile .top-container {
-	background: #fff;
-	border: 1px solid #C4CDE0;
-	border-width: 1px 1px 2px;
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
-	border-top-right-radius: 10px;
-	border-top-left-radius: 10px;
-}
-
-.ossn-profile-usermetadata {
-	position: relative;
-	min-height: 85px;
-	padding-bottom: 10px;
-	border-bottom: 1px solid #eee;
-}
-
-.profile-hr-menu {
-	border-bottom: 1px solid #eee;
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
-}
-
-.ossn-profile .top-container .profile-cover {
-	height: 300px;
-	overflow: hidden;
-	opacity: .99;
-	background: -moz-linear-gradient(top, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 1%, rgba(0, 0, 0, .38) 100%);
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(0, 0, 0, 0)), color-stop(1%, rgba(0, 0, 0, 0)), color-stop(100%, rgba(0, 0, 0, .38)));
-	background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 1%, rgba(0, 0, 0, .38) 100%);
-	background: -o-linear-gradient(top, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 1%, rgba(0, 0, 0, .38) 100%);
-	background: -ms-linear-gradient(top, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 1%, rgba(0, 0, 0, .38) 100%);
-	background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 1%, rgba(0, 0, 0, .38) 100%);
-	filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#94000000', GradientType=0);
-	position: relative;
-}
-
-.ossn-profile .top-container .profile-cover img {
-	width: auto;
-}
-
-.ossn-profile-row {
-	margin-bottom: 20px;
-}
-
-.profile-hr-menu ul {
-	margin: 7px 0 5px;
-	padding: 0px;
-}
-
-.profile-hr-menu ul li {
-	display: inline-block;
-}
-
-.profile-hr-menu ul li a:not(.dropdown a) {
-	display: block;
-	padding: 15px;
-	margin-right: 5px;
-	font-weight: bold;
-}
-
-.profile-hr-menu a:hover {
-	color: initial;
-}
-
-.profile-hr-menu>li>a:not(.profile-hr-menu .dropdown-toggle):hover,
-.profile-hr-menu>ul>li:hover>a:not(.profile-hr-menu .dropdown-toggle) {
-	background: #F6F7F8;
-	text-decoration: none;
-	border-radius: 10px;
-}
-
-.profile-hr-menu .dropdown-menu {
-	margin-left: 0px;
-}
-
-.profile-hr-menu .dropdown-menu li {
-	display: block;
-	border-bottom: 0;
-	padding: initial;
-	margin: auto;
-}
-
-.profile-hr-menu .dropdown a i {
-	margin-left: 5px;
-}
-
-.profile-hr-menu .dropdown-menu li a {
-	border-right: 0px;
-	margin-right: 0px;
-}
-
-.profile-hr-menu ul li:hover {}
-
-.profile-hr-menu {
-	border-bottom: 1px solid #eee;
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
-}
-
-.profile-hr-menu ul li:last-child {
-	border-right: none;
-}
-
-.ossn-profile .profile-photo {
-	position: absolute;
-	margin-left: 20px;
-	margin-top: -80px;
-	background-color: #fff;
-	border-radius: 50%;
-	padding: 5px;
-	width: 160px;
-	height: 160px;
-}
-
-.ossn-profile .profile-photo img {
-	border-radius: 50%;
-	width: 150px;
-	height: 150px;
-}
-
-.profile-menu-hr-container {
-	background: #fff;
-	border: 1px solid #C4CDE0;
-	border-width: 1px 1px 2px;
-	margin: 10px 0;
-	border-radius: 5px;
-}
-
-.ossn-profile .user-fullname {
-	color: #333334;
-	font-weight: bold;
-	max-width: 600px;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-}
-
-.ossn-profile-role {
-	font-size: 15px !important;
-}
-
-.ossn-profile .user-username {
-	font-size: 15px;
-	font-weight: normal;
-}
-
-.btn-standalone-grey {
-	color: #333;
-	font-weight: bold;
-	text-decoration: none;
-	width: auto;
-	margin: 0;
-	font-size: 12px;
-	line-height: 16px;
-	padding: 5px 6px;
-	cursor: pointer;
-	outline: none;
-	text-align: center;
-	white-space: nowrap;
-	-webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 #FFF;
-	-moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.10), inset 0 1px 0 #fff;
-	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 #FFF;
-	border: 1px solid #999;
-	border-bottom-color: #888;
-	background: #EEE;
-	background: -webkit-gradient(linear, 0 0, 0 100%, from(#F5F6F6), to(#E4E4E3));
-	background: -moz-linear-gradient(#f5f6f6, #e4e4e3);
-	background: -o-linear-gradient(#f5f6f6, #e4e4e3);
-	background: linear-gradient(#F5F6F6, #E4E4E3);
-	text-decoration: none;
-}
-
-.btn-standalone-grey:active {
-	background: #ddd;
-	border-bottom-color: #999;
-	box-shadow: none;
-	-webkit-box-shadow: none;
-	-moz-box-shadow: none;
-}
-
-.btn-standalone-grey:hover {
-	color: #333;
-	text-decoration: none;
-}
-
-.profile-cover-controls {
-	position: absolute;
-	width: 100%;
-	top: 0;
-	margin-top: 20px;
-	z-index: 1;
-}
-
-.ossn-group-cover-button a:before,
-.profile-cover-controls a:before {
-	font-family: 'Font Awesome 5 Free';
-	display: inline-block;
-	padding-right: 5px;
-	vertical-align: middle;
-	font-weight: 900;
-}
-
-
-.profile-cover-controls a {
-	float: right;
-	position: relative;
-	margin-right: 10px;
-
-}
-
-
-#reposition-group-cover:before,
-.change-cover:before {
-	content: "\f303";
-}
-
-#add-cover-group:before,
-.reposition-cover:before {
-	content: "\f0b2";
-	font-family: 'Font Awesome 5 Free';
-}
-
-.profile-menu {
-	position: relative;
-	margin-right: 20px;
-}
-
-#cover-menu {
-	display: none;
-}
-
-.upload-photo {
-	background: #eee;
-	position: absolute;
-	font-size: 15px;
-	font-family: sans-serif;
-	bottom: 0;
-	right: 0;
-	margin-bottom: 20px;
-	width: 40px;
-	height: 40px;
-	border-radius: 50%;
-}
-
-.upload-photo span {
-	text-align: center;
-	display: block;
-	margin-top: 5px;
-	font-size: 20px;
-	color: #000;
-}
-
-.user-cover-uploading {
-	opacity: 0.4;
-}
-
-.user-photo-uploading {
-	height: 100%;
-	opacity: 0.8;
-	background: #fff;
-	width: 100%;
-	position: absolute;
-	border-radius: 50%;
-	margin-bottom: 0;
-	margin-left: -5px;
-	margin-top: -5px;
-}
-
-.user-photo-uploading span {
-	display: none;
-}
-
-.ossn-profile-bottom {
-	margin-top: 10px;
-}
-
-.page-sidebar,
-.ossn-profile-sidebar {}
-
-.ossn-layout-media .content {
-	margin-right: 10px;
-	margin-left: 10px;
-}
-
-.ossn-profile-extra-menu {
-	display: inline-block;
-}
-
-
-/*****************************
-    Groups
-*****************************/
-
-.ossn-group-cover img {
-	width: auto;
-}
-
 
 /*****************************
 	Side Menu icons
@@ -2048,7 +1266,7 @@ div.token-input-dropdown ul li.token-input-selected-dropdown-item {
 	width: 470px;
 	min-height: 96px;
 	background: #fff;
-    border-radius: 16px;
+	border-radius: 16px;
 	border: 10px solid #999999b5;
 	position: fixed;
 	top: 0px;
@@ -2059,7 +1277,7 @@ div.token-input-dropdown ul li.token-input-selected-dropdown-item {
 	z-index: 60000;
 	margin-top: 100px;
 	display: none;
-    background-clip: padding-box;
+	background-clip: padding-box;
 	box-shadow: 0 2px 26px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(0, 0, 0, 0.1);
 }
 
@@ -2090,12 +1308,12 @@ div.token-input-dropdown ul li.token-input-selected-dropdown-item {
 }
 
 .ossn-message-box .control {
-    height: 45px;
-    padding: 10px;
-    border-top: 1px solid #E9EAED;
-    background: #F5F6F7;
+	height: 45px;
+	padding: 10px;
+	border-top: 1px solid #E9EAED;
+	background: #F5F6F7;
 	border-bottom-right-radius: 10px;
-	border-bottom-left-radius: 10px;    
+	border-bottom-left-radius: 10px;
 }
 
 .ossn-message-box .control .controls {
@@ -2184,8 +1402,7 @@ div.token-input-dropdown ul li.token-input-selected-dropdown-item {
 	margin-bottom: 20px;
 }
 
-#ossn-home-signup .checkbox-block,
-.ossn-profile-bottom .ossn-edit-form .checkbox-block {
+#ossn-home-signup .checkbox-block {
 	margin-top: 0;
 	margin-bottom: 0;
 }
@@ -2561,20 +1778,6 @@ footer .ossn-footer-menu a:last-child::after {
 ***************************/
 
 @media (max-width: 480px) {
-	.profile-hr-menu ul li {
-		padding: 10px 0;
-	}
-	/***********************
-    	Comments
-     ***********************/
-	.comments-list .comments-item .comment-user-img {
-		display: none;
-	}
-
-	.comments-item .col-lg-11 {
-		padding-left: 15px;
-	}
-
 	.ossn-list-users .uinfo .userlink {
 		text-overflow: ellipsis;
 		width: 195px;
@@ -2624,60 +1827,6 @@ footer .ossn-footer-menu a:last-child::after {
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;
-	}
-
-	/******************************
-    	Profile
-    ********************************/
-	.ossn-profile .profile-photo img {}
-
-	.ossn-profile .user-fullname {
-		width: auto;
-		white-space: normal;
-	}
-
-	.ossn-profile .top-container .profile-cover {
-		height: 188px;
-	}
-
-	.ossn-profile .profile-photo {
-		position: relative;
-		margin: -51px auto;
-	}
-
-	.ossn-profile-usermetadata {
-		min-height: 230px;
-	}
-
-	.profile-menu {
-		float: initial;
-		text-align: center;
-		margin: 10px 0;
-	}
-
-	.ossn-profile .top-container .profile-cover img {
-		width: auto;
-	}
-
-	.upload-photo {
-		margin-bottom: 0px;
-		transform: scale(0.8);
-	}
-
-	.profile-hr-menu ul li {
-		display: block;
-		margin-right: 0px;
-		margin-left: 10px;
-	}
-
-	.profile-hr-menu ul li a:not(.dropdown a) {
-		margin-right: 0px;
-		padding: 10px;
-	}
-
-	.ossn-profile-role {
-		font-size: 15px !important;
-		position: relative;
 	}
 
 
@@ -2739,53 +1888,6 @@ footer .ossn-footer-menu a:last-child::after {
 		content: "|";
 	}
 
-	/**********************
-    	Groups
-    ************************/
-	.ossn-group-cover {
-		height: 180px !important;
-	}
-
-	.ossn-group-cover-header,
-	.ossn-group-profile .profile-header,
-	.ossn-group-profile .profile-header .header-bottom {
-		height: auto !important;
-	}
-
-	.ossn-group-profile .profile-header {
-		max-height: inherit !important;
-	}
-
-	.ossn-group-profile .profile-header .group-name {
-		float: none !important;
-	}
-
-	.group-name {
-		width: 100%;
-	}
-
-	.group-header-sep {
-		height: auto !important;
-		text-align: center;
-	}
-
-	.ossn-group-members {
-		margin-left: 15px;
-		margin-right: 15px;
-	}
-
-	.ossn-group-members .request-controls,
-	.ossn-group-members .uinfo {
-		display: block;
-	}
-
-	.ossn-group-members .uinfo .userlink {
-		margin-left: 10px;
-		white-space: nowrap;
-		overflow: hidden;
-		text-overflow: ellipsis;
-	}
-
 	.sidebar-menu-nav .sidebar-menu .menu-content {
 		display: block;
 	}
@@ -2807,11 +1909,6 @@ footer .ossn-footer-menu a:last-child::after {
 
 	.newsfeed-middle-top {
 		display: block;
-	}
-
-
-	.ossn-messages .message-inner .row {
-		margin-left: 0px !important;
 	}
 
 	/*************************
@@ -2848,24 +1945,6 @@ footer .ossn-footer-menu a:last-child::after {
 		margin-left: -110px;
 	}
 
-	.profile-menu {
-		margin: 10px 0;
-	}
-
-	.ossn-profile .user-fullname {
-		max-width: initial;
-	}
-
-	/***********************
-    	Comments
-     ***********************/
-	.comments-list .comments-item .comment-user-img {
-		display: none;
-	}
-
-	.comments-item .col-lg-11 {
-		padding-left: 15px;
-	}
 
 	/**************************
      	Layouts
@@ -2878,38 +1957,12 @@ footer .ossn-footer-menu a:last-child::after {
 		display: block;
 	}
 
-	/*******************
-     	Messages
-     *******************/
-
-	.ossn-messages .message-inner .row {
-		margin-left: 0px !important;
-	}
-
 	.sidebar-menu-nav .sidebar-menu .menu-content {
 		display: block;
 	}
 }
 
 @media only screen and (max-width: 1199px) {
-
-	.comments-list .comments-item .col-lg-1,
-	.comments-list .comments-item .comment-user-img {
-		display: none;
-	}
-
-	.comments-list .comments-item .col-lg-11 {
-		width: 100%;
-	}
-
-	.comments-item .col-lg-11 {
-		padding-left: 15px;
-	}
-
-	.group-search-details {
-		margin-left: 10px;
-	}
-
 	.ossn-search-page .ossn-users-list-item .uinfo {
 		margin-left: 35px;
 	}
@@ -2924,17 +1977,9 @@ footer .ossn-footer-menu a:last-child::after {
 	.ossn-users-list-item .users-list-controls {
 		margin-bottom: 10px;
 	}
-
-	.ossn-profile .user-fullname {
-		max-width: initial;
-	}
 }
 
 @media only screen and (max-width: 767px) {
-	.ossn-profile .user-fullname {
-		max-width: initial;
-	}
-
 	.ossn-search-page .ossn-users-list-item .uinfo {
 		margin-left: 0;
 	}
@@ -2954,12 +1999,6 @@ footer .ossn-footer-menu a:last-child::after {
 	width: 35px;
 	float: left;
 }
-
-.menu-section-item-groups:before {
-	content: "\f07b" !important
-}
-
-
 
 .btn-close {
 	background-size: .7em;

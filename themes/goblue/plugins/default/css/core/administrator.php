@@ -109,7 +109,7 @@ textarea {
 	color: #333;
 	font-size: 13px;
 	border: 1px solid #eee;
-	background: #f9f9f9;
+	background: #f8fafc;
 	border-radius: 5px;
 	display: block;
 	-moz-border-radius: 2px;
@@ -132,6 +132,7 @@ textarea:focus {
 	-o-box-shadow: 0 0 3px #eee;
 	-moz-box-shadow: 0 0 3px #eee;
 	-webkit-box-shadow: 0 0 3px #eee;
+    background:#fff;
 }
 
 .btn:focus,

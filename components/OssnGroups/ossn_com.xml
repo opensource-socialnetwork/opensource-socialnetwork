@@ -14,7 +14,12 @@
 	</requires>
 	<requires>
 		<type>ossn_component</type>
+		<name>OssnProfile</name>
+		<version>8.0</version>
+	</requires>	
+	<requires>
+		<type>ossn_component</type>
 		<name>OssnNotifications</name>
 		<version>6.4</version>
-	</requires>		
+	</requires>			
 </component>
