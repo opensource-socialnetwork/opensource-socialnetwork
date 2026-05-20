@@ -1,3 +1,18 @@
+OSSN - OPEN SOURCE SOCIAL NETWORK v9.6
+- [E] Move css from default css to respective component unless its global css #2545
+- [E] Improve animation of message box #2570
+- [E] Allow cross origin for images #2559
+- [E] OssnWall forms , move away from textarea for better usage #2560
+- [B] Register success have white text #2561
+- [E] Improve post bgs images #2569
+- [E] Improve comments , like menu under wall posts , entity, objects #2568
+- [E] Improve Ads component allow more options and expiry #2567
+- [E] Undefined variable $entity_object OssnComments/ossn_com.php (line 423) #2566
+- [E] Remove CRON library as CLI is doing same stuff #2565
+- [B] Singup form not showing errors #2562
+- [E] Ossn.MessageDone to alert #2563
+- [E] Change container fluid to container-xl layout newsfeed #2564
+
 OSSN - OPEN SOURCE SOCIAL NETWORK v9.5
 - [B] OssnSitePages editor not loading #2554
 - [B] ossn goblue theme hu locale have en #2553
