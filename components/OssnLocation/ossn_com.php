@@ -30,12 +30,9 @@ function ossn_location() {
 		if(ossn_location_api_key() && ossn_isLoggedin()) {
 				//don't cache API keys
 				ossn_extend_view('ossn/site/head', 'location/head');
-
-				ossn_new_external_css('mapbox-gl.css', '//api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.css', false);
-				ossn_new_external_js('mapbox-gl.js', '//api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.js', false);
-
-				ossn_new_external_js('mapbox-gl-geocoder.min.js', '//api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.min.js', false);
-				ossn_new_external_css('mapbox-gl-geocoder.css', '//api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css', false);
+				
+				ossn_new_external_css('leaflet.css', '//unpkg.com/leaflet@1.9.4/dist/leaflet.css', false);
+				ossn_new_external_js('leaflet.js', '//unpkg.com/leaflet@1.9.4/dist/leaflet.js', false);
 		}
 }
 
@@ -53,20 +50,15 @@ function ossn_location_api_key() {
 		return false;
 }
 function ossn_location_load_jscss($admin = false) {
-		ossn_load_external_js('mapbox-gl.js');
-		ossn_load_external_css('mapbox-gl.css');
-
-		ossn_load_external_js('mapbox-gl-geocoder.min.js');
-		ossn_load_external_css('mapbox-gl-geocoder.css');
+		ossn_load_external_js('leaflet.js');
+		ossn_load_external_css('leaflet.css');
 
 		ossn_load_js('ossn.location');
 		ossn_load_css('ossn.location');
+		
 		if($admin === true) {
-				ossn_load_external_js('mapbox-gl.js', 'admin');
-				ossn_load_external_css('mapbox-gl.css', 'admin');
-
-				ossn_load_external_js('mapbox-gl-geocoder.min.js', 'admin');
-				ossn_load_external_css('mapbox-gl-geocoder.css', 'admin');
+				ossn_load_external_js('leaflet.js', 'admin');
+				ossn_load_external_css('leaflet.css', 'admin');
 
 				ossn_load_js('ossn.location', 'admin');
 				ossn_load_css('ossn.location', 'admin');

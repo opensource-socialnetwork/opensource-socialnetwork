@@ -9,39 +9,76 @@
 **/
 function ossn_location($obj) {
 	$(document).ready(function() {
-		if (Ossn.LocationAPIKey && Ossn.LocationAPIKey != '') {
-			if ($($obj.container).length && $($obj.input).length) {
-				if (!Ossn.isset($obj.placeholder)) {
-					$obj.placeholder = Ossn.Print('enter:location');
-				}
-				//hide input field 
-				if (!Ossn.isset($obj.hide_input)) {
-					$obj.hide_input = true;
-				}
-				if ($obj.hide_input === true) {
-					$($obj.input).hide();
-				}
-				mapboxgl.accessToken = Ossn.LocationAPIKey;
-				const geocoder = new MapboxGeocoder({
-					accessToken: mapboxgl.accessToken,
-					language: Ossn.Config.lang,
-					types: 'country,region,place,postcode,locality,neighborhood',
-					placeholder: $obj.placeholder,
-				});
+		if ($($obj.container).length && $($obj.input).length) {
+			
+			const $inputField = $($obj.input);
+			const $container = $($obj.container);
+			
+			// Transform container layout structure
+			$container.addClass('ossn-location-container');
+			
+			// Inject FontAwesome icon inside the wrapper if it doesn't already exist
+			if (!$container.find('.ossn-location-icon').length) {
+				$container.prepend('<i class="fas fa-map-marker-alt ossn-location-icon"></i>');
+			}
+			
+			// Inject our custom clean autocompletion dropdown menu card
+			if (!$container.find('.ossn-location-dropdown').length) {
+				$container.append('<ul class="ossn-location-dropdown"></ul>');
+			}
+			const $dropdown = $container.find('.ossn-location-dropdown');
+			
+			let typingTimer;
+			const doneTypingInterval = 350; // Wait 350ms after user pauses typing before hitting OSM
 
-				geocoder.addTo($obj.container);
-				const results = $($obj.input);
+			$inputField.on('keyup input', function() {
+				clearTimeout(typingTimer);
+				const query = $(this).val().trim();
+				
+				if (query.length >= 3) {
+					typingTimer = setTimeout(function() {
+						fetchLocationSuggestions(query);
+					}, doneTypingInterval);
+				} else {
+					$dropdown.empty().hide();
+				}
+			});
 
-				//insert data into input
-				geocoder.on('result', (e) => {
-					results.val(e.result.place_name);
-				});
-
-				// Clear results container when search is cleared.
-				geocoder.on('clear', () => {
-					results.val("");
+			// Fetch coordinates directly from OpenStreetMap's free engine
+			function fetchLocationSuggestions(searchQuery) {
+				const requestUrl = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(searchQuery)}&format=json&addressdetails=1&limit=5&accept-language=${Ossn.Config.lang || 'en'}&email=admin@${window.location.hostname}`;
+				
+				$.getJSON(requestUrl, function(data) {
+					$dropdown.empty();
+					
+					if (data && data.length > 0) {
+						$.each(data, function(index, item) {
+							$dropdown.append(`<li class="ossn-location-item" data-name="${item.display_name}">${item.display_name}</li>`);
+						});
+						$dropdown.show();
+					} else {
+						$dropdown.hide();
+					}
+				}).fail(function() {
+					console.error("OSM Nominatim API endpoint could not be reached.");
 				});
 			}
+
+			// Event: Action mapping when suggestion item is selected
+			$container.on('click', '.ossn-location-item', function(e) {
+				e.preventDefault();
+				const selectedName = $(this).attr('data-name');
+				
+				$inputField.val(selectedName).trigger('change'); 
+				$dropdown.empty().hide();
+			});
+
+			// Close selection pane if focus shifts anywhere else on screen
+			$(document).on('click', function(event) {
+				if (!$(event.target).closest($container).length) {
+					$dropdown.hide();
+				}
+			});
 		}
 	});
 }
