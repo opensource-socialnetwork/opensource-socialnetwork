@@ -54,4 +54,32 @@ function ossn_authentik_login_redirect_uri() {
     return ossn_site_url('authentik/callback');
 }
 
+/**
+ * Treat a host as "local dev" — the only context in which http:// is acceptable
+ * for the issuer or redirect_uri. Matches: loopback names, *.local / *.localhost
+ * (mDNS / docker-compose aliases), and RFC1918 / loopback IPv4 ranges.
+ * Everything else MUST be https.
+ */
+function ossn_authentik_login_is_local_host($host) {
+    if (!is_string($host) || $host === '') {
+        return false;
+    }
+    $host = strtolower($host);
+    if ($host === 'localhost' || $host === '127.0.0.1' || $host === '::1') {
+        return true;
+    }
+    if (substr($host, -6) === '.local' || substr($host, -10) === '.localhost') {
+        return true;
+    }
+    if (filter_var($host, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
+        // No public-IP and no reserved-range = it's a private/RFC1918/loopback address.
+        return filter_var(
+            $host,
+            FILTER_VALIDATE_IP,
+            FILTER_FLAG_IPV4 | FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE
+        ) === false;
+    }
+    return false;
+}
+
 ossn_register_callback('ossn', 'init', 'ossn_authentik_login_init');

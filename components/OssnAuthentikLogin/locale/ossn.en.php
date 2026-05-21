@@ -18,7 +18,9 @@ ossn_register_languages('en', array(
     'authentik:settings:issuer'        => 'Issuer URL',
     'authentik:settings:issuer:help'   => 'The full issuer URL from Authentik (ends with the application slug and a trailing slash).',
     'authentik:settings:client_id'     => 'Client ID',
-    'authentik:settings:client_secret' => 'Client Secret',
+    'authentik:settings:client_secret'      => 'Client Secret',
+    'authentik:settings:client_secret:keep' => '••••••••••••  (leave blank to keep stored secret)',
+    'authentik:settings:client_secret:help' => 'Leave blank to keep the existing secret. Enter a new value only to replace it.',
     'authentik:settings:redirect_uri'  => 'Redirect URI override',
     'authentik:settings:redirect_uri:help' => 'Leave blank to use the site default. Override only if you reverse-proxy through a different host.',
 ));

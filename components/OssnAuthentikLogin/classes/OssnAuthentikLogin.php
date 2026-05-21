@@ -223,33 +223,55 @@ class OssnAuthentikLogin {
      * system-level curl.cainfo or php.ini override can't silently disable
      * verification on the auth path.
      */
-    private function curlHardenedOptions() {
+    private function curlHardenedOptions($url) {
+        // Allow plain HTTP only when the target host is a dev-local address
+        // (loopback, *.local, RFC1918). Public hosts stay https-only — and
+        // because the allowance is decided per-URL, a redirect from a local
+        // host to a public host still cannot downgrade to http.
+        $host  = parse_url($url, PHP_URL_HOST);
+        $local = ossn_authentik_login_is_local_host($host);
+        $protos = $local
+            ? (CURLPROTO_HTTPS | CURLPROTO_HTTP)
+            : CURLPROTO_HTTPS;
+
         return array(
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_TIMEOUT        => 10,
             CURLOPT_CONNECTTIMEOUT => 5,
             CURLOPT_SSL_VERIFYPEER => true,
             CURLOPT_SSL_VERIFYHOST => 2,
-            CURLOPT_PROTOCOLS      => CURLPROTO_HTTPS,
-            CURLOPT_REDIR_PROTOCOLS => CURLPROTO_HTTPS,
+            CURLOPT_PROTOCOLS      => $protos,
+            CURLOPT_REDIR_PROTOCOLS => $protos,
         );
     }
 
     private function httpGet($url) {
         $ch = curl_init($url);
-        curl_setopt_array($ch, $this->curlHardenedOptions() + array(
+        curl_setopt_array($ch, $this->curlHardenedOptions($url) + array(
             CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_MAXREDIRS      => 3,
         ));
         $body = curl_exec($ch);
         $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        $err  = curl_error($ch);
         curl_close($ch);
-        return ($code >= 200 && $code < 300) ? $body : false;
+        if ($code < 200 || $code >= 300) {
+            // Surface IdP failures to the OSSN error log so operators can
+            // diagnose discovery / JWKS issues without IdP-side access.
+            // Body capped at 500 chars; never reflected to the client.
+            error_log(
+                "OssnAuthentikLogin: GET {$url} HTTP {$code}"
+                . ($err ? " curl_error={$err}" : '')
+                . (is_string($body) && $body !== '' ? ' body=' . substr($body, 0, 500) : '')
+            );
+            return false;
+        }
+        return $body;
     }
 
     private function httpPost($url, $body) {
         $ch = curl_init($url);
-        curl_setopt_array($ch, $this->curlHardenedOptions() + array(
+        curl_setopt_array($ch, $this->curlHardenedOptions($url) + array(
             CURLOPT_POST       => true,
             CURLOPT_POSTFIELDS => $body,
             CURLOPT_HTTPHEADER => array('Content-Type: application/x-www-form-urlencoded'),
@@ -259,8 +281,20 @@ class OssnAuthentikLogin {
         ));
         $resp = curl_exec($ch);
         $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        $err  = curl_error($ch);
         curl_close($ch);
-        return ($code >= 200 && $code < 300) ? $resp : false;
+        if ($code < 200 || $code >= 300) {
+            // Authentik returns OAuth-format JSON {"error":"...","error_description":"..."}
+            // on token-endpoint failure. Surface server-side only — the response body may
+            // contain authorization codes or short-lived tokens we must not echo to the client.
+            error_log(
+                "OssnAuthentikLogin: POST {$url} HTTP {$code}"
+                . ($err ? " curl_error={$err}" : '')
+                . (is_string($resp) && $resp !== '' ? ' body=' . substr($resp, 0, 500) : '')
+            );
+            return false;
+        }
+        return $resp;
     }
 
     /**

@@ -20,8 +20,17 @@ if (ossn_isLoggedin()) {
     redirect('home');
 }
 
-$state             = input('state');
-$code              = input('code');
+$state             = (string) input('state');
+$code              = (string) input('code');
+
+// Size-cap inbound — the values we sent (state) are 32 hex chars, and authorization
+// codes are spec-bounded well under 4KB. An unbounded body here is free CPU on the
+// input-sanitization pipeline (htmlspecialchars + preg_replace inside input()) for
+// any unauthenticated attacker; reject early with no work.
+if (strlen($state) > 1024 || strlen($code) > 4096) {
+    redirect('login');
+}
+
 $expected_state    = OssnSession::getSession('authentik_state');
 $expected_nonce    = OssnSession::getSession('authentik_nonce');
 $expected_verifier = OssnSession::getSession('authentik_pkce_verifier');
@@ -148,14 +157,19 @@ function ossn_authentik_login_provision_user($claims) {
         $candidate = 'user' . substr(bin2hex(random_bytes(8)), 0, 12);
     }
 
-    $username = $candidate;
-    $suffix   = 1;
+    // 24 bits of cryptographic entropy in the suffix closes the TOCTOU window
+    // between this uniqueness check and the eventual INSERT — two concurrent
+    // first-time SSO logins for users with the same candidate prefix would
+    // otherwise both pass the check and race to insert duplicate usernames.
+    $username = $candidate . substr(bin2hex(random_bytes(3)), 0, 6);
+    $tries    = 0;
     while (ossn_user_by_username($username)) {
-        $suffix++;
-        $username = $candidate . $suffix;
-        if ($suffix > 50) {
-            $username = $candidate . substr(bin2hex(random_bytes(3)), 0, 6);
-            break;
+        $username = $candidate . substr(bin2hex(random_bytes(3)), 0, 6);
+        if (++$tries > 5) {
+            // Five collisions in 2^24 possibilities indicates something structural
+            // (cache poisoning, DB corruption, hostile prefix). Fail closed.
+            error_log("OssnAuthentikLogin: aborting provision, persistent username collision for candidate={$candidate}");
+            return false;
         }
     }
 
