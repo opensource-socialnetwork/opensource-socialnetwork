@@ -16,16 +16,27 @@ $count = $OssnLikes->CountLikes($object, 'object');
 
 $user_liked = '';
 if (ossn_isLoggedIn()) { 
-            if ($OssnLikes->isLiked($object, ossn_loggedin_user()->guid, 'object')) {
-                $user_liked = true;
-            }
+            $user_liked = $OssnLikes->isLiked($object, ossn_loggedin_user()->guid, 'object');
+}
+//don't show the bar if user liked it and its only one like means only loggedin user liked it
+if($user_liked == true && $count == 1){
+	return;	
 }
 /* Likes and comments don't show for nonlogged in users */ 
-if($count) {
-	foreach($OssnLikes->__likes_get_all as $item){
-		$last_three_icons[$item->subtype] = $item->subtype;
-	}
-	$last_three = array_slice($last_three_icons, -3);
+if ($count) {
+    $reaction_counts = [];
+    foreach ($OssnLikes->__likes_get_all as $item) {
+        $type = $item->subtype;
+        if (!isset($reaction_counts[$type])) {
+            $reaction_counts[$type] = 0;
+        }
+        $reaction_counts[$type]++;
+    }
+
+    arsort($reaction_counts);
+    // Slice the associative array FIRST, preserving the top 3 keys, then extract them
+    $top_three_associative = array_slice($reaction_counts, 0, 3, true);
+    $last_three = array_flip(array_keys($top_three_associative));
 	?>
     <div class="like-share">
 <div class="ossn-reaction-list">
@@ -111,10 +122,7 @@ if($count) {
 	<?php } ?>
 </div>
     	<span class="ossn-reaction-title-wholiked">
-        <?php if ($user_liked == true && $count == 1) { ?>
-            <?php echo ossn_print("ossn:liked:you"); ?>
-        <?php
-        } elseif ($user_liked == true && $count > 1) {
+        <?php if ($user_liked == true && $count > 1) {
             $count = $count - 1;
             $total = 'person';
             if ($count > 1) {

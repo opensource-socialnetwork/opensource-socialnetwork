@@ -123,10 +123,7 @@ if ($count) {
 	<?php } ?>
 </div>
     	<span class="ossn-reaction-title-wholiked">
-        <?php if ($user_liked == true && $count == 1) { ?>
-            <?php echo ossn_print("ossn:liked:you"); ?>
-        <?php
-        } elseif ($user_liked == true && $count > 1) {
+        <?php if ($user_liked == true && $count > 1) {
             $count = $count - 1;
             $total = 'person';
             if ($count > 1) {
