@@ -1064,6 +1064,7 @@
 	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
 	border-radius: 2em;
 	cursor: default;
+	z-index:1000;
 }
 
 .ossn-like-reactions-panel li:after {
