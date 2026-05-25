@@ -16,5 +16,10 @@
 		<type>ossn_component</type>
 		<name>OssnNotifications</name>
 		<version>6.4</version>
-	</requires>			
+	</requires>	
+	<requires>
+		<type>ossn_component</type>
+		<name>OssnWall</name>
+		<version>9.0</version>
+	</requires>				
 </component>

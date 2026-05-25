@@ -59,6 +59,7 @@ function ossn_comments() {
 		}
 		ossn_add_hook('required', 'components', function ($hook, $type, $return, $params) {
 				$return[] = 'OssnNotifications';
+				$return[] = 'OssnWall';
 				return $return;
 		});
 }
