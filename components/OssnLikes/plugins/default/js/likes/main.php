@@ -8,7 +8,54 @@
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
  * @link      https://www.opensource-socialnetwork.org/
  */
- 
+
+var OssnReactionSound = {
+	audio: null,
+	soundPath: null, 
+
+	/**
+	 * Pre-loads the audio object into browser memory early
+	 */
+	init: function() {
+		if (!this.audio) {
+			this.soundPath = Ossn.site_url + 'components/OssnLikes/reaction.mp3';
+			
+			this.audio = new Audio(this.soundPath);
+			this.audio.load(); // Forces the browser to download the file silently
+		}
+	},
+
+	/**
+	 * Plays the sound file instantly, resetting the track position for fast-clicks
+	 */
+	play: function() {
+		// Initialize if called before page load binds finish
+		if (!this.audio) {
+			this.init();
+		}
+
+		if (this.audio) {
+			try {
+				// Rewind track for rapid click pacing sequences
+				this.audio.currentTime = 0; 
+				
+				let playPromise = this.audio.play();
+				if (playPromise !== undefined) {
+					playPromise.catch(function(error) {
+						console.log("Audio playback blocked or interrupted:", error);
+					});
+				}
+			} catch (e) {
+				console.log("Audio playback execution exception caught:", e);
+			}
+		}
+	}
+};
+
+Ossn.register_callback('ossn', 'init', function() {
+	OssnReactionSound.init();
+});
+
 const OSSN_REACTION_TYPES = {
     post: { prefix: '#ossn-like-', pascal: 'Post' },
     entity: { prefix: '#ossn-elike-', pascal: 'Entity' },
@@ -16,6 +63,7 @@ const OSSN_REACTION_TYPES = {
 };
 
 Ossn.setReaction = function(type, id, action, reactionType = '') {
+	
     const config = OSSN_REACTION_TYPES[type];
     if (!config) return;
 
@@ -24,13 +72,15 @@ Ossn.setReaction = function(type, id, action, reactionType = '') {
 	var queryParams = '&' + type + '=' + id;
 
 	if (isLike) {
+		OssnReactionSound.play();
     	queryParams = queryParams + '&reaction_type=' + reactionType;
+		$(selector).parent().addClass('ossn-reaction-in-xhr');
 	}
 
     Ossn.PostRequest({
         url: Ossn.site_url + 'action/post/' + action,
         beforeSend: function() {
-            $(selector).html('<img src="' + Ossn.site_url + 'components/OssnComments/images/loading.gif" />');
+            $(selector).html('<div class="ossn-loading"></div>');
         },
         params: queryParams,
         callback: function(callback) {
@@ -41,8 +91,12 @@ Ossn.setReaction = function(type, id, action, reactionType = '') {
                     // Logic specific to LIKING an item
                     $(selector).attr('onClick', `Ossn.${config.pascal}Unlike(${id});`);
                     $(selector).removeAttr('data-reaction');
-                    if (callback['class']) $(selector).addClass(callback['class']);
+					
+                    if (callback['class']){
+						$(selector).addClass(callback['class']);
+					}
                     $('.ossn-like-reactions-panel').remove();
+					$(selector).parent().removeClass('ossn-reaction-in-xhr');
                 } else {
                     // Logic specific to UNLIKING an item
                     $(selector).attr('data-reaction', `Ossn.${config.pascal}Like(${id}, "<<reaction_type>>");`);
@@ -203,16 +257,23 @@ Ossn.RegisterStartupFunction(function() {
             e.preventDefault();
             var $item = $(this);
             var $type = $.trim($item.attr('data-type'));
+            var $guid = $.trim($item.attr('data-id'));
+			
             var $url = $item.attr('href');
 			if($(this).attr('class') == 'ossn-like-comment' && $type == 'Like'){
 				return false;	
 			}
+			
+			if ($type == 'Like') {
+				OssnReactionSound.play();
+			}
+			
             Ossn.PostRequest({
                 url: $url,
                 action: false,
 				params: '&reaction_type='+$item.attr('data-reaction'),
                 beforeSend: function() {
-                    $item.html('<img src="' + Ossn.site_url + 'components/OssnComments/images/loading.gif" />');
+                    $('#ossn-like-comment-'+$guid).html('<img src="' + Ossn.site_url + 'components/OssnComments/images/loading.gif" />');
                 },
                 callback: function(callback) {
                     if (callback['done'] == 1) {
