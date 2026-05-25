@@ -262,3 +262,7 @@
 	border-radius: 10px;
 	padding: 2px 20px;
 }
+.comment-text {
+	padding:5px 0;
+	display:block;
+}
