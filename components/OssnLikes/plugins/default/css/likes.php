@@ -1334,3 +1334,7 @@ a.ossn-reacted-item.ossn-reacted-sad span {
 a.ossn-reacted-item.ossn-reacted-angry span { 
     color: #e24e22 !important; 
 }
+/**** hide while xhr in pending *****/
+.ossn-reaction-in-xhr .ossn-like-reactions-panel {
+	display:none !important;
+}
