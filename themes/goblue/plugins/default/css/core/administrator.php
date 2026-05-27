@@ -1150,7 +1150,7 @@ footer a {
 	border: 1px solid #f1f5f9;
 	border-radius: 20px;
 	padding: 25px;
-	min-height: 400px;
+	height: 400px;
 	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
 }
 
