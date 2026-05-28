@@ -1,27 +1,28 @@
 OSSN - OPEN SOURCE SOCIAL NETWORK v9.6
 - [E] Move css from default css to respective component unless its global css #2545
-- [E] Improve animation of message box #2570
 - [E] Allow cross origin for images #2559
 - [E] OssnWall forms , move away from textarea for better usage #2560
 - [B] Register success have white text #2561
-- [E] Improve post bgs images #2569
-- [E] Improve comments , like menu under wall posts , entity, objects #2568
-- [E] Improve Ads component allow more options and expiry #2567
-- [E] Undefined variable $entity_object OssnComments/ossn_com.php (line 423) #2566
-- [E] Remove CRON library as CLI is doing same stuff #2565
 - [B] Singup form not showing errors #2562
 - [E] Ossn.MessageDone to alert #2563
 - [E] Change container fluid to container-xl layout newsfeed #2564
-- [E] Show comment user profile photo on small devices
-- [B] if no users in admins current year graph, the other graphs looks bigger #2582
-- [E] comment-text on new line #2580
-- [E] OssnLikes play sound and hide reaction panel if xhr in progress #2579
-- [E] Add unique identifer for group wall container #2578
-- [E] Unifed ossn comments js code #2577
-- [E] Requires OssnWall required by comments #2576
-- [E] Replace Mapbox as now you need to have credit card for free tier #2574
-- [E] Add a header variable for Ossn.isLoggedin #2573
+- [E] Remove CRON library as CLI is doing same stuff #2565
+- [E] Undefined variable $entity_object OssnComments/ossn_com.php (line 423) #2566
+- [E] Improve Ads component allow more options and expiry #2567
+- [E] Improve comments , like menu under wall posts , entity, objects #2568
+- [E] Improve post bgs images #2569
+- [E] Improve animation of message box #2570
 - [E] z-index to ossn-like-reactions-panel #2572
+- [E] Add a header variable for Ossn.isLoggedin #2573
+- [E] Replace Mapbox as now you need to have credit card for free tier #2574
+- [E] Restrict acccess to plugins folders using browser #2575
+- [E] Requires OssnWall required by comments #2576
+- [E] Unifed ossn comments js code #2577
+- [E] Add unique identifer for group wall container #2578
+- [E] OssnLikes play sound and hide reaction panel if xhr in progress #2579
+- [E] comment-text on new line #2580
+- [B] if no users in admins current year graph, the other graphs looks bigger #2582
+- [E] Show comment user profile photo on small devices #2583
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v9.5
 - [B] OssnSitePages editor not loading #2554
