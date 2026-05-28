@@ -129,49 +129,11 @@
 	padding: 0.4rem 1rem;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 480px) {}
 
-	/***********************
-    	Comments
-     ***********************/
-	.comments-list .comments-item .comment-user-img {
-		display: none;
-	}
+@media only screen and (max-width: 992px) {}
 
-	.comments-item .col-lg-11 {
-		padding-left: 15px;
-	}
-}
-
-@media only screen and (max-width: 992px) {
-
-	/***********************
-    	Comments
-     ***********************/
-	.comments-list .comments-item .comment-user-img {
-		display: none;
-	}
-
-	.comments-item .col-lg-11 {
-		padding-left: 15px;
-	}
-}
-
-@media only screen and (max-width: 1199px) {
-
-	.comments-list .comments-item .col-lg-1,
-	.comments-list .comments-item .comment-user-img {
-		display: none;
-	}
-
-	.comments-list .comments-item .col-lg-11 {
-		width: 100%;
-	}
-
-	.comments-item .col-lg-11 {
-		padding-left: 15px;
-	}
-}
+@media only screen and (max-width: 1199px) {}
 
 /********* comments theme code copied end *********/
 .ossn-comment-attach-photo {
@@ -262,7 +224,8 @@
 	border-radius: 10px;
 	padding: 2px 20px;
 }
+
 .comment-text {
-	padding:5px 0;
-	display:block;
+	padding: 5px 0;
+	display: block;
 }
