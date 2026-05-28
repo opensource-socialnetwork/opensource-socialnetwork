@@ -26,9 +26,14 @@ DirectoryIndex index.php
 	deny from all
 </FilesMatch>
 
-#Disallow CLI and CRON script from browser
+#Disallow CLI and CRON script and other from browser
 RedirectMatch 404 ^/system/handlers/cli$
 RedirectMatch 404 ^/system/handlers/cron$
+RedirectMatch 404 ^/upgrade/upgrades/
+RedirectMatch 404 /actions/
+RedirectMatch 404 /libraries/
+RedirectMatch 404 /classes/
+RedirectMatch 404 /plugins/default/
 
 <IfModule mod_mime.c>
     AddType image/vnd.microsoft.icon .ico
