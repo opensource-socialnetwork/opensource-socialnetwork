@@ -12,6 +12,16 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v9.6
 - [B] Singup form not showing errors #2562
 - [E] Ossn.MessageDone to alert #2563
 - [E] Change container fluid to container-xl layout newsfeed #2564
+- [E] Show comment user profile photo on small devices
+- [B] if no users in admins current year graph, the other graphs looks bigger #2582
+- [E] comment-text on new line #2580
+- [E] OssnLikes play sound and hide reaction panel if xhr in progress #2579
+- [E] Add unique identifer for group wall container #2578
+- [E] Unifed ossn comments js code #2577
+- [E] Requires OssnWall required by comments #2576
+- [E] Replace Mapbox as now you need to have credit card for free tier #2574
+- [E] Add a header variable for Ossn.isLoggedin #2573
+- [E] z-index to ossn-like-reactions-panel #2572
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v9.5
 - [B] OssnSitePages editor not loading #2554
