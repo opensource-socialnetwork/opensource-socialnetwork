@@ -42,6 +42,7 @@ function ossn_embed_init() {
 function ossn_embed_wall_template_item($hook, $type, $return){
 	$patterns = array(	'#(((https?://)?)|(^./))(((www.)?)|(^./))youtube\.com/watch[?]v=([^\[\]()<.,\s\n\t\r]+)#i',
 						'#(((https?://)?)|(^./))(((www.)?)|(^./))youtu\.be/([^\[\]()<.,\s\n\t\r]+)#i',
+						'#(((https?://)?)|(^./))(((www.)?)|(^./))youtube\.com/shorts/([^\[\]()<.,\s\n\t\r]+)#i', // Added for YouTube Shorts
 						'/(https?:\/\/)(www\.)?(vimeo\.com\/groups)(.*)(\/videos\/)([0-9]*)/',
 						'/(https?:\/\/)(www\.)?(vimeo.com\/)([0-9]*)/',
 						'/(https?:\/\/)(player\.)?(vimeo.com\/video\/)([0-9]*)/',

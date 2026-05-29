@@ -43,6 +43,14 @@ function ossn_embed_create_embed_object($url, $guid, $videowidth = 0) {
 		if(strpos($url, 'youtube.com') != false) {
 				//m.youtube.com not being parsed by embed component #1132
 				$url = str_replace('m.youtube.com', 'www.youtube.com', $url);
+				//[E] Allow youtube shorts embed
+				if(strpos($url, '/shorts/') !== false) {
+						// Matches the video ID right after /shorts/ and ignores everything from '?' onwards
+						if(preg_match('/youtube\.com\/shorts\/([^\/\?]+)/i', $url, $matches)) {
+								$videoId = $matches[1];
+								$url     = 'https://www.youtube.com/watch?v=' . $videoId;
+						}
+				}
 				return ossn_embed_youtube_handler($url, $guid, $videowidth);
 		} elseif(strpos($url, 'm.youtube.com') != false) {
 				return ossn_embed_youtube_handler($url, $guid, $videowidth);
