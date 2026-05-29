@@ -392,8 +392,27 @@ a {
 	background: #0b769c;
 	color: #fff;
 	z-index: 1;
-	position: relative;
+	position: fixed;
 	height: 55px;
+}
+
+.sidebar-close-page-container .topbar {
+	width: 100%;
+}
+
+.sidebar-open-page-container .topbar,
+.sidebar-open-page-container-no-annimation .topbar {
+	width: calc(100% - var(--layout-sidebar-width)) !important;
+}
+
+.sidebar-close-page-container .topbar,
+.ossn-page-container .topbar {
+	width: 100%;
+}
+
+/** inner page padding because of topbar fixed **/
+.ossn-inner-page {
+	margin-top: 70px;
 }
 
 .topbar .fa {
@@ -561,12 +580,33 @@ a {
 	height: 200px;
 	z-index: 1000;
 	width: var(--layout-sidebar-width);
-	position: absolute;
+	position: fixed;
 	height: 100%;
 	margin-left: calc(-1 * var(--layout-sidebar-width));
 	overflow-y: auto;
 	overflow-x: hidden;
 	color: #fff;
+
+	scrollbar-width: thin;
+	scrollbar-color: #64748b #1e293b;
+}
+
+.sidebar::-webkit-scrollbar {
+	width: 8px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+	background: #1e293b;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+	background-color: #334155;
+	border-radius: 4px;
+	border: 2px solid #1e293b;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+	background-color: #475569;
 }
 
 .sidebar a {
