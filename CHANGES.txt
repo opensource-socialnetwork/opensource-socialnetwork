@@ -24,6 +24,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v9.6
 - [B] if no users in admins current year graph, the other graphs looks bigger #2582
 - [E] Show comment user profile photo on small devices #2583
 - [E] Allow youtube shorts embed #2584
+- [E] Make sidebar and topbar fixed #2585
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v9.5
 - [B] OssnSitePages editor not loading #2554
