@@ -43,8 +43,8 @@ function ossn_goblue_theme_init() {
 				//[E] Allow custom logos to be saved with different file name #2334
 				ossn_register_action('goblue/settings/logos_bgs_reset', __THEMEDIR__ . 'actions/logos_bgs_reset.php');
 		}
-		ossn_extend_view('ossn/site/head', 'goblue_meta_favicon');
-		ossn_extend_view('ossn/admin/head', 'goblue_meta_favicon');
+		ossn_extend_view('ossn/site/head', 'theme_meta_favicon');
+		ossn_extend_view('ossn/admin/head', 'theme_meta_favicon');
 }
 
 function goblue_search_bar_sidebar(){
@@ -57,7 +57,7 @@ function goblue_search_bar_sidebar(){
 								'action' => ossn_site_url("search"),
 		), false);	
 }
-function goblue_meta_favicon() {
+function theme_meta_favicon() {
 		$icon = ossn_add_cache_to_url(ossn_theme_url() . 'images/favicon.ico');
 		return "\r\n<link rel='icon' href='{$icon}' type='image/x-icon' />";
 }
