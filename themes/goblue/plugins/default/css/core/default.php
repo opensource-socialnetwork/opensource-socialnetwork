@@ -395,6 +395,7 @@ a {
 	position: fixed;
 	height: 55px;
 	width:100%;
+	z-index: 1051;
 	
 	-webkit-transition: width 0.5s ease;
 	-moz-transition: width 0.5s ease;
