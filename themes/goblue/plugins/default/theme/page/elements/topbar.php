@@ -1,11 +1,13 @@
 <?php
 	$hide_loggedin = '';
+	$topbar_float =  "position-relative";
 	if(ossn_isLoggedin()){		
 		$hide_loggedin = "d-none d-md-inline-block";
+		$topbar_float = "";
 	}
 ?>
 <!-- ossn topbar -->
-<div class="topbar">
+<div class="topbar <?php echo $topbar_float;?>">
 			<?php if(ossn_isLoggedin()){ ?>
 			<div class="left-side d-inline-block">
 				<div class="topbar-menu-left">

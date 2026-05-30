@@ -394,15 +394,11 @@ a {
 	z-index: 1;
 	position: fixed;
 	height: 55px;
-}
-
-.sidebar-close-page-container .topbar {
-	width: 100%;
-}
-
-.sidebar-open-page-container .topbar,
-.sidebar-open-page-container-no-annimation .topbar {
-	width: calc(100% - var(--layout-sidebar-width)) !important;
+	width:100%;
+	
+	-webkit-transition: width 0.5s ease;
+	-moz-transition: width 0.5s ease;
+	transition: width 0.5s ease;
 }
 
 .sidebar-close-page-container .topbar,
@@ -410,11 +406,19 @@ a {
 	width: 100%;
 }
 
-/** inner page padding because of topbar fixed **/
-.ossn-inner-page {
-	margin-top: 70px;
+.sidebar-open-page-container .topbar {
+	width: calc(100% - var(--layout-sidebar-width)) !important;
 }
-
+.sidebar-open-page-container-no-annimation .topbar {
+	transition: none !important;
+	-webkit-transition: none !important;
+	-moz-transition: none !important;
+	width: calc(100% - var(--layout-sidebar-width)) !important;
+}
+/** inner page padding because of topbar fixed **/
+:not(:has(.topbar.position-relative)) .ossn-inner-page {
+    margin-top: 70px;
+}
 .topbar .fa {
 	font-size: 20px;
 	margin-top: 5px;
