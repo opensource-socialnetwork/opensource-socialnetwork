@@ -26,7 +26,7 @@ function ossn_administrator_update_widget() {
 				action: false,
 				callback: function (callback) {
 					if (callback['version']) {
-						$('.avaiable-updates').html(callback['version']);
+						$('.avaiable-updates').html('<div class="card-value">'+callback['version']+'</div>');
 					}
 				}
 			});
