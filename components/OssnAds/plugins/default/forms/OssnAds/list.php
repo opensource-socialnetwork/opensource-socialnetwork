@@ -22,7 +22,7 @@ if (!isset($settings->last_time)) {
     $last_run_text = ossn_print('ossn:adscron:never');
     $status_color = "#ef4444"; // Red
 } else {
-    $last_run_text = date("M j, Y - g:i A", $last_time);
+    $last_run_text = date("M j, Y - g:i A", $settings->last_time);
     $status_color = "#10b981"; // Green
 }
 
