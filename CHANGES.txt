@@ -1,3 +1,6 @@
+OSSN - OPEN SOURCE SOCIAL NETWORK v9.8
+- [B] OssnLocation still looking for API key which was removed in 9.6
+
 OSSN - OPEN SOURCE SOCIAL NETWORK v9.7
 - [B] Upgrade to Ossn 9.6 doesn't show old ads.
 - [B] Wall not allowing at least single new line #2587
