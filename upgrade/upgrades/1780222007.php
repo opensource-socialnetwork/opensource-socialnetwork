@@ -43,6 +43,14 @@ if(class_exists('OssnAds')) {
 								));
 								$save = true;
 						}
+						if(!isset($item->clicks_count)) {
+								$item->data->clicks_count = 0;
+								$save                     = true;
+						}
+						if(!isset($item->views_count)) {
+								$item->data->views_count = 0;
+								$save                    = true;
+						}
 						if($save === true) {
 								$item->save();
 						}
