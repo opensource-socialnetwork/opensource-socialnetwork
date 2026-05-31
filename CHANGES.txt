@@ -1,3 +1,6 @@
+OSSN - OPEN SOURCE SOCIAL NETWORK v9.7
+- [B] Upgrade to Ossn 9.6 doesn't show old ads.
+
 OSSN - OPEN SOURCE SOCIAL NETWORK v9.6
 - [E] Move css from default css to respective component unless its global css #2545
 - [E] Allow cross origin for images #2559
