@@ -17,10 +17,6 @@ define('__OSSN_LOCATION__', ossn_route()->com . 'OssnLocation/');
  * @access private
  */
 function ossn_location() {
-		if(ossn_isAdminLoggedin()) {
-				ossn_register_action('location/admin/settings', __OSSN_LOCATION__ . 'actions/settings.php');
-		}
-		
 		//css and js
 		ossn_new_css('ossn.location', 'css/location');
 		ossn_new_js('ossn.location', 'js/ossn_location');
