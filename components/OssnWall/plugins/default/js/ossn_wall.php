@@ -296,30 +296,42 @@ function ossn_wall_postform() {
 			const $editor = $('.ossn-wall-textarea');
 
 			/**
-			 * 1. EXTRACT PLAIN TEXT
-			 * .text() handles the conversion of all <span> chips into plain 
-			 * @username and #hashtag strings for the backend.
+			 * PRESERVE LINE BREAKS & EXTRACT TEXT
+			 * We clone the editor in memory so we can manipulate it without affecting the UI.
+			 * We convert block-level tags (divs, paragraphs, brs) into actual newline characters (\n).
 			 */
-			const plainText = $editor.text().trim();
+			const $clone = $editor.clone();
+
+			// Convert visual <br> elements to real newlines
+			$clone.find('br').replaceWith('\n');
+
+			// Convert block level container lines (like divs from hitting Enter) to lines with newlines
+			$clone.find('div, p').each(function () {
+				$(this).prepend('\n');
+			});
+
+			// Now grab the text payload—newlines will be completely preserved!
+			let plainText = $clone.text().trim();
+
+			// Clean up any double-newline artifacts created by container mapping
+			plainText = plainText.replace(/\n\s*\n/g, '\n');
 
 			/**
-			 * 2. CLEANUP & INJECTION
-			 * We remove any existing 'post' field to prevent conflicts, 
-			 * then re-inject the updated content.
+			 * CLEANUP & INJECTION
 			 */
 			$form.find('[name="post"]').remove();
 
-			// Create a new hidden textarea to hold the final text
+			// Create a new hidden textarea to hold the multiline text
 			const $hiddenPost = $('<textarea name="post" style="display:none;"></textarea>');
 			$hiddenPost.val(plainText);
 			$form.append($hiddenPost);
 
 			/**
-			 * 3. SUBMIT FORM
-			 * Now that the 'post' field is synchronized, we trigger the form.
+			 * SUBMIT FORM
 			 */
 			$form.submit();
 		});
+		
 		$url = $('#ossn-wall-form').attr('action');
 		Ossn.ajaxRequest({
 			url: $url,
@@ -343,6 +355,7 @@ function ossn_wall_postform() {
 						$('.user-activity div').first().attr('post', 'new');
 					}
 				}
+
 				if (callback['error']) {
 					Ossn.trigger_message(callback['error'], 'error');
 				}
