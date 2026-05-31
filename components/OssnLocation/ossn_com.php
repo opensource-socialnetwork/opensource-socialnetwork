@@ -22,21 +22,15 @@ function ossn_location() {
 		ossn_new_js('ossn.location', 'js/ossn_location');
 		
 		//[B] OssnLocation looking for key where as its removed in OSSN 9.6
-		ossn_new_external_css('leaflet.css', '//unpkg.com/leaflet@1.9.4/dist/leaflet.css', false);
-		ossn_new_external_js('leaflet.js', '//unpkg.com/leaflet@1.9.4/dist/leaflet.js', false);
+		//ossn_new_external_css('leaflet.css', '//unpkg.com/leaflet@1.9.4/dist/leaflet.css', false);
+		//ossn_new_external_js('leaflet.js', '//unpkg.com/leaflet@1.9.4/dist/leaflet.js', false);
 }
 
 function ossn_location_load_jscss($admin = false) {
-		ossn_load_external_js('leaflet.js');
-		ossn_load_external_css('leaflet.css');
-
 		ossn_load_js('ossn.location');
 		ossn_load_css('ossn.location');
 		
 		if($admin === true) {
-				ossn_load_external_js('leaflet.js', 'admin');
-				ossn_load_external_css('leaflet.css', 'admin');
-
 				ossn_load_js('ossn.location', 'admin');
 				ossn_load_css('ossn.location', 'admin');
 		}

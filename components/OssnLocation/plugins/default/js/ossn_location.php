@@ -4,7 +4,6 @@
   ossn_location({
 		container: '#geocoder', //div container name
 		input: '#abc', //input id within the container
-		placeholder: 'Some Text',
   });
 **/
 function ossn_location($obj) {
