@@ -71,8 +71,10 @@ class OssnComments extends OssnAnnotation {
 
 				$comment = ossn_restore_new_lines($comment);
 				$comment = preg_replace('/\t/', ' ', $comment);
-				$comment = preg_replace('/(\r\n|\r|\n)+/', "\n", $comment);
-
+				$comment = str_replace(array("\r\n", "\r"), "\n", $comment);
+				$comment = preg_replace('/\n{3,}/', "\n\n", $comment);
+				$comment = trim($comment);
+				
 				$this->subject_guid = $subject_id;
 				$this->owner_guid   = $guid;
 				$this->type         = "comments:{$type}";

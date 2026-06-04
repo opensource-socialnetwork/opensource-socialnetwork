@@ -2,11 +2,11 @@
 /**
  * Open Source Social Network
  *
- * @package   Open Source Social Network
- * @author    Open Source Social Network Core Team <info@openteknik.com>
+ * @package    Open Source Social Network
+ * @author     Open Source Social Network Core Team <info@openteknik.com>
  * @copyright (C) OpenTeknik LLC
- * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
- * @link      https://www.opensource-socialnetwork.org/
+ * @license    Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
+ * @link       https://www.opensource-socialnetwork.org/
  */
 Ossn.register_callback('ossn', 'init', 'ossn_comment_init');
 Ossn.register_callback('ossn', 'init', 'ossn_comment_delete_handler');
@@ -46,8 +46,14 @@ Ossn.ExecuteCommentPipeline = function (targetUrl, $container, typeKey, callback
 				if (e.shiftKey === false) {
 					e.preventDefault(); // Prevents an extra line break from being added on submission
 
-					// Grab element text content directly (converts <br> elements to actual line breaks smoothly)
+					// Grab element text content directly
 					let plainText = $box[0].innerText || $box[0].textContent;
+
+					/**
+					 * REGEX CLEANUP: Allow max one empty line
+					 * Caps consecutive newlines at 2, trimming away 3 or more.
+					 */
+					plainText = plainText.replace(/\n{3,}/g, '\n\n');
 
 					$form.append("<textarea name='comment' class='hidden'></textarea>");
 					$form.find('textarea[name="comment"]').text(plainText); // Safe text binding escape
@@ -282,6 +288,11 @@ function ossn_comment_post_sm_button() {
 				let $container = $('#comment-container-' + $type + $guid);
 
 				let plainText = $box[0].innerText || $box[0].textContent;
+
+				/**
+				 * REGEX CLEANUP: Also process the mobile/SM button click to match Enter behavior
+				 */
+				plainText = plainText.replace(/\n{3,}/g, '\n\n');
 
 				$container.append("<textarea name='comment' class='hidden'></textarea>");
 				$container.find('textarea[name="comment"]').text(plainText);

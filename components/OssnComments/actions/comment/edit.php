@@ -15,8 +15,10 @@ $comment = ossn_get_annotation($guid);
 if($comment && (strlen($text) || $comment->{'file:comment:photo'})) {
 		$text = ossn_restore_new_lines($text);
 		$text = preg_replace('/\t/', ' ', $text);
-		$text = preg_replace('/(\r\n|\r|\n)+/', "\n", $text);
-
+		$text = str_replace(array("\r\n", "\r"), "\n", $text);
+		$text = preg_replace('/\n{3,}/', "\n\n", $text);
+		$text = trim($text);
+		
 		//editing, then saving a comment gives warning #685
 		$comment->data = new stdClass();
 		if($comment->type == 'comments:entity') {
