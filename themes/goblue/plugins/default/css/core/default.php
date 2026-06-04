@@ -45,7 +45,6 @@ body {
 	margin-bottom: 5px;
 	outline: none;
 	display: block;
-	resize: vertical;
 	border-radius: 5px;
 	border-radius: 5px;
 	box-shadow: none;
@@ -55,6 +54,10 @@ body {
 	border-radius: 10px;
 	padding: 12px 15px;
 	height: auto;
+}
+
+.ossn-form textarea {
+	resize: vertical;
 }
 
 .ossn-form input[type='number']:focus,
