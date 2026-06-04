@@ -313,8 +313,13 @@ function ossn_wall_postform() {
 			// Now grab the text payload—newlines will be completely preserved!
 			let plainText = $clone.text().trim();
 
-			// Clean up any double-newline artifacts created by container mapping
-			plainText = plainText.replace(/\n\s*\n/g, '\n');
+			/**
+			 * ADJUST NEWLINE COLLAPSING
+			 * Instead of stripping ALL double newlines, we only strip triple+ newlines.
+			 * This preserves exactly one blank line while preventing infinite scrolling gaps.
+			 * [E] Allow max one empty line in post if added #2591
+			 */
+			plainText = plainText.replace(/\n{3,}/g, '\n\n');
 
 			/**
 			 * CLEANUP & INJECTION
@@ -331,7 +336,7 @@ function ossn_wall_postform() {
 			 */
 			$form.submit();
 		});
-		
+
 		$url = $('#ossn-wall-form').attr('action');
 		Ossn.ajaxRequest({
 			url: $url,
