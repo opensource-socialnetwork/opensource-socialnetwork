@@ -60,8 +60,8 @@ function ossn_trigger_js_cache($cache = '') {
 		header('Content-Type: text/html; charset=utf-8');
 		foreach ($Ossn->js as $name => $file) {
 				$cache_file = "{$dir}js/{$cache}/view/{$name}.js";
-				$js         = JSMin::minify(ossn_plugin_view($file));
-				$js .= JSMin::minify(ossn_fetch_extend_views("js/{$name}"));
+				$js         = JShrink::minify(ossn_plugin_view($file));
+				$js .= JShrink::minify(ossn_fetch_extend_views("js/{$name}"));
 				file_put_contents($cache_file, $js);
 		}
 }
