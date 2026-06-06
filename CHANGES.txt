@@ -2,6 +2,9 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v9.9
 - [B] JS minify is changing the `` resulting wrong output when minified #2596
 - [E] Allow at least one empty line in comments besides new line. #2594
 - [E] Allow max one empty line in post if added #2591
+- [E] Allow admins to see all ads regardless of gender demographic #2592
+- [B] Disable css resizeable vertically inputs as its looks strange in firefox #2590
+- [E] Recheck the pagination html and for auto pagination the loader must be outside ul #2589
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v9.8
 - [B] OssnLocation still looking for API key which was removed in 9.6

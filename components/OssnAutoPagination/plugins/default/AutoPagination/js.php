@@ -75,7 +75,8 @@ function ossn_auto_pagination(){
 							action: false,
 							url: $actual_next_url,
 							beforeSend: function(){
-								$('.user-activity .ossn-pagination').append('<div class="ossn-loading"></div>');
+								$('.user-activity .ossn-pagination').next('.ossn-loading').remove();
+								$('.user-activity .ossn-pagination').after('<div class="ossn-loading"></div>');								
 							},
 							callback: function(callback){
 								$element = $(callback).find('.user-activity'); //make callback to jquery object
@@ -84,7 +85,7 @@ function ossn_auto_pagination(){
 									$element.find('.ossn-pagination').remove(); //remove pagination from contents as we'll replace contents of already existing pagination.
 									$('.user-activity').append($element.html()); //append the new data
 									selfElement.html($clone); //set pagination content with new pagination contents
-									selfElement.appendTo('.user-activity .container-table-pagination .center-row'); //append the pagnation back to at end
+									selfElement.appendTo('.user-activity .container-table-pagination'); //append the pagnation back to at end
 									$('.user-activity .ossn-pagination li').css({
 										"visibility": "hidden"
 									});

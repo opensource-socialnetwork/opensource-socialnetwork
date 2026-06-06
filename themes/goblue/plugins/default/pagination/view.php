@@ -57,10 +57,9 @@ if (count($pages) !== 1) {
 	}
 	
 	echo '
-	<div class="container-table container-table-pagination">
-		<div class="center-row">
-				<ul class="pagination ossn-pagination flex-wrap">';
-  	//disaply first if first page is exist
+	<div class="container-table-pagination d-flex justify-content-center w-100 my-4">
+		<ul class="pagination ossn-pagination flex-wrap mb-0">';
+ 	//disaply first if first page is exist
 	if(isset($first) && !empty($first)){
         $url = "{$args['href']}?{$args['offset_name']}={$first}{$args_url}";
      	echo "<li class='page-item'><a href='{$url}' class='page-link ossn-pagination-page'>".ossn_print('ossn:pagination:first')."</a></li>";	
@@ -80,5 +79,5 @@ if (count($pages) !== 1) {
         $url = "{$args['href']}?{$args['offset_name']}={$last}{$args_url}";
      	echo "<li class='page-item'><a class='page-link' href='{$url}'>".ossn_print('ossn:pagination:last')."</a></li>";	
 	}
-echo '</ul></div></div>';
+echo '</ul></div>';
 }

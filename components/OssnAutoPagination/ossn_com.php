@@ -16,5 +16,6 @@ function auto_pagination() {
 		ossn_load_external_js('ossn.autopagination', 'admin');
 		
 		ossn_extend_view('js/ossn.site', 'AutoPagination/js');
+		ossn_extend_view('css/ossn.default', 'AutoPagination/css');
 }
 ossn_register_callback('ossn', 'init', 'auto_pagination');
