@@ -154,8 +154,8 @@ class OssnAds extends OssnObject {
 								'wheres' => "JSON_CONTAINS(emd1.value, '\"{$placement}\"')",
 						),
 				);
-
-				if(ossn_isLoggedin()) {
+				//[E] Allow admins to see all ads regardless of gender demographic #2592
+				if(ossn_isLoggedin() && !ossn_isAdminLoggedin()) {
 						$gender = ossn_loggedin_user()->gender;
 						if(!empty($gender)) {
 								$options[] = array(
