@@ -94,7 +94,7 @@ function ossn_goblue_head() {
 				'href' => ossn_theme_url() . 'vendors/fontawesome/6.7.2/css/all.min.css',
 		));
 		$head[] = ossn_html_js(array(
-				'src' => ossn_theme_url() . 'vendors/bootstrap/js/bootstrap.min.js?v5.3',
+				'src' => ossn_theme_url() . 'vendors/bootstrap/js/bootstrap.min.js?v5.3.8',
 		));
 		return implode('', $head);
 }
@@ -104,7 +104,7 @@ function ossn_goblue_admin_head() {
 				'href' => ossn_theme_url() . 'vendors/fontawesome/6.7.2/css/all.min.css',
 		));
 		$head[] = ossn_html_js(array(
-				'src' => ossn_theme_url() . 'vendors/bootstrap/js/bootstrap.min.js?v5.3',
+				'src' => ossn_theme_url() . 'vendors/bootstrap/js/bootstrap.min.js?v5.3.8',
 		));
 		return implode('', $head);
 }
