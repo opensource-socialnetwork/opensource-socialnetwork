@@ -5,6 +5,30 @@
 	--layout-sidebar-width: 240px;
 }
 
+/* Regular (400) */
+@font-face {
+  font-family: 'PT Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url('<?php echo ossn_theme_url();?>vendors/fonts/PTSans/PTSans-Regular.woff2') format('woff2');
+}
+
+/* Italic (400italic) */
+@font-face {
+  font-family: 'PT Sans';
+  font-style: italic;
+  font-weight: 400;
+  src: url('<?php echo ossn_theme_url();?>vendors/fonts/PTSans/PTSans-Italic.woff2') format('woff2');
+}
+
+/* Bold (700) */
+@font-face {
+  font-family: 'PT Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: url('<?php echo ossn_theme_url();?>vendors/fonts/PTSans/PTSans-Bold.woff2') format('woff2');
+}
+
 body {
 	font-size: 15px;
 	background-color: #eaeaea;
