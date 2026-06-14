@@ -99,9 +99,6 @@ function ossn_goblue_head() {
 		$head[] = ossn_html_js(array(
 				'src' => ossn_theme_url() . 'vendors/bootstrap/js/bootstrap.min.js?v5.3',
 		));
-		$head[] = ossn_html_css(array(
-				'href' => '//code.jquery.com/ui/1.14.1/themes/smoothness/jquery-ui.css',
-		));
 		return implode('', $head);
 }
 function ossn_goblue_admin_head() {
@@ -114,9 +111,6 @@ function ossn_goblue_admin_head() {
 		));
 		$head[] = ossn_html_js(array(
 				'src' => ossn_theme_url() . 'vendors/bootstrap/js/bootstrap.min.js?v5.3',
-		));
-		$head[] = ossn_html_css(array(
-				'href' => '//code.jquery.com/ui/1.14.1/themes/smoothness/jquery-ui.css',
 		));
 		return implode('', $head);
 }
