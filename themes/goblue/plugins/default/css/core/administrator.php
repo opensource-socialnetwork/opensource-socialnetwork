@@ -20,28 +20,28 @@
  * @link      https://www.opensource-socialnetwork.org/
 */
 
-/* Regular (400) */
+/* 300 - Light */
 @font-face {
-  font-family: 'PT Sans';
+  font-family: 'Roboto Slab';
+  font-style: normal;
+  font-weight: 300;
+  src: url('<?php echo ossn_theme_url();?>vendors/fonts/RobotoSlab/RobotoSlab-Light.woff2') format('woff2');
+}
+
+/* 400 - Regular */
+@font-face {
+  font-family: 'Roboto Slab';
   font-style: normal;
   font-weight: 400;
-  src: url('<?php echo ossn_theme_url();?>vendors/fonts/PTSans/PTSans-Regular.woff2') format('woff2');
+  src: url('<?php echo ossn_theme_url();?>vendors/fonts/RobotoSlab/RobotoSlab-Regular.woff2') format('woff2');
 }
 
-/* Italic (400italic) */
+/* 700 - Bold */
 @font-face {
-  font-family: 'PT Sans';
-  font-style: italic;
-  font-weight: 400;
-  src: url('<?php echo ossn_theme_url();?>vendors/fonts/PTSans/PTSans-Italic.woff2') format('woff2');
-}
-
-/* Bold (700) */
-@font-face {
-  font-family: 'PT Sans';
+  font-family: 'Roboto Slab';
   font-style: normal;
   font-weight: 700;
-  src: url('<?php echo ossn_theme_url();?>vendors/fonts/PTSans/PTSans-Bold.woff2') format('woff2');
+  src: url('<?php echo ossn_theme_url();?>vendors/fonts/RobotoSlab/RobotoSlab-Bold.woff2') format('woff2');
 }
 
 body {
