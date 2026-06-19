@@ -410,7 +410,14 @@ a {
 	padding: 9px;
 }
 
-
+.newsfeed-col-wall {
+	flex: 0 0 62.5%; 
+	max-width: 62.5%;
+}
+.newsfeed-col-sidebar {
+	flex: 0 0 37.5%; 
+	max-width: 37.5%;
+}
 /*******************************
 	Topbar	
 ********************************/

@@ -1,5 +1,4 @@
-<div class="col-lg-11">
-	<div class="ossn-profile-edit-layout">
+<div class="ossn-profile-edit-layout">
 		<div class="profile-edit-layout-title">
 			<?php echo ossn_print('edit'); ?>
 		</div>
@@ -17,5 +16,4 @@
 				</div>
 			</div>
 		</div>
-	</div>
 </div>

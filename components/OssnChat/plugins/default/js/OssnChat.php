@@ -58,9 +58,9 @@ Ossn.RegisterStartupFunction(function () {
 		$(".ossn-chat-windows-long").find('.inner').height(sidebarheight + 'px');
 
 		if ($('.ossn-chat-windows-long').is(':visible')) {
-			$('footer').css('margin-right', '90px');
+			$('.ossn-inner-page').css('margin-right', '90px');
 		} else {
-			$('footer').css('margin-right', '');
+			$('.ossn-inner-page').css('margin-right', '');
 		}
 	});
 });

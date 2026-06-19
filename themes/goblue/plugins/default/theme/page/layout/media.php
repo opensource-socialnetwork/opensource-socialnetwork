@@ -17,7 +17,7 @@
 						<?php echo $params['content']; ?>
 					</div>
 				</div>
-				<div class="col-lg-3">
+				<div class="col-lg-4">
 					<?php if (ossn_is_hook( 'theme', 'sidebar:right')) { ?>
 						<div class="page-sidebar">
 						<?php

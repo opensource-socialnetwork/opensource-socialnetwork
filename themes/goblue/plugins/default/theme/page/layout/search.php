@@ -34,7 +34,7 @@ if(ossn_is_hook('newsfeed', "sidebar:right")) {
 					<?php echo $params['content']; ?>
 				</div>
 			</div>
-			<div class="col-lg-3">
+			<div class="col-lg-4">
             	<?php if(!empty($isempty)){ ?>
 				<div class="newsfeed-right">
 					<?php

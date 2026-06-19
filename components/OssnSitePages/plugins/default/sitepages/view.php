@@ -15,8 +15,7 @@ if (!isset($params['contents'])) {
     $params['contents'] = '';
 }
 ?>
-<div class="col-lg-11">
-	<div class="ossn-site-pages">
+<div class="ossn-site-pages">
 		<div class="ossn-site-pages-inner  ossn-page-contents">
 			<div class="ossn-site-pages-title">
 				<?php echo $params['title']; ?>
@@ -25,5 +24,4 @@ if (!isset($params['contents'])) {
 				<?php echo $params['contents']; ?>
 			</div>
 		</div>
-	</div>
 </div>

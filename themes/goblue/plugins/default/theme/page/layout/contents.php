@@ -11,9 +11,7 @@
  ?>
 <div class="container">
        	<div class="ossn-layout-contents">
-       		<div class="row">
-				 	<?php echo $params['content']; ?>
-             </div>    
+			<?php echo $params['content']; ?>
         </div> 
 	   <?php echo ossn_plugin_view('theme/page/elements/footer');?>                               
 </div>
