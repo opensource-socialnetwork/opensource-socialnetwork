@@ -95,9 +95,6 @@ function ossn_photos_initialize() {
 				ossn_register_callback('comment', 'before:created', 'ossn_photos_like_comment_permission_check');
 				ossn_register_callback('like', 'before:created', 'ossn_photos_like_comment_permission_check');
 		}
-		//gallery plugin dist include
-		ossn_new_external_js('jquery.fancybox.min.js', '//cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js', false);
-		ossn_new_external_css('jquery.fancybox.min.css', '//cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css', false);
 }
 /**
  * Redirect URI for album photo like or comment like
