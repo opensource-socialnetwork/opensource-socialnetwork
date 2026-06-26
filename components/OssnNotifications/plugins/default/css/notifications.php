@@ -340,3 +340,35 @@
 	font-size: 13px;
 	margin-left: 10px;
 }
+
+@media (max-width: 480px) {
+	/***************************
+    	Topbar notification box
+   *****************************/
+	.ossn-notifications-box {
+		width: 300px !important;
+	}
+
+	.ossn-notifications-box .notfi-meta {
+		width: 210px;
+	}
+
+	.notification-friends .notfi-meta a {
+		width: 100px;
+	}
+
+	.ossn-notification-messages .user-item .data {
+		width: 215px !important;
+	}
+
+	.ossn-notification-messages .user-item .data .name {
+		width: 110px !important;
+	}
+
+	.ossn-notification-messages .reply-text-from {
+		width: 200px !important;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+}

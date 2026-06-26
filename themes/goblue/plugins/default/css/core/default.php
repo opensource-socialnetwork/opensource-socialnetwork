@@ -410,13 +410,15 @@ a {
 	padding: 9px;
 }
 
-.newsfeed-col-wall {
-	flex: 0 0 62.5%; 
-	max-width: 62.5%;
-}
-.newsfeed-col-sidebar {
-	flex: 0 0 37.5%; 
-	max-width: 37.5%;
+@media (min-width: 992px) {
+	.newsfeed-col-wall {
+		flex: 0 0 62.5%; 
+		max-width: 62.5%;
+	}
+	.newsfeed-col-sidebar {
+		flex: 0 0 37.5%; 
+		max-width: 37.5%;
+	}
 }
 /*******************************
 	Topbar	
@@ -1877,37 +1879,6 @@ footer .ossn-footer-menu a:last-child::after {
 		overflow-x: auto;
 		overflow: overlay;
 	}
-
-	/***************************
-    	Topbar notification box
-   *****************************/
-	.ossn-notifications-box {
-		width: 300px;
-	}
-
-	.ossn-notifications-box .notfi-meta {
-		width: 210px;
-	}
-
-	.notification-friends .notfi-meta a {
-		width: 100px;
-	}
-
-	.ossn-notification-messages .user-item .data {
-		width: 215px !important;
-	}
-
-	.ossn-notification-messages .user-item .data .name {
-		width: 110px !important;
-	}
-
-	.ossn-notification-messages .reply-text-from {
-		width: 200px !important;
-		white-space: nowrap;
-		overflow: hidden;
-		text-overflow: ellipsis;
-	}
-
 
 	/*****************************
      	System

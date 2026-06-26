@@ -26,7 +26,7 @@ if(ossn_is_hook('newsfeed', "center:top")) {
 <div class="container-xl">
 	<div class="ossn-layout-newsfeed">
 		<div class="row">
-			<div class="col-12 col-lg newsfeed-col-wall">
+			<div class="col-12 col-lg-8 newsfeed-col-wall"> 
 				<?php if(!empty($isempty_top)){ ?>
 				<div class="newsfeed-middle-top">
 					<?php echo $newsfeed_center_top; ?>
@@ -37,10 +37,10 @@ if(ossn_is_hook('newsfeed', "center:top")) {
 				</div>
 			</div>
 			
-			<div class="col-12 col-lg newsfeed-col-sidebar">
+			<div class="col-12 col-lg-4 newsfeed-col-sidebar">
 				<?php if(!empty($isempty)){ ?>
 				<div class="newsfeed-right">
-					<?php echo $sidebar; ?>                            
+					<?php echo $sidebar; ?>                                     
 				</div>
 				<?php } ?>
 			</div>
