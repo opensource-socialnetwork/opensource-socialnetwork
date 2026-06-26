@@ -57,11 +57,18 @@ Ossn.RegisterStartupFunction(function () {
 		sidebarheight = sidebarheight - 45;
 		$(".ossn-chat-windows-long").find('.inner').height(sidebarheight + 'px');
 
-		if ($('.ossn-chat-windows-long').is(':visible')) {
-			$('.ossn-inner-page').css('margin-right', '90px');
-		} else {
-			$('.ossn-inner-page').css('margin-right', '');
+		function adjustLayoutForChat() {
+			if ($('.ossn-chat-windows-long').is(':visible')) {
+				$('.ossn-inner-page').css('margin-right', '90px');
+			} else {
+				$('.ossn-inner-page').css('margin-right', '');
+			}
 		}
+		adjustLayoutForChat();
+
+		$(window).on('resize orientationchange', function () {
+			adjustLayoutForChat();
+		});
 	});
 });
 Ossn.ChatOpenTab = function ($user) {
