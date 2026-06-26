@@ -1,3 +1,10 @@
+OSSN - OPEN SOURCE SOCIAL NETWORK v9.10
+- [E] Remove padding from pagination css as its uses my-4 #2598
+- [B] On mobile notifications UI is out of range #2603
+- [E] Use local files instead of CDN fonts, js etc #2601
+- [E] Make use of all 12 cols and let chat handle itself #2599
+- [E] Add me-0 to dashboard admin icons #2600
+
 OSSN - OPEN SOURCE SOCIAL NETWORK v9.9
 - [B] JS minify is changing the `` resulting wrong output when minified #2596
 - [E] Allow at least one empty line in comments besides new line. #2594

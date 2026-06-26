@@ -66,7 +66,7 @@
         <div class="row">
             <div class="col-lg-3 col-md-6">
                 <div class="metric-card">
-                    <div class="icon-wrap bg-blue"><i class="fa-solid fa-cubes"></i></div>
+                    <div class="icon-wrap bg-blue"><i class="fa-solid me-0 fa-cubes"></i></div>
                     <div>
                         <div class="admin-dashboard-title"><?php echo ossn_print('components'); ?></div>
                         <div class="card-value"><?php echo ossn_total_components(); ?></div>
@@ -75,7 +75,7 @@
             </div>
             <div class="col-lg-3 col-md-6">
                 <div class="metric-card">
-                    <div class="icon-wrap bg-purple"><i class="fa-solid fa-palette"></i></div>
+                    <div class="icon-wrap bg-purple"><i class="fa-solid me-0 fa-palette"></i></div>
                     <div>
                         <div class="admin-dashboard-title"><?php echo ossn_print('themes'); ?></div>
                         <div class="card-value"><?php echo ossn_site_total_themes(); ?></div>
@@ -84,7 +84,7 @@
             </div>
             <div class="col-lg-3 col-md-6">
                 <div class="metric-card">
-                    <div class="icon-wrap bg-red"><i class="fa-solid fa-user-shield"></i></div>
+                    <div class="icon-wrap bg-red"><i class="fa-solid me-0 fa-user-shield"></i></div>
                     <div>
                         <div class="admin-dashboard-title"><?php echo ossn_print("admin:users:unvalidated");?></div>
                         <div id="admin-dashboard-unvalidated-text" class="card-value"><div class="ossn-loading"></div></div>
@@ -93,7 +93,7 @@
             </div>
             <div class="col-lg-3 col-md-6">
                 <div class="metric-card">
-                    <div class="icon-wrap bg-orange"><i class="fa-solid fa-cloud-arrow-down"></i></div>
+                    <div class="icon-wrap bg-orange"><i class="fa-solid me-0 fa-cloud-arrow-down"></i></div>
                     <div>
                         <div class="admin-dashboard-title"><?php echo ossn_print('available:updates'); ?></div>
                         <div class="avaiable-updates"><div class="loading-version ossn-loading"></div></div>
@@ -105,7 +105,7 @@
         <div class="row">
             <div class="col-lg-3 col-md-6">
                 <div class="metric-card">
-                    <div class="icon-wrap bg-indigo"><i class="fa-solid fa-code"></i></div>
+                    <div class="icon-wrap bg-indigo"><i class="fa-solid me-0 fa-code"></i></div>
                     <div>
                         <div class="admin-dashboard-title"><?php echo ossn_print('my:version'); ?></div>
                         <div class="card-value"><?php echo ossn_site_settings('site_version'); ?></div>
@@ -114,7 +114,7 @@
             </div>
             <div class="col-lg-3 col-md-6">
                 <div class="metric-card">
-                    <div class="icon-wrap bg-cyan"><i class="fa-solid fa-file-code"></i></div>
+                    <div class="icon-wrap bg-cyan"><i class="fa-solid me-0 fa-file-code"></i></div>
                     <div>
                         <div class="admin-dashboard-title"><?php echo ossn_print('my:files:version'); ?></div>
                         <div class="card-value"><?php echo ossn_package_information()->version; ?></div>
