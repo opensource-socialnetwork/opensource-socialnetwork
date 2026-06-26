@@ -683,7 +683,7 @@ class JShrink {
 				$lock = '"LOCK---' . crc32(time()) . '"';
 
 				$matches = array();
-				preg_match('/([+-])(\s+)([+-])/S', $js, $matches);
+				preg_match('/([+-])(\s+)([+-])/S', (string)$js, $matches);
 				if(empty($matches)) {
 						return $js;
 				}
