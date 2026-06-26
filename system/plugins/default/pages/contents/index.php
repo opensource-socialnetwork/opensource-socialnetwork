@@ -15,7 +15,7 @@ $custom_settings = ossn_goblue_get_custom_logos_bgs_setting();
                 <?php } ?>
             </div>
             
-            <h1 class="display-4 fw-bold text-dark mt-4">
+            <h1 class="display-5 fw-bold text-dark mt-4">
                 <?php echo ossn_print('home:top:heading', array(ossn_site_settings('site_name'))); ?>
             </h1>
             
