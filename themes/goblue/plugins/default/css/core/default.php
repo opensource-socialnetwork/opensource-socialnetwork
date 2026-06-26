@@ -2145,9 +2145,7 @@ footer .ossn-footer-menu a:last-child::after {
 	border-color: #adadad;
 }
 
-.pagination {
-	margin: 20px 0;
-}
+.pagination {}
 
 .dropdown-item.active,
 .dropdown-item:active {
