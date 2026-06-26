@@ -65,7 +65,7 @@ function ossn_javascript() {
 				ossn_load_external_js('jquery-arhandler-1.1-min.js');
 		}
 		//[E] Add fancybox into core as external lib #2234
-		ossn_new_external_js('jquery.fancybox.min.js', 'vendors//fancybox/3.5.7/jquery.fancybox.min.js');
+		ossn_new_external_js('jquery.fancybox.min.js', 'vendors/fancybox/3.5.7/jquery.fancybox.min.js');
 		ossn_new_external_css('jquery.fancybox.min.css', 'vendors/fancybox/3.5.7/jquery.fancybox.min.css');	
 }
 
