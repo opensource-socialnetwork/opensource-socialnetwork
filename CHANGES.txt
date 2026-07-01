@@ -1,3 +1,8 @@
+OSSN - OPEN SOURCE SOCIAL NETWORK v9.11
+- [B] Components and themes giving the older version error but its correct version. #2608
+- [E] Remove chat margins if sidebar is opened #2609
+- [E] Remove themes and vendors from robots #2607
+
 OSSN - OPEN SOURCE SOCIAL NETWORK v9.10
 - [E] Remove padding from pagination css as its uses my-4 #2598
 - [B] On mobile notifications UI is out of range #2603

@@ -6,7 +6,5 @@ Disallow: /configurations/
 Disallow: /installation/
 Disallow: /locale/
 Disallow: /system/
-Disallow: /vendors/
-Disallow: /themes/
 Disallow: /upgrade/
 

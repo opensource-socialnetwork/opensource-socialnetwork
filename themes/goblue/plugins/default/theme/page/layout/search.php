@@ -16,7 +16,7 @@ if(ossn_is_hook('newsfeed', "sidebar:right")) {
 	$isempty = trim($sidebar);
 } 
 ?>
-<div class="container-fluid">
+<div class="container-xl">
 	<div class="ossn-layout-newsfeed">
 		<div class="row">
 			<div class="col-lg-2">

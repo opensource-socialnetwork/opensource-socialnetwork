@@ -8,6 +8,33 @@
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
  * @link      https://www.opensource-socialnetwork.org/
  */
+Ossn.register_callback('ossn', 'init', 'ossn_chat_page_margins');
+function ossn_chat_page_margins() {
+	function adjustLayoutForChat() {
+		const toggleValue = $('#sidebar-toggle').attr('data-toggle');
+		const $page = $('.ossn-inner-page');
+
+		// Apply a smooth transition directly to the element only when needed
+		$page.css('transition', 'margin-right 0.3s ease-in-out');
+
+		if (toggleValue == '1') {
+			$page.css('margin-right', '90px');
+		} else {
+			$page.css('margin-right', '0px');
+		}
+	}
+
+	// Initial check
+	adjustLayoutForChat();
+
+	// Event Delegation
+	$(document).on('click', '#sidebar-toggle', function () {
+		// We use a small timeout so the attribute finishes updating
+		// and the transition effect has time to register
+		setTimeout(adjustLayoutForChat, 50);
+	});
+}
+
 Ossn.RegisterStartupFunction(function () {
 	$(document).ready(function () {
 		/*
@@ -56,19 +83,6 @@ Ossn.RegisterStartupFunction(function () {
 		var sidebarheight = $(window).height();
 		sidebarheight = sidebarheight - 45;
 		$(".ossn-chat-windows-long").find('.inner').height(sidebarheight + 'px');
-
-		function adjustLayoutForChat() {
-			if ($('.ossn-chat-windows-long').is(':visible')) {
-				$('.ossn-inner-page').css('margin-right', '90px');
-			} else {
-				$('.ossn-inner-page').css('margin-right', '');
-			}
-		}
-		adjustLayoutForChat();
-
-		$(window).on('resize orientationchange', function () {
-			adjustLayoutForChat();
-		});
 	});
 });
 Ossn.ChatOpenTab = function ($user) {
