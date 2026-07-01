@@ -28,7 +28,7 @@ class OssnThemes extends OssnSite {
 				}
 				return false;
 		}
-		
+
 		/**
 		 * Get active theme
 		 *
@@ -37,7 +37,7 @@ class OssnThemes extends OssnSite {
 		public function getActive() {
 				return $this->getSettings('theme');
 		}
-		
+
 		/**
 		 * Get total themes
 		 *
@@ -46,7 +46,7 @@ class OssnThemes extends OssnSite {
 		public function total() {
 				return count($this->getThemes());
 		}
-		
+
 		/**
 		 * Get components list
 		 *
@@ -56,19 +56,25 @@ class OssnThemes extends OssnSite {
 				$dir       = ossn_route()->themes;
 				$theme_ids = array();
 				$handle    = opendir($dir);
-				
+
 				if($handle) {
-						while($theme_id = readdir($handle)) {
-								if(substr($theme_id, 0, 1) !== '.' && is_dir($dir . $theme_id) && !preg_match('/\s/', $theme_id) && is_file("{$dir}{$theme_id}/ossn_theme.php") && is_file("{$dir}{$theme_id}/ossn_theme.xml")) {
+						while ($theme_id = readdir($handle)) {
+								if(
+										substr($theme_id, 0, 1) !== '.' &&
+										is_dir($dir . $theme_id) &&
+										!preg_match('/\s/', $theme_id) &&
+										is_file("{$dir}{$theme_id}/ossn_theme.php") &&
+										is_file("{$dir}{$theme_id}/ossn_theme.xml")
+								) {
 										$theme_ids[] = $theme_id;
 								}
 						}
 				}
-				
+
 				sort($theme_ids);
 				return $theme_ids;
 		}
-		
+
 		/**
 		 * Upload component
 		 *
@@ -86,8 +92,8 @@ class OssnThemes extends OssnSite {
 						UPLOAD_ERR_NO_TMP_DIR => 'php:upload_err_no_tmp_dir',
 						UPLOAD_ERR_CANT_WRITE => 'php:upload_err_cant_write',
 						UPLOAD_ERR_EXTENSION  => 'php:upload_err_extension',
-				);			
-				$archive  = new ZipArchive;
+				);
+				$archive  = new ZipArchive();
 				$data_dir = ossn_get_userdata('tmp/themes');
 				if(!is_dir($data_dir)) {
 						mkdir($data_dir, 0755, true);
@@ -96,87 +102,97 @@ class OssnThemes extends OssnSite {
 						ossn_trigger_message(ossn_print('ossn:theme:installer:create:tmpdir:error'), 'error');
 						error_log('Theme Installer Error: Cannot create temporary data directory');
 						return;
-				}				
+				}
 				if($_FILES['theme_file']['error'] != UPLOAD_ERR_OK) {
-						ossn_trigger_message(ossn_print('ossn:theme:installer:upload:error', array(ossn_print($upload_error_messages[$_FILES['theme_file']['error']])) ), 'error');
+						ossn_trigger_message(
+								ossn_print('ossn:theme:installer:upload:error', array(
+										ossn_print($upload_error_messages[$_FILES['theme_file']['error']]),
+								)),
+								'error'
+						);
 						error_log('Theme Installer Error: ' . $upload_error_messages[$_FILES['theme_file']['error']]);
 						return;
-				}				
-				$file = new OssnFile;
+				}
+				$file = new OssnFile();
 				$file->setFile('theme_file');
 				$file->setExtension(array(
-						'zip'
+						'zip',
 				));
 				$zip     = $file->file;
 				$newfile = "{$data_dir}/{$zip['name']}";
 				if(move_uploaded_file($zip['tmp_name'], $newfile)) {
-						if($archive->open($newfile) === TRUE) {
+						if($archive->open($newfile) === true) {
 								$translit = OssnTranslit::urlize($zip['name']);
-								
+
 								$archive->extractTo($data_dir . '/' . $translit);
 								$dirctory = scandir($data_dir . '/' . $translit, 1);
 								$dirctory = $dirctory[0];
 								$files    = $data_dir . '/' . $translit . '/' . $dirctory . '/';
-								
+
 								$archive->close();
-								
+
 								if(is_dir($files) && is_file("{$files}ossn_theme.php") && is_file("{$files}ossn_theme.xml")) {
 										$ossn_theme_xml = simplexml_load_file("{$files}ossn_theme.xml");
 										//need to check id , since ossn v3.x
 										if(isset($ossn_theme_xml->id) && !empty($ossn_theme_xml->id)) {
 												// asure Ossn compatibility before overwriting an older component release
-												$required_version = $ossn_theme_xml->requires->version;
+												$required_version  = $ossn_theme_xml->requires->version;
 												$installed_version = ossn_site_settings('site_version');
-												if($installed_version < $required_version) {
+												if(version_compare($installed_version, $required_version, 'lt')) {
 														OssnFile::DeleteDir($data_dir);
-														ossn_trigger_message(ossn_print('ossn:theme:installer:version:error', array($required_version)), 'error');
+														ossn_trigger_message(
+																ossn_print('ossn:theme:installer:version:error', array(
+																		$required_version,
+																)),
+																'error'
+														);
 														error_log('Theme Installer Error: Ossn version ' . $required_version . ' requirement not met');
 														return;
-												}			
+												}
 												// if the theme is already installed
 												// warn the admin to remove it first
-												if(is_dir(ossn_route()->themes .  $ossn_theme_xml->id . '/')) {
+												if(is_dir(ossn_route()->themes . $ossn_theme_xml->id . '/')) {
 														OssnFile::DeleteDir($data_dir);
 														ossn_trigger_message(ossn_print('ossn:theme:installer:remove:themedir:error'), 'error');
 														error_log('Theme Installer Error: Former theme is still in place');
 														return;
-												}												
+												}
 												//move to components directory
-												if((!is_dir(ossn_route()->themes . $ossn_theme_xml->id)) && (OssnFile::moveFiles($files, ossn_route()->themes . $ossn_theme_xml->id . '/'))) {
+												if(!is_dir(ossn_route()->themes . $ossn_theme_xml->id) && OssnFile::moveFiles($files, ossn_route()->themes . $ossn_theme_xml->id . '/')) {
 														//why it shows success even if the component is not updated #510
 														OssnFile::DeleteDir($data_dir);
 														ossn_trigger_callback('theme', 'installed', array(
-																'theme' => $ossn_theme_xml->id
-														));		
+																'theme' => $ossn_theme_xml->id,
+														));
 														ossn_trigger_message(ossn_print('ossn:theme:installer:theme:installation:success'), 'success');
 														return true;
 												}
 												OssnFile::DeleteDir($data_dir);
 												ossn_trigger_message(ossn_print('ossn:theme:installer:create:themedir:error'), 'error');
 												error_log('Theme Installer Error: Cannot copy files to themes directory');
-												return;												
+												return;
 										}
 										OssnFile::DeleteDir($data_dir);
 										ossn_trigger_message(ossn_print('ossn:theme:installer:xml:incomplete:error'), 'error');
 										error_log('Theme Installer Error: XML file missing or incomplete');
-										return;										
+										return;
 								}
 								OssnFile::DeleteDir($data_dir);
 								ossn_trigger_message(ossn_print('ossn:theme:installer:zip:incomplete:error'), 'error');
 								error_log('Theme Installer Error: Zip-archive incomplete');
-								return;								
+								return;
 						}
 						OssnFile::DeleteDir($data_dir);
 						ossn_trigger_message(ossn_print('ossn:theme:installer:open:zip:error'), 'error');
 						error_log('Theme Installer Error: Cannot open zip-archive');
-						return;						
+						return;
 				}
 				OssnFile::DeleteDir($data_dir);
 				ossn_trigger_message(ossn_print('ossn:theme:installer:move:uploaded:file:error'), 'error');
 				error_log('Theme Installer Error: Cannot open zip-archive');
 				return;
 		}
-		
+
 		/**
 		 * Get active theme startup file
 		 *
@@ -193,19 +209,19 @@ class OssnThemes extends OssnSite {
 		 */
 		public function loadActive() {
 				$path = ossn_route()->themes;
-				
+
 				$vars['theme'] = $this->getSettings('theme');
 				ossn_trigger_callback('theme', 'before:load', $vars);
-				
+
 				if(is_file("{$path}{$this->getSettings('theme')}/ossn_theme.php")) {
 						$lang      = ossn_site_settings('language');
 						$lang_file = "{$path}{$this->getSettings('theme')}/locale/ossn.{$lang}.php";
 						//[B] Theme language strings not cached #2299
 						if(ossn_site_settings('cache') == 0 && is_file($lang_file)) {
 								//feature request: multilanguage themes #281
-								include_once($lang_file);
+								include_once $lang_file;
 						}
-						require_once("{$path}{$this->getSettings('theme')}/ossn_theme.php");
+						require_once "{$path}{$this->getSettings('theme')}/ossn_theme.php";
 				}
 				ossn_trigger_callback('theme', 'after:load', $vars);
 		}
@@ -217,32 +233,38 @@ class OssnThemes extends OssnSite {
 		 * @return boolean
 		 */
 		public function Enable($theme) {
-				if(!empty($theme)){
+				if(!empty($theme)) {
 						$former_theme = ossn_route()->themes . $this->getSettings('theme');
-						if(file_exists($former_theme.'/disable.php')){
-							include_once($former_theme.'/disable.php');
-						}									
+						if(file_exists($former_theme . '/disable.php')) {
+								include_once $former_theme . '/disable.php';
+						}
 						//file is called before theme is enabled
-						if(file_exists(ossn_route()->themes . $theme.'/enable.php')){
-							include_once(ossn_route()->themes . $theme.'/enable.php');
-						}									
-						if($this->UpdateSettings(array(
-								'value'
-						), array(
-								$theme
-						), array(
-								"setting_id='1'"
-						))){
+						if(file_exists(ossn_route()->themes . $theme . '/enable.php')) {
+								include_once ossn_route()->themes . $theme . '/enable.php';
+						}
+						if(
+								$this->UpdateSettings(
+										array(
+												'value',
+										),
+										array(
+												$theme,
+										),
+										array(
+												"setting_id='1'",
+										)
+								)
+						) {
 								//file is called after theme is enabled
-								if(file_exists(ossn_route()->themes . $theme.'/enabled.php')){
-									include_once(ossn_route()->themes . $theme.'/enabled.php');
-								}									
+								if(file_exists(ossn_route()->themes . $theme . '/enabled.php')) {
+										include_once ossn_route()->themes . $theme . '/enabled.php';
+								}
 								return true;
 						}
 				}
 				return false;
 		}
-		
+
 		/**
 		 * Delete theme
 		 *
@@ -250,20 +272,20 @@ class OssnThemes extends OssnSite {
 		 */
 		public function deletetheme($theme) {
 				ossn_trigger_callback('theme', 'before:delete', array(
-							'theme' => $theme
-				));						
+						'theme' => $theme,
+				));
 				//file is called before theme is deleted
-				if(file_exists(ossn_route()->themes . $theme.'/delete.php')){
-						include_once(ossn_route()->themes . $theme.'/delete.php');
-				}						
+				if(file_exists(ossn_route()->themes . $theme . '/delete.php')) {
+						include_once ossn_route()->themes . $theme . '/delete.php';
+				}
 				if(OssnFile::DeleteDir(ossn_route()->themes . "{$theme}/")) {
 						ossn_trigger_callback('theme', 'deleted', array(
-							'theme' => $theme
-						));	
+								'theme' => $theme,
+						));
 						//file is called after theme is deleted
-						if(file_exists(ossn_route()->themes . $theme.'/deleted.php')){
-								include_once(ossn_route()->themes . $theme.'/deleted.php');
-						}											
+						if(file_exists(ossn_route()->themes . $theme . '/deleted.php')) {
+								include_once ossn_route()->themes . $theme . '/deleted.php';
+						}
 						return true;
 				}
 				return false;
@@ -286,7 +308,7 @@ class OssnThemes extends OssnSite {
 				return false;
 		}
 		/**
-		 * Check theme requirments 
+		 * Check theme requirments
 		 *
 		 * @param string $element A valid theme xml file
 		 *
@@ -301,13 +323,13 @@ class OssnThemes extends OssnSite {
 						'php_extension',
 						'php_version',
 						'php_function',
-						'ossn_component'						
+						'ossn_component',
 				);
 				if(isset($element->name)) {
 						if(isset($element->requires)) {
 								$result   = array();
 								$requires = $element->requires;
-								foreach($requires as $item) {
+								foreach ($requires as $item) {
 										if(!in_array($item->type, $types)) {
 												continue;
 										}
@@ -324,7 +346,7 @@ class OssnThemes extends OssnSite {
 												$requirments['value']        = $comparator . ' ' . (string) $item->version;
 												$requirments['availability'] = 0;
 												$site_version                = ossn_site_settings('site_version');
-												
+
 												if(version_compare($site_version, (string) $item->version, $comparator)) {
 														$requirments['availability'] = 1;
 												}
@@ -334,7 +356,7 @@ class OssnThemes extends OssnSite {
 												$requirments['type']         = ossn_print('php:extension');
 												$requirments['value']        = (string) $item->name;
 												$requirments['availability'] = 0;
-												
+
 												if(extension_loaded($item->name)) {
 														$requirments['availability'] = 1;
 												}
@@ -348,9 +370,8 @@ class OssnThemes extends OssnSite {
 												$requirments['type']         = ossn_print('php:version');
 												$requirments['value']        = $comparator . ' ' . (string) $item->version;
 												$requirments['availability'] = 0;
-												
-												$phpversion = substr(PHP_VERSION, 0, 6);
-												if(version_compare($phpversion, (string) $item->version, $comparator)) {
+
+												if(version_compare(PHP_VERSION, (string) $item->version, $comparator)) {
 														$requirments['availability'] = 1;
 												}
 										}
@@ -360,11 +381,11 @@ class OssnThemes extends OssnSite {
 												if(isset($item->comparator) && !empty($item->comparator)) {
 														$comparator = $item->comparator;
 												}
-												
+
 												$requirments['type']         = ossn_print('php:function') . ' ' . (string) $item->name;
 												$requirments['value']        = $comparator;
 												$requirments['availability'] = 0;
-												
+
 												if((function_exists($item->name) && $comparator == 'available') || (!function_exists($item->name) && $comparator == 'not available')) {
 														$requirments['availability'] = 1;
 												}
@@ -377,7 +398,7 @@ class OssnThemes extends OssnSite {
 												$requirments['type']         = (string) $item->name . ' ' . ossn_print('component');
 												$requirments['value']        = $comparator . ' ' . (string) $item->version;
 												$requirments['availability'] = 0;
-												
+
 												$OssnComponent = new OssnComponents();
 												if($OssnComponent->isActive($item->name)) {
 														$requirments['availability'] = 1;
@@ -397,7 +418,7 @@ class OssnThemes extends OssnSite {
 																$requirments['availability'] = 1;
 														}
 												}
-										}									
+										}
 										$result[] = $requirments;
 								} //loop
 								return $result;
@@ -405,5 +426,4 @@ class OssnThemes extends OssnSite {
 				}
 				return false;
 		} //func
-		
 } //class

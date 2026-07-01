@@ -20,7 +20,7 @@ class OssnComponents extends OssnDatabase {
 				$handle  = opendir($dir);
 
 				if($handle) {
-						while($com_id = readdir($handle)) {
+						while ($com_id = readdir($handle)) {
 								if(substr($com_id, 0, 1) !== '.' && is_dir($dir . $com_id) && !preg_match('/\s/', $com_id) && is_file("{$dir}{$com_id}/ossn_com.php") && is_file("{$dir}{$com_id}/ossn_com.xml")) {
 										$com_ids[] = $com_id;
 								}
@@ -53,7 +53,7 @@ class OssnComponents extends OssnDatabase {
 				if(!$this->coms) {
 						return false;
 				}
-				foreach($this->coms as $com_id) {
+				foreach ($this->coms as $com_id) {
 						$com_ids[] = $com_id->com_id;
 				}
 				return $com_ids;
@@ -61,14 +61,14 @@ class OssnComponents extends OssnDatabase {
 		/**
 		 * Get components list with object
 		 *
-		 * @return array 
+		 * @return array
 		 */
 		public function getAll() {
 				$params['from'] = 'ossn_components as c';
 				//[E] Show components in admin panel in ASC order of their installation #2155
 				$params['order_by'] = 'c.id ASC';
 				return $this->select($params, true);
-		}		
+		}
 		/**
 		 * Upload component
 		 *
@@ -103,7 +103,7 @@ class OssnComponents extends OssnDatabase {
 								ossn_print('ossn:com:installer:upload:error', array(
 										ossn_print($upload_error_messages[$_FILES['com_file']['error']]),
 								)),
-								'error',
+								'error'
 						);
 						error_log('Com Installer Error: ' . $upload_error_messages[$_FILES['com_file']['error']]);
 						return;
@@ -133,13 +133,14 @@ class OssnComponents extends OssnDatabase {
 												// asure Ossn compatibility before overwriting an older component release
 												$required_version  = $ossn_com_xml->requires->version;
 												$installed_version = ossn_site_settings('site_version');
-												if($installed_version < $required_version) {
+												//[B] Components not able to install giving error because of version compare #2608
+												if(version_compare($installed_version, $required_version, 'lt')) {
 														OssnFile::DeleteDir($data_dir);
 														ossn_trigger_message(
 																ossn_print('ossn:com:installer:version:error', array(
 																		$required_version,
 																)),
-																'error',
+																'error'
 														);
 														error_log('Com Installer Error: Ossn version ' . $required_version . ' requirement not met');
 														return;
@@ -242,7 +243,7 @@ class OssnComponents extends OssnDatabase {
 				if(!$coms) {
 						return false;
 				}
-				foreach($coms as $com) {
+				foreach ($coms as $com) {
 						$dir  = ossn_route()->com;
 						$name = $this->getCom($com->com_id);
 						if(!empty($name->name)) {
@@ -273,7 +274,7 @@ class OssnComponents extends OssnDatabase {
 				if($ids_only) {
 						if($list) {
 								$lists = array();
-								foreach($list as $item) {
+								foreach ($list as $item) {
 										$lists[] = $item->com_id;
 								}
 								return $lists;
@@ -328,17 +329,17 @@ class OssnComponents extends OssnDatabase {
 		public function inUseBy($comId) {
 				global $Ossn;
 				//avoid calling again and again
-				if(!isset($Ossn->_temp_isusedby_getActive)){
-					$Ossn->_temp_isusedby_getActive =  $this->getActive();
+				if(!isset($Ossn->_temp_isusedby_getActive)) {
+						$Ossn->_temp_isusedby_getActive = $this->getActive();
 				}
 				$list   = $Ossn->_temp_isusedby_getActive;
 				$result = false;
 				if($list) {
-						$result  = array();
-						foreach($list as $component) {
+						$result = array();
+						foreach ($list as $component) {
 								$element = $this->getCom($component->com_id);
-								if(!$element){
-									continue;
+								if(!$element) {
+										continue;
 								}
 								if($element->id == 'OssnProfile' && $comId == 'OssnProfile') {
 										// special case: not defined in xml, but used and needed by Ossn
@@ -347,7 +348,7 @@ class OssnComponents extends OssnDatabase {
 								}
 								if(isset($element->requires)) {
 										$requires = $element->requires;
-										foreach($requires as $item) {
+										foreach ($requires as $item) {
 												if($item->type != 'ossn_component') {
 														continue;
 												}
@@ -383,7 +384,7 @@ class OssnComponents extends OssnDatabase {
 						if(isset($element->requires)) {
 								$result   = array();
 								$requires = $element->requires;
-								foreach($requires as $item) {
+								foreach ($requires as $item) {
 										if(!in_array($item->type, $types)) {
 												continue;
 										}
@@ -425,8 +426,7 @@ class OssnComponents extends OssnDatabase {
 												$requirments['value']        = $comparator . ' ' . (string) $item->version;
 												$requirments['availability'] = 0;
 
-												$phpversion = substr(PHP_VERSION, 0, 6);
-												if(version_compare($phpversion, (string) $item->version, $comparator)) {
+												if(version_compare(PHP_VERSION, (string) $item->version, $comparator)) {
 														$requirments['availability'] = 1;
 												}
 										}
@@ -459,7 +459,7 @@ class OssnComponents extends OssnDatabase {
 														$requirments['availability'] = 1;
 														if(isset($item->version)) {
 																$com_load = $OssnComponent->getCom($item->name);
-																if($com_load && version_compare($com_load->version, (string)$item->version, $comparator)) {
+																if($com_load && version_compare($com_load->version, (string) $item->version, $comparator)) {
 																		$requirments['availability'] = 1;
 																} else {
 																		$requirments['availability'] = 0;
@@ -477,12 +477,12 @@ class OssnComponents extends OssnDatabase {
 										//theme
 										//[E] Add check for ossn_theme for components manifest #2402
 										if($item->type == 'ossn_theme') {
-												$OssnTheme = new OssnThemes();
+												$OssnTheme  = new OssnThemes();
 												$comparator = '>=';
 												if(isset($item->comparator) && !empty($item->comparator)) {
 														$comparator = $item->comparator;
 												}
-												$requirments['type']         = (string) $item->name . ' (' . ossn_print('admin:sidemenu:themes'). ')';
+												$requirments['type']         = (string) $item->name . ' (' . ossn_print('admin:sidemenu:themes') . ')';
 												$requirments['value']        = $comparator . ' ' . (string) $item->version;
 												$requirments['availability'] = 0;
 
@@ -506,7 +506,7 @@ class OssnComponents extends OssnDatabase {
 																$requirments['availability'] = 1;
 														}
 												}
-										}										
+										}
 										$result[] = $requirments;
 								} //loop
 								return $result;
@@ -703,7 +703,7 @@ class OssnComponents extends OssnDatabase {
 				if(empty($guid)) {
 						return false;
 				}
-				foreach($vars as $name => $value) {
+				foreach ($vars as $name => $value) {
 						if($settings && !$settings->isParam($name)) {
 								$entity->owner_guid = $guid;
 								$entity->type       = 'component';
@@ -737,7 +737,7 @@ class OssnComponents extends OssnDatabase {
 				$entity->owner_guid = $object->getID();
 				$settings           = $entity->get_entities();
 				if(is_array($settings) && !empty($settings)) {
-						foreach($settings as $setting) {
+						foreach ($settings as $setting) {
 								$comsettings[$setting->subtype] = $setting->value;
 						}
 						return arrayObject($comsettings, 'OssnComponents');
