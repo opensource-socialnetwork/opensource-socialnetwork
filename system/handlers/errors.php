@@ -17,7 +17,7 @@ $icon  = ossn_theme_url().'images/broken.png';
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title><?php echo ossn_site_settings('site_name'); ?></title>
-		<link rel="stylesheet" href="<?php echo ossn_site_url(); ?>themes/<?php echo ossn_site_settings('theme'); ?>/plugins/default/css/exception.css" type="text/css"/>
+		<link rel="stylesheet" href="<?php echo ossn_site_url(); ?>themes/<?php echo ossn_site_settings('theme'); ?>/css/exception.css" type="text/css"/>
 	</head>
 	<body>
 		<div class="ossn-exception-topbar">
