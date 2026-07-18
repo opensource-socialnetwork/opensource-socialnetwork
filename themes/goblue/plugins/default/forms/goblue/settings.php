@@ -1,5 +1,6 @@
 <?php
   $custom_settings = ossn_goblue_get_custom_logos_bgs_setting();
+  $time = time();
 ?>
  <fieldset class="titleform">
  	<div class="alert alert-warning">
