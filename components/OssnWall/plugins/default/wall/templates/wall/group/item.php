@@ -102,6 +102,13 @@ if(!$params['user']){
 		</div>
         
 		<div class="comments-likes">
+        	<div class="menu-stats m-2 d-flex align-items-center w-100 flex-wrap">
+         	<?php
+      		  	if (ossn_is_hook('post', 'likes')) {
+          			  echo ossn_call_hook('post', 'likes', $params['post']);
+        		}
+      		  ?> 
+            </div>        
 			<?php 
 				//[B] Group members can not like the group post #2415
 				if(isset($params['ismember']) && $params['ismember'] == true){ 
@@ -109,12 +116,7 @@ if(!$params['user']){
 				<div class="menu-likes-comments-share">
 					<?php echo ossn_view_menu('postextra', 'wall/menus/postextra');?>
 				</div>
-            <?php } ?>
-         	<?php
-      		  	if (ossn_is_hook('post', 'likes')) {
-          			  echo ossn_call_hook('post', 'likes', $params['post']);
-        		}
-      		  ?>           
+            <?php } ?>  
 			<div class="comments-list">
               <?php
           		if(ossn_is_hook('post', 'comments')) {

@@ -121,8 +121,8 @@ Ossn.setReaction = function (type, id, action, reactionType = '') {
 				// Shared reaction container updates
 				const $parent = $(selector).parent().parent().parent();
 				if (callback['container']) {
-					$parent.find('.like-share').remove();
-					$parent.find('.menu-likes-comments-share').after(callback['container']);
+					$parent.find('.menu-stats .like-share').remove();
+					$parent.find('.menu-stats').prepend(callback['container']);
 				} else if (!isLike) {
 					// Only unlike drops container explicitly if missing
 					$parent.find('.like-share').remove();

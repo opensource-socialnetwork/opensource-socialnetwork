@@ -1,12 +1,5 @@
 .like-share {
-	border-top: 1px solid #eee;
-	border-bottom: 1px solid #eee;
-	padding: 10px;
-	background-color: #FBFBFB;
-	margin-left: -15px;
-	margin-right: -15px;
-	padding-left: 20px;
-	padding-right: 20px;
+
 }
 
 .ossn-likes-view a.right.btn.btn-danger {
@@ -1081,9 +1074,9 @@
 }
 
 .ossn-reaction-list .emoji {
-	transform: scale(0.133);
-	margin-left: -55px;
-	margin-top: -50px;
+    transform: scale(0.140);
+    margin-left: -55px;
+    margin-top: -49px;
 }
 
 .ossn-reaction-list .emoji--dislike {
@@ -1152,12 +1145,13 @@
 }
 
 .ossn-likes-annotation-total {
-	float: right;
+    margin-top: 2px;
+    font-size: 13px;
 }
 
 .comment-metadata .ossn-reaction-list {
-	float: right;
-	margin-left: 10px;
+	float: none;
+	margin-left: 0;
 }
 
 .comment-metadata .ossn-reaction-list .emoji {

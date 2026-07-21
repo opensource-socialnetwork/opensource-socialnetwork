@@ -11,8 +11,8 @@
 $postcontrols = $params['menu'];
 if($postcontrols){
 ?>
-<a role="button" data-bs-toggle="dropdown" class="btn btn-link" data-bs-target="#">
-	<i class="fa fa fa-ellipsis-h"></i>
+<a role="button" data-bs-toggle="dropdown" class="" data-bs-target="#">
+	<i class="fa fa fa-ellipsis-h me-0"></i>
 </a>
 <ul class="dropdown-menu dropdown-menu-end" role="menu" aria-labelledby="dropdownMenu">
             <?php

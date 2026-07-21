@@ -39,7 +39,7 @@ if ($count) {
     $top_three_associative = array_slice($reaction_counts, 0, 3, true);
     $last_three = array_flip(array_keys($top_three_associative));
 	?>
-    <div class="like-share">
+    <div class="like-share" onclick="Ossn.ViewLikes(<?php echo $object;?>);">
 <div class="ossn-reaction-list">
 	<?php if(isset($last_three['like'])){ ?>
 	<li>
@@ -122,29 +122,12 @@ if ($count) {
 	</li>
 	<?php } ?>
 </div>
-    	<span class="ossn-reaction-title-wholiked">
-        <?php if ($user_liked == true && $count > 1) {
-            $count = $count - 1;
-            $total = 'person';
-            if ($count > 1) {
-                $total = 'people';
-            }
-            $link['onclick'] = "Ossn.ViewLikes({$object});";
+<span class="ossn-reaction-title-wholiked">
+   <?php if ($count) {
             $link['href'] = 'javascript:void(0);';
-            $link['text'] = ossn_print("ossn:like:{$total}", array($count));
-            $link = ossn_plugin_view('output/url', $link);
-            echo ossn_print("ossn:like:you:and:this", array($link));
-        } elseif (!$user_liked) {
-            $total = 'person';
-            if ($count > 1) {
-                $total = 'people';
-            }
-            $link['onclick'] = "Ossn.ViewLikes({$object});";
-            $link['href'] = 'javascript:void(0);';
-            $link['text'] = ossn_print("ossn:like:{$total}", array($count));
-            $link = ossn_plugin_view('output/url', $link);
-            echo ossn_print("ossn:like:this", array($link));
-        }?>
-        </span>
-    </div>
+            $link['text'] = $count;
+            echo ossn_plugin_view('output/url', $link);
+        } ?>
+</span>
+</div>
 <?php } ?>

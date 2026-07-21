@@ -21,19 +21,7 @@ if($datalikes  > 0){
 			$last_three_icons[$item->subtype] = $item->subtype;
 	}
 	$last_three = array_slice($last_three_icons, -3);
-?>
-				<span class="ossn-likes-annotation-total">
-					<?php
-						// Show total likes
-						echo ossn_plugin_view('output/url', array(
-										'href' => 'javascript:void(0);', 
-										'text' => $likes_total, 
-										'onclick' => "Ossn.ViewLikes({$params['annotation_id']}, 'annotation')",
-										'class' => "ossn-total-likes ossn-total-likes-{$params['annotation_id']}",
-										'data-likes' => $datalikes,
-						));
-					?>
-					</span>                    
+?>	<span class="ossn-likes-comments-container ms-auto" onclick="<?php echo "Ossn.ViewLikes({$params['annotation_id']}, 'annotation')";?>">                 
 					<div class="ossn-reaction-list">
 						<?php if(isset($last_three['like'])){ ?>
 						<li>
@@ -116,4 +104,16 @@ if($datalikes  > 0){
 						</li>
 						<?php } ?>
 					</div>
+					<span class="ossn-likes-annotation-total">
+					<?php
+						// Show total likes
+						echo ossn_plugin_view('output/url', array(
+										'href' => 'javascript:void(0);', 
+										'text' => $likes_total, 
+										'class' => "ossn-total-likes ossn-total-likes-{$params['annotation_id']}",
+										'data-likes' => $datalikes,
+						));
+					?>
+					</span>                       
+             </span>       
 <?php } ?>  
