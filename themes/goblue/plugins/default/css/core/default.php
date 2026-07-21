@@ -594,12 +594,6 @@ a {
 	min-width: 200px;
 }
 
-.ossn-like-comment,
-.ossn-total-likes {
-	margin-left: 10px;
-}
-
-
 /********************************
 	Global
 ***********************************/
@@ -1347,8 +1341,8 @@ div.token-input-dropdown ul li.token-input-selected-dropdown-item {
 	width: 470px;
 	min-height: 96px;
 	background: #fff;
-	border-radius: 16px;
-	border: 10px solid #999999b5;
+	border-radius: 10px;
+	border: none;
 	position: fixed;
 	top: 0px;
 	left: 0px;
