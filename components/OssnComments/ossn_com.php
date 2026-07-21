@@ -28,6 +28,7 @@ function ossn_comments() {
 				ossn_register_action('delete/comment', __OSSN_COMMENTS__ . 'actions/comment/delete.php');
 				ossn_register_action('comment/edit', __OSSN_COMMENTS__ . 'actions/comment/edit.php');
 				ossn_register_action('comment/embed', __OSSN_COMMENTS__ . 'actions/comment/embed.php');
+				ossn_register_action('comments/all', __OSSN_COMMENTS__ . 'actions/all.php');
 		}
 		ossn_add_hook('post', 'comments', 'ossn_post_comments');
 		ossn_add_hook('post', 'comments:entity', 'ossn_post_comments_entity');
@@ -62,6 +63,76 @@ function ossn_comments() {
 				$return[] = 'OssnWall';
 				return $return;
 		});
+		
+		ossn_add_hook('post', 'likes', 'ossn_comment_stats_menu', 500);
+		ossn_add_hook('post', 'likes:entity', 'ossn_comment_stats_menu', 500);
+		ossn_add_hook('post', 'likes:object', 'ossn_comment_stats_menu', 500);
+}
+/**
+ * Show status for total comments etc
+ *
+ * @return string
+ * @access private
+ */
+function ossn_comment_stats_menu($hook, $type, $return, $params) {
+    global $Ossn;
+    
+	if($type == 'likes'){
+		$type = 'post';	
+	}
+    // 1. Ensure the cache structure exists so we don't get undefined property/index notices
+    if (!isset($Ossn->commentsCountCache)) {
+        $Ossn->commentsCountCache = array();
+    }
+    if (!isset($Ossn->commentsCountCache[$type])) {
+        $Ossn->commentsCountCache[$type] = array();
+    }
+    
+    $guid = $params->guid;
+
+    // 2. Check if we already looked up and cached this count for this specific type and GUID
+    if (!isset($Ossn->commentsCountCache[$type][$guid])) {
+        $comments = new OssnComments();
+        // Cache the result so the next call bypasses the database query
+		switch($type){
+			case 'post':
+				$ctype = 'post';
+				break;
+			case 'likes:entity':
+				$ctype = 'entity';
+				$guid  = $params['entity_guid'];
+				break;
+			case 'likes:object':
+				$ctype = 'object';
+				$guid  = $params['object_guid'];
+				break;				
+		}
+        $Ossn->commentsCountCache[$type][$guid] = $comments->countComments($guid, $ctype);
+    }
+    
+    // 3. Grab the count from the cache
+    $count = $Ossn->commentsCountCache[$type][$guid];
+    
+    // 4. Don't show or append anything if there are 0 comments
+    if (!$count || $count == 0) {
+        return $return;
+    }
+    
+    // 5. Determine pluralization for 1 vs many comments
+    if ($count > 1) {
+        $text = ossn_print('comment:stat:comments', array($count));
+    } else {
+        $text = ossn_print('comment:stat:comment', array($count));
+    }
+    
+    // 6. Generate the link view markup
+    $count_markup = ossn_plugin_view('output/url', array(
+        'text' => $text,
+        'url' => 'javascript:void(0)',
+        'class' => 'ossn-comments-counter-stats ms-auto d-inline-block',
+    ));
+    
+    return $return . $count_markup;
 }
 /**
  * Notify the comments participants
@@ -277,13 +348,6 @@ function ossn_wall_comment_menu($callback, $type, $params) {
 						'data-guid' => $guid,
 						'text'      => ossn_print('comment:comment'),
 				));
-				if($comment->countComments($guid) > 5) {
-						ossn_register_menu_item('postextra', array(
-								'name' => 'commentall',
-								'href' => ossn_site_url("post/view/{$guid}"),
-								'text' => ossn_print('comment:view:all'),
-						));
-				}
 		}
 }
 /**

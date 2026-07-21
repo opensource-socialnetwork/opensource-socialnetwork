@@ -1,5 +1,5 @@
 //<script>
-$.fn.isInViewComments = function() {
+$.fn.isInViewComments = function () {
 	var win = $(window);
 
 	var viewport = {
@@ -19,9 +19,9 @@ $.fn.isInViewComments = function() {
 	return (!(viewport.right < bounds.left || viewport.left > bounds.right || viewport.bottom < bounds.top || viewport.top > bounds.bottom));
 
 };
-$(document).ready(function() {
+$(document).ready(function () {
 	var comment_typing_send;
-	$('body').on('focus', '.comment-box', function() {
+	$('body').on('focus', '.comment-box', function () {
 		$btype = false;
 		if ($(this).parent().parent().find('input[name="post"]').length) {
 			$guid = $(this).parent().parent().find('input[name="post"]').val();
@@ -37,14 +37,14 @@ $(document).ready(function() {
 		var $status = {
 			url: Ossn.site_url + 'action/rtcomments/setstatus?type=' + $btype + '&guid=' + $guid,
 			action: true,
-			callback: function() {}
+			callback: function () {}
 		};
 		Ossn.PostRequest($status);
-		comment_typing_send = setInterval(function() {
+		comment_typing_send = setInterval(function () {
 			Ossn.PostRequest($status);
 		}, 3000);
 	});
-	$('body').on('blur', '.comment-box', function() {
+	$('body').on('blur', '.comment-box', function () {
 		if ($(this).parent().parent().find('input[name="post"]').length) {
 			$btype = 'post';
 		}
@@ -54,7 +54,7 @@ $(document).ready(function() {
 		clearInterval(comment_typing_send);
 	});
 });
-Ossn.commentTyping = function($guid, $type) {
+Ossn.commentTyping = function ($guid, $type) {
 	//Ossn <5.3 we don't know eather the comment list is for entities comments or the posts comments
 	//so we need to add unique id for post/entity
 	$addids = $(".ctyping-" + $type + "-" + $guid);
@@ -75,31 +75,37 @@ Ossn.commentTyping = function($guid, $type) {
 	var $status = {
 		url: Ossn.site_url + 'action/rtcomments/status?guid=' + $cguid + '&type=' + $ctype,
 		action: true,
-		callback: function(callback) {
+		callback: function (callback) {
 			if (callback['status'] == 'typing') {
 				$elem.find('.ctyping-c-item').fadeIn('slow');
 			} else {
 				$elem.find('.ctyping-c-item').fadeOut('slow');
 			}
 			if (callback['lists'] != '') {
-				for(i=0;i < callback['lists'].length;i++){
+				for (i = 0; i < callback['lists'].length; i++) {
 					$id = $($.parseHTML(callback['lists'][i])).attr('id');
 					$id = $id.replace(/[^0-9]/g, "");
-					if($id && $('#comments-item-'+$id).length == 0){
-						$(".ossn-comments-list-" + $type.charAt(0) + "" + $guid).append(callback['lists'][i]).fadeIn();	
+					if ($id && $('#comments-item-' + $id).length == 0) {
+						$(".ossn-comments-list-" + $type.charAt(0) + "" + $guid).append(callback['lists'][i]).fadeIn();
 					}
 				}
 			}
 		}
 	};
-	setInterval(function() {
+	setInterval(function () {
+		var $listContainer = $(".ossn-comments-list-" + $type.charAt(0) + "" + $guid);
+
+		// FIX: If the list is currently loading "View All", skip this interval cycle entirely
+		if ($listContainer.hasClass('ossn-comments-loading')) {
+			return;
+		}
+
 		if ($('.ctyping-' + $ctype + '-' + $cguid).isInViewComments()) {
-			if ($(".ossn-comments-list-" + $type.charAt(0) + "" + $guid).find('.comments-item').length) {
+			if ($listContainer.find('.comments-item').length) {
 				var $ids = new Array();
-				$($(".ossn-comments-list-" + $type.charAt(0) + "" + $guid).find('.comments-item')).each(function() {
+				$($listContainer.find('.comments-item')).each(function () {
 					$ids.push($(this).attr('id').replace('comments-item-', ''));
 				});
-				//console.log($ids.join(','));
 				$status['params'] = '&comments_ids=' + $ids.join(',') + '&timestamp=' + $timestamp;
 			}
 			Ossn.PostRequest($status);

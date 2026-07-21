@@ -9,19 +9,24 @@
  * @link      https://www.opensource-socialnetwork.org/
  */
 
+global $Ossn;
+
 $vars = $params;
 $params = $params['post'];	
 
 $object = $params->guid;
 
-$comments = new OssnComments;
+$comments = new OssnComments();
 
+$fullview = "ossn-comments-list-no-full-view";
 if(!isset($params->full_view) || (isset($params->full_view) && $params->full_view !== true)){
 	$comments->limit = 5;
 }
 if(isset($params->full_view) && $params->full_view == true){
 	$comments->limit = false;
 	$comments->page_limit = false;
+	$fullview = "ossn-comments-list-full-view";
+	
 }
 //[E] Show a group comments to non-member user #1861
 //by default allow it!
@@ -30,8 +35,10 @@ if(isset($vars['allow_comment']) && $vars['allow_comment'] == false){
 	$allow_post_comment = false;
 }
 $comments = $comments->GetComments($object);
+//take count from stats cache
+$count = $Ossn->commentsCountCache['post'][$object];
 
-echo "<div class='ossn-comments-list-p{$object}'>";
+echo "<div class='ossn-comments-list-p{$object} {$fullview}'>";
 if ($comments) {
     foreach ($comments as $comment) {
             //if $allow_post_comment is not allowed then we should not allow to like posts comments also
@@ -44,6 +51,18 @@ if ($comments) {
     }
 }
 echo '</div>';
+if($count > 5 && (!isset($params->full_view) || (isset($params->full_view) && $params->full_view !== true))){
+		echo '<div class="text-center my-2 ossn-comments-view-all-container">';
+		echo ossn_plugin_view('output/url', array(
+					'text' => ossn_print('comment:view:all'),
+					'href' => 'javascript:void(0)',
+					'data-type' => 'p',
+					'data-guid' => $object,
+					'data-acl'  => (int)$allow_post_comment,
+					'class' => 'text-decoration-none d-inline-flex align-items-center ossn-comments-view-all',
+		));	
+		echo '</div>';
+}
 if (ossn_isLoggedIn() && $allow_post_comment){
 	$user = ossn_loggedin_user();
 	$iconurl = $user->iconURL()->smaller;

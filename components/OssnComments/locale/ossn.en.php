@@ -19,5 +19,7 @@ $en = array(
 	'comment:view:all' => 'View all comments',
 	'comment:edit:success' => 'Comment has been edited successfully',
 	'comment:edit:failed' => 'Can not edit your comment',
+	'comment:stat:comment' => '%s comment',
+	'comment:stat:comments' => '%s comments',
 );
 ossn_register_languages('en', $en); 

@@ -179,7 +179,6 @@
 	margin-right: 0;
 }
 
-.ossn-photos-album-comments-likes .like-share,
 .ossn-photos-album-comments-likes .comments-list {
 	margin-left: -10px;
 	margin-right: -10px;

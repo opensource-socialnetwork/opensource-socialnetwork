@@ -40,7 +40,8 @@ if(isset($comment->allow_comment_like) && $comment->allow_comment_like == false)
 			<img class="comment-user-img user-icon-smaller" src="<?php echo $user->iconURL()->smaller; ?>" />
 		</div>
 		<div class="ps-1 w-100">
-			<div class="comment-contents">
+			<div class="comment-contents-container">
+           		 <div class="comment-contents">
 				<p>
 					<?php
 						echo ossn_plugin_view('output/user/url', array(
@@ -63,8 +64,9 @@ if(isset($comment->allow_comment_like) && $comment->allow_comment_like == false)
 						        }
 						        ?>
 				</p>
+                </div>
 				<div class="comment-metadata">
-					<div class="time-created"><?php echo ossn_user_friendly_time($comment->time_created); ?></div>
+                	<div class="time-created"><?php echo ossn_user_friendly_time($comment->time_created); ?></div>                        
 					<?php
 						if (class_exists('OssnLikes') && $allow_comment_like) {
 							if (ossn_isLoggedIn()) {
@@ -99,19 +101,9 @@ if(isset($comment->allow_comment_like) && $comment->allow_comment_like == false)
 								?>
 						</div>
 					</div>
-					<?php if (class_exists('OssnLikes')) { ?>
-					<span class="ossn-likes-annotation-total">
-					<?php
-						// Show total likes
-						echo ossn_plugin_view('output/url', array(
-										'href' => 'javascript:void(0);', 
-										'text' => $likes_total, 
-										'onclick' => "Ossn.ViewLikes({$params['comment']['id']}, 'annotation')",
-										'class' => "ossn-total-likes ossn-total-likes-{$params['comment']['id']}",
-										'data-likes' => $datalikes,
-						));
-						?>
-					</span>                    
+					<?php if (class_exists('OssnLikes') && !empty($likes_total)) { ?>
+					<span class="ossn-likes-comments-container ms-auto" onclick="<?php echo "Ossn.ViewLikes({$params['comment']['id']}, 'annotation')";?>">
+                    
 					<div class="ossn-reaction-list">
 						<?php if(isset($last_three['like'])){ ?>
 						<li>
@@ -185,6 +177,18 @@ if(isset($comment->allow_comment_like) && $comment->allow_comment_like == false)
 						</li>
 						<?php } ?>
 					</div>  <!-- reaction list panel -->
+                     <span class="ossn-likes-annotation-total">
+					<?php
+						// Show total likes
+						echo ossn_plugin_view('output/url', array(
+										'href' => 'javascript:void(0);', 
+										'text' => $likes_total, 
+										'class' => "ossn-total-likes ossn-total-likes-{$params['comment']['id']}",
+										'data-likes' => $datalikes,
+						));
+						?>
+					</span>                   
+                    </span>
 					<?php } // OssnLikes class check end ?>              
 				</div> <!-- comment metadata -->
 			</div>

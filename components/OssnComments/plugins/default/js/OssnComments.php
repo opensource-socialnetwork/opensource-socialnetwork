@@ -304,6 +304,32 @@ function ossn_comment_post_sm_button() {
 
 function ossn_comment_init() {
 	$(document).ready(function () {
+	$('body').on('click', '.ossn-comments-view-all', function(){
+			var type = $(this).attr('data-type');														  
+			var guid = $(this).attr('data-guid');	
+			var acl  = $(this).attr('data-acl');
+			
+			acl = 'yes';
+			if(acl == 0){
+				acl = 'no';	
+			}
+			$(this).parent().fadeOut();
+			
+			$list = $('.ossn-comments-list-'+type+''+guid);
+			$list.addClass("ossn-comments-loading");
+			$loader = "<div class='p-4'><div class='ossn-loading mx-auto'></div></div>";
+			$list.html($loader);
+			
+			Ossn.PostRequest({
+				url: Ossn.site_url + 'action/comments/all?type='+type+'&guid='+guid+'&acl='+acl,
+				callback:function(result){
+					if(result.list){
+						$list.html(result.list);
+					}
+				},
+			});
+	});
+	
 		$('body').on('click', '.comment-post', function () {
 			var $guid = $(this).attr('data-guid');
 			if ($guid) {
