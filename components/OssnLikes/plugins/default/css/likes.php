@@ -1074,11 +1074,13 @@
 }
 
 .ossn-reaction-list .emoji {
-    transform: scale(0.140);
+    transform: scale(0.155);
     margin-left: -55px;
     margin-top: -49px;
 }
-
+.ossn-reaction-title-wholiked a{
+  	color:#666;
+}
 .ossn-reaction-list .emoji--dislike {
 	transform: scale(0.133, -0.133);
 }
