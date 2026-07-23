@@ -19,10 +19,31 @@
  *
  * @return false|string The contents of the resized image, or false on failure
  */
-function ossn_resize_image($input_name, $maxwidth, $maxheight, $square = false){
+function ossn_resize_image($input_name, $maxwidth, $maxheight, $square = false) {
 		// Get the size information from the image
 		$imgsizearray = getimagesize($input_name);
-		if($imgsizearray == false){
+		if($imgsizearray == false) {
+				return false;
+		}
+		$width  = $imgsizearray[0];
+		$height = $imgsizearray[1];
+
+		//OSSN Vulnerability report: CWE-400 - Uncontrolled Resource Consumption
+		// Set maximum allowed dimensions
+		//[B] Add dim check in ossn_image_resize #2622
+		$args = array(
+				'from' => 'ossn_resize_image',
+				'path' => $input_name,
+		);
+		$image_max_dim = ossn_call_hook('file', 'max:dimensions', $args, array(
+				'width'  => 5000,
+				'height' => 5000,
+		));
+		$maxWidth  = $image_max_dim['width'];
+		$maxHeight = $image_max_dim['height'];
+		$maxPixels = $maxWidth * $maxHeight;
+
+		if($width > $maxWidth || $height > $maxHeight || $width * $height > $maxPixels) {
 				return false;
 		}
 		$image = new OssnImage($input_name);
@@ -38,11 +59,11 @@ function ossn_resize_image($input_name, $maxwidth, $maxheight, $square = false){
 
 		// make sure the function is available
 		$load_function = 'imagecreatefrom' . $accepted_formats[$imgsizearray['mime']];
-		if(!is_callable($load_function)){
+		if(!is_callable($load_function)) {
 				return false;
 		}
 		//OssnFile to support animated gif photos #1473
-		if($load_function == 'imagecreatefromgif' && ossn_is_hook('ossn', 'image:resize:gif')){
+		if($load_function == 'imagecreatefromgif' && ossn_is_hook('ossn', 'image:resize:gif')) {
 				$image_resize_options = array(
 						'max_width'  => $maxwidth,
 						'max_height' => $maxheight,
@@ -52,7 +73,7 @@ function ossn_resize_image($input_name, $maxwidth, $maxheight, $square = false){
 		}
 		//quality set
 		$imagejpeg_quality = ossn_call_hook('ossn', 'image:resize:quality', false, 50);
-		if($square === true){
+		if($square === true) {
 				$image->crop($maxwidth, $maxheight);
 		} else {
 				$image->resizeToBestFit($maxwidth, $maxheight);
@@ -64,7 +85,7 @@ function ossn_resize_image($input_name, $maxwidth, $maxheight, $square = false){
  *
  * @return The contents of generate image
  */
-function ossn_user_image_sizes(){
+function ossn_user_image_sizes() {
 		return array(
 				'topbar'  => '20x20',
 				'small'   => ' 50x50',
@@ -79,16 +100,16 @@ function ossn_user_image_sizes(){
  * @param array $files An array of files
  * @return boolean|array
  */
-function ossn_input_images($name){
-		if(!isset($_FILES[$name])){
+function ossn_input_images($name) {
+		if(!isset($_FILES[$name])) {
 				return false;
 		}
-		$files = $_FILES[$name];
+		$files        = $_FILES[$name];
 		$_files       = array();
 		$_files_count = count($files['name']);
 		$_files_keys  = array_keys($files);
-		for($i = 0; $i < $_files_count; $i++){
-				foreach ($_files_keys as $key){
+		for ($i = 0; $i < $_files_count; $i++) {
+				foreach ($_files_keys as $key) {
 						$_files[$i][$key] = $files[$key][$i];
 				}
 		}
