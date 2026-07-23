@@ -19,5 +19,8 @@ $hu = array(
 	'comment:view:all' => 'Összes hozzászólás',
 	'comment:edit:success' => 'A hozzászólás sikeresen szerkesztve',
 	'comment:edit:failed' => 'Nem szerkesztheted a hozzászólást',
+	
+	'comment:stat:comment' => '%s <span>hozzászólás</span>',
+	'comment:stat:comments' => '%s <span>hozzászólások</span>',	
 );
 ossn_register_languages('hu', $hu); 

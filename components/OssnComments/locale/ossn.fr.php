@@ -19,5 +19,8 @@ $fr = array(
 	'comment:view:all' => 'Voir tous les commentaires',
 	'comment:edit:success' => "Le commentaire a été édité avec succès",
 	'comment:edit:failed' => "L'édition du commentaire a échoué",	
+	
+	'comment:stat:comment' => '%s <span>commentaire</span>',
+	'comment:stat:comments' => '%s <span>commentaires</span>',	
 );
 ossn_register_languages('fr', $fr); 

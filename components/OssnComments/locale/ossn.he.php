@@ -19,5 +19,8 @@ $he = array(
 	'comment:view:all' => 'הצגת כל התגובות',
 	'comment:edit:success' => 'התגובה נערכה בהצלחה',
 	'comment:edit:failed' => 'לא ניתן לערוך את תגובתך!',
+	
+	'comment:stat:comment' => '%s <span>תגובה</span>',
+	'comment:stat:comments' => '%s <span>תגובות</span>',	
 );
 ossn_register_languages('he', $he); 

@@ -19,5 +19,8 @@ $pt = array(
 	'comment:view:all' => 'Ver todos comentários',
 	'comment:edit:success' => 'Comentário editado com sucesso',
 	'comment:edit:failed' => 'Não é possível editar o seu comentário',
+
+	'comment:stat:comment' => '%s <span>comentário</span>',
+	'comment:stat:comments' => '%s <span>comentários</span>',
 );
 ossn_register_languages('pt', $pt); 

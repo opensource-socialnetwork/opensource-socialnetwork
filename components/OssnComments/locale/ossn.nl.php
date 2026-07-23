@@ -19,5 +19,8 @@ $nl = array(
 	'comment:view:all' => 'Alle reacties weergeven',
 	'comment:edit:success' => 'Je reactie is aangepast',
 	'comment:edit:failed' => 'Kan je reactie niet aanpassen',
+	
+	'comment:stat:comment' => '%s <span>reactie</span>',
+	'comment:stat:comments' => '%s <span>reacties</span>',	
 );
 ossn_register_languages('nl', $nl); 

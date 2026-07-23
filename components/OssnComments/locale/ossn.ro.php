@@ -19,5 +19,8 @@ $ro = array(
 	'comment:view:all' => 'Vezi toate comentariile',
 	'comment:edit:success' => 'Comentariul a fost editat cu succes',
 	'comment:edit:failed' => 'Nu putem edita acest comentariu',
+	
+	'comment:stat:comment' => '%s <span>comentariu</span>',
+	'comment:stat:comments' => '%s <span>comentarii</span>',	
 );
 ossn_register_languages('ro', $ro); 

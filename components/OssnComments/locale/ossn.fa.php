@@ -19,5 +19,8 @@ $fa = array(
 	'comment:view:all' => 'مشاهده تمام نظرات',
 	'comment:edit:success' => 'نظر با موفقیت ویرایش شد',
 	'comment:edit:failed' => 'امکان ویرایش نظر وجود ندارد',
+	
+	'comment:stat:comment' => '%s <span>نظر</span>',
+	'comment:stat:comments' => '%s <span>نظرات</span>',
 );
 ossn_register_languages('fa', $fa);

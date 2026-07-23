@@ -19,5 +19,8 @@ $si = array(
 	'comment:view:all' => 'කමෙන්ට් සියල බලන්න',
 	'comment:edit:success' => 'කමෙන්ටුව සංස්කරණය කරන ලදී',
 	'comment:edit:failed' => 'කම්නේටුව සංස්කරණය කළ නොහැක',
+
+	'comment:stat:comment' => '%s <span>අදහස</span>',
+	'comment:stat:comments' => '%s <span>අදහස්</span>',
 );
 ossn_register_languages('si', $si); 

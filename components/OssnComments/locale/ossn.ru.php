@@ -19,5 +19,8 @@ $ru = array(
 	'comment:view:all' => 'Посмотреть все комментарии',
 	'comment:edit:success' => 'Комментарий был успешно удалён',
 	'comment:edit:failed' => 'Нельзя отредактировать ваш комментарий',
+	
+	'comment:stat:comment' => '%s <span>комментарий</span>',
+	'comment:stat:comments' => '%s <span>комментариев</span>',	
 );
 ossn_register_languages('ru', $ru); 

@@ -19,5 +19,8 @@ $id = array(
 	'comment:view:all' => 'Lihat semua komentar',
 	'comment:edit:success' => 'Komentar berhasil di edit',
 	'comment:edit:failed' => 'Gagal Mengedit komentar',
+	
+	'comment:stat:comment' => '%s <span>komentar</span>',
+	'comment:stat:comments' => '%s <span>komentar</span>',	
 );
 ossn_register_languages('id', $id); 

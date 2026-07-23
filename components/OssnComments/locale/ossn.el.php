@@ -19,5 +19,8 @@ $el = array(
 	'comment:view:all' => 'Δείτε όλα τα σχόλια',
 	'comment:edit:success' => 'Το σχόλιο έχει επεξεργαστεί με επιτυχία!',
 	'comment:edit:failed' => 'Δεν είναι δυνατή η επεξεργασία του σχολίου σας',
+	
+	'comment:stat:comment' => '%s <span>σχόλιο</span>',
+	'comment:stat:comments' => '%s <span>σχόλια</span>',	
 );
 ossn_register_languages('el', $el); 

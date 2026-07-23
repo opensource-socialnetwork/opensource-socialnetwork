@@ -19,5 +19,8 @@ $eo = array(
 	'comment:view:all' => 'Vidi ĉiujn komentojn',
 	'comment:edit:success' => 'Komento estas sukcese redaktita',
 	'comment:edit:failed' => 'Ne povas redakti vian komenton',
+
+	'comment:stat:comment' => '%s <span>komento</span>',
+	'comment:stat:comments' => '%s <span>komentoj</span>',
 );
 ossn_register_languages('eo', $eo); 

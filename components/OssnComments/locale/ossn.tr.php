@@ -19,5 +19,8 @@ $tr = array(
 	'comment:view:all' => 'Bütün yorumları göster',
 	'comment:edit:success' => 'Yorum düzenlendi',
 	'comment:edit:failed' => 'Yorum düzenlenemedi',
+	
+	'comment:stat:comment' => '%s <span>yorum</span>',
+	'comment:stat:comments' => '%s <span>yorum</span>',
 );
 ossn_register_languages('tr', $tr); 

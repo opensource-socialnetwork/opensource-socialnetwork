@@ -19,5 +19,8 @@ $ja = array(
 	'comment:view:all' => 'すべてのコメントを見る',
 	'comment:edit:success' => 'コメントは正常に編集されました',
 	'comment:edit:failed' => 'コメントを編集できません',
+	
+	'comment:stat:comment' => '%s <span>コメント</span>',
+	'comment:stat:comments' => '%s <span>コメント</span>',	
 );
 ossn_register_languages('ja', $ja); 

@@ -19,5 +19,8 @@ $ta = array(
 	'comment:view:all' => 'அனைத்துக் கருத்துகளையும் காண்க',
 	'comment:edit:success' => 'கருத்து திருத்தப்பட்டது',
 	'comment:edit:failed' => 'உங்கள் கருத்தைத் திருத்த முடியவில்லை',
+	
+	'comment:stat:comment' => '%s <span>கருத்து</span>',
+	'comment:stat:comments' => '%s <span>கருத்துகள்</span>',	
 );
 ossn_register_languages('ta', $ta); 

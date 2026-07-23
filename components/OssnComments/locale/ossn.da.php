@@ -19,5 +19,8 @@ $da = array(
 	'comment:view:all' => 'Vis alle kommentarer',
 	'comment:edit:success' => 'Kommentaren er blevet redigeret',
 	'comment:edit:failed' => 'Kan ikke redigere din kommentar',
+	
+	'comment:stat:comment' => '%s <span>kommentar</span>',
+	'comment:stat:comments' => '%s <span>kommentarer</span>',	
 );
 ossn_register_languages('da', $da);

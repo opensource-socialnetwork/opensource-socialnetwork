@@ -19,5 +19,8 @@ $en = array(
 	'comment:view:all' => 'Guarda tutti i commenti',
 	'comment:edit:success' => 'Commento modificato con successo',
 	'comment:edit:failed' => 'Non posso modificare il tuo commento',
+	
+	'comment:stat:comment' => '%s <span>commento</span>',
+	'comment:stat:comments' => '%s <span>commenti</span>',	
 );
 ossn_register_languages('it', $en); 

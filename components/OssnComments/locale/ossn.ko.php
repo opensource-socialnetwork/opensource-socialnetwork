@@ -19,5 +19,8 @@ $ko = array(
 	'comment:view:all' => '전체 댓글 보기',
 	'comment:edit:success' => '댓글을 고쳤습니다',
 	'comment:edit:failed' => '댓글을 고칠 수 없습니다',
+	
+	'comment:stat:comment' => '%s <span>댓글</span>',
+	'comment:stat:comments' => '%s <span>댓글</span>',	
 );
 ossn_register_languages('ko', $ko); 

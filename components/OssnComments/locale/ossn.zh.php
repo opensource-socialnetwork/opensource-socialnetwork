@@ -19,5 +19,8 @@ $zh = array(
 	'comment:view:all' => '看所有的留言',
 	'comment:edit:success' => '已修改留言',
 	'comment:edit:failed' => '無法編輯你的留言',
+	
+	'comment:stat:comment' => '%s <span>评论</span>',
+	'comment:stat:comments' => '%s <span>评论</span>',	
 );
 ossn_register_languages('zh', $zh); 

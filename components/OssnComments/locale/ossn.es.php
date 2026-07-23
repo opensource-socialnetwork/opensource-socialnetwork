@@ -21,5 +21,8 @@ $es = array(
 	'comment:view:all' => 'Ver todos los comentarios',
 	'comment:edit:success' => 'El comentario ha sido modificado correctamente',
 	'comment:edit:failed' => 'No se puede editar tu comentario',
+	
+	'comment:stat:comment' => '%s <span>comentario</span>',
+	'comment:stat:comments' => '%s <span>comentarios</span>',	
 );
 ossn_register_languages('es', $es); 
