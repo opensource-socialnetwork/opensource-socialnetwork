@@ -101,6 +101,9 @@ function ossn_ads_handler($pages) {
 				$ad      = ossn_get_ad($ad_guid);
 
 				if(!empty($ad_guid) && $ad) {
+						ossn_trigger_callback('ads', 'before:go', array(
+								'ad' => $ad,
+						));
 						//avoid multiple click counts for same session
 						if(!isset($_SESSION['ossn_ads_clicked']) || !is_array($_SESSION['ossn_ads_clicked'])) {
 								$_SESSION['ossn_ads_clicked'] = array();
@@ -109,6 +112,9 @@ function ossn_ads_handler($pages) {
 								$ad->incClicks();
 								$_SESSION['ossn_ads_clicked'][] = $ad_guid;
 						}
+						ossn_trigger_callback('ads', 'go', array(
+								'ad' => $ad,
+						));
 						header("Location: {$ad->site_url}");
 						exit();
 				}
