@@ -8,15 +8,19 @@
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
  * @link      https://www.opensource-socialnetwork.org/
  */
-$object = $params['entity_guid'];
-$comments = new OssnComments;
+global $Ossn;
 
+$object = $params['entity_guid'];
+$comments = new OssnComments();
+
+$fullview = "ossn-comments-list-no-full-view";
 if(isset($params['params']) && isset($params['params']['full_view']) &&  $params['params']['full_view'] !== true){
 	$comments->limit = 5;
 }
 if(isset($params['params']) && isset($params['params']['full_view']) &&  $params['params']['full_view'] == true){
 	$comments->limit = false;
 	$comments->page_limit = false;
+	$fullview = "ossn-comments-list-full-view";
 }
 //[E] Show a group comments to non-member user #1861
 //by default allow it!
@@ -25,7 +29,10 @@ if(isset($params['allow_comment']) && $params['allow_comment'] == false){
 	$allow_post_comment = false;
 }
 $comments = $comments->GetComments($object, 'entity');
-echo "<div class='ossn-comments-list-e{$object}'>";
+//take count from stats cache
+$count = $Ossn->commentsCountCache['entity'][$object];
+
+echo "<div class='ossn-comments-list-e{$object} {$fullview}'>";
 if ($comments) {
     foreach ($comments as $comment) {
 			//if $allow_post_comment is not allowed then we should not allow to like posts comments also
@@ -38,6 +45,18 @@ if ($comments) {
     }
 }
 echo '</div>';
+if($count > 5 && (!isset($params['params']['full_view']) || (isset($params['params']['full_view']) && $params['params']['full_view'] !== true))){
+		echo '<div class="text-center my-2 ossn-comments-view-all-container">';
+		echo ossn_plugin_view('output/url', array(
+					'text' => ossn_print('comment:view:all'),
+					'href' => 'javascript:void(0)',
+					'data-type' => 'e',
+					'data-guid' => $object,
+					'data-acl'  => (int)$allow_post_comment,
+					'class' => 'text-decoration-none d-inline-flex align-items-center ossn-comments-view-all',
+		));	
+		echo '</div>';
+}
 if (ossn_isLoggedIn() && $allow_post_comment){	
 	$user = ossn_loggedin_user();
 	$iconurl = $user->iconURL()->smaller;

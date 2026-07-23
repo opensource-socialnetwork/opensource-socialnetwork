@@ -9,12 +9,12 @@
  * @link      https://www.opensource-socialnetwork.org/
  */
 
+global $Ossn;
+
 $vars 		 = $params;
 $object_guid = $params['object_guid'];
-$params 	 = $params['params'];	
 
-
-$comments = new OssnComments;
+$comments = new OssnComments();
 if(isset($params['params']) && isset($params['params']['full_view']) &&  $params['params']['full_view'] !== true){
 	$comments->limit = 5;
 }
@@ -29,6 +29,7 @@ if(isset($vars['allow_comment']) && $vars['allow_comment'] == false){
 	$allow_post_comment = false;
 }
 $comments = $comments->GetComments($object_guid, 'object');
+$count = $Ossn->commentsCountCache['object'][$object_guid];
 
 echo "<div class='ossn-comments-list-o{$object_guid}'>";
 if ($comments) {
@@ -43,6 +44,18 @@ if ($comments) {
     }
 }
 echo '</div>';
+if($count > 5 && (!isset($params['params']['full_view']) || (isset($params['params']['full_view']) && $params['params']['full_view'] !== true))){
+		echo '<div class="text-center my-2 ossn-comments-view-all-container">';
+		echo ossn_plugin_view('output/url', array(
+					'text' => ossn_print('comment:view:all'),
+					'href' => 'javascript:void(0)',
+					'data-type' => 'o',
+					'data-guid' => $object_guid,
+					'data-acl'  => (int)$allow_post_comment,
+					'class' => 'text-decoration-none d-inline-flex align-items-center ossn-comments-view-all',
+		));	
+		echo '</div>';
+}
 if (ossn_isLoggedIn() && $allow_post_comment){
 	$user = ossn_loggedin_user();
 	$iconurl = $user->iconURL()->smaller;

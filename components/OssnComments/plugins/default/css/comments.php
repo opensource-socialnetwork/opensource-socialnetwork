@@ -248,7 +248,7 @@
 	color:#888888;
 }
 .ossn-comments-view-all {
-    background-color: #f8f9fa;
+    background-color: #fff;
     color: #6c757d;
     border: 1px solid #dee2e6;
     border-radius: 50rem;

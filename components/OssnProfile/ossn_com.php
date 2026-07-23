@@ -51,7 +51,8 @@ function ossn_profile() {
 		ossn_register_callback('delete', 'profile:photo', 'ossn_profile_delete_photo_wallpost');
 		ossn_register_callback('delete', 'profile:cover:photo', 'ossn_profile_delete_photo_wallpost');
 		//show viewallcomments link #871
-		ossn_register_callback('comment', 'entityextra:menu', 'ossn_profile_images_allcomments');
+		//removed
+		//ossn_register_callback('comment', 'entityextra:menu', 'ossn_profile_images_allcomments');
 
 		//hooks
 		ossn_add_hook('newsfeed', 'sidebar:left', 'profile_photo_newsefeed', 1);
@@ -577,7 +578,6 @@ function ossn_profile_delete_photo_wallpost($callback, $type, $params) {
  * @param array  $params A option values
  *
  * @return boolean|void
- */
 function ossn_profile_images_allcomments($callback, $type, $params) {
 		if(class_exists('OssnComments')) {
 				ossn_unregister_menu('commentall', 'entityextra');
@@ -605,5 +605,5 @@ function ossn_profile_images_allcomments($callback, $type, $params) {
 						}
 				}
 		}
-}
+}*/
 ossn_register_callback('ossn', 'init', 'ossn_profile');
