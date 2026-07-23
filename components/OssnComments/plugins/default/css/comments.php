@@ -243,7 +243,6 @@
     content: "\f086" !important;
 }
 .ossn-comments-counter-stats:before {
-	font-weight:bold;
 	margin-right:5px;
 	color:#888888;
 }
