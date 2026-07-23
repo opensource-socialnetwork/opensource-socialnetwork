@@ -19,9 +19,10 @@ if (ossn_isLoggedIn()) {
             $user_liked = $OssnLikes->isLiked($object, ossn_loggedin_user()->guid, 'object');
 }
 //don't show the bar if user liked it and its only one like means only loggedin user liked it
-if($user_liked == true && $count == 1){
-	return;	
-}
+//[E] Update likes counter even if count=1 and only current user=liked#2620
+//if($user_liked == true && $count == 1){
+	//return;	
+//}
 /* Likes and comments don't show for nonlogged in users */ 
 if ($count) {
     $reaction_counts = [];
