@@ -19,7 +19,9 @@ $en = array(
 	'comment:view:all' => 'View all comments',
 	'comment:edit:success' => 'Comment has been edited successfully',
 	'comment:edit:failed' => 'Can not edit your comment',
-	'comment:stat:comment' => '%s comment',
-	'comment:stat:comments' => '%s comments',
+	
+	//added span incase we need to hide text on mobiles
+	'comment:stat:comment' => '%s <span>comment</span>',  
+	'comment:stat:comments' => '%s <span>comments</span>',
 );
 ossn_register_languages('en', $en); 

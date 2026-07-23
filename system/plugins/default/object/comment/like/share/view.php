@@ -13,9 +13,7 @@
  $object['object_guid'] = $params['object']->guid;
  ?>
 <div class="comments-likes ossn-photos-comments">
-	<div class="menu-likes-comments-share">
-            	<?php echo ossn_view_menu('object_extra');?>
-	</div>     
+   <div class="menu-stats d-flex align-items-center w-100 flex-wrap">
 	<?php
 		if(ossn_is_hook('post', 'likes:object')) {
  			if(isset($params['allow_like'])){
@@ -23,7 +21,11 @@
 			}
 			echo ossn_call_hook('post', 'likes:object', $object);
 		}
-	?>
+	?> 
+    </div>
+	<div class="menu-likes-comments-share">
+            	<?php echo ossn_view_menu('object_extra');?>
+	</div>     
     <div class="comments-list">
     <?php
 	if(ossn_is_hook('post', 'comments:object')) {

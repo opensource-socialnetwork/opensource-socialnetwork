@@ -97,7 +97,7 @@ if ($params['user']->guid !== $params['post']->owner_guid) {
             <?php } ?>          
 		</div>
 		<div class="comments-likes">
-        	<div class="menu-stats m-2 d-flex align-items-center w-100 flex-wrap">
+        	<div class="menu-stats d-flex align-items-center w-100 flex-wrap">
               <?php
       		  	if(ossn_is_hook('post', 'likes')) {
           			 echo ossn_call_hook('post', 'likes', $params['post']);

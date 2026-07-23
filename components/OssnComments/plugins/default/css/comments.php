@@ -245,6 +245,7 @@
 .ossn-comments-counter-stats:before {
 	font-weight:bold;
 	margin-right:5px;
+	color:#888888;
 }
 .ossn-comments-view-all {
     background-color: #f8f9fa;
@@ -269,6 +270,10 @@
 .ossn-comments-counter-stats {
 	font-size: 14px;
 	color:#666;
+}
+.comments-likes .menu-stats {
+	margin-top:.5rem;
+	margin-bottom:.5rem;
 }
 .comment-metadata {
 	margin-left:10px;	

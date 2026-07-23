@@ -13,17 +13,19 @@
  $entity['entity_guid'] = $params['entity']->guid;
  ?>
 <div class="comments-likes ossn-photos-comments">
+   <div class="menu-stats d-flex align-items-center w-100 flex-wrap">
+    <?php
+    if(ossn_is_hook('post', 'likes:entity')) {
+ 		if(isset($params['allow_like'])){
+         	 $entity['allow_like'] = $params['allow_like'];	
+ 		}		
+        echo ossn_call_hook('post', 'likes:entity', $entity);
+    }
+    ?>  
+    </div>
 	<div class="menu-likes-comments-share">
             	<?php echo ossn_view_menu('entityextra');?>
 	</div>     
-    <?php
-    if(ossn_is_hook('post', 'likes:entity')) {
- 	if(isset($params['allow_like'])){
-                $entity['allow_like'] = $params['allow_like'];	
- 	}		
-        echo ossn_call_hook('post', 'likes:entity', $entity);
-    }
-    ?>
     <div class="comments-list">
     <?php
     if (ossn_is_hook('post', 'comments:entity')) {
