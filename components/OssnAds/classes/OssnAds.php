@@ -156,7 +156,7 @@ class OssnAds extends OssnObject {
 						array(
 								'name'   => 'placement',
 								'value'  => true,
-								'wheres' => "JSON_CONTAINS(emd1.value, '\"{$placement}\"')",
+								'wheres' => "JSON_CONTAINS(emd2.value, '\"{$placement}\"')",
 						),
 				);
 				//[E] Allow admins to see all ads regardless of gender demographic #2592
