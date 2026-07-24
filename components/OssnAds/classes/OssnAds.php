@@ -34,6 +34,7 @@ class OssnAds extends OssnObject {
 				$this->data->gender_target = json_encode($params['gender_target']);
 				$this->data->expired       = false;
 				$this->data->expire_time   = $params['expiry_date'];
+				$this->data->approved      = 'yes'; //by default is true  //yes, pending, declined
 
 				if(empty($_FILES['ossn_ads']['tmp_name'])) {
 						return false;
@@ -145,6 +146,10 @@ class OssnAds extends OssnObject {
 				}
 				$options = array(
 						array(
+								'name'  => 'approved',
+								'value' => 'yes',
+						),								 
+						array(
 								'name'  => 'expired',
 								'value' => false,
 						),
@@ -161,7 +166,7 @@ class OssnAds extends OssnObject {
 								$options[] = array(
 										'name'   => 'gender_target',
 										'value'  => true,
-										'wheres' => "JSON_CONTAINS(emd2.value, '\"{$gender}\"')",
+										'wheres' => "JSON_CONTAINS(emd3.value, '\"{$gender}\"')",
 								);
 						}
 				}
