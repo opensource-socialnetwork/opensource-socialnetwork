@@ -66,7 +66,7 @@ class OssnAds extends OssnObject {
 						ossn_trigger_callback('ad', 'created', array(
 								'instance' => $this,
 						));
-						return true;
+						return $guid;
 				}
 				return false;
 		}
