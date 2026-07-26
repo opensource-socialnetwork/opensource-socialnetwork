@@ -60,6 +60,10 @@ function ossn_ads_cli($cb, $type, $args) {
 						ossn_cli_output('Founds ads to mark expired', 'warning');
 						foreach ($expired as $item) {
 								ossn_cli_output("Ad with ID marked expired : {$item->guid}", 'success');
+								//call before marking expired
+								ossn_trigger_callback('ad', 'before:expired', array(
+										'ad' => $item,
+								));
 
 								$item->data->expired = true;
 								$item->save();

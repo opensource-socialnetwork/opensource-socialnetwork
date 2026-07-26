@@ -116,10 +116,6 @@ class OssnAds extends OssnObject {
 						'subtype'        => 'ossnads',
 						'entities_pairs' => array(
 								array(
-										'name'  => 'approved',
-										'value' => 'yes',
-								),
-								array(
 										'name'  => 'expired',
 										'value' => false,
 								),
