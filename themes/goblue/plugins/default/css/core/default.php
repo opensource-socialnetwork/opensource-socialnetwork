@@ -1782,10 +1782,6 @@ footer .ossn-footer-menu a:last-child::after {
 	display: block;
 }
 
-.ossn-box-inner {
-	width: 435px;
-}
-
 .landing-page-icons {
 	color: #fff;
 	text-align: center;
@@ -1922,10 +1918,6 @@ footer .ossn-footer-menu a:last-child::after {
 
 	.ossn-message-box .contents input[type="text"] {
 		width: 195px;
-	}
-
-	.ossn-box-inner {
-		width: 280px;
 	}
 
 	footer .ossn-footer-menu a:nth-last-child(2)::after {
