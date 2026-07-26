@@ -12,6 +12,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v10.0
 - [E] Add callback for ads view and click event #2621
 - [E] Ads default approved status #2624
 - [B] Seems email type was not changed in 7.x upgrade for some sites #2614
+- [B] Extra space showing in comment edit modal #2619
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v9.11
 - [B] Components and themes giving the older version error but its correct version. #2608
