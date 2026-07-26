@@ -148,7 +148,7 @@ class OssnAds extends OssnObject {
 						array(
 								'name'  => 'approved',
 								'value' => 'yes',
-						),								 
+						),
 						array(
 								'name'  => 'expired',
 								'value' => false,
@@ -282,22 +282,51 @@ class OssnAds extends OssnObject {
 				return ossn_site_url("ossnads/go/{$this->guid}/load.html");
 		}
 		/**
+		 * Generic helper to increment a metadata counter
+		 *
+		 * @param string $subtype
+		 * @return boolean
+		 */
+		private function incCounter($subtype) {
+				if(empty($this->guid)) {
+						return false;
+				}
+
+				$db    = new \OssnDatabase();
+				$query = "UPDATE ossn_entities_metadata m
+              INNER JOIN ossn_entities e ON e.guid = m.guid
+              SET m.value = CAST(m.value AS UNSIGNED) + 1
+              WHERE e.owner_guid = '{$this->guid}'
+                AND e.type = 'object'
+                AND e.subtype = '{$subtype}'";
+
+				$db->statement($query);
+
+				if($db->execute()) {
+						if(isset($db->exe) && $db->exe instanceof \PDOStatement) {
+								return $db->exe->rowCount() > 0;
+						}
+				}
+
+				return false;
+		}
+
+		/**
 		 * Increase the increment for clicks
 		 *
 		 * @return boolean
 		 */
 		public function incClicks() {
-				$this->data->clicks_count = intval($this->clicks_count) + 1;
-				return $this->save();
+				return $this->incCounter('clicks_count');
 		}
+
 		/**
 		 * Increase the increment for views
 		 *
 		 * @return boolean
 		 */
 		public function incViews() {
-				$this->data->views_count = intval($this->views_count) + 1;
-				return $this->save();
+				return $this->incCounter('views_count');
 		}
 		/**
 		 * Get ads photo file
