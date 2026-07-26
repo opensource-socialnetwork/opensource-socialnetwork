@@ -20,10 +20,7 @@ if($ads) {
 						'item' => $ad,
 				));
 		}
-		echo ossn_plugin_view('widget/view', array(
-				'title'    => ossn_print('sponsored'),
-				'contents' => implode('', $items),
-		));
+		echo implode('', $items);
 		echo '</div>';
 } elseif(ossn_isAdminLoggedin()) {
 		echo ossn_plugin_view('widget/view', array(
