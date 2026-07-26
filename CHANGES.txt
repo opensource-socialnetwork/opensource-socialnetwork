@@ -1,3 +1,16 @@
+OSSN - OPEN SOURCE SOCIAL NETWORK v10.0
+- [B] Warnings on Themes->GoBlue->Reset #2611
+- [B] themes/goblue/plugins/default/css/exception.css direct css failed to fetch #2612
+- [E] Add callback before wall activity output each post #2623
+- [B] Add dim check in ossn_image_resize #2622
+- [E] Add callback for ads view and click event #2621
+- [E] Update likes counter even if count=1 and only current user=liked #2620
+- [E] Restyle the total likes UI and show the total comments too #2618
+- [E] Smilies picker not working with new wall #2617
+- [E] Remove ugly 10px border from message box/modal #2616
+- [E] View all comments button makes other buttons no space #2615
+- [E] Add callback for ads view and click event #2621
+
 OSSN - OPEN SOURCE SOCIAL NETWORK v9.11
 - [B] Components and themes giving the older version error but its correct version. #2608
 - [E] Remove chat margins if sidebar is opened #2609
