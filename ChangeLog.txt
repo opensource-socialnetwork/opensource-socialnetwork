@@ -1,3 +1,130 @@
+OSSN - OPEN SOURCE SOCIAL NETWORK v9.11
+- [B] Components and themes giving the older version error but its correct version. #2608
+- [E] Remove chat margins if sidebar is opened #2609
+- [E] Remove themes and vendors from robots #2607
+
+OSSN - OPEN SOURCE SOCIAL NETWORK v9.10
+- [E] Remove padding from pagination css as its uses my-4 #2598
+- [B] On mobile notifications UI is out of range #2603
+- [E] Use local files instead of CDN fonts, js etc #2601
+- [E] Make use of all 12 cols and let chat handle itself #2599
+- [E] Add me-0 to dashboard admin icons #2600
+- [E] ossn-home-container make intro text display-5 instead of 4 #2604
+- [B] Fixes JSMIN php deprecation error #2606
+- [E] Duplicate CDN of fancybox in photos remove #2605
+
+OSSN - OPEN SOURCE SOCIAL NETWORK v9.9
+- [B] JS minify is changing the `` resulting wrong output when minified #2596
+- [E] Allow at least one empty line in comments besides new line. #2594
+- [E] Allow max one empty line in post if added #2591
+- [E] Allow admins to see all ads regardless of gender demographic #2592
+- [B] Disable css resizeable vertically inputs as its looks strange in firefox #2590
+- [E] Recheck the pagination html and for auto pagination the loader must be outside ul #2589
+
+OSSN - OPEN SOURCE SOCIAL NETWORK v9.8
+- [B] OssnLocation still looking for API key which was removed in 9.6
+
+OSSN - OPEN SOURCE SOCIAL NETWORK v9.7
+- [B] Upgrade to Ossn 9.6 doesn't show old ads.
+- [B] Wall not allowing at least single new line #2587
+
+OSSN - OPEN SOURCE SOCIAL NETWORK v9.6
+- [E] Move css from default css to respective component unless its global css #2545
+- [E] Allow cross origin for images #2559
+- [E] OssnWall forms , move away from textarea for better usage #2560
+- [B] Register success have white text #2561
+- [B] Singup form not showing errors #2562
+- [E] Ossn.MessageDone to alert #2563
+- [E] Change container fluid to container-xl layout newsfeed #2564
+- [E] Remove CRON library as CLI is doing same stuff #2565
+- [E] Undefined variable $entity_object OssnComments/ossn_com.php (line 423) #2566
+- [E] Improve Ads component allow more options and expiry #2567
+- [E] Improve comments , like menu under wall posts , entity, objects #2568
+- [E] Improve post bgs images #2569
+- [E] Improve animation of message box #2570
+- [E] z-index to ossn-like-reactions-panel #2572
+- [E] Add a header variable for Ossn.isLoggedin #2573
+- [E] Replace Mapbox as now you need to have credit card for free tier #2574
+- [E] Restrict acccess to plugins folders using browser #2575
+- [E] Requires OssnWall required by comments #2576
+- [E] Unifed ossn comments js code #2577
+- [E] Add unique identifer for group wall container #2578
+- [E] OssnLikes play sound and hide reaction panel if xhr in progress #2579
+- [E] comment-text on new line #2580
+- [B] if no users in admins current year graph, the other graphs looks bigger #2582
+- [E] Show comment user profile photo on small devices #2583
+- [E] Allow youtube shorts embed #2584
+- [E] Make sidebar and topbar fixed #2585
+- [E] Allow youtube shorts embed #2584
+
+OSSN - OPEN SOURCE SOCIAL NETWORK v9.5
+- [B] OssnSitePages editor not loading #2554
+- [B] ossn goblue theme hu locale have en #2553
+- [B] OssnLocations wrong translation #2552
+- [E] Add join group button for logged out users points to login page #2555
+- [E] Add tamil ta langauge support #2556
+- [E] Add danish langauge pack #2557
+- [E] OssnAds add support for webp #2558
+
+OSSN - OPEN SOURCE SOCIAL NETWORK v9.4
+- [E] Group members list should follow new users/list format #2548
+- [B] .user-username-sub is hidden from users/list #2550
+- [E] forms/signup/before/submit missing in signup form #2549
+- [E] Improve Installation UI OSSN 9.4 #2542
+- [E] Remove locales from installation as its not used and if required we need to add language selector #2551
+
+OSSN - OPEN SOURCE SOCIAL NETWORK v9.3
+- [B] cpu usage goblue frontpage because of animation #2544
+- [B] Component checkRequirments failed #2543
+
+OSSN - OPEN SOURCE SOCIAL NETWORK v9.2
+- [E] Change front-page icon color to topar color #2541
+- [B] Terms line not viisble on signup form #2540
+
+
+OSSN - OPEN SOURCE SOCIAL NETWORK v9.1
+- [E] Two reset password links shows on login page #2537
+- [B] background is loading from wrong URL #2539
+- [E] "Automatic conversion of false to array is deprecated" www\libraries\ossn.lib.admin.php (line 412) #2538
+
+OSSN - OPEN SOURCE SOCIAL NETWORK v9.0
+
+- [E] Add favicon using callback so it can be removed using component #2497
+- [E] Add a callback before page load #2496
+- [B] ossn_include_upgrade_file replaces $file variable #2495
+- [B] Some OssnGroup related warnings #2513
+- [B] ossn_notifications -> group:joinrequest orphans on group deletion #2512
+- [B] admins can not view access=1 posts if not member of group #2510
+- [E] slashes doesn't required for entites pairs search #2508
+- [B] Wheres only accept 'comparator' not 'operator' in wheres manual #2507
+- [E] Allow dynamic file names using ossn page handler #2499
+- [B] [E_WARNING] "Attempt to read property "username" on bool" in file /actions/user/login.php (line 27) #2490
+- [B] [E_WARNING] "Attempt to read property "guid" on false" in /components/OssnLikes/ossn_com.php (line 141) #2492
+- [B] [E_DEPRECATED] preg_match Passing null to parameter #2 & preg_replace(): Passing null to parameter #3 #2493
+- [B] admin users earch gives wrong pagination #2505
+- [B] Wrong locale content for OssnLocation #2509
+- [E] Load Admin dashboard graphs using xhr #2519
+- [E] Improve OssnUser::countByGender method #2517
+- [E] Remove order_by for counts #2516
+- [B] ossn_get_relationships searching only type didn't works it accepts to or from #2520
+- [B] If component folder is deleted but record exists #2491
+- [E] Allow 'other' gender type #2518
+- [B] ossn_get_relationships searching only type didn't works it accepts to or from #2520
+- [B] Duplicate count query #2523
+- [B] Some ambiguous #2524
+- [E] Move away from static margins of fullname on profile #2525
+- [B] fa-trash-o no longer exists #2526
+- [B] missing exit 2 times in actions/friend/remove #2529
+- [B] Error when deleting user message unknown colum Array #2528
+- [B] Add required ossn photos component by profile #2531
+- [E] remove isOld checking themes and components #2533
+- [E] Limit the width and height for the images upload to avoid resources overusage CWE-400 #2535
+- [B] showFileUploadError is set on top of setFile where the $this->file is not yet set funny #2536
+- [B] [E_DEPRECATED] "Implicit conversion from float 867.9315476190476 to int loses precision" in file /home/user/public_html/classes/OssnImage.php) #2489
+- [E] Show user icons for output/user imrove UI #2498
+- [E] Allow site pages in multiple langauges #2502
+- [E] Improve UI for backend and frontend OSSN 9.0 #2534
+
 OSSN - OPEN SOURCE SOCIAL NETWORK v8.9
 - [B] groups not showing in search because of $q in single quotes #2487
 - [B] Group shows wrong member requests #2486
