@@ -23,8 +23,5 @@ if($ads) {
 		echo implode('', $items);
 		echo '</div>';
 } elseif(ossn_isAdminLoggedin()) {
-		echo ossn_plugin_view('widget/view', array(
-				'title'    => ossn_print('sponsored'),
-				'contents' => ossn_plugin_view('ads/admin_create_sidebar'),
-		));
+		echo ossn_plugin_view('ads/admin_create_sidebar');
 }
