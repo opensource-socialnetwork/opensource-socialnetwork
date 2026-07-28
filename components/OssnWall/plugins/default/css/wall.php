@@ -104,8 +104,11 @@
 	padding: 10px;
 	display: inline-flex;
 	cursor: pointer;
+	align-items: center; 
 }
-
+.wall-tabs .item span {
+    line-height: 1; 
+}
 .ossn-wall-container .wall-tabs .item:hover {
 	background: #eee;
 }
