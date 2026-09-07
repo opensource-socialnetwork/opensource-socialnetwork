@@ -28,9 +28,9 @@ function ossn_resize_image($input_name, $maxwidth, $maxheight, $square = false) 
 		$width  = $imgsizearray[0];
 		$height = $imgsizearray[1];
 
-		//OSSN Vulnerability report: CWE-400 - Uncontrolled Resource Consumption
+		// OSSN Vulnerability report: CWE-400 - Uncontrolled Resource Consumption
 		// Set maximum allowed dimensions
-		//[B] Add dim check in ossn_image_resize #2622
+		// [B] Add dim check in ossn_image_resize #2622
 		$args = array(
 				'from' => 'ossn_resize_image',
 				'path' => $input_name,
@@ -46,6 +46,7 @@ function ossn_resize_image($input_name, $maxwidth, $maxheight, $square = false) 
 		if($width > $maxWidth || $height > $maxHeight || $width * $height > $maxPixels) {
 				return false;
 		}
+
 		$image = new OssnImage($input_name);
 
 		$accepted_formats = array(
@@ -57,12 +58,19 @@ function ossn_resize_image($input_name, $maxwidth, $maxheight, $square = false) 
 				'image/webp'  => 'webp',
 		);
 
-		// make sure the function is available
-		$load_function = 'imagecreatefrom' . $accepted_formats[$imgsizearray['mime']];
+		$mime = $imgsizearray['mime'];
+
+		// make sure the format is supported and function is available
+		if(!isset($accepted_formats[$mime])) {
+				return false;
+		}
+
+		$load_function = 'imagecreatefrom' . $accepted_formats[$mime];
 		if(!is_callable($load_function)) {
 				return false;
 		}
-		//OssnFile to support animated gif photos #1473
+
+		// OssnFile to support animated gif photos #1473
 		if($load_function == 'imagecreatefromgif' && ossn_is_hook('ossn', 'image:resize:gif')) {
 				$image_resize_options = array(
 						'max_width'  => $maxwidth,
@@ -71,14 +79,33 @@ function ossn_resize_image($input_name, $maxwidth, $maxheight, $square = false) 
 				);
 				return ossn_call_hook('ossn', 'image:resize:gif', $image_resize_options, false);
 		}
-		//quality set
-		$imagejpeg_quality = ossn_call_hook('ossn', 'image:resize:quality', false, 50);
+
+		// quality set
+		$quality = ossn_call_hook('ossn', 'image:resize:quality', false, 50);
+
 		if($square === true) {
 				$image->crop($maxwidth, $maxheight);
 		} else {
 				$image->resizeToBestFit($maxwidth, $maxheight);
 		}
-		return $image->getImageAsString(IMAGETYPE_JPEG, $imagejpeg_quality);
+
+		// Dynamically determine the output format to preserve transparency (PNG/GIF/WebP)
+		switch ($mime) {
+		case 'image/png':
+		case 'image/x-png':
+				return $image->getImageAsString(IMAGETYPE_PNG);
+
+		case 'image/webp':
+				return $image->getImageAsString(IMAGETYPE_WEBP, $quality);
+
+		case 'image/gif':
+				return $image->getImageAsString(IMAGETYPE_GIF);
+
+		case 'image/jpeg':
+		case 'image/pjpeg':
+		default:
+				return $image->getImageAsString(IMAGETYPE_JPEG, $quality);
+		}
 }
 /**
  * Get image crop sizes for profile picture
