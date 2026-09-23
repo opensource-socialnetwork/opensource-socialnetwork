@@ -491,7 +491,7 @@ class OssnGroup extends OssnObject {
 				);
 				$params['count'] = false;
 				$vars            = array_merge($params, $args);
-				$search          = $this->searchObject($vars, true);
+				$search          = $this->searchObject($vars);
 				if(!$search) {
 						return false;
 				}

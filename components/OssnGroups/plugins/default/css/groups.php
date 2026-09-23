@@ -333,7 +333,9 @@
 }
 
 .ossn-group-cover img {
-	width: auto;
+    width: 100% !important;
+    max-width: 100% !important;
+	left: 0 !important;	
 }
 
 @media (max-width: 480px) {

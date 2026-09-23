@@ -1,3 +1,10 @@
+OSSN - OPEN SOURCE SOCIAL NETWORK v10.1
+- [E] Redirect should exit on any case #2636
+- [B] Notification close should find elements inside itself #2634
+- [E] Resize images should retain the original format #2632
+- [E] Updates the installation db procedure #2631
+- [B] List user shows Create Campaign button instead of add user #2630
+
 OSSN - OPEN SOURCE SOCIAL NETWORK v10.0
 - [B] Warnings on Themes->GoBlue->Reset #2611
 - [B] themes/goblue/plugins/default/css/exception.css direct css failed to fetch #2612
