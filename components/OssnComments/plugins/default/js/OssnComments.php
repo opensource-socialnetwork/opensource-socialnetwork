@@ -12,16 +12,17 @@ Ossn.register_callback('ossn', 'init', 'ossn_comment_init');
 Ossn.register_callback('ossn', 'init', 'ossn_comment_delete_handler');
 Ossn.register_callback('ossn', 'init', 'ossn_comment_edit');
 Ossn.register_callback('ossn', 'init', 'ossn_comment_post_sm_button');
+Ossn.register_callback('ossn', 'init', 'ossn_view_all_comments');
 
 /**
  * UNIFIED COMMENT ENGINE PIPELINE (Plain-Text Optimized)
  */
-Ossn.ExecuteCommentPipeline = function (targetUrl, $container, typeKey, callbackNamespace) {
+Ossn.ExecuteCommentPipeline = function(targetUrl, $container, typeKey, callbackNamespace) {
 	const $box = $('#comment-box-' + typeKey + $container);
 	const $form = $('#comment-container-' + typeKey + $container);
 
 	// Event Interceptions: Keypress Enter Submission Guards, Space Hooks & Active Input Scanning
-	$box.off('keypress paste drop keyup focus').on('keypress', function (e) {
+	$box.off('keypress paste drop keyup focus').on('keypress', function(e) {
 		// 1. Handle Spacebar Input Callback Trigger
 		if (e.which == 32) {
 			const selection = window.getSelection();
@@ -61,11 +62,11 @@ Ossn.ExecuteCommentPipeline = function (targetUrl, $container, typeKey, callback
 				}
 			}
 		}
-	}).on('paste', function (e) {
+	}).on('paste', function(e) {
 		e.preventDefault();
 		var text = (e.originalEvent || e).clipboardData.getData('text/plain');
 		window.document.execCommand('insertText', false, text);
-	}).on('drop', function (e) {
+	}).on('drop', function(e) {
 		e.preventDefault();
 		var text = (e.originalEvent || e).dataTransfer.getData('text/plain');
 		if (!text) {
@@ -73,7 +74,7 @@ Ossn.ExecuteCommentPipeline = function (targetUrl, $container, typeKey, callback
 		}
 		$box.focus();
 		window.document.execCommand('insertText', false, text);
-	}).on('keyup focus', function (e) {
+	}).on('keyup focus', function(e) {
 		const selection = window.getSelection();
 		if (selection.rangeCount > 0) {
 			const range = selection.getRangeAt(0);
@@ -94,11 +95,11 @@ Ossn.ExecuteCommentPipeline = function (targetUrl, $container, typeKey, callback
 	Ossn.ajaxRequest({
 		url: targetUrl,
 		form: '#comment-container-' + typeKey + $container,
-		beforeSend: function (request) {
+		beforeSend: function(request) {
 			$box.attr('readonly', 'readonly');
 			$box.attr('contenteditable', false);
 		},
-		callback: function (callback) {
+		callback: function(callback) {
 			if (callback['process'] == 1) {
 				$box.removeAttr('readonly');
 				$box.val('');
@@ -125,22 +126,22 @@ Ossn.ExecuteCommentPipeline = function (targetUrl, $container, typeKey, callback
 /**
  * Structural Interface Layer Wrappers 
  */
-Ossn.PostComment = function ($container) {
+Ossn.PostComment = function($container) {
 	const url = Ossn.site_url + 'action/post/comment';
 	Ossn.ExecuteCommentPipeline(url, $container, 'p', 'post');
 };
 
-Ossn.ObjectComment = function ($container) {
+Ossn.ObjectComment = function($container) {
 	const url = Ossn.site_url + 'action/post/object/comment';
 	Ossn.ExecuteCommentPipeline(url, $container, 'o', 'object');
 };
 
-Ossn.EntityComment = function ($container) {
+Ossn.EntityComment = function($container) {
 	const url = Ossn.site_url + 'action/post/entity/comment';
 	Ossn.ExecuteCommentPipeline(url, $container, 'e', 'entity');
 };
 
-Ossn.CommentMenu = function ($id) {
+Ossn.CommentMenu = function($id) {
 	var $element = $($id).find('.menu-links');
 	if ($element.is(":not(:visible)")) {
 		$element.show();
@@ -152,8 +153,8 @@ Ossn.CommentMenu = function ($id) {
 };
 
 function ossn_comment_delete_handler() {
-	$(document).ready(function () {
-		$('body').on('click', '.ossn-delete-comment', function (e) {
+	$(document).ready(function() {
+		$('body').on('click', '.ossn-delete-comment', function(e) {
 			e.preventDefault();
 			var $comment = $(this);
 			var url = $comment.attr('href');
@@ -162,10 +163,10 @@ function ossn_comment_delete_handler() {
 			Ossn.PostRequest({
 				url: url,
 				action: false,
-				beforeSend: function () {
+				beforeSend: function() {
 					$('#comments-item-' + id).attr('style', 'opacity:0.6;');
 				},
-				callback: function (callback) {
+				callback: function(callback) {
 					if (callback == 1) {
 						$('#comments-item-' + id).fadeOut().remove();
 					}
@@ -182,10 +183,10 @@ function ossn_comment_delete_handler() {
 	});
 }
 
-Ossn.CommentImage = function ($container, $ftype) {
+Ossn.CommentImage = function($container, $ftype) {
 	var typeKey = $ftype[0];
-	$(document).ready(function () {
-		$("#ossn-comment-image-file-" + typeKey + $container).off('change').on('change', function (event) {
+	$(document).ready(function() {
+		$("#ossn-comment-image-file-" + typeKey + $container).off('change').on('change', function(event) {
 			event.preventDefault();
 			var formData = new FormData($('#ossn-comment-attachment-' + typeKey + $container)[0]);
 			$.ajax({
@@ -193,7 +194,7 @@ Ossn.CommentImage = function ($container, $ftype) {
 				type: 'POST',
 				data: formData,
 				async: true,
-				beforeSend: function () {
+				beforeSend: function() {
 					$('#ossn-comment-attachment-' + typeKey + $container).find('.image-data')
 						.html('<img src="' + Ossn.site_url + 'components/OssnComments/images/loading.gif" style="width:30px;border:none;height: initial;" />');
 					$('#comment-attachment-container-' + typeKey + $container).show();
@@ -201,7 +202,7 @@ Ossn.CommentImage = function ($container, $ftype) {
 				cache: false,
 				contentType: false,
 				processData: false,
-				success: function (callback) {
+				success: function(callback) {
 					if (callback['success']) {
 						$('#comment-container-' + typeKey + $container).find('input[name="comment-attachment"]').val(callback['file']);
 						$('#ossn-comment-attachment-' + typeKey + $container).find('.image-data')
@@ -221,7 +222,7 @@ Ossn.CommentImage = function ($container, $ftype) {
 						response: callback,
 					});
 				},
-				error: function (xhr, status, error) {
+				error: function(xhr, status, error) {
 					if (error == 'Internal Server Error' || error !== '') {
 						Ossn.MessageBox('syserror/unknown');
 					}
@@ -232,8 +233,8 @@ Ossn.CommentImage = function ($container, $ftype) {
 };
 
 function ossn_comment_edit() {
-	$(document).ready(function () {
-		$('body').on('click', '.ossn-edit-comment', function () {
+	$(document).ready(function() {
+		$('body').on('click', '.ossn-edit-comment', function() {
 			var $dataguid = $(this).attr('data-guid');
 
 			Ossn.MessageBox('comment/edit/' + $dataguid);
@@ -242,10 +243,10 @@ function ossn_comment_edit() {
 			url: Ossn.site_url + "action/comment/edit",
 			containMedia: true,
 			form: '#ossn-comment-edit-form',
-			beforeSend: function () {
+			beforeSend: function() {
 				$('#ossn-comment-edit-form').find('textarea').hide().parent().append('<div class="ossn-loading ossn-box-loading"></div>');
 			},
-			callback: function (callback) {
+			callback: function(callback) {
 				if (callback['success']) {
 					var $text = $('#ossn-comment-edit-form').find('#comment-edit').val();
 					var $guid = $('#ossn-comment-edit-form').find('input[name="guid"]').val();
@@ -255,7 +256,7 @@ function ossn_comment_edit() {
 						Ossn.PostRequest({
 							url: Ossn.site_url + "action/comment/embed",
 							params: 'content=' + encodeURIComponent($text) + '&guid=' + $guid,
-							callback: function (return_data) {
+							callback: function(return_data) {
 								$elem.append(return_data['data']);
 								Ossn.trigger_callback('comment', 'edit:callback', {
 									guid: $guid,
@@ -279,8 +280,8 @@ function ossn_comment_edit() {
  * Update the SM Button handler to use the same clean plain-text method
  */
 function ossn_comment_post_sm_button() {
-	$(document).ready(function () {
-		$('body').on('click', '.comment-post-btn', function () {
+	$(document).ready(function() {
+		$('body').on('click', '.comment-post-btn', function() {
 			var $type = $(this).attr('data-type');
 			var $guid = $(this).attr('data-guid');
 			if ($type == 'p' || $type == 'o' || $type == 'e') {
@@ -301,48 +302,53 @@ function ossn_comment_post_sm_button() {
 		});
 	});
 }
+//[E] Make view all comments js code from out of init and add other callback so it can be easily unset #2627 Open
+function ossn_view_all_comments() {
+	$(document).ready(function() {
+		$('body').on('click', '.ossn-comments-view-all', function() {
+			var type = $(this).attr('data-type');
+			var guid = $(this).attr('data-guid');
+			var acl = $(this).attr('data-acl');
 
-function ossn_comment_init() {
-	$(document).ready(function () {
-	$('body').on('click', '.ossn-comments-view-all', function(){
-			var type = $(this).attr('data-type');														  
-			var guid = $(this).attr('data-guid');	
-			var acl  = $(this).attr('data-acl');
-			
 			acl = 'yes';
-			if(acl == 0){
-				acl = 'no';	
+			if (acl == 0) {
+				acl = 'no';
 			}
 			$(this).parent().fadeOut();
-			
-			$list = $('.ossn-comments-list-'+type+''+guid);
+
+			$list = $('.ossn-comments-list-' + type + '' + guid);
 			$list.addClass("ossn-comments-loading");
 			$loader = "<div class='p-4'><div class='ossn-loading mx-auto'></div></div>";
 			$list.html($loader);
-			
+
 			Ossn.PostRequest({
-				url: Ossn.site_url + 'action/comments/all?type='+type+'&guid='+guid+'&acl='+acl,
-				callback:function(result){
-					if(result.list){
+				url: Ossn.site_url + 'action/comments/all?type=' + type + '&guid=' + guid + '&acl=' + acl,
+				callback: function(result) {
+					if (result.list) {
 						$list.html(result.list);
 					}
 				},
 			});
+		});
+
 	});
-	
-		$('body').on('click', '.comment-post', function () {
+}
+
+function ossn_comment_init() {
+	$(document).ready(function() {
+		$('body').on('click', '.comment-post', function() {
 			var $guid = $(this).attr('data-guid');
 			if ($guid) {
 				$("#comment-box-p" + $guid).focus();
 			}
 		});
-		$('body').on('click', '.comment-entity', function () {
+		$('body').on('click', '.comment-entity', function() {
 			var $guid = $(this).attr('data-guid');
 			if ($guid) {
 				$("#comment-box-e" + $guid).focus();
 			}
 		});
-		$('body').on('click', '.comment-object', function () {
+		$('body').on('click', '.comment-object', function() {
 			var $guid = $(this).attr('data-guid');
 			if ($guid) {
 				$("#comment-box-o" + $guid).focus();
