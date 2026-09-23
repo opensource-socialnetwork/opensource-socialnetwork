@@ -8,11 +8,15 @@
  * @license   Open Source Social Network License (OSSN LICENSE)  http://www.opensource-socialnetwork.org/licence
  * @link      https://www.opensource-socialnetwork.org/
  */
+
+header('Content-Type: application/json');
+
 $guid = input('guid');
 $post = input('post');
 
 $object = ossn_get_object($guid);
 $user   = ossn_loggedin_user();
+
 if($object && (strlen($post) || $object->{'file:wallphoto'})) {
 		//[B] Emoji problem introduced in 6.4 #2186
 		//[E] Normalize Wall Remove JSON #2460
@@ -30,8 +34,14 @@ if($object && (strlen($post) || $object->{'file:wallphoto'})) {
 				$params['object'] = $object;
 				ossn_trigger_callback('wall', 'post:edited', $params);
 
-				ossn_trigger_message(ossn_print('ossn:wall:post:saved'));
-				return;
+				echo json_encode(array(
+						'success' => true,
+				));
+				exit();
 		}
 }
-ossn_trigger_message(ossn_print('ossn:wall:post:save:error'), 'error');
+
+echo json_encode(array(
+		'error' => ossn_print('ossn:wall:post:save:error'),
+));
+exit();

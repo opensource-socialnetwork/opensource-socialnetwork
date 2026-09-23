@@ -9,6 +9,8 @@
  * @link      https://www.opensource-socialnetwork.org/
  */
 
+header('Content-Type: application/json');
+
 $OssnWall = new OssnWall();
 
 $OssnWall->poster_guid = ossn_loggedin_user()->guid;
@@ -31,35 +33,40 @@ if($friends) {
 		$friend_guids = array_unique($friend_guids);
 		$friends      = array();
 		foreach ($friend_guids as $guid) {
-				if($group->isMember($group->guid, $guid)) {
+				if($group && $group->isMember($group->guid, $guid)) {
 						$friends[] = $guid;
 				}
 		}
 		$friends = implode(',', $friends);
 }
+
 if($group && $OssnWall->Post($post, $friends, $location, OSSN_PRIVATE)) {
-		if(ossn_is_xhr()) {
-				$guid = $OssnWall->getObjectId();
-				$get  = $OssnWall->GetPost($guid);
-				if($get) {
-						$get = ossn_wallpost_to_item($get);
-						ossn_set_ajax_data(array(
-								'post' => ossn_wall_view_template($get),
-						));
-				}
-		}
-		//no need to show message on success.
-		//3.x why not? $arsalanshah
-		ossn_trigger_message(ossn_print('post:created'));
+		$params = array(
+				'success' => true,
+		);
+
+		// Append file upload warning/error if present during a successful post
 		if(isset($OssnWall->OssnFile) && isset($OssnWall->OssnFile->error)) {
-				ossn_trigger_message($OssnWall->OssnFile->getFileUploadError($OssnWall->OssnFile->error), 'error');
+				$params['error'] = $OssnWall->OssnFile->getFileUploadError($OssnWall->OssnFile->error);
 		}
-		redirect(REF);
+
+		$guid = $OssnWall->getObjectId();
+		$get  = $OssnWall->GetPost($guid);
+		if($get) {
+				$get            = ossn_wallpost_to_item($get);
+				$params['post'] = ossn_wall_view_template($get);
+		}
+
+		echo json_encode($params);
+		exit();
 } else {
+		$error_msg = ossn_print('post:create:error');
 		if(isset($OssnWall->OssnFile) && isset($OssnWall->OssnFile->error)) {
-				ossn_trigger_message($OssnWall->OssnFile->getFileUploadError($OssnWall->OssnFile->error), 'error');
-		} else {
-				ossn_trigger_message(ossn_print('post:create:error'), 'error');
+				$error_msg = $OssnWall->OssnFile->getFileUploadError($OssnWall->OssnFile->error);
 		}
-		redirect(REF);
+
+		echo json_encode(array(
+				'error' => $error_msg,
+		));
+		exit();
 }

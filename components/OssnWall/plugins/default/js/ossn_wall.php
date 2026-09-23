@@ -352,9 +352,9 @@ function ossn_wall_postform() {
 				if (callback['success']) {
 					//[E] Hide a success message when post is added #1745
 					//Ossn.trigger_message(callback['success']);
-					if (callback['data']['post']) {
-						var new_post = callback['data']['post'];
-						$('.user-activity').prepend($(callback['data']['post']).hide().fadeIn('slow'));
+					if (callback['post']) {
+						var new_post = callback['post'];
+						$('.user-activity').prepend($(callback['post']).hide().fadeIn('slow'));
 						// mark post as 'new' in order to distinguish it on deleting
 						// new posts must not trigger inserts on deleting !!
 						$('.user-activity div').first().attr('post', 'new');
