@@ -61,10 +61,15 @@ Ossn.RegisterStartupFunction(function() {
 							},
 							success: function(callback) {
 								if(callback['success']) {
+									var btnsp = '<div class="ossn-group-cover-button"> <a href="javascript:void(0);" id="reposition-group-cover" class="button-grey">'+Ossn.Print('reposition:cover')+'</a> <a href="javascript:void(0);" id="add-cover-group" class="button-grey">'+Ossn.Print('change:cover')+'</a> </div>';
+									$('.ossn-group-cover').prepend(btnsp);
+									
 									$time = $.now();
 									$('.ossn-group-cover').find('img').attr('style', '');
 									$('.ossn-group-cover').find('img').show();
 									$('.ossn-group-cover').find('img').attr('src', callback['url']);
+									$('.ossn-group-cover').find('img').attr('id', 'draggable');
+									ossn_group_cover_drag();
 								} else {
 									// server side errors like exceeded max_upload_size go here
 									Ossn.trigger_message(callback['error'], 'error');
@@ -114,14 +119,72 @@ Ossn.RegisterStartupFunction(function() {
 		});
 	});
 });
+function ossn_group_cover_drag() {
+    Ossn.Drag(function(ui) {
+        // y1 = Container Height, y2 = Image Height
+        var y1 = $('.ossn-group-cover').height(); 
+        var y2 = $('.ossn-group-cover img').height();
 
+        // 1. Prevent dragging down past top edge
+        if (ui.position.top >= 0) {
+            ui.position.top = 0;
+        } 
+        // 2. Prevent dragging up past bottom edge (y1 - y2 is a negative number)
+        else if (ui.position.top <= (y1 - y2)) {
+            ui.position.top = (y1 - y2);
+        }
+
+        var current_cover_height = 0;
+        var current_cover_width = 0;
+        if ($('.ossn-group-cover img').length) {
+            current_cover_height = ~~($('.ossn-group-cover img').height() + 0.5);
+            current_cover_width = ~~($('.ossn-group-cover img').width() + 0.5);
+        }
+
+        if (current_cover_width < 1024) {
+            var theme_config = $('#ossn-theme-config');
+            var default_cover_height = theme_config.attr('data-desktop-cover-height');
+            var default_cover_width = theme_config.attr('data-minimum-cover-image-width');
+
+            // Mobile scaling factors calculation continues...
+            const desktop_cover_width = default_cover_width;
+            const desktop_cover_height = default_cover_height;
+
+            var real_image_width = document.querySelector("#draggable").naturalWidth;
+            var real_image_height = document.querySelector("#draggable").naturalHeight;
+
+            var mobile_height_factor = real_image_height / current_cover_height;
+            var mobile_pixel_width = desktop_cover_width / mobile_height_factor;
+            var mobile_width_factor = current_cover_width / mobile_pixel_width;
+            var mobile_pixel_height = mobile_width_factor * current_cover_height;
+            mobile_pixel_width = parseInt($('#draggable').css('width'));
+
+            var desktop_scroll_top_max = real_image_height - desktop_cover_height;
+            var mobile_scroll_top_max = mobile_pixel_height - current_cover_height;
+            var height_scaling_factor = desktop_scroll_top_max / mobile_scroll_top_max;
+
+            var desktop_scroll_left_max = real_image_width - desktop_cover_width;
+            var mobile_scroll_left_max = mobile_pixel_width - current_cover_width;
+            var width_scaling_factor = desktop_scroll_left_max / mobile_scroll_left_max;
+
+            var cover_top = parseInt(ui.position.top);
+            var cover_left = parseInt(ui.position.left);
+
+            var mobile_pixel_top = cover_top * height_scaling_factor;
+            var mobile_pixel_left = cover_left * width_scaling_factor;
+
+            $('.ossn-group-cover img').attr('data-scaled_top', parseInt(mobile_pixel_top) + "px");
+            $('.ossn-group-cover img').attr('data-scaled_left', parseInt(mobile_pixel_left) + "px");
+        }
+    });
+}
 Ossn.RegisterStartupFunction(function() {
 	$(document).ready(function() {
 		$('#reposition-group-cover').on('click', function() {
 			$('.group-c-position').attr('style', 'display:inline-block !important;');
 			$('.ossn-group-cover-button').hide();
 			$('.ossn-group-cover').unbind('mouseenter').unbind('mouseleave');
-			Ossn.Drag();
+			ossn_group_cover_drag();
 		});
 	});
 });
