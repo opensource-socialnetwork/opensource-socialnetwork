@@ -358,18 +358,15 @@ function redirect_external($url = '') {
 		if(empty($url)) {
 				return false;
 		}
-		if(ossn_is_xhr()) {
-				$Ossn->redirect = $url;
-		} else {
-				header("Location: {$url}");
-				exit();
-		}
+		header("Location: {$url}");
+		exit();
 }
 /**
  * Redirect a user to specific url
  *
  * @param string $new uri of page. If it is REF then user redirected to the url that user just came from.
  *
+ * [E] Redirect should exit on any case #2636
  * @return return
  */
 function redirect($new = '') {
@@ -382,8 +379,27 @@ function redirect($new = '') {
 						$url = ossn_site_url();
 				}
 		}
+
 		if(ossn_is_xhr()) {
-				$Ossn->redirect = $url;
+				header('Content-Type: application/json');
+
+				$vars = array();
+				if(isset($_SESSION['ossn_messages']['success']) && !empty($_SESSION['ossn_messages']['success'])) {
+						$vars['success'] = $_SESSION['ossn_messages']['success'];
+				}
+
+				// danger = error bootstrap
+				if(isset($_SESSION['ossn_messages']['danger']) && !empty($_SESSION['ossn_messages']['danger'])) {
+						$vars['error'] = $_SESSION['ossn_messages']['danger'];
+				}
+
+				// Clear the session messages so they don't persist
+				$_SESSION['ossn_messages'] = array();
+
+				$vars['redirect'] = $url;
+
+				echo json_encode($vars);
+				exit();
 		} else {
 				header("Location: {$url}");
 				exit();
