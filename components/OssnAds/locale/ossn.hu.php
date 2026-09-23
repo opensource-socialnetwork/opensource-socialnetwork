@@ -31,7 +31,7 @@ $hu = array(
 	'ad:gender:target'              => 'Demográfiai célzás nemek szerint',
 	'ad:end:date'                   => 'Kampány lejárati dátuma (Opcionális)',
 	'ad:photo'                      => 'Banner hirdetés képe',
-	'add'                           => 'Kampány létrehozása',
+	'add:campaign'                           => 'Kampány létrehozása',
 
 	'ad:placement:newsfeed'         => 'Aktivitási hírfolyam (Oldalsáv)',
 	'ad:placement:profile'          => 'Felhasználói profilok (Oldalsáv)',

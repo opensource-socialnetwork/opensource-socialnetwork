@@ -31,7 +31,7 @@ $de = array(
 	'ad:gender:target'              => 'Demografisches Targeting nach Geschlecht',
 	'ad:end:date'                   => 'Ablaufdatum der Kampagne (Optional)',
 	'ad:photo'                      => 'Banner-Designbild',
-	'add'                           => 'Kampagne erstellen',
+	'add:campaign'                           => 'Kampagne erstellen',
 
 	'ad:placement:newsfeed'         => 'Aktivitäts-Newsfeed (Seitenleiste)',
 	'ad:placement:profile'          => 'Benutzerprofile (Seitenleiste)',

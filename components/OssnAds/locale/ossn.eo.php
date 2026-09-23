@@ -31,7 +31,7 @@ $eo = array(
 	'ad:gender:target'              => 'Demografia Celo laŭ Sekso',
 	'ad:end:date'                   => 'Limdato de la Kampanjo (Nedeviga)',
 	'ad:photo'                      => 'Kreaĵa Bildo de la standardo',
-	'add'                           => 'Krei Kampanjon',
+	'add:campaign'                           => 'Krei Kampanjon',
 
 	'ad:placement:newsfeed'         => 'Agaddfluo / Novaĵfluo (Flankstango)',
 	'ad:placement:profile'          => 'Uzantaj Profiloj (Flankstango)',

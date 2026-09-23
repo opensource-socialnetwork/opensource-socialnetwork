@@ -31,7 +31,7 @@ $id = array(
 	'ad:gender:target'              => 'Target Demografis Jenis Kelamin',
 	'ad:end:date'                   => 'Tanggal Berakhir Kampanye (Opsional)',
 	'ad:photo'                      => 'Gambar Kreatif Banner',
-	'add'                           => 'Buat Kampanye',
+	'add:campaign'                           => 'Buat Kampanye',
 
 	'ad:placement:newsfeed'         => 'Kabar Beranda Aktivitas (Bilah Sisi)',
 	'ad:placement:profile'          => 'Profil Pengguna (Bilah Sisi)',

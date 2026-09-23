@@ -31,7 +31,7 @@ $en = array(
 	'ad:gender:target'              => 'Demographic Gender Targeting',
 	'ad:end:date'                   => 'Campaign Expiry Date (Optional)',
 	'ad:photo'                      => 'Banner Creative Image',
-	'add'                           => 'Create Campaign',
+	'add:campaign'                           => 'Create Campaign',
 
 	'ad:placement:newsfeed'         => 'Activity Newsfeed (Sidebar)',
 	'ad:placement:profile'          => 'User Profiles (Sidebar)',

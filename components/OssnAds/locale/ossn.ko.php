@@ -31,7 +31,7 @@ $ko = array(
 	'ad:gender:target'              => '인구통계학적 성별 타겟팅',
 	'ad:end:date'                   => '캠페인 마감일 (선택 사항)',
 	'ad:photo'                      => '배너 광고 이미지',
-	'add'                           => '캠페인 생성',
+	'add:campaign'                           => '캠페인 생성',
 
 	'ad:placement:newsfeed'         => '활동 뉴스피드 (사이드바)',
 	'ad:placement:profile'          => '사용자 프로필 (사이드바)',

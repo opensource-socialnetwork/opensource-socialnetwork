@@ -31,7 +31,7 @@ $he = array(
 	'ad:gender:target'              => 'מיקוד דמוגרפי לפי מגדר',
 	'ad:end:date'                   => 'תאריך תפוגת הקמפיין (אופציונלי)',
 	'ad:photo'                      => 'קובץ תמונת הבאנר',
-	'add'                           => 'צור קמפיין',
+	'add:campaign'                           => 'צור קמפיין',
 
 	'ad:placement:newsfeed'         => 'פיד פעילות (סרגל צד)',
 	'ad:placement:profile'          => 'פרופילי משתמשים (סרגל צד)',

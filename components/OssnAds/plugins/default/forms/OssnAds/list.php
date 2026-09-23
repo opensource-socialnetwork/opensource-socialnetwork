@@ -80,7 +80,7 @@ $cannot_edit_bold = '<strong>' . ossn_print('ossn:adscron:cannot:edit') . '</str
     
 	<div class="ossn-ads-admin-buttons-top">
     	<a href="<?php echo ossn_site_url("administrator/component/OssnAds?settings=add"); ?>" class="ossn-ad-btn ossn-ad-btn-success">
-        	<i class="fa fa-plus"></i> <?php echo ossn_print('add'); ?>
+        	<i class="fa fa-plus"></i> <?php echo ossn_print('add:campaign'); ?>
     	</a>
    	 	<input type="submit" class="ossn-ad-btn ossn-ad-btn-danger ossn-ad-btn-right" value="<?php echo ossn_print('delete'); ?>"/>
 	</div>

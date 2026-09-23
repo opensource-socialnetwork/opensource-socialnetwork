@@ -125,7 +125,7 @@
     <!-- Submission Footer Section -->
     <div class="form-actions-fancy">
         <button type="submit" class="btn-fancy-success">
-            <i class="fa fa-plus-circle"></i> <?php echo ossn_print('add'); ?>
+            <i class="fa fa-plus-circle"></i> <?php echo ossn_print('add:campaign'); ?>
         </button>
     </div>
 </div>

@@ -32,7 +32,7 @@ $tr = array(
 		'ad:gender:target'              => 'Demografik Cinsiyet Hedefleme',
 		'ad:end:date'                   => 'Kampanya Bitiş Tarihi (İsteğe Bağlı)',
 		'ad:photo'                      => 'Görsel Banner',
-		'add'                           => 'Kampanya Oluştur',
+		'add:campaign'                           => 'Kampanya Oluştur',
 
 		'ad:placement:newsfeed'         => 'Haber Kaynağı (Yan Menü)',
 		'ad:placement:profile'          => 'Kullanıcı Profilleri (Yan Menü)',

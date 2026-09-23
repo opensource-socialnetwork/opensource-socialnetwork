@@ -31,7 +31,7 @@ $pt_br = array(
 	'ad:gender:target'              => 'Direcionamento Demográfico por Gênero',
 	'ad:end:date'                   => 'Data de Expiração da Campanha (Opcional)',
 	'ad:photo'                      => 'Imagem da Arte do Banner',
-	'add'                           => 'Criar Campanha',
+	'add:campaign'                           => 'Criar Campanha',
 
 	'ad:placement:newsfeed'         => 'Feed de Notícias/Atividades (Barra Lateral)',
 	'ad:placement:profile'          => 'Perfis de Usuários (Barra Lateral)',

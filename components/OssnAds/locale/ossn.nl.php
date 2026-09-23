@@ -31,7 +31,7 @@ $nl = array(
 	'ad:gender:target'              => 'Demografische doelgroepbepaling (Geslacht)',
 	'ad:end:date'                   => 'Einddatum campagne (Optioneel)',
 	'ad:photo'                      => 'Banner afbeelding',
-	'add'                           => 'Campagne aanmaken',
+	'add:campaign'                           => 'Campagne aanmaken',
 
 	'ad:placement:newsfeed'         => 'Activiteitenoverzicht / Newsfeed (Zijbalk)',
 	'ad:placement:profile'          => 'Gebruikersprofielen (Zijbalk)',

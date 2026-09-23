@@ -31,7 +31,7 @@ $it = array(
 	'ad:gender:target'              => 'Targetizzazione Demografica per Genere',
 	'ad:end:date'                   => 'Data di Scadenza della Campagna (Opzionale)',
 	'ad:photo'                      => 'Immagine Creativa del Banner',
-	'add'                           => 'Crea Campagna',
+	'add:campaign'                           => 'Crea Campagna',
 
 	'ad:placement:newsfeed'         => 'Feed delle Attività / Newsfeed (Barra Laterale)',
 	'ad:placement:profile'          => 'Profili Utente (Barra Laterale)',

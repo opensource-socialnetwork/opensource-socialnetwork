@@ -31,7 +31,7 @@ $fr = array(
 	'ad:gender:target'              => 'Criblage démographique par genre',
 	'ad:end:date'                   => 'Date d\'expiration de la campagne (Facultatif)',
 	'ad:photo'                      => 'Image de la création de la bannière',
-	'add'                           => 'Créer la campagne',
+	'add:campaign'                           => 'Créer la campagne',
 
 	'ad:placement:newsfeed'         => 'Fil d\'actualité des activités (Barre latérale)',
 	'ad:placement:profile'          => 'Profils d\'utilisateurs (Barre latérale)',

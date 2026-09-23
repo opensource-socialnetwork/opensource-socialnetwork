@@ -31,7 +31,7 @@ $da = array(
 	'ad:gender:target'              => 'Demografisk målretning efter køn',
 	'ad:end:date'                   => 'Kampagnens udløbsdato (Valgfri)',
 	'ad:photo'                      => 'Billede til banner',
-	'add'                           => 'Opret kampagne',
+	'add:campaign'                           => 'Opret kampagne',
 
 	'ad:placement:newsfeed'         => 'Aktivitetsnyhedsfeed (Sidebjælke)',
 	'ad:placement:profile'          => 'Brugerprofiler (Sidebjælke)',

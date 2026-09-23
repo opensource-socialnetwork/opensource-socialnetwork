@@ -31,7 +31,7 @@ $ja = array(
 	'ad:gender:target'              => '性別ターゲティング',
 	'ad:end:date'                   => 'キャンペーン終了日 (任意)',
 	'ad:photo'                      => 'バナー広告画像',
-	'add'                           => 'キャンペーンを作成',
+	'add:campaign'                           => 'キャンペーンを作成',
 
 	'ad:placement:newsfeed'         => 'アクティビティ・ニュースフィード (サイドバー)',
 	'ad:placement:profile'          => 'ユーザープロフィール (サイドバー)',

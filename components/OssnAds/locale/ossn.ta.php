@@ -31,7 +31,7 @@ $ta = array(
 	'ad:gender:target'              => 'பாலின அடிப்படையிலான இலக்கு',
 	'ad:end:date'                   => 'பிரச்சாரத்தின் முடிவுத் தேதி (விருப்பத்திற்குரியது)',
 	'ad:photo'                      => 'பேனர் விளம்பரப் படம்',
-	'add'                           => 'பிரச்சாரத்தை உருவாக்கு',
+	'add:campaign'                           => 'பிரச்சாரத்தை உருவாக்கு',
 
 	'ad:placement:newsfeed'         => 'செய்தியோடை பக்கவாட்டுப் பகுதி (Activity Newsfeed Sidebar)',
 	'ad:placement:profile'          => 'பயனர் சுயவிவர பக்கவாட்டுப் பகுதி (User Profiles Sidebar)',

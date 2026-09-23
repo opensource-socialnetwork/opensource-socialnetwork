@@ -32,7 +32,7 @@ $zh = array(
 		'ad:gender:target'              => '受众性别定向',
 		'ad:end:date'                   => '广告活动结束日期（选填）',
 		'ad:photo'                      => '横幅广告图片',
-		'add'                           => '创建广告活动',
+		'add:campaign'                           => '创建广告活动',
 
 		'ad:placement:newsfeed'         => '动态消息（侧边栏）',
 		'ad:placement:profile'          => '用户个人主页（侧边栏）',

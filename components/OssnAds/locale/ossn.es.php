@@ -33,7 +33,7 @@ $es = array(
 	'ad:gender:target'              => 'Segmentación demográfica por género',
 	'ad:end:date'                   => 'Fecha de finalización de la campaña (Opcional)',
 	'ad:photo'                      => 'Imagen del diseño del banner',
-	'add'                           => 'Crear campaña',
+	'add:campaign'                           => 'Crear campaña',
 
 	'ad:placement:newsfeed'         => 'Sección de noticias de actividad (Barra lateral)',
 	'ad:placement:profile'          => 'Perfiles de usuario (Barra lateral)',

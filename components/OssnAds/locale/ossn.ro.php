@@ -31,7 +31,7 @@ $ro = array(
 	'ad:gender:target'              => 'Targetare Demografică în Funcție de Gen',
 	'ad:end:date'                   => 'Data de Expirare a Campaniei (Opțional)',
 	'ad:photo'                      => 'Imagine Banner Publicitar',
-	'add'                           => 'Creează Campanie',
+	'add:campaign'                           => 'Creează Campanie',
 
 	'ad:placement:newsfeed'         => 'Flux de Activități / Newsfeed (Secțiunea Laterală)',
 	'ad:placement:profile'          => 'Profiluri Utilizatori (Secțiunea Laterală)',
