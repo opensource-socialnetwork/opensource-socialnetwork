@@ -17,7 +17,7 @@ Ossn.NotificationBox = function($title, $meta, $type, height, $extra) {
 		//height = '540px';
 	}
 	if ($type) {
-		$('.selected').addClass($type);
+		$('.ossn-notifications-box .selected').addClass($type);
 	}
 	if ($title) {
 		$('.ossn-notifications-box').show()
@@ -33,7 +33,7 @@ Ossn.NotificationBoxClose = function() {
 	$('.ossn-notifications-box').find('.type-name').html('');
 	$('.ossn-notifications-box').find('.metadata').html('<div><div class="ossn-loading ossn-notification-box-loading"></div></div><div class="bottom-all">---</div>');
 	//$('.ossn-notifications-box').css('height', '140px');
-	$('.selected').attr('class', 'selected');
+	$('.ossn-notifications-box .selected').attr('class', 'selected');
 
 };
 Ossn.NotificationShow = function($div) {
