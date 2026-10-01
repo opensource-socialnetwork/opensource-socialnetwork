@@ -4,6 +4,12 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v10.1
 - [E] Resize images should retain the original format #2632
 - [E] Updates the installation db procedure #2631
 - [B] List user shows Create Campaign button instead of add user #2630
+- [B] Groups cover have some issue not showing full width + repotion doesn't appear on new cover #2629 Open
+- [E] OssnGroups:: searchGroups #2628
+- [B] Buttons moves down on wall #2625
+- [E] Make view all comments js code from out of init and add other callback so it can be easily unset #2627 Open
+- [E] Update output/users_list take from goblue output #2626
+- [E] Add callback for object save()/update #2637
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v10.0
 - [B] Warnings on Themes->GoBlue->Reset #2611

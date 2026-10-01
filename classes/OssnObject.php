@@ -526,7 +526,7 @@ class OssnObject extends OssnEntities {
 						unset($params['params']);
 						unset($params['limit']);
 						unset($params['order_by']);
-						
+
 						$count           = array();
 						$count['params'] = array(
 								"count({$distinct}o.guid) as total",
@@ -573,6 +573,9 @@ class OssnObject extends OssnEntities {
 								$this->owner_guid,
 						);
 						if($this->updateObject($names, $values, $this->guid)) {
+								ossn_trigger_callback('object', 'save', array(
+										'object' => $this,
+								));
 								return true;
 						}
 				}
