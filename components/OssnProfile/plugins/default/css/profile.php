@@ -40,7 +40,9 @@
 }
 
 .ossn-profile .top-container .profile-cover img {
-	width: auto;
+	width: 100% !important;
+    max-width: 100% !important;
+    left: 0 !important;
 }
 
 .ossn-profile-row {

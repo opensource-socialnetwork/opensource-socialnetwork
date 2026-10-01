@@ -73,8 +73,8 @@ Ossn.RegisterStartupFunction(function() {
 					var mobile_pixel_top = cover_top * height_scaling_factor;
 					var mobile_pixel_left = cover_left * width_scaling_factor;
 					
-					$('.profile-cover-img').attr('data-scaled_top', parseInt(mobile_pixel_top)+"px");
-					$('.profile-cover-img').attr('data-scaled_left', parseInt(mobile_pixel_left)+"px");
+					$('.profile-cover-img').attr('data-scaled_top', (parseInt(cover_top * height_scaling_factor) || 0) + "px");
+					$('.profile-cover-img').attr('data-scaled_left', (parseInt(cover_left * width_scaling_factor) || 0) + "px");
 				}
 			});
 		});

@@ -57,10 +57,9 @@ if($params['group']->membership == OSSN_PUBLIC || ($params['group']->membership 
                 </form>
             <?php } ?>
 
-            <?php if ($cover && ossn_isLoggedin()) { ?>
+            <?php if (ossn_isLoggedin()) { ?>
                 <div class="ossn-group-cover" id="container">
-
-                    <?php if ($params['group']->owner_guid == ossn_loggedin_user()->guid || ossn_isAdminLoggedin()) { ?>
+                    <?php if ($cover && ($params['group']->owner_guid == ossn_loggedin_user()->guid || ossn_isAdminLoggedin())) { ?>
                         <div class="ossn-group-cover-button">
                             <a href="javascript:void(0);" id="reposition-group-cover" class="button-grey">
                                 <?php echo ossn_print('reposition:cover'); ?>
@@ -70,12 +69,15 @@ if($params['group']->membership == OSSN_PUBLIC || ($params['group']->membership 
                             </a>
                         </div>
                     <?php } ?>
-
+					<?php if($cover){ ?>
                     <img id="draggable"
                         src="<?php echo $params['group']->coverURL(); ?>"
                         style="<?php echo $cover_top; ?><?php echo $cover_left; ?>"
                         data-top="<?php echo $coverp[0]; ?>"
                         data-left="<?php echo $coverp[1]; ?>"/>
+                     <?php } else { ?>
+                     <img id="draggable" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" />                    
+                     <?php } ?> 
                 </div>
             <?php } ?>
 

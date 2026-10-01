@@ -173,14 +173,14 @@ function ossn_group_cover_drag() {
             var mobile_pixel_top = cover_top * height_scaling_factor;
             var mobile_pixel_left = cover_left * width_scaling_factor;
 
-            $('.ossn-group-cover img').attr('data-scaled_top', parseInt(mobile_pixel_top) + "px");
-            $('.ossn-group-cover img').attr('data-scaled_left', parseInt(mobile_pixel_left) + "px");
+			$('.ossn-group-cover img').attr('data-scaled_top', (parseInt(mobile_pixel_top) || 0) + "px");
+			$('.ossn-group-cover img').attr('data-scaled_left', (parseInt(mobile_pixel_left) || 0) + "px");
         }
     });
 }
 Ossn.RegisterStartupFunction(function() {
 	$(document).ready(function() {
-		$('#reposition-group-cover').on('click', function() {
+		$('body').on('click', '#reposition-group-cover', function() {
 			$('.group-c-position').attr('style', 'display:inline-block !important;');
 			$('.ossn-group-cover-button').hide();
 			$('.ossn-group-cover').unbind('mouseenter').unbind('mouseleave');
