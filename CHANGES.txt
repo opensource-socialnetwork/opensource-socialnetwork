@@ -10,6 +10,7 @@ OSSN - OPEN SOURCE SOCIAL NETWORK v10.1
 - [E] Make view all comments js code from out of init and add other callback so it can be easily unset #2627 Open
 - [E] Update output/users_list take from goblue output #2626
 - [E] Add callback for object save()/update #2637
+- [B] Allow only scale image on top and bottom #2638
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v10.0
 - [B] Warnings on Themes->GoBlue->Reset #2611
