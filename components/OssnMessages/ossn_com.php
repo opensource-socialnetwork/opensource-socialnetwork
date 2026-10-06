@@ -9,7 +9,7 @@
  * @link      https://www.opensource-socialnetwork.org/
  */
 define('__OSSN_MESSAGES__', ossn_route()->com . 'OssnMessages/');
-require_once(__OSSN_MESSAGES__ . 'classes/OssnMessages.php');
+require_once __OSSN_MESSAGES__ . 'classes/OssnMessages.php';
 
 /**
  * Ossn messages
@@ -18,7 +18,7 @@ require_once(__OSSN_MESSAGES__ . 'classes/OssnMessages.php');
  * @return object
  */
 function OssnMessages() {
-		$OssnMessages = new OssnMessages;
+		$OssnMessages = new OssnMessages();
 		return $OssnMessages;
 }
 /**
@@ -30,29 +30,28 @@ function ossn_messages() {
 		ossn_extend_view('css/ossn.default', 'css/message');
 		ossn_register_page('messages', 'ossn_messages_page');
 		ossn_extend_view('js/ossn.site', 'js/OssnMessages');
-		
+
 		if(ossn_isLoggedin()) {
 				ossn_register_action('message/send', __OSSN_MESSAGES__ . 'actions/message/send.php');
 				ossn_register_action('message/delete', __OSSN_MESSAGES__ . 'actions/message/delete.php');
 				ossn_register_action('message/delete_conversation', __OSSN_MESSAGES__ . 'actions/message/delete_conversation.php');
-				
+
 				$user_loggedin = ossn_loggedin_user();
 				$icon          = ossn_site_url('components/OssnMessages/images/messages.png');
 				ossn_register_sections_menu('newsfeed', array(
-						'name' => 'messages',
-						'text' => ossn_print('user:messages'),
-						'url' => ossn_site_url('messages/all'),
+						'name'   => 'messages',
+						'text'   => ossn_print('user:messages'),
+						'url'    => ossn_site_url('messages/all'),
 						'parent' => 'links',
-						'icon' => $icon
+						'icon'   => $icon,
 				));
-				
 		}
 		//callbacks
 		ossn_register_callback('user', 'delete', 'ossn_user_messages_delete');
 		//add messages entity type
 		ossn_add_hook('entities', 'types', 'ossn_messages_entity_type');
 		//make links clickable
-		ossn_add_hook('message', 'print', 'ossn_linkify_messages_print');	
+		ossn_add_hook('message', 'print', 'ossn_linkify_messages_print');
 }
 /**
  * Ossn messages page handler
@@ -65,199 +64,205 @@ function ossn_messages_page($pages) {
 		if(!ossn_isLoggedin()) {
 				ossn_error_page();
 		}
- 		ossn_unload_js('ossn.chat');
-  	    ossn_unextend_view('ossn/page/footer', 'chat/chatbar');	
-			
+		ossn_unload_js('ossn.chat');
+		ossn_unextend_view('ossn/page/footer', 'chat/chatbar');
+
 		ossn_load_external_css('jquery.fancybox.min.css');
 		ossn_load_external_js('jquery.fancybox.min.js');
-		
-		$OssnMessages = new OssnMessages;
+
+		$OssnMessages = new OssnMessages();
 		$page         = $pages[0];
 		if(empty($page)) {
 				$page = 'all';
 		}
-		switch($page) {
-				case 'message':
-						$username = $pages[1];
-						if(!empty($username)) {
-								$user = ossn_user_by_username($username);
+		switch ($page) {
+		case 'message':
+				$username = $pages[1];
+				if(!empty($username)) {
+						$user = ossn_user_by_username($username);
+						if(empty($user->guid)) {
+								ossn_error_page();
+						}
+						//[E] Stop user sending message to himself #1836
+						if($user->username == ossn_loggedin_user()->username) {
+								redirect('messages/all');
+						}
+						$title = ossn_print('ossn:message:between', array(
+								$user->fullname,
+						));
+						$OssnMessages->markViewed($user->guid, ossn_loggedin_user()->guid);
+						$params['data']  = $OssnMessages->getWith(ossn_loggedin_user()->guid, $user->guid);
+						$params['count'] = $OssnMessages->getWith(ossn_loggedin_user()->guid, $user->guid, true);
+						$params['user']  = $user;
+
+						$loggedin_guid          = ossn_loggedin_user()->guid;
+						$params['recent']       = $OssnMessages->recentChat($loggedin_guid);
+						$params['count_recent'] = $OssnMessages->recentChat($loggedin_guid, true);
+
+						$contents = array(
+								'content' => ossn_plugin_view('messages/pages/view', $params),
+						);
+						$content = ossn_set_page_layout('contents', $contents);
+						echo ossn_view_page($title, $content);
+				} else {
+						ossn_error_page();
+				}
+				break;
+		case 'delete':
+				$id      = input('id');
+				$message = ossn_get_message($id);
+				$user    = ossn_loggedin_user()->guid;
+				if($message && ($message->message_from == $user || $message->message_to == $user)) {
+						$params = array(
+								'title'    => ossn_print('delete'),
+								'contents' => ossn_view_form('OssnMessages/delete', array(
+										'action' => ossn_site_url('action/message/delete'),
+										'id'     => 'ossn-message-delete-form',
+										'params' => array(
+												'message' => $message,
+										),
+								)),
+								'button'   => ossn_print('delete'),
+								'callback' => '#ossn-md-edit-save',
+						);
+						echo ossn_plugin_view('output/ossnbox', $params);
+				}
+				break;
+		case 'delete_conversation':
+				$id = input('id');
+				if($id) {
+						$params = array(
+								'title'    => ossn_print('delete'),
+								'contents' => ossn_view_form('OssnMessages/delete_conversation', array(
+										'action' => ossn_site_url('action/message/delete_conversation'),
+										'id'     => 'ossn-message-delete-conv-form',
+								)),
+								'button'   => ossn_print('delete'),
+								'callback' => '#ossn-mdc-save',
+						);
+						echo ossn_plugin_view('output/ossnbox', $params);
+				}
+				break;
+		case 'attachment':
+				$file = ossn_get_file($pages[1]);
+				if($file && $file->type == 'message' && $file->subtype == 'file:attachment') {
+						$message   = ossn_get_message($file->owner_guid);
+						$user_guid = ossn_loggedin_user()->guid;
+						//[B] Check file download in messages ownership checking #2641
+						// Check if logged-in user is either sender or recipient
+						if($message && ($user_guid == $message->message_from || $user_guid == $message->message_to)) {
+								$file->output();
+						} else {
+								ossn_error_page();
+						}
+				} else {
+						ossn_error_page();
+				}
+				break;
+		case 'xhr':
+				switch ($pages[1]) {
+				case 'recent':
+						$loggedin_guid    = ossn_loggedin_user()->guid;
+						$params           = array();
+						$params['recent'] = $OssnMessages->recentChat($loggedin_guid);
+						$params['count']  = $OssnMessages->recentChat($loggedin_guid, true);
+						echo ossn_plugin_view('messages/pages/view/recent', $params);
+						break;
+				case 'notification':
+						$loggedin_guid    = ossn_loggedin_user()->guid;
+						$params['recent'] = $OssnMessages->recentChat($loggedin_guid);
+						$data             = ossn_plugin_view('messages/templates/message-with-notifi', $params);
+						if(!empty($params['recent'])) {
+								echo $data;
+						} else {
+								echo '<div class="ossn-no-notification">' . ossn_print('ossn:notification:no:notification') . '</div>';
+						}
+						break;
+				case 'with':
+						$guid = input('guid');
+						if(!empty($guid)) {
+								$user = ossn_user_by_guid($guid);
 								if(empty($user->guid)) {
-										ossn_error_page();
+										return;
 								}
-								//[E] Stop user sending message to himself #1836
-								if($user->username == ossn_loggedin_user()->username) {
-										redirect("messages/all");
-								}
-								$title = ossn_print('ossn:message:between', array(
-										$user->fullname
-								));
 								$OssnMessages->markViewed($user->guid, ossn_loggedin_user()->guid);
 								$params['data']  = $OssnMessages->getWith(ossn_loggedin_user()->guid, $user->guid);
 								$params['count'] = $OssnMessages->getWith(ossn_loggedin_user()->guid, $user->guid, true);
 								$params['user']  = $user;
-								
-								$loggedin_guid          = ossn_loggedin_user()->guid;
-								$params['recent']       = $OssnMessages->recentChat($loggedin_guid);
-								$params['count_recent'] = $OssnMessages->recentChat($loggedin_guid, true);
-								
-								$contents = array(
-										'content' => ossn_plugin_view('messages/pages/view', $params)
-								);
-								$content  = ossn_set_page_layout('contents', $contents);
-								echo ossn_view_page($title, $content);
-								
-						} else {
-								ossn_error_page();
+								echo ossn_plugin_view('messages/pages/view/with-xhr', $params);
 						}
 						break;
-				case 'delete':
-						$id      = input('id');
-						$message = ossn_get_message($id);
-						$user    = ossn_loggedin_user()->guid;
-						if($message && ($message->message_from == $user || $message->message_to == $user)) {
-								$params = array(
-										'title' => ossn_print('delete'),
-										'contents' => ossn_view_form('OssnMessages/delete', array(
-												'action' => ossn_site_url('action/message/delete'),
-												'id' => 'ossn-message-delete-form',
-												'params' => array(
-														'message' => $message
-												)
-										)),
-										'button' => ossn_print('delete'),
-										'callback' => '#ossn-md-edit-save'
-								);
-								echo ossn_plugin_view('output/ossnbox', $params);
-						}
-						break;
-				case 'delete_conversation':
-						$id      = input('id');
-						if($id) {
-								$params = array(
-										'title' => ossn_print('delete'),
-										'contents' => ossn_view_form('OssnMessages/delete_conversation', array(
-												'action' => ossn_site_url('action/message/delete_conversation'),
-												'id' => 'ossn-message-delete-conv-form',
-										)),
-										'button' => ossn_print('delete'),
-										'callback' => '#ossn-mdc-save'
-								);
-								echo ossn_plugin_view('output/ossnbox', $params);
-						}				
-					break;
-				case 'attachment':
-					$file = ossn_get_file($pages[1]);
-					if($file && $file->type == 'message' && $file->subtype == 'file:attachment') {
-						$file->output();
-					} else {
-						ossn_error_page();
-						}				
-					break;
-				case 'xhr':
-						switch($pages[1]) {
-								case 'recent':
-										$loggedin_guid    = ossn_loggedin_user()->guid;
-										$params           = array();
-										$params['recent'] = $OssnMessages->recentChat($loggedin_guid);
-										$params['count']  = $OssnMessages->recentChat($loggedin_guid, true);
-										echo ossn_plugin_view('messages/pages/view/recent', $params);
-										break;
-								case 'notification':
-										$loggedin_guid    = ossn_loggedin_user()->guid;
-										$params['recent'] = $OssnMessages->recentChat($loggedin_guid);
-										$data             = ossn_plugin_view('messages/templates/message-with-notifi', $params);
-										if(!empty($params['recent'])) {
-												echo $data;
-										} else {
-												echo '<div class="ossn-no-notification">' . ossn_print('ossn:notification:no:notification') . '</div>';
-										}
-										break;
-								case 'with':
-										$guid = input('guid');
-										if(!empty($guid)) {
-												$user = ossn_user_by_guid($guid);
-												if(empty($user->guid)) {
-														return;
-												}
-												$OssnMessages->markViewed($user->guid, ossn_loggedin_user()->guid);
-												$params['data']  = $OssnMessages->getWith(ossn_loggedin_user()->guid, $user->guid);
-												$params['count'] = $OssnMessages->getWith(ossn_loggedin_user()->guid, $user->guid, true);
-												$params['user']  = $user;
-												echo ossn_plugin_view('messages/pages/view/with-xhr', $params);
-										}
-										break;
-						}
-						break;
-				case 'all':
-						$loggedin_guid          = ossn_loggedin_user()->guid;
-						$params['recent']       = $OssnMessages->recentChat($loggedin_guid);
-						if($params['recent']) {
-								$params['count_recent'] = $OssnMessages->recentChat($loggedin_guid, true);
-								//[E] Don't open the last message in messages/all #2283								
-								$params['user']   = false;
-								$params['countm'] = false;
-								$contents = array(
-										'content' => ossn_plugin_view('messages/pages/all', $params)
-								);
-						} else {
-								$contents = array(
-										'content' => ossn_plugin_view('messages/pages/messages-none')
-								);
-						}
-						$title   = ossn_print('messages');
-						$content = ossn_set_page_layout('contents', $contents);
-						echo ossn_view_page($title, $content);
-						break;
-				case 'getnew':
-						header('Content-Type: application/json; charset=utf-8');
-						$username = $pages[1];
-						$friend   = ossn_user_by_username($username);
-						if(!$friend){
-							echo json_encode(array(
-									'html' => false,
-									'is_online' => false,
-							));	
-							exit;
-						}
-						$recent_guids = input('recent_guids');
-						$guid     = $friend->guid;
-						$messages = $OssnMessages->getNew($guid, ossn_loggedin_user()->guid);
-						$html = '';
-						if($messages) {
-								foreach($messages as $message) {
-										$message              = ossn_get_message($message->id);
-										$params['instance']   = (clone $message);
-										$params['message_id'] = $message->id;
-										$params['view_type']  = 'messages/pages/view/with-xhr';
-										//reduce loop for getting user again and again as its only the $friend or loggedin user
-										if($message->message_from != $guid){
-												$user =  ossn_loggedin_user();
-										} else {
-												$user = $friend;	
-										}
-										$params['user']    = $user;
-										$message           = $message->message;
-										$params['message'] = $message;
-										$html .= ossn_plugin_view('messages/templates/message-send', $params);
-								}
-								$OssnMessages->markViewed($guid, ossn_loggedin_user()->guid);
-								$html .= '<script>Ossn.MessageplaySound();</script>';
-						}
+				}
+				break;
+		case 'all':
+				$loggedin_guid    = ossn_loggedin_user()->guid;
+				$params['recent'] = $OssnMessages->recentChat($loggedin_guid);
+				if($params['recent']) {
+						$params['count_recent'] = $OssnMessages->recentChat($loggedin_guid, true);
+						//[E] Don't open the last message in messages/all #2283
+						$params['user']   = false;
+						$params['countm'] = false;
+						$contents         = array(
+								'content' => ossn_plugin_view('messages/pages/all', $params),
+						);
+				} else {
+						$contents = array(
+								'content' => ossn_plugin_view('messages/pages/messages-none'),
+						);
+				}
+				$title   = ossn_print('messages');
+				$content = ossn_set_page_layout('contents', $contents);
+				echo ossn_view_page($title, $content);
+				break;
+		case 'getnew':
+				header('Content-Type: application/json; charset=utf-8');
+				$username = $pages[1];
+				$friend   = ossn_user_by_username($username);
+				if(!$friend) {
 						echo json_encode(array(
-									'html' => $html,
-									'is_online' => $friend->isOnline(10),
-									'recent_status' => $OssnMessages->onlineStatus($recent_guids),
-						));						
-						break;
-				
-				case 'getrecent':
-						$params['recent'] = $OssnMessages->recentChat(ossn_loggedin_user()->guid);
-						echo ossn_plugin_view('messages/templates/message-with', $params);
-						break;
-				default:
-						ossn_error_page();
-						break;
-						
+								'html'      => false,
+								'is_online' => false,
+						));
+						exit();
+				}
+				$recent_guids = input('recent_guids');
+				$guid         = $friend->guid;
+				$messages     = $OssnMessages->getNew($guid, ossn_loggedin_user()->guid);
+				$html         = '';
+				if($messages) {
+						foreach ($messages as $message) {
+								$message              = ossn_get_message($message->id);
+								$params['instance']   = clone $message;
+								$params['message_id'] = $message->id;
+								$params['view_type']  = 'messages/pages/view/with-xhr';
+								//reduce loop for getting user again and again as its only the $friend or loggedin user
+								if($message->message_from != $guid) {
+										$user = ossn_loggedin_user();
+								} else {
+										$user = $friend;
+								}
+								$params['user']    = $user;
+								$message           = $message->message;
+								$params['message'] = $message;
+								$html .= ossn_plugin_view('messages/templates/message-send', $params);
+						}
+						$OssnMessages->markViewed($guid, ossn_loggedin_user()->guid);
+						$html .= '<script>Ossn.MessageplaySound();</script>';
+				}
+				echo json_encode(array(
+						'html'          => $html,
+						'is_online'     => $friend->isOnline(10),
+						'recent_status' => $OssnMessages->onlineStatus($recent_guids),
+				));
+				break;
+
+		case 'getrecent':
+				$params['recent'] = $OssnMessages->recentChat(ossn_loggedin_user()->guid);
+				echo ossn_plugin_view('messages/templates/message-with', $params);
+				break;
+		default:
+				ossn_error_page();
+				break;
 		}
 }
 /**
@@ -283,12 +288,12 @@ function ossn_message_print($message) {
  * @access private
  */
 function ossn_user_messages_delete($callback, $type, $params) {
-		$messages = new OssnMessages;
+		$messages = new OssnMessages();
 		if(isset($params['entity']->guid)) {
 				$messages->deleteUser($params['entity']->guid);
 		}
 }
-/** 
+/**
  * Get a message by id
  *
  * @param integer $id Message id
@@ -296,9 +301,9 @@ function ossn_user_messages_delete($callback, $type, $params) {
  */
 function ossn_get_message($id = false) {
 		if(isset($id) && $id > 0) {
-				$message  = new OssnMessages;
+				$message  = new OssnMessages();
 				$messages = $message->searchMessages(array(
-						'id' => $id
+						'id' => $id,
 				));
 				if($messages) {
 						return $messages[0];
@@ -308,7 +313,7 @@ function ossn_get_message($id = false) {
 }
 /**
  * Linkify Messages
- * 
+ *
  * @param string $callback message
  * @param string $type print
  * @param array  $return Message
@@ -321,7 +326,7 @@ function ossn_linkify_messages_print($hook, $type, $return, $params) {
 }
 /**
  * Add a entity type for messages
- * 
+ *
  * @param string $callback Name of callback
  * @param string $type Callback type
  * @param array $params Arrays or Objects
@@ -342,8 +347,8 @@ function ossn_messages_entity_type($hook, $type, $return, $params) {
  *
  * Usage:   See example page: linkify.html
  */
-function linkify_chat($text){
-    $url_pattern = '/# Rev:20100913_0900 github.com\/jmrware\/LinkifyURL
+function linkify_chat($text) {
+		$url_pattern = '/# Rev:20100913_0900 github.com\/jmrware\/LinkifyURL
     # Match http & ftp URL that is not already linkified.
       # Alternative 1: URL delimited by (parentheses).
       (\()                     # $1  "(" start delimiter.
@@ -383,8 +388,8 @@ function linkify_chat($text){
         [a-z0-9\-_~$()*+=\/#[\]@%]  # Last char can\'t be [.!&\',;:?]
       )                        # End $14. Other non-delimited URL.
     /imx';
-	//Open link in new tab (enhancement) #518
-    $url_replace = '$1$4$7$10$13<a href="$2$5$8$11$14" \\1 target="_blank">$2$5$8$11$14</a>$3$6$9$12';
-    return preg_replace($url_pattern, $url_replace, $text);
+		//Open link in new tab (enhancement) #518
+		$url_replace = '$1$4$7$10$13<a href="$2$5$8$11$14" \\1 target="_blank">$2$5$8$11$14</a>$3$6$9$12';
+		return preg_replace($url_pattern, $url_replace, $text);
 }
 ossn_register_callback('ossn', 'init', 'ossn_messages');
