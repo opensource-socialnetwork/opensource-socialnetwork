@@ -122,6 +122,24 @@ class OssnThemes extends OssnSite {
 				$newfile = "{$data_dir}/{$zip['name']}";
 				if(move_uploaded_file($zip['tmp_name'], $newfile)) {
 						if($archive->open($newfile) === true) {
+								for ($i = 0; $i < $archive->numFiles; $i++) {
+										$filename = $archive->getNameIndex($i);
+
+										// Prevent Zip Slip path traversal
+										if(
+												strpos($filename, '../') !== false ||
+												strpos($filename, '..\\') !== false ||
+												strpos($filename, '/') === 0 ||
+												strpos($filename, '\\') === 0 ||
+												preg_match('/^[a-zA-Z]:[\\\\\/]/', $filename)
+										) {
+												$archive->close();
+												OssnFile::DeleteDir($data_dir);
+												ossn_trigger_message(ossn_print('ossn:theme:installer:zip:incomplete:error'), 'error');
+												error_log('Theme Installer Error: Zip Slip path traversal detected: ' . $filename);
+												return;
+										}
+								}
 								$translit = OssnTranslit::urlize($zip['name']);
 
 								$archive->extractTo($data_dir . '/' . $translit);
