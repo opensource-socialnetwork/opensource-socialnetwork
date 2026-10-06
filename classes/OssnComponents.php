@@ -87,17 +87,20 @@ class OssnComponents extends OssnDatabase {
 						UPLOAD_ERR_CANT_WRITE => 'php:upload_err_cant_write',
 						UPLOAD_ERR_EXTENSION  => 'php:upload_err_extension',
 				);
+
 				$archive  = new ZipArchive();
 				$data_dir = ossn_get_userdata('tmp/components');
+
 				if(!is_dir($data_dir)) {
 						mkdir($data_dir, 0755, true);
 				}
+
 				if(!is_dir($data_dir)) {
 						ossn_trigger_message(ossn_print('ossn:com:installer:create:tmpdir:error'), 'error');
 						error_log('Com Installer Error: Cannot create temporary data directory');
 						return;
 				}
-				// return upload error messages
+
 				if($_FILES['com_file']['error'] != UPLOAD_ERR_OK) {
 						ossn_trigger_message(
 								ossn_print('ossn:com:installer:upload:error', array(
@@ -114,26 +117,71 @@ class OssnComponents extends OssnDatabase {
 
 				if(move_uploaded_file($zip['tmp_name'], $newfile)) {
 						if($archive->open($newfile) === true) {
-								$translit = OssnTranslit::urlize($zip['name']);
+								$translit       = OssnTranslit::urlize($zip['name']);
+								$extract_target = $data_dir . '/' . $translit;
 
-								//make community components works on installer #394
-								//Component installer problems with certain zip - archives #420
+								if(!is_dir($extract_target)) {
+										mkdir($extract_target, 0755, true);
+								}
 
-								$archive->extractTo($data_dir . '/' . $translit);
-								$dirctory = scandir($data_dir . '/' . $translit, 1);
+								// Resolve canonical base directory
+								$canonical_base = realpath($extract_target);
+								if($canonical_base === false) {
+										$archive->close();
+										OssnFile::DeleteDir($data_dir);
+										ossn_trigger_message(ossn_print('ossn:com:installer:create:tmpdir:error'), 'error');
+										return;
+								}
+
+								// Iterate and validate each entry path securely
+								for ($i = 0; $i < $archive->numFiles; $i++) {
+										$entry_name = $archive->getNameIndex($i);
+
+										// Reject obvious path traversal patterns early
+										if(strpos($entry_name, '../') !== false || strpos($entry_name, '..\\') !== false) {
+												$archive->close();
+												OssnFile::DeleteDir($data_dir);
+												ossn_trigger_message(ossn_print('ossn:com:installer:zip:incomplete:error'), 'error');
+												error_log('Com Installer Error: Invalid path detected in ZIP entry: ' . $entry_name);
+												return;
+										}
+
+										// Verify resolved target destination directory sits strictly within the base directory
+										$destination_file = $extract_target . '/' . $entry_name;
+										$destination_dir  = dirname($destination_file);
+
+										if(!is_dir($destination_dir)) {
+												mkdir($destination_dir, 0755, true);
+										}
+
+										$canonical_dest_dir = realpath($destination_dir);
+
+										// Ensure realpath resolution succeeded and remains inside the intended base folder
+										if($canonical_dest_dir === false || strpos($canonical_dest_dir, $canonical_base) !== 0) {
+												$archive->close();
+												OssnFile::DeleteDir($data_dir);
+												ossn_trigger_message(ossn_print('ossn:com:installer:zip:incomplete:error'), 'error');
+												error_log('Com Installer Error: Target destination outside extraction root: ' . $entry_name);
+												return;
+										}
+								}
+
+								// Perform extraction after all paths pass verification
+								$archive->extractTo($extract_target);
+
+								$dirctory = scandir($extract_target, 1);
 								$dirctory = $dirctory[0];
 
-								$files = $data_dir . '/' . $translit . '/' . $dirctory . '/';
+								$files = $extract_target . '/' . $dirctory . '/';
 								$archive->close();
 
 								if(is_dir($files) && is_file("{$files}ossn_com.php") && is_file("{$files}ossn_com.xml")) {
 										$ossn_com_xml = simplexml_load_file("{$files}ossn_com.xml");
-										//need to check id , since ossn v3.x
+
 										if(isset($ossn_com_xml->id) && !empty($ossn_com_xml->id)) {
-												// asure Ossn compatibility before overwriting an older component release
 												$required_version  = $ossn_com_xml->requires->version;
 												$installed_version = ossn_site_settings('site_version');
-												//[B] Components not able to install giving error because of version compare #2608
+
 												if(version_compare($installed_version, $required_version, 'lt')) {
 														OssnFile::DeleteDir($data_dir);
 														ossn_trigger_message(
@@ -145,8 +193,7 @@ class OssnComponents extends OssnDatabase {
 														error_log('Com Installer Error: Ossn version ' . $required_version . ' requirement not met');
 														return;
 												}
-												// if the component is already installed
-												// warn the admin to remove it first
+
 												if(is_dir(ossn_route()->com . $ossn_com_xml->id . '/')) {
 														OssnFile::DeleteDir($data_dir);
 														ossn_trigger_message(ossn_print('ossn:com:installer:remove:comdir:error'), 'error');
@@ -154,46 +201,45 @@ class OssnComponents extends OssnDatabase {
 														return;
 												}
 
-												//move to components directory
 												if(OssnFile::moveFiles($files, ossn_route()->com . $ossn_com_xml->id . '/')) {
-														//add new component to system
 														$this->newCom($ossn_com_xml->id);
-
-														//restore prefs
 														$this->restorePref($ossn_com_xml->id);
-
-														//why it shows success even if the component is not updated #510
 														OssnFile::DeleteDir($data_dir);
-														//Trigger callback upon component deletion, enable, installation #1111
+
 														ossn_trigger_callback('component', 'installed', array(
 																'component' => $ossn_com_xml->id,
 														));
 														ossn_trigger_message(ossn_print('ossn:com:installer:com:installation:success'), 'success');
 														return;
 												}
+
 												OssnFile::DeleteDir($data_dir);
 												ossn_trigger_message(ossn_print('ossn:com:installer:create:comdir:error'), 'error');
 												error_log('Com Installer Error: Cannot copy files to component directory');
 												return;
 										}
+
 										OssnFile::DeleteDir($data_dir);
 										ossn_trigger_message(ossn_print('ossn:com:installer:xml:incomplete:error'), 'error');
 										error_log('Com Installer Error: XML file missing or incomplete');
 										return;
 								}
+
 								OssnFile::DeleteDir($data_dir);
 								ossn_trigger_message(ossn_print('ossn:com:installer:zip:incomplete:error'), 'error');
 								error_log('Com Installer Error: Zip-archive incomplete');
 								return;
 						}
+
 						OssnFile::DeleteDir($data_dir);
 						ossn_trigger_message(ossn_print('ossn:com:installer:open:zip:error'), 'error');
 						error_log('Com Installer Error: Cannot open zip-archive');
 						return;
 				}
+
 				OssnFile::DeleteDir($data_dir);
 				ossn_trigger_message(ossn_print('ossn:com:installer:move:uploaded:file:error'), 'error');
-				error_log('Com Installer Error: Cannot open zip-archive');
+				error_log('Com Installer Error: Cannot move uploaded file');
 				return;
 		}
 
