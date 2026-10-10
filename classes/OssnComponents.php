@@ -146,6 +146,12 @@ class OssnComponents extends OssnDatabase {
 
 								if(is_dir($files) && is_file("{$files}ossn_com.php") && is_file("{$files}ossn_com.xml")) {
 										$ossn_com_xml = simplexml_load_file("{$files}ossn_com.xml");
+										if(isset($ossn_com_xml->id) && !preg_match('/^[a-zA-Z0-9_\-]+$/', $ossn_com_xml->id)) {
+												OssnFile::DeleteDir($data_dir);
+												ossn_trigger_message(ossn_print('ossn:com:installer:zip:incomplete:error'), 'error');
+												error_log('Invalid com->ID');
+												return false;
+										}
 										//need to check id , since ossn v3.x
 										if(isset($ossn_com_xml->id) && !empty($ossn_com_xml->id)) {
 												// asure Ossn compatibility before overwriting an older component release

@@ -151,6 +151,12 @@ class OssnThemes extends OssnSite {
 
 								if(is_dir($files) && is_file("{$files}ossn_theme.php") && is_file("{$files}ossn_theme.xml")) {
 										$ossn_theme_xml = simplexml_load_file("{$files}ossn_theme.xml");
+										if(isset($ossn_theme_xml->id) && !preg_match('/^[a-zA-Z0-9_\-]+$/', $ossn_theme_xml->id)) {
+												OssnFile::DeleteDir($data_dir);
+												ossn_trigger_message(ossn_print('ossn:theme:installer:zip:incomplete:error'), 'error');
+												error_log('Invalid com->ID');
+												return false;
+										}										
 										//need to check id , since ossn v3.x
 										if(isset($ossn_theme_xml->id) && !empty($ossn_theme_xml->id)) {
 												// asure Ossn compatibility before overwriting an older component release
