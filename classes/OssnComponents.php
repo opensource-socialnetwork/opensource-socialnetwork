@@ -728,6 +728,10 @@ class OssnComponents extends OssnDatabase {
 						return false;
 				}
 				foreach ($vars as $name => $value) {
+						// Convert array to JSON to avoid "Array to string conversion" warning
+						if (is_array($value)) {
+								$value = json_encode($value);
+						}
 						if($settings && !$settings->isParam($name)) {
 								$entity->owner_guid = $guid;
 								$entity->type       = 'component';
