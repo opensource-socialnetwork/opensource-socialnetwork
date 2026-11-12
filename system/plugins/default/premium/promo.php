@@ -3,7 +3,7 @@ $promo            = array();
 $promo_endpoint   = 'https://www.opensource-socialnetwork.org/api/v1.0/promo';
 $promo_cache_file = rtrim(ossn_get_userdata('promo.cached'), '/\\');
 $promo_cache_ttl  = 43200; // 12 hours
-$promo_user_agent = 'OpenTeknik-OSSN-CoreClient/1.0 (AdminDashboard; +https://www.opensource-socialnetwork.org)';
+$promo_user_agent = 'OSSN-CoreClient/1.0 (AdminDashboard; +https://www.opensource-socialnetwork.org)';
 
 if (file_exists($promo_cache_file) && (time() - filemtime($promo_cache_file)) < $promo_cache_ttl) {
     $cached_raw = @file_get_contents($promo_cache_file);
