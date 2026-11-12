@@ -394,13 +394,20 @@ body::before {
     color: #64748b;
 }
 
-.form-control {
+.form-control,
+.form-select {
     padding-top: 0.85rem;
     padding-bottom: 0.85rem;
     padding-left: 1.25rem;
     font-size: 1.1rem;
     border-radius: 12px;
     border-width: 2px;
+}
+
+.form-select {
+    padding-right: 2.75rem;
+    background-position: right 1.1rem center;
+    cursor: pointer;
 }
 
 .form-control::placeholder {

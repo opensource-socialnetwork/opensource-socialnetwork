@@ -10,8 +10,43 @@
  */
 
 $notification_email = parse_url(ossn_installation_paths()->url);
-if(substr($notification_email['host'], 0, 4) == 'www.'){
-	$notification_email['host'] = substr($notification_email['host'], 4);
+if (substr($notification_email['host'], 0, 4) == 'www.') {
+    $notification_email['host'] = substr($notification_email['host'], 4);
+}
+
+$root_dir = dirname(__DIR__, 2);
+
+// 1. Scan /locale/ only for files matching ossn.(code).php
+$languages = [];
+$langs_dir = $root_dir . '/locale/';
+if (is_dir($langs_dir)) {
+    foreach (scandir($langs_dir) as $file) {
+        if (preg_match('/^ossn\.([a-zA-Z0-9_-]+)\.php$/', $file, $matches)) {
+            $languages[] = $matches[1];
+        }
+    }
+}
+if (empty($languages)) {
+    $languages = ['en'];
+}
+
+// 2. Scan /themes/ only for directories containing ossn_theme.xml
+$themes     = [];
+$themes_dir = $root_dir . '/themes/';
+if (is_dir($themes_dir)) {
+    foreach (scandir($themes_dir) as $dir) {
+        if ($dir === '.' || $dir === '..') {
+            continue;
+        }
+        $xml_file = $themes_dir . $dir . '/ossn_theme.xml';
+        if (is_dir($themes_dir . $dir) && is_file($xml_file)) {
+            $xml = @simplexml_load_file($xml_file);
+            $themes[$dir] = ($xml && !empty($xml->name)) ? (string) $xml->name : ucfirst($dir);
+        }
+    }
+}
+if (empty($themes)) {
+    $themes['goblue'] = 'Goblue';
 }
 ?>
 
@@ -75,20 +110,53 @@ if(substr($notification_email['host'], 0, 4) == 'www.'){
 
         <label class="form-label fw-bold text-secondary small text-uppercase mb-2">
             <?php echo ossn_installation_print('notification_email'); ?>
-        </label>  
+        </label>
 
-        <div class="row">
+        <div class="row mb-3">
             <div class="col-12">
                 <?php
-                    if (!filter_var($notification_email['host'], FILTER_VALIDATE_IP)) {
-                        $email = "noreply@" . $notification_email['host'];
-                        $notif_val = filter_var($email, FILTER_VALIDATE_EMAIL) ? $email : "";
-                    } else {
-                        $notif_val = "";
-                    }
-                ?>              
+                if (!filter_var($notification_email['host'], FILTER_VALIDATE_IP)) {
+                    $email     = "noreply@" . $notification_email['host'];
+                    $notif_val = filter_var($email, FILTER_VALIDATE_EMAIL) ? $email : "";
+                } else {
+                    $notif_val = "";
+                }
+                ?>
                 <input class="form-control" type="text" placeholder="<?php echo ossn_installation_print('notification_email:noreply'); ?>" name="notification_email" value="<?php echo $notif_val; ?>" />
             </div>
+        </div>
+
+        <div class="row g-3 mt-1">
+            <div class="col-md-6">
+                <label class="form-label fw-bold text-secondary small text-uppercase mb-2">
+                    <?php echo ossn_installation_print('ossn:default:language'); ?>
+                </label>
+                <select class="form-select" name="default_language">
+                    <?php foreach ($languages as $code) { ?>
+                        <option value="<?php echo $code; ?>" <?php echo ($code === 'en') ? 'selected' : ''; ?>>
+                            <?php echo ossn_installation_print($code); ?>
+                        </option>
+                    <?php } ?>
+                </select>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label fw-bold text-secondary small text-uppercase mb-2">
+                    <?php echo ossn_installation_print('ossn:default:theme'); ?>
+                </label>
+                <select class="form-select" name="default_theme">
+                    <?php foreach ($themes as $theme_id => $theme_name) { ?>
+                        <option value="<?php echo $theme_id; ?>" <?php echo ($theme_id === 'goblue') ? 'selected' : ''; ?>>
+                            <?php echo $theme_name; ?>
+                        </option>
+                    <?php } ?>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-text mt-2 text-muted">
+            <i class="bi bi-info-circle me-1"></i>
+            <?php echo ossn_installation_print('ossn:theme:lang:note'); ?>
         </div>
     </div>
 
@@ -124,7 +192,7 @@ if(substr($notification_email['host'], 0, 4) == 'www.'){
     </div>
 
     <div class="d-flex justify-content-end pt-4 mt-5 border-top">
-        <a href="/installation/?page=license" class="installer-btn btn-cancel">
+        <a href="<?php echo ossn_installation_paths()->url; ?>?page=license" class="installer-btn btn-cancel">
             <?php echo ossn_installation_print('ossn:back'); ?>
         </a>
         <input type="submit" value="<?php echo ossn_installation_print('ossn:install:install'); ?>" class="ms-2 installer-btn btn-primary px-5 py-3">
