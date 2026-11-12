@@ -483,8 +483,13 @@ function ossn_album_page_handler($album) {
 				$size    = input('size');
 				$type    = input('type');
 
-				$file = ossn_get_file($guid);
-				if($file) {
+				$file             = ossn_get_file($guid);
+				$allowed_subtypes = array(
+						'file:ossn:aphoto',
+						'file:profile:photo',
+						'file:profile:cover',
+				);
+				if($file && in_array($file->subtype, $allowed_subtypes, true)) {
 						$album_obj = ossn_get_album_object($file->owner_guid);
 						if($album_obj && $album_obj->access == OSSN_FRIENDS) {
 								if(!ossn_isLoggedin()) {
@@ -519,6 +524,8 @@ function ossn_album_page_handler($album) {
 								header("Location:{$url}");
 								exit();
 						}
+				} else {
+					ossn_error_page();	
 				}
 				break;
 		case 'getcover':
