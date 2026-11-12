@@ -41,7 +41,7 @@ Kernighan & Ritchie (K&R Variant 1TBS) indentation standard is used for the OSSN
 
 ## Screenshots
 
-Explore the OSSN interface, social networking features, member profiles, groups, and mobile experience.
+OSSN comes with two bundled themes out of the box. Below are a few screenshots showcasing the interface including member profiles, groups, social features, and the mobile experience. To try it yourself, check out the live demo.
 
 | | | |
 |:-------------------------:|:-------------------------:|:-------------------------:|
