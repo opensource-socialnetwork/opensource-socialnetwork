@@ -7,9 +7,26 @@ Open Source Social Network [10.2]
 [![DeepScan grade](https://deepscan.io/api/teams/4774/projects/6525/branches/747601/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=4774&pid=6525&bid=747601)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/88c6ef38f593440cafe7ba350e592649)](https://app.codacy.com/gh/opensource-socialnetwork/opensource-socialnetwork/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 
-Opensource-Socialnetwork (OSSN) is a powerful open-source social networking software developed in PHP. It enables you to create a fully functional social networking website that fosters community engagement and helps your members form meaningful social relationships. Whether you're looking to connect people with similar professional interests or personal passions, OSSN offers a versatile platform to bring like-minded individuals together.
+## What Is Open Source Social Network (OSSN)?
 
-With multiple language support, OSSN ensures that you can reach a global audience and expand your network across different regions and cultures.
+**Open Source Social Network (OSSN) is free, open-source social networking software written in PHP that allows you to create your own social networking website, online community, or private social network.**
+
+OSSN provides the essential tools to connect people, build communities, share content, and encourage interaction through member profiles, activity feeds, groups, photos, messaging, comments, and notifications.
+
+It is a self-hosted social networking platform, giving you control over your website, source code, community, and data. You can customize its appearance, extend its functionality, and build a social network around your own interests, organization, or business.
+
+OSSN is suitable for:
+
+- Creating a social networking website.
+- Building a private or public online community.
+- Launching a membership-based social platform.
+- Connecting employees or members of an organization.
+- Creating interest-based and professional communities.
+- Developing a social media platform with your own features.
+
+OSSN is free and open-source social networking software. You can download, install, use, and customize it without paying a software license fee or monthly subscription.
+
+With multiple language support, OSSN also makes it possible to build communities for audiences across different regions and cultures.
 
 OSSN Licensed under the ***Open Source Social Network License (4.0) / Cryptographic Autonomy License version 1.0***
 
@@ -19,8 +36,12 @@ Kernighan & Ritchie (K&R Variant 1TBS) indentation standard is used for the OSSN
 - Copyright (C) OPEN SOURCE SOCIAL NETWORK <https://www.opensource-socialnetwork.org>,
 - Copyright (C) OPEN TEKNIK LLC <https://www.openteknik.com>,
 - Copyright (C) OPENHOST247 LLC <https://www.openhost247.com>,
-- Copyright (C) 2015-2021 SOFTLAB24 LTD <https://www.softlab24.com>
+- Copyright (C) 2015-2021 SOFTLAB24 LTD <https://www.softlab24.com>,
 - Copyright (C) 2014-2015 INFORMATIKON TECHNOLOGIES <https://www.informatikon.com>
+
+## Screenshots
+
+Explore the OSSN interface, social networking features, member profiles, groups, and mobile experience.
 
 | | | |
 |:-------------------------:|:-------------------------:|:-------------------------:|
@@ -110,7 +131,7 @@ https://www.opensource-socialnetwork.org/wiki/view/706/how-to-install-open-sourc
 - Docker - https://github.com/opensource-socialnetwork/docker
 - VM Image - https://www.opensource-socialnetwork.org/download-vm-image
 
-Installation on Ubuntu x64 22.04/24.04/25.05/26.04 LTS
+Installation on Ubuntu 22.04/24.04/25.05/26.04 LTS
 ```
 sudo add-apt-repository ppa:arsalanshah/opensource-socialnetwork
 sudo apt-get update
