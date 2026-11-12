@@ -1,0 +1,219 @@
+//<script>
+Ossn.RegisterStartupFunction(function() {
+	$(document).ready(function() {
+		$('#ossn-group-add').on('click', function() {
+			Ossn.MessageBox('groups/add');
+		});
+	});
+});
+Ossn.RegisterStartupFunction(function() {
+	$(document).ready(function() {
+		$('body').on('submit', "#group-upload-cover", function(event) {
+			event.preventDefault();
+			var formData = new FormData($(this)[0]);
+			var $url = Ossn.site_url + 'action/group/cover/upload';
+			var fileInput = $('#group-upload-cover').find("input[type='file']")[0],
+				file = fileInput.files && fileInput.files[0];
+			var image_url = window.URL.createObjectURL(file);
+
+			loadGroupCover(image_url).then(
+				function resolved(img) {
+					//[E] Get size of cover from theme config #2305
+					var theme_config = $('#ossn-theme-config');
+					var default_cover_height = theme_config.attr('data-desktop-cover-height');
+					var default_cover_width = theme_config.attr('data-minimum-cover-image-width');
+
+					if (typeof default_cover_height == 'undefined' || typeof default_cover_width == 'undefined') {
+						Ossn.MessageBox('syserror/unknown');
+						console.error("Theme config not found for cover sizes");
+						return false;
+					}
+					
+					var width = img.naturalWidth;
+					var	height = img.naturalHeight;
+					
+					window.URL.revokeObjectURL(img.src);
+					
+					if (width < default_cover_width || height < default_cover_height) {
+						var cover_error_message = Ossn.Print('profile:cover:err1:detail', [default_cover_width, default_cover_height]);
+						Ossn.trigger_message(cover_error_message, 'error');
+						return false;
+					} else {
+						$.ajax({
+							url: Ossn.AddTokenToUrl($url),
+							type: 'POST',
+							data: formData,
+							async: true,
+							cache: false,
+							contentType: false,
+							processData: false,
+							beforeSend: function(xhr, obj) {
+								if ($('.ossn-group-cover').length == 0) {
+									$('.header-users').attr('style', 'opacity:0.7;');
+								} else {
+									$('.ossn-group-cover').attr('style', 'opacity:0.7;');
+								}
+								$('.ossn-group-profile').find('.groups-buttons').find('a').hide();
+								if($('.ossn-group-cover').length == 0){
+									 $('.ossn-group-top-row .profile-header').prepend('<div class="ossn-group-cover"><img id="draggable"></div>');
+								}
+								$('.ossn-group-cover').prepend('<div class="ossn-covers-uploading-annimation"> <div class="ossn-loading"></div></div>');
+							},
+							success: function(callback) {
+								if(callback['success']) {
+									$time = $.now();
+									$('.ossn-group-cover').find('img').attr('style', '');
+									$('.ossn-group-cover').find('img').show();
+									$('.ossn-group-cover').find('img').attr('src', callback['url']);
+									$('.ossn-group-cover-button').show();
+								} else {
+									// server side errors like exceeded max_upload_size go here
+									Ossn.trigger_message(callback['error'], 'error');
+								}
+								$('.ossn-group-cover').attr('style', '');
+								$('.ossn-covers-uploading-annimation').remove();
+								$('.ossn-group-profile').find('.groups-buttons').find('a').show();
+							},
+							error: function(xhr, status, error) {
+								// network errors
+								if (error == 'Internal Server Error' || error !== '') {
+									Ossn.MessageBox('syserror/unknown');
+								}
+							},
+						});
+					}
+				},
+				function rejected() {
+					// client side errors like invalid image
+					Ossn.trigger_message(Ossn.Print('upload:file:error:extension'), 'error');
+				}
+			);
+
+			function loadGroupCover(url) {
+				// Define the promise
+				const imgPromise = new Promise(function imgPromise(resolve, reject) {
+					// Create the image
+					const imgElement = new Image();
+					// When image is loaded, resolve the promise
+					imgElement.addEventListener('load', function imgOnLoad() {
+						resolve(this);
+					});
+					// When there's an error during load, reject the promise
+					imgElement.addEventListener('error', function imgOnError() {
+						reject();
+					})
+					// Assign URL
+					imgElement.src = url;
+				});
+				return imgPromise;
+			}
+		});
+
+		$('#add-cover-group').on('click', function(e) {
+			e.preventDefault();
+			$('#group-upload-cover').find('.coverfile').click();
+		});
+	});
+});
+
+Ossn.RegisterStartupFunction(function() {
+	$(document).ready(function() {
+		$('#reposition-group-cover').on('click', function() {
+			$('.group-c-position').attr('style', 'display:inline-block !important;');
+			$('.ossn-group-cover-button').hide();
+			$('.ossn-group-cover').unbind('mouseenter').unbind('mouseleave');
+			Ossn.Drag(function(ui) {	
+				//make picture not to move out from the container
+				y1 = $('.ossn-group-cover').height();
+				y2 = $('.ossn-group-cover').find('img').height();
+				if (ui.position.top >= 0) {
+					ui.position.top = 0;
+				} else if (ui.position.top <= (y1 - y2)) {
+					ui.position.top = y1 - y2;
+				}
+				
+				var current_cover_height = 0;
+				var current_cover_width = 0;
+				if ($('.ossn-group-cover').length) {
+					current_cover_height = ~~($('.ossn-group-cover').height() + 0.5);
+					current_cover_width = ~~($('.ossn-group-cover').width() + 0.5);
+				}
+				if (current_cover_width < 1024) {
+					var theme_config = $('#ossn-theme-config');
+					var default_cover_height = theme_config.attr('data-desktop-cover-height');
+					var default_cover_width = theme_config.attr('data-minimum-cover-image-width');
+
+					// we're on mobile
+					const desktop_cover_width = default_cover_width;
+					const desktop_cover_height = default_cover_height;
+
+					var real_image_width = document.querySelector("#draggable").naturalWidth;
+					var real_image_height = document.querySelector("#draggable").naturalHeight;
+					// 1. how many mobile heights would we need to hold the image?
+					var mobile_height_factor = real_image_height / current_cover_height;
+					// 2. how many pixels wide would be the scaled mobile image in comparison to fix desktop_cover_width?
+					var mobile_pixel_width = desktop_cover_width / mobile_height_factor;
+					// 3. how often would these pixels fit into the current coverwidth?
+					var mobile_width_factor = current_cover_width / mobile_pixel_width;
+					// 4. how many pixels do we get with the current mobile cover height?
+					var mobile_pixel_height = mobile_width_factor * current_cover_height;
+					mobile_pixel_width = parseInt($('#draggable').css('width'));
+
+					// 5. calculate the height-scaling factor for dragging - get maximum possible scroll top position
+					var desktop_scroll_top_max = real_image_height - desktop_cover_height;
+					var mobile_scroll_top_max = mobile_pixel_height - current_cover_height;
+					var height_scaling_factor = desktop_scroll_top_max / mobile_scroll_top_max;
+					// 6. calculate the width-scaling factor for dragging - get maximum possible scroll left position
+					var desktop_scroll_left_max = real_image_width - desktop_cover_width;
+					var mobile_scroll_left_max = mobile_pixel_width - current_cover_width;
+					var width_scaling_factor = desktop_scroll_left_max / mobile_scroll_left_max;
+
+					var cover_top = parseInt(ui.position.top);
+					var cover_left = parseInt(ui.position.left);
+
+					var mobile_pixel_top = cover_top * height_scaling_factor;
+					var mobile_pixel_left = cover_left * width_scaling_factor;
+					
+					$('.ossn-group-cover img').attr('data-scaled_top', parseInt(mobile_pixel_top)+"px");
+					$('.ossn-group-cover img').attr('data-scaled_left', parseInt(mobile_pixel_left)+"px");
+				}
+			});
+		});
+	});
+});
+
+Ossn.repositionGroupCOVER = function($group) {
+	var cover_top  = parseInt($('.ossn-group-cover').find('img').css('top'));
+	var cover_left = parseInt($('.ossn-group-cover').find('img').css('left'));
+	var $url = Ossn.site_url + "action/group/cover/reposition";
+	$.ajax({
+		async: true,
+		type: 'post',
+		data: '&top=' + cover_top + '&left=' + cover_left + '&group=' + $group,
+		url: Ossn.AddTokenToUrl($url),
+		success: function(callback) {
+			$("#draggable").draggable('destroy');
+			$('.group-c-position').attr('style', 'display:none !important;');
+			$('.ossn-group-cover-button').show();
+		},
+	});
+};
+							
+Ossn.RegisterStartupFunction(function() {
+	$(document).ready(function() {
+		$('.ossn-group-change-owner').on('click', function(e) {
+			e.preventDefault();
+			var new_owner = $(this).attr('data-new-owner');
+			var is_admin  = $(this).attr('data-is-admin');
+			if (is_admin) {
+				var del = confirm(Ossn.Print('group:memb:make:owner:admin:confirm', [new_owner]));
+			} else {
+				var del = confirm(Ossn.Print('group:memb:make:owner:confirm', [new_owner]));
+			}
+			if (del == true) {
+				var actionurl = $(this).attr('href');
+				window.location = actionurl;
+			}
+		});
+	});
+});

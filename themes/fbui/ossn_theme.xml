@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<theme xmlns="http://www.opensource-socialnetwork.org/theme/v/3.0">
+    <name>Facebook Style Theme</name>
+    <id>fbui</id>
+    <author>Core Team</author>
+    <author_url>https://www.opensource-socialnetwork.org/</author_url>	
+    <description>A responsive theme for Ossn based on facebook style.</description>
+    <license>Open Source Social Network License (OSSN LICENSE)</license>
+    <license_url>https://www.opensource-socialnetwork.org/licence</license_url>
+    <version>2.0</version>
+	<requires>
+		<type>ossn_version</type>
+		<version>10.1</version>
+	</requires>
+</theme>
