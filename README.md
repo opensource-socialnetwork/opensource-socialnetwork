@@ -24,7 +24,8 @@ Kernighan & Ritchie (K&R Variant 1TBS) indentation standard is used for the OSSN
 
 | Landing Page | Newsfeed | Profile Page |
 |:-------------------------:|:-------------------------:|:-------------------------:|
-|<img width="665" alt="open source social network landing page" src="https://www.opensource-socialnetwork.org/themes/default/images/s1.png?ossn_cache=03042026">| <img width="665" alt="open source social network newsfeed" src="https://www.opensource-socialnetwork.org/themes/default/images/s5.52.png?ossn_cache=03042026"> | <img width="665" alt="open source social network profile page" src="https://www.opensource-socialnetwork.org/themes/default/images/s2.png?ossn_cache=03042026">|
+|<img width="665" alt="open source social network landing page" src="https://www.opensource-socialnetwork.org/themes/default/images/s1.png?ossn_cache=03042026">| <img width="665" alt="open source social network facebook style landing page" src="https://www.opensource-socialnetwork.org/themes/default/images/landing-fui.webp?ossn_cache=0659e47d"> | <img width="665" alt="open source social network mobile view" src="https://www.opensource-socialnetwork.org/themes/default/images/mobilegbf.webp?ossn_cache=0659e47d">|
+|<img width="665" alt="open source social network facebook style theme" src="https://www.opensource-socialnetwork.org/themes/default/images/fbgbe.webp?ossn_cache=0659e47d">| <img width="665" alt="open source social groups page" src="https://www.opensource-socialnetwork.org/themes/default/images/profilenewfg.webp?ossn_cache=0659e47d"> | <img width="665" alt="open source social network profile page facebook style" src="https://www.opensource-socialnetwork.org/themes/default/images/profilefb.webp?ossn_cache=0659e47d"> |
 
 Visit https://www.opensource-socialnetwork.org/ for more details 
 
