@@ -1,0 +1,207 @@
+.ossn-premium-upgrade-card {
+	 position: relative;
+	 overflow: hidden;
+	 border-radius: 16px;
+	 padding: 28px 32px;
+	 margin-top: 22px;
+	 margin-bottom: 10px;
+	 box-shadow: 0 12px 32px rgba(15, 23, 42, 0.12);
+	 transition: transform 0.25s ease, box-shadow 0.25s ease;
+	 border: 1px solid rgba(255, 255, 255, 0.14);
+}
+ .ossn-premium-upgrade-card:hover {
+	 transform: translateY(-2px);
+	 box-shadow: 0 16px 38px rgba(15, 23, 42, 0.18);
+}
+ .ossn-premium-upgrade-card .promo-watermark {
+	 position: absolute;
+	 right: 26%;
+	 bottom: -24px;
+	 font-size: 165px;
+	 opacity: 0.06;
+	 transform: rotate(-14deg);
+	 pointer-events: none;
+	 line-height: 1;
+}
+/* Normal Theme */
+ .ossn-premium-upgrade-card.theme-normal {
+	 background: radial-gradient(circle at top right, #2563eb 0%, #1e1b4b 55%, #0f172a 100%);
+	 color: #ffffff;
+}
+ .ossn-premium-upgrade-card.theme-normal .promo-badge {
+	 background: rgba(96, 165, 250, 0.2);
+	 color: #93c5fd;
+	 border: 1px solid rgba(147, 197, 253, 0.35);
+}
+ .ossn-premium-upgrade-card.theme-normal .promo-cta {
+	 background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+	 color: #fff;
+	 box-shadow: 0 6px 20px rgba(37, 99, 235, 0.45);
+}
+/* Halloween Theme */
+ .ossn-premium-upgrade-card.theme-halloween {
+	 background: radial-gradient(circle at top right, #7c2d12 0%, #2e1065 55%, #140826 100%);
+	 color: #ffffff;
+}
+ .ossn-premium-upgrade-card.theme-halloween .promo-badge {
+	 background: rgba(249, 115, 22, 0.22);
+	 color: #fdba74;
+	 border: 1px solid rgba(251, 146, 60, 0.45);
+}
+ .ossn-premium-upgrade-card.theme-halloween .promo-cta {
+	 background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+	 color: #fff;
+	 box-shadow: 0 6px 20px rgba(234, 88, 12, 0.45);
+}
+/* Christmas Theme */
+ .ossn-premium-upgrade-card.theme-christmas {
+	 background: radial-gradient(circle at top right, #15803d 0%, #064e3b 55%, #022c22 100%);
+	 color: #ffffff;
+}
+ .ossn-premium-upgrade-card.theme-christmas .promo-badge {
+	 background: rgba(220, 38, 38, 0.85);
+	 color: #ffffff;
+	 border: 1px solid rgba(252, 165, 165, 0.45);
+}
+ .ossn-premium-upgrade-card.theme-christmas .promo-cta {
+	 background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+	 color: #fff;
+	 box-shadow: 0 6px 20px rgba(220, 38, 38, 0.45);
+}
+/* Black Friday Theme */
+ .ossn-premium-upgrade-card.theme-blackfriday {
+	 background: radial-gradient(circle at top right, #3f3f46 0%, #18181b 55%, #09090b 100%);
+	 color: #ffffff;
+}
+ .ossn-premium-upgrade-card.theme-blackfriday .promo-badge {
+	 background: rgba(250, 204, 21, 0.2);
+	 color: #fde047;
+	 border: 1px solid rgba(250, 204, 21, 0.45);
+}
+ .ossn-premium-upgrade-card.theme-blackfriday .promo-cta {
+	 background: linear-gradient(135deg, #facc15 0%, #eab308 100%);
+	 color: #09090b;
+	 font-weight: 700;
+	 box-shadow: 0 6px 20px rgba(234, 179, 8, 0.4);
+}
+ .ossn-premium-upgrade-card .promo-badge {
+	 display: inline-flex;
+	 align-items: center;
+	 gap: 6px;
+	 font-size: 11px;
+	 font-weight: 700;
+	 letter-spacing: 0.08em;
+	 text-transform: uppercase;
+	 padding: 5px 12px;
+	 border-radius: 999px;
+	 margin-bottom: 12px;
+}
+ .ossn-premium-upgrade-card .promo-title {
+	 font-size: 21px;
+	 font-weight: 700;
+	 line-height: 1.3;
+	 margin-bottom: 8px;
+	 color: #ffffff;
+}
+ .ossn-premium-upgrade-card .promo-desc {
+	 display: block !important;
+	 font-size: 13.5px;
+	 line-height: 1.6;
+	 color: rgba(255, 255, 255, 0.85) !important;
+	 margin-bottom: 16px;
+	 max-width: 680px;
+}
+ .ossn-premium-upgrade-card .promo-pills {
+	 display: flex;
+	 flex-wrap: wrap;
+	 gap: 8px;
+}
+ .ossn-premium-upgrade-card .promo-pill {
+	 display: inline-flex;
+	 align-items: center;
+	 gap: 6px;
+	 font-size: 12px;
+	 font-weight: 500;
+	 padding: 5px 11px;
+	 border-radius: 8px;
+	 background: rgba(255, 255, 255, 0.09);
+	 border: 1px solid rgba(255, 255, 255, 0.12);
+	 color: rgba(255, 255, 255, 0.94);
+}
+ .ossn-premium-upgrade-card .promo-pill i {
+	 color: #4ade80;
+}
+ .ossn-premium-upgrade-card .promo-pricing-box {
+	 background: rgba(255, 255, 255, 0.08);
+	 backdrop-filter: blur(10px);
+	 -webkit-backdrop-filter: blur(10px);
+	 border: 1px solid rgba(255, 255, 255, 0.15);
+	 border-radius: 14px;
+	 padding: 20px;
+	 text-align: center;
+}
+ .ossn-premium-upgrade-card .promo-price-label {
+	 font-size: 11px;
+	 text-transform: uppercase;
+	 letter-spacing: 0.06em;
+	 color: rgba(255, 255, 255, 0.7);
+	 margin-bottom: 4px;
+}
+ .ossn-premium-upgrade-card .promo-price-row {
+	 display: flex;
+	 align-items: baseline;
+	 justify-content: center;
+	 gap: 8px;
+	 margin-bottom: 14px;
+}
+ .ossn-premium-upgrade-card .promo-old-price {
+	 font-size: 18px;
+	 text-decoration: line-through;
+	 color: rgba(255, 255, 255, 0.45);
+}
+ .ossn-premium-upgrade-card .promo-price {
+	 font-size: 34px;
+	 font-weight: 800;
+	 line-height: 1;
+	 color: #ffffff;
+}
+ .ossn-premium-upgrade-card .promo-coupon-wrap {
+	 display: inline-flex;
+	 align-items: center;
+	 gap: 8px;
+	 background: rgba(0, 0, 0, 0.28);
+	 border: 1px dashed rgba(255, 255, 255, 0.35);
+	 border-radius: 8px;
+	 padding: 5px 11px;
+	 font-size: 12px;
+	 margin-bottom: 14px;
+	 user-select: all;
+}
+ .ossn-premium-upgrade-card .promo-coupon-code {
+	 font-family: monospace;
+	 font-weight: 700;
+	 color: #fde047;
+	 letter-spacing: 0.04em;
+}
+ .ossn-premium-upgrade-card .promo-coupon-sep {
+	 opacity: 0.4;
+}
+ .ossn-premium-upgrade-card .promo-cta {
+	 display: inline-flex;
+	 align-items: center;
+	 justify-content: center;
+	 gap: 8px;
+	 width: 100%;
+	 padding: 11px 18px;
+	 border-radius: 10px;
+	 font-size: 14px;
+	 font-weight: 600;
+	 text-decoration: none;
+	 border: none;
+	 transition: transform 0.2s ease, filter 0.2s ease;
+}
+ .ossn-premium-upgrade-card .promo-cta:hover {
+	 transform: translateY(-1px);
+	 filter: brightness(1.08);
+	 color: inherit;
+}

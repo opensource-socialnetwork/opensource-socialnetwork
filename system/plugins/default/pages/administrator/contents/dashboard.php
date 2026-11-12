@@ -128,6 +128,7 @@
                 </div>
             </div>
         </div>
+        <?php echo ossn_plugin_view('premium/promo'); ?>
 </div>
 <script>
 $(window).on('load', function () {
