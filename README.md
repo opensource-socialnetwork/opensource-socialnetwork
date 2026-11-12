@@ -22,7 +22,7 @@ Kernighan & Ritchie (K&R Variant 1TBS) indentation standard is used for the OSSN
 - Copyright (C) 2015-2021 SOFTLAB24 LTD <https://www.softlab24.com>
 - Copyright (C) 2014-2015 INFORMATIKON TECHNOLOGIES <https://www.informatikon.com>
 
-| Landing Page | Newsfeed | Profile Page |
+| | | |
 |:-------------------------:|:-------------------------:|:-------------------------:|
 |<img width="665" alt="open source social network landing page" src="https://www.opensource-socialnetwork.org/themes/default/images/s1.png?ossn_cache=03042026">| <img width="665" alt="open source social network facebook style landing page" src="https://www.opensource-socialnetwork.org/themes/default/images/landing-fui.webp?ossn_cache=0659e47d"> | <img width="665" alt="open source social network mobile view" src="https://www.opensource-socialnetwork.org/themes/default/images/mobilegbf.webp?ossn_cache=0659e47d">|
 |<img width="665" alt="open source social network facebook style theme" src="https://www.opensource-socialnetwork.org/themes/default/images/fbgbe.webp?ossn_cache=0659e47d">| <img width="665" alt="open source social groups page" src="https://www.opensource-socialnetwork.org/themes/default/images/profilenewfg.webp?ossn_cache=0659e47d"> | <img width="665" alt="open source social network profile page facebook style" src="https://www.opensource-socialnetwork.org/themes/default/images/profilefb.webp?ossn_cache=0659e47d"> |
