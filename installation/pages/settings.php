@@ -131,7 +131,7 @@ if (empty($themes)) {
                 <label class="form-label fw-bold text-secondary small text-uppercase mb-2">
                     <?php echo ossn_installation_print('ossn:default:language'); ?>
                 </label>
-                <select class="form-select" name="default_language">
+                <select class="form-select" name="language">
                     <?php foreach ($languages as $code) { ?>
                         <option value="<?php echo $code; ?>" <?php echo ($code === 'en') ? 'selected' : ''; ?>>
                             <?php echo ossn_installation_print($code); ?>
@@ -144,7 +144,7 @@ if (empty($themes)) {
                 <label class="form-label fw-bold text-secondary small text-uppercase mb-2">
                     <?php echo ossn_installation_print('ossn:default:theme'); ?>
                 </label>
-                <select class="form-select" name="default_theme">
+                <select class="form-select" name="theme">
                     <?php foreach ($themes as $theme_id => $theme_name) { ?>
                         <option value="<?php echo $theme_id; ?>" <?php echo ($theme_id === 'goblue') ? 'selected' : ''; ?>>
                             <?php echo $theme_name; ?>
