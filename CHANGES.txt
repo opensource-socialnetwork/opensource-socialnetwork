@@ -1,6 +1,9 @@
 OSSN - OPEN SOURCE SOCIAL NETWORK v10.2
 - [B] Critical PHP Code Injection / RCE in Dynamic Cache Settings #2644
 - [E] Check zip slip is a path traversal in com and theme upload #2642
+- [B] Check file download in messages and album photos ownership checking #2641
+- [E] Allow to select theme and langauge during installation process
+- [E] Added FBUI theme inside core.
 
 OSSN - OPEN SOURCE SOCIAL NETWORK v10.1
 - [E] Redirect should exit on any case #2636
