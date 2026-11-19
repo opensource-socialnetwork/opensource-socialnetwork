@@ -97,5 +97,7 @@ $ja = array(
 		'fbui:see_less'                  => '閉じる',
 		'fbui:games:exitfs'              => '全画面表示を終了',
 		'fbui:games:fulls'               => '全画面表示',
+		'fbui:search:group:visit'        => 'アクセス',
+		'fbui:search:group:visit'        => 'アクセス',
 );
 ossn_register_languages('ja', $ja);

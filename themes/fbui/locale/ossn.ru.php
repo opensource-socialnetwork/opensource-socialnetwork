@@ -97,5 +97,6 @@ $ru = array(
 		'fbui:see_less'                  => 'Показать меньше',
 		'fbui:games:exitfs'              => 'Выйти из полноэкранного режима',
 		'fbui:games:fulls'               => 'Полный экран',
+		fbui:search:group:visit'        => 'Посетить',
 );
 ossn_register_languages('ru', $ru);

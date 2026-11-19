@@ -97,5 +97,6 @@ $zh = array(
 		'fbui:see_less'                  => '收起',
 		'fbui:games:exitfs'              => '退出全屏',
 		'fbui:games:fulls'               => '全屏',
+		'fbui:search:group:visit'        => '访问',
 );
 ossn_register_languages('zh', $zh);

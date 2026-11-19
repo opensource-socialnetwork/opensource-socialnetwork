@@ -97,5 +97,7 @@ $nl = array(
 		'fbui:see_less'                  => 'Minder weergeven',
 		'fbui:games:exitfs'              => 'Volledig scherm sluiten',
 		'fbui:games:fulls'               => 'Volledig scherm',
+		'fbui:search:group:visit'        => 'Bezoeken',
+		'fbui:search:group:visit'        => 'Bezoeken',
 );
 ossn_register_languages('nl', $nl);

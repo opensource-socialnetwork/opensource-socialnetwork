@@ -2711,7 +2711,11 @@ label {
 }
 
 /* Gradients */
-
+.fbui-static-sidebar .fbui-sidebar-list .icon-golive i {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+}
 .fbui-static-sidebar .fbui-sidebar-list .icon-photos i {
     background: linear-gradient(135deg, #f59e0b 0%, #ec4899 100%) !important;
     -webkit-background-clip: text !important;
@@ -3385,13 +3389,14 @@ label {
 
 /* Left Column: Social & Navigation Links */
 .fbui-megamenu-left {
-    flex: 1.2;
+	flex: 1.2;
     background: #ffffff;
     border-radius: 8px;
     padding: 12px;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-    max-height: 480px;
-    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    max-height: calc(100vh - 140px) !important;
 }
 
 /* Search Box Inside Left Panel */
@@ -3435,7 +3440,35 @@ label {
     color: #050505;
     margin-bottom: 12px;
 }
+.fbui-megamenu-right {
+    max-height: calc(100vh - 140px) !important;
+    display: flex;
+    flex-direction: column;
+}
 
+/* Make the create list scrollable and match the height behavior */
+.fbui-create-list.fbui-create-scrollable {
+    max-height: calc(100vh - 180px) !important;
+    overflow-y: auto !important;
+    padding-right: 4px;
+}
+
+/* Custom thin scrollbar styling for both sides */
+.fbui-create-list.fbui-create-scrollable::-webkit-scrollbar,
+.fbui-megamenu-left .sidebar-menu::-webkit-scrollbar {
+    width: 6px;
+}
+
+.fbui-create-list.fbui-create-scrollable::-webkit-scrollbar-thumb,
+.fbui-megamenu-left .sidebar-menu::-webkit-scrollbar-thumb {
+    background: #bcc0c4;
+    border-radius: 3px;
+}
+
+.fbui-create-list.fbui-create-scrollable::-webkit-scrollbar-thumb:hover,
+.fbui-megamenu-left .sidebar-menu::-webkit-scrollbar-thumb:hover {
+    background: #8a8d91;
+}
 /* Section Headlines (e.g. Social, Groups, Links) */
 .sidebar-menu-nav .sidebar-parent-item-main {
     list-style: none;
@@ -4214,7 +4247,7 @@ label {
         align-items: center !important;
         justify-content: center !important;
     }
-
+	.fbui-create-divider-li,
     .fbui-create-divider {
         display: none !important;
     }
@@ -4808,13 +4841,13 @@ label {
 
 /* Scrollable Contacts List Container */
 .fbui-contacts-list {
-	list-style: none !important;
-	margin: 0 !important;
-	padding: 0 !important;
-	height: 380px !important;
-	max-height: 380px !important;
-	overflow-y: scroll !important;
-	display: block !important;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	min-height: 50px;
+	max-height: 380px;
+	overflow-y: scroll;
+	display: block;
 }
 
 .fbui-contacts-list::-webkit-scrollbar {
@@ -4907,4 +4940,123 @@ label {
 /* Hide native pagination container visually */
 .fbui-contacts-pagination-container {
 	display: none !important;
+}
+/********* Group search page*********/
+/* Container for group search items */
+.fbui-group-search-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+}
+
+/* Facebook-style Card with soft border and crisp shadow */
+.fbui-group-search-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #ffffff;
+    border: 1px solid #ced0d4;
+    border-radius: 8px;
+    padding: 10px 14px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.2s ease;
+}
+
+.fbui-group-search-card:hover {
+    background-color: #f9fbfd;
+}
+
+/* Left side layout */
+.fbui-group-search-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    overflow: hidden;
+}
+
+/* Fixed-size rounded square thumbnail container matching Facebook */
+.fbui-group-search-thumb {
+    width: 52px;
+    height: 52px;
+    min-width: 52px;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #f0f2f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.fbui-group-search-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Default Icon styling when no custom cover image exists */
+.fbui-group-default-icon {
+    width: 100%;
+    height: 100%;
+    background: #e4e6eb;
+    color: #65676b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+
+/* Group Info Text */
+.fbui-group-search-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.fbui-group-search-title {
+    font-weight: 600;
+    font-size: 15px;
+    color: #050505;
+    text-decoration: none;
+    line-height: 1.35;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.fbui-group-search-title:hover {
+    text-decoration: underline;
+}
+
+.fbui-group-search-meta {
+    font-size: 13px;
+    color: #65676b;
+    margin-top: 2px;
+}
+
+/* Right side Action Button (Facebook Light Blue style) */
+.fbui-group-search-right {
+    margin-left: 12px;
+    flex-shrink: 0;
+}
+
+.fbui-group-action-btn {
+    background-color: #e7f3ff;
+    color: #1877f2;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 7px 16px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+    display: inline-block;
+    border: none;
+}
+
+.fbui-group-action-btn:hover {
+    background-color: #dbe7f2;
+    color: #166fe5;
+    text-decoration: none;
 }

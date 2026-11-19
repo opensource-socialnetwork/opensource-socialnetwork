@@ -97,5 +97,6 @@ $eo = array(
 		'fbui:see_less'                  => 'Vidi malpli',
 		'fbui:games:exitfs'              => 'Eliri el plenekrano',
 		'fbui:games:fulls'               => 'Plenekrano',
+		'fbui:search:group:visit'        => 'Viziti',
 );
 ossn_register_languages('eo', $eo);

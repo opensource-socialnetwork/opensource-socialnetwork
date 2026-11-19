@@ -97,5 +97,6 @@ $el = array(
 		'fbui:see_less'                  => 'Δείτε λιγότερα',
 		'fbui:games:exitfs'              => 'Έξοδος από πλήρη οθόνη',
 		'fbui:games:fulls'               => 'Πλήρης οθόνη',
+		'fbui:search:group:visit'        => 'Επίσκεψη',
 );
 ossn_register_languages('el', $el);

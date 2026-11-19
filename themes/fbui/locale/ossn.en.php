@@ -97,5 +97,6 @@ $en = array(
 		'fbui:see_less'                  => 'See less',
 		'fbui:games:exitfs'              => 'Exit Fullscreen',
 		'fbui:games:fulls'               => 'Fullscreen',
+		'fbui:search:group:visit'		 => 'Visit',
 );
 ossn_register_languages('en', $en);

@@ -97,5 +97,6 @@ $he = array(
 		'fbui:see_less'                  => 'ראה פחות',
 		'fbui:games:exitfs'              => 'צא ממסך מלא',
 		'fbui:games:fulls'               => 'מסך מלא',
+		'fbui:search:group:visit'        => 'ביקור',
 );
 ossn_register_languages('he', $he);

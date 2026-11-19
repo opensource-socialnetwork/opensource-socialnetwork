@@ -22,6 +22,27 @@ $(document).ready(function() {
         }
     });
 });
+$(document).on('click', '#topbar-megamenu-postcreate', function(e) {
+    e.preventDefault();
+    
+    // Get the current path or full URL
+    var currentPath = window.location.pathname;
+    var siteBaseUrl = window.location.origin + '/home'; // Adjust if your home path differs
+    
+    // Check if we are currently on the home page
+    if (!currentPath.endsWith('/home') && currentPath !== '/' && currentPath !== '') {
+        // Not on home page -> redirect to home
+        window.location.href = siteBaseUrl;
+    } else {
+        // Already on home page -> trigger click on the wall dummy box
+        if ($('.fbui-wall-dummy-box').length) {
+            $('.fbui-wall-dummy-box').trigger('click');
+        } else {
+            // Fallback if the dummy box isn't found immediately
+            window.location.href = siteBaseUrl;
+        }
+    }
+});
 $(document).ready(function() {
 	$('[data-toggle="tooltip"]').tooltip({
 		placement:'left',										  

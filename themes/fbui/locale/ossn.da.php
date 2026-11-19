@@ -97,5 +97,6 @@ $da = array(
 		'fbui:see_less'                  => 'Se mindre',
 		'fbui:games:exitfs'              => 'Afslut fuld skærm',
 		'fbui:games:fulls'               => 'Fuld skærm',
+		'fbui:search:group:visit'        => 'Besøg',
 );
 ossn_register_languages('da', $da);

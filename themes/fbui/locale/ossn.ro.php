@@ -97,5 +97,6 @@ $ro = array(
 		'fbui:see_less'                  => 'Vezi mai puțin',
 		'fbui:games:exitfs'              => 'Ieși din ecran complet',
 		'fbui:games:fulls'               => 'Ecran complet',
+		'fbui:search:group:visit'        => 'Vizitează',
 );
 ossn_register_languages('ro', $ro);

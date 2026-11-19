@@ -97,5 +97,6 @@ $hu = array(
 		'fbui:see_less'                  => 'Kevesebb megjelenítése',
 		'fbui:games:exitfs'              => 'Kilépés a teljes képernyőből',
 		'fbui:games:fulls'               => 'Teljes képernyő',
+		'fbui:search:group:visit'        => 'Meglátogatás',
 );
 ossn_register_languages('hu', $hu);

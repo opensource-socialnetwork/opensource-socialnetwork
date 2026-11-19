@@ -97,5 +97,6 @@ $tr = array(
 		'fbui:see_less'                  => 'Daha az gör',
 		'fbui:games:exitfs'              => 'Tam Ekrandan Çık',
 		'fbui:games:fulls'               => 'Tam Ekran',
+		'fbui:search:group:visit'        => 'Ziyaret et',
 );
 ossn_register_languages('tr', $tr);

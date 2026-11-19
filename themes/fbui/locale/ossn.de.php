@@ -97,5 +97,6 @@ $de = array(
 		'fbui:see_less'                  => 'Weniger anzeigen',
 		'fbui:games:exitfs'              => 'Vollbildmodus beenden',
 		'fbui:games:fulls'               => 'Vollbild',
+		'fbui:search:group:visit'        => 'Besuchen',
 );
 ossn_register_languages('de', $de);

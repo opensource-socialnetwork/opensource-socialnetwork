@@ -97,5 +97,6 @@ $ta = array(
 		'fbui:see_less'                  => 'குறைவாகக் காண்க',
 		'fbui:games:exitfs'              => 'முழுத்திரையிலிருந்து வெளியேறு',
 		'fbui:games:fulls'               => 'முழுத்திரை',
+		'fbui:search:group:visit'        => 'பார்வையிட',
 );
 ossn_register_languages('ta', $ta);

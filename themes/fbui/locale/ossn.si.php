@@ -97,5 +97,6 @@ $si = array(
 		'fbui:see_less'                  => 'අඩුවෙන් බලන්න',
 		'fbui:games:exitfs'              => 'පූර්ණ තිරයෙන් ඉවත් වන්න',
 		'fbui:games:fulls'               => 'පූර්ණ තිරය',
+		'fbui:search:group:visit'        => 'පිවිසෙන්න',
 );
 ossn_register_languages('si', $si);

@@ -97,5 +97,6 @@ $fa = array(
 		'fbui:see_less'                  => 'مشاهده کمتر',
 		'fbui:games:exitfs'              => 'خروج از تمام‌صفحه',
 		'fbui:games:fulls'               => 'تمام‌صفحه',
+		'fbui:search:group:visit'        => 'بازدید',
 );
 ossn_register_languages('fa', $fa);

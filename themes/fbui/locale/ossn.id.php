@@ -97,5 +97,6 @@ $id = array(
 		'fbui:see_less'                  => 'Lihat lebih sedikit',
 		'fbui:games:exitfs'              => 'Keluar dari Layar Penuh',
 		'fbui:games:fulls'               => 'Layar Penuh',
+		'fbui:search:group:visit'        => 'Kunjungi',		
 );
 ossn_register_languages('id', $id);

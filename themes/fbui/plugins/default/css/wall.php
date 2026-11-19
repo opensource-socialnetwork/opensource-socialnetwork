@@ -1030,3 +1030,13 @@
 }
 
 .ossn-wall-container .ossn-wall-post:hover { background-color: #0052cc; }
+.ossn-wall-container-control-menu-voice-message {
+	position:reltive;
+}	
+.ossn-wall-container-control-menu-voice-message .circle {
+    margin-left: initial !important;
+    margin-top: initial !important;
+}
+.ossn-wall-container-control-menu-voice-message .mic-container .circle i {
+	color:red !important;	
+}

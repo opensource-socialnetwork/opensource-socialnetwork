@@ -97,5 +97,6 @@ $ko = array(
 		'fbui:see_less'                  => '간략히 보기',
 		'fbui:games:exitfs'              => '전체 화면 종료',
 		'fbui:games:fulls'               => '전체 화면',
+		'fbui:search:group:visit'        => '방문',
 );
 ossn_register_languages('ko', $ko);
