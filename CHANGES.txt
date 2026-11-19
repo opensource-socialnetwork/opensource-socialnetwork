@@ -1,3 +1,11 @@
+OSSN - OPEN SOURCE SOCIAL NETWORK v10.3
+- [B] Update FBUI theme to new version with sidebar and other fixes #2649
+- [B] Non-members can post to groups via action/wall/post/group due to missing membership check #2654
+- [B] Enforce post visibility on wall post photo downloads and post views #2653
+- [B] Enforce post access level and group membership on comment and like actions #2652
+- [B] Groups member page no remove member option #2650
+- [B] Check getFriends in wall post have no page_limit? #2648
+
 OSSN - OPEN SOURCE SOCIAL NETWORK v10.2
 - [B] Critical PHP Code Injection / RCE in Dynamic Cache Settings #2644
 - [E] Check zip slip is a path traversal in com and theme upload #2642
