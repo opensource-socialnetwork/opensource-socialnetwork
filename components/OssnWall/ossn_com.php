@@ -285,6 +285,51 @@ function ossn_likes_post_notifiation($hook, $type, $return, $params) {
 		));
 }
 /**
+ * Post view gate keeper
+ *
+ * @return boolean
+ */
+function ossn_wall_can_view_post($post) {
+		if(!$post || empty($post->guid)) {
+				return false;
+		}
+		$loggedin = ossn_loggedin_user();
+		//Posts having friends privacy are visible to public using direct URL #1484
+		//re-opened on 27-06-2021 thanks to Haydar Alkaduhimi for reporting it.
+		//fixing again on 18-09-2021 user can not view own post.
+		//fixing admins can not view friends only post if they are not friends October 20th 2024  #2403
+		if(isset($post->access)) {
+				if($post->access == OSSN_PRIVATE) {
+						if(!ossn_isLoggedin() || (!ossn_isAdminLoggedin() && $loggedin->guid != $post->poster_guid)) {
+								return false;
+						}
+				} elseif($post->access == OSSN_FRIENDS) {
+						if(
+								(isset($post->access) && $post->access == OSSN_FRIENDS && !ossn_isLoggedin()) ||
+								(!ossn_isAdminLoggedin() &&
+										ossn_isLoggedin() &&
+										$loggedin->guid != $post->poster_guid &&
+										$post->access == OSSN_FRIENDS &&
+										ossn_isLoggedin() &&
+										!ossn_user_is_friend($loggedin->guid, $post->poster_guid))
+						) {
+								return false;
+						}
+				}
+		}
+		//[B] Close group post is accessible when not loggedin #1997
+		if($post->type == 'group' && com_is_active('OssnGroups')) {
+				$group = ossn_get_group_by_guid($post->owner_guid);
+				if($group && $group->membership == OSSN_PRIVATE) {
+						//[B] admins can not view access=1 posts if not member of group #2510
+						if((ossn_isLoggedin() && !ossn_isAdminLoggedin() && !$group->isMember($group->guid, $loggedin->guid)) || !ossn_isLoggedin()) {
+								return false;
+						}
+				}
+		}
+		return true;
+}
+/**
  * OssnWall post page handlers
  *
  * @param array $pages List of pages
@@ -306,31 +351,8 @@ function ossn_post_page($pages) {
 				if(empty($post->guid) || empty($pages[1])) {
 						ossn_error_page();
 				}
-				$loggedin = ossn_loggedin_user();
-				//Posts having friends privacy are visible to public using direct URL #1484
-				//re-opened on 27-06-2021 thanks to Haydar Alkaduhimi for reporting it.
-				//fixing again on 18-09-2021 user can not view own post.
-				//fixing admins can not view friends only post if they are not friends October 20th 2024  #2403
-				if(
-						(isset($post->access) && $post->access == OSSN_FRIENDS && !ossn_isLoggedin()) ||
-						(!ossn_isAdminLoggedin() &&
-								ossn_isLoggedin() &&
-								$loggedin->guid != $post->poster_guid &&
-								$post->access == OSSN_FRIENDS &&
-								ossn_isLoggedin() &&
-								!ossn_user_is_friend($loggedin->guid, $post->poster_guid))
-				) {
+				if(!ossn_wall_can_view_post($post)) {
 						ossn_error_page();
-				}
-				//[B] Close group post is accessible when not loggedin #1997
-				if($post->type == 'group' && com_is_active('OssnGroups')) {
-						$group = ossn_get_group_by_guid($post->owner_guid);
-						if($group && $group->membership == OSSN_PRIVATE) {
-								//[B] admins can not view access=1 posts if not member of group #2510
-								if((ossn_isLoggedin() && !ossn_isAdminLoggedin() && !$group->isMember($group->guid, $loggedin->guid)) || !ossn_isLoggedin()) {
-										ossn_error_page();
-								}
-						}
 				}
 				$params['post'] = $post;
 
@@ -344,6 +366,9 @@ function ossn_post_page($pages) {
 				$wall = new OssnWall();
 				$post = $wall->GetPost($pages[1]);
 				if(!empty($pages[1]) && !empty($pages[2]) && $post) {
+						if(!ossn_wall_can_view_post($post)) {
+								ossn_error_page();
+						}
 						$file = $post->getPhotoFile();
 						if(!$file) {
 								ossn_error_page();
