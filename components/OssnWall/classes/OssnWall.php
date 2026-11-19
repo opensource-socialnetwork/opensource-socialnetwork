@@ -181,7 +181,9 @@ class OssnWall extends OssnObject {
 		 */
 		public function GetUserPosts($user, $params = array()) {
 				if(isset($user->guid) && !empty($user->guid)) {
-						$friends = $user->getFriends();
+						$friends = $user->getFriends($user->guid, array(
+								'page_limit' => false,													
+						));
 						//operator not supported for strings #999
 						$friend_guids = array();
 						if($friends) {
@@ -326,7 +328,9 @@ class OssnWall extends OssnObject {
 		public function getFriendsPosts($params = array()) {
 				$user = ossn_loggedin_user();
 				if(isset($user->guid) && !empty($user->guid)) {
-						$friends = $user->getFriends();
+						$friends = $user->getFriends($user->guid, array(
+									'page_limit' => false,												
+						));
 						//operator not supported for strings #999
 						$friend_guids = array();
 						if($friends) {
@@ -388,7 +392,9 @@ class OssnWall extends OssnObject {
 		public function getPublicPosts($params = array()) {
 				$user = ossn_loggedin_user();
 				if(isset($user->guid) && !empty($user->guid)) {
-						$friends = $user->getFriends();
+						$friends = $user->getFriends($user->guid, array(
+									'page_limit' => false,												
+						));
 						//operator not supported for strings #999
 						$friend_guids = array();
 						if($friends) {
@@ -439,7 +445,9 @@ class OssnWall extends OssnObject {
 		public function getAllPosts($params = array()) {
 				$user = ossn_loggedin_user();
 				if(isset($user->guid) && !empty($user->guid)) {
-						$friends = $user->getFriends();
+						$friends = $user->getFriends($user->guid, array(
+									'page_limit' => false,												
+						));
 						//operator not supported for strings #999
 						$friend_guids = array();
 						if($friends) {
