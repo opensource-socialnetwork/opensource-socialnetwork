@@ -425,3 +425,54 @@
 	content: "\f0b2";
 	font-family: 'Font Awesome 5 Free';
 }
+.ossn-group-members-list .group-member-controls {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	gap: 8px;
+	flex-wrap: wrap;
+}
+
+/* Base button styling scoped to group members list */
+.ossn-group-members-list .group-member-btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 6px;
+	height: 36px;
+	padding: 0 14px;
+	font-size: 13px;
+	font-weight: 600;
+	line-height: 1;
+	border-radius: 8px;
+	white-space: nowrap;
+	text-decoration: none;
+	cursor: pointer;
+	transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+/* Remove Member button */
+.ossn-group-members-list .group-member-btn-remove {
+	background-color: #fffbeb;
+	border: 1px solid #f59e0b;
+	color: #b45309;
+}
+
+.ossn-group-members-list .group-member-btn-remove:hover {
+	background-color: #fef3c7;
+	border-color: #d97706;
+	color: #92400e;
+}
+
+/* Make Group Owner button */
+.ossn-group-members-list .group-member-btn-owner {
+	background-color: #fef2f2;
+	border: 1px solid #fca5a5;
+	color: #dc2626;
+}
+
+.ossn-group-members-list .group-member-btn-owner:hover {
+	background-color: #fee2e2;
+	border-color: #f87171;
+	color: #b91c1c;
+}
