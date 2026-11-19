@@ -11,9 +11,17 @@
 
 header('Content-Type: application/json');
 
-$OssnWall = new OssnWall();
+$user = ossn_loggedin_user();
+if(!ossn_isLoggedin() || !$user || empty($user->guid)) {
+		echo json_encode(array(
+				'error' => ossn_print('post:create:error'),
+		));
+		exit();
+}
 
-$OssnWall->poster_guid = ossn_loggedin_user()->guid;
+$user_guid = (int)$user->guid;
+$OssnWall = new OssnWall();
+$OssnWall->poster_guid = $user_guid;
 
 $owner = input('wallowner');
 if(isset($owner) && !empty($owner)) {
@@ -21,6 +29,12 @@ if(isset($owner) && !empty($owner)) {
 }
 
 $group = ossn_get_group_by_guid($owner);
+if(!$group || (!ossn_isAdminLoggedin() && $group->owner_guid != $user_guid && !$group->isMember($group->guid, $user_guid))) {
+		echo json_encode(array(
+				'error' => ossn_print('post:create:error'),
+		));
+		exit();
+}
 
 $OssnWall->type = 'group';
 
