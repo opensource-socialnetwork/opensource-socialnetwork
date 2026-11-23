@@ -1,0 +1,2 @@
+<?php
+redirect('golive/studio');
