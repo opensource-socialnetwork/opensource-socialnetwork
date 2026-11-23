@@ -30,6 +30,7 @@ The following developers contributed to this project:
 * Ahmadreza Bashari https://github.com/ahmadreza1383 (Persian Language) 
 * Kgan - vulnerability reporter
 * Jayaseelan Samuel - Tamil Langauge <jetkingsam@gmail.com>
-- Duc Anh Le https://github.com/leediay153
-- Wu Wenhao https://github.com/d3do-23
-- Andre
+* Duc Anh Le https://github.com/leediay153
+* Wu Wenhao https://github.com/d3do-23
+* Andre
+* John Henry at https://dejong.agency
