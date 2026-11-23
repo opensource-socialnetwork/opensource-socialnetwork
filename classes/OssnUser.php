@@ -896,7 +896,7 @@ class OssnUser extends OssnEntities {
 				$this->owner_guid = $this->guid;
 
 				$site_secret = ossn_site_settings('site_key');
-				$code        = hash('sha256', time() . $this->guid . $site_secret . rand());
+				$code        = hash('sha256', time() . $this->guid . $site_secret . rand()) . ':' . time(); // reset-code issuance timestamp; 1h expiry enforced in resetpassword.php (issue #2655)
 				if(!isset($this->{'login:reset:code'}) && empty($this->old_code)) {
 						$this->value = $code;
 						$this->add();
