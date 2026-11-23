@@ -32,3 +32,4 @@ The following developers contributed to this project:
 * Jayaseelan Samuel - Tamil Langauge <jetkingsam@gmail.com>
 - Duc Anh Le https://github.com/leediay153
 - Wu Wenhao https://github.com/d3do-23
+- Andre
