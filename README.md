@@ -83,7 +83,7 @@ Front-End Features
 | Mentions in comments | Custom Pages | Custom Menu Items |
 | Captcha | Site Announcements | Greetings | 
 | Login as | Progressive Web App | Microsoft Active Directory Login |
-| Giphy Integeration | Many free components of community website |
+| Giphy Integeration | Many free components of community website | Live Streaming |
 
 Backend Features
 =================
