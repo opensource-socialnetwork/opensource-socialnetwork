@@ -44,14 +44,6 @@ if (file_exists($shortcuts_file)) {
 					</a>
 				</li>
 				<li class="fbui-always-visible">
-					<a href="<?php echo $site_url; ?>home">
-						<div class="fbui-sidebar-icon icon-newsfeed">
-							<i class="fa-solid fa-newspaper me-0"></i>
-						</div>
-						<span class="fbui-sidebar-label"><?php echo ossn_print('news:feed');?></span>
-					</a>
-				</li>
-				<li class="fbui-always-visible">
 					<a href="<?php echo $user->profileURL('/friends'); ?>">
 						<div class="fbui-sidebar-icon icon-friends">
 							<i class="fa-solid fa-user-group me-0"></i>
@@ -59,54 +51,55 @@ if (file_exists($shortcuts_file)) {
 						<span class="fbui-sidebar-label"><?php echo ossn_print('friends');?></span>
 					</a>
 				</li>
-
+				<?php if(com_is_active('OssnMessages')){ ?>
+				<li class="fbui-always-visible">
+					<a href="<?php echo $site_url; ?>messages/all">
+						<div class="fbui-sidebar-icon icon-messenger">
+							<i class="fa-brands fa-facebook-messenger me-0"></i>
+						</div>
+						<span class="fbui-sidebar-label"><?php echo ossn_print('fbui:messenger');?></span>
+					</a>
+				</li>
+				<?php } ?>
 				<?php if(com_is_active('OssnGoLive')){ ?>
 				<li class="fbui-always-visible">
 					<a href="<?php echo $site_url; ?>golive/select">
 						<div class="fbui-sidebar-icon icon-golive">
-							<i class="fa-solid fa-tower-broadcast me-0"></i>
+							<i class="fa-solid fa-video me-0"></i>
 						</div>
 						<span class="fbui-sidebar-label"><?php echo ossn_print('golive');?></span>
 					</a>
+				</li>
+				<?php } ?>
+				<?php if(com_is_active('OssnGroups')){ ?>
+				<li class="fbui-always-visible">
+					<a href="<?php echo $site_url; ?>search?type=groups&q=">
+						<div class="fbui-sidebar-icon icon-groups">
+							<i class="fa fa-users-rectangle me-0"></i>
+						</div>
+						<span class="fbui-sidebar-label"><?php echo ossn_print('groups');?></span>
+					</a>
+				</li>
 				<?php } ?>
 
-				<?php if(com_is_active('Bookmarks')){ ?>
-				<li class="fbui-always-visible">
-					<a href="<?php echo $site_url; ?>bookmarks">
-						<div class="fbui-sidebar-icon icon-saved">
-							<i class="fa fa-bookmark me-0"></i>
-						</div>
-						<span class="fbui-sidebar-label"><?php echo ossn_print('bookmark:saved');?></span>
-					</a>
-				</li>
-				<?php } ?>
-				<?php if(com_is_active('Events')){ ?>
-				<li class="fbui-always-visible">
-					<a href="<?php echo $site_url; ?>event/list">
-						<div class="fbui-sidebar-icon icon-events">
-							<i class="fa fa-calendar-alt me-0"></i>
-						</div>
-						<span class="fbui-sidebar-label"><?php echo ossn_print('events');?></span>
-					</a>
-				</li>
-				<?php } ?>
-				<?php if(com_is_active('MarketPlace')){ ?>
-				<li class="fbui-always-visible">
-					<a href="<?php echo $site_url; ?>marketplace/list">
-						<div class="fbui-sidebar-icon icon-marketplace">
-							<i class="fa fa-store me-0"></i>
-						</div>
-						<span class="fbui-sidebar-label"><?php echo ossn_print('marketplace');?></span>
-					</a>
-				</li>
-				<?php } ?>
+				<!-- Collapsible Main Links (Hidden until "See More" is clicked) -->
 				<div class="fbui-links-collapsible" id="fbui-links-collapse-wrapper">
-					<li class="fbui-always-visible">
-						<a href="<?php echo $user->profileURL('/photos'); ?>">
-							<div class="fbui-sidebar-icon icon-photos">
-								<i class="fa-solid fa-images me-0"></i>
+					<?php if(com_is_active('Bookmarks')){ ?>
+					<li>
+						<a href="<?php echo $site_url; ?>bookmarks">
+							<div class="fbui-sidebar-icon icon-saved">
+								<i class="fa fa-bookmark me-0"></i>
 							</div>
-							<span class="fbui-sidebar-label"><?php echo ossn_print('photos');?></span>
+							<span class="fbui-sidebar-label"><?php echo ossn_print('bookmark:saved');?></span>
+						</a>
+					</li>
+					<?php } ?>
+					<li>
+						<a href="<?php echo $site_url; ?>play/all">
+							<div class="fbui-sidebar-icon icon-games">
+								<i class="fas fa-gamepad me-0"></i>
+							</div>
+							<span class="fbui-sidebar-label"><?php echo ossn_print('games');?></span>
 						</a>
 					</li>
 					<?php if(com_is_active('Videos')){ ?>
@@ -119,16 +112,44 @@ if (file_exists($shortcuts_file)) {
 						</a>
 					</li>
 					<?php } ?>
-					<?php if(com_is_active('OssnGroups')){ ?>
+					<?php if(com_is_active('Events')){ ?>
 					<li>
-						<a href="<?php echo $site_url; ?>search?type=groups&q=">
-							<div class="fbui-sidebar-icon icon-groups">
-								<i class="fa fa-users-rectangle me-0"></i>
+						<a href="<?php echo $site_url; ?>event/list">
+							<div class="fbui-sidebar-icon icon-events">
+								<i class="fa fa-calendar-alt me-0"></i>
 							</div>
-							<span class="fbui-sidebar-label"><?php echo ossn_print('groups');?></span>
+							<span class="fbui-sidebar-label"><?php echo ossn_print('events');?></span>
 						</a>
 					</li>
 					<?php } ?>
+					<?php if(com_is_active('OssnTodos')){ ?>
+					<li>
+						<a href="<?php echo ossn_site_url('todos'); ?>">
+							<div class="fbui-sidebar-icon icon-todos">
+								<i class="fa-solid fa-list-check me-0"></i>
+							</div>
+							<span class="fbui-sidebar-label"><?php echo ossn_print('ossntodos:menu');?></span>
+						</a>
+					</li>
+					<?php } ?>
+					<?php if(com_is_active('MarketPlace')){ ?>
+					<li>
+						<a href="<?php echo $site_url; ?>marketplace/list">
+							<div class="fbui-sidebar-icon icon-marketplace">
+								<i class="fa fa-store me-0"></i>
+							</div>
+							<span class="fbui-sidebar-label"><?php echo ossn_print('marketplace');?></span>
+						</a>
+					</li>
+					<?php } ?>
+					<li>
+						<a href="<?php echo $user->profileURL('/photos'); ?>">
+							<div class="fbui-sidebar-icon icon-photos">
+								<i class="fa-solid fa-images me-0"></i>
+							</div>
+							<span class="fbui-sidebar-label"><?php echo ossn_print('photos');?></span>
+						</a>
+					</li>
 					<?php if(com_is_active('BusinessPage')){ ?>
 					<li>
 						<a href="<?php echo $site_url; ?>page/all">
@@ -146,16 +167,6 @@ if (file_exists($shortcuts_file)) {
 								<i class="fa fa-newspaper me-0"></i>
 							</div>
 							<span class="fbui-sidebar-label"><?php echo ossn_print('com:blog:blog:all');?></span>
-						</a>
-					</li>
-					<?php } ?>
-					<?php if(com_is_active('OssnMessages')){ ?>
-					<li>
-						<a href="<?php echo $site_url; ?>messages/all">
-							<div class="fbui-sidebar-icon icon-messenger">
-								<i class="fa-brands fa-facebook-messenger me-0"></i>
-							</div>
-							<span class="fbui-sidebar-label"><?php echo ossn_print('fbui:messenger');?></span>
 						</a>
 					</li>
 					<?php } ?>
@@ -189,14 +200,6 @@ if (file_exists($shortcuts_file)) {
 						</a>
 					</li>
 					<?php } ?>
-					<li>
-						<a href="<?php echo $site_url; ?>play/all">
-							<div class="fbui-sidebar-icon icon-games">
-								<i class="fas fa-gamepad me-0"></i>
-							</div>
-							<span class="fbui-sidebar-label"><?php echo ossn_print('games');?></span>
-						</a>
-					</li>
 					<li>
 						<a href="<?php echo $site_url; ?>search?q=">
 							<div class="fbui-sidebar-icon icon-members">

@@ -2720,6 +2720,10 @@ label {
     background: linear-gradient(135deg, #f59e0b 0%, #ec4899 100%) !important;
     -webkit-background-clip: text !important;
 }
+.fbui-static-sidebar .fbui-sidebar-list .icon-todos i {
+    background: linear-gradient(135deg, #0ea5e9 0%, #2563eb 100%) !important;
+    -webkit-background-clip: text !important;
+}
 .fbui-static-sidebar .fbui-sidebar-list .icon-meta-ai i {
     background: linear-gradient(135deg, #a855f7 0%, #6366f1 100%) !important;
     -webkit-background-clip: text !important;
