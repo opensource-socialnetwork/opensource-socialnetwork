@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component xmlns="http://www.opensource-socialnetwork.org/v/3.0">
+    <name>Expense Management</name>
+    <id>OssnExpenses</id>
+    <author>Core Team</author>
+    <description>Manage expenses with OSSN Expense Management. Track purchases, view monthly graphs, organize expense lists, search records, and download PDF reports.</description>
+    <license>Open Source Social Network License 4.0</license>
+    <author_url>https://www.openteknik.com/</author_url>
+    <license_url></license_url>
+    <version>3.0</version>
+	<requires>
+		<type>ossn_version</type>
+		<version>10.3</version>
+	</requires>
+	<requires>
+		<type>ossn_component</type>
+		<name>ExpenseManagement</name>
+		<comparator>disabled</comparator>
+	</requires>		
+	<preview>previews/image.webp</preview>
+</component>
