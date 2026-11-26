@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component xmlns="http://www.opensource-socialnetwork.org/v/3.0">
+    <name>OssnTodos</name>
+    <id>OssnTodos</id>
+    <author>Core Team</author>
+    <description>Personal task and to-do list manager accessible directly from the newsfeed sidebar.</description>
+    <license>Open Source Social Network License (OSSN LICENSE) v4.0</license>
+    <author_url>https://www.opensource-socialnetwork.org/</author_url>
+    <license_url>https://www.opensource-socialnetwork.org/licence</license_url>
+    <version>1.0</version>
+    <requires>
+        <type>ossn_version</type>
+        <version>10.3</version>
+    </requires>
+</component>

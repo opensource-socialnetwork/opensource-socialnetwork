@@ -39,6 +39,7 @@ error_log
 !/components/OssnLocation
 !/components/OssnGoLive
 !/components/OssnExpenses
+!/components/OssnTodos
 
 #do not ignore config files
 !/.scrutinizer.yml
