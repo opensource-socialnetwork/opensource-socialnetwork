@@ -84,7 +84,7 @@ Front-End Features
 | Captcha | Site Announcements | Greetings | 
 | Login as | Progressive Web App | Microsoft Active Directory Login |
 | Giphy Integeration | Many free components of community website | Live Streaming |
-| To-List |
+| To-List | Address Book |
 
 Backend Features
 =================
