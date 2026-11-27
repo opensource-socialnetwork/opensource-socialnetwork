@@ -53,7 +53,8 @@ INSERT INTO `ossn_components` (`id`, `com_id`, `active`) VALUES
 (23, 'OssnGiphy', 1),
 (24, 'OssnLocation', 1),
 (25, 'OssnGoLive', 1),
-(26, 'OssnTodos', 1);
+(26, 'OssnTodos', 1),
+(27, 'OssnAddressBook', 1);
 
 -- --------------------------------------------------------
 
@@ -355,7 +356,7 @@ ALTER TABLE `ossn_annotations`
 -- AUTO_INCREMENT for table `ossn_components`
 --
 ALTER TABLE `ossn_components`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `ossn_entities`

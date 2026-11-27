@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component xmlns="http://www.opensource-socialnetwork.org/v/3.0">
+    <name>Address Book</name>
+    <id>OssnAddressBook</id>
+    <author>Core Team</author>
+    <description>Personal address book and contact manager for members.</description>
+    <license>Open Source Social Network License (OSSN LICENSE)</license>
+    <author_url>https://www.opensource-socialnetwork.org/</author_url>
+    <license_url>http://www.opensource-socialnetwork.org/licence</license_url>
+    <version>1.0</version>
+    <requires>
+        <type>ossn_version</type>
+        <version>10.3</version>
+    </requires>
+</component>
