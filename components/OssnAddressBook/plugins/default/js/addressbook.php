@@ -111,6 +111,20 @@ $(document).ready(function() {
 				});
 		}
 
+		// Import contacts with spinner animation
+		$(document).on('change', '#ossnab-import-input', function() {
+				if(!this.files || !this.files.length) {
+						return;
+				}
+				var $label = $('label[for="ossnab-import-input"]');
+				$label.css({
+						'pointer-events': 'none',
+						'opacity': '0.7'
+				}).find('i').attr('class', 'fa fa-spinner fa-spin me-1');
+
+				$('#ossnab-import-form').trigger('submit');
+		});
+
 		// Toggle New Contact form
 		$(document).on('click', '#ossnab-toggle-composer', function() {
 				$('#ossnab-composer-wrap').toggleClass('d-none');

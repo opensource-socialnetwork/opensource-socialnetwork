@@ -23,8 +23,10 @@
 		--ab-border-strong: #cbd5e1;
 		--ab-text-primary: #0f172a;
 		--ab-text-secondary: #64748b;
-		--ab-accent: #2563eb;
-		--ab-accent-hover: #1d4ed8;
+		--ab-accent: #334155;
+		--ab-accent-hover: #1e293b;
+		--ab-accent-contrast: #ffffff;
+		--ab-accent-soft: rgba(51, 65, 85, 0.1);
 		--ab-shadow: 0 1px 3px rgba(15, 23, 42, 0.05), 0 1px 2px rgba(15, 23, 42, 0.03);
 }
 
@@ -37,8 +39,10 @@
 		--ab-border-strong: #3f3f46;
 		--ab-text-primary: #f4f4f5;
 		--ab-text-secondary: #a1a1aa;
-		--ab-accent: #3b82f6;
-		--ab-accent-hover: #2563eb;
+		--ab-accent: #e4e4e7;
+		--ab-accent-hover: #ffffff;
+		--ab-accent-contrast: #18181b;
+		--ab-accent-soft: rgba(244, 244, 245, 0.1);
 		--ab-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
 }
 
@@ -75,7 +79,7 @@
 		width: 42px;
 		height: 42px;
 		border-radius: 11px;
-		background: rgba(37, 99, 235, 0.12);
+		background: var(--ab-accent-soft);
 		color: var(--ab-accent);
 		display: flex;
 		align-items: center;
@@ -151,7 +155,7 @@
 		border-radius: 9px;
 		border: none;
 		background: var(--ab-accent);
-		color: #ffffff;
+		color: var(--ab-accent-contrast);
 		font-size: 13.5px;
 		font-weight: 600;
 		cursor: pointer;
@@ -172,6 +176,7 @@
 		color: var(--ab-text-primary);
 		font-size: 13.5px;
 		font-weight: 600;
+
 		cursor: pointer;
 		white-space: nowrap;
 		transition: all 0.15s ease;
@@ -266,7 +271,7 @@
 
 .ossnab-tab.active {
 		background: var(--ab-accent);
-		color: #ffffff;
+		color: var(--ab-accent-contrast);
 }
 
 .ossnab-list {
@@ -297,7 +302,7 @@
 		border-radius: 50%;
 		background: var(--ab-bg-subtle);
 		border: 1px solid var(--ab-border-strong);
-		color: var(--ab-accent);
+		color: var(--ab-text-primary);
 		font-weight: 700;
 		font-size: 14px;
 		display: flex;
@@ -364,12 +369,14 @@
 }
 
 .ossnab-meta-link {
-		color: var(--ab-accent);
-		text-decoration: none;
+		color: var(--ab-text-primary);
+		text-decoration: underline;
+		text-decoration-color: var(--ab-border-strong);
+		text-underline-offset: 2px;
 }
 
 .ossnab-meta-link:hover {
-		text-decoration: underline;
+		text-decoration-color: var(--ab-text-primary);
 }
 
 .ossnab-meta-text {

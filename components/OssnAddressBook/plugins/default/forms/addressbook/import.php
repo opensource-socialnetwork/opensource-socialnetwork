@@ -9,4 +9,4 @@
  * @link      https://www.opensource-socialnetwork.org/
  */
 ?>
-<input type="file" name="contacts_file" id="ossnab-import-input" accept=".csv,.vcf" onchange="this.form.submit();">
+<input type="file" name="contacts_file" id="ossnab-import-input" accept=".csv,.vcf">
